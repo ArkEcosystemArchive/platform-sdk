@@ -1,0 +1,19 @@
+{
+	"extends": "@sindresorhus/tsconfig",
+	"compilerOptions": {
+		"alwaysStrict": true,
+		"incremental": true,
+		"lib": ["es2018"],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"outDir": "dist",
+		"removeComments": true,
+		"resolveJsonModule": true,
+		"sourceMap": true,
+		"strictNullChecks": false,
+		"target": "es2018",
+		"typeRoots": ["node_modules/@types"]
+	},
+	"include": ["src/**/**.ts"],
+	"exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
+}
