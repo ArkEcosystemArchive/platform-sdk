@@ -20,8 +20,16 @@
 		"test": "jest",
 		"test:watch": "jest --watchAll"
 	},
+	"dependencies": {
+		"@arkecosystem/crypto": "^2.6.1",
+		"bitcoinjs-lib": "^5.1.7",
+		"got": "^10.5.5",
+		"web3": "^1.2.6"
+	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
+		"@types/eslint": "^6.1.8",
+		"@types/eslint-plugin-prettier": "^2.2.0",
 		"@types/jest": "^25.1.2",
 		"@types/prettier": "^1.19.0",
 		"@types/rimraf": "^2.0.3",
@@ -36,6 +44,7 @@
 		"eslint-plugin-simple-import-sort": "^5.0.1",
 		"jest": "^25.1.0",
 		"jest-extended": "^0.11.5",
+		"nock": "^11.8.2",
 		"prettier": "^1.19.1",
 		"rimraf": "^3.0.2",
 		"ts-jest": "^25.2.0",
