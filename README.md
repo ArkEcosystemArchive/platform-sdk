@@ -1,4 +1,4 @@
-# ARK - TypeScript Client
+# ARK Wallet SDK
 
 <p align="center">
     <img src="./banner.png" />
@@ -9,24 +9,40 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/client
+yarn add @arkecosystem/wallet-sdk
 ```
 
 ## Usage
 
+### Client
+
 ```ts
-import { Connection } from "@arkecosystem/client";
+import { ClientFactory } from "@arkecosystem/wallet-sdk";
 
-const init = async () => {
-	const connection: Connection = new Connection("https://dexplorer.ark.io/api/v2");
-
-	console.log(await connection.api("blocks").all());
-};
-
-init();
+ClientFactory.make("ark");
+ClientFactory.make("btc");
+ClientFactory.make("eth");
 ```
 
-See [tests](https://github.com/ArkEcosystem/javascript-client/tree/master/__tests__/resources) for more examples.
+### Crypto
+
+```ts
+import { CryptoFactory } from "@arkecosystem/wallet-sdk";
+
+CryptoFactory.make("ark");
+CryptoFactory.make("btc");
+CryptoFactory.make("eth");
+```
+
+### Tracker
+
+```ts
+import { TrackerFactory } from "@arkecosystem/wallet-sdk";
+
+TrackerFactory.make("coincap");
+TrackerFactory.make("coingecko");
+TrackerFactory.make("cryptocompare");
+```
 
 ## Security
 
