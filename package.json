@@ -1,0 +1,56 @@
+{
+	"name": "@arkecosystem/wallet-sdk",
+	"description": "...",
+	"version": "0.0.1",
+	"contributors": [],
+	"license": "MIT",
+	"files": [
+		"/dist"
+	],
+	"main": "dist/index",
+	"types": "dist/index",
+	"scripts": {
+		"build": "yarn clean && tsc",
+		"build:watch": "yarn build -w",
+		"clean": "rimraf .coverage dist tmp",
+		"format": "yarn lint && yarn prettier",
+		"lint": "./node_modules/eslint/bin/eslint.js src --ext .ts --fix",
+		"prepublishOnly": "yarn build",
+		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\"",
+		"test": "jest",
+		"test:watch": "jest --watchAll"
+	},
+	"dependencies": {
+		"@arkecosystem/crypto": "^2.6.1",
+		"bitcoinjs-lib": "^5.1.7",
+		"got": "^10.5.7",
+		"web3": "^1.2.6"
+	},
+	"devDependencies": {
+		"@sindresorhus/tsconfig": "^0.7.0",
+		"@types/eslint": "^6.1.8",
+		"@types/eslint-plugin-prettier": "^2.2.0",
+		"@types/jest": "^25.1.2",
+		"@types/prettier": "^1.19.0",
+		"@types/rimraf": "^2.0.3",
+		"@typescript-eslint/eslint-plugin": "^2.19.2",
+		"@typescript-eslint/parser": "^2.19.2",
+		"codecov": "^3.6.5",
+		"cross-env": "^7.0.0",
+		"eslint": "^6.8.0",
+		"eslint-config-prettier": "^6.10.0",
+		"eslint-plugin-jest": "^23.7.0",
+		"eslint-plugin-prettier": "^3.1.2",
+		"eslint-plugin-simple-import-sort": "^5.0.1",
+		"jest": "^25.1.0",
+		"jest-extended": "^0.11.5",
+		"nock": "^12.0.0",
+		"prettier": "^1.19.1",
+		"rimraf": "^3.0.2",
+		"ts-jest": "^25.2.0",
+		"typescript": "^3.7.5"
+	},
+	"engines": {
+		"node": ">=12.x"
+	}
+}
