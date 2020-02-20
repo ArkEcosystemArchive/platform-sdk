@@ -9,7 +9,7 @@ export interface MarketData {
 	change24h: number;
 }
 
-export type MarketDataCollection = MarketDataCollection;
+export type MarketDataCollection = Record<string, MarketData>;
 
 export interface MarketTransformer {
 	transform(options: KeyValuePair): MarketDataCollection;

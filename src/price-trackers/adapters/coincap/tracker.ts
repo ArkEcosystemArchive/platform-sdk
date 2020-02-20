@@ -34,17 +34,12 @@ export class CoinCap implements PriceTracker {
 		return new MarketTransformer(response).transform({ token: tokenId });
 	}
 
-	public async getHistoricalData(
-		token: string,
-		currency: string,
-		days: number,
-		opts: HistoricalOptions = { type: "day", dateFormat: "DD.MM" },
-	): Promise<HistoricalData> {
-		const tokenId = await this.getTokenId(token);
+	public async getHistoricalData(options: HistoricalOptions): Promise<HistoricalData> {
+		const tokenId = await this.getTokenId(options.token);
 
-		const { rates } = await this.getCurrencyData(token);
-		const daysSubtract = days === 24 ? 1 : days;
-		const timeInterval = days === 24 ? "h1" : "h12";
+		const { rates } = await this.getCurrencyData(options.token);
+		const daysSubtract = options.days === 24 ? 1 : options.days;
+		const timeInterval = options.days === 24 ? "h1" : "h12";
 		const startDate = dayjs()
 			.subtract(daysSubtract, "d")
 			.valueOf();
@@ -55,13 +50,13 @@ export class CoinCap implements PriceTracker {
 
 		return new HistoricalTransformer(body.data).transform({
 			token: tokenId,
-			currency,
+			currency: options.currency,
 			rates,
-			dateFormat: opts.dateFormat,
+			dateFormat: options.dateFormat,
 		});
 	}
 
-	private async getTokenId(token, limit = 1000): Promise<string> {
+	private async getTokenId(token: string, limit = 1000): Promise<string> {
 		if (Object.keys(this.tokenLookup).length > 0) {
 			return this.tokenLookup[token.toUpperCase()];
 		}

@@ -18,32 +18,27 @@ export class PriceTrackerService {
 		return this.adapter.fetchMarketData(token);
 	}
 
-	public async fetchHistoricalData(
-		token: string,
-		currency: string,
-		days: number,
-		opts: HistoricalOptions = { type: "day", dateFormat: "DD.MM" },
-	): Promise<HistoricalData> {
-		return this.adapter.fetchHistoricalData(token, currency, days, opts);
+	public async fetchHistoricalData(options: HistoricalOptions): Promise<HistoricalData> {
+		return this.adapter.fetchHistoricalData(options);
 	}
 
 	public async historicByDay(token: string, currency: string): Promise<HistoricalData> {
-		return this.fetchHistoricalData(token, currency, 24, { type: "hour", dateFormat: "HH:mm" });
+		return this.fetchHistoricalData({ token, currency, days: 24, type: "hour", dateFormat: "HH:mm" });
 	}
 
 	public async historicByWeek(token: string, currency: string): Promise<HistoricalData> {
-		return this.fetchHistoricalData(token, currency, 7, { type: "day", dateFormat: "ddd" });
+		return this.fetchHistoricalData({ token, currency, days: 7, type: "day", dateFormat: "ddd" });
 	}
 
 	public async historicByMonth(token: string, currency: string): Promise<HistoricalData> {
-		return this.fetchHistoricalData(token, currency, 30, { type: "day", dateFormat: "DD" });
+		return this.fetchHistoricalData({ token, currency, days: 30, type: "day", dateFormat: "DD" });
 	}
 
 	public async historicByQuarter(token: string, currency: string): Promise<HistoricalData> {
-		return this.fetchHistoricalData(token, currency, 120);
+		return this.fetchHistoricalData({ token, currency, days: 120, type: "day", dateFormat: "DD.MM" });
 	}
 
 	public async historicByYear(token: string, currency: string): Promise<HistoricalData> {
-		return this.fetchHistoricalData(token, currency, 365);
+		return this.fetchHistoricalData({ token, currency, days: 365, type: "day", dateFormat: "DD.MM" });
 	}
 }

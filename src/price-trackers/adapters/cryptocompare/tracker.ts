@@ -33,19 +33,14 @@ export class CryptoCompare implements PriceTracker {
 		return new MarketTransformer(body.RAW && body.RAW[token] ? body.RAW[token] : {}).transform({});
 	}
 
-	public async getHistoricalData(
-		token: string,
-		currency: string,
-		days: number,
-		opts: HistoricalOptions = { type: "day", dateFormat: "DD.MM" },
-	): Promise<HistoricalData> {
-		const body = await getJSON(`${this.baseUrl}/data/histo${opts.type}`, {
-			fsym: token,
-			tsym: currency,
+	public async getHistoricalData(options: HistoricalOptions): Promise<HistoricalData> {
+		const body = await getJSON(`${this.baseUrl}/data/histo${options.type}`, {
+			fsym: options.token,
+			tsym: options.currency,
 			toTs: Math.round(new Date().getTime() / 1000),
-			limit: days,
+			limit: options.days,
 		});
 
-		return new HistoricalTransformer(body.Data).transform(opts);
+		return new HistoricalTransformer(body.Data).transform(options);
 	}
 }

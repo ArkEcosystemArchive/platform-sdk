@@ -12,7 +12,9 @@ export interface HistoricalTransformer {
 }
 
 export interface HistoricalOptions {
-	limit?: number;
-	type?: string;
-	dateFormat?: string;
+	token: string;
+	currency: string;
+	days: number;
+	type: string;
+	dateFormat: string;
 }

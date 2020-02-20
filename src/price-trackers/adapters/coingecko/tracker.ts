@@ -34,20 +34,15 @@ export class CoinGecko implements PriceTracker {
 		return new MarketTransformer(body.market_data).transform({});
 	}
 
-	public async getHistoricalData(
-		token: string,
-		currency: string,
-		days: number,
-		opts: HistoricalOptions = { type: "day", dateFormat: "DD.MM" },
-	): Promise<HistoricalData> {
-		const tokenId = await this.getTokenId(token);
+	public async getHistoricalData(options: HistoricalOptions): Promise<HistoricalData> {
+		const tokenId = await this.getTokenId(options.token);
 
 		const body = await getJSON(`${this.baseUrl}/coins/${tokenId}/market_chart`, {
-			vs_currency: currency,
-			days,
+			vs_currency: options.currency,
+			days: options.days,
 		});
 
-		return new HistoricalTransformer(body).transform(opts);
+		return new HistoricalTransformer(body).transform(options);
 	}
 
 	private async getTokenId(token): Promise<string> {
