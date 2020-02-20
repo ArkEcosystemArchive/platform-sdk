@@ -4,8 +4,9 @@ import { getJSON } from "../../../utils/get-json";
 import { HistoricalData, HistoricalOptions } from "../../contracts/historical";
 import { MarketDataCollection } from "../../contracts/market";
 import { PriceTracker } from "../../contracts/tracker";
-import { HistoricalTransformer } from "./historical-transformer";
-import { MarketTransformer } from "./market-transformer";
+import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
+import { HistoricalVolumeTransformer } from "./transformers/historical-volume-transformer";
+import { MarketTransformer } from "./transformers/market-transformer";
 
 export class CoinCap implements PriceTracker {
 	private readonly baseUrl: string = "https://api.coincap.io/v2";
@@ -34,7 +35,7 @@ export class CoinCap implements PriceTracker {
 		return new MarketTransformer(response).transform({ token: tokenId });
 	}
 
-	public async getHistoricalData(options: HistoricalOptions): Promise<HistoricalData> {
+	public async getHistoricalPrice(options: HistoricalOptions): Promise<HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
 		const { rates } = await this.getCurrencyData(options.token);
@@ -48,7 +49,29 @@ export class CoinCap implements PriceTracker {
 			`${this.baseUrl}/assets/${tokenId}/history?interval=${timeInterval}&start=${startDate}&end=${endDate}`,
 		);
 
-		return new HistoricalTransformer(body.data).transform({
+		return new HistoricalPriceTransformer(body.data).transform({
+			token: tokenId,
+			currency: options.currency,
+			rates,
+			dateFormat: options.dateFormat,
+		});
+	}
+
+	public async getHistoricalVolume(options: HistoricalOptions): Promise<HistoricalData> {
+		const tokenId = await this.getTokenId(options.token);
+
+		const { rates } = await this.getCurrencyData(options.token);
+		const daysSubtract = options.days === 24 ? 1 : options.days;
+		const timeInterval = options.days === 24 ? "h1" : "h12";
+		const startDate = dayjs()
+			.subtract(daysSubtract, "d")
+			.valueOf();
+		const endDate = dayjs().valueOf();
+		const body = await getJSON(
+			`${this.baseUrl}/assets/${tokenId}/history?interval=${timeInterval}&start=${startDate}&end=${endDate}`,
+		);
+
+		return new HistoricalVolumeTransformer(body.data).transform({
 			token: tokenId,
 			currency: options.currency,
 			rates,

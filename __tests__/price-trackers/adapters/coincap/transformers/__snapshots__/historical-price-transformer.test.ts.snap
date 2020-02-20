@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CoinCap HistoricalTransformer should transform the given data 1`] = `
+exports[`CoinCap HistoricalPriceTransformer should transform the given data 1`] = `
 Object {
   "datasets": Array [
     0.000022712859412470542,

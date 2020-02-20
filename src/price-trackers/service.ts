@@ -18,27 +18,27 @@ export class PriceTrackerService {
 		return this.adapter.getMarketData(token);
 	}
 
-	public async getHistoricalData(options: HistoricalOptions): Promise<HistoricalData> {
-		return this.adapter.getHistoricalData(options);
+	public async getHistoricalPrice(options: HistoricalOptions): Promise<HistoricalData> {
+		return this.adapter.getHistoricalPrice(options);
 	}
 
-	public async getHistoricalDataForDay(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalData({ token, currency, days: 24, type: "hour", dateFormat: "HH:mm" });
+	public async getHistoricalPriceForDay(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalPrice({ token, currency, days: 24, type: "hour", dateFormat: "HH:mm" });
 	}
 
-	public async getHistoricalDataForWeek(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalData({ token, currency, days: 7, type: "day", dateFormat: "ddd" });
+	public async getHistoricalPriceForWeek(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalPrice({ token, currency, days: 7, type: "day", dateFormat: "ddd" });
 	}
 
-	public async getHistoricalDataForMonth(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalData({ token, currency, days: 30, type: "day", dateFormat: "DD" });
+	public async getHistoricalPriceForMonth(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalPrice({ token, currency, days: 30, type: "day", dateFormat: "DD" });
 	}
 
-	public async getHistoricalDataForQuarter(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalData({ token, currency, days: 120, type: "day", dateFormat: "DD.MM" });
+	public async getHistoricalPriceForQuarter(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalPrice({ token, currency, days: 120, type: "day", dateFormat: "DD.MM" });
 	}
 
-	public async getHistoricalDataForYear(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalData({ token, currency, days: 365, type: "day", dateFormat: "DD.MM" });
+	public async getHistoricalPriceForYear(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalPrice({ token, currency, days: 365, type: "day", dateFormat: "DD.MM" });
 	}
 }

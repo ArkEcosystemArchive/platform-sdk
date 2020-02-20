@@ -1,6 +1,6 @@
-import { KeyValuePair } from "../../../types";
-import { CURRENCIES } from "../../config";
-import { MarketDataCollection, MarketTransformer as TransformerContract } from "../../contracts/market";
+import { KeyValuePair } from "../../../../types";
+import { CURRENCIES } from "../../../config";
+import { MarketDataCollection, MarketTransformer as TransformerContract } from "../../../contracts/market";
 
 export class MarketTransformer implements TransformerContract {
 	public constructor(private readonly data: KeyValuePair) {}

@@ -1,8 +1,8 @@
-import { KeyValuePair } from "../../../types";
-import { dayjs } from "../../../utils/dayjs";
-import { HistoricalData, HistoricalTransformer as TransformerContract } from "../../contracts/historical";
+import { KeyValuePair } from "../../../../types";
+import { dayjs } from "../../../../utils/dayjs";
+import { HistoricalData, HistoricalTransformer } from "../../../contracts/historical";
 
-export class HistoricalTransformer implements TransformerContract {
+export class HistoricalPriceTransformer implements HistoricalTransformer {
 	public constructor(private readonly data: KeyValuePair) {}
 
 	public transform(options: KeyValuePair): HistoricalData {

@@ -6,5 +6,7 @@ export interface PriceTracker {
 
 	getMarketData(token: string): Promise<MarketDataCollection>;
 
-	getHistoricalData(options: HistoricalOptions): Promise<HistoricalData>;
+	getHistoricalPrice(options: HistoricalOptions): Promise<HistoricalData>;
+
+	getHistoricalVolume(options: HistoricalOptions): Promise<HistoricalData>;
 }

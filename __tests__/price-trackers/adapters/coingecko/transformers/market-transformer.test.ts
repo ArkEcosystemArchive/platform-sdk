@@ -1,6 +1,6 @@
-import { MarketTransformer } from "../../../../src/price-trackers/adapters/coingecko/market-transformer";
+import { MarketTransformer } from "../../../../../src/price-trackers/adapters/coingecko/transformers/market-transformer";
 
-const stubResponse = require("./__fixtures__/market.json");
+const stubResponse = require("../__fixtures__/market.json");
 const stubOptions = { type: "day", dateFormat: "DD.MM" };
 
 describe("CoinGecko", function() {

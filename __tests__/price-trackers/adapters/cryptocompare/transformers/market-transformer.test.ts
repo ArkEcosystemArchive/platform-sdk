@@ -1,6 +1,6 @@
-import { MarketTransformer } from "../../../../src/price-trackers/adapters/cryptocompare/market-transformer";
+import { MarketTransformer } from "../../../../../src/price-trackers/adapters/cryptocompare/transformers/market-transformer";
 
-const stubResponse = require("./__fixtures__/market.json");
+const stubResponse = require("../__fixtures__/market.json");
 const stubOptions = { type: "day", dateFormat: "DD.MM", token: "ARK" };
 
 describe("CryptoCompare", function() {
