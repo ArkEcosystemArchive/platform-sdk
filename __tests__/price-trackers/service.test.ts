@@ -151,31 +151,31 @@ describe("PriceTrackerService", () => {
 		});
 
 		it("should return historic day values", async () => {
-			const response = await subject.historicForDay(token, currency);
+			const response = await subject.getHistoricalDataForDay(token, currency);
 			expect(response).toBeObject();
 			expect(response).toContainKeys(["labels", "datasets"]);
 		});
 
 		it("should return historic week values", async () => {
-			const response = await subject.historicForWeek(token, currency);
+			const response = await subject.getHistoricalDataForWeek(token, currency);
 			expect(response).toBeObject();
 			expect(response).toContainKeys(["labels", "datasets"]);
 		});
 
 		it("should return historic month values", async () => {
-			const response = await subject.historicForMonth(token, currency);
+			const response = await subject.getHistoricalDataForMonth(token, currency);
 			expect(response).toBeObject();
 			expect(response).toContainKeys(["labels", "datasets"]);
 		});
 
 		it("should return historic quarter values", async () => {
-			const response = await subject.historicForQuarter(token, currency);
+			const response = await subject.getHistoricalDataForQuarter(token, currency);
 			expect(response).toBeObject();
 			expect(response).toContainKeys(["labels", "datasets"]);
 		});
 
 		it("should return historic year values", async () => {
-			const response = await subject.historicForYear(token, currency);
+			const response = await subject.getHistoricalDataForYear(token, currency);
 			expect(response).toBeObject();
 			expect(response).toContainKeys(["labels", "datasets"]);
 		});

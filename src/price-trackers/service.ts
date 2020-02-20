@@ -22,23 +22,23 @@ export class PriceTrackerService {
 		return this.adapter.getHistoricalData(options);
 	}
 
-	public async historicForDay(token: string, currency: string): Promise<HistoricalData> {
+	public async getHistoricalDataForDay(token: string, currency: string): Promise<HistoricalData> {
 		return this.getHistoricalData({ token, currency, days: 24, type: "hour", dateFormat: "HH:mm" });
 	}
 
-	public async historicForWeek(token: string, currency: string): Promise<HistoricalData> {
+	public async getHistoricalDataForWeek(token: string, currency: string): Promise<HistoricalData> {
 		return this.getHistoricalData({ token, currency, days: 7, type: "day", dateFormat: "ddd" });
 	}
 
-	public async historicForMonth(token: string, currency: string): Promise<HistoricalData> {
+	public async getHistoricalDataForMonth(token: string, currency: string): Promise<HistoricalData> {
 		return this.getHistoricalData({ token, currency, days: 30, type: "day", dateFormat: "DD" });
 	}
 
-	public async historicForQuarter(token: string, currency: string): Promise<HistoricalData> {
+	public async getHistoricalDataForQuarter(token: string, currency: string): Promise<HistoricalData> {
 		return this.getHistoricalData({ token, currency, days: 120, type: "day", dateFormat: "DD.MM" });
 	}
 
-	public async historicForYear(token: string, currency: string): Promise<HistoricalData> {
+	public async getHistoricalDataForYear(token: string, currency: string): Promise<HistoricalData> {
 		return this.getHistoricalData({ token, currency, days: 365, type: "day", dateFormat: "DD.MM" });
 	}
 }
