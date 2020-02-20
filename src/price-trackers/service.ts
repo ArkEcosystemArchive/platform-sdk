@@ -1,4 +1,9 @@
-import { HistoricalData, HistoricalOptions } from "./contracts/historical";
+import {
+	DailyAverageOptions,
+	HistoricalData,
+	HistoricalPriceOptions,
+	HistoricalVolumeOptions,
+} from "./contracts/historical";
 import { MarketDataCollection } from "./contracts/market";
 import { PriceTracker } from "./contracts/tracker";
 import { PriceTrackerFactory } from "./factory";
@@ -18,27 +23,55 @@ export class PriceTrackerService {
 		return this.adapter.getMarketData(token);
 	}
 
-	public async getHistoricalData(options: HistoricalOptions): Promise<HistoricalData> {
-		return this.adapter.getHistoricalData(options);
+	public async getHistoricalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
+		return this.adapter.getHistoricalPrice(options);
 	}
 
-	public async getHistoricalDataForDay(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalData({ token, currency, days: 24, type: "hour", dateFormat: "HH:mm" });
+	public async getHistoricalPriceForDay(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalPrice({ token, currency, days: 24, type: "hour", dateFormat: "HH:mm" });
 	}
 
-	public async getHistoricalDataForWeek(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalData({ token, currency, days: 7, type: "day", dateFormat: "ddd" });
+	public async getHistoricalPriceForWeek(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalPrice({ token, currency, days: 7, type: "day", dateFormat: "ddd" });
 	}
 
-	public async getHistoricalDataForMonth(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalData({ token, currency, days: 30, type: "day", dateFormat: "DD" });
+	public async getHistoricalPriceForMonth(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalPrice({ token, currency, days: 30, type: "day", dateFormat: "DD" });
 	}
 
-	public async getHistoricalDataForQuarter(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalData({ token, currency, days: 120, type: "day", dateFormat: "DD.MM" });
+	public async getHistoricalPriceForQuarter(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalPrice({ token, currency, days: 120, type: "day", dateFormat: "DD.MM" });
 	}
 
-	public async getHistoricalDataForYear(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalData({ token, currency, days: 365, type: "day", dateFormat: "DD.MM" });
+	public async getHistoricalPriceForYear(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalPrice({ token, currency, days: 365, type: "day", dateFormat: "DD.MM" });
+	}
+
+	public async getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
+		return this.adapter.getHistoricalVolume(options);
+	}
+
+	public async getHistoricalVolumeForDay(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalVolume({ token, currency, days: 24, type: "hour", dateFormat: "HH:mm" });
+	}
+
+	public async getHistoricalVolumeForWeek(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalVolume({ token, currency, days: 7, type: "day", dateFormat: "ddd" });
+	}
+
+	public async getHistoricalVolumeForMonth(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalVolume({ token, currency, days: 30, type: "day", dateFormat: "DD" });
+	}
+
+	public async getHistoricalVolumeForQuarter(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalVolume({ token, currency, days: 120, type: "day", dateFormat: "DD.MM" });
+	}
+
+	public async getHistoricalVolumeForYear(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalVolume({ token, currency, days: 365, type: "day", dateFormat: "DD.MM" });
+	}
+
+	public async dailyAverage(token: string, currency: string, timestamp: number): Promise<number> {
+		return this.adapter.dailyAverage({ token, currency, timestamp });
 	}
 }

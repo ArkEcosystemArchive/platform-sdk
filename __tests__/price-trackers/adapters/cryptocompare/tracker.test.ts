@@ -5,5 +5,9 @@ let subject: CryptoCompare;
 beforeEach(() => (subject = new CryptoCompare()));
 
 describe("CryptoCompare", function() {
-	it.todo("should ...");
+	it("should get the daily average", async () => {
+		expect(
+			subject.dailyAverage({ token: "ark", currency: "btc", timestamp: Date.now().valueOf() }),
+		).resolves.toMatchSnapshot();
+	});
 });

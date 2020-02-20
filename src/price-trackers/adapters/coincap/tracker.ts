@@ -1,11 +1,17 @@
+import { NotImplemented } from "../../../exceptions";
 import { KeyValuePair } from "../../../types";
 import { dayjs } from "../../../utils/dayjs";
 import { getJSON } from "../../../utils/get-json";
-import { HistoricalData, HistoricalOptions } from "../../contracts/historical";
+import {
+	DailyAverageOptions,
+	HistoricalData,
+	HistoricalPriceOptions,
+	HistoricalVolumeOptions,
+} from "../../contracts/historical";
 import { MarketDataCollection } from "../../contracts/market";
 import { PriceTracker } from "../../contracts/tracker";
-import { HistoricalTransformer } from "./historical-transformer";
-import { MarketTransformer } from "./market-transformer";
+import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
+import { MarketTransformer } from "./transformers/market-transformer";
 
 export class CoinCap implements PriceTracker {
 	private readonly baseUrl: string = "https://api.coincap.io/v2";
@@ -34,7 +40,7 @@ export class CoinCap implements PriceTracker {
 		return new MarketTransformer(response).transform({ token: tokenId });
 	}
 
-	public async getHistoricalData(options: HistoricalOptions): Promise<HistoricalData> {
+	public async getHistoricalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
 		const { rates } = await this.getCurrencyData(options.token);
@@ -48,12 +54,20 @@ export class CoinCap implements PriceTracker {
 			`${this.baseUrl}/assets/${tokenId}/history?interval=${timeInterval}&start=${startDate}&end=${endDate}`,
 		);
 
-		return new HistoricalTransformer(body.data).transform({
+		return new HistoricalPriceTransformer(body.data).transform({
 			token: tokenId,
 			currency: options.currency,
 			rates,
 			dateFormat: options.dateFormat,
 		});
+	}
+
+	public async getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
+		throw new NotImplemented(this.constructor.name, "getHistoricalVolume");
+	}
+
+	public async dailyAverage(options: DailyAverageOptions): Promise<number> {
+		throw new NotImplemented(this.constructor.name, "dailyAverage");
 	}
 
 	private async getTokenId(token: string, limit = 1000): Promise<string> {

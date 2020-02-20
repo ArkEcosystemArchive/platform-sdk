@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CryptoCompare HistoricalTransformer should transform the given data 1`] = `
+exports[`CryptoCompare HistoricalPriceTransformer should transform the given data 1`] = `
 Object {
   "datasets": Array [
     0.00001978,

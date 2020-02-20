@@ -1,7 +1,7 @@
-import { KeyValuePair } from "../../../types";
-import { CURRENCIES } from "../../config";
-import { MarketDataCollection, MarketTransformer as TransformerContract } from "../../contracts/market";
-import { convertToCurrency } from "./utils";
+import { KeyValuePair } from "../../../../types";
+import { CURRENCIES } from "../../../config";
+import { MarketDataCollection, MarketTransformer as TransformerContract } from "../../../contracts/market";
+import { convertToCurrency } from "../utils";
 
 export class MarketTransformer implements TransformerContract {
 	// All prices on the CoinCap API are standardized in USD (United States Dollar)

@@ -1,6 +1,6 @@
-import { HistoricalTransformer } from "../../../../src/price-trackers/adapters/coincap/historical-transformer";
+import { HistoricalPriceTransformer } from "../../../../../src/price-trackers/adapters/coincap/transformers/historical-price-transformer";
 
-const stubResponse = require("./__fixtures__/historical.json");
+const stubResponse = require("../__fixtures__/historical.json");
 
 const stubOptions = {
 	token: "ark",
@@ -192,9 +192,9 @@ const stubOptions = {
 };
 
 describe("CoinCap", function() {
-	describe("HistoricalTransformer", function() {
+	describe("HistoricalPriceTransformer", function() {
 		it("should transform the given data", async () => {
-			const subject = new HistoricalTransformer(stubResponse.data);
+			const subject = new HistoricalPriceTransformer(stubResponse.data);
 
 			expect(subject.transform(stubOptions)).toMatchSnapshot();
 		});

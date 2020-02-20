@@ -11,10 +11,24 @@ export interface HistoricalTransformer {
 	transform(data: KeyValuePair, options: KeyValuePair): HistoricalData;
 }
 
-export interface HistoricalOptions {
+export interface HistoricalPriceOptions {
 	token: string;
 	currency: string;
 	days: number;
 	type: string;
 	dateFormat: string;
+}
+
+export interface HistoricalVolumeOptions {
+	token: string;
+	currency: string;
+	days: number;
+	type: string;
+	dateFormat: string;
+}
+
+export interface DailyAverageOptions {
+	token: string;
+	currency: string;
+	timestamp: number;
 }

@@ -1,6 +1,6 @@
 module.exports = {
 	bail: false,
-	collectCoverage: true,
+	collectCoverage: false,
 	collectCoverageFrom: ["src/**/*.ts", "!src/index.ts", "!**/node_modules/**"],
 	coverageDirectory: "<rootDir>/.coverage",
 	coverageReporters: ["json", "lcov", "text", "clover", "html"],
@@ -11,5 +11,5 @@ module.exports = {
 	transform: {
 		"^.+\\.tsx?$": "ts-jest",
 	},
-	verbose: true,
+	verbose: false,
 };
