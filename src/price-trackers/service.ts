@@ -48,67 +48,22 @@ export class PriceTrackerService {
 	}
 
 	public async getHistoricalVolumeForDay(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalVolume({
-			token,
-			currency,
-			from: dayjs()
-				.subtract(365, "d")
-				.unix(),
-			to: dayjs().unix(),
-			type: "hour",
-			dateFormat: "HH:mm",
-		});
+		return this.getHistoricalVolume({ token, currency, days: 24, type: "hour", dateFormat: "HH:mm" });
 	}
 
 	public async getHistoricalVolumeForWeek(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalVolume({
-			token,
-			currency,
-			from: dayjs()
-				.subtract(365, "d")
-				.unix(),
-			to: dayjs().unix(),
-			type: "day",
-			dateFormat: "ddd",
-		});
+		return this.getHistoricalVolume({ token, currency, days: 7, type: "day", dateFormat: "ddd" });
 	}
 
 	public async getHistoricalVolumeForMonth(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalVolume({
-			token,
-			currency,
-			from: dayjs()
-				.subtract(365, "d")
-				.unix(),
-			to: dayjs().unix(),
-			type: "day",
-			dateFormat: "DD",
-		});
+		return this.getHistoricalVolume({ token, currency, days: 30, type: "day", dateFormat: "DD" });
 	}
 
 	public async getHistoricalVolumeForQuarter(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalVolume({
-			token,
-			currency,
-			from: dayjs()
-				.subtract(365, "d")
-				.unix(),
-			to: dayjs().unix(),
-			type: "day",
-			dateFormat: "DD.MM",
-		});
+		return this.getHistoricalVolume({ token, currency, days: 120, type: "day", dateFormat: "DD.MM" });
 	}
 
 	public async getHistoricalVolumeForYear(token: string, currency: string): Promise<HistoricalData> {
-		return this.getHistoricalVolume({
-			token,
-			currency,
-			from: dayjs()
-				.subtract(365, "d")
-				.unix(),
-			to: dayjs().unix(),
-			type: "day",
-			dateFormat: "DD.MM",
-		});
+		return this.getHistoricalVolume({ token, currency, days: 365, type: "day", dateFormat: "DD.MM" });
 	}
 }
