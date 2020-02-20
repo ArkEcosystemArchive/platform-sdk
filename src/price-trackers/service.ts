@@ -1,6 +1,6 @@
 import { PriceTracker as Adapter } from "./contracts";
 import { HistoricalData, HistoricalOptions } from "./contracts/historical";
-import { MarketData, MarketDataCollection } from "./contracts/market";
+import { MarketDataCollection } from "./contracts/market";
 import { PriceTrackerFactory } from "./factory";
 
 export class PriceTrackerService {
