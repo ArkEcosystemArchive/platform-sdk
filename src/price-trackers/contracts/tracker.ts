@@ -6,16 +6,7 @@ export interface PriceTracker {
 	getHistoricalData(
 		token: string,
 		currency: string,
+		days: number,
 		opts: { limit: number; type: string; dateFormat: string },
 	): Promise<object>;
-}
-
-export interface ResponseTransformer {
-	transform(data: object): object;
-}
-
-export interface HistoricalOptions {
-	limit?: number;
-	type?: string;
-	dateFormat?: string;
 }

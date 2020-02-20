@@ -1,4 +1,4 @@
-import { CryptoCompare } from "../../../../src/trackers/adapters/cryptocompare/tracker";
+import { CryptoCompare } from "../../../../src/price-trackers/adapters/cryptocompare/tracker";
 
 let subject: CryptoCompare;
 
