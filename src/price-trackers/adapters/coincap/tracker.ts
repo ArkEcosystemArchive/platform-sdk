@@ -1,7 +1,7 @@
 import { KeyValuePair } from "../../../types";
 import { dayjs } from "../../../utils/dayjs";
 import { getJSON } from "../../../utils/get-json";
-import { HistoricalData, HistoricalOptions } from "../../contracts/historical";
+import { HistoricalData, HistoricalPriceOptions, HistoricalVolumeOptions } from "../../contracts/historical";
 import { MarketDataCollection } from "../../contracts/market";
 import { PriceTracker } from "../../contracts/tracker";
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
@@ -35,7 +35,7 @@ export class CoinCap implements PriceTracker {
 		return new MarketTransformer(response).transform({ token: tokenId });
 	}
 
-	public async getHistoricalPrice(options: HistoricalOptions): Promise<HistoricalData> {
+	public async getHistoricalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
 		const { rates } = await this.getCurrencyData(options.token);
@@ -57,21 +57,21 @@ export class CoinCap implements PriceTracker {
 		});
 	}
 
-	public async getHistoricalVolume(options: HistoricalOptions): Promise<HistoricalData> {
+	public async getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
 		const { rates } = await this.getCurrencyData(options.token);
-		const daysSubtract = options.days === 24 ? 1 : options.days;
-		const timeInterval = options.days === 24 ? "h1" : "h12";
-		const startDate = dayjs()
-			.subtract(daysSubtract, "d")
-			.valueOf();
-		const endDate = dayjs().valueOf();
-		const body = await getJSON(
-			`${this.baseUrl}/assets/${tokenId}/history?interval=${timeInterval}&start=${startDate}&end=${endDate}`,
-		);
+		// const daysSubtract = options.days === 24 ? 1 : options.days;
+		// const timeInterval = options.days === 24 ? "h1" : "h12";
+		// const startDate = dayjs()
+		// 	.subtract(daysSubtract, "d")
+		// 	.valueOf();
+		// const endDate = dayjs().valueOf();
+		// const body = await getJSON(
+		// 	`${this.baseUrl}/assets/${tokenId}/history?interval=${timeInterval}&start=${startDate}&end=${endDate}`,
+		// );
 
-		return new HistoricalVolumeTransformer(body.data).transform({
+		return new HistoricalVolumeTransformer({}).transform({
 			token: tokenId,
 			currency: options.currency,
 			rates,

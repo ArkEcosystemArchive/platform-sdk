@@ -1,6 +1,6 @@
 import { getJSON } from "../../../utils/get-json";
 import { CURRENCIES } from "../../config";
-import { HistoricalData, HistoricalOptions } from "../../contracts/historical";
+import { HistoricalData, HistoricalPriceOptions, HistoricalVolumeOptions } from "../../contracts/historical";
 import { MarketDataCollection } from "../../contracts/market";
 import { PriceTracker } from "../../contracts/tracker";
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
@@ -34,7 +34,7 @@ export class CryptoCompare implements PriceTracker {
 		return new MarketTransformer(body.RAW && body.RAW[token] ? body.RAW[token] : {}).transform({});
 	}
 
-	public async getHistoricalPrice(options: HistoricalOptions): Promise<HistoricalData> {
+	public async getHistoricalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
 		const body = await getJSON(`${this.baseUrl}/data/histo${options.type}`, {
 			fsym: options.token,
 			tsym: options.currency,
@@ -45,7 +45,7 @@ export class CryptoCompare implements PriceTracker {
 		return new HistoricalPriceTransformer(body.Data).transform(options);
 	}
 
-	public async getHistoricalVolume(options: HistoricalOptions): Promise<HistoricalData> {
+	public async getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
 		const body = await getJSON(`${this.baseUrl}/data/histo${options.type}`, {
 			fsym: options.token,
 			tsym: options.currency,

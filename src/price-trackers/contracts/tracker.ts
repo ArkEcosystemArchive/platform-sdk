@@ -1,4 +1,4 @@
-import { HistoricalData, HistoricalOptions } from "./historical";
+import { HistoricalData, HistoricalPriceOptions, HistoricalVolumeOptions } from "./historical";
 import { MarketDataCollection } from "./market";
 
 export interface PriceTracker {
@@ -6,7 +6,7 @@ export interface PriceTracker {
 
 	getMarketData(token: string): Promise<MarketDataCollection>;
 
-	getHistoricalPrice(options: HistoricalOptions): Promise<HistoricalData>;
+	getHistoricalPrice(options: HistoricalPriceOptions): Promise<HistoricalData>;
 
-	getHistoricalVolume(options: HistoricalOptions): Promise<HistoricalData>;
+	getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData>;
 }

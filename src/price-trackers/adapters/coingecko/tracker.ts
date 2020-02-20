@@ -1,6 +1,7 @@
 import { KeyValuePair } from "../../../types";
+import { dayjs } from "../../../utils/dayjs";
 import { getJSON } from "../../../utils/get-json";
-import { HistoricalData, HistoricalOptions } from "../../contracts/historical";
+import { HistoricalData, HistoricalPriceOptions, HistoricalVolumeOptions } from "../../contracts/historical";
 import { MarketDataCollection } from "../../contracts/market";
 import { PriceTracker } from "../../contracts/tracker";
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
@@ -35,7 +36,7 @@ export class CoinGecko implements PriceTracker {
 		return new MarketTransformer(body.market_data).transform({});
 	}
 
-	public async getHistoricalPrice(options: HistoricalOptions): Promise<HistoricalData> {
+	public async getHistoricalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
 		const body = await getJSON(`${this.baseUrl}/coins/${tokenId}/market_chart`, {
@@ -46,12 +47,16 @@ export class CoinGecko implements PriceTracker {
 		return new HistoricalPriceTransformer(body).transform(options);
 	}
 
-	public async getHistoricalVolume(options: HistoricalOptions): Promise<HistoricalData> {
+	public async getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
-		const body = await getJSON(`${this.baseUrl}/coins/${tokenId}/market_chart`, {
+		const body = await getJSON(`${this.baseUrl}/coins/${tokenId}/market_chart/range`, {
+			id: options.token,
 			vs_currency: options.currency,
-			days: options.days,
+			from: dayjs()
+				.subtract(options.days, "d")
+				.unix(),
+			to: dayjs().unix(),
 		});
 
 		return new HistoricalVolumeTransformer(body).transform(options);

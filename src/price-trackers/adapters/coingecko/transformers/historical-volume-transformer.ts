@@ -7,8 +7,9 @@ export class HistoricalVolumeTransformer implements HistoricalTransformer {
 
 	public transform(options: KeyValuePair): HistoricalData {
 		const datasets = {};
-		for (let i = 0; i < this.data.prices.length; i += 24) {
-			datasets[this.data.prices[i][0]] = this.data.prices[i][1];
+
+		for (let i = 0; i < this.data.total_volumes.length; i += 24) {
+			datasets[this.data.total_volumes[i][0]] = this.data.total_volumes[i][1];
 		}
 
 		const datasetValues: number[] = Object.values(datasets);

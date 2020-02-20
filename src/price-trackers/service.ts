@@ -1,4 +1,5 @@
-import { HistoricalData, HistoricalOptions } from "./contracts/historical";
+import { dayjs } from "../utils/dayjs";
+import { HistoricalData, HistoricalPriceOptions, HistoricalVolumeOptions } from "./contracts/historical";
 import { MarketDataCollection } from "./contracts/market";
 import { PriceTracker } from "./contracts/tracker";
 import { PriceTrackerFactory } from "./factory";
@@ -18,7 +19,7 @@ export class PriceTrackerService {
 		return this.adapter.getMarketData(token);
 	}
 
-	public async getHistoricalPrice(options: HistoricalOptions): Promise<HistoricalData> {
+	public async getHistoricalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
 		return this.adapter.getHistoricalPrice(options);
 	}
 
@@ -40,5 +41,74 @@ export class PriceTrackerService {
 
 	public async getHistoricalPriceForYear(token: string, currency: string): Promise<HistoricalData> {
 		return this.getHistoricalPrice({ token, currency, days: 365, type: "day", dateFormat: "DD.MM" });
+	}
+
+	public async getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
+		return this.adapter.getHistoricalVolume(options);
+	}
+
+	public async getHistoricalVolumeForDay(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalVolume({
+			token,
+			currency,
+			from: dayjs()
+				.subtract(365, "d")
+				.unix(),
+			to: dayjs().unix(),
+			type: "hour",
+			dateFormat: "HH:mm",
+		});
+	}
+
+	public async getHistoricalVolumeForWeek(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalVolume({
+			token,
+			currency,
+			from: dayjs()
+				.subtract(365, "d")
+				.unix(),
+			to: dayjs().unix(),
+			type: "day",
+			dateFormat: "ddd",
+		});
+	}
+
+	public async getHistoricalVolumeForMonth(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalVolume({
+			token,
+			currency,
+			from: dayjs()
+				.subtract(365, "d")
+				.unix(),
+			to: dayjs().unix(),
+			type: "day",
+			dateFormat: "DD",
+		});
+	}
+
+	public async getHistoricalVolumeForQuarter(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalVolume({
+			token,
+			currency,
+			from: dayjs()
+				.subtract(365, "d")
+				.unix(),
+			to: dayjs().unix(),
+			type: "day",
+			dateFormat: "DD.MM",
+		});
+	}
+
+	public async getHistoricalVolumeForYear(token: string, currency: string): Promise<HistoricalData> {
+		return this.getHistoricalVolume({
+			token,
+			currency,
+			from: dayjs()
+				.subtract(365, "d")
+				.unix(),
+			to: dayjs().unix(),
+			type: "day",
+			dateFormat: "DD.MM",
+		});
 	}
 }
