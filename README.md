@@ -1,4 +1,4 @@
-# ARK Wallet SDK
+# ARK Platform SDK
 
 <p align="center">
     <img src="./banner.png" />
