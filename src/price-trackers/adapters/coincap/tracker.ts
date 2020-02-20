@@ -1,3 +1,4 @@
+import { NotImplemented } from "../../../exceptions";
 import { KeyValuePair } from "../../../types";
 import { dayjs } from "../../../utils/dayjs";
 import { getJSON } from "../../../utils/get-json";
@@ -5,7 +6,6 @@ import { HistoricalData, HistoricalPriceOptions, HistoricalVolumeOptions } from 
 import { MarketDataCollection } from "../../contracts/market";
 import { PriceTracker } from "../../contracts/tracker";
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
-import { HistoricalVolumeTransformer } from "./transformers/historical-volume-transformer";
 import { MarketTransformer } from "./transformers/market-transformer";
 
 export class CoinCap implements PriceTracker {
@@ -58,25 +58,7 @@ export class CoinCap implements PriceTracker {
 	}
 
 	public async getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
-		const tokenId = await this.getTokenId(options.token);
-
-		const { rates } = await this.getCurrencyData(options.token);
-		// const daysSubtract = options.days === 24 ? 1 : options.days;
-		// const timeInterval = options.days === 24 ? "h1" : "h12";
-		// const startDate = dayjs()
-		// 	.subtract(daysSubtract, "d")
-		// 	.valueOf();
-		// const endDate = dayjs().valueOf();
-		// const body = await getJSON(
-		// 	`${this.baseUrl}/assets/${tokenId}/history?interval=${timeInterval}&start=${startDate}&end=${endDate}`,
-		// );
-
-		return new HistoricalVolumeTransformer({}).transform({
-			token: tokenId,
-			currency: options.currency,
-			rates,
-			dateFormat: options.dateFormat,
-		});
+		throw new NotImplemented(this.constructor.name, "getHistoricalVolume");
 	}
 
 	private async getTokenId(token: string, limit = 1000): Promise<string> {
