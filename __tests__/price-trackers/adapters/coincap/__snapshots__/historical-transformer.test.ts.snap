@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoinCap HistoricalTransformer should transform the given data 1`] = `
+Object {
+  "datasets": Array [
+    0.000022712859412470542,
+    0.000022993255286466074,
+  ],
+  "labels": Array [
+    "09.02",
+    "10.02",
+  ],
+  "max": 0.000022993255286466074,
+  "min": 0.000022712859412470542,
+}
+`;

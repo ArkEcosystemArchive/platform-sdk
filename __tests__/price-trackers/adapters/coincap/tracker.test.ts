@@ -1,4 +1,4 @@
-import { CoinCap } from "../../../../src/trackers/adapters/coincap/tracker";
+import { CoinCap } from "../../../../src/price-trackers/adapters/coincap/tracker";
 
 let subject: CoinCap;
 

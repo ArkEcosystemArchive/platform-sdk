@@ -1,9 +1,18 @@
-import { ResponseTransformer } from "../../contracts";
+import { KeyValuePair } from "../../../types";
+import { dayjs } from "../../../utils/dayjs";
+import { HistoricalData, HistoricalTransformer as TransformerContract } from "../../contracts/historical";
 
-export class HistoricalTransformer implements ResponseTransformer {
-	public transform(data: object): object {
-		// normalize...
+export class HistoricalTransformer implements TransformerContract {
+	public constructor(private readonly data: KeyValuePair) {}
 
-		return {};
+	public transform(options: KeyValuePair): HistoricalData {
+		const datasets = this.data.map(value => value.close);
+
+		return {
+			labels: this.data.map(value => dayjs(value.time * 1000).format(options.dateFormat)),
+			datasets,
+			min: Math.min(...datasets),
+			max: Math.max(...datasets),
+		};
 	}
 }
