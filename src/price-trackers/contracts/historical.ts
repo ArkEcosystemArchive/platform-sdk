@@ -26,3 +26,9 @@ export interface HistoricalVolumeOptions {
 	type: string;
 	dateFormat: string;
 }
+
+export interface DailyAverageOptions {
+	token: string;
+	currency: string;
+	timestamp: number;
+}

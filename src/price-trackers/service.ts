@@ -1,5 +1,9 @@
-import { dayjs } from "../utils/dayjs";
-import { HistoricalData, HistoricalPriceOptions, HistoricalVolumeOptions } from "./contracts/historical";
+import {
+	DailyAverageOptions,
+	HistoricalData,
+	HistoricalPriceOptions,
+	HistoricalVolumeOptions,
+} from "./contracts/historical";
 import { MarketDataCollection } from "./contracts/market";
 import { PriceTracker } from "./contracts/tracker";
 import { PriceTrackerFactory } from "./factory";
@@ -65,5 +69,9 @@ export class PriceTrackerService {
 
 	public async getHistoricalVolumeForYear(token: string, currency: string): Promise<HistoricalData> {
 		return this.getHistoricalVolume({ token, currency, days: 365, type: "day", dateFormat: "DD.MM" });
+	}
+
+	public async dailyAverage(token: string, currency: string, timestamp: number): Promise<number> {
+		return this.adapter.dailyAverage({ token, currency, timestamp });
 	}
 }

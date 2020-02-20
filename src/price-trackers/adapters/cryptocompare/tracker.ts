@@ -1,6 +1,12 @@
+import { dayjs } from "../../../utils/dayjs";
 import { getJSON } from "../../../utils/get-json";
 import { CURRENCIES } from "../../config";
-import { HistoricalData, HistoricalPriceOptions, HistoricalVolumeOptions } from "../../contracts/historical";
+import {
+	DailyAverageOptions,
+	HistoricalData,
+	HistoricalPriceOptions,
+	HistoricalVolumeOptions,
+} from "../../contracts/historical";
 import { MarketDataCollection } from "../../contracts/market";
 import { PriceTracker } from "../../contracts/tracker";
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
@@ -54,5 +60,15 @@ export class CryptoCompare implements PriceTracker {
 		});
 
 		return new HistoricalVolumeTransformer(body.Data).transform(options);
+	}
+
+	public async dailyAverage(options: DailyAverageOptions): Promise<number> {
+		const response = await getJSON(`${this.baseUrl}/data/dayAvg`, {
+			fsym: options.token,
+			tsym: options.currency,
+			toTs: dayjs(options.timestamp).unix(),
+		});
+
+		return response[options.currency.toUpperCase()];
 	}
 }

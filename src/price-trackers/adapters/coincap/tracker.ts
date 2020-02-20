@@ -2,7 +2,12 @@ import { NotImplemented } from "../../../exceptions";
 import { KeyValuePair } from "../../../types";
 import { dayjs } from "../../../utils/dayjs";
 import { getJSON } from "../../../utils/get-json";
-import { HistoricalData, HistoricalPriceOptions, HistoricalVolumeOptions } from "../../contracts/historical";
+import {
+	DailyAverageOptions,
+	HistoricalData,
+	HistoricalPriceOptions,
+	HistoricalVolumeOptions,
+} from "../../contracts/historical";
 import { MarketDataCollection } from "../../contracts/market";
 import { PriceTracker } from "../../contracts/tracker";
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
@@ -59,6 +64,10 @@ export class CoinCap implements PriceTracker {
 
 	public async getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
 		throw new NotImplemented(this.constructor.name, "getHistoricalVolume");
+	}
+
+	public async dailyAverage(options: DailyAverageOptions): Promise<number> {
+		throw new NotImplemented(this.constructor.name, "dailyAverage");
 	}
 
 	private async getTokenId(token: string, limit = 1000): Promise<string> {

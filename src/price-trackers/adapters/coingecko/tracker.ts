@@ -1,7 +1,13 @@
+import { NotImplemented } from "../../../exceptions";
 import { KeyValuePair } from "../../../types";
 import { dayjs } from "../../../utils/dayjs";
 import { getJSON } from "../../../utils/get-json";
-import { HistoricalData, HistoricalPriceOptions, HistoricalVolumeOptions } from "../../contracts/historical";
+import {
+	DailyAverageOptions,
+	HistoricalData,
+	HistoricalPriceOptions,
+	HistoricalVolumeOptions,
+} from "../../contracts/historical";
 import { MarketDataCollection } from "../../contracts/market";
 import { PriceTracker } from "../../contracts/tracker";
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
@@ -60,6 +66,10 @@ export class CoinGecko implements PriceTracker {
 		});
 
 		return new HistoricalVolumeTransformer(body).transform(options);
+	}
+
+	public async dailyAverage(options: DailyAverageOptions): Promise<number> {
+		throw new NotImplemented(this.constructor.name, "dailyAverage");
 	}
 
 	private async getTokenId(token): Promise<string> {
