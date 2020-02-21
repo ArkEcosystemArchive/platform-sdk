@@ -4,11 +4,11 @@ import { MarketDataCollection } from "./market";
 export interface PriceTracker {
 	verifyToken(token: string): Promise<boolean>;
 
-	getMarketData(token: string): Promise<MarketDataCollection>;
+	marketData(token: string): Promise<MarketDataCollection>;
 
-	getHistoricalPrice(options: HistoricalPriceOptions): Promise<HistoricalData>;
+	historicalPrice(options: HistoricalPriceOptions): Promise<HistoricalData>;
 
-	getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData>;
+	historicalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData>;
 
 	dailyAverage(options: DailyAverageOptions): Promise<number>;
 }

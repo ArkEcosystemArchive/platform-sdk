@@ -11,7 +11,7 @@ export class MarketTransformer implements TransformerContract {
 
 	public transform(options: KeyValuePair): MarketDataCollection {
 		const tokenId = options.token.toUpperCase();
-		const marketResponse = {};
+		const result = {};
 
 		for (const currency of Object.keys(CURRENCIES)) {
 			const { assets, rates } = this.data;
@@ -20,7 +20,7 @@ export class MarketTransformer implements TransformerContract {
 				continue;
 			}
 
-			marketResponse[currency] = {
+			result[currency] = {
 				currency,
 				price: convertToCurrency(1, {
 					from: currency,
@@ -28,13 +28,17 @@ export class MarketTransformer implements TransformerContract {
 					base: this.baseCurrency,
 					rates,
 				}),
-				marketCap: assets[tokenId].marketCapUsd * (rates[this.baseCurrency] / rates[currency]),
-				volume: assets[tokenId].volumeUsd24Hr * (rates[this.baseCurrency] / rates[currency]),
+				marketCap: this.normalise(assets[tokenId].marketCapUsd, rates, currency),
+				volume: this.normalise(assets[tokenId].volumeUsd24Hr, rates, currency),
 				date: new Date(this.data.timestamp),
 				change24h: null,
 			};
 		}
 
-		return marketResponse;
+		return result;
+	}
+
+	private normalise(marketCapUsd: number, rates: object, currency: string): number {
+		return marketCapUsd * (rates[this.baseCurrency] / rates[currency]);
 	}
 }
