@@ -108,7 +108,7 @@ describe("PriceTrackerService", () => {
 		});
 
 		it("should return ticker values", async () => {
-			const response = await subject.getMarketData(token);
+			const response = await subject.marketData(token);
 			const entries = Object.keys(response);
 			expect(entries).not.toBeEmpty();
 			expect(entries).toIncludeAllMembers(Object.keys(CURRENCIES));
@@ -151,31 +151,31 @@ describe("PriceTrackerService", () => {
 		});
 
 		it("should return historic day values", async () => {
-			const response = await subject.getHistoricalPriceForDay(token, currency);
+			const response = await subject.historicalPriceForDay(token, currency);
 			expect(response).toBeObject();
 			expect(response).toContainKeys(["labels", "datasets"]);
 		});
 
 		it("should return historic week values", async () => {
-			const response = await subject.getHistoricalPriceForWeek(token, currency);
+			const response = await subject.historicalPriceForWeek(token, currency);
 			expect(response).toBeObject();
 			expect(response).toContainKeys(["labels", "datasets"]);
 		});
 
 		it("should return historic month values", async () => {
-			const response = await subject.getHistoricalPriceForMonth(token, currency);
+			const response = await subject.historicalPriceForMonth(token, currency);
 			expect(response).toBeObject();
 			expect(response).toContainKeys(["labels", "datasets"]);
 		});
 
 		it("should return historic quarter values", async () => {
-			const response = await subject.getHistoricalPriceForQuarter(token, currency);
+			const response = await subject.historicalPriceForQuarter(token, currency);
 			expect(response).toBeObject();
 			expect(response).toContainKeys(["labels", "datasets"]);
 		});
 
 		it("should return historic year values", async () => {
-			const response = await subject.getHistoricalPriceForYear(token, currency);
+			const response = await subject.historicalPriceForYear(token, currency);
 			expect(response).toBeObject();
 			expect(response).toContainKeys(["labels", "datasets"]);
 		});

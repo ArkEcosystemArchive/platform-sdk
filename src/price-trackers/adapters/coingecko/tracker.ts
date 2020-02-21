@@ -34,7 +34,7 @@ export class CoinGecko implements PriceTracker {
 		}
 	}
 
-	public async getMarketData(token: string): Promise<MarketDataCollection> {
+	public async marketData(token: string): Promise<MarketDataCollection> {
 		const tokenId = await this.getTokenId(token);
 
 		const body = await getJSON(`${this.baseUrl}/coins/${tokenId}`);
@@ -42,7 +42,7 @@ export class CoinGecko implements PriceTracker {
 		return new MarketTransformer(body.market_data).transform({});
 	}
 
-	public async getHistoricalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
+	public async historicalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
 		const body = await getJSON(`${this.baseUrl}/coins/${tokenId}/market_chart`, {
@@ -53,7 +53,7 @@ export class CoinGecko implements PriceTracker {
 		return new HistoricalPriceTransformer(body).transform(options);
 	}
 
-	public async getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
+	public async historicalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
 		const body = await getJSON(`${this.baseUrl}/coins/${tokenId}/market_chart/range`, {

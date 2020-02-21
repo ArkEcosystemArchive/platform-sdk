@@ -28,7 +28,7 @@ export class CoinCap implements PriceTracker {
 		}
 	}
 
-	public async getMarketData(token: string): Promise<MarketDataCollection> {
+	public async marketData(token: string): Promise<MarketDataCollection> {
 		const tokenId = await this.getTokenId(token);
 
 		if (!tokenId) {
@@ -40,7 +40,7 @@ export class CoinCap implements PriceTracker {
 		return new MarketTransformer(response).transform({ token: tokenId });
 	}
 
-	public async getHistoricalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
+	public async historicalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
 		const { rates } = await this.getCurrencyData(options.token);
@@ -62,8 +62,8 @@ export class CoinCap implements PriceTracker {
 		});
 	}
 
-	public async getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
-		throw new NotImplemented(this.constructor.name, "getHistoricalVolume");
+	public async historicalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
+		throw new NotImplemented(this.constructor.name, "historicalVolume");
 	}
 
 	public async dailyAverage(options: DailyAverageOptions): Promise<number> {

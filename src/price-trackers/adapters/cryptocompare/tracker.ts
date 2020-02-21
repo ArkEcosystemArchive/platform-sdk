@@ -30,7 +30,7 @@ export class CryptoCompare implements PriceTracker {
 		}
 	}
 
-	public async getMarketData(token: string): Promise<MarketDataCollection> {
+	public async marketData(token: string): Promise<MarketDataCollection> {
 		const uri = `${this.baseUrl}/data/pricemultifull`;
 		const body = await getJSON(uri, {
 			fsyms: token,
@@ -40,7 +40,7 @@ export class CryptoCompare implements PriceTracker {
 		return new MarketTransformer(body.RAW && body.RAW[token] ? body.RAW[token] : {}).transform({});
 	}
 
-	public async getHistoricalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
+	public async historicalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
 		const body = await getJSON(`${this.baseUrl}/data/histo${options.type}`, {
 			fsym: options.token,
 			tsym: options.currency,
@@ -51,7 +51,7 @@ export class CryptoCompare implements PriceTracker {
 		return new HistoricalPriceTransformer(body.Data).transform(options);
 	}
 
-	public async getHistoricalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
+	public async historicalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
 		const body = await getJSON(`${this.baseUrl}/data/histo${options.type}`, {
 			fsym: options.token,
 			tsym: options.currency,
