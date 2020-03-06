@@ -26,6 +26,9 @@ jobs:
             - name: Update Dependencies
               run: ncu -u
 
+            - name: Update yarn.lock
+              run: yarn
+
             - name: Create Pull Request
               uses: peter-evans/create-pull-request@v2
               with:
