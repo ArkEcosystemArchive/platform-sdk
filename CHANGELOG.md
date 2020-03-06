@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.0.2 - 2020-03-06
+
+### Fixed
+
+- Export `PriceTrackerService`
+
 ## 0.0.1 - 2020-03-06
 
 - initial release

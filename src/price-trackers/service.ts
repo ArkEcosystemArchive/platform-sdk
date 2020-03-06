@@ -1,9 +1,4 @@
-import {
-	DailyAverageOptions,
-	HistoricalData,
-	HistoricalPriceOptions,
-	HistoricalVolumeOptions,
-} from "./contracts/historical";
+import { HistoricalData, HistoricalPriceOptions, HistoricalVolumeOptions } from "./contracts/historical";
 import { MarketDataCollection } from "./contracts/market";
 import { PriceTracker } from "./contracts/tracker";
 import { PriceTrackerFactory } from "./factory";
