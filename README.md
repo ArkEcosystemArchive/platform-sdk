@@ -6,6 +6,10 @@
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)
 
+## Warning
+
+This package is currently still under early development and subject to breaking changes. It is only intended to be used by ARK Ecosystem to provide cross-platform utilities for ARK Applications.
+
 ## Installation
 
 ```bash
