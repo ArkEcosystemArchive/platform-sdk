@@ -20,14 +20,14 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
 
-            - name: Install ncu
-              run: yarn global add npm-check-updates
+            - name: Install
+              run: yarn install
 
             - name: Update Dependencies
-              run: ncu -u
+              run: ./node_modules/npm-check-updates/bin/ncu -u
 
             - name: Update yarn.lock
-              run: yarn
+              run: yarn install
 
             - name: Create Pull Request
               uses: peter-evans/create-pull-request@v2
