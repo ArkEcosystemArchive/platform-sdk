@@ -25,7 +25,7 @@
 		"@arkecosystem/utils": "^1.1.7",
 		"bent": "^7.1.1",
 		"bitcoinjs-lib": "^5.1.7",
-		"dayjs": "^1.8.21",
+		"dayjs": "^1.8.22",
 		"web3": "^1.2.6"
 	},
 	"devDependencies": {
