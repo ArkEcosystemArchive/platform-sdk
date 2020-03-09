@@ -29,6 +29,8 @@ jobs:
 
             - name: Create Pull Request
               uses: peter-evans/create-pull-request@v2
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
               with:
                   token: ${{ secrets.GH_TOKEN }}
                   title: "chore: update dependencies to latest versions"
