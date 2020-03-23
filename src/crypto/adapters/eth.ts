@@ -1,56 +1,52 @@
 import { NotImplemented } from "../../exceptions";
-import { Crypto } from "../contracts";
+import { Crypto, TransactionInput } from "../contracts";
 
 export class Ethereum implements Crypto {
-	public createTransfer(recipient) {
+	public constructor(network: string) {
+		//
+	}
+
+	public createTransfer(data: TransactionInput): object {
 		throw new NotImplemented(this.constructor.name, "createTransfer");
 	}
 
-	public createTransferWithSecondSignature(recipient) {
-		throw new NotImplemented(this.constructor.name, "createTransferWithSecondSignature");
-	}
-
-	public createTransferWithMultiSignature(recipient) {
-		throw new NotImplemented(this.constructor.name, "createTransferWithMultiSignature");
-	}
-
-	public createTransferWithWif(recipient) {
-		throw new NotImplemented(this.constructor.name, "createTransferWithWif");
-	}
-
-	public createTransferWithLedger(recipient) {
-		throw new NotImplemented(this.constructor.name, "createTransferWithLedger");
-	}
-
-	public createSecondSignature(recipient) {
+	public createSecondSignature(data: TransactionInput): object {
 		throw new NotImplemented(this.constructor.name, "createSecondSignature");
 	}
 
-	public createSecondSignatureWithWif(recipient) {
-		throw new NotImplemented(this.constructor.name, "createSecondSignatureWithWif");
+	public createDelegateRegistration(data: TransactionInput): object {
+		throw new NotImplemented(this.constructor.name, "createDelegateRegistration");
 	}
 
-	public createSecondSignatureWithLedger(recipient) {
-		throw new NotImplemented(this.constructor.name, "createSecondSignatureWithLedger");
-	}
-
-	public createVote(recipient) {
+	public createVote(data: TransactionInput): object {
 		throw new NotImplemented(this.constructor.name, "createVote");
 	}
 
-	public createVoteWithSecondSignature(recipient) {
-		throw new NotImplemented(this.constructor.name, "createVoteWithSecondSignature");
+	public createMultiSignature(data: TransactionInput): object {
+		throw new NotImplemented(this.constructor.name, "createMultiSignature");
 	}
 
-	public createVoteWithMultiSignature(recipient) {
-		throw new NotImplemented(this.constructor.name, "createVoteWithMultiSignature");
+	public createIpfs(data: TransactionInput): object {
+		throw new NotImplemented(this.constructor.name, "createIpfs");
 	}
 
-	public createVoteWithWif(recipient) {
-		throw new NotImplemented(this.constructor.name, "createVoteWithWif");
+	public createMultiPayment(data: TransactionInput): object {
+		throw new NotImplemented(this.constructor.name, "createMultiPayment");
 	}
 
-	public createVoteWithLedger(recipient) {
-		throw new NotImplemented(this.constructor.name, "createVoteWithLedger");
+	public createDelegateResignation(data: TransactionInput): object {
+		throw new NotImplemented(this.constructor.name, "createDelegateResignation");
+	}
+
+	public createHtlcLock(data: TransactionInput): object {
+		throw new NotImplemented(this.constructor.name, "createHtlcLock");
+	}
+
+	public createHtlcClaim(data: TransactionInput): object {
+		throw new NotImplemented(this.constructor.name, "createHtlcClaim");
+	}
+
+	public createHtlcRefund(data: TransactionInput): object {
+		throw new NotImplemented(this.constructor.name, "createHtlcRefund");
 	}
 }

@@ -2,11 +2,11 @@ import { Ark, Bitcoin, Ethereum } from "./adapters";
 import { Crypto } from "./contracts";
 
 export class CryptoFactory {
-	public static make(token: string): Crypto {
+	public static make(token: string, network: string): Crypto {
 		return {
-			ark: new Ark(),
-			btc: new Bitcoin(),
-			eth: new Ethereum(),
+			ark: new Ark(network),
+			btc: new Bitcoin(network),
+			eth: new Ethereum(network),
 		}[token];
 	}
 }

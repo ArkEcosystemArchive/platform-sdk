@@ -1,17 +1,15 @@
 export interface Crypto {
-	createTransfer(recipient);
-	createTransferWithSecondSignature(recipient);
-	createTransferWithMultiSignature(recipient);
-	createTransferWithWif(recipient);
-	createTransferWithLedger(recipient);
-
-	createSecondSignature(recipient);
-	createSecondSignatureWithWif(recipient);
-	createSecondSignatureWithLedger(recipient);
-
-	createVote(recipient);
-	createVoteWithSecondSignature(recipient);
-	createVoteWithMultiSignature(recipient);
-	createVoteWithWif(recipient);
-	createVoteWithLedger(recipient);
+	createTransfer(data: TransactionInput): object;
+	createSecondSignature(data: TransactionInput): object;
+	createDelegateRegistration(data: TransactionInput): object;
+	createVote(data: TransactionInput): object;
+	createMultiSignature(data: TransactionInput): object;
+	createIpfs(data: TransactionInput): object;
+	createMultiPayment(data: TransactionInput): object;
+	createDelegateResignation(data: TransactionInput): object;
+	createHtlcLock(data: TransactionInput): object;
+	createHtlcClaim(data: TransactionInput): object;
+	createHtlcRefund(data: TransactionInput): object;
 }
+
+export type TransactionInput = Record<string, any>;
