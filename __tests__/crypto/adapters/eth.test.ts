@@ -1,8 +1,8 @@
-import { Ethereum } from "../../../src/clients/adapters/eth";
+import { Ethereum } from "../../../src/crypto/adapters/eth";
 
 let subject: Ethereum;
 
-beforeEach(() => (subject = new Ethereum()));
+beforeEach(() => (subject = new Ethereum('devnet')));
 
 describe("Ethereum", function() {
 	it.todo("should ...");

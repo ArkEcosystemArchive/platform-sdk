@@ -1,29 +1,31 @@
 import { NotImplemented } from "../../exceptions";
-import { Client } from "../contracts";
+import { Client, HttpQuery } from "../contracts";
 import { Block, Transaction, Wallet } from "../dtos";
 
 export class Bitcoin implements Client {
-	public getBlock(id: string): Block {
+	public constructor(private readonly peer: string) {}
+
+	public async getBlock(id: string): Promise<Block> {
 		throw new NotImplemented(this.constructor.name, "getBlock");
 	}
 
-	public getBlocks(): Block[] {
+	public async getBlocks(query?: HttpQuery): Promise<Block[]> {
 		throw new NotImplemented(this.constructor.name, "getBlocks");
 	}
 
-	public getTransaction(id: string): Transaction {
+	public async getTransaction(id: string): Promise<Transaction> {
 		throw new NotImplemented(this.constructor.name, "getTransaction");
 	}
 
-	public getTransactions(): Transaction[] {
+	public async getTransactions(query?: HttpQuery): Promise<Transaction[]> {
 		throw new NotImplemented(this.constructor.name, "getTransactions");
 	}
 
-	public getWallet(id: string): Wallet {
+	public async getWallet(id: string): Promise<Wallet> {
 		throw new NotImplemented(this.constructor.name, "getWallet");
 	}
 
-	public getWallets(): Wallet[] {
+	public async getWallets(query?: HttpQuery): Promise<Wallet[]> {
 		throw new NotImplemented(this.constructor.name, "getWallets");
 	}
 }
