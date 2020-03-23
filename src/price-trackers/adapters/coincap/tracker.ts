@@ -46,9 +46,7 @@ export class CoinCap implements PriceTracker {
 		const { rates } = await this.getCurrencyData(options.token);
 		const daysSubtract = options.days === 24 ? 1 : options.days;
 		const timeInterval = options.days === 24 ? "h1" : "h12";
-		const startDate = dayjs()
-			.subtract(daysSubtract, "d")
-			.valueOf();
+		const startDate = dayjs().subtract(daysSubtract, "d").valueOf();
 		const endDate = dayjs().valueOf();
 		const body = await getJSON(
 			`${this.baseUrl}/assets/${tokenId}/history?interval=${timeInterval}&start=${startDate}&end=${endDate}`,

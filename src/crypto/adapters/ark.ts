@@ -1,56 +1,122 @@
-import { NotImplemented } from "../../exceptions";
-import { Crypto } from "../contracts";
+import { Managers, Transactions } from "@arkecosystem/crypto";
+
+import { Crypto, TransactionInput } from "../contracts";
 
 export class Ark implements Crypto {
-	public createTransfer(recipient) {
-		throw new NotImplemented(this.constructor.name, "createTransfer");
+	public constructor(network: string) {
+		Managers.configManager.setFromPreset(network as any);
+		Managers.configManager.setHeight(10_000_000);
 	}
 
-	public createTransferWithSecondSignature(recipient) {
-		throw new NotImplemented(this.constructor.name, "createTransferWithSecondSignature");
+	public createTransfer(data: TransactionInput): object {
+		return this.createFromData("transfer", data, ({ transaction, data }) => {
+			transaction.recipientId(data.recipientId);
+
+			if (data.vendorField) {
+				transaction.vendorField(data.vendorField);
+			}
+		});
 	}
 
-	public createTransferWithMultiSignature(recipient) {
-		throw new NotImplemented(this.constructor.name, "createTransferWithMultiSignature");
+	public createSecondSignature(data: TransactionInput): object {
+		return this.createFromData("secondSignature", data, ({ transaction, data }) =>
+			transaction.signatureAsset(data.secondSignature),
+		);
 	}
 
-	public createTransferWithWif(recipient) {
-		throw new NotImplemented(this.constructor.name, "createTransferWithWif");
+	public createDelegateRegistration(data: TransactionInput): object {
+		return this.createFromData("delegateRegistration", data, ({ transaction, data }) =>
+			transaction.usernameAsset(data.asset),
+		);
 	}
 
-	public createTransferWithLedger(recipient) {
-		throw new NotImplemented(this.constructor.name, "createTransferWithLedger");
+	public createVote(data: TransactionInput): object {
+		return this.createFromData("vote", data, ({ transaction, data }) => transaction.votesAsset(data.asset));
 	}
 
-	public createSecondSignature(recipient) {
-		throw new NotImplemented(this.constructor.name, "createSecondSignature");
+	public createMultiSignature(data: TransactionInput): object {
+		return this.createFromData("multiSignature", data, ({ transaction, data }) => {
+			transaction.multiSignatureAsset(data.asset);
+
+			transaction.senderPublicKey(data.senderPublicKey);
+		});
 	}
 
-	public createSecondSignatureWithWif(recipient) {
-		throw new NotImplemented(this.constructor.name, "createSecondSignatureWithWif");
+	public createIpfs(data: TransactionInput): object {
+		return this.createFromData("ipfs", data, ({ transaction, data }) => transaction.ipfsAsset(data.asset));
 	}
 
-	public createSecondSignatureWithLedger(recipient) {
-		throw new NotImplemented(this.constructor.name, "createSecondSignatureWithLedger");
+	public createMultiPayment(data: TransactionInput): object {
+		return this.createFromData("multiPayment", data, ({ transaction, data }) => {
+			for (const payment of data.payments) {
+				transaction.addPayment(payment.recipientId, payment.amount);
+			}
+		});
 	}
 
-	public createVote(recipient) {
-		throw new NotImplemented(this.constructor.name, "createVote");
+	public createDelegateResignation(data: TransactionInput): object {
+		return this.createFromData("delegateResignation", data);
 	}
 
-	public createVoteWithSecondSignature(recipient) {
-		throw new NotImplemented(this.constructor.name, "createVoteWithSecondSignature");
+	public createHtlcLock(data: TransactionInput): object {
+		return this.createFromData("htlcLock", data, ({ transaction, data }) => {
+			transaction.amount(data.amount);
+
+			transaction.recipientId(data.recipientId);
+
+			transaction.htlcLockAsset(data.asset);
+		});
 	}
 
-	public createVoteWithMultiSignature(recipient) {
-		throw new NotImplemented(this.constructor.name, "createVoteWithMultiSignature");
+	public createHtlcClaim(data: TransactionInput): object {
+		return this.createFromData("htlcClaim", data, ({ transaction, data }) =>
+			transaction.htlcClaimAsset(data.asset),
+		);
 	}
 
-	public createVoteWithWif(recipient) {
-		throw new NotImplemented(this.constructor.name, "createVoteWithWif");
+	public createHtlcRefund(data: TransactionInput): object {
+		return this.createFromData("htlcRefund", data, ({ transaction, data }) =>
+			transaction.htlcRefundAsset(data.asset),
+		);
 	}
 
-	public createVoteWithLedger(recipient) {
-		throw new NotImplemented(this.constructor.name, "createVoteWithLedger");
+	private createFromData(type: string, data: TransactionInput, callback?: Function): object {
+		const transaction = Transactions.BuilderFactory[type]().version(2).nonce(data.nonce);
+
+		if (data.amount) {
+			transaction.amount(data.amount);
+		}
+
+		if (data.fee) {
+			transaction.fee(data.fee);
+		}
+
+		if (callback) {
+			callback({ transaction, data });
+		}
+
+		if (Array.isArray(data.passphrases)) {
+			for (let i = 0; i < data.passphrases.length; i++) {
+				transaction.multiSign(data.passphrases[i], i);
+			}
+		}
+
+		if (data.passphrase) {
+			transaction.sign(data.passphrase);
+		}
+
+		if (data.secondPassphrase) {
+			transaction.secondSign(data.secondPassphrase);
+		}
+
+		if (data.wif) {
+			transaction.signWithWif(data.wif);
+		}
+
+		if (data.secondWif) {
+			transaction.secondSignWithWif(data.secondWif);
+		}
+
+		return transaction.build().toJson();
 	}
 }

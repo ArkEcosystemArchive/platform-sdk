@@ -59,9 +59,7 @@ export class CoinGecko implements PriceTracker {
 		const body = await getJSON(`${this.baseUrl}/coins/${tokenId}/market_chart/range`, {
 			id: options.token,
 			vs_currency: options.currency,
-			from: dayjs()
-				.subtract(options.days, "d")
-				.unix(),
+			from: dayjs().subtract(options.days, "d").unix(),
 			to: dayjs().unix(),
 		});
 
