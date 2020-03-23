@@ -1,6 +1,6 @@
-import { NotImplemented } from "../../exceptions";
-import { Client, HttpQuery } from "../contracts";
-import { Block, Transaction, Wallet } from "../dtos";
+import { NotImplemented } from "../../../exceptions";
+import { Client, HttpQuery } from "../../contracts";
+import { Block, Transaction, Wallet } from "./dto";
 
 export class Ethereum implements Client {
 	public constructor(private readonly peer: string) {}

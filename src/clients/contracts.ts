@@ -1,4 +1,26 @@
-import { Block, Transaction, Wallet } from "./dtos";
+export interface Block {
+	getId(): string;
+
+	getHeight(): string;
+
+	toObject(): Dictionary;
+}
+
+export interface Transaction {
+	getId(): string;
+
+	getAmount(): string;
+
+	toObject(): Dictionary;
+}
+
+export interface Wallet {
+	getAddress(): string;
+
+	getPublicKey(): string;
+
+	toObject(): Dictionary;
+}
 
 export interface Client {
 	getBlock(id: string): Promise<Block>;
@@ -12,3 +34,5 @@ export interface Client {
 }
 
 export type HttpQuery = Record<string, any>;
+
+export type Dictionary = Record<string, any>;

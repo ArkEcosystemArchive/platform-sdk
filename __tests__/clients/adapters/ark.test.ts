@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { Ark } from "../../../src/clients/adapters/ark";
-import { Block, Transaction, Wallet } from "../../../src/clients/dtos";
+import { Block, Transaction, Wallet } from "../../../src/clients/adapters/ark/dto";
 
 let subject: Ark;
 
