@@ -2,6 +2,10 @@ import { NotImplemented } from "../../exceptions";
 import { Crypto, TransactionInput } from "../contracts";
 
 export class Ethereum implements Crypto {
+	public constructor(network: string) {
+		//
+	}
+
 	public createTransfer(data: TransactionInput): object {
 		throw new NotImplemented(this.constructor.name, "createTransfer");
 	}
