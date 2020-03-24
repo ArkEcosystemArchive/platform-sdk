@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.1.0 - 2020-03-24
+
+### Fixed
+
+- Export price tracker contracts (81fb042b, @faustbrian)
+- Add missing default plugins to dayjs (d62b0d53, @faustbrian)
+
+### Added
+
+- Initial implementation of ARK crypto (c7121fbd, @faustbrian)
+- Initial implementation of ARK client (593fd555, @faustbrian)
+- Add search methods to ARK client (ab3b1ee6, @faustbrian)
+- Identity generation for ARK (32a94c8c, @faustbrian)
+- Identity generation for BTC (fea0bb7b, @faustbrian)
+- Identity generation for ETH (c48615ba, @faustbrian)
+
+### Changed
+
+- Add npm-check-updates as dev dependency (931de0f1, @faustbrian)
+- Update dependencies to latest versions (437dd822, @github-actions[bot])
+- Implement DTOs per adapter with a contract (ba882c5f, @faustbrian)
+- Update dependencies (4c03c69c, @faustbrian)
+- Organise concrete implementations by token (1f012929, @faustbrian)
+- Consolidate types for `Record<string, any>` (c0884c35, @faustbrian)
+- Move DTOs up a level to flatten directory structure (cd9e4307, @faustbrian)
+
 ## 0.0.2 - 2020-03-06
 
 ### Fixed
