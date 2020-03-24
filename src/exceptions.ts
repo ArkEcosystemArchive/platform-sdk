@@ -21,3 +21,9 @@ export class NotImplemented extends Exception {
 		super(`Method [${method}] is not implemented in [${klass}].`);
 	}
 }
+
+export class NotSupported extends Exception {
+	public constructor(method: string, klass: string) {
+		super(`Method [${method}] is not supported in [${klass}].`);
+	}
+}
