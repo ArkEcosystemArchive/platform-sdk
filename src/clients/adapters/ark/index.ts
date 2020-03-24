@@ -22,6 +22,12 @@ export class Ark implements Client {
 		return body.data.map((block) => new Block(block));
 	}
 
+	public async searchBlocks(query: HttpQuery): Promise<Block[]> {
+		const { body } = await this.connection.api("blocks").search(query);
+
+		return body.data.map((block) => new Block(block));
+	}
+
 	public async getTransaction(id: string): Promise<Transaction> {
 		const { body } = await this.connection.api("transactions").get(id);
 
@@ -34,6 +40,12 @@ export class Ark implements Client {
 		return body.data.map((transaction) => new Transaction(transaction));
 	}
 
+	public async searchTransactions(query: HttpQuery): Promise<Transaction[]> {
+		const { body } = await this.connection.api("transactions").search(query);
+
+		return body.data.map((transaction) => new Transaction(transaction));
+	}
+
 	public async getWallet(id: string): Promise<Wallet> {
 		const { body } = await this.connection.api("wallets").get(id);
 
@@ -42,6 +54,12 @@ export class Ark implements Client {
 
 	public async getWallets(query?: HttpQuery): Promise<Wallet[]> {
 		const { body } = await this.connection.api("wallets").all(query);
+
+		return body.data.map((wallet) => new Wallet(wallet));
+	}
+
+	public async searchWallets(query: HttpQuery): Promise<Wallet[]> {
+		const { body } = await this.connection.api("wallets").search(query);
 
 		return body.data.map((wallet) => new Wallet(wallet));
 	}

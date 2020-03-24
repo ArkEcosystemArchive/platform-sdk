@@ -13,6 +13,10 @@ export class Ethereum implements Client {
 		throw new NotImplemented(this.constructor.name, "getBlocks");
 	}
 
+	public async searchBlocks(query: HttpQuery): Promise<Block[]> {
+		throw new NotImplemented(this.constructor.name, "searchBlocks");
+	}
+
 	public async getTransaction(id: string): Promise<Transaction> {
 		throw new NotImplemented(this.constructor.name, "getTransaction");
 	}
@@ -21,11 +25,19 @@ export class Ethereum implements Client {
 		throw new NotImplemented(this.constructor.name, "getTransactions");
 	}
 
+	public async searchTransactions(query: HttpQuery): Promise<Transaction[]> {
+		throw new NotImplemented(this.constructor.name, "searchTransactions");
+	}
+
 	public async getWallet(id: string): Promise<Wallet> {
 		throw new NotImplemented(this.constructor.name, "getWallet");
 	}
 
 	public async getWallets(query?: HttpQuery): Promise<Wallet[]> {
 		throw new NotImplemented(this.constructor.name, "getWallets");
+	}
+
+	public async searchWallets(query: HttpQuery): Promise<Wallet[]> {
+		throw new NotImplemented(this.constructor.name, "searchWallets");
 	}
 }
