@@ -1,7 +1,7 @@
 import { NotImplemented } from "../../exceptions";
 import { KeyValuePair } from "../../types";
 import { Client } from "../contracts/client";
-import { Block, Transaction, Wallet } from "./client/dto";
+import { Block, Transaction, Wallet } from "./dto";
 
 export class Bitcoin implements Client {
 	public constructor(private readonly peer: string) {}

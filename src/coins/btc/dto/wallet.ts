@@ -1,5 +1,5 @@
-import { KeyValuePair } from "../../../../types";
-import { Wallet as Contract } from "../../../contracts/client";
+import { KeyValuePair } from "../../../types";
+import { Wallet as Contract } from "../../contracts/client";
 
 export class Wallet implements Contract {
 	readonly #data: KeyValuePair;

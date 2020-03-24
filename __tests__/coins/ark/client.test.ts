@@ -2,7 +2,7 @@ import "jest-extended";
 import nock from "nock";
 
 import { Ark } from "../../../src/coins/ark/client";
-import { Block, Transaction, Wallet } from "../../../src/coins/ark/client/dto";
+import { Block, Transaction, Wallet } from "../../../src/coins/ark/dto";
 
 let subject: Ark;
 
