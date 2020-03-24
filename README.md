@@ -18,41 +18,7 @@ yarn add @arkecosystem/platform-sdk
 
 ## Usage
 
-### Client
-
-```ts
-import { ClientFactory } from "@arkecosystem/platform-sdk";
-
-ClientFactory.make("ark");
-ClientFactory.make("btc");
-ClientFactory.make("eth");
-```
-
-### Crypto
-
-```ts
-import { CryptoFactory } from "@arkecosystem/platform-sdk";
-
-CryptoFactory.make("ark");
-CryptoFactory.make("btc");
-CryptoFactory.make("eth");
-```
-
-### Price Trackers
-
-```ts
-import { PriceTrackerFactory, PriceTrackerService } from "@arkecosystem/platform-sdk";
-
-// Instantiation of a service that abstract the adapters behaviour.
-PriceTrackerService.make("coincap");
-PriceTrackerService.make("coingecko");
-PriceTrackerService.make("cryptocompare");
-
-// Instantiation of an adapter itself.
-PriceTrackerFactory.make("coincap");
-PriceTrackerFactory.make("coingecko");
-PriceTrackerFactory.make("cryptocompare");
-```
+Documentation can be found [here](./docs/README.md).
 
 ## Security
 
