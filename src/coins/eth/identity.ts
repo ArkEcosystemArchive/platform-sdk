@@ -11,11 +11,11 @@ export class Ethereum implements Identity {
 
 	public getAddress(opts: KeyValuePair): string {
 		if (opts.passphrase) {
-			throw new NotSupported("getAddress#passphrase", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getAddress#passphrase");
 		}
 
 		if (opts.multiSignature) {
-			throw new NotSupported("getAddress#multiSignature", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getAddress#multiSignature");
 		}
 
 		if (opts.publicKey) {
@@ -27,7 +27,7 @@ export class Ethereum implements Identity {
 		}
 
 		if (opts.wif) {
-			throw new NotSupported("getAddress#wif", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getAddress#wif");
 		}
 
 		throw new Error("No input provided.");
@@ -35,15 +35,15 @@ export class Ethereum implements Identity {
 
 	public getPublicKey(opts: KeyValuePair): string {
 		if (opts.passphrase) {
-			throw new NotSupported("getPublicKey#passphrase", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getPublicKey#passphrase");
 		}
 
 		if (opts.multiSignature) {
-			throw new NotSupported("getPublicKey#multiSignature", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getPublicKey#multiSignature");
 		}
 
 		if (opts.wif) {
-			throw new NotSupported("getPublicKey#wif", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getPublicKey#wif");
 		}
 
 		throw new Error("No input provided.");
@@ -51,11 +51,11 @@ export class Ethereum implements Identity {
 
 	public getPrivateKey(opts: KeyValuePair): string {
 		if (opts.passphrase) {
-			throw new NotSupported("getPrivateKey#privateKey", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getPrivateKey#privateKey");
 		}
 
 		if (opts.wif) {
-			throw new NotSupported("getPrivateKey#wif", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getPrivateKey#wif");
 		}
 
 		throw new Error("No input provided.");
@@ -63,7 +63,7 @@ export class Ethereum implements Identity {
 
 	public getWIF(opts: KeyValuePair): string {
 		if (opts.passphrase) {
-			throw new NotSupported("getWIF#wif", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getWIF#wif");
 		}
 
 		throw new Error("No input provided.");
@@ -71,11 +71,11 @@ export class Ethereum implements Identity {
 
 	public getKeyPair(opts: KeyValuePair): KeyPair {
 		if (opts.passphrase) {
-			throw new NotSupported("getKeyPair#passphrase", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getKeyPair#passphrase");
 		}
 
 		if (opts.publicKey) {
-			throw new NotSupported("getKeyPair#publicKey", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getKeyPair#publicKey");
 		}
 
 		if (opts.privateKey) {
@@ -88,7 +88,7 @@ export class Ethereum implements Identity {
 		}
 
 		if (opts.wif) {
-			throw new NotSupported("getKeyPair#wif", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getKeyPair#wif");
 		}
 
 		throw new Error("No input provided.");
