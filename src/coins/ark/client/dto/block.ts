@@ -1,9 +1,10 @@
-import { Block as Contract, Dictionary } from "../../../contracts/client";
+import { KeyValuePair } from "../../../../types";
+import { Block as Contract } from "../../../contracts/client";
 
 export class Block implements Contract {
-	readonly #data: Dictionary;
+	readonly #data: KeyValuePair;
 
-	public constructor(data: Dictionary) {
+	public constructor(data: KeyValuePair) {
 		this.#data = data;
 	}
 
@@ -18,7 +19,7 @@ export class Block implements Contract {
 	/**
 	 * Only use this function if you can ensure that the unnormalised data is handled!
 	 */
-	public toObject(): Dictionary {
+	public toObject(): KeyValuePair {
 		return this.#data;
 	}
 }

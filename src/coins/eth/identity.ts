@@ -1,14 +1,15 @@
 import Wallet from "ethereumjs-wallet";
 
 import { NotSupported } from "../../exceptions";
-import { Identity, IdentityInput, KeyPair } from "../contracts/identity";
+import { KeyValuePair } from "../../types";
+import { Identity, KeyPair } from "../contracts/identity";
 
 export class Ethereum implements Identity {
 	public constructor(network: string) {
 		//
 	}
 
-	public getAddress(opts: IdentityInput): string {
+	public getAddress(opts: KeyValuePair): string {
 		if (opts.passphrase) {
 			throw new NotSupported("getAddress#passphrase", this.constructor.name);
 		}
@@ -32,7 +33,7 @@ export class Ethereum implements Identity {
 		throw new Error("No input provided.");
 	}
 
-	public getPublicKey(opts: IdentityInput): string {
+	public getPublicKey(opts: KeyValuePair): string {
 		if (opts.passphrase) {
 			throw new NotSupported("getPublicKey#passphrase", this.constructor.name);
 		}
@@ -48,7 +49,7 @@ export class Ethereum implements Identity {
 		throw new Error("No input provided.");
 	}
 
-	public getPrivateKey(opts: IdentityInput): string {
+	public getPrivateKey(opts: KeyValuePair): string {
 		if (opts.passphrase) {
 			throw new NotSupported("getPrivateKey#privateKey", this.constructor.name);
 		}
@@ -60,7 +61,7 @@ export class Ethereum implements Identity {
 		throw new Error("No input provided.");
 	}
 
-	public getWIF(opts: IdentityInput): string {
+	public getWIF(opts: KeyValuePair): string {
 		if (opts.passphrase) {
 			throw new NotSupported("getWIF#wif", this.constructor.name);
 		}
@@ -68,7 +69,7 @@ export class Ethereum implements Identity {
 		throw new Error("No input provided.");
 	}
 
-	public getKeyPair(opts: IdentityInput): KeyPair {
+	public getKeyPair(opts: KeyValuePair): KeyPair {
 		if (opts.passphrase) {
 			throw new NotSupported("getKeyPair#passphrase", this.constructor.name);
 		}

@@ -1,15 +1,15 @@
-export interface Crypto {
-	createTransfer(data: TransactionInput): object;
-	createSecondSignature(data: TransactionInput): object;
-	createDelegateRegistration(data: TransactionInput): object;
-	createVote(data: TransactionInput): object;
-	createMultiSignature(data: TransactionInput): object;
-	createIpfs(data: TransactionInput): object;
-	createMultiPayment(data: TransactionInput): object;
-	createDelegateResignation(data: TransactionInput): object;
-	createHtlcLock(data: TransactionInput): object;
-	createHtlcClaim(data: TransactionInput): object;
-	createHtlcRefund(data: TransactionInput): object;
-}
+import { KeyValuePair } from "../../types";
 
-export type TransactionInput = Record<string, any>;
+export interface Crypto {
+	createTransfer(data: KeyValuePair): object;
+	createSecondSignature(data: KeyValuePair): object;
+	createDelegateRegistration(data: KeyValuePair): object;
+	createVote(data: KeyValuePair): object;
+	createMultiSignature(data: KeyValuePair): object;
+	createIpfs(data: KeyValuePair): object;
+	createMultiPayment(data: KeyValuePair): object;
+	createDelegateResignation(data: KeyValuePair): object;
+	createHtlcLock(data: KeyValuePair): object;
+	createHtlcClaim(data: KeyValuePair): object;
+	createHtlcRefund(data: KeyValuePair): object;
+}

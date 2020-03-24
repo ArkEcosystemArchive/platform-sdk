@@ -1,9 +1,11 @@
+import { KeyValuePair } from "../../types";
+
 export interface Block {
 	getId(): string;
 
 	getHeight(): string;
 
-	toObject(): Dictionary;
+	toObject(): KeyValuePair;
 }
 
 export interface Transaction {
@@ -11,7 +13,7 @@ export interface Transaction {
 
 	getAmount(): string;
 
-	toObject(): Dictionary;
+	toObject(): KeyValuePair;
 }
 
 export interface Wallet {
@@ -19,23 +21,19 @@ export interface Wallet {
 
 	getPublicKey(): string;
 
-	toObject(): Dictionary;
+	toObject(): KeyValuePair;
 }
 
 export interface Client {
 	getBlock(id: string): Promise<Block>;
-	getBlocks(query?: HttpQuery): Promise<Block[]>;
-	searchBlocks(query: HttpQuery): Promise<Block[]>;
+	getBlocks(query?: KeyValuePair): Promise<Block[]>;
+	searchBlocks(query: KeyValuePair): Promise<Block[]>;
 
 	getTransaction(id: string): Promise<Transaction>;
-	getTransactions(query?: HttpQuery): Promise<Transaction[]>;
-	searchTransactions(query: HttpQuery): Promise<Transaction[]>;
+	getTransactions(query?: KeyValuePair): Promise<Transaction[]>;
+	searchTransactions(query: KeyValuePair): Promise<Transaction[]>;
 
 	getWallet(id: string): Promise<Wallet>;
-	getWallets(query?: HttpQuery): Promise<Wallet[]>;
-	searchWallets(query: HttpQuery): Promise<Wallet[]>;
+	getWallets(query?: KeyValuePair): Promise<Wallet[]>;
+	searchWallets(query: KeyValuePair): Promise<Wallet[]>;
 }
-
-export type HttpQuery = Record<string, any>;
-
-export type Dictionary = Record<string, any>;

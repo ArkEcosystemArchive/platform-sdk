@@ -1,18 +1,18 @@
+import { KeyValuePair } from "../../types";
+
 export interface Identity {
-	getAddress(opts: IdentityInput): string;
+	getAddress(opts: KeyValuePair): string;
 
-	getPublicKey(opts: IdentityInput): string;
+	getPublicKey(opts: KeyValuePair): string;
 
-	getPrivateKey(opts: IdentityInput): string;
+	getPrivateKey(opts: KeyValuePair): string;
 
-	getWIF(opts: IdentityInput): string;
+	getWIF(opts: KeyValuePair): string;
 
-	getKeyPair(opts: IdentityInput): KeyPair;
+	getKeyPair(opts: KeyValuePair): KeyPair;
 }
 
 export interface KeyPair {
 	publicKey: string;
 	privateKey?: string;
 }
-
-export type IdentityInput = Record<string, any>;
