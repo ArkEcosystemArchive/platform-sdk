@@ -13,7 +13,7 @@ export class Bitcoin implements Identity {
 
 	public getAddress(opts: KeyValuePair): string {
 		if (opts.passphrase) {
-			throw new NotSupported("getAddress#passphrase", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getAddress#passphrase");
 		}
 
 		if (opts.multiSignature) {
@@ -71,11 +71,11 @@ export class Bitcoin implements Identity {
 
 	public getPublicKey(opts: KeyValuePair): string {
 		if (opts.passphrase) {
-			throw new NotSupported("getPublicKey#passphrase", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getPublicKey#passphrase");
 		}
 
 		if (opts.multiSignature) {
-			throw new NotSupported("getPublicKey#multiSignature", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getPublicKey#multiSignature");
 		}
 
 		if (opts.wif) {
@@ -87,7 +87,7 @@ export class Bitcoin implements Identity {
 
 	public getPrivateKey(opts: KeyValuePair): string {
 		if (opts.passphrase) {
-			throw new NotSupported("getPrivateKey#passphrase", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getPrivateKey#passphrase");
 		}
 
 		if (opts.wif) {
@@ -105,7 +105,7 @@ export class Bitcoin implements Identity {
 
 	public getWIF(opts: KeyValuePair): string {
 		if (opts.passphrase) {
-			throw new NotSupported("getWIF#passphrase", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getWIF#passphrase");
 		}
 
 		throw new Error("No input provided.");
@@ -118,11 +118,11 @@ export class Bitcoin implements Identity {
 		});
 
 		if (opts.passphrase) {
-			throw new NotSupported("getKeyPair#passphrase", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getKeyPair#passphrase");
 		}
 
 		if (opts.publicKey) {
-			throw new NotSupported("getKeyPair#publicKey", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getKeyPair#publicKey");
 		}
 
 		if (opts.privateKey) {

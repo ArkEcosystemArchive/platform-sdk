@@ -23,7 +23,7 @@ export class Ark implements Identity {
 		}
 
 		if (opts.privateKey) {
-			throw new NotSupported("getAddress#privateKey", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getAddress#privateKey");
 		}
 
 		if (opts.wif) {
@@ -77,11 +77,11 @@ export class Ark implements Identity {
 		}
 
 		if (opts.publicKey) {
-			throw new NotSupported("getKeyPair#publicKey", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getKeyPair#publicKey");
 		}
 
 		if (opts.privateKey) {
-			throw new NotSupported("getKeyPair#privateKey", this.constructor.name);
+			throw new NotSupported(this.constructor.name, "getKeyPair#privateKey");
 		}
 
 		if (opts.wif) {

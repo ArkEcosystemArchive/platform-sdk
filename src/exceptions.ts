@@ -17,13 +17,13 @@ export class Exception extends Error {
 }
 
 export class NotImplemented extends Exception {
-	public constructor(method: string, klass: string) {
+	public constructor(klass: string, method: string) {
 		super(`Method [${method}] is not implemented in [${klass}].`);
 	}
 }
 
 export class NotSupported extends Exception {
-	public constructor(method: string, klass: string) {
+	public constructor(klass: string, method: string) {
 		super(`Method [${method}] is not supported in [${klass}].`);
 	}
 }
