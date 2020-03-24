@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`CryptoCompare should get the daily average 1`] = `0.00002336`;
