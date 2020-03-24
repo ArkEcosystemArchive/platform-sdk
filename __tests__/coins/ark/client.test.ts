@@ -2,7 +2,7 @@ import "jest-extended";
 import nock from "nock";
 
 import { Ark } from "../../../src/coins/ark/client";
-import { Block, Transaction, Wallet } from "../../../src/coins/ark/dto";
+import { Block, Delegate, Transaction, Wallet } from "../../../src/coins/ark/dto";
 
 let subject: Ark;
 
@@ -124,6 +124,31 @@ describe("Ark", function () {
 
 			expect(result).toBeArray();
 			expect(result[0]).toBeInstanceOf(Wallet);
+		});
+	});
+
+	describe("#getDelegate", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/delegates/arkx")
+				.reply(200, require(`${__dirname}/__fixtures__/client/delegate.json`));
+
+			const result = await subject.getDelegate("arkx");
+
+			expect(result).toBeInstanceOf(Delegate);
+		});
+	});
+
+	describe("#getDelegates", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/delegates")
+				.reply(200, require(`${__dirname}/__fixtures__/client/delegates.json`));
+
+			const result = await subject.getDelegates();
+
+			expect(result).toBeArray();
+			expect(result[0]).toBeInstanceOf(Delegate);
 		});
 	});
 });

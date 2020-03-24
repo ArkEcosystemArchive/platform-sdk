@@ -1,7 +1,7 @@
 import { NotImplemented } from "../../exceptions";
 import { KeyValuePair } from "../../types";
 import { Client } from "../contracts/client";
-import { Block, Transaction, Wallet } from "./dto";
+import { Block, Delegate, Transaction, Wallet } from "./dto";
 
 export class Ethereum implements Client {
 	public constructor(private readonly peer: string) {}
@@ -40,5 +40,13 @@ export class Ethereum implements Client {
 
 	public async searchWallets(query: KeyValuePair): Promise<Wallet[]> {
 		throw new NotImplemented(this.constructor.name, "searchWallets");
+	}
+
+	public async getDelegate(id: string): Promise<Delegate> {
+		throw new NotImplemented(this.constructor.name, "getDelegate");
+	}
+
+	public async getDelegates(query?: KeyValuePair): Promise<Delegate[]> {
+		throw new NotImplemented(this.constructor.name, "getDelegates");
 	}
 }
