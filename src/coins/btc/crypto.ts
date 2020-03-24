@@ -1,52 +1,53 @@
 import { NotImplemented } from "../../exceptions";
-import { Crypto, TransactionInput } from "../contracts/crypto";
+import { KeyValuePair } from "../../types";
+import { Crypto } from "../contracts/crypto";
 
 export class Bitcoin implements Crypto {
 	public constructor(network: string) {
 		//
 	}
 
-	public createTransfer(data: TransactionInput): object {
+	public createTransfer(data: KeyValuePair): object {
 		throw new NotImplemented(this.constructor.name, "createTransfer");
 	}
 
-	public createSecondSignature(data: TransactionInput): object {
+	public createSecondSignature(data: KeyValuePair): object {
 		throw new NotImplemented(this.constructor.name, "createSecondSignature");
 	}
 
-	public createDelegateRegistration(data: TransactionInput): object {
+	public createDelegateRegistration(data: KeyValuePair): object {
 		throw new NotImplemented(this.constructor.name, "createDelegateRegistration");
 	}
 
-	public createVote(data: TransactionInput): object {
+	public createVote(data: KeyValuePair): object {
 		throw new NotImplemented(this.constructor.name, "createVote");
 	}
 
-	public createMultiSignature(data: TransactionInput): object {
+	public createMultiSignature(data: KeyValuePair): object {
 		throw new NotImplemented(this.constructor.name, "createMultiSignature");
 	}
 
-	public createIpfs(data: TransactionInput): object {
+	public createIpfs(data: KeyValuePair): object {
 		throw new NotImplemented(this.constructor.name, "createIpfs");
 	}
 
-	public createMultiPayment(data: TransactionInput): object {
+	public createMultiPayment(data: KeyValuePair): object {
 		throw new NotImplemented(this.constructor.name, "createMultiPayment");
 	}
 
-	public createDelegateResignation(data: TransactionInput): object {
+	public createDelegateResignation(data: KeyValuePair): object {
 		throw new NotImplemented(this.constructor.name, "createDelegateResignation");
 	}
 
-	public createHtlcLock(data: TransactionInput): object {
+	public createHtlcLock(data: KeyValuePair): object {
 		throw new NotImplemented(this.constructor.name, "createHtlcLock");
 	}
 
-	public createHtlcClaim(data: TransactionInput): object {
+	public createHtlcClaim(data: KeyValuePair): object {
 		throw new NotImplemented(this.constructor.name, "createHtlcClaim");
 	}
 
-	public createHtlcRefund(data: TransactionInput): object {
+	public createHtlcRefund(data: KeyValuePair): object {
 		throw new NotImplemented(this.constructor.name, "createHtlcRefund");
 	}
 }

@@ -1,6 +1,7 @@
 import { Managers, Transactions } from "@arkecosystem/crypto";
 
-import { Crypto, TransactionInput } from "../contracts/crypto";
+import { KeyValuePair } from "../../types";
+import { Crypto } from "../contracts/crypto";
 
 export class Ark implements Crypto {
 	public constructor(network: string) {
@@ -8,7 +9,7 @@ export class Ark implements Crypto {
 		Managers.configManager.setHeight(10_000_000);
 	}
 
-	public createTransfer(data: TransactionInput): object {
+	public createTransfer(data: KeyValuePair): object {
 		return this.createFromData("transfer", data, ({ transaction, data }) => {
 			transaction.recipientId(data.recipientId);
 
@@ -18,23 +19,23 @@ export class Ark implements Crypto {
 		});
 	}
 
-	public createSecondSignature(data: TransactionInput): object {
+	public createSecondSignature(data: KeyValuePair): object {
 		return this.createFromData("secondSignature", data, ({ transaction, data }) =>
 			transaction.signatureAsset(data.secondSignature),
 		);
 	}
 
-	public createDelegateRegistration(data: TransactionInput): object {
+	public createDelegateRegistration(data: KeyValuePair): object {
 		return this.createFromData("delegateRegistration", data, ({ transaction, data }) =>
 			transaction.usernameAsset(data.asset),
 		);
 	}
 
-	public createVote(data: TransactionInput): object {
+	public createVote(data: KeyValuePair): object {
 		return this.createFromData("vote", data, ({ transaction, data }) => transaction.votesAsset(data.asset));
 	}
 
-	public createMultiSignature(data: TransactionInput): object {
+	public createMultiSignature(data: KeyValuePair): object {
 		return this.createFromData("multiSignature", data, ({ transaction, data }) => {
 			transaction.multiSignatureAsset(data.asset);
 
@@ -42,11 +43,11 @@ export class Ark implements Crypto {
 		});
 	}
 
-	public createIpfs(data: TransactionInput): object {
+	public createIpfs(data: KeyValuePair): object {
 		return this.createFromData("ipfs", data, ({ transaction, data }) => transaction.ipfsAsset(data.asset));
 	}
 
-	public createMultiPayment(data: TransactionInput): object {
+	public createMultiPayment(data: KeyValuePair): object {
 		return this.createFromData("multiPayment", data, ({ transaction, data }) => {
 			for (const payment of data.payments) {
 				transaction.addPayment(payment.recipientId, payment.amount);
@@ -54,11 +55,11 @@ export class Ark implements Crypto {
 		});
 	}
 
-	public createDelegateResignation(data: TransactionInput): object {
+	public createDelegateResignation(data: KeyValuePair): object {
 		return this.createFromData("delegateResignation", data);
 	}
 
-	public createHtlcLock(data: TransactionInput): object {
+	public createHtlcLock(data: KeyValuePair): object {
 		return this.createFromData("htlcLock", data, ({ transaction, data }) => {
 			transaction.amount(data.amount);
 
@@ -68,19 +69,19 @@ export class Ark implements Crypto {
 		});
 	}
 
-	public createHtlcClaim(data: TransactionInput): object {
+	public createHtlcClaim(data: KeyValuePair): object {
 		return this.createFromData("htlcClaim", data, ({ transaction, data }) =>
 			transaction.htlcClaimAsset(data.asset),
 		);
 	}
 
-	public createHtlcRefund(data: TransactionInput): object {
+	public createHtlcRefund(data: KeyValuePair): object {
 		return this.createFromData("htlcRefund", data, ({ transaction, data }) =>
 			transaction.htlcRefundAsset(data.asset),
 		);
 	}
 
-	private createFromData(type: string, data: TransactionInput, callback?: Function): object {
+	private createFromData(type: string, data: KeyValuePair, callback?: Function): object {
 		const transaction = Transactions.BuilderFactory[type]().version(2).nonce(data.nonce);
 
 		if (data.amount) {

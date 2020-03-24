@@ -1,14 +1,15 @@
 import { Identities, Managers } from "@arkecosystem/crypto";
 
 import { NotSupported } from "../../exceptions";
-import { Identity, IdentityInput, KeyPair } from "../contracts/identity";
+import { KeyValuePair } from "../../types";
+import { Identity, KeyPair } from "../contracts/identity";
 
 export class Ark implements Identity {
 	public constructor(network: string) {
 		Managers.configManager.setFromPreset(network as any);
 	}
 
-	public getAddress(opts: IdentityInput): string {
+	public getAddress(opts: KeyValuePair): string {
 		if (opts.passphrase) {
 			return Identities.Address.fromPassphrase(opts.passphrase);
 		}
@@ -32,7 +33,7 @@ export class Ark implements Identity {
 		throw new Error("No input provided.");
 	}
 
-	public getPublicKey(opts: IdentityInput): string {
+	public getPublicKey(opts: KeyValuePair): string {
 		if (opts.passphrase) {
 			return Identities.PublicKey.fromPassphrase(opts.passphrase);
 		}
@@ -48,7 +49,7 @@ export class Ark implements Identity {
 		throw new Error("No input provided.");
 	}
 
-	public getPrivateKey(opts: IdentityInput): string {
+	public getPrivateKey(opts: KeyValuePair): string {
 		if (opts.passphrase) {
 			return Identities.PrivateKey.fromPassphrase(opts.passphrase);
 		}
@@ -60,7 +61,7 @@ export class Ark implements Identity {
 		throw new Error("No input provided.");
 	}
 
-	public getWIF(opts: IdentityInput): string {
+	public getWIF(opts: KeyValuePair): string {
 		if (opts.passphrase) {
 			return Identities.WIF.fromPassphrase(opts.passphrase);
 		}
@@ -68,7 +69,7 @@ export class Ark implements Identity {
 		throw new Error("No input provided.");
 	}
 
-	public getKeyPair(opts: IdentityInput): KeyPair {
+	public getKeyPair(opts: KeyValuePair): KeyPair {
 		if (opts.passphrase) {
 			const keyPair = Identities.Keys.fromPassphrase(opts.passphrase);
 

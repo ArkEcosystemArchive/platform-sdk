@@ -1,7 +1,8 @@
 import { ECPair, Network, networks, payments } from "bitcoinjs-lib";
 
 import { NotSupported } from "../../exceptions";
-import { Identity, IdentityInput, KeyPair } from "../contracts/identity";
+import { KeyValuePair } from "../../types";
+import { Identity, KeyPair } from "../contracts/identity";
 
 export class Bitcoin implements Identity {
 	private readonly network: Network;
@@ -10,7 +11,7 @@ export class Bitcoin implements Identity {
 		this.network = networks[network];
 	}
 
-	public getAddress(opts: IdentityInput): string {
+	public getAddress(opts: KeyValuePair): string {
 		if (opts.passphrase) {
 			throw new NotSupported("getAddress#passphrase", this.constructor.name);
 		}
@@ -68,7 +69,7 @@ export class Bitcoin implements Identity {
 		throw new Error("No input provided.");
 	}
 
-	public getPublicKey(opts: IdentityInput): string {
+	public getPublicKey(opts: KeyValuePair): string {
 		if (opts.passphrase) {
 			throw new NotSupported("getPublicKey#passphrase", this.constructor.name);
 		}
@@ -84,7 +85,7 @@ export class Bitcoin implements Identity {
 		throw new Error("No input provided.");
 	}
 
-	public getPrivateKey(opts: IdentityInput): string {
+	public getPrivateKey(opts: KeyValuePair): string {
 		if (opts.passphrase) {
 			throw new NotSupported("getPrivateKey#passphrase", this.constructor.name);
 		}
@@ -102,7 +103,7 @@ export class Bitcoin implements Identity {
 		throw new Error("No input provided.");
 	}
 
-	public getWIF(opts: IdentityInput): string {
+	public getWIF(opts: KeyValuePair): string {
 		if (opts.passphrase) {
 			throw new NotSupported("getWIF#passphrase", this.constructor.name);
 		}
@@ -110,7 +111,7 @@ export class Bitcoin implements Identity {
 		throw new Error("No input provided.");
 	}
 
-	public getKeyPair(opts: IdentityInput): KeyPair {
+	public getKeyPair(opts: KeyValuePair): KeyPair {
 		const normalizeKeyPair = (keyPair): KeyPair => ({
 			publicKey: keyPair.publicKey.toString("hex"),
 			privateKey: keyPair.privateKey?.toString("hex"),

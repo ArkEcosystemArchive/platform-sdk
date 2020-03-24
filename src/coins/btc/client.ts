@@ -1,5 +1,6 @@
 import { NotImplemented } from "../../exceptions";
-import { Client, HttpQuery } from "../contracts/client";
+import { KeyValuePair } from "../../types";
+import { Client } from "../contracts/client";
 import { Block, Transaction, Wallet } from "./client/dto";
 
 export class Bitcoin implements Client {
@@ -9,11 +10,11 @@ export class Bitcoin implements Client {
 		throw new NotImplemented(this.constructor.name, "getBlock");
 	}
 
-	public async getBlocks(query?: HttpQuery): Promise<Block[]> {
+	public async getBlocks(query?: KeyValuePair): Promise<Block[]> {
 		throw new NotImplemented(this.constructor.name, "getBlocks");
 	}
 
-	public async searchBlocks(query: HttpQuery): Promise<Block[]> {
+	public async searchBlocks(query: KeyValuePair): Promise<Block[]> {
 		throw new NotImplemented(this.constructor.name, "searchBlocks");
 	}
 
@@ -21,11 +22,11 @@ export class Bitcoin implements Client {
 		throw new NotImplemented(this.constructor.name, "getTransaction");
 	}
 
-	public async getTransactions(query?: HttpQuery): Promise<Transaction[]> {
+	public async getTransactions(query?: KeyValuePair): Promise<Transaction[]> {
 		throw new NotImplemented(this.constructor.name, "getTransactions");
 	}
 
-	public async searchTransactions(query: HttpQuery): Promise<Transaction[]> {
+	public async searchTransactions(query: KeyValuePair): Promise<Transaction[]> {
 		throw new NotImplemented(this.constructor.name, "searchTransactions");
 	}
 
@@ -33,11 +34,11 @@ export class Bitcoin implements Client {
 		throw new NotImplemented(this.constructor.name, "getWallet");
 	}
 
-	public async getWallets(query?: HttpQuery): Promise<Wallet[]> {
+	public async getWallets(query?: KeyValuePair): Promise<Wallet[]> {
 		throw new NotImplemented(this.constructor.name, "getWallets");
 	}
 
-	public async searchWallets(query: HttpQuery): Promise<Wallet[]> {
+	public async searchWallets(query: KeyValuePair): Promise<Wallet[]> {
 		throw new NotImplemented(this.constructor.name, "searchWallets");
 	}
 }

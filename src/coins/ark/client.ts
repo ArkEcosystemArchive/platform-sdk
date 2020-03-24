@@ -1,6 +1,7 @@
 import { Connection } from "@arkecosystem/client";
 
-import { Client, HttpQuery } from "../contracts/client";
+import { KeyValuePair } from "../../types";
+import { Client } from "../contracts/client";
 import { Block, Transaction, Wallet } from "./client/dto";
 
 export class Ark implements Client {
@@ -16,13 +17,13 @@ export class Ark implements Client {
 		return new Block(body.data);
 	}
 
-	public async getBlocks(query?: HttpQuery): Promise<Block[]> {
+	public async getBlocks(query?: KeyValuePair): Promise<Block[]> {
 		const { body } = await this.connection.api("blocks").all(query);
 
 		return body.data.map((block) => new Block(block));
 	}
 
-	public async searchBlocks(query: HttpQuery): Promise<Block[]> {
+	public async searchBlocks(query: KeyValuePair): Promise<Block[]> {
 		const { body } = await this.connection.api("blocks").search(query);
 
 		return body.data.map((block) => new Block(block));
@@ -34,13 +35,13 @@ export class Ark implements Client {
 		return new Transaction(body.data);
 	}
 
-	public async getTransactions(query?: HttpQuery): Promise<Transaction[]> {
+	public async getTransactions(query?: KeyValuePair): Promise<Transaction[]> {
 		const { body } = await this.connection.api("transactions").all(query);
 
 		return body.data.map((transaction) => new Transaction(transaction));
 	}
 
-	public async searchTransactions(query: HttpQuery): Promise<Transaction[]> {
+	public async searchTransactions(query: KeyValuePair): Promise<Transaction[]> {
 		const { body } = await this.connection.api("transactions").search(query);
 
 		return body.data.map((transaction) => new Transaction(transaction));
@@ -52,13 +53,13 @@ export class Ark implements Client {
 		return new Wallet(body.data);
 	}
 
-	public async getWallets(query?: HttpQuery): Promise<Wallet[]> {
+	public async getWallets(query?: KeyValuePair): Promise<Wallet[]> {
 		const { body } = await this.connection.api("wallets").all(query);
 
 		return body.data.map((wallet) => new Wallet(wallet));
 	}
 
-	public async searchWallets(query: HttpQuery): Promise<Wallet[]> {
+	public async searchWallets(query: KeyValuePair): Promise<Wallet[]> {
 		const { body } = await this.connection.api("wallets").search(query);
 
 		return body.data.map((wallet) => new Wallet(wallet));
