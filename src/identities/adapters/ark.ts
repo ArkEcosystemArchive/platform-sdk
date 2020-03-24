@@ -1,6 +1,7 @@
 import { Identities, Managers } from "@arkecosystem/crypto";
 
 import { Identity, IdentityInput, KeyPair } from "../contracts";
+import { NotSupported } from "../../exceptions";
 
 export class Ark implements Identity {
 	public constructor(network: string) {
@@ -18,6 +19,10 @@ export class Ark implements Identity {
 
 		if (opts.publicKey) {
 			return Identities.Address.fromPublicKey(opts.publicKey);
+		}
+
+		if (opts.privateKey) {
+			throw new NotSupported("getAddress#privateKey", this.constructor.name);
 		}
 
 		if (opts.wif) {
@@ -68,6 +73,14 @@ export class Ark implements Identity {
 			const keyPair = Identities.Keys.fromPassphrase(opts.passphrase);
 
 			return { publicKey: keyPair.publicKey, privateKey: keyPair.privateKey };
+		}
+
+		if (opts.publicKey) {
+			throw new NotSupported("getKeyPair#publicKey", this.constructor.name);
+		}
+
+		if (opts.privateKey) {
+			throw new NotSupported("getKeyPair#privateKey", this.constructor.name);
 		}
 
 		if (opts.wif) {

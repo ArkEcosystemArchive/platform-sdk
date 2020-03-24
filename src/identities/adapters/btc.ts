@@ -1,11 +1,13 @@
-import { ECPair, payments } from "bitcoinjs-lib";
+import { ECPair, Network, networks, payments } from "bitcoinjs-lib";
 
 import { NotSupported } from "../../exceptions";
 import { Identity, IdentityInput, KeyPair } from "../contracts";
 
 export class Bitcoin implements Identity {
+	private readonly network: Network;
+
 	public constructor(network: string) {
-		//
+		this.network = networks[network];
 	}
 
 	public getAddress(opts: IdentityInput): string {
@@ -14,7 +16,7 @@ export class Bitcoin implements Identity {
 		}
 
 		if (opts.multiSignature) {
-			const payment = payments.p2sh({
+			const payment = this.p2sh({
 				redeem: payments.p2ms({
 					m: opts.multiSignature.min,
 					pubkeys: opts.multiSignature.publicKeys.map((hex) => Buffer.from(hex, "hex")),
@@ -30,7 +32,9 @@ export class Bitcoin implements Identity {
 
 		if (opts.publicKey) {
 			const keyPair = ECPair.fromPublicKey(Buffer.from(opts.publicKey, "hex"));
-			const payment = payments.p2pkh({ pubkey: keyPair.publicKey });
+			const payment = this.p2pkh({
+				pubkey: keyPair.publicKey,
+			});
 
 			if (payment.address !== undefined) {
 				return payment.address;
@@ -41,7 +45,7 @@ export class Bitcoin implements Identity {
 
 		if (opts.privateKey) {
 			const keyPair = ECPair.fromPrivateKey(Buffer.from(opts.privateKey, "hex"));
-			const payment = payments.p2pkh({ pubkey: keyPair.publicKey });
+			const payment = this.p2pkh({ pubkey: keyPair.publicKey });
 
 			if (payment.address !== undefined) {
 				return payment.address;
@@ -52,7 +56,7 @@ export class Bitcoin implements Identity {
 
 		if (opts.wif) {
 			const keyPair = ECPair.fromWIF(opts.wif);
-			const payment = payments.p2pkh({ pubkey: keyPair.publicKey });
+			const payment = this.p2pkh({ pubkey: keyPair.publicKey });
 
 			if (payment.address !== undefined) {
 				return payment.address;
@@ -129,5 +133,19 @@ export class Bitcoin implements Identity {
 		}
 
 		throw new Error("No input provided.");
+	}
+
+	private p2sh(opts: object): payments.Payment {
+		return payments.p2sh({
+			network: this.network,
+			...opts,
+		});
+	}
+
+	private p2pkh(opts: object): payments.Payment {
+		return payments.p2pkh({
+			network: this.network,
+			...opts,
+		});
 	}
 }
