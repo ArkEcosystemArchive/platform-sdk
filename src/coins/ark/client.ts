@@ -2,7 +2,7 @@ import { Connection } from "@arkecosystem/client";
 
 import { KeyValuePair } from "../../types";
 import { Client } from "../contracts/client";
-import { Block, Transaction, Wallet } from "./client/dto";
+import { Block, Transaction, Wallet } from "./dto";
 
 export class Ark implements Client {
 	private readonly connection: Connection;

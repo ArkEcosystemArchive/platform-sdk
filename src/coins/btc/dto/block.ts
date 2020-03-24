@@ -1,7 +1,7 @@
-import { KeyValuePair } from "../../../../types";
-import { Transaction as Contract } from "../../../contracts/client";
+import { KeyValuePair } from "../../../types";
+import { Block as Contract } from "../../contracts/client";
 
-export class Transaction implements Contract {
+export class Block implements Contract {
 	readonly #data: KeyValuePair;
 
 	public constructor(data: KeyValuePair) {
@@ -12,8 +12,8 @@ export class Transaction implements Contract {
 		return this.#data.id;
 	}
 
-	public getAmount(): string {
-		return this.#data.amount;
+	public getHeight(): string {
+		return this.#data.height;
 	}
 
 	/**
