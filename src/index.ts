@@ -1,3 +1,4 @@
-export * from "./clients";
-export * from "./crypto";
+export * from "./coins/factories/client";
+export * from "./coins/factories/crypto";
+
 export * from "./price-trackers";
