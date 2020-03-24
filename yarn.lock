@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@arkecosystem/client@^1.1.3":
+"@arkecosystem/client@^1.1":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@arkecosystem/client/-/client-1.1.3.tgz#a915df281bbc4af2ff3633c64a240e2c3127f8a4"
   integrity sha512-tdcpIALtS495FherCgOQoAW4+Qc0xGJpYAkiiCj/VaCjiBZucV2b/lpxaPHRyk9nihFMM+aXhKmSzxARmgehAg==
@@ -11,7 +11,7 @@
     ky "^0.19.0"
     ky-universal "^0.5.0"
 
-"@arkecosystem/crypto@^2.6.30":
+"@arkecosystem/crypto@^2.6":
   version "2.6.30"
   resolved "https://registry.yarnpkg.com/@arkecosystem/crypto/-/crypto-2.6.30.tgz#aa793770a7c242991b02bff2a18fe30e63c45829"
   integrity sha512-sRv8Q2GCYTPnRXHoD9rYi2o7O1PKMuTGuOQhzcYRaJWufb3cI6bFrwmLYyPzK0vTN6xUUFSg7hPO7qzRXY4Vwg==
@@ -47,7 +47,7 @@
     fast-deep-equal "^2.0.1"
     fast-sort "^1.5.6"
 
-"@arkecosystem/utils@^1.1.7":
+"@arkecosystem/utils@^1.1":
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/@arkecosystem/utils/-/utils-1.1.7.tgz#3c36695b3bb578c33c9dcbfb5e1cf4647b95da21"
   integrity sha512-L6otSODmR+td2ePnoZ++PMFI4kCokS3WakeJ/8r7epfe5C+iHVmRRYRbMHcuHQ2cw1xWwEDhYZcJaWUaXLXUHQ==
@@ -1076,7 +1076,7 @@ bech32@^1.1.2:
   resolved "https://registry.yarnpkg.com/bech32/-/bech32-1.1.3.tgz#bd47a8986bbb3eec34a56a097a84b8d3e9a2dfcd"
   integrity sha512-yuVFUvrNcoJi0sv5phmqc6P+Fl1HjRDRNOOkHY2X/3LBy2bIGNSFx4fZ95HMaXHupuS7cZR15AsvtmCIF4UEyg==
 
-bent@^7.1.2:
+bent@^7.1:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/bent/-/bent-7.1.2.tgz#9119e2ac141de9da0ba2b00ad66a0a53a6b2fd1e"
   integrity sha512-6/9rCLr7M5uLDRMyNhDMY+G2oqVcZM0A2y2/+hRPLqxIVnNC1LPUrYJ2hPwRUunAJyfe9bGZQ5WNvTZhlbOhVw==
@@ -1110,7 +1110,7 @@ bip32@^2.0.3, bip32@^2.0.4:
     typeforce "^1.11.5"
     wif "^2.0.6"
 
-bip39@^3.0.2:
+bip39@^3.0, bip39@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/bip39/-/bip39-3.0.2.tgz#2baf42ff3071fc9ddd5103de92e8f80d9257ee32"
   integrity sha512-J4E1r2N0tUylTKt07ibXvhpT2c5pyAFgvuA5q1H9uDy6dEGpjV8jmymh3MTYJDLCNbIVClSB9FbND49I6N24MQ==
@@ -1132,7 +1132,7 @@ bitcoin-ops@^1.3.0, bitcoin-ops@^1.4.0:
   resolved "https://registry.yarnpkg.com/bitcoin-ops/-/bitcoin-ops-1.4.1.tgz#e45de620398e22fd4ca6023de43974ff42240278"
   integrity sha512-pef6gxZFztEhaE9RY9HmWVmiIHqCb2OyS4HPKkpc6CIiiOa3Qmuoylxc5P2EkU3w+5eTSifI9SEZC88idAIGow==
 
-bitcoinjs-lib@^5.1.7:
+bitcoinjs-lib@^5.1:
   version "5.1.7"
   resolved "https://registry.yarnpkg.com/bitcoinjs-lib/-/bitcoinjs-lib-5.1.7.tgz#dfa023d6ad887eaef8249513d708c9ecd2673a08"
   integrity sha512-sNlTQuvhaoIjOdIdyENsX74Dlikv7l6AzO0/uZQscuvfBID6aMANoCz1rooCTH5upTV5rKCj4z3BXBmXJxq23g==
@@ -1721,15 +1721,15 @@ data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
+dayjs@^1.8:
+  version "1.8.23"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.23.tgz#07b5a8e759c4d75ae07bdd0ad6977f851c01e510"
+  integrity sha512-NmYHMFONftoZbeOhVz6jfiXI4zSiPN6NoVWJgC0aZQfYVwzy/ZpESPHuCcI0B8BUMpSJQ08zenHDbofOLKq8hQ==
+
 dayjs@^1.8.15:
   version "1.8.20"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.20.tgz#724a5cb6ad1f6fc066b0bd9a800dedcc7886f19e"
   integrity sha512-mH0MCDxw6UCGJYxVN78h8ugWycZAO8thkj3bW6vApL5tS0hQplIDdAQcmbvl7n35H0AKdCJQaArTrIQw2xt4Qg==
-
-dayjs@^1.8.23:
-  version "1.8.23"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.23.tgz#07b5a8e759c4d75ae07bdd0ad6977f851c01e510"
-  integrity sha512-NmYHMFONftoZbeOhVz6jfiXI4zSiPN6NoVWJgC0aZQfYVwzy/ZpESPHuCcI0B8BUMpSJQ08zenHDbofOLKq8hQ==
 
 debug@4, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
   version "4.1.1"
@@ -2129,7 +2129,7 @@ ethereumjs-util@^6.0.0:
     rlp "^2.2.3"
     secp256k1 "^3.0.1"
 
-ethereumjs-wallet@^0.6.3:
+ethereumjs-wallet@^0.6:
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/ethereumjs-wallet/-/ethereumjs-wallet-0.6.3.tgz#b0eae6f327637c2aeb9ccb9047b982ac542e6ab1"
   integrity sha512-qiXPiZOsStem+Dj/CQHbn5qex+FVkuPmGH7SvSnA9F3tdRDt8dLMyvIj3+U05QzVZNPYh4HXEdnzoYI4dZkr9w==
