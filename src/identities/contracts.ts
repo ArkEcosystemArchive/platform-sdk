@@ -12,7 +12,7 @@ export interface Identity {
 
 export interface KeyPair {
 	publicKey: string;
-	privateKey: string;
+	privateKey?: string;
 }
 
 export type IdentityInput = Record<string, any>;
