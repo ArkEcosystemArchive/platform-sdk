@@ -1,0 +1,19 @@
+{
+	"data": {
+		"username": "arkx",
+		"address": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+		"publicKey": "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
+		"votes": "57037342430760",
+		"isResigned": true,
+		"blocks": {
+			"produced": 84709,
+			"last": {
+				"id": "682a1c53eb9e6fcf285d1b6819de08f88bd15b083a612c3fe32aa870001dbf22",
+				"height": 4269235,
+				"timestamp": { "epoch": 91907944, "unix": 1582009144, "human": "2020-02-18T06:59:04.000Z" }
+			}
+		},
+		"production": { "approval": 0.42 },
+		"forged": { "fees": "124364463486", "rewards": "16899000000000", "total": "17023364463486" }
+	}
+}

@@ -2,7 +2,7 @@ import { Connection } from "@arkecosystem/client";
 
 import { KeyValuePair } from "../../types";
 import { Client } from "../contracts/client";
-import { Block, Transaction, Wallet } from "./dto";
+import { Block, Delegate, Transaction, Wallet } from "./dto";
 
 export class Ark implements Client {
 	private readonly connection: Connection;
@@ -63,5 +63,17 @@ export class Ark implements Client {
 		const { body } = await this.connection.api("wallets").search(query);
 
 		return body.data.map((wallet) => new Wallet(wallet));
+	}
+
+	public async getDelegate(id: string): Promise<Delegate> {
+		const { body } = await this.connection.api("delegates").get(id);
+
+		return new Delegate(body.data);
+	}
+
+	public async getDelegates(query?: KeyValuePair): Promise<Delegate[]> {
+		const { body } = await this.connection.api("delegates").all(query);
+
+		return body.data.map((wallet) => new Delegate(wallet));
 	}
 }

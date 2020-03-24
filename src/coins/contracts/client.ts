@@ -24,6 +24,14 @@ export interface Wallet {
 	toObject(): KeyValuePair;
 }
 
+export interface Delegate {
+	getAddress(): string;
+
+	getPublicKey(): string;
+
+	toObject(): KeyValuePair;
+}
+
 export interface Client {
 	getBlock(id: string): Promise<Block>;
 	getBlocks(query?: KeyValuePair): Promise<Block[]>;
@@ -36,4 +44,7 @@ export interface Client {
 	getWallet(id: string): Promise<Wallet>;
 	getWallets(query?: KeyValuePair): Promise<Wallet[]>;
 	searchWallets(query: KeyValuePair): Promise<Wallet[]>;
+
+	getDelegate(id: string): Promise<Delegate>;
+	getDelegates(query?: KeyValuePair): Promise<Delegate[]>;
 }
