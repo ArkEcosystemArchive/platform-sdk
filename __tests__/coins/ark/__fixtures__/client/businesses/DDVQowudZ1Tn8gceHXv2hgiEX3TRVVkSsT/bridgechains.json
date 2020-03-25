@@ -1,0 +1,24 @@
+{
+	"meta": {
+		"count": 1,
+		"pageCount": 1,
+		"totalCount": 1,
+		"next": null,
+		"previous": null,
+		"self": "/businesses/DDVQowudZ1Tn8gceHXv2hgiEX3TRVVkSsT/bridgechains?page=1&limit=100",
+		"first": "/businesses/DDVQowudZ1Tn8gceHXv2hgiEX3TRVVkSsT/bridgechains?page=1&limit=100",
+		"last": "/businesses/DDVQowudZ1Tn8gceHXv2hgiEX3TRVVkSsT/bridgechains?page=1&limit=100"
+	},
+	"data": [
+		{
+			"publicKey": "02aa7fd91822778b70d2c71273416d8ee276f479b7e4752538cb79122b060bd154",
+			"address": "DDVQowudZ1Tn8gceHXv2hgiEX3TRVVkSsT",
+			"name": "ARK",
+			"seedNodes": ["167.114.29.51", "167.114.29.52", "167.114.29.53", "167.114.29.54", "167.114.29.55"],
+			"genesisHash": "2a44f340d76ffc3df204c5f38cd355b7496c9065a1ade2ef92071436bd72e867",
+			"bridgechainRepository": "https://github.com/arkecosystem",
+			"ports": { "@arkecosystem/core-api": 4003 },
+			"isResigned": false
+		}
+	]
+}

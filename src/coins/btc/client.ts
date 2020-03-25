@@ -49,4 +49,32 @@ export class Bitcoin implements Client {
 	public async getDelegates(query?: KeyValuePair): Promise<Delegate[]> {
 		throw new NotImplemented(this.constructor.name, "getDelegates");
 	}
+
+	public async getConfiguration(): Promise<any> {
+		throw new NotImplemented(this.constructor.name, "getConfiguration");
+	}
+
+	public async getCryptoConfiguration(): Promise<any> {
+		throw new NotImplemented(this.constructor.name, "getCryptoConfiguration");
+	}
+
+	public async getFeesByNode(days: number): Promise<any> {
+		throw new NotImplemented(this.constructor.name, "getFeesByNode");
+	}
+
+	public async getFeesByType(): Promise<any> {
+		throw new NotImplemented(this.constructor.name, "getFeesByType");
+	}
+
+	public async getSyncStatus(): Promise<any> {
+		throw new NotImplemented(this.constructor.name, "getSyncStatus");
+	}
+
+	public async getBridgechainsByBusiness(address: string, query?: KeyValuePair): Promise<any> {
+		throw new NotImplemented(this.constructor.name, "getBridgechainsByBusiness");
+	}
+
+	public async postTransactions(transactions: object[]): Promise<any> {
+		throw new NotImplemented(this.constructor.name, "postTransactions");
+	}
 }

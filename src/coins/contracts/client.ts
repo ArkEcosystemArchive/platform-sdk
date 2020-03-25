@@ -47,4 +47,16 @@ export interface Client {
 
 	getDelegate(id: string): Promise<Delegate>;
 	getDelegates(query?: KeyValuePair): Promise<Delegate[]>;
+
+	getConfiguration(): Promise<any>;
+	getCryptoConfiguration(): Promise<any>;
+
+	getFeesByNode(days: number): Promise<any>;
+	getFeesByType(): Promise<any>;
+
+	getSyncStatus(): Promise<any>;
+
+	getBridgechainsByBusiness(address: string, query?: KeyValuePair): Promise<any>;
+
+	postTransactions(transactions: object[]): Promise<any>;
 }

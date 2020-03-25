@@ -76,4 +76,53 @@ export class Ark implements Client {
 
 		return body.data.map((wallet) => new Delegate(wallet));
 	}
+
+	// todo: normalise the response
+	public async getConfiguration(): Promise<any> {
+		const { body } = await this.connection.api("node").configuration();
+
+		return body.data;
+	}
+
+	// todo: normalise the response
+	public async getCryptoConfiguration(): Promise<any> {
+		const { body } = await this.connection.api("node").crypto();
+
+		return body.data;
+	}
+
+	// todo: normalise the response
+	public async getFeesByNode(days: number): Promise<any> {
+		const { body } = await this.connection.api("node").fees(days);
+
+		return body.data;
+	}
+
+	// todo: normalise the response
+	public async getFeesByType(): Promise<any> {
+		const { body } = await this.connection.api("transactions").fees();
+
+		return body.data;
+	}
+
+	// todo: normalise the response
+	public async getSyncStatus(): Promise<any> {
+		const { body } = await this.connection.api("node").syncing();
+
+		return body.data;
+	}
+
+	// todo: normalise the response
+	public async getBridgechainsByBusiness(address: string, query?: KeyValuePair): Promise<any> {
+		const { body } = await this.connection.api("businesses").bridgechains(address, query);
+
+		return body.data;
+	}
+
+	// todo: normalise the response
+	public async postTransactions(transactions: object[]): Promise<any> {
+		const { body } = await this.connection.api("transactions").create({ transactions });
+
+		return body.data;
+	}
 }
