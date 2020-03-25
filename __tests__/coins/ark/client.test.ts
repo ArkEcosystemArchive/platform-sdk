@@ -8,224 +8,224 @@ let subject: Ark;
 
 beforeEach(() => (subject = new Ark("https://dexplorer.ark.io/api")));
 
-// beforeAll(() => nock.disableNetConnect());
+beforeAll(() => nock.disableNetConnect());
 
 describe("Ark", function () {
-	// describe("#getBlock", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/blocks/13114381566690093367")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/block.json`));
+	describe("#getBlock", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/blocks/13114381566690093367")
+				.reply(200, require(`${__dirname}/__fixtures__/client/block.json`));
 
-	// 		const result = await subject.getBlock("13114381566690093367");
+			const result = await subject.getBlock("13114381566690093367");
 
-	// 		expect(result).toBeInstanceOf(Block);
-	// 	});
-	// });
+			expect(result).toBeInstanceOf(Block);
+		});
+	});
 
-	// describe("#getBlocks", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/blocks")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/blocks.json`));
+	describe("#getBlocks", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/blocks")
+				.reply(200, require(`${__dirname}/__fixtures__/client/blocks.json`));
 
-	// 		const result = await subject.getBlocks();
+			const result = await subject.getBlocks();
 
-	// 		expect(result).toBeArray();
-	// 		expect(result[0]).toBeInstanceOf(Block);
-	// 	});
-	// });
+			expect(result).toBeArray();
+			expect(result[0]).toBeInstanceOf(Block);
+		});
+	});
 
-	// describe("#searchBlocks", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.post("/blocks/search")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/blocks.json`));
+	describe("#searchBlocks", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.post("/blocks/search")
+				.reply(200, require(`${__dirname}/__fixtures__/client/blocks.json`));
 
-	// 		const result = await subject.searchBlocks({});
+			const result = await subject.searchBlocks({});
 
-	// 		expect(result).toBeArray();
-	// 		expect(result[0]).toBeInstanceOf(Block);
-	// 	});
-	// });
+			expect(result).toBeArray();
+			expect(result[0]).toBeInstanceOf(Block);
+		});
+	});
 
-	// describe("#getTransaction", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/transactions/3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/transaction.json`));
+	describe("#getTransaction", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/transactions/3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572")
+				.reply(200, require(`${__dirname}/__fixtures__/client/transaction.json`));
 
-	// 		const result = await subject.getTransaction(
-	// 			"3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
-	// 		);
+			const result = await subject.getTransaction(
+				"3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
+			);
 
-	// 		expect(result).toBeInstanceOf(Transaction);
-	// 	});
-	// });
+			expect(result).toBeInstanceOf(Transaction);
+		});
+	});
 
-	// describe("#getTransactions", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/transactions")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/transactions.json`));
+	describe("#getTransactions", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/transactions")
+				.reply(200, require(`${__dirname}/__fixtures__/client/transactions.json`));
 
-	// 		const result = await subject.getTransactions();
+			const result = await subject.getTransactions();
 
-	// 		expect(result).toBeArray();
-	// 		expect(result[0]).toBeInstanceOf(Transaction);
-	// 	});
-	// });
+			expect(result).toBeArray();
+			expect(result[0]).toBeInstanceOf(Transaction);
+		});
+	});
 
-	// describe("#searchTransactions", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.post("/transactions/search")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/transactions.json`));
+	describe("#searchTransactions", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.post("/transactions/search")
+				.reply(200, require(`${__dirname}/__fixtures__/client/transactions.json`));
 
-	// 		const result = await subject.searchTransactions({});
+			const result = await subject.searchTransactions({});
 
-	// 		expect(result).toBeArray();
-	// 		expect(result[0]).toBeInstanceOf(Transaction);
-	// 	});
-	// });
+			expect(result).toBeArray();
+			expect(result[0]).toBeInstanceOf(Transaction);
+		});
+	});
 
-	// describe("#getWallet", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/wallets/DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/wallet.json`));
+	describe("#getWallet", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/wallets/DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9")
+				.reply(200, require(`${__dirname}/__fixtures__/client/wallet.json`));
 
-	// 		const result = await subject.getWallet("DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9");
+			const result = await subject.getWallet("DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9");
 
-	// 		expect(result).toBeInstanceOf(Wallet);
-	// 	});
-	// });
+			expect(result).toBeInstanceOf(Wallet);
+		});
+	});
 
-	// describe("#getWallets", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/wallets")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/wallets.json`));
+	describe("#getWallets", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/wallets")
+				.reply(200, require(`${__dirname}/__fixtures__/client/wallets.json`));
 
-	// 		const result = await subject.getWallets();
+			const result = await subject.getWallets();
 
-	// 		expect(result).toBeArray();
-	// 		expect(result[0]).toBeInstanceOf(Wallet);
-	// 	});
-	// });
+			expect(result).toBeArray();
+			expect(result[0]).toBeInstanceOf(Wallet);
+		});
+	});
 
-	// describe("#searchWallets", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.post("/wallets/search")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/wallets.json`));
+	describe("#searchWallets", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.post("/wallets/search")
+				.reply(200, require(`${__dirname}/__fixtures__/client/wallets.json`));
 
-	// 		const result = await subject.searchWallets({});
+			const result = await subject.searchWallets({});
 
-	// 		expect(result).toBeArray();
-	// 		expect(result[0]).toBeInstanceOf(Wallet);
-	// 	});
-	// });
+			expect(result).toBeArray();
+			expect(result[0]).toBeInstanceOf(Wallet);
+		});
+	});
 
-	// describe("#getDelegate", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/delegates/arkx")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/delegate.json`));
+	describe("#getDelegate", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/delegates/arkx")
+				.reply(200, require(`${__dirname}/__fixtures__/client/delegate.json`));
 
-	// 		const result = await subject.getDelegate("arkx");
+			const result = await subject.getDelegate("arkx");
 
-	// 		expect(result).toBeInstanceOf(Delegate);
-	// 	});
-	// });
+			expect(result).toBeInstanceOf(Delegate);
+		});
+	});
 
-	// describe("#getDelegates", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/delegates")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/delegates.json`));
+	describe("#getDelegates", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/delegates")
+				.reply(200, require(`${__dirname}/__fixtures__/client/delegates.json`));
 
-	// 		const result = await subject.getDelegates();
+			const result = await subject.getDelegates();
 
-	// 		expect(result).toBeArray();
-	// 		expect(result[0]).toBeInstanceOf(Delegate);
-	// 	});
-	// });
+			expect(result).toBeArray();
+			expect(result[0]).toBeInstanceOf(Delegate);
+		});
+	});
 
-	// describe("#getConfiguration", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/node/configuration")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/node/configuration.json`));
+	describe("#getConfiguration", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/node/configuration")
+				.reply(200, require(`${__dirname}/__fixtures__/client/node/configuration.json`));
 
-	// 		const result = await subject.getConfiguration();
+			const result = await subject.getConfiguration();
 
-	// 		expect(result).toBeObject();
-	// 	});
-	// });
+			expect(result).toBeObject();
+		});
+	});
 
-	// describe("#getCryptoConfiguration", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/node/configuration/crypto")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/node/configuration/crypto.json`));
+	describe("#getCryptoConfiguration", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/node/configuration/crypto")
+				.reply(200, require(`${__dirname}/__fixtures__/client/node/configuration/crypto.json`));
 
-	// 		const result = await subject.getCryptoConfiguration();
+			const result = await subject.getCryptoConfiguration();
 
-	// 		expect(result).toBeObject();
-	// 	});
-	// });
+			expect(result).toBeObject();
+		});
+	});
 
-	// describe("#getFeesByNode", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/node/fees?days=7")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/node/fees.json`));
+	describe("#getFeesByNode", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/node/fees?days=7")
+				.reply(200, require(`${__dirname}/__fixtures__/client/node/fees.json`));
 
-	// 		const result = await subject.getFeesByNode(7);
+			const result = await subject.getFeesByNode(7);
 
-	// 		expect(result).toBeObject();
-	// 	});
-	// });
+			expect(result).toBeObject();
+		});
+	});
 
-	// describe("#getFeesByType", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/transactions/fees")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/transactions/fees.json`));
+	describe("#getFeesByType", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/transactions/fees")
+				.reply(200, require(`${__dirname}/__fixtures__/client/transactions/fees.json`));
 
-	// 		const result = await subject.getFeesByType();
+			const result = await subject.getFeesByType();
 
-	// 		expect(result).toBeObject();
-	// 	});
-	// });
+			expect(result).toBeObject();
+		});
+	});
 
-	// describe("#getSyncStatus", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/node/syncing")
-	// 			.reply(200, require(`${__dirname}/__fixtures__/client/node/syncing.json`));
+	describe("#getSyncStatus", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/node/syncing")
+				.reply(200, require(`${__dirname}/__fixtures__/client/node/syncing.json`));
 
-	// 		const result = await subject.getSyncStatus();
+			const result = await subject.getSyncStatus();
 
-	// 		expect(result).toBeObject();
-	// 	});
-	// });
+			expect(result).toBeObject();
+		});
+	});
 
-	// describe("#getBridgechainsByBusiness", () => {
-	// 	it("should succeed", async () => {
-	// 		nock("https://dexplorer.ark.io/api")
-	// 			.get("/businesses/DDVQowudZ1Tn8gceHXv2hgiEX3TRVVkSsT/bridgechains")
-	// 			.reply(
-	// 				200,
-	// 				require(`${__dirname}/__fixtures__/client/businesses/DDVQowudZ1Tn8gceHXv2hgiEX3TRVVkSsT/bridgechains.json`),
-	// 			);
+	describe("#getBridgechainsByBusiness", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/businesses/DDVQowudZ1Tn8gceHXv2hgiEX3TRVVkSsT/bridgechains")
+				.reply(
+					200,
+					require(`${__dirname}/__fixtures__/client/businesses/DDVQowudZ1Tn8gceHXv2hgiEX3TRVVkSsT/bridgechains.json`),
+				);
 
-	// 		const result = await subject.getBridgechainsByBusiness("DDVQowudZ1Tn8gceHXv2hgiEX3TRVVkSsT");
+			const result = await subject.getBridgechainsByBusiness("DDVQowudZ1Tn8gceHXv2hgiEX3TRVVkSsT");
 
-	// 		expect(result).toBeArray();
-	// 	});
-	// });
+			expect(result).toBeArray();
+		});
+	});
 
 	describe("#postTransactions", () => {
 		it("should succeed", async () => {
