@@ -1,0 +1,76 @@
+{
+	"meta": { "offset": 0, "limit": 10 },
+	"data": [
+		{
+			"address": "6566229458323231555L",
+			"publicKey": "d121d3abf5425fdc0f161d9ddb32f89b7750b4bdb0bff7d18b191d4b4bafa6d4",
+			"balance": "-9999333679754263",
+			"secondPublicKey": "",
+			"asset": null
+		},
+		{
+			"address": "10000045619015974920L",
+			"publicKey": "3c4cf53f5cb0092f09a9ed945f2b0fccf1137cf2cf67fe37c1c925bf42e1a38a",
+			"balance": "0",
+			"secondPublicKey": "",
+			"asset": null
+		},
+		{
+			"address": "10000271946270311318L",
+			"publicKey": "8fa8b70b5ae5e174f26f3ab665f3362a683e4b3c186d249447bdc399a2b86968",
+			"balance": "0",
+			"secondPublicKey": "",
+			"asset": null
+		},
+		{
+			"address": "10000340350689769242L",
+			"publicKey": "7d7cc19d0f162c6ab3cf1c1721f80643659c06baa2c904fd51549ceda3bf72e3",
+			"balance": "0",
+			"secondPublicKey": "",
+			"asset": null
+		},
+		{
+			"address": "10000359125808813013L",
+			"publicKey": "0381eb2162a422c7889d40425dad945465497509feefefa1d4c65451bc12043d",
+			"balance": "0",
+			"secondPublicKey": "",
+			"asset": null
+		},
+		{
+			"address": "10000464630980984087L",
+			"publicKey": "10b4bff25d5a19f99b543b4fc76a0a7bcaf9009a1aa3274e5b3652c4933236b1",
+			"balance": "0",
+			"secondPublicKey": "",
+			"asset": null
+		},
+		{
+			"address": "10000560280156381676L",
+			"publicKey": "8351b6d63562d992f7f1cd5cf4fb6e16fdf549fb2c6fb7aa7f2b2383ee6e360b",
+			"balance": "0",
+			"secondPublicKey": "",
+			"asset": null
+		},
+		{
+			"address": "10000611192432704480L",
+			"publicKey": "3e063c94bc6e95c6476326532002fdfc0511783ff90b099453636f40813628c8",
+			"balance": "0",
+			"secondPublicKey": "",
+			"asset": null
+		},
+		{
+			"address": "10000743716585119087L",
+			"publicKey": "c36129904d5747c8a674215994bc1092597b612069f4ae39f35b5e5385e6ea57",
+			"balance": "0",
+			"secondPublicKey": "",
+			"asset": null
+		},
+		{
+			"address": "10000758180876402451L",
+			"publicKey": "cbd2b19e8485d96f0988f5cd6c5c183b3570a7ec846a3eed3a0849efe0b0e20a",
+			"balance": "0",
+			"secondPublicKey": "",
+			"asset": null
+		}
+	],
+	"links": {}
+}

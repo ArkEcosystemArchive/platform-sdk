@@ -1,0 +1,29 @@
+{
+	"meta": { "offset": 0, "limit": 10, "count": 1 },
+	"data": [
+		{
+			"id": "15562133894377717094",
+			"height": 1,
+			"blockId": "13658550407518916215",
+			"type": 2,
+			"timestamp": 0,
+			"senderPublicKey": "f8d8aa286b689fa7279ad99f0fdfaeb3c0d2b22bee62230df2ba2fe40b9eb628",
+			"recipientPublicKey": "",
+			"senderId": "1226959367143279543L",
+			"recipientId": "",
+			"amount": "0",
+			"fee": "0",
+			"signature": "d4b61a5508b75864e4d96fc74d003aeb1e74ab3b4f5cda734836ea98736cc7f7da9c6d513acbe04ff1d7df93904eda4caf0e4c36c9675c811fce486efc897802",
+			"signatures": [],
+			"asset": {
+				"delegate": {
+					"username": "genesis_54",
+					"publicKey": "f8d8aa286b689fa7279ad99f0fdfaeb3c0d2b22bee62230df2ba2fe40b9eb628",
+					"address": "1226959367143279543L"
+				}
+			},
+			"confirmations": 11851692
+		}
+	],
+	"links": {}
+}

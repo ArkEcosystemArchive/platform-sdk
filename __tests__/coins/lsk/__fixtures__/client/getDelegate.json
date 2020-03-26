@@ -1,0 +1,21 @@
+{
+	"meta": { "offset": 0, "limit": 10 },
+	"data": [
+		{
+			"username": "cc001",
+			"vote": "7274184059556732",
+			"rewards": "38650200000000",
+			"producedBlocks": 103539,
+			"missedBlocks": 45,
+			"productivity": 99.96,
+			"rank": 1,
+			"account": {
+				"address": "6787154358850114730L",
+				"publicKey": "9771b09041466268948626830cbfea5a043527f39174d70e11a80011f386bb57",
+				"secondPublicKey": "a91b06b3f0ed2dde773260dcb9a646d8d85d77970bbb759600df366a3e1692a0"
+			},
+			"approval": 52.41
+		}
+	],
+	"links": {}
+}

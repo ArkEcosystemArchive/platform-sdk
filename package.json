@@ -24,6 +24,8 @@
 		"@arkecosystem/client": "^1.1",
 		"@arkecosystem/crypto": "^2.6",
 		"@arkecosystem/utils": "^1.1",
+		"@liskhq/lisk-cryptography": "^2.4.2",
+		"@liskhq/lisk-transactions": "^3.0.2",
 		"bent": "^7.1",
 		"bip39": "^3.0",
 		"bitcoinjs-lib": "^5.1",
