@@ -8,3 +8,5 @@ export const getJSON = async (url: string, query: object = {}): Promise<KeyValue
 
 	return bent("json")(searchParams ? `${url}?${searchParams}` : url);
 };
+
+export const postJSON = async (host: string, path: string, body: object) => bent(host, "POST", "json", 200)(path, body);

@@ -1,0 +1,24 @@
+{
+	"meta": { "offset": 0, "limit": 10 },
+	"data": [
+		{
+			"id": "1676747649530141145",
+			"version": 1,
+			"timestamp": 121095500,
+			"height": 11851620,
+			"numberOfTransactions": 0,
+			"totalAmount": "0",
+			"totalFee": "0",
+			"reward": "200000000",
+			"payloadLength": 0,
+			"payloadHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"generatorPublicKey": "a2fc2420262f081d0f6426364301ef40597756e163f6b1fd813eff9b03594125",
+			"blockSignature": "8e9974f48b2482254a7b50a99e772baaf012cf10307eb7ec85b699a747fc254754f5aff9d530032c43d1b88a1a71d4e27adbea725c99ea9ed88a8f9bb6edd00a",
+			"confirmations": 4,
+			"totalForged": "200000000",
+			"generatorAddress": "17438085793668748066L",
+			"previousBlockId": "9344285154674530473"
+		}
+	],
+	"links": {}
+}

@@ -1,0 +1,156 @@
+{
+	"meta": { "offset": 0, "limit": 10 },
+	"data": [
+		{
+			"username": "cc001",
+			"vote": "7274184059556732",
+			"rewards": "38650200000000",
+			"producedBlocks": 103539,
+			"missedBlocks": 45,
+			"productivity": 99.96,
+			"rank": 1,
+			"account": {
+				"address": "6787154358850114730L",
+				"publicKey": "9771b09041466268948626830cbfea5a043527f39174d70e11a80011f386bb57",
+				"secondPublicKey": "a91b06b3f0ed2dde773260dcb9a646d8d85d77970bbb759600df366a3e1692a0"
+			},
+			"approval": 52.41
+		},
+		{
+			"username": "tembo",
+			"vote": "7244276401268712",
+			"rewards": "37975900000000",
+			"producedBlocks": 102121,
+			"missedBlocks": 361,
+			"productivity": 99.65,
+			"rank": 2,
+			"account": {
+				"address": "2433857930558702776L",
+				"publicKey": "326bff18531703385d4037e5585b001e732c4a68afb8f82efe2b46c27dcf05aa",
+				"secondPublicKey": "3ec90a4cfcebc17399101c86b1f71a15d28b2b0d36d9434b80748688fabddde8"
+			},
+			"approval": 52.19
+		},
+		{
+			"username": "rooney",
+			"vote": "7208091505673988",
+			"rewards": "38497200000000",
+			"producedBlocks": 103168,
+			"missedBlocks": 310,
+			"productivity": 99.7,
+			"rank": 3,
+			"account": {
+				"address": "6356913781456505636L",
+				"publicKey": "b3953cb16e2457b9be78ad8c8a2985435dedaed5f0dd63443bdfbccc92d09f2d",
+				"secondPublicKey": "69c9c77e900320dae8efc1396b97206ba7bec409f9a83c765f62ac40f58768bd"
+			},
+			"approval": 51.93
+		},
+		{
+			"username": "punkrock",
+			"vote": "7197726335689830",
+			"rewards": "38574600000000",
+			"producedBlocks": 103373,
+			"missedBlocks": 156,
+			"productivity": 99.85,
+			"rank": 4,
+			"account": {
+				"address": "6853061742992593192L",
+				"publicKey": "677c79b243ed96a8439e8bd193d6ab966ce43c9aa18830d2b9eb8974455d79f8",
+				"secondPublicKey": "72c30003461cf0aaf73adbeb30bbb3c38daa0b2f68c33543072ae56e756684c1"
+			},
+			"approval": 51.86
+		},
+		{
+			"username": "liskgate",
+			"vote": "7185450721869435",
+			"rewards": "38505100000000",
+			"producedBlocks": 103210,
+			"missedBlocks": 307,
+			"productivity": 99.7,
+			"rank": 5,
+			"account": {
+				"address": "16356037149140416854L",
+				"publicKey": "2d59fbcce531fb9661cdfa8371c49b6898ce0895fe71da88ffec851c7ed60782",
+				"secondPublicKey": "8c764199c78114a481acd9dc6aee73bc9e11d516b7150c44d7df0ed5dfe0fdab"
+			},
+			"approval": 51.77
+		},
+		{
+			"username": "nerigal",
+			"vote": "7156553185618778",
+			"rewards": "38139600000000",
+			"producedBlocks": 102488,
+			"missedBlocks": 119,
+			"productivity": 99.88,
+			"rank": 6,
+			"account": {
+				"address": "3741683474356548491L",
+				"publicKey": "2f58f5b6b1e2e91a9634dfadd1d6726a5aed2875f33260b6753cb9ec7da72917",
+				"secondPublicKey": "6b5f67a94f7f89846971976d50eef026f2378726a0fc07996071d4efc2555fed"
+			},
+			"approval": 51.56
+		},
+		{
+			"username": "grumlin",
+			"vote": "7141272083960728",
+			"rewards": "38466500000000",
+			"producedBlocks": 103118,
+			"missedBlocks": 389,
+			"productivity": 99.62,
+			"rank": 7,
+			"account": {
+				"address": "16979707772780220012L",
+				"publicKey": "a0f768d6476a9cfec1a64a895064fe114b26bd3fb6aeda397ccce7ef7f3f98ef",
+				"secondPublicKey": "8bbf87e14fee69aca2b387f0cfac40156e736415279be509e47e6cb9f5f4bb2f"
+			},
+			"approval": 51.45
+		},
+		{
+			"username": "gr33ndrag0n",
+			"vote": "7121763633883227",
+			"rewards": "38566200000000",
+			"producedBlocks": 103357,
+			"missedBlocks": 157,
+			"productivity": 99.85,
+			"rank": 8,
+			"account": {
+				"address": "194109334904015388L",
+				"publicKey": "ad936990fb57f7e686763c293e9ca773d1d921888f5235189945a10029cd95b0",
+				"secondPublicKey": "b165e207026d919677ecdaf4e5e1fa50ad1dfcfee4c3d35c7a40b1077c004a4a"
+			},
+			"approval": 51.31
+		},
+		{
+			"username": "vekexasia",
+			"vote": "7111180614807988",
+			"rewards": "25832400000000",
+			"producedBlocks": 77786,
+			"missedBlocks": 256,
+			"productivity": 99.67,
+			"rank": 9,
+			"account": {
+				"address": "9102643396261850794L",
+				"publicKey": "2fc8f8048d2573529b7f37037a49724202a28a0fbee8741702bb4d96c09fcbbf",
+				"secondPublicKey": "2b081de7e1433486d956069a6d9aaacfbb5089597ff64cd42249af83143a0ed0"
+			},
+			"approval": 51.23
+		},
+		{
+			"username": "mrv",
+			"vote": "7110518960161752",
+			"rewards": "38520000000000",
+			"producedBlocks": 103217,
+			"missedBlocks": 279,
+			"productivity": 99.73,
+			"rank": 10,
+			"account": {
+				"address": "11380384760969655418L",
+				"publicKey": "90ad9bfed339af2d6b4b3b7f7cdf25d927b255f9f25dbbc892ee9ca57ef67807",
+				"secondPublicKey": "14d554573013e49a6bf8b6041677426067b84633de624ed1db9d9ee5214a5379"
+			},
+			"approval": 51.23
+		}
+	],
+	"links": {}
+}
