@@ -43,9 +43,7 @@ const mockCoinGecko = () => {
 			},
 		});
 
-	nock(BASE_URL_COINGECKO)
-		.get("/coins/ark")
-		.reply(200, require("./adapters/coingecko/__fixtures__/market.json"));
+	nock(BASE_URL_COINGECKO).get("/coins/ark").reply(200, require("./adapters/coingecko/__fixtures__/market.json"));
 
 	nock(BASE_URL_COINGECKO)
 		.get("/coins/ark/market_chart")
@@ -78,9 +76,7 @@ const mockCoinCap = () => {
 			timestamp: 1581339180902,
 		});
 
-	nock(BASE_URL_COINCAP)
-		.get("/rates")
-		.reply(200, require("./adapters/coincap/__fixtures__/rates.json"));
+	nock(BASE_URL_COINCAP).get("/rates").reply(200, require("./adapters/coincap/__fixtures__/rates.json"));
 
 	nock(BASE_URL_COINCAP)
 		.get("/assets/ark/history")
@@ -94,7 +90,7 @@ describe("PriceTrackerService", () => {
 	const token = "ARK";
 	const currency = "USD";
 
-	describe.each(["cryptocompare", "coingecko", "coincap"])("%s", adapter => {
+	describe.each(["cryptocompare", "coingecko", "coincap"])("%s", (adapter) => {
 		beforeEach(() => {
 			subject = PriceTrackerService.make(adapter.toLowerCase());
 
@@ -125,12 +121,9 @@ describe("PriceTrackerService", () => {
 		describe("verifyToken", () => {
 			it("should return true if found", async () => {
 				if (adapter === "cryptocompare") {
-					nock(BASE_URL_CRYPTOCOMPARE)
-						.get("/data/price")
-						.query(true)
-						.reply(200, {
-							BTC: 0.00002073,
-						});
+					nock(BASE_URL_CRYPTOCOMPARE).get("/data/price").query(true).reply(200, {
+						BTC: 0.00002073,
+					});
 				}
 
 				expect(await subject.verifyToken("ark")).toBe(true);
@@ -138,12 +131,9 @@ describe("PriceTrackerService", () => {
 
 			it("should return false if not found", async () => {
 				if (adapter === "cryptocompare") {
-					nock(BASE_URL_CRYPTOCOMPARE)
-						.get("/data/price")
-						.query(true)
-						.reply(200, {
-							Response: "Error",
-						});
+					nock(BASE_URL_CRYPTOCOMPARE).get("/data/price").query(true).reply(200, {
+						Response: "Error",
+					});
 				}
 
 				expect(await subject.verifyToken("not-ark")).toBe(false);

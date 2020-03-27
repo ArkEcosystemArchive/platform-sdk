@@ -4,6 +4,6 @@ let subject: PriceTrackerFactory;
 
 beforeEach(() => (subject = new PriceTrackerFactory()));
 
-describe("PriceTrackerFactory", function() {
+describe("PriceTrackerFactory", function () {
 	it.todo("should ...");
 });
