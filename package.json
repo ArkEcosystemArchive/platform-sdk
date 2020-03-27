@@ -29,8 +29,10 @@
 		"bent": "^7.1",
 		"bip39": "^3.0",
 		"bitcoinjs-lib": "^5.1",
+		"bitcoinjs-message": "^2.1.0",
 		"dayjs": "^1.8",
-		"ethereumjs-wallet": "^0.6"
+		"ethereumjs-wallet": "^0.6",
+		"web3": "^1.2.6"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
