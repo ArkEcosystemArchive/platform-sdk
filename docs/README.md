@@ -4,30 +4,30 @@
 
 ### Supported
 
-- [ARK](./client.md)
-- [BTC](./client.md)
-- [ETH](./client.md)
+-   [ARK](./client.md)
+-   [BTC](./client.md)
+-   [ETH](./client.md)
 
 ## Crypto
 
 ### Supported
 
-- [ARK](./crypto.md)
-- [BTC](./crypto.md)
-- [ETH](./crypto.md)
+-   [ARK](./crypto.md)
+-   [BTC](./crypto.md)
+-   [ETH](./crypto.md)
 
 ## Identity
 
 ### Supported
 
-- [ARK](./identity.md)
-- [BTC](./identity.md)
-- [ETH](./identity.md)
+-   [ARK](./identity.md)
+-   [BTC](./identity.md)
+-   [ETH](./identity.md)
 
 ## Identity
 
 ### Supported
 
-- [CoinCap](./price-trackers.md)
-- [CoinGecko](./price-trackers.md)
-- [CryptoCompare](./price-trackers.md)
+-   [CoinCap](./price-trackers.md)
+-   [CoinGecko](./price-trackers.md)
+-   [CryptoCompare](./price-trackers.md)

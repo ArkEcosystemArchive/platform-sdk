@@ -3,8 +3,8 @@ import { MarketTransformer } from "../../../../../src/price-trackers/adapters/co
 const stubResponse = require("../__fixtures__/market.json");
 const stubOptions = { type: "day", dateFormat: "DD.MM", token: "ARK" };
 
-describe("CoinCap", function() {
-	describe("MarketTransformer", function() {
+describe("CoinCap", function () {
+	describe("MarketTransformer", function () {
 		it("should transform the given data", async () => {
 			const subject = new MarketTransformer(stubResponse);
 

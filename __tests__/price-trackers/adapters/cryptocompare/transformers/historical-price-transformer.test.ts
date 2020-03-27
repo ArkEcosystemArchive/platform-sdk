@@ -3,8 +3,8 @@ import { HistoricalPriceTransformer } from "../../../../../src/price-trackers/ad
 const stubResponse = require("../__fixtures__/historical.json");
 const stubOptions = { type: "day", dateFormat: "DD.MM" };
 
-describe("CryptoCompare", function() {
-	describe("HistoricalPriceTransformer", function() {
+describe("CryptoCompare", function () {
+	describe("HistoricalPriceTransformer", function () {
 		it("should transform the given data", async () => {
 			const subject = new HistoricalPriceTransformer(stubResponse.Data);
 
