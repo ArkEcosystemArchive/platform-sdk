@@ -6,14 +6,14 @@ import { Block, Delegate, Transaction, Wallet } from "../../../src/coins/lsk/dto
 
 let subject: Lisk;
 
-beforeEach(() => (subject = new Lisk("https://node01.lisk.io:443")));
+beforeEach(() => (subject = new Lisk("https://betanet.lisk.io:443")));
 
 beforeAll(() => nock.disableNetConnect());
 
 describe("Lisk", function () {
 	describe("#getBlock", () => {
 		it("should succeed", async () => {
-			nock("https://node01.lisk.io:443")
+			nock("https://betanet.lisk.io:443")
 				.get("/api/blocks?blockId=1676747649530141145")
 				.reply(200, require(`${__dirname}/__fixtures__/client/getBlock.json`));
 
@@ -25,7 +25,7 @@ describe("Lisk", function () {
 
 	describe("#getBlocks", () => {
 		it("should succeed", async () => {
-			nock("https://node01.lisk.io:443")
+			nock("https://betanet.lisk.io:443")
 				.get("/api/blocks")
 				.reply(200, require(`${__dirname}/__fixtures__/client/getBlocks.json`));
 
@@ -38,7 +38,7 @@ describe("Lisk", function () {
 
 	describe("#getTransaction", () => {
 		it("should succeed", async () => {
-			nock("https://node01.lisk.io:443")
+			nock("https://betanet.lisk.io:443")
 				.get("/api/transactions?id=15562133894377717094")
 				.reply(200, require(`${__dirname}/__fixtures__/client/getTransaction.json`));
 
@@ -50,7 +50,7 @@ describe("Lisk", function () {
 
 	describe("#getTransactions", () => {
 		it("should succeed", async () => {
-			nock("https://node01.lisk.io:443")
+			nock("https://betanet.lisk.io:443")
 				.get("/api/transactions")
 				.reply(200, require(`${__dirname}/__fixtures__/client/getTransactions.json`));
 
@@ -63,7 +63,7 @@ describe("Lisk", function () {
 
 	describe("#getWallet", () => {
 		it("should succeed", async () => {
-			nock("https://node01.lisk.io:443")
+			nock("https://betanet.lisk.io:443")
 				.get("/api/accounts?address=6566229458323231555L")
 				.reply(200, require(`${__dirname}/__fixtures__/client/getWallet.json`));
 
@@ -75,7 +75,7 @@ describe("Lisk", function () {
 
 	describe("#getWallets", () => {
 		it("should succeed", async () => {
-			nock("https://node01.lisk.io:443")
+			nock("https://betanet.lisk.io:443")
 				.get("/api/accounts")
 				.reply(200, require(`${__dirname}/__fixtures__/client/getWallets.json`));
 
@@ -88,7 +88,7 @@ describe("Lisk", function () {
 
 	describe("#getDelegate", () => {
 		it("should succeed", async () => {
-			nock("https://node01.lisk.io:443")
+			nock("https://betanet.lisk.io:443")
 				.get("/api/delegates?username=cc001")
 				.reply(200, require(`${__dirname}/__fixtures__/client/getDelegate.json`));
 
@@ -100,7 +100,7 @@ describe("Lisk", function () {
 
 	describe("#getDelegates", () => {
 		it("should succeed", async () => {
-			nock("https://node01.lisk.io:443")
+			nock("https://betanet.lisk.io:443")
 				.get("/api/delegates")
 				.reply(200, require(`${__dirname}/__fixtures__/client/getDelegates.json`));
 
@@ -108,6 +108,18 @@ describe("Lisk", function () {
 
 			expect(result).toBeArray();
 			expect(result[0]).toBeInstanceOf(Delegate);
+		});
+	});
+
+	describe("#postTransactions", () => {
+		it("should succeed", async () => {
+			nock("https://betanet.lisk.io:443")
+				.post("/api/transactions")
+				.reply(200, require(`${__dirname}/__fixtures__/client/postTransactions.json`));
+
+			const result = await subject.postTransactions({});
+
+			expect(result).toBeUndefined();
 		});
 	});
 });

@@ -5,7 +5,7 @@ import { identity } from "./__fixtures__/identity";
 
 let subject: Lisk;
 
-beforeEach(() => (subject = new Lisk("9a9813156bf1d2355da31a171e37f97dfa7568187c3fd7f9c728de8f180c19c7")));
+beforeEach(() => (subject = new Lisk("7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d")));
 
 describe("Lisk", () => {
 	describe("#createTransfer", () => {
