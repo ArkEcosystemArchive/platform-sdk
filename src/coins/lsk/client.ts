@@ -96,7 +96,11 @@ export class Lisk implements Client {
 	}
 
 	public async postTransactions(transaction: object): Promise<any> {
-		await this.post("transactions", transaction);
+		try {
+			await this.post("transactions", transaction);
+		} catch (e) {
+			throw new Error((await e.responseBody).toString());
+		}
 	}
 
 	private async get(path: string, query?: KeyValuePair): Promise<any> {
