@@ -2,7 +2,7 @@ import "jest-extended";
 import nock from "nock";
 
 import { Lisk } from "../../../src/coins/lsk/client";
-import { Block, Delegate, Transaction, Wallet } from "../../../src/coins/lsk/dto";
+import { Block, Delegate, Peer, Transaction, Wallet } from "../../../src/coins/lsk/dto";
 
 let subject: Lisk;
 
@@ -108,6 +108,19 @@ describe("Lisk", function () {
 
 			expect(result).toBeArray();
 			expect(result[0]).toBeInstanceOf(Delegate);
+		});
+	});
+
+	describe("#getPeers", () => {
+		it("should succeed", async () => {
+			nock("https://betanet.lisk.io:443")
+				.get("/api/peers")
+				.reply(200, require(`${__dirname}/__fixtures__/client/getPeers.json`));
+
+			const result = await subject.getPeers();
+
+			expect(result).toBeArray();
+			expect(result[0]).toBeInstanceOf(Peer);
 		});
 	});
 

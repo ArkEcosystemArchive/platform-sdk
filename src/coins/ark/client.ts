@@ -2,7 +2,7 @@ import { Connection } from "@arkecosystem/client";
 
 import { KeyValuePair } from "../../types";
 import { Client } from "../contracts/client";
-import { Block, Delegate, Transaction, Wallet } from "./dto";
+import { Block, Delegate, Peer, Transaction, Wallet } from "./dto";
 
 export class Ark implements Client {
 	private readonly connection: Connection;
@@ -75,6 +75,12 @@ export class Ark implements Client {
 		const { body } = await this.connection.api("delegates").all(query);
 
 		return body.data.map((wallet) => new Delegate(wallet));
+	}
+
+	public async getPeers(query?: KeyValuePair): Promise<Peer[]> {
+		const { body } = await this.connection.api("peers").all(query);
+
+		return body.data.map((peer) => new Peer(peer));
 	}
 
 	// todo: normalise the response

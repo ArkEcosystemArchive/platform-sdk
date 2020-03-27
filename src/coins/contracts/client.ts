@@ -32,6 +32,14 @@ export interface Delegate {
 	toObject(): KeyValuePair;
 }
 
+export interface Peer {
+	getAddress(): string;
+
+	getPort(): number;
+
+	toObject(): KeyValuePair;
+}
+
 export interface Client {
 	getBlock(id: string): Promise<Block>;
 	getBlocks(query?: KeyValuePair): Promise<Block[]>;
@@ -47,6 +55,8 @@ export interface Client {
 
 	getDelegate(id: string): Promise<Delegate>;
 	getDelegates(query?: KeyValuePair): Promise<Delegate[]>;
+
+	getPeers(query?: KeyValuePair): Promise<Peer[]>;
 
 	getConfiguration(): Promise<any>;
 	getCryptoConfiguration(): Promise<any>;

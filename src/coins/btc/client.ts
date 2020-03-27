@@ -1,7 +1,7 @@
 import { NotImplemented } from "../../exceptions";
 import { KeyValuePair } from "../../types";
 import { Client } from "../contracts/client";
-import { Block, Delegate, Transaction, Wallet } from "./dto";
+import { Block, Delegate, Peer, Transaction, Wallet } from "./dto";
 
 export class Bitcoin implements Client {
 	public constructor(private readonly peer: string) {}
@@ -48,6 +48,10 @@ export class Bitcoin implements Client {
 
 	public async getDelegates(query?: KeyValuePair): Promise<Delegate[]> {
 		throw new NotImplemented(this.constructor.name, "getDelegates");
+	}
+
+	public async getPeers(query?: KeyValuePair): Promise<Peer[]> {
+		throw new NotImplemented(this.constructor.name, "getPeers");
 	}
 
 	public async getConfiguration(): Promise<any> {
