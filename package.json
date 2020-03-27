@@ -32,6 +32,7 @@
 		"bitcoinjs-message": "^2.1.0",
 		"dayjs": "^1.8",
 		"ethereumjs-wallet": "^0.6",
+		"tronweb": "^2.10.1",
 		"web3": "^1.2.6"
 	},
 	"devDependencies": {
