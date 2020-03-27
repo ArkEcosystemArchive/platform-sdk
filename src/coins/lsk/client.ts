@@ -2,7 +2,7 @@ import { NotImplemented } from "../../exceptions";
 import { KeyValuePair } from "../../types";
 import { getJSON, postJSON } from "../../utils/get-json";
 import { Client } from "../contracts/client";
-import { Block, Delegate, Transaction, Wallet } from "./dto";
+import { Block, Delegate, Peer, Transaction, Wallet } from "./dto";
 
 export class Lisk implements Client {
 	readonly #baseUrl: string;
@@ -69,6 +69,12 @@ export class Lisk implements Client {
 		const result = await this.get("delegates");
 
 		return result.data.map((wallet) => new Delegate(wallet));
+	}
+
+	public async getPeers(query?: KeyValuePair): Promise<Peer[]> {
+		const result = await this.get("peers", query);
+
+		return result.data.map((peer) => new Peer(peer));
 	}
 
 	public async getConfiguration(): Promise<any> {

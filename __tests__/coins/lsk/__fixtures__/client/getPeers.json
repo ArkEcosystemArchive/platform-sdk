@@ -1,0 +1,116 @@
+{
+	"meta": { "offset": 0, "limit": 10, "count": 94 },
+	"data": [
+		{
+			"ip": "217.182.72.43",
+			"networkId": "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
+			"height": 377747,
+			"os": "linux4.4.0-64-generic",
+			"version": "3.0.0-beta.0",
+			"httpPort": 5000,
+			"protocolVersion": "2.0",
+			"wsPort": 5001,
+			"state": "connected"
+		},
+		{
+			"ip": "94.130.96.63",
+			"networkId": "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
+			"height": 377747,
+			"os": "linux4.15.0-76-generic",
+			"version": "3.0.0-beta.0",
+			"httpPort": 5000,
+			"protocolVersion": "2.0",
+			"wsPort": 5001,
+			"state": "connected"
+		},
+		{
+			"ip": "116.203.55.52",
+			"networkId": "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
+			"height": 377747,
+			"os": "linux4.15.0-74-generic",
+			"version": "3.0.0-beta.0",
+			"httpPort": 5000,
+			"protocolVersion": "2.0",
+			"wsPort": 5001,
+			"state": "connected"
+		},
+		{
+			"ip": "5.135.160.213",
+			"networkId": "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
+			"height": 377747,
+			"os": "linux4.19-ovh-xxxx-std-ipv6-64",
+			"version": "3.0.0-beta.0",
+			"httpPort": 5000,
+			"protocolVersion": "2.0",
+			"wsPort": 5001,
+			"state": "connected"
+		},
+		{
+			"ip": "67.207.83.47",
+			"networkId": "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
+			"height": 377747,
+			"os": "linux4.4.0-174-generic",
+			"version": "3.0.0-beta.0",
+			"httpPort": 5000,
+			"protocolVersion": "2.0",
+			"wsPort": 5001,
+			"state": "connected"
+		},
+		{
+			"ip": "146.185.143.238",
+			"networkId": "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
+			"height": 377747,
+			"os": "linux4.15.0-36-generic",
+			"version": "3.0.0-beta.0",
+			"httpPort": 5000,
+			"protocolVersion": "2.0",
+			"wsPort": 5001,
+			"state": "connected"
+		},
+		{
+			"ip": "88.198.205.72",
+			"networkId": "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
+			"height": 377747,
+			"os": "linux4.15.0-74-generic",
+			"version": "3.0.0-beta.0",
+			"httpPort": 5000,
+			"protocolVersion": "2.0",
+			"wsPort": 5001,
+			"state": "connected"
+		},
+		{
+			"ip": "94.237.44.164",
+			"networkId": "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
+			"height": 377747,
+			"os": "linux4.15.0-91-generic",
+			"version": "3.0.0-beta.0",
+			"httpPort": 5000,
+			"protocolVersion": "2.0",
+			"wsPort": 5001,
+			"state": "connected"
+		},
+		{
+			"ip": "207.154.209.88",
+			"networkId": "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
+			"height": 377747,
+			"os": "linux4.15.0-88-generic",
+			"version": "3.0.0-beta.0",
+			"httpPort": 5000,
+			"protocolVersion": "2.0",
+			"wsPort": 5001,
+			"state": "connected"
+		},
+		{
+			"ip": "45.32.203.225",
+			"networkId": "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
+			"height": 377747,
+			"os": "linux4.4.0-173-generic",
+			"version": "3.0.0-beta.0",
+			"httpPort": 5000,
+			"protocolVersion": "2.0",
+			"wsPort": 5001,
+			"state": "connected"
+		}
+	],
+	"links": {}
+}
