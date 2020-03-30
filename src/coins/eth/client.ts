@@ -1,10 +1,16 @@
+import Web3 from "web3";
+
 import { NotImplemented } from "../../exceptions";
 import { KeyValuePair } from "../../types";
 import { Client } from "../contracts/client";
 import { Block, Delegate, Peer, Transaction, Wallet } from "./dto";
 
 export class Ethereum implements Client {
-	public constructor(private readonly peer: string) {}
+	readonly #connection;
+
+	public constructor(peer: string) {
+		this.#connection = new Web3(new Web3.providers.HttpProvider(peer));
+	}
 
 	public async getBlock(id: string): Promise<Block> {
 		throw new NotImplemented(this.constructor.name, "getBlock");
