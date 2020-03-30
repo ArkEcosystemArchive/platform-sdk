@@ -2,9 +2,14 @@ import { NotImplemented } from "../../exceptions";
 import { KeyValuePair } from "../../types";
 import { Client } from "../contracts/client";
 import { Block, Delegate, Peer, Transaction, Wallet } from "./dto";
+import { getJSON, postJSON } from "../../utils/get-json";
 
 export class Bitcoin implements Client {
-	public constructor(private readonly peer: string) {}
+	readonly #baseUrl: string;
+
+	public constructor(peer: string) {
+		this.#baseUrl = peer;
+	}
 
 	public async getBlock(id: string): Promise<Block> {
 		throw new NotImplemented(this.constructor.name, "getBlock");
@@ -80,5 +85,13 @@ export class Bitcoin implements Client {
 
 	public async postTransactions(transactions: object[]): Promise<any> {
 		throw new NotImplemented(this.constructor.name, "postTransactions");
+	}
+
+	private async get(path: string, query?: KeyValuePair): Promise<any> {
+		return getJSON(`${this.#baseUrl}/${path}`, query);
+	}
+
+	private async post(path: string, body: KeyValuePair): Promise<any> {
+		return postJSON(`${this.#baseUrl}/`, path, body);
 	}
 }
