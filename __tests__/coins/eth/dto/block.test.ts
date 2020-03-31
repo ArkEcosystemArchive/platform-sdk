@@ -47,4 +47,8 @@ describe("Ethereum", function () {
 	test("#getForgedTotal", () => {
 		expect(subject.getForgedTotal()).toEqual(BigNumber.make("15001837000007407140"));
 	});
+
+	test("#toObject", () => {
+		expect(subject.toObject()).toEqual(Fixture.result);
+	});
 });

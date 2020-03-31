@@ -47,4 +47,8 @@ describe("Tron", function () {
 	test("#getForgedTotal", () => {
 		expect(subject.getForgedTotal()).toEqual(BigNumber.make("0"));
 	});
+
+	test("#toObject", () => {
+		expect(subject.toObject()).toEqual(Fixture);
+	});
 });

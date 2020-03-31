@@ -47,4 +47,8 @@ describe("Lisk", function () {
 	test("#getForgedTotal", () => {
 		expect(subject.getForgedTotal()).toEqual(BigNumber.make("200000000"));
 	});
+
+	test("#toObject", () => {
+		expect(subject.toObject()).toEqual(Fixture.data[0]);
+	});
 });

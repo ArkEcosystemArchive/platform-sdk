@@ -1,3 +1,6 @@
+import { BigNumber } from "@arkecosystem/utils";
+
+import { NotImplemented } from "../../../exceptions";
 import { KeyValuePair } from "../../../types";
 import { Transaction as Contract } from "../../contracts/client";
 
@@ -9,11 +12,51 @@ export class Transaction implements Contract {
 	}
 
 	public getId(): string {
-		return this.#data.id;
+		throw new NotImplemented(this.constructor.name, "getId");
 	}
 
-	public getAmount(): string {
-		return this.#data.amount;
+	public getType(): number | undefined {
+		throw new NotImplemented(this.constructor.name, "getType");
+	}
+
+	public getTypeGroup(): number | undefined {
+		throw new NotImplemented(this.constructor.name, "getTypeGroup");
+	}
+
+	public getTimestamp(): number | undefined {
+		throw new NotImplemented(this.constructor.name, "getTimestamp");
+	}
+
+	public getConfirmations(): BigNumber {
+		throw new NotImplemented(this.constructor.name, "getConfirmations");
+	}
+
+	public getNonce(): string {
+		throw new NotImplemented(this.constructor.name, "getNonce");
+	}
+
+	public getSender(): string {
+		throw new NotImplemented(this.constructor.name, "getSender");
+	}
+
+	public getRecipient(): string {
+		throw new NotImplemented(this.constructor.name, "getRecipient");
+	}
+
+	public getAmount(): BigNumber {
+		throw new NotImplemented(this.constructor.name, "getAmount");
+	}
+
+	public getFee(): BigNumber {
+		throw new NotImplemented(this.constructor.name, "getFee");
+	}
+
+	public getVendorField(): string | undefined {
+		throw new NotImplemented(this.constructor.name, "getVendorField");
+	}
+
+	public getBlockId(): string {
+		throw new NotImplemented(this.constructor.name, "getBlockId");
 	}
 
 	/**

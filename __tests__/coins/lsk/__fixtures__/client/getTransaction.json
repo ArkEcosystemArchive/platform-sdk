@@ -2,27 +2,22 @@
 	"meta": { "offset": 0, "limit": 10, "count": 1 },
 	"data": [
 		{
-			"id": "15562133894377717094",
-			"height": 1,
-			"blockId": "13658550407518916215",
-			"type": 2,
-			"timestamp": 0,
-			"senderPublicKey": "f8d8aa286b689fa7279ad99f0fdfaeb3c0d2b22bee62230df2ba2fe40b9eb628",
-			"recipientPublicKey": "",
-			"senderId": "1226959367143279543L",
-			"recipientId": "",
-			"amount": "0",
-			"fee": "0",
-			"signature": "d4b61a5508b75864e4d96fc74d003aeb1e74ab3b4f5cda734836ea98736cc7f7da9c6d513acbe04ff1d7df93904eda4caf0e4c36c9675c811fce486efc897802",
+			"id": "15210966682544220710",
+			"height": 377466,
+			"blockId": "6722847676494099642",
+			"type": 8,
+			"timestamp": 121185994,
+			"senderPublicKey": "1a3aec07d0ff815c910d4c707a66b58a692dacb3de9d7d95a085bcee93738a07",
+			"senderId": "18218254863282357638L",
+			"fee": "10000000",
+			"signature": "e2071c484d86edfcc60e27ecf8f7f0c09cead820418d06778303f7ba3285aa71005656fee683028ac1d906e0a6c07cd5171f7799f6703448001650b5831da908",
 			"signatures": [],
 			"asset": {
-				"delegate": {
-					"username": "genesis_54",
-					"publicKey": "f8d8aa286b689fa7279ad99f0fdfaeb3c0d2b22bee62230df2ba2fe40b9eb628",
-					"address": "1226959367143279543L"
-				}
+				"amount": "1",
+				"recipientId": "18218254863282357638L",
+				"data": "Account initialization"
 			},
-			"confirmations": 11851692
+			"confirmations": 35754
 		}
 	],
 	"links": {}
