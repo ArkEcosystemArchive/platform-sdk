@@ -1,7 +1,7 @@
 import { NotImplemented } from "../../exceptions";
 import { KeyValuePair } from "../../types";
 import { getJSON, postJSON } from "../../utils/get-json";
-import { Client } from "../contracts/client";
+import { Client, CollectionResponse } from "../contracts/client";
 import { Block, Delegate, Peer, Transaction, Wallet } from "./dto";
 
 export class Lisk implements Client {
@@ -17,13 +17,13 @@ export class Lisk implements Client {
 		return new Block(result);
 	}
 
-	public async getBlocks(query?: KeyValuePair): Promise<Block[]> {
+	public async getBlocks(query?: KeyValuePair): Promise<CollectionResponse<Block>> {
 		const result = await this.get("blocks", query);
 
-		return result.data.map((block) => new Block(block));
+		return { meta: result.meta, data: result.data.map((block) => new Block(block)) };
 	}
 
-	public async searchBlocks(query: KeyValuePair): Promise<Block[]> {
+	public async searchBlocks(query: KeyValuePair): Promise<CollectionResponse<Block>> {
 		throw new NotImplemented(this.constructor.name, "searchBlocks");
 	}
 
@@ -33,13 +33,13 @@ export class Lisk implements Client {
 		return new Transaction(result);
 	}
 
-	public async getTransactions(query?: KeyValuePair): Promise<Transaction[]> {
+	public async getTransactions(query?: KeyValuePair): Promise<CollectionResponse<Transaction>> {
 		const result = await this.get("transactions", query);
 
-		return result.data.map((transaction) => new Transaction(transaction));
+		return { meta: result.meta, data: result.data.map((transaction) => new Transaction(transaction)) };
 	}
 
-	public async searchTransactions(query: KeyValuePair): Promise<Transaction[]> {
+	public async searchTransactions(query: KeyValuePair): Promise<CollectionResponse<Transaction>> {
 		throw new NotImplemented(this.constructor.name, "searchTransactions");
 	}
 
@@ -49,13 +49,13 @@ export class Lisk implements Client {
 		return new Wallet(result);
 	}
 
-	public async getWallets(query?: KeyValuePair): Promise<Wallet[]> {
+	public async getWallets(query?: KeyValuePair): Promise<CollectionResponse<Wallet>> {
 		const result = await this.get("accounts", query);
 
-		return result.data.map((wallet) => new Wallet(wallet));
+		return { meta: result.meta, data: result.data.map((wallet) => new Wallet(wallet)) };
 	}
 
-	public async searchWallets(query: KeyValuePair): Promise<Wallet[]> {
+	public async searchWallets(query: KeyValuePair): Promise<CollectionResponse<Wallet>> {
 		throw new NotImplemented(this.constructor.name, "searchWallets");
 	}
 
@@ -65,16 +65,16 @@ export class Lisk implements Client {
 		return new Delegate(result);
 	}
 
-	public async getDelegates(query?: KeyValuePair): Promise<Delegate[]> {
+	public async getDelegates(query?: KeyValuePair): Promise<CollectionResponse<Delegate>> {
 		const result = await this.get("delegates");
 
-		return result.data.map((wallet) => new Delegate(wallet));
+		return { meta: result.meta, data: result.data.map((wallet) => new Delegate(wallet)) };
 	}
 
-	public async getPeers(query?: KeyValuePair): Promise<Peer[]> {
+	public async getPeers(query?: KeyValuePair): Promise<CollectionResponse<Peer>> {
 		const result = await this.get("peers", query);
 
-		return result.data.map((peer) => new Peer(peer));
+		return { meta: result.meta, data: result.data.map((peer) => new Peer(peer)) };
 	}
 
 	public async getConfiguration(): Promise<any> {

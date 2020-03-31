@@ -31,8 +31,8 @@ describe("Lisk", function () {
 
 			const result = await subject.getBlocks();
 
-			expect(result).toBeArray();
-			expect(result[0]).toBeInstanceOf(Block);
+			expect(result.data).toBeArray();
+			expect(result.data[0]).toBeInstanceOf(Block);
 		});
 	});
 
@@ -56,8 +56,8 @@ describe("Lisk", function () {
 
 			const result = await subject.getTransactions();
 
-			expect(result).toBeArray();
-			expect(result[0]).toBeInstanceOf(Transaction);
+			expect(result.data).toBeArray();
+			expect(result.data[0]).toBeInstanceOf(Transaction);
 		});
 	});
 
@@ -81,8 +81,8 @@ describe("Lisk", function () {
 
 			const result = await subject.getWallets();
 
-			expect(result).toBeArray();
-			expect(result[0]).toBeInstanceOf(Wallet);
+			expect(result.data).toBeArray();
+			expect(result.data[0]).toBeInstanceOf(Wallet);
 		});
 	});
 
@@ -106,8 +106,8 @@ describe("Lisk", function () {
 
 			const result = await subject.getDelegates();
 
-			expect(result).toBeArray();
-			expect(result[0]).toBeInstanceOf(Delegate);
+			expect(result.data).toBeArray();
+			expect(result.data[0]).toBeInstanceOf(Delegate);
 		});
 	});
 
@@ -119,8 +119,8 @@ describe("Lisk", function () {
 
 			const result = await subject.getPeers();
 
-			expect(result).toBeArray();
-			expect(result[0]).toBeInstanceOf(Peer);
+			expect(result.data).toBeArray();
+			expect(result.data[0]).toBeInstanceOf(Peer);
 		});
 	});
 
