@@ -29,7 +29,27 @@ export interface Block {
 export interface Transaction {
 	getId(): string;
 
-	getAmount(): string;
+	getType(): number | undefined;
+
+	getTypeGroup(): number | undefined;
+
+	getTimestamp(): number | undefined;
+
+	getConfirmations(): BigNumber;
+
+	getNonce(): string | undefined;
+
+	getSender(): string;
+
+	getRecipient(): string;
+
+	getAmount(): BigNumber;
+
+	getFee(): BigNumber;
+
+	getVendorField(): string | undefined;
+
+	getBlockId(): string;
 
 	toObject(): KeyValuePair;
 }
