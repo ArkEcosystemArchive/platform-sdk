@@ -1,7 +1,7 @@
 import { Connection } from "@arkecosystem/client";
 
 import { KeyValuePair } from "../../types";
-import { Client } from "../contracts/client";
+import { Client, CollectionResponse } from "../contracts/client";
 import { Block, Delegate, Peer, Transaction, Wallet } from "./dto";
 
 export class Ark implements Client {
@@ -17,16 +17,16 @@ export class Ark implements Client {
 		return new Block(body.data);
 	}
 
-	public async getBlocks(query?: KeyValuePair): Promise<Block[]> {
+	public async getBlocks(query?: KeyValuePair): Promise<CollectionResponse<Block>> {
 		const { body } = await this.connection.api("blocks").all(query);
 
-		return body.data.map((block) => new Block(block));
+		return { meta: body.meta, data: body.data.map((block) => new Block(block)) };
 	}
 
-	public async searchBlocks(query: KeyValuePair): Promise<Block[]> {
+	public async searchBlocks(query: KeyValuePair): Promise<CollectionResponse<Block>> {
 		const { body } = await this.connection.api("blocks").search(query);
 
-		return body.data.map((block) => new Block(block));
+		return { meta: body.meta, data: body.data.map((block) => new Block(block)) };
 	}
 
 	public async getTransaction(id: string): Promise<Transaction> {
@@ -35,16 +35,16 @@ export class Ark implements Client {
 		return new Transaction(body.data);
 	}
 
-	public async getTransactions(query?: KeyValuePair): Promise<Transaction[]> {
+	public async getTransactions(query?: KeyValuePair): Promise<CollectionResponse<Transaction>> {
 		const { body } = await this.connection.api("transactions").all(query);
 
-		return body.data.map((transaction) => new Transaction(transaction));
+		return { meta: body.meta, data: body.data.map((transaction) => new Transaction(transaction)) };
 	}
 
-	public async searchTransactions(query: KeyValuePair): Promise<Transaction[]> {
+	public async searchTransactions(query: KeyValuePair): Promise<CollectionResponse<Transaction>> {
 		const { body } = await this.connection.api("transactions").search(query);
 
-		return body.data.map((transaction) => new Transaction(transaction));
+		return { meta: body.meta, data: body.data.map((transaction) => new Transaction(transaction)) };
 	}
 
 	public async getWallet(id: string): Promise<Wallet> {
@@ -53,16 +53,16 @@ export class Ark implements Client {
 		return new Wallet(body.data);
 	}
 
-	public async getWallets(query?: KeyValuePair): Promise<Wallet[]> {
+	public async getWallets(query?: KeyValuePair): Promise<CollectionResponse<Wallet>> {
 		const { body } = await this.connection.api("wallets").all(query);
 
-		return body.data.map((wallet) => new Wallet(wallet));
+		return { meta: body.meta, data: body.data.map((wallet) => new Wallet(wallet)) };
 	}
 
-	public async searchWallets(query: KeyValuePair): Promise<Wallet[]> {
+	public async searchWallets(query: KeyValuePair): Promise<CollectionResponse<Wallet>> {
 		const { body } = await this.connection.api("wallets").search(query);
 
-		return body.data.map((wallet) => new Wallet(wallet));
+		return { meta: body.meta, data: body.data.map((wallet) => new Wallet(wallet)) };
 	}
 
 	public async getDelegate(id: string): Promise<Delegate> {
@@ -71,16 +71,16 @@ export class Ark implements Client {
 		return new Delegate(body.data);
 	}
 
-	public async getDelegates(query?: KeyValuePair): Promise<Delegate[]> {
+	public async getDelegates(query?: KeyValuePair): Promise<CollectionResponse<Delegate>> {
 		const { body } = await this.connection.api("delegates").all(query);
 
-		return body.data.map((wallet) => new Delegate(wallet));
+		return { meta: body.meta, data: body.data.map((wallet) => new Delegate(wallet)) };
 	}
 
-	public async getPeers(query?: KeyValuePair): Promise<Peer[]> {
+	public async getPeers(query?: KeyValuePair): Promise<CollectionResponse<Peer>> {
 		const { body } = await this.connection.api("peers").all(query);
 
-		return body.data.map((peer) => new Peer(peer));
+		return { meta: body.meta, data: body.data.map((peer) => new Peer(peer)) };
 	}
 
 	// todo: normalise the response

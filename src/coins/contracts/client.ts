@@ -40,23 +40,28 @@ export interface Peer {
 	toObject(): KeyValuePair;
 }
 
+export interface CollectionResponse<T> {
+	meta: KeyValuePair;
+	data: T[];
+}
+
 export interface Client {
 	getBlock(id: string): Promise<Block>;
-	getBlocks(query?: KeyValuePair): Promise<Block[]>;
-	searchBlocks(query: KeyValuePair): Promise<Block[]>;
+	getBlocks(query?: KeyValuePair): Promise<CollectionResponse<Block>>;
+	searchBlocks(query: KeyValuePair): Promise<CollectionResponse<Block>>;
 
 	getTransaction(id: string): Promise<Transaction>;
-	getTransactions(query?: KeyValuePair): Promise<Transaction[]>;
-	searchTransactions(query: KeyValuePair): Promise<Transaction[]>;
+	getTransactions(query?: KeyValuePair): Promise<CollectionResponse<Transaction>>;
+	searchTransactions(query: KeyValuePair): Promise<CollectionResponse<Transaction>>;
 
 	getWallet(id: string): Promise<Wallet>;
-	getWallets(query?: KeyValuePair): Promise<Wallet[]>;
-	searchWallets(query: KeyValuePair): Promise<Wallet[]>;
+	getWallets(query?: KeyValuePair): Promise<CollectionResponse<Wallet>>;
+	searchWallets(query: KeyValuePair): Promise<CollectionResponse<Wallet>>;
 
 	getDelegate(id: string): Promise<Delegate>;
-	getDelegates(query?: KeyValuePair): Promise<Delegate[]>;
+	getDelegates(query?: KeyValuePair): Promise<CollectionResponse<Delegate>>;
 
-	getPeers(query?: KeyValuePair): Promise<Peer[]>;
+	getPeers(query?: KeyValuePair): Promise<CollectionResponse<Peer>>;
 
 	getConfiguration(): Promise<any>;
 	getCryptoConfiguration(): Promise<any>;
