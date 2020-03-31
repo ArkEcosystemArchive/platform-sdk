@@ -14,7 +14,7 @@ export class Lisk implements Client {
 	public async getBlock(id: string): Promise<Block> {
 		const result = await this.get("blocks", { blockId: id });
 
-		return new Block(result);
+		return new Block(result.data[0]);
 	}
 
 	public async getBlocks(query?: KeyValuePair): Promise<CollectionResponse<Block>> {
@@ -30,7 +30,7 @@ export class Lisk implements Client {
 	public async getTransaction(id: string): Promise<Transaction> {
 		const result = await this.get("transactions", { id });
 
-		return new Transaction(result);
+		return new Transaction(result.data[0]);
 	}
 
 	public async getTransactions(query?: KeyValuePair): Promise<CollectionResponse<Transaction>> {
@@ -46,7 +46,7 @@ export class Lisk implements Client {
 	public async getWallet(id: string): Promise<Wallet> {
 		const result = await this.get("accounts", { address: id });
 
-		return new Wallet(result);
+		return new Wallet(result.data[0]);
 	}
 
 	public async getWallets(query?: KeyValuePair): Promise<CollectionResponse<Wallet>> {
@@ -62,7 +62,7 @@ export class Lisk implements Client {
 	public async getDelegate(id: string): Promise<Delegate> {
 		const result = await this.get("delegates", { username: id });
 
-		return new Delegate(result);
+		return new Delegate(result.data[0]);
 	}
 
 	public async getDelegates(query?: KeyValuePair): Promise<CollectionResponse<Delegate>> {
