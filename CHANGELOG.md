@@ -11,25 +11,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Usage of exceptions (a6a0d1f2, @faustbrian)
-- Default lisk to betanet (8b1e86bd, @faustbrian)
+-   Usage of exceptions (a6a0d1f2, @faustbrian)
+-   Default lisk to betanet (8b1e86bd, @faustbrian)
 
 ### Changed
 
-- Bump acorn from 6.4.0 to 6.4.1 (8e67abab, @dependabot[bot])
-- Disable conflicting eslint rules (7f9dc896, @faustbrian)
-- Update dependencies to latest versions (628dff91, @github-actions[bot])
+-   Bump acorn from 6.4.0 to 6.4.1 (8e67abab, @dependabot[bot])
+-   Disable conflicting eslint rules (7f9dc896, @faustbrian)
+-   Update dependencies to latest versions (628dff91, @github-actions[bot])
 
 ### Added
 
-- Implement delegate methods for clients (70517411, @faustbrian)
-- Add more endpoints for ARK client (d5cc49fd, @faustbrian)
-- Initial implementation of LSK (9be68718, @faustbrian)
-- Message signing for ARK, BTC and LSK (9bb77307, @faustbrian)
-- Add `getPeers` method to client contract (d3dc3e99, @faustbrian)
-- Initial implementation of TRX (fe71fb9f, @faustbrian)
-- Basic client setup for ETH (fe8168b9, @faustbrian)
-- Implement various ETH client methods (6935f8c9, @faustbrian)
+-   Implement delegate methods for clients (70517411, @faustbrian)
+-   Add more endpoints for ARK client (d5cc49fd, @faustbrian)
+-   Initial implementation of LSK (9be68718, @faustbrian)
+-   Message signing for ARK, BTC and LSK (9bb77307, @faustbrian)
+-   Add `getPeers` method to client contract (d3dc3e99, @faustbrian)
+-   Initial implementation of TRX (fe71fb9f, @faustbrian)
+-   Basic client setup for ETH (fe8168b9, @faustbrian)
+-   Implement various ETH client methods (6935f8c9, @faustbrian)
 
 ## 0.1.1 - 2020-03-24
 

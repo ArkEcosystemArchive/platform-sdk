@@ -31,7 +31,7 @@ export class Block implements Contract {
 	}
 
 	public getGenerator(): string {
-		return this.#data.generator.publicKey;
+		return this.#data.miner;
 	}
 
 	public getForgedReward(): BigNumber {
@@ -47,7 +47,7 @@ export class Block implements Contract {
 	}
 
 	public getForgedFee(): BigNumber {
-		return BigNumber.make(this.#data.forged.gasUsed);
+		return BigNumber.make(this.#data.gasUsed);
 	}
 
 	public getForgedTotal(): BigNumber {
