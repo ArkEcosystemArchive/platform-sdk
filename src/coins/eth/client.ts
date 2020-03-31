@@ -13,7 +13,9 @@ export class Ethereum implements Client {
 	}
 
 	public async getBlock(id: string): Promise<Block> {
-		throw new NotImplemented(this.constructor.name, "getBlock");
+		const result = await this.#connection.eth.getBlock(id, true);
+
+		return new Block(result.data);
 	}
 
 	public async getBlocks(query?: KeyValuePair): Promise<Block[]> {
@@ -25,7 +27,9 @@ export class Ethereum implements Client {
 	}
 
 	public async getTransaction(id: string): Promise<Transaction> {
-		throw new NotImplemented(this.constructor.name, "getTransaction");
+		const result = await this.#connection.eth.getTransaction(id);
+
+		return new Transaction(result.data);
 	}
 
 	public async getTransactions(query?: KeyValuePair): Promise<Transaction[]> {
@@ -37,7 +41,9 @@ export class Ethereum implements Client {
 	}
 
 	public async getWallet(id: string): Promise<Wallet> {
-		throw new NotImplemented(this.constructor.name, "getWallet");
+		const result = await this.#connection.eth.getBalance(id);
+
+		return new Wallet({ address: id, balance: result });
 	}
 
 	public async getWallets(query?: KeyValuePair): Promise<Wallet[]> {
@@ -73,11 +79,15 @@ export class Ethereum implements Client {
 	}
 
 	public async getFeesByType(): Promise<any> {
-		throw new NotImplemented(this.constructor.name, "getFeesByType");
+		const result = await this.#connection.eth.getGasPrice();
+
+		return result;
 	}
 
 	public async getSyncStatus(): Promise<any> {
-		throw new NotImplemented(this.constructor.name, "getSyncStatus");
+		const result = await this.#connection.eth.isSyncing();
+
+		return result;
 	}
 
 	public async getBridgechainsByBusiness(address: string, query?: KeyValuePair): Promise<any> {
