@@ -1,0 +1,11 @@
+{
+	"jsonrpc": "2.0",
+	"id": 5,
+	"result": {
+		"startingBlock": 100,
+		"currentBlock": 312,
+		"highestBlock": 512,
+		"knownStates": 234566,
+		"pulledStates": 123455
+	}
+}
