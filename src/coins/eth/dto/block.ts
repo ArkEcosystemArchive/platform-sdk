@@ -1,3 +1,5 @@
+import { BigNumber } from "@arkecosystem/utils";
+
 import { KeyValuePair } from "../../../types";
 import { Block as Contract } from "../../contracts/client";
 
@@ -9,11 +11,47 @@ export class Block implements Contract {
 	}
 
 	public getId(): string {
-		return this.#data.id;
+		return this.#data.hash;
 	}
 
 	public getHeight(): string {
-		return this.#data.height;
+		return this.#data.number;
+	}
+
+	public getTimestamp(): string {
+		return this.#data.timestamp;
+	}
+
+	public getConfirmations(): BigNumber {
+		return BigNumber.ZERO;
+	}
+
+	public getTransactionsCount(): number {
+		return this.#data.transactions.length;
+	}
+
+	public getGenerator(): string {
+		return this.#data.generator.publicKey;
+	}
+
+	public getForgedReward(): BigNumber {
+		return BigNumber.ZERO;
+	}
+
+	public getForgedAmount(): BigNumber {
+		const transactions: { value: string }[] = Object.values(this.#data.transactions);
+
+		return transactions
+			.map((transaction) => BigNumber.make(transaction.value))
+			.reduce((accumulator, currentValue) => accumulator.plus(currentValue), BigNumber.ZERO);
+	}
+
+	public getForgedFee(): BigNumber {
+		return BigNumber.make(this.#data.forged.gasUsed);
+	}
+
+	public getForgedTotal(): BigNumber {
+		return this.getForgedReward().plus(this.getForgedAmount()).plus(this.getForgedFee());
 	}
 
 	/**
