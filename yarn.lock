@@ -47,7 +47,7 @@
     fast-deep-equal "^2.0.1"
     fast-sort "^1.5.6"
 
-"@arkecosystem/utils@^1.1.7":
+"@arkecosystem/utils@^1.1":
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/@arkecosystem/utils/-/utils-1.1.7.tgz#3c36695b3bb578c33c9dcbfb5e1cf4647b95da21"
   integrity sha512-L6otSODmR+td2ePnoZ++PMFI4kCokS3WakeJ/8r7epfe5C+iHVmRRYRbMHcuHQ2cw1xWwEDhYZcJaWUaXLXUHQ==
