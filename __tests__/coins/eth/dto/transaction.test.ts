@@ -55,4 +55,8 @@ describe("Ethereum", function () {
 	test("#getBlockId", () => {
 		expect(subject.getBlockId()).toBe(7623266);
 	});
+
+	test("#toObject", () => {
+		expect(subject.toObject()).toEqual(Fixture.result);
+	});
 });

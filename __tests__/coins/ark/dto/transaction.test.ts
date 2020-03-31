@@ -55,4 +55,8 @@ describe("Ark", function () {
 	test("#getBlockId", () => {
 		expect(subject.getBlockId()).toBe("13114381566690093367");
 	});
+
+	test("#toObject", () => {
+		expect(subject.toObject()).toEqual(Fixture.data);
+	});
 });

@@ -55,4 +55,8 @@ describe("Lisk", function () {
 	test("#getBlockId", () => {
 		expect(subject.getBlockId()).toBe("6722847676494099642");
 	});
+
+	test("#toObject", () => {
+		expect(subject.toObject()).toEqual(Fixture.data[0]);
+	});
 });
