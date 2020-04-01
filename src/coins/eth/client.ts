@@ -43,7 +43,7 @@ export class Ethereum implements Client {
 	public async getWallet(id: string): Promise<Wallet> {
 		const result = await this.#connection.eth.getBalance(id);
 
-		return new Wallet({ address: id, balance: this.#connection.utils.toDecimal(result) });
+		return new Wallet({ address: id, balance: result });
 	}
 
 	public async getWallets(query?: KeyValuePair): Promise<CollectionResponse<Wallet>> {
