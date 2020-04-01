@@ -57,7 +57,9 @@ export interface Transaction {
 export interface Wallet {
 	getAddress(): string;
 
-	getPublicKey(): string;
+	getPublicKey(): string | undefined;
+
+	getBalance(): BigNumber;
 
 	toObject(): KeyValuePair;
 }
