@@ -71,9 +71,15 @@ export interface Delegate {
 }
 
 export interface Peer {
-	getAddress(): string;
+	getIp(): string;
 
 	getPort(): number;
+
+	getVersion(): string;
+
+	getHeight(): number;
+
+	getLatency(): number;
 
 	toObject(): KeyValuePair;
 }

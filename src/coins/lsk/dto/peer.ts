@@ -8,12 +8,24 @@ export class Peer implements Contract {
 		this.#data = data;
 	}
 
-	public getAddress(): string {
+	public getIp(): string {
 		return this.#data.ip;
 	}
 
 	public getPort(): number {
-		return this.#data.port;
+		return this.#data.wsPort;
+	}
+
+	public getVersion(): string {
+		return this.#data.version;
+	}
+
+	public getHeight(): number {
+		return this.#data.height;
+	}
+
+	public getLatency(): number {
+		return -1;
 	}
 
 	/**
