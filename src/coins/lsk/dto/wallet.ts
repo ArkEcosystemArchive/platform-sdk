@@ -1,3 +1,5 @@
+import { BigNumber } from "@arkecosystem/utils";
+
 import { KeyValuePair } from "../../../types";
 import { Wallet as Contract } from "../../contracts/client";
 
@@ -14,6 +16,10 @@ export class Wallet implements Contract {
 
 	public getPublicKey(): string {
 		return this.#data.publicKey;
+	}
+
+	public getBalance(): BigNumber {
+		return BigNumber.make(this.#data.balance);
 	}
 
 	/**

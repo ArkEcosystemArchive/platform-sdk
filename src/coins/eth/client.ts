@@ -6,7 +6,7 @@ import { Client, CollectionResponse } from "../contracts/client";
 import { Block, Delegate, Peer, Transaction, Wallet } from "./dto";
 
 export class Ethereum implements Client {
-	readonly #connection;
+	readonly #connection: Web3;
 
 	public constructor(peer: string) {
 		this.#connection = new Web3(new Web3.providers.HttpProvider(peer));
@@ -15,7 +15,7 @@ export class Ethereum implements Client {
 	public async getBlock(id: string): Promise<Block> {
 		const result = await this.#connection.eth.getBlock(id, true);
 
-		return new Block(result.data);
+		return new Block(result);
 	}
 
 	public async getBlocks(query?: KeyValuePair): Promise<CollectionResponse<Block>> {
@@ -29,7 +29,7 @@ export class Ethereum implements Client {
 	public async getTransaction(id: string): Promise<Transaction> {
 		const result = await this.#connection.eth.getTransaction(id);
 
-		return new Transaction(result.data);
+		return new Transaction(result);
 	}
 
 	public async getTransactions(query?: KeyValuePair): Promise<CollectionResponse<Transaction>> {
@@ -43,7 +43,7 @@ export class Ethereum implements Client {
 	public async getWallet(id: string): Promise<Wallet> {
 		const result = await this.#connection.eth.getBalance(id);
 
-		return new Wallet({ address: id, balance: result });
+		return new Wallet({ address: id, balance: this.#connection.utils.toDecimal(result) });
 	}
 
 	public async getWallets(query?: KeyValuePair): Promise<CollectionResponse<Wallet>> {
