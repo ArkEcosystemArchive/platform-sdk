@@ -117,7 +117,5 @@ export interface Client {
 
 	getSyncStatus(): Promise<any>;
 
-	getBridgechainsByBusiness(address: string, query?: KeyValuePair): Promise<any>;
-
 	postTransactions(transactions: object[]): Promise<any>;
 }

@@ -119,13 +119,6 @@ export class Ark implements Client {
 	}
 
 	// todo: normalise the response
-	public async getBridgechainsByBusiness(address: string, query?: KeyValuePair): Promise<any> {
-		const { body } = await this.connection.api("businesses").bridgechains(address, query);
-
-		return body.data;
-	}
-
-	// todo: normalise the response
 	public async postTransactions(transactions: object[]): Promise<any> {
 		const { body } = await this.connection.api("transactions").create({ transactions });
 

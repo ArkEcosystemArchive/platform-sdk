@@ -97,10 +97,6 @@ export class Lisk implements Client {
 		throw new NotImplemented(this.constructor.name, "getSyncStatus");
 	}
 
-	public async getBridgechainsByBusiness(address: string, query?: KeyValuePair): Promise<any> {
-		throw new NotImplemented(this.constructor.name, "getBridgechainsByBusiness");
-	}
-
 	public async postTransactions(transaction: object): Promise<any> {
 		try {
 			await this.post("transactions", transaction);

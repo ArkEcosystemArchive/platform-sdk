@@ -41,7 +41,6 @@ Documentation can be found [here](./docs/README.md).
 | Client   | getFeesByNode                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
 | Client   | getFeesByType                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
 | Client   | getSyncStatus                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
-| Client   | getBridgechainsByBusiness    | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
 | Client   | postTransactions             | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Crypto   | createTransfer               | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Crypto   | createSecondSignature        | :white_check_mark: | :x:                | :x:                | :white_check_mark: | :x:                |

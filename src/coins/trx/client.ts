@@ -88,10 +88,6 @@ export class Tron implements Client {
 		throw new NotImplemented(this.constructor.name, "getSyncStatus");
 	}
 
-	public async getBridgechainsByBusiness(address: string, query?: KeyValuePair): Promise<any> {
-		throw new NotImplemented(this.constructor.name, "getBridgechainsByBusiness");
-	}
-
 	public async postTransactions(transactions: any[]): Promise<any> {
 		for (const transaction of transactions) {
 			await this.#connection.trx.sendRawTransaction(transaction);
