@@ -90,10 +90,6 @@ export class Ethereum implements Client {
 		return result;
 	}
 
-	public async getBridgechainsByBusiness(address: string, query?: KeyValuePair): Promise<any> {
-		throw new NotImplemented(this.constructor.name, "getBridgechainsByBusiness");
-	}
-
 	public async postTransactions(transactions: object[]): Promise<any> {
 		throw new NotImplemented(this.constructor.name, "postTransactions");
 	}

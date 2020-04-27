@@ -225,18 +225,6 @@ describe("Ark", function () {
 		});
 	});
 
-	describe("#getBridgechainsByBusiness", () => {
-		it("should succeed", async () => {
-			nock("https://dexplorer.ark.io/api")
-				.get("/businesses/DDVQowudZ1Tn8gceHXv2hgiEX3TRVVkSsT/bridgechains")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getBridgechainsByBusiness.json`));
-
-			const result = await subject.getBridgechainsByBusiness("DDVQowudZ1Tn8gceHXv2hgiEX3TRVVkSsT");
-
-			expect(result).toBeArray();
-		});
-	});
-
 	describe("#postTransactions", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")

@@ -79,10 +79,6 @@ export class Bitcoin implements Client {
 		throw new NotImplemented(this.constructor.name, "getSyncStatus");
 	}
 
-	public async getBridgechainsByBusiness(address: string, query?: KeyValuePair): Promise<any> {
-		throw new NotImplemented(this.constructor.name, "getBridgechainsByBusiness");
-	}
-
 	public async postTransactions(transactions: object[]): Promise<any> {
 		throw new NotImplemented(this.constructor.name, "postTransactions");
 	}
