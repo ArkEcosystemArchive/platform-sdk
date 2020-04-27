@@ -11,15 +11,18 @@ export class Block implements Contract {
 	}
 
 	public getId(): string {
-		return this.#data.blockID;
+		return this.#data.hash;
+		// return this.#data.blockID;
 	}
 
 	public getHeight(): string {
-		return this.#data.block_header.raw_data.number;
+		return this.#data.height;
+		// return this.#data.block_header.raw_data.number;
 	}
 
 	public getTimestamp(): string {
-		return this.#data.block_header.raw_data.timestamp;
+		return this.#data.time;
+		// return this.#data.block_header.raw_data.timestamp;
 	}
 
 	public getConfirmations(): BigNumber {
@@ -31,7 +34,8 @@ export class Block implements Contract {
 	}
 
 	public getGenerator(): string {
-		return this.#data.block_header.raw_data.witness_address;
+		return "";
+		// return this.#data.block_header.raw_data.witness_address;
 	}
 
 	public getForgedReward(): BigNumber {

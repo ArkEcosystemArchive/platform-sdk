@@ -19,7 +19,8 @@ export class Wallet implements Contract {
 	}
 
 	public getBalance(): BigNumber {
-		return BigNumber.make(this.#data.balance);
+		return BigNumber.make(this.#data.final_balance);
+		// return BigNumber.make(this.#data.balance);
 	}
 
 	/**
