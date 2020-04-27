@@ -1,4 +1,4 @@
-import * as transactions from "@liskhq/lisk-transactions";
+import * as transactions from "@liskhq/lisk-transactions-old";
 
 import { NotImplemented } from "../../exceptions";
 import { KeyValuePair } from "../../types";
