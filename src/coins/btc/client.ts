@@ -1,47 +1,42 @@
-import Web3 from "web3";
-
 import { NotImplemented } from "../../exceptions";
 import { KeyValuePair } from "../../types";
+import { getJSON, postJSON } from "../../utils/get-json";
 import { Client, CollectionResponse } from "../contracts/client";
 import { Block, Delegate, Peer, Transaction, Wallet } from "./dto";
 
-export class Ethereum implements Client {
-	static readonly MONTH_IN_SECONDS = 86400 * 30;
+export class Bitcoin implements Client {
+	readonly #baseUrl: string;
 
-	readonly #connection: Web3;
+	readonly #restUrl: string = "https://blockchain.info";
 
 	public constructor(peer: string) {
-		this.#connection = new Web3(new Web3.providers.HttpProvider(peer));
+		this.#baseUrl = peer;
+	}
+
+	public async getBlock(id: string): Promise<Block> {
+		// const response = await this.post("getblock", { blockhash: id });
+		const response = await this.get(`block-height/${id}`, { format: "json" });
+
+		return new Block(response.blocks[0]);
+	}
+
+	public async getBlocks(query?: KeyValuePair): Promise<CollectionResponse<Block>> {
+		throw new NotImplemented(this.constructor.name, "getBlocks");
+	}
+
+	public async searchBlocks(query: KeyValuePair): Promise<CollectionResponse<Block>> {
+		throw new NotImplemented(this.constructor.name, "searchBlocks");
 	}
 
 	public async getTransaction(id: string): Promise<Transaction> {
-		const result = await this.#connection.eth.getTransaction(id);
+		// const response = await this.post("gettransaction", { txid: id });
+		const response = await this.get(`rawtx/${id}`, { format: "json" });
 
-		return new Transaction(result);
+		return new Transaction(response);
 	}
 
 	public async getTransactions(query?: KeyValuePair): Promise<CollectionResponse<Transaction>> {
-		const endBlock: number = await this.#connection.eth.getBlockNumber();
-		const startBlock: number = endBlock - Ethereum.MONTH_IN_SECONDS;
-
-		const transactions: Transaction[] = [];
-		for (let i = startBlock; i < endBlock; i++) {
-			const block = await this.#connection.eth.getBlock(i, true);
-
-			if (block && block.transactions) {
-				for (const transaction of block.transactions) {
-					if (
-						query?.address === "*" ||
-						query?.address === transaction.from ||
-						query?.address === transaction.to
-					) {
-						transactions.push(new Transaction(transaction));
-					}
-				}
-			}
-		}
-
-		return { meta: {}, data: transactions };
+		throw new NotImplemented(this.constructor.name, "getTransactions");
 	}
 
 	public async searchTransactions(query: KeyValuePair): Promise<CollectionResponse<Transaction>> {
@@ -49,9 +44,9 @@ export class Ethereum implements Client {
 	}
 
 	public async getWallet(id: string): Promise<Wallet> {
-		const result = await this.#connection.eth.getBalance(id);
+		const response = await this.get(`rawaddr/${id}`);
 
-		return new Wallet({ address: id, balance: result });
+		return new Wallet(response);
 	}
 
 	public async getWallets(query?: KeyValuePair): Promise<CollectionResponse<Wallet>> {
@@ -71,11 +66,13 @@ export class Ethereum implements Client {
 	}
 
 	public async getPeers(query?: KeyValuePair): Promise<CollectionResponse<Peer>> {
-		throw new NotImplemented(this.constructor.name, "getPeers");
+		const response = await this.post("getpeerinfo");
+		throw new NotImplemented(this.constructor.name, "searchBlocks");
 	}
 
 	public async getConfiguration(): Promise<any> {
-		throw new NotImplemented(this.constructor.name, "getConfiguration");
+		const response = await this.post("getnetworkinfo");
+		throw new NotImplemented(this.constructor.name, "searchBlocks");
 	}
 
 	public async getCryptoConfiguration(): Promise<any> {
@@ -87,18 +84,26 @@ export class Ethereum implements Client {
 	}
 
 	public async getFeesByType(): Promise<any> {
-		const result = await this.#connection.eth.getGasPrice();
-
-		return result;
+		throw new NotImplemented(this.constructor.name, "getFeesByType");
 	}
 
 	public async getSyncStatus(): Promise<any> {
-		const result = await this.#connection.eth.isSyncing();
-
-		return result;
+		throw new NotImplemented(this.constructor.name, "getSyncStatus");
 	}
 
 	public async postTransactions(transactions: object[]): Promise<any> {
 		throw new NotImplemented(this.constructor.name, "postTransactions");
+	}
+
+	private async get(path: string, query: KeyValuePair = {}): Promise<any> {
+		return getJSON(`${this.#restUrl}/${path}`, query);
+	}
+
+	private async post(method: string, params: KeyValuePair = {}): Promise<any> {
+		return postJSON(this.#baseUrl, "/", {
+			jsonrpc: "2.0",
+			method,
+			params,
+		});
 	}
 }

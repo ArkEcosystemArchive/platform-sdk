@@ -38,6 +38,8 @@
 		"bitcoinjs-message": "^2.1.0",
 		"cosmos-lib": "^1.1.0",
 		"dayjs": "^1.8",
+		"eosjs": "^20.0.3",
+		"eosjs-ecc": "^4.0.7",
 		"ethereumjs-tx": "^2.1.2",
 		"ethereumjs-wallet": "^0.6",
 		"tronweb": "^2.10.1",

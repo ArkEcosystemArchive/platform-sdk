@@ -6,7 +6,7 @@ import { Block, Transaction, Wallet } from "../../../src/coins/eth/dto";
 
 let subject: Ethereum;
 
-beforeEach(() => (subject = new Ethereum("https://ropsten.infura.io/v3/project-id")));
+beforeEach(() => (subject = new Ethereum("https://ropsten.infura.io/v3/PROJECT_ID")));
 
 afterEach(() => nock.cleanAll());
 
@@ -15,7 +15,7 @@ beforeAll(() => nock.disableNetConnect());
 describe("Ethereum", function () {
 	describe("#getTransaction", () => {
 		it("should succeed", async () => {
-			nock("https://ropsten.infura.io/v3/project-id")
+			nock("https://ropsten.infura.io/v3/PROJECT_ID")
 				.post(/.*/)
 				.reply(200, require(`${__dirname}/__fixtures__/client/getTransaction.json`));
 
@@ -27,9 +27,24 @@ describe("Ethereum", function () {
 		});
 	});
 
+	describe.only("#getTransactions", () => {
+		it("should succeed", async () => {
+			nock("https://ropsten.infura.io/v3/PROJECT_ID")
+				.post(/.*/)
+				.reply(200, require(`${__dirname}/__fixtures__/client/getBlockNumber.json`))
+				.post(/.*/)
+				.reply(200, require(`${__dirname}/__fixtures__/client/getTransactions.json`));
+
+			const result = await subject.getTransactions({ address: "0x4581a610f96878266008993475f1476ca9997081" });
+
+			expect(result.data).toBeArray();
+			expect(result.data[0]).toBeInstanceOf(Transaction);
+		});
+	});
+
 	describe("#getWallet", () => {
 		it("should succeed", async () => {
-			nock("https://ropsten.infura.io/v3/project-id")
+			nock("https://ropsten.infura.io/v3/PROJECT_ID")
 				.post(/.*/)
 				.reply(200, require(`${__dirname}/__fixtures__/client/getWallet.json`));
 
@@ -41,7 +56,7 @@ describe("Ethereum", function () {
 
 	describe("#getFeesByType", () => {
 		it("should succeed", async () => {
-			nock("https://ropsten.infura.io/v3/project-id")
+			nock("https://ropsten.infura.io/v3/PROJECT_ID")
 				.post(/.*/)
 				.reply(200, require(`${__dirname}/__fixtures__/client/getFeesByType.json`));
 
@@ -53,7 +68,7 @@ describe("Ethereum", function () {
 
 	describe("#getSyncStatus", () => {
 		it("should succeed", async () => {
-			nock("https://ropsten.infura.io/v3/project-id")
+			nock("https://ropsten.infura.io/v3/PROJECT_ID")
 				.post(/.*/)
 				.reply(200, require(`${__dirname}/__fixtures__/client/getSyncStatus.json`));
 

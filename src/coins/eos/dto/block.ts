@@ -12,17 +12,14 @@ export class Block implements Contract {
 
 	public getId(): string {
 		return this.#data.hash;
-		// return this.#data.blockID;
 	}
 
 	public getHeight(): string {
-		return this.#data.height;
-		// return this.#data.block_header.raw_data.number;
+		return this.#data.number;
 	}
 
 	public getTimestamp(): string {
-		return this.#data.time;
-		// return this.#data.block_header.raw_data.timestamp;
+		return this.#data.timestamp;
 	}
 
 	public getConfirmations(): BigNumber {
@@ -30,12 +27,11 @@ export class Block implements Contract {
 	}
 
 	public getTransactionsCount(): number {
-		return 0;
+		return this.#data.transactions.length;
 	}
 
 	public getGenerator(): string {
-		return "";
-		// return this.#data.block_header.raw_data.witness_address;
+		return this.#data.miner;
 	}
 
 	public getForgedReward(): BigNumber {
@@ -43,15 +39,19 @@ export class Block implements Contract {
 	}
 
 	public getForgedAmount(): BigNumber {
-		return BigNumber.ZERO;
+		const transactions: { value: string }[] = Object.values(this.#data.transactions);
+
+		return transactions
+			.map((transaction) => BigNumber.make(transaction.value))
+			.reduce((accumulator, currentValue) => accumulator.plus(currentValue), BigNumber.ZERO);
 	}
 
 	public getForgedFee(): BigNumber {
-		return BigNumber.ZERO;
+		return BigNumber.make(this.#data.gasUsed);
 	}
 
 	public getForgedTotal(): BigNumber {
-		return BigNumber.ZERO;
+		return this.getForgedReward().plus(this.getForgedAmount()).plus(this.getForgedFee());
 	}
 
 	/**

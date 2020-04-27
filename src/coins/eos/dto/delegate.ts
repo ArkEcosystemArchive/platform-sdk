@@ -1,9 +1,7 @@
-import { BigNumber } from "@arkecosystem/utils";
-
 import { KeyValuePair } from "../../../types";
-import { Wallet as Contract } from "../../contracts/client";
+import { Delegate as Contract } from "../../contracts/client";
 
-export class Wallet implements Contract {
+export class Delegate implements Contract {
 	readonly #data: KeyValuePair;
 
 	public constructor(data: KeyValuePair) {
@@ -14,13 +12,8 @@ export class Wallet implements Contract {
 		return this.#data.address;
 	}
 
-	public getPublicKey(): string | undefined {
-		return undefined;
-	}
-
-	public getBalance(): BigNumber {
-		return BigNumber.make(this.#data.final_balance);
-		// return BigNumber.make(this.#data.balance);
+	public getPublicKey(): string {
+		return this.#data.publicKey;
 	}
 
 	/**
