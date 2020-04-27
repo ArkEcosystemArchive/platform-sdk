@@ -20,6 +20,58 @@ yarn add @arkecosystem/platform-sdk
 
 Documentation can be found [here](./docs/README.md).
 
+## Functionality
+
+| Class    | Functions                    | ARK                | BTC                | ETH                | LSK                 | TRX                |
+| -------- | ---------------------------- | ------------------ | ------------------ | ------------------ | ------------------- | ------------------ |
+| Client   | getBlock                     | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark:  | :white_check_mark: |
+| Client   | getBlocks                    | :white_check_mark: | :x:                | :x:                | :xwhite_check_mark: | :x:                |
+| Client   | searchBlocks                 | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Client   | getTransaction               | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark:  | :white_check_mark: |
+| Client   | getTransactions              | :white_check_mark: | :x:                | :x:                | :white_check_mark:  | :x:                |
+| Client   | searchTransactions           | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Client   | getWallet                    | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark:  | :white_check_mark: |
+| Client   | getWallets                   | :white_check_mark: | :x:                | :x:                | :white_check_mark:  | :x:                |
+| Client   | searchWallets                | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Client   | getDelegate                  | :white_check_mark: | :x:                | :x:                | :white_check_mark:  | :x:                |
+| Client   | getDelegates                 | :white_check_mark: | :x:                | :x:                | :white_check_mark:  | :x:                |
+| Client   | getPeers                     | :white_check_mark: | :x:                | :x:                | :white_check_mark:  | :x:                |
+| Client   | getConfiguration             | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Client   | getCryptoConfiguration       | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Client   | getFeesByNode                | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Client   | getFeesByType                | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Client   | getSyncStatus                | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Client   | getBridgechainsByBusiness    | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Client   | postTransactions             | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark:  | :white_check_mark: |
+| Crypto   | createTransfer               | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark:  | :white_check_mark: |
+| Crypto   | createSecondSignature        | :white_check_mark: | :x:                | :x:                | :white_check_mark:  | :x:                |
+| Crypto   | createDelegateRegistration   | :white_check_mark: | :x:                | :x:                | :white_check_mark:  | :x:                |
+| Crypto   | createVote                   | :white_check_mark: | :x:                | :x:                | :white_check_mark:  | :x:                |
+| Crypto   | createMultiSignature         | :white_check_mark: | :x:                | :x:                | :white_check_mark:  | :x:                |
+| Crypto   | createIpfs                   | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Crypto   | createMultiPayment           | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Crypto   | createDelegateResignation    | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Crypto   | createHtlcLock               | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Crypto   | createHtlcClaim              | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Crypto   | createHtlcRefund             | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Identity | getAddress(passphrase)       | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark:  | :x:                |
+| Identity | getAddress(multiSignature)   | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Identity | getAddress(publicKey)        | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark:  | :x:                |
+| Identity | getAddress(privateKey)       | :x:                | :x:                | :white_check_mark: | :x:                 | :x:                |
+| Identity | getAddress(wif)              | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Identity | getPublicKey(passphrase)     | :white_check_mark: | :x:                | :x:                | :white_check_mark:  | :x:                |
+| Identity | getPublicKey(multiSignature) | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Identity | getPublicKey(wif)            | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Identity | getPrivateKey(passphrase)    | :white_check_mark: | :x:                | :x:                | :white_check_mark:  | :x:                |
+| Identity | getPrivateKey(wif)           | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Identity | getWIF(passphrase)           | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Identity | getKeyPair(passphrase)       | :white_check_mark: | :x:                | :x:                | :white_check_mark:  | :x:                |
+| Identity | getKeyPair(publicKey)        | :x:                | :x:                | :x:                | :x:                 | :x:                |
+| Identity | getKeyPair(privateKey)       | :x:                | :x:                | :white_check_mark: | :x:                 | :x:                |
+| Identity | getKeyPair(wif)              | :white_check_mark: | :x:                | :x:                | :x:                 | :x:                |
+| Message  | sign                         | :white_check_mark: | :white_check_mark: | :x:                | :white_check_mark:  | :x:                |
+| Message  | verify                       | :white_check_mark: | :white_check_mark: | :x:                | :white_check_mark:  | :x:                |
+
 ## Security
 
 If you discover a security vulnerability within this package, please send an e-mail to security@ark.io. All security vulnerabilities will be promptly addressed.
