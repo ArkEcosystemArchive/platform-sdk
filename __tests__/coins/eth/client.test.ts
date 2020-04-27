@@ -39,6 +39,19 @@ describe("Ethereum", function () {
 		});
 	});
 
+	describe("#getTransactions", () => {
+		it("should succeed", async () => {
+			nock("https://ropsten.infura.io/v3/project-id")
+				.post(/.*/)
+				.reply(200, require(`${__dirname}/__fixtures__/client/getTransaction.json`));
+
+			const result = await subject.getTransactions({ address: "0x4581a610f96878266008993475f1476ca9997081" });
+
+			expect(result.data).toBeArray();
+			expect(result.data[0]).toBeInstanceOf(Transaction);
+		});
+	});
+
 	describe("#getWallet", () => {
 		it("should succeed", async () => {
 			nock("https://ropsten.infura.io/v3/project-id")
