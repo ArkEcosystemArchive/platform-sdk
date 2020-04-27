@@ -53,3 +53,6 @@ dist
 
 # Databases
 *.sqlite
+
+# Environment
+.env
