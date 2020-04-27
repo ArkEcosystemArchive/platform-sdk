@@ -12,7 +12,7 @@ export class Transaction implements Contract {
 	}
 
 	public getId(): string {
-		throw new NotImplemented(this.constructor.name, "getId");
+		return this.#data.hash;
 	}
 
 	public getType(): number | undefined {
@@ -24,7 +24,7 @@ export class Transaction implements Contract {
 	}
 
 	public getTimestamp(): number | undefined {
-		throw new NotImplemented(this.constructor.name, "getTimestamp");
+		return this.#data.time;
 	}
 
 	public getConfirmations(): BigNumber {
@@ -56,7 +56,7 @@ export class Transaction implements Contract {
 	}
 
 	public getBlockId(): string {
-		throw new NotImplemented(this.constructor.name, "getBlockId");
+		return this.#data.block_height;
 	}
 
 	/**
