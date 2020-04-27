@@ -11,24 +11,6 @@ export class Ark implements Client {
 		this.connection = new Connection(peer);
 	}
 
-	public async getBlock(id: string): Promise<Block> {
-		const { body } = await this.connection.api("blocks").get(id);
-
-		return new Block(body.data);
-	}
-
-	public async getBlocks(query?: KeyValuePair): Promise<CollectionResponse<Block>> {
-		const { body } = await this.connection.api("blocks").all(query);
-
-		return { meta: body.meta, data: body.data.map((block) => new Block(block)) };
-	}
-
-	public async searchBlocks(query: KeyValuePair): Promise<CollectionResponse<Block>> {
-		const { body } = await this.connection.api("blocks").search(query);
-
-		return { meta: body.meta, data: body.data.map((block) => new Block(block)) };
-	}
-
 	public async getTransaction(id: string): Promise<Transaction> {
 		const { body } = await this.connection.api("transactions").get(id);
 

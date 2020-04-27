@@ -3,9 +3,6 @@ export const manifest = {
 	ticker: "TRX",
 	behaviours: {
 		Client: {
-			getBlock: true,
-			getBlocks: false,
-			searchBlocks: false,
 			getTransaction: true,
 			getTransactions: false,
 			searchTransactions: false,

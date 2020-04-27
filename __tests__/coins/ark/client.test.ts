@@ -11,44 +11,6 @@ beforeEach(() => (subject = new Ark("https://dexplorer.ark.io/api")));
 beforeAll(() => nock.disableNetConnect());
 
 describe("Ark", function () {
-	describe("#getBlock", () => {
-		it("should succeed", async () => {
-			nock("https://dexplorer.ark.io/api")
-				.get("/blocks/13114381566690093367")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getBlock.json`));
-
-			const result = await subject.getBlock("13114381566690093367");
-
-			expect(result).toBeInstanceOf(Block);
-		});
-	});
-
-	describe("#getBlocks", () => {
-		it("should succeed", async () => {
-			nock("https://dexplorer.ark.io/api")
-				.get("/blocks")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getBlocks.json`));
-
-			const result = await subject.getBlocks();
-
-			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(Block);
-		});
-	});
-
-	describe("#searchBlocks", () => {
-		it("should succeed", async () => {
-			nock("https://dexplorer.ark.io/api")
-				.post("/blocks/search")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getBlocks.json`));
-
-			const result = await subject.searchBlocks({});
-
-			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(Block);
-		});
-	});
-
 	describe("#getTransaction", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")

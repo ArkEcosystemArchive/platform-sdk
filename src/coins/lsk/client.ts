@@ -11,22 +11,6 @@ export class Lisk implements Client {
 		this.#baseUrl = peer;
 	}
 
-	public async getBlock(id: string): Promise<Block> {
-		const result = await this.get("blocks", { blockId: id });
-
-		return new Block(result.data[0]);
-	}
-
-	public async getBlocks(query?: KeyValuePair): Promise<CollectionResponse<Block>> {
-		const result = await this.get("blocks", query);
-
-		return { meta: result.meta, data: result.data.map((block) => new Block(block)) };
-	}
-
-	public async searchBlocks(query: KeyValuePair): Promise<CollectionResponse<Block>> {
-		throw new NotImplemented(this.constructor.name, "searchBlocks");
-	}
-
 	public async getTransaction(id: string): Promise<Transaction> {
 		const result = await this.get("transactions", { id });
 

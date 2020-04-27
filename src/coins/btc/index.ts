@@ -3,9 +3,6 @@ export const manifest = {
 	ticker: "BTC",
 	behaviours: {
 		Client: {
-			getBlock: false,
-			getBlocks: false,
-			searchBlocks: false,
 			getTransaction: false,
 			getTransactions: false,
 			searchTransactions: false,

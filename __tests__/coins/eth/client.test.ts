@@ -13,18 +13,6 @@ afterEach(() => nock.cleanAll());
 beforeAll(() => nock.disableNetConnect());
 
 describe("Ethereum", function () {
-	describe("#getBlock", () => {
-		it("should succeed", async () => {
-			nock("https://ropsten.infura.io/v3/project-id")
-				.post(/.*/)
-				.reply(200, require(`${__dirname}/__fixtures__/client/getBlock.json`));
-
-			const result = await subject.getBlock("7623263");
-
-			expect(result).toBeInstanceOf(Block);
-		});
-	});
-
 	describe("#getTransaction", () => {
 		it("should succeed", async () => {
 			nock("https://ropsten.infura.io/v3/project-id")
