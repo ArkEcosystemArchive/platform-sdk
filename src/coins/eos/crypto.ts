@@ -5,7 +5,7 @@ import { NotImplemented } from "../../exceptions";
 import { KeyValuePair } from "../../types";
 import { Crypto } from "../contracts/crypto";
 
-export class Ethereum implements Crypto {
+export class EOS implements Crypto {
 	readonly #connection;
 
 	public constructor(network: string) {
