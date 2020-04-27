@@ -705,6 +705,32 @@
     semver "5.6.0"
     validator "10.11.0"
 
+"@lunie/cosmos-api@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@lunie/cosmos-api/-/cosmos-api-0.2.5.tgz#77bf93a14a9a68eabffa99d07f9e6c297a26fd19"
+  integrity sha512-4p2lNr1ByYeVGGQwKkp+BdK8fI5yZwOYNoDfFSOpJ80ybQeOF8ox5jTRZrWOetEP47fqBZA0Gv5jt5tTtJWW2A==
+  dependencies:
+    "@babel/runtime" "^7.5.4"
+    axios "^0.19.0"
+
+"@lunie/cosmos-js@^0.0.22":
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/@lunie/cosmos-js/-/cosmos-js-0.0.22.tgz#a3738e5ec8a10be9adcb7b1ca6b221b14da2dc18"
+  integrity sha512-u4ma8cnHGE60B4afmAnQnHDcjtqpPkEygOp21oO0eZBN0gn+KNDXtcTJzeZ307/3gfe0t4ZEKPh7mV6DDCafxg==
+  dependencies:
+    axios "^0.19.0"
+
+"@lunie/cosmos-keys@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@lunie/cosmos-keys/-/cosmos-keys-0.2.1.tgz#ca42399cef18b2247efb44461fcaae2c6f448c74"
+  integrity sha512-EjzRnJLUkuuj5ohieb+7Cggsuc2JJMN+fAAtOMKO01WPuKRtp1tHFygVS1ceUdKKedfXYzTCHrX/vqVDJYVh4A==
+  dependencies:
+    bech32 "^1.1.3"
+    bip32 "^2.0.4"
+    bip39 "^3.0.2"
+    crypto-js "^3.1.9-1"
+    secp256k1 "^3.6.2"
+
 "@npmcli/ci-detect@^1.0.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@npmcli/ci-detect/-/ci-detect-1.2.0.tgz#0df142a1ac3bba6cbf2e9da1a6994cd898e32c95"
@@ -2318,6 +2344,17 @@ cors@^2.8.1:
     object-assign "^4"
     vary "^1"
 
+cosmos-lib@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/cosmos-lib/-/cosmos-lib-1.1.0.tgz#9a3c182a7eae1ab2f92cbfcf5a5233a6b0f82353"
+  integrity sha512-fqtPPCHNpkMSW7/yYUj3SLfsC3UWj5xQ75exbY7cPT1S6xhF/U8XMZ5sTS3vP+q5hDaxwaimQBwCGLzpL3SgVg==
+  dependencies:
+    bech32 "^1.1.3"
+    bip32 "^2.0.3"
+    bip39 "^3.0.2"
+    ripemd160 "^2.0.2"
+    secp256k1 "^3.7.1"
+
 create-ecdh@^4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.3.tgz#c9111b6f33045c4697f144787f9254cdc77c45ff"
@@ -2414,6 +2451,11 @@ crypto-browserify@3.12.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
+
+crypto-js@^3.1.9-1:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.3.0.tgz#846dd1cce2f68aacfa156c8578f926a609b7976b"
+  integrity sha512-DIT51nX0dCfKltpRiXV+/TVZq+Qq2NgF4644+K7Ttnla7zEzqc+kjJyiB96BHNyUTBxyjzRcZYpUdZa+QAqi6Q==
 
 crypto-random-string@^2.0.0:
   version "2.0.0"
@@ -6634,7 +6676,7 @@ rimraf@^3.0.0, rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-ripemd160@^2.0.0, ripemd160@^2.0.1:
+ripemd160@^2.0.0, ripemd160@^2.0.1, ripemd160@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-2.0.2.tgz#a1c1a6f624751577ba5d07914cbc92850585890c"
   integrity sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA==
@@ -6757,7 +6799,7 @@ scryptsy@^2.1.0:
   resolved "https://registry.yarnpkg.com/scryptsy/-/scryptsy-2.1.0.tgz#8d1e8d0c025b58fdd25b6fa9a0dc905ee8faa790"
   integrity sha512-1CdSqHQowJBnMAFyPEBRfqag/YP9OF394FV+4YREIJX4ljD7OxvQRDayyoyyCk+senRjSkP6VnUNQmVQqB6g7w==
 
-secp256k1@^3.0.1:
+secp256k1@^3.0.1, secp256k1@^3.6.2, secp256k1@^3.7.1:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/secp256k1/-/secp256k1-3.8.0.tgz#28f59f4b01dbee9575f56a47034b7d2e3b3b352d"
   integrity sha512-k5ke5avRZbtl9Tqx/SA7CbY3NF6Ro+Sj9cZxezFzuBlLDmyqPiL8hJJ+EmzD8Ig4LUDByHJ3/iPOVoRixs/hmw==

@@ -1,0 +1,2623 @@
+{
+	"height": "1672958",
+	"result": [
+		{
+			"delegator_address": "cosmos1qfl3zahm4qxumyed35pgxhlwq3a5axytsunxfk",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1477320,
+					"completion_time": "2020-05-02T07:28:31.884333603Z",
+					"initial_balance": "76590281568",
+					"shares_dst": "76590281568.000000000000000000",
+					"balance": "76590281568"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1qwcl7e5d5utmr47ex7tfk9d052pnxqs9wppxn2",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1y0us8xvsvfvqkk9c6nt5cfyu5au5tww2ztve7q",
+			"entries": [
+				{
+					"creation_height": 1583017,
+					"completion_time": "2020-05-10T22:13:44.625822802Z",
+					"initial_balance": "600091694",
+					"shares_dst": "600091694.000000000000000000",
+					"balance": "600091694"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1q5uruttqhxavz452j5u60737daevkw64ttsjwt",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"entries": [
+				{
+					"creation_height": 1648280,
+					"completion_time": "2020-05-16T07:20:45.078053687Z",
+					"initial_balance": "1000000",
+					"shares_dst": "1000000.000000000000000000",
+					"balance": "1000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1py6qn2hn0mzprj5z74kwag9mzg8a0320lp0d2g",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1443216,
+					"completion_time": "2020-04-29T12:16:50.3664299Z",
+					"initial_balance": "20000000000",
+					"shares_dst": "20002000198.829538783180913034",
+					"balance": "20000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1p9yaymvhmh3q93a46l2g9d22u95zz8w4mnmp4h",
+			"validator_src_address": "cosmosvaloper1qwl879nx9t6kef4supyazayf7vjhennyh568ys",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1439142,
+					"completion_time": "2020-04-29T04:12:26.867154726Z",
+					"initial_balance": "1582777000",
+					"shares_dst": "1582777000.000000000000000000",
+					"balance": "1582777000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1p9yaymvhmh3q93a46l2g9d22u95zz8w4mnmp4h",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1439159,
+					"completion_time": "2020-04-29T04:14:26.691330755Z",
+					"initial_balance": "1582777000",
+					"shares_dst": "1582777000.000000000000000000",
+					"balance": "1582777000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1pvwussxtdv2m2cutv8atgpy40e7g947u0ax9r5",
+			"validator_src_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"validator_dst_address": "cosmosvaloper159eexl76jlygrxnfreehl3j9tt70d8wfnn39fw",
+			"entries": [
+				{
+					"creation_height": 1559885,
+					"completion_time": "2020-05-09T00:45:45.885774293Z",
+					"initial_balance": "3338000000",
+					"shares_dst": "3338000000.000000000000000000",
+					"balance": "3338000000"
+				},
+				{
+					"creation_height": 1559989,
+					"completion_time": "2020-05-09T00:57:53.39481633Z",
+					"initial_balance": "800000",
+					"shares_dst": "800000.000000000000000000",
+					"balance": "800000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1pm306gekffejtpe43yeaqe4s2fvdyk7gzjq5e7",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper17h2x3j7u44qkrq0sk8ul0r2qr440rwgjkfg0gh",
+			"entries": [
+				{
+					"creation_height": 1666385,
+					"completion_time": "2020-05-17T18:58:10.420960715Z",
+					"initial_balance": "400000000",
+					"shares_dst": "400000000.000000000000000000",
+					"balance": "400000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1pm306gekffejtpe43yeaqe4s2fvdyk7gzjq5e7",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1666359,
+					"completion_time": "2020-05-17T18:55:08.013044055Z",
+					"initial_balance": "400000000",
+					"shares_dst": "400000000.000000000000000000",
+					"balance": "400000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1zfacxjz2ju46k2rjjrdvds5wyhg2khgcfh3ne5",
+			"validator_src_address": "cosmosvaloper1ul2me6vukg2vac2p6ltxmqlaa7jywdgt8q76ag",
+			"validator_dst_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"entries": [
+				{
+					"creation_height": 1432807,
+					"completion_time": "2020-04-28T15:39:24.344001005Z",
+					"initial_balance": "1591050000",
+					"shares_dst": "1591050000.000000000000000000",
+					"balance": "1591050000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1zmrsg0hz2569vksgycyhzf0h3stta5ea0flf0v",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1545239,
+					"completion_time": "2020-05-07T20:09:47.974358947Z",
+					"initial_balance": "186412905",
+					"shares_dst": "186412905.000000000000000000",
+					"balance": "186412905"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1zaetyr68qrpv9lw60pxr66twwnz8ljtcmfdtqm",
+			"validator_src_address": "cosmosvaloper1wwspfe7whh3zu4ql5rvpg044lyk6cuu7fpnd9e",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1542165,
+					"completion_time": "2020-05-07T14:09:31.598387668Z",
+					"initial_balance": "2261129041",
+					"shares_dst": "2261129041.000000000000000000",
+					"balance": "2261129041"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1r9azkzqh7v3pu3xpf9j7f3ev2j4tj04c4vl9e9",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1606035,
+					"completion_time": "2020-05-12T20:09:31.703185016Z",
+					"initial_balance": "9538841479",
+					"shares_dst": "9539795457.934407292430993003",
+					"balance": "9538841479"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1rx89p3sqvdn5vvlydqhar6nnxpmwpjrwg9ym4h",
+			"validator_src_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1523232,
+					"completion_time": "2020-05-06T01:09:56.799105222Z",
+					"initial_balance": "6100311274",
+					"shares_dst": "6100311274.000000000000000000",
+					"balance": "6100311274"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1r2grwv07q39gkrjnamenhyv6tgs8w3l75laxgp",
+			"validator_src_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"validator_dst_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"entries": [
+				{
+					"creation_height": 1542172,
+					"completion_time": "2020-05-07T14:10:20.289204997Z",
+					"initial_balance": "9400000",
+					"shares_dst": "9399999.998822900724358732",
+					"balance": "9400000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1r2grwv07q39gkrjnamenhyv6tgs8w3l75laxgp",
+			"validator_src_address": "cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d",
+			"validator_dst_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"entries": [
+				{
+					"creation_height": 1671609,
+					"completion_time": "2020-05-18T05:11:22.996384215Z",
+					"initial_balance": "100000000",
+					"shares_dst": "99999999.986741422547099287",
+					"balance": "99999999"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1yl6l479x8sxg4naf0uxlta6tutk3qt7glarpmk",
+			"validator_src_address": "cosmosvaloper1rwh0cxa72d3yle3r4l8gd7vyphrmjy2kpe4x72",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1470752,
+					"completion_time": "2020-05-01T18:37:52.759465125Z",
+					"initial_balance": "3315000000",
+					"shares_dst": "3315000000.000000000000000000",
+					"balance": "3315000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1yl6l479x8sxg4naf0uxlta6tutk3qt7glarpmk",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1470736,
+					"completion_time": "2020-05-01T18:36:00.270180315Z",
+					"initial_balance": "3808000000",
+					"shares_dst": "3808000000.000000000000000000",
+					"balance": "3808000000"
+				},
+				{
+					"creation_height": 1623228,
+					"completion_time": "2020-05-14T05:59:49.213845786Z",
+					"initial_balance": "4000000000",
+					"shares_dst": "4000000000.000000000000000000",
+					"balance": "4000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1yl6l479x8sxg4naf0uxlta6tutk3qt7glarpmk",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1470773,
+					"completion_time": "2020-05-01T18:40:19.697297904Z",
+					"initial_balance": "2057560002",
+					"shares_dst": "2057560002.000000000000000000",
+					"balance": "2057560002"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos194yny8pvr6n3dfgyd9uerpvqsxfnpdq6fggmm5",
+			"validator_src_address": "cosmosvaloper1rwh0cxa72d3yle3r4l8gd7vyphrmjy2kpe4x72",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1576030,
+					"completion_time": "2020-05-10T08:17:54.065958521Z",
+					"initial_balance": "160000000",
+					"shares_dst": "160000000.000000000000000000",
+					"balance": "160000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos194yny8pvr6n3dfgyd9uerpvqsxfnpdq6fggmm5",
+			"validator_src_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1576041,
+					"completion_time": "2020-05-10T08:19:11.559938645Z",
+					"initial_balance": "243000000",
+					"shares_dst": "243000000.000000000000000000",
+					"balance": "243000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos194yny8pvr6n3dfgyd9uerpvqsxfnpdq6fggmm5",
+			"validator_src_address": "cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1576019,
+					"completion_time": "2020-05-10T08:16:35.828980566Z",
+					"initial_balance": "250000000",
+					"shares_dst": "250000000.000000000000000000",
+					"balance": "250000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos19cvc4pucscy7mf7dtma3g5hh9eqe64twgajguz",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1432059,
+					"completion_time": "2020-04-28T14:09:55.379079189Z",
+					"initial_balance": "2835848828",
+					"shares_dst": "2835848828.000000000000000000",
+					"balance": "2835848828"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos19lmw6xtcp7x4ay87gt4jd9yzf4r2l7jruhcjme",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1445145,
+					"completion_time": "2020-04-29T16:06:02.851069888Z",
+					"initial_balance": "1408760759",
+					"shares_dst": "1408901649.081062598390693974",
+					"balance": "1408760759"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1xevkrtu5m7c4n2fyqkvskzqpp4wl09ty7etsq7",
+			"validator_src_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"validator_dst_address": "cosmosvaloper1vf44d85es37hwl9f4h9gv0e064m0lla60j9luj",
+			"entries": [
+				{
+					"creation_height": 1596689,
+					"completion_time": "2020-05-12T01:35:58.498236098Z",
+					"initial_balance": "99678852",
+					"shares_dst": "99678852.000000000000000000",
+					"balance": "99678852"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos18utf89t8wpec53j6d3vjgfanyj5keg6pg9u68m",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1558503,
+					"completion_time": "2020-05-08T22:03:51.53575512Z",
+					"initial_balance": "28353539",
+					"shares_dst": "28353539.000000000000000000",
+					"balance": "28353539"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1gq9yqlhvhtu6a00vydyt8wztx66yvpjy7a862g",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1605845,
+					"completion_time": "2020-05-12T19:46:13.736269558Z",
+					"initial_balance": "7167513002",
+					"shares_dst": "7168229824.523054990131339674",
+					"balance": "7167513002"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1g84934jpu3v5de5yqukkkhxmcvsw3u2ajxvpdl",
+			"validator_src_address": "cosmosvaloper1sd4tl9aljmmezzudugs7zlaya7pg2895ws8tfs",
+			"validator_dst_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"entries": [
+				{
+					"creation_height": 1615605,
+					"completion_time": "2020-05-13T15:00:01.676248051Z",
+					"initial_balance": "1000",
+					"shares_dst": "1000.000000000000000000",
+					"balance": "1000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1gf5lfrstxcv8764x35360tmf62d0gewzsu4zrv",
+			"validator_src_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1496102,
+					"completion_time": "2020-05-03T20:10:36.70612745Z",
+					"initial_balance": "150620000",
+					"shares_dst": "150620000.000000000000000000",
+					"balance": "150620000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1gf5lfrstxcv8764x35360tmf62d0gewzsu4zrv",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1496090,
+					"completion_time": "2020-05-03T20:09:06.4188498Z",
+					"initial_balance": "402000521",
+					"shares_dst": "402000521.000000000000000000",
+					"balance": "402000521"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1g4wwp7fjrqfydp2n2m34c5fjvxtnt6xxs7auek",
+			"validator_src_address": "cosmosvaloper14lultfckehtszvzw4ehu0apvsr77afvyju5zzy",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1503924,
+					"completion_time": "2020-05-04T11:30:42.226549321Z",
+					"initial_balance": "3195317",
+					"shares_dst": "3195636.563466170268802864",
+					"balance": "3195317"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1gh5heeacvvv32gtpkxhzze5367m705z27dep43",
+			"validator_src_address": "cosmosvaloper1rwh0cxa72d3yle3r4l8gd7vyphrmjy2kpe4x72",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1654070,
+					"completion_time": "2020-05-16T18:42:29.203212229Z",
+					"initial_balance": "211000000",
+					"shares_dst": "211000000.000000000000000000",
+					"balance": "211000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1gc42dateq5errttr7qlptjcv6y8tnd5hclzkec",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1y0us8xvsvfvqkk9c6nt5cfyu5au5tww2ztve7q",
+			"entries": [
+				{
+					"creation_height": 1477069,
+					"completion_time": "2020-05-02T06:58:57.069617545Z",
+					"initial_balance": "29735899999",
+					"shares_dst": "29735899999.000000000000000000",
+					"balance": "29735899999"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1gmh68t23j49w60kezyeh3c9ex2lelqcmxtg75y",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1586328,
+					"completion_time": "2020-05-11T04:51:03.461853353Z",
+					"initial_balance": "4999999999",
+					"shares_dst": "4999999999.000000000000000000",
+					"balance": "4999999999"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1gmh68t23j49w60kezyeh3c9ex2lelqcmxtg75y",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper17h2x3j7u44qkrq0sk8ul0r2qr440rwgjkfg0gh",
+			"entries": [
+				{
+					"creation_height": 1586301,
+					"completion_time": "2020-05-11T04:47:46.935958957Z",
+					"initial_balance": "2999999999",
+					"shares_dst": "2999999999.000000000000000000",
+					"balance": "2999999999"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1fpu8pzxsvzcaltn2nw5yvam69smm8c6ypqaztd",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1510832,
+					"completion_time": "2020-05-05T00:58:43.467656228Z",
+					"initial_balance": "1972992968",
+					"shares_dst": "1972992968.000000000000000000",
+					"balance": "1972992968"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1frp504ay4zwuxhfpqgd995cw4kw4nee6394ym3",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"entries": [
+				{
+					"creation_height": 1522539,
+					"completion_time": "2020-05-05T23:48:50.745154865Z",
+					"initial_balance": "25000000",
+					"shares_dst": "25000000.000000000000000000",
+					"balance": "25000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1fr0cerkqj07jy8q3mpcd6j5nqynynyfgnvstuk",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1652243,
+					"completion_time": "2020-05-16T15:07:15.401369243Z",
+					"initial_balance": "1652990000",
+					"shares_dst": "1652990000.000000000000000000",
+					"balance": "1652990000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos12q9urhjzrkpkuf4cq2mrhqtqfwgvejteqg2swu",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"entries": [
+				{
+					"creation_height": 1576009,
+					"completion_time": "2020-05-10T08:15:24.947763105Z",
+					"initial_balance": "3428755069",
+					"shares_dst": "3428755068.564687734857470583",
+					"balance": "3428755069"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1296jxp8f2q6q5rf9eec55l5m2kf3j8yp3wg98u",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1481206,
+					"completion_time": "2020-05-02T15:04:01.687741149Z",
+					"initial_balance": "5127000000",
+					"shares_dst": "5127000000.000000000000000000",
+					"balance": "5127000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1296jxp8f2q6q5rf9eec55l5m2kf3j8yp3wg98u",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1493952,
+					"completion_time": "2020-05-03T15:57:01.992201709Z",
+					"initial_balance": "1",
+					"shares_dst": "1.000000000000000000",
+					"balance": "1"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos12hfspdnwq6gdle6rjv763ax7ar0xgnwwjrs728",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper1vk706z2tfnqhdg6jrkngyx7f463jq58nj0x7p7",
+			"entries": [
+				{
+					"creation_height": 1533335,
+					"completion_time": "2020-05-06T20:54:50.436974866Z",
+					"initial_balance": "1000000",
+					"shares_dst": "1000000.000000000000000000",
+					"balance": "1000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos12hfspdnwq6gdle6rjv763ax7ar0xgnwwjrs728",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"entries": [
+				{
+					"creation_height": 1532857,
+					"completion_time": "2020-05-06T19:58:56.029353106Z",
+					"initial_balance": "1000000",
+					"shares_dst": "1000000.000000000000000000",
+					"balance": "1000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos12hfspdnwq6gdle6rjv763ax7ar0xgnwwjrs728",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper1eup5t8pp8jq354heck53qtama7vss9l354kh6r",
+			"entries": [
+				{
+					"creation_height": 1533346,
+					"completion_time": "2020-05-06T20:56:06.762313052Z",
+					"initial_balance": "1000000",
+					"shares_dst": "1000000.000000000000000000",
+					"balance": "1000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos12hfspdnwq6gdle6rjv763ax7ar0xgnwwjrs728",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper17h2x3j7u44qkrq0sk8ul0r2qr440rwgjkfg0gh",
+			"entries": [
+				{
+					"creation_height": 1532872,
+					"completion_time": "2020-05-06T20:00:40.928603882Z",
+					"initial_balance": "1000000",
+					"shares_dst": "1000000.000000000000000000",
+					"balance": "1000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos12hfspdnwq6gdle6rjv763ax7ar0xgnwwjrs728",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper1l9fwl9c77zx850htsr20pq3ltc379xt86ndelm",
+			"entries": [
+				{
+					"creation_height": 1533325,
+					"completion_time": "2020-05-06T20:53:40.387811966Z",
+					"initial_balance": "1000000",
+					"shares_dst": "1000000.000000000000000000",
+					"balance": "1000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos12hfspdnwq6gdle6rjv763ax7ar0xgnwwjrs728",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1y0us8xvsvfvqkk9c6nt5cfyu5au5tww2ztve7q",
+			"entries": [
+				{
+					"creation_height": 1472980,
+					"completion_time": "2020-05-01T22:59:12.610637718Z",
+					"initial_balance": "15500000",
+					"shares_dst": "15500000.000000000000000000",
+					"balance": "15500000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos12hfspdnwq6gdle6rjv763ax7ar0xgnwwjrs728",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1473027,
+					"completion_time": "2020-05-01T23:04:43.044419481Z",
+					"initial_balance": "500000",
+					"shares_dst": "500000.000000000000000000",
+					"balance": "500000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos12hfspdnwq6gdle6rjv763ax7ar0xgnwwjrs728",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"entries": [
+				{
+					"creation_height": 1472965,
+					"completion_time": "2020-05-01T22:57:27.065645083Z",
+					"initial_balance": "4000000",
+					"shares_dst": "4000000.000000000000000000",
+					"balance": "4000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos12az976k62c4qlsfy0tz2ujtw73vvhpqntwenje",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper17h2x3j7u44qkrq0sk8ul0r2qr440rwgjkfg0gh",
+			"entries": [
+				{
+					"creation_height": 1430096,
+					"completion_time": "2020-04-28T10:16:02.811161662Z",
+					"initial_balance": "22374583690",
+					"shares_dst": "22374583690.000000000000000000",
+					"balance": "22374583690"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos127c4cespmkzv6rak0uuflfggp4pzrp377tzxha",
+			"validator_src_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1490081,
+					"completion_time": "2020-05-03T08:23:46.25763949Z",
+					"initial_balance": "2881953",
+					"shares_dst": "2881953.000000000000000000",
+					"balance": "2881953"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos127c4cespmkzv6rak0uuflfggp4pzrp377tzxha",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper1de7qx00pz2j6gn9k88ntxxylelkazfk3g8fgh9",
+			"entries": [
+				{
+					"creation_height": 1490131,
+					"completion_time": "2020-05-03T08:29:37.932089812Z",
+					"initial_balance": "10648027",
+					"shares_dst": "10648027.000000000000000000",
+					"balance": "10648027"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos127c4cespmkzv6rak0uuflfggp4pzrp377tzxha",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper17h2x3j7u44qkrq0sk8ul0r2qr440rwgjkfg0gh",
+			"entries": [
+				{
+					"creation_height": 1490113,
+					"completion_time": "2020-05-03T08:27:30.495665308Z",
+					"initial_balance": "16857715",
+					"shares_dst": "16857715.000000000000000000",
+					"balance": "16857715"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1tzfs83qa7k9ycufvepckxjpkgjmcq9wy45fttn",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1420917,
+					"completion_time": "2020-04-27T16:05:09.710993957Z",
+					"initial_balance": "21000000000",
+					"shares_dst": "21000000000.000000000000000000",
+					"balance": "21000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1trmrp74l0430p43p8wh82wg77g7998epr5m6l2",
+			"validator_src_address": "cosmosvaloper1qwl879nx9t6kef4supyazayf7vjhennyh568ys",
+			"validator_dst_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"entries": [
+				{
+					"creation_height": 1420788,
+					"completion_time": "2020-04-27T15:49:48.961071889Z",
+					"initial_balance": "84984920",
+					"shares_dst": "84984920.000000000000000000",
+					"balance": "84984920"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1tyl0sflxnx5dg3t7dzdw2uhp0ka3xg5ruf593w",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1497739,
+					"completion_time": "2020-05-03T23:23:49.430551709Z",
+					"initial_balance": "2060117823",
+					"shares_dst": "2060117823.000000000000000000",
+					"balance": "2060117823"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1t0wrhrjc9aj9hw9yzalu4keggq3pvp8tmuh4rj",
+			"validator_src_address": "cosmosvaloper1qwl879nx9t6kef4supyazayf7vjhennyh568ys",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1576086,
+					"completion_time": "2020-05-10T08:24:35.451592451Z",
+					"initial_balance": "500000000",
+					"shares_dst": "500000000.000000000000000000",
+					"balance": "500000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1t0wrhrjc9aj9hw9yzalu4keggq3pvp8tmuh4rj",
+			"validator_src_address": "cosmosvaloper1qwl879nx9t6kef4supyazayf7vjhennyh568ys",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1576073,
+					"completion_time": "2020-05-10T08:23:01.544471651Z",
+					"initial_balance": "500000000",
+					"shares_dst": "500000000.000000000000000000",
+					"balance": "500000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1tc04s3qm00fyhllzrm4e3lrdrhzx798x5a3xg7",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"entries": [
+				{
+					"creation_height": 1492702,
+					"completion_time": "2020-05-03T13:30:34.385482591Z",
+					"initial_balance": "581000000",
+					"shares_dst": "581000000.000000000000000000",
+					"balance": "581000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1t6dxnkg3z88uz7v34mzmflm73n9xghj42pqlxl",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"entries": [
+				{
+					"creation_height": 1465982,
+					"completion_time": "2020-05-01T09:16:45.210465797Z",
+					"initial_balance": "500000",
+					"shares_dst": "500000.000000000000000000",
+					"balance": "500000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1t6dxnkg3z88uz7v34mzmflm73n9xghj42pqlxl",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper14k4pzckkre6uxxyd2lnhnpp8sngys9m6hl6ml7",
+			"entries": [
+				{
+					"creation_height": 1456463,
+					"completion_time": "2020-04-30T14:30:46.15020564Z",
+					"initial_balance": "776088",
+					"shares_dst": "776088.000000000000000000",
+					"balance": "776088"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1tunphhcypq0zd4d3atf9320napss6gjcyyunqz",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1x8rr4hcf54nz6hfckyy2n05sxss54h8wz9puzg",
+			"entries": [
+				{
+					"creation_height": 1512132,
+					"completion_time": "2020-05-05T03:30:29.870103413Z",
+					"initial_balance": "2048795785",
+					"shares_dst": "2048795785.000000000000000000",
+					"balance": "2048795785"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1t7keq9eaqkx7wmt3ynm6w4m2af6ywz36t4y3f4",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1491823,
+					"completion_time": "2020-05-03T11:47:35.274339898Z",
+					"initial_balance": "5303979180",
+					"shares_dst": "5303979180.000000000000000000",
+					"balance": "5303979180"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1vp64x8tey8funx7rleh9s90v8r2trp2kq38lx0",
+			"validator_src_address": "cosmosvaloper1p650epkdwj0jte6sjc3ep0n3wz6jc9ehh8jutg",
+			"validator_dst_address": "cosmosvaloper1eh5mwu044gd5ntkkc2xgfg8247mgc56fz4sdg3",
+			"entries": [
+				{
+					"creation_height": 1630545,
+					"completion_time": "2020-05-14T20:23:48.878424506Z",
+					"initial_balance": "1004288",
+					"shares_dst": "1004288.000000000000000000",
+					"balance": "1004288"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1vp64x8tey8funx7rleh9s90v8r2trp2kq38lx0",
+			"validator_src_address": "cosmosvaloper1hvsdf03tl6w5pnfvfv5g8uphjd4wfw2h4gvnl7",
+			"validator_dst_address": "cosmosvaloper1eh5mwu044gd5ntkkc2xgfg8247mgc56fz4sdg3",
+			"entries": [
+				{
+					"creation_height": 1630535,
+					"completion_time": "2020-05-14T20:22:38.498974895Z",
+					"initial_balance": "1004542",
+					"shares_dst": "1004542.000000000000000000",
+					"balance": "1004542"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1vz73yxk594xlxeveu7muafzkynejjcgreggjvh",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1443543,
+					"completion_time": "2020-04-29T12:55:47.690585628Z",
+					"initial_balance": "20000920213",
+					"shares_dst": "20002920503.859987059499527397",
+					"balance": "20000920213"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1vxh2hsg7qmnljw23t4u4nfmdfp60kfhlletcw6",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1602712,
+					"completion_time": "2020-05-12T13:24:45.443288494Z",
+					"initial_balance": "16576320223",
+					"shares_dst": "16576320223.000000000000000000",
+					"balance": "16576320223"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1vwxxsrs20a344pasy80k5pdn68jyet4mmfhr00",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1606123,
+					"completion_time": "2020-05-12T20:20:14.601810438Z",
+					"initial_balance": "13624048340",
+					"shares_dst": "13625410880.214796522810352994",
+					"balance": "13624048340"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1v0vw5hzhxl6xn0dddzwhefhu2t88zgkaspwheu",
+			"validator_src_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1521564,
+					"completion_time": "2020-05-05T21:54:43.219190366Z",
+					"initial_balance": "4162966",
+					"shares_dst": "4162966.000000000000000000",
+					"balance": "4162966"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1vclehe8sjg7g2pfl3749d0xfrdd638gr7w4zzv",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper17h2x3j7u44qkrq0sk8ul0r2qr440rwgjkfg0gh",
+			"entries": [
+				{
+					"creation_height": 1449156,
+					"completion_time": "2020-04-30T00:02:24.7713103Z",
+					"initial_balance": "302193000000",
+					"shares_dst": "302193000000.000000000000000000",
+					"balance": "302193000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1v6yw8zc3nuep5pwa474armykteh3caaudayxgg",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1436743,
+					"completion_time": "2020-04-28T23:27:34.806613575Z",
+					"initial_balance": "16111000000",
+					"shares_dst": "16111000000.000000000000000000",
+					"balance": "16111000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1vmnszddr75huvt7fcvx7nuvk7vje4qmxe9zc0u",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1616484,
+					"completion_time": "2020-05-13T16:44:00.438811483Z",
+					"initial_balance": "155000000",
+					"shares_dst": "155015501.540219392750305282",
+					"balance": "155000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1dyatkrjpdmd6w2e0hj84amqply5svjkn9nsdd8",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1444558,
+					"completion_time": "2020-04-29T14:56:11.496679204Z",
+					"initial_balance": "9105232094",
+					"shares_dst": "9105232094.000000000000000000",
+					"balance": "9105232094"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1dxn0f2a2kt3qkp0eqnenlkvxzfp0menmmeyvm9",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1479986,
+					"completion_time": "2020-05-02T12:41:00.006014508Z",
+					"initial_balance": "10125199",
+					"shares_dst": "10126211.620559432362896229",
+					"balance": "10125199"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1d2evcgsmmv3nusm3heew0gt3p9m98l32c5cp3x",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"entries": [
+				{
+					"creation_height": 1463679,
+					"completion_time": "2020-05-01T04:45:11.320864796Z",
+					"initial_balance": "1143666007",
+					"shares_dst": "1143666007.000000000000000000",
+					"balance": "1143666007"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1dt2sevnq7nzahzgz9f3h037gyjfkmp3z0qefum",
+			"validator_src_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"validator_dst_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"entries": [
+				{
+					"creation_height": 1530608,
+					"completion_time": "2020-05-06T15:35:54.81258557Z",
+					"initial_balance": "221742590",
+					"shares_dst": "221742590.000000000000000000",
+					"balance": "221742590"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1dwym5hxhp9xjczlep3yp228grtcqescssz7f4p",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1514684,
+					"completion_time": "2020-05-05T08:28:55.258432815Z",
+					"initial_balance": "760000000",
+					"shares_dst": "760000000.000000000000000000",
+					"balance": "760000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1dhxkgfsjvwmq629ganvp5rt8g7ly3sf77xtcjr",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"entries": [
+				{
+					"creation_height": 1480757,
+					"completion_time": "2020-05-02T14:11:20.79271949Z",
+					"initial_balance": "15049458",
+					"shares_dst": "15049458.000000000000000000",
+					"balance": "15049458"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1wj3rgvzs4junmlqpr5pm50nkylz89l5cx3qtqg",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1668537,
+					"completion_time": "2020-05-17T23:09:59.381091545Z",
+					"initial_balance": "500000000",
+					"shares_dst": "500000000.000000000000000000",
+					"balance": "500000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1wj3rgvzs4junmlqpr5pm50nkylz89l5cx3qtqg",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1649957,
+					"completion_time": "2020-05-16T10:38:01.846632569Z",
+					"initial_balance": "469086741",
+					"shares_dst": "469086741.000000000000000000",
+					"balance": "469086741"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1w4kfwpyykg0zfsg49893zdsr4czu7hhag5kjdw",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1497401,
+					"completion_time": "2020-05-03T22:43:55.980494832Z",
+					"initial_balance": "2865123003",
+					"shares_dst": "2865123003.000000000000000000",
+					"balance": "2865123003"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos10zc6zj5kpr8rtpymkc2mt4d7rjqec886r999hx",
+			"validator_src_address": "cosmosvaloper1y0us8xvsvfvqkk9c6nt5cfyu5au5tww2ztve7q",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1581157,
+					"completion_time": "2020-05-10T18:30:37.457604723Z",
+					"initial_balance": "277194379",
+					"shares_dst": "277194379.000000000000000000",
+					"balance": "277194379"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos108tp0easn68qkmd4sxytwjpckfhlt0cxfmjsmc",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1552452,
+					"completion_time": "2020-05-08T10:14:36.235538587Z",
+					"initial_balance": "53483575",
+					"shares_dst": "53483575.000000000000000000",
+					"balance": "53483575"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos10386s0yz7grheny3spfhc3av2uwk52j35sexlh",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper17h2x3j7u44qkrq0sk8ul0r2qr440rwgjkfg0gh",
+			"entries": [
+				{
+					"creation_height": 1568090,
+					"completion_time": "2020-05-09T16:46:49.795329634Z",
+					"initial_balance": "10000000000",
+					"shares_dst": "10000000000.000000000000000000",
+					"balance": "10000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos10j4ufkj838a49hrdse2kwr2es3ccpvkmmnh98u",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"entries": [
+				{
+					"creation_height": 1528131,
+					"completion_time": "2020-05-06T10:43:58.722859063Z",
+					"initial_balance": "1066500000",
+					"shares_dst": "1066500000.000000000000000000",
+					"balance": "1066500000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1049ye8lese3s2a6rr2quh3des6pynmqp99zwqa",
+			"validator_src_address": "cosmosvaloper1wp9jne5t3e4au7u8gfep90g59j0qdhpeqvlg7n",
+			"validator_dst_address": "cosmosvaloper1y0us8xvsvfvqkk9c6nt5cfyu5au5tww2ztve7q",
+			"entries": [
+				{
+					"creation_height": 1535149,
+					"completion_time": "2020-05-07T00:27:24.889707527Z",
+					"initial_balance": "2448000000",
+					"shares_dst": "2448000000.000000000000000000",
+					"balance": "2448000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1068jfs4mhwwtscyxzcgcgugs2qqfm453pcswjz",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1420927,
+					"completion_time": "2020-04-27T16:06:21.201402333Z",
+					"initial_balance": "20000000000",
+					"shares_dst": "20000000000.000000000000000000",
+					"balance": "20000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1068jfs4mhwwtscyxzcgcgugs2qqfm453pcswjz",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1420885,
+					"completion_time": "2020-04-27T16:01:22.776531092Z",
+					"initial_balance": "30000000000",
+					"shares_dst": "30003000298.244308174771369552",
+					"balance": "30000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1sxc3yx9ugn6ku2f2zknfpxkacwea9wfwre0n9x",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1y0us8xvsvfvqkk9c6nt5cfyu5au5tww2ztve7q",
+			"entries": [
+				{
+					"creation_height": 1472870,
+					"completion_time": "2020-05-01T22:46:19.115115596Z",
+					"initial_balance": "543597834",
+					"shares_dst": "543597834.000000000000000000",
+					"balance": "543597834"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos13t2ql3e3xmfy3kqjcaafp76247sk64ndmytucz",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1563418,
+					"completion_time": "2020-05-09T07:39:12.079439481Z",
+					"initial_balance": "591759819",
+					"shares_dst": "591759819.000000000000000000",
+					"balance": "591759819"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos13h4vazvsjkm0jzh7jtpf36f6kssg9mrh4gamtf",
+			"validator_src_address": "cosmosvaloper10e4vsut6suau8tk9m6dnrm0slgd6npe3jx5xpv",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1425720,
+					"completion_time": "2020-04-28T01:35:59.766699141Z",
+					"initial_balance": "10000000000",
+					"shares_dst": "10000000000.000000000000000000",
+					"balance": "10000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos13h4vazvsjkm0jzh7jtpf36f6kssg9mrh4gamtf",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1425711,
+					"completion_time": "2020-04-28T01:34:57.092345041Z",
+					"initial_balance": "10788090597",
+					"shares_dst": "10789169513.309253887634041483",
+					"balance": "10788090597"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos13lmh7zyl4rtvvxyx9tszwfv4efsmfz7at3ezgq",
+			"validator_src_address": "cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj",
+			"validator_dst_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"entries": [
+				{
+					"creation_height": 1518258,
+					"completion_time": "2020-05-05T15:27:39.086855643Z",
+					"initial_balance": "31300000",
+					"shares_dst": "31300000.000000000000000000",
+					"balance": "31300000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1j2meu8ygcsnxr9t5fm04ehyvcpqvc9plr6nfmz",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"entries": [
+				{
+					"creation_height": 1566313,
+					"completion_time": "2020-05-09T13:18:25.308315413Z",
+					"initial_balance": "15000579400",
+					"shares_dst": "15000579400.000000000000000000",
+					"balance": "15000579400"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1j3trnn6q3q2584zrdnprfq3whq5pal37f45tvx",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1672506,
+					"completion_time": "2020-05-18T06:57:04.120545036Z",
+					"initial_balance": "143799900000",
+					"shares_dst": "143799900000.000000000000000000",
+					"balance": "143799900000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1j4heycy25ersvld236f3ckpn9avjjt4p3tmg23",
+			"validator_src_address": "cosmosvaloper1we6knm8qartmmh2r0qfpsz6pq0s7emv3e0meuw",
+			"validator_dst_address": "cosmosvaloper1tflk30mq5vgqjdly92kkhhq3raev2hnz6eete3",
+			"entries": [
+				{
+					"creation_height": 1625364,
+					"completion_time": "2020-05-14T10:12:07.720666619Z",
+					"initial_balance": "260000",
+					"shares_dst": "260000.000000000000000000",
+					"balance": "260000"
+				},
+				{
+					"creation_height": 1629517,
+					"completion_time": "2020-05-14T18:22:18.779021387Z",
+					"initial_balance": "200000",
+					"shares_dst": "200000.000000000000000000",
+					"balance": "200000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1nq5z540epwch96apzzfl3s27rx2y79hds8sdfu",
+			"validator_src_address": "cosmosvaloper1rwh0cxa72d3yle3r4l8gd7vyphrmjy2kpe4x72",
+			"validator_dst_address": "cosmosvaloper1qaa9zej9a0ge3ugpx3pxyx602lxh3ztqgfnp42",
+			"entries": [
+				{
+					"creation_height": 1426695,
+					"completion_time": "2020-04-28T03:32:03.204349557Z",
+					"initial_balance": "1000000000",
+					"shares_dst": "1000000000.000000000000000000",
+					"balance": "1000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1nq5z540epwch96apzzfl3s27rx2y79hds8sdfu",
+			"validator_src_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"validator_dst_address": "cosmosvaloper1qaa9zej9a0ge3ugpx3pxyx602lxh3ztqgfnp42",
+			"entries": [
+				{
+					"creation_height": 1426732,
+					"completion_time": "2020-04-28T03:36:26.1636206Z",
+					"initial_balance": "1000000000",
+					"shares_dst": "1000000000.000000000000000000",
+					"balance": "1000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1nq5z540epwch96apzzfl3s27rx2y79hds8sdfu",
+			"validator_src_address": "cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj",
+			"validator_dst_address": "cosmosvaloper1qaa9zej9a0ge3ugpx3pxyx602lxh3ztqgfnp42",
+			"entries": [
+				{
+					"creation_height": 1426738,
+					"completion_time": "2020-04-28T03:37:10.095735806Z",
+					"initial_balance": "1000000000",
+					"shares_dst": "1000000000.000000000000000000",
+					"balance": "1000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1nq5z540epwch96apzzfl3s27rx2y79hds8sdfu",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper1qaa9zej9a0ge3ugpx3pxyx602lxh3ztqgfnp42",
+			"entries": [
+				{
+					"creation_height": 1426744,
+					"completion_time": "2020-04-28T03:37:51.757102869Z",
+					"initial_balance": "1000000000",
+					"shares_dst": "1000000000.000000000000000000",
+					"balance": "1000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1nxgztqys9e4uq47mtq5txtvpmnvkuv6mk0arxg",
+			"validator_src_address": "cosmosvaloper1rwh0cxa72d3yle3r4l8gd7vyphrmjy2kpe4x72",
+			"validator_dst_address": "cosmosvaloper1vf44d85es37hwl9f4h9gv0e064m0lla60j9luj",
+			"entries": [
+				{
+					"creation_height": 1614788,
+					"completion_time": "2020-05-13T13:22:14.550328128Z",
+					"initial_balance": "1000000",
+					"shares_dst": "1000000.000000000000000000",
+					"balance": "1000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1n8x5srcwzj0x26eal9d8kj4lqefdzf5gr5p4e9",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1458001,
+					"completion_time": "2020-04-30T17:33:50.625691289Z",
+					"initial_balance": "200676879",
+					"shares_dst": "200696948.682924564800910166",
+					"balance": "200676879"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos150aesvdf3s58f2a6v6g4ga9g7ffwf9z2wyl3j9",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1551522,
+					"completion_time": "2020-05-08T08:25:32.078290894Z",
+					"initial_balance": "1800000",
+					"shares_dst": "1800000.000000000000000000",
+					"balance": "1800000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos15mevddz7ce4g7qjvhg3dprhqtk8aqd20fswwqa",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1lcwxu50rvvgf9v6jy6q5mrzyhlszwtjxhtscmp",
+			"entries": [
+				{
+					"creation_height": 1437719,
+					"completion_time": "2020-04-29T01:23:38.284894599Z",
+					"initial_balance": "202573205",
+					"shares_dst": "202573205.000000000000000000",
+					"balance": "202573205"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos14t3dh3ucxjfey6akem75q9atydz3zg5cynepds",
+			"validator_src_address": "cosmosvaloper1rwh0cxa72d3yle3r4l8gd7vyphrmjy2kpe4x72",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1528143,
+					"completion_time": "2020-05-06T10:45:22.15253587Z",
+					"initial_balance": "2099554694",
+					"shares_dst": "2099554694.000000000000000000",
+					"balance": "2099554694"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos14t3dh3ucxjfey6akem75q9atydz3zg5cynepds",
+			"validator_src_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1528080,
+					"completion_time": "2020-05-06T10:38:00.502257618Z",
+					"initial_balance": "2127707171",
+					"shares_dst": "2127707171.000000000000000000",
+					"balance": "2127707171"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos14t3dh3ucxjfey6akem75q9atydz3zg5cynepds",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1528129,
+					"completion_time": "2020-05-06T10:43:44.950866425Z",
+					"initial_balance": "2118248749",
+					"shares_dst": "2118248749.000000000000000000",
+					"balance": "2118248749"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos14t74gj6wup0x7jz6azgfdkruc8p2vufcv4mvan",
+			"validator_src_address": "cosmosvaloper1we6knm8qartmmh2r0qfpsz6pq0s7emv3e0meuw",
+			"validator_dst_address": "cosmosvaloper17h2x3j7u44qkrq0sk8ul0r2qr440rwgjkfg0gh",
+			"entries": [
+				{
+					"creation_height": 1576153,
+					"completion_time": "2020-05-10T08:32:37.911133947Z",
+					"initial_balance": "600000000",
+					"shares_dst": "600000000.000000000000000000",
+					"balance": "600000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos14t74gj6wup0x7jz6azgfdkruc8p2vufcv4mvan",
+			"validator_src_address": "cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d",
+			"validator_dst_address": "cosmosvaloper16qme5yxucnaj6snx35nmwze0wyxr8wfgqxsqfw",
+			"entries": [
+				{
+					"creation_height": 1576183,
+					"completion_time": "2020-05-10T08:36:15.099251015Z",
+					"initial_balance": "1000000000",
+					"shares_dst": "1000000000.000000000000000000",
+					"balance": "1000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos14w2azyx6uujqz5vprndc2ws04j85h83ex9909e",
+			"validator_src_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1580227,
+					"completion_time": "2020-05-10T16:39:35.737777255Z",
+					"initial_balance": "6388920339",
+					"shares_dst": "6388920339.000000000000000000",
+					"balance": "6388920339"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos14w2azyx6uujqz5vprndc2ws04j85h83ex9909e",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1522506,
+					"completion_time": "2020-05-05T23:44:59.339236448Z",
+					"initial_balance": "1133611583",
+					"shares_dst": "1133611583.000000000000000000",
+					"balance": "1133611583"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1404zxd8qq40wgv2hrzsxak82f9phydey9tke57",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1669924,
+					"completion_time": "2020-05-18T01:53:11.493513892Z",
+					"initial_balance": "30000235672",
+					"shares_dst": "30000235672.000000000000000000",
+					"balance": "30000235672"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos140ecdq4u4kv2a6tnyxafqz3re9nmh07udkawr9",
+			"validator_src_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"validator_dst_address": "cosmosvaloper17h2x3j7u44qkrq0sk8ul0r2qr440rwgjkfg0gh",
+			"entries": [
+				{
+					"creation_height": 1592243,
+					"completion_time": "2020-05-11T16:41:48.731711799Z",
+					"initial_balance": "27634900",
+					"shares_dst": "27634900.000000000000000000",
+					"balance": "27634900"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos140ecdq4u4kv2a6tnyxafqz3re9nmh07udkawr9",
+			"validator_src_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"validator_dst_address": "cosmosvaloper17h2x3j7u44qkrq0sk8ul0r2qr440rwgjkfg0gh",
+			"entries": [
+				{
+					"creation_height": 1544561,
+					"completion_time": "2020-05-07T18:50:29.86081898Z",
+					"initial_balance": "986601798",
+					"shares_dst": "986601798.000000000000000000",
+					"balance": "986601798"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos140ecdq4u4kv2a6tnyxafqz3re9nmh07udkawr9",
+			"validator_src_address": "cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d",
+			"validator_dst_address": "cosmosvaloper1wauge4px27c257nfn4k3329wteddqw7gs3n66u",
+			"entries": [
+				{
+					"creation_height": 1669984,
+					"completion_time": "2020-05-18T02:00:13.571472016Z",
+					"initial_balance": "560080",
+					"shares_dst": "560080.000000000000000000",
+					"balance": "560080"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos14jq3gzxrv66s0gnxn0c3xrgzyzw2l4vz6zm776",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper1de7qx00pz2j6gn9k88ntxxylelkazfk3g8fgh9",
+			"entries": [
+				{
+					"creation_height": 1641112,
+					"completion_time": "2020-05-15T17:17:36.935446858Z",
+					"initial_balance": "5000000000",
+					"shares_dst": "5000000000.000000000000000000",
+					"balance": "5000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos14jq3gzxrv66s0gnxn0c3xrgzyzw2l4vz6zm776",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1641155,
+					"completion_time": "2020-05-15T17:22:40.672025481Z",
+					"initial_balance": "2000000000",
+					"shares_dst": "2000200019.871635239881527829",
+					"balance": "2000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos144d7mst6nlmh3348cjxzst8zdr6t5mfskrhq2m",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1x8rr4hcf54nz6hfckyy2n05sxss54h8wz9puzg",
+			"entries": [
+				{
+					"creation_height": 1443189,
+					"completion_time": "2020-04-29T12:13:39.566297346Z",
+					"initial_balance": "50000000000",
+					"shares_dst": "50000000000.000000000000000000",
+					"balance": "50000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos14h59xe0y8y8fgg3r9aycdfml043kksrmy60j0r",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1665627,
+					"completion_time": "2020-05-17T17:29:01.732282678Z",
+					"initial_balance": "1033222938",
+					"shares_dst": "1033222938.000000000000000000",
+					"balance": "1033222938"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos14e3ppdrymxh558eacfksk6rfw0xrl4aaw5rvz4",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1x8rr4hcf54nz6hfckyy2n05sxss54h8wz9puzg",
+			"entries": [
+				{
+					"creation_height": 1472458,
+					"completion_time": "2020-05-01T21:58:04.098860419Z",
+					"initial_balance": "586222092",
+					"shares_dst": "586222092.000000000000000000",
+					"balance": "586222092"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos147svexrremkuh6t8wjz86l24hh8mwuqecmf4sr",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1606079,
+					"completion_time": "2020-05-12T20:14:49.044984969Z",
+					"initial_balance": "8436394969",
+					"shares_dst": "8437238692.328507330031681005",
+					"balance": "8436394969"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1k25emq087mh24neaem4lksa36qn3cdg29x5yup",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1x8rr4hcf54nz6hfckyy2n05sxss54h8wz9puzg",
+			"entries": [
+				{
+					"creation_height": 1443551,
+					"completion_time": "2020-04-29T12:56:43.535346388Z",
+					"initial_balance": "5004400000",
+					"shares_dst": "5004400000.000000000000000000",
+					"balance": "5004400000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1k35ph87uukqxk38wvx4fhlp2m7usw5u9yy3dmt",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1503811,
+					"completion_time": "2020-05-04T11:17:31.069604831Z",
+					"initial_balance": "1799000000",
+					"shares_dst": "1799000000.000000000000000000",
+					"balance": "1799000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1kky4yzth6gdrm8ga5zlfwhav33yr7hl87jycah",
+			"validator_src_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"validator_dst_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"entries": [
+				{
+					"creation_height": 1527651,
+					"completion_time": "2020-05-06T09:47:47.433759874Z",
+					"initial_balance": "100000",
+					"shares_dst": "99999.999987516200345016",
+					"balance": "100000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1k6q2f7kz38jl9rf0jfvschjl7uh40yaqcuah63",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1636126,
+					"completion_time": "2020-05-15T07:30:18.616664937Z",
+					"initial_balance": "400000000",
+					"shares_dst": "400000000.000000000000000000",
+					"balance": "400000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1k6q2f7kz38jl9rf0jfvschjl7uh40yaqcuah63",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1wauge4px27c257nfn4k3329wteddqw7gs3n66u",
+			"entries": [
+				{
+					"creation_height": 1636145,
+					"completion_time": "2020-05-15T07:32:38.29092961Z",
+					"initial_balance": "100000000",
+					"shares_dst": "100000000.000000000000000000",
+					"balance": "100000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1k6pjs5rat34p220n4cjh8gu7cwhqj9lgqawrzh",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1606227,
+					"completion_time": "2020-05-12T20:32:41.855251184Z",
+					"initial_balance": "10884158641",
+					"shares_dst": "10885247165.018888468638761241",
+					"balance": "10884158641"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1hzdne7xvvs8unp497t6x0g32lpz6m5mqk9zq7d",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1639716,
+					"completion_time": "2020-05-15T14:33:33.152436011Z",
+					"initial_balance": "36981938150",
+					"shares_dst": "36985636711.260792690329537757",
+					"balance": "36981938150"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1hgppe2t2dc4ytzakvl4w34tplc9dzdt6js7lcc",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1497718,
+					"completion_time": "2020-05-03T23:21:23.330482677Z",
+					"initial_balance": "348502844",
+					"shares_dst": "348502844.000000000000000000",
+					"balance": "348502844"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1cdhyph7slwkylqq0qg5pg8gg3j4wk7du82ldkw",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1466155,
+					"completion_time": "2020-05-01T09:37:07.284713443Z",
+					"initial_balance": "56006604",
+					"shares_dst": "56006604.000000000000000000",
+					"balance": "56006604"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1cw84ynvt25kpd2dqetwxewea9hcmmar8wha3jq",
+			"validator_src_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1490787,
+					"completion_time": "2020-05-03T09:46:24.124680911Z",
+					"initial_balance": "440000000",
+					"shares_dst": "440000000.000000000000000000",
+					"balance": "440000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1cws2ktsx5edvv9vnge8mj983h76vz4txluqr67",
+			"validator_src_address": "cosmosvaloper1rwh0cxa72d3yle3r4l8gd7vyphrmjy2kpe4x72",
+			"validator_dst_address": "cosmosvaloper1eup5t8pp8jq354heck53qtama7vss9l354kh6r",
+			"entries": [
+				{
+					"creation_height": 1639853,
+					"completion_time": "2020-05-15T14:49:37.747136265Z",
+					"initial_balance": "2005000000",
+					"shares_dst": "2005000000.000000000000000000",
+					"balance": "2005000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1chhhclakuangrrw4xs2rgfxejhu7qud38023rj",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"entries": [
+				{
+					"creation_height": 1480346,
+					"completion_time": "2020-05-02T13:23:07.008283752Z",
+					"initial_balance": "3351521327",
+					"shares_dst": "3351521327.000000000000000000",
+					"balance": "3351521327"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1eyqavenu3rdnrdvq0d9pv483l3qvuxfupury2z",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"entries": [
+				{
+					"creation_height": 1483036,
+					"completion_time": "2020-05-02T18:38:26.615719615Z",
+					"initial_balance": "3300000000",
+					"shares_dst": "3300000000.000000000000000000",
+					"balance": "3300000000"
+				},
+				{
+					"creation_height": 1530603,
+					"completion_time": "2020-05-06T15:35:19.302688515Z",
+					"initial_balance": "3000000000",
+					"shares_dst": "3000000000.000000000000000000",
+					"balance": "3000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1e0jn9r8v5tdccdwvzvrps3e2gzxl30d0s9k7cn",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1y0us8xvsvfvqkk9c6nt5cfyu5au5tww2ztve7q",
+			"entries": [
+				{
+					"creation_height": 1639625,
+					"completion_time": "2020-05-15T14:22:51.337674079Z",
+					"initial_balance": "18314973",
+					"shares_dst": "18314973.000000000000000000",
+					"balance": "18314973"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1ehkfl7palwrh6w2hhr2yfrgrq8jetguceek792",
+			"validator_src_address": "cosmosvaloper1udpsgkgyutgsglauk9vk9rs03a3skc62gup9ny",
+			"validator_dst_address": "cosmosvaloper1wrxkqna8w5ldl3twgmyne6fvt9hsfgmksrjwlj",
+			"entries": [
+				{
+					"creation_height": 1576345,
+					"completion_time": "2020-05-10T08:55:33.544559786Z",
+					"initial_balance": "1000000000",
+					"shares_dst": "1000000000.000000000000000000",
+					"balance": "1000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos16q94fnf07nntyegrrgzwf9gy6tqrvxcgpayrxh",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1de7qx00pz2j6gn9k88ntxxylelkazfk3g8fgh9",
+			"entries": [
+				{
+					"creation_height": 1502829,
+					"completion_time": "2020-05-04T09:21:39.23230516Z",
+					"initial_balance": "2657366998",
+					"shares_dst": "2657366998.000000000000000000",
+					"balance": "2657366998"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos16yk2ljku83sys4wqqu5ayt5pjk23d7anxmjy62",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1x8rr4hcf54nz6hfckyy2n05sxss54h8wz9puzg",
+			"entries": [
+				{
+					"creation_height": 1546176,
+					"completion_time": "2020-05-07T21:59:30.510461776Z",
+					"initial_balance": "217400000",
+					"shares_dst": "217400000.000000000000000000",
+					"balance": "217400000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos16ffhf4evaep33qm8g5ykn2eutyfzdjaxmuag50",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1503054,
+					"completion_time": "2020-05-04T09:47:56.418769413Z",
+					"initial_balance": "352011260",
+					"shares_dst": "352011260.000000000000000000",
+					"balance": "352011260"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1udpsgkgyutgsglauk9vk9rs03a3skc62dg4slh",
+			"validator_src_address": "cosmosvaloper1udpsgkgyutgsglauk9vk9rs03a3skc62gup9ny",
+			"validator_dst_address": "cosmosvaloper1wrxkqna8w5ldl3twgmyne6fvt9hsfgmksrjwlj",
+			"entries": [
+				{
+					"creation_height": 1576345,
+					"completion_time": "2020-05-10T08:55:33.544559786Z",
+					"initial_balance": "5000000000",
+					"shares_dst": "5000000000.000000000000000000",
+					"balance": "5000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1udzkkndgk325c24dwpc7wndw7jpk8ddfvv50cy",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1630207,
+					"completion_time": "2020-05-14T19:43:51.516142664Z",
+					"initial_balance": "4300000000",
+					"shares_dst": "4300430042.724015765745284833",
+					"balance": "4300000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1unjaxe7zfm0uu6pyc7gxtlxkwxkdmya7ls5v69",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"entries": [
+				{
+					"creation_height": 1532174,
+					"completion_time": "2020-05-06T18:39:07.159162787Z",
+					"initial_balance": "9699999",
+					"shares_dst": "9699999.000000000000000000",
+					"balance": "9699999"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1uezzldugxddl7snxrr4sdzx0pemf2eqn3cvknc",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1633159,
+					"completion_time": "2020-05-15T01:34:48.350908842Z",
+					"initial_balance": "1410798",
+					"shares_dst": "1410798.000000000000000000",
+					"balance": "1410798"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1uamn4ktpmes2efdf6qfh78m5cedkfctgat6eva",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"entries": [
+				{
+					"creation_height": 1506991,
+					"completion_time": "2020-05-04T17:29:25.925860006Z",
+					"initial_balance": "1",
+					"shares_dst": "1.000000000000000000",
+					"balance": "1"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1aru67f3whq8u5fsqpt2sah4gjvyare779thrq8",
+			"validator_src_address": "cosmosvaloper1emaa7mwgpnpmc7yptm728ytp9quamsvu837nc0",
+			"validator_dst_address": "cosmosvaloper14k4pzckkre6uxxyd2lnhnpp8sngys9m6hl6ml7",
+			"entries": [
+				{
+					"creation_height": 1522945,
+					"completion_time": "2020-05-06T00:36:20.915666859Z",
+					"initial_balance": "40000000",
+					"shares_dst": "40000000.000000000000000000",
+					"balance": "40000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1a9l4dq6s44k7dk4lx0us6g7xsunartz8rscnx3",
+			"validator_src_address": "cosmosvaloper13sduv92y3xdhy3rpmhakrc3v7t37e7ps9l0kpv",
+			"validator_dst_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"entries": [
+				{
+					"creation_height": 1618002,
+					"completion_time": "2020-05-13T19:43:29.995618506Z",
+					"initial_balance": "500000000",
+					"shares_dst": "499999999.935350384515885053",
+					"balance": "500000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1a9l4dq6s44k7dk4lx0us6g7xsunartz8rscnx3",
+			"validator_src_address": "cosmosvaloper1uxh465053nq3at4dn0jywgwq3s9sme3la3drx6",
+			"validator_dst_address": "cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt9m5s03xfytvz7",
+			"entries": [
+				{
+					"creation_height": 1618020,
+					"completion_time": "2020-05-13T19:45:37.874786726Z",
+					"initial_balance": "500000000",
+					"shares_dst": "500000000.000000000000000000",
+					"balance": "500000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1ag2alh047g2a46s7dlc68qknvxsevm4wd905aq",
+			"validator_src_address": "cosmosvaloper1rwh0cxa72d3yle3r4l8gd7vyphrmjy2kpe4x72",
+			"validator_dst_address": "cosmosvaloper1pgsjyvkg3y2m7qas534zzdhsqsxqyph2jh3uck",
+			"entries": [
+				{
+					"creation_height": 1565469,
+					"completion_time": "2020-05-09T11:39:29.892907287Z",
+					"initial_balance": "228000000000",
+					"shares_dst": "228000000000.000000000000000000",
+					"balance": "228000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1anwkhepra82zymc7yqppqdw42mdwqha2z7tjze",
+			"validator_src_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"validator_dst_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"entries": [
+				{
+					"creation_height": 1576438,
+					"completion_time": "2020-05-10T09:06:40.620184322Z",
+					"initial_balance": "3701493",
+					"shares_dst": "3701493.000000000000000000",
+					"balance": "3701493"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1anwkhepra82zymc7yqppqdw42mdwqha2z7tjze",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"entries": [
+				{
+					"creation_height": 1450657,
+					"completion_time": "2020-04-30T03:00:41.752194439Z",
+					"initial_balance": "15021137",
+					"shares_dst": "15021137.000000000000000000",
+					"balance": "15021137"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1ae8q9znrvyg83tp33n7492twqaufyspkuzajny",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper14lultfckehtszvzw4ehu0apvsr77afvyju5zzy",
+			"entries": [
+				{
+					"creation_height": 1520287,
+					"completion_time": "2020-05-05T19:25:14.537658113Z",
+					"initial_balance": "354485558",
+					"shares_dst": "354485558.000000000000000000",
+					"balance": "354485558"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1aadrkwklwdw8njudgmgnyfkjkjee43sy0chf8a",
+			"validator_src_address": "cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj",
+			"validator_dst_address": "cosmosvaloper156gqf9837u7d4c4678yt3rl4ls9c5vuursrrzf",
+			"entries": [
+				{
+					"creation_height": 1623694,
+					"completion_time": "2020-05-14T06:54:49.140520828Z",
+					"initial_balance": "750004206",
+					"shares_dst": "750004206.000000000000000000",
+					"balance": "750004206"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17zp8dxwj40kw0998gv6x4z669cl8dsj350m6mk",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1644582,
+					"completion_time": "2020-05-16T00:05:33.28031682Z",
+					"initial_balance": "74000000",
+					"shares_dst": "74000000.000000000000000000",
+					"balance": "74000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17gzft9s2xk22wp9frn9s4v8p07z83zfe6zcwlh",
+			"validator_src_address": "cosmosvaloper1rwh0cxa72d3yle3r4l8gd7vyphrmjy2kpe4x72",
+			"validator_dst_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"entries": [
+				{
+					"creation_height": 1501280,
+					"completion_time": "2020-05-04T06:20:20.052310181Z",
+					"initial_balance": "5802159912",
+					"shares_dst": "5802159912.000000000000000000",
+					"balance": "5802159912"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17wpx9k6zhmlryp6y9ylj2gameuvn8gjc6ll374",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper1kgquh04ffqvadekf6e47070gskm0s0h28cl7ht",
+			"entries": [
+				{
+					"creation_height": 1625559,
+					"completion_time": "2020-05-14T10:35:13.235297798Z",
+					"initial_balance": "1027400000",
+					"shares_dst": "1027400000.000000000000000000",
+					"balance": "1027400000"
+				},
+				{
+					"creation_height": 1667166,
+					"completion_time": "2020-05-17T20:29:32.126142329Z",
+					"initial_balance": "2500000000",
+					"shares_dst": "2500000000.000000000000000000",
+					"balance": "2500000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17wpx9k6zhmlryp6y9ylj2gameuvn8gjc6ll374",
+			"validator_src_address": "cosmosvaloper1rpgtz9pskr5geavkjz02caqmeep7cwwpv73axj",
+			"validator_dst_address": "cosmosvaloper1kgquh04ffqvadekf6e47070gskm0s0h28cl7ht",
+			"entries": [
+				{
+					"creation_height": 1625589,
+					"completion_time": "2020-05-14T10:38:44.893846335Z",
+					"initial_balance": "89999999",
+					"shares_dst": "89999999.000000000000000000",
+					"balance": "89999999"
+				},
+				{
+					"creation_height": 1667170,
+					"completion_time": "2020-05-17T20:30:00.521301416Z",
+					"initial_balance": "3000010000",
+					"shares_dst": "3000010000.000000000000000000",
+					"balance": "3000010000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17wpx9k6zhmlryp6y9ylj2gameuvn8gjc6ll374",
+			"validator_src_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"validator_dst_address": "cosmosvaloper1kgquh04ffqvadekf6e47070gskm0s0h28cl7ht",
+			"entries": [
+				{
+					"creation_height": 1625543,
+					"completion_time": "2020-05-14T10:33:17.945771973Z",
+					"initial_balance": "2500000000",
+					"shares_dst": "2500000000.000000000000000000",
+					"balance": "2500000000"
+				},
+				{
+					"creation_height": 1667175,
+					"completion_time": "2020-05-17T20:30:35.53578997Z",
+					"initial_balance": "1000000000",
+					"shares_dst": "1000000000.000000000000000000",
+					"balance": "1000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17wpx9k6zhmlryp6y9ylj2gameuvn8gjc6ll374",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper1kgquh04ffqvadekf6e47070gskm0s0h28cl7ht",
+			"entries": [
+				{
+					"creation_height": 1625531,
+					"completion_time": "2020-05-14T10:31:52.355755941Z",
+					"initial_balance": "2500000000",
+					"shares_dst": "2500000000.000000000000000000",
+					"balance": "2500000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17wpx9k6zhmlryp6y9ylj2gameuvn8gjc6ll374",
+			"validator_src_address": "cosmosvaloper16v3f95amtvpewuajjcdsvaekuuy4yyzups85ec",
+			"validator_dst_address": "cosmosvaloper1kgquh04ffqvadekf6e47070gskm0s0h28cl7ht",
+			"entries": [
+				{
+					"creation_height": 1625602,
+					"completion_time": "2020-05-14T10:40:16.385642151Z",
+					"initial_balance": "1020900000",
+					"shares_dst": "1020900000.000000000000000000",
+					"balance": "1020900000"
+				},
+				{
+					"creation_height": 1667186,
+					"completion_time": "2020-05-17T20:31:52.389284979Z",
+					"initial_balance": "5000000000",
+					"shares_dst": "5000000000.000000000000000000",
+					"balance": "5000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17wpx9k6zhmlryp6y9ylj2gameuvn8gjc6ll374",
+			"validator_src_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"validator_dst_address": "cosmosvaloper1kgquh04ffqvadekf6e47070gskm0s0h28cl7ht",
+			"entries": [
+				{
+					"creation_height": 1625567,
+					"completion_time": "2020-05-14T10:36:09.025066843Z",
+					"initial_balance": "290669999",
+					"shares_dst": "290669999.000000000000000000",
+					"balance": "290669999"
+				},
+				{
+					"creation_height": 1667202,
+					"completion_time": "2020-05-17T20:33:44.321278212Z",
+					"initial_balance": "3000009650",
+					"shares_dst": "3000009650.000000000000000000",
+					"balance": "3000009650"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17s7k29nzu7yydtn7p0p88dmrhxadguxu37w2kx",
+			"validator_src_address": "cosmosvaloper1rwh0cxa72d3yle3r4l8gd7vyphrmjy2kpe4x72",
+			"validator_dst_address": "cosmosvaloper1qaa9zej9a0ge3ugpx3pxyx602lxh3ztqgfnp42",
+			"entries": [
+				{
+					"creation_height": 1420311,
+					"completion_time": "2020-04-27T14:52:58.191196874Z",
+					"initial_balance": "2500000000",
+					"shares_dst": "2500000000.000000000000000000",
+					"balance": "2500000000"
+				},
+				{
+					"creation_height": 1550126,
+					"completion_time": "2020-05-08T05:41:54.734866521Z",
+					"initial_balance": "4300000000",
+					"shares_dst": "4300000000.000000000000000000",
+					"balance": "4300000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17s7k29nzu7yydtn7p0p88dmrhxadguxu37w2kx",
+			"validator_src_address": "cosmosvaloper1vf44d85es37hwl9f4h9gv0e064m0lla60j9luj",
+			"validator_dst_address": "cosmosvaloper1qaa9zej9a0ge3ugpx3pxyx602lxh3ztqgfnp42",
+			"entries": [
+				{
+					"creation_height": 1550175,
+					"completion_time": "2020-05-08T05:47:41.762068983Z",
+					"initial_balance": "7000000000",
+					"shares_dst": "7000000000.000000000000000000",
+					"balance": "7000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17s7k29nzu7yydtn7p0p88dmrhxadguxu37w2kx",
+			"validator_src_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0",
+			"validator_dst_address": "cosmosvaloper1qaa9zej9a0ge3ugpx3pxyx602lxh3ztqgfnp42",
+			"entries": [
+				{
+					"creation_height": 1550182,
+					"completion_time": "2020-05-08T05:48:31.487032785Z",
+					"initial_balance": "7000000000",
+					"shares_dst": "7000000000.000000000000000000",
+					"balance": "7000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17s7k29nzu7yydtn7p0p88dmrhxadguxu37w2kx",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper1qaa9zej9a0ge3ugpx3pxyx602lxh3ztqgfnp42",
+			"entries": [
+				{
+					"creation_height": 1550135,
+					"completion_time": "2020-05-08T05:42:57.359886125Z",
+					"initial_balance": "7000000000",
+					"shares_dst": "7000000000.000000000000000000",
+					"balance": "7000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17njs9mgaszmhvanzx7dpuv7cyngs7wffk6g4s4",
+			"validator_src_address": "cosmosvaloper1we6knm8qartmmh2r0qfpsz6pq0s7emv3e0meuw",
+			"validator_dst_address": "cosmosvaloper1xym2qygmr9vanpa0m7ndk3n0qxgey3ffzcyd5c",
+			"entries": [
+				{
+					"creation_height": 1626489,
+					"completion_time": "2020-05-14T12:24:50.340168603Z",
+					"initial_balance": "73548",
+					"shares_dst": "73548.000000000000000000",
+					"balance": "73548"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17er3ce8j6enkffww5snguy4wfhxmahsf7fqv3r",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper17h2x3j7u44qkrq0sk8ul0r2qr440rwgjkfg0gh",
+			"entries": [
+				{
+					"creation_height": 1559540,
+					"completion_time": "2020-05-09T00:05:22.205419676Z",
+					"initial_balance": "650000000",
+					"shares_dst": "650000000.000000000000000000",
+					"balance": "650000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos17a64lk65g3a4200gwzqzmjz7rt5ann8jargjez",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"entries": [
+				{
+					"creation_height": 1588663,
+					"completion_time": "2020-05-11T09:31:30.249994115Z",
+					"initial_balance": "200000000",
+					"shares_dst": "200000000.000000000000000000",
+					"balance": "200000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1lqps5vhze4220u3vd7avrmju9aac7x4hapequx",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
+			"entries": [
+				{
+					"creation_height": 1455826,
+					"completion_time": "2020-04-30T13:14:52.23635093Z",
+					"initial_balance": "1145770000",
+					"shares_dst": "1145884588.390646032580259736",
+					"balance": "1145770000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1lgur3yej7qtr4erlqzxavdpeqqau9q0h40rmeh",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1561807,
+					"completion_time": "2020-05-09T04:30:27.567144416Z",
+					"initial_balance": "21111999998",
+					"shares_dst": "21111999998.000000000000000000",
+					"balance": "21111999998"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1lgur3yej7qtr4erlqzxavdpeqqau9q0h40rmeh",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1561811,
+					"completion_time": "2020-05-09T04:30:54.435573503Z",
+					"initial_balance": "1",
+					"shares_dst": "1.000000000000000000",
+					"balance": "1"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1lguftmw2chu0mf6prve7a3sq8eajuamlmxkxcj",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"entries": [
+				{
+					"creation_height": 1573780,
+					"completion_time": "2020-05-10T03:54:19.456978629Z",
+					"initial_balance": "34220000000",
+					"shares_dst": "34220000000.000000000000000000",
+					"balance": "34220000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1lguftmw2chu0mf6prve7a3sq8eajuamlmxkxcj",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1vf44d85es37hwl9f4h9gv0e064m0lla60j9luj",
+			"entries": [
+				{
+					"creation_height": 1573734,
+					"completion_time": "2020-05-10T03:48:55.131266907Z",
+					"initial_balance": "34220000000",
+					"shares_dst": "34220000000.000000000000000000",
+					"balance": "34220000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1l22dc2vjgrgwl73ef6rl6zp3uwr007ft0r8utf",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1620999,
+					"completion_time": "2020-05-14T01:37:03.767094232Z",
+					"initial_balance": "300000000",
+					"shares_dst": "300000000.000000000000000000",
+					"balance": "300000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1l22dc2vjgrgwl73ef6rl6zp3uwr007ft0r8utf",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper1y0us8xvsvfvqkk9c6nt5cfyu5au5tww2ztve7q",
+			"entries": [
+				{
+					"creation_height": 1621019,
+					"completion_time": "2020-05-14T01:39:24.688513629Z",
+					"initial_balance": "1000085057",
+					"shares_dst": "1000085057.000000000000000000",
+					"balance": "1000085057"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1l25l0juut5as73t3jm4tqupjj80lltzulrvwg6",
+			"validator_src_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1625287,
+					"completion_time": "2020-05-14T10:03:03.99388656Z",
+					"initial_balance": "678887776",
+					"shares_dst": "678887776.000000000000000000",
+					"balance": "678887776"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1lvmwgkmlzk95usjr2lsq0yqx42r6ejxf5t8hy6",
+			"validator_src_address": "cosmosvaloper1et77usu8q2hargvyusl4qzryev8x8t9wwqkxfs",
+			"validator_dst_address": "cosmosvaloper1x8rr4hcf54nz6hfckyy2n05sxss54h8wz9puzg",
+			"entries": [
+				{
+					"creation_height": 1497577,
+					"completion_time": "2020-05-03T23:04:43.005732224Z",
+					"initial_balance": "397",
+					"shares_dst": "397.000000000000000000",
+					"balance": "397"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1ljn80ky79cq3sv8gv80prmne3esyuxguxqqprj",
+			"validator_src_address": "cosmosvaloper1ptyzewnns2kn37ewtmv6ppsvhdnmeapvtfc9y5",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1423880,
+					"completion_time": "2020-04-27T21:57:30.737633676Z",
+					"initial_balance": "1000000000",
+					"shares_dst": "1000000000.000000000000000000",
+					"balance": "1000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1ljn80ky79cq3sv8gv80prmne3esyuxguxqqprj",
+			"validator_src_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1558585,
+					"completion_time": "2020-05-08T22:13:27.588654869Z",
+					"initial_balance": "10000000",
+					"shares_dst": "10000000.000000000000000000",
+					"balance": "10000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1ljn80ky79cq3sv8gv80prmne3esyuxguxqqprj",
+			"validator_src_address": "cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2",
+			"validator_dst_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x",
+			"entries": [
+				{
+					"creation_height": 1423852,
+					"completion_time": "2020-04-27T21:54:12.148286828Z",
+					"initial_balance": "1000000000",
+					"shares_dst": "1000000000.000000000000000000",
+					"balance": "1000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1ljn80ky79cq3sv8gv80prmne3esyuxguxqqprj",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper1fhr7e04ct0zslmkzqt9smakg3sxrdve6ulclj2",
+			"entries": [
+				{
+					"creation_height": 1423868,
+					"completion_time": "2020-04-27T21:56:05.772955055Z",
+					"initial_balance": "999999999",
+					"shares_dst": "999999999.000000000000000000",
+					"balance": "999999999"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1lkznpljvglyfehzngujl93l0d3elfvua5kdvy9",
+			"validator_src_address": "cosmosvaloper1clpqr4nrk4khgkxj78fcwwh6dl3uw4epsluffn",
+			"validator_dst_address": "cosmosvaloper1ma02nlc7lchu7caufyrrqt4r6v2mpsj90y9wzd",
+			"entries": [
+				{
+					"creation_height": 1522830,
+					"completion_time": "2020-05-06T00:22:52.07388547Z",
+					"initial_balance": "35000000000",
+					"shares_dst": "35000000000.000000000000000000",
+					"balance": "35000000000"
+				}
+			]
+		},
+		{
+			"delegator_address": "cosmos1lauyzgvkstlzw7hdg8lnqpznu84c6xu87yzq28",
+			"validator_src_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8",
+			"validator_dst_address": "cosmosvaloper132juzk0gdmwuxvx4phug7m3ymyatxlh9734g4w",
+			"entries": [
+				{
+					"creation_height": 1435973,
+					"completion_time": "2020-04-28T21:56:22.992059885Z",
+					"initial_balance": "209300000",
+					"shares_dst": "209300000.000000000000000000",
+					"balance": "209300000"
+				}
+			]
+		}
+	]
+}

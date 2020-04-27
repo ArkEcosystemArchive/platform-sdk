@@ -1,0 +1,21 @@
+{
+	"node_info": {
+		"protocol_version": { "p2p": "7", "block": "10", "app": "0" },
+		"id": "c081fc0cc1683f4fd9fbc395969576c3dc66e040",
+		"listen_addr": "tcp://0.0.0.0:26656",
+		"network": "cosmoshub-3",
+		"version": "0.32.9",
+		"channels": "4020212223303800",
+		"moniker": "aib-hub-node",
+		"other": { "tx_index": "on", "rpc_address": "tcp://127.0.0.1:26657" }
+	},
+	"application_version": {
+		"name": "gaia",
+		"server_name": "gaiad",
+		"client_name": "gaiacli",
+		"version": "2.0.5",
+		"commit": "ffb24de1d697c8d37e3e91282b6039c3c7b3da16",
+		"build_tags": "netgo,ledger",
+		"go": "go version go1.13.6 linux/amd64"
+	}
+}
