@@ -6,6 +6,8 @@ import { Client, CollectionResponse } from "../contracts/client";
 import { Block, Delegate, Peer, Transaction, Wallet } from "./dto";
 
 export class Ethereum implements Client {
+	static readonly MONTH_IN_SECONDS = 86400 * 30;
+
 	readonly #connection: Web3;
 
 	public constructor(peer: string) {
@@ -19,7 +21,27 @@ export class Ethereum implements Client {
 	}
 
 	public async getTransactions(query?: KeyValuePair): Promise<CollectionResponse<Transaction>> {
-		throw new NotImplemented(this.constructor.name, "getTransactions");
+		const endBlock: number = await this.#connection.eth.getBlockNumber();
+		const startBlock: number = endBlock - Ethereum.MONTH_IN_SECONDS;
+
+		const transactions: Transaction[] = [];
+		for (let i = startBlock; i < endBlock; i++) {
+			const block = await this.#connection.eth.getBlock(i, true);
+
+			if (block && block.transactions) {
+				for (const transaction of block.transactions) {
+					if (
+						query?.address === "*" ||
+						query?.address === transaction.from ||
+						query?.address === transaction.to
+					) {
+						transactions.push(new Transaction(transaction));
+					}
+				}
+			}
+		}
+
+		return { meta: {}, data: transactions };
 	}
 
 	public async searchTransactions(query: KeyValuePair): Promise<CollectionResponse<Transaction>> {
