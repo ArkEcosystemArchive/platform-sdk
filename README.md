@@ -24,9 +24,6 @@ Documentation can be found [here](./docs/README.md).
 
 | Class    | Functions                    | ARK                | BTC                | ETH                | LSK                | TRX                | EOS | ATOM | ADA |
 | -------- | ---------------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | --- | ---- | --- |
-| Client   | getBlock                     | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | :x:  | :x: |
-| Client   | getBlocks                    | :white_check_mark: | :x:                | :x:                | :white_check_mark: | :x:                | :x: | :x:  | :x: |
-| Client   | searchBlocks                 | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x: | :x:  | :x: |
 | Client   | getTransaction               | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | :x:  | :x: |
 | Client   | getTransactions              | :white_check_mark: | :x:                | :x:                | :white_check_mark: | :x:                | :x: | :x:  | :x: |
 | Client   | searchTransactions           | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x: | :x:  | :x: |
