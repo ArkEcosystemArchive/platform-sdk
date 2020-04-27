@@ -1,0 +1,46 @@
+{
+	"total_count": 1,
+	"count": 1,
+	"page_number": 1,
+	"page_total": 1,
+	"limit": 30,
+	"txs": [
+		{
+			"hash": "D085138D913993919295FF4B0A9107F1F2CDE0D37A87CE0644E217CBF3B49656",
+			"height": 368,
+			"tx": {
+				"msg": ["string"],
+				"fee": {
+					"gas": "string",
+					"amount": [
+						{
+							"denom": "stake",
+							"amount": "50"
+						}
+					]
+				},
+				"memo": "string",
+				"signature": {
+					"signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+					"pub_key": {
+						"type": "tendermint/PubKeySecp256k1",
+						"value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+					},
+					"account_number": "0",
+					"sequence": "0"
+				}
+			},
+			"result": {
+				"log": "string",
+				"gas_wanted": "200000",
+				"gas_used": "26354",
+				"tags": [
+					{
+						"key": "string",
+						"value": "string"
+					}
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,16 @@
+{
+	"height": "1672972",
+	"result": {
+		"type": "cosmos-sdk/Account",
+		"value": {
+			"address": "cosmos1qfl3zahm4qxumyed35pgxhlwq3a5axytsunxfk",
+			"coins": [{ "denom": "uatom", "amount": "27576" }],
+			"public_key": {
+				"type": "tendermint/PubKeySecp256k1",
+				"value": "AzRMh9Rptc88OA3RgAIJ5j8DhHM50ksBhHTTSVgnATkJ"
+			},
+			"account_number": "260",
+			"sequence": "132"
+		}
+	}
+}
