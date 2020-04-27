@@ -11,31 +11,6 @@ beforeEach(() => (subject = new Lisk("https://betanet.lisk.io:443")));
 beforeAll(() => nock.disableNetConnect());
 
 describe("Lisk", function () {
-	describe("#getBlock", () => {
-		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
-				.get("/api/blocks?blockId=1676747649530141145")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getBlock.json`));
-
-			const result = await subject.getBlock("1676747649530141145");
-
-			expect(result).toBeInstanceOf(Block);
-		});
-	});
-
-	describe("#getBlocks", () => {
-		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
-				.get("/api/blocks")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getBlocks.json`));
-
-			const result = await subject.getBlocks();
-
-			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(Block);
-		});
-	});
-
 	describe("#getTransaction", () => {
 		it("should succeed", async () => {
 			nock("https://betanet.lisk.io:443")

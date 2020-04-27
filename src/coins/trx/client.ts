@@ -14,20 +14,6 @@ export class Tron implements Client {
 		});
 	}
 
-	public async getBlock(id: string): Promise<Block> {
-		const result = await this.#connection.trx.getBlock(id);
-
-		return new Block(result);
-	}
-
-	public async getBlocks(query?: KeyValuePair): Promise<CollectionResponse<Block>> {
-		throw new NotImplemented(this.constructor.name, "getBlocks");
-	}
-
-	public async searchBlocks(query: KeyValuePair): Promise<CollectionResponse<Block>> {
-		throw new NotImplemented(this.constructor.name, "searchBlocks");
-	}
-
 	public async getTransaction(id: string): Promise<Transaction> {
 		const result = await this.#connection.trx.getTransaction(id);
 

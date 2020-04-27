@@ -3,9 +3,6 @@ export const manifest = {
 	ticker: "ARK",
 	behaviours: {
 		Client: {
-			getBlock: true,
-			getBlocks: true,
-			searchBlocks: true,
 			getTransaction: true,
 			getTransactions: true,
 			searchTransactions: true,
