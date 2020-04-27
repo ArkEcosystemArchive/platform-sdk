@@ -11,18 +11,6 @@ export class Bitcoin implements Client {
 		this.#baseUrl = peer;
 	}
 
-	public async getBlock(id: string): Promise<Block> {
-		throw new NotImplemented(this.constructor.name, "getBlock");
-	}
-
-	public async getBlocks(query?: KeyValuePair): Promise<CollectionResponse<Block>> {
-		throw new NotImplemented(this.constructor.name, "getBlocks");
-	}
-
-	public async searchBlocks(query: KeyValuePair): Promise<CollectionResponse<Block>> {
-		throw new NotImplemented(this.constructor.name, "searchBlocks");
-	}
-
 	public async getTransaction(id: string): Promise<Transaction> {
 		throw new NotImplemented(this.constructor.name, "getTransaction");
 	}

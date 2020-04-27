@@ -92,10 +92,6 @@ export interface CollectionResponse<T> {
 }
 
 export interface Client {
-	getBlock(id: string): Promise<Block>;
-	getBlocks(query?: KeyValuePair): Promise<CollectionResponse<Block>>;
-	searchBlocks(query: KeyValuePair): Promise<CollectionResponse<Block>>;
-
 	getTransaction(id: string): Promise<Transaction>;
 	getTransactions(query?: KeyValuePair): Promise<CollectionResponse<Transaction>>;
 	searchTransactions(query: KeyValuePair): Promise<CollectionResponse<Transaction>>;

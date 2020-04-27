@@ -12,20 +12,6 @@ export class Ethereum implements Client {
 		this.#connection = new Web3(new Web3.providers.HttpProvider(peer));
 	}
 
-	public async getBlock(id: string): Promise<Block> {
-		const result = await this.#connection.eth.getBlock(id, true);
-
-		return new Block(result);
-	}
-
-	public async getBlocks(query?: KeyValuePair): Promise<CollectionResponse<Block>> {
-		throw new NotImplemented(this.constructor.name, "getBlocks");
-	}
-
-	public async searchBlocks(query: KeyValuePair): Promise<CollectionResponse<Block>> {
-		throw new NotImplemented(this.constructor.name, "searchBlocks");
-	}
-
 	public async getTransaction(id: string): Promise<Transaction> {
 		const result = await this.#connection.eth.getTransaction(id);
 

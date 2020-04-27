@@ -3,9 +3,6 @@ export const manifest = {
 	ticker: "LSK",
 	behaviours: {
 		Client: {
-			getBlock: true,
-			getBlocks: true,
-			searchBlocks: false,
 			getTransaction: true,
 			getTransactions: true,
 			searchTransactions: false,

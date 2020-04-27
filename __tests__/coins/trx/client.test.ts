@@ -11,18 +11,6 @@ beforeEach(() => (subject = new Tron("https://api.shasta.trongrid.io")));
 beforeAll(() => nock.disableNetConnect());
 
 describe("Tron", function () {
-	describe("#getBlock", () => {
-		it("should succeed", async () => {
-			nock("https://api.shasta.trongrid.io")
-				.post("/wallet/getblockbynum")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getBlock.json`));
-
-			const result = await subject.getBlock("12345");
-
-			expect(result).toBeInstanceOf(Block);
-		});
-	});
-
 	describe("#getTransaction", () => {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
