@@ -706,6 +706,13 @@
     "@babel/runtime" "^7.5.4"
     axios "^0.19.0"
 
+"@lunie/cosmos-js@^0.0.22":
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/@lunie/cosmos-js/-/cosmos-js-0.0.22.tgz#a3738e5ec8a10be9adcb7b1ca6b221b14da2dc18"
+  integrity sha512-u4ma8cnHGE60B4afmAnQnHDcjtqpPkEygOp21oO0eZBN0gn+KNDXtcTJzeZ307/3gfe0t4ZEKPh7mV6DDCafxg==
+  dependencies:
+    axios "^0.19.0"
+
 "@lunie/cosmos-keys@^0.2.1":
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/@lunie/cosmos-keys/-/cosmos-keys-0.2.1.tgz#ca42399cef18b2247efb44461fcaae2c6f448c74"

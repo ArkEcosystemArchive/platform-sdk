@@ -30,6 +30,7 @@
 		"@liskhq/lisk-transactions": "^3.0",
 		"@liskhq/lisk-transactions-old": "npm:@liskhq/lisk-transactions@=2.0.0",
 		"@lunie/cosmos-api": "^0.2.5",
+		"@lunie/cosmos-js": "^0.0.22",
 		"@lunie/cosmos-keys": "^0.2.1",
 		"bent": "^7.3",
 		"bip39": "^3.0",
