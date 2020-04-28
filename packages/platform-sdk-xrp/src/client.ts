@@ -11,10 +11,12 @@ export class Client implements Contracts.Client {
 		this.#connection = connection;
 	}
 
-	public static async new(peer: string) {
+	public static async new(peer: string, connect: boolean = true) {
 		const connection = new RippleAPI({ server: peer });
 
-		await connection.connect();
+		if (connect) {
+			await connection.connect();
+		}
 
 		return new Client(connection);
 	}

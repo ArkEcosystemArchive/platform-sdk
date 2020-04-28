@@ -8,11 +8,11 @@ import { Delegate, Wallet, Transaction } from "../src/dto";
 
 let subject: Client;
 
-beforeEach(async () => (subject = await Client.new("wss://s.altnet.rippletest.net:51233")));
+beforeEach(async () => (subject = await Client.new("wss://s.altnet.rippletest.net:51233", false)));
 
 afterEach(() => nock.cleanAll());
 
-// beforeAll(() => nock.disableNetConnect());
+beforeAll(() => nock.disableNetConnect());
 
 describe("Client", function () {
 	describe("#getTransaction", () => {
@@ -59,7 +59,7 @@ describe("Client", function () {
 			nock("https://data.ripple.com/v2")
 				.get("/accounts/rB31eWvkfKBAu6FDD9zgnzT4RwSfXGcqPm")
 				.reply(200, require(`${__dirname}/__fixtures__/client/getWallet.json`))
-				.get("/accounts/rB31eWvkfKBAu6FDD9zgnzT4RwSfXGcqPm/balances")
+				.get("/accounts/rB31eWvkfKBAu6FDD9zgnzT4RwSfXGcqPm/balances?currency=XRP")
 				.reply(200, require(`${__dirname}/__fixtures__/client/getWalletBalances.json`));
 
 			const result = await subject.getWallet("rB31eWvkfKBAu6FDD9zgnzT4RwSfXGcqPm");
