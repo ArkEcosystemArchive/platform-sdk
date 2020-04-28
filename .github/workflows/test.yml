@@ -9,7 +9,7 @@ on:
         types: [ready_for_review, synchronize, opened]
 
 jobs:
-    unit:
+    platform-sdk:
         runs-on: ubuntu-latest
 
         strategy:
@@ -25,13 +25,175 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install
+              run: yarn install --immutable --immutable-cache
 
             - name: Build
-              run: yarn build
+              run: yarn run build
 
             - name: Test
-              run: yarn test --coverage
+              run: cd packages/platform-sdk && yarn run test --coverage
 
             - name: Codecov
-              run: ./node_modules/.bin/codecov --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-sdk && ./node_modules/.bin/codecov --token=${{ secrets.CODECOV_TOKEN }}
+
+    platform-sdk-ark:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [12.x]
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install
+              run: yarn install --immutable --immutable-cache
+
+            - name: Build
+              run: yarn run build
+
+            - name: Test
+              run: cd packages/platform-sdk-ark && yarn run test --coverage
+
+            - name: Codecov
+              run: cd packages/platform-sdk-ark && ./node_modules/.bin/codecov --token=${{ secrets.CODECOV_TOKEN }}
+
+    platform-sdk-atom:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [12.x]
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install
+              run: yarn install --immutable --immutable-cache
+
+            - name: Build
+              run: yarn run build
+
+            - name: Test
+              run: cd packages/platform-sdk-atom && yarn run test --coverage
+
+            - name: Codecov
+              run: cd packages/platform-sdk-atom && ./node_modules/.bin/codecov --token=${{ secrets.CODECOV_TOKEN }}
+
+    platform-sdk-eos:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [12.x]
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install
+              run: yarn install --immutable --immutable-cache
+
+            - name: Build
+              run: yarn run build
+
+            - name: Test
+              run: cd packages/platform-sdk-eos && yarn run test --coverage
+
+            - name: Codecov
+              run: cd packages/platform-sdk-eos && ./node_modules/.bin/codecov --token=${{ secrets.CODECOV_TOKEN }}
+
+    platform-sdk-eth:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [12.x]
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install
+              run: yarn install --immutable --immutable-cache
+
+            - name: Build
+              run: yarn run build
+
+            - name: Test
+              run: cd packages/platform-sdk-eth && yarn run test --coverage
+
+            - name: Codecov
+              run: cd packages/platform-sdk-eth && ./node_modules/.bin/codecov --token=${{ secrets.CODECOV_TOKEN }}
+
+    platform-sdk-lsk:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [12.x]
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install
+              run: yarn install --immutable --immutable-cache
+
+            - name: Build
+              run: yarn run build
+
+            - name: Test
+              run: cd packages/platform-sdk-lsk && yarn run test --coverage
+
+            - name: Codecov
+              run: cd packages/platform-sdk-lsk && ./node_modules/.bin/codecov --token=${{ secrets.CODECOV_TOKEN }}
+
+    platform-sdk-trx:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [12.x]
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install
+              run: yarn install --immutable --immutable-cache
+
+            - name: Build
+              run: yarn run build
+
+            - name: Test
+              run: cd packages/platform-sdk-trx && yarn run test --coverage
+
+            - name: Codecov
+              run: cd packages/platform-sdk-trx && ./node_modules/.bin/codecov --token=${{ secrets.CODECOV_TOKEN }}

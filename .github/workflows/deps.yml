@@ -2,7 +2,7 @@ name: Update Dependencies
 
 on:
     schedule:
-        - cron: '0 0 * * 0'
+        - cron: "0 0 * * 0"
 
 jobs:
     unit:
@@ -24,7 +24,7 @@ jobs:
               run: yarn install
 
             - name: Update Dependencies
-              run: ./node_modules/npm-check-updates/bin/ncu -u
+              run: bash scripts/deps.sh
 
             - name: Update yarn.lock
               run: yarn install
