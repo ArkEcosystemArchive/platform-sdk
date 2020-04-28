@@ -5,17 +5,30 @@ import { Delegate, Peer, Transaction, Wallet } from "./dto";
 
 export class Client implements Contracts.Client {
 	readonly #connection: RippleAPI;
+	readonly #dataUrl: string = "https://data.ripple.com/v2";
 
-	public constructor (private readonly peer: string) {
-		this.#connection = new RippleAPI({ server: peer });
+	private constructor(connection: RippleAPI) {
+		this.#connection = connection;
+	}
+
+	public static async new(peer: string) {
+		const connection = new RippleAPI({ server: peer });
+
+		await connection.connect();
+
+		return new Client(connection);
 	}
 
 	public async getTransaction(id: string): Promise<Transaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getTransaction");
+		const { transaction } = await this.get(`transactions/${id}`);
+
+		return new Transaction(transaction);
 	}
 
-	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getTransactions");
+	public async getTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
+		const { transactions } = await this.get(`accounts/${query.address}/transactions`);
+
+		return { meta: {}, data: transactions.map((transaction) => new Transaction(transaction)) };
 	}
 
 	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
@@ -23,42 +36,17 @@ export class Client implements Contracts.Client {
 	}
 
 	public async getWallet(id: string): Promise<Wallet> {
-		const address = "rPBPQ34twiBAjm8n7joizT8ruwD7hGoWjk";
+		const { account_data } = await this.get(`accounts/${id}`);
+		const { balances } = await this.get(`accounts/${id}/balances`);
+		const balance = balances.find((balance) => balance.currency === "XRP");
 
-		await this.#connection.connect()
-
-		console.log(await this.#connection.getBalances(address))
-
-		const payment = {
-			source: {
-				address: address,
-				maxAmount: {
-					value: '0.01',
-					currency: 'XRP'
-				}
-			},
-			destination: {
-				address: 'rHE2tehVYCGeMvi1gDEcYzQ7fpiCiYecAR',
-				amount: {
-					value: '0.01',
-					currency: 'XRP'
-				}
-			}
-		};
-
-		const prepared = await this.#connection.preparePayment(address, payment, { maxLedgerVersionOffset: 5 })
-
-		const { signedTransaction } = this.#connection.sign(prepared.txJSON, input.passphrase);
-
-		const response = await this.#connection.submit(signedTransaction)
-
-		console.log(response)
-
-		throw new Exceptions.NotImplemented(this.constructor.name, "getWallet");
+		return new Wallet({ ...account_data, ...{ balance: balance.value } });
 	}
 
 	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getWallets");
+		const { accounts } = await this.get("accounts");
+
+		return { meta: {}, data: accounts.map((account) => new Wallet(account)) };
 	}
 
 	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
@@ -66,11 +54,13 @@ export class Client implements Contracts.Client {
 	}
 
 	public async getDelegate(id: string): Promise<Delegate> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegate");
+		return new Delegate(await this.get(`network/validators/${id}`));
 	}
 
 	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Delegate>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegates");
+		const { validators } = await this.get("network/validators");
+
+		return { meta: {}, data: validators.map((account) => new Delegate(account)) };
 	}
 
 	public async getPeers(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Peer>> {
@@ -97,7 +87,13 @@ export class Client implements Contracts.Client {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getSyncStatus");
 	}
 
-	public async postTransactions(transaction: object): Promise<void> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "postTransactions");
+	public async postTransactions(transactions: any[]): Promise<void> {
+		for (const transaction of transactions) {
+			await this.#connection.submit(transaction);
+		}
+	}
+
+	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		return Utils.getJSON(`${this.#dataUrl}/${path}`, query);
 	}
 }

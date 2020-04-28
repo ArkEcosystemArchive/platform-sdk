@@ -1,0 +1,1436 @@
+{
+	"result": "success",
+	"count": 152,
+	"validators": [
+		{
+			"validation_public_key": "nHUFE9prPXPrHcG3SkwP1UzAQbSphqyQkQK9ATXLZsfkezhhda3p",
+			"domain": "alloy.ee",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHDB2PAPYqF86j9j3c6w1F1ZqwvQfiWcFShZ9Pokg9q4ohNDSkAz",
+			"domain": "aloha.xrpscan.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHB8QMKGt9VB4Vg71VszjBVQnDW3v3QudM4DwFaJfy96bj4Pv9fA",
+			"domain": "bithomp.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHBidG3pZK11zQD6kpNDoAhDxH6WLGui6ZxSbUx7LSqLHsgzMPec",
+			"domain": "bitso.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUT6Xa588zawXVdP2xyYXc87LQFm8uV38CxsVzq2RoQJP8LXpJF",
+			"domain": "blockchain.korea.ac.kr",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUd8g4DWm6HgjGTjKKSfYiRyf8qCvEN1PXR7YDJ5QTFyAnZHkbW",
+			"domain": "brex.io",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHDwHQGjKTz6R6pFigSSrNBrhNYyUGFPHA75HiTccTCQzuu9d7Za",
+			"domain": "coil.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUED59jjpQ5QbNhesXMhqii9gA8UfbBmv3i5StgyxG98qjsT4yn",
+			"domain": "crcm-xrp.blockdaemon.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUpJSKQTZdB1TDkbCREMuf8vEqFkk84BcvZDhsQsDufFDQVajam",
+			"domain": "data443.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUvzia57LRXr9zqnYpyFUFeKvis2tqn4DkXBVGSppt5M4nNq43C",
+			"domain": "digifin.uk",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHU95JxeaHJoSdpE7R49Mxp4611Yk5yL9SGEc12UDJLr4oEUN4NT",
+			"domain": "flagshipsolutionsgroup.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUpcmNsxAw47yt2ADDoNoQrzLyTJPgnyq16u6Qx2kRPA17oUNHz",
+			"domain": "isrdc.in",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUnhRJK3csknycNK5SXRFi8jvDp3sKoWvS9wKWLq1ATBBGgPBjp",
+			"domain": "peerisland.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUVPzAmAmQ2QSc4oE1iLfsGi17qN2ado8PhxvgEkou76FLxAz7C",
+			"domain": "ripple.ittc.ku.edu",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUFCyRCrUjvtZmKiLeF8ReopzKuUoKeDeXo3wEUBVSaawzcSBpW",
+			"domain": "ripple.kenan-flagler.unc.edu",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHB5kpvUaEpvCtwu31fMf6dTuuCNnWRctWrV3UEZ9rbtPdpvbUvJ",
+			"domain": "ripple.ntt.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUCCckfXVBdoounaU7JVnfdPdMXEeetwH8VdCBXD996BaVZ8WdJ",
+			"domain": "ripple.telinduscloud.lu",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUcQnmEbCNq4uhntFudzfrZV8P5WLoBrR5h3R9jAd621Aaz1pSy",
+			"domain": "rippleitin.nz",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHDH7bQJpVfDhVSqdui3Z8GPvKEBQpo6AKHcnXe21zoD4nABA6xj",
+			"domain": "ripplevalidator.uwaterloo.ca",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHULqGBkJtWeNFjhTzYeAsHA3qKKS7HoBh8CV3BAGTGMZuepEhWC",
+			"domain": "shadow.haas.berkeley.edu",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHBtDzdRDykxiuv7uSMPTcGexNm879RUUz5GW4h1qgjbtyvWZ1LE",
+			"domain": "validator.ripple.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHDDasc9BHNB99PW8KUduS8Phqg8NPUmjufzMU6HGGDMUH2xNpPh",
+			"domain": "validator.ripple.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHU2Y1mLGDvTbc2dpvpkQ16qdeTKv2aJwGJHFySSB9U3jkTmj4CA",
+			"domain": "validator.ripple.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUon2tpyJEHHYGmxqeGu37cvPYHzrMtUNQFVdCgGNvEkjmCpTqK",
+			"domain": "validator.ripple.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUUrjuEMtvzzTsiW2xKinUt7Jd83QFqYgfy3Feb7Hq1EJyoxoSz",
+			"domain": "validator.ripple.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUzum747yqip3HWSgzSNHNMjmLUqhroNVWidSRTREswEVhKNQEM",
+			"domain": "validator.ripple.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHBSUZJnqK5BRu3bWAmebfkETNeEFmU7sm3DXzCuEYzRkAEdxuTy",
+			"domain": "validator.xrpchat.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUkp7WhouVMobBUKGrV5FNqjsdD9zKP5jpGnnLLnYxUQSGAwrZ6",
+			"domain": "validator1.worldlink-us.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHBgiH2aih5JoaL3wbiiqSQfhrC21vJjxXoCoD2fuqcNbriXsfLm",
+			"domain": "www.attokyo.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUFzgC9fDw2MEDaiv9JMdBFhtJ6DMKoUCpS8gPGi6tkfbqmTyis",
+			"domain": "www.bahnhof.se",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUryiyDqEtyWVtFG24AAhaYjMf9FRLietbGzviF3piJsMm9qyDR",
+			"domain": "www.bitrue.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUERu1nWxv2PAtFAPKWuy6gSVhsMhSY8A52m8P7R2ZwrH7upuym",
+			"domain": "www.okonto.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHDDE4Y3z5EE2VDDYrzheYQ4xC3F29SJsKT4dqhX4iyTLhuWgZnp",
+			"domain": "xrp.coinfield.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUXeusfwk61c4xJPneb9Lgy7Ga6DVaVLEyB29ftUdt9k2KxD6Hw",
+			"domain": "validator.xrptipbot.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 3, "total": 932, "score": "0.9968", "incomplete": false },
+			"agreement_24h": { "missed": 6, "total": 4313, "score": "0.9986", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUfPizyJyhAJZzeq3duRVrZmsTZfcLn7yLF5s2adzHdcHMb9HmQ",
+			"domain": "xrp.unic.ac.cy",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 32, "total": 4313, "score": "0.9926", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUUoKx6x12K5DtWCeuy3AYT6qmi2J37yUriVRVmMixjaYbZ6WVC",
+			"domain": "achterhoek-xrpl.nl",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDpbBXLzgktPjgcEEpb1Q9YgNDnZBPdHRXHza8PNLbUpGFxBZxV",
+			"domain": "area51.number8.us",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBgHh7F29Wd44Bci1aWH7BH71mqXtrncKi6F3ifBUWVX8yc2aYB",
+			"domain": "blockchain.capital",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBcVRfZ5RTL5mUQcd5uBxkJ5Jz6HmWu9QMykuBoxdn1SCKUCcj7",
+			"domain": "innotec-automation.global",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUvcCcmoH1FJMMC6NtF9KKA4LpCWhjsxk2reCQidsp5AHQ7QY9H",
+			"domain": "jon-nilsen.no",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBZpi7meqMBF4Dy7JJKdinJF5jh7sgV3BKGruV8BFKCKJpr6ndc",
+			"domain": "kka72.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUY14bKLLm72ukzo2t6AVnQiu4bCd1jkimwWyJk3txvLeGhvro5",
+			"domain": "rippled.gatehub.net",
+			"chain": "main",
+			"current_index": 55100149,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDHzXZKtmMHCkTVgdWY4dqdigDrESiseUF8JkzE93DUtfbt6s3W",
+			"domain": "validator.aspired.nz",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUbgDd63HiuP68VRWazKwZRzS61N37K3NbfQaZLhSQ24LGGmjtn",
+			"domain": "xrp-col.anu.edu.au",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBTqw7vwjqrSMruoQNYmSXcrBmQHDquG7jgvrsQpurGaVELqdNx",
+			"domain": "xrp.ninja",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUDYMuP6RwQhEPMnV1j4CNG5oZrsqFW73FaRtnhgUGtzuxxC7my",
+			"domain": "xrp.peglegg.net",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUwGQrfZfieeLFeGRdGnAmGpHBCZq9wvm5c59wTc2JhJMjoXmd8",
+			"domain": "xrpgoat.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n94JynTWiUpGASCgov21F4FQtWE8mJ2Yq6gjdu7w4HjPN9phouaQ",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n94w5cD8S1bZfUtiucN8kG1a88M8u23pSa2gMjERWGTU3a43drbN",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9J1sgyAybmaHoyegX8RjzmSuVCCYHUutCVwf7Zj8vrEHVykxtmX",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9JY6nKQwPq6TmGBmvju6cWUnDm9VmzjpHhgJjzBk71op1quQE3S",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9JygWmNshQoUgshYtQ9vrzgKzbZgW78b8JkgQLH8cav4xEJ9GVB",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9KoW7gMxUpYXidfoZ5RraH4BFsufSVvYXfx4aHCe2r5cVL31VQM",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9KpyNXsw2PuB4ddtoZL2hNjvcXHPjk2mLMKK68J4anCJ5Pw6m7F",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9KRxsKfqZN86yrN48W198Rs9GDafeB14Wv1kmpWAxtf3vjstS7P",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9KT8HvWHZzSCNno5rjSv8aB42NSpCeQdKYnSaA3ppqz7ffF2Jdn",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9L5sNXse4p9r93WYGXvf97p2gCSVAzyXTjx5W4senoJH6duD8Q2",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9LCpw5idK9Fys1kBKCLNN5Cutjb8yZJaaChs6vcu2KgFwrVeGa8",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9Li7bn44YmeY1U15cypxi35nwR9iU4aGidoNTGkWttHtfZ27ixS",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9LjdFfiUrrygQcFWJ648nyDGBqscSxxoLPXxq2p1KEPUVDHMjkN",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9LMHvoknpjRx6FKBdqw31ETND3EqdLSLBsXNptgdi2cDm4HYovV",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9LNHSzzvpfbMUQekFW7RatS6ATwb6oDLNpW42eJ8L85k45hAe1h",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9Lw7K82CKeMTTpY7C8Lu22RE5tjZAZxYnBDV3fpFzJWzNVBDjgV",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9LZF2bp3VdZTk9jSGW3rNF6vLQHgGmEKgQ9MypfhRPRxcDcSNEn",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9M5Vevi4P9EzQUeH1ZttQrw4UgRkt9aga4NahN853G6H8wBBHGw",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9MAjUuwG2Dwk1VBpfS1kpHR5Z5uLnQiLhWZrAn9c5NSzSR7avFb",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9MbQHzKWxgK2ZzCDutdcnhrXWaNjA6zMf5xs4e3DFBYZpDs3p7v",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9MMXALmi94nMiVCL2HsHnUMqURZ3aB15HbQcZ1WnZ2NcsKMkvcA",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9Mnh1VKcGUMfKjWXtyygtN15UcT4dgYcRSvpUxYhqPAuoB1Eig6",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9MotZJwPTsZRdrh2Ckhv4GoF4rBaiLeSCniaG9JpUgTbYHLwWBx",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9MpQWECAp6SkzwXWmoL9TWPoKgKgzpKVT9rS8gB4ymKnVTUUCNu",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9MS7T1XqZgBaYQGv4JUcz2VRt2mKoaHMzH3QFLethRtULU6W6mD",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9MZUFo2NeHiDSUKf77mfnMFSjqXGPrpwNE6Ce9G8rW8kHwUZw6i",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHB1vJRfvuEnzGeXffkfWMa6k3FqgTGxJefrsFiRu8WhgWNWoG4f",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHB8LzFUQXkHVrVd9Mgsm63ze8KCnDBytMHCW26DvPQfQtYQTrB8",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBCbomMyURfxFiPAt8whWp4T83hrvosgCfrw693sGKT3xknwa7p",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBkSWZdpNB2JTQe1QrS7fxo6HCsexy6PNbC3BTzL1Ws1c44LudK",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBmJuwMPRh2mLrYhUdFHNKrZ3cwXEkiGAKXESM4mDvQKMF8WAp7",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBQGxVE1LqWYKTecN4NstuaUKmmkVaLHDVhZEBKiRHFMpTXFns1",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBqXBxRAWNQLJX6zcd3ErY3ojgXoxsoN2Ssj3rvXKgBPQHZD4qm",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBTRF3Ws5MCLun6s7PsvzdrjbShGD9btJNFL3QH9SMcG5btRyWP",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBtvDkom1qKGD7EeCdMCKchu5ZDj4rXncPqV46GkDt3DD16zjDT",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDaW3sopBasd3CDwLEm1D4NaKQbD7eHEuMxznCY9zp1WeC6U1N2",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDG3MbbusKKEBERbnD4khXwhY5Htj8pBcwK1L7CRinz228RcZBh",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDhY9GciXjLUzQAYWBjg9js5PXvdAN775aVLEko5k3ndeAzcjZV",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDJhUChqei5Xep1uKrK4qKfPSGUxKWXEcNU1QtXCkUBRHg64vrv",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDpMb5BvPes4pwKWugtGK25EtDkT8TYQ5wxgZW7a3hoYKLHiBDn",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHU3oemYvcHtQd22UoFBg5fZoRSwkTxNSu6peMnvrPsHzxtknrs1",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHU4d1mJ1ZynyS2bHpeTQgT2YxEftX6dADCt6tTmWLPfXav4HZvS",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUaJWgLAytFYacmRDpNdnjBgea5NW9wXpVYadNU24MH1CsDNJto",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUBg4SZkdTFF9VkoHBL1XcMuBTpNNAnuvSguf4MCpCLhMCGXjvY",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUfTBpTqix6JoucesokMraJHVmCpGqm3FLciKhpEw1jNmBT7G8k",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUHg4f6tmvMitLNqzDSZfpGtPpXpcMn5reW4VVEYwuSnVqnWoU4",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUjp3XQsLrUUCVhnQpCcLwk8Nom3vUyCwG1mCXiWD69nYVDigck",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHULmxFNsqXzEs5ymWxpcfQJuvUh6GpUrDjq7AKqgwL2TPvvbJGL",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUmAgHPX7cCE81qwiFinP6wUua4sTvX4GZTocfCxXYXKJVccNSu",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUq9tJvSyoXQKhRytuWeydpPjvTz3M9GfUpEqfsg9xsewM7KkkK",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUt5eiM9pBBqqCSVdYEf5QCKfPwYJUohX2W5ZctP2vZAZKXCpF1",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUYCWKHneUR4MFksuYsvf48qbXKRFCyJC3MuZctewnM4r75GEah",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 4313, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUC71xjuGYEyC3rD95Jspkkv9dVyPUPZuV19cSq996dbvE5KgSJ",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 1, "total": 4313, "score": "0.9998", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9LQm7kUMur5mpu3whaPthdgoBkCZpEDYtcFphX5nYhQkP2fRZDG",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 3, "total": 4313, "score": "0.9993", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBQQzb2javqhwiB5Szky89Zb7xHR1H3TLetQXQk7b3kFgcQXnFp",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 3, "total": 932, "score": "0.9968", "incomplete": false },
+			"agreement_24h": { "missed": 3, "total": 4313, "score": "0.9993", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUnprXnkhBgaE6BHRrT8Lk1RAnUzNbePPsU1FGzfMkuxLNhqgaU",
+			"domain": "xrplvalidator.it",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 5, "total": 4313, "score": "0.9988", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9J5AxockQFzTdE1hjqCNopovEGJC3wBVFgwBN3yJrQ97NuwpP6E",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 5, "total": 4313, "score": "0.9988", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9JcRaxEnjETGs9Wj6vn3S6j2SKVh5nmdYt66nAH2JEWeWggESfA",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 11, "total": 4313, "score": "0.9974", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9MpcWYwm6AnZxuqPbCXumC4dRtyAmnnbufFRQkDu7tAtrJ6Zr8c",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 11, "total": 932, "score": "0.9882", "incomplete": false },
+			"agreement_24h": { "missed": 11, "total": 4313, "score": "0.9974", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHU5K6FHncbjpbn5fMccnr8L2VZBxwTZTNqR4YueSnxvVspMYHUs",
+			"domain": "fintechlab.nus.edu.sg",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 8, "total": 932, "score": "0.9914", "incomplete": false },
+			"agreement_24h": { "missed": 14, "total": 4313, "score": "0.9968", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9MF18rxSmVRCaxwyKYgf9263zGGk4vtiSu4kkiS1sgHSAV4mTb2",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 3, "total": 932, "score": "0.9968", "incomplete": false },
+			"agreement_24h": { "missed": 21, "total": 4313, "score": "0.9951", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9MBehiWwT9vL87f8krX2uozV82iwtc4fQBpWsN9mrRVtyKFXvnh",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 23, "total": 932, "score": "0.9753", "incomplete": false },
+			"agreement_24h": { "missed": 50, "total": 4313, "score": "0.9884", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9J2N3FfiUFC4rBX5UBob8JzgDGsYqUou1cwKdsaymS44mZDfnYe",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 17, "total": 932, "score": "0.9818", "incomplete": false },
+			"agreement_24h": { "missed": 67, "total": 4313, "score": "0.9845", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUMb2kF5UCNAHnvu4HasLnkA9tWfDwMvZzroDi6aFA5kSiJ1T35",
+			"domain": "xrp.tmnet.ch",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 115, "total": 4313, "score": "0.9733", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBXke3oiCbLUh6djgo2BBwFb2VgQVtZoWPST6qQ2Thp5Svxbfn7",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 115, "total": 4313, "score": "0.9733", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDrLx922fT4uvtvRaxYZRBsDaAbEsYqS1CVTGxHifA6V42Z4x4n",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 117, "total": 4313, "score": "0.9729", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBRixvVgQ62khJkw4tWMKwV5tJYP5u344hfD7UevkmymsfjRCqF",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 118, "total": 4313, "score": "0.9726", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDwRLKP9oZ5pHb1Upzcf9NQfezCTarPmtfgfKyV9QgKsYqEmd2n",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 118, "total": 4313, "score": "0.9726", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUpA5L8ArPCEg2T7RZahDooUwP3EX7Nfed2yCbor1bUk9Y6Gbv1",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 118, "total": 4313, "score": "0.9726", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHU3SxK97kcgzrXrthCcjJyX9ZuBJguzZ2JMoxXuLbEHT9hWmyuf",
+			"domain": "doark.se",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 149, "total": 4313, "score": "0.9655", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBehsyQnjdv7VSkuVGahAEW1dF2mFhpqY3ZfBX6nEtcoivmioiC",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 203, "total": 4313, "score": "0.9529", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9Mb8ZiVL6bepu2QbSTbPMNVJp4TUj2cRq4qY7A9EMyAdRaKiCnD",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 287, "total": 4313, "score": "0.9335", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHU7qBHEyxBqzrnjhpujuXGGfgG6zcJouAkeKGTzNG562zA4m9xa",
+			"domain": "codius.is",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 362, "total": 4313, "score": "0.9161", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHU5yQccDKd25MBmpSZGFXNA5KDkBgSkPGQg9xfmKGGYwteLWyVn",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 590, "total": 4313, "score": "0.8632", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHB6u7fyXpdcKi11AiAz3qs3rTmZrqgtSeiyyC3KXVyygxZjiDsK",
+			"domain": "www.willowcreekvalidator.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 949, "total": 4313, "score": "0.7800", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9LK6xCKVeHi5QiC7ZvUeqotf4m6JKH1oSk8tHBojiPxvXgA9haE",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 963, "total": 4313, "score": "0.7767", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDfQ1f1xY6ZQ4nZDkWGFp3oQFc7sr6jpKfe4jGLviaoULXyww24",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 1637, "total": 4313, "score": "0.6204", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUcMtqboWQ5Y4YziPS1FeBPUwLREeVoyMbMEqFqeLiyyuPuwWkA",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 2894, "total": 4313, "score": "0.3290", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDDJA9S8xmFJShnC1CLCQNTCj98GdQv2xpbY1AZ9kWMJLZMB9h1",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 3174, "total": 4313, "score": "0.2641", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDww6rU6tCH5SCjJprU43LLBSHPVUGy3DioG6peiPvP7DYHyfeF",
+			"domain": "validator.xrparcade.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 3241, "total": 4313, "score": "0.2486", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHDHBMoGSxb2dHYWWrp82PpucCoU257TseUXCgVidBPiJmn4Hzh9",
+			"domain": "sawdustinmybeer.com",
+			"chain": "main",
+			"current_index": 55100150,
+			"agreement_1h": { "missed": 0, "total": 932, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 3359, "total": 4313, "score": "0.2212", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBbiP5ua5dUqCTz5i5vd3ia9jg3KJthohDjgKxnc7LxtmnauW7Z",
+			"domain": "ripple.com/build/xrp-test-net/",
+			"chain": "altnet",
+			"current_index": 6680982,
+			"agreement_1h": { "missed": 0, "total": 1173, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 5417, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHBQ3CT3EWYZ4uzbnL3k6TRf9bBPhWRFVcK1F5NjtwCBksMEt5yy",
+			"domain": "ripple.com/build/xrp-test-net/",
+			"chain": "altnet",
+			"current_index": 6680982,
+			"agreement_1h": { "missed": 0, "total": 1173, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 5417, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHDDe5uAdiv6RA59MA1oM4JLDtVSYKNShgjEqq1KsdJXZiR47CQT",
+			"domain": "ripple.com/build/xrp-test-net/",
+			"chain": "altnet",
+			"current_index": 6680982,
+			"agreement_1h": { "missed": 0, "total": 1173, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 5417, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHDDiwQBqXhEL1CFoRHdMXD33x9K7rpYJfniXxL7kFavpPd21EGe",
+			"domain": "ripple.com/build/xrp-test-net/",
+			"chain": "altnet",
+			"current_index": 6680982,
+			"agreement_1h": { "missed": 0, "total": 1173, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 5417, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUCAdca6VoWWYVdBH1bwCUQggEX2e5acQSqxM3DwyuhsFknxmh3",
+			"domain": "ripple.com/build/xrp-test-net/",
+			"chain": "altnet",
+			"current_index": 6680982,
+			"agreement_1h": { "missed": 0, "total": 1173, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 5417, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHUeUNSn3zce2xQZWNghQvd9WRH6FWEnCBKYVJu2vAizMxnXegfJ",
+			"domain": "ripple.com/build/xrp-test-net/",
+			"chain": "altnet",
+			"current_index": 6680982,
+			"agreement_1h": { "missed": 0, "total": 1173, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 5417, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": true
+		},
+		{
+			"validation_public_key": "nHBXYbTSQeDqUC6EpzFidDueSDtHBNYn95aevfv6DHAjgSy49RrB",
+			"chain": "altnet",
+			"current_index": 6680982,
+			"agreement_1h": { "missed": 0, "total": 1173, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 338, "total": 5417, "score": "0.9376", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBvn7HyWjcBkwTo6oyW1kNUSPzuD2NDMh2wboD518xTCZPYX56b",
+			"chain": "altnet",
+			"current_index": 6680982,
+			"agreement_1h": { "missed": 49, "total": 1173, "score": "0.9582", "incomplete": false },
+			"agreement_24h": { "missed": 1019, "total": 5417, "score": "0.8119", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUP6rfQfgzg6tKga3k9ziEvtjwn1PB32gcr5dLcamqzmitszYv2",
+			"chain": "chain.4",
+			"current_index": 8531590,
+			"agreement_1h": { "missed": 0, "total": 1044, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 5284, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n94ruXQ89pQd13LS34UfKjehDSivceLyQoYnbHat1L4fRwSvfseJ",
+			"chain": "chain.6",
+			"current_index": 215429,
+			"agreement_1h": { "missed": 0, "total": 1201, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 5555, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBxsUzx3Bbf6J4yJ3fLQ3VizPtdREVwTJ6mdqkuDTjLcVbggVbk",
+			"chain": "chain.4",
+			"current_index": 8531590,
+			"agreement_1h": { "missed": 0, "total": 1044, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 5284, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUiGRiCaR392YVi4QMb8GdRxJmn89TVm87dNKkVLV8A5PtVAVFv",
+			"chain": "chain.4",
+			"current_index": 8531590,
+			"agreement_1h": { "missed": 0, "total": 1044, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 2035, "total": 5284, "score": "0.6149", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBu3iuq1SQ9Z686pYwWYVKpScSMDWfpUJHdNEQRxn5XyETui7Db",
+			"chain": "chain.4",
+			"current_index": 8531590,
+			"agreement_1h": { "missed": 0, "total": 1044, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 5284, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9KwpWnQCX7k3YMx8UVgj1RkjC9vbPSvfrWfFsmbi5x1LgVvR8D6",
+			"chain": "chain.848",
+			"current_index": 55100143,
+			"agreement_1h": { "missed": 0, "total": 20, "score": "1.0000", "incomplete": true },
+			"agreement_24h": { "missed": 0, "total": 20, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9M2wVVS3UxjV3PZd4oqvxMHrzN8BeBt8QoQnMyLNEEwMYjeHQoK",
+			"chain": "chain.851",
+			"current_index": 55100147,
+			"agreement_1h": { "missed": 0, "total": 9, "score": "1.0000", "incomplete": true },
+			"agreement_24h": { "missed": 0, "total": 9, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBdsr9RKuExUyHmJvtdziM5aDBEeWRCGj2JbPxYasv7Ehj4Nt5Y",
+			"chain": "chain.4",
+			"current_index": 8531590,
+			"agreement_1h": { "missed": 0, "total": 1044, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 2035, "total": 5284, "score": "0.6149", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUpm2QjBsy5pBNeReTSF2fhsyP3NZAQreRPC1BRzEBv1n9z5R5G",
+			"chain": "chain.4",
+			"current_index": 8531590,
+			"agreement_1h": { "missed": 0, "total": 1044, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 2035, "total": 5284, "score": "0.6149", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUFFQiCqE7p4r3FhR1DWsg1Q7aKMWMLmJuWMsqX4q8hpP9R84ic",
+			"chain": "chain.5",
+			"current_index": 30196838,
+			"agreement_1h": { "missed": 0, "total": 1202, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 5559, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBCrWfY84KnFbKqDhid7am76nPAZ1ZbkG23im9ncyUcJhk15Sw7",
+			"chain": "chain.749",
+			"current_index": 590,
+			"agreement_1h": { "missed": 0, "total": 585, "score": "1.0000", "incomplete": true },
+			"agreement_24h": { "missed": 0, "total": 585, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "n9LWs7z4unW774UoathsB6tJf7VB5Wj7LxNo5e29dZE8DXRM4HQ3",
+			"chain": "chain.850",
+			"current_index": 55100146,
+			"agreement_1h": { "missed": 0, "total": 9, "score": "1.0000", "incomplete": true },
+			"agreement_24h": { "missed": 0, "total": 9, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBWLt9j257dKSN2KoL9j2up52yLYnws38GPPFbBz9jrMfwie5u3",
+			"domain": "validator.ewi.tudelft.nl",
+			"chain": "chain.852",
+			"current_index": 55100144,
+			"agreement_1h": { "missed": 0, "total": 2, "score": "1.0000", "incomplete": true },
+			"agreement_24h": { "missed": 0, "total": 2, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHUJ2794GwXin83Lf9GSHUxBKsUkTqGSJSmuMBNKLKXoAnvxxm6A",
+			"chain": "chain.4",
+			"current_index": 8531590,
+			"agreement_1h": { "missed": 0, "total": 1044, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 2035, "total": 5284, "score": "0.6149", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBT58yHyDdPdJ6gzaBMT7gqwTMpj5ERji1s9SvfKKtfoZUS89WX",
+			"chain": "chain.4",
+			"current_index": 8531590,
+			"agreement_1h": { "missed": 0, "total": 1044, "score": "1.0000", "incomplete": false },
+			"agreement_24h": { "missed": 0, "total": 5284, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		},
+		{
+			"validation_public_key": "nHBgty4rNxWHc2vkiQPNpDt1NTBxFm2mMxWFsZmpYgUG2YSbhEQG",
+			"chain": "chain.847",
+			"current_index": 55100140,
+			"agreement_1h": { "missed": 0, "total": 22, "score": "1.0000", "incomplete": true },
+			"agreement_24h": { "missed": 0, "total": 22, "score": "1.0000", "incomplete": true },
+			"partial": false,
+			"unl": false
+		}
+	]
+}

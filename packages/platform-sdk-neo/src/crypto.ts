@@ -2,23 +2,23 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class Crypto implements Contracts.Crypto {
 	public createTransfer(data: Contracts.KeyValuePair): object {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'createTransfer');
+		throw new Exceptions.NotImplemented(this.constructor.name, "createTransfer");
 	}
 
 	public createSecondSignature(data: Contracts.KeyValuePair): object {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'createSecondSignature');
+		throw new Exceptions.NotImplemented(this.constructor.name, "createSecondSignature");
 	}
 
 	public createDelegateRegistration(data: Contracts.KeyValuePair): object {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'createDelegateRegistration');
+		throw new Exceptions.NotImplemented(this.constructor.name, "createDelegateRegistration");
 	}
 
 	public createVote(data: Contracts.KeyValuePair): object {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'createVote');
+		throw new Exceptions.NotImplemented(this.constructor.name, "createVote");
 	}
 
 	public createMultiSignature(data: Contracts.KeyValuePair): object {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'createMultiSignature');
+		throw new Exceptions.NotImplemented(this.constructor.name, "createMultiSignature");
 	}
 
 	public createIpfs(data: Contracts.KeyValuePair): object {

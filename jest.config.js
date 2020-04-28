@@ -14,7 +14,7 @@ module.exports = {
 	verbose: false,
 	globals: {
 		"ts-jest": {
-			packageJson: "./package.json"
-		}
-	}
+			packageJson: "./package.json",
+		},
+	},
 };

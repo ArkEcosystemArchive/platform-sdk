@@ -8,11 +8,11 @@ export class Delegate implements Contracts.Delegate {
 	}
 
 	public getAddress(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getAddress');
+		throw new Exceptions.NotImplemented(this.constructor.name, "getAddress");
 	}
 
 	public getPublicKey(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getPublicKey');
+		return this.#data.validation_public_key;
 	}
 
 	/**

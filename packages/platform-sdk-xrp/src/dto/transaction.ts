@@ -9,51 +9,51 @@ export class Transaction implements Contracts.Transaction {
 	}
 
 	public getId(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getId');
+		return this.#data.hash;
 	}
 
 	public getType(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getType');
+		throw new Exceptions.NotImplemented(this.constructor.name, "getType");
 	}
 
 	public getTypeGroup(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getTypeGroup');
+		throw new Exceptions.NotImplemented(this.constructor.name, "getTypeGroup");
 	}
 
 	public getTimestamp(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getTimestamp');
+		return +new Date(this.#data.date);
 	}
 
 	public getConfirmations(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getConfirmations');
+		return BigNumber.ZERO;
 	}
 
 	public getNonce(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getNonce');
+		return this.#data.tx.Sequence;
 	}
 
 	public getSender(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getSender');
+		return this.#data.tx.Account;
 	}
 
 	public getRecipient(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getRecipient');
+		return this.#data.tx.Destination;
 	}
 
 	public getAmount(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getAmount');
+		return BigNumber.make(this.#data.tx.Amount);
 	}
 
 	public getFee(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getFee');
+		return BigNumber.make(this.#data.tx.Fee);
 	}
 
 	public getVendorField(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getVendorField');
+		throw new Exceptions.NotImplemented(this.constructor.name, "getVendorField");
 	}
 
 	public getBlockId(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getBlockId');
+		throw new Exceptions.NotImplemented(this.constructor.name, "getBlockId");
 	}
 
 	/**

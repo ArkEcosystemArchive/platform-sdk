@@ -9,15 +9,15 @@ export class Wallet implements Contracts.Wallet {
 	}
 
 	public getAddress(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getAddress');
+		return this.#data.account;
 	}
 
 	public getPublicKey(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getPublicKey');
+		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
 	}
 
 	public getBalance(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getBalance');
+		return BigNumber.make(this.#data.balance * 1e8);
 	}
 
 	/**
