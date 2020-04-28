@@ -753,6 +753,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.0.5"],
             ["rimraf", "npm:3.0.2"],
             ["ripple-keypairs", "npm:1.0.0"],
+            ["ripple-lib", "npm:1.6.5"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:25.4.0"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"]
           ],
@@ -3204,6 +3205,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/lodash", [
+        ["npm:4.14.150", {
+          "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.150-a71293c86b-2.zip/node_modules/@types/lodash/",
+          "packageDependencies": [
+            ["@types/lodash", "npm:4.14.150"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/long", [
         ["npm:4.0.1", {
           "packageLocation": "./.yarn/cache/@types-long-npm-4.0.1-022c8b6e77-2.zip/node_modules/@types/long/",
@@ -3331,6 +3341,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-stack-utils-npm-1.0.1-e2f2f7a882-2.zip/node_modules/@types/stack-utils/",
           "packageDependencies": [
             ["@types/stack-utils", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/ws", [
+        ["npm:7.2.4", {
+          "packageLocation": "./.yarn/cache/@types-ws-npm-7.2.4-4bfc60bd64-2.zip/node_modules/@types/ws/",
+          "packageDependencies": [
+            ["@types/ws", "npm:7.2.4"],
+            ["@types/node", "npm:12.12.31"]
           ],
           "linkType": "HARD",
         }]
@@ -6578,6 +6598,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["decamelize-keys", "npm:1.1.0"],
             ["decamelize", "npm:1.2.0"],
             ["map-obj", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["decimal.js", [
+        ["npm:10.2.0", {
+          "packageLocation": "./.yarn/cache/decimal.js-npm-10.2.0-9960ab19c0-2.zip/node_modules/decimal.js/",
+          "packageDependencies": [
+            ["decimal.js", "npm:10.2.0"]
           ],
           "linkType": "HARD",
         }]
@@ -10892,6 +10921,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["jsonschema", [
+        ["npm:1.2.2", {
+          "packageLocation": "./.yarn/cache/jsonschema-npm-1.2.2-265000400b-2.zip/node_modules/jsonschema/",
+          "packageDependencies": [
+            ["jsonschema", "npm:1.2.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["jsprim", [
         ["npm:1.4.1", {
           "packageLocation": "./.yarn/cache/jsprim-npm-1.4.1-948d2c9ec3-2.zip/node_modules/jsprim/",
@@ -11188,6 +11226,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lodash.get-npm-4.4.2-7bda64ed87-2.zip/node_modules/lodash.get/",
           "packageDependencies": [
             ["lodash.get", "npm:4.4.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["lodash.isequal", [
+        ["npm:4.5.0", {
+          "packageLocation": "./.yarn/cache/lodash.isequal-npm-4.5.0-f8b0f64d63-2.zip/node_modules/lodash.isequal/",
+          "packageDependencies": [
+            ["lodash.isequal", "npm:4.5.0"]
           ],
           "linkType": "HARD",
         }]
@@ -14605,6 +14652,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["ripple-binary-codec", [
+        ["npm:0.2.6", {
+          "packageLocation": "./.yarn/cache/ripple-binary-codec-npm-0.2.6-d5905ad32c-2.zip/node_modules/ripple-binary-codec/",
+          "packageDependencies": [
+            ["ripple-binary-codec", "npm:0.2.6"],
+            ["babel-runtime", "npm:6.26.0"],
+            ["bn.js", "npm:5.1.1"],
+            ["create-hash", "npm:1.2.0"],
+            ["decimal.js", "npm:10.2.0"],
+            ["inherits", "npm:2.0.4"],
+            ["lodash", "npm:4.17.15"],
+            ["ripple-address-codec", "npm:4.1.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["ripple-keypairs", [
         ["npm:1.0.0", {
           "packageLocation": "./.yarn/cache/ripple-keypairs-npm-1.0.0-d6e4ca9797-2.zip/node_modules/ripple-keypairs/",
@@ -14615,6 +14678,38 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["elliptic", "npm:6.5.2"],
             ["hash.js", "npm:1.1.7"],
             ["ripple-address-codec", "npm:4.1.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["ripple-lib", [
+        ["npm:1.6.5", {
+          "packageLocation": "./.yarn/cache/ripple-lib-npm-1.6.5-071b239459-2.zip/node_modules/ripple-lib/",
+          "packageDependencies": [
+            ["ripple-lib", "npm:1.6.5"],
+            ["@types/lodash", "npm:4.14.150"],
+            ["@types/ws", "npm:7.2.4"],
+            ["bignumber.js", "npm:9.0.0"],
+            ["https-proxy-agent", "npm:4.0.0"],
+            ["jsonschema", "npm:1.2.2"],
+            ["lodash", "npm:4.17.15"],
+            ["lodash.isequal", "npm:4.5.0"],
+            ["ripple-address-codec", "npm:4.1.1"],
+            ["ripple-binary-codec", "npm:0.2.6"],
+            ["ripple-keypairs", "npm:1.0.0"],
+            ["ripple-lib-transactionparser", "npm:0.8.2"],
+            ["ws", "virtual:071b239459ed2cbd72c0bce64d8af6448b65f68635687fb0a718864f265a6c2a44fc28a9b894611c6591fca4a5902c83b3257ab6627b86ff6973df4a664724ac#npm:7.2.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["ripple-lib-transactionparser", [
+        ["npm:0.8.2", {
+          "packageLocation": "./.yarn/cache/ripple-lib-transactionparser-npm-0.8.2-f9209159cf-2.zip/node_modules/ripple-lib-transactionparser/",
+          "packageDependencies": [
+            ["ripple-lib-transactionparser", "npm:0.8.2"],
+            ["bignumber.js", "npm:9.0.0"],
+            ["lodash", "npm:4.17.15"]
           ],
           "linkType": "HARD",
         }]
@@ -17445,6 +17540,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["async-limiter", "npm:1.0.1"],
             ["safe-buffer", "npm:5.1.2"],
             ["ultron", "npm:1.1.1"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:071b239459ed2cbd72c0bce64d8af6448b65f68635687fb0a718864f265a6c2a44fc28a9b894611c6591fca4a5902c83b3257ab6627b86ff6973df4a664724ac#npm:7.2.5", {
+          "packageLocation": "./.yarn/$$virtual/ws-virtual-719c72c2e0/0/cache/ws-npm-7.2.5-532f8d69fc-2.zip/node_modules/ws/",
+          "packageDependencies": [
+            ["ws", "virtual:071b239459ed2cbd72c0bce64d8af6448b65f68635687fb0a718864f265a6c2a44fc28a9b894611c6591fca4a5902c83b3257ab6627b86ff6973df4a664724ac#npm:7.2.5"],
+            ["bufferutil", null],
+            ["utf-8-validate", null]
+          ],
+          "packagePeers": [
+            "bufferutil",
+            "utf-8-validate"
           ],
           "linkType": "HARD",
         }],

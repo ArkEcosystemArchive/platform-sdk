@@ -1,0 +1,21 @@
+{
+	"validation_public_key": "nHBidG3pZK11zQD6kpNDoAhDxH6WLGui6ZxSbUx7LSqLHsgzMPec",
+	"domain": "bitso.com",
+	"chain": "main",
+	"current_index": 55100147,
+	"agreement_1h": {
+		"missed": 0,
+		"total": 932,
+		"score": "1.0000",
+		"incomplete": false
+	},
+	"agreement_24h": {
+		"missed": 0,
+		"total": 4311,
+		"score": "1.0000",
+		"incomplete": true
+	},
+	"partial": false,
+	"unl": true,
+	"result": "success"
+}

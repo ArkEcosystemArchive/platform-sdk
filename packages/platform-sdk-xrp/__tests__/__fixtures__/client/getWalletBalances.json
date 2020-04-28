@@ -1,0 +1,441 @@
+{
+	"result": "success",
+	"ledger_index": 55100377,
+	"limit": 200,
+	"balances": [
+		{
+			"currency": "XRP",
+			"value": "7586.629536"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rhQ69TqAvwqcQRrjE1t5D8CFRczrgaPXiz",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rB31eWvkfKBAu6FDD9zgnzT4RwSfXGcqPm",
+			"value": "-1"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B",
+			"value": "0"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rQaxmmRMasgt1edq8pfJKCfbkEiSp5FqXJ",
+			"value": "-0.0000249975"
+		},
+		{
+			"currency": "USM",
+			"counterparty": "rUSM579pzzmXHEnJHa7AzzD1oS8KvckFHa",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rDZ8QghKF4C11pmbVAkqumPTehiF8mfHt3",
+			"value": "0"
+		},
+		{
+			"currency": "UAM",
+			"counterparty": "rUAMuQTfVhbfqUDuro7zzy4jj4Wq57MPTj",
+			"value": "0"
+		},
+		{
+			"currency": "PLM",
+			"counterparty": "rPLmh5ZsiWumL2UdbVLJoMT5RnDqsEgDHM",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rh6pSFQp2Vg8qboWYEszhr24JLChZa3d1h",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rEopG7qc7ZWFMvCSH3GYeJJ7GPAQnKmxgw",
+			"value": "0"
+		},
+		{
+			"currency": "BYM",
+			"counterparty": "rBYMJs5iQRcbtkysQB1n8cS97D4vMK9KT8",
+			"value": "0"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "r4FW8Lk1trBKcoJfyCedQfnspa8RZArN3G",
+			"value": "0"
+		},
+		{
+			"currency": "CHM",
+			"counterparty": "rCHMiLbRtjfjUdxurx9ovt7s9maLLw1iW",
+			"value": "0"
+		},
+		{
+			"currency": "MOO",
+			"counterparty": "r9kCCzAA3vvWxUSgJVjnmmxwtv8xNLVnYs",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "razecPiiYyU3dgW26EdreMJPnrVNiL5ydY",
+			"value": "-100"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rMyFEkYYTjzN23Qznon6yPtw297AV124ER",
+			"value": "-0.0000000034960247885"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rQay7bQ3XoZcT6E3c8uDopZdnWaMBxWea2",
+			"value": "-0.003217539117702197"
+		},
+		{
+			"currency": "MOO",
+			"counterparty": "rJqp88XAHSEof7XZCbYD1haVp5tCKCrbQm",
+			"value": "0"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "r3kpnqtBavDPnVbzMr7syzSdCMGKUApo4P",
+			"value": "-3377110000000000e-27"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rU5KBPzSyPycRVW1HdgCKjYpU6W9PKQdE8",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rULnR9YhAkj9HrcxAcudzBhaXRSqT7zJkq",
+			"value": "-11.25226629186226"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rB8n6nmZg93gcv5F9EDHE3u9cnp5BwWey7",
+			"value": "-27.01495999999999"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rhdAw3LiEfWWmSrbnZG3udsN7PoWKT56Qo",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rwadekMtrnCfPYf9s6UfTSipCdvfLe3zN3",
+			"value": "-100"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rPJAPJ844BivGZbdwJqsChicrG7swYvcJ2",
+			"value": "0"
+		},
+		{
+			"currency": "UNM",
+			"counterparty": "rUNMupAKF6d2SRg9LAqYPVZiWHTiPXBseH",
+			"value": "0"
+		},
+		{
+			"currency": "CNC",
+			"counterparty": "rs4mVFV97Um5T6DcK7q3ZXg11ULm6ZD9Ed",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rM1oqKtfh1zgjdAgbFmaRm3btfGBX25xVo",
+			"value": "-3"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rrhoN8i2PT2FcgkvWTiyfzZ2PRMqtDVYyJ",
+			"value": "0"
+		},
+		{
+			"currency": "CNY",
+			"counterparty": "rsqBYnzwuxFd3UbK8ip72aNWHu3D5PT11q",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "r9BFYMX3uNRpVkNXKihN7NmF1eBJvsXk4W",
+			"value": "-476.94"
+		},
+		{
+			"currency": "RUM",
+			"counterparty": "rRU3PLyN3eYRCmZi7GQRojdzjp3z3PG22",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "r32UufnaCGL82HubijgJGDmdE5hac7ZvLw",
+			"value": "0"
+		},
+		{
+			"currency": "KZM",
+			"counterparty": "rKZMur9jjyG1GkyjUnEVn1SZpNbCmWis5J",
+			"value": "0"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rM1oqKtfh1zgjdAgbFmaRm3btfGBX25xVo",
+			"value": "-0.00007632934861809999"
+		},
+		{
+			"currency": "EUR",
+			"counterparty": "rKWBD5PwiwgVYQMthHC4mgNy73Pc2xhUZH",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rDiGNQSrVFFvxbZuWq58YPkNEHbD97VYFN",
+			"value": "-100"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rQay7bQ3XoZcT6E3c8uDopZdnWaMBxWea2",
+			"value": "-13.26266346845887"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rLEoahBMor6MXf8m4nRFg3vWPSaBxqcFV1",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "r3kpnqtBavDPnVbzMr7syzSdCMGKUApo4P",
+			"value": "-1.669937844451268"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rB5TihdPbKgMrkFqrqUC3yLdE8hhv4BdeY",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rpU6s3fnH7TgYtoHiSntFPWKbaCFVHuoxm",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rEzwe9C4NHcuydQhjfXCLs1NABW4LQPbVw",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "r3MeEnYZY9fAd5pGjAWf4dfJsQBVY9FZRL",
+			"value": "-10"
+		},
+		{
+			"currency": "EUR",
+			"counterparty": "rUv1M53drT3kpzAzMfcotbVu1NZpTeboVD",
+			"value": "0"
+		},
+		{
+			"currency": "EUR",
+			"counterparty": "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rfFVZZyC3ZnvFhjoHDCwxr4Cn6WKHzAvgm",
+			"value": "0"
+		},
+		{
+			"currency": "ESM",
+			"counterparty": "rESmCnnvG9FYf17YQ41CPBwoxqmfjLgjA7",
+			"value": "0"
+		},
+		{
+			"currency": "AUM",
+			"counterparty": "raUm5mKf6jtdhkMYWi1q56QWTBodyfqdiU",
+			"value": "0"
+		},
+		{
+			"currency": "FRM",
+			"counterparty": "rfRMHQkAGXVf9cKN3YkDYGtbnYCyWw9ktd",
+			"value": "0"
+		},
+		{
+			"currency": "SEM",
+			"counterparty": "rsem3MPogcwLCD6iX34GQ4fAp4EC8kqMYM",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rNV7ukBFMGcAvHfKA9LyksHfZby6mskXSN",
+			"value": "0"
+		},
+		{
+			"currency": "NLM",
+			"counterparty": "rNLmPH1NjEqdaZcb9XygqhfZaNJBHvk7pk",
+			"value": "0"
+		},
+		{
+			"currency": "BEM",
+			"counterparty": "rBEm2ZguNGZ3XbpsRXNSuYU6rXZJ7X6wTc",
+			"value": "0"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rsqBYnzwuxFd3UbK8ip72aNWHu3D5PT11q",
+			"value": "0"
+		},
+		{
+			"currency": "EUR",
+			"counterparty": "rDMAMUvauRSHfJeA786HHahGR49HjxihYW",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rBTp7LRcgYAXLDMUeKGCudamjienArx8eh",
+			"value": "0"
+		},
+		{
+			"currency": "EUR",
+			"counterparty": "rU7SubbJpe6UXLPtHpzRxQ6FqjX7FSqu5m",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "r9hEDb4xBGRfBCcX3E4FirDWQBAYtpxC8K",
+			"value": "0"
+		},
+		{
+			"currency": "PAL",
+			"counterparty": "rPRuysDxGUiqnMmTZoAihXijcwPnP1r64U",
+			"value": "0"
+		},
+		{
+			"currency": "EUR",
+			"counterparty": "r9hEDb4xBGRfBCcX3E4FirDWQBAYtpxC8K",
+			"value": "0"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "r9hEDb4xBGRfBCcX3E4FirDWQBAYtpxC8K",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rpv3R5v1HwpdK824wpwZQoBYUwL8wvaTkq",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rogue5HnPRSszD9CWGSUz8UGHMVwSSKF6",
+			"value": "-0.05651232086759671"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rBTp7LRcgYAXLDMUeKGCudamjienArx8eh",
+			"value": "0"
+		},
+		{
+			"currency": "GBP",
+			"counterparty": "rMCa3o92WJDHDw7GLZiP85Pp3ZRkb87xUp",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rJKkvjmVBS8VSf4yAFAkhPLbKV1cgVdZsC",
+			"value": "0"
+		},
+		{
+			"currency": "JPY",
+			"counterparty": "rPmdbZiThD1Lcv1qECdbdyPP6WJvPkJHa3",
+			"value": "0"
+		},
+		{
+			"currency": "JPY",
+			"counterparty": "rwDRDVnEFFUMnizqEgF5XddQxVWBbjcrc1",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "r3JqeNNXdBDbTVKrAvJ2qYZXtZeQvtuyJg",
+			"value": "0"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rogue5HnPRSszD9CWGSUz8UGHMVwSSKF6",
+			"value": "0"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rapido5rxPmP4YkMZZEeXSHqWefxHEkqv6",
+			"value": "-0.0000000006386344418"
+		},
+		{
+			"currency": "HRS",
+			"counterparty": "rM1oqKtfh1zgjdAgbFmaRm3btfGBX25xVo",
+			"value": "0"
+		},
+		{
+			"currency": "IDR",
+			"counterparty": "rfhzYEqyDBiKkdpPUbSdnuEenqbmfJCys5",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rUrgXPxenRbjnFDXKWUhH8mBJcQ2CyPfkG",
+			"value": "-36.33733630043842"
+		},
+		{
+			"currency": "NET",
+			"counterparty": "rXRP4WibqvXLfCioHBDAt5rWKotaQv5N5",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rapido5rxPmP4YkMZZEeXSHqWefxHEkqv6",
+			"value": "0"
+		},
+		{
+			"currency": "DYM",
+			"counterparty": "rH1jXv4Y8a5hMqVZhwYTCToHvq9WDYsgg5",
+			"value": "0"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rwo6vFriRfC2a54zhbwi456QMq3ytEFUc5",
+			"value": "0"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rM19Xw44JvpC6fL2ioAZRuH6mpuwxcPqsu",
+			"value": "0"
+		},
+		{
+			"currency": "QDC",
+			"counterparty": "rPRuysDxGUiqnMmTZoAihXijcwPnP1r64U",
+			"value": "0"
+		},
+		{
+			"currency": "EUR",
+			"counterparty": "rPRuysDxGUiqnMmTZoAihXijcwPnP1r64U",
+			"value": "0"
+		},
+		{
+			"currency": "555",
+			"counterparty": "raLxVPEyC5NMB8cu3hYZwd37E8g9hAtqX5",
+			"value": "0"
+		},
+		{
+			"currency": "NET",
+			"counterparty": "rPRuysDxGUiqnMmTZoAihXijcwPnP1r64U",
+			"value": "0"
+		},
+		{
+			"currency": "USD",
+			"counterparty": "rPqthNaB68Lku7THs3YrMUmLND9nQSG2ZJ",
+			"value": "-0.13182"
+		},
+		{
+			"currency": "BTC",
+			"counterparty": "rEzwe9C4NHcuydQhjfXCLs1NABW4LQPbVw",
+			"value": "-0.007205120791668159"
+		}
+	]
+}

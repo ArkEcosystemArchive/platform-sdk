@@ -459,6 +459,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ripple-keypairs: ^1.0.0
+    ripple-lib: ^1.6.5
     ts-jest: ^25.4.0
     typescript: ^3.8.3
   languageName: unknown
@@ -2749,6 +2750,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4.14.136":
+  version: 4.14.150
+  resolution: "@types/lodash@npm:4.14.150"
+  checksum: 2/0e9ade0b8ace23845ffb1d17b91142abae183c997a96072339cc1ab34395e2f8bc20ad472b9efd879a8b11ee06ae9dde1b9c4c15ce2f63cbee3a558c30a7852d
+  languageName: node
+  linkType: hard
+
 "@types/long@npm:*":
   version: 4.0.1
   resolution: "@types/long@npm:4.0.1"
@@ -2863,6 +2871,15 @@ __metadata:
   version: 1.0.1
   resolution: "@types/stack-utils@npm:1.0.1"
   checksum: 2/59738e4b71b233b438a6ecb9faaf577d6f02afec4ea093d5ad3c10e78cb7096ab32648a2c2017c6c2e6c6853498aa783643a2c6b859c4a75f6750e7b37ae8bae
+  languageName: node
+  linkType: hard
+
+"@types/ws@npm:^7.2.0":
+  version: 7.2.4
+  resolution: "@types/ws@npm:7.2.4"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2/8b8251a8c41b0a48c9e8940d6e447e285420bb77f297272c91fd07be302e0785112c7ee910ae79c90e7c1a988fb2adf5fec9d115c291750f371763d96ad8d20c
   languageName: node
   linkType: hard
 
@@ -3800,7 +3817,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-runtime@npm:6.26.0, babel-runtime@npm:^6.26.0":
+"babel-runtime@npm:6.26.0, babel-runtime@npm:^6.26.0, babel-runtime@npm:^6.6.1":
   version: 6.26.0
   resolution: "babel-runtime@npm:6.26.0"
   dependencies:
@@ -5541,6 +5558,13 @@ __metadata:
   version: 1.2.0
   resolution: "decamelize@npm:1.2.0"
   checksum: 2/8ca9d03ea8ac07920f4504e219d18edff2491bdd0a3e05a1e5ca2e9a0bf6333564231de3528b01d5e76c40a38c37bbc1e09cb5a0424714f53dd615ed78ced464
+  languageName: node
+  linkType: hard
+
+"decimal.js@npm:^10.2.0":
+  version: 10.2.0
+  resolution: "decimal.js@npm:10.2.0"
+  checksum: 2/f60df1cce54e4b717cf9b865cbacf667ee67747563a4e84a2ebe8fd65fd57814a3ba6eba0870345fe37aea574ecbb84b3642a6e4e7a9089d3c7fbff8247e3c7f
   languageName: node
   linkType: hard
 
@@ -9493,6 +9517,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"jsonschema@npm:1.2.2":
+  version: 1.2.2
+  resolution: "jsonschema@npm:1.2.2"
+  checksum: 2/e3498e6a8b69d4a7b22d96718950ae457f91e058b153afa0343c6a6d2a669355ffea062f2a0144e8384c9517d0b83918d33e4d9a62855bcc6c1b2668e981b830
+  languageName: node
+  linkType: hard
+
 "jsprim@npm:^1.2.2":
   version: 1.4.1
   resolution: "jsprim@npm:1.4.1"
@@ -9765,6 +9796,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"lodash.isequal@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: 2/5b47e094641c18a915497343894c66f7da6aebb9aaa2a3fcc5643455aaf29d19df60ebbed664c8374fb959c8b4ce96810ee6becd8a71ac58c6c2ca8d29762947
+  languageName: node
+  linkType: hard
+
 "lodash.ismatch@npm:^4.4.0":
   version: 4.4.0
   resolution: "lodash.ismatch@npm:4.4.0"
@@ -9826,7 +9864,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.10, lodash@npm:^4.17.12, lodash@npm:^4.17.13, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.2.0, lodash@npm:^4.2.1":
+"lodash@npm:^4.17.10, lodash@npm:^4.17.12, lodash@npm:^4.17.13, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.4, lodash@npm:^4.2.0, lodash@npm:^4.2.1":
   version: 4.17.15
   resolution: "lodash@npm:4.17.15"
   checksum: 2/aec3fbb7570aa67bda500b8299b1b1821d60646bede87f76a74dfcc7666ab3445267d734ec71424d70809d52ad67a1356fab5ab694a3faa1908d68e9d48f00f5
@@ -12928,6 +12966,21 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
+"ripple-binary-codec@npm:^0.2.5":
+  version: 0.2.6
+  resolution: "ripple-binary-codec@npm:0.2.6"
+  dependencies:
+    babel-runtime: ^6.6.1
+    bn.js: ^5.1.1
+    create-hash: ^1.1.2
+    decimal.js: ^10.2.0
+    inherits: ^2.0.1
+    lodash: ^4.17.15
+    ripple-address-codec: ^4.0.0
+  checksum: 2/e2870b994e307b85966d98304928e58e35c8e9c75343e28c43f4906c239941a4e0152d7d8fc634907870e306087417d00325ca6eb8d66616d98df9cc1fc0c555
+  languageName: node
+  linkType: hard
+
 "ripple-keypairs@npm:^1.0.0":
   version: 1.0.0
   resolution: "ripple-keypairs@npm:1.0.0"
@@ -12938,6 +12991,36 @@ resolve@~1.7.1:
     hash.js: ^1.0.3
     ripple-address-codec: ^4.0.0
   checksum: 2/7ae67f5271f1c629c43b1d41540fb1c83995520374a4af099669b9a9ac95c73ed1a6061f82e6ed800a021f35c6c05af463ae220154159f1883d1d257303d2c0e
+  languageName: node
+  linkType: hard
+
+"ripple-lib-transactionparser@npm:0.8.2":
+  version: 0.8.2
+  resolution: "ripple-lib-transactionparser@npm:0.8.2"
+  dependencies:
+    bignumber.js: ^9.0.0
+    lodash: ^4.17.15
+  checksum: 2/d8b32f4b1533574082f3d30ed2b623dbc1789e27669bd818132f8aa43dfa54137c13d5fc54439ef30a3daed76adba5b9d240f4354982e653d02b85c03140bca9
+  languageName: node
+  linkType: hard
+
+"ripple-lib@npm:^1.6.5":
+  version: 1.6.5
+  resolution: "ripple-lib@npm:1.6.5"
+  dependencies:
+    "@types/lodash": ^4.14.136
+    "@types/ws": ^7.2.0
+    bignumber.js: ^9.0.0
+    https-proxy-agent: ^4.0.0
+    jsonschema: 1.2.2
+    lodash: ^4.17.4
+    lodash.isequal: ^4.5.0
+    ripple-address-codec: ^4.0.0
+    ripple-binary-codec: ^0.2.5
+    ripple-keypairs: ^1.0.0
+    ripple-lib-transactionparser: 0.8.2
+    ws: ^7.2.0
+  checksum: 2/f0a5c1b3ca1db4556bb0d4653b396f3d79b6b12f25b94903f351161319d6ec4292c99e0671290394bb90070e95176deb763d350e8e53956dff86fd89e9d76630
   languageName: node
   linkType: hard
 
@@ -15531,6 +15614,21 @@ typescript@^3.8.3:
     utf-8-validate:
       optional: true
   checksum: 2/fedf178c29b5f7c4589c88bd1064dea03ba0d761bfcc0562abf4ddd64421fb1767095e140cb3ef8b57c3315d7e1fa1f3cf872e365a399c69fb3566ecdfbfacee
+  languageName: node
+  linkType: hard
+
+"ws@npm:^7.2.0":
+  version: 7.2.5
+  resolution: "ws@npm:7.2.5"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ^5.0.2
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 2/bd4ff2ceb52eaebefb05093c673e7dd0005131f31f2eae0452b8a0276af83d911213fe659cb455af1883565ea38d90a25dd8601b905617037d48d2c16c6992f0
   languageName: node
   linkType: hard
 
