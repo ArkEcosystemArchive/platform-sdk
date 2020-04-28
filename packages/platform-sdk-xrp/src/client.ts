@@ -37,7 +37,7 @@ export class Client implements Contracts.Client {
 
 	public async getWallet(id: string): Promise<Wallet> {
 		const { account_data } = await this.get(`accounts/${id}`);
-		const { balances } = await this.get(`accounts/${id}/balances`);
+		const { balances } = await this.get(`accounts/${id}/balances`, { currency: "XRP" });
 		const balance = balances.find((balance) => balance.currency === "XRP");
 
 		return new Wallet({ ...account_data, ...{ balance: balance.value } });
