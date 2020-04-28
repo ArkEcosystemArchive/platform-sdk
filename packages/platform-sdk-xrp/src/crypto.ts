@@ -16,7 +16,7 @@ export class Crypto implements Contracts.Crypto {
 		return new Crypto(connection);
 	}
 
-	public async createTransfer(data: Contracts.KeyValuePair): Promise<object> {
+	public async createTransfer(data: Contracts.KeyValuePair): Promise<any> {
 		const prepared = await this.#connection.preparePayment(
 			data.sender,
 			{
