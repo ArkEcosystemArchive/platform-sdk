@@ -13,9 +13,7 @@
 		"format": "yarn lint && yarn prettier",
 		"lint": "eslint packages/**/src/** --ext .ts --fix",
 		"prepublishOnly": "yarn build",
-		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\"",
-		"test": "jest",
-		"test:watch": "jest --watchAll"
+		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\""
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",

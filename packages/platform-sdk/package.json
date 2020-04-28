@@ -15,7 +15,8 @@
 		"clean": "rimraf .coverage dist tmp",
 		"prepublishOnly": "yarn build",
 		"test": "jest",
-		"test:watch": "jest --watchAll"
+		"test:watch": "jest --watchAll",
+		"coverage:report": "codecov"
 	},
 	"dependencies": {
 		"@arkecosystem/utils": "^1.1.8",

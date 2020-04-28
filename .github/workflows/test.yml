@@ -34,7 +34,7 @@ jobs:
               run: cd packages/platform-sdk && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk && codecov --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-sdk && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     platform-sdk-ark:
         runs-on: ubuntu-latest
@@ -61,7 +61,7 @@ jobs:
               run: cd packages/platform-sdk-ark && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-ark && codecov --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-sdk-ark && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     platform-sdk-atom:
         runs-on: ubuntu-latest
@@ -88,7 +88,7 @@ jobs:
               run: cd packages/platform-sdk-atom && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-atom && codecov --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-sdk-atom && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     platform-sdk-eos:
         runs-on: ubuntu-latest
@@ -115,7 +115,7 @@ jobs:
               run: cd packages/platform-sdk-eos && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-eos && codecov --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-sdk-eos && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     platform-sdk-eth:
         runs-on: ubuntu-latest
@@ -142,7 +142,7 @@ jobs:
               run: cd packages/platform-sdk-eth && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-eth && codecov --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-sdk-eth && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     platform-sdk-lsk:
         runs-on: ubuntu-latest
@@ -169,7 +169,7 @@ jobs:
               run: cd packages/platform-sdk-lsk && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-lsk && codecov --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-sdk-lsk && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     platform-sdk-trx:
         runs-on: ubuntu-latest
@@ -196,4 +196,4 @@ jobs:
               run: cd packages/platform-sdk-trx && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-trx && codecov --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-sdk-trx && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
