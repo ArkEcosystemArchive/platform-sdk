@@ -21,7 +21,8 @@
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/utils": "^1.1.8",
-		"ripple-keypairs": "^1.0.0"
+		"ripple-keypairs": "^1.0.0",
+		"ripple-lib": "^1.6.5"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",

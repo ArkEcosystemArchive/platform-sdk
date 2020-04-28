@@ -1,48 +1,80 @@
 import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { RippleAPI } from "ripple-lib";
 
 import { Delegate, Peer, Transaction, Wallet } from "./dto";
 
 export class Client implements Contracts.Client {
-	readonly #baseUrl: string;
+	readonly #connection: RippleAPI;
 
-	public constructor(private readonly peer: string) {
-		this.#baseUrl = peer;
+	public constructor (private readonly peer: string) {
+		this.#connection = new RippleAPI({ server: peer });
 	}
 
 	public async getTransaction(id: string): Promise<Transaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getTransaction');
+		throw new Exceptions.NotImplemented(this.constructor.name, "getTransaction");
 	}
 
 	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getTransactions');
+		throw new Exceptions.NotImplemented(this.constructor.name, "getTransactions");
 	}
 
 	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'searchTransactions');
+		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 
 	public async getWallet(id: string): Promise<Wallet> {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getWallet');
+		const address = "rPBPQ34twiBAjm8n7joizT8ruwD7hGoWjk";
+
+		await this.#connection.connect()
+
+		console.log(await this.#connection.getBalances(address))
+
+		const payment = {
+			source: {
+				address: address,
+				maxAmount: {
+					value: '0.01',
+					currency: 'XRP'
+				}
+			},
+			destination: {
+				address: 'rHE2tehVYCGeMvi1gDEcYzQ7fpiCiYecAR',
+				amount: {
+					value: '0.01',
+					currency: 'XRP'
+				}
+			}
+		};
+
+		const prepared = await this.#connection.preparePayment(address, payment, { maxLedgerVersionOffset: 5 })
+
+		const { signedTransaction } = this.#connection.sign(prepared.txJSON, input.passphrase);
+
+		const response = await this.#connection.submit(signedTransaction)
+
+		console.log(response)
+
+		throw new Exceptions.NotImplemented(this.constructor.name, "getWallet");
 	}
 
 	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getWallets');
+		throw new Exceptions.NotImplemented(this.constructor.name, "getWallets");
 	}
 
 	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'searchWallets');
+		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
 	}
 
 	public async getDelegate(id: string): Promise<Delegate> {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getDelegate');
+		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegate");
 	}
 
 	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Delegate>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getDelegates');
+		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegates");
 	}
 
 	public async getPeers(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Peer>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, 'getPeers');
+		throw new Exceptions.NotImplemented(this.constructor.name, "getPeers");
 	}
 
 	public async getConfiguration(): Promise<Contracts.KeyValuePair> {
@@ -67,13 +99,5 @@ export class Client implements Contracts.Client {
 
 	public async postTransactions(transaction: object): Promise<void> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "postTransactions");
-	}
-
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#baseUrl}/api/${path}`, query);
-	}
-
-	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(`${this.#baseUrl}/api/`, path, body);
 	}
 }
