@@ -7,7 +7,7 @@ let subject: Crypto;
 beforeEach(() => (subject = new Crypto("devnet")));
 
 describe("Crypto", () => {
-	describe("#createTransfer", () => {
+	describe.skip("#createTransfer", () => {
 		it("should verify", async () => {
 			const result: any = await subject.createTransfer({
 				amount: 1,
