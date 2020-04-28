@@ -1,6 +1,6 @@
 {
 	"jsonrpc": "2.0",
-	"id": 2,
+	"id": 3,
 	"result": {
 		"difficulty": "0xb7d90b2b",
 		"extraData": "0xde830202098f5061726974792d457468657265756d86312e33322e30826c69",

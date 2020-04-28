@@ -1,6 +1,6 @@
 {
 	"jsonrpc": "2.0",
-	"id": 5,
+	"id": 6,
 	"result": {
 		"startingBlock": 100,
 		"currentBlock": 312,

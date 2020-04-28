@@ -2,7 +2,7 @@ import "jest-extended";
 import nock from "nock";
 
 import { Client } from "../src/client";
-import { Block, Transaction, Wallet } from "../src/dto";
+import { Transaction, Wallet } from "../src/dto";
 
 let subject: Client;
 
@@ -27,7 +27,7 @@ describe("Client", function () {
 		});
 	});
 
-	describe.only("#getTransactions", () => {
+	describe("#getTransactions", () => {
 		it("should succeed", async () => {
 			nock("https://ropsten.infura.io/v3/PROJECT_ID")
 				.post(/.*/)
@@ -35,7 +35,10 @@ describe("Client", function () {
 				.post(/.*/)
 				.reply(200, require(`${__dirname}/__fixtures__/client/getTransactions.json`));
 
-			const result = await subject.getTransactions({ address: "0x4581a610f96878266008993475f1476ca9997081" });
+			const result = await subject.getTransactions({
+				address: "0x003C805FABE761304f9Bc4574bc380cA49145d4D",
+				count: 1,
+			});
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(Transaction);
@@ -62,7 +65,7 @@ describe("Client", function () {
 
 			const result = await subject.getFeesByType();
 
-			expect(result).toBeString();
+			expect(result).toBeObject();
 		});
 	});
 
@@ -74,7 +77,7 @@ describe("Client", function () {
 
 			const result = await subject.getSyncStatus();
 
-			expect(result).toBeObject();
+			expect(result).toBeBoolean();
 		});
 	});
 });

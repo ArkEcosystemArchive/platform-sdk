@@ -20,7 +20,7 @@ export class Client implements Contracts.Client {
 
 	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
 		const endBlock: number = await this.#connection.eth.getBlockNumber();
-		const startBlock: number = endBlock - Client.MONTH_IN_SECONDS;
+		const startBlock: number = endBlock - (query?.count ?? Client.MONTH_IN_SECONDS);
 
 		const transactions: Transaction[] = [];
 		for (let i = startBlock; i < endBlock; i++) {
