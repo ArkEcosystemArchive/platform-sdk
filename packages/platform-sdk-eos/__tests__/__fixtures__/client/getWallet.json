@@ -1,0 +1,63 @@
+{
+	"account_name": "bdfkbzietxos",
+	"head_block_num": 901187,
+	"head_block_time": "2020-04-28T09:56:38.000",
+	"privileged": false,
+	"last_code_update": "1970-01-01T00:00:00.000",
+	"created": "2020-04-27T10:50:49.000",
+	"core_liquid_balance": "29.9999 TNT",
+	"ram_quota": 9584,
+	"net_weight": 10000,
+	"cpu_weight": 10000,
+	"net_limit": { "used": 137, "available": 2396553, "max": 2396690 },
+	"cpu_limit": { "used": 306, "available": 456826, "max": 457132 },
+	"ram_usage": 3574,
+	"permissions": [
+		{
+			"perm_name": "active",
+			"parent": "owner",
+			"required_auth": {
+				"threshold": 1,
+				"keys": [{ "key": "EOS5DSiZcjJReQa93WjMWTpoCAJeniVuJZYGnVnbwzSE75cktYVum", "weight": 1 }],
+				"accounts": [],
+				"waits": []
+			}
+		},
+		{
+			"perm_name": "owner",
+			"parent": "",
+			"required_auth": {
+				"threshold": 1,
+				"keys": [{ "key": "EOS5FfcUyxrZwavewaaTx6HhdZiDiw5QGuaQHnAwuz7Mx8p7Do8gN", "weight": 1 }],
+				"accounts": [],
+				"waits": []
+			}
+		}
+	],
+	"total_resources": {
+		"owner": "bdfkbzietxos",
+		"net_weight": "1.0000 TNT",
+		"cpu_weight": "1.0000 TNT",
+		"ram_bytes": 8184
+	},
+	"self_delegated_bandwidth": {
+		"from": "bdfkbzietxos",
+		"to": "bdfkbzietxos",
+		"net_weight": "1.0000 TNT",
+		"cpu_weight": "1.0000 TNT"
+	},
+	"refund_request": null,
+	"voter_info": {
+		"owner": "bdfkbzietxos",
+		"proxy": "",
+		"producers": [],
+		"staked": 20000,
+		"last_vote_weight": "0.00000000000000000",
+		"proxied_vote_weight": "0.00000000000000000",
+		"is_proxy": 0,
+		"flags1": 0,
+		"reserved2": 0,
+		"reserved3": "0 "
+	},
+	"rex_info": null
+}

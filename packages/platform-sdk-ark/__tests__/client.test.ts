@@ -8,6 +8,8 @@ let subject: Client;
 
 beforeEach(() => (subject = new Client("https://dexplorer.ark.io/api")));
 
+afterEach(() => nock.cleanAll());
+
 beforeAll(() => nock.disableNetConnect());
 
 describe("Client", function () {
