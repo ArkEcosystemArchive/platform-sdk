@@ -458,6 +458,7 @@ __metadata:
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
     rimraf: ^3.0.2
+    ripple-keypairs: ^1.0.0
     ts-jest: ^25.4.0
     typescript: ^3.8.3
   languageName: unknown
@@ -3816,6 +3817,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"base-x@npm:3.0.7":
+  version: 3.0.7
+  resolution: "base-x@npm:3.0.7"
+  dependencies:
+    safe-buffer: ^5.0.1
+  checksum: 2/370cb9037d4a637a9deaaa1b6904c516b0b26db150562d4838eaa68dad94e0d5d31530ff2acf86de62bdbeb6e174af477241e5266802296aa1bda7170770d6b4
+  languageName: node
+  linkType: hard
+
 "base-x@npm:^3.0.2, base-x@npm:^3.0.6":
   version: 3.0.8
   resolution: "base-x@npm:3.0.8"
@@ -4045,7 +4055,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bn.js@npm:5.1.1":
+"bn.js@npm:5.1.1, bn.js@npm:^5.1.1":
   version: 5.1.1
   resolution: "bn.js@npm:5.1.1"
   checksum: 2/67915e456a8f2c2549cb5e556ff8d6dc479b227a7a75ea66c1d5a42253bc9abc95ce08f0b1c37ba068d0d9b9bfb9f79f151087c9166d6fe0d1600c7849290fd6
@@ -4123,7 +4133,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"brorand@npm:^1.0.1":
+"brorand@npm:^1.0.1, brorand@npm:^1.0.5":
   version: 1.1.0
   resolution: "brorand@npm:1.1.0"
   checksum: 2/4536dd73f07f6884d89c09c906345b606abff477e87babef64a85656e8cf12b1c5f40d06313b91dac12bf3e031ac190b5d548f2c3bf75f655344c3fcf90cbc8a
@@ -12905,6 +12915,29 @@ resolve@~1.7.1:
     hash-base: ^3.0.0
     inherits: ^2.0.1
   checksum: 2/e0370fbe779b1f15d74c3e7dffc0ce40b57b845fc7e431fab8a571958d5fd9c91eb0038a252604600e20786d117badea0cc4cf8816b8a6be6b9166b565ad6797
+  languageName: node
+  linkType: hard
+
+"ripple-address-codec@npm:^4.0.0":
+  version: 4.1.1
+  resolution: "ripple-address-codec@npm:4.1.1"
+  dependencies:
+    base-x: 3.0.7
+    create-hash: ^1.1.2
+  checksum: 2/5adfbb66bb118930586cb80587203c8865d06ceeb3edd4e778ca06f85877ae5bbccd16d3770144051bd593daad44160417d3a7f4ede930ba844852ccc727f42a
+  languageName: node
+  linkType: hard
+
+"ripple-keypairs@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "ripple-keypairs@npm:1.0.0"
+  dependencies:
+    bn.js: ^5.1.1
+    brorand: ^1.0.5
+    elliptic: ^6.5.2
+    hash.js: ^1.0.3
+    ripple-address-codec: ^4.0.0
+  checksum: 2/7ae67f5271f1c629c43b1d41540fb1c83995520374a4af099669b9a9ac95c73ed1a6061f82e6ed800a021f35c6c05af463ae220154159f1883d1d257303d2c0e
   languageName: node
   linkType: hard
 

@@ -752,6 +752,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["npm-check-updates", "npm:4.1.2"],
             ["prettier", "npm:2.0.5"],
             ["rimraf", "npm:3.0.2"],
+            ["ripple-keypairs", "npm:1.0.0"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:25.4.0"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"]
           ],
@@ -4669,6 +4670,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["base-x", [
+        ["npm:3.0.7", {
+          "packageLocation": "./.yarn/cache/base-x-npm-3.0.7-b3dfa29b83-2.zip/node_modules/base-x/",
+          "packageDependencies": [
+            ["base-x", "npm:3.0.7"],
+            ["safe-buffer", "npm:5.2.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:3.0.8", {
           "packageLocation": "./.yarn/cache/base-x-npm-3.0.8-e44fed3666-2.zip/node_modules/base-x/",
           "packageDependencies": [
@@ -14581,6 +14590,31 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ripemd160", "npm:2.0.2"],
             ["hash-base", "npm:3.0.4"],
             ["inherits", "npm:2.0.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["ripple-address-codec", [
+        ["npm:4.1.1", {
+          "packageLocation": "./.yarn/cache/ripple-address-codec-npm-4.1.1-3089c6fca3-2.zip/node_modules/ripple-address-codec/",
+          "packageDependencies": [
+            ["ripple-address-codec", "npm:4.1.1"],
+            ["base-x", "npm:3.0.7"],
+            ["create-hash", "npm:1.2.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["ripple-keypairs", [
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/ripple-keypairs-npm-1.0.0-d6e4ca9797-2.zip/node_modules/ripple-keypairs/",
+          "packageDependencies": [
+            ["ripple-keypairs", "npm:1.0.0"],
+            ["bn.js", "npm:5.1.1"],
+            ["brorand", "npm:1.1.0"],
+            ["elliptic", "npm:6.5.2"],
+            ["hash.js", "npm:1.1.7"],
+            ["ripple-address-codec", "npm:4.1.1"]
           ],
           "linkType": "HARD",
         }]
