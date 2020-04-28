@@ -7,7 +7,7 @@ let subject: Client;
 beforeEach(() => (subject = new Client("https://api.testnet.eos.io")));
 
 describe("Client", function () {
-	describe("#postTransactions", () => {
+	describe.skip("#postTransactions", () => {
 		it("should succeed", async () => {
 			const result = await subject.postTransactions([]);
 
