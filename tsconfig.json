@@ -23,9 +23,7 @@
 		"sourceMap": true,
 		"strict": true,
 		"stripInternal": true,
-		"target": "es2019",
-		"typeRoots": ["node_modules/@types"]
+		"target": "es2019"
 	},
-	"include": ["src/**/**.ts"],
-	"exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
+	"exclude": ["dist", "**/*.spec.ts", "**/*.test.ts"]
 }

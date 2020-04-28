@@ -1,2 +1,4 @@
 .coverage
-dist
+.pnp.js
+.yarn/**
+packages/**/dist
