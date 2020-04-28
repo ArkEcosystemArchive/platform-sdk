@@ -7,21 +7,21 @@ export class Identity implements Contracts.Identity {
 			throw new Exceptions.NotSupported(this.constructor.name, "getAddress#passphrase");
 		}
 
-		// if (opts.multiSignature) {
-		// 	throw new Exceptions.NotSupported(this.constructor.name, "getAddress#multiSignature");
-		// }
+		if (opts.multiSignature) {
+			throw new Exceptions.NotSupported(this.constructor.name, "getAddress#multiSignature");
+		}
 
-		// if (opts.publicKey) {
-		// 	return Wallet.fromPublicKey(Buffer.from(opts.publicKey, "hex")).getAddress().toString("hex");
-		// }
+		if (opts.publicKey) {
+			throw new Exceptions.NotSupported(this.constructor.name, "getAddress#publicKey");
+		}
 
-		// if (opts.privateKey) {
-		// 	return Wallet.fromPrivateKey(Buffer.from(opts.privateKey, "hex")).getAddress().toString("hex");
-		// }
+		if (opts.privateKey) {
+			throw new Exceptions.NotSupported(this.constructor.name, "getAddress#privateKey");
+		}
 
-		// if (opts.wif) {
-		// 	throw new Exceptions.NotSupported(this.constructor.name, "getAddress#wif");
-		// }
+		if (opts.wif) {
+			throw new Exceptions.NotSupported(this.constructor.name, "getAddress#wif");
+		}
 
 		throw new Error("No input provided.");
 	}
