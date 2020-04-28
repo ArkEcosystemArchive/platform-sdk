@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Api, JsonRpc } from "eosjs";
 import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
 import fetch from "node-fetch";
@@ -7,10 +7,18 @@ import { TextDecoder, TextEncoder } from "util";
 import { Delegate, Peer, Transaction, Wallet } from "./dto";
 
 export class Client implements Contracts.Client {
-	readonly #baseUrl: string;
+	readonly #rpc: JsonRpc;
+	readonly #api: Api;
 
 	public constructor(peer: string) {
-		this.#baseUrl = peer;
+		this.#rpc = new JsonRpc(peer, { fetch });
+
+		this.#api = new Api({
+			rpc: this.#rpc,
+			signatureProvider: new JsSignatureProvider([]),
+			textDecoder: new TextDecoder(),
+			textEncoder: new TextEncoder(),
+		});
 	}
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-transaction-information
@@ -27,9 +35,8 @@ export class Client implements Contracts.Client {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 
-	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-account-information
 	public async getWallet(id: string): Promise<Wallet> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getWallet");
+		return new Wallet(await this.#rpc.get_account(id));
 	}
 
 	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
@@ -74,18 +81,7 @@ export class Client implements Contracts.Client {
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-transfer-an-eosio-token
 	public async postTransactions(transactions: object[]): Promise<void> {
-		const signatureProvider = new JsSignatureProvider(["defaultPrivateKey"]);
-
-		const rpc = new JsonRpc(this.#baseUrl, { fetch });
-
-		const api = new Api({
-			rpc,
-			signatureProvider,
-			textDecoder: new TextDecoder(),
-			textEncoder: new TextEncoder(),
-		});
-
-		const result = await api.transact(
+		const result = await this.#api.transact(
 			{
 				actions: [
 					{
@@ -114,13 +110,5 @@ export class Client implements Contracts.Client {
 		console.dir(result);
 
 		throw new Exceptions.NotImplemented(this.constructor.name, "postTransactions");
-	}
-
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#baseUrl}/${path}`, query);
-	}
-
-	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(this.#baseUrl, path, body);
 	}
 }

@@ -9,7 +9,7 @@ export class Wallet implements Contracts.Wallet {
 	}
 
 	public getAddress(): string {
-		return this.#data.address;
+		return this.#data.account_name;
 	}
 
 	public getPublicKey(): string | undefined {
@@ -17,7 +17,7 @@ export class Wallet implements Contracts.Wallet {
 	}
 
 	public getBalance(): BigNumber {
-		return BigNumber.make(this.#data.balance);
+		return BigNumber.make(this.#data.net_weight);
 	}
 
 	/**
