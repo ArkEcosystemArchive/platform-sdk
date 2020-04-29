@@ -37,11 +37,11 @@ export class TransactionData implements Contracts.TransactionData {
 	}
 
 	public getRecipient(): string {
-		return this.#data.asset.recipientId;
+		return this.#data.recipientId;
 	}
 
 	public getAmount(): BigNumber {
-		return BigNumber.make(this.#data.asset.amount);
+		return BigNumber.make(this.#data.amount);
 	}
 
 	public getFee(): BigNumber {
