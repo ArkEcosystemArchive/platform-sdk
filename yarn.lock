@@ -433,9 +433,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/platform-sdk-price-trackers@workspace:packages/platform-sdk-price-trackers":
+"@arkecosystem/platform-sdk-markets@workspace:packages/platform-sdk-markets":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-sdk-price-trackers@workspace:packages/platform-sdk-price-trackers"
+  resolution: "@arkecosystem/platform-sdk-markets@workspace:packages/platform-sdk-markets"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-coincap": "workspace:packages/platform-sdk-coincap"

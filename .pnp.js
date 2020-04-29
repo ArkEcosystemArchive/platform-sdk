@@ -71,8 +71,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/platform-sdk-neo"
       },
       {
-        "name": "@arkecosystem/platform-sdk-price-trackers",
-        "reference": "workspace:packages/platform-sdk-price-trackers"
+        "name": "@arkecosystem/platform-sdk-markets",
+        "reference": "workspace:packages/platform-sdk-markets"
       },
       {
         "name": "@arkecosystem/platform-sdk-trx",
@@ -102,7 +102,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@arkecosystem/platform-sdk-eth", ["workspace:packages/platform-sdk-eth"]],
       ["@arkecosystem/platform-sdk-lsk", ["workspace:packages/platform-sdk-lsk"]],
       ["@arkecosystem/platform-sdk-neo", ["workspace:packages/platform-sdk-neo"]],
-      ["@arkecosystem/platform-sdk-price-trackers", ["workspace:packages/platform-sdk-price-trackers"]],
+      ["@arkecosystem/platform-sdk-markets", ["workspace:packages/platform-sdk-markets"]],
       ["@arkecosystem/platform-sdk-trx", ["workspace:packages/platform-sdk-trx"]],
       ["@arkecosystem/platform-sdk-xmr", ["workspace:packages/platform-sdk-xmr"]],
       ["@arkecosystem/platform-sdk-xrp", ["workspace:packages/platform-sdk-xrp"]],
@@ -741,11 +741,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT",
         }]
       ]],
-      ["@arkecosystem/platform-sdk-price-trackers", [
-        ["workspace:packages/platform-sdk-price-trackers", {
-          "packageLocation": "./packages/platform-sdk-price-trackers/",
+      ["@arkecosystem/platform-sdk-markets", [
+        ["workspace:packages/platform-sdk-markets", {
+          "packageLocation": "./packages/platform-sdk-markets/",
           "packageDependencies": [
-            ["@arkecosystem/platform-sdk-price-trackers", "workspace:packages/platform-sdk-price-trackers"],
+            ["@arkecosystem/platform-sdk-markets", "workspace:packages/platform-sdk-markets"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-coincap", "workspace:packages/platform-sdk-coincap"],
             ["@arkecosystem/platform-sdk-coingecko", "workspace:packages/platform-sdk-coingecko"],

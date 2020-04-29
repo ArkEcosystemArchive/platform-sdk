@@ -247,10 +247,10 @@ jobs:
         run: yarn run build
 
       - name: Test
-        run: cd packages/platform-sdk-price-trackers && yarn run test --coverage
+        run: cd packages/platform-sdk-markets && yarn run test --coverage
 
       - name: Codecov
-        run: cd packages/platform-sdk-price-trackers && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+        run: cd packages/platform-sdk-markets && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
   trx:
     runs-on: ubuntu-latest

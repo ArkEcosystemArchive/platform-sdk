@@ -10,7 +10,7 @@ releases:
   "@arkecosystem/platform-sdk-eth": minor
   "@arkecosystem/platform-sdk-lsk": minor
   "@arkecosystem/platform-sdk-neo": minor
-  "@arkecosystem/platform-sdk-price-trackers": minor
+  "@arkecosystem/platform-sdk-markets": minor
   "@arkecosystem/platform-sdk": minor
   "@arkecosystem/platform-sdk-trx": minor
   "@arkecosystem/platform-sdk-xmr": minor
