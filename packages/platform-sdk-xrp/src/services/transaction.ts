@@ -23,14 +23,14 @@ export class TransactionService implements Contracts.TransactionService {
 				source: {
 					address: data.sender,
 					maxAmount: {
-						value: data.amount,
+						value: `${data.amount}`,
 						currency: "XRP",
 					},
 				},
 				destination: {
 					address: data.recipient,
 					amount: {
-						value: data.amount,
+						value: `${data.amount}`,
 						currency: "XRP",
 					},
 				},
