@@ -1,6 +1,6 @@
 import { KeyValuePair } from "../types";
 
-export interface Identity {
+export interface IdentityService {
 	getAddress(opts: KeyValuePair): string;
 
 	getPublicKey(opts: KeyValuePair): string;

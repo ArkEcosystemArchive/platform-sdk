@@ -1,6 +1,6 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
-export class Delegate implements Contracts.Delegate {
+export class DelegateData implements Contracts.DelegateData {
 	readonly #data: Contracts.KeyValuePair;
 
 	public constructor(data: Contracts.KeyValuePair) {

@@ -1,11 +1,11 @@
-import { Peer } from "../../src/dto";
+import { PeerData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/getPeers.json";
 
-let subject: Peer;
+let subject: PeerData;
 
-beforeEach(() => (subject = new Peer(Fixture.data[0])));
+beforeEach(() => (subject = new PeerData(Fixture.data[0])));
 
-describe("Lisk", function () {
+describe("PeerData", function () {
 	test("#getIp", () => {
 		expect(subject.getIp()).toBe("217.182.72.43");
 	});

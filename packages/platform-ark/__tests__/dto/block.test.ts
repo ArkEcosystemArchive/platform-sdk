@@ -1,13 +1,13 @@
 import { BigNumber } from "@arkecosystem/utils";
 
-import { Block } from "../../src/dto";
+import { BlockData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/getBlock.json";
 
-let subject: Block;
+let subject: BlockData;
 
-beforeEach(() => (subject = new Block(Fixture.data)));
+beforeEach(() => (subject = new BlockData(Fixture.data)));
 
-describe("Ark", function () {
+describe("BlockData", function () {
 	test("#getId", () => {
 		expect(subject.getId()).toBe("13114381566690093367");
 	});

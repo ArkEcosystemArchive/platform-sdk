@@ -1,4 +1,4 @@
-export interface Message {
+export interface MessageService {
 	sign(input): SignedMessage;
 
 	verify(input): boolean;

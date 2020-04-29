@@ -1,5 +1,6 @@
 export * from "./client";
-export * from "./crypto";
+export * from "./data";
 export * from "./identity";
 export * from "./message";
 export * from "./peer";
+export * from "./transaction";

@@ -1,13 +1,13 @@
 import { BigNumber } from "@arkecosystem/utils";
 
-import { Transaction } from "../../src/dto";
+import { TransactionData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/getTransaction.json";
 
-let subject: Transaction;
+let subject: TransactionData;
 
-beforeEach(() => (subject = new Transaction(Fixture.result)));
+beforeEach(() => (subject = new TransactionData(Fixture.result)));
 
-describe("Ethereum", function () {
+describe("TransactionData", function () {
 	test("#getId", () => {
 		expect(subject.getId()).toBe("0x35a28a5b1785d3729afc809851466fcc9971d09922196a1ca6d155756c222435");
 	});

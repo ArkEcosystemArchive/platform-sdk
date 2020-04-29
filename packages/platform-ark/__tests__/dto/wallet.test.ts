@@ -1,13 +1,13 @@
 import { BigNumber } from "@arkecosystem/utils";
 
-import { Wallet } from "../../src/dto";
+import { WalletData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/getWallet.json";
 
-let subject: Wallet;
+let subject: WalletData;
 
-beforeEach(() => (subject = new Wallet(Fixture.data)));
+beforeEach(() => (subject = new WalletData(Fixture.data)));
 
-describe("Ark", function () {
+describe("WalletData", function () {
 	test("#getAddress", () => {
 		expect(subject.getAddress()).toBe("DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9");
 	});

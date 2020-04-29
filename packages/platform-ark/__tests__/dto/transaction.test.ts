@@ -1,13 +1,13 @@
 import { BigNumber } from "@arkecosystem/utils";
 
-import { Transaction } from "../../src/dto";
+import { TransactionData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/getTransaction.json";
 
-let subject: Transaction;
+let subject: TransactionData;
 
-beforeEach(() => (subject = new Transaction(Fixture.data)));
+beforeEach(() => (subject = new TransactionData(Fixture.data)));
 
-describe("Ark", function () {
+describe("TransactionData", function () {
 	test("#getId", () => {
 		expect(subject.getId()).toBe("3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572");
 	});

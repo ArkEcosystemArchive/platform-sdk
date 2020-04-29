@@ -1,9 +1,9 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
-export class Peer implements Contracts.PeerDTO {
+export class PeerData implements Contracts.PeerData {
 	readonly #data: Contracts.KeyValuePair;
 
-	public constructor (data: Contracts.KeyValuePair) {
+	public constructor(data: Contracts.KeyValuePair) {
 		this.#data = data;
 	}
 
