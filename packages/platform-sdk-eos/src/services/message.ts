@@ -2,7 +2,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 import ecc from "eosjs-ecc";
 
 export class MessageService implements Contracts.MessageService {
-	public sign(input): Contracts.SignedMessage {
+	public async sign(input): Promise<Contracts.SignedMessage> {
 		return {
 			message: input.message,
 			publicKey: ecc.privateToPublic(input.passphrase),
@@ -10,7 +10,7 @@ export class MessageService implements Contracts.MessageService {
 		};
 	}
 
-	public verify(input): boolean {
+	public async verify(input): Promise<boolean> {
 		return ecc.verify(input.signature, input.message, input.publicKey);
 	}
 }

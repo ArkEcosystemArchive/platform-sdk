@@ -2,11 +2,11 @@ import { Crypto } from "@arkecosystem/crypto";
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class MessageService implements Contracts.MessageService {
-	public sign(input): Contracts.SignedMessage {
+	public async sign(input): Promise<Contracts.SignedMessage> {
 		return Crypto.Message.sign(input.message, input.passphrase);
 	}
 
-	public verify(input): boolean {
+	public async verify(input): Promise<boolean> {
 		return Crypto.Message.verify(input);
 	}
 }

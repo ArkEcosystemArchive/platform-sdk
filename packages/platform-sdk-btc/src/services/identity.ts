@@ -8,7 +8,7 @@ export class IdentityService implements Contracts.IdentityService {
 		this.network = networks[network];
 	}
 
-	public getAddress(opts: Contracts.KeyValuePair): string {
+	public async getAddress(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			throw new Exceptions.NotSupported(this.constructor.name, "getAddress#passphrase");
 		}
@@ -66,7 +66,7 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public getPublicKey(opts: Contracts.KeyValuePair): string {
+	public async getPublicKey(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			throw new Exceptions.NotSupported(this.constructor.name, "getPublicKey#passphrase");
 		}
@@ -82,7 +82,7 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public getPrivateKey(opts: Contracts.KeyValuePair): string {
+	public async getPrivateKey(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			throw new Exceptions.NotSupported(this.constructor.name, "getPrivateKey#passphrase");
 		}
@@ -100,7 +100,7 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public getWIF(opts: Contracts.KeyValuePair): string {
+	public async getWIF(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			throw new Exceptions.NotSupported(this.constructor.name, "getWIF#passphrase");
 		}
@@ -108,7 +108,7 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public getKeyPair(opts: Contracts.KeyValuePair): Contracts.KeyPair {
+	public async getKeyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
 		const normalizeKeyPair = (keyPair): Contracts.KeyPair => ({
 			publicKey: keyPair.publicKey.toString("hex"),
 			privateKey: keyPair.privateKey?.toString("hex"),

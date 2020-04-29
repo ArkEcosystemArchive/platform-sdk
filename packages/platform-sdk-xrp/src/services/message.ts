@@ -2,7 +2,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 import { deriveKeypair, sign, verify } from "ripple-keypairs";
 
 export class MessageService implements Contracts.MessageService {
-	public sign(input): Contracts.SignedMessage {
+	public async sign(input): Promise<Contracts.SignedMessage> {
 		const { publicKey, privateKey } = deriveKeypair(input.passphrase);
 
 		return {
@@ -12,7 +12,7 @@ export class MessageService implements Contracts.MessageService {
 		};
 	}
 
-	public verify(input): boolean {
+	public async verify(input): Promise<boolean> {
 		return verify(Buffer.from(input.message, "utf8").toString("hex"), input.signature, input.publicKey);
 	}
 }
