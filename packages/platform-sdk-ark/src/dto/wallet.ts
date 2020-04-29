@@ -24,10 +24,19 @@ export class WalletData implements Contracts.WalletData {
 		return BigNumber.make(this.#data.nonce);
 	}
 
+	public toObject(): Contracts.KeyValuePair {
+		return {
+			address: this.getAddress(),
+			publicKey: this.getPublicKey(),
+			balance: this.getBalance(),
+			nonce: this.getNonce(),
+		};
+	}
+
 	/**
 	 * Only use this function if you can ensure that the unnormalised data is handled!
 	 */
-	public toObject(): Contracts.KeyValuePair {
+	public raw(): Contracts.KeyValuePair {
 		return this.#data;
 	}
 }
