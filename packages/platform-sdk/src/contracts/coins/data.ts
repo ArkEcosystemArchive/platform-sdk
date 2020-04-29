@@ -61,6 +61,8 @@ export interface WalletData {
 
 	getBalance(): BigNumber;
 
+	getNonce(): BigNumber;
+
 	toObject(): KeyValuePair;
 }
 
