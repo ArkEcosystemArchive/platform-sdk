@@ -77,11 +77,13 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getSyncStatus");
 	}
 
-	public async postTransactions(transaction: object): Promise<void> {
-		try {
-			await this.post("transactions", transaction);
-		} catch (e) {
-			throw new Error((await e.responseBody).toString());
+	public async postTransactions(transactions: object[]): Promise<void> {
+		for (const transaction of transactions) {
+			try {
+				await this.post("transactions", transaction);
+			} catch (e) {
+				throw new Error((await e.responseBody).toString());
+			}
 		}
 	}
 

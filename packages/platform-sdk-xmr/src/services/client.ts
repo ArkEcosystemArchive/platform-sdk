@@ -65,7 +65,7 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getSyncStatus");
 	}
 
-	public async postTransactions(transaction: object): Promise<void> {
+	public async postTransactions(transactions: object[]): Promise<void> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "postTransactions");
 	}
 

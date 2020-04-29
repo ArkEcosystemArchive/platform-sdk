@@ -92,7 +92,7 @@ describe("ClientService", function () {
 				.post("/api/transactions")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/postTransactions.json`));
 
-			const result = await subject.postTransactions({});
+			const result = await subject.postTransactions([]);
 
 			expect(result).toBeUndefined();
 		});
