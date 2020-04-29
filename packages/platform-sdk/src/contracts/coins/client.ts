@@ -72,20 +72,6 @@ export interface Delegate {
 	toObject(): KeyValuePair;
 }
 
-export interface Peer {
-	getIp(): string;
-
-	getPort(): number;
-
-	getVersion(): string;
-
-	getHeight(): number;
-
-	getLatency(): number;
-
-	toObject(): KeyValuePair;
-}
-
 export interface CollectionResponse<T> {
 	meta: KeyValuePair;
 	data: T[];
@@ -102,8 +88,6 @@ export interface Client {
 
 	getDelegate(id: string): Promise<Delegate>;
 	getDelegates(query?: KeyValuePair): Promise<CollectionResponse<Delegate>>;
-
-	getPeers(query?: KeyValuePair): Promise<CollectionResponse<Peer>>;
 
 	getConfiguration(): Promise<KeyValuePair>;
 	getCryptoConfiguration(): Promise<KeyValuePair>;

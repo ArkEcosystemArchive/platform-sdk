@@ -5,7 +5,7 @@ import { Delegate, Peer, Transaction, Wallet } from "./dto";
 export class Client implements Contracts.Client {
 	readonly #baseUrl: string;
 
-	public constructor(private readonly peer: string) {
+	public constructor (private readonly peer: string) {
 		this.#baseUrl = peer;
 	}
 
@@ -51,12 +51,6 @@ export class Client implements Contracts.Client {
 		const result = await this.get("delegates");
 
 		return { meta: result.meta, data: result.data.map((wallet) => new Delegate(wallet)) };
-	}
-
-	public async getPeers(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Peer>> {
-		const result = await this.get("peers", query);
-
-		return { meta: result.meta, data: result.data.map((peer) => new Peer(peer)) };
 	}
 
 	public async getConfiguration(): Promise<Contracts.KeyValuePair> {

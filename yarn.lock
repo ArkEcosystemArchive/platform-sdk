@@ -87,10 +87,13 @@ __metadata:
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/is-url-superb": 3.0.0
     "@types/jest": ^25.2.1
+    "@types/lodash.orderby": 4.6.6
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
     "@types/rimraf": ^3.0.0
+    "@types/semver": 7.1.0
     "@typescript-eslint/eslint-plugin": ^2.30.0
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
@@ -100,12 +103,17 @@ __metadata:
     eslint-plugin-jest: ^23.8.2
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
+    is-url-superb: ^3.0.0
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    ky: ^0.19.1
+    ky-universal: ^0.6.0
+    lodash.orderby: ^4.6.0
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
     rimraf: ^3.0.2
+    semver: ^7.3.2
     ts-jest: ^25.4.0
     typescript: ^3.8.3
   languageName: unknown
@@ -2796,6 +2804,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/is-url-superb@npm:3.0.0":
+  version: 3.0.0
+  resolution: "@types/is-url-superb@npm:3.0.0"
+  dependencies:
+    is-url-superb: "*"
+  checksum: 2/268efccf4a1c19c2c1a1ab8c86f1a9a42a946186b06fca9337317e4718c6f12529116c42bbfe037ccb0ba8805d1166eb2a1da66c9b4e77571dad5046452bb90f
+  languageName: node
+  linkType: hard
+
 "@types/istanbul-lib-coverage@npm:*, @types/istanbul-lib-coverage@npm:^2.0.0, @types/istanbul-lib-coverage@npm:^2.0.1":
   version: 2.0.1
   resolution: "@types/istanbul-lib-coverage@npm:2.0.1"
@@ -2848,7 +2865,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.136":
+"@types/lodash.orderby@npm:4.6.6":
+  version: 4.6.6
+  resolution: "@types/lodash.orderby@npm:4.6.6"
+  dependencies:
+    "@types/lodash": "*"
+  checksum: 2/5a46260df50739a677e59dd54ab8d7e4e8d72e179d15d48b11795effd0984ba05f367da25622da0a40668eb7fc9750d30bc45f5e8c31d3c97a948adf4d1bd04e
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*, @types/lodash@npm:^4.14.136":
   version: 4.14.150
   resolution: "@types/lodash@npm:4.14.150"
   checksum: 2/0e9ade0b8ace23845ffb1d17b91142abae183c997a96072339cc1ab34395e2f8bc20ad472b9efd879a8b11ee06ae9dde1b9c4c15ce2f63cbee3a558c30a7852d
@@ -2962,6 +2988,15 @@ __metadata:
     "@types/glob": "*"
     "@types/node": "*"
   checksum: 2/00a00a430f838ddafdbc17386f08d928b1ae7aeada84d112f4369a7a89b4d47c1bb6849688f1d6ee404a08338ab52a80c742f0c3040d63ccc2aaec04bd1009f5
+  languageName: node
+  linkType: hard
+
+"@types/semver@npm:7.1.0":
+  version: 7.1.0
+  resolution: "@types/semver@npm:7.1.0"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2/d4450e985101a5241a879c919a6f462e4d1ed82c7720d1b732a01bc5692356c5fd817e7ef985efd7b2175f47513d56c3d308ea79dd1f9faf18153a2c673df8fe
   languageName: node
   linkType: hard
 
@@ -8733,7 +8768,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"is-url-superb@npm:^3.0.0":
+"is-url-superb@npm:*, is-url-superb@npm:^3.0.0":
   version: 3.0.0
   resolution: "is-url-superb@npm:3.0.0"
   dependencies:
@@ -9720,10 +9755,33 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"ky-universal@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "ky-universal@npm:0.6.0"
+  dependencies:
+    abort-controller: ^3.0.0
+    node-fetch: ^2.6.0
+  peerDependencies:
+    ky: ">=0.17.0"
+    web-streams-polyfill: ">=2.0.0"
+  peerDependenciesMeta:
+    web-streams-polyfill:
+      optional: true
+  checksum: 2/955e7eda3b0acfe7137d4d1cb48045370755c0f66eef9ac08edef29e540eb3db53dbfe470a1768e902b277eeb780a24ad9559e47a3134bbd103e298ef089b7a3
+  languageName: node
+  linkType: hard
+
 "ky@npm:^0.19.0":
   version: 0.19.0
   resolution: "ky@npm:0.19.0"
   checksum: 2/0e6dd37a557dc2a9e971c9d5a376c7c6df5ffb416e612d6678d8b6fa9c665f754a3530bef5abdfb8ca2ab2db7fc284843f35fe7a161886ff53e7fe48397c4b78
+  languageName: node
+  linkType: hard
+
+"ky@npm:^0.19.1":
+  version: 0.19.1
+  resolution: "ky@npm:0.19.1"
+  checksum: 2/c578336aca3fa83472e5332cf69c589c023c7da04b5afc49ea16127fea62887ca7f6c2f1395564cacb9c031ddd723699a0d056b95e9f814be4512d3aa3948c68
   languageName: node
   linkType: hard
 
@@ -9912,6 +9970,13 @@ fsevents@^2.1.2:
   version: 4.1.2
   resolution: "lodash.memoize@npm:4.1.2"
   checksum: 2/080c1095b7795b293a06078737550dc0c8138192cadbafb4e4b1303357d367ac589a1a570fad8de154175b008ca7b2b48d6a7f1755a143e13b764e20a7104080
+  languageName: node
+  linkType: hard
+
+"lodash.orderby@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "lodash.orderby@npm:4.6.0"
+  checksum: 2/a25b51d29c8016be620da3c8e80792b717e5c8a16ff94bba799751d4a991e18884a2e0b22b55efb61371d115736a6fc38b91fddb8d1053389ae49bbaffbe60b4
   languageName: node
   linkType: hard
 
@@ -13365,6 +13430,15 @@ resolve@~1.7.1:
   bin:
     semver: bin/semver.js
   checksum: 2/9b12cd9f87ba6d222b79b8151ca50181cf5a30754828f549700c36fdb08a9fdf6a668bfd5e65355dc5ca9713fcf45d080203920127d42c8863a283624070f9a2
+  languageName: node
+  linkType: hard
+
+"semver@npm:^7.3.2":
+  version: 7.3.2
+  resolution: "semver@npm:7.3.2"
+  bin:
+    semver: bin/semver.js
+  checksum: 2/bceb46d396d039afb5be2b2860bce1b0a43ecbadc72dde7ebe9c56dd9035ca50d9b8e086208ff9bbe53773ebde0bcfc6fc0842d7358398bca7054bb9ced801e3
   languageName: node
   linkType: hard
 

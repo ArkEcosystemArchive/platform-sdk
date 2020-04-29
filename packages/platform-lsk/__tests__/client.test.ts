@@ -86,19 +86,6 @@ describe("Client", function () {
 		});
 	});
 
-	describe("#getPeers", () => {
-		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
-				.get("/api/peers")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getPeers.json`));
-
-			const result = await subject.getPeers();
-
-			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(Peer);
-		});
-	});
-
 	describe("#postTransactions", () => {
 		it("should succeed", async () => {
 			nock("https://betanet.lisk.io:443")

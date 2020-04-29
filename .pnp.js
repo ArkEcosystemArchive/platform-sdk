@@ -339,10 +339,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
+            ["@types/is-url-superb", "npm:3.0.0"],
             ["@types/jest", "npm:25.2.1"],
+            ["@types/lodash.orderby", "npm:4.6.6"],
             ["@types/node", "npm:13.13.4"],
             ["@types/prettier", "npm:2.0.0"],
             ["@types/rimraf", "npm:3.0.0"],
+            ["@types/semver", "npm:7.1.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:a901e69550495598a7de20bb45027492b3cb0cbe28b0b3a9e9df107d098c97c63933c48ecdf6010887d04de3d0ef4d7e250bc432a70e3d203e9480a1d5f91ab0#npm:2.30.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
             ["codecov", "npm:3.6.5"],
@@ -352,12 +355,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:23.8.2"],
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
+            ["is-url-superb", "npm:3.0.0"],
             ["jest", "npm:25.4.0"],
             ["jest-extended", "npm:0.11.5"],
+            ["ky", "npm:0.19.1"],
+            ["ky-universal", "virtual:a901e69550495598a7de20bb45027492b3cb0cbe28b0b3a9e9df107d098c97c63933c48ecdf6010887d04de3d0ef4d7e250bc432a70e3d203e9480a1d5f91ab0#npm:0.6.0"],
+            ["lodash.orderby", "npm:4.6.0"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:4.1.2"],
             ["prettier", "npm:2.0.5"],
             ["rimraf", "npm:3.0.2"],
+            ["semver", "npm:7.3.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:25.4.0"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"]
           ],
@@ -3264,6 +3272,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/is-url-superb", [
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/@types-is-url-superb-npm-3.0.0-656f746828-2.zip/node_modules/@types/is-url-superb/",
+          "packageDependencies": [
+            ["@types/is-url-superb", "npm:3.0.0"],
+            ["is-url-superb", "npm:3.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/istanbul-lib-coverage", [
         ["npm:2.0.1", {
           "packageLocation": "./.yarn/cache/@types-istanbul-lib-coverage-npm-2.0.1-c8b87e4b03-2.zip/node_modules/@types/istanbul-lib-coverage/",
@@ -3328,6 +3346,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         ["npm:4.14.150", {
           "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.150-a71293c86b-2.zip/node_modules/@types/lodash/",
           "packageDependencies": [
+            ["@types/lodash", "npm:4.14.150"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/lodash.orderby", [
+        ["npm:4.6.6", {
+          "packageLocation": "./.yarn/cache/@types-lodash.orderby-npm-4.6.6-650bdea172-2.zip/node_modules/@types/lodash.orderby/",
+          "packageDependencies": [
+            ["@types/lodash.orderby", "npm:4.6.6"],
             ["@types/lodash", "npm:4.14.150"]
           ],
           "linkType": "HARD",
@@ -3450,6 +3478,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@types/rimraf", "npm:3.0.0"],
             ["@types/glob", "npm:7.1.1"],
+            ["@types/node", "npm:12.12.31"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/semver", [
+        ["npm:7.1.0", {
+          "packageLocation": "./.yarn/cache/@types-semver-npm-7.1.0-ce58bbc3b4-2.zip/node_modules/@types/semver/",
+          "packageDependencies": [
+            ["@types/semver", "npm:7.1.0"],
             ["@types/node", "npm:12.12.31"]
           ],
           "linkType": "HARD",
@@ -11199,6 +11237,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ky", "npm:0.19.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:0.19.1", {
+          "packageLocation": "./.yarn/cache/ky-npm-0.19.1-50d280f216-2.zip/node_modules/ky/",
+          "packageDependencies": [
+            ["ky", "npm:0.19.1"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["ky-universal", [
@@ -11208,6 +11253,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ky-universal", "virtual:613567cf98cb2fe89179dc3e1fb1b628bca4f13860a02e080f2792d7b8fa0de6b7a6c5fdb95c610a9a7436236d3d34b0611ae14a9bf1fb78c46ddca9c7367fdf#npm:0.5.0"],
             ["abort-controller", "npm:3.0.0"],
             ["ky", "npm:0.19.0"],
+            ["node-fetch", "npm:2.6.0"],
+            ["web-streams-polyfill", null]
+          ],
+          "packagePeers": [
+            "ky",
+            "web-streams-polyfill"
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:a901e69550495598a7de20bb45027492b3cb0cbe28b0b3a9e9df107d098c97c63933c48ecdf6010887d04de3d0ef4d7e250bc432a70e3d203e9480a1d5f91ab0#npm:0.6.0", {
+          "packageLocation": "./.yarn/$$virtual/ky-universal-virtual-af2e0a043b/0/cache/ky-universal-npm-0.6.0-e83e8ddda5-2.zip/node_modules/ky-universal/",
+          "packageDependencies": [
+            ["ky-universal", "virtual:a901e69550495598a7de20bb45027492b3cb0cbe28b0b3a9e9df107d098c97c63933c48ecdf6010887d04de3d0ef4d7e250bc432a70e3d203e9480a1d5f91ab0#npm:0.6.0"],
+            ["abort-controller", "npm:3.0.0"],
+            ["ky", "npm:0.19.1"],
             ["node-fetch", "npm:2.6.0"],
             ["web-streams-polyfill", null]
           ],
@@ -11429,6 +11489,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lodash.memoize-npm-4.1.2-0e6250041f-2.zip/node_modules/lodash.memoize/",
           "packageDependencies": [
             ["lodash.memoize", "npm:4.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["lodash.orderby", [
+        ["npm:4.6.0", {
+          "packageLocation": "./.yarn/cache/lodash.orderby-npm-4.6.0-725bf1964d-2.zip/node_modules/lodash.orderby/",
+          "packageDependencies": [
+            ["lodash.orderby", "npm:4.6.0"]
           ],
           "linkType": "HARD",
         }]
@@ -15126,6 +15195,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/semver-npm-7.2.2-fe4f9047db-2.zip/node_modules/semver/",
           "packageDependencies": [
             ["semver", "npm:7.2.2"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:7.3.2", {
+          "packageLocation": "./.yarn/cache/semver-npm-7.3.2-161b023bbb-2.zip/node_modules/semver/",
+          "packageDependencies": [
+            ["semver", "npm:7.3.2"]
           ],
           "linkType": "HARD",
         }]
