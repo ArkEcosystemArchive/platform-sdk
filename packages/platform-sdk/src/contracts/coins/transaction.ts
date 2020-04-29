@@ -13,3 +13,5 @@ export interface TransactionService {
 	createHtlcClaim(data: KeyValuePair): object;
 	createHtlcRefund(data: KeyValuePair): object;
 }
+
+export type SignedTransaction = string | object;

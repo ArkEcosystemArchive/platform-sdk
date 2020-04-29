@@ -8,51 +8,51 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#network = network;
 	}
 
-	public createTransfer(data: Contracts.KeyValuePair): object {
+	public async createTransfer(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("transfer", data);
 	}
 
-	public createSecondSignature(data: Contracts.KeyValuePair): object {
+	public async createSecondSignature(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("registerSecondPassphrase", data);
 	}
 
-	public createDelegateRegistration(data: Contracts.KeyValuePair): object {
+	public async createDelegateRegistration(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("registerDelegate", data);
 	}
 
-	public createVote(data: Contracts.KeyValuePair): object {
+	public async createVote(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("castVotes", data);
 	}
 
-	public createMultiSignature(data: Contracts.KeyValuePair): object {
+	public async createMultiSignature(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("registerMultisignature", data);
 	}
 
-	public createIpfs(data: Contracts.KeyValuePair): object {
+	public async createIpfs(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createIpfs");
 	}
 
-	public createMultiPayment(data: Contracts.KeyValuePair): object {
+	public async createMultiPayment(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createMultiPayment");
 	}
 
-	public createDelegateResignation(data: Contracts.KeyValuePair): object {
+	public async createDelegateResignation(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createDelegateResignation");
 	}
 
-	public createHtlcLock(data: Contracts.KeyValuePair): object {
+	public async createHtlcLock(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcLock");
 	}
 
-	public createHtlcClaim(data: Contracts.KeyValuePair): object {
+	public async createHtlcClaim(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcClaim");
 	}
 
-	public createHtlcRefund(data: Contracts.KeyValuePair): object {
+	public async createHtlcRefund(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcRefund");
 	}
 
-	private createFromData(type: string, data: Contracts.KeyValuePair, callback?: Function): object {
+	private async createFromData(type: string, data: Contracts.KeyValuePair, callback?: Function): Promise<Contracts.SignedTransaction> {
 		const struct: Contracts.KeyValuePair = { ...data };
 
 		struct.networkIdentifier = this.#network;
