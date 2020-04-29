@@ -1,0 +1,17 @@
+releases:
+  "@arkecosystem/platform-sdk-ada": minor
+  "@arkecosystem/platform-sdk-ark": minor
+  "@arkecosystem/platform-sdk-atom": minor
+  "@arkecosystem/platform-sdk-btc": minor
+  "@arkecosystem/platform-sdk-coincap": minor
+  "@arkecosystem/platform-sdk-coingecko": minor
+  "@arkecosystem/platform-sdk-cryptocompare": minor
+  "@arkecosystem/platform-sdk-eos": minor
+  "@arkecosystem/platform-sdk-eth": minor
+  "@arkecosystem/platform-sdk-lsk": minor
+  "@arkecosystem/platform-sdk-neo": minor
+  "@arkecosystem/platform-sdk-price-trackers": minor
+  "@arkecosystem/platform-sdk": minor
+  "@arkecosystem/platform-sdk-trx": minor
+  "@arkecosystem/platform-sdk-xmr": minor
+  "@arkecosystem/platform-sdk-xrp": minor

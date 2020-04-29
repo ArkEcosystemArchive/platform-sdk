@@ -43,9 +43,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/platform-ada@workspace:packages/platform-ada":
+"@arkecosystem/platform-sdk-ada@workspace:packages/platform-sdk-ada":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-ada@workspace:packages/platform-ada"
+  resolution: "@arkecosystem/platform-sdk-ada@workspace:packages/platform-sdk-ada"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
@@ -76,9 +76,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/platform-ark@workspace:packages/platform-ark":
+"@arkecosystem/platform-sdk-ark@workspace:packages/platform-sdk-ark":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-ark@workspace:packages/platform-ark"
+  resolution: "@arkecosystem/platform-sdk-ark@workspace:packages/platform-sdk-ark"
   dependencies:
     "@arkecosystem/client": ^1.1
     "@arkecosystem/crypto": ^2.6.34
@@ -119,9 +119,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/platform-atom@workspace:packages/platform-atom":
+"@arkecosystem/platform-sdk-atom@workspace:packages/platform-sdk-atom":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-atom@workspace:packages/platform-atom"
+  resolution: "@arkecosystem/platform-sdk-atom@workspace:packages/platform-sdk-atom"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
@@ -156,9 +156,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/platform-btc@workspace:packages/platform-btc":
+"@arkecosystem/platform-sdk-btc@workspace:packages/platform-sdk-btc":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-btc@workspace:packages/platform-btc"
+  resolution: "@arkecosystem/platform-sdk-btc@workspace:packages/platform-sdk-btc"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
@@ -192,9 +192,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/platform-coincap@workspace:packages/platform-coincap":
+"@arkecosystem/platform-sdk-coincap@workspace:packages/platform-sdk-coincap":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-coincap@workspace:packages/platform-coincap"
+  resolution: "@arkecosystem/platform-sdk-coincap@workspace:packages/platform-sdk-coincap"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
@@ -225,9 +225,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/platform-coingecko@workspace:packages/platform-coingecko":
+"@arkecosystem/platform-sdk-coingecko@workspace:packages/platform-sdk-coingecko":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-coingecko@workspace:packages/platform-coingecko"
+  resolution: "@arkecosystem/platform-sdk-coingecko@workspace:packages/platform-sdk-coingecko"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
@@ -258,9 +258,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/platform-cryptocompare@workspace:packages/platform-cryptocompare":
+"@arkecosystem/platform-sdk-cryptocompare@workspace:packages/platform-sdk-cryptocompare":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-cryptocompare@workspace:packages/platform-cryptocompare"
+  resolution: "@arkecosystem/platform-sdk-cryptocompare@workspace:packages/platform-sdk-cryptocompare"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
@@ -291,9 +291,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/platform-eos@workspace:packages/platform-eos":
+"@arkecosystem/platform-sdk-eos@workspace:packages/platform-sdk-eos":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-eos@workspace:packages/platform-eos"
+  resolution: "@arkecosystem/platform-sdk-eos@workspace:packages/platform-sdk-eos"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
@@ -327,9 +327,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/platform-eth@workspace:packages/platform-eth":
+"@arkecosystem/platform-sdk-eth@workspace:packages/platform-sdk-eth":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-eth@workspace:packages/platform-eth"
+  resolution: "@arkecosystem/platform-sdk-eth@workspace:packages/platform-sdk-eth"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
@@ -363,9 +363,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/platform-lsk@workspace:packages/platform-lsk":
+"@arkecosystem/platform-sdk-lsk@workspace:packages/platform-sdk-lsk":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-lsk@workspace:packages/platform-lsk"
+  resolution: "@arkecosystem/platform-sdk-lsk@workspace:packages/platform-sdk-lsk"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
@@ -399,9 +399,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/platform-neo@workspace:packages/platform-neo":
+"@arkecosystem/platform-sdk-neo@workspace:packages/platform-sdk-neo":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-neo@workspace:packages/platform-neo"
+  resolution: "@arkecosystem/platform-sdk-neo@workspace:packages/platform-sdk-neo"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
@@ -433,14 +433,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/platform-price-trackers@workspace:packages/platform-price-trackers":
+"@arkecosystem/platform-sdk-price-trackers@workspace:packages/platform-sdk-price-trackers":
   version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-price-trackers@workspace:packages/platform-price-trackers"
+  resolution: "@arkecosystem/platform-sdk-price-trackers@workspace:packages/platform-sdk-price-trackers"
   dependencies:
-    "@arkecosystem/platform-coincap": "workspace:packages/platform-coincap"
-    "@arkecosystem/platform-coingecko": "workspace:packages/platform-coingecko"
-    "@arkecosystem/platform-cryptocompare": "workspace:packages/platform-cryptocompare"
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-coincap": "workspace:packages/platform-sdk-coincap"
+    "@arkecosystem/platform-sdk-coingecko": "workspace:packages/platform-sdk-coingecko"
+    "@arkecosystem/platform-sdk-cryptocompare": "workspace:packages/platform-sdk-cryptocompare"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -463,6 +463,109 @@ __metadata:
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
     rimraf: ^3.0.2
+    ts-jest: ^25.4.0
+    typescript: ^3.8.3
+  languageName: unknown
+  linkType: soft
+
+"@arkecosystem/platform-sdk-trx@workspace:packages/platform-sdk-trx":
+  version: 0.0.0-use.local
+  resolution: "@arkecosystem/platform-sdk-trx@workspace:packages/platform-sdk-trx"
+  dependencies:
+    "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/utils": ^1.1.8
+    "@sindresorhus/tsconfig": ^0.7.0
+    "@types/eslint": ^6.8.0
+    "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/jest": ^25.2.1
+    "@types/node": ^13.13.4
+    "@types/prettier": ^2.0.0
+    "@types/rimraf": ^3.0.0
+    "@typescript-eslint/eslint-plugin": ^2.30.0
+    "@typescript-eslint/parser": ^2.30.0
+    codecov: ^3.6.5
+    cross-env: ^7.0.2
+    eslint: ^6.8.0
+    eslint-config-prettier: ^6.11.0
+    eslint-plugin-jest: ^23.8.2
+    eslint-plugin-prettier: ^3.1.3
+    eslint-plugin-simple-import-sort: ^5.0.3
+    jest: ^25.4.0
+    jest-extended: ^0.11.5
+    nock: ^12.0.3
+    npm-check-updates: ^4.1.2
+    prettier: ^2.0.5
+    rimraf: ^3.0.2
+    tronweb: ^2.10.1
+    ts-jest: ^25.4.0
+    typescript: ^3.8.3
+  languageName: unknown
+  linkType: soft
+
+"@arkecosystem/platform-sdk-xmr@workspace:packages/platform-sdk-xmr":
+  version: 0.0.0-use.local
+  resolution: "@arkecosystem/platform-sdk-xmr@workspace:packages/platform-sdk-xmr"
+  dependencies:
+    "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/utils": ^1.1.8
+    "@sindresorhus/tsconfig": ^0.7.0
+    "@types/eslint": ^6.8.0
+    "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/jest": ^25.2.1
+    "@types/node": ^13.13.4
+    "@types/prettier": ^2.0.0
+    "@types/rimraf": ^3.0.0
+    "@typescript-eslint/eslint-plugin": ^2.30.0
+    "@typescript-eslint/parser": ^2.30.0
+    codecov: ^3.6.5
+    cross-env: ^7.0.2
+    eslint: ^6.8.0
+    eslint-config-prettier: ^6.11.0
+    eslint-plugin-jest: ^23.8.2
+    eslint-plugin-prettier: ^3.1.3
+    eslint-plugin-simple-import-sort: ^5.0.3
+    jest: ^25.4.0
+    jest-extended: ^0.11.5
+    monero-javascript: ^0.2.14
+    nock: ^12.0.3
+    npm-check-updates: ^4.1.2
+    prettier: ^2.0.5
+    rimraf: ^3.0.2
+    ts-jest: ^25.4.0
+    typescript: ^3.8.3
+  languageName: unknown
+  linkType: soft
+
+"@arkecosystem/platform-sdk-xrp@workspace:packages/platform-sdk-xrp":
+  version: 0.0.0-use.local
+  resolution: "@arkecosystem/platform-sdk-xrp@workspace:packages/platform-sdk-xrp"
+  dependencies:
+    "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/utils": ^1.1.8
+    "@sindresorhus/tsconfig": ^0.7.0
+    "@types/eslint": ^6.8.0
+    "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/jest": ^25.2.1
+    "@types/node": ^13.13.4
+    "@types/prettier": ^2.0.0
+    "@types/rimraf": ^3.0.0
+    "@typescript-eslint/eslint-plugin": ^2.30.0
+    "@typescript-eslint/parser": ^2.30.0
+    codecov: ^3.6.5
+    cross-env: ^7.0.2
+    eslint: ^6.8.0
+    eslint-config-prettier: ^6.11.0
+    eslint-plugin-jest: ^23.8.2
+    eslint-plugin-prettier: ^3.1.3
+    eslint-plugin-simple-import-sort: ^5.0.3
+    jest: ^25.4.0
+    jest-extended: ^0.11.5
+    nock: ^12.0.3
+    npm-check-updates: ^4.1.2
+    prettier: ^2.0.5
+    rimraf: ^3.0.2
+    ripple-keypairs: ^1.0.0
+    ripple-lib: ^1.6.5
     ts-jest: ^25.4.0
     typescript: ^3.8.3
   languageName: unknown
@@ -498,109 +601,6 @@ __metadata:
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
     rimraf: ^3.0.2
-    ts-jest: ^25.4.0
-    typescript: ^3.8.3
-  languageName: unknown
-  linkType: soft
-
-"@arkecosystem/platform-trx@workspace:packages/platform-trx":
-  version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-trx@workspace:packages/platform-trx"
-  dependencies:
-    "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
-    "@sindresorhus/tsconfig": ^0.7.0
-    "@types/eslint": ^6.8.0
-    "@types/eslint-plugin-prettier": ^3.1.0
-    "@types/jest": ^25.2.1
-    "@types/node": ^13.13.4
-    "@types/prettier": ^2.0.0
-    "@types/rimraf": ^3.0.0
-    "@typescript-eslint/eslint-plugin": ^2.30.0
-    "@typescript-eslint/parser": ^2.30.0
-    codecov: ^3.6.5
-    cross-env: ^7.0.2
-    eslint: ^6.8.0
-    eslint-config-prettier: ^6.11.0
-    eslint-plugin-jest: ^23.8.2
-    eslint-plugin-prettier: ^3.1.3
-    eslint-plugin-simple-import-sort: ^5.0.3
-    jest: ^25.4.0
-    jest-extended: ^0.11.5
-    nock: ^12.0.3
-    npm-check-updates: ^4.1.2
-    prettier: ^2.0.5
-    rimraf: ^3.0.2
-    tronweb: ^2.10.1
-    ts-jest: ^25.4.0
-    typescript: ^3.8.3
-  languageName: unknown
-  linkType: soft
-
-"@arkecosystem/platform-xmr@workspace:packages/platform-xmr":
-  version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-xmr@workspace:packages/platform-xmr"
-  dependencies:
-    "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
-    "@sindresorhus/tsconfig": ^0.7.0
-    "@types/eslint": ^6.8.0
-    "@types/eslint-plugin-prettier": ^3.1.0
-    "@types/jest": ^25.2.1
-    "@types/node": ^13.13.4
-    "@types/prettier": ^2.0.0
-    "@types/rimraf": ^3.0.0
-    "@typescript-eslint/eslint-plugin": ^2.30.0
-    "@typescript-eslint/parser": ^2.30.0
-    codecov: ^3.6.5
-    cross-env: ^7.0.2
-    eslint: ^6.8.0
-    eslint-config-prettier: ^6.11.0
-    eslint-plugin-jest: ^23.8.2
-    eslint-plugin-prettier: ^3.1.3
-    eslint-plugin-simple-import-sort: ^5.0.3
-    jest: ^25.4.0
-    jest-extended: ^0.11.5
-    monero-javascript: ^0.2.14
-    nock: ^12.0.3
-    npm-check-updates: ^4.1.2
-    prettier: ^2.0.5
-    rimraf: ^3.0.2
-    ts-jest: ^25.4.0
-    typescript: ^3.8.3
-  languageName: unknown
-  linkType: soft
-
-"@arkecosystem/platform-xrp@workspace:packages/platform-xrp":
-  version: 0.0.0-use.local
-  resolution: "@arkecosystem/platform-xrp@workspace:packages/platform-xrp"
-  dependencies:
-    "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
-    "@sindresorhus/tsconfig": ^0.7.0
-    "@types/eslint": ^6.8.0
-    "@types/eslint-plugin-prettier": ^3.1.0
-    "@types/jest": ^25.2.1
-    "@types/node": ^13.13.4
-    "@types/prettier": ^2.0.0
-    "@types/rimraf": ^3.0.0
-    "@typescript-eslint/eslint-plugin": ^2.30.0
-    "@typescript-eslint/parser": ^2.30.0
-    codecov: ^3.6.5
-    cross-env: ^7.0.2
-    eslint: ^6.8.0
-    eslint-config-prettier: ^6.11.0
-    eslint-plugin-jest: ^23.8.2
-    eslint-plugin-prettier: ^3.1.3
-    eslint-plugin-simple-import-sort: ^5.0.3
-    jest: ^25.4.0
-    jest-extended: ^0.11.5
-    nock: ^12.0.3
-    npm-check-updates: ^4.1.2
-    prettier: ^2.0.5
-    rimraf: ^3.0.2
-    ripple-keypairs: ^1.0.0
-    ripple-lib: ^1.6.5
     ts-jest: ^25.4.0
     typescript: ^3.8.3
   languageName: unknown
