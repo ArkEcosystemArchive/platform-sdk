@@ -41,6 +41,13 @@ export class TransactionData implements Contracts.TransactionData {
 	}
 
 	public getAmount(): BigNumber {
+		if (this.#data.typeGroup === 0 && this.#data.type === 6) {
+			return this.#data.asset.payments.reduce(
+				(sum: BigNumber, { amount }: { amount: string }) => sum.plus(amount),
+				BigNumber.ZERO,
+			);
+		}
+
 		return BigNumber.make(this.#data.amount);
 	}
 
