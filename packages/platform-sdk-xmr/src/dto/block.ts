@@ -1,13 +1,7 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class BlockData implements Contracts.BlockData {
-	readonly #data: Contracts.KeyValuePair;
-
-	public constructor(data: Contracts.KeyValuePair) {
-		this.#data = data;
-	}
-
+export class BlockData extends DTO.BlockData {
 	public getId(): string {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getId");
 	}
@@ -46,12 +40,5 @@ export class BlockData implements Contracts.BlockData {
 
 	public getForgedTotal(): BigNumber {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getForgedTotal");
-	}
-
-	/**
-	 * Only use this function if you can ensure that the unnormalised data is handled!
-	 */
-	public toObject(): Contracts.KeyValuePair {
-		return this.#data;
 	}
 }

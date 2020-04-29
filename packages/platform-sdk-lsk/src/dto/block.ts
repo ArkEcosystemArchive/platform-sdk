@@ -1,57 +1,44 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class BlockData implements Contracts.BlockData {
-	readonly #data: Contracts.KeyValuePair;
-
-	public constructor(data: Contracts.KeyValuePair) {
-		this.#data = data;
-	}
-
+export class BlockData extends DTO.BlockData {
 	public getId(): string {
-		return this.#data.id;
+		return this.data.id;
 	}
 
 	public getHeight(): string {
-		return this.#data.height;
+		return this.data.height;
 	}
 
 	public getTimestamp(): string {
-		return this.#data.timestamp;
+		return this.data.timestamp;
 	}
 
 	public getConfirmations(): BigNumber {
-		return BigNumber.make(this.#data.confirmations);
+		return BigNumber.make(this.data.confirmations);
 	}
 
 	public getTransactionsCount(): number {
-		return this.#data.numberOfTransactions;
+		return this.data.numberOfTransactions;
 	}
 
 	public getGenerator(): string {
-		return this.#data.generatorPublicKey;
+		return this.data.generatorPublicKey;
 	}
 
 	public getForgedReward(): BigNumber {
-		return BigNumber.make(this.#data.reward);
+		return BigNumber.make(this.data.reward);
 	}
 
 	public getForgedAmount(): BigNumber {
-		return BigNumber.make(this.#data.totalAmount);
+		return BigNumber.make(this.data.totalAmount);
 	}
 
 	public getForgedFee(): BigNumber {
-		return BigNumber.make(this.#data.totalFee);
+		return BigNumber.make(this.data.totalFee);
 	}
 
 	public getForgedTotal(): BigNumber {
-		return BigNumber.make(this.#data.totalForged);
-	}
-
-	/**
-	 * Only use this function if you can ensure that the unnormalised data is handled!
-	 */
-	public toObject(): Contracts.KeyValuePair {
-		return this.#data;
+		return BigNumber.make(this.data.totalForged);
 	}
 }

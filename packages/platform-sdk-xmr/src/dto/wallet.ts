@@ -1,13 +1,7 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class WalletData implements Contracts.WalletData {
-	readonly #data: Contracts.KeyValuePair;
-
-	public constructor(data: Contracts.KeyValuePair) {
-		this.#data = data;
-	}
-
+export class WalletData extends DTO.WalletData {
 	public getAddress(): string {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getAddress");
 	}
@@ -22,12 +16,5 @@ export class WalletData implements Contracts.WalletData {
 
 	public getNonce(): BigNumber {
 		return BigNumber.ZERO;
-	}
-
-	/**
-	 * Only use this function if you can ensure that the unnormalised data is handled!
-	 */
-	public toObject(): Contracts.KeyValuePair {
-		return this.#data;
 	}
 }

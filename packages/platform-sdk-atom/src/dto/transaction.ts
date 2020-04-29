@@ -1,15 +1,9 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class TransactionData implements Contracts.TransactionData {
-	readonly #data: Contracts.KeyValuePair;
-
-	public constructor(data: Contracts.KeyValuePair) {
-		this.#data = data;
-	}
-
+export class TransactionData extends DTO.TransactionData {
 	public getId(): string {
-		return this.#data.txhash;
+		return this.data.txhash;
 	}
 
 	public getType(): number | undefined {
@@ -21,7 +15,7 @@ export class TransactionData implements Contracts.TransactionData {
 	}
 
 	public getTimestamp(): number | undefined {
-		return +new Date(this.#data.timestamp);
+		return +new Date(this.data.timestamp);
 	}
 
 	public getConfirmations(): BigNumber {
@@ -33,14 +27,14 @@ export class TransactionData implements Contracts.TransactionData {
 	}
 
 	public getSender(): string {
-		const event = this.#data.events.find((event) => event.type === "message");
+		const event = this.data.events.find((event) => event.type === "message");
 		const attribute = event.attributes.find((attribute) => attribute.key === "sender");
 
 		return attribute.value;
 	}
 
 	public getRecipient(): string {
-		const event = this.#data.events.find((event) => event.type === "transfer");
+		const event = this.data.events.find((event) => event.type === "transfer");
 		const attribute = event.attributes.find((attribute) => attribute.key === "recipient");
 
 		return attribute.value;
@@ -48,28 +42,21 @@ export class TransactionData implements Contracts.TransactionData {
 
 	// @ts-ignore
 	public getAmount(): BigNumber {
-		const event = this.#data.events.find((event) => event.type === "transfer");
+		const event = this.data.events.find((event) => event.type === "transfer");
 		const attribute = event.attributes.find((attribute) => attribute.key === "amount");
 
 		return attribute.value;
 	}
 
 	public getFee(): BigNumber {
-		return BigNumber.make(this.#data.gas_used);
+		return BigNumber.make(this.data.gas_used);
 	}
 
 	public getVendorField(): string | undefined {
-		return this.#data.tx.value.memo;
+		return this.data.tx.value.memo;
 	}
 
 	public getBlockId(): string {
-		return this.#data.height;
-	}
-
-	/**
-	 * Only use this function if you can ensure that the unnormalised data is handled!
-	 */
-	public toObject(): Contracts.KeyValuePair {
-		return this.#data;
+		return this.data.height;
 	}
 }

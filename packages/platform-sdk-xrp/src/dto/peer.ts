@@ -1,12 +1,6 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { DTO, Exceptions } from "@arkecosystem/platform-sdk";
 
-export class PeerData implements Contracts.PeerData {
-	readonly #data: Contracts.KeyValuePair;
-
-	public constructor(data: Contracts.KeyValuePair) {
-		this.#data = data;
-	}
-
+export class PeerData extends DTO.PeerData {
 	public getIp(): string {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getIp");
 	}
@@ -25,12 +19,5 @@ export class PeerData implements Contracts.PeerData {
 
 	public getLatency(): number {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getLatency");
-	}
-
-	/**
-	 * Only use this function if you can ensure that the unnormalised data is handled!
-	 */
-	public toObject(): Contracts.KeyValuePair {
-		return this.#data;
 	}
 }

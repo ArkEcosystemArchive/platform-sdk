@@ -1,23 +1,17 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class BlockData implements Contracts.BlockData {
-	readonly #data: Contracts.KeyValuePair;
-
-	public constructor(data: Contracts.KeyValuePair) {
-		this.#data = data;
-	}
-
+export class BlockData extends DTO.BlockData {
 	public getId(): string {
-		return this.#data.hash;
+		return this.data.hash;
 	}
 
 	public getHeight(): string {
-		return this.#data.number;
+		return this.data.number;
 	}
 
 	public getTimestamp(): string {
-		return this.#data.timestamp;
+		return this.data.timestamp;
 	}
 
 	public getConfirmations(): BigNumber {
@@ -25,11 +19,11 @@ export class BlockData implements Contracts.BlockData {
 	}
 
 	public getTransactionsCount(): number {
-		return this.#data.transactions.length;
+		return this.data.transactions.length;
 	}
 
 	public getGenerator(): string {
-		return this.#data.miner;
+		return this.data.miner;
 	}
 
 	public getForgedReward(): BigNumber {
@@ -37,7 +31,7 @@ export class BlockData implements Contracts.BlockData {
 	}
 
 	public getForgedAmount(): BigNumber {
-		const transactions: { value: string }[] = Object.values(this.#data.transactions);
+		const transactions: { value: string }[] = Object.values(this.data.transactions);
 
 		return transactions
 			.map((transaction) => BigNumber.make(transaction.value))
@@ -45,17 +39,10 @@ export class BlockData implements Contracts.BlockData {
 	}
 
 	public getForgedFee(): BigNumber {
-		return BigNumber.make(this.#data.gasUsed);
+		return BigNumber.make(this.data.gasUsed);
 	}
 
 	public getForgedTotal(): BigNumber {
 		return this.getForgedReward().plus(this.getForgedAmount()).plus(this.getForgedFee());
-	}
-
-	/**
-	 * Only use this function if you can ensure that the unnormalised data is handled!
-	 */
-	public toObject(): Contracts.KeyValuePair {
-		return this.#data;
 	}
 }
