@@ -7,7 +7,7 @@ export class ClientService implements Contracts.ClientService {
 	readonly #connection: RippleAPI;
 	readonly #dataUrl: string = "https://data.ripple.com/v2";
 
-	private constructor (connection: RippleAPI) {
+	private constructor(connection: RippleAPI) {
 		this.#connection = connection;
 	}
 
@@ -27,13 +27,17 @@ export class ClientService implements Contracts.ClientService {
 		return new TransactionData(transaction);
 	}
 
-	public async getTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
+	public async getTransactions(
+		query: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<TransactionData>> {
 		const { transactions } = await this.get(`accounts/${query.address}/transactions`);
 
 		return { meta: {}, data: transactions.map((transaction) => new TransactionData(transaction)) };
 	}
 
-	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
+	public async searchTransactions(
+		query: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 

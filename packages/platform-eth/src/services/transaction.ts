@@ -5,7 +5,7 @@ import Web3 from "web3";
 export class TransactionService implements Contracts.TransactionService {
 	readonly #connection;
 
-	public constructor (network: string) {
+	public constructor(network: string) {
 		this.#connection = new Web3(new Web3.providers.HttpProvider(network)); // todo: network here is a peer
 	}
 

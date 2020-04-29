@@ -1,9 +1,7 @@
 import { BigNumber } from "@arkecosystem/utils";
 
-import {
-	TransactionData, WalletData, DelegateData
-} from "./data"
 import { KeyValuePair } from "../types";
+import { DelegateData, TransactionData, WalletData } from "./data";
 
 export interface CollectionResponse<T> {
 	meta: KeyValuePair;

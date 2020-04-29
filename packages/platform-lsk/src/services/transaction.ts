@@ -4,7 +4,7 @@ import * as transactions from "@liskhq/lisk-transactions";
 export class TransactionService implements Contracts.TransactionService {
 	readonly #network;
 
-	public constructor (network: string) {
+	public constructor(network: string) {
 		this.#network = network;
 	}
 

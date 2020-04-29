@@ -1,13 +1,13 @@
 import "jest-extended";
 
 import { IdentityService } from "../../src/services/identity";
-import { identity } from "./__fixtures__/identity";
+import { identity } from "../__fixtures__/identity";
 
-let subject: Identity;
+let subject: IdentityService;
 
-beforeEach(() => (subject = new Identity("bitcoin")));
+beforeEach(() => (subject = new IdentityService("bitcoin")));
 
-describe("Identity", () => {
+describe("IdentityService", () => {
 	describe("#getAddress", () => {
 		it("should generate an output from a passphrase", () => {
 			expect(() =>

@@ -2,17 +2,17 @@ import "jest-extended";
 import nock from "nock";
 
 import { ClientService } from "../../src/services/client";
-import { Wallet } from "../src/dto";
+import { WalletData } from "../../src/dto";
 
-let subject: Client;
+let subject: ClientService;
 
-beforeEach(() => (subject = new Client("https://api.testnet.eos.io")));
+beforeEach(() => (subject = new ClientService("https://api.testnet.eos.io")));
 
 afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("Client", function () {
+describe("ClientService", function () {
 	describe("#getWallet", () => {
 		it("should succeed", async () => {
 			nock("https://api.testnet.eos.io")
@@ -21,7 +21,7 @@ describe("Client", function () {
 
 			const result = await subject.getWallet("bdfkbzietxos");
 
-			expect(result).toBeInstanceOf(Wallet);
+			expect(result).toBeInstanceOf(WalletData);
 		});
 	});
 

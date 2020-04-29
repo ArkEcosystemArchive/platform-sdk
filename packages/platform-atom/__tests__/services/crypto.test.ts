@@ -2,11 +2,11 @@ import "jest-extended";
 
 import { TransactionService } from "../../src/services/transaction";
 
-let subject: Crypto;
+let subject: TransactionService;
 
-beforeEach(() => (subject = new Crypto("devnet")));
+beforeEach(() => (subject = new TransactionService("devnet")));
 
-describe("Crypto", () => {
+describe("TransactionService", () => {
 	describe.skip("#createTransfer", () => {
 		it("should verify", async () => {
 			const result: any = await subject.createTransfer({

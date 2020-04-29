@@ -6,7 +6,7 @@ import { DelegateData, TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	readonly #connection: TronWeb;
 
-	public constructor (peer: string) {
+	public constructor(peer: string) {
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
@@ -18,11 +18,15 @@ export class ClientService implements Contracts.ClientService {
 		return new TransactionData(result);
 	}
 
-	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
+	public async getTransactions(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getTransactions");
 	}
 
-	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
+	public async searchTransactions(
+		query: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 

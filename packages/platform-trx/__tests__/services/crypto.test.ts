@@ -2,15 +2,15 @@ import "jest-extended";
 import nock from "nock";
 
 import { TransactionService } from "../../src/services/transaction";
-import { testWallet } from "./__fixtures__/wallet";
+import { testWallet } from "../__fixtures__/wallet";
 
-let subject: Crypto;
+let subject: TransactionService;
 
-beforeEach(() => (subject = new Crypto("https://api.shasta.trongrid.io")));
+beforeEach(() => (subject = new TransactionService("https://api.shasta.trongrid.io")));
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("Crypto", function () {
+describe("TransactionService", function () {
 	describe("#createTransfer", () => {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")

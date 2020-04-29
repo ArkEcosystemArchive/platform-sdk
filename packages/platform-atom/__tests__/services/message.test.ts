@@ -1,13 +1,13 @@
 import "jest-extended";
 
 import { MessageService } from "../../src/services/message";
-import { identity } from "./__fixtures__/identity";
+import { identity } from "../__fixtures__/identity";
 
-let subject: Message;
+let subject: MessageService;
 
-beforeEach(() => (subject = new Message()));
+beforeEach(() => (subject = new MessageService()));
 
-describe("Message", () => {
+describe("MessageService", () => {
 	it("should sign and verify a message", () => {
 		const result: any = subject.sign({
 			message: "Hello World",

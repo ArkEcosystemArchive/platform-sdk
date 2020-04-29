@@ -2,11 +2,11 @@ import "jest-extended";
 
 import { MessageService } from "../../src/services/message";
 
-let subject: Message;
+let subject: MessageService;
 
-beforeEach(() => (subject = new Message()));
+beforeEach(() => (subject = new MessageService()));
 
-describe("Message", () => {
+describe("MessageService", () => {
 	it("should sign and verify a message", () => {
 		const result: any = subject.sign({
 			message: "This is an example of a signed message.",

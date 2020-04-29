@@ -1,6 +1,6 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
-import ky from "ky-universal";
 import isUrl from "is-url-superb";
+import ky from "ky-universal";
 import orderBy from "lodash.orderby";
 import semver from "semver";
 
@@ -9,7 +9,7 @@ export class PeerService implements Contracts.PeerService {
 	private latency: number | undefined;
 	private orderBy: string[] = ["latency", "desc"];
 
-	private constructor (private readonly seeds: Contracts.Peer[]) { }
+	private constructor(private readonly seeds: Contracts.Peer[]) {}
 
 	public static async new({
 		networkOrHost,
@@ -43,9 +43,9 @@ export class PeerService implements Contracts.PeerService {
 					seeds.push({ ip: seed.ip, port });
 				}
 			} else {
-				const body: any = await ky.get(
-					`https://raw.githubusercontent.com/ArkEcosystem/peers/master/${networkOrHost}.json`,
-				).json();
+				const body: any = await ky
+					.get(`https://raw.githubusercontent.com/ArkEcosystem/peers/master/${networkOrHost}.json`)
+					.json();
 
 				for (const seed of body) {
 					seeds.push({ ip: seed.ip, port: defaultPort });
@@ -155,15 +155,15 @@ export class PeerService implements Contracts.PeerService {
 	}
 
 	public async findPeersWithoutEstimates(opts: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
-		const apiPeers: Contracts.Peer[] = await this.findPeersWithPlugin('core-api', opts);
+		const apiPeers: Contracts.Peer[] = await this.findPeersWithPlugin("core-api", opts);
 
-		const requests = apiPeers.map(peer => ky.get(`http://${peer.ip}:${peer.port}/api/v2/blocks?limit=1`).json());
+		const requests = apiPeers.map((peer) => ky.get(`http://${peer.ip}:${peer.port}/api/v2/blocks?limit=1`).json());
 
 		const responses = await Promise.all(requests);
 
 		const peers: Contracts.Peer[] = [];
 
-		for (const i in responses) {
+		for (let i = 0; i < responses.length; i++) {
 			if (!(responses[i] as any).meta.totalCountIsEstimate) {
 				peers.push(apiPeers[i]);
 			}

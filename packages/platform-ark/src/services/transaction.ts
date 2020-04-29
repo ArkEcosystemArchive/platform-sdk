@@ -2,7 +2,7 @@ import { Managers, Transactions } from "@arkecosystem/crypto";
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class TransactionService implements Contracts.TransactionService {
-	public constructor (network: string) {
+	public constructor(network: string) {
 		Managers.configManager.setFromPreset(network as any);
 		Managers.configManager.setHeight(10_000_000);
 	}

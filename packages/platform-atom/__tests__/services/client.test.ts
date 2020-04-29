@@ -4,15 +4,15 @@ import { BigNumber } from "@arkecosystem/utils";
 import nock from "nock";
 
 import { ClientService } from "../../src/services/client";
-import { Block, Delegate, Peer, Transaction, Wallet } from "../src/dto";
+import { TransactionData } from "../../src/dto";
 
-let subject: Client;
+let subject: ClientService;
 
-beforeEach(() => (subject = new Client("https://api.cosmos.network")));
+beforeEach(() => (subject = new ClientService("https://api.cosmos.network")));
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("Client", function () {
+describe("ClientService", function () {
 	describe("#getTransaction", () => {
 		it("should succeed", async () => {
 			nock("https://api.cosmos.network/")
@@ -23,7 +23,7 @@ describe("Client", function () {
 				"342C8CBA30B0C0AEF823ED153B2DD99A80CD3B48488DB97FB467474B3F029CEB",
 			);
 
-			expect(result).toBeInstanceOf(Transaction);
+			expect(result).toBeInstanceOf(TransactionData);
 			expect(result.getId()).toBe("342C8CBA30B0C0AEF823ED153B2DD99A80CD3B48488DB97FB467474B3F029CEB");
 			expect(result.getType()).toBeUndefined();
 			expect(result.getTypeGroup()).toBeUndefined();

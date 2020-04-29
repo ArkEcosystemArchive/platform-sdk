@@ -1,13 +1,13 @@
 import { BigNumber } from "@arkecosystem/utils";
 
-import { Wallet } from "../../src/dto";
+import { WalletData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/getWallet.json";
 
-let subject: Wallet;
+let subject: WalletData;
 
 beforeEach(() => (subject = new WalletData(Fixture.data[0])));
 
-describe("Lisk", function () {
+describe("WalletData", function () {
 	test("#getAddress", () => {
 		expect(subject.getAddress()).toBe("6566229458323231555L");
 	});

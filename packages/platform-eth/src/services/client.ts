@@ -8,7 +8,7 @@ export class ClientService implements Contracts.ClientService {
 
 	readonly #connection: Web3;
 
-	public constructor (peer: string) {
+	public constructor(peer: string) {
 		this.#connection = new Web3(new Web3.providers.HttpProvider(peer));
 	}
 
@@ -18,7 +18,9 @@ export class ClientService implements Contracts.ClientService {
 		return new TransactionData(result);
 	}
 
-	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
+	public async getTransactions(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<TransactionData>> {
 		const endBlock: number = await this.#connection.eth.getBlockNumber();
 		const startBlock: number = endBlock - (query?.count ?? ClientService.MONTH_IN_SECONDS);
 
@@ -42,7 +44,9 @@ export class ClientService implements Contracts.ClientService {
 		return { meta: {}, data: transactions };
 	}
 
-	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
+	public async searchTransactions(
+		query: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 

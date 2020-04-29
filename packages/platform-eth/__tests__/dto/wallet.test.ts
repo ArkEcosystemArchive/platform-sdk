@@ -1,12 +1,12 @@
 import { BigNumber } from "@arkecosystem/utils";
 
-import { Wallet } from "../../src/dto";
+import { WalletData } from "../../src/dto";
 
-let subject: Wallet;
+let subject: WalletData;
 
 beforeEach(() => (subject = new WalletData({ address: "0x4581a610f96878266008993475f1476ca9997081", balance: 10 })));
 
-describe("Ethereum", function () {
+describe("WalletData", function () {
 	test("#getAddress", () => {
 		expect(subject.getAddress()).toBe("0x4581a610f96878266008993475f1476ca9997081");
 	});

@@ -2,15 +2,15 @@ import "jest-extended";
 import nock from "nock";
 
 import { ClientService } from "../../src/services/client";
-import { Block, Transaction, Wallet } from "../src/dto";
+import { TransactionData, WalletData } from "../../src/dto";
 
-let subject: Client;
+let subject: ClientService;
 
-beforeEach(() => (subject = new Client("https://api.shasta.trongrid.io")));
+beforeEach(() => (subject = new ClientService("https://api.shasta.trongrid.io")));
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("Client", function () {
+describe("ClientService", function () {
 	describe("#getTransaction", () => {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
@@ -21,7 +21,7 @@ describe("Client", function () {
 				"0daa9f2507c4e79e39391ea165bb76ed018c4cd69d7da129edf9e95f0dae99e2",
 			);
 
-			expect(result).toBeInstanceOf(Transaction);
+			expect(result).toBeInstanceOf(TransactionData);
 		});
 	});
 
@@ -33,7 +33,7 @@ describe("Client", function () {
 
 			const result = await subject.getWallet("TTSFjEG3Lu9WkHdp4JrWYhbGP6K1REqnGQ");
 
-			expect(result).toBeInstanceOf(Wallet);
+			expect(result).toBeInstanceOf(WalletData);
 		});
 	});
 

@@ -6,7 +6,7 @@ import { DelegateData, TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	private readonly connection: Connection;
 
-	public constructor (readonly peer: string) {
+	public constructor(readonly peer: string) {
 		this.connection = new Connection(peer);
 	}
 
@@ -16,13 +16,17 @@ export class ClientService implements Contracts.ClientService {
 		return new TransactionData(body.data);
 	}
 
-	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
+	public async getTransactions(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<TransactionData>> {
 		const { body } = await this.connection.api("transactions").all(query);
 
 		return { meta: body.meta, data: body.data.map((transaction) => new TransactionData(transaction)) };
 	}
 
-	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
+	public async searchTransactions(
+		query: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<TransactionData>> {
 		const { body } = await this.connection.api("transactions").search(query);
 
 		return { meta: body.meta, data: body.data.map((transaction) => new TransactionData(transaction)) };

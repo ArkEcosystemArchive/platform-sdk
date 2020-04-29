@@ -1,13 +1,13 @@
 import { BigNumber } from "@arkecosystem/utils";
 
-import { Block } from "../../src/dto";
+import { BlockData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/getBlock.json";
 
-let subject: Block;
+let subject: BlockData;
 
-beforeEach(() => (subject = new Block(Fixture.result)));
+beforeEach(() => (subject = new BlockData(Fixture.result)));
 
-describe("Ethereum", function () {
+describe("BlockData", function () {
 	test("#getId", () => {
 		expect(subject.getId()).toBe("0xce3ffbdd8335692c7ffa5d162ad24acb25ea9a0fdd4df65706b18c8ecb4059b4");
 	});

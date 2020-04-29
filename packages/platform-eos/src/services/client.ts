@@ -10,7 +10,7 @@ export class ClientService implements Contracts.ClientService {
 	readonly #rpc: JsonRpc;
 	readonly #api: Api;
 
-	public constructor (peer: string) {
+	public constructor(peer: string) {
 		this.#rpc = new JsonRpc(peer, { fetch });
 
 		this.#api = new Api({
@@ -27,11 +27,15 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-table-information
-	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
+	public async getTransactions(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getTransactions");
 	}
 
-	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
+	public async searchTransactions(
+		query: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 

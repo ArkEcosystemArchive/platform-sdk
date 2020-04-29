@@ -2,15 +2,15 @@ import "jest-extended";
 import nock from "nock";
 
 import { ClientService } from "../../src/services/client";
-import { Block, Delegate, Peer, Transaction, Wallet } from "../src/dto";
+import { DelegateData, TransactionData, WalletData } from "../../src/dto";
 
-let subject: Client;
+let subject: ClientService;
 
-beforeEach(() => (subject = new Client("https://betanet.lisk.io:443")));
+beforeEach(() => (subject = new ClientService("https://betanet.lisk.io:443")));
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("Client", function () {
+describe("ClientService", function () {
 	describe("#getTransaction", () => {
 		it("should succeed", async () => {
 			nock("https://betanet.lisk.io:443")
@@ -19,7 +19,7 @@ describe("Client", function () {
 
 			const result = await subject.getTransaction("15562133894377717094");
 
-			expect(result).toBeInstanceOf(Transaction);
+			expect(result).toBeInstanceOf(TransactionData);
 		});
 	});
 
@@ -32,7 +32,7 @@ describe("Client", function () {
 			const result = await subject.getTransactions();
 
 			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(Transaction);
+			expect(result.data[0]).toBeInstanceOf(TransactionData);
 		});
 	});
 
@@ -44,7 +44,7 @@ describe("Client", function () {
 
 			const result = await subject.getWallet("6566229458323231555L");
 
-			expect(result).toBeInstanceOf(Wallet);
+			expect(result).toBeInstanceOf(WalletData);
 		});
 	});
 
@@ -57,7 +57,7 @@ describe("Client", function () {
 			const result = await subject.getWallets();
 
 			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(Wallet);
+			expect(result.data[0]).toBeInstanceOf(WalletData);
 		});
 	});
 
@@ -69,7 +69,7 @@ describe("Client", function () {
 
 			const result = await subject.getDelegate("cc001");
 
-			expect(result).toBeInstanceOf(Delegate);
+			expect(result).toBeInstanceOf(DelegateData);
 		});
 	});
 
@@ -82,7 +82,7 @@ describe("Client", function () {
 			const result = await subject.getDelegates();
 
 			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(Delegate);
+			expect(result.data[0]).toBeInstanceOf(DelegateData);
 		});
 	});
 

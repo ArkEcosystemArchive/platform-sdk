@@ -1,13 +1,15 @@
 import "jest-extended";
 
 import { TransactionService } from "../../src/services/transaction";
-import { identity } from "./__fixtures__/identity";
+import { identity } from "../__fixtures__/identity";
 
-let subject: Crypto;
+let subject: TransactionService;
 
-beforeEach(() => (subject = new Crypto("7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d")));
+beforeEach(
+	() => (subject = new TransactionService("7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d")),
+);
 
-describe("Crypto", () => {
+describe("TransactionService", () => {
 	describe("#createTransfer", () => {
 		it("should verify", () => {
 			const result: any = subject.createTransfer({

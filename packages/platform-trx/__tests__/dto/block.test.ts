@@ -1,13 +1,13 @@
 import { BigNumber } from "@arkecosystem/utils";
 
-import { Block } from "../../src/dto";
+import { BlockData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/getBlock.json";
 
-let subject: Block;
+let subject: BlockData;
 
-beforeEach(() => (subject = new Block(Fixture)));
+beforeEach(() => (subject = new BlockData(Fixture)));
 
-describe("Tron", function () {
+describe("BlockData", function () {
 	test("#getId", () => {
 		expect(subject.getId()).toBe("000000000000303987c7c8ab3f5967c107a619fa47819940597e9938811a1764");
 	});

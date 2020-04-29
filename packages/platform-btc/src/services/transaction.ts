@@ -1,7 +1,7 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class TransactionService implements Contracts.TransactionService {
-	public constructor (network: string) {
+	public constructor(network: string) {
 		//
 	}
 
