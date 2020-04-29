@@ -44,7 +44,7 @@ describe("ClientService", function () {
 	describe("#getTransactions", () => {
 		it("should succeed", async () => {
 			nock("https://data.ripple.com/v2")
-				.get("/accounts/r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV/transactions")
+				.get("/accounts/r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV/transactions?type=Payment")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/getTransactions.json`));
 
 			const result = await subject.getTransactions({ address: "r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV" });

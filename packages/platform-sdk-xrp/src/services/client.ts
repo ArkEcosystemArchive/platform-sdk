@@ -30,7 +30,7 @@ export class ClientService implements Contracts.ClientService {
 	public async getTransactions(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<TransactionData>> {
-		const { transactions } = await this.get(`accounts/${query.address}/transactions`);
+		const { transactions } = await this.get(`accounts/${query.address}/transactions`, { type: "Payment" });
 
 		return { meta: {}, data: transactions.map((transaction) => new TransactionData(transaction)) };
 	}
