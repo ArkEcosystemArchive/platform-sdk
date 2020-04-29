@@ -1,8 +1,8 @@
 import { Identities, Managers } from "@arkecosystem/crypto";
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
-export class Identity implements Contracts.Identity {
-	public constructor(network: string) {
+export class IdentityService implements Contracts.IdentityService {
+	public constructor (network: string) {
 		Managers.configManager.setFromPreset(network as any);
 	}
 

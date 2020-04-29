@@ -1,7 +1,7 @@
 import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import { RippleAPI } from "ripple-lib";
 
-import { Delegate, Peer, Transaction, Wallet } from "./dto";
+import { Delegate, Peer, Transaction, Wallet } from "../dto";
 
 export class Client implements Contracts.Client {
 	readonly #connection: RippleAPI;

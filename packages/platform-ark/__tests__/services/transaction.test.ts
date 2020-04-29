@@ -1,13 +1,13 @@
 import "jest-extended";
-
-import { Crypto } from "../src/crypto";
 import { Transactions } from "@arkecosystem/crypto";
 
-let subject: Crypto;
+import { TransactionService } from "../../src/services/transaction";
 
-beforeEach(() => (subject = new Crypto("devnet")));
+let subject: TransactionService;
 
-describe("Crypto", () => {
+beforeEach(() => (subject = new TransactionService("devnet")));
+
+describe("TransactionService", () => {
 	describe("#createTransfer", () => {
 		it("should verify", () => {
 			const result: any = subject.createTransfer({

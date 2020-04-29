@@ -1,7 +1,7 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Web3 from "web3";
 
-import { Delegate, Peer, Transaction, Wallet } from "./dto";
+import { Delegate, Peer, Transaction, Wallet } from "../dto";
 
 export class Client implements Contracts.Client {
 	static readonly MONTH_IN_SECONDS = 8640 * 30;

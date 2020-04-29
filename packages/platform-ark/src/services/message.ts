@@ -1,7 +1,7 @@
 import { Crypto } from "@arkecosystem/crypto";
 import { Contracts } from "@arkecosystem/platform-sdk";
 
-export class Message implements Contracts.Message {
+export class MessageService implements Contracts.MessageService {
 	public sign(input): Contracts.SignedMessage {
 		return Crypto.Message.sign(input.message, input.passphrase);
 	}

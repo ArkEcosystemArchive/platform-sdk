@@ -1,6 +1,6 @@
 import { KeyValuePair } from "../types";
 
-export interface Crypto {
+export interface TransactionService {
 	createTransfer(data: KeyValuePair): object;
 	createSecondSignature(data: KeyValuePair): object;
 	createDelegateRegistration(data: KeyValuePair): object;

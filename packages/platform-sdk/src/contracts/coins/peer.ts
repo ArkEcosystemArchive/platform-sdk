@@ -1,5 +1,3 @@
-import { KeyValuePair } from "../types";
-
 export interface Peer {
 	ip: string;
 	port: number;
@@ -18,32 +16,18 @@ export interface PeerResponse {
 	latency: number;
 }
 
-export interface PeerDiscovery {
+export interface PeerService {
 	getSeeds(): Peer[];
 
-	withVersion(version: string): PeerDiscovery;
+	withVersion(version: string): PeerService;
 
-	withLatency(latency: number): PeerDiscovery;
+	withLatency(latency: number): PeerService;
 
-	sortBy(key: string, direction: string): PeerDiscovery;
+	sortBy(key: string, direction: string): PeerService;
 
 	findPeers(opts: any): Promise<PeerResponse[]>;
 
 	findPeersWithPlugin(name: string, opts: { additional?: string[] }): Promise<Peer[]>;
 
 	findPeersWithoutEstimates(opts: { additional?: string[] }): Promise<Peer[]>;
-}
-
-export interface PeerDTO {
-	getIp(): string;
-
-	getPort(): number;
-
-	getVersion(): string;
-
-	getHeight(): number;
-
-	getLatency(): number;
-
-	toObject(): KeyValuePair;
 }

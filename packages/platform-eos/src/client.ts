@@ -4,7 +4,7 @@ import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
 import fetch from "node-fetch";
 import { TextDecoder, TextEncoder } from "util";
 
-import { Delegate, Peer, Transaction, Wallet } from "./dto";
+import { Delegate, Peer, Transaction, Wallet } from "../dto";
 
 export class Client implements Contracts.Client {
 	readonly #rpc: JsonRpc;

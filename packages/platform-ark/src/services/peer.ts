@@ -4,7 +4,7 @@ import isUrl from "is-url-superb";
 import orderBy from "lodash.orderby";
 import semver from "semver";
 
-export class PeerDiscovery implements Contracts.PeerDiscovery {
+export class PeerService implements Contracts.PeerService {
 	private version: string | undefined;
 	private latency: number | undefined;
 	private orderBy: string[] = ["latency", "desc"];
@@ -17,7 +17,7 @@ export class PeerDiscovery implements Contracts.PeerDiscovery {
 	}: {
 		networkOrHost: string;
 		defaultPort?: number;
-	}): Promise<PeerDiscovery> {
+	}): Promise<PeerService> {
 		if (!networkOrHost || typeof networkOrHost !== "string") {
 			throw new Error("No network or host provided");
 		}
@@ -59,26 +59,26 @@ export class PeerDiscovery implements Contracts.PeerDiscovery {
 			throw new Error("No seeds found");
 		}
 
-		return new PeerDiscovery(seeds);
+		return new PeerService(seeds);
 	}
 
 	public getSeeds(): Contracts.Peer[] {
 		return this.seeds;
 	}
 
-	public withVersion(version: string): PeerDiscovery {
+	public withVersion(version: string): PeerService {
 		this.version = version;
 
 		return this;
 	}
 
-	public withLatency(latency: number): PeerDiscovery {
+	public withLatency(latency: number): PeerService {
 		this.latency = latency;
 
 		return this;
 	}
 
-	public sortBy(key: string, direction = "desc"): PeerDiscovery {
+	public sortBy(key: string, direction = "desc"): PeerService {
 		this.orderBy = [key, direction];
 
 		return this;
