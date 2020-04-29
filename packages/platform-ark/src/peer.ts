@@ -4,7 +4,7 @@ import isUrl from "is-url-superb";
 import orderBy from "lodash.orderby";
 import semver from "semver";
 
-export class PeerDiscovery {
+export class PeerDiscovery implements Contracts.PeerDiscovery {
 	private version: string | undefined;
 	private latency: number | undefined;
 	private orderBy: string[] = ["latency", "desc"];
