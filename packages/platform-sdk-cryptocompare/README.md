@@ -1,7 +1,7 @@
 # ARK Platform SDK - CryptoCompare
 
 <p align="center">
-    <img src="./banner.png" />
+    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-cryptocompare/banner.png" />
 </p>
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)

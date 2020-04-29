@@ -1,7 +1,7 @@
 # ARK Platform SDK - NEO
 
 <p align="center">
-    <img src="./banner.png" />
+    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-neo/banner.png" />
 </p>
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)
