@@ -3,7 +3,7 @@ import { createSignedTransaction } from "@lunie/cosmos-api";
 import { getNewWalletFromSeed, signWithPrivateKey } from "@lunie/cosmos-keys";
 
 export class TransactionService implements Contracts.TransactionService {
-	public constructor (network: string) {
+	public constructor(network: string) {
 		//
 	}
 

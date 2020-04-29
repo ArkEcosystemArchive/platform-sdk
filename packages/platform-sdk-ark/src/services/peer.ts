@@ -9,7 +9,7 @@ export class PeerService implements Contracts.PeerService {
 	private latency: number | undefined;
 	private orderBy: string[] = ["latency", "desc"];
 
-	private constructor (private readonly seeds: Contracts.Peer[]) { }
+	private constructor(private readonly seeds: Contracts.Peer[]) {}
 
 	public static async new({
 		networkOrHost,

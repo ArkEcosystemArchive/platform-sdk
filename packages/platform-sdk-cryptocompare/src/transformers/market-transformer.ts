@@ -1,7 +1,7 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class MarketTransformer implements Contracts.MarketTransformer {
-	public constructor (private readonly data: Contracts.KeyValuePair) { }
+	public constructor(private readonly data: Contracts.KeyValuePair) {}
 
 	public transform(options: Contracts.KeyValuePair): Contracts.MarketDataCollection {
 		const result = {};

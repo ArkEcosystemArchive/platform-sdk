@@ -6,7 +6,7 @@ export class MarketTransformer implements Contracts.MarketTransformer {
 	// All prices on the CoinCap API are standardized in USD (United States Dollar)
 	private readonly baseCurrency: string = "USD";
 
-	public constructor (private readonly data: Contracts.KeyValuePair) { }
+	public constructor(private readonly data: Contracts.KeyValuePair) {}
 
 	public transform(options: Contracts.KeyValuePair): Contracts.MarketDataCollection {
 		const tokenId = options.token.toUpperCase();

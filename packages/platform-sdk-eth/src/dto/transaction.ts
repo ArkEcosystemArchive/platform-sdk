@@ -4,7 +4,7 @@ import { BigNumber } from "@arkecosystem/utils";
 export class TransactionData implements Contracts.TransactionData {
 	readonly #data: Contracts.KeyValuePair;
 
-	public constructor (data: Contracts.KeyValuePair) {
+	public constructor(data: Contracts.KeyValuePair) {
 		this.#data = data;
 	}
 

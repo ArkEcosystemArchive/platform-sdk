@@ -4,7 +4,7 @@ import TronWeb from "tronweb";
 export class TransactionService implements Contracts.TransactionService {
 	readonly #connection: TronWeb;
 
-	public constructor (network: string) {
+	public constructor(network: string) {
 		this.#connection = new TronWeb({
 			fullHost: network, // todo: for tron we need a peer, not a network identifier
 		});

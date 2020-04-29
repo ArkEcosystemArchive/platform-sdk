@@ -4,7 +4,7 @@ import { ECPair, Network, networks, payments } from "bitcoinjs-lib";
 export class IdentityService implements Contracts.IdentityService {
 	private readonly network: Network;
 
-	public constructor (network: string) {
+	public constructor(network: string) {
 		this.network = networks[network];
 	}
 

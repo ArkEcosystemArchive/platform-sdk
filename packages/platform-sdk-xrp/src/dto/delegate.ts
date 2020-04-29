@@ -3,7 +3,7 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 export class DelegateData implements Contracts.DelegateData {
 	readonly #data: Contracts.KeyValuePair;
 
-	public constructor (data: Contracts.KeyValuePair) {
+	public constructor(data: Contracts.KeyValuePair) {
 		this.#data = data;
 	}
 

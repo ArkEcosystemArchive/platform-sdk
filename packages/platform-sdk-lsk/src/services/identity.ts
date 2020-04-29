@@ -2,7 +2,7 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import * as cryptography from "@liskhq/lisk-cryptography";
 
 export class IdentityService implements Contracts.IdentityService {
-	public constructor (network: string) {
+	public constructor(network: string) {
 		//
 	}
 

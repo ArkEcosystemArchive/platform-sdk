@@ -6,7 +6,7 @@ import { DelegateData, TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	readonly #connection: TronWeb;
 
-	public constructor (peer: string) {
+	public constructor(peer: string) {
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});

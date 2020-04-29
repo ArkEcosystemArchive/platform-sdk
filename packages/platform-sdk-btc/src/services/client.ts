@@ -7,7 +7,7 @@ export class ClientService implements Contracts.ClientService {
 
 	readonly #restUrl: string = "https://blockchain.info";
 
-	public constructor (peer: string) {
+	public constructor(peer: string) {
 		this.#baseUrl = peer;
 	}
 

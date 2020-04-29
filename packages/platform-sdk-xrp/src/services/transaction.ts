@@ -4,7 +4,7 @@ import { RippleAPI } from "ripple-lib";
 export class TransactionService implements Contracts.TransactionService {
 	readonly #connection: RippleAPI;
 
-	private constructor (connection: RippleAPI) {
+	private constructor(connection: RippleAPI) {
 		this.#connection = connection;
 	}
 

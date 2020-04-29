@@ -10,7 +10,7 @@ export class ClientService implements Contracts.ClientService {
 	readonly #rpc: JsonRpc;
 	readonly #api: Api;
 
-	public constructor (peer: string) {
+	public constructor(peer: string) {
 		this.#rpc = new JsonRpc(peer, { fetch });
 
 		this.#api = new Api({

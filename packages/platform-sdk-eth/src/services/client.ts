@@ -8,7 +8,7 @@ export class ClientService implements Contracts.ClientService {
 
 	readonly #connection: Web3;
 
-	public constructor (peer: string) {
+	public constructor(peer: string) {
 		this.#connection = new Web3(new Web3.providers.HttpProvider(peer));
 	}
 

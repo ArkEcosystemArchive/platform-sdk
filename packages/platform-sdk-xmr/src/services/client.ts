@@ -5,7 +5,7 @@ import { DelegateData, TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
 
-	public constructor (private readonly peer: string) {
+	public constructor(private readonly peer: string) {
 		this.#baseUrl = peer;
 	}
 

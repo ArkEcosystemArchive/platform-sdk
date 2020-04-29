@@ -5,7 +5,7 @@ import { PriceTrackerFactory } from "./factory";
 export class PriceTrackerService {
 	#adapter: Contracts.PriceTracker;
 
-	public constructor (adapter: Contracts.PriceTracker) {
+	public constructor(adapter: Contracts.PriceTracker) {
 		this.#adapter = adapter;
 	}
 

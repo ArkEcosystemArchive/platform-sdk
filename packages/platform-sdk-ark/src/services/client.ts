@@ -6,7 +6,7 @@ import { DelegateData, TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	private readonly connection: Connection;
 
-	public constructor (readonly peer: string) {
+	public constructor(readonly peer: string) {
 		this.connection = new Connection(peer);
 	}
 

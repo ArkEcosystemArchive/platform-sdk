@@ -1,7 +1,7 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class IdentityService implements Contracts.IdentityService {
-	public constructor (network: string) {
+	public constructor(network: string) {
 		//
 	}
 

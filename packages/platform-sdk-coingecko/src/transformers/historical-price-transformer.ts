@@ -1,7 +1,7 @@
 import { Contracts, Utils } from "@arkecosystem/platform-sdk";
 
 export class HistoricalPriceTransformer implements Contracts.HistoricalTransformer {
-	public constructor (private readonly data: Contracts.KeyValuePair) { }
+	public constructor(private readonly data: Contracts.KeyValuePair) {}
 
 	public transform(options: Contracts.KeyValuePair): Contracts.HistoricalData {
 		const datasets = {};
