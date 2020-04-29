@@ -4,7 +4,7 @@ import { RippleAPI } from "ripple-lib";
 export class TransactionService implements Contracts.TransactionService {
 	readonly #connection: RippleAPI;
 
-	private constructor(connection: RippleAPI) {
+	private constructor (connection: RippleAPI) {
 		this.#connection = connection;
 	}
 
@@ -13,7 +13,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 		await connection.connect();
 
-		return new Crypto(connection);
+		return new TransactionService(connection);
 	}
 
 	public async createTransfer(data: Contracts.KeyValuePair): Promise<any> {

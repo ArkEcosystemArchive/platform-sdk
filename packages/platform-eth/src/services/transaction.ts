@@ -5,14 +5,14 @@ import Web3 from "web3";
 export class TransactionService implements Contracts.TransactionService {
 	readonly #connection;
 
-	public constructor(network: string) {
+	public constructor (network: string) {
 		this.#connection = new Web3(new Web3.providers.HttpProvider(network)); // todo: network here is a peer
 	}
 
 	public async createTransfer(data: Contracts.KeyValuePair): Promise<object> {
 		const transactionCount = await this.#connection.eth.getTransactionCount(data.sender);
 
-		const transaction = new TransactionData(
+		const transaction = new Transaction(
 			{
 				nonce: this.#connection.utils.toHex(transactionCount),
 				gasLimit: this.#connection.utils.toHex(data.gasLimit),
