@@ -1,7 +1,7 @@
 # ARK Platform SDK - ARK
 
 <p align="center">
-    <img src="./banner.png" />
+    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/banners/packages/platform-sdk-ark/banner.png" />
 </p>
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)

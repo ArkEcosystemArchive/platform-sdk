@@ -1,7 +1,7 @@
 # ARK Platform SDK - Tron
 
 <p align="center">
-    <img src="./banner.png" />
+    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/banners/packages/platform-sdk-trx/banner.png" />
 </p>
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)

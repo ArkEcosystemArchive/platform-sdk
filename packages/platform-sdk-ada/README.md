@@ -1,7 +1,7 @@
 # ARK Platform SDK - Cardano
 
 <p align="center">
-    <img src="./banner.png" />
+    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/banners/packages/platform-sdk-ada/banner.png" />
 </p>
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)
