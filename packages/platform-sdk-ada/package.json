@@ -1,22 +1,26 @@
 {
-	"private": true,
-	"name": "platform-sdk",
+	"name": "@arkecosystem/platform-sdk-ada",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"engineStrict": true,
-	"engines": {
-		"node": "^12 || ^14",
-		"yarn": "^2"
-	},
+	"version": "0.3.0",
+	"contributors": [],
+	"license": "MIT",
+	"files": [
+		"/dist"
+	],
+	"main": "dist/index",
+	"types": "dist/index",
 	"scripts": {
-		"build": "yarn workspaces foreach -pt run build",
-		"version": "yarn workspaces foreach version",
-		"version:apply": "yarn workspaces foreach version apply",
-		"version:check": "yarn version check --interactive",
-		"publish": "yarn npm publish --access public",
-		"format": "yarn lint && yarn prettier",
-		"lint": "eslint packages/**/src/** --ext .ts --fix",
-		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\"",
-		"test": "yarn workspaces foreach -pt run test"
+		"build": "yarn clean && tsc",
+		"build:watch": "yarn build -w",
+		"clean": "rimraf .coverage dist tmp",
+		"prepublishOnly": "yarn build",
+		"test": "jest",
+		"test:watch": "jest --watchAll",
+		"coverage:report": "codecov"
+	},
+	"dependencies": {
+		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
+		"@arkecosystem/utils": "^1.1.8"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
@@ -28,7 +32,6 @@
 		"@types/rimraf": "^3.0.0",
 		"@typescript-eslint/eslint-plugin": "^2.30.0",
 		"@typescript-eslint/parser": "^2.30.0",
-		"@yarnpkg/pnpify": "^2.0.0-rc.21",
 		"codecov": "^3.6.5",
 		"cross-env": "^7.0.2",
 		"eslint": "^6.8.0",
@@ -38,7 +41,6 @@
 		"eslint-plugin-simple-import-sort": "^5.0.3",
 		"jest": "^25.4.0",
 		"jest-extended": "^0.11.5",
-		"lerna": "^3.20.2",
 		"nock": "^12.0.3",
 		"npm-check-updates": "^4.1.2",
 		"prettier": "^2.0.5",
@@ -46,7 +48,10 @@
 		"ts-jest": "^25.4.0",
 		"typescript": "^3.8.3"
 	},
-	"workspaces": [
-		"packages/*"
-	]
+	"engines": {
+		"node": ">=12.x"
+	},
+	"jest": {
+		"preset": "../../jest.config.js"
+	}
 }
