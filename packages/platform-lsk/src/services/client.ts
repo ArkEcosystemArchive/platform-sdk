@@ -1,6 +1,6 @@
 import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 
-import { Delegate, Peer, Transaction, Wallet } from "../dto";
+import { DelegateData, TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
@@ -9,48 +9,48 @@ export class ClientService implements Contracts.ClientService {
 		this.#baseUrl = peer;
 	}
 
-	public async getTransaction(id: string): Promise<Transaction> {
+	public async getTransaction(id: string): Promise<TransactionData> {
 		const result = await this.get("transactions", { id });
 
-		return new Transaction(result.data[0]);
+		return new TransactionData(result.data[0]);
 	}
 
-	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
+	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
 		const result = await this.get("transactions", query);
 
-		return { meta: result.meta, data: result.data.map((transaction) => new Transaction(transaction)) };
+		return { meta: result.meta, data: result.data.map((transaction) => new TransactionData(transaction)) };
 	}
 
-	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
+	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 
-	public async getWallet(id: string): Promise<Wallet> {
+	public async getWallet(id: string): Promise<WalletData> {
 		const result = await this.get("accounts", { address: id });
 
-		return new Wallet(result.data[0]);
+		return new WalletData(result.data[0]);
 	}
 
-	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
+	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<WalletData>> {
 		const result = await this.get("accounts", query);
 
-		return { meta: result.meta, data: result.data.map((wallet) => new Wallet(wallet)) };
+		return { meta: result.meta, data: result.data.map((wallet) => new WalletData(wallet)) };
 	}
 
-	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
+	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
 	}
 
-	public async getDelegate(id: string): Promise<Delegate> {
+	public async getDelegate(id: string): Promise<DelegateData> {
 		const result = await this.get("delegates", { username: id });
 
-		return new Delegate(result.data[0]);
+		return new DelegateData(result.data[0]);
 	}
 
-	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Delegate>> {
+	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<DelegateData>> {
 		const result = await this.get("delegates");
 
-		return { meta: result.meta, data: result.data.map((wallet) => new Delegate(wallet)) };
+		return { meta: result.meta, data: result.data.map((wallet) => new DelegateData(wallet)) };
 	}
 
 	public async getConfiguration(): Promise<Contracts.KeyValuePair> {

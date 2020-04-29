@@ -4,7 +4,7 @@ import { Wallet } from "../../src/dto";
 
 let subject: Wallet;
 
-beforeEach(() => (subject = new Wallet({ address: "0x4581a610f96878266008993475f1476ca9997081", balance: 10 })));
+beforeEach(() => (subject = new WalletData({ address: "0x4581a610f96878266008993475f1476ca9997081", balance: 10 })));
 
 describe("Ethereum", function () {
 	test("#getAddress", () => {

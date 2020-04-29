@@ -3,7 +3,7 @@ import "jest-extended";
 import { BigNumber } from "@arkecosystem/utils";
 import nock from "nock";
 
-import { Client } from "../src/client";
+import { ClientService } from "../../src/services/client";
 import { Block, Delegate, Peer, Transaction, Wallet } from "../src/dto";
 
 let subject: Client;
@@ -17,7 +17,7 @@ describe("Client", function () {
 		it("should succeed", async () => {
 			nock("https://api.cosmos.network/")
 				.get("/txs/342C8CBA30B0C0AEF823ED153B2DD99A80CD3B48488DB97FB467474B3F029CEB")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getTransaction.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/getTransaction.json`));
 
 			const result = await subject.getTransaction(
 				"342C8CBA30B0C0AEF823ED153B2DD99A80CD3B48488DB97FB467474B3F029CEB",

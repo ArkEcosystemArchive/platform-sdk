@@ -1,7 +1,7 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import TronWeb from "tronweb";
 
-import { Delegate, Peer, Transaction, Wallet } from "../dto";
+import { DelegateData, TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #connection: TronWeb;
@@ -12,39 +12,39 @@ export class ClientService implements Contracts.ClientService {
 		});
 	}
 
-	public async getTransaction(id: string): Promise<Transaction> {
+	public async getTransaction(id: string): Promise<TransactionData> {
 		const result = await this.#connection.trx.getTransaction(id);
 
-		return new Transaction(result);
+		return new TransactionData(result);
 	}
 
-	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
+	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getTransactions");
 	}
 
-	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
+	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 
-	public async getWallet(id: string): Promise<Wallet> {
+	public async getWallet(id: string): Promise<WalletData> {
 		const result = await this.#connection.trx.getAccount(id);
 
-		return new Wallet(result);
+		return new WalletData(result);
 	}
 
-	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
+	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getWallets");
 	}
 
-	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
+	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
 	}
 
-	public async getDelegate(id: string): Promise<Delegate> {
+	public async getDelegate(id: string): Promise<DelegateData> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegate");
 	}
 
-	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Delegate>> {
+	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<DelegateData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegates");
 	}
 

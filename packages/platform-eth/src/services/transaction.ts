@@ -12,7 +12,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public async createTransfer(data: Contracts.KeyValuePair): Promise<object> {
 		const transactionCount = await this.#connection.eth.getTransactionCount(data.sender);
 
-		const transaction = new Transaction(
+		const transaction = new TransactionData(
 			{
 				nonce: this.#connection.utils.toHex(transactionCount),
 				gasLimit: this.#connection.utils.toHex(data.gasLimit),

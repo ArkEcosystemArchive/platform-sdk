@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Message } from "../src/message";
+import { MessageService } from "../../src/services/message";
 
 let subject: Message;
 

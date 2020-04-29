@@ -1,7 +1,7 @@
 import "jest-extended";
 import nock from "nock";
 
-import { Client } from "../src/client";
+import { ClientService } from "../../src/services/client";
 import { Block, Delegate, Peer, Transaction, Wallet } from "../src/dto";
 
 let subject: Client;
@@ -15,7 +15,7 @@ describe("Client", function () {
 		it("should succeed", async () => {
 			nock("https://betanet.lisk.io:443")
 				.get("/api/transactions?id=15562133894377717094")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getTransaction.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/getTransaction.json`));
 
 			const result = await subject.getTransaction("15562133894377717094");
 
@@ -27,7 +27,7 @@ describe("Client", function () {
 		it("should succeed", async () => {
 			nock("https://betanet.lisk.io:443")
 				.get("/api/transactions")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getTransactions.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/getTransactions.json`));
 
 			const result = await subject.getTransactions();
 
@@ -40,7 +40,7 @@ describe("Client", function () {
 		it("should succeed", async () => {
 			nock("https://betanet.lisk.io:443")
 				.get("/api/accounts?address=6566229458323231555L")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getWallet.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/getWallet.json`));
 
 			const result = await subject.getWallet("6566229458323231555L");
 
@@ -52,7 +52,7 @@ describe("Client", function () {
 		it("should succeed", async () => {
 			nock("https://betanet.lisk.io:443")
 				.get("/api/accounts")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getWallets.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/getWallets.json`));
 
 			const result = await subject.getWallets();
 
@@ -65,7 +65,7 @@ describe("Client", function () {
 		it("should succeed", async () => {
 			nock("https://betanet.lisk.io:443")
 				.get("/api/delegates?username=cc001")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getDelegate.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/getDelegate.json`));
 
 			const result = await subject.getDelegate("cc001");
 
@@ -77,7 +77,7 @@ describe("Client", function () {
 		it("should succeed", async () => {
 			nock("https://betanet.lisk.io:443")
 				.get("/api/delegates")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getDelegates.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/getDelegates.json`));
 
 			const result = await subject.getDelegates();
 
@@ -90,7 +90,7 @@ describe("Client", function () {
 		it("should succeed", async () => {
 			nock("https://betanet.lisk.io:443")
 				.post("/api/transactions")
-				.reply(200, require(`${__dirname}/__fixtures__/client/postTransactions.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/postTransactions.json`));
 
 			const result = await subject.postTransactions({});
 

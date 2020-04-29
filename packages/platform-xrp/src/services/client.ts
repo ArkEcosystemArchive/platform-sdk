@@ -1,7 +1,7 @@
 import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import { RippleAPI } from "ripple-lib";
 
-import { Delegate, Peer, Transaction, Wallet } from "../dto";
+import { DelegateData, TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #connection: RippleAPI;
@@ -18,51 +18,51 @@ export class ClientService implements Contracts.ClientService {
 			await connection.connect();
 		}
 
-		return new Client(connection);
+		return new ClientService(connection);
 	}
 
-	public async getTransaction(id: string): Promise<Transaction> {
+	public async getTransaction(id: string): Promise<TransactionData> {
 		const { transaction } = await this.get(`transactions/${id}`);
 
-		return new Transaction(transaction);
+		return new TransactionData(transaction);
 	}
 
-	public async getTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
+	public async getTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
 		const { transactions } = await this.get(`accounts/${query.address}/transactions`);
 
-		return { meta: {}, data: transactions.map((transaction) => new Transaction(transaction)) };
+		return { meta: {}, data: transactions.map((transaction) => new TransactionData(transaction)) };
 	}
 
-	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
+	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 
-	public async getWallet(id: string): Promise<Wallet> {
+	public async getWallet(id: string): Promise<WalletData> {
 		const { account_data } = await this.get(`accounts/${id}`);
 		const { balances } = await this.get(`accounts/${id}/balances`, { currency: "XRP" });
 		const balance = balances.find((balance) => balance.currency === "XRP");
 
-		return new Wallet({ ...account_data, ...{ balance: balance.value } });
+		return new WalletData({ ...account_data, ...{ balance: balance.value } });
 	}
 
-	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
+	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<WalletData>> {
 		const { accounts } = await this.get("accounts");
 
-		return { meta: {}, data: accounts.map((account) => new Wallet(account)) };
+		return { meta: {}, data: accounts.map((account) => new WalletData(account)) };
 	}
 
-	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
+	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
 	}
 
-	public async getDelegate(id: string): Promise<Delegate> {
-		return new Delegate(await this.get(`network/validators/${id}`));
+	public async getDelegate(id: string): Promise<DelegateData> {
+		return new DelegateData(await this.get(`network/validators/${id}`));
 	}
 
-	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Delegate>> {
+	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<DelegateData>> {
 		const { validators } = await this.get("network/validators");
 
-		return { meta: {}, data: validators.map((account) => new Delegate(account)) };
+		return { meta: {}, data: validators.map((account) => new DelegateData(account)) };
 	}
 
 	public async getConfiguration(): Promise<Contracts.KeyValuePair> {

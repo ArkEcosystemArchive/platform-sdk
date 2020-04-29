@@ -5,7 +5,7 @@ import Fixture from "../__fixtures__/client/getWallet.json";
 
 let subject: Wallet;
 
-beforeEach(() => (subject = new Wallet(Fixture)));
+beforeEach(() => (subject = new WalletData(Fixture)));
 
 describe("Tron", function () {
 	test("#getAddress", () => {

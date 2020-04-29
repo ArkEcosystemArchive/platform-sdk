@@ -1,13 +1,13 @@
 import "jest-extended";
 
-import { Identity } from "../src/identity";
-import { identity } from "./__fixtures__/identity";
+import { IdentityService } from "../../src/services/identity";
+import { identity } from "../__fixtures__/identity";
 
-let subject: Identity;
+let subject: IdentityService;
 
-beforeEach(() => (subject = new Identity()));
+beforeEach(() => (subject = new IdentityService()));
 
-describe("Identity", () => {
+describe("IdentityService", () => {
 	describe("#getAddress", () => {
 		it("should generate an output from a passphrase", () => {
 			const result: any = subject.getAddress({

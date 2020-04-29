@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Crypto } from "../src/crypto";
+import { TransactionService } from "../../src/services/transaction";
 import { identity } from "./__fixtures__/identity";
 
 let subject: Crypto;

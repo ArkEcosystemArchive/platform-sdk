@@ -1,7 +1,7 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Web3 from "web3";
 
-import { Delegate, Peer, Transaction, Wallet } from "../dto";
+import { DelegateData, TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	static readonly MONTH_IN_SECONDS = 8640 * 30;
@@ -12,17 +12,17 @@ export class ClientService implements Contracts.ClientService {
 		this.#connection = new Web3(new Web3.providers.HttpProvider(peer));
 	}
 
-	public async getTransaction(id: string): Promise<Transaction> {
+	public async getTransaction(id: string): Promise<TransactionData> {
 		const result = await this.#connection.eth.getTransaction(id);
 
-		return new Transaction(result);
+		return new TransactionData(result);
 	}
 
-	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
+	public async getTransactions(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
 		const endBlock: number = await this.#connection.eth.getBlockNumber();
-		const startBlock: number = endBlock - (query?.count ?? Client.MONTH_IN_SECONDS);
+		const startBlock: number = endBlock - (query?.count ?? ClientService.MONTH_IN_SECONDS);
 
-		const transactions: Transaction[] = [];
+		const transactions: TransactionData[] = [];
 		for (let i = startBlock; i < endBlock; i++) {
 			const block = await this.#connection.eth.getBlock(i, true);
 
@@ -33,7 +33,7 @@ export class ClientService implements Contracts.ClientService {
 						query?.address === transaction.from ||
 						query?.address === transaction.to
 					) {
-						transactions.push(new Transaction(transaction));
+						transactions.push(new TransactionData(transaction));
 					}
 				}
 			}
@@ -42,29 +42,29 @@ export class ClientService implements Contracts.ClientService {
 		return { meta: {}, data: transactions };
 	}
 
-	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Transaction>> {
+	public async searchTransactions(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 
-	public async getWallet(id: string): Promise<Wallet> {
+	public async getWallet(id: string): Promise<WalletData> {
 		const result = await this.#connection.eth.getBalance(id);
 
-		return new Wallet({ address: id, balance: result });
+		return new WalletData({ address: id, balance: result });
 	}
 
-	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
+	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getWallets");
 	}
 
-	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Wallet>> {
+	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
 	}
 
-	public async getDelegate(id: string): Promise<Delegate> {
+	public async getDelegate(id: string): Promise<DelegateData> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegate");
 	}
 
-	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Delegate>> {
+	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<DelegateData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegates");
 	}
 

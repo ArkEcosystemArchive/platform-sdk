@@ -1,4 +1,4 @@
-import { Crypto } from "@arkecosystem/crypto";
+import { TransactionService } from "@arkecosystem/crypto";
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class MessageService implements Contracts.MessageService {

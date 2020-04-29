@@ -5,7 +5,7 @@ import Fixture from "../__fixtures__/client/getTransaction.json";
 
 let subject: Transaction;
 
-beforeEach(() => (subject = new Transaction(Fixture.data[0])));
+beforeEach(() => (subject = new TransactionData(Fixture.data[0])));
 
 describe("Lisk", function () {
 	test("#getId", () => {

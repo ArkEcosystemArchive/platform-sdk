@@ -5,7 +5,7 @@ import Fixture from "../__fixtures__/client/getTransaction.json";
 
 let subject: Transaction;
 
-beforeEach(() => (subject = new Transaction(Fixture.result)));
+beforeEach(() => (subject = new TransactionData(Fixture.result)));
 
 describe("Ethereum", function () {
 	test("#getId", () => {

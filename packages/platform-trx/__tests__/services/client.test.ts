@@ -1,7 +1,7 @@
 import "jest-extended";
 import nock from "nock";
 
-import { Client } from "../src/client";
+import { ClientService } from "../../src/services/client";
 import { Block, Transaction, Wallet } from "../src/dto";
 
 let subject: Client;
@@ -15,7 +15,7 @@ describe("Client", function () {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
 				.post("/wallet/gettransactionbyid")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getTransaction.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/getTransaction.json`));
 
 			const result = await subject.getTransaction(
 				"0daa9f2507c4e79e39391ea165bb76ed018c4cd69d7da129edf9e95f0dae99e2",
@@ -29,7 +29,7 @@ describe("Client", function () {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
 				.post("/walletsolidity/getaccount")
-				.reply(200, require(`${__dirname}/__fixtures__/client/getWallet.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/getWallet.json`));
 
 			const result = await subject.getWallet("TTSFjEG3Lu9WkHdp4JrWYhbGP6K1REqnGQ");
 
@@ -41,12 +41,12 @@ describe("Client", function () {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
 				.post("/wallet/createtransaction")
-				.reply(200, require(`${__dirname}/__fixtures__/client/postTransactions.json`))
+				.reply(200, require(`${__dirname}/../__fixtures__/client/postTransactions.json`))
 				.post("/wallet/broadcasttransaction")
 				.reply(200);
 
 			const result = await subject.postTransactions([
-				require(`${__dirname}/__fixtures__/crypto/createTransferSigned.json`),
+				require(`${__dirname}/../__fixtures__/crypto/createTransferSigned.json`),
 			]);
 
 			expect(result).toBeUndefined();
