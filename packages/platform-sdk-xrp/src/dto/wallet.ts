@@ -20,6 +20,10 @@ export class WalletData implements Contracts.WalletData {
 		return BigNumber.make(this.#data.balance * 1e8);
 	}
 
+	public getNonce(): BigNumber {
+		return BigNumber.ZERO;
+	}
+
 	/**
 	 * Only use this function if you can ensure that the unnormalised data is handled!
 	 */

@@ -20,6 +20,10 @@ export class WalletData implements Contracts.WalletData {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getBalance");
 	}
 
+	public getNonce(): BigNumber {
+		return BigNumber.ZERO;
+	}
+
 	/**
 	 * Only use this function if you can ensure that the unnormalised data is handled!
 	 */
