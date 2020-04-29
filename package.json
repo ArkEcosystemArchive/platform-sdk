@@ -9,11 +9,10 @@
 	},
 	"scripts": {
 		"build": "yarn workspaces foreach -pt run build",
-		"clean": "rimraf .coverage dist tmp",
 		"format": "yarn lint && yarn prettier",
 		"lint": "eslint packages/**/src/** --ext .ts --fix",
-		"prepublishOnly": "yarn build",
-		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\""
+		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\"",
+		"test": "yarn workspaces foreach -pt run test"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",

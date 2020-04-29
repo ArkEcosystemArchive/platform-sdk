@@ -5,7 +5,7 @@ import { Delegate, Peer, Transaction, Wallet } from "./dto";
 export class Client implements Contracts.Client {
 	readonly #baseUrl: string;
 
-	public constructor(readonly peer: string) {
+	public constructor (readonly peer: string) {
 		this.#baseUrl = peer;
 	}
 
@@ -46,10 +46,6 @@ export class Client implements Contracts.Client {
 
 	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Delegate>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegates");
-	}
-
-	public async getPeers(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Peer>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPeers");
 	}
 
 	public async getConfiguration(): Promise<Contracts.KeyValuePair> {

@@ -8,7 +8,7 @@ export class Client implements Contracts.Client {
 
 	readonly #connection: Web3;
 
-	public constructor(peer: string) {
+	public constructor (peer: string) {
 		this.#connection = new Web3(new Web3.providers.HttpProvider(peer));
 	}
 
@@ -66,10 +66,6 @@ export class Client implements Contracts.Client {
 
 	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Delegate>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegates");
-	}
-
-	public async getPeers(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Peer>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPeers");
 	}
 
 	public async getConfiguration(): Promise<Contracts.KeyValuePair> {

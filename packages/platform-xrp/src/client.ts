@@ -7,7 +7,7 @@ export class Client implements Contracts.Client {
 	readonly #connection: RippleAPI;
 	readonly #dataUrl: string = "https://data.ripple.com/v2";
 
-	private constructor(connection: RippleAPI) {
+	private constructor (connection: RippleAPI) {
 		this.#connection = connection;
 	}
 
@@ -63,10 +63,6 @@ export class Client implements Contracts.Client {
 		const { validators } = await this.get("network/validators");
 
 		return { meta: {}, data: validators.map((account) => new Delegate(account)) };
-	}
-
-	public async getPeers(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Peer>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPeers");
 	}
 
 	public async getConfiguration(): Promise<Contracts.KeyValuePair> {

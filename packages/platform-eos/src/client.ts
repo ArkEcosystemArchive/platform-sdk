@@ -10,7 +10,7 @@ export class Client implements Contracts.Client {
 	readonly #rpc: JsonRpc;
 	readonly #api: Api;
 
-	public constructor(peer: string) {
+	public constructor (peer: string) {
 		this.#rpc = new JsonRpc(peer, { fetch });
 
 		this.#api = new Api({
@@ -53,10 +53,6 @@ export class Client implements Contracts.Client {
 
 	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Delegate>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegates");
-	}
-
-	public async getPeers(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Peer>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPeers");
 	}
 
 	public async getConfiguration(): Promise<Contracts.KeyValuePair> {

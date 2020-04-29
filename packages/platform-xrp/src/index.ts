@@ -11,7 +11,6 @@ export const manifest = {
 			searchWallets: false,
 			getDelegate: false,
 			getDelegates: false,
-			getPeers: false,
 			getConfiguration: false,
 			getCryptoConfiguration: false,
 			getFeesByNode: false,

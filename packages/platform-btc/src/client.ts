@@ -7,7 +7,7 @@ export class Client implements Contracts.Client {
 
 	readonly #restUrl: string = "https://blockchain.info";
 
-	public constructor(peer: string) {
+	public constructor (peer: string) {
 		this.#baseUrl = peer;
 	}
 
@@ -61,12 +61,6 @@ export class Client implements Contracts.Client {
 
 	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Delegate>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegates");
-	}
-
-	public async getPeers(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Peer>> {
-		const response = await this.post("getpeerinfo");
-
-		throw new Exceptions.NotImplemented(this.constructor.name, "searchBlocks");
 	}
 
 	public async getConfiguration(): Promise<Contracts.KeyValuePair> {
