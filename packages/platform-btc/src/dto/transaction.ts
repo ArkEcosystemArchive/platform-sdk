@@ -1,10 +1,10 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class Transaction implements Contracts.Transaction {
+export class TransactionData implements Contracts.TransactionData {
 	readonly #data: Contracts.KeyValuePair;
 
-	public constructor(data: Contracts.KeyValuePair) {
+	public constructor (data: Contracts.KeyValuePair) {
 		this.#data = data;
 	}
 

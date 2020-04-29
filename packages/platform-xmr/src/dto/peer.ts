@@ -1,6 +1,6 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
-export class Peer implements Contracts.PeerDTO {
+export class PeerData implements Contracts.PeerDataDTO {
 	readonly #data: Contracts.KeyValuePair;
 
 	public constructor (data: Contracts.KeyValuePair) {
