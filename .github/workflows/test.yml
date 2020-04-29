@@ -9,7 +9,7 @@ on:
         types: [ready_for_review, synchronize, opened]
 
 jobs:
-    ARK:
+    ark:
         runs-on: ubuntu-latest
 
         strategy:
@@ -31,12 +31,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-ark && yarn run test --coverage
+              run: cd packages/platform-ark && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-ark && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-ark && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
-    ATOM:
+    atom:
         runs-on: ubuntu-latest
 
         strategy:
@@ -58,12 +58,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-atom && yarn run test --coverage
+              run: cd packages/platform-atom && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-atom && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-atom && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
-    EOS:
+    coin_cap:
         runs-on: ubuntu-latest
 
         strategy:
@@ -85,12 +85,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-eos && yarn run test --coverage
+              run: cd packages/platform-coincap && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-eos && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-coincap && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
-    ETH:
+    coin_gecko:
         runs-on: ubuntu-latest
 
         strategy:
@@ -112,12 +112,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-eth && yarn run test --coverage
+              run: cd packages/platform-coingecko && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-eth && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-coingecko && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
-    LSK:
+    crypto_compare:
         runs-on: ubuntu-latest
 
         strategy:
@@ -139,12 +139,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-lsk && yarn run test --coverage
+              run: cd packages/platform-cryptocompare && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-lsk && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-cryptocompare && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
-    TRX:
+    eos:
         runs-on: ubuntu-latest
 
         strategy:
@@ -166,12 +166,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-trx && yarn run test --coverage
+              run: cd packages/platform-eos && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-trx && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-eos && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
-    XRP:
+    eth:
         runs-on: ubuntu-latest
 
         strategy:
@@ -193,7 +193,115 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-xrp && yarn run test --coverage
+              run: cd packages/platform-eth && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-xrp && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              run: cd packages/platform-eth && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+
+    lsk:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [12.x]
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install
+              run: yarn install --immutable --immutable-cache
+
+            - name: Build
+              run: yarn run build
+
+            - name: Test
+              run: cd packages/platform-lsk && yarn run test --coverage
+
+            - name: Codecov
+              run: cd packages/platform-lsk && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+
+    price_trackers:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [12.x]
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install
+              run: yarn install --immutable --immutable-cache
+
+            - name: Build
+              run: yarn run build
+
+            - name: Test
+              run: cd packages/platform-price-trackers && yarn run test --coverage
+
+            - name: Codecov
+              run: cd packages/platform-price-trackers && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+
+    trx:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [12.x]
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install
+              run: yarn install --immutable --immutable-cache
+
+            - name: Build
+              run: yarn run build
+
+            - name: Test
+              run: cd packages/platform-trx && yarn run test --coverage
+
+            - name: Codecov
+              run: cd packages/platform-trx && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+
+    xrp:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [12.x]
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install
+              run: yarn install --immutable --immutable-cache
+
+            - name: Build
+              run: yarn run build
+
+            - name: Test
+              run: cd packages/platform-xrp && yarn run test --coverage
+
+            - name: Codecov
+              run: cd packages/platform-xrp && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}

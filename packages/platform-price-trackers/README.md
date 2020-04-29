@@ -1,4 +1,4 @@
-# ARK Platform SDK
+# ARK Platform SDK - Price Trackers
 
 <p align="center">
     <img src="./banner.png" />
@@ -13,7 +13,7 @@ This package is currently still under early development and subject to breaking 
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk
+yarn add @arkecosystem/platform-price-trackers
 ```
 
 ## Usage
