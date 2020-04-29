@@ -225,7 +225,7 @@ jobs:
       - name: Codecov
         run: cd packages/platform-sdk-lsk && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
-  price_trackers:
+  markets:
     runs-on: ubuntu-latest
 
     strategy:
