@@ -2,9 +2,9 @@ import "jest-extended";
 import { Data } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { PriceTracker } from "../src/tracker";
+import { PriceTracker } from "../../src/services/tracker";
 
-const BASE_URL_COINCAP = "https://api.coincap.io/v2";
+const BASE_URL_COINGECKO = "https://api.coingecko.com/api/v3";
 const token = "ARK";
 const currency = "USD";
 
@@ -12,32 +12,34 @@ let subject: PriceTracker;
 
 beforeEach(() => {
 	subject = new PriceTracker();
-
-	nock(BASE_URL_COINCAP).get("/assets").query(true).reply(200, require("../__fixtures__/assets.json"));
-
-	nock(BASE_URL_COINCAP)
-		.get("/assets/ark")
-		.reply(200, {
-			data: {
+	nock(BASE_URL_COINGECKO)
+		.get("/coins/list")
+		.reply(200, [
+			{
 				id: "ark",
-				rank: "97",
-				symbol: "ARK",
-				name: "Ark",
-				supply: "118054742.0000000000000000",
-				maxSupply: null,
-				marketCapUsd: "25606314.3186528481730628",
-				volumeUsd24Hr: "200149.6642060181260072",
-				priceUsd: "0.2169020395525734",
-				changePercent24Hr: "4.0498226198624989",
-				vwap24Hr: "0.2168174454697512",
+				symbol: "ark",
+				name: "ark",
 			},
-			timestamp: 1581339180902,
+			{
+				id: "dark",
+				symbol: "dark",
+				name: "dark",
+			},
+		]);
+
+	nock(BASE_URL_COINGECKO)
+		.get("/simple/price")
+		.query(true)
+		.reply(200, {
+			ark: {
+				btc: 0.0000207,
+			},
 		});
 
-	nock(BASE_URL_COINCAP).get("/rates").reply(200, require("../__fixtures__/rates.json"));
+	nock(BASE_URL_COINGECKO).get("/coins/ark").reply(200, require("../__fixtures__/market.json"));
 
-	nock(BASE_URL_COINCAP)
-		.get("/assets/ark/history")
+	nock(BASE_URL_COINGECKO)
+		.get("/coins/ark/market_chart")
 		.query(true)
 		.reply(200, require("../__fixtures__/historical.json"));
 });
@@ -48,8 +50,7 @@ describe("PriceTracker", () => {
 		const entries = Object.keys(response);
 		expect(entries).not.toBeEmpty();
 		expect(entries).toIncludeAllMembers(Object.keys(Data.CURRENCIES));
-
-		expect(response.USD.price).toBe(0.2169020395525734);
+		expect(response.USD.price).toBe(0.176829);
 	});
 
 	describe("verifyToken", () => {

@@ -1,8 +1,8 @@
 import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 
-import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
-import { HistoricalVolumeTransformer } from "./transformers/historical-volume-transformer";
-import { MarketTransformer } from "./transformers/market-transformer";
+import { HistoricalPriceTransformer } from "../transformers/historical-price-transformer";
+import { HistoricalVolumeTransformer } from "../transformers/historical-volume-transformer";
+import { MarketTransformer } from "../transformers/market-transformer";
 
 export class PriceTracker implements Contracts.PriceTracker {
 	private readonly baseUrl: string = "https://api.coingecko.com/api/v3";

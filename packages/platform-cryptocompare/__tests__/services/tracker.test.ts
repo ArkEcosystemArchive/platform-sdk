@@ -2,7 +2,7 @@ import "jest-extended";
 import { Data } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { PriceTracker } from "../src/tracker";
+import { PriceTracker } from "../../src/services/tracker";
 
 const BASE_URL_CRYPTOCOMPARE = "https://min-api.cryptocompare.com";
 const token = "ARK";

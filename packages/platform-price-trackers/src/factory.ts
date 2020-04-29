@@ -1,14 +1,14 @@
-import { PriceTracker as CoinCap } from "@arkecosystem/platform-coincap";
-import { PriceTracker as CoinGecko } from "@arkecosystem/platform-coingecko";
-import { PriceTracker as CryptoCompare } from "@arkecosystem/platform-cryptocompare";
+import { Services as CoinCap } from "@arkecosystem/platform-coincap";
+import { Services as CoinGecko } from "@arkecosystem/platform-coingecko";
+import { Services as CryptoCompare } from "@arkecosystem/platform-cryptocompare";
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class PriceTrackerFactory {
 	public static make(name: string): Contracts.PriceTracker {
 		return {
-			coincap: new CoinCap(),
-			coingecko: new CoinGecko(),
-			cryptocompare: new CryptoCompare(),
+			coincap: new CoinCap.PriceTracker(),
+			coingecko: new CoinGecko.PriceTracker(),
+			cryptocompare: new CryptoCompare.PriceTracker(),
 		}[name];
 	}
 }
