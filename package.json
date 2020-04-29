@@ -8,11 +8,11 @@
 		"yarn": "^2"
 	},
 	"scripts": {
+		"publish": "yarn workspaces foreach -pt run publish",
 		"build": "yarn workspaces foreach -pt run build",
 		"version": "yarn workspaces foreach version",
 		"version:apply": "yarn workspaces foreach version apply",
 		"version:check": "yarn version check --interactive",
-		"publish": "yarn npm publish --access public",
 		"format": "yarn lint && yarn prettier",
 		"lint": "eslint packages/**/src/** --ext .ts --fix",
 		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\"",
