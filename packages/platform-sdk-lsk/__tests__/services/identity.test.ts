@@ -9,104 +9,104 @@ beforeEach(() => (subject = new IdentityService("devnet")));
 
 describe("IdentityService", () => {
 	describe("#getAddress", () => {
-		it("should generate an output from a passphrase", () => {
-			const result: any = subject.getAddress({
+		it("should generate an output from a passphrase", async () => {
+			const result: any = await subject.getAddress({
 				passphrase: identity.passphrase,
 			});
 
 			expect(result).toBe(identity.address);
 		});
 
-		it("should generate an output from a multiSignature", () => {
-			expect(() =>
+		it("should generate an output from a multiSignature", async () => {
+			await expect(
 				subject.getAddress({
 					multiSignature: identity.multiSignature,
 				}),
-			).toThrow(/is not supported/);
+			).rejects.toThrow(/is not supported/);
 		});
 
-		it("should generate an output from a publicKey", () => {
-			const result: any = subject.getAddress({
+		it("should generate an output from a publicKey", async () => {
+			const result: any = await subject.getAddress({
 				publicKey: identity.publicKey,
 			});
 
 			expect(result).toBe(identity.address);
 		});
 
-		it("should generate an output from a privateKey", () => {
-			expect(() =>
+		it("should generate an output from a privateKey", async () => {
+			await expect(
 				subject.getAddress({
 					privateKey: identity.privateKey,
 				}),
-			).toThrow(/is not supported/);
+			).rejects.toThrow(/is not supported/);
 		});
 
-		it("should generate an output from a wif", () => {
-			expect(() =>
+		it("should generate an output from a wif", async () => {
+			await expect(
 				subject.getAddress({
 					wif: identity.wif,
 				}),
-			).toThrow(/is not supported/);
+			).rejects.toThrow(/is not supported/);
 		});
 	});
 
 	describe("#getPublicKey", () => {
-		it("should generate an output from a passphrase", () => {
-			const result: any = subject.getPublicKey({
+		it("should generate an output from a passphrase", async () => {
+			const result: any = await subject.getPublicKey({
 				passphrase: identity.passphrase,
 			});
 
 			expect(result).toBe(identity.publicKey);
 		});
 
-		it("should generate an output from a multiSignature", () => {
-			expect(() =>
+		it("should generate an output from a multiSignature", async () => {
+			await expect(
 				subject.getPublicKey({
 					multiSignature: identity.multiSignature,
 				}),
-			).toThrow(/is not supported/);
+			).rejects.toThrow(/is not supported/);
 		});
 
-		it("should generate an output from a wif", () => {
-			expect(() =>
+		it("should generate an output from a wif", async () => {
+			await expect(
 				subject.getPublicKey({
 					wif: identity.wif,
 				}),
-			).toThrow(/is not supported/);
+			).rejects.toThrow(/is not supported/);
 		});
 	});
 
 	describe("#getPrivateKey", () => {
-		it("should generate an output from a passphrase", () => {
-			const result: any = subject.getPrivateKey({
+		it("should generate an output from a passphrase", async () => {
+			const result: any = await subject.getPrivateKey({
 				passphrase: identity.passphrase,
 			});
 
 			expect(result).toBe(identity.privateKey);
 		});
 
-		it("should generate an output from a wif", () => {
-			expect(() =>
+		it("should generate an output from a wif", async () => {
+			await expect(
 				subject.getPrivateKey({
 					wif: identity.wif,
 				}),
-			).toThrow(/is not supported/);
+			).rejects.toThrow(/is not supported/);
 		});
 	});
 
 	describe("#getWIF", () => {
-		it("should generate an output from a passphrase", () => {
-			expect(() =>
+		it("should generate an output from a passphrase", async () => {
+			await expect(
 				subject.getWIF({
 					passphrase: identity.passphrase,
 				}),
-			).toThrow(/is not supported/);
+			).rejects.toThrow(/is not supported/);
 		});
 	});
 
 	describe("#getKeyPair", () => {
-		it("should generate an output from a passphrase", () => {
-			const result: any = subject.getKeyPair({
+		it("should generate an output from a passphrase", async () => {
+			const result: any = await subject.getKeyPair({
 				passphrase: identity.passphrase,
 			});
 
@@ -116,12 +116,12 @@ describe("IdentityService", () => {
 			});
 		});
 
-		it("should generate an output from a wif", () => {
-			expect(() =>
+		it("should generate an output from a wif", async () => {
+			await expect(
 				subject.getKeyPair({
 					wif: identity.wif,
 				}),
-			).toThrow(/is not supported/);
+			).rejects.toThrow(/is not supported/);
 		});
 	});
 });

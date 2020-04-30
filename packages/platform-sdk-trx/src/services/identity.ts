@@ -5,23 +5,23 @@ export class IdentityService implements Contracts.IdentityService {
 		//
 	}
 
-	public getAddress(opts: Contracts.KeyValuePair): string {
+	public async getAddress(opts: Contracts.KeyValuePair): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getAddress");
 	}
 
-	public getPublicKey(opts: Contracts.KeyValuePair): string {
+	public async getPublicKey(opts: Contracts.KeyValuePair): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
 	}
 
-	public getPrivateKey(opts: Contracts.KeyValuePair): string {
+	public async getPrivateKey(opts: Contracts.KeyValuePair): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getPrivateKey");
 	}
 
-	public getWIF(opts: Contracts.KeyValuePair): string {
+	public async getWIF(opts: Contracts.KeyValuePair): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getWIF");
 	}
 
-	public getKeyPair(opts: Contracts.KeyValuePair): Contracts.KeyPair {
+	public async getKeyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getKeyPair");
 	}
 }

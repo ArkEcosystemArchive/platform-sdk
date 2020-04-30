@@ -2,7 +2,7 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { getNewWalletFromSeed } from "@lunie/cosmos-keys";
 
 export class IdentityService implements Contracts.IdentityService {
-	public getAddress(opts: Contracts.KeyValuePair): string {
+	public async getAddress(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			return getNewWalletFromSeed(opts.passphrase, "cosmos").cosmosAddress;
 		}
@@ -26,7 +26,7 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public getPublicKey(opts: Contracts.KeyValuePair): string {
+	public async getPublicKey(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			return getNewWalletFromSeed(opts.passphrase, "cosmos").publicKey;
 		}
@@ -42,7 +42,7 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public getPrivateKey(opts: Contracts.KeyValuePair): string {
+	public async getPrivateKey(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			return getNewWalletFromSeed(opts.passphrase, "cosmos").privateKey;
 		}
@@ -54,7 +54,7 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public getWIF(opts: Contracts.KeyValuePair): string {
+	public async getWIF(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			throw new Exceptions.NotSupported(this.constructor.name, "getWIF#passphrase");
 		}
@@ -62,7 +62,7 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public getKeyPair(opts: Contracts.KeyValuePair): Contracts.KeyPair {
+	public async getKeyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
 		if (opts.passphrase) {
 			const keyPair = getNewWalletFromSeed(opts.passphrase, "cosmos");
 

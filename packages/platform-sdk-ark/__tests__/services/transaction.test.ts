@@ -9,8 +9,8 @@ beforeEach(() => (subject = new TransactionService("devnet")));
 
 describe("TransactionService", () => {
 	describe("#createTransfer", () => {
-		it("should verify", () => {
-			const result: any = subject.createTransfer({
+		it("should verify", async () => {
+			const result: any = await subject.createTransfer({
 				nonce: 1,
 				amount: 1,
 				recipientId: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
@@ -22,8 +22,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createSecondSignature", () => {
-		it("should verify", () => {
-			const result: any = subject.createSecondSignature({
+		it("should verify", async () => {
+			const result: any = await subject.createSecondSignature({
 				nonce: 1,
 				passphrase: "this is a top secret passphrase",
 				secondSignature: "this is a top secret passphrase",
@@ -34,8 +34,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createDelegateRegistration", () => {
-		it("should verify", () => {
-			const result: any = subject.createDelegateRegistration({
+		it("should verify", async () => {
+			const result: any = await subject.createDelegateRegistration({
 				nonce: 1,
 				asset: "johndoe",
 				passphrase: "this is a top secret passphrase",
@@ -46,8 +46,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createVote", () => {
-		it("should verify", () => {
-			const result: any = subject.createVote({
+		it("should verify", async () => {
+			const result: any = await subject.createVote({
 				nonce: 1,
 				asset: ["+03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec"],
 				passphrase: "this is a top secret passphrase",
@@ -58,8 +58,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createMultiSignature", () => {
-		it("should verify", () => {
-			const result: any = subject.createMultiSignature({
+		it("should verify", async () => {
+			const result: any = await subject.createMultiSignature({
 				nonce: 1,
 				asset: {
 					publicKeys: [
@@ -83,8 +83,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createIpfs", () => {
-		it("should verify", () => {
-			const result: any = subject.createIpfs({
+		it("should verify", async () => {
+			const result: any = await subject.createIpfs({
 				nonce: 1,
 				asset: "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9w",
 				passphrase: "this is a top secret passphrase",
@@ -95,8 +95,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createMultiPayment", () => {
-		it("should verify", () => {
-			const result: any = subject.createMultiPayment({
+		it("should verify", async () => {
+			const result: any = await subject.createMultiPayment({
 				nonce: 1,
 				payments: [
 					{ recipientId: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
@@ -111,8 +111,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createDelegateResignation", () => {
-		it("should verify", () => {
-			const result: any = subject.createDelegateResignation({
+		it("should verify", async () => {
+			const result: any = await subject.createDelegateResignation({
 				nonce: 1,
 				passphrase: "this is a top secret passphrase",
 			});
@@ -122,8 +122,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createHtlcLock", () => {
-		it("should verify", () => {
-			const result: any = subject.createHtlcLock({
+		it("should verify", async () => {
+			const result: any = await subject.createHtlcLock({
 				nonce: 1,
 				amount: 1,
 				recipientId: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
@@ -142,8 +142,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createHtlcClaim", () => {
-		it("should verify", () => {
-			const result: any = subject.createHtlcClaim({
+		it("should verify", async () => {
+			const result: any = await subject.createHtlcClaim({
 				nonce: 1,
 				asset: {
 					lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
@@ -157,8 +157,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createHtlcRefund", () => {
-		it("should verify", () => {
-			const result: any = subject.createHtlcRefund({
+		it("should verify", async () => {
+			const result: any = await subject.createHtlcRefund({
 				nonce: 1,
 				asset: {
 					lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
