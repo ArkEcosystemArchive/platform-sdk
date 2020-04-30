@@ -1,3 +1,5 @@
+import "jest-extended";
+
 import { PeerData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/getPeers.json";
 
@@ -24,5 +26,13 @@ describe("PeerData", function () {
 
 	test("#getLatency", () => {
 		expect(subject.getLatency()).toBe(13);
+	});
+
+	test("#toObject", () => {
+		expect(subject.toObject()).toBeObject();
+	});
+
+	test("#raw", () => {
+		expect(subject.raw()).toEqual(Fixture.data[0]);
 	});
 });
