@@ -18,10 +18,14 @@ describe("TransactionService", function () {
 				.reply(200, require(`${__dirname}/../__fixtures__/crypto/createTransfer.json`));
 
 			const result = await subject.createTransfer({
-				from: testWallet.address,
-				to: "TY689z7Q2NpZYBxGfXbYR4PmS2WXyTNrir",
-				amount: 1,
-				privateKey: testWallet.privateKey,
+				sign: {
+					passphrase: testWallet.privateKey,
+				},
+				data: {
+					from: testWallet.address,
+					to: "TY689z7Q2NpZYBxGfXbYR4PmS2WXyTNrir",
+					amount: 1,
+				},
 			});
 
 			expect(result).toBeObject();
