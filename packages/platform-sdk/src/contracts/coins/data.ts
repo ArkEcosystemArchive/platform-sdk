@@ -2,30 +2,6 @@ import { BigNumber } from "@arkecosystem/utils";
 
 import { KeyValuePair } from "../types";
 
-export interface BlockData {
-	getId(): string;
-
-	getHeight(): string;
-
-	getTimestamp(): string;
-
-	getConfirmations(): BigNumber;
-
-	getTransactionsCount(): number;
-
-	getGenerator(): string;
-
-	getForgedReward(): BigNumber;
-
-	getForgedAmount(): BigNumber;
-
-	getForgedFee(): BigNumber;
-
-	getForgedTotal(): BigNumber;
-
-	toObject(): KeyValuePair;
-}
-
 export interface TransactionData {
 	getId(): string;
 
