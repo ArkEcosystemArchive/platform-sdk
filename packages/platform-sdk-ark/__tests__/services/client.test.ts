@@ -119,7 +119,7 @@ describe("ClientService", function () {
 	describe("#getVotes", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
-				.get("/delegates")
+				.get("/wallets/arkx/votes")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/getVotes.json`));
 
 			const result = await subject.getVotes('arkx');
@@ -132,7 +132,7 @@ describe("ClientService", function () {
 	describe("#getVoters", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
-				.get("/delegates")
+				.get("/delegates/arkx/voters")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/getVoters.json`));
 
 			const result = await subject.getVoters('arkx');
