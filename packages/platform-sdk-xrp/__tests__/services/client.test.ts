@@ -8,7 +8,7 @@ import { DelegateData, WalletData, TransactionData } from "../../src/dto";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.new("wss://s.altnet.rippletest.net:51233", false)));
+beforeEach(async () => (subject = await ClientService.new("wss://s.altnet.rippletest.net:51233")));
 
 afterEach(() => nock.cleanAll());
 
@@ -17,9 +17,9 @@ beforeAll(() => nock.disableNetConnect());
 describe("ClientService", function () {
 	describe("#getTransaction", () => {
 		it("should succeed", async () => {
-			nock("https://data.ripple.com/v2")
-				.get("/transactions/3B1A4E1C9BB6A7208EB146BCDB86ECEA6068ED01466D933528CA2B4C64F753EF")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getTransaction.json`));
+			// nock("https://data.ripple.com/v2")
+			// 	.get("/transactions/3B1A4E1C9BB6A7208EB146BCDB86ECEA6068ED01466D933528CA2B4C64F753EF")
+			// 	.reply(200, require(`${__dirname}/../__fixtures__/client/getTransaction.json`));
 
 			const result = await subject.getTransaction(
 				"3B1A4E1C9BB6A7208EB146BCDB86ECEA6068ED01466D933528CA2B4C64F753EF",
@@ -71,7 +71,7 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#getWallets", () => {
+	describe.skip("#getWallets", () => {
 		it("should succeed", async () => {
 			nock("https://data.ripple.com/v2")
 				.get("/accounts")
@@ -84,7 +84,7 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#getDelegate", () => {
+	describe.skip("#getDelegate", () => {
 		it("should succeed", async () => {
 			nock("https://data.ripple.com/v2")
 				.get("/network/validators/nHBidG3pZK11zQD6kpNDoAhDxH6WLGui6ZxSbUx7LSqLHsgzMPec")
@@ -98,7 +98,7 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#getDelegates", () => {
+	describe.skip("#getDelegates", () => {
 		it("should succeed", async () => {
 			nock("https://data.ripple.com/v2")
 				.get("/network/validators")
