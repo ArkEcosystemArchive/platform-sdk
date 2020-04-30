@@ -1,5 +1,3 @@
-import { BigNumber } from "@arkecosystem/utils";
-
 import { KeyValuePair } from "../types";
 import { DelegateData, TransactionData, WalletData } from "./data";
 
@@ -9,16 +7,16 @@ export interface CollectionResponse<T> {
 }
 
 export interface ClientService {
-	getTransaction(id: string): Promise<Contracts.TransactionData>;
-	getTransactions(query?: KeyValuePair): Promise<CollectionResponse<Contracts.TransactionData>>;
-	searchTransactions(query: KeyValuePair): Promise<CollectionResponse<Contracts.TransactionData>>;
+	getTransaction(id: string): Promise<TransactionData>;
+	getTransactions(query?: KeyValuePair): Promise<CollectionResponse<TransactionData>>;
+	searchTransactions(query: KeyValuePair): Promise<CollectionResponse<TransactionData>>;
 
-	getWallet(id: string): Promise<Contracts.WalletData>;
-	getWallets(query?: KeyValuePair): Promise<CollectionResponse<Contracts.WalletData>>;
-	searchWallets(query: KeyValuePair): Promise<CollectionResponse<Contracts.WalletData>>;
+	getWallet(id: string): Promise<WalletData>;
+	getWallets(query?: KeyValuePair): Promise<CollectionResponse<WalletData>>;
+	searchWallets(query: KeyValuePair): Promise<CollectionResponse<WalletData>>;
 
-	getDelegate(id: string): Promise<Contracts.DelegateData>;
-	getDelegates(query?: KeyValuePair): Promise<CollectionResponse<Contracts.DelegateData>>;
+	getDelegate(id: string): Promise<DelegateData>;
+	getDelegates(query?: KeyValuePair): Promise<CollectionResponse<DelegateData>>;
 
 	getConfiguration(): Promise<KeyValuePair>;
 	getCryptoConfiguration(): Promise<KeyValuePair>;
