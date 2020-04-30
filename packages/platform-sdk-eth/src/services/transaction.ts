@@ -3,29 +3,31 @@ import { Transaction } from "ethereumjs-tx";
 import Web3 from "web3";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #chain;
 	readonly #connection;
 
 	public constructor(network: string) {
+		this.#chain = network;
 		this.#connection = new Web3(new Web3.providers.HttpProvider(network)); // todo: network here is a peer
 	}
 
-	public async createTransfer(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		const transactionCount = await this.#connection.eth.getTransactionCount(data.sender);
+	public async createTransfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {
+		const transactionCount = await this.#connection.eth.getTransactionCount(input.data.from);
 
 		const transaction = new Transaction(
 			{
 				nonce: this.#connection.utils.toHex(transactionCount),
-				gasLimit: this.#connection.utils.toHex(data.gasLimit),
-				gasPrice: this.#connection.utils.toHex(data.gasPrice),
-				to: data.recipient,
-				value: this.#connection.utils.toHex(this.#connection.utils.toWei(data.amount, "wei")),
+				gasLimit: this.#connection.utils.toHex(input.feeLimit),
+				gasPrice: this.#connection.utils.toHex(input.fee),
+				to: input.data.to,
+				value: this.#connection.utils.toHex(this.#connection.utils.toWei(input.data.amount, "wei")),
 				// todo: we can use this as a vendorField like ARK
-				// data: Buffer.from("Hello World", "utf8"),
+				// input: Buffer.from("Hello World", "utf8"),
 			},
-			{ chain: "ropsten" },
+			{ chain: this.#chain },
 		);
 
-		transaction.sign(Buffer.from(data.privateKey, "hex"));
+		transaction.sign(Buffer.from(input.sign.passphrase, "hex"));
 
 		return this.#connection.eth.sendSignedTransaction("0x" + transaction.serialize().toString("hex"));
 
@@ -35,43 +37,47 @@ export class TransactionService implements Contracts.TransactionService {
 		// .on("error:", (error) => {
 	}
 
-	public async createSecondSignature(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createSecondSignature(input: Contracts.SecondSignatureInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createSecondSignature");
 	}
 
-	public async createDelegateRegistration(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createDelegateRegistration(
+		input: Contracts.DelegateRegistrationInput,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createDelegateRegistration");
 	}
 
-	public async createVote(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createVote(input: Contracts.VoteInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createVote");
 	}
 
-	public async createMultiSignature(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createMultiSignature(input: Contracts.MultiSignatureInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createMultiSignature");
 	}
 
-	public async createIpfs(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createIpfs(input: Contracts.IpfsInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createIpfs");
 	}
 
-	public async createMultiPayment(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createMultiPayment(input: Contracts.MultiPaymentInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createMultiPayment");
 	}
 
-	public async createDelegateResignation(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createDelegateResignation(
+		input: Contracts.DelegateResignationInput,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createDelegateResignation");
 	}
 
-	public async createHtlcLock(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createHtlcLock(input: Contracts.HtlcLockInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcLock");
 	}
 
-	public async createHtlcClaim(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createHtlcClaim(input: Contracts.HtlcClaimInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcClaim");
 	}
 
-	public async createHtlcRefund(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createHtlcRefund(input: Contracts.HtlcRefundInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcRefund");
 	}
 }

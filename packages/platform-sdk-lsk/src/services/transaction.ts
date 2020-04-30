@@ -8,56 +8,83 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#network = network;
 	}
 
-	public async createTransfer(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("transfer", data);
+	public async createTransfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("transfer", {
+			...input,
+			...{
+				data: {
+					recipientId: input.data.to,
+				},
+			},
+		});
 	}
 
-	public async createSecondSignature(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("registerSecondPassphrase", data);
+	public async createSecondSignature(input: Contracts.SecondSignatureInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("registerSecondPassphrase", {
+			...input,
+			...{
+				data: {
+					secondPassphrase: input.data.passphrase,
+				},
+			},
+		});
 	}
 
-	public async createDelegateRegistration(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("registerDelegate", data);
+	public async createDelegateRegistration(
+		input: Contracts.DelegateRegistrationInput,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("registerDelegate", input);
 	}
 
-	public async createVote(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("castVotes", data);
+	public async createVote(input: Contracts.VoteInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("castVotes", input);
 	}
 
-	public async createMultiSignature(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("registerMultisignature", data);
+	public async createMultiSignature(input: Contracts.MultiSignatureInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("registerMultisignature", {
+			...input,
+			...{
+				data: {
+					keysgroup: input.data.publicKeys,
+					lifetime: input.data.lifetime,
+					minimum: input.data.min,
+				},
+			},
+		});
 	}
 
-	public async createIpfs(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createIpfs(input: Contracts.IpfsInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createIpfs");
 	}
 
-	public async createMultiPayment(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createMultiPayment(input: Contracts.MultiPaymentInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createMultiPayment");
 	}
 
-	public async createDelegateResignation(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createDelegateResignation(
+		input: Contracts.DelegateResignationInput,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createDelegateResignation");
 	}
 
-	public async createHtlcLock(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createHtlcLock(input: Contracts.HtlcLockInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcLock");
 	}
 
-	public async createHtlcClaim(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createHtlcClaim(input: Contracts.HtlcClaimInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcClaim");
 	}
 
-	public async createHtlcRefund(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createHtlcRefund(input: Contracts.HtlcRefundInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcRefund");
 	}
 
 	private async createFromData(
 		type: string,
-		data: Contracts.KeyValuePair,
+		input: Contracts.KeyValuePair,
 		callback?: Function,
 	): Promise<Contracts.SignedTransaction> {
-		const struct: Contracts.KeyValuePair = { ...data };
+		const struct: Contracts.KeyValuePair = { ...input.data };
 
 		struct.networkIdentifier = this.#network;
 
@@ -67,12 +94,12 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// todo: support multisignature
 
-		if (struct.passphrase) {
-			struct.passphrase = data.passphrase;
+		if (input.sign.passphrase) {
+			struct.passphrase = input.sign.passphrase;
 		}
 
-		if (struct.secondPassphrase) {
-			struct.secondPassphrase = data.secondPassphrase;
+		if (input.sign.secondPassphrase) {
+			struct.secondPassphrase = input.sign.secondPassphrase;
 		}
 
 		return transactions[type](struct);

@@ -49,13 +49,17 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData({ ...account_data, ...{ balance: balance.value } });
 	}
 
-	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async getWallets(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		const { accounts } = await this.get("accounts");
 
 		return { meta: {}, data: accounts.map((account) => new WalletData(account)) };
 	}
 
-	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async searchWallets(
+		query: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
 	}
 
@@ -63,7 +67,9 @@ export class ClientService implements Contracts.ClientService {
 		return new DelegateData(await this.get(`network/validators/${id}`));
 	}
 
-	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
+	public async getDelegates(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
 		const { validators } = await this.get("network/validators");
 
 		return { meta: {}, data: validators.map((account) => new DelegateData(account)) };
