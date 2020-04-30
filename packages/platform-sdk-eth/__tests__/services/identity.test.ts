@@ -26,7 +26,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a publicKey", () => {
-			const result: any = subject.getAddress({
+			const result: any = await subject.getAddress({
 				publicKey: identity.publicKey,
 			});
 
@@ -34,7 +34,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a privateKey", () => {
-			const result: any = subject.getAddress({
+			const result: any = await subject.getAddress({
 				privateKey: identity.privateKey,
 			});
 
@@ -122,7 +122,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a privateKey", () => {
-			const result: any = subject.getKeyPair({
+			const result: any = await subject.getKeyPair({
 				privateKey: identity.privateKey,
 			});
 

@@ -5,7 +5,7 @@ export class TransactionService implements Contracts.TransactionService {
 		//
 	}
 
-	public async async createTransfer(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createTransfer(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createTransfer");
 	}
 

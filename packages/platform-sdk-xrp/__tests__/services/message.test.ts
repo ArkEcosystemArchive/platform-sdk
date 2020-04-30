@@ -8,12 +8,12 @@ let subject: MessageService;
 beforeEach(() => (subject = new MessageService()));
 
 describe("MessageService", () => {
-	it("should sign and verify a message", () => {
-		const result: any = subject.sign({
+	it("should sign and verify a message", async () => {
+		const result: any = await subject.sign({
 			message: "Hello World",
 			passphrase: identity.passphrase,
 		});
 
-		expect(subject.verify(result)).toBeTrue();
+		await expect(subject.verify(result)).resolves.toBeTrue();
 	});
 });

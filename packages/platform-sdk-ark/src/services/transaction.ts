@@ -79,7 +79,11 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 	}
 
-	private async createFromData(type: string, data: Contracts.KeyValuePair, callback?: Function): Promise<Contracts.SignedTransaction> {
+	private async createFromData(
+		type: string,
+		data: Contracts.KeyValuePair,
+		callback?: Function,
+	): Promise<Contracts.SignedTransaction> {
 		const transaction = Transactions.BuilderFactory[type]().version(2).nonce(data.nonce);
 
 		if (data.amount) {

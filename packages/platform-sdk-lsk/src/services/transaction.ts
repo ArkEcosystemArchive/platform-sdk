@@ -52,7 +52,11 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcRefund");
 	}
 
-	private async createFromData(type: string, data: Contracts.KeyValuePair, callback?: Function): Promise<Contracts.SignedTransaction> {
+	private async createFromData(
+		type: string,
+		data: Contracts.KeyValuePair,
+		callback?: Function,
+	): Promise<Contracts.SignedTransaction> {
 		const struct: Contracts.KeyValuePair = { ...data };
 
 		struct.networkIdentifier = this.#network;
