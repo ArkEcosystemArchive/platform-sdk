@@ -1,15 +1,9 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class TransactionData implements Contracts.TransactionData {
-	readonly #data: Contracts.KeyValuePair;
-
-	public constructor(data: Contracts.KeyValuePair) {
-		this.#data = data;
-	}
-
+export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public getId(): string {
-		return this.#data.hash;
+		return this.data.hash;
 	}
 
 	public getType(): number | undefined {
@@ -29,37 +23,30 @@ export class TransactionData implements Contracts.TransactionData {
 	}
 
 	public getNonce(): string {
-		return this.#data.nonce;
+		return this.data.nonce;
 	}
 
 	public getSender(): string {
-		return this.#data.from;
+		return this.data.from;
 	}
 
 	public getRecipient(): string {
-		return this.#data.to;
+		return this.data.to;
 	}
 
 	public getAmount(): BigNumber {
-		return BigNumber.make(this.#data.value);
+		return BigNumber.make(this.data.value);
 	}
 
 	public getFee(): BigNumber {
-		return BigNumber.make(this.#data.gas);
+		return BigNumber.make(this.data.gas);
 	}
 
 	public getVendorField(): string | undefined {
-		return this.#data.data;
+		return this.data.data;
 	}
 
 	public getBlockId(): string {
-		return this.#data.blockNumber;
-	}
-
-	/**
-	 * Only use this function if you can ensure that the unnormalised data is handled!
-	 */
-	public toObject(): Contracts.KeyValuePair {
-		return this.#data;
+		return this.data.blockNumber;
 	}
 }

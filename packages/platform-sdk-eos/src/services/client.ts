@@ -22,40 +22,40 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-transaction-information
-	public async getTransaction(id: string): Promise<TransactionData> {
+	public async getTransaction(id: string): Promise<Contracts.TransactionData> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getTransaction");
 	}
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-table-information
 	public async getTransactions(
 		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<TransactionData>> {
+	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getTransactions");
 	}
 
 	public async searchTransactions(
 		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<TransactionData>> {
+	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 
-	public async getWallet(id: string): Promise<WalletData> {
+	public async getWallet(id: string): Promise<Contracts.WalletData> {
 		return new WalletData(await this.#rpc.get_account(id));
 	}
 
-	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<WalletData>> {
+	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getWallets");
 	}
 
-	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<WalletData>> {
+	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
 	}
 
-	public async getDelegate(id: string): Promise<DelegateData> {
+	public async getDelegate(id: string): Promise<Contracts.DelegateData> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegate");
 	}
 
-	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<DelegateData>> {
+	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegates");
 	}
 

@@ -1,3 +1,4 @@
+import "jest-extended";
 import { BigNumber } from "@arkecosystem/utils";
 
 import { TransactionData } from "../../src/dto";
@@ -57,6 +58,10 @@ describe("TransactionData", function () {
 	});
 
 	test("#toObject", () => {
-		expect(subject.toObject()).toEqual(Fixture.data[0]);
+		expect(subject.toObject()).toBeObject();
+	});
+
+	test("#raw", () => {
+		expect(subject.raw()).toEqual(Fixture.data[0]);
 	});
 });

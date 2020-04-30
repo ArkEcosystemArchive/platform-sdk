@@ -21,7 +21,7 @@ export class ClientService implements Contracts.ClientService {
 		return new ClientService(connection);
 	}
 
-	public async getTransaction(id: string): Promise<TransactionData> {
+	public async getTransaction(id: string): Promise<Contracts.TransactionData> {
 		const { transaction } = await this.get(`transactions/${id}`);
 
 		return new TransactionData(transaction);
@@ -29,7 +29,7 @@ export class ClientService implements Contracts.ClientService {
 
 	public async getTransactions(
 		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<TransactionData>> {
+	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
 		const { transactions } = await this.get(`accounts/${query.address}/transactions`, { type: "Payment" });
 
 		return { meta: {}, data: transactions.map((transaction) => new TransactionData(transaction)) };
@@ -37,11 +37,11 @@ export class ClientService implements Contracts.ClientService {
 
 	public async searchTransactions(
 		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<TransactionData>> {
+	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 
-	public async getWallet(id: string): Promise<WalletData> {
+	public async getWallet(id: string): Promise<Contracts.WalletData> {
 		const { account_data } = await this.get(`accounts/${id}`);
 		const { balances } = await this.get(`accounts/${id}/balances`, { currency: "XRP" });
 		const balance = balances.find((balance) => balance.currency === "XRP");
@@ -49,21 +49,21 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData({ ...account_data, ...{ balance: balance.value } });
 	}
 
-	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<WalletData>> {
+	public async getWallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		const { accounts } = await this.get("accounts");
 
 		return { meta: {}, data: accounts.map((account) => new WalletData(account)) };
 	}
 
-	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<WalletData>> {
+	public async searchWallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
 	}
 
-	public async getDelegate(id: string): Promise<DelegateData> {
+	public async getDelegate(id: string): Promise<Contracts.DelegateData> {
 		return new DelegateData(await this.get(`network/validators/${id}`));
 	}
 
-	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<DelegateData>> {
+	public async getDelegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
 		const { validators } = await this.get("network/validators");
 
 		return { meta: {}, data: validators.map((account) => new DelegateData(account)) };

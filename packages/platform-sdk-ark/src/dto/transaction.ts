@@ -1,72 +1,59 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class TransactionData implements Contracts.TransactionData {
-	readonly #data: Contracts.KeyValuePair;
-
-	public constructor(data: Contracts.KeyValuePair) {
-		this.#data = data;
-	}
-
+export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public getId(): string {
-		return this.#data.id;
+		return this.data.id;
 	}
 
 	public getType(): number | undefined {
-		return this.#data.type;
+		return this.data.type;
 	}
 
 	public getTypeGroup(): number | undefined {
-		return this.#data.typeGroup;
+		return this.data.typeGroup;
 	}
 
 	public getTimestamp(): number | undefined {
-		return this.#data.timestamp.epoch;
+		return this.data.timestamp.epoch;
 	}
 
 	public getConfirmations(): BigNumber {
-		return BigNumber.make(this.#data.confirmations);
+		return BigNumber.make(this.data.confirmations);
 	}
 
 	public getNonce(): string | undefined {
-		return this.#data.nonce;
+		return this.data.nonce;
 	}
 
 	public getSender(): string {
-		return this.#data.senderPublicKey;
+		return this.data.senderPublicKey;
 	}
 
 	public getRecipient(): string {
-		return this.#data.recipient;
+		return this.data.recipient;
 	}
 
 	public getAmount(): BigNumber {
-		if (this.#data.typeGroup === 0 && this.#data.type === 6) {
-			return this.#data.asset.payments.reduce(
+		if (this.data.typeGroup === 0 && this.data.type === 6) {
+			return this.data.asset.payments.reduce(
 				(sum: BigNumber, { amount }: { amount: string }) => sum.plus(amount),
 				BigNumber.ZERO,
 			);
 		}
 
-		return BigNumber.make(this.#data.amount);
+		return BigNumber.make(this.data.amount);
 	}
 
 	public getFee(): BigNumber {
-		return BigNumber.make(this.#data.fee);
+		return BigNumber.make(this.data.fee);
 	}
 
 	public getVendorField(): string | undefined {
-		return this.#data.vendorField;
+		return this.data.vendorField;
 	}
 
 	public getBlockId(): string {
-		return this.#data.blockId;
-	}
-
-	/**
-	 * Only use this function if you can ensure that the unnormalised data is handled!
-	 */
-	public toObject(): Contracts.KeyValuePair {
-		return this.#data;
+		return this.data.blockId;
 	}
 }

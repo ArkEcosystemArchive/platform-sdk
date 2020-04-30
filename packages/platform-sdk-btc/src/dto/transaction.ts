@@ -1,15 +1,9 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class TransactionData implements Contracts.TransactionData {
-	readonly #data: Contracts.KeyValuePair;
-
-	public constructor(data: Contracts.KeyValuePair) {
-		this.#data = data;
-	}
-
+export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public getId(): string {
-		return this.#data.hash;
+		return this.data.hash;
 	}
 
 	public getType(): number | undefined {
@@ -21,7 +15,7 @@ export class TransactionData implements Contracts.TransactionData {
 	}
 
 	public getTimestamp(): number | undefined {
-		return this.#data.time;
+		return this.data.time;
 	}
 
 	public getConfirmations(): BigNumber {
@@ -53,13 +47,6 @@ export class TransactionData implements Contracts.TransactionData {
 	}
 
 	public getBlockId(): string {
-		return this.#data.block_height;
-	}
-
-	/**
-	 * Only use this function if you can ensure that the unnormalised data is handled!
-	 */
-	public toObject(): Contracts.KeyValuePair {
-		return this.#data;
+		return this.data.block_height;
 	}
 }

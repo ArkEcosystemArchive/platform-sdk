@@ -1,3 +1,4 @@
+import "jest-extended";
 import { BigNumber } from "@arkecosystem/utils";
 
 import { BlockData } from "../../src/dto";
@@ -49,6 +50,10 @@ describe("BlockData", function () {
 	});
 
 	test("#toObject", () => {
-		expect(subject.toObject()).toEqual(Fixture);
+		expect(subject.toObject()).toBeObject();
+	});
+
+	test("#raw", () => {
+		expect(subject.raw()).toEqual(Fixture);
 	});
 });

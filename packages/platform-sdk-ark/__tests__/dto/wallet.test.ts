@@ -1,3 +1,5 @@
+import "jest-extended";
+
 import { BigNumber } from "@arkecosystem/utils";
 
 import { WalletData } from "../../src/dto";
@@ -18,5 +20,13 @@ describe("WalletData", function () {
 
 	test("#getBalance", () => {
 		expect(subject.getBalance()).toEqual(BigNumber.make("55827093444556"));
+	});
+
+	test("#toObject", () => {
+		expect(subject.toObject()).toBeObject();
+	});
+
+	test("#raw", () => {
+		expect(subject.raw()).toEqual(Fixture.data);
 	});
 });

@@ -1,5 +1,3 @@
-import { BigNumber } from "@arkecosystem/utils";
-
 import { KeyValuePair } from "../types";
 import { DelegateData, TransactionData, WalletData } from "./data";
 

@@ -1,26 +1,20 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class BlockData implements Contracts.BlockData {
-	readonly #data: Contracts.KeyValuePair;
-
-	public constructor(data: Contracts.KeyValuePair) {
-		this.#data = data;
-	}
-
+export class BlockData extends DTO.AbstractBlockData implements Contracts.BlockData {
 	public getId(): string {
-		return this.#data.hash;
-		// return this.#data.blockID;
+		return this.data.hash;
+		// return this.data.blockID;
 	}
 
 	public getHeight(): string {
-		return this.#data.height;
-		// return this.#data.block_header.raw_data.number;
+		return this.data.height;
+		// return this.data.block_header.raw_data.number;
 	}
 
 	public getTimestamp(): string {
-		return this.#data.time;
-		// return this.#data.block_header.raw_data.timestamp;
+		return this.data.time;
+		// return this.data.block_header.raw_data.timestamp;
 	}
 
 	public getConfirmations(): BigNumber {
@@ -33,7 +27,7 @@ export class BlockData implements Contracts.BlockData {
 
 	public getGenerator(): string {
 		return "";
-		// return this.#data.block_header.raw_data.witness_address;
+		// return this.data.block_header.raw_data.witness_address;
 	}
 
 	public getForgedReward(): BigNumber {
@@ -50,12 +44,5 @@ export class BlockData implements Contracts.BlockData {
 
 	public getForgedTotal(): BigNumber {
 		return BigNumber.ZERO;
-	}
-
-	/**
-	 * Only use this function if you can ensure that the unnormalised data is handled!
-	 */
-	public toObject(): Contracts.KeyValuePair {
-		return this.#data;
 	}
 }
