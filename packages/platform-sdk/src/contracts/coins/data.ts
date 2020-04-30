@@ -71,6 +71,10 @@ export interface DelegateData {
 
 	getPublicKey(): string;
 
+	getUsername(): string;
+
+	getRank(): number;
+
 	toObject(): KeyValuePair;
 }
 

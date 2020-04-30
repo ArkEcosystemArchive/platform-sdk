@@ -7,6 +7,10 @@ export abstract class AbstractDelegateData {
 
 	abstract getPublicKey(): string;
 
+	abstract getUsername(): string;
+
+	abstract getRank(): number;
+
 	public toObject(): KeyValuePair {
 		return {
 			address: this.getAddress(),

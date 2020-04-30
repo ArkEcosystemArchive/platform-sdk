@@ -8,4 +8,12 @@ export class DelegateData extends DTO.AbstractDelegateData implements Contracts.
 	public getPublicKey(): string {
 		return this.data.publicKey;
 	}
+
+	public getUsername(): string {
+		return this.data.username;
+	}
+
+	public getRank(): number {
+		return this.data.rank || 0;
+	}
 }
