@@ -7,18 +7,18 @@ let subject: MessageService;
 beforeEach(() => (subject = new MessageService()));
 
 describe("MessageService", () => {
-	it("should sign and verify a message", () => {
-		const result: any = subject.sign({
+	it("should sign and verify a message", async () => {
+		const result: any = await subject.sign({
 			message: "This is an example of a signed message.",
 			wif: "5KYZdUEo39z3FPrtuX2QbbwGnNP5zTd7yyr2SC1j299sBCnWjss",
 		});
 
-		expect(
+		await expect(
 			subject.verify({
 				message: result.message,
 				address: "1HZwkjkeaoZfTSaJxDw6aKkxp45agDiEzN",
 				signature: result.signature,
 			}),
-		).toBeTrue();
+		).resolves.toBeTrue();
 	});
 });

@@ -1,7 +1,7 @@
 export interface MessageService {
-	sign(input): SignedMessage;
+	sign(input): Promise<SignedMessage>;
 
-	verify(input): boolean;
+	verify(input): Promise<boolean>;
 }
 
 export interface SignedMessage {

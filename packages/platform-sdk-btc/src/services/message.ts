@@ -3,7 +3,7 @@ import { ECPair } from "bitcoinjs-lib";
 import bitcoinMessage from "bitcoinjs-message";
 
 export class MessageService implements Contracts.MessageService {
-	public sign(input): Contracts.SignedMessage {
+	public async sign(input): Promise<Contracts.SignedMessage> {
 		const keyPair = ECPair.fromWIF(input.wif);
 
 		return {
@@ -13,7 +13,7 @@ export class MessageService implements Contracts.MessageService {
 		};
 	}
 
-	public verify(input): boolean {
+	public async verify(input): Promise<boolean> {
 		return bitcoinMessage.verify(input.message, input.address, Buffer.from(input.signature, "hex"));
 	}
 }

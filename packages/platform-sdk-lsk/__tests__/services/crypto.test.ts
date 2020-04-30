@@ -11,8 +11,8 @@ beforeEach(
 
 describe("TransactionService", () => {
 	describe("#createTransfer", () => {
-		it("should verify", () => {
-			const result: any = subject.createTransfer({
+		it("should verify", async () => {
+			const result: any = await subject.createTransfer({
 				amount: "1",
 				recipientId: identity.address,
 				passphrase: identity.passphrase,
@@ -23,8 +23,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createSecondSignature", () => {
-		it("should verify", () => {
-			const result: any = subject.createSecondSignature({
+		it("should verify", async () => {
+			const result: any = await subject.createSecondSignature({
 				passphrase: identity.passphrase,
 				secondPassphrase: identity.passphrase,
 			});
@@ -34,8 +34,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createDelegateRegistration", () => {
-		it("should verify", () => {
-			const result: any = subject.createDelegateRegistration({
+		it("should verify", async () => {
+			const result: any = await subject.createDelegateRegistration({
 				username: "johndoe",
 				passphrase: identity.passphrase,
 			});
@@ -45,8 +45,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createVote", () => {
-		it("should verify", () => {
-			const result: any = subject.createVote({
+		it("should verify", async () => {
+			const result: any = await subject.createVote({
 				asset: "9d3058175acab969f41ad9b86f7a2926c74258670fe56b37c429c01fca9f2f0f",
 				passphrase: identity.passphrase,
 			});
@@ -56,8 +56,8 @@ describe("TransactionService", () => {
 	});
 
 	describe("#createMultiSignature", () => {
-		it("should verify", () => {
-			const result: any = subject.createMultiSignature({
+		it("should verify", async () => {
+			const result: any = await subject.createMultiSignature({
 				keysgroup: [
 					"9d3058175acab969f41ad9b86f7a2926c74258670fe56b37c429c01fca9f2f0f",
 					"141b16ac8d5bd150f16b1caa08f689057ca4c4434445e56661831f4e671b7c0a",

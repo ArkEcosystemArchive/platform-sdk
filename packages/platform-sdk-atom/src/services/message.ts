@@ -3,7 +3,7 @@ import { getNewWalletFromSeed } from "@lunie/cosmos-keys";
 import cosmos from "cosmos-lib";
 
 export class MessageService implements Contracts.MessageService {
-	public sign(input): Contracts.SignedMessage {
+	public async sign(input): Promise<Contracts.SignedMessage> {
 		return {
 			message: input.message,
 			publicKey: this.getIdentifier(input.passphrase, "publicKey").toString("hex"),
@@ -13,7 +13,7 @@ export class MessageService implements Contracts.MessageService {
 		};
 	}
 
-	public verify(input): boolean {
+	public async verify(input): Promise<boolean> {
 		return cosmos.crypto.verify(
 			input.message,
 			Buffer.from(input.signature, "hex"),
