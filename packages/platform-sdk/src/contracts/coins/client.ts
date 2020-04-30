@@ -18,6 +18,9 @@ export interface ClientService {
 	getDelegate(id: string): Promise<DelegateData>;
 	getDelegates(query?: KeyValuePair): Promise<CollectionResponse<DelegateData>>;
 
+	getVotes(id: string): Promise<CollectionResponse<TransactionData>>;
+	getVoters(id: string): Promise<CollectionResponse<WalletData>>;
+
 	getConfiguration(): Promise<KeyValuePair>;
 	getCryptoConfiguration(): Promise<KeyValuePair>;
 

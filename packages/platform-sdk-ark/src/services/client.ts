@@ -68,6 +68,18 @@ export class ClientService implements Contracts.ClientService {
 		return { meta: body.meta, data: body.data.map((wallet) => new DelegateData(wallet)) };
 	}
 
+	public async getVotes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+		const { body } = await this.connection.api("wallets").votes(id);
+
+		return { meta: body.meta, data: body.data.map((transaction) => new TransactionData(transaction)) };
+	}
+
+	public async getVoters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+		const { body } = await this.connection.api("delegates").voters(id);
+
+		return { meta: body.meta, data: body.data.map((wallet) => new WalletData(wallet)) };
+	}
+
 	public async getConfiguration(): Promise<Contracts.KeyValuePair> {
 		const { body } = await this.connection.api("node").configuration();
 

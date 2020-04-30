@@ -116,6 +116,32 @@ describe("ClientService", function () {
 		});
 	});
 
+	describe("#getVotes", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/delegates")
+				.reply(200, require(`${__dirname}/../__fixtures__/client/getVotes.json`));
+
+			const result = await subject.getVotes('arkx');
+
+			expect(result.data).toBeArray();
+			expect(result.data[0]).toBeInstanceOf(TransactionData);
+		});
+	});
+
+	describe("#getVoters", () => {
+		it("should succeed", async () => {
+			nock("https://dexplorer.ark.io/api")
+				.get("/delegates")
+				.reply(200, require(`${__dirname}/../__fixtures__/client/getVoters.json`));
+
+			const result = await subject.getVoters('arkx');
+
+			expect(result.data).toBeArray();
+			expect(result.data[0]).toBeInstanceOf(WalletData);
+		});
+	});
+
 	describe("#getConfiguration", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
