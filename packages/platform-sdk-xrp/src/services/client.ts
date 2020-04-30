@@ -96,6 +96,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.dataUrl}/${path}`, query);
+		return Utils.getJSON(`${this.#dataUrl}/${path}`, query);
 	}
 }
