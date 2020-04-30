@@ -13,6 +13,7 @@ export class TransactionService implements Contracts.TransactionService {
 			...input,
 			...{
 				data: {
+					amount: input.data.amount,
 					recipientId: input.data.to,
 				},
 			},
