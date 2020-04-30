@@ -2,6 +2,14 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 import { deriveKeypair, sign, verify } from "ripple-keypairs";
 
 export class MessageService implements Contracts.MessageService {
+	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
+		return new MessageService();
+	}
+
+	public async destruct(): Promise<void> {
+		//
+	}
+
 	public async sign(input): Promise<Contracts.SignedMessage> {
 		const { publicKey, privateKey } = deriveKeypair(input.passphrase);
 

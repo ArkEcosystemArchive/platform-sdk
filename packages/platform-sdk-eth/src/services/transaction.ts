@@ -6,9 +6,17 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #chain;
 	readonly #connection;
 
-	public constructor(network: string) {
+	private constructor(network: string) {
 		this.#chain = network;
 		this.#connection = new Web3(new Web3.providers.HttpProvider(network)); // todo: network here is a peer
+	}
+
+	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
+		return new TransactionService(opts.network);
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public async createTransfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {

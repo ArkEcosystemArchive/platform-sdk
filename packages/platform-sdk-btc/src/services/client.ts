@@ -1,14 +1,22 @@
 import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 
-import { DelegateData, TransactionData, WalletData } from "../dto";
+import { TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
 
 	readonly #restUrl: string = "https://blockchain.info";
 
-	public constructor(peer: string) {
+	private constructor(peer: string) {
 		this.#baseUrl = peer;
+	}
+
+	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
+		return new ClientService(opts.peer);
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public async getTransaction(id: string): Promise<Contracts.TransactionData> {

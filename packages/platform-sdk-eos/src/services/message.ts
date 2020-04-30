@@ -2,6 +2,14 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 import ecc from "eosjs-ecc";
 
 export class MessageService implements Contracts.MessageService {
+	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
+		return new MessageService();
+	}
+
+	public async destruct(): Promise<void> {
+		//
+	}
+
 	public async sign(input): Promise<Contracts.SignedMessage> {
 		return {
 			message: input.message,

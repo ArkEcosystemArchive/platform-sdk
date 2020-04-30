@@ -8,8 +8,16 @@ export class ClientService implements Contracts.ClientService {
 
 	readonly #connection: Web3;
 
-	public constructor(peer: string) {
+	private constructor(peer: string) {
 		this.#connection = new Web3(new Web3.providers.HttpProvider(peer));
+	}
+
+	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
+		return new ClientService(opts.peer);
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public async getTransaction(id: string): Promise<Contracts.TransactionData> {

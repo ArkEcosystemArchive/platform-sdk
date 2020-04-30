@@ -3,6 +3,14 @@ import { ECPair } from "bitcoinjs-lib";
 import bitcoinMessage from "bitcoinjs-message";
 
 export class MessageService implements Contracts.MessageService {
+	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
+		return new MessageService();
+	}
+
+	public async destruct(): Promise<void> {
+		//
+	}
+
 	public async sign(input): Promise<Contracts.SignedMessage> {
 		const keyPair = ECPair.fromWIF(input.wif);
 

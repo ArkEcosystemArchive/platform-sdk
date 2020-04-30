@@ -4,8 +4,16 @@ import * as transactions from "@liskhq/lisk-transactions";
 export class TransactionService implements Contracts.TransactionService {
 	readonly #network;
 
-	public constructor(network: string) {
+	private constructor(network: string) {
 		this.#network = network;
+	}
+
+	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
+		return new TransactionService(opts.network);
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public async createTransfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {
