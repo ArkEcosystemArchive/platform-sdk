@@ -1,4 +1,4 @@
-import { DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class PeerData extends DTO.AbstractPeerData implements Contracts.PeerData {
 	public getIp(): string {

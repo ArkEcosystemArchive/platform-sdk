@@ -1,4 +1,4 @@
-import { DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
