@@ -9,16 +9,16 @@ export interface CollectionResponse<T> {
 }
 
 export interface ClientService {
-	getTransaction(id: string): Promise<TransactionData>;
-	getTransactions(query?: KeyValuePair): Promise<CollectionResponse<TransactionData>>;
-	searchTransactions(query: KeyValuePair): Promise<CollectionResponse<TransactionData>>;
+	getTransaction(id: string): Promise<Contracts.TransactionData>;
+	getTransactions(query?: KeyValuePair): Promise<CollectionResponse<Contracts.TransactionData>>;
+	searchTransactions(query: KeyValuePair): Promise<CollectionResponse<Contracts.TransactionData>>;
 
-	getWallet(id: string): Promise<WalletData>;
-	getWallets(query?: KeyValuePair): Promise<CollectionResponse<WalletData>>;
-	searchWallets(query: KeyValuePair): Promise<CollectionResponse<WalletData>>;
+	getWallet(id: string): Promise<Contracts.WalletData>;
+	getWallets(query?: KeyValuePair): Promise<CollectionResponse<Contracts.WalletData>>;
+	searchWallets(query: KeyValuePair): Promise<CollectionResponse<Contracts.WalletData>>;
 
-	getDelegate(id: string): Promise<DelegateData>;
-	getDelegates(query?: KeyValuePair): Promise<CollectionResponse<DelegateData>>;
+	getDelegate(id: string): Promise<Contracts.DelegateData>;
+	getDelegates(query?: KeyValuePair): Promise<CollectionResponse<Contracts.DelegateData>>;
 
 	getConfiguration(): Promise<KeyValuePair>;
 	getCryptoConfiguration(): Promise<KeyValuePair>;

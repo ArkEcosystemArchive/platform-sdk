@@ -32,7 +32,7 @@ export class ClientService implements Contracts.ClientService {
 		return { meta: body.meta, data: body.data.map((transaction) => new TransactionData(transaction)) };
 	}
 
-	public async getWallet(id: string): Promise<WalletData> {
+	public async getWallet(id: string): Promise<Contracts.WalletData> {
 		const { body } = await this.connection.api("wallets").get(id);
 
 		return new WalletData(body.data);
