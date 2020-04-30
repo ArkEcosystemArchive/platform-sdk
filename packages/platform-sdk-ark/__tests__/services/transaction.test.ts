@@ -5,7 +5,7 @@ import { TransactionService } from "../../src/services/transaction";
 
 let subject: TransactionService;
 
-beforeEach(async () => (subject = await TransactionService.construct("devnet")));
+beforeEach(async () => (subject = await TransactionService.construct({ network: "devnet" })));
 
 describe("TransactionService", () => {
 	describe("#createTransfer", () => {
