@@ -2,9 +2,15 @@ import { Managers, Transactions } from "@arkecosystem/crypto";
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class TransactionService implements Contracts.TransactionService {
-	public constructor(network: string) {
-		Managers.configManager.setFromPreset(network as any);
+	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
+		Managers.configManager.setFromPreset(opts.network);
 		Managers.configManager.setHeight(10_000_000);
+
+		return new TransactionService();
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public async createTransfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {

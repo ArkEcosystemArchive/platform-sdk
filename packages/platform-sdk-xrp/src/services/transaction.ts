@@ -10,12 +10,16 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#connection = connection;
 	}
 
-	public static async new(peer: string) {
-		const connection = new RippleAPI({ server: peer });
+	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
+		const connection = new RippleAPI({ server: opts.peer });
 
 		await connection.connect();
 
 		return new TransactionService(connection);
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public async createTransfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {

@@ -2,6 +2,14 @@ import { Crypto } from "@arkecosystem/crypto";
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class MessageService implements Contracts.MessageService {
+	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
+		return new MessageService();
+	}
+
+	public async destruct(): Promise<void> {
+		//
+	}
+
 	public async sign(input): Promise<Contracts.SignedMessage> {
 		return Crypto.Message.sign(input.message, input.passphrase);
 	}

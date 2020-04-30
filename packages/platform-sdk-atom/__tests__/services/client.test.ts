@@ -8,7 +8,7 @@ import { TransactionData } from "../../src/dto";
 
 let subject: ClientService;
 
-beforeEach(() => (subject = new ClientService("https://api.cosmos.network")));
+beforeEach(async () => (subject = await ClientService.construct({ peer: "https://api.cosmos.network" })));
 
 beforeAll(() => nock.disableNetConnect());
 

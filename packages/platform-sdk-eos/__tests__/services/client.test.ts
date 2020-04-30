@@ -6,7 +6,7 @@ import { WalletData } from "../../src/dto";
 
 let subject: ClientService;
 
-beforeEach(() => (subject = new ClientService("https://api.testnet.eos.io")));
+beforeEach(async () => (subject = await ClientService.construct({ peer: "https://api.testnet.eos.io" })));
 
 afterEach(() => nock.cleanAll());
 

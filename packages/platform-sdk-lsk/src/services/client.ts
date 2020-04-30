@@ -5,8 +5,16 @@ import { DelegateData, TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
 
-	public constructor(private readonly peer: string) {
+	private constructor(peer: string) {
 		this.#baseUrl = peer;
+	}
+
+	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
+		return new ClientService(opts.peer);
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public async getTransaction(id: string): Promise<Contracts.TransactionData> {

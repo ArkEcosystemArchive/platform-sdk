@@ -6,7 +6,7 @@ import { TransactionData, WalletData } from "../../src/dto";
 
 let subject: ClientService;
 
-beforeEach(() => (subject = new ClientService("https://btc-testnet.ark.io/")));
+beforeEach(async () => (subject = await ClientService.construct({ peer: "https://btc-testnet.ark.io/" })));
 
 afterEach(() => nock.cleanAll());
 

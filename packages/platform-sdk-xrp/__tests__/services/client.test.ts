@@ -8,7 +8,13 @@ import { DelegateData, WalletData, TransactionData } from "../../src/dto";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.new("wss://s.altnet.rippletest.net:51233", false)));
+beforeEach(
+	async () =>
+		(subject = await ClientService.construct({
+			peer: "wss://s.altnet.rippletest.net:51233",
+			connect: false,
+		})),
+);
 
 afterEach(() => nock.cleanAll());
 

@@ -6,7 +6,10 @@ import { identity } from "../__fixtures__/identity";
 let subject: TransactionService;
 
 beforeEach(
-	() => (subject = new TransactionService("7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d")),
+	async () =>
+		(subject = await TransactionService.construct({
+			network: "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
+		})),
 );
 
 describe("TransactionService", () => {

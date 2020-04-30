@@ -1,6 +1,14 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class PeerService implements Contracts.PeerService {
+	public static async construct(opts: Contracts.KeyValuePair): Promise<PeerService> {
+		return new PeerService();
+	}
+
+	public async destruct(): Promise<void> {
+		//
+	}
+
 	public getSeeds(): Contracts.Peer[] {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getSeeds");
 	}

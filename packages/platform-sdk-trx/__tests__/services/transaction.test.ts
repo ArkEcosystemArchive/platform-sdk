@@ -6,7 +6,7 @@ import { testWallet } from "../__fixtures__/wallet";
 
 let subject: TransactionService;
 
-beforeEach(() => (subject = new TransactionService("https://api.shasta.trongrid.io")));
+beforeEach(async () => (subject = await TransactionService.construct({ peer: "https://api.shasta.trongrid.io" })));
 
 beforeAll(() => nock.disableNetConnect());
 

@@ -6,7 +6,7 @@ import { TransactionData, WalletData } from "../../src/dto";
 
 let subject: ClientService;
 
-beforeEach(() => (subject = new ClientService("https://ropsten.infura.io/v3/PROJECT_ID")));
+beforeEach(async () => (subject = await ClientService.construct({ peer: "https://ropsten.infura.io/v3/PROJECT_ID" })));
 
 afterEach(() => nock.cleanAll());
 
