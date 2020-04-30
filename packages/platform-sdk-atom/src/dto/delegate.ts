@@ -1,6 +1,6 @@
-import { DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 
-export class DelegateData extends DTO.DelegateData {
+export class DelegateData extends DTO.AbstractDelegateData implements Contracts.DelegateData {
 	public getAddress(): string {
 		return this.data.address;
 	}

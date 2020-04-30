@@ -1,7 +1,7 @@
-import { DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class WalletData extends DTO.WalletData {
+export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
 	public getAddress(): string {
 		return this.data.account_name;
 	}

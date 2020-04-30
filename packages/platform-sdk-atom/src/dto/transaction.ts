@@ -1,7 +1,7 @@
-import { DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class TransactionData extends DTO.TransactionData {
+export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public getId(): string {
 		return this.data.txhash;
 	}

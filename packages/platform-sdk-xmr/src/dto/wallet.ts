@@ -1,7 +1,7 @@
 import { DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class WalletData extends DTO.WalletData {
+export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
 	public getAddress(): string {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getAddress");
 	}

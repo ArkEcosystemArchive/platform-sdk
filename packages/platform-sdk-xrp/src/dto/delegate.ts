@@ -1,6 +1,6 @@
 import { DTO, Exceptions } from "@arkecosystem/platform-sdk";
 
-export class DelegateData extends DTO.DelegateData {
+export class DelegateData extends DTO.AbstractDelegateData implements Contracts.DelegateData {
 	public getAddress(): string {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getAddress");
 	}

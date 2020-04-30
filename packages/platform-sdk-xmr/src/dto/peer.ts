@@ -1,6 +1,6 @@
 import { DTO, Exceptions } from "@arkecosystem/platform-sdk";
 
-export class PeerData extends DTO.PeerData {
+export class PeerData extends DTO.AbstractPeerData implements Contracts.PeerData {
 	public getIp(): string {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getIp");
 	}

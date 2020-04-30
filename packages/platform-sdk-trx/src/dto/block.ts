@@ -1,7 +1,7 @@
-import { DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class BlockData extends DTO.BlockData {
+export class BlockData extends DTO.AbstractBlockData implements Contracts.BlockData {
 	public getId(): string {
 		return this.data.blockID;
 	}

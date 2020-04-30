@@ -1,7 +1,7 @@
 import { DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
-export class BlockData extends DTO.BlockData {
+export class BlockData extends DTO.AbstractBlockData implements Contracts.BlockData {
 	public getId(): string {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getId");
 	}
