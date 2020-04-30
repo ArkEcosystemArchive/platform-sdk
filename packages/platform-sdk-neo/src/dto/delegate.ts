@@ -8,4 +8,12 @@ export class DelegateData extends DTO.AbstractDelegateData implements Contracts.
 	public getPublicKey(): string {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
 	}
+
+	public getUsername(): string {
+		throw new Exceptions.NotImplemented(this.constructor.name, "getUsername");
+	}
+
+	public getRank(): number {
+		throw new Exceptions.NotImplemented(this.constructor.name, "getRank");
+	}
 }
