@@ -1,47 +1,51 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class TransactionService implements Contracts.TransactionService {
-	public async createTransfer(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createTransfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createTransfer");
 	}
 
-	public async createSecondSignature(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createSecondSignature(input: Contracts.SecondSignatureInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createSecondSignature");
 	}
 
-	public async createDelegateRegistration(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createDelegateRegistration(
+		input: Contracts.DelegateRegistrationInput,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createDelegateRegistration");
 	}
 
-	public async createVote(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createVote(input: Contracts.VoteInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createVote");
 	}
 
-	public async createMultiSignature(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createMultiSignature(input: Contracts.MultiSignatureInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createMultiSignature");
 	}
 
-	public async createIpfs(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createIpfs(input: Contracts.IpfsInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createIpfs");
 	}
 
-	public async createMultiPayment(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createMultiPayment(input: Contracts.MultiPaymentInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createMultiPayment");
 	}
 
-	public async createDelegateResignation(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createDelegateResignation(
+		input: Contracts.DelegateResignationInput,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createDelegateResignation");
 	}
 
-	public async createHtlcLock(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createHtlcLock(input: Contracts.HtlcLockInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcLock");
 	}
 
-	public async createHtlcClaim(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createHtlcClaim(input: Contracts.HtlcClaimInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcClaim");
 	}
 
-	public async createHtlcRefund(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
+	public async createHtlcRefund(input: Contracts.HtlcRefundInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "createHtlcRefund");
 	}
 }

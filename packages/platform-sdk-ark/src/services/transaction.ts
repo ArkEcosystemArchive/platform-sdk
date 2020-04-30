@@ -7,117 +7,132 @@ export class TransactionService implements Contracts.TransactionService {
 		Managers.configManager.setHeight(10_000_000);
 	}
 
-	public async createTransfer(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("transfer", data, ({ transaction, data }) => {
-			transaction.recipientId(data.recipientId);
+	public async createTransfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("transfer", input, ({ transaction, data }) => {
+			transaction.recipientId(data.to);
 
-			if (data.vendorField) {
-				transaction.vendorField(data.vendorField);
+			if (data.memo) {
+				transaction.vendorField(data.memo);
 			}
 		});
 	}
 
-	public async createSecondSignature(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("secondSignature", data, ({ transaction, data }) =>
-			transaction.signatureAsset(data.secondSignature),
+	public async createSecondSignature(input: Contracts.SecondSignatureInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("secondSignature", input, ({ transaction, data }) =>
+			transaction.signatureAsset(data.passphrase),
 		);
 	}
 
-	public async createDelegateRegistration(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("delegateRegistration", data, ({ transaction, data }) =>
-			transaction.usernameAsset(data.asset),
+	public async createDelegateRegistration(
+		input: Contracts.DelegateRegistrationInput,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("delegateRegistration", input, ({ transaction, data }) =>
+			transaction.usernameAsset(data.username),
 		);
 	}
 
-	public async createVote(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("vote", data, ({ transaction, data }) => transaction.votesAsset(data.asset));
+	public async createVote(input: Contracts.VoteInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("vote", input, ({ transaction, data }) => transaction.votesAsset([data.vote]));
 	}
 
-	public async createMultiSignature(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("multiSignature", data, ({ transaction, data }) => {
-			transaction.multiSignatureAsset(data.asset);
+	public async createMultiSignature(input: Contracts.MultiSignatureInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("multiSignature", input, ({ transaction, data }) => {
+			transaction.multiSignatureAsset({
+				publicKeys: data.publicKeys,
+				min: data.min,
+			});
 
 			transaction.senderPublicKey(data.senderPublicKey);
 		});
 	}
 
-	public async createIpfs(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("ipfs", data, ({ transaction, data }) => transaction.ipfsAsset(data.asset));
+	public async createIpfs(input: Contracts.IpfsInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("ipfs", input, ({ transaction, data }) => transaction.ipfsAsset(data.hash));
 	}
 
-	public async createMultiPayment(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("multiPayment", data, ({ transaction, data }) => {
+	public async createMultiPayment(input: Contracts.MultiPaymentInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("multiPayment", input, ({ transaction, data }) => {
 			for (const payment of data.payments) {
-				transaction.addPayment(payment.recipientId, payment.amount);
+				transaction.addPayment(payment.to, payment.amount);
 			}
 		});
 	}
 
-	public async createDelegateResignation(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("delegateResignation", data);
+	public async createDelegateResignation(
+		input: Contracts.DelegateResignationInput,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("delegateResignation", input);
 	}
 
-	public async createHtlcLock(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("htlcLock", data, ({ transaction, data }) => {
+	public async createHtlcLock(input: Contracts.HtlcLockInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("htlcLock", input, ({ transaction, data }) => {
 			transaction.amount(data.amount);
 
-			transaction.recipientId(data.recipientId);
+			transaction.recipientId(data.to);
 
-			transaction.htlcLockAsset(data.asset);
+			transaction.htlcLockAsset({
+				secretHash: data.secretHash,
+				expiration: data.expiration,
+			});
 		});
 	}
 
-	public async createHtlcClaim(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("htlcClaim", data, ({ transaction, data }) =>
-			transaction.htlcClaimAsset(data.asset),
+	public async createHtlcClaim(input: Contracts.HtlcClaimInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("htlcClaim", input, ({ transaction, data }) =>
+			transaction.htlcClaimAsset({
+				lockTransactionId: data.lockTransactionId,
+				unlockSecret: data.unlockSecret,
+			}),
 		);
 	}
 
-	public async createHtlcRefund(data: Contracts.KeyValuePair): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("htlcRefund", data, ({ transaction, data }) =>
-			transaction.htlcRefundAsset(data.asset),
+	public async createHtlcRefund(input: Contracts.HtlcRefundInput): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("htlcRefund", input, ({ transaction, data }) =>
+			transaction.htlcRefundAsset({
+				lockTransactionId: data.lockTransactionId,
+			}),
 		);
 	}
 
 	private async createFromData(
 		type: string,
-		data: Contracts.KeyValuePair,
+		input: Contracts.KeyValuePair,
 		callback?: Function,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction = Transactions.BuilderFactory[type]().version(2).nonce(data.nonce);
+		const transaction = Transactions.BuilderFactory[type]().version(2).nonce(input.nonce);
 
-		if (data.amount) {
-			transaction.amount(data.amount);
+		if (input.data && input.data.amount) {
+			transaction.amount(input.data.amount);
 		}
 
-		if (data.fee) {
-			transaction.fee(data.fee);
+		if (input.fee) {
+			transaction.fee(input.fee);
 		}
 
 		if (callback) {
-			callback({ transaction, data });
+			callback({ transaction, data: input.data });
 		}
 
-		if (Array.isArray(data.passphrases)) {
-			for (let i = 0; i < data.passphrases.length; i++) {
-				transaction.multiSign(data.passphrases[i], i);
+		if (Array.isArray(input.sign.passphrases)) {
+			for (let i = 0; i < input.sign.passphrases.length; i++) {
+				transaction.multiSign(input.sign.passphrases[i], i);
 			}
 		}
 
-		if (data.passphrase) {
-			transaction.sign(data.passphrase);
+		if (input.sign.passphrase) {
+			transaction.sign(input.sign.passphrase);
 		}
 
-		if (data.secondPassphrase) {
-			transaction.secondSign(data.secondPassphrase);
+		if (input.sign.secondPassphrase) {
+			transaction.secondSign(input.sign.secondPassphrase);
 		}
 
-		if (data.wif) {
-			transaction.signWithWif(data.wif);
+		if (input.sign.wif) {
+			transaction.signWithWif(input.sign.wif);
 		}
 
-		if (data.secondWif) {
-			transaction.secondSignWithWif(data.secondWif);
+		if (input.sign.secondWif) {
+			transaction.secondSignWithWif(input.sign.secondWif);
 		}
 
 		return transaction.build().toJson();

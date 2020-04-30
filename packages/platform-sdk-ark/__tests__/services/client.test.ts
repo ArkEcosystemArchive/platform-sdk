@@ -122,7 +122,7 @@ describe("ClientService", function () {
 				.get("/wallets/arkx/votes")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/getVotes.json`));
 
-			const result = await subject.getVotes('arkx');
+			const result = await subject.getVotes("arkx");
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
@@ -135,7 +135,7 @@ describe("ClientService", function () {
 				.get("/delegates/arkx/voters")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/getVoters.json`));
 
-			const result = await subject.getVoters('arkx');
+			const result = await subject.getVoters("arkx");
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(WalletData);
