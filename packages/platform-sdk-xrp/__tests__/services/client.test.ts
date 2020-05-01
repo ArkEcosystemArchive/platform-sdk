@@ -14,7 +14,7 @@ beforeEach(
 		})),
 );
 
-describe("ClientService", function () {
+describe.skip("ClientService", function () {
 	describe("#getTransaction", () => {
 		it("should succeed", async () => {
 			const result = await subject.getTransaction(
@@ -38,7 +38,7 @@ describe("ClientService", function () {
 	});
 
 	// todo: always results in "MissingLedgerHistoryError: Server is missing ledger history in the specified range"
-	describe.skip("#getTransactions", () => {
+	describe("#getTransactions", () => {
 		it("should succeed", async () => {
 			const result = await subject.getTransactions({
 				address: "rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP",
