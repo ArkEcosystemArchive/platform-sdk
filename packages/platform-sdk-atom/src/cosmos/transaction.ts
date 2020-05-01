@@ -1,6 +1,6 @@
+import { IdentityService } from "../services";
 import { signWithPrivateKey } from "./keys";
 import { createSignature, createSignMessage } from "./signature";
-import { IdentityService } from "../services";
 
 const DEFAULT_GAS_PRICE = [{ amount: (2.5e-8).toFixed(9), denom: `uatom` }];
 
