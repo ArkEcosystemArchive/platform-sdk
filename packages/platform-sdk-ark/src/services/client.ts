@@ -83,17 +83,14 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	// todo: normalise the response
-	public async feesByNode(days: number): Promise<Contracts.KeyValuePair> {
-		const { body } = await this.connection.api("node").fees(days);
+	public async fees(days: number): Promise<Contracts.KeyValuePair> {
+		const node = await this.connection.api("node").fees(days);
+		const type = await this.connection.api("transactions").fees();
 
-		return body.data;
-	}
-
-	// todo: normalise the response
-	public async feesByType(): Promise<Contracts.KeyValuePair> {
-		const { body } = await this.connection.api("transactions").fees();
-
-		return body.data;
+		return {
+			node: node.body.data,
+			type: type.body.data,
+		};
 	}
 
 	public async syncing(): Promise<boolean> {
