@@ -322,6 +322,8 @@ This method returns a promise that resolves with a void value.
 
 ##### Return Value
 
+This method returns a promise that resolves with an object with the following structure:
+
 ...
 
 ##### Example
@@ -341,6 +343,8 @@ This method returns a promise that resolves with a void value.
 ...
 
 ##### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
 
 ...
 
@@ -362,6 +366,8 @@ This method returns a promise that resolves with a void value.
 
 ##### Return Value
 
+This method returns a promise that resolves with an object with the following structure:
+
 ...
 
 ##### Example
@@ -381,6 +387,8 @@ This method returns a promise that resolves with a void value.
 ...
 
 ##### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
 
 ...
 
@@ -402,6 +410,8 @@ This method returns a promise that resolves with a void value.
 
 ##### Return Value
 
+This method returns a promise that resolves with an object with the following structure:
+
 ...
 
 ##### Example
@@ -421,6 +431,8 @@ This method returns a promise that resolves with a void value.
 ...
 
 ##### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
 
 ...
 
@@ -442,6 +454,8 @@ This method returns a promise that resolves with a void value.
 
 ##### Return Value
 
+This method returns a promise that resolves with an object with the following structure:
+
 ...
 
 ##### Example
@@ -461,6 +475,8 @@ This method returns a promise that resolves with a void value.
 ...
 
 ##### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
 
 ...
 
@@ -482,6 +498,8 @@ This method returns a promise that resolves with a void value.
 
 ##### Return Value
 
+This method returns a promise that resolves with an object with the following structure:
+
 ...
 
 ##### Example
@@ -501,6 +519,8 @@ This method returns a promise that resolves with a void value.
 ...
 
 ##### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
 
 ...
 
@@ -522,7 +542,7 @@ This method returns a promise that resolves with a void value.
 
 ##### Return Value
 
-...
+This method returns a promise that resolves with a boolean value.
 
 ##### Example
 
@@ -534,7 +554,7 @@ This method returns a promise that resolves with a void value.
 
 `broadcast(transactions: object[]): Promise<void>`
 
-...
+This method returns a promise that resolves with a void value.
 
 ##### Parameters
 
@@ -604,7 +624,7 @@ This method returns a promise that resolves with a void value.
 
 ##### Return Value
 
-...
+This method returns a promise that resolves with a string value.
 
 ##### Example
 
@@ -626,7 +646,7 @@ await identityService.address({
 
 ##### Return Value
 
-...
+This method returns a promise that resolves with a string value.
 
 ##### Example
 
@@ -648,7 +668,7 @@ await identityService.publicKey({
 
 ##### Return Value
 
-...
+This method returns a promise that resolves with a string value.
 
 ##### Example
 
@@ -670,7 +690,7 @@ await identityService.privateKey({
 
 ##### Return Value
 
-...
+This method returns a promise that resolves with a string value.
 
 ##### Example
 
@@ -691,6 +711,8 @@ await identityService.privateKey({
 ...
 
 ##### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
 
 ...
 
@@ -716,7 +738,7 @@ await identityService.keyPair({
 
 ##### Return Value
 
-...
+This method returns a string value.
 
 ##### Example
 
@@ -736,7 +758,7 @@ await identityService.keyPair({
 
 ##### Return Value
 
-...
+This method returns a string value.
 
 ##### Example
 
@@ -756,7 +778,7 @@ await identityService.keyPair({
 
 ##### Return Value
 
-...
+This method returns a string value.
 
 ##### Example
 
@@ -818,6 +840,8 @@ This method returns a promise that resolves with a void value.
 
 ##### Return Value
 
+This method returns a promise that resolves with an object with the following structure:
+
 ...
 
 ##### Example
@@ -838,7 +862,7 @@ This method returns a promise that resolves with a void value.
 
 ##### Return Value
 
-...
+This method returns a promise that resolves with a boolean value.
 
 ##### Example
 
@@ -900,6 +924,8 @@ This method returns a promise that resolves with a void value.
 
 ##### Return Value
 
+This method returns a promise that resolves with an array with the following structure:
+
 ...
 
 ##### Example
@@ -920,6 +946,8 @@ This method returns a promise that resolves with a void value.
 
 ##### Return Value
 
+This method returns a promise that resolves with an array with the following structure:
+
 ...
 
 ##### Example
@@ -939,6 +967,8 @@ This method returns a promise that resolves with a void value.
 ...
 
 ##### Return Value
+
+This method returns a promise that resolves with an array with the following structure:
 
 ...
 
@@ -1002,6 +1032,8 @@ This method returns a promise that resolves with a void value.
 
 ##### Return Value
 
+This method returns a promise that resolves with an object with the following structure:
+
 ...
 
 ##### Example
@@ -1031,6 +1063,8 @@ await transactionService.transfer({
 
 ##### Return Value
 
+This method returns a promise that resolves with an object with the following structure:
+
 ...
 
 ##### Example
@@ -1058,6 +1092,8 @@ await transactionService.secondSignature({
 ...
 
 ##### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
 
 ...
 
@@ -1087,6 +1123,8 @@ await transactionService.delegateRegistration({
 
 ##### Return Value
 
+This method returns a promise that resolves with an object with the following structure:
+
 ...
 
 ##### Example
@@ -1114,6 +1152,8 @@ await transactionService.vote({
 ...
 
 ##### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
 
 ...
 
@@ -1154,6 +1194,8 @@ await transactionService.multiSignature({
 
 ##### Return Value
 
+This method returns a promise that resolves with an object with the following structure:
+
 ...
 
 ##### Example
@@ -1179,6 +1221,8 @@ await transactionService.ipfs({
 ...
 
 ##### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
 
 ...
 
@@ -1212,6 +1256,8 @@ await transactionService.multiPayment({
 
 ##### Return Value
 
+This method returns a promise that resolves with an object with the following structure:
+
 ...
 
 ##### Example
@@ -1236,6 +1282,8 @@ await transactionService.delegateResignation({
 ...
 
 ##### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
 
 ...
 
@@ -1271,6 +1319,8 @@ await transactionService.htlcLock({
 
 ##### Return Value
 
+This method returns a promise that resolves with an object with the following structure:
+
 ...
 
 ##### Example
@@ -1299,6 +1349,8 @@ await transactionService.htlcClaim({
 ...
 
 ##### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
 
 ...
 
