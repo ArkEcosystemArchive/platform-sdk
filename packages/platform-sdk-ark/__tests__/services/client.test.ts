@@ -30,10 +30,10 @@ describe("ClientService", function () {
 	describe("#transactions", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
-				.get("/transactions")
+				.post("/transactions")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
 
-			const result = await subject.transactions();
+			const result = await subject.transactions({ address: 'DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8' });
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
@@ -55,10 +55,10 @@ describe("ClientService", function () {
 	describe("#wallets", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
-				.get("/wallets")
+				.post("/wallets")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
 
-			const result = await subject.wallets();
+			const result = await subject.wallets({ address: 'DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8' });
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(WalletData);
