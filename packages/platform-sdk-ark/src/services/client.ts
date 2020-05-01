@@ -73,16 +73,13 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async configuration(): Promise<Contracts.KeyValuePair> {
-		const { body } = await this.connection.api("node").configuration();
+		const node = await this.connection.api("node").configuration();
+		const crypto = await this.connection.api("node").crypto();
 
-		return body.data;
-	}
-
-	// todo: normalise the response
-	public async cryptoConfiguration(): Promise<Contracts.KeyValuePair> {
-		const { body } = await this.connection.api("node").crypto();
-
-		return body.data;
+		return {
+			node: node.body.data,
+			crypto: crypto.body.data,
+		};
 	}
 
 	// todo: normalise the response

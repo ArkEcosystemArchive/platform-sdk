@@ -10,7 +10,6 @@ export const manifest = {
 			delegate: true,
 			delegates: true,
 			configuration: false,
-			cryptoConfiguration: false,
 			feesByNode: false,
 			feesByType: false,
 			syncing: false,

@@ -20,7 +20,6 @@ export interface ClientService {
 	voters(id: string): Promise<CollectionResponse<WalletData>>;
 
 	configuration(): Promise<KeyValuePair>;
-	cryptoConfiguration(): Promise<KeyValuePair>;
 
 	feesByNode(days: number): Promise<KeyValuePair>;
 	feesByType(): Promise<KeyValuePair>;
