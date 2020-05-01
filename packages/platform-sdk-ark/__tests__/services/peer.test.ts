@@ -9,7 +9,7 @@ describe("PeerService", () => {
 	describe("new instance", () => {
 		it("should fail if no network or host is provided", async () => {
 			await expect(
-				PeerService.new({
+				PeerService.construct({
 					// @ts-ignore
 					networkOrHost: undefined,
 				}),
@@ -22,7 +22,7 @@ describe("PeerService", () => {
 					data: dummyPeersWalletApi,
 				});
 
-				const peerService: PeerService = await PeerService.new({
+				const peerService: PeerService = await PeerService.construct({
 					networkOrHost: "http://127.0.0.1/api/v2/peers",
 				});
 
@@ -39,7 +39,7 @@ describe("PeerService", () => {
 					data: dummyPeersPublicApi,
 				});
 
-				const peerService: PeerService = await PeerService.new({
+				const peerService: PeerService = await PeerService.construct({
 					networkOrHost: "http://127.0.0.1/api/v2/peers",
 				});
 
@@ -57,7 +57,7 @@ describe("PeerService", () => {
 				});
 
 				await expect(
-					PeerService.new({
+					PeerService.construct({
 						networkOrHost: "http://127.0.0.1/api/v2/peers",
 					}),
 				).rejects.toThrowError(new Error("No seeds found"));
@@ -70,7 +70,7 @@ describe("PeerService", () => {
 					.get("/mainnet.json")
 					.reply(200, dummySeeds);
 
-				const peerService: PeerService = await PeerService.new({ networkOrHost: "mainnet" });
+				const peerService: PeerService = await PeerService.construct({ networkOrHost: "mainnet" });
 
 				expect(peerService.getSeeds()).toEqual(dummySeeds.map((peer) => ({ ip: peer.ip, port: 4003 })));
 			});
@@ -79,7 +79,7 @@ describe("PeerService", () => {
 				nock("https://raw.githubusercontent.com/ArkEcosystem/peers/master").get("/failnet.json").reply(404);
 
 				await expect(
-					PeerService.new({
+					PeerService.construct({
 						networkOrHost: "failnet",
 					}),
 				).rejects.toThrowError(new Error("Failed to discovery any peers."));
@@ -89,7 +89,7 @@ describe("PeerService", () => {
 				nock("https://raw.githubusercontent.com/ArkEcosystem/peers/master").get("/mainnet.json").reply(200, []);
 
 				await expect(
-					PeerService.new({
+					PeerService.construct({
 						networkOrHost: "mainnet",
 					}),
 				).rejects.toThrowError(new Error("No seeds found"));
@@ -104,7 +104,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			peerService = await PeerService.new({ networkOrHost: "http://127.0.0.1/api/v2/peers" });
+			peerService = await PeerService.construct({ networkOrHost: "http://127.0.0.1/api/v2/peers" });
 		});
 
 		it("should find peers", async () => {
@@ -189,7 +189,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			peerService = await PeerService.new({ networkOrHost: "http://127.0.0.1/api/v2/peers" });
+			peerService = await PeerService.construct({ networkOrHost: "http://127.0.0.1/api/v2/peers" });
 		});
 
 		it("should find peers without the wallet api plugin", async () => {
@@ -243,7 +243,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			peerService = await PeerService.new({ networkOrHost: "http://127.0.0.1/api/v2/peers" });
+			peerService = await PeerService.construct({ networkOrHost: "http://127.0.0.1/api/v2/peers" });
 		});
 
 		it("should find peers without estimates", async () => {

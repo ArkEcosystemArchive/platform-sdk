@@ -2,8 +2,14 @@ import { Identities, Managers } from "@arkecosystem/crypto";
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class IdentityService implements Contracts.IdentityService {
-	public constructor(network: string) {
-		Managers.configManager.setFromPreset(network as any);
+	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
+		Managers.configManager.setFromPreset(opts.network);
+
+		return new IdentityService();
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public async getAddress(opts: Contracts.KeyValuePair): Promise<string> {

@@ -4,13 +4,13 @@ import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
 import fetch from "node-fetch";
 import { TextDecoder, TextEncoder } from "util";
 
-import { DelegateData, TransactionData, WalletData } from "../dto";
+import { WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #rpc: JsonRpc;
 	readonly #api: Api;
 
-	public constructor(peer: string) {
+	private constructor(peer: string) {
 		this.#rpc = new JsonRpc(peer, { fetch });
 
 		this.#api = new Api({
@@ -19,6 +19,14 @@ export class ClientService implements Contracts.ClientService {
 			textDecoder: new TextDecoder(),
 			textEncoder: new TextEncoder(),
 		});
+	}
+
+	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
+		return new ClientService(opts.peer);
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-transaction-information

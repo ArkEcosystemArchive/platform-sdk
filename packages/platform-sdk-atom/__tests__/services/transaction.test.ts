@@ -4,10 +4,10 @@ import { TransactionService } from "../../src/services/transaction";
 
 let subject: TransactionService;
 
-beforeEach(() => (subject = new TransactionService("devnet")));
+beforeEach(async () => (subject = await TransactionService.construct({ network: "devnet" })));
 
 describe("TransactionService", () => {
-	describe.skip("#createTransfer", () => {
+	describe("#createTransfer", () => {
 		it("should verify", async () => {
 			const result: any = await subject.createTransfer({
 				sign: {
@@ -19,7 +19,7 @@ describe("TransactionService", () => {
 				},
 			});
 
-			console.log(result);
+			expect(result).toBeObject();
 		});
 	});
 });

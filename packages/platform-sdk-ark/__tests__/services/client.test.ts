@@ -6,7 +6,7 @@ import { DelegateData, TransactionData, WalletData } from "../../src/dto";
 
 let subject: ClientService;
 
-beforeEach(() => (subject = new ClientService("https://dexplorer.ark.io/api")));
+beforeEach(async () => (subject = await ClientService.construct({ peer: "https://dexplorer.ark.io/api" })));
 
 afterEach(() => nock.cleanAll());
 

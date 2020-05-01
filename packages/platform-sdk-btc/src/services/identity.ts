@@ -2,10 +2,18 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { ECPair, Network, networks, payments } from "bitcoinjs-lib";
 
 export class IdentityService implements Contracts.IdentityService {
-	private readonly network: Network;
+	readonly #network: Network;
 
-	public constructor(network: string) {
-		this.network = networks[network];
+	private constructor(network: string) {
+		this.#network = networks[network];
+	}
+
+	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
+		return new IdentityService(opts.network);
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public async getAddress(opts: Contracts.KeyValuePair): Promise<string> {
@@ -135,14 +143,14 @@ export class IdentityService implements Contracts.IdentityService {
 
 	private p2sh(opts: object): payments.Payment {
 		return payments.p2sh({
-			network: this.network,
+			network: this.#network,
 			...opts,
 		});
 	}
 
 	private p2pkh(opts: object): payments.Payment {
 		return payments.p2pkh({
-			network: this.network,
+			network: this.#network,
 			...opts,
 		});
 	}

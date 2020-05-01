@@ -1,10 +1,19 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { getNewWalletFromSeed } from "@lunie/cosmos-keys";
+
+import { getNewWalletFromSeed } from "../cosmos";
 
 export class IdentityService implements Contracts.IdentityService {
+	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
+		return new IdentityService();
+	}
+
+	public async destruct(): Promise<void> {
+		//
+	}
+
 	public async getAddress(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
-			return getNewWalletFromSeed(opts.passphrase, "cosmos").cosmosAddress;
+			return getNewWalletFromSeed(opts.passphrase).cosmosAddress;
 		}
 
 		if (opts.multiSignature) {
@@ -28,7 +37,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async getPublicKey(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
-			return getNewWalletFromSeed(opts.passphrase, "cosmos").publicKey;
+			return getNewWalletFromSeed(opts.passphrase).publicKey;
 		}
 
 		if (opts.multiSignature) {
@@ -44,7 +53,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async getPrivateKey(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
-			return getNewWalletFromSeed(opts.passphrase, "cosmos").privateKey;
+			return getNewWalletFromSeed(opts.passphrase).privateKey;
 		}
 
 		if (opts.wif) {
@@ -64,7 +73,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async getKeyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
 		if (opts.passphrase) {
-			const keyPair = getNewWalletFromSeed(opts.passphrase, "cosmos");
+			const keyPair = getNewWalletFromSeed(opts.passphrase);
 
 			return { publicKey: keyPair.publicKey, privateKey: keyPair.privateKey };
 		}

@@ -4,10 +4,18 @@ import TronWeb from "tronweb";
 export class TransactionService implements Contracts.TransactionService {
 	readonly #connection: TronWeb;
 
-	public constructor(network: string) {
+	private constructor(peer: string) {
 		this.#connection = new TronWeb({
-			fullHost: network, // todo: for tron we need a peer, not a network identifier
+			fullHost: peer,
 		});
+	}
+
+	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
+		return new TransactionService(opts.peer);
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public async createTransfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {

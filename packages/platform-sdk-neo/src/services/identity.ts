@@ -1,6 +1,14 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class IdentityService implements Contracts.IdentityService {
+	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
+		return new IdentityService();
+	}
+
+	public async destruct(): Promise<void> {
+		//
+	}
+
 	public async getAddress(opts: Contracts.KeyValuePair): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getAddress");
 	}

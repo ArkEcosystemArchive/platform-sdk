@@ -6,10 +6,18 @@ import { DelegateData, TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	readonly #connection: TronWeb;
 
-	public constructor(peer: string) {
+	private constructor(peer: string) {
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
+	}
+
+	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
+		return new ClientService(opts.peer);
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public async getTransaction(id: string): Promise<Contracts.TransactionData> {

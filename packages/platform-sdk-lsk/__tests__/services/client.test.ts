@@ -6,7 +6,7 @@ import { DelegateData, TransactionData, WalletData } from "../../src/dto";
 
 let subject: ClientService;
 
-beforeEach(() => (subject = new ClientService("https://betanet.lisk.io:443")));
+beforeEach(async () => (subject = await ClientService.construct({ peer: "https://betanet.lisk.io:443" })));
 
 beforeAll(() => nock.disableNetConnect());
 

@@ -11,13 +11,13 @@ export class PeerService implements Contracts.PeerService {
 
 	private constructor(private readonly seeds: Contracts.Peer[]) {}
 
-	public static async new({
-		networkOrHost,
-		defaultPort = 4003,
-	}: {
-		networkOrHost: string;
-		defaultPort?: number;
-	}): Promise<PeerService> {
+	public static async construct(opts: Contracts.KeyValuePair): Promise<PeerService> {
+		let { networkOrHost, defaultPort } = opts;
+
+		if (!defaultPort) {
+			defaultPort = 4003;
+		}
+
 		if (!networkOrHost || typeof networkOrHost !== "string") {
 			throw new Error("No network or host provided");
 		}
@@ -60,6 +60,10 @@ export class PeerService implements Contracts.PeerService {
 		}
 
 		return new PeerService(seeds);
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public getSeeds(): Contracts.Peer[] {

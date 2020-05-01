@@ -20,10 +20,10 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
-		"@lunie/cosmos-api": "^0.2.5",
-		"@lunie/cosmos-js": "^0.0.22",
-		"@lunie/cosmos-keys": "^0.2.1",
-		"cosmos-lib": "^1.1.0"
+		"bcrypto": "^5.1.0",
+		"bech32": "^1.1.4",
+		"bip32": "^2.0.5",
+		"bip39": "^3.0.2"
 	},
 	"devDependencies": {
 		"@arkecosystem/utils": "^1.1.8",
