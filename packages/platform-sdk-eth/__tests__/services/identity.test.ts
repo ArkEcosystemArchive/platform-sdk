@@ -8,10 +8,10 @@ let subject: IdentityService;
 beforeEach(async () => (subject = await IdentityService.construct({})));
 
 describe("IdentityService", () => {
-	describe("#getAddress", () => {
+	describe("#address", () => {
 		it("should generate an output from a passphrase", async () => {
 			await expect(
-				subject.getAddress({
+				subject.address({
 					passphrase: identity.passphrase,
 				}),
 			).rejects.toThrow(/is not supported/);
@@ -19,14 +19,14 @@ describe("IdentityService", () => {
 
 		it("should generate an output from a multiSignature", async () => {
 			await expect(
-				subject.getAddress({
+				subject.address({
 					multiSignature: identity.multiSignature,
 				}),
 			).rejects.toThrow(/is not supported/);
 		});
 
 		it("should generate an output from a publicKey", async () => {
-			const result: any = await subject.getAddress({
+			const result: any = await subject.address({
 				publicKey: identity.publicKey,
 			});
 
@@ -34,7 +34,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a privateKey", async () => {
-			const result: any = await subject.getAddress({
+			const result: any = await subject.address({
 				privateKey: identity.privateKey,
 			});
 
@@ -43,17 +43,17 @@ describe("IdentityService", () => {
 
 		it("should generate an output from a wif", async () => {
 			await expect(
-				subject.getAddress({
+				subject.address({
 					wif: identity.wif,
 				}),
 			).rejects.toThrow(/is not supported/);
 		});
 	});
 
-	describe("#getPublicKey", () => {
+	describe("#publicKey", () => {
 		it("should generate an output from a passphrase", async () => {
 			await expect(
-				subject.getPublicKey({
+				subject.publicKey({
 					passphrase: identity.passphrase,
 				}),
 			).rejects.toThrow(/is not supported/);
@@ -61,7 +61,7 @@ describe("IdentityService", () => {
 
 		it("should generate an output from a multiSignature", async () => {
 			await expect(
-				subject.getPublicKey({
+				subject.publicKey({
 					multiSignature: identity.multiSignature,
 				}),
 			).rejects.toThrow(/is not supported/);
@@ -69,17 +69,17 @@ describe("IdentityService", () => {
 
 		it("should generate an output from a wif", async () => {
 			await expect(
-				subject.getPublicKey({
+				subject.publicKey({
 					wif: identity.wif,
 				}),
 			).rejects.toThrow(/is not supported/);
 		});
 	});
 
-	describe("#getPrivateKey", () => {
+	describe("#privateKey", () => {
 		it("should generate an output from a passphrase", async () => {
 			await expect(
-				subject.getPrivateKey({
+				subject.privateKey({
 					passphrase: identity.passphrase,
 				}),
 			).rejects.toThrow(/is not supported/);
@@ -87,27 +87,27 @@ describe("IdentityService", () => {
 
 		it("should generate an output from a wif", async () => {
 			await expect(
-				subject.getPrivateKey({
+				subject.privateKey({
 					wif: identity.wif,
 				}),
 			).rejects.toThrow(/is not supported/);
 		});
 	});
 
-	describe("#getWIF", () => {
+	describe("#wif", () => {
 		it("should generate an output from a passphrase", async () => {
 			await expect(
-				subject.getWIF({
+				subject.wif({
 					passphrase: identity.passphrase,
 				}),
 			).rejects.toThrow(/is not supported/);
 		});
 	});
 
-	describe("#getKeyPair", () => {
+	describe("#keyPair", () => {
 		it("should generate an output from a passphrase", async () => {
 			await expect(
-				subject.getKeyPair({
+				subject.keyPair({
 					passphrase: identity.passphrase,
 				}),
 			).rejects.toThrow(/is not supported/);
@@ -115,14 +115,14 @@ describe("IdentityService", () => {
 
 		it("should generate an output from a publicKey", async () => {
 			await expect(
-				subject.getKeyPair({
+				subject.keyPair({
 					publicKey: identity.publicKey,
 				}),
 			).rejects.toThrow(/is not supported/);
 		});
 
 		it("should generate an output from a privateKey", async () => {
-			const result: any = await subject.getKeyPair({
+			const result: any = await subject.keyPair({
 				privateKey: identity.privateKey,
 			});
 
@@ -135,7 +135,7 @@ describe("IdentityService", () => {
 
 		it("should generate an output from a wif", async () => {
 			await expect(
-				subject.getKeyPair({
+				subject.keyPair({
 					wif: identity.wif,
 				}),
 			).rejects.toThrow(/is not supported/);

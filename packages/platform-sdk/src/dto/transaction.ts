@@ -5,44 +5,44 @@ import { KeyValuePair } from "../contracts/types";
 export abstract class AbstractTransactionData {
 	public constructor(protected readonly data: KeyValuePair) {}
 
-	abstract getId(): string;
+	abstract id(): string;
 
-	abstract getType(): number | undefined;
+	abstract type(): number | undefined;
 
-	abstract getTypeGroup(): number | undefined;
+	abstract typeGroup(): number | undefined;
 
-	abstract getTimestamp(): number | undefined;
+	abstract timestamp(): number | undefined;
 
-	abstract getConfirmations(): BigNumber;
+	abstract confirmations(): BigNumber;
 
-	abstract getNonce(): string | undefined;
+	abstract nonce(): string | undefined;
 
-	abstract getSender(): string;
+	abstract sender(): string;
 
-	abstract getRecipient(): string;
+	abstract recipient(): string;
 
-	abstract getAmount(): BigNumber;
+	abstract amount(): BigNumber;
 
-	abstract getFee(): BigNumber;
+	abstract fee(): BigNumber;
 
-	abstract getVendorField(): string | undefined;
+	abstract memo(): string | undefined;
 
-	abstract getBlockId(): string;
+	abstract blockId(): string;
 
 	public toObject(): KeyValuePair {
 		return {
-			id: this.getId(),
-			type: this.getType(),
-			typeGroup: this.getTypeGroup(),
-			timestamp: this.getTimestamp(),
-			confirmations: this.getConfirmations(),
-			nonce: this.getNonce(),
-			sender: this.getSender(),
-			recipient: this.getRecipient(),
-			amount: this.getAmount(),
-			fee: this.getFee(),
-			vendorField: this.getVendorField(),
-			blockId: this.getBlockId(),
+			id: this.id(),
+			type: this.type(),
+			typeGroup: this.typeGroup(),
+			timestamp: this.timestamp(),
+			confirmations: this.confirmations(),
+			nonce: this.nonce(),
+			sender: this.sender(),
+			recipient: this.recipient(),
+			amount: this.amount(),
+			fee: this.fee(),
+			vendorField: this.memo(),
+			blockId: this.blockId(),
 		};
 	}
 

@@ -16,9 +16,9 @@ export class IdentityService implements Contracts.IdentityService {
 		//
 	}
 
-	public async getAddress(opts: Contracts.KeyValuePair): Promise<string> {
+	public async address(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getAddress#passphrase");
+			throw new Exceptions.NotSupported(this.constructor.name, "address#passphrase");
 		}
 
 		if (opts.multiSignature) {
@@ -74,13 +74,13 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public async getPublicKey(opts: Contracts.KeyValuePair): Promise<string> {
+	public async publicKey(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getPublicKey#passphrase");
+			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#passphrase");
 		}
 
 		if (opts.multiSignature) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getPublicKey#multiSignature");
+			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#multiSignature");
 		}
 
 		if (opts.wif) {
@@ -90,9 +90,9 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public async getPrivateKey(opts: Contracts.KeyValuePair): Promise<string> {
+	public async privateKey(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getPrivateKey#passphrase");
+			throw new Exceptions.NotSupported(this.constructor.name, "privateKey#passphrase");
 		}
 
 		if (opts.wif) {
@@ -108,26 +108,26 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public async getWIF(opts: Contracts.KeyValuePair): Promise<string> {
+	public async wif(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getWIF#passphrase");
+			throw new Exceptions.NotSupported(this.constructor.name, "wif#passphrase");
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	public async getKeyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
+	public async keyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
 		const normalizeKeyPair = (keyPair): Contracts.KeyPair => ({
 			publicKey: keyPair.publicKey.toString("hex"),
 			privateKey: keyPair.privateKey?.toString("hex"),
 		});
 
 		if (opts.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getKeyPair#passphrase");
+			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#passphrase");
 		}
 
 		if (opts.publicKey) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getKeyPair#publicKey");
+			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#publicKey");
 		}
 
 		if (opts.privateKey) {

@@ -13,21 +13,21 @@ afterEach(() => nock.cleanAll());
 beforeAll(() => nock.disableNetConnect());
 
 describe("ClientService", function () {
-	describe("#getWallet", () => {
+	describe("#wallet", () => {
 		it("should succeed", async () => {
 			nock("https://api.testnet.eos.io")
 				.post("/v1/chain/get_account")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getWallet.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
 
-			const result = await subject.getWallet("bdfkbzietxos");
+			const result = await subject.wallet("bdfkbzietxos");
 
 			expect(result).toBeInstanceOf(WalletData);
 		});
 	});
 
-	describe.skip("#postTransactions", () => {
+	describe.skip("#broadcast", () => {
 		it("should succeed", async () => {
-			const result = await subject.postTransactions([]);
+			const result = await subject.broadcast([]);
 
 			expect(result).toBeUndefined();
 		});

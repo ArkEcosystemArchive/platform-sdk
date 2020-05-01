@@ -1,23 +1,23 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 
 export class PeerData extends DTO.AbstractPeerData implements Contracts.PeerData {
-	public getIp(): string {
+	public ip(): string {
 		return this.data.ip;
 	}
 
-	public getPort(): number {
+	public port(): number {
 		return this.data.wsPort;
 	}
 
-	public getVersion(): string {
+	public version(): string {
 		return this.data.version;
 	}
 
-	public getHeight(): number {
+	public height(): number {
 		return this.data.height;
 	}
 
-	public getLatency(): number {
+	public latency(): number {
 		return -1;
 	}
 }

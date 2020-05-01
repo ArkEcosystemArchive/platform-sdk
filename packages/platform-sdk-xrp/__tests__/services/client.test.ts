@@ -15,32 +15,32 @@ beforeEach(
 );
 
 describe.skip("ClientService", function () {
-	describe("#getTransaction", () => {
+	describe("#transaction", () => {
 		it("should succeed", async () => {
-			const result = await subject.getTransaction(
+			const result = await subject.transaction(
 				"D9D4534A92E0639DA600494FA4DB10D1C6CA654C4576C1ED508B536DF797FBB9",
 			);
 
 			expect(result).toBeInstanceOf(TransactionData);
-			expect(result.getId()).toBe("D9D4534A92E0639DA600494FA4DB10D1C6CA654C4576C1ED508B536DF797FBB9");
-			// expect(result.getType()).toBeUndefined();
-			// expect(result.getTypeGroup()).toBeUndefined();
-			expect(result.getTimestamp()).toBe(1588147353000);
-			expect(result.getConfirmations()).toEqual(BigNumber.ZERO);
-			expect(result.getNonce()).toBe(1);
-			expect(result.getSender()).toBe("rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP");
-			expect(result.getRecipient()).toBe("rHE2tehVYCGeMvi1gDEcYzQ7fpiCiYecAR");
-			expect(result.getAmount()).toEqual(BigNumber.make(1000000));
-			expect(result.getFee()).toEqual(BigNumber.make(1200));
-			// expect(result.getVendorField()).toBeUndefined();
-			// expect(result.getBlockId()).toBeUndefined();
+			expect(result.id()).toBe("D9D4534A92E0639DA600494FA4DB10D1C6CA654C4576C1ED508B536DF797FBB9");
+			// expect(result.type()).toBeUndefined();
+			// expect(result.typeGroup()).toBeUndefined();
+			expect(result.timestamp()).toBe(1588147353000);
+			expect(result.confirmations()).toEqual(BigNumber.ZERO);
+			expect(result.nonce()).toBe(1);
+			expect(result.sender()).toBe("rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP");
+			expect(result.recipient()).toBe("rHE2tehVYCGeMvi1gDEcYzQ7fpiCiYecAR");
+			expect(result.amount()).toEqual(BigNumber.make(1000000));
+			expect(result.fee()).toEqual(BigNumber.make(1200));
+			// expect(result.memo()).toBeUndefined();
+			// expect(result.blockId()).toBeUndefined();
 		});
 	});
 
 	// todo: always results in "MissingLedgerHistoryError: Server is missing ledger history in the specified range"
-	describe("#getTransactions", () => {
+	describe("#transactions", () => {
 		it("should succeed", async () => {
-			const result = await subject.getTransactions({
+			const result = await subject.transactions({
 				address: "rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP",
 			});
 
@@ -49,14 +49,14 @@ describe.skip("ClientService", function () {
 		});
 	});
 
-	describe("#getWallet", () => {
+	describe("#wallet", () => {
 		it("should succeed", async () => {
-			const result = await subject.getWallet("rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP");
+			const result = await subject.wallet("rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP");
 
 			expect(result).toBeInstanceOf(WalletData);
-			expect(result.getAddress()).toEqual("rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP");
-			// expect(result.getPublicKey()).toBeUndefined();
-			expect(result.getBalance()).toEqual(BigNumber.make("101197997600"));
+			expect(result.address()).toEqual("rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP");
+			// expect(result.publicKey()).toBeUndefined();
+			expect(result.balance()).toEqual(BigNumber.make("101197997600"));
 		});
 	});
 });

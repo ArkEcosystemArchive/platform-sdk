@@ -13,13 +13,13 @@ afterEach(() => nock.cleanAll());
 beforeAll(() => nock.disableNetConnect());
 
 describe("ClientService", function () {
-	describe("#getTransaction", () => {
+	describe("#transaction", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/transactions/3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getTransaction.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/transaction.json`));
 
-			const result = await subject.getTransaction(
+			const result = await subject.transaction(
 				"3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
 			);
 
@@ -27,13 +27,13 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#getTransactions", () => {
+	describe("#transactions", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/transactions")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getTransactions.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
 
-			const result = await subject.getTransactions();
+			const result = await subject.transactions();
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
@@ -44,7 +44,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.post("/transactions/search")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getTransactions.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
 
 			const result = await subject.searchTransactions({});
 
@@ -53,25 +53,25 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#getWallet", () => {
+	describe("#wallet", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/wallets/DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getWallet.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
 
-			const result = await subject.getWallet("DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9");
+			const result = await subject.wallet("DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9");
 
 			expect(result).toBeInstanceOf(WalletData);
 		});
 	});
 
-	describe("#getWallets", () => {
+	describe("#wallets", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/wallets")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getWallets.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
 
-			const result = await subject.getWallets();
+			const result = await subject.wallets();
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(WalletData);
@@ -82,7 +82,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.post("/wallets/search")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getWallets.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
 
 			const result = await subject.searchWallets({});
 
@@ -91,124 +91,124 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#getDelegate", () => {
+	describe("#delegate", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/delegates/arkx")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getDelegate.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/delegate.json`));
 
-			const result = await subject.getDelegate("arkx");
+			const result = await subject.delegate("arkx");
 
 			expect(result).toBeInstanceOf(DelegateData);
 		});
 	});
 
-	describe("#getDelegates", () => {
+	describe("#delegates", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/delegates")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getDelegates.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/delegates.json`));
 
-			const result = await subject.getDelegates();
+			const result = await subject.delegates();
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(DelegateData);
 		});
 	});
 
-	describe("#getVotes", () => {
+	describe("#votes", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/wallets/arkx/votes")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getVotes.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/votes.json`));
 
-			const result = await subject.getVotes("arkx");
+			const result = await subject.votes("arkx");
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
 		});
 	});
 
-	describe("#getVoters", () => {
+	describe("#voters", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/delegates/arkx/voters")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getVoters.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/voters.json`));
 
-			const result = await subject.getVoters("arkx");
+			const result = await subject.voters("arkx");
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(WalletData);
 		});
 	});
 
-	describe("#getConfiguration", () => {
+	describe("#configuration", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/node/configuration")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getConfiguration.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/configuration.json`));
 
-			const result = await subject.getConfiguration();
+			const result = await subject.configuration();
 
 			expect(result).toBeObject();
 		});
 	});
 
-	describe("#getCryptoConfiguration", () => {
+	describe("#cryptoConfiguration", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/node/configuration/crypto")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getCryptoConfiguration.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/cryptoConfiguration.json`));
 
-			const result = await subject.getCryptoConfiguration();
+			const result = await subject.cryptoConfiguration();
 
 			expect(result).toBeObject();
 		});
 	});
 
-	describe("#getFeesByNode", () => {
+	describe("#feesByNode", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/node/fees?days=7")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getFeesByNode.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/feesByNode.json`));
 
-			const result = await subject.getFeesByNode(7);
+			const result = await subject.feesByNode(7);
 
 			expect(result).toBeObject();
 		});
 	});
 
-	describe("#getFeesByType", () => {
+	describe("#feesByType", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/transactions/fees")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getFeesByType.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/feesByType.json`));
 
-			const result = await subject.getFeesByType();
+			const result = await subject.feesByType();
 
 			expect(result).toBeObject();
 		});
 	});
 
-	describe("#getSyncStatus", () => {
+	describe("#syncing", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/node/syncing")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getSyncStatus.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/syncing.json`));
 
-			const result = await subject.getSyncStatus();
+			const result = await subject.syncing();
 
 			expect(result).toBeBoolean();
 		});
 	});
 
-	describe("#postTransactions", () => {
+	describe("#broadcast", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.post("/transactions")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/postTransactions.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
 
-			const result = await subject.postTransactions([]);
+			const result = await subject.broadcast([]);
 
 			expect(result).toBeUndefined();
 		});

@@ -1,19 +1,19 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class DelegateData extends DTO.AbstractDelegateData implements Contracts.DelegateData {
-	public getAddress(): string {
+	public address(): string {
 		return this.data.address;
 	}
 
-	public getPublicKey(): string {
+	public publicKey(): string {
 		return this.data.publicKey;
 	}
 
-	public getUsername(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getUsername");
+	public username(): string {
+		throw new Exceptions.NotImplemented(this.constructor.name, "username");
 	}
 
-	public getRank(): number {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getRank");
+	public rank(): number {
+		throw new Exceptions.NotImplemented(this.constructor.name, "rank");
 	}
 }

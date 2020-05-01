@@ -2,51 +2,51 @@ import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	public getId(): string {
+	public id(): string {
 		return this.data.id;
 	}
 
-	public getType(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getType");
+	public type(): number | undefined {
+		throw new Exceptions.NotImplemented(this.constructor.name, "type");
 	}
 
-	public getTypeGroup(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getTypeGroup");
+	public typeGroup(): number | undefined {
+		throw new Exceptions.NotImplemented(this.constructor.name, "typeGroup");
 	}
 
-	public getTimestamp(): number | undefined {
+	public timestamp(): number | undefined {
 		return +new Date(this.data.outcome.timestamp);
 	}
 
-	public getConfirmations(): BigNumber {
+	public confirmations(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public getNonce(): string | undefined {
+	public nonce(): string | undefined {
 		return this.data.sequence;
 	}
 
-	public getSender(): string {
+	public sender(): string {
 		return this.data.specification.source.address;
 	}
 
-	public getRecipient(): string {
+	public recipient(): string {
 		return this.data.specification.destination.address;
 	}
 
-	public getAmount(): BigNumber {
+	public amount(): BigNumber {
 		return BigNumber.make(this.data.outcome.deliveredAmount.value * 1e8);
 	}
 
-	public getFee(): BigNumber {
+	public fee(): BigNumber {
 		return BigNumber.make(this.data.outcome.fee * 1e8);
 	}
 
-	public getVendorField(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getVendorField");
+	public memo(): string | undefined {
+		throw new Exceptions.NotImplemented(this.constructor.name, "memo");
 	}
 
-	public getBlockId(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getBlockId");
+	public blockId(): string {
+		throw new Exceptions.NotImplemented(this.constructor.name, "blockId");
 	}
 }

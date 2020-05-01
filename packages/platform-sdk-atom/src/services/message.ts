@@ -14,12 +14,12 @@ export class MessageService implements Contracts.MessageService {
 	public async sign(input): Promise<Contracts.SignedMessage> {
 		return {
 			message: input.message,
-			publicKey: this.getIdentifier(input.passphrase, "publicKey").toString("hex"),
-			signature: signWithPrivateKey(input.message, this.getIdentifier(input.passphrase, "privateKey")).toString(
+			publicKey: this.identifier(input.passphrase, "publicKey").toString("hex"),
+			signature: signWithPrivateKey(input.message, this.identifier(input.passphrase, "privateKey")).toString(
 				"hex",
 			),
 			// signature: cosmos.crypto
-			// 	.sign(Buffer.from(input.message, "utf8"), this.getIdentifier(input.passphrase, "privateKey"))
+			// 	.sign(Buffer.from(input.message, "utf8"), this.identifier(input.passphrase, "privateKey"))
 			// 	.toString("hex"),
 		};
 	}
@@ -28,7 +28,7 @@ export class MessageService implements Contracts.MessageService {
 		return verifySignature(input.message, Buffer.from(input.signature, "hex"), Buffer.from(input.publicKey, "hex"));
 	}
 
-	private getIdentifier(passphrase: string, key: string): Buffer {
+	private identifier(passphrase: string, key: string): Buffer {
 		return Buffer.from(getNewWalletFromSeed(passphrase)[key], "hex");
 	}
 }

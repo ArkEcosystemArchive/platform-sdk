@@ -3,18 +3,18 @@ import { KeyValuePair } from "../contracts/types";
 export abstract class AbstractDelegateData {
 	public constructor(protected readonly data: KeyValuePair) {}
 
-	abstract getAddress(): string;
+	abstract address(): string;
 
-	abstract getPublicKey(): string;
+	abstract publicKey(): string;
 
-	abstract getUsername(): string;
+	abstract username(): string;
 
-	abstract getRank(): number;
+	abstract rank(): number;
 
 	public toObject(): KeyValuePair {
 		return {
-			address: this.getAddress(),
-			publicKey: this.getPublicKey(),
+			address: this.address(),
+			publicKey: this.publicKey(),
 		};
 	}
 

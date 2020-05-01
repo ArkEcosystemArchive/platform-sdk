@@ -1,31 +1,31 @@
 import "jest-extended";
 
 import { PeerData } from "../../src/dto";
-import Fixture from "../__fixtures__/client/getPeers.json";
+import Fixture from "../__fixtures__/client/peers.json";
 
 let subject: PeerData;
 
 beforeEach(() => (subject = new PeerData(Fixture.data[0])));
 
 describe("PeerData", function () {
-	test("#getIp", () => {
-		expect(subject.getIp()).toBe("51.89.73.41");
+	test("#ip", () => {
+		expect(subject.ip()).toBe("51.89.73.41");
 	});
 
-	test("#getPort", () => {
-		expect(subject.getPort()).toBe(4002);
+	test("#port", () => {
+		expect(subject.port()).toBe(4002);
 	});
 
-	test("#getVersion", () => {
-		expect(subject.getVersion()).toBe("2.6.12-next.15");
+	test("#version", () => {
+		expect(subject.version()).toBe("2.6.12-next.15");
 	});
 
-	test("#getHeight", () => {
-		expect(subject.getHeight()).toBe(4670251);
+	test("#height", () => {
+		expect(subject.height()).toBe(4670251);
 	});
 
-	test("#getLatency", () => {
-		expect(subject.getLatency()).toBe(13);
+	test("#latency", () => {
+		expect(subject.latency()).toBe(13);
 	});
 
 	test("#toObject", () => {

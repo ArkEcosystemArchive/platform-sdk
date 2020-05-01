@@ -2,38 +2,38 @@ import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	public getId(): string {
+	public id(): string {
 		return this.data.txhash;
 	}
 
-	public getType(): number | undefined {
+	public type(): number | undefined {
 		return undefined;
 	}
 
-	public getTypeGroup(): number | undefined {
+	public typeGroup(): number | undefined {
 		return undefined;
 	}
 
-	public getTimestamp(): number | undefined {
+	public timestamp(): number | undefined {
 		return +new Date(this.data.timestamp);
 	}
 
-	public getConfirmations(): BigNumber {
+	public confirmations(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public getNonce(): string | undefined {
+	public nonce(): string | undefined {
 		return undefined;
 	}
 
-	public getSender(): string {
+	public sender(): string {
 		const event = this.data.events.find((event) => event.type === "message");
 		const attribute = event.attributes.find((attribute) => attribute.key === "sender");
 
 		return attribute.value;
 	}
 
-	public getRecipient(): string {
+	public recipient(): string {
 		const event = this.data.events.find((event) => event.type === "transfer");
 		const attribute = event.attributes.find((attribute) => attribute.key === "recipient");
 
@@ -41,22 +41,22 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	// @ts-ignore
-	public getAmount(): BigNumber {
+	public amount(): BigNumber {
 		const event = this.data.events.find((event) => event.type === "transfer");
 		const attribute = event.attributes.find((attribute) => attribute.key === "amount");
 
 		return attribute.value;
 	}
 
-	public getFee(): BigNumber {
+	public fee(): BigNumber {
 		return BigNumber.make(this.data.gas_used);
 	}
 
-	public getVendorField(): string | undefined {
+	public memo(): string | undefined {
 		return this.data.tx.value.memo;
 	}
 
-	public getBlockId(): string {
+	public blockId(): string {
 		return this.data.height;
 	}
 }

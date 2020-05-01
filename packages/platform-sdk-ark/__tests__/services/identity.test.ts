@@ -8,9 +8,9 @@ let subject: IdentityService;
 beforeEach(async () => (subject = await IdentityService.construct({ network: "devnet" })));
 
 describe("IdentityService", () => {
-	describe("#getAddress", () => {
+	describe("#address", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.getAddress({
+			const result: any = await subject.address({
 				passphrase: identity.passphrase,
 			});
 
@@ -18,7 +18,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a multiSignature", async () => {
-			const result: any = await subject.getAddress({
+			const result: any = await subject.address({
 				multiSignature: identity.multiSignature,
 			});
 
@@ -26,7 +26,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a publicKey", async () => {
-			const result: any = await subject.getAddress({
+			const result: any = await subject.address({
 				publicKey: identity.publicKey,
 			});
 
@@ -34,7 +34,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a wif", async () => {
-			const result: any = await subject.getAddress({
+			const result: any = await subject.address({
 				wif: identity.wif,
 			});
 
@@ -42,9 +42,9 @@ describe("IdentityService", () => {
 		});
 	});
 
-	describe("#getPublicKey", () => {
+	describe("#publicKey", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.getPublicKey({
+			const result: any = await subject.publicKey({
 				passphrase: identity.passphrase,
 			});
 
@@ -52,7 +52,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a multiSignature", async () => {
-			const result: any = await subject.getPublicKey({
+			const result: any = await subject.publicKey({
 				multiSignature: identity.multiSignature,
 			});
 
@@ -60,7 +60,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a wif", async () => {
-			const result: any = await subject.getPublicKey({
+			const result: any = await subject.publicKey({
 				wif: identity.wif,
 			});
 
@@ -68,9 +68,9 @@ describe("IdentityService", () => {
 		});
 	});
 
-	describe("#getPrivateKey", () => {
+	describe("#privateKey", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.getPrivateKey({
+			const result: any = await subject.privateKey({
 				passphrase: identity.passphrase,
 			});
 
@@ -78,7 +78,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a wif", async () => {
-			const result: any = await subject.getPrivateKey({
+			const result: any = await subject.privateKey({
 				wif: identity.wif,
 			});
 
@@ -86,9 +86,9 @@ describe("IdentityService", () => {
 		});
 	});
 
-	describe("#getWIF", () => {
+	describe("#wif", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.getWIF({
+			const result: any = await subject.wif({
 				passphrase: identity.passphrase,
 			});
 
@@ -96,9 +96,9 @@ describe("IdentityService", () => {
 		});
 	});
 
-	describe("#getKeyPair", () => {
+	describe("#keyPair", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.getKeyPair({
+			const result: any = await subject.keyPair({
 				passphrase: identity.passphrase,
 			});
 
@@ -109,7 +109,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a wif", async () => {
-			const result: any = await subject.getKeyPair({
+			const result: any = await subject.keyPair({
 				wif: identity.wif,
 			});
 
