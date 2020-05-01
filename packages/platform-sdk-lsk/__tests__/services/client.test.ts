@@ -26,10 +26,10 @@ describe("ClientService", function () {
 	describe("#transactions", () => {
 		it("should succeed", async () => {
 			nock("https://betanet.lisk.io:443")
-				.get("/api/transactions")
+				.get("/api/transactions?address=6566229458323231555L")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
 
-			const result = await subject.transactions();
+			const result = await subject.transactions({ address: '6566229458323231555L' });
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
@@ -51,10 +51,10 @@ describe("ClientService", function () {
 	describe("#wallets", () => {
 		it("should succeed", async () => {
 			nock("https://betanet.lisk.io:443")
-				.get("/api/accounts")
+				.get("/api/accounts?address=6566229458323231555L")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
 
-			const result = await subject.wallets();
+			const result = await subject.wallets({ address: '6566229458323231555L' });
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(WalletData);

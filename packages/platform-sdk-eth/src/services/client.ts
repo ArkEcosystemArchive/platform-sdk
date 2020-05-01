@@ -27,7 +27,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(
-		query?: Contracts.KeyValuePair,
+		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
 		const endBlock: number = await this.#connection.eth.getBlockNumber();
 		const startBlock: number = endBlock - (query?.count ?? ClientService.MONTH_IN_SECONDS);
@@ -52,12 +52,6 @@ export class ClientService implements Contracts.ClientService {
 		return { meta: {}, data: transactions };
 	}
 
-	public async searchTransactions(
-		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
-	}
-
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		const result = await this.#connection.eth.getBalance(id);
 
@@ -65,15 +59,9 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallets(
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
-	}
-
-	public async searchWallets(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
+		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
 	public async delegate(id: string): Promise<Contracts.DelegateData> {

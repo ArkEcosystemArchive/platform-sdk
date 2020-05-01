@@ -30,23 +30,10 @@ describe("ClientService", function () {
 	describe("#transactions", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
-				.get("/transactions")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
-
-			const result = await subject.transactions();
-
-			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(TransactionData);
-		});
-	});
-
-	describe("#searchTransactions", () => {
-		it("should succeed", async () => {
-			nock("https://dexplorer.ark.io/api")
 				.post("/transactions/search")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
 
-			const result = await subject.searchTransactions({});
+			const result = await subject.transactions({ address: 'DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8' });
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
@@ -68,23 +55,10 @@ describe("ClientService", function () {
 	describe("#wallets", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
-				.get("/wallets")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
-
-			const result = await subject.wallets();
-
-			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(WalletData);
-		});
-	});
-
-	describe("#searchWallets", () => {
-		it("should succeed", async () => {
-			nock("https://dexplorer.ark.io/api")
 				.post("/wallets/search")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
 
-			const result = await subject.searchWallets({});
+			const result = await subject.wallets({ address: 'DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8' });
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(WalletData);
