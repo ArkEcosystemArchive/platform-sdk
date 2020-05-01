@@ -21,8 +21,7 @@ export interface ClientService {
 
 	configuration(): Promise<KeyValuePair>;
 
-	feesByNode(days: number): Promise<KeyValuePair>;
-	feesByType(): Promise<KeyValuePair>;
+	fees(days: number): Promise<KeyValuePair>;
 
 	syncing(): Promise<boolean>;
 

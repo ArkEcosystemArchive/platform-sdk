@@ -86,11 +86,8 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "configuration");
 	}
 
-	public async feesByNode(days: number): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "feesByNode");
-	}
-
-	public async feesByType(): Promise<Contracts.KeyValuePair> {
+	// todo: normalise the response
+	public async fees(days: number): Promise<Contracts.KeyValuePair> {
 		const result = await this.#connection.eth.getGasPrice();
 
 		return { transfer: result };

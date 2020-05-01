@@ -57,13 +57,13 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#feesByType", () => {
+	describe("#fees", () => {
 		it("should succeed", async () => {
 			nock("https://ropsten.infura.io/v3/PROJECT_ID")
 				.post(/.*/)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/feesByType.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/fees.json`));
 
-			const result = await subject.feesByType();
+			const result = await subject.fees(7);
 
 			expect(result).toBeObject();
 		});
