@@ -3,7 +3,7 @@ import { BigNumber } from "@arkecosystem/utils";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public getId(): string {
-		return this.data.hash;
+		return this.data.id;
 	}
 
 	public getType(): number | undefined {
@@ -15,7 +15,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public getTimestamp(): number | undefined {
-		return +new Date(this.data.date);
+		return +new Date(this.data.outcome.timestamp);
 	}
 
 	public getConfirmations(): BigNumber {
@@ -23,23 +23,23 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public getNonce(): string | undefined {
-		return this.data.tx.Sequence;
+		return this.data.sequence;
 	}
 
 	public getSender(): string {
-		return this.data.tx.Account;
+		return this.data.specification.source.address;
 	}
 
 	public getRecipient(): string {
-		return this.data.tx.Destination;
+		return this.data.specification.destination.address;
 	}
 
 	public getAmount(): BigNumber {
-		return BigNumber.make(this.data.tx.Amount);
+		return BigNumber.make(this.data.outcome.deliveredAmount.value * 1e8);
 	}
 
 	public getFee(): BigNumber {
-		return BigNumber.make(this.data.tx.Fee);
+		return BigNumber.make(this.data.outcome.fee * 1e8);
 	}
 
 	public getVendorField(): string | undefined {
