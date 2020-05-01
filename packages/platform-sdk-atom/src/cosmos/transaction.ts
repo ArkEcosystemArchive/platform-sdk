@@ -28,17 +28,17 @@ export async function createSignedTransaction(
 	accountNumber,
 	sequence,
 ) {
+	const identityService: IdentityService = await IdentityService.construct({});
+	const publicKey: Buffer = Buffer.from(await identityService.getPublicKey({ passphrase }), "hex");
+	const privateKey: Buffer = Buffer.from(await identityService.getPrivateKey({ passphrase }), "hex");
+
 	let signature: Buffer;
-	let publicKey: string;
 
 	const stdTx = createStdTx({ gas, gasPrices, memo }, messages);
 	const signMessage = createSignMessage(stdTx, { sequence, accountNumber, chainId });
 
 	try {
-		const identityService = await IdentityService.construct({});
-
-		publicKey = await identityService.getPublicKey({ passphrase });
-		signature = signWithPrivateKey(signMessage, publicKey);
+		signature = signWithPrivateKey(signMessage, privateKey);
 	} catch (err) {
 		throw new Error("Signing failed: " + err.message);
 	}
