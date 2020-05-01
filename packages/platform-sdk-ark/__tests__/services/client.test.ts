@@ -40,19 +40,6 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#searchTransactions", () => {
-		it("should succeed", async () => {
-			nock("https://dexplorer.ark.io/api")
-				.post("/transactions/search")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
-
-			const result = await subject.searchTransactions({});
-
-			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(TransactionData);
-		});
-	});
-
 	describe("#wallet", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
@@ -72,19 +59,6 @@ describe("ClientService", function () {
 				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
 
 			const result = await subject.wallets();
-
-			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(WalletData);
-		});
-	});
-
-	describe("#searchWallets", () => {
-		it("should succeed", async () => {
-			nock("https://dexplorer.ark.io/api")
-				.post("/wallets/search")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
-
-			const result = await subject.searchWallets({});
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(WalletData);

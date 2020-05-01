@@ -27,14 +27,6 @@ export class ClientService implements Contracts.ClientService {
 	public async transactions(
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		const { body } = await this.connection.api("transactions").all(query);
-
-		return { meta: body.meta, data: body.data.map((transaction) => new TransactionData(transaction)) };
-	}
-
-	public async searchTransactions(
-		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
 		const { body } = await this.connection.api("transactions").search(query);
 
 		return { meta: body.meta, data: body.data.map((transaction) => new TransactionData(transaction)) };
@@ -48,14 +40,6 @@ export class ClientService implements Contracts.ClientService {
 
 	public async wallets(
 		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		const { body } = await this.connection.api("wallets").all(query);
-
-		return { meta: body.meta, data: body.data.map((wallet) => new WalletData(wallet)) };
-	}
-
-	public async searchWallets(
-		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		const { body } = await this.connection.api("wallets").search(query);
 

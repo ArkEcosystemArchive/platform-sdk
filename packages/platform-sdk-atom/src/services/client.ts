@@ -32,12 +32,6 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
 	}
 
-	public async searchTransactions(
-		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
-	}
-
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		const response = await this.get(`auth/accounts/${id}`);
 
@@ -48,12 +42,6 @@ export class ClientService implements Contracts.ClientService {
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
-	}
-
-	public async searchWallets(
-		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
 	}
 
 	public async delegate(id: string): Promise<Contracts.DelegateData> {

@@ -5,10 +5,8 @@ export const manifest = {
 		Client: {
 			transaction: true,
 			transactions: true,
-			searchTransactions: true,
 			wallet: true,
 			wallets: true,
-			searchWallets: true,
 			delegate: true,
 			delegates: true,
 			configuration: true,
