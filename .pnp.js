@@ -416,9 +416,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-atom", "workspace:packages/platform-sdk-atom"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/utils", "npm:1.1.8"],
-            ["@lunie/cosmos-api", "npm:0.2.5"],
-            ["@lunie/cosmos-js", "npm:0.0.22"],
-            ["@lunie/cosmos-keys", "npm:0.2.1"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -428,8 +425,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:0a54f9c69c85a4596b5acd865591b856f72160ef5af3c771cf6d92676ce4b26c1c68b29548dd17a2437b89aa97a6453ec622ecee48878c4e67a574a80da161fb#npm:2.30.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
+            ["bcrypto", "npm:5.1.0"],
+            ["bech32", "npm:1.1.4"],
+            ["bip32", "npm:2.0.5"],
+            ["bip39", "npm:3.0.2"],
             ["codecov", "npm:3.6.5"],
-            ["cosmos-lib", "npm:1.1.0"],
             ["cross-env", "npm:7.0.2"],
             ["eslint", "npm:6.8.0"],
             ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.11.0"],
@@ -2712,41 +2712,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["@lunie/cosmos-api", [
-        ["npm:0.2.5", {
-          "packageLocation": "./.yarn/cache/@lunie-cosmos-api-npm-0.2.5-c8c7b708b7-2.zip/node_modules/@lunie/cosmos-api/",
-          "packageDependencies": [
-            ["@lunie/cosmos-api", "npm:0.2.5"],
-            ["@babel/runtime", "npm:7.9.2"],
-            ["axios", "npm:0.19.2"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@lunie/cosmos-js", [
-        ["npm:0.0.22", {
-          "packageLocation": "./.yarn/cache/@lunie-cosmos-js-npm-0.0.22-96a300b67f-2.zip/node_modules/@lunie/cosmos-js/",
-          "packageDependencies": [
-            ["@lunie/cosmos-js", "npm:0.0.22"],
-            ["axios", "npm:0.19.2"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@lunie/cosmos-keys", [
-        ["npm:0.2.1", {
-          "packageLocation": "./.yarn/cache/@lunie-cosmos-keys-npm-0.2.1-0623923ba9-2.zip/node_modules/@lunie/cosmos-keys/",
-          "packageDependencies": [
-            ["@lunie/cosmos-keys", "npm:0.2.1"],
-            ["bech32", "npm:1.1.4"],
-            ["bip32", "npm:2.0.5"],
-            ["bip39", "npm:3.0.2"],
-            ["crypto-js", "npm:3.3.0"],
-            ["secp256k1", "npm:3.8.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["@mrmlnc/readdir-enhanced", [
         ["npm:2.2.1", {
           "packageLocation": "./.yarn/cache/@mrmlnc-readdir-enhanced-npm-2.2.1-5286808663-2.zip/node_modules/@mrmlnc/readdir-enhanced/",
@@ -4896,6 +4861,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["node-gyp", "npm:6.1.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:5.1.0", {
+          "packageLocation": "./.yarn/unplugged/bcrypto-npm-5.1.0-f127dc4a8d/node_modules/bcrypto/",
+          "packageDependencies": [
+            ["bcrypto", "npm:5.1.0"],
+            ["bufio", "npm:1.0.6"],
+            ["loady", "npm:0.0.1"],
+            ["node-gyp", "npm:6.1.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["bech32", [
@@ -6393,20 +6368,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["cosmos-lib", [
-        ["npm:1.1.0", {
-          "packageLocation": "./.yarn/cache/cosmos-lib-npm-1.1.0-afb2386560-2.zip/node_modules/cosmos-lib/",
-          "packageDependencies": [
-            ["cosmos-lib", "npm:1.1.0"],
-            ["bech32", "npm:1.1.4"],
-            ["bip32", "npm:2.0.5"],
-            ["bip39", "npm:3.0.2"],
-            ["ripemd160", "npm:2.0.2"],
-            ["secp256k1", "npm:3.8.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["create-ecdh", [
         ["npm:4.0.3", {
           "packageLocation": "./.yarn/cache/create-ecdh-npm-4.0.3-c40d23c7aa-2.zip/node_modules/create-ecdh/",
@@ -6530,13 +6491,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/crypto-js-npm-3.2.0-b9bcedad3c-2.zip/node_modules/crypto-js/",
           "packageDependencies": [
             ["crypto-js", "npm:3.2.0"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:3.3.0", {
-          "packageLocation": "./.yarn/cache/crypto-js-npm-3.3.0-5b307000b5-2.zip/node_modules/crypto-js/",
-          "packageDependencies": [
-            ["crypto-js", "npm:3.3.0"]
           ],
           "linkType": "HARD",
         }],

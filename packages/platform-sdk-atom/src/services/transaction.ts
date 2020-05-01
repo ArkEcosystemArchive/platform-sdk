@@ -1,6 +1,6 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { createSignedTransaction } from "@lunie/cosmos-api";
-import { getNewWalletFromSeed, signWithPrivateKey } from "@lunie/cosmos-keys";
+
+import { createSignedTransaction } from "../cosmos";
 
 export class TransactionService implements Contracts.TransactionService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
@@ -12,9 +12,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public async createTransfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {
-		const privateKey = Buffer.from(getNewWalletFromSeed(input.sign.passphrase, "cosmos").privateKey, "hex");
-
-		const signMessage = await createSignedTransaction(
+		return createSignedTransaction(
 			{ gas: 1000, gasPrices: [{ amount: "10", denom: "uatom" }], memo: `Hi from Lunie` },
 			[
 				{
@@ -35,46 +33,11 @@ export class TransactionService implements Contracts.TransactionService {
 					},
 				},
 			],
-			(signMessage) => signWithPrivateKey(signMessage, privateKey),
+			input.sign.passphrase,
 			"test-chain",
 			0,
 			12,
 		);
-
-		console.log(signMessage);
-
-		// return createSignedTransaction(
-		// 	{
-		// 		gas: 1000,
-		// 		gasPrices: [{ amount: "10", denom: "uatom" }],
-		// 		memo: "Hi from Lunie",
-		// 	},
-		// 	[
-		// 		{
-		// 			type: "cosmos-sdk/Send",
-		// 			value: {
-		// 				inputs: [
-		// 					{
-		// 						address: "cosmos1qperwt9wrnkg5k9e5gzfgjppzpqhyav5j24d66",
-		// 						coins: [{ denom: "STAKE", amount: "1" }],
-		// 					},
-		// 				],
-		// 				outputs: [
-		// 					{
-		// 						address: "cosmos1yeckxz7tapz34kjwnjxvmxzurerquhtrmxmuxt",
-		// 						coins: [{ denom: "STAKE", amount: "1" }],
-		// 					},
-		// 				],
-		// 			},
-		// 		},
-		// 	],
-		// 	(signMessage) => signWithPrivateKey(signMessage, privateKey),
-		// 	"test-chain",
-		// 	0,
-		// 	12,
-		// );
-
-		throw new Exceptions.NotImplemented(this.constructor.name, "createTransfer");
 	}
 
 	public async createSecondSignature(input: Contracts.SecondSignatureInput): Promise<Contracts.SignedTransaction> {

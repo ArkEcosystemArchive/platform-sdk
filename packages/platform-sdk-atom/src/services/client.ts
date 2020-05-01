@@ -98,7 +98,7 @@ export class ClientService implements Contracts.ClientService {
 
 	public async postTransactions(transactions: object[]): Promise<void> {
 		for (const transaction of transactions) {
-			await this.post("tx", { tx: transaction });
+			await this.post("txs", { tx: transaction, mode: "sync" });
 		}
 	}
 
