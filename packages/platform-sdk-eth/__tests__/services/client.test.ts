@@ -31,7 +31,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://ropsten.infura.io/v3/PROJECT_ID")
 				.post(/.*/)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getBlockNumber.json`))
+				.reply(200, require(`${__dirname}/../__fixtures__/client/blockNumber.json`))
 				.post(/.*/)
 				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
 

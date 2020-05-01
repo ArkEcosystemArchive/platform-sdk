@@ -83,8 +83,8 @@ export class IdentityService implements Contracts.IdentityService {
 			const keyPair = Wallet.fromPrivateKey(Buffer.from(opts.privateKey, "hex"));
 
 			return {
-				publicKey: keyPair.publicKey().toString("hex"),
-				privateKey: keyPair.privateKey().toString("hex"),
+				publicKey: keyPair.getPublicKey().toString("hex"),
+				privateKey: keyPair.getPrivateKey().toString("hex"),
 			};
 		}
 
