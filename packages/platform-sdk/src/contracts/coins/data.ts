@@ -3,67 +3,67 @@ import { BigNumber } from "@arkecosystem/utils";
 import { KeyValuePair } from "../types";
 
 export interface TransactionData {
-	getId(): string;
+	id(): string;
 
-	getType(): number | undefined;
+	type(): number | undefined;
 
-	getTypeGroup(): number | undefined;
+	typeGroup(): number | undefined;
 
-	getTimestamp(): number | undefined;
+	timestamp(): number | undefined;
 
-	getConfirmations(): BigNumber;
+	confirmations(): BigNumber;
 
-	getNonce(): string | undefined;
+	nonce(): string | undefined;
 
-	getSender(): string;
+	sender(): string;
 
-	getRecipient(): string;
+	recipient(): string;
 
-	getAmount(): BigNumber;
+	amount(): BigNumber;
 
-	getFee(): BigNumber;
+	fee(): BigNumber;
 
-	getVendorField(): string | undefined;
+	memo(): string | undefined;
 
-	getBlockId(): string;
+	blockId(): string;
 
 	toObject(): KeyValuePair;
 }
 
 export interface WalletData {
-	getAddress(): string;
+	address(): string;
 
-	getPublicKey(): string | undefined;
+	publicKey(): string | undefined;
 
-	getBalance(): BigNumber;
+	balance(): BigNumber;
 
-	getNonce(): BigNumber;
+	nonce(): BigNumber;
 
 	toObject(): KeyValuePair;
 }
 
 export interface DelegateData {
-	getAddress(): string;
+	address(): string;
 
-	getPublicKey(): string;
+	publicKey(): string;
 
-	getUsername(): string;
+	username(): string;
 
-	getRank(): number;
+	rank(): number;
 
 	toObject(): KeyValuePair;
 }
 
 export interface PeerData {
-	getIp(): string;
+	ip(): string;
 
-	getPort(): number;
+	port(): number;
 
-	getVersion(): string;
+	version(): string;
 
-	getHeight(): number;
+	height(): number;
 
-	getLatency(): number;
+	latency(): number;
 
 	toObject(): KeyValuePair;
 }

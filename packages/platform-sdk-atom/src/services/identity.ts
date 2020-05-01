@@ -11,67 +11,67 @@ export class IdentityService implements Contracts.IdentityService {
 		//
 	}
 
-	public async getAddress(opts: Contracts.KeyValuePair): Promise<string> {
+	public async address(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			return getNewWalletFromSeed(opts.passphrase).cosmosAddress;
 		}
 
 		if (opts.multiSignature) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getAddress#multiSignature");
+			throw new Exceptions.NotSupported(this.constructor.name, "address#multiSignature");
 		}
 
 		if (opts.publicKey) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getAddress#publicKey");
+			throw new Exceptions.NotSupported(this.constructor.name, "address#publicKey");
 		}
 
 		if (opts.privateKey) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getAddress#privateKey");
+			throw new Exceptions.NotSupported(this.constructor.name, "address#privateKey");
 		}
 
 		if (opts.wif) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getAddress#wif");
+			throw new Exceptions.NotSupported(this.constructor.name, "address#wif");
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	public async getPublicKey(opts: Contracts.KeyValuePair): Promise<string> {
+	public async publicKey(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			return getNewWalletFromSeed(opts.passphrase).publicKey;
 		}
 
 		if (opts.multiSignature) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getPublicKey#multiSignature");
+			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#multiSignature");
 		}
 
 		if (opts.wif) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getPublicKey#wif");
+			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#wif");
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	public async getPrivateKey(opts: Contracts.KeyValuePair): Promise<string> {
+	public async privateKey(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			return getNewWalletFromSeed(opts.passphrase).privateKey;
 		}
 
 		if (opts.wif) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getPrivateKey#wif");
+			throw new Exceptions.NotSupported(this.constructor.name, "privateKey#wif");
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	public async getWIF(opts: Contracts.KeyValuePair): Promise<string> {
+	public async wif(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getWIF#passphrase");
+			throw new Exceptions.NotSupported(this.constructor.name, "wif#passphrase");
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	public async getKeyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
+	public async keyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
 		if (opts.passphrase) {
 			const keyPair = getNewWalletFromSeed(opts.passphrase);
 
@@ -79,15 +79,15 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		if (opts.publicKey) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getKeyPair#publicKey");
+			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#publicKey");
 		}
 
 		if (opts.privateKey) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getKeyPair#privateKey");
+			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#privateKey");
 		}
 
 		if (opts.wif) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getKeyPair#wif");
+			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#wif");
 		}
 
 		throw new Error("No input provided.");

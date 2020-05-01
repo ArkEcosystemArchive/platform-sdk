@@ -18,21 +18,13 @@ export class ClientService implements Contracts.ClientService {
 		//
 	}
 
-	public async getTransaction(id: string): Promise<Contracts.TransactionData> {
+	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		const { body } = await this.connection.api("transactions").get(id);
 
 		return new TransactionData(body.data);
 	}
 
-	public async getTransactions(
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		const { body } = await this.connection.api("transactions").all(query);
-
-		return { meta: body.meta, data: body.data.map((transaction) => new TransactionData(transaction)) };
-	}
-
-	public async searchTransactions(
+	public async transactions(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
 		const { body } = await this.connection.api("transactions").search(query);
@@ -40,21 +32,13 @@ export class ClientService implements Contracts.ClientService {
 		return { meta: body.meta, data: body.data.map((transaction) => new TransactionData(transaction)) };
 	}
 
-	public async getWallet(id: string): Promise<Contracts.WalletData> {
+	public async wallet(id: string): Promise<Contracts.WalletData> {
 		const { body } = await this.connection.api("wallets").get(id);
 
 		return new WalletData(body.data);
 	}
 
-	public async getWallets(
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		const { body } = await this.connection.api("wallets").all(query);
-
-		return { meta: body.meta, data: body.data.map((wallet) => new WalletData(wallet)) };
-	}
-
-	public async searchWallets(
+	public async wallets(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		const { body } = await this.connection.api("wallets").search(query);
@@ -62,13 +46,13 @@ export class ClientService implements Contracts.ClientService {
 		return { meta: body.meta, data: body.data.map((wallet) => new WalletData(wallet)) };
 	}
 
-	public async getDelegate(id: string): Promise<Contracts.DelegateData> {
+	public async delegate(id: string): Promise<Contracts.DelegateData> {
 		const { body } = await this.connection.api("delegates").get(id);
 
 		return new DelegateData(body.data);
 	}
 
-	public async getDelegates(
+	public async delegates(
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
 		const { body } = await this.connection.api("delegates").all(query);
@@ -76,53 +60,47 @@ export class ClientService implements Contracts.ClientService {
 		return { meta: body.meta, data: body.data.map((wallet) => new DelegateData(wallet)) };
 	}
 
-	public async getVotes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	public async votes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
 		const { body } = await this.connection.api("wallets").votes(id);
 
 		return { meta: body.meta, data: body.data.map((transaction) => new TransactionData(transaction)) };
 	}
 
-	public async getVoters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async voters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		const { body } = await this.connection.api("delegates").voters(id);
 
 		return { meta: body.meta, data: body.data.map((wallet) => new WalletData(wallet)) };
 	}
 
-	public async getConfiguration(): Promise<Contracts.KeyValuePair> {
-		const { body } = await this.connection.api("node").configuration();
+	public async configuration(): Promise<Contracts.KeyValuePair> {
+		const node = await this.connection.api("node").configuration();
+		const crypto = await this.connection.api("node").crypto();
 
-		return body.data;
+		return {
+			node: node.body.data,
+			crypto: crypto.body.data,
+		};
 	}
 
 	// todo: normalise the response
-	public async getCryptoConfiguration(): Promise<Contracts.KeyValuePair> {
-		const { body } = await this.connection.api("node").crypto();
+	public async fees(days: number): Promise<Contracts.KeyValuePair> {
+		const node = await this.connection.api("node").fees(days);
+		const type = await this.connection.api("transactions").fees();
 
-		return body.data;
+		return {
+			node: node.body.data,
+			type: type.body.data,
+		};
 	}
 
-	// todo: normalise the response
-	public async getFeesByNode(days: number): Promise<Contracts.KeyValuePair> {
-		const { body } = await this.connection.api("node").fees(days);
-
-		return body.data;
-	}
-
-	// todo: normalise the response
-	public async getFeesByType(): Promise<Contracts.KeyValuePair> {
-		const { body } = await this.connection.api("transactions").fees();
-
-		return body.data;
-	}
-
-	public async getSyncStatus(): Promise<boolean> {
+	public async syncing(): Promise<boolean> {
 		const { body } = await this.connection.api("node").syncing();
 
 		return body.data.syncing;
 	}
 
 	// todo: normalise the response
-	public async postTransactions(transactions: object[]): Promise<void> {
+	public async broadcast(transactions: object[]): Promise<void> {
 		await this.connection.api("transactions").create({ transactions });
 	}
 }

@@ -17,53 +17,41 @@ export class ClientService implements Contracts.ClientService {
 		//
 	}
 
-	public async getTransaction(id: string): Promise<Contracts.TransactionData> {
+	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		const result = await this.get("transactions", { id });
 
 		return new TransactionData(result.data[0]);
 	}
 
-	public async getTransactions(
-		query?: Contracts.KeyValuePair,
+	public async transactions(
+		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
 		const result = await this.get("transactions", query);
 
 		return { meta: result.meta, data: result.data.map((transaction) => new TransactionData(transaction)) };
 	}
 
-	public async searchTransactions(
-		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
-	}
-
-	public async getWallet(id: string): Promise<Contracts.WalletData> {
+	public async wallet(id: string): Promise<Contracts.WalletData> {
 		const result = await this.get("accounts", { address: id });
 
 		return new WalletData(result.data[0]);
 	}
 
-	public async getWallets(
-		query?: Contracts.KeyValuePair,
+	public async wallets(
+		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		const result = await this.get("accounts", query);
 
 		return { meta: result.meta, data: result.data.map((wallet) => new WalletData(wallet)) };
 	}
 
-	public async searchWallets(
-		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
-	}
-
-	public async getDelegate(id: string): Promise<Contracts.DelegateData> {
+	public async delegate(id: string): Promise<Contracts.DelegateData> {
 		const result = await this.get("delegates", { username: id });
 
 		return new DelegateData(result.data[0]);
 	}
 
-	public async getDelegates(
+	public async delegates(
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
 		const result = await this.get("delegates");
@@ -71,35 +59,27 @@ export class ClientService implements Contracts.ClientService {
 		return { meta: result.meta, data: result.data.map((wallet) => new DelegateData(wallet)) };
 	}
 
-	public async getVotes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getVotes");
+	public async votes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async getVoters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getVoters");
+	public async voters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
-	public async getConfiguration(): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getConfiguration");
+	public async configuration(): Promise<Contracts.KeyValuePair> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "configuration");
 	}
 
-	public async getCryptoConfiguration(): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getCryptoConfiguration");
+	public async fees(days: number): Promise<Contracts.KeyValuePair> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "fees");
 	}
 
-	public async getFeesByNode(days: number): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getFeesByNode");
+	public async syncing(): Promise<boolean> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	public async getFeesByType(): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getFeesByType");
-	}
-
-	public async getSyncStatus(): Promise<boolean> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getSyncStatus");
-	}
-
-	public async postTransactions(transactions: object[]): Promise<void> {
+	public async broadcast(transactions: object[]): Promise<void> {
 		for (const transaction of transactions) {
 			try {
 				await this.post("transactions", transaction);

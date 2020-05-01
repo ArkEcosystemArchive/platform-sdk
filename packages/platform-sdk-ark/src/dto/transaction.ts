@@ -2,39 +2,39 @@ import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	public getId(): string {
+	public id(): string {
 		return this.data.id;
 	}
 
-	public getType(): number | undefined {
+	public type(): number | undefined {
 		return this.data.type;
 	}
 
-	public getTypeGroup(): number | undefined {
+	public typeGroup(): number | undefined {
 		return this.data.typeGroup;
 	}
 
-	public getTimestamp(): number | undefined {
+	public timestamp(): number | undefined {
 		return this.data.timestamp.epoch;
 	}
 
-	public getConfirmations(): BigNumber {
+	public confirmations(): BigNumber {
 		return BigNumber.make(this.data.confirmations);
 	}
 
-	public getNonce(): string | undefined {
+	public nonce(): string | undefined {
 		return this.data.nonce;
 	}
 
-	public getSender(): string {
+	public sender(): string {
 		return this.data.senderPublicKey;
 	}
 
-	public getRecipient(): string {
+	public recipient(): string {
 		return this.data.recipient;
 	}
 
-	public getAmount(): BigNumber {
+	public amount(): BigNumber {
 		if (this.data.typeGroup === 0 && this.data.type === 6) {
 			return this.data.asset.payments.reduce(
 				(sum: BigNumber, { amount }: { amount: string }) => sum.plus(amount),
@@ -45,15 +45,15 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return BigNumber.make(this.data.amount);
 	}
 
-	public getFee(): BigNumber {
+	public fee(): BigNumber {
 		return BigNumber.make(this.data.fee);
 	}
 
-	public getVendorField(): string | undefined {
+	public memo(): string | undefined {
 		return this.data.vendorField;
 	}
 
-	public getBlockId(): string {
+	public blockId(): string {
 		return this.data.blockId;
 	}
 }

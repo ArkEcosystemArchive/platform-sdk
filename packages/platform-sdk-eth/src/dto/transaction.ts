@@ -2,51 +2,51 @@ import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	public getId(): string {
+	public id(): string {
 		return this.data.hash;
 	}
 
-	public getType(): number | undefined {
+	public type(): number | undefined {
 		return undefined;
 	}
 
-	public getTypeGroup(): number | undefined {
+	public typeGroup(): number | undefined {
 		return undefined;
 	}
 
-	public getTimestamp(): number | undefined {
+	public timestamp(): number | undefined {
 		return undefined;
 	}
 
-	public getConfirmations(): BigNumber {
+	public confirmations(): BigNumber {
 		return BigNumber.make(0);
 	}
 
-	public getNonce(): string {
+	public nonce(): string {
 		return this.data.nonce;
 	}
 
-	public getSender(): string {
+	public sender(): string {
 		return this.data.from;
 	}
 
-	public getRecipient(): string {
+	public recipient(): string {
 		return this.data.to;
 	}
 
-	public getAmount(): BigNumber {
+	public amount(): BigNumber {
 		return BigNumber.make(this.data.value);
 	}
 
-	public getFee(): BigNumber {
+	public fee(): BigNumber {
 		return BigNumber.make(this.data.gas);
 	}
 
-	public getVendorField(): string | undefined {
+	public memo(): string | undefined {
 		return this.data.data;
 	}
 
-	public getBlockId(): string {
+	public blockId(): string {
 		return this.data.blockNumber;
 	}
 }

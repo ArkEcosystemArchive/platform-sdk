@@ -10,7 +10,7 @@ export class IdentityService implements Contracts.IdentityService {
 		//
 	}
 
-	public async getAddress(opts: Contracts.KeyValuePair): Promise<string> {
+	public async address(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			return deriveAddress(deriveKeypair(opts.passphrase).publicKey);
 		}
@@ -19,26 +19,26 @@ export class IdentityService implements Contracts.IdentityService {
 			return deriveAddress(opts.publicKey);
 		}
 
-		throw new Exceptions.NotImplemented(this.constructor.name, "getAddress");
+		throw new Exceptions.NotImplemented(this.constructor.name, "address");
 	}
 
-	public async getPublicKey(opts: Contracts.KeyValuePair): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
+	public async publicKey(opts: Contracts.KeyValuePair): Promise<string> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "publicKey");
 	}
 
-	public async getPrivateKey(opts: Contracts.KeyValuePair): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPrivateKey");
+	public async privateKey(opts: Contracts.KeyValuePair): Promise<string> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "privateKey");
 	}
 
-	public async getWIF(opts: Contracts.KeyValuePair): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getWIF");
+	public async wif(opts: Contracts.KeyValuePair): Promise<string> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "wif");
 	}
 
-	public async getKeyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
+	public async keyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
 		if (opts.passphrase) {
 			return deriveKeypair(opts.passphrase);
 		}
 
-		throw new Exceptions.NotImplemented(this.constructor.name, "getKeyPair");
+		throw new Exceptions.NotImplemented(this.constructor.name, "keyPair");
 	}
 }

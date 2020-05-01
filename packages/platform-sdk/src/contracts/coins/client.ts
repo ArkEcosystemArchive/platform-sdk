@@ -7,27 +7,23 @@ export interface CollectionResponse<T> {
 }
 
 export interface ClientService {
-	getTransaction(id: string): Promise<TransactionData>;
-	getTransactions(query?: KeyValuePair): Promise<CollectionResponse<TransactionData>>;
-	searchTransactions(query: KeyValuePair): Promise<CollectionResponse<TransactionData>>;
+	transaction(id: string): Promise<TransactionData>;
+	transactions(query: KeyValuePair): Promise<CollectionResponse<TransactionData>>;
 
-	getWallet(id: string): Promise<WalletData>;
-	getWallets(query?: KeyValuePair): Promise<CollectionResponse<WalletData>>;
-	searchWallets(query: KeyValuePair): Promise<CollectionResponse<WalletData>>;
+	wallet(id: string): Promise<WalletData>;
+	wallets(query: KeyValuePair): Promise<CollectionResponse<WalletData>>;
 
-	getDelegate(id: string): Promise<DelegateData>;
-	getDelegates(query?: KeyValuePair): Promise<CollectionResponse<DelegateData>>;
+	delegate(id: string): Promise<DelegateData>;
+	delegates(query?: KeyValuePair): Promise<CollectionResponse<DelegateData>>;
 
-	getVotes(id: string): Promise<CollectionResponse<TransactionData>>;
-	getVoters(id: string): Promise<CollectionResponse<WalletData>>;
+	votes(id: string): Promise<CollectionResponse<TransactionData>>;
+	voters(id: string): Promise<CollectionResponse<WalletData>>;
 
-	getConfiguration(): Promise<KeyValuePair>;
-	getCryptoConfiguration(): Promise<KeyValuePair>;
+	configuration(): Promise<KeyValuePair>;
 
-	getFeesByNode(days: number): Promise<KeyValuePair>;
-	getFeesByType(): Promise<KeyValuePair>;
+	fees(days: number): Promise<KeyValuePair>;
 
-	getSyncStatus(): Promise<boolean>;
+	syncing(): Promise<boolean>;
 
-	postTransactions(transactions: object[]): Promise<void>;
+	broadcast(transactions: object[]): Promise<void>;
 }

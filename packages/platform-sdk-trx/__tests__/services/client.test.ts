@@ -11,13 +11,13 @@ beforeEach(async () => (subject = await ClientService.construct({ peer: "https:/
 beforeAll(() => nock.disableNetConnect());
 
 describe("ClientService", function () {
-	describe("#getTransaction", () => {
+	describe("#transaction", () => {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
 				.post("/wallet/gettransactionbyid")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getTransaction.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/transaction.json`));
 
-			const result = await subject.getTransaction(
+			const result = await subject.transaction(
 				"0daa9f2507c4e79e39391ea165bb76ed018c4cd69d7da129edf9e95f0dae99e2",
 			);
 
@@ -25,28 +25,28 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#getWallet", () => {
+	describe("#wallet", () => {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
 				.post("/walletsolidity/getaccount")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getWallet.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
 
-			const result = await subject.getWallet("TTSFjEG3Lu9WkHdp4JrWYhbGP6K1REqnGQ");
+			const result = await subject.wallet("TTSFjEG3Lu9WkHdp4JrWYhbGP6K1REqnGQ");
 
 			expect(result).toBeInstanceOf(WalletData);
 		});
 	});
 
-	describe("#postTransactions", () => {
+	describe("#broadcast", () => {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
 				.post("/wallet/createtransaction")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/postTransactions.json`))
+				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`))
 				.post("/wallet/broadcasttransaction")
 				.reply(200);
 
-			const result = await subject.postTransactions([
-				require(`${__dirname}/../__fixtures__/crypto/createTransferSigned.json`),
+			const result = await subject.broadcast([
+				require(`${__dirname}/../__fixtures__/crypto/transferSigned.json`),
 			]);
 
 			expect(result).toBeUndefined();

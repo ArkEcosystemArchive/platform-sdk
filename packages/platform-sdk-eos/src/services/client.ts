@@ -30,79 +30,59 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-transaction-information
-	public async getTransaction(id: string): Promise<Contracts.TransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getTransaction");
+	public async transaction(id: string): Promise<Contracts.TransactionData> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
 	}
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-table-information
-	public async getTransactions(
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getTransactions");
-	}
-
-	public async searchTransactions(
+	public async transactions(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
+		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
 	}
 
-	public async getWallet(id: string): Promise<Contracts.WalletData> {
+	public async wallet(id: string): Promise<Contracts.WalletData> {
 		return new WalletData(await this.#rpc.get_account(id));
 	}
 
-	public async getWallets(
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getWallets");
-	}
-
-	public async searchWallets(
+	public async wallets(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
+		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
-	public async getDelegate(id: string): Promise<Contracts.DelegateData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegate");
+	public async delegate(id: string): Promise<Contracts.DelegateData> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
 	}
 
-	public async getDelegates(
+	public async delegates(
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegates");
+		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
-	public async getVotes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getVotes");
+	public async votes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async getVoters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getVoters");
+	public async voters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
-	public async getConfiguration(): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getConfiguration");
+	public async configuration(): Promise<Contracts.KeyValuePair> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "configuration");
 	}
 
-	public async getCryptoConfiguration(): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getCryptoConfiguration");
+	public async fees(days: number): Promise<Contracts.KeyValuePair> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "fees");
 	}
 
-	public async getFeesByNode(days: number): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getFeesByNode");
-	}
-
-	public async getFeesByType(): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getFeesByType");
-	}
-
-	public async getSyncStatus(): Promise<boolean> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getSyncStatus");
+	public async syncing(): Promise<boolean> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-transfer-an-eosio-token
-	public async postTransactions(transactions: object[]): Promise<void> {
+	public async broadcast(transactions: object[]): Promise<void> {
 		const result = await this.#api.transact(
 			{
 				actions: [
@@ -131,6 +111,6 @@ export class ClientService implements Contracts.ClientService {
 		);
 		console.dir(result);
 
-		throw new Exceptions.NotImplemented(this.constructor.name, "postTransactions");
+		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
 	}
 }

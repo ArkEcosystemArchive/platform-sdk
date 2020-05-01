@@ -8,9 +8,9 @@ let subject: TransactionService;
 beforeEach(async () => (subject = await TransactionService.construct({ network: "devnet" })));
 
 describe("TransactionService", () => {
-	describe("#createTransfer", () => {
+	describe("#transfer", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createTransfer({
+			const result: any = await subject.transfer({
 				nonce: 1,
 				sign: {
 					passphrase: "this is a top secret passphrase",
@@ -25,9 +25,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createSecondSignature", () => {
+	describe("#secondSignature", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createSecondSignature({
+			const result: any = await subject.secondSignature({
 				nonce: 1,
 				sign: {
 					passphrase: "this is a top secret passphrase",
@@ -41,9 +41,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createDelegateRegistration", () => {
+	describe("#delegateRegistration", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createDelegateRegistration({
+			const result: any = await subject.delegateRegistration({
 				nonce: 1,
 				sign: {
 					passphrase: "this is a top secret passphrase",
@@ -57,9 +57,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createVote", () => {
+	describe("#vote", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createVote({
+			const result: any = await subject.vote({
 				nonce: 1,
 				sign: {
 					passphrase: "this is a top secret passphrase",
@@ -73,9 +73,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createMultiSignature", () => {
+	describe("#multiSignature", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createMultiSignature({
+			const result: any = await subject.multiSignature({
 				nonce: 1,
 				data: {
 					publicKeys: [
@@ -100,9 +100,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createIpfs", () => {
+	describe("#ipfs", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createIpfs({
+			const result: any = await subject.ipfs({
 				nonce: 1,
 				sign: {
 					passphrase: "this is a top secret passphrase",
@@ -114,9 +114,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createMultiPayment", () => {
+	describe("#multiPayment", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createMultiPayment({
+			const result: any = await subject.multiPayment({
 				nonce: 1,
 				sign: {
 					passphrase: "this is a top secret passphrase",
@@ -134,9 +134,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createDelegateResignation", () => {
+	describe("#delegateResignation", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createDelegateResignation({
+			const result: any = await subject.delegateResignation({
 				nonce: 1,
 				sign: {
 					passphrase: "this is a top secret passphrase",
@@ -147,9 +147,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createHtlcLock", () => {
+	describe("#htlcLock", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createHtlcLock({
+			const result: any = await subject.htlcLock({
 				nonce: 1,
 				sign: {
 					passphrase: "this is a top secret passphrase",
@@ -169,9 +169,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createHtlcClaim", () => {
+	describe("#htlcClaim", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createHtlcClaim({
+			const result: any = await subject.htlcClaim({
 				nonce: 1,
 				sign: {
 					passphrase: "this is a top secret passphrase",
@@ -186,9 +186,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createHtlcRefund", () => {
+	describe("#htlcRefund", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createHtlcRefund({
+			const result: any = await subject.htlcRefund({
 				nonce: 1,
 				sign: {
 					passphrase: "this is a top secret passphrase",
