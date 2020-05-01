@@ -120,21 +120,11 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/node/configuration")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/configuration.json`));
-
-			const result = await subject.configuration();
-
-			expect(result).toBeObject();
-		});
-	});
-
-	describe("#cryptoConfiguration", () => {
-		it("should succeed", async () => {
-			nock("https://dexplorer.ark.io/api")
+				.reply(200, require(`${__dirname}/../__fixtures__/client/configuration.json`))
 				.get("/node/configuration/crypto")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/cryptoConfiguration.json`));
 
-			const result = await subject.cryptoConfiguration();
+			const result = await subject.configuration();
 
 			expect(result).toBeObject();
 		});
