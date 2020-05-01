@@ -13,13 +13,13 @@ afterEach(() => nock.cleanAll());
 beforeAll(() => nock.disableNetConnect());
 
 describe("ClientService", function () {
-	describe("#getTransaction", () => {
+	describe("#transaction", () => {
 		it("should succeed", async () => {
 			nock("https://ropsten.infura.io/v3/PROJECT_ID")
 				.post(/.*/)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getTransaction.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/transaction.json`));
 
-			const result = await subject.getTransaction(
+			const result = await subject.transaction(
 				"0x35a28a5b1785d3729afc809851466fcc9971d09922196a1ca6d155756c222435",
 			);
 
@@ -27,15 +27,15 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#getTransactions", () => {
+	describe("#transactions", () => {
 		it("should succeed", async () => {
 			nock("https://ropsten.infura.io/v3/PROJECT_ID")
 				.post(/.*/)
 				.reply(200, require(`${__dirname}/../__fixtures__/client/getBlockNumber.json`))
 				.post(/.*/)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getTransactions.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
 
-			const result = await subject.getTransactions({
+			const result = await subject.transactions({
 				address: "0x003C805FABE761304f9Bc4574bc380cA49145d4D",
 				count: 1,
 			});
@@ -45,37 +45,37 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#getWallet", () => {
+	describe("#wallet", () => {
 		it("should succeed", async () => {
 			nock("https://ropsten.infura.io/v3/PROJECT_ID")
 				.post(/.*/)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getWallet.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
 
-			const result = await subject.getWallet("0x4581a610f96878266008993475f1476ca9997081");
+			const result = await subject.wallet("0x4581a610f96878266008993475f1476ca9997081");
 
 			expect(result).toBeInstanceOf(WalletData);
 		});
 	});
 
-	describe("#getFeesByType", () => {
+	describe("#feesByType", () => {
 		it("should succeed", async () => {
 			nock("https://ropsten.infura.io/v3/PROJECT_ID")
 				.post(/.*/)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getFeesByType.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/feesByType.json`));
 
-			const result = await subject.getFeesByType();
+			const result = await subject.feesByType();
 
 			expect(result).toBeObject();
 		});
 	});
 
-	describe("#getSyncStatus", () => {
+	describe("#syncing", () => {
 		it("should succeed", async () => {
 			nock("https://ropsten.infura.io/v3/PROJECT_ID")
 				.post(/.*/)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/getSyncStatus.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/client/syncing.json`));
 
-			const result = await subject.getSyncStatus();
+			const result = await subject.syncing();
 
 			expect(result).toBeBoolean();
 		});

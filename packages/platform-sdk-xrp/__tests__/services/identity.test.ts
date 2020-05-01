@@ -8,9 +8,9 @@ let subject: IdentityService;
 beforeEach(async () => (subject = await IdentityService.construct({})));
 
 describe("IdentityService", () => {
-	describe("#getAddress", () => {
+	describe("#address", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.getAddress({
+			const result: any = await subject.address({
 				passphrase: identity.passphrase,
 			});
 
@@ -18,7 +18,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a publicKey", async () => {
-			const result: any = await subject.getAddress({
+			const result: any = await subject.address({
 				publicKey: identity.publicKey,
 			});
 
@@ -26,9 +26,9 @@ describe("IdentityService", () => {
 		});
 	});
 
-	describe("#getKeyPair", () => {
+	describe("#keyPair", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.getKeyPair({
+			const result: any = await subject.keyPair({
 				passphrase: identity.passphrase,
 			});
 

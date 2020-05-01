@@ -13,9 +13,9 @@ beforeEach(
 );
 
 describe("TransactionService", () => {
-	describe("#createTransfer", () => {
+	describe("#transfer", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createTransfer({
+			const result: any = await subject.transfer({
 				sign: {
 					passphrase: identity.passphrase,
 				},
@@ -29,9 +29,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createSecondSignature", () => {
+	describe("#secondSignature", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createSecondSignature({
+			const result: any = await subject.secondSignature({
 				sign: {
 					passphrase: identity.passphrase,
 				},
@@ -44,9 +44,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createDelegateRegistration", () => {
+	describe("#delegateRegistration", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createDelegateRegistration({
+			const result: any = await subject.delegateRegistration({
 				sign: {
 					passphrase: identity.passphrase,
 				},
@@ -59,9 +59,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createVote", () => {
+	describe("#vote", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createVote({
+			const result: any = await subject.vote({
 				sign: {
 					passphrase: identity.passphrase,
 				},
@@ -74,9 +74,9 @@ describe("TransactionService", () => {
 		});
 	});
 
-	describe("#createMultiSignature", () => {
+	describe("#multiSignature", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createMultiSignature({
+			const result: any = await subject.multiSignature({
 				sign: { passphrase: identity.passphrase },
 				data: {
 					publicKeys: [

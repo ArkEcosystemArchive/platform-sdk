@@ -29,8 +29,8 @@ export async function createSignedTransaction(
 	sequence,
 ) {
 	const identityService: IdentityService = await IdentityService.construct({});
-	const publicKey: Buffer = Buffer.from(await identityService.getPublicKey({ passphrase }), "hex");
-	const privateKey: Buffer = Buffer.from(await identityService.getPrivateKey({ passphrase }), "hex");
+	const publicKey: Buffer = Buffer.from(await identityService.publicKey({ passphrase }), "hex");
+	const privateKey: Buffer = Buffer.from(await identityService.privateKey({ passphrase }), "hex");
 
 	let signature: Buffer;
 

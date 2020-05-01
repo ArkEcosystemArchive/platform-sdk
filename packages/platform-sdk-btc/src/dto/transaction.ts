@@ -2,51 +2,51 @@ import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	public getId(): string {
+	public id(): string {
 		return this.data.hash;
 	}
 
-	public getType(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getType");
+	public type(): number | undefined {
+		throw new Exceptions.NotImplemented(this.constructor.name, "type");
 	}
 
-	public getTypeGroup(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getTypeGroup");
+	public typeGroup(): number | undefined {
+		throw new Exceptions.NotImplemented(this.constructor.name, "typeGroup");
 	}
 
-	public getTimestamp(): number | undefined {
+	public timestamp(): number | undefined {
 		return this.data.time;
 	}
 
-	public getConfirmations(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getConfirmations");
+	public confirmations(): BigNumber {
+		throw new Exceptions.NotImplemented(this.constructor.name, "confirmations");
 	}
 
-	public getNonce(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getNonce");
+	public nonce(): string {
+		throw new Exceptions.NotImplemented(this.constructor.name, "nonce");
 	}
 
-	public getSender(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getSender");
+	public sender(): string {
+		throw new Exceptions.NotImplemented(this.constructor.name, "sender");
 	}
 
-	public getRecipient(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getRecipient");
+	public recipient(): string {
+		throw new Exceptions.NotImplemented(this.constructor.name, "recipient");
 	}
 
-	public getAmount(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getAmount");
+	public amount(): BigNumber {
+		throw new Exceptions.NotImplemented(this.constructor.name, "amount");
 	}
 
-	public getFee(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getFee");
+	public fee(): BigNumber {
+		throw new Exceptions.NotImplemented(this.constructor.name, "fee");
 	}
 
-	public getVendorField(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getVendorField");
+	public memo(): string | undefined {
+		throw new Exceptions.NotImplemented(this.constructor.name, "memo");
 	}
 
-	public getBlockId(): string {
+	public blockId(): string {
 		return this.data.block_height;
 	}
 }

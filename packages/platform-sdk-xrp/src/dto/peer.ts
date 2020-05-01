@@ -1,23 +1,23 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class PeerData extends DTO.AbstractPeerData implements Contracts.PeerData {
-	public getIp(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getIp");
+	public ip(): string {
+		throw new Exceptions.NotImplemented(this.constructor.name, "ip");
 	}
 
-	public getPort(): number {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPort");
+	public port(): number {
+		throw new Exceptions.NotImplemented(this.constructor.name, "port");
 	}
 
-	public getVersion(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getVersion");
+	public version(): string {
+		throw new Exceptions.NotImplemented(this.constructor.name, "version");
 	}
 
-	public getHeight(): number {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getHeight");
+	public height(): number {
+		throw new Exceptions.NotImplemented(this.constructor.name, "height");
 	}
 
-	public getLatency(): number {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getLatency");
+	public latency(): number {
+		throw new Exceptions.NotImplemented(this.constructor.name, "latency");
 	}
 }

@@ -3,23 +3,23 @@ import { KeyValuePair } from "../contracts/types";
 export abstract class AbstractPeerData {
 	public constructor(protected readonly data: KeyValuePair) {}
 
-	abstract getIp(): string;
+	abstract ip(): string;
 
-	abstract getPort(): number;
+	abstract port(): number;
 
-	abstract getVersion(): string;
+	abstract version(): string;
 
-	abstract getHeight(): number;
+	abstract height(): number;
 
-	abstract getLatency(): number;
+	abstract latency(): number;
 
 	public toObject(): KeyValuePair {
 		return {
-			ip: this.getIp(),
-			port: this.getPort(),
-			version: this.getVersion(),
-			height: this.getHeight(),
-			latency: this.getLatency(),
+			ip: this.ip(),
+			port: this.port(),
+			version: this.version(),
+			height: this.height(),
+			latency: this.latency(),
 		};
 	}
 

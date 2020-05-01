@@ -11,13 +11,13 @@ beforeEach(async () => (subject = await TransactionService.construct({ peer: "ht
 beforeAll(() => nock.disableNetConnect());
 
 describe("TransactionService", function () {
-	describe("#createTransfer", () => {
+	describe("#transfer", () => {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
 				.post("/wallet/createtransaction")
-				.reply(200, require(`${__dirname}/../__fixtures__/crypto/createTransfer.json`));
+				.reply(200, require(`${__dirname}/../__fixtures__/crypto/transfer.json`));
 
-			const result = await subject.createTransfer({
+			const result = await subject.transfer({
 				sign: {
 					passphrase: testWallet.privateKey,
 				},

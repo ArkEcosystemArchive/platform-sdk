@@ -1,19 +1,19 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 
 export class DelegateData extends DTO.AbstractDelegateData implements Contracts.DelegateData {
-	public getAddress(): string {
+	public address(): string {
 		return this.data.address;
 	}
 
-	public getPublicKey(): string {
+	public publicKey(): string {
 		return this.data.publicKey;
 	}
 
-	public getUsername(): string {
+	public username(): string {
 		return this.data.username;
 	}
 
-	public getRank(): number {
+	public rank(): number {
 		return this.data.rank || 0;
 	}
 }

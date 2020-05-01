@@ -13,7 +13,7 @@ export class TransactionService implements Contracts.TransactionService {
 		//
 	}
 
-	public async createTransfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {
+	public async transfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("transfer", input, ({ transaction, data }) => {
 			transaction.recipientId(data.to);
 
@@ -23,13 +23,13 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public async createSecondSignature(input: Contracts.SecondSignatureInput): Promise<Contracts.SignedTransaction> {
+	public async secondSignature(input: Contracts.SecondSignatureInput): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("secondSignature", input, ({ transaction, data }) =>
 			transaction.signatureAsset(data.passphrase),
 		);
 	}
 
-	public async createDelegateRegistration(
+	public async delegateRegistration(
 		input: Contracts.DelegateRegistrationInput,
 	): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("delegateRegistration", input, ({ transaction, data }) =>
@@ -37,11 +37,11 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 	}
 
-	public async createVote(input: Contracts.VoteInput): Promise<Contracts.SignedTransaction> {
+	public async vote(input: Contracts.VoteInput): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("vote", input, ({ transaction, data }) => transaction.votesAsset([data.vote]));
 	}
 
-	public async createMultiSignature(input: Contracts.MultiSignatureInput): Promise<Contracts.SignedTransaction> {
+	public async multiSignature(input: Contracts.MultiSignatureInput): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("multiSignature", input, ({ transaction, data }) => {
 			transaction.multiSignatureAsset({
 				publicKeys: data.publicKeys,
@@ -52,11 +52,11 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public async createIpfs(input: Contracts.IpfsInput): Promise<Contracts.SignedTransaction> {
+	public async ipfs(input: Contracts.IpfsInput): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("ipfs", input, ({ transaction, data }) => transaction.ipfsAsset(data.hash));
 	}
 
-	public async createMultiPayment(input: Contracts.MultiPaymentInput): Promise<Contracts.SignedTransaction> {
+	public async multiPayment(input: Contracts.MultiPaymentInput): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("multiPayment", input, ({ transaction, data }) => {
 			for (const payment of data.payments) {
 				transaction.addPayment(payment.to, payment.amount);
@@ -64,13 +64,13 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public async createDelegateResignation(
+	public async delegateResignation(
 		input: Contracts.DelegateResignationInput,
 	): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("delegateResignation", input);
 	}
 
-	public async createHtlcLock(input: Contracts.HtlcLockInput): Promise<Contracts.SignedTransaction> {
+	public async htlcLock(input: Contracts.HtlcLockInput): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("htlcLock", input, ({ transaction, data }) => {
 			transaction.amount(data.amount);
 
@@ -83,7 +83,7 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public async createHtlcClaim(input: Contracts.HtlcClaimInput): Promise<Contracts.SignedTransaction> {
+	public async htlcClaim(input: Contracts.HtlcClaimInput): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("htlcClaim", input, ({ transaction, data }) =>
 			transaction.htlcClaimAsset({
 				lockTransactionId: data.lockTransactionId,
@@ -92,7 +92,7 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 	}
 
-	public async createHtlcRefund(input: Contracts.HtlcRefundInput): Promise<Contracts.SignedTransaction> {
+	public async htlcRefund(input: Contracts.HtlcRefundInput): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("htlcRefund", input, ({ transaction, data }) =>
 			transaction.htlcRefundAsset({
 				lockTransactionId: data.lockTransactionId,

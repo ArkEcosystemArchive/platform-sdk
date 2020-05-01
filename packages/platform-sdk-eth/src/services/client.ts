@@ -20,13 +20,13 @@ export class ClientService implements Contracts.ClientService {
 		//
 	}
 
-	public async getTransaction(id: string): Promise<Contracts.TransactionData> {
+	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		const result = await this.#connection.eth.getTransaction(id);
 
 		return new TransactionData(result);
 	}
 
-	public async getTransactions(
+	public async transactions(
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
 		const endBlock: number = await this.#connection.eth.getBlockNumber();
@@ -58,16 +58,16 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchTransactions");
 	}
 
-	public async getWallet(id: string): Promise<Contracts.WalletData> {
+	public async wallet(id: string): Promise<Contracts.WalletData> {
 		const result = await this.#connection.eth.getBalance(id);
 
 		return new WalletData({ address: id, balance: result });
 	}
 
-	public async getWallets(
+	public async wallets(
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getWallets");
+		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
 	public async searchWallets(
@@ -76,47 +76,47 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchWallets");
 	}
 
-	public async getDelegate(id: string): Promise<Contracts.DelegateData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegate");
+	public async delegate(id: string): Promise<Contracts.DelegateData> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
 	}
 
-	public async getDelegates(
+	public async delegates(
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getDelegates");
+		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
-	public async getVotes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getVotes");
+	public async votes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async getVoters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getVoters");
+	public async voters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
-	public async getConfiguration(): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getConfiguration");
+	public async configuration(): Promise<Contracts.KeyValuePair> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "configuration");
 	}
 
-	public async getCryptoConfiguration(): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getCryptoConfiguration");
+	public async cryptoConfiguration(): Promise<Contracts.KeyValuePair> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "cryptoConfiguration");
 	}
 
-	public async getFeesByNode(days: number): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getFeesByNode");
+	public async feesByNode(days: number): Promise<Contracts.KeyValuePair> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "feesByNode");
 	}
 
-	public async getFeesByType(): Promise<Contracts.KeyValuePair> {
+	public async feesByType(): Promise<Contracts.KeyValuePair> {
 		const result = await this.#connection.eth.getGasPrice();
 
 		return { transfer: result };
 	}
 
-	public async getSyncStatus(): Promise<boolean> {
+	public async syncing(): Promise<boolean> {
 		return (await this.#connection.eth.isSyncing()) === false;
 	}
 
-	public async postTransactions(transactions: object[]): Promise<void> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "postTransactions");
+	public async broadcast(transactions: object[]): Promise<void> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
 	}
 }

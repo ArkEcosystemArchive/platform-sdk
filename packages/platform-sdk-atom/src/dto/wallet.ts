@@ -2,19 +2,19 @@ import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
-	public getAddress(): string {
+	public address(): string {
 		return this.data.address;
 	}
 
-	public getPublicKey(): string | undefined {
+	public publicKey(): string | undefined {
 		return this.data.publicKey;
 	}
 
-	public getBalance(): BigNumber {
+	public balance(): BigNumber {
 		return BigNumber.make(this.data.balance);
 	}
 
-	public getNonce(): BigNumber {
+	public nonce(): BigNumber {
 		return BigNumber.ZERO;
 	}
 }

@@ -7,9 +7,9 @@ let subject: TransactionService;
 beforeEach(async () => (subject = await TransactionService.construct({ network: "devnet" })));
 
 describe("TransactionService", () => {
-	describe("#createTransfer", () => {
+	describe("#transfer", () => {
 		it("should verify", async () => {
-			const result: any = await subject.createTransfer({
+			const result: any = await subject.transfer({
 				sign: {
 					passphrase: "this is a top secret passphrase",
 				},

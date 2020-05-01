@@ -12,7 +12,7 @@ export class IdentityService implements Contracts.IdentityService {
 		//
 	}
 
-	public async getAddress(opts: Contracts.KeyValuePair): Promise<string> {
+	public async address(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			return Identities.Address.fromPassphrase(opts.passphrase);
 		}
@@ -26,7 +26,7 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		if (opts.privateKey) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getAddress#privateKey");
+			throw new Exceptions.NotSupported(this.constructor.name, "address#privateKey");
 		}
 
 		if (opts.wif) {
@@ -36,7 +36,7 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public async getPublicKey(opts: Contracts.KeyValuePair): Promise<string> {
+	public async publicKey(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			return Identities.PublicKey.fromPassphrase(opts.passphrase);
 		}
@@ -52,7 +52,7 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public async getPrivateKey(opts: Contracts.KeyValuePair): Promise<string> {
+	public async privateKey(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			return Identities.PrivateKey.fromPassphrase(opts.passphrase);
 		}
@@ -64,7 +64,7 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public async getWIF(opts: Contracts.KeyValuePair): Promise<string> {
+	public async wif(opts: Contracts.KeyValuePair): Promise<string> {
 		if (opts.passphrase) {
 			return Identities.WIF.fromPassphrase(opts.passphrase);
 		}
@@ -72,7 +72,7 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Error("No input provided.");
 	}
 
-	public async getKeyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
+	public async keyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
 		if (opts.passphrase) {
 			const keyPair = Identities.Keys.fromPassphrase(opts.passphrase);
 
@@ -80,11 +80,11 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		if (opts.publicKey) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getKeyPair#publicKey");
+			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#publicKey");
 		}
 
 		if (opts.privateKey) {
-			throw new Exceptions.NotSupported(this.constructor.name, "getKeyPair#privateKey");
+			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#privateKey");
 		}
 
 		if (opts.wif) {
