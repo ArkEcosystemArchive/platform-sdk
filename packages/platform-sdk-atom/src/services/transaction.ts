@@ -1,6 +1,6 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
-import { createSignedTransaction, getNewWalletFromSeed, signWithPrivateKey, verifySignature } from "../cosmos";
+import { createSignedTransaction } from "../cosmos";
 
 export class TransactionService implements Contracts.TransactionService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
@@ -12,8 +12,6 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public async createTransfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {
-		const privateKey = Buffer.from(getNewWalletFromSeed(input.sign.passphrase, "cosmos").privateKey, "hex");
-
 		return createSignedTransaction(
 			{ gas: 1000, gasPrices: [{ amount: "10", denom: "uatom" }], memo: `Hi from Lunie` },
 			[
@@ -35,7 +33,7 @@ export class TransactionService implements Contracts.TransactionService {
 					},
 				},
 			],
-			privateKey,
+			input.sign.passphrase,
 			"test-chain",
 			0,
 			12,
