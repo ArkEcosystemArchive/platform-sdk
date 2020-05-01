@@ -125,9 +125,6 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
-    "@lunie/cosmos-api": ^0.2.5
-    "@lunie/cosmos-js": ^0.0.22
-    "@lunie/cosmos-keys": ^0.2.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -137,8 +134,11 @@ __metadata:
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^2.30.0
     "@typescript-eslint/parser": ^2.30.0
+    bcrypto: ^5.1.0
+    bech32: ^1.1.4
+    bip32: ^2.0.5
+    bip39: ^3.0.2
     codecov: ^3.6.5
-    cosmos-lib: ^1.1.0
     cross-env: ^7.0.2
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
@@ -922,7 +922,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.5.4":
+"@babel/runtime@npm:^7.0.0":
   version: 7.9.2
   resolution: "@babel/runtime@npm:7.9.2"
   dependencies:
@@ -2295,38 +2295,6 @@ __metadata:
     ajv: 6.8.1
     ajv-merge-patch: 4.1.0
   checksum: 2/f9e30659bf95cbe328ac8ae5c2e311fdcb5c142179019f4224526afb3e515d847de9c16455116d42f16cde6a6b1512b300de26b121caf79837ea2cbd48592407
-  languageName: node
-  linkType: hard
-
-"@lunie/cosmos-api@npm:^0.2.5":
-  version: 0.2.5
-  resolution: "@lunie/cosmos-api@npm:0.2.5"
-  dependencies:
-    "@babel/runtime": ^7.5.4
-    axios: ^0.19.0
-  checksum: 2/32b628823e3cf645ebadf920d4b8c65e5e76914e612e572ef311f3d41ad1b53db8d4834648b15d774e2cfd882cc990818679b33ae3acd127893cc58e8767df72
-  languageName: node
-  linkType: hard
-
-"@lunie/cosmos-js@npm:^0.0.22":
-  version: 0.0.22
-  resolution: "@lunie/cosmos-js@npm:0.0.22"
-  dependencies:
-    axios: ^0.19.0
-  checksum: 2/7092e8fe3f465eff0c330bfe8bf605ca1ee38ea710216de438d3789da562e4f3d1dd5c4778cd0dbee8267302383f9fa64a5dedd4a89976fc9b96e1c015c629e9
-  languageName: node
-  linkType: hard
-
-"@lunie/cosmos-keys@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "@lunie/cosmos-keys@npm:0.2.1"
-  dependencies:
-    bech32: ^1.1.3
-    bip32: ^2.0.4
-    bip39: ^3.0.2
-    crypto-js: ^3.1.9-1
-    secp256k1: ^3.6.2
-  checksum: 2/5308fa64b620f036d9308592937aa2f6a270756c4ed4c34c2f44be67aa7437969337aa9ea485c8324ca67e6fa4f421e55ba47d08ba1135fcb90b54b34be0953b
   languageName: node
   linkType: hard
 
@@ -3967,7 +3935,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bech32@npm:^1.1.2, bech32@npm:^1.1.3":
+"bcrypto@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "bcrypto@npm:5.1.0"
+  dependencies:
+    bufio: ~1.0.6
+    loady: ~0.0.1
+    node-gyp: latest
+  checksum: 2/b357a01c4a6f15fcc4492f075fa85640b375b41faf049d28342b979380d539d501c5103ac9127563219049cc917f70b180bb6c4f250f96bc9627268c41d5bc9f
+  languageName: node
+  linkType: hard
+
+"bech32@npm:^1.1.2, bech32@npm:^1.1.3, bech32@npm:^1.1.4":
   version: 1.1.4
   resolution: "bech32@npm:1.1.4"
   checksum: 2/2a3391395cc0f1a1bef76afc5fbb10bfaf26a21094c4eee109080185b3fc1fb0e8eca7d9145dbe92b6bac300b0b5eed16b1570a4ca665b40e1def5bacea50c4b
@@ -4029,7 +4008,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bip32@npm:^2.0.3, bip32@npm:^2.0.4":
+"bip32@npm:^2.0.3, bip32@npm:^2.0.4, bip32@npm:^2.0.5":
   version: 2.0.5
   resolution: "bip32@npm:2.0.5"
   dependencies:
@@ -5313,19 +5292,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmos-lib@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "cosmos-lib@npm:1.1.0"
-  dependencies:
-    bech32: ^1.1.3
-    bip32: ^2.0.3
-    bip39: ^3.0.2
-    ripemd160: ^2.0.2
-    secp256k1: ^3.7.1
-  checksum: 2/7bc0de7e95e2f949dc02b9aab15ec74fa2a39cf92562d377f4feb06bf5d186956c1d78305279c5c87b2e4d3d26227b7e72d14c82c77fe1ac50197794bb6814eb
-  languageName: node
-  linkType: hard
-
 "create-ecdh@npm:^4.0.0":
   version: 4.0.3
   resolution: "create-ecdh@npm:4.0.3"
@@ -5448,13 +5414,6 @@ __metadata:
   version: 3.2.0
   resolution: "crypto-js@npm:3.2.0"
   checksum: 2/813231913c6de40804feae2b0995745e557eebbcea46420fe1ceca1e053e5ca026117ad83a43c46b9cf71f193c67e73ffe7a23dad138e4844cc979b73a7d30de
-  languageName: node
-  linkType: hard
-
-"crypto-js@npm:^3.1.9-1":
-  version: 3.3.0
-  resolution: "crypto-js@npm:3.3.0"
-  checksum: 2/7cf8de489f9f25084a3b22cc6e944e2e11e03b6374777a7a554739ee27e3b35d5dfdac490e0a66bc191c9ecbbea13ad716f59345657335b39d95f9bc19c40ac5
   languageName: node
   linkType: hard
 
@@ -12909,7 +12868,7 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"ripemd160@npm:^2.0.0, ripemd160@npm:^2.0.1, ripemd160@npm:^2.0.2":
+"ripemd160@npm:^2.0.0, ripemd160@npm:^2.0.1":
   version: 2.0.2
   resolution: "ripemd160@npm:2.0.2"
   dependencies:
@@ -13155,7 +13114,7 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"secp256k1@npm:^3.0.1, secp256k1@npm:^3.6.2, secp256k1@npm:^3.7.1":
+"secp256k1@npm:^3.0.1":
   version: 3.8.0
   resolution: "secp256k1@npm:3.8.0"
   dependencies:

@@ -1,5 +1,6 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { getNewWalletFromSeed } from "@lunie/cosmos-keys";
+
+import { getNewWalletFromSeed } from "../cosmos";
 
 export class IdentityService implements Contracts.IdentityService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
