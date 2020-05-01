@@ -24,7 +24,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(
-		query?: Contracts.KeyValuePair,
+		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
 		const response = await this.get("txs", query);
 		console.log(JSON.stringify(response));
@@ -39,7 +39,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallets(
-		query?: Contracts.KeyValuePair,
+		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}

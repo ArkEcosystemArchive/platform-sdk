@@ -8,10 +8,10 @@ export interface CollectionResponse<T> {
 
 export interface ClientService {
 	transaction(id: string): Promise<TransactionData>;
-	transactions(query?: KeyValuePair): Promise<CollectionResponse<TransactionData>>;
+	transactions(query: KeyValuePair): Promise<CollectionResponse<TransactionData>>;
 
 	wallet(id: string): Promise<WalletData>;
-	wallets(query?: KeyValuePair): Promise<CollectionResponse<WalletData>>;
+	wallets(query: KeyValuePair): Promise<CollectionResponse<WalletData>>;
 
 	delegate(id: string): Promise<DelegateData>;
 	delegates(query?: KeyValuePair): Promise<CollectionResponse<DelegateData>>;

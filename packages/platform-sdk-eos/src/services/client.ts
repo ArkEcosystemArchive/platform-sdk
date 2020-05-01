@@ -36,7 +36,7 @@ export class ClientService implements Contracts.ClientService {
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-table-information
 	public async transactions(
-		query?: Contracts.KeyValuePair,
+		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
 	}
@@ -46,7 +46,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallets(
-		query?: Contracts.KeyValuePair,
+		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
