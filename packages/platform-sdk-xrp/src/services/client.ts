@@ -14,15 +14,13 @@ export class ClientService implements Contracts.ClientService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
 		const connection = new RippleAPI({ server: opts.peer });
 
-		if (opts.connect) {
-			await connection.connect();
-		}
+		await connection.connect();
 
 		return new ClientService(connection);
 	}
 
 	public async destruct() {
-		await this.#connection.connect();
+		await this.#connection.disconnect();
 	}
 
 	public async getTransaction(id: string): Promise<Contracts.TransactionData> {
