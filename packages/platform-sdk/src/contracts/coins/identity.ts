@@ -30,7 +30,10 @@ export interface AddressInput {
 
 export interface PublicKeyInput {
 	passphrase?: string;
-	multiSignature?: string;
+	multiSignature?: {
+		min: number,
+		publicKeys: string[],
+	};
 	wif?: string;
 }
 

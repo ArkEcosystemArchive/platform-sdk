@@ -11,7 +11,9 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		return Crypto.Message.sign(input.message, input.passphrase);
+		const { message, publicKey, signature } = Crypto.Message.sign(input.message, input.passphrase);
+
+		return { message, signer: publicKey, signature };
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {

@@ -16,7 +16,7 @@ export class MessageService implements Contracts.MessageService {
 
 		return {
 			message: input.message,
-			signer: Buffer.from(publicKey, "hex"),
+			signer: Buffer.from(publicKey, "hex").toString("hex"),
 			signature: signWithPrivateKey(input.message, Buffer.from(privateKey, "hex")).toString("hex"),
 		};
 	}
