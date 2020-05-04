@@ -1,6 +1,8 @@
 import { KeyValuePair } from "../types";
 
 export interface IdentityService {
+	destruct(): Promise<void>;
+
 	address(opts: KeyValuePair): Promise<string>;
 
 	publicKey(opts: KeyValuePair): Promise<string>;
