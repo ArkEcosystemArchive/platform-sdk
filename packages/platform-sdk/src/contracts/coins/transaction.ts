@@ -2,6 +2,7 @@
 export type SignedTransaction = any;
 
 export interface TransactionService {
+	destruct(): Promise<void>;
 	transfer(data: TransferInput): Promise<SignedTransaction>;
 	secondSignature(data: SecondSignatureInput): Promise<SignedTransaction>;
 	delegateRegistration(data: DelegateRegistrationInput): Promise<SignedTransaction>;

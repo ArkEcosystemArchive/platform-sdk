@@ -1,4 +1,6 @@
 export interface MessageService {
+	destruct(): Promise<void>;
+
 	sign(input: MessageInput): Promise<SignedMessage>;
 
 	verify(input: SignedMessage): Promise<boolean>;
