@@ -13,8 +13,11 @@ export class TransactionService implements Contracts.TransactionService {
 		//
 	}
 
-	public async transfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("transfer", input, ({ transaction, data }) => {
+	public async transfer(
+		input: Contracts.TransferInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("transfer", input, options, ({ transaction, data }) => {
 			transaction.recipientId(data.to);
 
 			if (data.memo) {
@@ -23,26 +26,38 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public async secondSignature(input: Contracts.SecondSignatureInput): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("secondSignature", input, ({ transaction, data }) =>
+	public async secondSignature(
+		input: Contracts.SecondSignatureInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("secondSignature", input, options, ({ transaction, data }) =>
 			transaction.signatureAsset(data.passphrase),
 		);
 	}
 
 	public async delegateRegistration(
 		input: Contracts.DelegateRegistrationInput,
+		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("delegateRegistration", input, ({ transaction, data }) =>
+		return this.createFromData("delegateRegistration", input, options, ({ transaction, data }) =>
 			transaction.usernameAsset(data.username),
 		);
 	}
 
-	public async vote(input: Contracts.VoteInput): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("vote", input, ({ transaction, data }) => transaction.votesAsset([data.vote]));
+	public async vote(
+		input: Contracts.VoteInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("vote", input, options, ({ transaction, data }) =>
+			transaction.votesAsset([data.vote]),
+		);
 	}
 
-	public async multiSignature(input: Contracts.MultiSignatureInput): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("multiSignature", input, ({ transaction, data }) => {
+	public async multiSignature(
+		input: Contracts.MultiSignatureInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("multiSignature", input, options, ({ transaction, data }) => {
 			transaction.multiSignatureAsset({
 				publicKeys: data.publicKeys,
 				min: data.min,
@@ -52,12 +67,18 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public async ipfs(input: Contracts.IpfsInput): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("ipfs", input, ({ transaction, data }) => transaction.ipfsAsset(data.hash));
+	public async ipfs(
+		input: Contracts.IpfsInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("ipfs", input, options, ({ transaction, data }) => transaction.ipfsAsset(data.hash));
 	}
 
-	public async multiPayment(input: Contracts.MultiPaymentInput): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("multiPayment", input, ({ transaction, data }) => {
+	public async multiPayment(
+		input: Contracts.MultiPaymentInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("multiPayment", input, options, ({ transaction, data }) => {
 			for (const payment of data.payments) {
 				transaction.addPayment(payment.to, payment.amount);
 			}
@@ -66,12 +87,16 @@ export class TransactionService implements Contracts.TransactionService {
 
 	public async delegateResignation(
 		input: Contracts.DelegateResignationInput,
+		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("delegateResignation", input);
+		return this.createFromData("delegateResignation", input, options);
 	}
 
-	public async htlcLock(input: Contracts.HtlcLockInput): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("htlcLock", input, ({ transaction, data }) => {
+	public async htlcLock(
+		input: Contracts.HtlcLockInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("htlcLock", input, options, ({ transaction, data }) => {
 			transaction.amount(data.amount);
 
 			transaction.recipientId(data.to);
@@ -83,8 +108,11 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public async htlcClaim(input: Contracts.HtlcClaimInput): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("htlcClaim", input, ({ transaction, data }) =>
+	public async htlcClaim(
+		input: Contracts.HtlcClaimInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("htlcClaim", input, options, ({ transaction, data }) =>
 			transaction.htlcClaimAsset({
 				lockTransactionId: data.lockTransactionId,
 				unlockSecret: data.unlockSecret,
@@ -92,8 +120,11 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 	}
 
-	public async htlcRefund(input: Contracts.HtlcRefundInput): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("htlcRefund", input, ({ transaction, data }) =>
+	public async htlcRefund(
+		input: Contracts.HtlcRefundInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("htlcRefund", input, options, ({ transaction, data }) =>
 			transaction.htlcRefundAsset({
 				lockTransactionId: data.lockTransactionId,
 			}),
@@ -103,6 +134,7 @@ export class TransactionService implements Contracts.TransactionService {
 	private async createFromData(
 		type: string,
 		input: Contracts.KeyValuePair,
+		options?: Contracts.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransaction> {
 		const transaction = Transactions.BuilderFactory[type]().version(2).nonce(input.nonce);
@@ -117,6 +149,17 @@ export class TransactionService implements Contracts.TransactionService {
 
 		if (callback) {
 			callback({ transaction, data: input.data });
+		}
+
+		if (options && options.unsignedJson === true) {
+			return transaction.toJson();
+		}
+
+		if (options && options.unsignedBytes === true) {
+			return Transactions.Serializer.getBytes(transaction, {
+				excludeSignature: true,
+				excludeSecondSignature: true,
+			}).toString("hex");
 		}
 
 		if (Array.isArray(input.sign.passphrases)) {

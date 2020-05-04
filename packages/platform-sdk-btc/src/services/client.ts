@@ -38,9 +38,7 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData(response);
 	}
 
-	public async wallets(
-		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async wallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 

@@ -7,6 +7,8 @@ export interface CollectionResponse<T> {
 }
 
 export interface ClientService {
+	destruct(): Promise<void>;
+
 	transaction(id: string): Promise<TransactionData>;
 	transactions(query: KeyValuePair): Promise<CollectionResponse<TransactionData>>;
 

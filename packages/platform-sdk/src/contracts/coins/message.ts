@@ -1,11 +1,18 @@
 export interface MessageService {
-	sign(input): Promise<SignedMessage>;
+	destruct(): Promise<void>;
 
-	verify(input): Promise<boolean>;
+	sign(input: MessageInput): Promise<SignedMessage>;
+
+	verify(input: SignedMessage): Promise<boolean>;
 }
 
 export interface SignedMessage {
 	message: string;
-	publicKey: string;
+	signer: string;
 	signature: string;
+}
+
+export interface MessageInput {
+	message: string;
+	passphrase: string;
 }

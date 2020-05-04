@@ -8,8 +8,16 @@ export class LinkService implements Contracts.LinkService {
 
 	readonly #baseUrl: string;
 
-	public constructor(mode: string) {
+	private constructor(mode: string) {
 		this.#baseUrl = this.#urls[mode];
+	}
+
+	public static async construct(opts: Contracts.KeyValuePair): Promise<LinkService> {
+		return new LinkService(opts.mode);
+	}
+
+	public async destruct(): Promise<void> {
+		//
 	}
 
 	public block(id: string): string {

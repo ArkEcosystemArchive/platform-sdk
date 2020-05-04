@@ -11,24 +11,17 @@ export class MessageService implements Contracts.MessageService {
 		//
 	}
 
-	public async sign(input): Promise<Contracts.SignedMessage> {
+	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+		const { cosmosAddress, publicKey, privateKey } = getNewWalletFromSeed(input.passphrase);
+
 		return {
 			message: input.message,
-			publicKey: this.identifier(input.passphrase, "publicKey").toString("hex"),
-			signature: signWithPrivateKey(input.message, this.identifier(input.passphrase, "privateKey")).toString(
-				"hex",
-			),
-			// signature: cosmos.crypto
-			// 	.sign(Buffer.from(input.message, "utf8"), this.identifier(input.passphrase, "privateKey"))
-			// 	.toString("hex"),
+			signer: Buffer.from(publicKey, "hex").toString("hex"),
+			signature: signWithPrivateKey(input.message, Buffer.from(privateKey, "hex")).toString("hex"),
 		};
 	}
 
-	public async verify(input): Promise<boolean> {
-		return verifySignature(input.message, Buffer.from(input.signature, "hex"), Buffer.from(input.publicKey, "hex"));
-	}
-
-	private identifier(passphrase: string, key: string): Buffer {
-		return Buffer.from(getNewWalletFromSeed(passphrase)[key], "hex");
+	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
+		return verifySignature(input.message, Buffer.from(input.signature, "hex"), Buffer.from(input.signer, "hex"));
 	}
 }

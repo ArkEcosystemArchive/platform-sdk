@@ -1,6 +1,8 @@
 import { KeyValuePair } from "../types";
 
 export interface IdentityService {
+	destruct(): Promise<void>;
+
 	address(opts: KeyValuePair): Promise<string>;
 
 	publicKey(opts: KeyValuePair): Promise<string>;
@@ -15,4 +17,40 @@ export interface IdentityService {
 export interface KeyPair {
 	publicKey: string;
 	privateKey?: string;
+}
+
+export interface AddressInput {
+	passphrase?: string;
+	multiSignature?: {
+		min: number;
+		publicKeys: string[];
+	};
+	publicKey?: string;
+	privateKey?: string;
+	wif?: string;
+}
+
+export interface PublicKeyInput {
+	passphrase?: string;
+	multiSignature?: {
+		min: number;
+		publicKeys: string[];
+	};
+	wif?: string;
+}
+
+export interface PrivateKeyInput {
+	passphrase?: string;
+	wif?: string;
+}
+
+export interface WifInput {
+	passphrase?: string;
+}
+
+export interface KeyPairInput {
+	passphrase?: string;
+	publicKey?: string;
+	privateKey?: string;
+	wif?: string;
 }

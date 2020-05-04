@@ -16,16 +16,16 @@ export class IdentityService implements Contracts.IdentityService {
 		//
 	}
 
-	public async address(opts: Contracts.KeyValuePair): Promise<string> {
-		if (opts.passphrase) {
+	public async address(input: Contracts.AddressInput): Promise<string> {
+		if (input.passphrase) {
 			throw new Exceptions.NotSupported(this.constructor.name, "address#passphrase");
 		}
 
-		if (opts.multiSignature) {
+		if (input.multiSignature) {
 			const payment = this.p2sh({
 				redeem: payments.p2ms({
-					m: opts.multiSignature.min,
-					pubkeys: opts.multiSignature.publicKeys.map((hex) => Buffer.from(hex, "hex")),
+					m: input.multiSignature.min,
+					pubkeys: input.multiSignature.publicKeys.map((hex) => Buffer.from(hex, "hex")),
 				}),
 			});
 
@@ -33,11 +33,11 @@ export class IdentityService implements Contracts.IdentityService {
 				return payment.address;
 			}
 
-			throw new Error(`Failed to derive address for [${opts.publicKey}].`);
+			throw new Error(`Failed to derive address for [${input.publicKey}].`);
 		}
 
-		if (opts.publicKey) {
-			const keyPair = ECPair.fromPublicKey(Buffer.from(opts.publicKey, "hex"));
+		if (input.publicKey) {
+			const keyPair = ECPair.fromPublicKey(Buffer.from(input.publicKey, "hex"));
 			const payment = this.p2pkh({
 				pubkey: keyPair.publicKey,
 			});
@@ -46,96 +46,96 @@ export class IdentityService implements Contracts.IdentityService {
 				return payment.address;
 			}
 
-			throw new Error(`Failed to derive address for [${opts.publicKey}].`);
+			throw new Error(`Failed to derive address for [${input.publicKey}].`);
 		}
 
-		if (opts.privateKey) {
-			const keyPair = ECPair.fromPrivateKey(Buffer.from(opts.privateKey, "hex"));
+		if (input.privateKey) {
+			const keyPair = ECPair.fromPrivateKey(Buffer.from(input.privateKey, "hex"));
 			const payment = this.p2pkh({ pubkey: keyPair.publicKey });
 
 			if (payment.address !== undefined) {
 				return payment.address;
 			}
 
-			throw new Error(`Failed to derive address for [${opts.privateKey}].`);
+			throw new Error(`Failed to derive address for [${input.privateKey}].`);
 		}
 
-		if (opts.wif) {
-			const keyPair = ECPair.fromWIF(opts.wif);
+		if (input.wif) {
+			const keyPair = ECPair.fromWIF(input.wif);
 			const payment = this.p2pkh({ pubkey: keyPair.publicKey });
 
 			if (payment.address !== undefined) {
 				return payment.address;
 			}
 
-			throw new Error(`Failed to derive address for [${opts.wif}].`);
+			throw new Error(`Failed to derive address for [${input.wif}].`);
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	public async publicKey(opts: Contracts.KeyValuePair): Promise<string> {
-		if (opts.passphrase) {
+	public async publicKey(input: Contracts.PublicKeyInput): Promise<string> {
+		if (input.passphrase) {
 			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#passphrase");
 		}
 
-		if (opts.multiSignature) {
+		if (input.multiSignature) {
 			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#multiSignature");
 		}
 
-		if (opts.wif) {
-			return ECPair.fromWIF(opts.wif).publicKey.toString("hex");
+		if (input.wif) {
+			return ECPair.fromWIF(input.wif).publicKey.toString("hex");
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	public async privateKey(opts: Contracts.KeyValuePair): Promise<string> {
-		if (opts.passphrase) {
+	public async privateKey(input: Contracts.PrivateKeyInput): Promise<string> {
+		if (input.passphrase) {
 			throw new Exceptions.NotSupported(this.constructor.name, "privateKey#passphrase");
 		}
 
-		if (opts.wif) {
-			const privateKey: Buffer | undefined = ECPair.fromWIF(opts.wif).privateKey;
+		if (input.wif) {
+			const privateKey: Buffer | undefined = ECPair.fromWIF(input.wif).privateKey;
 
 			if (privateKey !== undefined) {
 				return privateKey.toString("hex");
 			}
 
-			throw new Error(`Failed to derive private key for [${opts.wif}].`);
+			throw new Error(`Failed to derive private key for [${input.wif}].`);
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	public async wif(opts: Contracts.KeyValuePair): Promise<string> {
-		if (opts.passphrase) {
+	public async wif(input: Contracts.WifInput): Promise<string> {
+		if (input.passphrase) {
 			throw new Exceptions.NotSupported(this.constructor.name, "wif#passphrase");
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	public async keyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
+	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
 		const normalizeKeyPair = (keyPair): Contracts.KeyPair => ({
 			publicKey: keyPair.publicKey.toString("hex"),
 			privateKey: keyPair.privateKey?.toString("hex"),
 		});
 
-		if (opts.passphrase) {
+		if (input.passphrase) {
 			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#passphrase");
 		}
 
-		if (opts.publicKey) {
+		if (input.publicKey) {
 			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#publicKey");
 		}
 
-		if (opts.privateKey) {
-			return normalizeKeyPair(ECPair.fromPrivateKey(Buffer.from(opts.privateKey, "hex")));
+		if (input.privateKey) {
+			return normalizeKeyPair(ECPair.fromPrivateKey(Buffer.from(input.privateKey, "hex")));
 		}
 
-		if (opts.wif) {
-			return normalizeKeyPair(ECPair.fromWIF(opts.wif));
+		if (input.wif) {
+			return normalizeKeyPair(ECPair.fromWIF(input.wif));
 		}
 
 		throw new Error("No input provided.");

@@ -21,6 +21,7 @@
 	"dependencies": {
 		"@arkecosystem/client": "^1.1",
 		"@arkecosystem/crypto": "^2.6.34",
+		"@arkecosystem/ledger-transport": "^1.0.5",
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/utils": "^1.1.8",
 		"is-url-superb": "^3.0.0",
