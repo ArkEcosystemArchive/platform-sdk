@@ -70,9 +70,7 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "multiPayment");
 	}
 
-	public async delegateResignation(
-		input: Contracts.DelegateResignationInput,
-	): Promise<Contracts.SignedTransaction> {
+	public async delegateResignation(input: Contracts.DelegateResignationInput): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegateResignation");
 	}
 

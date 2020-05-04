@@ -29,7 +29,7 @@ describe("ClientService", function () {
 				.get("/api/transactions?address=6566229458323231555L")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
 
-			const result = await subject.transactions({ address: '6566229458323231555L' });
+			const result = await subject.transactions({ address: "6566229458323231555L" });
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
@@ -54,7 +54,7 @@ describe("ClientService", function () {
 				.get("/api/accounts?address=6566229458323231555L")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
 
-			const result = await subject.wallets({ address: '6566229458323231555L' });
+			const result = await subject.wallets({ address: "6566229458323231555L" });
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(WalletData);
