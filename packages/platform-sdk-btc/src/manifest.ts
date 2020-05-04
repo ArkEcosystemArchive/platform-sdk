@@ -3,9 +3,9 @@ export const manifest = {
 	ticker: "BTC",
 	behaviours: {
 		Client: {
-			transaction: true,
+			transaction: false,
 			transactions: false,
-			wallet: true,
+			wallet: false,
 			wallets: false,
 			delegate: false,
 			delegates: false,

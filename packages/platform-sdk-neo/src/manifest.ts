@@ -50,9 +50,9 @@ export const manifest = {
 			signMessage: false,
 		},
 		Link: {
-			block: false,
-			transaction: false,
-			wallet: false,
+			block: true,
+			transaction: true,
+			wallet: true,
 		},
 		Message: {
 			sign: false,
