@@ -10,7 +10,7 @@ export class MessageService implements Contracts.MessageService {
 		//
 	}
 
-	public async sign(input): Promise<Contracts.SignedMessage> {
+	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		const { publicKey, privateKey } = deriveKeypair(input.passphrase);
 
 		return {
@@ -20,7 +20,7 @@ export class MessageService implements Contracts.MessageService {
 		};
 	}
 
-	public async verify(input): Promise<boolean> {
+	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		return verify(Buffer.from(input.message, "utf8").toString("hex"), input.signature, input.publicKey);
 	}
 }

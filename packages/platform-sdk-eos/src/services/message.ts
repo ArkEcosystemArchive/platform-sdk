@@ -10,7 +10,7 @@ export class MessageService implements Contracts.MessageService {
 		//
 	}
 
-	public async sign(input): Promise<Contracts.SignedMessage> {
+	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		return {
 			message: input.message,
 			publicKey: ecc.privateToPublic(input.passphrase),
@@ -18,7 +18,7 @@ export class MessageService implements Contracts.MessageService {
 		};
 	}
 
-	public async verify(input): Promise<boolean> {
+	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		return ecc.verify(input.signature, input.message, input.publicKey);
 	}
 }

@@ -9,11 +9,11 @@ export class MessageService implements Contracts.MessageService {
 		//
 	}
 
-	public async sign(input): Promise<Contracts.SignedMessage> {
+	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "sign");
 	}
 
-	public async verify(input): Promise<boolean> {
+	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "verify");
 	}
 }
