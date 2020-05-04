@@ -5,14 +5,10 @@ import orderBy from "lodash.orderby";
 import semver from "semver";
 
 export class PeerService implements Contracts.PeerService {
-	private version: string | undefined;
-	private latency: number | undefined;
-	private orderBy: string[] = ["latency", "desc"];
+	private constructor (private readonly seeds: Contracts.Peer[]) { }
 
-	private constructor(private readonly seeds: Contracts.Peer[]) {}
-
-	public static async construct(opts: Contracts.KeyValuePair): Promise<PeerService> {
-		let { networkOrHost, defaultPort } = opts;
+	public static async construct(options: Contracts.KeyValuePair): Promise<PeerService> {
+		let { networkOrHost, defaultPort } = options;
 
 		if (!defaultPort) {
 			defaultPort = 4003;
@@ -70,37 +66,19 @@ export class PeerService implements Contracts.PeerService {
 		return this.seeds;
 	}
 
-	public withVersion(version: string): PeerService {
-		this.version = version;
-
-		return this;
-	}
-
-	public withLatency(latency: number): PeerService {
-		this.latency = latency;
-
-		return this;
-	}
-
-	public sortBy(key: string, direction = "desc"): PeerService {
-		this.orderBy = [key, direction];
-
-		return this;
-	}
-
-	public async findPeers(opts: any = {}): Promise<Contracts.PeerResponse[]> {
-		if (!opts.retry) {
-			opts.retry = { limit: 0 };
+	public async search(options: Contracts.KeyValuePair = {}): Promise<Contracts.PeerResponse[]> {
+		if (!options.retry) {
+			options.retry = { limit: 0 };
 		}
 
-		if (!opts.timeout) {
-			opts.timeout = 3000;
+		if (!options.timeout) {
+			options.timeout = 3000;
 		}
 
 		const seed: Contracts.Peer = this.seeds[Math.floor(Math.random() * this.seeds.length)];
 
 		const body: any = await ky(`http://${seed.ip}:${seed.port}/api/v2/peers`, {
-			...opts,
+			...options,
 			...{
 				headers: {
 					"Content-Type": "application/json",
@@ -110,23 +88,25 @@ export class PeerService implements Contracts.PeerService {
 
 		let peers: Contracts.PeerResponse[] = body.data;
 
-		if (this.version !== undefined) {
-			// @ts-ignore
-			peers = peers.filter((peer: Contracts.PeerResponse) => semver.satisfies(peer.version, this.version));
+		if (options.filters && options.filters.version !== undefined) {
+			peers = peers.filter((peer: Contracts.PeerResponse) => semver.satisfies(peer.version, options.filters.version));
 		}
 
-		if (this.latency !== undefined) {
-			// @ts-ignore
-			peers = peers.filter((peer: Contracts.PeerResponse) => peer.latency <= this.latency);
+		if (options.filters && options.filters.latency !== undefined) {
+			peers = peers.filter((peer: Contracts.PeerResponse) => peer.latency <= options.filters.latency);
 		}
 
-		return orderBy(peers, [this.orderBy[0]], [this.orderBy[1] as any]);
+		if (!options.orderBy) {
+			options.orderBy = ["latency", "desc"];
+		}
+
+		return orderBy(peers, [options.orderBy[0]], [options.orderBy[1] as any]);
 	}
 
-	public async findPeersWithPlugin(name: string, opts: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
+	public async searchWithPlugin(name: string, options: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
 		const peers: Contracts.Peer[] = [];
 
-		for (const peer of await this.findPeers(opts)) {
+		for (const peer of await this.search(options)) {
 			const pluginName: string | undefined = Object.keys(peer.ports).find(
 				(key: string) => key.split("/")[1] === name,
 			);
@@ -140,8 +120,8 @@ export class PeerService implements Contracts.PeerService {
 						port,
 					};
 
-					if (opts.additional && Array.isArray(opts.additional)) {
-						for (const additional of opts.additional) {
+					if (options.additional && Array.isArray(options.additional)) {
+						for (const additional of options.additional) {
 							if (typeof peer[additional] === "undefined") {
 								continue;
 							}
@@ -158,8 +138,8 @@ export class PeerService implements Contracts.PeerService {
 		return peers;
 	}
 
-	public async findPeersWithoutEstimates(opts: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
-		const apiPeers: Contracts.Peer[] = await this.findPeersWithPlugin("core-api", opts);
+	public async searchWithoutEstimates(options: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
+		const apiPeers: Contracts.Peer[] = await this.searchWithPlugin("core-api", options);
 
 		const requests = apiPeers.map((peer) => ky.get(`http://${peer.ip}:${peer.port}/api/v2/blocks?limit=1`).json());
 

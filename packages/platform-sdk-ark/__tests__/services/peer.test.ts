@@ -97,7 +97,7 @@ describe("PeerService", () => {
 		});
 	});
 
-	describe("findPeers", () => {
+	describe("search", () => {
 		let peerService: PeerService;
 		beforeEach(async () => {
 			nock("http://127.0.0.1").get("/api/v2/peers").reply(200, {
@@ -112,7 +112,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			await expect(peerService.findPeers()).resolves.toEqual(dummyPeersWalletApi);
+			await expect(peerService.search()).resolves.toEqual(dummyPeersWalletApi);
 		});
 
 		it("should retry", async () => {
@@ -120,7 +120,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			const peers = await peerService.findPeers({
+			const peers = await peerService.search({
 				retry: { limit: 3 },
 			});
 
@@ -133,7 +133,7 @@ describe("PeerService", () => {
 			});
 
 			await expect(
-				peerService.findPeers({
+				peerService.search({
 					timeout: 1000,
 				}),
 			).rejects.toThrowError(new Error("Request timed out"));
@@ -144,9 +144,9 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			await expect(peerService.withVersion("2.6.0").findPeers()).resolves.toEqual([dummyPeersWalletApi[1]]);
+			await expect(peerService.search({ filters: { version: "2.6.0" } })).resolves.toEqual([dummyPeersWalletApi[1]]);
 
-			await expect(peerService.withVersion(">=2.5.0").findPeers()).resolves.toEqual(dummyPeersWalletApi);
+			await expect(peerService.search({ filters: { version: ">=2.5.0" } })).resolves.toEqual(dummyPeersWalletApi);
 		});
 
 		it("should filter by latency", async () => {
@@ -154,9 +154,9 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			await expect(peerService.withLatency(150).findPeers()).resolves.toEqual([dummyPeersWalletApi[1]]);
+			await expect(peerService.search({ filters: { latency: 150 } })).resolves.toEqual([dummyPeersWalletApi[1]]);
 
-			await expect(peerService.withLatency(250).findPeers()).resolves.toEqual(dummyPeersWalletApi);
+			await expect(peerService.search({ filters: { latency: 250 } })).resolves.toEqual(dummyPeersWalletApi);
 		});
 
 		it("should sort by latency asc", async () => {
@@ -164,7 +164,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			await expect(peerService.sortBy("latency", "asc").findPeers()).resolves.toEqual([
+			await expect(peerService.search({ orderBy: ["latency", "asc"] })).resolves.toEqual([
 				dummyPeersWalletApi[1],
 				dummyPeersWalletApi[0],
 			]);
@@ -175,14 +175,14 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			await expect(peerService.sortBy("version", "desc").findPeers()).resolves.toEqual([
+			await expect(peerService.search({ orderBy: ["version", "desc"] })).resolves.toEqual([
 				dummyPeersWalletApi[1],
 				dummyPeersWalletApi[0],
 			]);
 		});
 	});
 
-	describe("findPeersWithPlugin", () => {
+	describe("searchWithPlugin", () => {
 		let peerService: PeerService;
 		beforeEach(async () => {
 			nock("http://127.0.0.1").get("/api/v2/peers").reply(200, {
@@ -197,7 +197,7 @@ describe("PeerService", () => {
 				data: dummyPeersPublicApi,
 			});
 
-			await expect(peerService.findPeersWithPlugin("core-wallet-api")).resolves.toEqual([]);
+			await expect(peerService.searchWithPlugin("core-wallet-api")).resolves.toEqual([]);
 		});
 
 		it("should find peers with the wallet api plugin", async () => {
@@ -206,7 +206,7 @@ describe("PeerService", () => {
 			});
 
 			const validPeers = dummyPeersWalletApi.map((peer) => ({ ip: peer.ip, port: 4140 }));
-			await expect(peerService.findPeersWithPlugin("core-wallet-api")).resolves.toEqual(validPeers);
+			await expect(peerService.searchWithPlugin("core-wallet-api")).resolves.toEqual(validPeers);
 		});
 
 		it("should get additional peer data", async () => {
@@ -216,7 +216,7 @@ describe("PeerService", () => {
 
 			const validPeers = dummyPeersWalletApi.map((peer) => ({ ip: peer.ip, port: 4140, version: peer.version }));
 			await expect(
-				peerService.findPeersWithPlugin("core-wallet-api", {
+				peerService.searchWithPlugin("core-wallet-api", {
 					additional: ["version"],
 				}),
 			).resolves.toEqual(validPeers);
@@ -229,14 +229,14 @@ describe("PeerService", () => {
 
 			const validPeers = dummyPeersWalletApi.map((peer) => ({ ip: peer.ip, port: 4140 }));
 			await expect(
-				peerService.findPeersWithPlugin("core-wallet-api", {
+				peerService.searchWithPlugin("core-wallet-api", {
 					additional: ["fake"],
 				}),
 			).resolves.toEqual(validPeers);
 		});
 	});
 
-	describe("findPeersWithoutEstimates", () => {
+	describe("searchWithoutEstimates", () => {
 		let peerService: PeerService;
 		beforeEach(async () => {
 			nock("http://127.0.0.1").get("/api/v2/peers").reply(200, {
@@ -261,7 +261,7 @@ describe("PeerService", () => {
 				});
 
 			const validPeers = dummyPeersPublicApi.map((peer) => ({ ip: peer.ip, port: 4103 }));
-			await expect(peerService.findPeersWithoutEstimates()).resolves.toEqual(validPeers);
+			await expect(peerService.searchWithoutEstimates()).resolves.toEqual(validPeers);
 		});
 	});
 });
