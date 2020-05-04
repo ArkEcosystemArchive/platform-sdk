@@ -12,5 +12,5 @@ export interface SignedMessage {
 
 export interface MessageInput {
 	message: string;
-	publicKey: string;
+	passphrase: string;
 }
