@@ -8,9 +8,9 @@ Create an instance of the service.
 
 ### Parameters
 
-Name | Type | Description
----- | ---- | -----------
-options | object | The options to configure the behaviour of the service.
+| Name    | Type   | Description                                            |
+| ------- | ------ | ------------------------------------------------------ |
+| options | object | The options to configure the behaviour of the service. |
 
 ### Return Value
 
@@ -38,9 +38,9 @@ This method returns a promise that resolves with a void value.
 
 ### Parameters
 
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Name | Type                                                                               | Description          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | ---- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | XXXX | string | XXXXXXXXX | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Name | Type   | Description                                         |
+| ---- | ------ | --------------------------------------------------- |
+| id   | string | The ID of the transaction that should be looked up. |
 
 ### Return Value
 
@@ -51,7 +51,7 @@ This method returns a promise that resolves with an object with the following st
 ### Example
 
 ```ts
-...
+await clientService.transaction("3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572");
 ```
 
 ## transactions
@@ -62,9 +62,11 @@ This method returns a promise that resolves with an object with the following st
 
 ### Parameters
 
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Name | Type                                                                             | Description          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | ---- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | XXXX | string | XXXXXXXXX | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Name          | Type   | Description                                            |
+| ------------- | ------ | ------------------------------------------------------ |
+| query         | object | The object containing request parameters.              |
+| query.page    | number | The page that should be used to request entries.       |
+| query.perPage | number | The number of items that should be requested per page. |
 
 ### Return Value
 
@@ -75,7 +77,7 @@ This method returns a promise that resolves with an object with the following st
 ### Example
 
 ```ts
-...
+await clientService.transactions({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" });
 ```
 
 ## wallet
@@ -86,9 +88,9 @@ This method returns a promise that resolves with an object with the following st
 
 ### Parameters
 
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Name | Type                                                                           | Description          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | ---- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | XXXX | string | XXXXXXXXX | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Name | Type   | Description                                         |
+| ---- | ------ | --------------------------------------------------- |
+| id   | string | The address of the wallet that should be looked up. |
 
 ### Return Value
 
@@ -99,7 +101,7 @@ This method returns a promise that resolves with an object with the following st
 ### Example
 
 ```ts
-...
+await clientService.wallet("DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9");
 ```
 
 ## wallets
@@ -110,9 +112,11 @@ This method returns a promise that resolves with an object with the following st
 
 ### Parameters
 
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Name | Type                                                                         | Description          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | ---- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | XXXX | string | XXXXXXXXX | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Name          | Type   | Description                                            |
+| ------------- | ------ | ------------------------------------------------------ |
+| query         | object | The object containing request parameters.              |
+| query.page    | number | The page that should be used to request entries.       |
+| query.perPage | number | The number of items that should be requested per page. |
 
 ### Return Value
 
@@ -123,7 +127,7 @@ This method returns a promise that resolves with an object with the following st
 ### Example
 
 ```ts
-...
+await clientService.wallets({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" });
 ```
 
 ## delegate
@@ -134,9 +138,9 @@ This method returns a promise that resolves with an object with the following st
 
 ### Parameters
 
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Name | Type                                                                       | Description          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | ---- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | XXXX | string | XXXXXXXXX | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Name | Type   | Description                                                  |
+| ---- | ------ | ------------------------------------------------------------ |
+| id   | string | The address of the delegate wallet that should be looked up. |
 
 ### Return Value
 
@@ -147,7 +151,7 @@ This method returns a promise that resolves with an object with the following st
 ### Example
 
 ```ts
-...
+await clientService.delegate("arkx");
 ```
 
 ## delegates
@@ -158,9 +162,11 @@ This method returns a promise that resolves with an object with the following st
 
 ### Parameters
 
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Name | Type                                                                     | Description          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | ---- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | XXXX | string | XXXXXXXXX | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Name          | Type   | Description                                            |
+| ------------- | ------ | ------------------------------------------------------ |
+| query         | object | The object containing request parameters.              |
+| query.page    | number | The page that should be used to request entries.       |
+| query.perPage | number | The number of items that should be requested per page. |
 
 ### Return Value
 
@@ -171,7 +177,7 @@ This method returns a promise that resolves with an object with the following st
 ### Example
 
 ```ts
-...
+await clientService.delegates();
 ```
 
 ## votes
@@ -182,9 +188,9 @@ This method returns a promise that resolves with an object with the following st
 
 ### Parameters
 
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Name | Type                                                                   | Description          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | ---- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | XXXX | string | XXXXXXXXX | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Name | Type   | Description                                                   |
+| ---- | ------ | ------------------------------------------------------------- |
+| id   | string | The address of the wallet that votes should be looked up for. |
 
 ### Return Value
 
@@ -195,7 +201,7 @@ This method returns a promise that resolves with an object with the following st
 ### Example
 
 ```ts
-...
+await clientService.votes("arkx");
 ```
 
 ## voters
@@ -206,9 +212,9 @@ This method returns a promise that resolves with an object with the following st
 
 ### Parameters
 
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Name | Type                                                                 | Description          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |          |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | ---- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |-- |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | XXXX | string | XXXXXXXXX | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Name | Type   | Description                                                    |
+| ---- | ------ | -------------------------------------------------------------- |
+| id   | string | The address of the wallet that voters should be looked up for. |
 
 ### Return Value
 
@@ -219,7 +225,7 @@ This method returns a promise that resolves with an object with the following st
 ### Example
 
 ```ts
-...
+await clientService.voters("arkx");
 ```
 
 ## configuration
@@ -230,9 +236,7 @@ This method returns a promise that resolves with an object with the following st
 
 ### Parameters
 
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Name | Type                                                               | Description | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | ---- | ------------------------------------------------------------------ | ----------- | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | XXXX | string | XXXXXXXXX   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+This method has no parameters.
 
 ### Return Value
 
@@ -243,7 +247,7 @@ This method returns a promise that resolves with an object with the following st
 ### Example
 
 ```ts
-...
+await clientService.configuration();
 ```
 
 ## fees
@@ -254,9 +258,9 @@ This method returns a promise that resolves with an object with the following st
 
 ### Parameters
 
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Name | Type                                                             | Description | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | ---- | ---------------------------------------------------------------- | ----------- | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
-| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | XXXX | string | XXXXXXXXX   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| Name | Type   | Description                                            |
+| ---- | ------ | ------------------------------------------------------ |
+| days | number | The number of days for which fees should be looked up. |
 
 ### Return Value
 
@@ -267,7 +271,7 @@ This method returns a promise that resolves with an object with the following st
 ### Example
 
 ```ts
-...
+await clientService.fees(7);
 ```
 
 ## syncing
@@ -278,9 +282,7 @@ This method returns a promise that resolves with an object with the following st
 
 ### Parameters
 
-| | | | | | | | | | | | | | | | | | Name | Type                                     | Description | | | | | | | | | | | | | | | | | |
-| | | | | | | | | | | | | | | | | | ---- | ---------------------------------------- | ----------- | | | | | | | | | | | | | | | | | |
-| | | | | | | | | | | | | | | | | | XXXX | string | XXXXXXXXX   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+This method has no parameters.
 
 ### Return Value
 
@@ -289,7 +291,7 @@ This method returns a promise that resolves with a boolean value.
 ### Example
 
 ```ts
-...
+await clientService.syncing();
 ```
 
 ## broadcast
@@ -300,9 +302,9 @@ This method returns a promise that resolves with a void value.
 
 ### Parameters
 
-| | | | | | | | | | Name | Type                     | Description | | | | | | | | | |
-| | | | | | | | | | ---- | ------------------------ | ----------- | | | | | | | | | |
-| | | | | | | | | | XXXX | string | XXXXXXXXX   |   |   |   |   |   |   |   |   |   |
+| Name         | Type     | Description                                  |
+| ------------ | -------- | -------------------------------------------- |
+| transactions | object[] | The transactions that should be broadcasted. |
 
 ### Return Value
 
@@ -311,5 +313,5 @@ This method returns a promise that resolves with a void value.
 ### Example
 
 ```ts
-...
+await clientService.broadcast([...]);
 ```
