@@ -38,9 +38,7 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData(body.data);
 	}
 
-	public async wallets(
-		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async wallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
 		const { body } = await this.connection.api("wallets").search(query);
 
 		return { meta: body.meta, data: body.data.map((wallet) => new WalletData(wallet)) };

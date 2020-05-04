@@ -6,7 +6,7 @@ export interface MessageService {
 
 export interface SignedMessage {
 	message: string;
-	publicKey: string;
+	signer: string;
 	signature: string;
 }
 

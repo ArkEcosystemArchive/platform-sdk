@@ -64,9 +64,7 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public async delegateResignation(
-		input: Contracts.DelegateResignationInput,
-	): Promise<Contracts.SignedTransaction> {
+	public async delegateResignation(input: Contracts.DelegateResignationInput): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("delegateResignation", input);
 	}
 
