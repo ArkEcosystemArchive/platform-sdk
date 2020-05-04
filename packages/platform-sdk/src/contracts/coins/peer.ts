@@ -21,12 +21,6 @@ export interface PeerService {
 
 	getSeeds(): Peer[];
 
-	withVersion(version: string): PeerService;
-
-	withLatency(latency: number): PeerService;
-
-	sortBy(key: string, direction: string): PeerService;
-
 	search(opts: any): Promise<PeerResponse[]>;
 
 	searchWithPlugin(name: string, opts: { additional?: string[] }): Promise<Peer[]>;
