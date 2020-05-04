@@ -5,7 +5,7 @@ export const manifest = {
 		Client: {
 			transaction: false,
 			transactions: false,
-			wallet: false,
+			wallet: true,
 			wallets: false,
 			delegate: false,
 			delegates: false,
@@ -14,7 +14,7 @@ export const manifest = {
 			configuration: false,
 			fees: false,
 			syncing: false,
-			broadcast: false,
+			broadcast: true,
 		},
 		Identity: {
 			address: {
@@ -25,7 +25,7 @@ export const manifest = {
 				wif: false,
 			},
 			publicKey: {
-				passphrase: false,
+				passphrase: true,
 				multiSignature: false,
 				wif: false,
 			},
@@ -50,13 +50,13 @@ export const manifest = {
 			signMessage: false,
 		},
 		Link: {
-			block: false,
-			transaction: false,
-			wallet: false,
+			block: true,
+			transaction: true,
+			wallet: true,
 		},
 		Message: {
-			sign: false,
-			verify: false,
+			sign: true,
+			verify: true,
 		},
 		Peer: {
 			search: false,

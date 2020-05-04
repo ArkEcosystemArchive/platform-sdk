@@ -3,9 +3,9 @@ export const manifest = {
 	ticker: "XRP",
 	behaviours: {
 		Client: {
-			transaction: false,
-			transactions: false,
-			wallet: false,
+			transaction: true,
+			transactions: true,
+			wallet: true,
 			wallets: false,
 			delegate: false,
 			delegates: false,
@@ -14,13 +14,13 @@ export const manifest = {
 			configuration: false,
 			fees: false,
 			syncing: false,
-			broadcast: false,
+			broadcast: true,
 		},
 		Identity: {
 			address: {
-				passphrase: false,
+				passphrase: true,
 				multiSignature: false,
-				publicKey: false,
+				publicKey: true,
 				privateKey: false,
 				wif: false,
 			},
@@ -37,7 +37,7 @@ export const manifest = {
 				passphrase: false,
 			},
 			keyPair: {
-				passphrase: false,
+				passphrase: true,
 				publicKey: false,
 				privateKey: false,
 				wif: false,
@@ -50,13 +50,13 @@ export const manifest = {
 			signMessage: false,
 		},
 		Link: {
-			block: false,
-			transaction: false,
-			wallet: false,
+			block: true,
+			transaction: true,
+			wallet: true,
 		},
 		Message: {
-			sign: false,
-			verify: false,
+			sign: true,
+			verify: true,
 		},
 		Peer: {
 			search: false,
@@ -64,7 +64,7 @@ export const manifest = {
 			searchWithoutEstimates: false,
 		},
 		Transaction: {
-			transfer: false,
+			transfer: true,
 			secondSignature: false,
 			delegateRegistration: false,
 			vote: false,
