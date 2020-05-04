@@ -7,7 +7,7 @@ export class ClientService implements Contracts.ClientService {
 	readonly #connection: RippleAPI;
 	readonly #dataUrl: string = "https://data.ripple.com/v2";
 
-	private constructor (connection: RippleAPI) {
+	private constructor(connection: RippleAPI) {
 		this.#connection = connection;
 	}
 
@@ -51,7 +51,9 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
 	}
 
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
+	public async delegates(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 

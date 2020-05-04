@@ -15,12 +15,12 @@ export class MessageService implements Contracts.MessageService {
 
 		return {
 			message: input.message,
-			publicKey,
+			signer: publicKey,
 			signature: sign(Buffer.from(input.message, "utf8").toString("hex"), privateKey),
 		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return verify(Buffer.from(input.message, "utf8").toString("hex"), input.signature, input.publicKey);
+		return verify(Buffer.from(input.message, "utf8").toString("hex"), input.signature, input.signer);
 	}
 }

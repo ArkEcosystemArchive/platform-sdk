@@ -11,10 +11,19 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		return cryptography.signMessageWithPassphrase(input.message, input.passphrase);
+		const { message, publicKey, signature } = cryptography.signMessageWithPassphrase(
+			input.message,
+			input.passphrase,
+		);
+
+		return { message, signer: publicKey, signature };
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return cryptography.verifyMessageWithPublicKey(input);
+		return cryptography.verifyMessageWithPublicKey({
+			message: input.message,
+			publicKey: input.signer,
+			signature: input.signature,
+		});
 	}
 }

@@ -7,7 +7,7 @@ export const identity = {
 	wif: "...",
 	passphrase: "this is a top secret passphrase",
 	// Multi Signature
-	multiSignature: {},
+	multiSignature: { min: 0, publicKeys: [] },
 	multiSignatureAddress: "...",
 	multiSignaturePublicKey: "...",
 };
