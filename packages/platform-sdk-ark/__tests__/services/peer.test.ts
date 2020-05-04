@@ -144,9 +144,9 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			await expect(peerService.withVersion("2.6.0").findPeers()).resolves.toEqual([dummyPeersWalletApi[1]]);
+			await expect(peerService.findPeers({ filters: { version: "2.6.0" } })).resolves.toEqual([dummyPeersWalletApi[1]]);
 
-			await expect(peerService.withVersion(">=2.5.0").findPeers()).resolves.toEqual(dummyPeersWalletApi);
+			await expect(peerService.findPeers({ filters: { version: ">=2.5.0" } })).resolves.toEqual(dummyPeersWalletApi);
 		});
 
 		it("should filter by latency", async () => {
@@ -154,9 +154,9 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			await expect(peerService.withLatency(150).findPeers()).resolves.toEqual([dummyPeersWalletApi[1]]);
+			await expect(peerService.findPeers({ filters: { latency: 150 } })).resolves.toEqual([dummyPeersWalletApi[1]]);
 
-			await expect(peerService.withLatency(250).findPeers()).resolves.toEqual(dummyPeersWalletApi);
+			await expect(peerService.findPeers({ filters: { latency: 250 } })).resolves.toEqual(dummyPeersWalletApi);
 		});
 
 		it("should sort by latency asc", async () => {
@@ -164,7 +164,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			await expect(peerService.sortBy("latency", "asc").findPeers()).resolves.toEqual([
+			await expect(peerService.findPeers({ orderBy: ["latency", "asc"] })).resolves.toEqual([
 				dummyPeersWalletApi[1],
 				dummyPeersWalletApi[0],
 			]);
@@ -175,7 +175,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			await expect(peerService.sortBy("version", "desc").findPeers()).resolves.toEqual([
+			await expect(peerService.findPeers({ orderBy: ["version", "desc"] })).resolves.toEqual([
 				dummyPeersWalletApi[1],
 				dummyPeersWalletApi[0],
 			]);
