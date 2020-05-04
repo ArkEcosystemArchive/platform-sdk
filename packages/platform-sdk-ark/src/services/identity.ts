@@ -12,83 +12,83 @@ export class IdentityService implements Contracts.IdentityService {
 		//
 	}
 
-	public async address(opts: Contracts.KeyValuePair): Promise<string> {
-		if (opts.passphrase) {
-			return Identities.Address.fromPassphrase(opts.passphrase);
+	public async address(input: Contracts.AddressInput): Promise<string> {
+		if (input.passphrase) {
+			return Identities.Address.fromPassphrase(input.passphrase);
 		}
 
-		if (opts.multiSignature) {
-			return Identities.Address.fromMultiSignatureAsset(opts.multiSignature);
+		if (input.multiSignature) {
+			return Identities.Address.fromMultiSignatureAsset(input.multiSignature);
 		}
 
-		if (opts.publicKey) {
-			return Identities.Address.fromPublicKey(opts.publicKey);
+		if (input.publicKey) {
+			return Identities.Address.fromPublicKey(input.publicKey);
 		}
 
-		if (opts.privateKey) {
+		if (input.privateKey) {
 			throw new Exceptions.NotSupported(this.constructor.name, "address#privateKey");
 		}
 
-		if (opts.wif) {
-			return Identities.Address.fromWIF(opts.wif);
+		if (input.wif) {
+			return Identities.Address.fromWIF(input.wif);
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	public async publicKey(opts: Contracts.KeyValuePair): Promise<string> {
-		if (opts.passphrase) {
-			return Identities.PublicKey.fromPassphrase(opts.passphrase);
+	public async publicKey(input: Contracts.PublicKeyInput): Promise<string> {
+		if (input.passphrase) {
+			return Identities.PublicKey.fromPassphrase(input.passphrase);
 		}
 
-		if (opts.multiSignature) {
-			return Identities.PublicKey.fromMultiSignatureAsset(opts.multiSignature);
+		if (input.multiSignature) {
+			return Identities.PublicKey.fromMultiSignatureAsset(input.multiSignature);
 		}
 
-		if (opts.wif) {
-			return Identities.PublicKey.fromWIF(opts.wif);
-		}
-
-		throw new Error("No input provided.");
-	}
-
-	public async privateKey(opts: Contracts.KeyValuePair): Promise<string> {
-		if (opts.passphrase) {
-			return Identities.PrivateKey.fromPassphrase(opts.passphrase);
-		}
-
-		if (opts.wif) {
-			return Identities.PrivateKey.fromWIF(opts.wif);
+		if (input.wif) {
+			return Identities.PublicKey.fromWIF(input.wif);
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	public async wif(opts: Contracts.KeyValuePair): Promise<string> {
-		if (opts.passphrase) {
-			return Identities.WIF.fromPassphrase(opts.passphrase);
+	public async privateKey(input: Contracts.PrivateKeyInput): Promise<string> {
+		if (input.passphrase) {
+			return Identities.PrivateKey.fromPassphrase(input.passphrase);
+		}
+
+		if (input.wif) {
+			return Identities.PrivateKey.fromWIF(input.wif);
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	public async keyPair(opts: Contracts.KeyValuePair): Promise<Contracts.KeyPair> {
-		if (opts.passphrase) {
-			const keyPair = Identities.Keys.fromPassphrase(opts.passphrase);
+	public async wif(input: Contracts.WifInput): Promise<string> {
+		if (input.passphrase) {
+			return Identities.WIF.fromPassphrase(input.passphrase);
+		}
+
+		throw new Error("No input provided.");
+	}
+
+	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
+		if (input.passphrase) {
+			const keyPair = Identities.Keys.fromPassphrase(input.passphrase);
 
 			return { publicKey: keyPair.publicKey, privateKey: keyPair.privateKey };
 		}
 
-		if (opts.publicKey) {
+		if (input.publicKey) {
 			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#publicKey");
 		}
 
-		if (opts.privateKey) {
+		if (input.privateKey) {
 			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#privateKey");
 		}
 
-		if (opts.wif) {
-			const keyPair = Identities.Keys.fromWIF(opts.wif);
+		if (input.wif) {
+			const keyPair = Identities.Keys.fromWIF(input.wif);
 
 			return { publicKey: keyPair.publicKey, privateKey: keyPair.privateKey };
 		}
