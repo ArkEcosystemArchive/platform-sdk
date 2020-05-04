@@ -5,10 +5,6 @@ import orderBy from "lodash.orderby";
 import semver from "semver";
 
 export class PeerService implements Contracts.PeerService {
-	private version: string | undefined;
-	private latency: number | undefined;
-	private orderBy: string[] = ["latency", "desc"];
-
 	private constructor (private readonly seeds: Contracts.Peer[]) { }
 
 	public static async construct(options: Contracts.KeyValuePair): Promise<PeerService> {
