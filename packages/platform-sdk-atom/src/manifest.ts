@@ -9,13 +9,62 @@ export const manifest = {
 			wallets: false,
 			delegate: false,
 			delegates: false,
+			votes: false,
+			voters: false,
 			configuration: false,
 			fees: false,
-			syncing: false,
-			broadcast: false,
+			syncing: true,
+			broadcast: true,
 		},
-		Crypto: {
-			transfer: false,
+		Identity: {
+			address: {
+				passphrase: true,
+				multiSignature: false,
+				publicKey: false,
+				privateKey: false,
+				wif: false,
+			},
+			publicKey: {
+				passphrase: true,
+				multiSignature: false,
+				wif: false,
+			},
+			privateKey: {
+				passphrase: true,
+				wif: false,
+			},
+			wif: {
+				passphrase: false,
+			},
+			keyPair: {
+				passphrase: true,
+				publicKey: false,
+				privateKey: false,
+				wif: false,
+			},
+		},
+		Ledger: {
+			getVersion: false,
+			getPublicKey: false,
+			signTransaction: false,
+			signMessage: false,
+		},
+		Link: {
+			block: true,
+			transaction: true,
+			wallet: true,
+		},
+		Message: {
+			sign: true,
+			verify: true,
+		},
+		Peer: {
+			search: false,
+			searchWithPlugin: false,
+			searchWithoutEstimates: false,
+		},
+		Transaction: {
+			transfer: true,
 			secondSignature: false,
 			delegateRegistration: false,
 			vote: false,
@@ -26,37 +75,6 @@ export const manifest = {
 			htlcLock: false,
 			htlcClaim: false,
 			htlcRefund: false,
-		},
-		Identity: {
-			address: {
-				passphrase: false,
-				multiSignature: false,
-				publicKey: false,
-				privateKey: false,
-				wif: false,
-			},
-			publicKey: {
-				passphrase: false,
-				multiSignature: false,
-				wif: false,
-			},
-			privateKey: {
-				passphrase: false,
-				wif: false,
-			},
-			wif: {
-				passphrase: false,
-			},
-			keyPair: {
-				passphrase: false,
-				publicKey: false,
-				privateKey: false,
-				wif: false,
-			},
-		},
-		Message: {
-			sign: false,
-			verify: false,
 		},
 	},
 };
