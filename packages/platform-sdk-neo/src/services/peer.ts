@@ -25,15 +25,15 @@ export class PeerService implements Contracts.PeerService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "sortBy");
 	}
 
-	public async findPeers(opts: any = {}): Promise<Contracts.PeerResponse[]> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "findPeers");
+	public async search(opts: any = {}): Promise<Contracts.PeerResponse[]> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "search");
 	}
 
-	public async findPeersWithPlugin(name: string, opts: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "findPeersWithPlugin");
+	public async searchWithPlugin(name: string, opts: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "searchWithPlugin");
 	}
 
-	public async findPeersWithoutEstimates(opts: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "findPeersWithoutEstimates");
+	public async searchWithoutEstimates(opts: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "searchWithoutEstimates");
 	}
 }

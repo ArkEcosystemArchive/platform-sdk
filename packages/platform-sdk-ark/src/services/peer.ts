@@ -66,7 +66,7 @@ export class PeerService implements Contracts.PeerService {
 		return this.seeds;
 	}
 
-	public async findPeers(options: Contracts.KeyValuePair = {}): Promise<Contracts.PeerResponse[]> {
+	public async search(options: Contracts.KeyValuePair = {}): Promise<Contracts.PeerResponse[]> {
 		if (!options.retry) {
 			options.retry = { limit: 0 };
 		}
@@ -103,10 +103,10 @@ export class PeerService implements Contracts.PeerService {
 		return orderBy(peers, [options.orderBy[0]], [options.orderBy[1] as any]);
 	}
 
-	public async findPeersWithPlugin(name: string, options: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
+	public async searchWithPlugin(name: string, options: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
 		const peers: Contracts.Peer[] = [];
 
-		for (const peer of await this.findPeers(options)) {
+		for (const peer of await this.search(options)) {
 			const pluginName: string | undefined = Object.keys(peer.ports).find(
 				(key: string) => key.split("/")[1] === name,
 			);
@@ -138,8 +138,8 @@ export class PeerService implements Contracts.PeerService {
 		return peers;
 	}
 
-	public async findPeersWithoutEstimates(options: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
-		const apiPeers: Contracts.Peer[] = await this.findPeersWithPlugin("core-api", options);
+	public async searchWithoutEstimates(options: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
+		const apiPeers: Contracts.Peer[] = await this.searchWithPlugin("core-api", options);
 
 		const requests = apiPeers.map((peer) => ky.get(`http://${peer.ip}:${peer.port}/api/v2/blocks?limit=1`).json());
 

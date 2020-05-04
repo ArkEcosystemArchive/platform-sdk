@@ -27,9 +27,9 @@ export interface PeerService {
 
 	sortBy(key: string, direction: string): PeerService;
 
-	findPeers(opts: any): Promise<PeerResponse[]>;
+	search(opts: any): Promise<PeerResponse[]>;
 
-	findPeersWithPlugin(name: string, opts: { additional?: string[] }): Promise<Peer[]>;
+	searchWithPlugin(name: string, opts: { additional?: string[] }): Promise<Peer[]>;
 
-	findPeersWithoutEstimates(opts: { additional?: string[] }): Promise<Peer[]>;
+	searchWithoutEstimates(opts: { additional?: string[] }): Promise<Peer[]>;
 }
