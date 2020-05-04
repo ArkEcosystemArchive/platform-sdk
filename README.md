@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk
 
 ## Usage
 
-Documentation can be found [here](./DOCS.md).
+Documentation can be found [here](./docs/index.md).
 
 ## Security
 
