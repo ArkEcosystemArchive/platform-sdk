@@ -20,8 +20,8 @@ export interface KeyPair {
 export interface AddressInput {
 	passphrase?: string;
 	multiSignature?: {
-		min: number,
-		publicKeys: string[],
+		min: number;
+		publicKeys: string[];
 	};
 	publicKey?: string;
 	privateKey?: string;
@@ -31,8 +31,8 @@ export interface AddressInput {
 export interface PublicKeyInput {
 	passphrase?: string;
 	multiSignature?: {
-		min: number,
-		publicKeys: string[],
+		min: number;
+		publicKeys: string[];
 	};
 	wif?: string;
 }

@@ -18,7 +18,10 @@ export class TransactionService implements Contracts.TransactionService {
 		//
 	}
 
-	public async transfer(input: Contracts.TransferInput): Promise<Contracts.SignedTransaction> {
+	public async transfer(
+		input: Contracts.TransferInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
 		const transaction = await this.#connection.transactionBuilder.sendTrx(
 			input.data.to,
 			input.data.amount,
@@ -29,45 +32,73 @@ export class TransactionService implements Contracts.TransactionService {
 		return this.#connection.trx.sign(transaction, input.sign.passphrase);
 	}
 
-	public async secondSignature(input: Contracts.SecondSignatureInput): Promise<Contracts.SignedTransaction> {
+	public async secondSignature(
+		input: Contracts.SecondSignatureInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "secondSignature");
 	}
 
 	public async delegateRegistration(
 		input: Contracts.DelegateRegistrationInput,
+		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegateRegistration");
 	}
 
-	public async vote(input: Contracts.VoteInput): Promise<Contracts.SignedTransaction> {
+	public async vote(
+		input: Contracts.VoteInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "vote");
 	}
 
-	public async multiSignature(input: Contracts.MultiSignatureInput): Promise<Contracts.SignedTransaction> {
+	public async multiSignature(
+		input: Contracts.MultiSignatureInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "multiSignature");
 	}
 
-	public async ipfs(input: Contracts.IpfsInput): Promise<Contracts.SignedTransaction> {
+	public async ipfs(
+		input: Contracts.IpfsInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "ipfs");
 	}
 
-	public async multiPayment(input: Contracts.MultiPaymentInput): Promise<Contracts.SignedTransaction> {
+	public async multiPayment(
+		input: Contracts.MultiPaymentInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "multiPayment");
 	}
 
-	public async delegateResignation(input: Contracts.DelegateResignationInput): Promise<Contracts.SignedTransaction> {
+	public async delegateResignation(
+		input: Contracts.DelegateResignationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegateResignation");
 	}
 
-	public async htlcLock(input: Contracts.HtlcLockInput): Promise<Contracts.SignedTransaction> {
+	public async htlcLock(
+		input: Contracts.HtlcLockInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcLock");
 	}
 
-	public async htlcClaim(input: Contracts.HtlcClaimInput): Promise<Contracts.SignedTransaction> {
+	public async htlcClaim(
+		input: Contracts.HtlcClaimInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcClaim");
 	}
 
-	public async htlcRefund(input: Contracts.HtlcRefundInput): Promise<Contracts.SignedTransaction> {
+	public async htlcRefund(
+		input: Contracts.HtlcRefundInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
 	}
 }

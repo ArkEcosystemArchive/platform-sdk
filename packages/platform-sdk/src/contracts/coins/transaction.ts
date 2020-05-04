@@ -29,6 +29,11 @@ interface TransactionInput {
 	};
 }
 
+export interface TransactionOptions {
+	unsignedJson: boolean;
+	unsignedBytes: boolean;
+}
+
 export interface TransferInput extends TransactionInput {
 	data: {
 		amount: string | number;
