@@ -11,7 +11,7 @@ export class MessageService implements Contracts.MessageService {
 		//
 	}
 
-	public async sign(input): Promise<Contracts.SignedMessage> {
+	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		const keyPair = ECPair.fromWIF(input.wif);
 
 		return {
@@ -21,7 +21,7 @@ export class MessageService implements Contracts.MessageService {
 		};
 	}
 
-	public async verify(input): Promise<boolean> {
+	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		return bitcoinMessage.verify(input.message, input.address, Buffer.from(input.signature, "hex"));
 	}
 }
