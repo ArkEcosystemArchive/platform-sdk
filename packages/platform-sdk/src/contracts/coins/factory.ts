@@ -1,11 +1,18 @@
-import { ClientService, IdentityService, LinkService, MessageService, PeerService, TransactionService } from ".";
+import { ClientService } from "./client";
+import { IdentityService } from "./identity";
+import { LinkService } from "./link";
+import { MessageService } from "./message";
+import { PeerService } from "./peer";
+import { TransactionService } from "./transaction";
+import { LedgerService, LedgerTransport } from "./ledger";
 
 interface FactoryConstructorOptions {
 	services: {
-		message: MessageService;
 		client: ClientService;
 		identity: IdentityService;
+		ledger: LedgerService;
 		link: LinkService;
+		message: MessageService;
 		peer: PeerService;
 		transaction: TransactionService;
 	};
@@ -16,6 +23,7 @@ export interface FactoryOptions {
 		message: { peer?: string };
 		client: { peer?: string };
 		identity: { peer?: string };
+		ledger: { transport: LedgerTransport };
 		link: { mode: string };
 		peer: { network?: string };
 		transaction: { peer?: string };
@@ -35,6 +43,10 @@ export abstract class AbstractFactory {
 
 	public identityService(): IdentityService {
 		return this.options.services.identity;
+	}
+
+	public ledgerService(): LedgerService {
+		return this.options.services.ledger;
 	}
 
 	public linkService(): LinkService {

@@ -43,6 +43,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@arkecosystem/ledger-transport@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "@arkecosystem/ledger-transport@npm:1.0.5"
+  checksum: 2/ba6f63e2da925f2afd93b6520f6b36239f5fa2642be400e73bbbffd04ec764674103f93b347908035f50ca04d26b169648a2c356e8957886993b6a9350c41ea4
+  languageName: node
+  linkType: hard
+
 "@arkecosystem/platform-sdk-ada@workspace:packages/platform-sdk-ada":
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-ada@workspace:packages/platform-sdk-ada"
@@ -82,6 +89,7 @@ __metadata:
   dependencies:
     "@arkecosystem/client": ^1.1
     "@arkecosystem/crypto": ^2.6.34
+    "@arkecosystem/ledger-transport": ^1.0.5
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0

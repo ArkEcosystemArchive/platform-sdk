@@ -292,6 +292,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@arkecosystem/ledger-transport", [
+        ["npm:1.0.5", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-ledger-transport-npm-1.0.5-0dc8a10a7f-2.zip/node_modules/@arkecosystem/ledger-transport/",
+          "packageDependencies": [
+            ["@arkecosystem/ledger-transport", "npm:1.0.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@arkecosystem/platform-sdk", [
         ["workspace:packages/platform-sdk", {
           "packageLocation": "./packages/platform-sdk/",
@@ -371,6 +380,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
             ["@arkecosystem/client", "npm:1.1.3"],
             ["@arkecosystem/crypto", "npm:2.6.34"],
+            ["@arkecosystem/ledger-transport", "npm:1.0.5"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/utils", "npm:1.1.8"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
