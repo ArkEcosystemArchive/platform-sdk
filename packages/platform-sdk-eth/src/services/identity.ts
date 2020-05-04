@@ -64,7 +64,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async wif(input: Contracts.WifInput): Promise<string> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "wif#wif");
+			throw new Exceptions.NotSupported(this.constructor.name, "wif#passphrase");
 		}
 
 		throw new Error("No input provided.");

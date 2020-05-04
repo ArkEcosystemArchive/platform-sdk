@@ -20,8 +20,8 @@ export const manifest = {
 			address: {
 				passphrase: false,
 				multiSignature: false,
-				publicKey: false,
-				privateKey: false,
+				publicKey: true,
+				privateKey: true,
 				wif: false,
 			},
 			publicKey: {
@@ -39,7 +39,7 @@ export const manifest = {
 			keyPair: {
 				passphrase: false,
 				publicKey: false,
-				privateKey: false,
+				privateKey: true,
 				wif: false,
 			},
 		},
@@ -50,13 +50,13 @@ export const manifest = {
 			signMessage: false,
 		},
 		Link: {
-			block: false,
-			transaction: false,
-			wallet: false,
+			block: true,
+			transaction: true,
+			wallet: true,
 		},
 		Message: {
-			sign: false,
-			verify: false,
+			sign: true,
+			verify: true,
 		},
 		Peer: {
 			search: false,
@@ -64,7 +64,7 @@ export const manifest = {
 			searchWithoutEstimates: false,
 		},
 		Transaction: {
-			transfer: false,
+			transfer: true,
 			secondSignature: false,
 			delegateRegistration: false,
 			vote: false,

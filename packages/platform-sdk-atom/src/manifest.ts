@@ -13,31 +13,31 @@ export const manifest = {
 			voters: false,
 			configuration: false,
 			fees: false,
-			syncing: false,
-			broadcast: false,
+			syncing: true,
+			broadcast: true,
 		},
 		Identity: {
 			address: {
-				passphrase: false,
+				passphrase: true,
 				multiSignature: false,
 				publicKey: false,
 				privateKey: false,
 				wif: false,
 			},
 			publicKey: {
-				passphrase: false,
+				passphrase: true,
 				multiSignature: false,
 				wif: false,
 			},
 			privateKey: {
-				passphrase: false,
+				passphrase: true,
 				wif: false,
 			},
 			wif: {
 				passphrase: false,
 			},
 			keyPair: {
-				passphrase: false,
+				passphrase: true,
 				publicKey: false,
 				privateKey: false,
 				wif: false,
@@ -50,13 +50,13 @@ export const manifest = {
 			signMessage: false,
 		},
 		Link: {
-			block: false,
-			transaction: false,
-			wallet: false,
+			block: true,
+			transaction: true,
+			wallet: true,
 		},
 		Message: {
-			sign: false,
-			verify: false,
+			sign: true,
+			verify: true,
 		},
 		Peer: {
 			search: false,
@@ -64,7 +64,7 @@ export const manifest = {
 			searchWithoutEstimates: false,
 		},
 		Transaction: {
-			transfer: false,
+			transfer: true,
 			secondSignature: false,
 			delegateRegistration: false,
 			vote: false,

@@ -3,9 +3,9 @@ export const manifest = {
 	ticker: "TRX",
 	behaviours: {
 		Client: {
-			transaction: false,
+			transaction: true,
 			transactions: false,
-			wallet: false,
+			wallet: true,
 			wallets: false,
 			delegate: false,
 			delegates: false,
@@ -50,9 +50,9 @@ export const manifest = {
 			signMessage: false,
 		},
 		Link: {
-			block: false,
-			transaction: false,
-			wallet: false,
+			block: true,
+			transaction: true,
+			wallet: true,
 		},
 		Message: {
 			sign: false,
@@ -64,7 +64,7 @@ export const manifest = {
 			searchWithoutEstimates: false,
 		},
 		Transaction: {
-			transfer: false,
+			transfer: true,
 			secondSignature: false,
 			delegateRegistration: false,
 			vote: false,
