@@ -1,8 +1,13 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-
-import { getNewWalletFromSeed } from "../cosmos";
+import { secp256k1 } from "bcrypto";
+import * as bip32 from "bip32";
+import * as bip39 from "bip39";
+import bech32 from "bech32";
 
 export class IdentityService implements Contracts.IdentityService {
+	readonly #path: string = "m/44'/118'/0'/0/0";
+	readonly #bech32Prefix: string = "cosmos";
+
 	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
 		return new IdentityService();
 	}
@@ -13,7 +18,11 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async address(input: Contracts.AddressInput): Promise<string> {
 		if (input.passphrase) {
-			return getNewWalletFromSeed(input.passphrase).cosmosAddress;
+			const seed = await bip39.mnemonicToSeed(input.passphrase);
+			const node = bip32.fromSeed(seed);
+			const child = node.derivePath(this.#path);
+			const words = bech32.toWords(child.identifier);
+			return bech32.encode(this.#bech32Prefix, words);
 		}
 
 		if (input.multiSignature) {
@@ -37,7 +46,13 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async publicKey(input: Contracts.PublicKeyInput): Promise<string> {
 		if (input.passphrase) {
-			return getNewWalletFromSeed(input.passphrase).publicKey;
+			const { publicKey } = await this.keyPair(input);
+
+			if (!publicKey) {
+				throw new Error("Failed to derive the public key.");
+			}
+
+			return publicKey;
 		}
 
 		if (input.multiSignature) {
@@ -53,7 +68,13 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async privateKey(input: Contracts.PrivateKeyInput): Promise<string> {
 		if (input.passphrase) {
-			return getNewWalletFromSeed(input.passphrase).privateKey;
+			const { privateKey } = await this.keyPair(input);
+
+			if (!privateKey) {
+				throw new Error("Failed to derive the private key.");
+			}
+
+			return privateKey;
 		}
 
 		if (input.wif) {
@@ -73,9 +94,17 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
 		if (input.passphrase) {
-			const keyPair = getNewWalletFromSeed(input.passphrase);
+			const masterKey = await this.deriveMasterKey(input.passphrase);
+			const privateKey: Buffer | undefined = masterKey.derivePath(this.#path).privateKey;
 
-			return { publicKey: keyPair.publicKey, privateKey: keyPair.privateKey };
+			if (!privateKey) {
+				throw new Error("Failed to derive private key.");
+			}
+
+			return {
+				publicKey: secp256k1.publicKeyCreate(privateKey, true).toString("hex"),
+				privateKey: privateKey.toString("hex"),
+			};
 		}
 
 		if (input.publicKey) {
@@ -91,5 +120,11 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		throw new Error("No input provided.");
+	}
+
+	private deriveMasterKey(passphrase: string): bip32.BIP32Interface {
+		bip39.validateMnemonic(passphrase);
+
+		return bip32.fromSeed(bip39.mnemonicToSeedSync(passphrase));
 	}
 }

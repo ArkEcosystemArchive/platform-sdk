@@ -1,10 +1,20 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
+import { secp256k1 } from "bcrypto";
 
-import { getNewWalletFromSeed, signWithPrivateKey, verifySignature } from "../cosmos";
+import { IdentityService } from "./identity";
+import { HashAlgorithms } from "../utils/hash";
 
 export class MessageService implements Contracts.MessageService {
+	readonly #identityService: IdentityService;
+
+	public constructor(opts: Contracts.KeyValuePair) {
+		this.#identityService = opts.identityService;
+	}
+
 	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
-		return new MessageService();
+		const identityService: IdentityService = await IdentityService.construct(opts);
+
+		return new MessageService({ identityService });
 	}
 
 	public async destruct(): Promise<void> {
@@ -12,16 +22,22 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const { cosmosAddress, publicKey, privateKey } = getNewWalletFromSeed(input.passphrase);
+		const { publicKey, privateKey } = await this.#identityService.keyPair(input);
 
 		return {
 			message: input.message,
 			signer: Buffer.from(publicKey, "hex").toString("hex"),
-			signature: signWithPrivateKey(input.message, Buffer.from(privateKey, "hex")).toString("hex"),
+			signature: secp256k1
+				.sign(HashAlgorithms.sha256(input.message), Buffer.from(privateKey!, "hex"))
+				.toString("hex"),
 		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return verifySignature(input.message, Buffer.from(input.signature, "hex"), Buffer.from(input.signer, "hex"));
+		return secp256k1.verify(
+			HashAlgorithms.sha256(input.message),
+			Buffer.from(input.signature, "hex"),
+			Buffer.from(input.signer, "hex"),
+		);
 	}
 }

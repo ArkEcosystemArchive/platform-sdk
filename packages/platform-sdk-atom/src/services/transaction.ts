@@ -1,10 +1,25 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { ClientService } from "./client";
+import { IdentityService } from "./identity";
 
-import { createSignedTransaction } from "../cosmos";
+import { createSignedTransaction } from "../utils/crypto";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #client;
+	readonly #identity;
+	readonly #chainId = "gaia-13007"; // todo: make this configurable, currently uses testnet
+
+	private constructor(opts: Contracts.KeyValuePair) {
+		this.#client = opts.client;
+		this.#identity = opts.identity;
+	}
+
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		return new TransactionService();
+		return new TransactionService({
+			...opts,
+			client: await ClientService.construct({ peer: opts.peer }),
+			identity: await IdentityService.construct({ peer: opts.peer }),
+		});
 	}
 
 	public async destruct(): Promise<void> {
@@ -15,31 +30,43 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
+		const senderAddress: string = await this.#identity.address({ passphrase: input.sign.passphrase });
+		const keyPair = await this.#identity.keyPair({ passphrase: input.sign.passphrase });
+
+		const { account_number, sequence } = (await this.#client.wallet(senderAddress)).raw();
+
 		return createSignedTransaction(
-			{ gas: 1000, gasPrices: [{ amount: "10", denom: "uatom" }], memo: `Hi from Lunie` },
-			[
-				{
-					type: `cosmos-sdk/Send`,
-					value: {
-						inputs: [
-							{
-								address: `cosmos1qperwt9wrnkg5k9e5gzfgjppzpqhyav5j24d66`,
-								coins: [{ denom: `STAKE`, amount: `1` }],
-							},
-						],
-						outputs: [
-							{
-								address: `cosmos1yeckxz7tapz34kjwnjxvmxzurerquhtrmxmuxt`,
-								coins: [{ denom: `STAKE`, amount: `1` }],
-							},
-						],
+			{
+				msgs: [
+					{
+						type: "cosmos-sdk/MsgSend",
+						value: {
+							amount: [
+								{
+									amount: `${input.data.amount}`,
+									denom: "umuon", // todo: make this configurable
+								},
+							],
+							from_address: senderAddress,
+							to_address: input.data.to,
+						},
 					},
+				],
+				chain_id: this.#chainId, // todo: make this configurable
+				fee: {
+					amount: [
+						{
+							amount: String(5000), // todo: make this configurable or estimate it
+							denom: "umuon", // todo: make this configurable
+						},
+					],
+					gas: String(200000), // todo: make this configurable or estimate it
 				},
-			],
-			input.sign.passphrase,
-			"test-chain",
-			0,
-			12,
+				memo: "",
+				account_number: String(account_number),
+				sequence: String(sequence),
+			},
+			keyPair,
 		);
 	}
 
