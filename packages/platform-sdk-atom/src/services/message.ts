@@ -1,8 +1,8 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 import { secp256k1 } from "bcrypto";
 
-import { IdentityService } from "./identity";
 import { HashAlgorithms } from "../utils/hash";
+import { IdentityService } from "./identity";
 
 export class MessageService implements Contracts.MessageService {
 	readonly #identityService: IdentityService;

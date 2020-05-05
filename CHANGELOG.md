@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.4.5 - 2020-05-05
+
+### Added
+
+-   Implement `ClientService#transaction/transactions/wallet` methods for `ATOM` (82e606ae, @faustbrian)
+-   Transfer signing and broadcasting (f72bc101, @faustbrian)
+
+### Changed
+
+-   Always collect coverage (529876f6, @faustbrian)
+-   Update manifests (6dd5e40e, @faustbrian)
+
 ## 0.4.1 - 2020-05-04
 
 ### Changed

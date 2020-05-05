@@ -1,8 +1,8 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { secp256k1 } from "bcrypto";
+import bech32 from "bech32";
 import * as bip32 from "bip32";
 import * as bip39 from "bip39";
-import bech32 from "bech32";
 
 export class IdentityService implements Contracts.IdentityService {
 	readonly #path: string = "m/44'/118'/0'/0/0";
@@ -94,7 +94,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
 		if (input.passphrase) {
-			const masterKey = await this.deriveMasterKey(input.passphrase);
+			const masterKey = this.deriveMasterKey(input.passphrase);
 			const privateKey: Buffer | undefined = masterKey.derivePath(this.#path).privateKey;
 
 			if (!privateKey) {

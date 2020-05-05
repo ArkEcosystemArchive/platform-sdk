@@ -1,4 +1,5 @@
 import { secp256k1 } from "bcrypto";
+
 import { HashAlgorithms } from "./hash";
 
 const sortObject = (obj) => {

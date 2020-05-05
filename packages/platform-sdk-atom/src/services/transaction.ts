@@ -1,8 +1,8 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { ClientService } from "./client";
-import { IdentityService } from "./identity";
 
 import { createSignedTransaction } from "../utils/crypto";
+import { ClientService } from "./client";
+import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #client;
