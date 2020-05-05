@@ -4,8 +4,6 @@ import { BigNumber } from "@arkecosystem/utils";
 import nock from "nock";
 
 import { ClientService } from "../../src/services/client";
-import { TransactionService } from "../../src/services/transaction";
-import { IdentityService } from "../../src/services/identity";
 import { TransactionData, WalletData } from "../../src/dto";
 
 let subject: ClientService;
