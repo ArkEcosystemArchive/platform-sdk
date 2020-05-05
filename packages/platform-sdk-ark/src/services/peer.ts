@@ -5,7 +5,7 @@ import orderBy from "lodash.orderby";
 import semver from "semver";
 
 export class PeerService implements Contracts.PeerService {
-	private constructor (private readonly seeds: Contracts.Peer[]) { }
+	private constructor(private readonly seeds: Contracts.Peer[]) {}
 
 	public static async construct(options: Contracts.KeyValuePair): Promise<PeerService> {
 		let { networkOrHost, defaultPort } = options;
@@ -89,7 +89,9 @@ export class PeerService implements Contracts.PeerService {
 		let peers: Contracts.PeerResponse[] = body.data;
 
 		if (options.filters && options.filters.version !== undefined) {
-			peers = peers.filter((peer: Contracts.PeerResponse) => semver.satisfies(peer.version, options.filters.version));
+			peers = peers.filter((peer: Contracts.PeerResponse) =>
+				semver.satisfies(peer.version, options.filters.version),
+			);
 		}
 
 		if (options.filters && options.filters.latency !== undefined) {
@@ -100,7 +102,7 @@ export class PeerService implements Contracts.PeerService {
 			options.orderBy = ["latency", "desc"];
 		}
 
-		return orderBy(peers, [options.orderBy[0]], [options.orderBy[1] as any]);
+		return orderBy(peers, [options.orderBy[0]], [options.orderBy[1]]);
 	}
 
 	public async searchWithPlugin(name: string, options: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {

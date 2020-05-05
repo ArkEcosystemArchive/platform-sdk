@@ -45,7 +45,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		const event = this.data.events.find((event) => event.type === "transfer");
 		const attribute = event.attributes.find((attribute) => attribute.key === "amount");
 
-		return attribute.value;
+		return BigNumber.make(attribute.value.replace(/\D/g, ""));
 	}
 
 	public fee(): BigNumber {

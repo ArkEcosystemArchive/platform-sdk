@@ -1,46 +1,127 @@
 {
-	"total_count": 1,
-	"count": 1,
-	"page_number": 1,
-	"page_total": 1,
-	"limit": 30,
+	"total_count": "14943",
+	"count": "1",
+	"page_number": "1",
+	"page_total": "14943",
+	"limit": "1",
 	"txs": [
 		{
-			"hash": "D085138D913993919295FF4B0A9107F1F2CDE0D37A87CE0644E217CBF3B49656",
-			"height": 368,
-			"tx": {
-				"msg": ["string"],
-				"fee": {
-					"gas": "string",
-					"amount": [
+			"height": "14990",
+			"txhash": "B0DB35EADB3655E954A785B1ED0402222EF8C7061B22E52720AB1CE027ADBD11",
+			"raw_log": "[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"sender\",\"value\":\"cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0\"},{\"key\":\"module\",\"value\":\"bank\"},{\"key\":\"action\",\"value\":\"send\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"cosmos14ddvyl5t0hzmknceuv3zzu5szuum4rkygpq5ln\"},{\"key\":\"amount\",\"value\":\"10680umuon\"}]}]}]",
+			"logs": [
+				{
+					"msg_index": 0,
+					"success": true,
+					"log": "",
+					"events": [
 						{
-							"denom": "stake",
-							"amount": "50"
+							"type": "message",
+							"attributes": [
+								{
+									"key": "sender",
+									"value": "cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0"
+								},
+								{
+									"key": "module",
+									"value": "bank"
+								},
+								{
+									"key": "action",
+									"value": "send"
+								}
+							]
+						},
+						{
+							"type": "transfer",
+							"attributes": [
+								{
+									"key": "recipient",
+									"value": "cosmos14ddvyl5t0hzmknceuv3zzu5szuum4rkygpq5ln"
+								},
+								{
+									"key": "amount",
+									"value": "10680umuon"
+								}
+							]
+						}
+					]
+				}
+			],
+			"gas_wanted": "70000",
+			"gas_used": "36875",
+			"tx": {
+				"type": "cosmos-sdk/StdTx",
+				"value": {
+					"msg": [
+						{
+							"type": "cosmos-sdk/MsgSend",
+							"value": {
+								"from_address": "cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0",
+								"to_address": "cosmos14ddvyl5t0hzmknceuv3zzu5szuum4rkygpq5ln",
+								"amount": [
+									{
+										"denom": "umuon",
+										"amount": "10680"
+									}
+								]
+							}
+						}
+					],
+					"fee": {
+						"amount": [
+							{
+								"denom": "umuon",
+								"amount": "2500"
+							}
+						],
+						"gas": "70000"
+					},
+					"signatures": [
+						{
+							"pub_key": {
+								"type": "tendermint/PubKeySecp256k1",
+								"value": "Ap65s+Jdgo8BtvTbkc7GyUti8yJ7RpZ7cE1zCuKgNeXY"
+							},
+							"signature": "LPsuUoT5PseT7Lh82v56AlKFfIZE+yDK2fF3WX0II39awneff7XRWRfqY5zh7hEvbvca1i/StIt2aMGJpG4m0w=="
+						}
+					],
+					"memo": "Hello World"
+				}
+			},
+			"timestamp": "2019-12-21T19:42:21Z",
+			"events": [
+				{
+					"type": "message",
+					"attributes": [
+						{
+							"key": "sender",
+							"value": "cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0"
+						},
+						{
+							"key": "module",
+							"value": "bank"
+						},
+						{
+							"key": "action",
+							"value": "send"
 						}
 					]
 				},
-				"memo": "string",
-				"signature": {
-					"signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
-					"pub_key": {
-						"type": "tendermint/PubKeySecp256k1",
-						"value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
-					},
-					"account_number": "0",
-					"sequence": "0"
+				{
+					"type": "transfer",
+					"attributes": [
+						{
+							"key": "recipient",
+							"value": "cosmos14ddvyl5t0hzmknceuv3zzu5szuum4rkygpq5ln"
+						},
+						{
+							"key": "amount",
+							"value": "10680umuon"
+						}
+					]
 				}
-			},
-			"result": {
-				"log": "string",
-				"gas_wanted": "200000",
-				"gas_used": "26354",
-				"tags": [
-					{
-						"key": "string",
-						"value": "string"
-					}
-				]
-			}
+			]
 		}
 	]
 }

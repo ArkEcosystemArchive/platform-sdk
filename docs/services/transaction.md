@@ -302,21 +302,21 @@ Creates a new Multi-Payment transaction.
 
 ### Parameters
 
-| Name                   | Type     | Description                                                                                            |
-| ---------------------- | -------- | ------------------------------------------------------------------------------------------------------ |
-| data                   | object   | The object containing all data required for the transaction.                                           |
-| data.payments          | object[] | The array of payments that should be transfered.                                                       |
-| data.payments.*.to     | string   | The address of the wallet that should receive the funds.                                               |
-| data.payments.*.amount | number   | The amount that should be transfered.                                                                  |
-| fee                    | string   | The fee that should be used for the transaction. **This can be optional on a per coin basis.**         |
-| feeLimit               | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
-| nonce                  | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
-| sign                   | object   | The object containing all data required for the signing.                                               |
-| sign.passphrase        | string   | The passphrase of the signer.                                                                          |
-| sign.passphrases       | string[] | The passphrases of all signers.                                                                        |
-| sign.secondPassphrase  | string   | The second passphrase of the signer.                                                                   |
-| sign.wif               | string   | The WIF of the signer.                                                                                 |
-| sign.secondWif         | string   | The second WIF of the signer.                                                                          |
+| Name                    | Type     | Description                                                                                            |
+| ----------------------- | -------- | ------------------------------------------------------------------------------------------------------ |
+| data                    | object   | The object containing all data required for the transaction.                                           |
+| data.payments           | object[] | The array of payments that should be transfered.                                                       |
+| data.payments.\*.to     | string   | The address of the wallet that should receive the funds.                                               |
+| data.payments.\*.amount | number   | The amount that should be transfered.                                                                  |
+| fee                     | string   | The fee that should be used for the transaction. **This can be optional on a per coin basis.**         |
+| feeLimit                | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
+| nonce                   | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
+| sign                    | object   | The object containing all data required for the signing.                                               |
+| sign.passphrase         | string   | The passphrase of the signer.                                                                          |
+| sign.passphrases        | string[] | The passphrases of all signers.                                                                        |
+| sign.secondPassphrase   | string   | The second passphrase of the signer.                                                                   |
+| sign.wif                | string   | The WIF of the signer.                                                                                 |
+| sign.secondWif          | string   | The second WIF of the signer.                                                                          |
 
 ### Return Value
 
