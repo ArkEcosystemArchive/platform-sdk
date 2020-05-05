@@ -1,4 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Transaction } from "bitcore-lib";
 
 export class TransactionService implements Contracts.TransactionService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
@@ -13,7 +14,24 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transfer");
+		// {
+		// 	"jsonrpc": "2.0",
+		// 	"method": "listunspent",
+		// 	"params": [1, 9999999, ["address"]]
+		// }
+
+		// {
+		// 	"jsonrpc": "2.0",
+		// 	"method": "sendrawtransaction",
+		// 	"params": ["hex"]
+		// }
+
+		return new Transaction()
+			.from(utxos) // todo: load UTXOs via JSON-RPC
+			.to(input.data.to, input.data.amount)
+			.change(input.data.from)
+			.sign(input.sign.passphrase)
+			.toString();
 	}
 
 	public async secondSignature(
