@@ -431,10 +431,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/jest", "npm:25.2.1"],
             ["@types/node", "npm:13.13.4"],
-            ["@types/node-fetch", "npm:2.5.7"],
             ["@types/prettier", "npm:2.0.0"],
             ["@types/rimraf", "npm:3.0.0"],
-            ["@types/secp256k1", "npm:4.0.1"],
             ["@typescript-eslint/eslint-plugin", "virtual:0a54f9c69c85a4596b5acd865591b856f72160ef5af3c771cf6d92676ce4b26c1c68b29548dd17a2437b89aa97a6453ec622ecee48878c4e67a574a80da161fb#npm:2.30.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
             ["bcrypto", "npm:5.1.0"],
@@ -3399,17 +3397,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["@types/node-fetch", [
-        ["npm:2.5.7", {
-          "packageLocation": "./.yarn/cache/@types-node-fetch-npm-2.5.7-fd8c51e56f-2.zip/node_modules/@types/node-fetch/",
-          "packageDependencies": [
-            ["@types/node-fetch", "npm:2.5.7"],
-            ["@types/node", "npm:13.13.4"],
-            ["form-data", "npm:3.0.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["@types/normalize-package-data", [
         ["npm:2.4.0", {
           "packageLocation": "./.yarn/cache/@types-normalize-package-data-npm-2.4.0-ed928aaaa8-2.zip/node_modules/@types/normalize-package-data/",
@@ -3451,16 +3438,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@types/rimraf", "npm:3.0.0"],
             ["@types/glob", "npm:7.1.1"],
-            ["@types/node", "npm:13.13.4"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@types/secp256k1", [
-        ["npm:4.0.1", {
-          "packageLocation": "./.yarn/cache/@types-secp256k1-npm-4.0.1-8a8b04cf55-2.zip/node_modules/@types/secp256k1/",
-          "packageDependencies": [
-            ["@types/secp256k1", "npm:4.0.1"],
             ["@types/node", "npm:13.13.4"]
           ],
           "linkType": "HARD",
@@ -8372,16 +8349,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/form-data-npm-2.3.3-c016cc11c0-2.zip/node_modules/form-data/",
           "packageDependencies": [
             ["form-data", "npm:2.3.3"],
-            ["asynckit", "npm:0.4.0"],
-            ["combined-stream", "npm:1.0.8"],
-            ["mime-types", "npm:2.1.27"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:3.0.0", {
-          "packageLocation": "./.yarn/cache/form-data-npm-3.0.0-b01f488350-2.zip/node_modules/form-data/",
-          "packageDependencies": [
-            ["form-data", "npm:3.0.0"],
             ["asynckit", "npm:0.4.0"],
             ["combined-stream", "npm:1.0.8"],
             ["mime-types", "npm:2.1.27"]
