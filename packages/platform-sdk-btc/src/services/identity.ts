@@ -1,11 +1,11 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { ECPair, Network, networks, payments } from "bitcoinjs-lib";
+import { Address, PrivateKey, PublicKey } from "bitcore-lib";
 
 export class IdentityService implements Contracts.IdentityService {
-	readonly #network: Network;
+	readonly #network: string;
 
 	private constructor(network: string) {
-		this.#network = networks[network];
+		this.#network = network;
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
@@ -22,53 +22,43 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		if (input.multiSignature) {
-			const payment = this.p2sh({
-				redeem: payments.p2ms({
-					m: input.multiSignature.min,
-					pubkeys: input.multiSignature.publicKeys.map((hex) => Buffer.from(hex, "hex")),
-				}),
-			});
+			const address = new Address(input.multiSignature.publicKeys, input.multiSignature.min);
 
-			if (payment.address !== undefined) {
-				return payment.address;
+			if (!address) {
+				throw new Error(`Failed to derive address for [${input.multiSignature.publicKeys}].`);
 			}
 
-			throw new Error(`Failed to derive address for [${input.publicKey}].`);
+			return address.toString();
 		}
 
 		if (input.publicKey) {
-			const keyPair = ECPair.fromPublicKey(Buffer.from(input.publicKey, "hex"));
-			const payment = this.p2pkh({
-				pubkey: keyPair.publicKey,
-			});
+			const address = Address.fromPublicKey(new PublicKey(input.publicKey), this.#network);
 
-			if (payment.address !== undefined) {
-				return payment.address;
+			if (!address) {
+				throw new Error(`Failed to derive address for [${input.publicKey}].`);
 			}
 
-			throw new Error(`Failed to derive address for [${input.publicKey}].`);
+			return address.toString();
 		}
 
 		if (input.privateKey) {
-			const keyPair = ECPair.fromPrivateKey(Buffer.from(input.privateKey, "hex"));
-			const payment = this.p2pkh({ pubkey: keyPair.publicKey });
+			const address = new PrivateKey(input.privateKey).toAddress(this.#network);
 
-			if (payment.address !== undefined) {
-				return payment.address;
+			if (!address) {
+				throw new Error(`Failed to derive address for [${input.privateKey}].`);
 			}
 
-			throw new Error(`Failed to derive address for [${input.privateKey}].`);
+			return address.toString();
 		}
 
 		if (input.wif) {
-			const keyPair = ECPair.fromWIF(input.wif);
-			const payment = this.p2pkh({ pubkey: keyPair.publicKey });
+			const address = PrivateKey.fromWIF(input.wif).toAddress(this.#network);
 
-			if (payment.address !== undefined) {
-				return payment.address;
+			if (!address) {
+				throw new Error(`Failed to derive address for [${input.wif}].`);
 			}
 
-			throw new Error(`Failed to derive address for [${input.wif}].`);
+			return address.toString();
 		}
 
 		throw new Error("No input provided.");
@@ -84,7 +74,7 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		if (input.wif) {
-			return ECPair.fromWIF(input.wif).publicKey.toString("hex");
+			return PrivateKey.fromWIF(input.wif).toPublicKey().toString();
 		}
 
 		throw new Error("No input provided.");
@@ -96,13 +86,13 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		if (input.wif) {
-			const privateKey: Buffer | undefined = ECPair.fromWIF(input.wif).privateKey;
+			const privateKey: Buffer = PrivateKey.fromWIF(input.wif);
 
-			if (privateKey !== undefined) {
-				return privateKey.toString("hex");
+			if (!privateKey) {
+				throw new Error(`Failed to derive private key for [${input.wif}].`);
 			}
 
-			throw new Error(`Failed to derive private key for [${input.wif}].`);
+			return privateKey.toString("hex");
 		}
 
 		throw new Error("No input provided.");
@@ -117,11 +107,6 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
-		const normalizeKeyPair = (keyPair): Contracts.KeyPair => ({
-			publicKey: keyPair.publicKey.toString("hex"),
-			privateKey: keyPair.privateKey?.toString("hex"),
-		});
-
 		if (input.passphrase) {
 			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#passphrase");
 		}
@@ -131,27 +116,20 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		if (input.privateKey) {
-			return normalizeKeyPair(ECPair.fromPrivateKey(Buffer.from(input.privateKey, "hex")));
+			return this.normalizeKeyPair(new PrivateKey(input.privateKey));
 		}
 
 		if (input.wif) {
-			return normalizeKeyPair(ECPair.fromWIF(input.wif));
+			return this.normalizeKeyPair(PrivateKey.fromWIF(input.wif));
 		}
 
 		throw new Error("No input provided.");
 	}
 
-	private p2sh(opts: object): payments.Payment {
-		return payments.p2sh({
-			network: this.#network,
-			...opts,
-		});
-	}
-
-	private p2pkh(opts: object): payments.Payment {
-		return payments.p2pkh({
-			network: this.#network,
-			...opts,
-		});
+	private normalizeKeyPair(privateKey: Buffer): Contracts.KeyPair {
+		return {
+			publicKey: PublicKey.fromPrivateKey(privateKey).toString("hex"),
+			privateKey: privateKey.toString("hex"),
+		};
 	}
 }
