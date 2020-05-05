@@ -1,6 +1,5 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
-import { ECPair } from "bitcoinjs-lib";
-import bitcoinMessage from "bitcoinjs-message";
+import { Message, PrivateKey } from "bitcore-lib";
 
 import { IdentityService } from "./identity";
 
@@ -22,16 +21,17 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const { privateKey, compressed } = ECPair.fromWIF(input.passphrase);
+		const privateKey = PrivateKey.fromWIF(input.passphrase);
+		const message = new Message(input.message);
 
 		return {
 			message: input.message,
 			signer: await this.#identity.address({ wif: input.passphrase }),
-			signature: bitcoinMessage.sign(input.message, privateKey, compressed).toString("hex"),
+			signature: message.sign(privateKey),
 		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return bitcoinMessage.verify(input.message, input.signer, Buffer.from(input.signature, "hex"));
+		return new Message(input.message).verify(input.signer, input.signature);
 	}
 }

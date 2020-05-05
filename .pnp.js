@@ -474,9 +474,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:ab0ace38ea44fa76cce697653d3f576ee21608f86278b31911e1e589e653eee0099f361a85ea8ca8ac05b9f0aa50c6d1ee3155944b4d06c4114bebf74e9bbbc5#npm:2.30.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
-            ["bip39", "npm:3.0.2"],
-            ["bitcoinjs-lib", "npm:5.1.7"],
-            ["bitcoinjs-message", "npm:2.1.0"],
+            ["bitcore-lib", "npm:8.17.1"],
             ["codecov", "npm:3.6.5"],
             ["cross-env", "npm:7.0.2"],
             ["eslint", "npm:6.8.0"],
@@ -4884,6 +4882,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["bech32", [
+        ["npm:1.1.3", {
+          "packageLocation": "./.yarn/cache/bech32-npm-1.1.3-d1b81a1a8b-2.zip/node_modules/bech32/",
+          "packageDependencies": [
+            ["bech32", "npm:1.1.3"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:1.1.4", {
           "packageLocation": "./.yarn/cache/bech32-npm-1.1.4-87b69922f7-2.zip/node_modules/bech32/",
           "packageDependencies": [
@@ -4948,15 +4953,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["bip174", [
-        ["npm:1.0.1", {
-          "packageLocation": "./.yarn/cache/bip174-npm-1.0.1-723878f94d-2.zip/node_modules/bip174/",
-          "packageDependencies": [
-            ["bip174", "npm:1.0.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["bip32", [
         ["npm:2.0.5", {
           "packageLocation": "./.yarn/cache/bip32-npm-2.0.5-51524879f0-2.zip/node_modules/bip32/",
@@ -5008,50 +5004,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["bitcoin-ops", [
-        ["npm:1.4.1", {
-          "packageLocation": "./.yarn/cache/bitcoin-ops-npm-1.4.1-e1e62763b3-2.zip/node_modules/bitcoin-ops/",
+      ["bitcore-lib", [
+        ["npm:8.17.1", {
+          "packageLocation": "./.yarn/cache/bitcore-lib-npm-8.17.1-f6c712702a-2.zip/node_modules/bitcore-lib/",
           "packageDependencies": [
-            ["bitcoin-ops", "npm:1.4.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["bitcoinjs-lib", [
-        ["npm:5.1.7", {
-          "packageLocation": "./.yarn/cache/bitcoinjs-lib-npm-5.1.7-087e5cf380-2.zip/node_modules/bitcoinjs-lib/",
-          "packageDependencies": [
-            ["bitcoinjs-lib", "npm:5.1.7"],
-            ["bech32", "npm:1.1.4"],
-            ["bip174", "npm:1.0.1"],
-            ["bip32", "npm:2.0.5"],
-            ["bip66", "npm:1.1.5"],
-            ["bitcoin-ops", "npm:1.4.1"],
-            ["bs58check", "npm:2.1.2"],
-            ["create-hash", "npm:1.2.0"],
-            ["create-hmac", "npm:1.1.7"],
-            ["merkle-lib", "npm:2.0.10"],
-            ["pushdata-bitcoin", "npm:1.0.1"],
-            ["randombytes", "npm:2.1.0"],
-            ["tiny-secp256k1", "npm:1.1.4"],
-            ["typeforce", "npm:1.18.0"],
-            ["varuint-bitcoin", "npm:1.1.2"],
-            ["wif", "npm:2.0.6"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["bitcoinjs-message", [
-        ["npm:2.1.0", {
-          "packageLocation": "./.yarn/cache/bitcoinjs-message-npm-2.1.0-f2230fe689-2.zip/node_modules/bitcoinjs-message/",
-          "packageDependencies": [
-            ["bitcoinjs-message", "npm:2.1.0"],
-            ["bech32", "npm:1.1.4"],
-            ["bs58check", "npm:2.1.2"],
-            ["buffer-equals", "npm:1.0.4"],
-            ["create-hash", "npm:1.2.0"],
-            ["secp256k1", "npm:3.8.0"],
-            ["varuint-bitcoin", "npm:1.1.2"]
+            ["bitcore-lib", "npm:8.17.1"],
+            ["bech32", "npm:1.1.3"],
+            ["bn.js", "npm:4.11.8"],
+            ["bs58", "npm:4.0.1"],
+            ["buffer-compare", "npm:1.1.1"],
+            ["elliptic", "npm:6.4.0"],
+            ["inherits", "npm:2.0.1"],
+            ["lodash", "npm:4.17.15"]
           ],
           "linkType": "HARD",
         }]
@@ -5362,11 +5326,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["buffer-equals", [
-        ["npm:1.0.4", {
-          "packageLocation": "./.yarn/cache/buffer-equals-npm-1.0.4-33f74e9c07-2.zip/node_modules/buffer-equals/",
+      ["buffer-compare", [
+        ["npm:1.1.1", {
+          "packageLocation": "./.yarn/cache/buffer-compare-npm-1.1.1-4ea57f3a1d-2.zip/node_modules/buffer-compare/",
           "packageDependencies": [
-            ["buffer-equals", "npm:1.0.4"]
+            ["buffer-compare", "npm:1.1.1"]
           ],
           "linkType": "HARD",
         }]
@@ -7150,6 +7114,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["brorand", "npm:1.1.0"],
             ["hash.js", "npm:1.1.7"],
             ["inherits", "npm:2.0.4"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:6.4.0", {
+          "packageLocation": "./.yarn/cache/elliptic-npm-6.4.0-1ce742b337-2.zip/node_modules/elliptic/",
+          "packageDependencies": [
+            ["elliptic", "npm:6.4.0"],
+            ["bn.js", "npm:4.11.8"],
+            ["brorand", "npm:1.1.0"],
+            ["hash.js", "npm:1.1.7"],
+            ["hmac-drbg", "npm:1.0.1"],
+            ["inherits", "npm:2.0.4"],
+            ["minimalistic-assert", "npm:1.0.1"],
+            ["minimalistic-crypto-utils", "npm:1.0.1"]
           ],
           "linkType": "HARD",
         }],
@@ -9494,6 +9472,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["inherits", [
+        ["npm:2.0.1", {
+          "packageLocation": "./.yarn/cache/inherits-npm-2.0.1-0011554c03-2.zip/node_modules/inherits/",
+          "packageDependencies": [
+            ["inherits", "npm:2.0.1"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:2.0.3", {
           "packageLocation": "./.yarn/cache/inherits-npm-2.0.3-401e64b080-2.zip/node_modules/inherits/",
           "packageDependencies": [
@@ -11711,15 +11696,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["merkle-lib", [
-        ["npm:2.0.10", {
-          "packageLocation": "./.yarn/cache/merkle-lib-npm-2.0.10-878da678e5-2.zip/node_modules/merkle-lib/",
-          "packageDependencies": [
-            ["merkle-lib", "npm:2.0.10"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["methods", [
         ["npm:1.1.2", {
           "packageLocation": "./.yarn/cache/methods-npm-1.1.2-92f6fdb39b-2.zip/node_modules/methods/",
@@ -13905,16 +13881,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["pupa", "npm:2.0.1"],
             ["escape-goat", "npm:2.1.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["pushdata-bitcoin", [
-        ["npm:1.0.1", {
-          "packageLocation": "./.yarn/cache/pushdata-bitcoin-npm-1.0.1-959a90bb14-2.zip/node_modules/pushdata-bitcoin/",
-          "packageDependencies": [
-            ["pushdata-bitcoin", "npm:1.0.1"],
-            ["bitcoin-ops", "npm:1.4.1"]
           ],
           "linkType": "HARD",
         }]
@@ -16954,14 +16920,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/varuint-bitcoin-npm-1.1.0-2d500903f0-2.zip/node_modules/varuint-bitcoin/",
           "packageDependencies": [
             ["varuint-bitcoin", "npm:1.1.0"],
-            ["safe-buffer", "npm:5.2.0"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:1.1.2", {
-          "packageLocation": "./.yarn/cache/varuint-bitcoin-npm-1.1.2-83f928c112-2.zip/node_modules/varuint-bitcoin/",
-          "packageDependencies": [
-            ["varuint-bitcoin", "npm:1.1.2"],
             ["safe-buffer", "npm:5.2.0"]
           ],
           "linkType": "HARD",
