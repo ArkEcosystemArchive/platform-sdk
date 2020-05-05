@@ -17,8 +17,8 @@ export class TransactionService implements Contracts.TransactionService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
 		return new TransactionService({
 			...opts,
-			client: await ClientService.construct({ peer: opts.peer }),
-			identity: await IdentityService.construct({ peer: opts.peer }),
+			client: await ClientService.construct(opts),
+			identity: await IdentityService.construct(opts),
 		});
 	}
 
