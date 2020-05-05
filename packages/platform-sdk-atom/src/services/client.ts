@@ -1,6 +1,6 @@
 import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 
-import { TransactionData } from "../dto";
+import { TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
@@ -26,16 +26,20 @@ export class ClientService implements Contracts.ClientService {
 	public async transactions(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		const response = await this.get("txs", query);
-		console.log(JSON.stringify(response));
+		const response = await this.get("txs", {
+			"message.action": "send",
+			"message.sender": query.address,
+			page: query.page || 1,
+			limit: query.limit || 100,
+		});
 
-		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
+		return { meta: {}, data: response.txs.map((transaction) => new TransactionData(transaction)) };
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const response = await this.get(`auth/accounts/${id}`);
+		const { result } = await this.get(`auth/accounts/${id}`);
 
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
+		return new WalletData(result.value);
 	}
 
 	public async wallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {

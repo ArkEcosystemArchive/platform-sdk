@@ -144,7 +144,9 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			await expect(peerService.search({ filters: { version: "2.6.0" } })).resolves.toEqual([dummyPeersWalletApi[1]]);
+			await expect(peerService.search({ filters: { version: "2.6.0" } })).resolves.toEqual([
+				dummyPeersWalletApi[1],
+			]);
 
 			await expect(peerService.search({ filters: { version: ">=2.5.0" } })).resolves.toEqual(dummyPeersWalletApi);
 		});

@@ -1,10 +1,10 @@
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";
+import { LedgerService, LedgerTransport } from "./ledger";
 import { LinkService } from "./link";
 import { MessageService } from "./message";
 import { PeerService } from "./peer";
 import { TransactionService } from "./transaction";
-import { LedgerService, LedgerTransport } from "./ledger";
 
 interface FactoryConstructorOptions {
 	services: {

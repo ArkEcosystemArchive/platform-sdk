@@ -1,16 +1,21 @@
 {
-	"height": "1672972",
+	"height": "2054599",
 	"result": {
 		"type": "cosmos-sdk/Account",
 		"value": {
-			"address": "cosmos1qfl3zahm4qxumyed35pgxhlwq3a5axytsunxfk",
-			"coins": [{ "denom": "uatom", "amount": "27576" }],
+			"address": "cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0",
+			"coins": [
+				{
+					"denom": "umuon",
+					"amount": "69519574"
+				}
+			],
 			"public_key": {
 				"type": "tendermint/PubKeySecp256k1",
-				"value": "AzRMh9Rptc88OA3RgAIJ5j8DhHM50ksBhHTTSVgnATkJ"
+				"value": "Ap65s+Jdgo8BtvTbkc7GyUti8yJ7RpZ7cE1zCuKgNeXY"
 			},
-			"account_number": "260",
-			"sequence": "132"
+			"account_number": "39",
+			"sequence": "24242"
 		}
 	}
 }

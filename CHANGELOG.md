@@ -11,97 +11,99 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- Updated manifests (6dd5e40, @faustbrian)
+-   Updated manifests (6dd5e40, @faustbrian)
 
 ## 0.4.0 - 2020-05-04
 
 ### Added
 
-- add `DelegateData#getUsername` and `DelegateData#getRank` (0a4ab515, @faustbrian)
-- add `ClientService#getVotes` and `ClientService#getVoters` methods (b9075224, @faustbrian)
-- implement transaction signing and identity geneneration (81486551, @faustbrian)
-- implement LinkService (f18a6d1c, @faustbrian)
-- add `options` for transaction signing (5c528f3a, @faustbrian)
-- implement `Factory` for each adapter (fa81ba4e, @faustbrian)
-- implement `LedgerService` (b894e16b, @faustbrian)
+-   add `DelegateData#getUsername` and `DelegateData#getRank` (0a4ab515, @faustbrian)
+-   add `ClientService#getVotes` and `ClientService#getVoters` methods (b9075224, @faustbrian)
+-   implement transaction signing and identity geneneration (81486551, @faustbrian)
+-   implement LinkService (f18a6d1c, @faustbrian)
+-   add `options` for transaction signing (5c528f3a, @faustbrian)
+-   implement `Factory` for each adapter (fa81ba4e, @faustbrian)
+-   implement `LedgerService` (b894e16b, @faustbrian)
 
 ### Changed
 
-- make all public API methods async (72a5dd0b, @faustbrian)
-- return normalised object from `DTO#toObject` (8e413dfc, @faustbrian)
-- remove unused block code (64127a74, @faustbrian)
-- standardise the input for the `Transaction#create*` methods (b9fe08f3, @faustbrian)
-- add `Class#construct` and `Class#destruct` (406fd104, @faustbrian)
-- use ripple-lib connection for API requests (31617bbd, @faustbrian)
-- final method names (0b239fb3, @faustbrian)
-- drop `ClientService#searchTransactions` and `ClientService#searchWallets` (9cb7f2bc, @faustbrian)
-- merge `ClientService#cryptoConfiguration` into `ClientService#configuration` (4d5a414d, @faustbrian)
-- merge `ClientService#feesByNode` and `ClientService#feesByType` (9a6406b7, @faustbrian)
-- add contract for `MessageService` input (317188e6, @faustbrian)
-- add contract for `IdentityService` input (20cc46af, @faustbrian)
-- turn `PeerService` fluent helpers into options (9eaecafe, @faustbrian)
+-   make all public API methods async (72a5dd0b, @faustbrian)
+-   return normalised object from `DTO#toObject` (8e413dfc, @faustbrian)
+-   remove unused block code (64127a74, @faustbrian)
+-   standardise the input for the `Transaction#create*` methods (b9fe08f3, @faustbrian)
+-   add `Class#construct` and `Class#destruct` (406fd104, @faustbrian)
+-   use ripple-lib connection for API requests (31617bbd, @faustbrian)
+-   final method names (0b239fb3, @faustbrian)
+-   drop `ClientService#searchTransactions` and `ClientService#searchWallets` (9cb7f2bc, @faustbrian)
+-   merge `ClientService#cryptoConfiguration` into `ClientService#configuration` (4d5a414d, @faustbrian)
+-   merge `ClientService#feesByNode` and `ClientService#feesByType` (9a6406b7, @faustbrian)
+-   add contract for `MessageService` input (317188e6, @faustbrian)
+-   add contract for `IdentityService` input (20cc46af, @faustbrian)
+-   turn `PeerService` fluent helpers into options (9eaecafe, @faustbrian)
 
 ## 0.3.6 - 2020-04-29
 
 ### Changed
 
-- add package banners (80fda7dd, @faustbrian)
+-   add package banners (80fda7dd, @faustbrian)
 
 ### Fixed
 
-- only list payments when using `Client#getTransactions` (0e0c7966, @faustbrian)
-- use testnet transaction structure (ac85331e, @faustbrian)
-- return `asset.payments` sum if transaction type is multipayment (78bd0671, @faustbrian)
+-   only list payments when using `Client#getTransactions` (0e0c7966, @faustbrian)
+-   use testnet transaction structure (ac85331e, @faustbrian)
+-   return `asset.payments` sum if transaction type is multipayment (78bd0671, @faustbrian)
 
 ## 0.3.3 - 2020-04-29
 
 ### Added
 
-- add `WalletData#getNonce` method (fbbc21ba, @faustbrian)
+-   add `WalletData#getNonce` method (fbbc21ba, @faustbrian)
 
 ### Changed
 
-- add `yarn run publish` script (1a623033, @faustbrian)
-- expect an array of transactions for `#postTransactions` (777d7821, @faustbrian)
+-   add `yarn run publish` script (1a623033, @faustbrian)
+-   expect an array of transactions for `#postTransactions` (777d7821, @faustbrian)
 -
+
 ### Fixed
 
-- treat amounts as strings (d7d0d9ca, @faustbrian)
+-   treat amounts as strings (d7d0d9ca, @faustbrian)
 
 ## 0.3.0 - 2020-04-29
 
 ### Added
 
-- initial draft of normalised Block DTO (2487fad5, @faustbrian)
-- initial draft of normalised Transaction DTO (15ca2eef, @faustbrian)
-- initial draft of normalised Peer DTO (398d123c, @faustbrian)
-- initial draft of normalised Wallet DTO (1cbe4dc7, @faustbrian)
-- add manifests to provide coin information (ae3ae870, @faustbrian)
-- implement `Client` methods (a35aa505, @faustbrian)
-- initial implementation (2eae2f0b, @faustbrian)
-- implement `getTransactions` (671887b3, @faustbrian)
-- initial implementation (40939eb3, @faustbrian)
-- implement `Client#getWallet` (7b60b859, @faustbrian)
-- implement `Message#sign` and `Message#verify` (596f9ebd, @faustbrian)
-- implement transaction, wallet and delegate methods for `Client` (dba67b63, @faustbrian)
-- introduce peer discovery service (f6147ff6, @faustbrian)
+-   initial draft of normalised Block DTO (2487fad5, @faustbrian)
+-   initial draft of normalised Transaction DTO (15ca2eef, @faustbrian)
+-   initial draft of normalised Peer DTO (398d123c, @faustbrian)
+-   initial draft of normalised Wallet DTO (1cbe4dc7, @faustbrian)
+-   add manifests to provide coin information (ae3ae870, @faustbrian)
+-   implement `Client` methods (a35aa505, @faustbrian)
+-   initial implementation (2eae2f0b, @faustbrian)
+-   implement `getTransactions` (671887b3, @faustbrian)
+-   initial implementation (40939eb3, @faustbrian)
+-   implement `Client#getWallet` (7b60b859, @faustbrian)
+-   implement `Message#sign` and `Message#verify` (596f9ebd, @faustbrian)
+-   implement transaction, wallet and delegate methods for `Client` (dba67b63, @faustbrian)
+-   introduce peer discovery service (f6147ff6, @faustbrian)
 -
+
 ### Changed
 
-- update dependencies to latest versions (6aee2492, @github-actions[bot])
-- update dependencies to latest versions (395ae36a, @github-actions[bot])
-- use @liskhq/lisk-transactions-old for mainnet and testnet (b946b522, @faustbrian)
-- remove getBridgechainsByBusiness (9b891508, @faustbrian)
-- remove block methods (187a6787, @faustbrian)
-- use yarn workspace with multiple packages (e38562b3, @faustbrian)
-- setup boilerplate for NEO, XMR and XRP (ca079e52, @faustbrian)
-- break down price trackers into multiple packages (aad6b240, @faustbrian)
-- move everything to its final location with matching names (2684b89d, @faustbrian)
-- final package names (7bbca218, @faustbrian)
+-   update dependencies to latest versions (6aee2492, @github-actions[bot])
+-   update dependencies to latest versions (395ae36a, @github-actions[bot])
+-   use @liskhq/lisk-transactions-old for mainnet and testnet (b946b522, @faustbrian)
+-   remove getBridgechainsByBusiness (9b891508, @faustbrian)
+-   remove block methods (187a6787, @faustbrian)
+-   use yarn workspace with multiple packages (e38562b3, @faustbrian)
+-   setup boilerplate for NEO, XMR and XRP (ca079e52, @faustbrian)
+-   break down price trackers into multiple packages (aad6b240, @faustbrian)
+-   move everything to its final location with matching names (2684b89d, @faustbrian)
+-   final package names (7bbca218, @faustbrian)
 
 ### Fixed
 
-- include meta data in collection-based responses (73ee7b32, @faustbrian)
+-   include meta data in collection-based responses (73ee7b32, @faustbrian)
 
 ## 0.2.0 - 2020-03-31
 
