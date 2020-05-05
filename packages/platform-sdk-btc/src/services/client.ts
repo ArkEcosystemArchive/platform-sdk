@@ -7,7 +7,7 @@ export class ClientService implements Contracts.ClientService {
 
 	readonly #restUrl: string = "https://blockchain.info";
 
-	private constructor(peer: string) {
+	private constructor (peer: string) {
 		this.#baseUrl = peer;
 	}
 
@@ -75,14 +75,14 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: object[]): Promise<void> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+		await this.post("sendrawtransaction", [transactions]);
 	}
 
 	private async get(path: string, query: Contracts.KeyValuePair = {}): Promise<Contracts.KeyValuePair> {
 		return Utils.getJSON(`${this.#restUrl}/${path}`, query);
 	}
 
-	private async post(method: string, params: Contracts.KeyValuePair = {}): Promise<Contracts.KeyValuePair> {
+	private async post(method: string, params: object | string[] = {}): Promise<Contracts.KeyValuePair> {
 		return Utils.postJSON(this.#baseUrl, "/", {
 			jsonrpc: "2.0",
 			method,
