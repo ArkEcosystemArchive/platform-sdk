@@ -80,7 +80,7 @@ export class ClientService implements Contracts.ClientService {
 
 	public async broadcast(transactions: object[]): Promise<void> {
 		for (const transaction of transactions) {
-			await this.post("txs", { tx: transaction, mode: "sync" });
+			await this.post("txs", { mode: "sync", tx: transaction });
 		}
 	}
 
@@ -89,6 +89,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(this.#baseUrl, path, body);
+		return Utils.postJSON(`${this.#baseUrl}/`, path, body);
 	}
 }
