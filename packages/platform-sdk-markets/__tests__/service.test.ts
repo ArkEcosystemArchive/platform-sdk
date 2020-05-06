@@ -1,9 +1,9 @@
 import "jest-extended";
 
-import { PriceTrackerService } from "../src/service";
+import { MarketService } from "../src";
 import { PriceTracker } from "./__stubs__/tracker";
 
-let subject: PriceTrackerService;
+let subject: MarketService;
 
 const createSpyAdapter = (method) => {
 	const adapter = new PriceTracker();
@@ -14,12 +14,12 @@ const createSpyAdapter = (method) => {
 	return spy;
 };
 
-describe("PriceTrackerService", () => {
+describe("MarketService", () => {
 	const token = "ARK";
 	const currency = "USD";
 
 	describe.each(["cryptocompare", "coingecko", "coincap"])("%s", (adapter) => {
-		beforeEach(() => (subject = PriceTrackerService.make(adapter.toLowerCase())));
+		beforeEach(() => (subject = MarketService.construct(adapter)));
 
 		it("should call #verifyToken on the adapter instance", async () => {
 			const spy = createSpyAdapter("verifyToken");
