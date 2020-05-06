@@ -1,5 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import ecc from "eosjs-ecc";
+import { privateToPublic, seedPrivate } from "eosjs-ecc";
 
 export class IdentityService implements Contracts.IdentityService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
@@ -31,12 +31,12 @@ export class IdentityService implements Contracts.IdentityService {
 			throw new Exceptions.NotSupported(this.constructor.name, "address#wif");
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "address");
 	}
 
 	public async publicKey(input: Contracts.PublicKeyInput): Promise<string> {
 		if (input.passphrase) {
-			return ecc.privateToPublic(input.passphrase);
+			return privateToPublic(input.passphrase);
 		}
 
 		if (input.multiSignature) {
@@ -47,7 +47,7 @@ export class IdentityService implements Contracts.IdentityService {
 			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#wif");
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "publicKey");
 	}
 
 	public async privateKey(input: Contracts.PrivateKeyInput): Promise<string> {
@@ -59,15 +59,15 @@ export class IdentityService implements Contracts.IdentityService {
 			throw new Exceptions.NotSupported(this.constructor.name, "privateKey#wif");
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "privateKey");
 	}
 
 	public async wif(input: Contracts.WifInput): Promise<string> {
 		if (input.passphrase) {
-			return ecc.seedPrivate(input.passphrase);
+			return seedPrivate(input.passphrase);
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "wif");
 	}
 
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
@@ -87,6 +87,6 @@ export class IdentityService implements Contracts.IdentityService {
 			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#wif");
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "keyPair");
 	}
 }

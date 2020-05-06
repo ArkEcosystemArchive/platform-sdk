@@ -18,12 +18,18 @@ export class Exception extends Error {
 
 export class NotImplemented extends Exception {
 	public constructor(klass: string, method: string) {
-		super(`Method [${method}] is not implemented in [${klass}].`);
+		super(`Method ${klass}#${method} is not implemented.`);
 	}
 }
 
 export class NotSupported extends Exception {
 	public constructor(klass: string, method: string) {
-		super(`Method [${method}] is not supported in [${klass}].`);
+		super(`Method ${klass}#${method} is not supported.`);
+	}
+}
+
+export class InvalidArguments extends Exception {
+	public constructor(klass: string, method: string) {
+		super(`Method ${klass}#${method} does not accept the given arguments.`);
 	}
 }
