@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.5.0 - 2020-05-06
+
+### Fixed
+
+-   Add missing exceptions for `IdentityService` (b5240108, @faustbrian)
+
+### Added
+
+-   Transfer transaction signing and broadcasting for `BTC` (017ce6fc, @faustbrian)
+-   Implement `FeeService` to control fee behaviours (b6100d72, @faustbrian)
+
+### Changed
+
+-   Replace `bitcoin-*` libs with `bitcore-lib` (ccc6b1ad, @faustbrian)
+-   Include basic network information in `manifest` (54e59a72, @faustbrian)
+-   Normalise `Factory` options (04c02c89, @faustbrian)
+-   Rename `PriceTrackerService` to `MarketService` and add documentation (aed26ab5, @faustbrian)
+
 ## 0.4.5 - 2020-05-05
 
 ### Added
