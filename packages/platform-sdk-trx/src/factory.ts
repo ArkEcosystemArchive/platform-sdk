@@ -13,16 +13,22 @@ import {
 
 export class Factory extends Contracts.AbstractFactory {
 	public static async construct(options: Contracts.FactoryOptions): Promise<Factory> {
+		const merge = (options: Contracts.FactoryOptions, service: string) => ({
+			network: options.network,
+			peer: options.peer,
+			...options.services[service],
+		});
+
 		return new Factory({
 			services: {
-				client: await ClientService.construct(options.services.client),
-				fee: await FeeService.construct(options.services.fee),
-				identity: await IdentityService.construct(options.services.identity),
-				ledger: await LedgerService.construct(options.services.ledger),
-				link: await LinkService.construct(options.services.link),
-				message: await MessageService.construct(options.services.message),
-				peer: await PeerService.construct(options.services.peer),
-				transaction: await TransactionService.construct(options.services.transaction),
+				client: await ClientService.construct(merge(options, "client")),
+				fee: await FeeService.construct(merge(options, "fee")),
+				identity: await IdentityService.construct(merge(options, "identity")),
+				ledger: await LedgerService.construct(merge(options, "ledger")),
+				link: await LinkService.construct(merge(options, "link")),
+				message: await MessageService.construct(merge(options, "message")),
+				peer: await PeerService.construct(merge(options, "peer")),
+				transaction: await TransactionService.construct(merge(options, "transaction")),
 			},
 		});
 	}
