@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- try to first use a peer and then the network for the `PeerService` (4859be8b, @faustbrian)
+-   Try to first use a peer and then the network for the `PeerService` (4859be8b, @faustbrian)
 
 ## 0.5.1 - 2020-05-06
 

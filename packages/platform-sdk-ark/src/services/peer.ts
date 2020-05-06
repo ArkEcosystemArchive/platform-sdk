@@ -22,7 +22,7 @@ export class PeerService implements Contracts.PeerService {
 
 		try {
 			if (peer && isUrl(peer)) {
-				const body: any = await ky.get(`${peer}/api/peers`).json();
+				const body: any = await ky.get(`${peer}/peers`).json();
 
 				for (const seed of body.data) {
 					let port = defaultPort;
@@ -40,8 +40,10 @@ export class PeerService implements Contracts.PeerService {
 					seeds.push({ ip: seed.ip, port });
 				}
 			} else {
+				const fileName: string = network === "live" ? "mainnet" : "devnet";
+
 				const body: any = await ky
-					.get(`https://raw.githubusercontent.com/ArkEcosystem/peers/master/${network}.json`)
+					.get(`https://raw.githubusercontent.com/ArkEcosystem/peers/master/${fileName}.json`)
 					.json();
 
 				for (const seed of body) {
