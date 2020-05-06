@@ -1,6 +1,16 @@
 export const manifest = {
 	name: "Monero",
 	ticker: "XMR",
+	networks: {
+		live: {
+			ticker: "XMR",
+			explorer: "https://moneroblocks.info/",
+		},
+		test: {
+			ticker: "XMR",
+			explorer: "https://dexplorer.ark.io/",
+		},
+	},
 	behaviours: {
 		Client: {
 			transaction: false,

@@ -1,6 +1,15 @@
 export const manifest = {
 	name: "ARK",
-	ticker: "ARK",
+	networks: {
+		live: {
+			ticker: "ARK",
+			explorer: "https://explorer.ark.io/",
+		},
+		test: {
+			ticker: "DARK",
+			explorer: "https://dexplorer.ark.io/",
+		},
+	},
 	behaviours: {
 		Client: {
 			transaction: true,

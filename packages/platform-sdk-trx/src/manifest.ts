@@ -1,6 +1,16 @@
 export const manifest = {
 	name: "Tron",
 	ticker: "TRX",
+	networks: {
+		live: {
+			ticker: "TRX",
+			explorer: "https://tronscan.org/#/",
+		},
+		test: {
+			ticker: "TRX",
+			explorer: "https://shasta.tronscan.org/#/",
+		},
+	},
 	behaviours: {
 		Client: {
 			transaction: true,

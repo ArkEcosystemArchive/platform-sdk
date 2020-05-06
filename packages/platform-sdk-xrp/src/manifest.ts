@@ -1,6 +1,16 @@
 export const manifest = {
 	name: "Ripple",
 	ticker: "XRP",
+	networks: {
+		live: {
+			ticker: "XRP",
+			explorer: "https://bithomp.com/explorer/",
+		},
+		test: {
+			ticker: "XRP",
+			explorer: "https://test.bithomp.com/explorer/",
+		},
+	},
 	behaviours: {
 		Client: {
 			transaction: true,
