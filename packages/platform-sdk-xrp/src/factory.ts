@@ -2,6 +2,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 
 import {
 	ClientService,
+	FeeService,
 	IdentityService,
 	LedgerService,
 	LinkService,
@@ -15,6 +16,7 @@ export class Factory extends Contracts.AbstractFactory {
 		return new Factory({
 			services: {
 				client: await ClientService.construct(options.services.client),
+				fee: await FeeService.construct(options.services.fee),
 				identity: await IdentityService.construct(options.services.identity),
 				ledger: await LedgerService.construct(options.services.ledger),
 				link: await LinkService.construct(options.services.link),
@@ -27,6 +29,7 @@ export class Factory extends Contracts.AbstractFactory {
 
 	public async destruct(): Promise<void> {
 		await this.options.services.client.destruct();
+		await this.options.services.fee.destruct();
 		await this.options.services.identity.destruct();
 		await this.options.services.ledger.destruct();
 		await this.options.services.link.destruct();

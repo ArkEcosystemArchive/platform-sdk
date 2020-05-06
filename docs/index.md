@@ -38,6 +38,7 @@ To avoid an inconsistent public API where some things are instantiated and calle
 | ClientService      | fees                      | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 | ClientService      | syncing                   | :x:                | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 | ClientService      | broadcast                 | :x:                | :white_check_mark: | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :white_check_mark: |
+| FeeService         | all                       | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 | IdentityService    | address(passphrase)       | :x:                | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :white_check_mark: |
 | IdentityService    | address(multiSignature)   | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 | IdentityService    | address(publicKey)        | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :white_check_mark: |
@@ -80,6 +81,7 @@ To avoid an inconsistent public API where some things are instantiated and calle
 ## API Methods
 
 -   [ClientService](./services/client.md)
+-   [FeeService](./services/fee.md)
 -   [IdentityService](./services/identity.md)
 -   [LinkService](./services/link.md)
 -   [MessageService](./services/message.md)

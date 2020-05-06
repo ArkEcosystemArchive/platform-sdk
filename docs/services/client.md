@@ -250,30 +250,6 @@ This method returns a promise that resolves with an object with the following st
 await clientService.configuration();
 ```
 
-## fees
-
-`fees(days: number): Promise<Contracts.KeyValuePair>`
-
-...
-
-### Parameters
-
-| Name | Type   | Description                                            |
-| ---- | ------ | ------------------------------------------------------ |
-| days | number | The number of days for which fees should be looked up. |
-
-### Return Value
-
-This method returns a promise that resolves with an object with the following structure:
-
-...
-
-### Example
-
-```ts
-await clientService.fees(7);
-```
-
 ## syncing
 
 `syncing(): Promise<boolean>`

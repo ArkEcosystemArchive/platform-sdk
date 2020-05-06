@@ -23,8 +23,6 @@ export interface ClientService {
 
 	configuration(): Promise<KeyValuePair>;
 
-	fees(days: number): Promise<KeyValuePair>;
-
 	syncing(): Promise<boolean>;
 
 	broadcast(transactions: object[]): Promise<void>;
