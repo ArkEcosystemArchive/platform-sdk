@@ -1,8 +1,25 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import BigNumber from "bignumber.js";
+import { Transaction } from "bitcore-lib";
+
+import { UnspentTransaction } from "../contracts";
+import { UnspentAggregator } from "../utils/unspent-aggregator";
+import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #identity;
+	readonly #unspent;
+
+	private constructor(opts: Contracts.KeyValuePair) {
+		this.#identity = opts.identity;
+		this.#unspent = opts.unspent;
+	}
+
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		return new TransactionService();
+		return new TransactionService({
+			identity: await IdentityService.construct(opts),
+			unspent: await UnspentAggregator.construct(opts),
+		});
 	}
 
 	public async destruct(): Promise<void> {
@@ -13,7 +30,24 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transfer");
+		// 1. Derive the sender address
+		const senderAddress: string = await this.#identity.address({ wif: input.sign.passphrase });
+
+		// 2. Aggregate the unspent transactions
+		const unspent: UnspentTransaction[] = await this.#unspent.aggregate(senderAddress);
+
+		// 3. Compute the amount to be transfered
+		const amount: number = new BigNumber(input.data.amount).toNumber();
+
+		// 4. Build and sign the transaction
+		let transaction = new Transaction().from(unspent).to(input.data.to, amount).change(senderAddress);
+
+		// 5. Set a fee if configured. If none is set the fee will be estimated by bitcore-lib.
+		if (input.fee) {
+			transaction = transaction.fee(input.fee);
+		}
+
+		return transaction.sign(input.sign.passphrase).toString();
 	}
 
 	public async secondSignature(

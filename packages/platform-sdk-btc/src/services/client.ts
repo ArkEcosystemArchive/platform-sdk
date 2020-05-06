@@ -19,6 +19,7 @@ export class ClientService implements Contracts.ClientService {
 		//
 	}
 
+	// todo: use JSON-RPC
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		// const response = await this.post("gettransaction", { txid: id });
 		const response = await this.get(`rawtx/${id}`, { format: "json" });
@@ -32,6 +33,7 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
 	}
 
+	// todo: use JSON-RPC
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		const response = await this.get(`rawaddr/${id}`);
 
@@ -61,8 +63,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async configuration(): Promise<Contracts.KeyValuePair> {
-		const response = await this.post("getnetworkinfo");
-
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchBlocks");
 	}
 
@@ -75,18 +75,25 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: object[]): Promise<void> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+		await this.post("sendrawtransaction", transactions);
 	}
 
 	private async get(path: string, query: Contracts.KeyValuePair = {}): Promise<Contracts.KeyValuePair> {
 		return Utils.getJSON(`${this.#restUrl}/${path}`, query);
 	}
 
-	private async post(method: string, params: Contracts.KeyValuePair = {}): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(this.#baseUrl, "/", {
-			jsonrpc: "2.0",
-			method,
-			params,
-		});
+	private async post(method: string, params: object | string[] = {}): Promise<Contracts.KeyValuePair> {
+		return Utils.postJSON(
+			this.#baseUrl,
+			"/",
+			{
+				jsonrpc: "2.0",
+				method,
+				params,
+			},
+			{
+				Authorization: `TODO`,
+			},
+		);
 	}
 }
