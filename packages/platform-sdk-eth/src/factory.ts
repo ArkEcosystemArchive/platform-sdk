@@ -13,16 +13,22 @@ import {
 
 export class Factory extends Contracts.AbstractFactory {
 	public static async construct(options: Contracts.FactoryOptions): Promise<Factory> {
+		const merge = (options: Contracts.FactoryOptions, service: string) => ({
+			network: options.network,
+			peer: options.peer,
+			...options.services[service],
+		});
+
 		return new Factory({
 			services: {
-				client: await Factory.createService(ClientService, options, "client"),
-				fee: await Factory.createService(FeeService, options, "fee"),
-				identity: await Factory.createService(IdentityService, options, "identity"),
-				ledger: await Factory.createService(LedgerService, options, "ledger"),
-				link: await Factory.createService(LinkService, options, "link"),
-				message: await Factory.createService(MessageService, options, "message"),
-				peer: await Factory.createService(PeerService, options, "peer"),
-				transaction: await Factory.createService(TransactionService, options, "peer"),
+				client: await ClientService.construct(merge(options, "client")),
+				fee: await FeeService.construct(merge(options, "fee")),
+				identity: await IdentityService.construct(merge(options, "identity")),
+				ledger: await LedgerService.construct(merge(options, "ledger")),
+				link: await LinkService.construct(merge(options, "link")),
+				message: await MessageService.construct(merge(options, "message")),
+				peer: await PeerService.construct(merge(options, "peer")),
+				transaction: await TransactionService.construct(merge(options, "transaction")),
 			},
 		});
 	}
@@ -36,13 +42,5 @@ export class Factory extends Contracts.AbstractFactory {
 		await this.options.services.message.destruct();
 		await this.options.services.peer.destruct();
 		await this.options.services.transaction.destruct();
-	}
-
-	private static async createService(
-		klass: any,
-		options: Contracts.FactoryOptions,
-		service: string,
-	): Promise<object> {
-		return klass.construct({ network: options.network, peer: options.peer, ...options.services[service] });
 	}
 }
