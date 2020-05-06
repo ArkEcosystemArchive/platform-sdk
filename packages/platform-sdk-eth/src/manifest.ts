@@ -1,6 +1,16 @@
 export const manifest = {
 	name: "Ethereum",
 	ticker: "ETH",
+	networks: {
+		live: {
+			ticker: "ETH",
+			explorer: "https://etherscan.io/",
+		},
+		test: {
+			ticker: "ETH",
+			explorer: "https://rinkeby.etherscan.io/",
+		},
+	},
 	behaviours: {
 		Client: {
 			transaction: false,
