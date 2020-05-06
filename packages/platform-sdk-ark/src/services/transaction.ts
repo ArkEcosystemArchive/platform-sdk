@@ -4,7 +4,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 export class TransactionService implements Contracts.TransactionService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
 		Managers.configManager.setFromPreset(opts.network === "live" ? "mainnet" : "devnet");
-		Managers.configManager.setHeight(10_000_000);
+		Managers.configManager.setHeight(10_000_000); // todo: determine this automatically
 
 		return new TransactionService();
 	}

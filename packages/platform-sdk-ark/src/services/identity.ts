@@ -3,7 +3,7 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class IdentityService implements Contracts.IdentityService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
-		Managers.configManager.setFromPreset(opts.network);
+		Managers.configManager.setFromPreset(opts.network === "live" ? "mainnet" : "devnet");
 
 		return new IdentityService();
 	}

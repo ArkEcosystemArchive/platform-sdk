@@ -9,7 +9,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		return new TransactionService(opts.network);
+		return new TransactionService(opts.networkHash);
 	}
 
 	public async destruct(): Promise<void> {
