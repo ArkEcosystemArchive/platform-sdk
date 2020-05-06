@@ -7,15 +7,6 @@ beforeEach(() => nock.cleanAll());
 
 describe("PeerService", () => {
 	describe("new instance", () => {
-		it("should fail if no network or host is provided", async () => {
-			await expect(
-				PeerService.construct({
-					// @ts-ignore
-					network: undefined,
-				}),
-			).rejects.toThrowError(new Error("No network or host provided"));
-		});
-
 		describe("host", () => {
 			it("should fetch peers", async () => {
 				nock("http://127.0.0.1").get("/api/peers").reply(200, {
@@ -23,7 +14,7 @@ describe("PeerService", () => {
 				});
 
 				const peerService: PeerService = await PeerService.construct({
-					peer: "http://127.0.0.1",
+					peer: "http://127.0.0.1/api",
 				});
 
 				expect(peerService.getSeeds()).toEqual(
@@ -40,7 +31,7 @@ describe("PeerService", () => {
 				});
 
 				const peerService: PeerService = await PeerService.construct({
-					peer: "http://127.0.0.1",
+					peer: "http://127.0.0.1/api",
 				});
 
 				expect(peerService.getSeeds()).toEqual(
@@ -58,7 +49,7 @@ describe("PeerService", () => {
 
 				await expect(
 					PeerService.construct({
-						peer: "http://127.0.0.1",
+						peer: "http://127.0.0.1/api",
 					}),
 				).rejects.toThrowError(new Error("No seeds found"));
 			});
@@ -70,7 +61,7 @@ describe("PeerService", () => {
 					.get("/mainnet.json")
 					.reply(200, dummySeeds);
 
-				const peerService: PeerService = await PeerService.construct({ network: "mainnet" });
+				const peerService: PeerService = await PeerService.construct({ network: "live" });
 
 				expect(peerService.getSeeds()).toEqual(dummySeeds.map((peer) => ({ ip: peer.ip, port: 4003 })));
 			});
@@ -90,7 +81,7 @@ describe("PeerService", () => {
 
 				await expect(
 					PeerService.construct({
-						network: "mainnet",
+						network: "live",
 					}),
 				).rejects.toThrowError(new Error("No seeds found"));
 			});
@@ -104,7 +95,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			peerService = await PeerService.construct({ peer: "http://127.0.0.1" });
+			peerService = await PeerService.construct({ peer: "http://127.0.0.1/api" });
 		});
 
 		it("should find peers", async () => {
@@ -191,7 +182,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			peerService = await PeerService.construct({ peer: "http://127.0.0.1" });
+			peerService = await PeerService.construct({ peer: "http://127.0.0.1/api" });
 		});
 
 		it("should find peers without the wallet api plugin", async () => {
@@ -245,7 +236,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			peerService = await PeerService.construct({ peer: "http://127.0.0.1" });
+			peerService = await PeerService.construct({ peer: "http://127.0.0.1/api" });
 		});
 
 		it("should find peers without estimates", async () => {
