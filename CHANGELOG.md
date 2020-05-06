@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.5.3 - 2020-05-06
+
+### Fixed
+
+-   Support domain-based peers (c00eb200, @faustbrian)
+
 ## 0.5.2 - 2020-05-06
 
 ### Fixed
