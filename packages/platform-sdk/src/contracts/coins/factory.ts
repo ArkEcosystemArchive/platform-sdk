@@ -21,15 +21,17 @@ interface FactoryConstructorOptions {
 }
 
 export interface FactoryOptions {
+	network: string;
+	peer: string;
 	services: {
-		client: { peer?: string };
-		fee: { peer?: string };
-		identity: { peer?: string };
+		client: {};
+		fee: {};
+		identity: {};
 		ledger: { transport: LedgerTransport };
-		link: { mode: string };
-		message: { peer?: string };
-		peer: { network?: string };
-		transaction: { peer?: string };
+		link: {};
+		message: {};
+		peer: {};
+		transaction: {};
 	};
 }
 

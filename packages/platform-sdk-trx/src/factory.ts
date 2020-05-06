@@ -15,14 +15,14 @@ export class Factory extends Contracts.AbstractFactory {
 	public static async construct(options: Contracts.FactoryOptions): Promise<Factory> {
 		return new Factory({
 			services: {
-				client: await ClientService.construct(options.services.client),
-				fee: await FeeService.construct(options.services.fee),
-				identity: await IdentityService.construct(options.services.identity),
-				ledger: await LedgerService.construct(options.services.ledger),
-				link: await LinkService.construct(options.services.link),
-				message: await MessageService.construct(options.services.message),
-				peer: await PeerService.construct(options.services.peer),
-				transaction: await TransactionService.construct(options.services.transaction),
+				client: await Factory.createService(ClientService, options, "client"),
+				fee: await Factory.createService(FeeService, options, "fee"),
+				identity: await Factory.createService(IdentityService, options, "identity"),
+				ledger: await Factory.createService(LedgerService, options, "ledger"),
+				link: await Factory.createService(LinkService, options, "link"),
+				message: await Factory.createService(MessageService, options, "message"),
+				peer: await Factory.createService(PeerService, options, "peer"),
+				transaction: await Factory.createService(TransactionService, options, "peer"),
 			},
 		});
 	}
@@ -36,5 +36,13 @@ export class Factory extends Contracts.AbstractFactory {
 		await this.options.services.message.destruct();
 		await this.options.services.peer.destruct();
 		await this.options.services.transaction.destruct();
+	}
+
+	private static async createService(
+		klass: any,
+		options: Contracts.FactoryOptions,
+		service: string,
+	): Promise<object> {
+		return klass.construct({ network: options.network, peer: options.peer, ...options.services[service] });
 	}
 }
