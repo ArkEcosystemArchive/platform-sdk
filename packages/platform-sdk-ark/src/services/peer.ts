@@ -8,27 +8,28 @@ export class PeerService implements Contracts.PeerService {
 	private constructor(private readonly seeds: Contracts.Peer[]) {}
 
 	public static async construct(options: Contracts.KeyValuePair): Promise<PeerService> {
-		let { networkOrHost, defaultPort } = options;
+		let { network, peer, defaultPort } = options;
 
 		if (!defaultPort) {
 			defaultPort = 4003;
 		}
 
-		if (!networkOrHost || typeof networkOrHost !== "string") {
+		if (!network && !peer) {
 			throw new Error("No network or host provided");
 		}
 
 		const seeds: Contracts.Peer[] = [];
 
 		try {
-			if (isUrl(networkOrHost)) {
-				const body: any = await ky.get(networkOrHost).json();
+			if (peer && isUrl(peer)) {
+				const body: any = await ky.get(`${peer}/api/peers`).json();
 
 				for (const seed of body.data) {
 					let port = defaultPort;
 					if (seed.ports) {
 						const walletApiPort = seed.ports["@arkecosystem/core-wallet-api"];
 						const apiPort = seed.ports["@arkecosystem/core-api"];
+
 						if (walletApiPort >= 1 && walletApiPort <= 65535) {
 							port = walletApiPort;
 						} else if (apiPort >= 1 && apiPort <= 65535) {
@@ -40,7 +41,7 @@ export class PeerService implements Contracts.PeerService {
 				}
 			} else {
 				const body: any = await ky
-					.get(`https://raw.githubusercontent.com/ArkEcosystem/peers/master/${networkOrHost}.json`)
+					.get(`https://raw.githubusercontent.com/ArkEcosystem/peers/master/${network}.json`)
 					.json();
 
 				for (const seed of body) {
@@ -77,7 +78,7 @@ export class PeerService implements Contracts.PeerService {
 
 		const seed: Contracts.Peer = this.seeds[Math.floor(Math.random() * this.seeds.length)];
 
-		const body: any = await ky(`http://${seed.ip}:${seed.port}/api/v2/peers`, {
+		const body: any = await ky(`http://${seed.ip}:${seed.port}/api/peers`, {
 			...options,
 			...{
 				headers: {
@@ -143,7 +144,7 @@ export class PeerService implements Contracts.PeerService {
 	public async searchWithoutEstimates(options: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
 		const apiPeers: Contracts.Peer[] = await this.searchWithPlugin("core-api", options);
 
-		const requests = apiPeers.map((peer) => ky.get(`http://${peer.ip}:${peer.port}/api/v2/blocks?limit=1`).json());
+		const requests = apiPeers.map((peer) => ky.get(`http://${peer.ip}:${peer.port}/api/blocks?limit=1`).json());
 
 		const responses = await Promise.all(requests);
 
