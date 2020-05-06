@@ -31,7 +31,7 @@ export class IdentityService implements Contracts.IdentityService {
 			throw new Exceptions.NotSupported(this.constructor.name, "address#wif");
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "address");
 	}
 
 	public async publicKey(input: Contracts.PublicKeyInput): Promise<string> {
@@ -47,7 +47,7 @@ export class IdentityService implements Contracts.IdentityService {
 			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#wif");
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "publicKey");
 	}
 
 	public async privateKey(input: Contracts.PrivateKeyInput): Promise<string> {
@@ -59,7 +59,7 @@ export class IdentityService implements Contracts.IdentityService {
 			throw new Exceptions.NotSupported(this.constructor.name, "privateKey#wif");
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "privateKey");
 	}
 
 	public async wif(input: Contracts.WifInput): Promise<string> {
@@ -67,14 +67,14 @@ export class IdentityService implements Contracts.IdentityService {
 			throw new Exceptions.NotSupported(this.constructor.name, "wif#passphrase");
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "wif");
 	}
 
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
 		if (input.passphrase) {
-			const keyPair = cryptography.getPrivateAndPublicKeyFromPassphrase(input.passphrase);
+			const { publicKey, privateKey } = cryptography.getPrivateAndPublicKeyFromPassphrase(input.passphrase);
 
-			return { publicKey: keyPair.publicKey, privateKey: keyPair.privateKey };
+			return { publicKey, privateKey };
 		}
 
 		if (input.publicKey) {
@@ -89,6 +89,6 @@ export class IdentityService implements Contracts.IdentityService {
 			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#wif");
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "keyPair");
 	}
 }
