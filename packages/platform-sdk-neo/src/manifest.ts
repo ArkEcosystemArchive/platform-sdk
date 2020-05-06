@@ -1,6 +1,16 @@
 export const manifest = {
 	name: "NEO",
 	ticker: "NEO",
+	networks: {
+		live: {
+			ticker: "NEO",
+			explorer: "https://neotracker.io/",
+		},
+		test: {
+			ticker: "NEO",
+			explorer: "https://neoscan-testnet.io/",
+		},
+	},
 	behaviours: {
 		Client: {
 			transaction: false,

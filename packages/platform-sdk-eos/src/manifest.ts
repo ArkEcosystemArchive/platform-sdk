@@ -1,6 +1,16 @@
 export const manifest = {
 	name: "EOS",
 	ticker: "EOS",
+	networks: {
+		live: {
+			ticker: "EOS",
+			explorer: "https://eosauthority.com?network=eos",
+		},
+		test: {
+			ticker: "EOS",
+			explorer: "https://eosauthority.com?network=eosiotest",
+		},
+	},
 	behaviours: {
 		Client: {
 			transaction: false,
