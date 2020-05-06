@@ -14,10 +14,6 @@ export class PeerService implements Contracts.PeerService {
 			defaultPort = 4003;
 		}
 
-		if (!network && !peer) {
-			throw new Error("No network or host provided");
-		}
-
 		const seeds: Contracts.Peer[] = [];
 
 		try {

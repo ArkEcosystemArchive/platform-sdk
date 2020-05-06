@@ -7,15 +7,6 @@ beforeEach(() => nock.cleanAll());
 
 describe("PeerService", () => {
 	describe("new instance", () => {
-		it("should fail if no network or host is provided", async () => {
-			await expect(
-				PeerService.construct({
-					// @ts-ignore
-					network: undefined,
-				}),
-			).rejects.toThrowError(new Error("No network or host provided"));
-		});
-
 		describe("host", () => {
 			it("should fetch peers", async () => {
 				nock("http://127.0.0.1").get("/api/peers").reply(200, {
