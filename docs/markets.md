@@ -26,13 +26,13 @@ This method returns a promise that resolves with a `MarketService` value.
 
 `verifyToken(token: string): Promise<boolean>`
 
-...
+Verifies that the given token is listed on a market API provider.
 
 ### Parameters
 
-| Name  | Type   | Description |
-| ----- | ------ | ----------- |
-| token | string | ...         |
+| Name  | Type   | Description                                 |
+| ----- | ------ | ------------------------------------------- |
+| token | string | The name of the token which should be used. |
 
 ### Return Value
 
@@ -50,13 +50,13 @@ This method returns a promise that resolves with an object with the following st
 
 `marketData(token: string): Promise<Contracts.MarketDataCollection>`
 
-...
+Gets market and trading information about the given token.
 
 ### Parameters
 
-| Name  | Type   | Description |
-| ----- | ------ | ----------- |
-| token | string | ...         |
+| Name  | Type   | Description                                 |
+| ----- | ------ | ------------------------------------------- |
+| token | string | The name of the token which should be used. |
 
 ### Return Value
 
@@ -74,7 +74,7 @@ This method returns a promise that resolves with an object with the following st
 
 `historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData>`
 
-...
+Gets the historical trading price for the given options.
 
 ### Parameters
 
@@ -98,14 +98,14 @@ This method returns a promise that resolves with an object with the following st
 
 `historicalPriceForDay(token: string, currency: string): Promise<Contracts.HistoricalData>`
 
-...
+Gets the historical trading price for the last day.
 
 ### Parameters
 
-| Name     | Type   | Description |
-| -------- | ------ | ----------- |
-| token    | string | ...         |
-| currency | string | ...         |
+| Name     | Type   | Description                                    |
+| -------- | ------ | ---------------------------------------------- |
+| token    | string | The name of the token which should be used.    |
+| currency | string | The name of the currency which should be used. |
 
 ### Return Value
 
@@ -123,14 +123,14 @@ This method returns a promise that resolves with an object with the following st
 
 `historicalPriceForWeek(token: string, currency: string): Promise<Contracts.HistoricalData>`
 
-...
+Gets the historical trading price for the last week.
 
 ### Parameters
 
-| Name     | Type   | Description |
-| -------- | ------ | ----------- |
-| token    | string | ...         |
-| currency | string | ...         |
+| Name     | Type   | Description                                    |
+| -------- | ------ | ---------------------------------------------- |
+| token    | string | The name of the token which should be used.    |
+| currency | string | The name of the currency which should be used. |
 
 ### Return Value
 
@@ -148,14 +148,14 @@ This method returns a promise that resolves with an object with the following st
 
 `historicalPriceForMonth(token: string, currency: string): Promise<Contracts.HistoricalData>`
 
-...
+Gets the historical trading price for the last month.
 
 ### Parameters
 
-| Name     | Type   | Description |
-| -------- | ------ | ----------- |
-| token    | string | ...         |
-| currency | string | ...         |
+| Name     | Type   | Description                                    |
+| -------- | ------ | ---------------------------------------------- |
+| token    | string | The name of the token which should be used.    |
+| currency | string | The name of the currency which should be used. |
 
 ### Return Value
 
@@ -173,14 +173,14 @@ This method returns a promise that resolves with an object with the following st
 
 `historicalPriceForQuarter(token: string, currency: string): Promise<Contracts.HistoricalData>`
 
-...
+Gets the historical trading price for the last quarter.
 
 ### Parameters
 
-| Name     | Type   | Description |
-| -------- | ------ | ----------- |
-| token    | string | ...         |
-| currency | string | ...         |
+| Name     | Type   | Description                                    |
+| -------- | ------ | ---------------------------------------------- |
+| token    | string | The name of the token which should be used.    |
+| currency | string | The name of the currency which should be used. |
 
 ### Return Value
 
@@ -198,14 +198,14 @@ This method returns a promise that resolves with an object with the following st
 
 `historicalPriceForYear(token: string, currency: string): Promise<Contracts.HistoricalData>`
 
-...
+Gets the historical trading price for the last year.
 
 ### Parameters
 
-| Name     | Type   | Description |
-| -------- | ------ | ----------- |
-| token    | string | ...         |
-| currency | string | ...         |
+| Name     | Type   | Description                                    |
+| -------- | ------ | ---------------------------------------------- |
+| token    | string | The name of the token which should be used.    |
+| currency | string | The name of the currency which should be used. |
 
 ### Return Value
 
@@ -223,7 +223,7 @@ This method returns a promise that resolves with an object with the following st
 
 `historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData>`
 
-...
+Gets the historical trading volume for the given options.
 
 ### Parameters
 
@@ -247,14 +247,14 @@ This method returns a promise that resolves with an object with the following st
 
 `historicalVolumeForDay(token: string, currency: string): Promise<Contracts.HistoricalData>`
 
-...
+Gets the historical trading volume for the last day.
 
 ### Parameters
 
-| Name     | Type   | Description |
-| -------- | ------ | ----------- |
-| token    | string | ...         |
-| currency | string | ...         |
+| Name     | Type   | Description                                    |
+| -------- | ------ | ---------------------------------------------- |
+| token    | string | The name of the token which should be used.    |
+| currency | string | The name of the currency which should be used. |
 
 ### Return Value
 
@@ -272,14 +272,14 @@ This method returns a promise that resolves with an object with the following st
 
 `historicalVolumeForWeek(token: string, currency: string): Promise<Contracts.HistoricalData>`
 
-...
+Gets the historical trading volume for the last week.
 
 ### Parameters
 
-| Name     | Type   | Description |
-| -------- | ------ | ----------- |
-| token    | string | ...         |
-| currency | string | ...         |
+| Name     | Type   | Description                                    |
+| -------- | ------ | ---------------------------------------------- |
+| token    | string | The name of the token which should be used.    |
+| currency | string | The name of the currency which should be used. |
 
 ### Return Value
 
@@ -297,14 +297,14 @@ This method returns a promise that resolves with an object with the following st
 
 `historicalVolumeForMonth(token: string, currency: string): Promise<Contracts.HistoricalData>`
 
-...
+Gets the historical trading volume for the last month.
 
 ### Parameters
 
-| Name     | Type   | Description |
-| -------- | ------ | ----------- |
-| token    | string | ...         |
-| currency | string | ...         |
+| Name     | Type   | Description                                    |
+| -------- | ------ | ---------------------------------------------- |
+| token    | string | The name of the token which should be used.    |
+| currency | string | The name of the currency which should be used. |
 
 ### Return Value
 
@@ -322,14 +322,14 @@ This method returns a promise that resolves with an object with the following st
 
 `historicalVolumeForQuarter(token: string, currency: string): Promise<Contracts.HistoricalData>`
 
-...
+Gets the historical trading volume for the last quarter.
 
 ### Parameters
 
-| Name     | Type   | Description |
-| -------- | ------ | ----------- |
-| token    | string | ...         |
-| currency | string | ...         |
+| Name     | Type   | Description                                    |
+| -------- | ------ | ---------------------------------------------- |
+| token    | string | The name of the token which should be used.    |
+| currency | string | The name of the currency which should be used. |
 
 ### Return Value
 
@@ -347,14 +347,14 @@ This method returns a promise that resolves with an object with the following st
 
 `historicalVolumeForYear(token: string, currency: string): Promise<Contracts.HistoricalData>`
 
-...
+Gets the historical trading volume for the last year.
 
 ### Parameters
 
-| Name     | Type   | Description |
-| -------- | ------ | ----------- |
-| token    | string | ...         |
-| currency | string | ...         |
+| Name     | Type   | Description                                    |
+| -------- | ------ | ---------------------------------------------- |
+| token    | string | The name of the token which should be used.    |
+| currency | string | The name of the currency which should be used. |
 
 ### Return Value
 
@@ -372,15 +372,15 @@ This method returns a promise that resolves with an object with the following st
 
 `dailyAverage(token: string, currency: string, timestamp: number): Promise<number>`
 
-...
+Get the daily average for the trading pair of token and currency for the given time.
 
 ### Parameters
 
-| Name      | Type   | Description |
-| --------- | ------ | ----------- |
-| token     | string | ...         |
-| currency  | string | ...         |
-| timestamp | number | ...         |
+| Name      | Type   | Description                                         |
+| --------- | ------ | --------------------------------------------------- |
+| token     | string | The name of the token which should be used.         |
+| currency  | string | The name of the currency which should be used.      |
+| timestamp | number | The timestamp which should be used for the look up. |
 
 ### Return Value
 
