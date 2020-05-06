@@ -474,6 +474,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:ab0ace38ea44fa76cce697653d3f576ee21608f86278b31911e1e589e653eee0099f361a85ea8ca8ac05b9f0aa50c6d1ee3155944b4d06c4114bebf74e9bbbc5#npm:2.30.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
+            ["bignumber.js", "npm:9.0.0"],
             ["bitcore-lib", "npm:8.17.1"],
             ["codecov", "npm:3.6.5"],
             ["cross-env", "npm:7.0.2"],

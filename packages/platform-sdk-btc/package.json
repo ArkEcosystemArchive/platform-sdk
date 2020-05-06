@@ -21,6 +21,7 @@
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/utils": "^1.1.8",
+		"bignumber.js": "^9.0.0",
 		"bitcore-lib": "^8.17.1"
 	},
 	"devDependencies": {

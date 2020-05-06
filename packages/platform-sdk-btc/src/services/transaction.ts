@@ -1,22 +1,24 @@
 import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
-import { BigNumber } from "@arkecosystem/utils";
+import BigNumber from "bignumber.js";
 import { Transaction } from "bitcore-lib";
-import { ClientService } from "./client";
+
+import { UnspentTransaction } from "../contracts";
+import { UnspentAggregator } from "../utils/unspent-aggregator";
 import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
-	readonly #client;
 	readonly #identity;
+	readonly #unspent;
 
-	private constructor (opts: Contracts.KeyValuePair) {
-		this.#client = opts.client;
+	private constructor(opts: Contracts.KeyValuePair) {
 		this.#identity = opts.identity;
+		this.#unspent = opts.unspent;
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
 		return new TransactionService({
-			client: await ClientService.construct(opts),
 			identity: await IdentityService.construct(opts),
+			unspent: await UnspentAggregator.construct(opts),
 		});
 	}
 
@@ -28,52 +30,24 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const senderAddress: string = await this.#identity.address({ wif: input.sign.passphrase })
+		// 1. Derive the sender address
+		const senderAddress: string = await this.#identity.address({ wif: input.sign.passphrase });
 
-		// Load unpsent tx outs from json-rpc
-		const unspentTxOuts = await this.unspentTxOuts(senderAddress)
+		// 2. Aggregate the unspent transactions
+		const unspent: UnspentTransaction[] = await this.#unspent.aggregate(senderAddress);
 
-		// const dynamicFeePerByte: number = BigNumber.make(input.fee).times(1e8);
-		const amount: BigNumber = BigNumber.make(input.data.amount).times(1e8);
+		// 3. Compute the amount to be transfered
+		const amount: number = new BigNumber(input.data.amount).toNumber();
 
-		// Estimate total amount
-		// const estimatedMinerFee: number = this.calculateTransactionFee(unspentTxOuts.length, 2, dynamicFeePerByte)
-		const estimatedMinerFee: BigNumber = BigNumber.make(1e8) // await this.estimateFee()
-		const estimatedTotal: BigNumber = amount.plus(estimatedMinerFee);
+		// 4. Build and sign the transaction
+		let transaction = new Transaction().from(unspent).to(input.data.to, amount).change(senderAddress);
 
-		// Check if balance is sufficient
-		const unspentTxOutsTotal = unspentTxOuts.reduce((total, tx) => total.plus(BigNumber.make(tx.amount * 1e8)), BigNumber.ZERO);
-
-		if (unspentTxOutsTotal.isLessThan(estimatedTotal)) {
-			throw new Error('Insufficient balance');
+		// 5. Set a fee if configured. If none is set the fee will be estimated by bitcore-lib.
+		if (input.fee) {
+			transaction = transaction.fee(input.fee);
 		}
 
-		// Find unspentTxOutsto spend for this transaction
-		let txOutIndex: number = 0;
-		let sumOfConsumedOutputs: BigNumber = BigNumber.ZERO;
-		const txOutsToConsume = [];
-
-		while (sumOfConsumedOutputs.isLessThan(estimatedTotal)) {
-			const tx = unspentTxOuts[txOutIndex];
-			// @ts-ignore
-			txOutsToConsume.push(tx);
-			txOutIndex += 1;
-			sumOfConsumedOutputs += tx.amount;
-		}
-
-		// Calculate fee
-		// const calculatedMinerFee = this.calculateTransactionFee(txOutsToConsume.length, 2, dynamicFeePerByte);
-		const calculatedMinerFee = 0;
-
-		// Calculate total
-		const calculatedTotal: number = BigNumber.make(input.data.amount).plus(calculatedMinerFee).toFixed() as unknown as number;
-
-		return new Transaction()
-			.from(unspentTxOuts)
-			.to(input.data.to, calculatedTotal)
-			.change(senderAddress)
-			.sign(input.sign.passphrase)
-			.toString();
+		return transaction.sign(input.sign.passphrase).toString();
 	}
 
 	public async secondSignature(
@@ -144,33 +118,5 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
-	}
-
-	private async estimateFee(credentials: string): Promise<string> {
-		const { result } = await Utils.postJSON("host", '/', {
-			jsonrpc: "2.0",
-			method: 'estimatesmartfee',
-			params: [1],
-		}, {
-			'Authorization': `Basic ${credentials}`
-		});
-
-		return result.feerate
-	}
-
-	private async unspentTxOuts(address: string, credentials: string): Promise<any[]> {
-		const { result } = await Utils.postJSON("host", '/', {
-			jsonrpc: "2.0",
-			method: 'listunspent',
-			params: [1, 9999999, [address]],
-		}, {
-			'Authorization': `Basic ${credentials}`
-		});
-
-		return result
-	}
-
-	private calculateTransactionFee(inputCount: number, outputCount: number, dynamicFeePerByte: number) {
-		return ((inputCount * 180) + (outputCount * 34) + 10 + inputCount) * dynamicFeePerByte;
 	}
 }

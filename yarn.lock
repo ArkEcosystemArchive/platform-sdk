@@ -179,6 +179,7 @@ __metadata:
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^2.30.0
     "@typescript-eslint/parser": ^2.30.0
+    bignumber.js: ^9.0.0
     bitcore-lib: ^8.17.1
     codecov: ^3.6.5
     cross-env: ^7.0.2
