@@ -12,7 +12,7 @@ afterEach(() => nock.cleanAll());
 beforeAll(() => nock.disableNetConnect());
 
 describe("FeeService", function () {
-	describe("#fees", () => {
+	describe("#all", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
 				.get("/node/fees?days=7")

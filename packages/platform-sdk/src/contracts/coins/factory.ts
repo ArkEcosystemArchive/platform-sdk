@@ -1,4 +1,5 @@
 import { ClientService } from "./client";
+import { FeeService } from "./fee";
 import { IdentityService } from "./identity";
 import { LedgerService, LedgerTransport } from "./ledger";
 import { LinkService } from "./link";
@@ -9,6 +10,7 @@ import { TransactionService } from "./transaction";
 interface FactoryConstructorOptions {
 	services: {
 		client: ClientService;
+		fee: FeeService;
 		identity: IdentityService;
 		ledger: LedgerService;
 		link: LinkService;
@@ -20,11 +22,12 @@ interface FactoryConstructorOptions {
 
 export interface FactoryOptions {
 	services: {
-		message: { peer?: string };
 		client: { peer?: string };
+		fee: { peer?: string };
 		identity: { peer?: string };
 		ledger: { transport: LedgerTransport };
 		link: { mode: string };
+		message: { peer?: string };
 		peer: { network?: string };
 		transaction: { peer?: string };
 	};
@@ -33,12 +36,12 @@ export interface FactoryOptions {
 export abstract class AbstractFactory {
 	public constructor(protected readonly options: FactoryConstructorOptions) {}
 
-	public messageService(): MessageService {
-		return this.options.services.message;
-	}
-
 	public clientService(): ClientService {
 		return this.options.services.client;
+	}
+
+	public feeService(): FeeService {
+		return this.options.services.fee;
 	}
 
 	public identityService(): IdentityService {
@@ -51,6 +54,10 @@ export abstract class AbstractFactory {
 
 	public linkService(): LinkService {
 		return this.options.services.link;
+	}
+
+	public messageService(): MessageService {
+		return this.options.services.message;
 	}
 
 	public peerService(): PeerService {

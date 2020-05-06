@@ -57,18 +57,6 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#fees", () => {
-		it("should succeed", async () => {
-			nock("https://ropsten.infura.io/v3/PROJECT_ID")
-				.post(/.*/)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/fees.json`));
-
-			const result = await subject.fees(7);
-
-			expect(result).toBeObject();
-		});
-	});
-
 	describe("#syncing", () => {
 		it("should succeed", async () => {
 			nock("https://ropsten.infura.io/v3/PROJECT_ID")
