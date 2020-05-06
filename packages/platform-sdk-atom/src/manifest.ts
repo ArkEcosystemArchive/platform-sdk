@@ -1,6 +1,16 @@
 export const manifest = {
 	name: "Cosmos",
 	ticker: "ATOM",
+	networks: {
+		live: {
+			ticker: "ATOM",
+			explorer: "https://cosmos.bigdipper.live/",
+		},
+		test: {
+			ticker: "ATOM",
+			explorer: "https://gaia.bigdipper.live/",
+		},
+	},
 	behaviours: {
 		Client: {
 			transaction: false,
