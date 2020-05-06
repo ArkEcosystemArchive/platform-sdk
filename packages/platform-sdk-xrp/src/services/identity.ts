@@ -15,23 +15,59 @@ export class IdentityService implements Contracts.IdentityService {
 			return deriveAddress(deriveKeypair(input.passphrase).publicKey);
 		}
 
+		if (input.multiSignature) {
+			throw new Exceptions.NotSupported(this.constructor.name, "address#multiSignature");
+		}
+
 		if (input.publicKey) {
 			return deriveAddress(input.publicKey);
 		}
 
-		throw new Exceptions.NotImplemented(this.constructor.name, "address");
+		if (input.privateKey) {
+			throw new Exceptions.NotSupported(this.constructor.name, "address#privateKey");
+		}
+
+		if (input.wif) {
+			throw new Exceptions.NotSupported(this.constructor.name, "address#wif");
+		}
+
+		throw new Exceptions.InvalidArguments(this.constructor.name, "address");
 	}
 
 	public async publicKey(input: Contracts.PublicKeyInput): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "publicKey");
+		if (input.passphrase) {
+			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#passphrase");
+		}
+
+		if (input.multiSignature) {
+			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#multiSignature");
+		}
+
+		if (input.wif) {
+			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#wif");
+		}
+
+		throw new Exceptions.InvalidArguments(this.constructor.name, "publicKey");
 	}
 
 	public async privateKey(input: Contracts.PrivateKeyInput): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "privateKey");
+		if (input.passphrase) {
+			throw new Exceptions.NotSupported(this.constructor.name, "privateKey#privateKey");
+		}
+
+		if (input.wif) {
+			throw new Exceptions.NotSupported(this.constructor.name, "privateKey#wif");
+		}
+
+		throw new Exceptions.InvalidArguments(this.constructor.name, "privateKey");
 	}
 
 	public async wif(input: Contracts.WifInput): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wif");
+		if (input.passphrase) {
+			throw new Exceptions.NotSupported(this.constructor.name, "wif#passphrase");
+		}
+
+		throw new Exceptions.InvalidArguments(this.constructor.name, "wif");
 	}
 
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
@@ -39,6 +75,18 @@ export class IdentityService implements Contracts.IdentityService {
 			return deriveKeypair(input.passphrase);
 		}
 
-		throw new Exceptions.NotImplemented(this.constructor.name, "keyPair");
+		if (input.publicKey) {
+			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#publicKey");
+		}
+
+		if (input.privateKey) {
+			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#privateKey");
+		}
+
+		if (input.wif) {
+			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#wif");
+		}
+
+		throw new Exceptions.InvalidArguments(this.constructor.name, "keyPair");
 	}
 }

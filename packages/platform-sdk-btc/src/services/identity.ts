@@ -61,7 +61,7 @@ export class IdentityService implements Contracts.IdentityService {
 			return address.toString();
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "address");
 	}
 
 	public async publicKey(input: Contracts.PublicKeyInput): Promise<string> {
@@ -77,7 +77,7 @@ export class IdentityService implements Contracts.IdentityService {
 			return PrivateKey.fromWIF(input.wif).toPublicKey().toString();
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "publicKey");
 	}
 
 	public async privateKey(input: Contracts.PrivateKeyInput): Promise<string> {
@@ -95,7 +95,7 @@ export class IdentityService implements Contracts.IdentityService {
 			return privateKey.toString("hex");
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "privateKey");
 	}
 
 	public async wif(input: Contracts.WifInput): Promise<string> {
@@ -103,7 +103,7 @@ export class IdentityService implements Contracts.IdentityService {
 			throw new Exceptions.NotSupported(this.constructor.name, "wif#passphrase");
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "wif");
 	}
 
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
@@ -123,7 +123,7 @@ export class IdentityService implements Contracts.IdentityService {
 			return this.normalizeKeyPair(PrivateKey.fromWIF(input.wif));
 		}
 
-		throw new Error("No input provided.");
+		throw new Exceptions.InvalidArguments(this.constructor.name, "keyPair");
 	}
 
 	private normalizeKeyPair(privateKey: Buffer): Contracts.KeyPair {
