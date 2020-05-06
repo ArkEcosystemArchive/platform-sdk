@@ -16,6 +16,9 @@ export const manifest = {
 			syncing: false,
 			broadcast: false,
 		},
+		Fee: {
+			all: false,
+		},
 		Identity: {
 			address: {
 				passphrase: false,

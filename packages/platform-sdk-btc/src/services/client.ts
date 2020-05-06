@@ -66,10 +66,6 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "searchBlocks");
 	}
 
-	public async fees(days: number): Promise<Contracts.KeyValuePair> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "fees");
-	}
-
 	public async syncing(): Promise<boolean> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}

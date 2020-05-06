@@ -130,20 +130,6 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#fees", () => {
-		it("should succeed", async () => {
-			nock("https://dexplorer.ark.io/api")
-				.get("/node/fees?days=7")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/feesByNode.json`))
-				.get("/transactions/fees")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/feesByType.json`));
-
-			const result = await subject.fees(7);
-
-			expect(result).toBeObject();
-		});
-	});
-
 	describe("#syncing", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
