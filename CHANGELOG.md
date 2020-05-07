@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 -   Use `platform-sdk-server` for `ETH` communication (db0db34d, @faustbrian)
--
+
 ## 0.6.0 - 2020-05-07
 
 ### Added

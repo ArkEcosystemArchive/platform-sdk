@@ -6,7 +6,7 @@ import Fixture from "../__fixtures__/client/transaction.json";
 
 let subject: TransactionData;
 
-beforeEach(() => (subject = new TransactionData(Fixture.result)));
+beforeEach(() => (subject = new TransactionData(Fixture)));
 
 describe("TransactionData", function () {
 	test("#id", () => {
@@ -62,6 +62,6 @@ describe("TransactionData", function () {
 	});
 
 	test("#raw", () => {
-		expect(subject.raw()).toEqual(Fixture.result);
+		expect(subject.raw()).toEqual(Fixture);
 	});
 });
