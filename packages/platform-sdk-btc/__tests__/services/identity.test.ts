@@ -12,7 +12,7 @@ describe("IdentityService", () => {
 		it("should generate an output from a passphrase", async () => {
 			const result: any = await subject.address({
 				passphrase: identity.passphrase,
-			})
+			});
 
 			expect(result).toBe(identity.address);
 		});
