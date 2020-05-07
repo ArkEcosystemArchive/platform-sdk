@@ -15,8 +15,11 @@ jobs:
             - name: Install
               run: yarn install --immutable --immutable-cache
 
-            - name: Run prettier
-              run: yarn run prettier --write 'resources/**/*.{css,js,vue}'
+            - name: Format
+              run: yarn run format
+
+            - name: Generate ToC
+              run: yarn run toc:coins
 
             - uses: stefanzweifel/git-auto-commit-action@v4.1.6
               with:

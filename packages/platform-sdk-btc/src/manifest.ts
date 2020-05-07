@@ -13,9 +13,9 @@ export const manifest = {
 	},
 	behaviours: {
 		Client: {
-			transaction: false,
+			transaction: true,
 			transactions: false,
-			wallet: false,
+			wallet: true,
 			wallets: false,
 			delegate: false,
 			delegates: false,
@@ -24,7 +24,7 @@ export const manifest = {
 			configuration: false,
 			fees: false,
 			syncing: false,
-			broadcast: false,
+			broadcast: true,
 		},
 		Fee: {
 			all: false,
@@ -32,19 +32,19 @@ export const manifest = {
 		Identity: {
 			address: {
 				passphrase: false,
-				multiSignature: false,
-				publicKey: false,
-				privateKey: false,
-				wif: false,
+				multiSignature: true,
+				publicKey: true,
+				privateKey: true,
+				wif: true,
 			},
 			publicKey: {
 				passphrase: false,
 				multiSignature: false,
-				wif: false,
+				wif: true,
 			},
 			privateKey: {
 				passphrase: false,
-				wif: false,
+				wif: true,
 			},
 			wif: {
 				passphrase: false,
@@ -52,8 +52,8 @@ export const manifest = {
 			keyPair: {
 				passphrase: false,
 				publicKey: false,
-				privateKey: false,
-				wif: false,
+				privateKey: true,
+				wif: true,
 			},
 		},
 		Ledger: {
@@ -77,7 +77,7 @@ export const manifest = {
 			searchWithoutEstimates: false,
 		},
 		Transaction: {
-			transfer: false,
+			transfer: true,
 			secondSignature: false,
 			delegateRegistration: false,
 			vote: false,
