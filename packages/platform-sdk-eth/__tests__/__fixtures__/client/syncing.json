@@ -1,11 +1,10 @@
 {
-	"jsonrpc": "2.0",
-	"id": 5,
-	"result": {
-		"startingBlock": 100,
-		"currentBlock": 312,
-		"highestBlock": 512,
-		"knownStates": 234566,
-		"pulledStates": 123455
+	"height": 7858730,
+	"syncing": {
+		"currentBlock": "0x77ea2a",
+		"highestBlock": "0x77ea2b",
+		"knownStates": "0xd52a5ec",
+		"pulledStates": "0xd52a5ec",
+		"startingBlock": "0x77ea2a"
 	}
 }

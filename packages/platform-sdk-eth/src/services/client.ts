@@ -1,15 +1,14 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import Web3 from "web3";
+import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 
-import { DelegateData, TransactionData, WalletData } from "../dto";
+import { TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	static readonly MONTH_IN_SECONDS = 8640 * 30;
 
-	readonly #connection: Web3;
+	readonly #peer: string;
 
 	private constructor(peer: string) {
-		this.#connection = new Web3(new Web3.providers.HttpProvider(peer));
+		this.#peer = peer;
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
@@ -21,20 +20,18 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
-		const result = await this.#connection.eth.getTransaction(id);
-
-		return new TransactionData(result);
+		return new TransactionData(await this.get(`transactions/${id}`));
 	}
 
 	public async transactions(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		const endBlock: number = await this.#connection.eth.getBlockNumber();
+		const endBlock: number = (await this.get("status")).height;
 		const startBlock: number = endBlock - (query?.count ?? ClientService.MONTH_IN_SECONDS);
 
 		const transactions: TransactionData[] = [];
 		for (let i = startBlock; i < endBlock; i++) {
-			const block = await this.#connection.eth.getBlock(i, true);
+			const block = await this.get(`blocks/${i}`);
 
 			if (block && block.transactions) {
 				for (const transaction of block.transactions) {
@@ -53,9 +50,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const result = await this.#connection.eth.getBalance(id);
-
-		return new WalletData({ address: id, balance: result });
+		return new WalletData(await this.get(`wallets/${id}`));
 	}
 
 	public async wallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
@@ -85,10 +80,18 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async syncing(): Promise<boolean> {
-		return (await this.#connection.eth.isSyncing()) === false;
+		return (await this.get("status")).syncing === false;
 	}
 
 	public async broadcast(transactions: object[]): Promise<void> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+		await this.post("transactions", { transactions });
+	}
+
+	private async get(path: string, query: Contracts.KeyValuePair = {}): Promise<Contracts.KeyValuePair> {
+		return Utils.getJSON(`${this.#peer}/${path}`, query);
+	}
+
+	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		return Utils.postJSON(`${this.#peer}/`, path, body);
 	}
 }

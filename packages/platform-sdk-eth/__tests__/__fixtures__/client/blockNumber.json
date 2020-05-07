@@ -1,1 +1,4 @@
-{ "jsonrpc": "2.0", "id": 2, "result": "0x76f790" }
+{
+	"height": 7858729,
+	"syncing": false
+}

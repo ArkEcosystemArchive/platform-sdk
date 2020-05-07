@@ -1,18 +1,25 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import { Transaction } from "ethereumjs-tx";
 import Web3 from "web3";
 
-export class TransactionService implements Contracts.TransactionService {
-	readonly #chain;
-	readonly #connection;
+import { IdentityService } from "./identity";
 
-	private constructor(network: string) {
-		this.#chain = network;
-		this.#connection = new Web3(new Web3.providers.HttpProvider(network)); // todo: network here is a peer
+export class TransactionService implements Contracts.TransactionService {
+	readonly #peer;
+	readonly #chain;
+	readonly #identity;
+
+	private constructor(opts: Contracts.KeyValuePair) {
+		this.#peer = opts.peer;
+		this.#chain = opts.network === "live" ? "mainnet" : "ropsten";
+		this.#identity = opts.identity;
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		return new TransactionService(opts.network);
+		return new TransactionService({
+			...opts,
+			identity: await IdentityService.construct(opts),
+		});
 	}
 
 	public async destruct(): Promise<void> {
@@ -23,29 +30,24 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transactionCount = await this.#connection.eth.getTransactionCount(input.data.from);
+		const senderAddress: string = await this.#identity.address({ privateKey: input.sign.passphrase });
+		const { nonce } = await this.get(`wallets/0x${senderAddress}`);
 
 		const transaction = new Transaction(
 			{
-				nonce: this.#connection.utils.toHex(transactionCount),
-				gasLimit: this.#connection.utils.toHex(input.feeLimit),
-				gasPrice: this.#connection.utils.toHex(input.fee),
+				nonce,
+				gasLimit: Web3.utils.toHex(input.feeLimit),
+				gasPrice: Web3.utils.toHex(input.fee),
 				to: input.data.to,
-				value: this.#connection.utils.toHex(this.#connection.utils.toWei(input.data.amount, "wei")),
-				// todo: we can use this as a vendorField like ARK
-				// input: Buffer.from("Hello World", "utf8"),
+				value: Web3.utils.toHex(Web3.utils.toWei(`${input.data.amount}`, "wei")),
+				// input: Buffer.from(input.to.memo, "utf8"),
 			},
 			{ chain: this.#chain },
 		);
 
 		transaction.sign(Buffer.from(input.sign.passphrase, "hex"));
 
-		return this.#connection.eth.sendSignedTransaction("0x" + transaction.serialize().toString("hex"));
-
-		// .on("transactionHash", (txHash) => {
-		// .on("receipt", (receipt) => {
-		// .on("confirmation", (confirmationNumber, receipt) => {
-		// .on("error:", (error) => {
+		return "0x" + transaction.serialize().toString("hex");
 	}
 
 	public async secondSignature(
@@ -116,5 +118,9 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
+	}
+
+	private async get(path: string, query: Contracts.KeyValuePair = {}): Promise<Contracts.KeyValuePair> {
+		return Utils.getJSON(`${this.#peer}/${path}`, query);
 	}
 }
