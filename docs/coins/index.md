@@ -4,13 +4,14 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Architecture](#architecture)
-  - [Contracts](#contracts)
-  - [Not Supported](#not-supported)
-  - [Not Implemented](#not-implemented)
-  - [Async Operations](#async-operations)
-- [Functionality](#functionality)
-- [API Methods](#api-methods)
+- [Documentation](#documentation)
+	- [Architecture](#architecture)
+		- [Contracts](#contracts)
+		- [Not Supported](#not-supported)
+		- [Not Implemented](#not-implemented)
+		- [Async Operations](#async-operations)
+	- [Functionality](#functionality)
+	- [API Methods](#api-methods)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -40,7 +41,7 @@ To avoid an inconsistent public API where some things are instantiated and calle
 | ------------------ | ------------------------- | ------------------ | ------------------ | ------------------ | ------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
 | ClientService      | transaction               | :x:                | :white_check_mark: | :x:                | :white_check_mark:  | :x:                | :x:                | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: |
 | ClientService      | transactions              | :x:                | :white_check_mark: | :x:                | :x:                 | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :white_check_mark: |
-| ClientService      | wallet                    | :x:                | :white_check_mark: | :x:                | :xwhite_check_mark: | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: |
+| ClientService      | wallet                    | :x:                | :white_check_mark: | :x:                | :white_check_mark:  | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: |
 | ClientService      | wallets                   | :x:                | :white_check_mark: | :x:                | :x:                 | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
 | ClientService      | delegate                  | :x:                | :white_check_mark: | :x:                | :x:                 | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
 | ClientService      | delegates                 | :x:                | :white_check_mark: | :x:                | :x:                 | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
@@ -51,18 +52,18 @@ To avoid an inconsistent public API where some things are instantiated and calle
 | ClientService      | syncing                   | :x:                | :white_check_mark: | :white_check_mark: | :x:                 | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 | ClientService      | broadcast                 | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark:  | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :white_check_mark: |
 | FeeService         | all                       | :x:                | :white_check_mark: | :x:                | :x:                 | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
-| IdentityService    | address(passphrase)       | :x:                | :white_check_mark: | :white_check_mark: | :x:                 | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :white_check_mark: |
+| IdentityService    | address(passphrase)       | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark:  | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :white_check_mark: |
 | IdentityService    | address(multiSignature)   | :x:                | :white_check_mark: | :x:                | :white_check_mark:  | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 | IdentityService    | address(publicKey)        | :x:                | :white_check_mark: | :x:                | :white_check_mark:  | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :white_check_mark: |
 | IdentityService    | address(privateKey)       | :x:                | :white_check_mark: | :x:                | :white_check_mark:  | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                |
 | IdentityService    | address(wif)              | :x:                | :white_check_mark: | :x:                | :white_check_mark:  | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
-| IdentityService    | publicKey(passphrase)     | :x:                | :white_check_mark: | :white_check_mark: | :x:                 | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
+| IdentityService    | publicKey(passphrase)     | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark:  | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
 | IdentityService    | publicKey(multiSignature) | :x:                | :white_check_mark: | :x:                | :x:                 | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 | IdentityService    | publicKey(wif)            | :x:                | :white_check_mark: | :x:                | :white_check_mark:  | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
-| IdentityService    | privateKey(passphrase)    | :x:                | :white_check_mark: | :white_check_mark: | :x:                 | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
+| IdentityService    | privateKey(passphrase)    | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark:  | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
 | IdentityService    | privateKey(wif)           | :x:                | :white_check_mark: | :x:                | :white_check_mark:  | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
-| IdentityService    | wif(passphrase)           | :x:                | :white_check_mark: | :x:                | :x:                 | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
-| IdentityService    | keyPair(passphrase)       | :x:                | :white_check_mark: | :white_check_mark: | :x:                 | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :white_check_mark: |
+| IdentityService    | wif(passphrase)           | :x:                | :white_check_mark: | :x:                | :white_check_mark:  | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
+| IdentityService    | keyPair(passphrase)       | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark:  | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :white_check_mark: |
 | IdentityService    | keyPair(publicKey)        | :x:                | :x:                | :x:                | :x:                 | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 | IdentityService    | keyPair(privateKey)       | :x:                | :x:                | :x:                | :white_check_mark:  | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                |
 | IdentityService    | keyPair(wif)              | :x:                | :white_check_mark: | :x:                | :white_check_mark:  | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |

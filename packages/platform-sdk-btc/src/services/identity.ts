@@ -1,11 +1,14 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Address, PrivateKey, PublicKey } from "bitcore-lib";
+import { Address, Networks, PrivateKey, PublicKey } from "bitcore-lib";
+import * as bip32 from "bip32";
+import * as bip39 from "bip39";
+import * as bitcoin from "bitcoinjs-lib";
 
 export class IdentityService implements Contracts.IdentityService {
-	readonly #network: string;
+	readonly #network;
 
 	private constructor(network: string) {
-		this.#network = network;
+		this.#network = network === "live" ? Networks.livenet : Networks.testnet;
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
@@ -18,7 +21,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async address(input: Contracts.AddressInput): Promise<string> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "address#passphrase");
+			return (await this.p2pkh(input.passphrase)).address!;
 		}
 
 		if (input.multiSignature) {
@@ -66,7 +69,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async publicKey(input: Contracts.PublicKeyInput): Promise<string> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#passphrase");
+			return (await this.p2pkh(input.passphrase)).pubkey!.toString('hex');
 		}
 
 		if (input.multiSignature) {
@@ -82,7 +85,9 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async privateKey(input: Contracts.PrivateKeyInput): Promise<string> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "privateKey#passphrase");
+			const seed: Buffer = await bip39.mnemonicToSeed(input.passphrase);
+
+			return bip32.fromSeed(seed).privateKey!.toString("hex");
 		}
 
 		if (input.wif) {
@@ -100,7 +105,9 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async wif(input: Contracts.WifInput): Promise<string> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "wif#passphrase");
+			const seed: Buffer = await bip39.mnemonicToSeed(input.passphrase);
+
+			return bip32.fromSeed(seed).toWIF();
 		}
 
 		throw new Exceptions.InvalidArguments(this.constructor.name, "wif");
@@ -108,7 +115,10 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#passphrase");
+			const seed: Buffer = await bip39.mnemonicToSeed(input.passphrase);
+			const privateKey: string = bip32.fromSeed(seed).privateKey!.toString('hex');
+
+			return this.normalizeKeyPair(new PrivateKey(privateKey));
 		}
 
 		if (input.publicKey) {
@@ -131,5 +141,14 @@ export class IdentityService implements Contracts.IdentityService {
 			publicKey: PublicKey.fromPrivateKey(privateKey).toString("hex"),
 			privateKey: privateKey.toString("hex"),
 		};
+	}
+
+	private async p2pkh(passphrase: string) {
+		const seed: Buffer = await bip39.mnemonicToSeed(passphrase);
+
+		return bitcoin.payments.p2pkh({
+			pubkey: bip32.fromSeed(seed).publicKey,
+			network: this.#network.name === "livenet" ? bitcoin.networks.bitcoin : bitcoin.networks.testnet,
+		});
 	}
 }

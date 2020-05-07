@@ -5,16 +5,16 @@ import { identity } from "../__fixtures__/identity";
 
 let subject: IdentityService;
 
-beforeEach(async () => (subject = await IdentityService.construct({ network: "livenet" })));
+beforeEach(async () => (subject = await IdentityService.construct({ network: "live" })));
 
 describe("IdentityService", () => {
 	describe("#address", () => {
 		it("should generate an output from a passphrase", async () => {
-			await expect(
-				subject.address({
-					passphrase: identity.passphrase,
-				}),
-			).rejects.toThrow(/is not supported/);
+			const result: any = await subject.address({
+				passphrase: identity.passphrase,
+			})
+
+			expect(result).toBe(identity.address);
 		});
 
 		it("should generate an output from a multiSignature", async () => {
@@ -30,7 +30,7 @@ describe("IdentityService", () => {
 				publicKey: identity.publicKey,
 			});
 
-			expect(result).toBe("1QLUsTp9fuNw99wmYfH8QC7XaiHgfstsbM");
+			expect(result).toBe(identity.address);
 		});
 
 		it("should generate an output from a privateKey", async () => {
@@ -38,7 +38,7 @@ describe("IdentityService", () => {
 				privateKey: identity.privateKey,
 			});
 
-			expect(result).toBe("1QLUsTp9fuNw99wmYfH8QC7XaiHgfstsbM");
+			expect(result).toBe(identity.address);
 		});
 
 		it("should generate an output from a wif", async () => {
@@ -46,17 +46,17 @@ describe("IdentityService", () => {
 				wif: identity.wif,
 			});
 
-			expect(result).toBe("1BgGZ9tcN4rm9KBzDn7KprQz87SZ26SAMH");
+			expect(result).toBe(identity.address);
 		});
 	});
 
 	describe("#publicKey", () => {
 		it("should generate an output from a passphrase", async () => {
-			await expect(
-				subject.publicKey({
-					passphrase: identity.passphrase,
-				}),
-			).rejects.toThrow(/is not supported/);
+			const result: any = await subject.publicKey({
+				passphrase: identity.passphrase,
+			});
+
+			expect(result).toBe(identity.publicKey);
 		});
 
 		it("should generate an output from a multiSignature", async () => {
@@ -72,17 +72,17 @@ describe("IdentityService", () => {
 				wif: identity.wif,
 			});
 
-			expect(result).toBe("0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798");
+			expect(result).toBe(identity.publicKey);
 		});
 	});
 
 	describe("#privateKey", () => {
 		it("should generate an output from a passphrase", async () => {
-			await expect(
-				subject.privateKey({
-					passphrase: identity.passphrase,
-				}),
-			).rejects.toThrow(/is not supported/);
+			const result: any = await subject.privateKey({
+				passphrase: identity.passphrase,
+			});
+
+			expect(result).toBe(identity.privateKey);
 		});
 
 		it("should generate an output from a wif", async () => {
@@ -90,27 +90,30 @@ describe("IdentityService", () => {
 				wif: identity.wif,
 			});
 
-			expect(result).toBe("0000000000000000000000000000000000000000000000000000000000000001");
+			expect(result).toBe(identity.privateKey);
 		});
 	});
 
 	describe("#wif", () => {
 		it("should generate an output from a passphrase", async () => {
-			await expect(
-				subject.wif({
-					passphrase: identity.passphrase,
-				}),
-			).rejects.toThrow(/is not supported/);
+			const result: any = await subject.wif({
+				passphrase: identity.passphrase,
+			});
+
+			expect(result).toBe(identity.wif);
 		});
 	});
 
 	describe("#keyPair", () => {
 		it("should generate an output from a passphrase", async () => {
-			await expect(
-				subject.keyPair({
-					passphrase: identity.passphrase,
-				}),
-			).rejects.toThrow(/is not supported/);
+			const result: any = await subject.keyPair({
+				passphrase: identity.passphrase,
+			});
+
+			expect(result).toEqual({
+				privateKey: identity.privateKey,
+				publicKey: identity.publicKey,
+			});
 		});
 
 		it("should generate an output from a privateKey", async () => {
@@ -119,8 +122,8 @@ describe("IdentityService", () => {
 			});
 
 			expect(result).toEqual({
-				privateKey: "d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
-				publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+				privateKey: identity.privateKey,
+				publicKey: identity.publicKey,
 			});
 		});
 
@@ -130,8 +133,8 @@ describe("IdentityService", () => {
 			});
 
 			expect(result).toEqual({
-				privateKey: "0000000000000000000000000000000000000000000000000000000000000001",
-				publicKey: "0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+				privateKey: identity.privateKey,
+				publicKey: identity.publicKey,
 			});
 		});
 	});
