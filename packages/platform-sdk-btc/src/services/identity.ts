@@ -121,10 +121,6 @@ export class IdentityService implements Contracts.IdentityService {
 			return this.normalizeKeyPair(new PrivateKey(privateKey));
 		}
 
-		if (input.publicKey) {
-			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#publicKey");
-		}
-
 		if (input.privateKey) {
 			return this.normalizeKeyPair(new PrivateKey(input.privateKey));
 		}

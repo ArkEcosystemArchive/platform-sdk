@@ -50,7 +50,6 @@ export const manifest = {
 			},
 			keyPair: {
 				passphrase: true,
-				publicKey: false,
 				privateKey: false,
 				wif: true,
 			},

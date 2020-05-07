@@ -77,10 +77,6 @@ export class IdentityService implements Contracts.IdentityService {
 			return { publicKey, privateKey };
 		}
 
-		if (input.publicKey) {
-			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#publicKey");
-		}
-
 		if (input.privateKey) {
 			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#privateKey");
 		}
