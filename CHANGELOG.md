@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.6.0 - 2020-05-07
+
+### Added
+
+-   Implement passphrase usage for `IdentityService` for `BTC` (ff3796dd, @faustbrian)
+
+### Changed
+
+-   Use the `platform-sdk-server` for `BTC` communication (478a790d, @faustbrian)
+-   Update manifest (7b0775cd, @faustbrian)
+
+### Removed
+
+-   Remove `IdentityService#keyPair(publicKey)` (e540ed17, @faustbrian)
+
+### Fixed
+
+-   Format UTXO response for transaction builder (5edb4aa7, @faustbrian)
+
 ## 0.5.3 - 2020-05-06
 
 ### Fixed
