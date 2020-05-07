@@ -113,14 +113,6 @@ describe("IdentityService", () => {
 			).rejects.toThrow(/is not supported/);
 		});
 
-		it("should generate an output from a publicKey", async () => {
-			await expect(
-				subject.keyPair({
-					publicKey: identity.publicKey,
-				}),
-			).rejects.toThrow(/is not supported/);
-		});
-
 		it("should generate an output from a privateKey", async () => {
 			const result: any = await subject.keyPair({
 				privateKey: identity.privateKey,
