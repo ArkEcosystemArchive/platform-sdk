@@ -18,7 +18,7 @@ jobs:
             - name: Run prettier
               run: yarn run prettier --write 'resources/**/*.{css,js,vue}'
 
-            - uses: stefanzweifel/git-auto-commit-action@v2.1.0
+            - uses: stefanzweifel/git-auto-commit-action@v4.1.6
               with:
                   commit_message: "style: resolve style guide violations"
                   branch: ${{ github.head_ref }}
