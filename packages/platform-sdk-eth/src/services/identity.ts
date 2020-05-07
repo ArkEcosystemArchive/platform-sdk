@@ -1,9 +1,19 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import * as bip39 from "bip39";
 import Wallet from "ethereumjs-wallet";
+import hdkey from "ethereumjs-wallet/hdkey";
+
+import { manifest } from "../manifest";
 
 export class IdentityService implements Contracts.IdentityService {
+	readonly #derivePath: string;
+
+	private constructor(opts: Contracts.KeyValuePair) {
+		this.#derivePath = manifest.networks[opts.network].derivePath;
+	}
+
 	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
-		return new IdentityService();
+		return new IdentityService(opts);
 	}
 
 	public async destruct(): Promise<void> {
@@ -12,7 +22,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async address(input: Contracts.AddressInput): Promise<string> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "address#passphrase");
+			return this.getAddress(this.createWallet(input.passphrase));
 		}
 
 		if (input.multiSignature) {
@@ -20,11 +30,11 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		if (input.publicKey) {
-			return Wallet.fromPublicKey(Buffer.from(input.publicKey, "hex")).getAddress().toString("hex");
+			return this.getAddress(Wallet.fromPublicKey(Buffer.from(input.publicKey, "hex")));
 		}
 
 		if (input.privateKey) {
-			return Wallet.fromPrivateKey(Buffer.from(input.privateKey, "hex")).getAddress().toString("hex");
+			return this.getAddress(Wallet.fromPrivateKey(Buffer.from(input.privateKey, "hex")));
 		}
 
 		if (input.wif) {
@@ -36,7 +46,10 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async publicKey(input: Contracts.PublicKeyInput): Promise<string> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#passphrase");
+			const privateKey = Buffer.from(await this.privateKey(input), "hex");
+			const keyPair = Wallet.fromPrivateKey(privateKey);
+
+			return keyPair.getPublicKey().toString("hex");
 		}
 
 		if (input.multiSignature) {
@@ -52,7 +65,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async privateKey(input: Contracts.PrivateKeyInput): Promise<string> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "privateKey#privateKey");
+			return this.createWallet(input.passphrase).getPrivateKey().toString("hex");
 		}
 
 		if (input.wif) {
@@ -72,15 +85,20 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#passphrase");
+			const wallet: Wallet = this.createWallet(input.passphrase);
+
+			return {
+				publicKey: wallet.getPublicKey().toString("hex"),
+				privateKey: wallet.getPrivateKey().toString("hex"),
+			};
 		}
 
 		if (input.privateKey) {
-			const keyPair = Wallet.fromPrivateKey(Buffer.from(input.privateKey, "hex"));
+			const wallet: Wallet = Wallet.fromPrivateKey(Buffer.from(input.privateKey, "hex"));
 
 			return {
-				publicKey: keyPair.getPublicKey().toString("hex"),
-				privateKey: keyPair.getPrivateKey().toString("hex"),
+				publicKey: wallet.getPublicKey().toString("hex"),
+				privateKey: wallet.getPrivateKey().toString("hex"),
 			};
 		}
 
@@ -89,5 +107,16 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		throw new Exceptions.InvalidArguments(this.constructor.name, "keyPair");
+	}
+
+	private createWallet(passphrase: string): Wallet {
+		return hdkey
+			.fromMasterSeed(bip39.mnemonicToSeedSync(passphrase))
+			.derivePath(this.#derivePath + "0")
+			.getWallet();
+	}
+
+	private getAddress(wallet: Wallet): string {
+		return "0x" + wallet.getAddress().toString("hex").toUpperCase();
 	}
 }

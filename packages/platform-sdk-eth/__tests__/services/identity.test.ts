@@ -5,16 +5,16 @@ import { identity } from "../__fixtures__/identity";
 
 let subject: IdentityService;
 
-beforeEach(async () => (subject = await IdentityService.construct({})));
+beforeEach(async () => (subject = await IdentityService.construct({ network: "test" })));
 
 describe("IdentityService", () => {
 	describe("#address", () => {
 		it("should generate an output from a passphrase", async () => {
-			await expect(
-				subject.address({
-					passphrase: identity.passphrase,
-				}),
-			).rejects.toThrow(/is not supported/);
+			const result: any = await subject.address({
+				passphrase: identity.passphrase,
+			});
+
+			expect(result).toBe(identity.address);
 		});
 
 		it("should generate an output from a multiSignature", async () => {
@@ -30,7 +30,7 @@ describe("IdentityService", () => {
 				publicKey: identity.publicKey,
 			});
 
-			expect(result).toBe("b14ab53e38da1c172f877dbc6d65e4a1b0474c3c");
+			expect(result).toBe(identity.address);
 		});
 
 		it("should generate an output from a privateKey", async () => {
@@ -38,7 +38,7 @@ describe("IdentityService", () => {
 				privateKey: identity.privateKey,
 			});
 
-			expect(result).toBe("b14ab53e38da1c172f877dbc6d65e4a1b0474c3c");
+			expect(result).toBe(identity.address);
 		});
 
 		it("should generate an output from a wif", async () => {
@@ -52,11 +52,11 @@ describe("IdentityService", () => {
 
 	describe("#publicKey", () => {
 		it("should generate an output from a passphrase", async () => {
-			await expect(
-				subject.publicKey({
-					passphrase: identity.passphrase,
-				}),
-			).rejects.toThrow(/is not supported/);
+			const result: any = await subject.publicKey({
+				passphrase: identity.passphrase,
+			});
+
+			expect(result).toBe(identity.publicKey);
 		});
 
 		it("should generate an output from a multiSignature", async () => {
@@ -78,11 +78,11 @@ describe("IdentityService", () => {
 
 	describe("#privateKey", () => {
 		it("should generate an output from a passphrase", async () => {
-			await expect(
-				subject.privateKey({
-					passphrase: identity.passphrase,
-				}),
-			).rejects.toThrow(/is not supported/);
+			const result: any = await subject.privateKey({
+				passphrase: identity.passphrase,
+			});
+
+			expect(result).toBe(identity.privateKey);
 		});
 
 		it("should generate an output from a wif", async () => {
@@ -106,11 +106,14 @@ describe("IdentityService", () => {
 
 	describe("#keyPair", () => {
 		it("should generate an output from a passphrase", async () => {
-			await expect(
-				subject.keyPair({
-					passphrase: identity.passphrase,
-				}),
-			).rejects.toThrow(/is not supported/);
+			const result: any = await subject.keyPair({
+				passphrase: identity.passphrase,
+			});
+
+			expect(result).toEqual({
+				privateKey: identity.privateKey,
+				publicKey: identity.publicKey,
+			});
 		});
 
 		it("should generate an output from a privateKey", async () => {
@@ -119,9 +122,8 @@ describe("IdentityService", () => {
 			});
 
 			expect(result).toEqual({
-				privateKey: "efca4cdd31923b50f4214af5d2ae10e7ac45a5019e9431cc195482d707485378",
-				publicKey:
-					"5d4392f450262b276652c1fc037606abac500f3160830ce9df53aa70d95ce7cfb8b06010b2f3691c78c65c21eb4cf3dfdbfc0745d89b664ee10435bb3a0f906c",
+				privateKey: identity.privateKey,
+				publicKey: identity.publicKey,
 			});
 		});
 

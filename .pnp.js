@@ -657,6 +657,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:d3b4d6def01fdbd42cfe2e85e2a68295eadd02ed8b64309f444ce08590aebd493ecc11746abd9e896025ec39b5f0b4215745aa3718d7fd878317eac82679b12d#npm:2.30.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
+            ["bip39", "npm:3.0.2"],
             ["codecov", "npm:3.6.5"],
             ["cross-env", "npm:7.0.2"],
             ["eslint", "npm:6.8.0"],
