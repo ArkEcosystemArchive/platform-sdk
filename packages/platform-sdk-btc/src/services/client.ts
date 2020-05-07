@@ -5,9 +5,7 @@ import { TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
 
-	readonly #restUrl: string = "https://blockchain.info";
-
-	private constructor(peer: string) {
+	private constructor (peer: string) {
 		this.#baseUrl = peer;
 	}
 
@@ -19,12 +17,8 @@ export class ClientService implements Contracts.ClientService {
 		//
 	}
 
-	// todo: use JSON-RPC
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
-		// const response = await this.post("gettransaction", { txid: id });
-		const response = await this.get(`rawtx/${id}`, { format: "json" });
-
-		return new TransactionData(response);
+		return new TransactionData(await this.get(`transactions/${id}`));
 	}
 
 	public async transactions(
@@ -33,11 +27,8 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
 	}
 
-	// todo: use JSON-RPC
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const response = await this.get(`rawaddr/${id}`);
-
-		return new WalletData(response);
+		return new WalletData(await this.get(`wallets/${id}`));
 	}
 
 	public async wallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
@@ -71,25 +62,14 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: object[]): Promise<void> {
-		await this.post("sendrawtransaction", transactions);
+		await this.post("transactions", { transactions });
 	}
 
 	private async get(path: string, query: Contracts.KeyValuePair = {}): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#restUrl}/${path}`, query);
+		return Utils.getJSON(`${this.#baseUrl}/${path}`, query);
 	}
 
-	private async post(method: string, params: object | string[] = {}): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(
-			this.#baseUrl,
-			"/",
-			{
-				jsonrpc: "2.0",
-				method,
-				params,
-			},
-			{
-				Authorization: `TODO`,
-			},
-		);
+	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		return Utils.postJSON(`${this.#baseUrl}/`, path, body);
 	}
 }

@@ -19,11 +19,7 @@ export class UnspentAggregator {
 	}
 
 	public async aggregate(address: string, amount: BigNumber): Promise<UnspentTransaction[]> {
-		const { result } = await Utils.postJSON(this.#peer, "/", {
-			jsonrpc: "2.0",
-			method: "listunspent",
-			params: [1, 9999999, [address]],
-		});
+		const { result } = await Utils.getJSON(`${this.#peer}/btc/wallets/${address}/transactions/unspent`);
 
 		return result;
 	}

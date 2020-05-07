@@ -3,23 +3,23 @@ import { BigNumber } from "@arkecosystem/utils";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		return this.data.hash;
+		return this.data.txid;
 	}
 
 	public type(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "type");
+		return undefined;
 	}
 
 	public typeGroup(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "typeGroup");
+		return undefined;
 	}
 
 	public timestamp(): number | undefined {
-		return this.data.time;
+		return +new Date(this.data.blockTime);
 	}
 
 	public confirmations(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "confirmations");
+		return BigNumber.make(this.data.confirmations);
 	}
 
 	public nonce(): string {
@@ -35,18 +35,18 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "amount");
+		return BigNumber.make(this.data.value);
 	}
 
 	public fee(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "fee");
+		return BigNumber.make(this.data.fee);
 	}
 
 	public memo(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "memo");
+		return undefined;
 	}
 
 	public blockId(): string {
-		return this.data.block_height;
+		return this.data.blockHeight;
 	}
 }

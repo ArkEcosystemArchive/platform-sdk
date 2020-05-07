@@ -7,12 +7,11 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public publicKey(): string | undefined {
-		return undefined;
+		return this.data.publicKey;
 	}
 
 	public balance(): BigNumber {
-		return BigNumber.make(this.data.final_balance);
-		// return BigNumber.make(this.data.balance);
+		return BigNumber.make(this.data.balance);
 	}
 
 	public nonce(): BigNumber {
