@@ -31,26 +31,26 @@ export const manifest = {
 		},
 		Identity: {
 			address: {
-				passphrase: false,
+				passphrase: true,
 				multiSignature: true,
 				publicKey: true,
 				privateKey: true,
 				wif: true,
 			},
 			publicKey: {
-				passphrase: false,
+				passphrase: true,
 				multiSignature: false,
 				wif: true,
 			},
 			privateKey: {
-				passphrase: false,
+				passphrase: true,
 				wif: true,
 			},
 			wif: {
-				passphrase: false,
+				passphrase: true,
 			},
 			keyPair: {
-				passphrase: false,
+				passphrase: true,
 				publicKey: false,
 				privateKey: true,
 				wif: true,

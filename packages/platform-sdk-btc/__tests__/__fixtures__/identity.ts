@@ -1,10 +1,10 @@
 export const identity = {
 	// Standard
-	privateKey: "d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
-	publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-	address: "1BgGZ9tcN4rm9KBzDn7KprQz87SZ26SAMH",
-	wif: "KwDiBf89QgGbjEhKnhXJuH7LrciVrZi3qYjgd9M7rFU73sVHnoWn",
-	passphrase: "this is a top secret passphrase",
+	privateKey: "01304181d699cd89db7de6337d597adf5f78dc1f0784c400e41a3bd829a5a226",
+	publicKey: "0360729fb3c4733e43bf91e5208b0d240f8d8de239cff3f2ebd616b94faa0007f4",
+	address: "12eUJoaWBENQ3tNZE52ZQaHqr3v4tTX4os",
+	wif: "KwG2BU1ERd3ndbFUrdpR7ymLZbsd7xZpPKxsgJzUf76A4q9CkBpY",
+	passphrase: "praise you muffin lion enable neck grocery crumble super myself license ghost",
 	// Multi Signature
 	multiSignature: {
 		min: 2,
