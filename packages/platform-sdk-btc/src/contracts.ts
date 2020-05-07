@@ -4,4 +4,4 @@ export interface UnspentTransaction {
 	outputIndex: number;
 	script: string;
 	satoshis: number;
-};
+}
