@@ -1,8 +1,8 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Address, Networks, PrivateKey, PublicKey } from "bitcore-lib";
 import * as bip32 from "bip32";
 import * as bip39 from "bip39";
 import * as bitcoin from "bitcoinjs-lib";
+import { Address, Networks, PrivateKey, PublicKey } from "bitcore-lib";
 
 export class IdentityService implements Contracts.IdentityService {
 	readonly #network;
@@ -69,7 +69,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async publicKey(input: Contracts.PublicKeyInput): Promise<string> {
 		if (input.passphrase) {
-			return (await this.p2pkh(input.passphrase)).pubkey!.toString('hex');
+			return (await this.p2pkh(input.passphrase)).pubkey!.toString("hex");
 		}
 
 		if (input.multiSignature) {
@@ -116,7 +116,7 @@ export class IdentityService implements Contracts.IdentityService {
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
 		if (input.passphrase) {
 			const seed: Buffer = await bip39.mnemonicToSeed(input.passphrase);
-			const privateKey: string = bip32.fromSeed(seed).privateKey!.toString('hex');
+			const privateKey: string = bip32.fromSeed(seed).privateKey!.toString("hex");
 
 			return this.normalizeKeyPair(new PrivateKey(privateKey));
 		}
