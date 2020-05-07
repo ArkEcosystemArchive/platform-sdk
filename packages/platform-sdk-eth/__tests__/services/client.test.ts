@@ -7,7 +7,7 @@ import { TransactionData, WalletData } from "../../src/dto";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.construct({ peer: "http://coins.com/api/eth" })));
+beforeEach(async () => (subject = await ClientService.construct({ peer: "https://coins.com/api/eth" })));
 
 afterEach(() => nock.cleanAll());
 
