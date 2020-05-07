@@ -1,6 +1,18 @@
 # Documentation
 
--   [Documentation](#documentation) - [Architecture](#architecture) - [Contracts](#contracts) - [Not Supported](#not-supported) - [Not Implemented](#not-implemented) - [Async Operations](#async-operations) - [Functionality](#functionality) - [API Methods](#api-methods)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Architecture](#architecture)
+  - [Contracts](#contracts)
+  - [Not Supported](#not-supported)
+  - [Not Implemented](#not-implemented)
+  - [Async Operations](#async-operations)
+- [Functionality](#functionality)
+- [API Methods](#api-methods)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Architecture
 
