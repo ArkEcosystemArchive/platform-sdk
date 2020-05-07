@@ -1,20 +1,16 @@
 {
-	"jsonrpc": "2.0",
-	"id": 1,
-	"result": {
-		"blockHash": "0x45480ca45ead47da1055188fd70f92a978a8c3c70229675c1271e86c57de073a",
-		"blockNumber": 7623266,
-		"from": "0x4581A610f96878266008993475F1476cA9997081",
-		"gas": 21000,
-		"gasPrice": "1000000000",
-		"hash": "0x35a28a5b1785d3729afc809851466fcc9971d09922196a1ca6d155756c222435",
-		"input": "0x",
-		"nonce": 0,
-		"r": "0xf095ddf604249f1059f51e84d6c77b321c40544441a0395962c973a3380a6559",
-		"s": "0x70a51d6c5a0e2c8418ffb4ea3bcc9d697adb526eb4b3f1842ed987a292248784",
-		"to": "0x230b2A8C0CcE28fd6eFF491c47aeBa244b10A12c",
-		"transactionIndex": 138,
-		"v": "0x2a",
-		"value": "79000000000000"
-	}
+	"blockHash": "0x45480ca45ead47da1055188fd70f92a978a8c3c70229675c1271e86c57de073a",
+	"blockNumber": 7623266,
+	"from": "0x4581A610f96878266008993475F1476cA9997081",
+	"gas": 21000,
+	"gasPrice": "1000000000",
+	"hash": "0x35a28a5b1785d3729afc809851466fcc9971d09922196a1ca6d155756c222435",
+	"input": "0x",
+	"nonce": 0,
+	"r": "0xf095ddf604249f1059f51e84d6c77b321c40544441a0395962c973a3380a6559",
+	"s": "0x70a51d6c5a0e2c8418ffb4ea3bcc9d697adb526eb4b3f1842ed987a292248784",
+	"to": "0x230b2A8C0CcE28fd6eFF491c47aeBa244b10A12c",
+	"transactionIndex": 138,
+	"v": "0x2a",
+	"value": "79000000000000"
 }
