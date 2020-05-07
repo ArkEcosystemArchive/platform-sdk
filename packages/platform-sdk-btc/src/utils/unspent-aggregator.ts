@@ -19,8 +19,14 @@ export class UnspentAggregator {
 	}
 
 	public async aggregate(address: string, amount: BigNumber): Promise<UnspentTransaction[]> {
-		const { result } = await Utils.getJSON(`${this.#peer}/btc/wallets/${address}/transactions/unspent`);
+		const response = await Utils.getJSON(`${this.#peer}/wallets/${address}/transactions/unspent`);
 
-		return result;
+		return response.map((transaction) => ({
+			address: transaction.address,
+			txId: transaction.mintTxid,
+			outputIndex: transaction.mintIndex,
+			script: transaction.script,
+			satoshis: transaction.value,
+		}));
 	}
 }
