@@ -1,9 +1,9 @@
 export const identity = {
 	// Standard
-	privateKey: "efca4cdd31923b50f4214af5d2ae10e7ac45a5019e9431cc195482d707485378",
+	privateKey: "d069ef1083867873583a61d42e16acb6bceba152eb6b9a27ef01ea8d9c7560a1",
 	publicKey:
-		"5d4392f450262b276652c1fc037606abac500f3160830ce9df53aa70d95ce7cfb8b06010b2f3691c78c65c21eb4cf3dfdbfc0745d89b664ee10435bb3a0f906c",
-	address: "b14ab53e38da1c172f877dbc6d65e4a1b0474c3c",
+		"159eb3c1398beb53262c8f2cfd3e3d3eaa65b762bcc20c067b8a4c552b63df5c8be8a687947673cf9b4f43ef5878f0bc9c35fdb36ddc74f8ba27b8746a1b9329",
+	address: "0xFE8D8D622E31B21EF3ED035633C2B40E8FD9BBCA",
 	wif: "not-available",
 	passphrase: "this is a top secret passphrase",
 	// Multi Signature

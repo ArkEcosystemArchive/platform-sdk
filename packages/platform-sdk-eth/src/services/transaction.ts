@@ -30,8 +30,10 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const senderAddress: string = await this.#identity.address({ privateKey: input.sign.passphrase });
-		const { nonce } = await this.get(`wallets/0x${senderAddress}`);
+		const address: string = await this.#identity.address(input.sign);
+		const privateKey: string = await this.#identity.privateKey(input.sign);
+
+		const { nonce } = await this.get(`wallets/${address}`);
 
 		const transaction = new Transaction(
 			{
@@ -45,7 +47,7 @@ export class TransactionService implements Contracts.TransactionService {
 			{ chain: this.#chain },
 		);
 
-		transaction.sign(Buffer.from(input.sign.passphrase, "hex"));
+		transaction.sign(Buffer.from(privateKey, "hex"));
 
 		return "0x" + transaction.serialize().toString("hex");
 	}
