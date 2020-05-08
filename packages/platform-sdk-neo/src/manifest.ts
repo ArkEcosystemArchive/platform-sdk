@@ -1,6 +1,6 @@
 export const manifest = {
 	name: "NEO",
-	ticker: "NEO",
+	derivePath: "m/44'/888'/0'/0/",
 	networks: {
 		live: {
 			ticker: "NEO",

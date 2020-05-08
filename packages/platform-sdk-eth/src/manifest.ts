@@ -1,16 +1,14 @@
 export const manifest = {
 	name: "Ethereum",
-	ticker: "ETH",
+	derivePath: "m/44'/60'/0'/0/",
 	networks: {
 		live: {
 			ticker: "ETH",
 			explorer: "https://etherscan.io/",
-			derivePath: "m/44'/60'/0'/0/",
 		},
 		test: {
 			ticker: "ETH",
 			explorer: "https://rinkeby.etherscan.io/",
-			derivePath: "m/44'/60'/0'/0/",
 		},
 	},
 	behaviours: {

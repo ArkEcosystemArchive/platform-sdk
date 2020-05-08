@@ -6,14 +6,8 @@ import hdkey from "ethereumjs-wallet/hdkey";
 import { manifest } from "../manifest";
 
 export class IdentityService implements Contracts.IdentityService {
-	readonly #derivePath: string;
-
-	private constructor(opts: Contracts.KeyValuePair) {
-		this.#derivePath = manifest.networks[opts.network].derivePath;
-	}
-
 	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
-		return new IdentityService(opts);
+		return new IdentityService();
 	}
 
 	public async destruct(): Promise<void> {
@@ -112,7 +106,7 @@ export class IdentityService implements Contracts.IdentityService {
 	private createWallet(passphrase: string): Wallet {
 		return hdkey
 			.fromMasterSeed(bip39.mnemonicToSeedSync(passphrase))
-			.derivePath(this.#derivePath + "0")
+			.derivePath(manifest.derivePath + "0")
 			.getWallet();
 	}
 

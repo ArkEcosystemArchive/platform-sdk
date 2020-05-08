@@ -1,6 +1,6 @@
 export const manifest = {
 	name: "EOS",
-	ticker: "EOS",
+	derivePath: "m/44'/194'/0'/0/",
 	networks: {
 		live: {
 			ticker: "EOS",
