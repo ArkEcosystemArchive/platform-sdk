@@ -15,7 +15,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		return {
-			account: new wallet.Account(input.sign.passphrase),
+			account: new wallet.Account(input.sign.privateKey),
 			intents: api.makeIntent({ NEO: input.data.amount, GAS: input.fee }, input.data.to),
 		};
 	}

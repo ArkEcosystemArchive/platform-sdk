@@ -1,6 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import * as bip32 from "bip32";
-import * as bip39 from "bip39";
+import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import * as bitcoin from "bitcoinjs-lib";
 import { Address, Networks, PrivateKey, PublicKey } from "bitcore-lib";
 
@@ -85,9 +83,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async privateKey(input: Contracts.PrivateKeyInput): Promise<string> {
 		if (input.passphrase) {
-			const seed: Buffer = await bip39.mnemonicToSeed(input.passphrase);
-
-			return bip32.fromSeed(seed).privateKey!.toString("hex");
+			return Utils.BIP44.deriveMasterKey(input.passphrase).privateKey!.toString("hex");
 		}
 
 		if (input.wif) {
@@ -105,9 +101,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async wif(input: Contracts.WifInput): Promise<string> {
 		if (input.passphrase) {
-			const seed: Buffer = await bip39.mnemonicToSeed(input.passphrase);
-
-			return bip32.fromSeed(seed).toWIF();
+			return Utils.BIP44.deriveMasterKey(input.passphrase).toWIF();
 		}
 
 		throw new Exceptions.InvalidArguments(this.constructor.name, "wif");
@@ -115,8 +109,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
 		if (input.passphrase) {
-			const seed: Buffer = await bip39.mnemonicToSeed(input.passphrase);
-			const privateKey: string = bip32.fromSeed(seed).privateKey!.toString("hex");
+			const privateKey: string = Utils.BIP44.deriveMasterKey(input.passphrase).privateKey!.toString("hex");
 
 			return this.normalizeKeyPair(new PrivateKey(privateKey));
 		}
@@ -140,10 +133,8 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	private async p2pkh(passphrase: string) {
-		const seed: Buffer = await bip39.mnemonicToSeed(passphrase);
-
 		return bitcoin.payments.p2pkh({
-			pubkey: bip32.fromSeed(seed).publicKey,
+			pubkey: Utils.BIP44.deriveMasterKey(passphrase).publicKey,
 			network: this.#network.name === "livenet" ? bitcoin.networks.bitcoin : bitcoin.networks.testnet,
 		});
 	}

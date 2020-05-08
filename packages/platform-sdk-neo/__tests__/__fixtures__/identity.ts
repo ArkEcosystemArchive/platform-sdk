@@ -5,11 +5,18 @@ export const identity = {
 	address: "AebGoHqMP9j9oE1RqBfCXu2QmLCzieXr9w",
 	wif: "L4UawZYmxjoBwP3UYmCgRCdzbwZm9fr82DZeZ1mDX1bZ67C58KEu",
 	passphrase: "this is a top secret passphrase",
+	// Derived
+	derived: {
+		privateKey: "322467da14143f716713e1d55ca376531fe5cddab2015ecc3421cda4a5620a92",
+		publicKey: "02fe171ebae02dba8a17f5831119c571f71c639ab317e47fb130e46c5a471eda85",
+		address: "AenvmebJdnbbPsB7a9RUsjUt9NxnKpTNEg",
+		wif: "KxuBSQtcE1tFbE2VoinvnxC14paUHBHtfC7AVPfBppAbQcMMErAk",
+	},
 	// Multi Signature
 	multiSignature: {
 		min: 3,
 		publicKeys: [],
 	},
-	multiSignatureAddress: "DMS861mLRrtH47QUMVif3C2rBCAdHbmwsi",
-	multiSignaturePublicKey: "0279f05076556da7173610a7676399c3620276ebbf8c67552ad3b1f26ec7627794",
+	multiSignatureAddress: "",
+	multiSignaturePublicKey: "",
 };

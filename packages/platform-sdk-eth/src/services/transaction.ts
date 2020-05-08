@@ -31,7 +31,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		const address: string = await this.#identity.address(input.sign);
-		const privateKey: string = await this.#identity.privateKey(input.sign);
+		const privateKey: string = input.sign.privateKey || (await this.#identity.privateKey(input.sign));
 
 		const { nonce } = await this.get(`wallets/${address}`);
 

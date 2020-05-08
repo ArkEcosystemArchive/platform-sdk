@@ -22,8 +22,6 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/utils": "^1.1.8",
 		"bignumber.js": "^9.0.0",
-		"bip32": "^2.0.5",
-		"bip39": "^3.0.2",
 		"bitcoinjs-lib": "^5.1.7",
 		"bitcore-lib": "^8.17.1"
 	},
