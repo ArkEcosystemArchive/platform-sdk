@@ -3,7 +3,7 @@ import { BigNumber } from "@arkecosystem/utils";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "id");
+		return this.data.txid;
 	}
 
 	public type(): number | undefined {
@@ -15,31 +15,31 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public timestamp(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "timestamp");
+		return +new Date(this.data.time);
 	}
 
 	public confirmations(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "confirmations");
+		return BigNumber.ZERO;
 	}
 
 	public nonce(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "nonce");
+		return "0";
 	}
 
 	public sender(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "sender");
+		return this.data.address_from;
 	}
 
 	public recipient(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "recipient");
+		return this.data.address_to;
 	}
 
 	public amount(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "amount");
+		return BigNumber.make(this.data.amount);
 	}
 
 	public fee(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "fee");
+		return BigNumber.ZERO;
 	}
 
 	public memo(): string | undefined {
@@ -47,6 +47,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public blockId(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "blockId");
+		return this.data.block_height;
 	}
 }
