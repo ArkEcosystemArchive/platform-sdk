@@ -27,7 +27,7 @@ export interface FactoryOptions {
 		client: {};
 		fee: {};
 		identity: {};
-		ledger: { transport: LedgerTransport };
+		ledger: { transport?: LedgerTransport };
 		link: {};
 		message: {};
 		peer: {};
