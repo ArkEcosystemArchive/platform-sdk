@@ -76,8 +76,7 @@ export class ClientService implements Contracts.ClientService {
 		return body.data.syncing;
 	}
 
-	// todo: normalise the response
-	public async broadcast(transactions: object[]): Promise<void> {
+	public async broadcast(transactions: object[]): Promise<Contracts.BroadcastResponse> {
 		await this.connection.api("transactions").create({ transactions });
 	}
 }

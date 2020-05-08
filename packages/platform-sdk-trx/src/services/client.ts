@@ -64,7 +64,7 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	public async broadcast(transactions: object[]): Promise<void> {
+	public async broadcast(transactions: object[]): Promise<Contracts.BroadcastResponse> {
 		for (const transaction of transactions) {
 			await this.#connection.trx.sendRawTransaction(transaction);
 		}

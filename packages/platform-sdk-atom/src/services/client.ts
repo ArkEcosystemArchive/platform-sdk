@@ -70,7 +70,7 @@ export class ClientService implements Contracts.ClientService {
 		return syncing;
 	}
 
-	public async broadcast(transactions: object[]): Promise<void> {
+	public async broadcast(transactions: object[]): Promise<Contracts.BroadcastResponse> {
 		for (const transaction of transactions) {
 			await this.post("txs", { mode: "sync", tx: transaction });
 		}

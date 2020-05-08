@@ -6,6 +6,20 @@ export interface CollectionResponse<T> {
 	data: T[];
 }
 
+export interface BroadcastResponse {
+	accept: string[];
+	broadcast: string[];
+	invalid: string[];
+	excess: string[];
+	errors: Record<
+		string,
+		{
+			type: string;
+			message: string;
+		}
+	>;
+}
+
 export interface ClientService {
 	destruct(): Promise<void>;
 
@@ -23,5 +37,5 @@ export interface ClientService {
 
 	syncing(): Promise<boolean>;
 
-	broadcast(transactions: object[]): Promise<void>;
+	broadcast(transactions: object[]): Promise<BroadcastResponse>;
 }

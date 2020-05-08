@@ -79,7 +79,7 @@ export class ClientService implements Contracts.ClientService {
 		return (await this.get("status")).syncing === false;
 	}
 
-	public async broadcast(transactions: object[]): Promise<void> {
+	public async broadcast(transactions: object[]): Promise<Contracts.BroadcastResponse> {
 		await this.post("transactions", { transactions });
 	}
 
