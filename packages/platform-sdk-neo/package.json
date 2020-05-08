@@ -19,9 +19,11 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
+		"@arkecosystem/crypto": "^2.6.36",
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/utils": "^1.1.8",
-		"@cityofzion/neon-js": "^4.7.2"
+		"@cityofzion/neon-js": "^4.7.2",
+		"bip39": "^3.0.2"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
