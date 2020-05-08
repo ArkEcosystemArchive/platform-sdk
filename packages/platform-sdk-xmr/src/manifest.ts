@@ -1,6 +1,6 @@
 export const manifest = {
 	name: "Monero",
-	derivePath: "m/44'/128'/0'/0/",
+	slip44: 128,
 	networks: {
 		live: {
 			ticker: "XMR",
