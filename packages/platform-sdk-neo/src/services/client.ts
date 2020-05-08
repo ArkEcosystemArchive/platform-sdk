@@ -9,7 +9,11 @@ export class ClientService implements Contracts.ClientService {
 	readonly #apiProvider;
 
 	private constructor(opts: Contracts.KeyValuePair) {
-		this.#baseUrl = opts.peer;
+		this.#baseUrl = {
+			live: "https://api.neoscan.io/api/main_net/v1/",
+			test: "https://neoscan-testnet.io/api/test_net/v1/",
+		}[opts.network];
+
 		this.#apiProvider = new api.neoscan.instance(opts.network === "live" ? "MainNet" : "TestNet");
 	}
 
@@ -21,6 +25,7 @@ export class ClientService implements Contracts.ClientService {
 		//
 	}
 
+	// get_transaction/{txid}
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
 	}
@@ -28,7 +33,17 @@ export class ClientService implements Contracts.ClientService {
 	public async transactions(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
+		const response = await this.get(`get_address_abstracts/${query.address}/${query.page || 1}`);
+
+		return {
+			meta: {
+				pageCount: response.total_pages,
+				totalCount: response.total_entries,
+				count: response.page_size,
+				current: response.page_number,
+			},
+			data: response.entries.map((transaction) => new TransactionData(transaction)),
+		};
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -72,10 +87,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#baseUrl}/api/${path}`, query);
+		return Utils.getJSON(`${this.#baseUrl}${path}`, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(`${this.#baseUrl}/api/`, path, body);
+		return Utils.postJSON(this.#baseUrl, path, body);
 	}
 }
