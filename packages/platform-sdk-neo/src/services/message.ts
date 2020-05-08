@@ -1,4 +1,6 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import Neon from "@cityofzion/neon-js";
+import { wallet } from "@cityofzion/neon-js";
 
 export class MessageService implements Contracts.MessageService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
@@ -10,10 +12,12 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "sign");
+		const signature = Neon.sign.message(input.message, input.passphrase);
+
+		return { message: input.message, signer: new wallet.Account(input.passphrase).publicKey, signature };
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "verify");
+		return Neon.verify.message(input.message, input.signature, input.signer);
 	}
 }
