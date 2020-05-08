@@ -3,6 +3,7 @@ import { secp256k1 } from "bcrypto";
 import bech32 from "bech32";
 import * as bip32 from "bip32";
 import * as bip39 from "bip39";
+
 import { manifest } from "../manifest";
 
 export class IdentityService implements Contracts.IdentityService {
@@ -20,7 +21,7 @@ export class IdentityService implements Contracts.IdentityService {
 		if (input.passphrase) {
 			const seed = await bip39.mnemonicToSeed(input.passphrase);
 			const node = bip32.fromSeed(seed);
-			const child = node.derivePath(manifest.derivePath);
+			const child = node.derivePath(manifest.derivePath + "0");
 			const words = bech32.toWords(child.identifier);
 
 			return bech32.encode(this.#bech32Prefix, words);
@@ -96,7 +97,7 @@ export class IdentityService implements Contracts.IdentityService {
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
 		if (input.passphrase) {
 			const masterKey = this.deriveMasterKey(input.passphrase);
-			const privateKey: Buffer | undefined = masterKey.derivePath(manifest.derivePath).privateKey;
+			const privateKey: Buffer | undefined = masterKey.derivePath(manifest.derivePath + "0").privateKey;
 
 			if (!privateKey) {
 				throw new Error("Failed to derive private key.");

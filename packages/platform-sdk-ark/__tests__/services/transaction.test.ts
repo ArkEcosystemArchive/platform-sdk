@@ -1,11 +1,25 @@
 import "jest-extended";
 import { Transactions } from "@arkecosystem/crypto";
+import nock from "nock";
 
 import { TransactionService } from "../../src/services/transaction";
 
 let subject: TransactionService;
 
-beforeEach(async () => (subject = await TransactionService.construct({ network: "devnet" })));
+beforeEach(async () => {
+	nock("https://dexplorer.ark.io/api")
+		.get("/node/configuration/crypto")
+		.reply(200, require(`${__dirname}/../__fixtures__/client/cryptoConfiguration.json`))
+		.get("/node/syncing")
+		.reply(200, require(`${__dirname}/../__fixtures__/client/syncing.json`))
+		.persist();
+
+	subject = await TransactionService.construct({ peer: "https://dexplorer.ark.io/api" });
+});
+
+afterEach(() => nock.cleanAll());
+
+beforeAll(() => nock.disableNetConnect());
 
 describe("TransactionService", () => {
 	describe("#transfer", () => {

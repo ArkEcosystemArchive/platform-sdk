@@ -116,20 +116,6 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#configuration", () => {
-		it("should succeed", async () => {
-			nock("https://dexplorer.ark.io/api")
-				.get("/node/configuration")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/configuration.json`))
-				.get("/node/configuration/crypto")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/cryptoConfiguration.json`));
-
-			const result = await subject.configuration();
-
-			expect(result).toBeObject();
-		});
-	});
-
 	describe("#syncing", () => {
 		it("should succeed", async () => {
 			nock("https://dexplorer.ark.io/api")
