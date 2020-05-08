@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.6.7 - 2020-05-08
+
+### Changed
+
+- Add derivation path to manifests (f4e450fe, @faustbrian)
+- Remove `ClientService#configuration` (2b5b501b, @faustbrian)
+
+### Added
+
+- Implement passphrase derivation for `ETH` (b6f3931a, @faustbrian)
+- Implement `IdentityService` for `NEO` (863671f5, @faustbrian)
+- Implement `MessageService` for `NEO` (8c91be4d, @faustbrian)
+- Implement `TransactionService#transfer` for `NEO` (1968e333, @faustbrian)
+
 ## 0.6.1 - 2020-05-07
 
 ### Changed
