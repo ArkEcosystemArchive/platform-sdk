@@ -1,16 +1,20 @@
 import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import Neon from "@cityofzion/neon-js";
+import { api } from "@cityofzion/neon-js";
 
 import { DelegateData, TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
+	readonly #apiProvider;
 
-	private constructor(peer: string) {
-		this.#baseUrl = peer;
+	private constructor(opts: Contracts.KeyValuePair) {
+		this.#baseUrl = opts.peer;
+		this.#apiProvider = new api.neoscan.instance(opts.network === "live" ? "MainNet" : "TestNet");
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
-		return new ClientService(opts.peer);
+		return new ClientService(opts);
 	}
 
 	public async destruct(): Promise<void> {
@@ -58,7 +62,15 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: object[]): Promise<void> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+		for (const transaction of transactions) {
+			const { response } = await Neon.sendAsset({
+				api: this.#apiProvider,
+				account: transaction["account"],
+				intents: transaction["intents"],
+			}); // response.txid
+
+			console.log(response);
+		}
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
