@@ -70,16 +70,6 @@ export class ClientService implements Contracts.ClientService {
 		return { meta: body.meta, data: body.data.map((wallet) => new WalletData(wallet)) };
 	}
 
-	public async configuration(): Promise<Contracts.KeyValuePair> {
-		const node = await this.connection.api("node").configuration();
-		const crypto = await this.connection.api("node").crypto();
-
-		return {
-			node: node.body.data,
-			crypto: crypto.body.data,
-		};
-	}
-
 	public async syncing(): Promise<boolean> {
 		const { body } = await this.connection.api("node").syncing();
 

@@ -1,10 +1,16 @@
+import { Connection } from "@arkecosystem/client";
 import { Managers, Transactions } from "@arkecosystem/crypto";
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class TransactionService implements Contracts.TransactionService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		Managers.configManager.setFromPreset(opts.network === "live" ? "mainnet" : "devnet");
-		Managers.configManager.setHeight(10_000_000); // todo: determine this automatically
+		const connection = new Connection(opts.peer);
+
+		const { body: config } = await connection.api("node").crypto();
+		Managers.configManager.setConfig(config.data as any);
+
+		const { body: status } = await connection.api("node").syncing();
+		Managers.configManager.setHeight(status.data.height);
 
 		return new TransactionService();
 	}

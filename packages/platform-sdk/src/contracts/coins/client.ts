@@ -21,8 +21,6 @@ export interface ClientService {
 	votes(id: string): Promise<CollectionResponse<TransactionData>>;
 	voters(id: string): Promise<CollectionResponse<WalletData>>;
 
-	configuration(): Promise<KeyValuePair>;
-
 	syncing(): Promise<boolean>;
 
 	broadcast(transactions: object[]): Promise<void>;
