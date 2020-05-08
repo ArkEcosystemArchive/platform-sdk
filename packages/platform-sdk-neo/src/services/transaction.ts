@@ -1,4 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { api, wallet } from "@cityofzion/neon-js";
 
 export class TransactionService implements Contracts.TransactionService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
@@ -13,7 +14,10 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transfer");
+		return {
+			account: new wallet.Account(input.sign.passphrase),
+			intents: api.makeIntent({ NEO: input.data.amount, GAS: input.fee }, input.data.to),
+		};
 	}
 
 	public async secondSignature(
