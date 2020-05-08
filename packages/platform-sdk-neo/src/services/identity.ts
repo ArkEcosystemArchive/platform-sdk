@@ -22,7 +22,7 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		if (input.publicKey) {
-			throw new Exceptions.NotSupported(this.constructor.name, "address#publicKey");
+			return this.createWallet(input.publicKey).address;
 		}
 
 		if (input.privateKey) {
@@ -88,15 +88,11 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		if (input.privateKey) {
-			const { publicKey, privateKey } = this.createWallet(input.privateKey);
-
-			return { publicKey, privateKey };
+			return this.deriveKeyPair(input.privateKey);
 		}
 
 		if (input.wif) {
-			const { publicKey, privateKey } = this.createWallet(input.wif);
-
-			return { publicKey, privateKey };
+			return this.deriveKeyPair(input.wif);
 		}
 
 		throw new Exceptions.InvalidArguments(this.constructor.name, "keyPair");
@@ -110,5 +106,11 @@ export class IdentityService implements Contracts.IdentityService {
 		return this.createWallet(
 			Utils.BIP44.deriveChild(passphrase, { coinType: manifest.slip44, index }).privateKey!.toString("hex"),
 		);
+	}
+
+	private deriveKeyPair(input: string) {
+		const { publicKey, privateKey } = this.createWallet(input);
+
+		return { publicKey, privateKey };
 	}
 }
