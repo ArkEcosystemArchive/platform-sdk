@@ -43,6 +43,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@arkecosystem/crypto@npm:^2.6.36":
+  version: 2.6.36
+  resolution: "@arkecosystem/crypto@npm:2.6.36"
+  dependencies:
+    "@arkecosystem/utils": ^1.1
+    "@types/bytebuffer": ^5.0.40
+    ajv: ^6.10.2
+    ajv-keywords: ^3.4.1
+    bcrypto: ^4.1.0
+    bip32: ^2.0.3
+    bip39: ^3.0.2
+    browserify-aes: ^1.2.0
+    bstring: ^0.3.9
+    buffer-xor: ^2.0.2
+    bytebuffer: ^5.0.1
+    dayjs: ^1.8.15
+    deepmerge: ^4.0.0
+    fast-memoize: ^2.5.1
+    ipaddr.js: ^1.9.0
+    lodash.get: ^4.4.2
+    lodash.set: ^4.3.2
+    lodash.sumby: ^4.6.0
+    tiny-glob: ^0.2.6
+    wif: ^2.0.6
+  checksum: 2/f9fca6e7d657688aa178e218eab1648efe14aa479f9012e6fbbc4a5125ab1a64f7035b4cf477b544b448c377f04911b43956fd9cf739082b4aaf937338c842d9
+  languageName: node
+  linkType: hard
+
 "@arkecosystem/ledger-transport@npm:^1.0.5":
   version: 1.0.5
   resolution: "@arkecosystem/ledger-transport@npm:1.0.5"
@@ -449,6 +477,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-neo@workspace:packages/platform-sdk-neo"
   dependencies:
+    "@arkecosystem/crypto": ^2.6.36
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/utils": ^1.1.8
     "@cityofzion/neon-js": ^4.7.2
@@ -461,6 +490,7 @@ __metadata:
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^2.30.0
     "@typescript-eslint/parser": ^2.30.0
+    bip39: ^3.0.2
     codecov: ^3.6.5
     cross-env: ^7.0.2
     eslint: ^6.8.0
