@@ -36,6 +36,7 @@ export interface PublicKeyInput {
 		min: number;
 		publicKeys: string[];
 	};
+	privateKey?: string;
 	wif?: string;
 }
 
@@ -46,6 +47,7 @@ export interface PrivateKeyInput {
 
 export interface WifInput {
 	passphrase?: string;
+	privateKey?: string;
 }
 
 export interface KeyPairInput {

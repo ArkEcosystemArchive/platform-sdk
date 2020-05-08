@@ -290,6 +290,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["wif", "npm:2.0.6"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:2.6.36", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-2.6.36-9f466b3abf-2.zip/node_modules/@arkecosystem/crypto/",
+          "packageDependencies": [
+            ["@arkecosystem/crypto", "npm:2.6.36"],
+            ["@arkecosystem/utils", "npm:1.1.8"],
+            ["@types/bytebuffer", "npm:5.0.40"],
+            ["ajv", "npm:6.12.2"],
+            ["ajv-keywords", "virtual:c858d7989b29ee3935aa1ac45eeb6183f6c160fee6e1d28b4c47f201d3e6329c95c946ba7d4bd15a066c29264571905c40661034a2e20de9c7bb73e0a75c0bac#npm:3.4.1"],
+            ["bcrypto", "npm:4.3.2"],
+            ["bip32", "npm:2.0.5"],
+            ["bip39", "npm:3.0.2"],
+            ["browserify-aes", "npm:1.2.0"],
+            ["bstring", "npm:0.3.9"],
+            ["buffer-xor", "npm:2.0.2"],
+            ["bytebuffer", "npm:5.0.1"],
+            ["dayjs", "npm:1.8.25"],
+            ["deepmerge", "npm:4.2.2"],
+            ["fast-memoize", "npm:2.5.2"],
+            ["ipaddr.js", "npm:1.9.1"],
+            ["lodash.get", "npm:4.4.2"],
+            ["lodash.set", "npm:4.3.2"],
+            ["lodash.sumby", "npm:4.6.0"],
+            ["tiny-glob", "npm:0.2.6"],
+            ["wif", "npm:2.0.6"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@arkecosystem/ledger-transport", [
@@ -760,6 +787,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/platform-sdk-neo/",
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-neo", "workspace:packages/platform-sdk-neo"],
+            ["@arkecosystem/crypto", "npm:2.6.36"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/utils", "npm:1.1.8"],
             ["@cityofzion/neon-js", "npm:4.7.2"],
@@ -772,6 +800,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:e110ffe2d4ba82cacde75f50f798fa4b226964c0f149a5523cea6cb9669043fab1b8d2698571c6e3d5534e21c6829edb359a4e30de82f2177a84188df2fe9d90#npm:2.30.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
+            ["bip39", "npm:3.0.2"],
             ["codecov", "npm:3.6.5"],
             ["cross-env", "npm:7.0.2"],
             ["eslint", "npm:6.8.0"],
