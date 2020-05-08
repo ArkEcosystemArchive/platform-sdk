@@ -4,13 +4,14 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Architecture](#architecture)
-  - [Contracts](#contracts)
-  - [Not Supported](#not-supported)
-  - [Not Implemented](#not-implemented)
-  - [Async Operations](#async-operations)
-- [Functionality](#functionality)
-- [API Methods](#api-methods)
+- [Documentation](#documentation)
+	- [Architecture](#architecture)
+		- [Contracts](#contracts)
+		- [Not Supported](#not-supported)
+		- [Not Implemented](#not-implemented)
+		- [Async Operations](#async-operations)
+	- [Functionality](#functionality)
+	- [API Methods](#api-methods)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -46,8 +47,6 @@ To avoid an inconsistent public API where some things are instantiated and calle
 | ClientService      | delegates                 | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
 | ClientService      | votes                     | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 | ClientService      | voters                    | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
-| ClientService      | configuration             | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
-| ClientService      | fees                      | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 | ClientService      | syncing                   | :x:                | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 | ClientService      | broadcast                 | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :white_check_mark: |
 | FeeService         | all                       | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
