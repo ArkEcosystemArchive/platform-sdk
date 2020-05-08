@@ -23,6 +23,7 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/utils": "^1.1.8",
 		"@cityofzion/neon-js": "^4.7.2",
+		"bip32": "^2.0.5",
 		"bip39": "^3.0.2"
 	},
 	"devDependencies": {

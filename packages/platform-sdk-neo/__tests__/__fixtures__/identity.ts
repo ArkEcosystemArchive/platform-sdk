@@ -10,6 +10,6 @@ export const identity = {
 		min: 3,
 		publicKeys: [],
 	},
-	multiSignatureAddress: "DMS861mLRrtH47QUMVif3C2rBCAdHbmwsi",
-	multiSignaturePublicKey: "0279f05076556da7173610a7676399c3620276ebbf8c67552ad3b1f26ec7627794",
+	multiSignatureAddress: "",
+	multiSignaturePublicKey: "",
 };

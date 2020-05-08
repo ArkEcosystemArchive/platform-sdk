@@ -1,5 +1,9 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { wallet } from "@cityofzion/neon-js";
+import * as bip32 from "bip32";
+import * as bip39 from "bip39";
+
+import { manifest } from "../manifest";
 
 export class IdentityService implements Contracts.IdentityService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
@@ -12,7 +16,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async address(input: Contracts.AddressInput): Promise<string> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "address#passphrase");
+			return this.deriveWallet(input.passphrase).address;
 		}
 
 		if (input.multiSignature) {
@@ -36,7 +40,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async publicKey(input: Contracts.PublicKeyInput): Promise<string> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "publicKey#passphrase");
+			return this.deriveWallet(input.passphrase).publicKey;
 		}
 
 		if (input.multiSignature) {
@@ -56,7 +60,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async privateKey(input: Contracts.PrivateKeyInput): Promise<string> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "privateKey#privateKey");
+			return this.deriveWallet(input.passphrase).privateKey;
 		}
 
 		if (input.wif) {
@@ -68,7 +72,7 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async wif(input: Contracts.WifInput): Promise<string> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "wif#passphrase");
+			return this.deriveWallet(input.passphrase).WIF;
 		}
 
 		if (input.privateKey) {
@@ -80,7 +84,9 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public async keyPair(input: Contracts.KeyPairInput): Promise<Contracts.KeyPair> {
 		if (input.passphrase) {
-			throw new Exceptions.NotSupported(this.constructor.name, "keyPair#passphrase");
+			const { publicKey, privateKey } = this.deriveWallet(input.passphrase);
+
+			return { publicKey, privateKey };
 		}
 
 		if (input.privateKey) {
@@ -98,7 +104,16 @@ export class IdentityService implements Contracts.IdentityService {
 		throw new Exceptions.InvalidArguments(this.constructor.name, "keyPair");
 	}
 
-	public createWallet(input: string) {
+	private createWallet(input: string) {
 		return new wallet.Account(input);
+	}
+
+	private deriveWallet(passphrase: string) {
+		return this.createWallet(
+			bip32
+				.fromSeed(bip39.mnemonicToSeedSync(passphrase))
+				.derivePath(`${manifest.derivePath}0`)
+				.privateKey!.toString("hex"),
+		);
 	}
 }
