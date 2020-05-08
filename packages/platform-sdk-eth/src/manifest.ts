@@ -1,6 +1,6 @@
 export const manifest = {
 	name: "Ethereum",
-	derivePath: "m/44'/60'/0'/0/",
+	slip44: 60,
 	networks: {
 		live: {
 			ticker: "ETH",

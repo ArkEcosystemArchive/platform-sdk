@@ -106,7 +106,7 @@ export class IdentityService implements Contracts.IdentityService {
 	private createWallet(passphrase: string): Wallet {
 		return hdkey
 			.fromMasterSeed(bip39.mnemonicToSeedSync(passphrase))
-			.derivePath(manifest.derivePath + "0")
+			.derivePath(`m/44'/${manifest.slip44}'/0'/0/0`)
 			.getWallet();
 	}
 

@@ -1,6 +1,6 @@
 export const manifest = {
 	name: "Bitcoin",
-	derivePath: "m/44'/0'/0'/0/",
+	slip44: 0,
 	networks: {
 		live: {
 			ticker: "BTC",

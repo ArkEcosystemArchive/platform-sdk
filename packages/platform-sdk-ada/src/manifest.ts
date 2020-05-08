@@ -1,6 +1,6 @@
 export const manifest = {
 	name: "Cardano",
-	derivePath: "m/44'/1815'/0'/0/",
+	slip44: 1815,
 	networks: {
 		live: {
 			ticker: "ADA",

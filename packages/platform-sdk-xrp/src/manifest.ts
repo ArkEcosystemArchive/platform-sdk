@@ -1,6 +1,6 @@
 export const manifest = {
 	name: "Ripple",
-	derivePath: "m/44'/144'/0'/0/",
+	slip44: 144,
 	networks: {
 		live: {
 			ticker: "XRP",

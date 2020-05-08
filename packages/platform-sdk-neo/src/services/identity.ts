@@ -1,7 +1,5 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import { wallet } from "@cityofzion/neon-js";
-import * as bip32 from "bip32";
-import * as bip39 from "bip39";
 
 import { manifest } from "../manifest";
 
@@ -108,12 +106,9 @@ export class IdentityService implements Contracts.IdentityService {
 		return new wallet.Account(input);
 	}
 
-	private deriveWallet(passphrase: string) {
+	private deriveWallet(passphrase: string, index = 0) {
 		return this.createWallet(
-			bip32
-				.fromSeed(bip39.mnemonicToSeedSync(passphrase))
-				.derivePath(`${manifest.derivePath}0`)
-				.privateKey!.toString("hex"),
+			Utils.BIP44.deriveChild(passphrase, { coinType: manifest.slip44, index }).privateKey!.toString("hex"),
 		);
 	}
 }
