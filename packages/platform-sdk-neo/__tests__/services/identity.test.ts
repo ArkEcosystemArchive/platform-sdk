@@ -14,7 +14,7 @@ describe("IdentityService", () => {
 				passphrase: identity.passphrase,
 			});
 
-			expect(result).toBe(identity.address);
+			expect(result).toBe(identity.derived.address);
 		});
 
 		it("should generate an output from a privateKey", async () => {
@@ -40,7 +40,7 @@ describe("IdentityService", () => {
 				passphrase: identity.passphrase,
 			});
 
-			expect(result).toBe(identity.publicKey);
+			expect(result).toBe(identity.derived.publicKey);
 		});
 
 		it("should generate an output from a privateKey", async () => {
@@ -66,7 +66,7 @@ describe("IdentityService", () => {
 				passphrase: identity.passphrase,
 			});
 
-			expect(result).toBe(identity.privateKey);
+			expect(result).toBe(identity.derived.privateKey);
 		});
 
 		it("should generate an output from a wif", async () => {
@@ -84,7 +84,7 @@ describe("IdentityService", () => {
 				passphrase: identity.passphrase,
 			});
 
-			expect(result).toBe(identity.wif);
+			expect(result).toBe(identity.derived.wif);
 		});
 
 		it("should generate an output from a privateKey", async () => {
@@ -103,8 +103,8 @@ describe("IdentityService", () => {
 			});
 
 			expect(result).toEqual({
-				privateKey: identity.privateKey,
-				publicKey: identity.publicKey,
+				privateKey: identity.derived.privateKey,
+				publicKey: identity.derived.publicKey,
 			});
 		});
 
