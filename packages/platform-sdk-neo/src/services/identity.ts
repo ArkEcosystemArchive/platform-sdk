@@ -22,7 +22,7 @@ export class IdentityService implements Contracts.IdentityService {
 		}
 
 		if (input.publicKey) {
-			return this.deriveWallet(input.publicKey).address;
+			return this.createWallet(input.publicKey).address;
 		}
 
 		if (input.privateKey) {

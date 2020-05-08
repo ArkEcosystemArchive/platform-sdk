@@ -17,6 +17,14 @@ describe("IdentityService", () => {
 			expect(result).toBe(identity.derived.address);
 		});
 
+		it("should generate an output from a publicKey", async () => {
+			const result: any = await subject.address({
+				publicKey: identity.publicKey,
+			});
+
+			expect(result).toBe(identity.address);
+		});
+
 		it("should generate an output from a privateKey", async () => {
 			const result: any = await subject.address({
 				privateKey: identity.privateKey,
