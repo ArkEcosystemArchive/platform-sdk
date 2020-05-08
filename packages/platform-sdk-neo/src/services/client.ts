@@ -68,8 +68,6 @@ export class ClientService implements Contracts.ClientService {
 				account: transaction["account"],
 				intents: transaction["intents"],
 			}); // response.txid
-
-			console.log(response);
 		}
 	}
 
