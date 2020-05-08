@@ -457,8 +457,6 @@ __metadata:
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^2.30.0
     "@typescript-eslint/parser": ^2.30.0
-    bip32-utils: ^0.11.1
-    bitcoinjs-lib: ^5.1.7
     codecov: ^3.6.5
     cross-env: ^7.0.2
     eslint: ^6.8.0
@@ -4022,15 +4020,6 @@ __metadata:
   version: 1.0.1
   resolution: "bip174@npm:1.0.1"
   checksum: 2/6a87960aa2fd81c472f4a87f38b8c7281f22ed6602158402e4b10ab7c5a206f57a726bbb6560ce1f6c69a1c57529ccbe46c4e8d4f34106d36f5c9ecbdd8555a4
-  languageName: node
-  linkType: hard
-
-"bip32-utils@npm:^0.11.1":
-  version: 0.11.1
-  resolution: "bip32-utils@npm:0.11.1"
-  peerDependencies:
-    bitcoinjs-lib: ^3.0.0
-  checksum: 2/3e05936d56bea14a2930af724dd82bdef07efdab5fe673685d519f78002228a6b0057a06edd57df6e39bec29903343e244ca2dfce75421bc1a2f586cf8f285f9
   languageName: node
   linkType: hard
 

@@ -21,9 +21,7 @@
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/utils": "^1.1.8",
-		"@cityofzion/neon-js": "^4.7.2",
-		"bip32-utils": "^0.11.1",
-		"bitcoinjs-lib": "^5.1.7"
+		"@cityofzion/neon-js": "^4.7.2"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",

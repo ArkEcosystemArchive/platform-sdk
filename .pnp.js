@@ -769,8 +769,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:e110ffe2d4ba82cacde75f50f798fa4b226964c0f149a5523cea6cb9669043fab1b8d2698571c6e3d5534e21c6829edb359a4e30de82f2177a84188df2fe9d90#npm:2.30.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
-            ["bip32-utils", "virtual:e110ffe2d4ba82cacde75f50f798fa4b226964c0f149a5523cea6cb9669043fab1b8d2698571c6e3d5534e21c6829edb359a4e30de82f2177a84188df2fe9d90#npm:0.11.1"],
-            ["bitcoinjs-lib", "npm:5.1.7"],
             ["codecov", "npm:3.6.5"],
             ["cross-env", "npm:7.0.2"],
             ["eslint", "npm:6.8.0"],
@@ -4978,19 +4976,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["tiny-secp256k1", "npm:1.1.4"],
             ["typeforce", "npm:1.18.0"],
             ["wif", "npm:2.0.6"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["bip32-utils", [
-        ["virtual:e110ffe2d4ba82cacde75f50f798fa4b226964c0f149a5523cea6cb9669043fab1b8d2698571c6e3d5534e21c6829edb359a4e30de82f2177a84188df2fe9d90#npm:0.11.1", {
-          "packageLocation": "./.yarn/$$virtual/bip32-utils-virtual-4cf63614bc/0/cache/bip32-utils-npm-0.11.1-d1081406d5-2.zip/node_modules/bip32-utils/",
-          "packageDependencies": [
-            ["bip32-utils", "virtual:e110ffe2d4ba82cacde75f50f798fa4b226964c0f149a5523cea6cb9669043fab1b8d2698571c6e3d5534e21c6829edb359a4e30de82f2177a84188df2fe9d90#npm:0.11.1"],
-            ["bitcoinjs-lib", "npm:5.1.7"]
-          ],
-          "packagePeers": [
-            "bitcoinjs-lib"
           ],
           "linkType": "HARD",
         }]
