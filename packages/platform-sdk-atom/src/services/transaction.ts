@@ -30,7 +30,7 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const senderAddress: string = await this.#identity.address({ passphrase: input.sign.passphrase });
+		const senderAddress: string = await this.#identity.address().fromPassphrase(input.sign.passphrase);
 		const keyPair = await this.#identity.keys().fromPassphrase(input.sign.passphrase);
 
 		const { account_number, sequence } = (await this.#client.wallet(senderAddress)).raw();
