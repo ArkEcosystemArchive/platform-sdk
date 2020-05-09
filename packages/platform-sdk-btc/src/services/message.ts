@@ -26,7 +26,7 @@ export class MessageService implements Contracts.MessageService {
 
 		return {
 			message: input.message,
-			signer: await this.#identity.address({ wif: input.passphrase }),
+			signer: await this.#identity.address().fromWIF(input.passphrase),
 			signature: message.sign(privateKey),
 		};
 	}

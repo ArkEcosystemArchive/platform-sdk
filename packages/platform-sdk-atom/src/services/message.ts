@@ -7,14 +7,12 @@ import { IdentityService } from "./identity";
 export class MessageService implements Contracts.MessageService {
 	readonly #identityService: IdentityService;
 
-	public constructor(opts: Contracts.KeyValuePair) {
+	public constructor (opts: Contracts.KeyValuePair) {
 		this.#identityService = opts.identityService;
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
-		const identityService: IdentityService = await IdentityService.construct(opts);
-
-		return new MessageService({ identityService });
+		return new MessageService({ identityService: await IdentityService.construct(opts) });
 	}
 
 	public async destruct(): Promise<void> {
@@ -22,7 +20,7 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const { publicKey, privateKey } = await this.#identityService.keyPair(input);
+		const { publicKey, privateKey } = await this.#identityService.keys().fromPassphrase(input.passphrase);
 
 		return {
 			message: input.message,

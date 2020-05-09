@@ -26,7 +26,7 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const sender: string = await new IdentityService().address({ passphrase: input.sign.passphrase });
+		const sender: string = await new IdentityService().address().fromPassphrase(input.sign.passphrase);
 
 		const prepared = await this.#connection.preparePayment(
 			sender,

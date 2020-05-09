@@ -10,33 +10,25 @@ beforeEach(async () => (subject = await IdentityService.construct({ network: "de
 describe("IdentityService", () => {
 	describe("#address", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.address({
-				passphrase: identity.passphrase,
-			});
+			const result: any = await subject.address().fromPassphrase(identity.passphrase);
 
 			expect(result).toBe(identity.derived.address);
 		});
 
 		it("should generate an output from a publicKey", async () => {
-			const result: any = await subject.address({
-				publicKey: identity.publicKey,
-			});
+			const result: any = await subject.address().fromPublicKey(identity.publicKey);
 
 			expect(result).toBe(identity.address);
 		});
 
 		it("should generate an output from a privateKey", async () => {
-			const result: any = await subject.address({
-				privateKey: identity.privateKey,
-			});
+			const result: any = await subject.address().fromPrivateKey(identity.privateKey);
 
 			expect(result).toBe(identity.address);
 		});
 
 		it("should generate an output from a wif", async () => {
-			const result: any = await subject.address({
-				wif: identity.wif,
-			});
+			const result: any = await subject.address().fromWIF(identity.wif);
 
 			expect(result).toBe(identity.address);
 		});
@@ -44,25 +36,13 @@ describe("IdentityService", () => {
 
 	describe("#publicKey", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.publicKey({
-				passphrase: identity.passphrase,
-			});
+			const result: any = await subject.publicKey().fromPassphrase(identity.passphrase);
 
 			expect(result).toBe(identity.derived.publicKey);
 		});
 
-		it("should generate an output from a privateKey", async () => {
-			const result: any = await subject.publicKey({
-				privateKey: identity.privateKey,
-			});
-
-			expect(result).toBe(identity.publicKey);
-		});
-
 		it("should generate an output from a wif", async () => {
-			const result: any = await subject.publicKey({
-				wif: identity.wif,
-			});
+			const result: any = await subject.publicKey().fromWIF(identity.wif);
 
 			expect(result).toBe(identity.publicKey);
 		});
@@ -70,17 +50,13 @@ describe("IdentityService", () => {
 
 	describe("#privateKey", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.privateKey({
-				passphrase: identity.passphrase,
-			});
+			const result: any = await subject.privateKey().fromPassphrase(identity.passphrase);
 
 			expect(result).toBe(identity.derived.privateKey);
 		});
 
 		it("should generate an output from a wif", async () => {
-			const result: any = await subject.privateKey({
-				wif: identity.wif,
-			});
+			const result: any = await subject.privateKey().fromWIF(identity.wif);
 
 			expect(result).toBe(identity.privateKey);
 		});
@@ -88,27 +64,15 @@ describe("IdentityService", () => {
 
 	describe("#wif", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.wif({
-				passphrase: identity.passphrase,
-			});
+			const result: any = await subject.wif().fromPassphrase(identity.passphrase);
 
 			expect(result).toBe(identity.derived.wif);
 		});
-
-		it("should generate an output from a privateKey", async () => {
-			const result: any = await subject.wif({
-				privateKey: identity.privateKey,
-			});
-
-			expect(result).toBe(identity.wif);
-		});
 	});
 
-	describe("#keyPair", () => {
+	describe("#keys", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.keyPair({
-				passphrase: identity.passphrase,
-			});
+			const result: any = await subject.keys().fromPassphrase(identity.passphrase);
 
 			expect(result).toEqual({
 				privateKey: identity.derived.privateKey,
@@ -117,9 +81,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a privateKey", async () => {
-			const result: any = await subject.keyPair({
-				privateKey: identity.privateKey,
-			});
+			const result: any = await subject.keys().fromPrivateKey(identity.privateKey);
 
 			expect(result).toEqual({
 				privateKey: identity.privateKey,
@@ -128,9 +90,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a wif", async () => {
-			const result: any = await subject.keyPair({
-				wif: identity.wif,
-			});
+			const result: any = await subject.keys().fromWIF(identity.wif);
 
 			expect(result).toEqual({
 				privateKey: identity.privateKey,
