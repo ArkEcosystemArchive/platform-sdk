@@ -1,6 +1,7 @@
 export const manifest = {
 	name: "Cosmos",
 	slip44: 118,
+	bech32Prefix: "cosmos",
 	networks: {
 		live: {
 			ticker: "ATOM",
