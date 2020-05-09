@@ -7,10 +7,8 @@ export interface CollectionResponse<T> {
 }
 
 export interface BroadcastResponse {
-	accept: string[];
-	broadcast: string[];
-	invalid: string[];
-	excess: string[];
+	accepted: string[];
+	rejected: string[];
 	errors: Record<
 		string,
 		{
