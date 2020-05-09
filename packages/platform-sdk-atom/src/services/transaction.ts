@@ -9,7 +9,7 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #identity;
 	readonly #chainId = "gaia-13007"; // todo: make this configurable, currently uses testnet
 
-	private constructor(opts: Contracts.KeyValuePair) {
+	private constructor (opts: Contracts.KeyValuePair) {
 		this.#client = opts.client;
 		this.#identity = opts.identity;
 	}
@@ -31,7 +31,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		const senderAddress: string = await this.#identity.address({ passphrase: input.sign.passphrase });
-		const keyPair = await this.#identity.keyPair({ passphrase: input.sign.passphrase });
+		const keyPair = await this.#identity.keys().fromPassphrase(input.sign.passphrase);
 
 		const { account_number, sequence } = (await this.#client.wallet(senderAddress)).raw();
 
