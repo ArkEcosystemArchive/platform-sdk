@@ -6,16 +6,15 @@ export interface CollectionResponse<T> {
 	data: T[];
 }
 
+export interface BroadcastError {
+	type: string;
+	message: string;
+}
+
 export interface BroadcastResponse {
 	accepted: string[];
 	rejected: string[];
-	errors: Record<
-		string,
-		{
-			type: string;
-			message: string;
-		}
-	>;
+	errors: Record<string, BroadcastError[]>;
 }
 
 export interface ClientService {
