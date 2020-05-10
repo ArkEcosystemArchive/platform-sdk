@@ -6,7 +6,7 @@ import { manifest } from "../../manifest";
 export class Keys implements Contracts.Keys {
 	public async fromPassphrase(passphrase: string): Promise<Contracts.KeyPair> {
 		const privateKey: Buffer | undefined = Utils.BIP44.deriveChild(passphrase, {
-			coinType: manifest.slip44,
+			coinType: manifest.crypto.slip44,
 			index: 0,
 		}).privateKey;
 

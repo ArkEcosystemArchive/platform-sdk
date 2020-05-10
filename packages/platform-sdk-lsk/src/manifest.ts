@@ -1,6 +1,5 @@
 export const manifest = {
 	name: "Lisk",
-	slip44: 134,
 	networks: {
 		live: {
 			ticker: "LSK",
@@ -10,6 +9,9 @@ export const manifest = {
 			ticker: "LSK",
 			explorer: "https://testnet-explorer.lisk.io/",
 		},
+	},
+	crypto: {
+		slip44: 134,
 	},
 	behaviours: {
 		Client: {

@@ -1,6 +1,5 @@
 export const manifest = {
 	name: "Cardano",
-	slip44: 1815,
 	networks: {
 		live: {
 			ticker: "ADA",
@@ -10,6 +9,9 @@ export const manifest = {
 			ticker: "ADA",
 			explorer: "https://shelleyexplorer.cardano.org/",
 		},
+	},
+	crypto: {
+		slip44: 1815,
 	},
 	behaviours: {
 		Client: {
