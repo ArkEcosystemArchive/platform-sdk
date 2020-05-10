@@ -1,7 +1,5 @@
 export const manifest = {
 	name: "Cosmos",
-	slip44: 118,
-	bech32Prefix: "cosmos",
 	networks: {
 		live: {
 			ticker: "ATOM",
@@ -11,6 +9,10 @@ export const manifest = {
 			ticker: "ATOM",
 			explorer: "https://gaia.bigdipper.live/",
 		},
+	},
+	crypto: {
+		slip44: 118,
+		bech32Prefix: "cosmos",
 	},
 	behaviours: {
 		Client: {
