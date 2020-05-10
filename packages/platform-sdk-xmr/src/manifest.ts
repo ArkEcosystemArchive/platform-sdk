@@ -1,6 +1,5 @@
 export const manifest = {
 	name: "Monero",
-	slip44: 128,
 	networks: {
 		live: {
 			ticker: "XMR",
@@ -10,6 +9,9 @@ export const manifest = {
 			ticker: "XMR",
 			explorer: "https://dexplorer.ark.io/",
 		},
+	},
+	crypto: {
+		slip44: 123,
 	},
 	behaviours: {
 		Client: {
