@@ -8,7 +8,7 @@ export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
 	readonly #apiProvider;
 
-	private constructor (opts: Contracts.KeyValuePair) {
+	private constructor(opts: Contracts.KeyValuePair) {
 		this.#baseUrl = {
 			live: "https://api.neoscan.io/api/main_net/v1/",
 			test: "https://neoscan-testnet.io/api/test_net/v1/",
@@ -87,10 +87,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#baseUrl}${path}`, query);
+		return Utils.Http.new(this.#baseUrl).get(path, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(this.#baseUrl, path, body);
+		return Utils.Http.new(this.#baseUrl).post(path, body);
 	}
 }

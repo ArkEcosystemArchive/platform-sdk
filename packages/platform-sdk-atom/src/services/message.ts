@@ -7,7 +7,7 @@ import { IdentityService } from "./identity";
 export class MessageService implements Contracts.MessageService {
 	readonly #identityService: IdentityService;
 
-	public constructor (opts: Contracts.KeyValuePair) {
+	public constructor(opts: Contracts.KeyValuePair) {
 		this.#identityService = opts.identityService;
 	}
 

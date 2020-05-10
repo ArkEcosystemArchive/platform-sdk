@@ -5,15 +5,19 @@ import { HistoricalVolumeTransformer } from "../transformers/historical-volume-t
 import { MarketTransformer } from "../transformers/market-transformer";
 
 export class PriceTracker implements Contracts.PriceTracker {
-	private readonly baseUrl: string = "https://api.coingecko.com/api/v3";
-
 	private readonly tokenLookup: Contracts.KeyValuePair = {};
+
+	readonly #client: Utils.Http;
+
+	public constructor() {
+		this.#client = Utils.Http.new("https://api.coingecko.com/api/v3");
+	}
 
 	public async verifyToken(token: string): Promise<boolean> {
 		const tokenId = await this.getTokenId(token);
 
 		try {
-			const body = await Utils.getJSON(`${this.baseUrl}/simple/price`, {
+			const body = await this.#client.get(`simple/price`, {
 				ids: tokenId,
 				vs_currencies: "BTC",
 			});
@@ -27,7 +31,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	public async marketData(token: string): Promise<Contracts.MarketDataCollection> {
 		const tokenId = await this.getTokenId(token);
 
-		const body = await Utils.getJSON(`${this.baseUrl}/coins/${tokenId}`);
+		const body = await this.#client.get(`coins/${tokenId}`);
 
 		return new MarketTransformer(body.market_data).transform({});
 	}
@@ -35,7 +39,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	public async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
-		const body = await Utils.getJSON(`${this.baseUrl}/coins/${tokenId}/market_chart`, {
+		const body = await this.#client.get(`coins/${tokenId}/market_chart`, {
 			vs_currency: options.currency,
 			days: options.days,
 		});
@@ -46,7 +50,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	public async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
-		const body = await Utils.getJSON(`${this.baseUrl}/coins/${tokenId}/market_chart/range`, {
+		const body = await this.#client.get(`coins/${tokenId}/market_chart/range`, {
 			id: options.token,
 			vs_currency: options.currency,
 			from: Utils.dayjs().subtract(options.days, "d").unix(),
@@ -65,8 +69,8 @@ export class PriceTracker implements Contracts.PriceTracker {
 			return this.tokenLookup[token.toUpperCase()];
 		}
 
-		const uri = `${this.baseUrl}/coins/list`;
-		const body = await Utils.getJSON(uri);
+		const uri = `coins/list`;
+		const body = await this.#client.get(uri);
 
 		for (const value of Object.values(body)) {
 			// @ts-ignore

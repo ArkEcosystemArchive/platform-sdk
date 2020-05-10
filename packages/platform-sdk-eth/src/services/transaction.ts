@@ -122,7 +122,7 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
 	}
 
-	private async get(path: string, query: Contracts.KeyValuePair = {}): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#peer}/${path}`, query);
+	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		return Utils.Http.new(this.#peer).get(path, query);
 	}
 }

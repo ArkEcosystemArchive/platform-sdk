@@ -5,12 +5,15 @@ import { HistoricalVolumeTransformer } from "../transformers/historical-volume-t
 import { MarketTransformer } from "../transformers/market-transformer";
 
 export class PriceTracker implements Contracts.PriceTracker {
-	private readonly baseUrl: string = "https://min-api.cryptocompare.com";
+	readonly #client: Utils.Http;
+
+	public constructor() {
+		this.#client = Utils.Http.new("https://min-api.cryptocompare.com");
+	}
 
 	public async verifyToken(token: string): Promise<boolean> {
 		try {
-			const uri = `${this.baseUrl}/data/price`;
-			const body = await Utils.getJSON(uri, {
+			const body = await this.#client.get("data/price", {
 				fsym: token,
 				tsyms: "BTC",
 			});
@@ -22,8 +25,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	public async marketData(token: string): Promise<Contracts.MarketDataCollection> {
-		const uri = `${this.baseUrl}/data/pricemultifull`;
-		const body = await Utils.getJSON(uri, {
+		const body = await this.#client.get("data/pricemultifull", {
 			fsyms: token,
 			tsyms: Object.keys(Data.CURRENCIES).join(","),
 		});
@@ -32,7 +34,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	public async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
-		const body = await Utils.getJSON(`${this.baseUrl}/data/histo${options.type}`, {
+		const body = await this.#client.get(`data/histo${options.type}`, {
 			fsym: options.token,
 			tsym: options.currency,
 			toTs: Math.round(new Date().getTime() / 1000),
@@ -43,7 +45,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	public async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
-		const body = await Utils.getJSON(`${this.baseUrl}/data/histo${options.type}`, {
+		const body = await this.#client.get(`data/histo${options.type}`, {
 			fsym: options.token,
 			tsym: options.currency,
 			toTs: Math.round(new Date().getTime() / 1000),
@@ -54,7 +56,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	public async dailyAverage(options: Contracts.DailyAverageOptions): Promise<number> {
-		const response = await Utils.getJSON(`${this.baseUrl}/data/dayAvg`, {
+		const response = await this.#client.get(`data/dayAvg`, {
 			fsym: options.token,
 			tsym: options.currency,
 			toTs: Utils.dayjs(options.timestamp).unix(),

@@ -7,7 +7,7 @@ export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
 	readonly #connection: Connection;
 
-	private constructor (peer: string) {
+	private constructor(peer: string) {
 		this.#baseUrl = peer;
 		this.#connection = new Connection(peer);
 	}
@@ -85,14 +85,14 @@ export class ClientService implements Contracts.ClientService {
 			accepted: data?.accept || [],
 			rejected: data?.invalid || [],
 			errors: errors || {},
-		}
+		};
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#baseUrl}/${path}`, query);
+		return Utils.Http.new(this.#baseUrl).get(path, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(this.#baseUrl, path, body);
+		return Utils.Http.new(this.#baseUrl).post(path, body);
 	}
 }
