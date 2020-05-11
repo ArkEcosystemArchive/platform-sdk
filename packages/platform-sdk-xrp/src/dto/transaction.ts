@@ -1,5 +1,6 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/utils";
+import BN from "bignumber.js";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
@@ -35,11 +36,15 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.data.outcome.deliveredAmount.value * 1e8);
+		const satoshi: string = new BN(this.data.outcome.deliveredAmount.value).times(1e8).toFixed();
+
+		return BigNumber.make(satoshi);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.outcome.fee * 1e8);
+		const satoshi: string = new BN(this.data.outcome.fee).times(1e8).toFixed();
+
+		return BigNumber.make(satoshi);
 	}
 
 	public memo(): string | undefined {

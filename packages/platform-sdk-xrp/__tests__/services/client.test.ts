@@ -1,47 +1,118 @@
 import "jest-extended";
-
+import WebSocket from "ws";
 import { BigNumber } from "@arkecosystem/utils";
+
+import fixtures from "./fixtures/rippled";
 
 import { ClientService } from "../../src/services/client";
 import { WalletData, TransactionData } from "../../src/dto";
 
 let subject: ClientService;
+let wss;
+let receivedSubmit;
 
-beforeEach(
-	async () =>
-		(subject = await ClientService.construct({
-			peer: "wss://s.altnet.rippletest.net:51233",
-		})),
-);
+beforeAll(async () => {
+	wss = new WebSocket.Server({ port: 51233 });
 
-describe.skip("ClientService", function () {
+	wss.on("connection", function connection(ws) {
+		ws.on("message", function incoming(message) {
+			// console.log(`RECEIVED: ${message}`);
+
+			const { id, command, tx_blob } = JSON.parse(message);
+
+			if (command === "subscribe") {
+				ws.send(
+					JSON.stringify({
+						...fixtures.subscribe,
+						...{ id },
+					}),
+				);
+			}
+
+			if (command === "tx") {
+				ws.send(
+					JSON.stringify({
+						...fixtures.tx.Payment,
+						...{ id },
+					}),
+				);
+			}
+
+			if (command === "account_tx") {
+				ws.send(
+					fixtures.account_tx.normal({
+						id,
+					}),
+				);
+			}
+
+			if (command === "account_info") {
+				ws.send(
+					JSON.stringify({
+						...fixtures.account_info.normal,
+						...{ id },
+					}),
+				);
+			}
+
+			if (command === "submit") {
+				if (receivedSubmit) {
+					ws.send(
+						JSON.stringify({
+							...fixtures.submit.failure,
+							...{ id },
+						}),
+					);
+				} else {
+					receivedSubmit = true;
+
+					ws.send(
+						JSON.stringify({
+							...fixtures.submit.success,
+							...{ id },
+						}),
+					);
+				}
+			}
+		});
+	});
+
+	subject = await ClientService.construct({
+		// peer: "wss://s.altnet.rippletest.net:51233",
+		peer: "ws://localhost:51233",
+	});
+});
+
+afterAll(() => wss.close());
+
+describe("ClientService", function () {
 	describe("#transaction", () => {
 		it("should succeed", async () => {
 			const result = await subject.transaction(
-				"D9D4534A92E0639DA600494FA4DB10D1C6CA654C4576C1ED508B536DF797FBB9",
+				"F4AB442A6D4CBB935D66E1DA7309A5FC71C7143ED4049053EC14E3875B0CF9BF",
 			);
 
 			expect(result).toBeInstanceOf(TransactionData);
-			expect(result.id()).toBe("D9D4534A92E0639DA600494FA4DB10D1C6CA654C4576C1ED508B536DF797FBB9");
+			expect(result.id()).toBe("F4AB442A6D4CBB935D66E1DA7309A5FC71C7143ED4049053EC14E3875B0CF9BF");
 			// expect(result.type()).toBeUndefined();
 			// expect(result.typeGroup()).toBeUndefined();
-			expect(result.timestamp()).toBe(1588147353000);
+			expect(result.timestamp()).toBe(1363132610000);
 			expect(result.confirmations()).toEqual(BigNumber.ZERO);
-			expect(result.nonce()).toBe(1);
-			expect(result.sender()).toBe("rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP");
-			expect(result.recipient()).toBe("rHE2tehVYCGeMvi1gDEcYzQ7fpiCiYecAR");
-			expect(result.amount()).toEqual(BigNumber.make(1000000));
-			expect(result.fee()).toEqual(BigNumber.make(1200));
+			expect(result.nonce()).toBe(4);
+			expect(result.sender()).toBe("r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59");
+			expect(result.recipient()).toBe("rMH4UxPrbuMa1spCBR98hLLyNJp4d8p4tM");
+			expect(result.amount()).toEqual(BigNumber.make(100000));
+			expect(result.fee()).toEqual(BigNumber.make(1000));
 			// expect(result.memo()).toBeUndefined();
 			// expect(result.blockId()).toBeUndefined();
 		});
 	});
 
 	// todo: always results in "MissingLedgerHistoryError: Server is missing ledger history in the specified range"
-	describe("#transactions", () => {
+	describe.skip("#transactions", () => {
 		it("should succeed", async () => {
 			const result = await subject.transactions({
-				address: "rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP",
+				address: "r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59",
 			});
 
 			expect(result.data).toBeArray();
@@ -56,7 +127,34 @@ describe.skip("ClientService", function () {
 			expect(result).toBeInstanceOf(WalletData);
 			expect(result.address()).toEqual("rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP");
 			// expect(result.publicKey()).toBeUndefined();
-			expect(result.balance()).toEqual(BigNumber.make("101197997600"));
+			expect(result.balance()).toEqual(BigNumber.make("92291324300"));
+		});
+	});
+
+	describe("#broadcast", () => {
+		const transactionPayload =
+			"12000322000000002400000017201B0086955468400000000000000C732102F89EAEC7667B30F33D0687BBA86C3FE2A08CCA40A9186C5BDE2DAA6FA97A37D87446304402207660BDEF67105CE1EBA9AD35DC7156BAB43FF1D47633199EE257D70B6B9AAFBF02207F5517BC8AEF2ADC1325897ECDBA8C673838048BCA62F4E98B252F19BE88796D770A726970706C652E636F6D81144FBFF73DA4ECF9B701940F27341FA8020C313443";
+
+		it("should pass", async () => {
+			const result = await subject.broadcast([transactionPayload]);
+
+			expect(result).toEqual({
+				accepted: ["4D5D90890F8D49519E4151938601EF3D0B30B16CD6A519D9C99102C9FA77F7E0"],
+				rejected: [],
+				errors: {},
+			});
+		});
+
+		it("should fail", async () => {
+			const result = await subject.broadcast([transactionPayload]);
+
+			expect(result).toEqual({
+				accepted: [],
+				rejected: [transactionPayload],
+				errors: {
+					[transactionPayload]: ["ERR_BAD_FEE"],
+				},
+			});
 		});
 	});
 });
