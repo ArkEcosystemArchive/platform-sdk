@@ -69,7 +69,7 @@ This method returns a promise that resolves to a string.
 ### Example
 
 ```ts
-await ledgerService.getPublicKey('...');
+await ledgerService.getPublicKey("...");
 ```
 
 ## signTransaction
@@ -92,7 +92,7 @@ This method returns a promise that resolves to a string.
 ### Example
 
 ```ts
-await ledgerService.signTransaction('...', Buffer.from('...'));
+await ledgerService.signTransaction("...", Buffer.from("..."));
 ```
 
 ## signTransactionWithSchnorr
@@ -115,7 +115,7 @@ This method returns a promise that resolves to a string.
 ### Example
 
 ```ts
-await ledgerService.signTransactionWithSchnorr('...', Buffer.from('...'));
+await ledgerService.signTransactionWithSchnorr("...", Buffer.from("..."));
 ```
 
 ## signMessage
@@ -138,7 +138,7 @@ This method returns a promise that resolves to a string.
 ### Example
 
 ```ts
-await ledgerService.signMessage('...', Buffer.from('...'));
+await ledgerService.signMessage("...", Buffer.from("..."));
 ```
 
 ## signMessageWithSchnorr
@@ -161,5 +161,5 @@ This method returns a promise that resolves to a string.
 ### Example
 
 ```ts
-await ledgerService.signMessageWithSchnorr('...', Buffer.from('...'));
+await ledgerService.signMessageWithSchnorr("...", Buffer.from("..."));
 ```
