@@ -21,11 +21,19 @@ export class LedgerService implements Contracts.LedgerService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
 	}
 
-	public async signTransaction(path: string, hex: Buffer): Promise<string> {
+	public async signTransaction(path: string, payload: Buffer): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "signTransaction");
 	}
 
-	public async signMessage(path: string, hex: Buffer): Promise<string> {
+	public async signTransactionWithSchnorr(path: string, payload: Buffer): Promise<string> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "signTransactionWithSchnorr");
+	}
+
+	public async signMessage(path: string, payload: Buffer): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "signMessage");
+	}
+
+	public async signMessageWithSchnorr(path: string, payload: Buffer): Promise<string> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "signMessageWithSchnorr");
 	}
 }

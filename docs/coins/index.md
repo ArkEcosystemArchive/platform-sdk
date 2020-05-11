@@ -92,6 +92,7 @@ To avoid an inconsistent public API where some things are instantiated and calle
 -   [ClientService](./services/client.md)
 -   [FeeService](./services/fee.md)
 -   [IdentityService](./services/identity.md)
+-   [LedgerService](./services/ledger.md)
 -   [LinkService](./services/link.md)
 -   [MessageService](./services/message.md)
 -   [PeerService](./services/peer.md)
