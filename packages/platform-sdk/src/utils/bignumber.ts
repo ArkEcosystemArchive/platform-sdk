@@ -6,7 +6,7 @@ import { NumberLike } from "../contracts";
 // applications that use the Platform SDK this performance loss is acceptable.
 export class BigNumber {
 	#value: BigNumberJS;
-	#decimals: number | undefined;
+	#decimals = 8;
 
 	private constructor(value: NumberLike) {
 		const BigNumberClone = BigNumberJS.clone({ DECIMAL_PLACES: 8, EXPONENTIAL_AT: 1e9 });
@@ -23,7 +23,7 @@ export class BigNumber {
 	public decimalPlaces(decimals = 8): BigNumber {
 		this.#decimals = Math.pow(10, decimals);
 
-		this.#value = this.#value.decimalPlaces(decimals, null);
+		this.#value = this.#value.decimalPlaces(decimals);
 
 		return this;
 	}
@@ -46,7 +46,7 @@ export class BigNumber {
 		return this;
 	}
 
-	public isEqualTo(value: NumberLike): BigNumber {
+	public isEqualTo(value: NumberLike): boolean {
 		return this.#value.eq(value);
 	}
 

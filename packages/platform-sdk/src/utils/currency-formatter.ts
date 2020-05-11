@@ -29,10 +29,9 @@ export class CurrencyFormatter {
 			decimals: 2,
 		},
 	): string {
-		if (options.fromSubUnit) {
-			value = this.subToUnit(value);
-		}
-
-		return BigNumber.make(value).decimalPlaces(options.decimals).multiply(price).toFixed();
+		return (options.fromSubUnit ? this.subToUnit(value) : BigNumber.make(value))
+			.decimalPlaces(options.decimals)
+			.multiply(price)
+			.toFixed();
 	}
 }
