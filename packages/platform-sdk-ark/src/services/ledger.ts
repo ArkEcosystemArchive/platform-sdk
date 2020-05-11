@@ -24,11 +24,19 @@ export class LedgerService implements Contracts.LedgerService {
 		return this.#transport.getPublicKey(path);
 	}
 
-	public async signTransaction(path: string, hex: Buffer): Promise<string> {
-		return this.#transport.signTransaction(path, hex);
+	public async signTransaction(path: string, payload: Buffer): Promise<string> {
+		return this.#transport.signTransaction(path, payload);
 	}
 
-	public async signMessage(path: string, hex: Buffer): Promise<string> {
-		return this.#transport.signMessage(path, hex);
+	public async signTransactionWithSchnorr(path: string, payload: Buffer): Promise<string> {
+		return this.#transport.signTransaction(path, payload);
+	}
+
+	public async signMessage(path: string, payload: Buffer): Promise<string> {
+		return this.#transport.signMessage(path, payload);
+	}
+
+	public async signMessageWithSchnorr(path: string, payload: Buffer): Promise<string> {
+		return this.#transport.signMessage(path, payload);
 	}
 }
