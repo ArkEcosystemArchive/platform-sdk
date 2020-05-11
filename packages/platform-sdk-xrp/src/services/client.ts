@@ -197,23 +197,29 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			// @ts-ignore
-			const { engine_result, tx_json } = await this.#connection.submit(transaction);
+			try {
+				// @ts-ignore
+				const { engine_result, tx_json } = await this.#connection.submit(transaction);
 
-			const transactionId: string = tx_json.hash;
+				const transactionId: string = tx_json.hash;
 
-			if (engine_result === "tesSUCCESS") {
-				result.accepted.push(transactionId);
-			}
-
-			if (engine_result !== "tesSUCCESS") {
-				result.rejected.push(transactionId);
-
-				if (!Array.isArray(result.errors[transactionId])) {
-					result.errors[transactionId] = [];
+				if (engine_result === "tesSUCCESS") {
+					result.accepted.push(transactionId);
 				}
+			} catch (error) {
+				const transactionId: string = transaction; // todo: get the transaction ID
 
-				result.errors[transactionId].push(this.#broadcastErrors[engine_result]);
+				const { engine_result } = error.data;
+
+				if (engine_result !== "tesSUCCESS") {
+					result.rejected.push(transactionId);
+
+					if (!Array.isArray(result.errors[transactionId])) {
+						result.errors[transactionId] = [];
+					}
+
+					result.errors[transactionId].push(this.#broadcastErrors[engine_result]);
+				}
 			}
 		}
 
