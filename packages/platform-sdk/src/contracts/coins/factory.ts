@@ -36,7 +36,7 @@ export interface FactoryOptions {
 }
 
 export abstract class AbstractFactory {
-	public constructor (protected readonly options: FactoryConstructorOptions) { }
+	public constructor(protected readonly options: FactoryConstructorOptions) {}
 
 	public clientService(): ClientService {
 		return this.options.services.client;

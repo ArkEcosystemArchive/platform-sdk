@@ -38,4 +38,38 @@ describe("ClientService", function () {
 			expect(result.data[0].blockId()).toBe(4259222);
 		});
 	});
+
+	describe.skip("#broadcast", () => {
+		it("should pass", async () => {
+			nock("https://neoscan-testnet.io/api/test_net/v1/")
+				.get("/get_balance/Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF")
+				.reply(200, require(`${__dirname}/../__fixtures__/client/balance.json`))
+				.post("/api/transactions")
+				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
+
+			const result = await subject.broadcast(["transactionPayload"]);
+
+			expect(result).toEqual({
+				accepted: ["0cb2e1fc8caa83cfb204e5cd2f66a58f3954a3b7bcc8958aaba38b582376e652"],
+				rejected: [],
+				errors: {},
+			});
+		});
+
+		it("should fail", async () => {
+			nock("https://neoscan-testnet.io/api/test_net/v1/")
+				.post("/api/transactions")
+				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast-failure.json`));
+
+			const result = await subject.broadcast(["transactionPayload"]);
+
+			expect(result).toEqual({
+				accepted: [],
+				rejected: ["0cb2e1fc8caa83cfb204e5cd2f66a58f3954a3b7bcc8958aaba38b582376e652"],
+				errors: {
+					"0cb2e1fc8caa83cfb204e5cd2f66a58f3954a3b7bcc8958aaba38b582376e652": ["ERR_INSUFFICIENT_FUNDS"],
+				},
+			});
+		});
+	});
 });

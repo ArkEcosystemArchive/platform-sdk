@@ -1,0 +1,38 @@
+{
+	"height": "2144374",
+	"txhash": "535C0F6E94506C2D579CCAC76A155472394062FD2D712C662745D93E951164FB",
+	"code": 10,
+	"raw_log": "[{\"msg_index\":0,\"success\":false,\"log\":\"{\\\"codespace\\\":\\\"sdk\\\",\\\"code\\\":10,\\\"message\\\":\\\"insufficient account funds; 24929994umuon \\u003c 100000000umuon\\\"}\",\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"action\",\"value\":\"send\"}]}]}]",
+	"logs": [
+		{
+			"msg_index": 0,
+			"success": false,
+			"log": "{\"codespace\":\"sdk\",\"code\":10,\"message\":\"insufficient account funds; 24929994umuon < 100000000umuon\"}",
+			"events": [
+				{
+					"type": "message",
+					"attributes": [
+						{
+							"key": "action",
+							"value": "send"
+						}
+					]
+				}
+			]
+		}
+	],
+	"gas_wanted": "200000",
+	"gas_used": "27092",
+	"codespace": "sdk",
+	"events": [
+		{
+			"type": "message",
+			"attributes": [
+				{
+					"key": "action",
+					"value": "send"
+				}
+			]
+		}
+	]
+}

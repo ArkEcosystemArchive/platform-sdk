@@ -78,14 +78,38 @@ export class ClientService implements Contracts.ClientService {
 		return body.data.syncing;
 	}
 
-	public async broadcast(transactions: object[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
 		const { data, errors } = await this.post("transactions", { transactions });
 
-		return {
-			accepted: data?.accept || [],
-			rejected: data?.invalid || [],
-			errors: errors || {},
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
 		};
+
+		if (Array.isArray(data.accept)) {
+			result.accepted = data.accept;
+		}
+
+		if (Array.isArray(data.invalid)) {
+			result.rejected = data.invalid;
+		}
+
+		if (errors) {
+			for (const [key, value] of Object.entries(errors)) {
+				if (!Array.isArray(result.errors[key])) {
+					result.errors[key] = [];
+				}
+
+				// @ts-ignore
+				for (const error of value) {
+					// @ts-ignore
+					result.errors[key].push(error.type);
+				}
+			}
+		}
+
+		return result;
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {

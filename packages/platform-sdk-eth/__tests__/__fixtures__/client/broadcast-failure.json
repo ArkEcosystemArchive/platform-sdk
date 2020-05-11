@@ -1,0 +1,8 @@
+{
+	"jsonrpc": "2.0",
+	"id": "0d2114db-5df8-4a8f-b403-be75825d53f2",
+	"error": {
+		"code": -32000,
+		"message": "insufficient funds for gas * price + value"
+	}
+}

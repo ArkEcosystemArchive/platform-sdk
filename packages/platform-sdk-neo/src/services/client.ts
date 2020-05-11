@@ -8,6 +8,15 @@ export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
 	readonly #apiProvider;
 
+	readonly #broadcastErrors: Record<string, string> = {
+		"Block or transaction already exists and cannot be sent repeatedly.": "ERR_DUPLICATE",
+		"The memory pool is full and no more transactions can be sent.": "ERR_EXCESS",
+		"The block cannot be validated.": "ERR_VALIDATION_FAILED",
+		"Block or transaction validation failed.": "ERR_VALIDATION_FAILED",
+		"One of the Policy filters failed.": "ERR_POLICY_FILTER_FAILED",
+		"Unknown error.": "ERR_UNKNOWN",
+	};
+
 	private constructor(opts: Contracts.KeyValuePair) {
 		this.#baseUrl = {
 			live: "https://api.neoscan.io/api/main_net/v1/",
@@ -76,14 +85,40 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	public async broadcast(transactions: object[]): Promise<void> {
+	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
 		for (const transaction of transactions) {
 			const { response } = await Neon.sendAsset({
 				api: this.#apiProvider,
 				account: transaction["account"],
 				intents: transaction["intents"],
-			}); // response.txid
+			});
+
+			if (response.txid) {
+				result.accepted.push(transaction.id);
+			}
+
+			if (response.error) {
+				result.rejected.push(transaction.id);
+
+				if (!Array.isArray(result.errors[transaction.id])) {
+					result.errors[transaction.id] = [];
+				}
+
+				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
+					if (response.error.message.includes(key)) {
+						result.errors[transaction.id].push(value);
+					}
+				}
+			}
 		}
+
+		return result;
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {

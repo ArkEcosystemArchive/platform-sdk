@@ -1,0 +1,30 @@
+{
+	"balance": [
+		{
+			"unspent": [
+				{
+					"value": 5,
+					"txid": "9f8ff77ae2d0a19c2aadd895dcb57e0031c1a513c320108718fc0f3f5d013d92",
+					"n": 793
+				},
+				{
+					"value": 2,
+					"txid": "1dca94f4d4b46e513e379459641a0ec576e4beeed0d852d99daf88971c4e504e",
+					"n": 783
+				}
+			],
+			"asset_symbol": "NEO",
+			"asset_hash": "c56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b",
+			"asset": "NEO",
+			"amount": 7
+		},
+		{
+			"unspent": [],
+			"asset_symbol": "TKN",
+			"asset_hash": "040506",
+			"asset": "My Token",
+			"amount": 2
+		}
+	],
+	"address": "4iWoCsEcJqgdsTpWUypFH4A5Ye6Vmr4AMtjAg2yZJbeo"
+}

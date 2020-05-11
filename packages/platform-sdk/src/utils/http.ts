@@ -6,7 +6,7 @@ import { ensureTrailingSlash } from "./normalise";
 export class Http {
 	readonly #host: string | undefined;
 
-	private constructor (host?: string) {
+	private constructor(host?: string) {
 		this.#host = host ? ensureTrailingSlash(host) : undefined;
 	}
 

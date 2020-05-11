@@ -93,4 +93,63 @@ describe("ClientService", function () {
 			expect(result).toBeBoolean();
 		});
 	});
+
+	describe.only("#broadcast", () => {
+		const transactionPayload = {
+			msg: [
+				{
+					type: "cosmos-sdk/MsgSend",
+					value: {
+						amount: [{ amount: "1", denom: "umuon" }],
+						from_address: "cosmos1pnc559thh9ks4crsp5p3wta2f2m09t4gluyl2l",
+						to_address: "cosmos1xvt4e7xd0j9dwv2w83g50tpcltsl90h52003e2",
+					},
+				},
+			],
+			fee: { amount: [{ amount: "5000", denom: "umuon" }], gas: "200000" },
+			signatures: [
+				{
+					signature:
+						"naiy71Wa8hPC8wMj2/J4CwnqtR8RThv9Cy3y1EGJVowVtDWJQoUmy3KfYneA2wwLQUlgI/UWgNMClCzbJdD8Ew==",
+					account_number: "58976",
+					sequence: "16",
+					pub_key: {
+						type: "tendermint/PubKeySecp256k1",
+						value: "A1wiLscFDRRdEuWx5WmXbXVbMszN2cBHaJFWfJm399Yy",
+					},
+				},
+			],
+			memo: "",
+		};
+
+		it("should pass", async () => {
+			nock("https://stargate.cosmos.network")
+				.post("/txs")
+				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
+
+			const result = await subject.broadcast([transactionPayload]);
+
+			expect(result).toEqual({
+				accepted: ["25E82BD7E457147DA29FD39E6C155365F07559A7834C7FBB4E9B21DE6A65BFC7"],
+				rejected: [],
+				errors: {},
+			});
+		});
+
+		it("should fail", async () => {
+			nock("https://stargate.cosmos.network")
+				.post("/txs")
+				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast-failure.json`));
+
+			const result = await subject.broadcast([transactionPayload]);
+
+			expect(result).toEqual({
+				accepted: [],
+				rejected: ["535C0F6E94506C2D579CCAC76A155472394062FD2D712C662745D93E951164FB"],
+				errors: {
+					"535C0F6E94506C2D579CCAC76A155472394062FD2D712C662745D93E951164FB": ["ERR_INSUFFICIENT_FUNDS"],
+				},
+			});
+		});
+	});
 });

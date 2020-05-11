@@ -1,11 +1,23 @@
 import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import Web3 from "web3";
 
 import { TransactionData, WalletData } from "../dto";
+import { Keys } from "./identity/keys";
 
 export class ClientService implements Contracts.ClientService {
 	static readonly MONTH_IN_SECONDS = 8640 * 30;
 
 	readonly #peer: string;
+
+	readonly #broadcastErrors: Record<string, string> = {
+		"nonce too low": "ERR_NONCE_TOO_LOW",
+		"nonce too high": "ERR_NONCE_TOO_HIGH",
+		"gas limit reached": "ERR_GAS_LIMIT_REACHED",
+		"insufficient funds for transfer": "ERR_INSUFFICIENT_FUNDS_FOR_TRANSFER",
+		"insufficient funds for gas * price + value": "ERR_INSUFFICIENT_FUNDS",
+		"gas uint64 overflow": "ERR_GAS_UINT_OVERFLOW",
+		"intrinsic gas too low": "ERR_INTRINSIC_GAS",
+	};
 
 	private constructor(peer: string) {
 		this.#peer = peer;
@@ -79,20 +91,42 @@ export class ClientService implements Contracts.ClientService {
 		return (await this.get("status")).syncing === false;
 	}
 
-	public async broadcast(transactions: object[]): Promise<Contracts.BroadcastResponse> {
-		await this.post("transactions", { transactions });
+	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
 
-		// ErrOutOfGas = errors.New("out of gas");
-		// ErrCodeStoreOutOfGas = errors.New("contract creation code storage out of gas");
-		// ErrDepth = errors.New("max call depth exceeded");
-		// ErrInsufficientBalance = errors.New("insufficient balance for transfer");
-		// ErrContractAddressCollision = errors.New("contract address collision");
-		// ErrExecutionReverted = errors.New("execution reverted");
-		// ErrMaxCodeSizeExceeded = errors.New("max code size exceeded");
-		// ErrInvalidJump = errors.New("invalid jump destination");
-		// ErrWriteProtection = errors.New("write protection");
-		// ErrReturnDataOutOfBounds = errors.New("return data out of bounds");
-		// ErrGasUintOverflow = errors.New("gas uint64 overflow");
+		for (const transaction of transactions) {
+			const transactionId: string | null = Web3.utils.sha3(transaction);
+
+			if (!transactionId) {
+				throw new Error("Failed to compute the transaction ID.");
+			}
+
+			const response = await this.post("transactions", { transactions: [transaction] });
+
+			if (response.result) {
+				result.accepted.push(transactionId);
+			}
+
+			if (response.error) {
+				result.rejected.push(transactionId);
+
+				if (!Array.isArray(result.errors[transactionId])) {
+					result.errors[transactionId] = [];
+				}
+
+				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
+					if (response.error.message.includes(key)) {
+						result.errors[transactionId].push(value);
+					}
+				}
+			}
+		}
+
+		return result;
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
