@@ -553,11 +553,14 @@ __metadata:
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
+    "@types/lodash": 4.14.150
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
     "@types/rimraf": ^3.0.0
+    "@types/ws": 7.2.4
     "@typescript-eslint/eslint-plugin": ^2.30.0
     "@typescript-eslint/parser": ^2.30.0
+    bignumber.js: ^9.0.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
     eslint: ^6.8.0
@@ -567,14 +570,17 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    lodash: ^4.17.15
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
     rimraf: ^3.0.2
+    ripple-binary-codec: ^0.2.6
     ripple-keypairs: ^1.0.0
     ripple-lib: ^1.6.5
     ts-jest: ^25.4.0
     typescript: ^3.8.3
+    ws: ^7.3.0
   languageName: unknown
   linkType: soft
 
@@ -2846,7 +2852,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:*, @types/lodash@npm:^4.14.136":
+"@types/lodash@npm:*, @types/lodash@npm:4.14.150, @types/lodash@npm:^4.14.136":
   version: 4.14.150
   resolution: "@types/lodash@npm:4.14.150"
   checksum: 2/0e9ade0b8ace23845ffb1d17b91142abae183c997a96072339cc1ab34395e2f8bc20ad472b9efd879a8b11ee06ae9dde1b9c4c15ce2f63cbee3a558c30a7852d
@@ -2965,7 +2971,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ws@npm:^7.2.0":
+"@types/ws@npm:7.2.4, @types/ws@npm:^7.2.0":
   version: 7.2.4
   resolution: "@types/ws@npm:7.2.4"
   dependencies:
@@ -12927,7 +12933,7 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"ripple-binary-codec@npm:^0.2.5":
+"ripple-binary-codec@npm:^0.2.5, ripple-binary-codec@npm:^0.2.6":
   version: 0.2.6
   resolution: "ripple-binary-codec@npm:0.2.6"
   dependencies:
@@ -15579,6 +15585,21 @@ typescript@^3.8.3:
     utf-8-validate:
       optional: true
   checksum: 2/bd4ff2ceb52eaebefb05093c673e7dd0005131f31f2eae0452b8a0276af83d911213fe659cb455af1883565ea38d90a25dd8601b905617037d48d2c16c6992f0
+  languageName: node
+  linkType: hard
+
+"ws@npm:^7.3.0":
+  version: 7.3.0
+  resolution: "ws@npm:7.3.0"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ^5.0.2
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 2/c1f386013bd30afa9e4d0aa28eee85767a9e1b8fa74fc482eac503840f1012c2c1339745be36b0737f0245515646892b6073e376deac911a7bdf1ec90fc0f86f
   languageName: node
   linkType: hard
 

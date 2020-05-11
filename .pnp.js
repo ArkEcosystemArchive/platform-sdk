@@ -872,11 +872,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint", "npm:6.8.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/jest", "npm:25.2.1"],
+            ["@types/lodash", "npm:4.14.150"],
             ["@types/node", "npm:13.13.4"],
             ["@types/prettier", "npm:2.0.0"],
             ["@types/rimraf", "npm:3.0.0"],
+            ["@types/ws", "npm:7.2.4"],
             ["@typescript-eslint/eslint-plugin", "virtual:58dc3fa0fd03d8a53e7311f303a84021b8334e7f5f1b6fe3274957c89a6a73f563ceb5631e7345beb6dc35e79a56de8a3f39f9afe9a9422d0873bd2b90c8367a#npm:2.30.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
+            ["bignumber.js", "npm:9.0.0"],
             ["codecov", "npm:3.6.5"],
             ["cross-env", "npm:7.0.2"],
             ["eslint", "npm:6.8.0"],
@@ -886,14 +889,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:25.5.0"],
             ["jest-extended", "npm:0.11.5"],
+            ["lodash", "npm:4.17.15"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:4.1.2"],
             ["prettier", "npm:2.0.5"],
             ["rimraf", "npm:3.0.2"],
+            ["ripple-binary-codec", "npm:0.2.6"],
             ["ripple-keypairs", "npm:1.0.0"],
             ["ripple-lib", "npm:1.7.0"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:25.4.0"],
-            ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"]
+            ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"],
+            ["ws", "virtual:58dc3fa0fd03d8a53e7311f303a84021b8334e7f5f1b6fe3274957c89a6a73f563ceb5631e7345beb6dc35e79a56de8a3f39f9afe9a9422d0873bd2b90c8367a#npm:7.3.0"]
           ],
           "linkType": "SOFT",
         }]
@@ -17603,6 +17609,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/ws-virtual-3ec197a8aa/0/cache/ws-npm-7.2.5-532f8d69fc-2.zip/node_modules/ws/",
           "packageDependencies": [
             ["ws", "virtual:011dab26b32224916e5f37463e1dd03fa6cbbcabef3816f679d3450e730c0afba0d74038a1bb6f023cc25e6b11220f80a3cdc89b0f6c7b662c7979136f0fd5de#npm:7.2.5"],
+            ["bufferutil", null],
+            ["utf-8-validate", null]
+          ],
+          "packagePeers": [
+            "bufferutil",
+            "utf-8-validate"
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:58dc3fa0fd03d8a53e7311f303a84021b8334e7f5f1b6fe3274957c89a6a73f563ceb5631e7345beb6dc35e79a56de8a3f39f9afe9a9422d0873bd2b90c8367a#npm:7.3.0", {
+          "packageLocation": "./.yarn/$$virtual/ws-virtual-a154355ccb/0/cache/ws-npm-7.3.0-2881a35eae-2.zip/node_modules/ws/",
+          "packageDependencies": [
+            ["ws", "virtual:58dc3fa0fd03d8a53e7311f303a84021b8334e7f5f1b6fe3274957c89a6a73f563ceb5631e7345beb6dc35e79a56de8a3f39f9afe9a9422d0873bd2b90c8367a#npm:7.3.0"],
             ["bufferutil", null],
             ["utf-8-validate", null]
           ],
