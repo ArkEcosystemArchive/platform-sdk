@@ -59,6 +59,12 @@ export class ClientService implements Contracts.ClientService {
 
 	public async broadcast(transactions: object[]): Promise<Contracts.BroadcastResponse> {
 		await this.post("transactions", { transactions });
+
+		// bad-txns-inputs-duplicate
+		// bad-txns-in-belowout
+		// bad-txns-vout-negative
+		// bad-txns-vout-toolarge
+		// bad-txns-txouttotal-toolarge
 	}
 
 	private async get(path: string, query: Contracts.KeyValuePair = {}): Promise<Contracts.KeyValuePair> {
