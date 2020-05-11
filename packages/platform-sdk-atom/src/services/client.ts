@@ -5,6 +5,36 @@ import { TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
 
+	readonly #broadcastErrors: Record<string, string> = {
+		"failed to marshal JSON bytes": "ERR_JSON_MARSHAL",
+		"failed to unmarshal JSON bytes": "ERR_JSON_UNMARSHAL",
+		"insufficient account funds": "ERR_INSUFFICIENT_FUNDS",
+		"insufficient fee": "ERR_INSUFFICIENT_FEE",
+		"insufficient funds": "ERR_INSUFFICIENT_FUNDS",
+		"invalid account password": "ERR_WRONG_PASSWORD",
+		"invalid address": "ERR_INVALID_ADDRESS",
+		"invalid coins": "ERR_INVALID_COINS",
+		"invalid gas adjustment": "ERROR_INVALID_GAS_ADJUSTMENT",
+		"invalid pubkey": "ERR_INVALID_PUB_KEY",
+		"invalid request": "ERR_INVALID_REQUEST",
+		"invalid sequence": "ERR_INVALID_SEQUENCE",
+		"key not found": "ERR_KEY_NOT_FOUND",
+		"maximum number of signatures exceeded": "ERR_TOO_MANY_SIGNATURES",
+		"memo too large": "ERR_MEMO_TOO_LARGE",
+		"mempool is full": "ERR_MEMPOOL_IS_FULL",
+		"no signatures supplied": "ERR_NO_SIGNATURES",
+		"out of gas": "ERR_OUT_OF_GAS",
+		"tx already in mempool": "ERR_TX_IN_MEMPOOL_CACHE",
+		"tx intended signer does not match the given signer": "ERROR_INVALID_SIGNER",
+		"tx parse error": "ERR_TX_DECODE",
+		"tx too large": "ERR_TX_TOO_LARGE",
+		"unknown address": "ERR_UNKNOWN_ADDRESS",
+		"unknown request": "ERR_UNKNOWN_REQUEST",
+		internal: "ERR_INTERNAL",
+		panic: "ERR_PANIC",
+		unauthorized: "ERR_UNAUTHORIZED",
+	};
+
 	private constructor(peer: string) {
 		this.#baseUrl = peer;
 	}
@@ -70,17 +100,45 @@ export class ClientService implements Contracts.ClientService {
 		return syncing;
 	}
 
-	public async broadcast(transactions: object[]): Promise<void> {
+	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
 		for (const transaction of transactions) {
-			await this.post("txs", { mode: "sync", tx: transaction });
+			const { logs, txhash } = await this.post("txs", { mode: "block", tx: transaction });
+
+			if (logs[0].success === true) {
+				result.accepted.push(txhash);
+			} else {
+				const { message } = JSON.parse(logs[0].log);
+
+				if (message) {
+					result.rejected.push(txhash);
+
+					if (!Array.isArray(result.errors[txhash])) {
+						result.errors[txhash] = [];
+					}
+
+					for (const [key, value] of Object.entries(this.#broadcastErrors)) {
+						if (message.includes(key)) {
+							result.errors[txhash].push(value);
+						}
+					}
+				}
+			}
 		}
+
+		return result;
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#baseUrl}/${path}`, query);
+		return Utils.Http.new(this.#baseUrl).get(path, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(`${this.#baseUrl}/`, path, body);
+		return Utils.Http.new(this.#baseUrl).post(path, body);
 	}
 }

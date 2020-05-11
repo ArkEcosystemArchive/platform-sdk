@@ -1,0 +1,8 @@
+{
+	"jsonrpc": "2.0",
+	"id": 1,
+	"error": {
+		"code": -501,
+		"message": "Block or transaction already exists and cannot be sent repeatedly."
+	}
+}

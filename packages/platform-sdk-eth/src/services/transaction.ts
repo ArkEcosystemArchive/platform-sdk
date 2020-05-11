@@ -6,7 +6,7 @@ import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #peer;
-	readonly #chain;
+	readonly #chain: string;
 	readonly #identity;
 
 	private constructor(opts: Contracts.KeyValuePair) {
@@ -42,7 +42,7 @@ export class TransactionService implements Contracts.TransactionService {
 				gasPrice: Web3.utils.toHex(input.fee),
 				to: input.data.to,
 				value: Web3.utils.toHex(Web3.utils.toWei(`${input.data.amount}`, "wei")),
-				// input: Buffer.from(input.to.memo, "utf8"),
+				// data: Buffer.from(input.to.memo, "utf8"),
 			},
 			{ chain: this.#chain },
 		);
@@ -122,7 +122,7 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
 	}
 
-	private async get(path: string, query: Contracts.KeyValuePair = {}): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#peer}/${path}`, query);
+	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		return Utils.Http.new(this.#peer).get(path, query);
 	}
 }

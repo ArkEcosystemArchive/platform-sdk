@@ -5,8 +5,16 @@ import { DelegateData, TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
 
+	readonly #broadcastErrors: Record<string, string> = {
+		"Invalid sender publicKey": "ERR_INVALID_SENDER_PUBLICKEY",
+		"Account does not have enough LSK": "ERR_INSUFFICIENT_FUNDS",
+		"Sender does not have a secondPublicKey": "ERR_MISSING_SECOND_PUBLICKEY",
+		"Missing signSignature": "ERR_MISSING_SIGNATURE",
+		"Sender is not a multisignature account": "ERR_MISSING_MULTISIGNATURE",
+	};
+
 	private constructor(peer: string) {
-		this.#baseUrl = peer;
+		this.#baseUrl = `${peer}/api`;
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
@@ -69,21 +77,43 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	public async broadcast(transactions: object[]): Promise<void> {
+	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
 		for (const transaction of transactions) {
-			try {
-				await this.post("transactions", transaction);
-			} catch (e) {
-				throw new Error((await e.responseBody).toString());
+			const { data, errors } = await this.post("transactions", transaction);
+
+			if (data) {
+				result.accepted.push(transaction.id);
+			}
+
+			if (errors) {
+				result.rejected.push(transaction.id);
+
+				if (!Array.isArray(result.errors[transaction.id])) {
+					result.errors[transaction.id] = [];
+				}
+
+				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
+					if (errors[0].message.includes(key)) {
+						result.errors[transaction.id].push(value);
+					}
+				}
 			}
 		}
+
+		return result;
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#baseUrl}/api/${path}`, query);
+		return Utils.Http.new(this.#baseUrl).get(path, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(`${this.#baseUrl}/api/`, path, body);
+		return Utils.Http.new(this.#baseUrl).post(path, body);
 	}
 }

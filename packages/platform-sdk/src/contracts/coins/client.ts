@@ -1,9 +1,16 @@
 import { KeyValuePair } from "../types";
 import { DelegateData, TransactionData, WalletData } from "./data";
+import { SignedTransaction } from "./transaction";
 
 export interface CollectionResponse<T> {
 	meta: KeyValuePair;
 	data: T[];
+}
+
+export interface BroadcastResponse {
+	accepted: string[];
+	rejected: string[];
+	errors: Record<string, string[]>;
 }
 
 export interface ClientService {
@@ -23,5 +30,5 @@ export interface ClientService {
 
 	syncing(): Promise<boolean>;
 
-	broadcast(transactions: object[]): Promise<void>;
+	broadcast(transactions: SignedTransaction[]): Promise<BroadcastResponse>;
 }

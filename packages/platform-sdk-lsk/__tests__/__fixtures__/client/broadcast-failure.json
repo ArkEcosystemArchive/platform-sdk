@@ -1,0 +1,12 @@
+{
+	"message": "Transaction was rejected with errors",
+	"code": 409,
+	"errors": [
+		{
+			"message": "Account does not have enough LSK: 18218254863282357638L, balance: 219.2",
+			"name": "TransactionError",
+			"id": "3540525677249397492",
+			"dataPath": ".balance"
+		}
+	]
+}

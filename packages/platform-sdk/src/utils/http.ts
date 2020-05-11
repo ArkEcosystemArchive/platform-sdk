@@ -1,13 +1,27 @@
 import bent from "bent";
 
 import { KeyValuePair } from "../contracts";
+import { ensureTrailingSlash } from "./normalise";
 
-export const getJSON = async (url: string, query: object = {}): Promise<KeyValuePair> => {
-	// @ts-ignore
-	const searchParams: string = new URLSearchParams(query).toString();
+export class Http {
+	readonly #host: string | undefined;
 
-	return bent("json")(searchParams ? `${url}?${searchParams}` : url);
-};
+	private constructor(host?: string) {
+		this.#host = host ? ensureTrailingSlash(host) : undefined;
+	}
 
-export const postJSON = async (host: string, path: string, body: object, headers: object = {}) =>
-	bent(host, "POST", "json", 200)(path, body, headers);
+	public static new(host?: string) {
+		return new Http(host);
+	}
+
+	public async get(path: string, query: object = {}): Promise<KeyValuePair> {
+		// @ts-ignore
+		const searchParams: string = new URLSearchParams(query).toString();
+
+		return bent("json")(searchParams ? `${this.#host}${path}?${searchParams}` : `${this.#host}${path}`);
+	}
+
+	public async post(path: string, body: object, headers: object = {}) {
+		return bent(this.#host, "POST", "json", 200)(path, body, headers);
+	}
+}

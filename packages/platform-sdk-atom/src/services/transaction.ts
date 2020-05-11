@@ -9,7 +9,7 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #identity;
 	readonly #chainId = "gaia-13007"; // todo: make this configurable, currently uses testnet
 
-	private constructor (opts: Contracts.KeyValuePair) {
+	private constructor(opts: Contracts.KeyValuePair) {
 		this.#client = opts.client;
 		this.#identity = opts.identity;
 	}

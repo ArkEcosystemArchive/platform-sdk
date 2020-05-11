@@ -19,7 +19,7 @@ export class UnspentAggregator {
 	}
 
 	public async aggregate(address: string, amount: BigNumber): Promise<UnspentTransaction[]> {
-		const response = await Utils.getJSON(`${this.#peer}/wallets/${address}/transactions/unspent`);
+		const response = await Utils.Http.new(this.#peer).get(`wallets/${address}/transactions/unspent`);
 
 		return response.map((transaction) => ({
 			address: transaction.address,

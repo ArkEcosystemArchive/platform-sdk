@@ -272,7 +272,7 @@ await clientService.syncing();
 
 ## broadcast
 
-`broadcast(transactions: object[]): Promise<void>`
+`broadcast(transactions: object[]): Promise<Contracts.BroadcastResponse>`
 
 This method returns a promise that resolves with a void value.
 

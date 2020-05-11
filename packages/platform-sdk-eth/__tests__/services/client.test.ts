@@ -84,4 +84,36 @@ describe("ClientService", function () {
 			expect(result).toBeBoolean();
 		});
 	});
+
+	describe("#broadcast", () => {
+		it("should pass", async () => {
+			nock("https://coins.com/api/eth")
+				.post("/transactions")
+				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
+
+			const result = await subject.broadcast(["transactionPayload"]);
+
+			expect(result).toEqual({
+				accepted: ["0x227cff6fc8990fecd43cc9c7768f2c98cc5ee8e7c98c67c11161e008cce2b172"],
+				rejected: [],
+				errors: {},
+			});
+		});
+
+		it("should fail", async () => {
+			nock("https://coins.com/api/eth")
+				.post("/transactions")
+				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast-failure.json`));
+
+			const result = await subject.broadcast(["transactionPayload"]);
+
+			expect(result).toEqual({
+				accepted: [],
+				rejected: ["0x227cff6fc8990fecd43cc9c7768f2c98cc5ee8e7c98c67c11161e008cce2b172"],
+				errors: {
+					"0x227cff6fc8990fecd43cc9c7768f2c98cc5ee8e7c98c67c11161e008cce2b172": ["ERR_INSUFFICIENT_FUNDS"],
+				},
+			});
+		});
+	});
 });

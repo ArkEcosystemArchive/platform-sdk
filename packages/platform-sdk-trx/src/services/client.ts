@@ -6,6 +6,21 @@ import { DelegateData, TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	readonly #connection: TronWeb;
 
+	readonly #broadcastErrors: Record<string, string> = {
+		SIGERROR: "ERR_INVALID_SIGNATURE",
+		CONTRACT_VALIDATE_ERROR: "ERR_CONTRACT_VALIDATE_ERROR",
+		CONTRACT_EXE_ERROR: "ERR_CONTRACT_EXE_ERROR",
+		BANDWITH_ERROR: "ERR_BANDWITH_ERROR",
+		DUP_TRANSACTION_ERROR: "ERR_DUP_TRANSACTION_ERROR",
+		TAPOS_ERROR: "ERR_TAPOS_ERROR",
+		TOO_BIG_TRANSACTION_ERROR: "ERR_TOO_BIG_TRANSACTION_ERROR",
+		TRANSACTION_EXPIRATION_ERROR: "ERR_TRANSACTION_EXPIRATION_ERROR",
+		SERVER_BUSY: "ERR_SERVER_BUSY",
+		NO_CONNECTION: "ERR_NO_CONNECTION",
+		NOT_ENOUGH_EFFECTIVE_CONNECTION: "ERR_NOT_ENOUGH_EFFECTIVE_CONNECTION",
+		OTHER_ERROR: "ERR_OTHER_ERROR",
+	};
+
 	private constructor(peer: string) {
 		this.#connection = new TronWeb({
 			fullHost: peer,
@@ -64,9 +79,35 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	public async broadcast(transactions: object[]): Promise<void> {
+	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
 		for (const transaction of transactions) {
-			await this.#connection.trx.sendRawTransaction(transaction);
+			const response = await this.#connection.trx.sendRawTransaction(transaction);
+
+			if (response.result) {
+				result.accepted.push(transaction.txID);
+			}
+
+			if (response.code) {
+				result.rejected.push(transaction.txID);
+
+				if (!Array.isArray(result.errors[transaction.txID])) {
+					result.errors[transaction.txID] = [];
+				}
+
+				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
+					if (response.code.includes(key)) {
+						result.errors[transaction.txID].push(value);
+					}
+				}
+			}
 		}
+
+		return result;
 	}
 }
