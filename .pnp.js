@@ -317,6 +317,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:d9fc2a8a86b8ed672825915f5974caf338e1e7f788303b0db7f14ed53aeac54a869474c20388b45c211eacd4abaae6e1334d1a851acbe9724de5d1123322994b#npm:2.30.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
             ["bent", "npm:7.3.0"],
+            ["bignumber.js", "npm:9.0.0"],
             ["bip32", "npm:2.0.5"],
             ["bip39", "npm:3.0.2"],
             ["codecov", "npm:3.6.5"],

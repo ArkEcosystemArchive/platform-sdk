@@ -593,6 +593,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^2.30.0
     "@typescript-eslint/parser": ^2.30.0
     bent: ^7.3
+    bignumber.js: ^9.0.0
     bip32: ^2.0.5
     bip39: ^3.0.2
     codecov: ^3.6.5
