@@ -21,13 +21,13 @@ interface FactoryConstructorOptions {
 }
 
 export interface FactoryOptions {
-	network: string;
+	network: "live" | "demo" | "test";
 	peer: string;
 	services: {
 		client: {};
 		fee: {};
 		identity: {};
-		ledger: { transport: LedgerTransport };
+		ledger: { transport?: LedgerTransport };
 		link: {};
 		message: {};
 		peer: {};
@@ -36,7 +36,7 @@ export interface FactoryOptions {
 }
 
 export abstract class AbstractFactory {
-	public constructor(protected readonly options: FactoryConstructorOptions) {}
+	public constructor (protected readonly options: FactoryConstructorOptions) { }
 
 	public clientService(): ClientService {
 		return this.options.services.client;

@@ -3,15 +3,15 @@ import { KeyValuePair } from "../types";
 export interface IdentityService {
 	destruct(): Promise<void>;
 
-	address(opts: KeyValuePair): Promise<string>;
+	address(): Address;
 
-	publicKey(opts: KeyValuePair): Promise<string>;
+	publicKey(): PublicKey;
 
-	privateKey(opts: KeyValuePair): Promise<string>;
+	privateKey(): PrivateKey;
 
-	wif(opts: KeyValuePair): Promise<string>;
+	wif(): WIF;
 
-	keyPair(opts: KeyValuePair): Promise<KeyPair>;
+	keys(): Keys;
 }
 
 export interface KeyPair {
@@ -19,38 +19,30 @@ export interface KeyPair {
 	privateKey?: string;
 }
 
-export interface AddressInput {
-	passphrase?: string;
-	multiSignature?: {
-		min: number;
-		publicKeys: string[];
-	};
-	publicKey?: string;
-	privateKey?: string;
-	wif?: string;
+export interface Address {
+	fromPassphrase(passphrase: string): Promise<string>;
+	fromMultiSignature(min: number, publicKeys: string[]): Promise<string>;
+	fromPublicKey(publicKey: string): Promise<string>;
+	fromPrivateKey(privateKey: string): Promise<string>;
+	fromWIF(wif: string): Promise<string>;
 }
 
-export interface PublicKeyInput {
-	passphrase?: string;
-	multiSignature?: {
-		min: number;
-		publicKeys: string[];
-	};
-	wif?: string;
+export interface PublicKey {
+	fromPassphrase(passphrase: string): Promise<string>;
+	fromMultiSignature(min: number, publicKeys: string[]): Promise<string>;
+	fromWIF(wif: string): Promise<string>;
 }
 
-export interface PrivateKeyInput {
-	passphrase?: string;
-	wif?: string;
+export interface PrivateKey {
+	fromPassphrase(passphrase: string): Promise<string>;
+	fromWIF(wif: string): Promise<string>;
 }
 
-export interface WifInput {
-	passphrase?: string;
+export interface WIF {
+	fromPassphrase(passphrase: string): Promise<string>;
 }
 
-export interface KeyPairInput {
-	passphrase?: string;
-	publicKey?: string;
-	privateKey?: string;
-	wif?: string;
+export interface Keys {
+	fromPassphrase(passphrase: string): Promise<KeyPair>;
+	fromWIF(wif: string): Promise<KeyPair>;
 }

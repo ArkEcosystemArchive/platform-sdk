@@ -27,6 +27,7 @@ interface TransactionInput {
 		secondPassphrase?: string;
 		wif?: string;
 		secondWif?: string;
+		privateKey?: string;
 	};
 }
 

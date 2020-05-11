@@ -1,13 +1,15 @@
 import { Connection } from "@arkecosystem/client";
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, Utils } from "@arkecosystem/platform-sdk";
 
 import { DelegateData, TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
-	private readonly connection: Connection;
+	readonly #baseUrl: string;
+	readonly #connection: Connection;
 
 	private constructor(peer: string) {
-		this.connection = new Connection(peer);
+		this.#baseUrl = peer;
+		this.#connection = new Connection(peer);
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
@@ -19,7 +21,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
-		const { body } = await this.connection.api("transactions").get(id);
+		const { body } = await this.#connection.api("transactions").get(id);
 
 		return new TransactionData(body.data);
 	}
@@ -27,25 +29,25 @@ export class ClientService implements Contracts.ClientService {
 	public async transactions(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		const { body } = await this.connection.api("transactions").search(query);
+		const { body } = await this.#connection.api("transactions").search(query);
 
 		return { meta: body.meta, data: body.data.map((transaction) => new TransactionData(transaction)) };
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { body } = await this.connection.api("wallets").get(id);
+		const { body } = await this.#connection.api("wallets").get(id);
 
 		return new WalletData(body.data);
 	}
 
 	public async wallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		const { body } = await this.connection.api("wallets").search(query);
+		const { body } = await this.#connection.api("wallets").search(query);
 
 		return { meta: body.meta, data: body.data.map((wallet) => new WalletData(wallet)) };
 	}
 
 	public async delegate(id: string): Promise<Contracts.DelegateData> {
-		const { body } = await this.connection.api("delegates").get(id);
+		const { body } = await this.#connection.api("delegates").get(id);
 
 		return new DelegateData(body.data);
 	}
@@ -53,30 +55,44 @@ export class ClientService implements Contracts.ClientService {
 	public async delegates(
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
-		const { body } = await this.connection.api("delegates").all(query);
+		const { body } = await this.#connection.api("delegates").all(query);
 
 		return { meta: body.meta, data: body.data.map((wallet) => new DelegateData(wallet)) };
 	}
 
 	public async votes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		const { body } = await this.connection.api("wallets").votes(id);
+		const { body } = await this.#connection.api("wallets").votes(id);
 
 		return { meta: body.meta, data: body.data.map((transaction) => new TransactionData(transaction)) };
 	}
 
 	public async voters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
-		const { body } = await this.connection.api("delegates").voters(id);
+		const { body } = await this.#connection.api("delegates").voters(id);
 
 		return { meta: body.meta, data: body.data.map((wallet) => new WalletData(wallet)) };
 	}
 
 	public async syncing(): Promise<boolean> {
-		const { body } = await this.connection.api("node").syncing();
+		const { body } = await this.#connection.api("node").syncing();
 
 		return body.data.syncing;
 	}
 
 	public async broadcast(transactions: object[]): Promise<Contracts.BroadcastResponse> {
-		await this.connection.api("transactions").create({ transactions });
+		const { data, errors } = await this.post("transactions", { transactions });
+
+		return {
+			accepted: data?.accept || [],
+			rejected: data?.invalid || [],
+			errors: errors || {},
+		};
+	}
+
+	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		return Utils.Http.new(this.#baseUrl).get(path, query);
+	}
+
+	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		return Utils.Http.new(this.#baseUrl).post(path, body);
 	}
 }

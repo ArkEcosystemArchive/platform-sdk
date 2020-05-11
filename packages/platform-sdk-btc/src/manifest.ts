@@ -1,6 +1,5 @@
 export const manifest = {
 	name: "Bitcoin",
-	derivePath: "m/44'/0'/0'/0/",
 	networks: {
 		live: {
 			ticker: "BTC",
@@ -10,6 +9,9 @@ export const manifest = {
 			ticker: "BTC",
 			explorer: "https://blockstream.info/testnet/",
 		},
+	},
+	crypto: {
+		slip44: 0,
 	},
 	behaviours: {
 		Client: {

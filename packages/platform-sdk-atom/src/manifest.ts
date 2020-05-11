@@ -1,6 +1,5 @@
 export const manifest = {
 	name: "Cosmos",
-	derivePath: "m/44'/118'/0'/0/",
 	networks: {
 		live: {
 			ticker: "ATOM",
@@ -10,6 +9,10 @@ export const manifest = {
 			ticker: "ATOM",
 			explorer: "https://gaia.bigdipper.live/",
 		},
+	},
+	crypto: {
+		slip44: 118,
+		bech32Prefix: "cosmos",
 	},
 	behaviours: {
 		Client: {

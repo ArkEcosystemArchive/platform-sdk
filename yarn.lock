@@ -144,8 +144,6 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     bcrypto: ^5.1.0
     bech32: ^1.1.4
-    bip32: ^2.0.5
-    bip39: ^3.0.2
     codecov: ^3.6.5
     cross-env: ^7.0.2
     eslint: ^6.8.0
@@ -180,8 +178,6 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^2.30.0
     "@typescript-eslint/parser": ^2.30.0
     bignumber.js: ^9.0.0
-    bip32: ^2.0.5
-    bip39: ^3.0.2
     bitcoinjs-lib: ^5.1.7
     bitcore-lib: ^8.17.1
     codecov: ^3.6.5
@@ -597,7 +593,8 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^2.30.0
     "@typescript-eslint/parser": ^2.30.0
     bent: ^7.3
-    bip39: ^3.0
+    bip32: ^2.0.5
+    bip39: ^3.0.2
     codecov: ^3.6.5
     cross-env: ^7.0.2
     dayjs: ^1.8
@@ -4054,7 +4051,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bip39@npm:^3.0, bip39@npm:^3.0.2":
+"bip39@npm:^3.0.2":
   version: 3.0.2
   resolution: "bip39@npm:3.0.2"
   dependencies:

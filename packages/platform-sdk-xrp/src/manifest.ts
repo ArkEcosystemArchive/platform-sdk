@@ -1,6 +1,5 @@
 export const manifest = {
 	name: "Ripple",
-	derivePath: "m/44'/144'/0'/0/",
 	networks: {
 		live: {
 			ticker: "XRP",
@@ -10,6 +9,9 @@ export const manifest = {
 			ticker: "XRP",
 			explorer: "https://test.bithomp.com/explorer/",
 		},
+	},
+	crypto: {
+		slip44: 144,
 	},
 	behaviours: {
 		Client: {

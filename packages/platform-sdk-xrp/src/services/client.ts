@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { RippleAPI } from "ripple-lib";
 
 import { TransactionData, WalletData } from "../dto";
@@ -73,9 +73,5 @@ export class ClientService implements Contracts.ClientService {
 		for (const transaction of transactions) {
 			await this.#connection.submit(transaction);
 		}
-	}
-
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#dataUrl}/${path}`, query);
 	}
 }

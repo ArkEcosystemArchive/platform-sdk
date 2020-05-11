@@ -1,22 +1,31 @@
 import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import Neon from "@cityofzion/neon-js";
+import { api } from "@cityofzion/neon-js";
 
 import { DelegateData, TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
+	readonly #apiProvider;
 
-	private constructor(peer: string) {
-		this.#baseUrl = peer;
+	private constructor(opts: Contracts.KeyValuePair) {
+		this.#baseUrl = {
+			live: "https://api.neoscan.io/api/main_net/v1/",
+			test: "https://neoscan-testnet.io/api/test_net/v1/",
+		}[opts.network];
+
+		this.#apiProvider = new api.neoscan.instance(opts.network === "live" ? "MainNet" : "TestNet");
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
-		return new ClientService(opts.peer);
+		return new ClientService(opts);
 	}
 
 	public async destruct(): Promise<void> {
 		//
 	}
 
+	// get_transaction/{txid}
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
 	}
@@ -24,7 +33,17 @@ export class ClientService implements Contracts.ClientService {
 	public async transactions(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
+		const response = await this.get(`get_address_abstracts/${query.address}/${query.page || 1}`);
+
+		return {
+			meta: {
+				pageCount: response.total_pages,
+				totalCount: response.total_entries,
+				count: response.page_size,
+				current: response.page_number,
+			},
+			data: response.entries.map((transaction) => new TransactionData(transaction)),
+		};
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -57,15 +76,21 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	public async broadcast(transactions: object[]): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+	public async broadcast(transactions: object[]): Promise<void> {
+		for (const transaction of transactions) {
+			const { response } = await Neon.sendAsset({
+				api: this.#apiProvider,
+				account: transaction["account"],
+				intents: transaction["intents"],
+			}); // response.txid
+		}
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#baseUrl}/api/${path}`, query);
+		return Utils.Http.new(this.#baseUrl).get(path, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(`${this.#baseUrl}/api/`, path, body);
+		return Utils.Http.new(this.#baseUrl).post(path, body);
 	}
 }

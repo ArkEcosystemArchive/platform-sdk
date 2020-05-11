@@ -4,9 +4,13 @@ import { HistoricalPriceTransformer } from "../transformers/historical-price-tra
 import { MarketTransformer } from "../transformers/market-transformer";
 
 export class PriceTracker implements Contracts.PriceTracker {
-	private readonly baseUrl: string = "https://api.coincap.io/v2";
-
 	private readonly tokenLookup: Contracts.KeyValuePair = {};
+
+	readonly #client: Utils.Http;
+
+	public constructor() {
+		this.#client = Utils.Http.new("https://api.coincap.io/v2");
+	}
 
 	public async verifyToken(token: string): Promise<boolean> {
 		try {
@@ -38,8 +42,8 @@ export class PriceTracker implements Contracts.PriceTracker {
 		const timeInterval = options.days === 24 ? "h1" : "h12";
 		const startDate = Utils.dayjs().subtract(daysSubtract, "d").valueOf();
 		const endDate = Utils.dayjs().valueOf();
-		const body = await Utils.getJSON(
-			`${this.baseUrl}/assets/${tokenId}/history?interval=${timeInterval}&start=${startDate}&end=${endDate}`,
+		const body = await this.#client.get(
+			`assets/${tokenId}/history?interval=${timeInterval}&start=${startDate}&end=${endDate}`,
 		);
 
 		return new HistoricalPriceTransformer(body.data).transform({
@@ -63,7 +67,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 			return this.tokenLookup[token.toUpperCase()];
 		}
 
-		const body = await Utils.getJSON(`${this.baseUrl}/assets?limit=${limit}`);
+		const body = await this.#client.get(`assets?limit=${limit}`);
 
 		for (const value of Object.values(body.data)) {
 			// @ts-ignore
@@ -76,13 +80,13 @@ export class PriceTracker implements Contracts.PriceTracker {
 	private async fetchTokenData(token: string): Promise<Contracts.KeyValuePair> {
 		const tokenId = await this.getTokenId(token);
 
-		const body = await Utils.getJSON(`${this.baseUrl}/assets/${tokenId}`);
+		const body = await this.#client.get(`assets/${tokenId}`);
 
 		return body.data;
 	}
 
 	private async getCurrencyData(token: string): Promise<Contracts.KeyValuePair> {
-		const body = await Utils.getJSON(`${this.baseUrl}/rates`);
+		const body = await this.#client.get(`rates`);
 		const { data, timestamp } = body;
 		const tokenData = await this.fetchTokenData(token);
 

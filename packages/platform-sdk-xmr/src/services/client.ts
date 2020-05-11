@@ -6,7 +6,7 @@ export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
 
 	private constructor(peer: string) {
-		this.#baseUrl = peer;
+		this.#baseUrl = `${peer}/api`;
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
@@ -62,10 +62,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#baseUrl}/api/${path}`, query);
+		return Utils.Http.new(this.#baseUrl).get(path, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(`${this.#baseUrl}/api/`, path, body);
+		return Utils.Http.new(this.#baseUrl).post(path, body);
 	}
 }

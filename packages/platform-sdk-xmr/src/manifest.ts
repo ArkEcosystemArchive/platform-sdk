@@ -1,6 +1,5 @@
 export const manifest = {
 	name: "Monero",
-	derivePath: "m/44'/128'/0'/0/",
 	networks: {
 		live: {
 			ticker: "XMR",
@@ -10,6 +9,9 @@ export const manifest = {
 			ticker: "XMR",
 			explorer: "https://dexplorer.ark.io/",
 		},
+	},
+	crypto: {
+		slip44: 123,
 	},
 	behaviours: {
 		Client: {

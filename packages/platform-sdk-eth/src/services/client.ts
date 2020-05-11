@@ -95,11 +95,11 @@ export class ClientService implements Contracts.ClientService {
 		// ErrGasUintOverflow = errors.New("gas uint64 overflow");
 	}
 
-	private async get(path: string, query: Contracts.KeyValuePair = {}): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#peer}/${path}`, query);
+	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		return Utils.Http.new(this.#peer).get(path, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.postJSON(`${this.#peer}/`, path, body);
+		return Utils.Http.new(this.#peer).post(path, body);
 	}
 }

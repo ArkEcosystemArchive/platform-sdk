@@ -10,27 +10,21 @@ beforeEach(async () => (subject = await IdentityService.construct({})));
 describe("IdentityService", () => {
 	describe("#address", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.address({
-				passphrase: identity.passphrase,
-			});
+			const result: any = await subject.address().fromPassphrase(identity.passphrase);
 
 			expect(result).toBe(identity.address);
 		});
 
 		it("should generate an output from a publicKey", async () => {
-			const result: any = await subject.address({
-				publicKey: identity.publicKey,
-			});
+			const result: any = await subject.address().fromPublicKey(identity.publicKey);
 
 			expect(result).toBe(identity.address);
 		});
 	});
 
-	describe("#keyPair", () => {
+	describe("#keys", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.keyPair({
-				passphrase: identity.passphrase,
-			});
+			const result: any = await subject.keys().fromPassphrase(identity.passphrase);
 
 			expect(result).toEqual({
 				privateKey: identity.privateKey,

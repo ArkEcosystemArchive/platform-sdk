@@ -31,7 +31,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		const address: string = await this.#identity.address(input.sign);
-		const privateKey: string = await this.#identity.privateKey(input.sign);
+		const privateKey: string = input.sign.privateKey || (await this.#identity.privateKey(input.sign));
 
 		const { nonce } = await this.get(`wallets/${address}`);
 
@@ -122,7 +122,7 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
 	}
 
-	private async get(path: string, query: Contracts.KeyValuePair = {}): Promise<Contracts.KeyValuePair> {
-		return Utils.getJSON(`${this.#peer}/${path}`, query);
+	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		return Utils.Http.new(this.#peer).get(path, query);
 	}
 }
