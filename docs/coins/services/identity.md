@@ -30,23 +30,17 @@ This method has no parameters.
 
 This method returns a promise that resolves with a void value.
 
-## address
+## address.fromPassphrase
 
-`address(opts: Contracts.AddressInput): Promise<string>`
+`address().fromPassphrase(passphrase: string): Promise<string>`
 
 Creates an address from various types of inputs.
 
 ### Parameters
 
-| Name                      | Type   | Description                                                            |
-| ------------------------- | ------ | ---------------------------------------------------------------------- |
-| passphrase                | string | The passphrase that should be used to derive the address.              |
-| multiSignature            | object | The multi signature details that should be used to derive the address. |
-| multiSignature.min        | number | The minimum number of participants for the multi signature.            |
-| multiSignature.publicKeys | string | The public keys for the participants of the multi signature.           |
-| publicKey                 | string | The passphrase that should be used to derive the address.              |
-| privateKey                | string | The passphrase that should be used to derive the address.              |
-| wif                       | string | The passphrase that should be used to derive the address.              |
+| Name       | Type   | Description                                               |
+| ---------- | ------ | --------------------------------------------------------- |
+| passphrase | string | The passphrase that should be used to derive the address. |
 
 ### Return Value
 
@@ -55,26 +49,109 @@ This method returns a promise that resolves with a string value.
 ### Example
 
 ```ts
-await identityService.address({
-	passphrase: "this is a top secret passphrase",
-});
+await identityService.address().fromPassphrase("...");
 ```
 
-## publicKey
+## address.fromMultiSignature
 
-`publicKey(opts: Contracts.PublicKeyInput): Promise<string>`
+`address().fromMultiSignature(min: number, publicKeys: string[]): Promise<string>`
+
+Creates an address from various types of inputs.
+
+### Parameters
+
+| Name       | Type   | Description                                                  |
+| ---------- | ------ | ------------------------------------------------------------ |
+| min        | number | The minimum number of participants for the multi signature.  |
+| publicKeys | string | The public keys for the participants of the multi signature. |
+
+### Return Value
+
+This method returns a promise that resolves with a string value.
+
+### Example
+
+```ts
+await identityService.address().fromMultiSignature(2, ["...", "...", "..."]);
+```
+
+## address.fromPublicKey
+
+`address().fromPublicKey(publicKey: string): Promise<string>`
+
+Creates an address from various types of inputs.
+
+### Parameters
+
+| Name      | Type   | Description                                               |
+| --------- | ------ | --------------------------------------------------------- |
+| publicKey | string | The passphrase that should be used to derive the address. |
+
+### Return Value
+
+This method returns a promise that resolves with a string value.
+
+### Example
+
+```ts
+await identityService.address().fromPublicKey("...");
+```
+
+## address.fromPrivateKey
+
+`address().fromPrivateKey(privateKey: string): Promise<string>`
+
+Creates an address from various types of inputs.
+
+### Parameters
+
+| Name       | Type   | Description                                               |
+| ---------- | ------ | --------------------------------------------------------- |
+| privateKey | string | The passphrase that should be used to derive the address. |
+
+### Return Value
+
+This method returns a promise that resolves with a string value.
+
+### Example
+
+```ts
+await identityService.address().fromPrivateKey("...");
+```
+
+## address.fromWIF
+
+`address().fromWIF(wif: string): Promise<string>`
+
+Creates an address from various types of inputs.
+
+### Parameters
+
+| Name | Type   | Description                                               |
+| ---- | ------ | --------------------------------------------------------- |
+| wif  | string | The passphrase that should be used to derive the address. |
+
+### Return Value
+
+This method returns a promise that resolves with a string value.
+
+### Example
+
+```ts
+await identityService.address().fromWIF("...");
+```
+
+## publicKey.fromPassphrase
+
+`publicKey().fromPassphrase(): Promise<string>`
 
 Creates a public key from various types of inputs.
 
 ### Parameters
 
-| Name                      | Type   | Description                                                               |
-| ------------------------- | ------ | ------------------------------------------------------------------------- |
-| passphrase                | string | The passphrase that should be used to derive the public key.              |
-| multiSignature            | object | The multi signature details that should be used to derive the public key. |
-| multiSignature.min        | number | The minimum number of participants for the multi signature.               |
-| multiSignature.publicKeys | string | The public keys for the participants of the multi signature.              |
-| wif                       | string | The WIF that should be used to derive the public key.                     |
+| Name       | Type   | Description                                                  |
+| ---------- | ------ | ------------------------------------------------------------ |
+| passphrase | string | The passphrase that should be used to derive the public key. |
 
 ### Return Value
 
@@ -83,14 +160,57 @@ This method returns a promise that resolves with a string value.
 ### Example
 
 ```ts
-await identityService.publicKey({
-	passphrase: "this is a top secret passphrase",
-});
+await identityService.publicKey().fromPassphrase("...");
+```
+
+## publicKey.fromMultiSignature
+
+`publicKey().fromMultiSignature(min: number, publicKeys: string[]): Promise<string>`
+
+Creates a public key from various types of inputs.
+
+### Parameters
+
+| Name       | Type   | Description                                                  |
+| ---------- | ------ | ------------------------------------------------------------ |
+| min        | number | The minimum number of participants for the multi signature.  |
+| publicKeys | string | The public keys for the participants of the multi signature. |
+
+### Return Value
+
+This method returns a promise that resolves with a string value.
+
+### Example
+
+```ts
+await identityService.publicKey().fromMultiSignature(2, ["...", "...", "..."]);
+```
+
+## publicKey.fromWIF
+
+`publicKey().fromWIF(wif: string): Promise<string>`
+
+Creates a public key from various types of inputs.
+
+### Parameters
+
+| Name | Type   | Description                                           |
+| ---- | ------ | ----------------------------------------------------- |
+| wif  | string | The WIF that should be used to derive the public key. |
+
+### Return Value
+
+This method returns a promise that resolves with a string value.
+
+### Example
+
+```ts
+await identityService.publicKey().fromWIF("...");
 ```
 
 ## privateKey
 
-`privateKey(opts: Contracts.PrivateKeyInput): Promise<string>`
+`privateKey().fromPassphrase(passphrase: string): Promise<string>`
 
 Creates a private key from various types of inputs.
 
@@ -99,7 +219,6 @@ Creates a private key from various types of inputs.
 | Name       | Type   | Description                                                   |
 | ---------- | ------ | ------------------------------------------------------------- |
 | passphrase | string | The passphrase that should be used to derive the private key. |
-| wif        | string | The WIF that should be used to derive the private key.        |
 
 ### Return Value
 
@@ -108,14 +227,34 @@ This method returns a promise that resolves with a string value.
 ### Example
 
 ```ts
-await identityService.privateKey({
-	passphrase: "this is a top secret passphrase",
-});
+await identityService.privateKey().fromPassphrase("...");
+```
+
+## privateKey
+
+`privateKey().fromWIF(wif: string): Promise<string>`
+
+Creates a private key from various types of inputs.
+
+### Parameters
+
+| Name | Type   | Description                                            |
+| ---- | ------ | ------------------------------------------------------ |
+| wif  | string | The WIF that should be used to derive the private key. |
+
+### Return Value
+
+This method returns a promise that resolves with a string value.
+
+### Example
+
+```ts
+await identityService.privateKey().fromWIF("...");
 ```
 
 ## wif
 
-`wif(opts: Contracts.WifInput): Promise<string>`
+`wif().fromPassphrase(passphrase: string): Promise<string>`
 
 Creates a WIF from various types of inputs.
 
@@ -132,25 +271,20 @@ This method returns a promise that resolves with a string value.
 ### Example
 
 ```ts
-await identityService.privateKey({
-	passphrase: "this is a top secret passphrase",
-});
+await identityService.wif().fromPassphrase("...");
 ```
 
-## keyPair
+## keys.fromPassphrase
 
-`keyPair(opts: Contracts.KeyPairInput): Promise<KeyPair>`
+`keys().fromPassphrase(passphrase: string): Promise<KeyPair>`
 
 Creates a public/private-key pair from various types of inputs.
 
 ### Parameters
 
-| Name       | Type   | Description                                                 |
-| ---------- | ------ | ----------------------------------------------------------- |
-| passphrase | string | The passphrase that should be used to derive the key-pair.  |
-| publicKey  | string | The public key that should be used to derive the key-pair.  |
-| privateKey | string | The private key that should be used to derive the key-pair. |
-| wif        | string | The WIF that should be used to derive the key-pair.         |
+| Name       | Type   | Description                                                |
+| ---------- | ------ | ---------------------------------------------------------- |
+| passphrase | string | The passphrase that should be used to derive the key-pair. |
 
 ### Return Value
 
@@ -161,7 +295,53 @@ This method returns a promise that resolves with an object with the following st
 ### Example
 
 ```ts
-await identityService.keyPair({
-	passphrase: "this is a top secret passphrase",
-});
+await identityService.keys().fromPassphrase("...");
+```
+
+## keys.fromPrivateKey
+
+`keys().fromPrivateKey(privateKey: string): Promise<KeyPair>`
+
+Creates a public/private-key pair from various types of inputs.
+
+### Parameters
+
+| Name       | Type   | Description                                                 |
+| ---------- | ------ | ----------------------------------------------------------- |
+| privateKey | string | The private key that should be used to derive the key-pair. |
+
+### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
+
+...
+
+### Example
+
+```ts
+await identityService.keys().fromPassphrase("...");
+```
+
+## keys.fromWIF
+
+`keys().fromWIF(wif: string): Promise<KeyPair>`
+
+Creates a public/private-key pair from various types of inputs.
+
+### Parameters
+
+| Name | Type   | Description                                         |
+| ---- | ------ | --------------------------------------------------- |
+| wif  | string | The WIF that should be used to derive the key-pair. |
+
+### Return Value
+
+This method returns a promise that resolves with an object with the following structure:
+
+...
+
+### Example
+
+```ts
+await identityService.keys().fromPassphrase("...");
 ```
