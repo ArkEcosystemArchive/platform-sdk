@@ -36,7 +36,7 @@ describe("ClientService", function () {
 			// expect(result.typeGroup()).toBeUndefined();
 			expect(result.timestamp()).toBe(1554840865000);
 			// expect(result.confirmations()).toEqual(BigNumber.make(159414));
-			expect(result.nonce()).toBe("4660039994869");
+			expect(result.nonce()).toEqual(BigNumber.make("4660039994869"));
 			expect(result.sender()).toBe("GAHXEI3BVFOBDHWLC4TJKCGTLY6VMTKMRRWWPKNPPULUC7E3PD63ENKO");
 			expect(result.recipient()).toBe("GB2V4J7WTTKLIN5O3QPUAQCOLLIIULJM3FHHAQ7GEQ5EH53BXXQ47HU3");
 			expect(result.amount()).toEqual(BigNumber.make("100000000"));
@@ -64,7 +64,7 @@ describe("ClientService", function () {
 			// expect(data[0].typeGroup()).toBeUndefined();
 			expect(data[0].timestamp()).toBe(1554505662000);
 			// expect(data[0].confirmations()).toEqual(BigNumber.make(159414));
-			// expect(data[0].nonce()).toBe("4660039994869");
+			expect(data[0].nonce()).toEqual(BigNumber.ZERO);
 			expect(data[0].sender()).toBe("GAGLYFZJMN5HEULSTH5CIGPOPAVUYPG5YSWIYDJMAPIECYEBPM2TA3QR");
 			expect(data[0].recipient()).toBe("GBYUUJHG6F4EPJGNLERINATVQLNDOFRUD7SGJZ26YZLG5PAYLG7XUSGF");
 			expect(data[0].amount()).toEqual(BigNumber.make("100000000000000"));

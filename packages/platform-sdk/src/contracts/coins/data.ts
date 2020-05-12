@@ -13,7 +13,7 @@ export interface TransactionData {
 
 	confirmations(): BigNumber;
 
-	nonce(): string | undefined;
+	nonce(): BigNumber;
 
 	sender(): string;
 

@@ -29,7 +29,7 @@ describe("ClientService", function () {
 			expect(result.typeGroup()).toBeUndefined();
 			expect(result.timestamp()).toBe(1576957341000);
 			expect(result.confirmations()).toEqual(BigNumber.ZERO);
-			expect(result.nonce()).toBeUndefined();
+			expect(result.nonce()).toEqual(BigNumber.ZERO);
 			expect(result.sender()).toBe("cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0");
 			expect(result.recipient()).toBe("cosmos14ddvyl5t0hzmknceuv3zzu5szuum4rkygpq5ln");
 			expect(result.amount()).toEqual(BigNumber.make(10680));
@@ -56,7 +56,7 @@ describe("ClientService", function () {
 			expect(result.data[0].typeGroup()).toBeUndefined();
 			expect(result.data[0].timestamp()).toBe(1576957341000);
 			expect(result.data[0].confirmations()).toEqual(BigNumber.ZERO);
-			expect(result.data[0].nonce()).toBeUndefined();
+			expect(result.data[0].nonce()).toEqual(BigNumber.ZERO);
 			expect(result.data[0].sender()).toBe("cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0");
 			expect(result.data[0].recipient()).toBe("cosmos14ddvyl5t0hzmknceuv3zzu5szuum4rkygpq5ln");
 			expect(result.data[0].amount()).toEqual(BigNumber.make(10680));
