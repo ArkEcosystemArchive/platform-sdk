@@ -1,8 +1,9 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import StellarHDWallet from "stellar-hd-wallet";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromPassphrase(passphrase: string): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPassphrase");
+		return StellarHDWallet.fromMnemonic(passphrase).getPublicKey(0);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

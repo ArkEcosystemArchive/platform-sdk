@@ -1,8 +1,10 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import StellarHDWallet from "stellar-hd-wallet";
+import Stellar from "stellar-sdk";
 
 export class Address implements Contracts.Address {
 	public async fromPassphrase(passphrase: string): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPassphrase");
+		return StellarHDWallet.fromMnemonic(passphrase).getPublicKey(0);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -14,7 +16,7 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
+		return Stellar.Keypair.fromSecret(privateKey).publicKey();
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

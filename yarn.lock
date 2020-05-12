@@ -537,6 +537,7 @@ __metadata:
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
     rimraf: ^3.0.2
+    stellar-hd-wallet: ^0.0.10
     stellar-sdk: ^5.0.1
     ts-jest: ^25.4.0
     typescript: ^3.8.3
@@ -4126,6 +4127,19 @@ __metadata:
     safe-buffer: ^5.0.1
     unorm: ^1.3.3
   checksum: 2/e7f02574942b986c3f2a5978847e1f651b55b2d5fac61640246877ac12c06e3c992f8cc141ed23601ef3535e79a04431157ae05fc163861e4ff89e8ac052cc12
+  languageName: node
+  linkType: hard
+
+"bip39@npm:^2.5.0":
+  version: 2.6.0
+  resolution: "bip39@npm:2.6.0"
+  dependencies:
+    create-hash: ^1.1.0
+    pbkdf2: ^3.0.9
+    randombytes: ^2.0.1
+    safe-buffer: ^5.0.1
+    unorm: ^1.3.3
+  checksum: 2/4ec18f56b4c3939ac3b79ce22aee592ed8685498fdd0e52b42494725a0fd5b27e10ba96cb6c26eca13af741df24bb4b542837b9cd2872dc254ab7f07cc37be23
   languageName: node
   linkType: hard
 
@@ -9448,7 +9462,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"js-xdr@npm:^1.1.3":
+"js-xdr@npm:^1.1.1, js-xdr@npm:^1.1.3":
   version: 1.1.4
   resolution: "js-xdr@npm:1.1.4"
   dependencies:
@@ -13878,6 +13892,25 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
+"stellar-base@npm:^0.13.1":
+  version: 0.13.2
+  resolution: "stellar-base@npm:0.13.2"
+  dependencies:
+    base32.js: ^0.1.0
+    bignumber.js: ^4.0.0
+    crc: ^3.5.0
+    js-xdr: ^1.1.1
+    lodash: ^4.17.11
+    sha.js: ^2.3.6
+    sodium-native: ^2.3.0
+    tweetnacl: ^1.0.0
+  dependenciesMeta:
+    sodium-native:
+      optional: true
+  checksum: 2/bc914a194fea5e140e01a71f98c63d6cdfcd01bde8af337e222582fb9b6d23af75665495605582732e4d076f2528a7714f269acf4995c53e8e715bccf8c10d7a
+  languageName: node
+  linkType: hard
+
 "stellar-base@npm:^3.0.0":
   version: 3.0.2
   resolution: "stellar-base@npm:3.0.2"
@@ -13894,6 +13927,18 @@ resolve@~1.7.1:
     sodium-native:
       optional: true
   checksum: 2/3398359486f48076ec52d486498bab59bf0fc2751fb4472db4a867dc0d36583ded39e12a11d124fb8306f83c675fc663bc42e47a97f7a9faa5bddffe82795836
+  languageName: node
+  linkType: hard
+
+"stellar-hd-wallet@npm:^0.0.10":
+  version: 0.0.10
+  resolution: "stellar-hd-wallet@npm:0.0.10"
+  dependencies:
+    bip39: ^2.5.0
+    create-hmac: ^1.1.7
+    lodash: ^4.17.11
+    stellar-base: ^0.13.1
+  checksum: 2/09857a64a6ae72fabdce4ab8b0160e3fbccccbdd6f363ac8ecb417e7c1fe67d414440ee97142ad982a48de351e4eaa75e9b1bc27e0c2ed7afb341e8360fe2825
   languageName: node
   linkType: hard
 

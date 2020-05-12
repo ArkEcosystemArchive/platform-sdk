@@ -859,6 +859,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["npm-check-updates", "npm:4.1.2"],
             ["prettier", "npm:2.0.5"],
             ["rimraf", "npm:3.0.2"],
+            ["stellar-hd-wallet", "npm:0.0.10"],
             ["stellar-sdk", "npm:5.0.1"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:25.4.0"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"]
@@ -5096,6 +5097,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/bip39-npm-2.5.0-524b7cf1b7-2.zip/node_modules/bip39/",
           "packageDependencies": [
             ["bip39", "npm:2.5.0"],
+            ["create-hash", "npm:1.2.0"],
+            ["pbkdf2", "npm:3.0.17"],
+            ["randombytes", "npm:2.1.0"],
+            ["safe-buffer", "npm:5.2.0"],
+            ["unorm", "npm:1.6.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:2.6.0", {
+          "packageLocation": "./.yarn/cache/bip39-npm-2.6.0-c369effd70-2.zip/node_modules/bip39/",
+          "packageDependencies": [
+            ["bip39", "npm:2.6.0"],
             ["create-hash", "npm:1.2.0"],
             ["pbkdf2", "npm:3.0.17"],
             ["randombytes", "npm:2.1.0"],
@@ -15775,6 +15788,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["stellar-base", [
+        ["npm:0.13.2", {
+          "packageLocation": "./.yarn/cache/stellar-base-npm-0.13.2-905a364a46-2.zip/node_modules/stellar-base/",
+          "packageDependencies": [
+            ["stellar-base", "npm:0.13.2"],
+            ["base32.js", "npm:0.1.0"],
+            ["bignumber.js", "npm:4.1.0"],
+            ["crc", "npm:3.8.0"],
+            ["js-xdr", "npm:1.1.4"],
+            ["lodash", "npm:4.17.15"],
+            ["sha.js", "npm:2.4.11"],
+            ["sodium-native", "npm:2.4.6"],
+            ["tweetnacl", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:3.0.2", {
           "packageLocation": "./.yarn/cache/stellar-base-npm-3.0.2-646b78e54b-2.zip/node_modules/stellar-base/",
           "packageDependencies": [
@@ -15787,6 +15815,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["sha.js", "npm:2.4.11"],
             ["sodium-native", "npm:2.4.6"],
             ["tweetnacl", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["stellar-hd-wallet", [
+        ["npm:0.0.10", {
+          "packageLocation": "./.yarn/cache/stellar-hd-wallet-npm-0.0.10-3decbb121b-2.zip/node_modules/stellar-hd-wallet/",
+          "packageDependencies": [
+            ["stellar-hd-wallet", "npm:0.0.10"],
+            ["bip39", "npm:2.6.0"],
+            ["create-hmac", "npm:1.1.7"],
+            ["lodash", "npm:4.17.15"],
+            ["stellar-base", "npm:0.13.2"]
           ],
           "linkType": "HARD",
         }]
