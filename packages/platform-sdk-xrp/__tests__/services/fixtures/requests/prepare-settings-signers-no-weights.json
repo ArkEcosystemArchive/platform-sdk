@@ -1,5 +1,5 @@
 {
-  "signers": {
-    "threshold": 2
-  }
+	"signers": {
+		"threshold": 2
+	}
 }

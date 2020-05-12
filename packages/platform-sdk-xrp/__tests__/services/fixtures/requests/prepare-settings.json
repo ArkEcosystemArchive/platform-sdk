@@ -1,10 +1,10 @@
 {
-  "domain": "ripple.com",
-  "memos": [
-    {
-      "type": "test",
-      "format": "text/plain",
-      "data": "texted data"
-    }
-  ]
+	"domain": "ripple.com",
+	"memos": [
+		{
+			"type": "test",
+			"format": "text/plain",
+			"data": "texted data"
+		}
+	]
 }
