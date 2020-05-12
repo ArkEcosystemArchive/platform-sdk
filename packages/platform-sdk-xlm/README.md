@@ -1,7 +1,7 @@
-# ARK Platform SDK - Monero
+# ARK Platform SDK - Stellar
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-xmr/banner.png" />
+    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-xlm/banner.png" />
 </p>
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)
@@ -13,7 +13,7 @@ This package is currently still under early development and subject to breaking 
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-monero
+yarn add @arkecosystem/platform-xlm
 ```
 
 ## Usage
