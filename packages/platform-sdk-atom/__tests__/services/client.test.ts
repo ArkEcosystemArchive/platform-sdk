@@ -94,7 +94,7 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe.only("#broadcast", () => {
+	describe("#broadcast", () => {
 		const transactionPayload = {
 			msg: [
 				{
