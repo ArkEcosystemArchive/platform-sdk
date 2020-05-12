@@ -1,4 +1,6 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
+import StellarHDWallet from "stellar-hd-wallet";
+import Stellar from "stellar-sdk";
 
 export class MessageService implements Contracts.MessageService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
@@ -10,10 +12,17 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "sign");
+		const privateKey: string = StellarHDWallet.fromMnemonic(input.passphrase).getSecret(0);
+		const source = Stellar.Keypair.fromSecret(privateKey);
+
+		return {
+			message: input.message,
+			signer: source.publicKey(),
+			signature: source.sign(input.message).toString("hex"),
+		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "verify");
+		return Stellar.Keypair.fromPublicKey(input.signer).verifySignature(input.signature, input.message);
 	}
 }
