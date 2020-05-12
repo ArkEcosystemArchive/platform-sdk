@@ -1,5 +1,5 @@
 import "jest-extended";
-import { BigNumber } from "@arkecosystem/utils";
+import { Utils } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/transaction.json";
@@ -26,11 +26,11 @@ describe("TransactionData", function () {
 	});
 
 	test("#confirmations", () => {
-		expect(subject.confirmations()).toEqual(BigNumber.make(4636121));
+		expect(subject.confirmations()).toEqual(Utils.BigNumber.make(4636121));
 	});
 
 	test("#nonce", () => {
-		expect(subject.nonce()).toEqual(BigNumber.make(1));
+		expect(subject.nonce()).toEqual(Utils.BigNumber.make(1));
 	});
 
 	test("#sender", () => {
@@ -42,7 +42,7 @@ describe("TransactionData", function () {
 	});
 
 	test("#amount", () => {
-		expect(subject.amount()).toEqual(BigNumber.make("12500000000000000"));
+		expect(subject.amount()).toEqual(Utils.BigNumber.make("12500000000000000"));
 	});
 
 	test("#fee", () => {

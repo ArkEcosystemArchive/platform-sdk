@@ -1,5 +1,4 @@
-import { BigNumber } from "@arkecosystem/utils";
-
+import { BigNumber } from "../../utils";
 import { KeyValuePair } from "../types";
 
 export interface TransactionData {

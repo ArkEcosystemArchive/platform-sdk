@@ -1,5 +1,5 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
-import { BigNumber } from "@arkecosystem/utils";
+import { Utils } from "@arkecosystem/platform-sdk";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
@@ -18,12 +18,12 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return undefined;
 	}
 
-	public confirmations(): BigNumber {
-		return BigNumber.make(0);
+	public confirmations(): Utils.BigNumber {
+		return Utils.BigNumber.make(0);
 	}
 
-	public nonce(): BigNumber {
-		return BigNumber.make(parseInt(this.data.nonce, 16));
+	public nonce(): Utils.BigNumber {
+		return Utils.BigNumber.make(parseInt(this.data.nonce, 16));
 	}
 
 	public sender(): string {
@@ -34,12 +34,12 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.to;
 	}
 
-	public amount(): BigNumber {
-		return BigNumber.make(this.data.value);
+	public amount(): Utils.BigNumber {
+		return Utils.BigNumber.make(this.data.value);
 	}
 
-	public fee(): BigNumber {
-		return BigNumber.make(this.data.gas);
+	public fee(): Utils.BigNumber {
+		return Utils.BigNumber.make(this.data.gas);
 	}
 
 	public memo(): string | undefined {

@@ -5,6 +5,10 @@ import { NumberLike } from "../contracts";
 // This implementation is significantly slower than the native BigInt but for
 // applications that use the Platform SDK this performance loss is acceptable.
 export class BigNumber {
+	public static readonly ZERO: BigNumber = new BigNumber(0);
+	public static readonly ONE: BigNumber = new BigNumber(1);
+	public static readonly SATOSHI: BigNumber = new BigNumber(1e8);
+
 	#value: BigNumberJS;
 	#decimals = 8;
 

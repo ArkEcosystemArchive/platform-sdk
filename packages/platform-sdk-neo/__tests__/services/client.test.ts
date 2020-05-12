@@ -1,5 +1,5 @@
 import "jest-extended";
-import { BigNumber } from "@arkecosystem/utils";
+import { Utils } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { ClientService } from "../../src/services/client";
@@ -32,7 +32,7 @@ describe("ClientService", function () {
 			expect(result.data[0].nonce()).toEqual(BigNumber.ZERO);
 			expect(result.data[0].sender()).toBe("AStJyBXGGBK6bwrRfRUHSjp993PB5C9QgF");
 			expect(result.data[0].recipient()).toBe("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");
-			expect(result.data[0].amount()).toEqual(BigNumber.make(1));
+			expect(result.data[0].amount()).toEqual(Utils.BigNumber.make(1));
 			expect(result.data[0].fee()).toEqual(BigNumber.ZERO);
 			// expect(result.data[0].memo()).toBeUndefined();
 			expect(result.data[0].blockId()).toBe(4259222);

@@ -1,5 +1,5 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
-import { BigNumber } from "@arkecosystem/utils";
+import { Utils } from "@arkecosystem/platform-sdk";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
 	public address(): string {
@@ -10,11 +10,11 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		throw new Exceptions.NotImplemented(this.constructor.name, "publicKey");
 	}
 
-	public balance(): BigNumber {
+	public balance(): Utils.BigNumber {
 		throw new Exceptions.NotImplemented(this.constructor.name, "balance");
 	}
 
-	public nonce(): BigNumber {
-		return BigNumber.ZERO;
+	public nonce(): Utils.BigNumber {
+		return Utils.BigNumber.ZERO;
 	}
 }

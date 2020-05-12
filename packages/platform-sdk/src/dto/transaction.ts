@@ -1,6 +1,5 @@
-import { BigNumber } from "@arkecosystem/utils";
-
 import { KeyValuePair } from "../contracts/types";
+import { BigNumber } from "../utils";
 
 export abstract class AbstractTransactionData {
 	public constructor(protected readonly data: KeyValuePair) {}

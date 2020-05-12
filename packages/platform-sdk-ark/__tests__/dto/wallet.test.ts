@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { BigNumber } from "@arkecosystem/utils";
+import { Utils } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/wallet.json";
@@ -19,7 +19,7 @@ describe("WalletData", function () {
 	});
 
 	test("#balance", () => {
-		expect(subject.balance()).toEqual(BigNumber.make("55827093444556"));
+		expect(subject.balance()).toEqual(Utils.BigNumber.make("55827093444556"));
 	});
 
 	test("#toObject", () => {
