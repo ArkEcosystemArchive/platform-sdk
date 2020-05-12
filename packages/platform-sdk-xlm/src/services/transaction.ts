@@ -40,7 +40,9 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const { publicKey, privateKey } = await this.#identity.keys().fromPassphrase(input.sign.passphrase);
+		const { publicKey, privateKey } = input.sign.privateKey
+			? await this.#identity.keys().fromPrivateKey(input.sign.privateKey)
+			: await this.#identity.keys().fromPassphrase(input.sign.passphrase);
 
 		const account = await this.#client.loadAccount(publicKey);
 
