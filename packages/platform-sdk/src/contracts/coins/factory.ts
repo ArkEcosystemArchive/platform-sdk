@@ -1,7 +1,7 @@
 import { ClientService } from "./client";
 import { FeeService } from "./fee";
 import { IdentityService } from "./identity";
-import { LedgerService, LedgerTransport } from "./ledger";
+import { LedgerService } from "./ledger";
 import { LinkService } from "./link";
 import { MessageService } from "./message";
 import { PeerService } from "./peer";
@@ -27,7 +27,7 @@ export interface FactoryOptions {
 		client: {};
 		fee: {};
 		identity: {};
-		ledger: { transport?: LedgerTransport };
+		ledger: { transport?: any }; // todo: add contract for the transport
 		link: {};
 		message: {};
 		peer: {};
