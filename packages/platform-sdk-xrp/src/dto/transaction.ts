@@ -23,8 +23,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return BigNumber.ZERO;
 	}
 
-	public nonce(): string | undefined {
-		return this.data.sequence;
+	public nonce(): BigNumber {
+		return BigNumber.make(this.data.sequence);
 	}
 
 	public sender(): string {

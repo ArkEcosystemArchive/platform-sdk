@@ -15,7 +15,7 @@ export abstract class AbstractTransactionData {
 
 	abstract confirmations(): BigNumber;
 
-	abstract nonce(): string | undefined;
+	abstract nonce(): BigNumber;
 
 	abstract sender(): string;
 

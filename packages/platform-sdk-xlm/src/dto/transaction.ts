@@ -23,8 +23,12 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	// todo: with the "transaction" method we get a nonce but with "transactions" it isn't available
-	public nonce(): string | undefined {
-		return this.data.source_account_sequence;
+	public nonce(): BigNumber {
+		if (this.data.source_account_sequence) {
+			return BigNumber.make(this.data.source_account_sequence);
+		}
+
+		return BigNumber.ZERO;
 	}
 
 	public sender(): string {

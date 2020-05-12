@@ -30,7 +30,7 @@ describe("ClientService", function () {
 			expect(result.typeGroup()).toBeUndefined();
 			expect(result.timestamp()).toBe(1561095453000);
 			expect(result.confirmations()).toEqual(BigNumber.make(159414));
-			// expect(result.nonce()).toBe("...");
+			expect(result.nonce()).toEqual(BigNumber.ZERO);
 			// expect(result.sender()).toBe("...");
 			// expect(result.recipient()).toBe("...");
 			expect(result.amount()).toEqual(BigNumber.make(3050000));
