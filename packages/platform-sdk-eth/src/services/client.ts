@@ -2,7 +2,6 @@ import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import Web3 from "web3";
 
 import { TransactionData, WalletData } from "../dto";
-import { Keys } from "./identity/keys";
 
 export class ClientService implements Contracts.ClientService {
 	static readonly MONTH_IN_SECONDS = 8640 * 30;
