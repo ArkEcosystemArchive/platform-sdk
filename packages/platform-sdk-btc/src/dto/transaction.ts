@@ -22,8 +22,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return BigNumber.make(this.data.confirmations);
 	}
 
-	public nonce(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "nonce");
+	public nonce(): BigNumber {
+		return BigNumber.ZERO;
 	}
 
 	public sender(): string {

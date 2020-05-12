@@ -22,8 +22,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return BigNumber.make(0);
 	}
 
-	public nonce(): string {
-		return this.data.nonce;
+	public nonce(): BigNumber {
+		return BigNumber.make(parseInt(this.data.nonce, 16));
 	}
 
 	public sender(): string {

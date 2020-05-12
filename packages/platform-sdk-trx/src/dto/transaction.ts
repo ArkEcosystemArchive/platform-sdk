@@ -22,7 +22,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		throw new Exceptions.NotImplemented(this.constructor.name, "confirmations");
 	}
 
-	public nonce(): string {
+	public nonce(): BigNumber {
 		throw new Exceptions.NotImplemented(this.constructor.name, "nonce");
 	}
 
