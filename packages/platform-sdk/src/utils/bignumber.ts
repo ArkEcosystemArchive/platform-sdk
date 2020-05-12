@@ -66,6 +66,10 @@ export class BigNumber {
 		return this.#value.toFixed();
 	}
 
+	public toNumber(): number {
+		return this.#value.toNumber();
+	}
+
 	public toString(): string {
 		return this.#value.toString();
 	}
