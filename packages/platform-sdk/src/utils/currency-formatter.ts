@@ -31,7 +31,7 @@ export class CurrencyFormatter {
 	): string {
 		return (options.fromSubUnit ? this.subToUnit(value) : BigNumber.make(value))
 			.decimalPlaces(options.decimals)
-			.multiply(price)
+			.times(price)
 			.toFixed();
 	}
 }

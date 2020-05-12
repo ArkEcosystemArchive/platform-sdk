@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { BigNumber } from "@arkecosystem/utils";
+import { Utils } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "../../src/dto/transaction";
 
@@ -21,12 +21,12 @@ describe("TransactionData", function () {
 		// expect(result.type()).toBeUndefined();
 		// expect(result.typeGroup()).toBeUndefined();
 		expect(result.timestamp()).toBe(1588930966);
-		expect(result.confirmations()).toEqual(BigNumber.ZERO);
-		expect(result.nonce()).toEqual(BigNumber.ZERO);
+		expect(result.confirmations()).toEqual(Utils.BigNumber.ZERO);
+		expect(result.nonce()).toEqual(Utils.BigNumber.ZERO);
 		expect(result.sender()).toBe("AStJyBXGGBK6bwrRfRUHSjp993PB5C9QgF");
 		expect(result.recipient()).toBe("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");
-		expect(result.amount()).toEqual(BigNumber.make(1));
-		expect(result.fee()).toEqual(BigNumber.ZERO);
+		expect(result.amount()).toEqual(Utils.BigNumber.make(1));
+		expect(result.fee()).toEqual(Utils.BigNumber.ZERO);
 		// expect(result.memo()).toBeUndefined();
 		expect(result.blockId()).toBe(4259222);
 	});

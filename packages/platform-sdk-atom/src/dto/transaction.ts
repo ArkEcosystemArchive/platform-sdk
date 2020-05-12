@@ -1,5 +1,5 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
-import { BigNumber } from "@arkecosystem/utils";
+import { Utils } from "@arkecosystem/platform-sdk";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
@@ -18,12 +18,12 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return +new Date(this.data.timestamp);
 	}
 
-	public confirmations(): BigNumber {
-		return BigNumber.ZERO;
+	public confirmations(): Utils.BigNumber {
+		return Utils.BigNumber.ZERO;
 	}
 
-	public nonce(): BigNumber {
-		return BigNumber.ZERO;
+	public nonce(): Utils.BigNumber {
+		return Utils.BigNumber.ZERO;
 	}
 
 	public sender(): string {
@@ -41,15 +41,15 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	// @ts-ignore
-	public amount(): BigNumber {
+	public amount(): Utils.BigNumber {
 		const event = this.data.events.find((event) => event.type === "transfer");
 		const attribute = event.attributes.find((attribute) => attribute.key === "amount");
 
-		return BigNumber.make(attribute.value.replace(/\D/g, ""));
+		return Utils.BigNumber.make(attribute.value.replace(/\D/g, ""));
 	}
 
-	public fee(): BigNumber {
-		return BigNumber.make(this.data.gas_used);
+	public fee(): Utils.BigNumber {
+		return Utils.BigNumber.make(this.data.gas_used);
 	}
 
 	public memo(): string | undefined {

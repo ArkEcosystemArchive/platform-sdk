@@ -1,4 +1,4 @@
-import { BigNumber } from "@arkecosystem/utils";
+import { Utils } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/wallet.json";
@@ -17,6 +17,6 @@ describe("WalletData", function () {
 	});
 
 	test("#balance", () => {
-		expect(subject.balance()).toEqual(BigNumber.make("-9999333679754263"));
+		expect(subject.balance()).toEqual(Utils.BigNumber.make("-9999333679754263"));
 	});
 });

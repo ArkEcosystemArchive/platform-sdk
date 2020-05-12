@@ -1,5 +1,5 @@
 import "jest-extended";
-import { BigNumber } from "@arkecosystem/utils";
+import { Utils } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { ClientService } from "../../src/services/client";
@@ -35,12 +35,12 @@ describe("ClientService", function () {
 			// expect(result.type()).toBeUndefined();
 			// expect(result.typeGroup()).toBeUndefined();
 			expect(result.timestamp()).toBe(1554840865000);
-			// expect(result.confirmations()).toEqual(BigNumber.make(159414));
-			expect(result.nonce()).toEqual(BigNumber.make("4660039994869"));
+			// expect(result.confirmations()).toEqual(Utils.BigNumber.make(159414));
+			expect(result.nonce()).toEqual(Utils.BigNumber.make("4660039994869"));
 			expect(result.sender()).toBe("GAHXEI3BVFOBDHWLC4TJKCGTLY6VMTKMRRWWPKNPPULUC7E3PD63ENKO");
 			expect(result.recipient()).toBe("GB2V4J7WTTKLIN5O3QPUAQCOLLIIULJM3FHHAQ7GEQ5EH53BXXQ47HU3");
-			expect(result.amount()).toEqual(BigNumber.make("100000000"));
-			expect(result.fee()).toEqual(BigNumber.make("10000000000"));
+			expect(result.amount()).toEqual(Utils.BigNumber.make("100000000"));
+			expect(result.fee()).toEqual(Utils.BigNumber.make("10000000000"));
 			// expect(result.memo()).toBeUndefined();
 			// expect(result.blockId()).toBe(1563778);
 		});
@@ -63,12 +63,12 @@ describe("ClientService", function () {
 			// expect(data[0].type()).toBeUndefined();
 			// expect(data[0].typeGroup()).toBeUndefined();
 			expect(data[0].timestamp()).toBe(1554505662000);
-			// expect(data[0].confirmations()).toEqual(BigNumber.make(159414));
-			expect(data[0].nonce()).toEqual(BigNumber.ZERO);
+			// expect(data[0].confirmations()).toEqual(Utils.BigNumber.make(159414));
+			expect(data[0].nonce()).toEqual(Utils.BigNumber.ZERO);
 			expect(data[0].sender()).toBe("GAGLYFZJMN5HEULSTH5CIGPOPAVUYPG5YSWIYDJMAPIECYEBPM2TA3QR");
 			expect(data[0].recipient()).toBe("GBYUUJHG6F4EPJGNLERINATVQLNDOFRUD7SGJZ26YZLG5PAYLG7XUSGF");
-			expect(data[0].amount()).toEqual(BigNumber.make("100000000000000"));
-			// expect(data[0].fee()).toEqual(BigNumber.make("10000000000"));
+			expect(data[0].amount()).toEqual(Utils.BigNumber.make("100000000000000"));
+			// expect(data[0].fee()).toEqual(Utils.BigNumber.make("10000000000"));
 			// expect(data[0].memo()).toBeUndefined();
 			// expect(data[0].blockId()).toBe(1563778);
 		});
@@ -86,8 +86,8 @@ describe("ClientService", function () {
 			expect(result).toBeInstanceOf(WalletData);
 			expect(result.address()).toBe("GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB");
 			expect(result.publicKey()).toBe("GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB");
-			expect(result.balance()).toEqual(BigNumber.make("100000000000000"));
-			expect(result.nonce()).toEqual(BigNumber.make("7275146318446606"));
+			expect(result.balance()).toEqual(Utils.BigNumber.make("100000000000000"));
+			expect(result.nonce()).toEqual(Utils.BigNumber.make("7275146318446606"));
 		});
 	});
 
