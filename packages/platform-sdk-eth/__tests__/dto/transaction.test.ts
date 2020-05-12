@@ -26,11 +26,11 @@ describe("TransactionData", function () {
 	});
 
 	test("#confirmations", () => {
-		expect(subject.confirmations()).toEqual(BigNumber.ZERO);
+		expect(subject.confirmations()).toEqual(Utils.BigNumber.ZERO);
 	});
 
 	test("#nonce", () => {
-		expect(subject.nonce()).toEqual(BigNumber.ZERO);
+		expect(subject.nonce()).toEqual(Utils.BigNumber.ZERO);
 	});
 
 	test("#sender", () => {

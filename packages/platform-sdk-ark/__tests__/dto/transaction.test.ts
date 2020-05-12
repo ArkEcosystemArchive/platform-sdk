@@ -46,7 +46,7 @@ describe("TransactionData", function () {
 	});
 
 	test("#fee", () => {
-		expect(subject.fee()).toEqual(BigNumber.ZERO);
+		expect(subject.fee()).toEqual(Utils.BigNumber.ZERO);
 	});
 
 	test("#memo", () => {

@@ -14,7 +14,7 @@ describe("TransactionData", function () {
 		// expect(result.type()).toBeUndefined();
 		// expect(result.typeGroup()).toBeUndefined();
 		expect(result.timestamp()).toBe(1363132610000);
-		expect(result.confirmations()).toEqual(BigNumber.ZERO);
+		expect(result.confirmations()).toEqual(Utils.BigNumber.ZERO);
 		expect(result.nonce()).toEqual(Utils.BigNumber.make(4));
 		expect(result.sender()).toBe("r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59");
 		expect(result.recipient()).toBe("rMH4UxPrbuMa1spCBR98hLLyNJp4d8p4tM");

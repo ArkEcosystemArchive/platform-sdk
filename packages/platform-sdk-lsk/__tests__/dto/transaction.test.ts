@@ -30,7 +30,7 @@ describe("TransactionData", function () {
 	});
 
 	test("#nonce", () => {
-		expect(subject.nonce()).toEqual(BigNumber.ZERO);
+		expect(subject.nonce()).toEqual(Utils.BigNumber.ZERO);
 	});
 
 	test("#sender", () => {

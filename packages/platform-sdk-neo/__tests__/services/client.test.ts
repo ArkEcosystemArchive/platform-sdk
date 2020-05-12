@@ -28,12 +28,12 @@ describe("ClientService", function () {
 			// expect(result.data[0].type()).toBeUndefined();
 			// expect(result.data[0].typeGroup()).toBeUndefined();
 			expect(result.data[0].timestamp()).toBe(1588930966);
-			expect(result.data[0].confirmations()).toEqual(BigNumber.ZERO);
-			expect(result.data[0].nonce()).toEqual(BigNumber.ZERO);
+			expect(result.data[0].confirmations()).toEqual(Utils.BigNumber.ZERO);
+			expect(result.data[0].nonce()).toEqual(Utils.BigNumber.ZERO);
 			expect(result.data[0].sender()).toBe("AStJyBXGGBK6bwrRfRUHSjp993PB5C9QgF");
 			expect(result.data[0].recipient()).toBe("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");
 			expect(result.data[0].amount()).toEqual(Utils.BigNumber.make(1));
-			expect(result.data[0].fee()).toEqual(BigNumber.ZERO);
+			expect(result.data[0].fee()).toEqual(Utils.BigNumber.ZERO);
 			// expect(result.data[0].memo()).toBeUndefined();
 			expect(result.data[0].blockId()).toBe(4259222);
 		});

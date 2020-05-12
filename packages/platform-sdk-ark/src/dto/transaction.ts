@@ -37,7 +37,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	public amount(): Utils.BigNumber {
 		if (this.data.typeGroup === 0 && this.data.type === 6) {
 			return this.data.asset.payments.reduce(
-				(sum: Utils.BigNumber, { amount }: { amount: string }) => sum.add(amount),
+				(sum: Utils.BigNumber, { amount }: { amount: string }) => sum.plus(amount),
 				Utils.BigNumber.ZERO,
 			);
 		}

@@ -32,19 +32,19 @@ export class BigNumber {
 		return this;
 	}
 
-	public add(value: NumberLike): BigNumber {
+	public plus(value: NumberLike): BigNumber {
 		this.#value = this.#value.plus(value);
 
 		return this;
 	}
 
-	public subtract(value: NumberLike): BigNumber {
+	public minus(value: NumberLike): BigNumber {
 		this.#value = this.#value.minus(value);
 
 		return this;
 	}
 
-	public multiply(value: NumberLike): BigNumber {
+	public times(value: NumberLike): BigNumber {
 		this.#value = this.#value.multipliedBy(value);
 
 		return this;
