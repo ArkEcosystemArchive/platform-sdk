@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.7.0 - 2020-05-12
+
+### Added
+
+-   Implement passphrase derivation for `IdentityService` for `XLM` (0c5ec51d, @faustbrian)
+-   Implement `ClientService#transactions` (15ffde49, @faustbrian)
+-   Implement `NumberFormatter` and `CurrencyFormatter` (6eebe105, 71d61016, @faustbrian)
+-   Setup boilerplate for `XLM` (a61a40e0, @faustbrian)
+-   Implement `IdentityService` for `XLM` (8e3ab1bc, @faustbrian)
+-   Implement `ClientService` for `XLM` (9a6464de, @faustbrian)
+-   Implement `TransactionService` for `XLM` (fe9cc00c, @faustbrian)
+-   Include `nonce` in `WalletData` (6942cc6f, @faustbrian)
+-   Support transaction signing with private key for `XLM` (892e7522, @faustbrian)
+
+### Changed
+
+-   Update manifest and docs for `NEO` (a2229e08, @faustbrian)
+-   Split up `IdentityService` into subclasses (13524ae7, @faustbrian)
+-   Force network name to be `live`, `demo` or `test` (33dbb695, @faustbrian)
+-   Add `crypto` key to manifest to hold BIP values (da6e466a, @faustbrian)
+-   Normalise `ClientService#broadcast` response (32a80670, @faustbrian)
+-   Always treat `nonce` as `BigNumber` (e6b0b99b, @faustbrian)
+-   Update manifest and documentation for `XLM` (e5ae3ece, @faustbrian)
+-   Use `BigNumber` from `platform-sdk` instead of `utils` (47deb97c, @faustbrian)
+
+### Fixed
+
+-   UTC declaration for dayjs (c3461d50, @luciorubeens)
+
 ## 0.6.7 - 2020-05-08
 
 ### Changed
