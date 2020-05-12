@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, Utils } from "@arkecosystem/platform-sdk";
 import { secp256k1 } from "bcrypto";
 
 import { HashAlgorithms } from "../utils/hash";
@@ -24,9 +24,9 @@ export class MessageService implements Contracts.MessageService {
 
 		return {
 			message: input.message,
-			signer: Buffer.from(publicKey, "hex").toString("hex"),
+			signer: publicKey,
 			signature: secp256k1
-				.sign(HashAlgorithms.sha256(input.message), Buffer.from(privateKey!, "hex"))
+				.sign(HashAlgorithms.sha256(input.message), Utils.Buffoon.fromHex(privateKey!))
 				.toString("hex"),
 		};
 	}
@@ -34,8 +34,8 @@ export class MessageService implements Contracts.MessageService {
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		return secp256k1.verify(
 			HashAlgorithms.sha256(input.message),
-			Buffer.from(input.signature, "hex"),
-			Buffer.from(input.signer, "hex"),
+			Utils.Buffoon.fromHex(input.signature),
+			Utils.Buffoon.fromHex(input.signer),
 		);
 	}
 }

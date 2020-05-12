@@ -42,12 +42,12 @@ export class TransactionService implements Contracts.TransactionService {
 				gasPrice: Web3.utils.toHex(input.fee),
 				to: input.data.to,
 				value: Web3.utils.toHex(Web3.utils.toWei(`${input.data.amount}`, "wei")),
-				// data: Buffer.from(input.to.memo, "utf8"),
+				// data: Utils.Buffoon.fromUTF8(input.to.memo),
 			},
 			{ chain: this.#chain },
 		);
 
-		transaction.sign(Buffer.from(privateKey, "hex"));
+		transaction.sign(Utils.Buffoon.fromHex(privateKey));
 
 		return "0x" + transaction.serialize().toString("hex");
 	}

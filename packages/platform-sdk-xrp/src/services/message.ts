@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, Utils } from "@arkecosystem/platform-sdk";
 import { deriveKeypair, sign, verify } from "ripple-keypairs";
 
 export class MessageService implements Contracts.MessageService {
@@ -16,11 +16,11 @@ export class MessageService implements Contracts.MessageService {
 		return {
 			message: input.message,
 			signer: publicKey,
-			signature: sign(Buffer.from(input.message, "utf8").toString("hex"), privateKey),
+			signature: sign(Utils.Buffoon.toHex(input.message), privateKey),
 		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return verify(Buffer.from(input.message, "utf8").toString("hex"), input.signature, input.signer);
+		return verify(Utils.Buffoon.toHex(input.message), input.signature, input.signer);
 	}
 }

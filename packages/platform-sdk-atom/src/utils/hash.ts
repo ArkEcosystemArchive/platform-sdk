@@ -1,8 +1,9 @@
+import { Utils } from "@arkecosystem/platform-sdk";
 import { RIPEMD160, SHA256 } from "bcrypto";
 
 export class HashAlgorithms {
 	public static ripemd160(buffer: Buffer | string): Buffer {
-		return RIPEMD160.digest(this.bufferize(buffer));
+		return RIPEMD160.digest(Utils.Buffoon.make(buffer));
 	}
 
 	public static sha256(buffer: Buffer | string | Buffer[]): Buffer {
@@ -18,10 +19,6 @@ export class HashAlgorithms {
 			return sha256.final();
 		}
 
-		return SHA256.digest(this.bufferize(buffer));
-	}
-
-	private static bufferize(buffer: Buffer | string) {
-		return buffer instanceof Buffer ? buffer : Buffer.from(buffer);
+		return SHA256.digest(Utils.Buffoon.make(buffer));
 	}
 }
