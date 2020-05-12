@@ -3,18 +3,18 @@ import { BigNumber } from "@arkecosystem/utils";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
 	public address(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "address");
+		return this.data.id;
 	}
 
 	public publicKey(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "publicKey");
+		return this.data.id;
 	}
 
 	public balance(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "balance");
+		return BigNumber.make(this.data.balances[0].balance * 1e8);
 	}
 
 	public nonce(): BigNumber {
-		return BigNumber.ZERO;
+		return BigNumber.make(this.data.sequence);
 	}
 }
