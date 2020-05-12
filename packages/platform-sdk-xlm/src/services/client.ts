@@ -1,16 +1,27 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import Stellar from "stellar-sdk";
 
 import { DelegateData, TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
-	readonly #baseUrl: string;
+	readonly #client;
 
-	private constructor(peer: string) {
-		this.#baseUrl = `${peer}/api`;
+	readonly #broadcastErrors: Record<string, string> = {
+		op_malformed: "ERR_MALFORMED",
+		op_underfunded: "ERR_INSUFFICIENT_FUNDS",
+		op_low_reserve: "ERR_LOW_RESERVE",
+		op_line_full: "ERR_LINE_FULL",
+		op_no_issuer: "ERR_NO_ISSUER",
+	};
+
+	private constructor(network: string) {
+		this.#client = new Stellar.Server(
+			{ live: "https://horizon.stellar.org", test: "https://horizon-testnet.stellar.org" }[network],
+		);
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
-		return new ClientService(opts.peer);
+		return new ClientService(opts.network);
 	}
 
 	public async destruct(): Promise<void> {
@@ -18,17 +29,30 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
+		const transaction = await this.#client.transactions().transaction(id).call();
+		const operations = await transaction.operations();
+
+		return new TransactionData({
+			...transaction,
+			...{ operation: operations.records[0] },
+		});
 	}
 
 	public async transactions(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
+		const { records, next, prev } = await this.#client.transactions().forAccount(query.address).call();
+
+		return {
+			meta: {},
+			data: records
+				.filter((transaction) => transaction.type === "payment")
+				.map((transaction) => new TransactionData(transaction)),
+		};
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
+		return new WalletData(await this.#client.loadAccount(id));
 	}
 
 	public async wallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
@@ -58,14 +82,37 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
-	}
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
 
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.Http.new(this.#baseUrl).get(path, query);
-	}
+		for (const transaction of transactions) {
+			try {
+				const { id } = await this.#client.submitTransaction(transaction);
 
-	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.Http.new(this.#baseUrl).post(path, body);
+				result.accepted.push(id);
+			} catch (err) {
+				const { extras } = err.response.data;
+				const transactionId: string = extras.envelope_xdr; // todo: get the transaction ID
+
+				result.rejected.push(transactionId);
+
+				if (!Array.isArray(result.errors[transactionId])) {
+					result.errors[transactionId] = [];
+				}
+
+				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
+					for (const operation of extras.result_codes.operations) {
+						if (operation.includes(key)) {
+							result.errors[transactionId].push(value);
+						}
+					}
+				}
+			}
+		}
+
+		return result;
 	}
 }
