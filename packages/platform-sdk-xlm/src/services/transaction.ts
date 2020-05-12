@@ -1,8 +1,35 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import Stellar from "stellar-sdk";
+
+import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #client;
+	readonly #networkPassphrase;
+	readonly #identity: IdentityService;
+
+	readonly #networks = {
+		live: {
+			host: "https://horizon.stellar.org",
+			networkPassphrase: Stellar.Networks.MAINNET,
+		},
+		test: {
+			host: "https://horizon-testnet.stellar.org",
+			networkPassphrase: Stellar.Networks.TESTNET,
+		},
+	};
+
+	private constructor(options) {
+		this.#client = new Stellar.Server(this.#networks[options.network].host);
+		this.#networkPassphrase = this.#networks[options.network].networkPassphrase;
+		this.#identity = options.identity;
+	}
+
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		return new TransactionService();
+		return new TransactionService({
+			network: opts.network,
+			identity: await IdentityService.construct(opts),
+		});
 	}
 
 	public async destruct(): Promise<void> {
@@ -13,7 +40,27 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transfer");
+		const { publicKey, privateKey } = await this.#identity.keys().fromPassphrase(input.sign.passphrase);
+
+		const account = await this.#client.loadAccount(publicKey);
+
+		const transaction = new Stellar.TransactionBuilder(account, {
+			fee: input.fee || Stellar.BASE_FEE,
+			networkPassphrase: this.#networkPassphrase,
+		})
+			.addOperation(
+				Stellar.Operation.payment({
+					destination: input.data.to,
+					asset: Stellar.Asset.native(),
+					amount: `${input.data.amount}`,
+				}),
+			)
+			.setTimeout(30) // todo: support expiration
+			.build();
+
+		transaction.sign(Stellar.Keypair.fromSecret(privateKey));
+
+		return transaction;
 	}
 
 	public async secondSignature(
