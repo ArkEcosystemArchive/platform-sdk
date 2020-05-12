@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, Utils } from "@arkecosystem/platform-sdk";
 import StellarHDWallet from "stellar-hd-wallet";
 import Stellar from "stellar-sdk";
 
@@ -18,14 +18,14 @@ export class MessageService implements Contracts.MessageService {
 		return {
 			message: input.message,
 			signer: source.publicKey(),
-			signature: source.sign(Buffer.from(input.message, "utf8")).toString("hex"),
+			signature: source.sign(Utils.Buffoon.fromUTF8(input.message)).toString("hex"),
 		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		return Stellar.Keypair.fromPublicKey(input.signer).verify(
-			Buffer.from(input.message, "utf8"),
-			Buffer.from(input.signature, "hex"),
+			Utils.Buffoon.fromUTF8(input.message),
+			Utils.Buffoon.fromHex(input.signature),
 		);
 	}
 }

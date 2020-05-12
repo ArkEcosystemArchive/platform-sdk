@@ -1,4 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import Wallet from "ethereumjs-wallet";
 
 import { createWallet, getAddress } from "./utils";
@@ -13,11 +13,11 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPublicKey(publicKey: string): Promise<string> {
-		return getAddress(Wallet.fromPublicKey(Buffer.from(publicKey, "hex")));
+		return getAddress(Wallet.fromPublicKey(Utils.Buffoon.fromHex(publicKey)));
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<string> {
-		return getAddress(Wallet.fromPrivateKey(Buffer.from(privateKey, "hex")));
+		return getAddress(Wallet.fromPrivateKey(Utils.Buffoon.fromHex(privateKey)));
 	}
 
 	public async fromWIF(wif: string): Promise<string> {
