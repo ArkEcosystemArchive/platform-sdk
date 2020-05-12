@@ -70,6 +70,7 @@ describe("ClientService", function () {
 			expect(result.address()).toBe("0x33605918275099dfEF77A56e4e8C0103b881d584");
 			expect(result.publicKey()).toBeUndefined();
 			expect(result.balance()).toEqual(BigNumber.make("3998865647999999997"));
+			expect(result.nonce()).toEqual(BigNumber.make(9));
 		});
 	});
 

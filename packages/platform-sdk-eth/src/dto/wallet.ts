@@ -15,6 +15,6 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public nonce(): BigNumber {
-		return BigNumber.ZERO;
+		return BigNumber.make(parseInt(this.data.nonce, 16));
 	}
 }
