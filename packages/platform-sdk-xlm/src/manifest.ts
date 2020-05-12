@@ -69,8 +69,8 @@ export const manifest = {
 			wallet: true,
 		},
 		Message: {
-			sign: false,
-			verify: false,
+			sign: true,
+			verify: true,
 		},
 		Peer: {
 			search: false,
