@@ -1,11 +1,19 @@
 import "jest-extended";
 import nock from "nock";
+import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
 
 import { Factory } from "../src/factory";
 
 afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
+
+const createMockTransport = async () =>
+	createTransportReplayer(
+		RecordStore.fromString(`
+=> e006000000
+<= 000200019000`),
+	).open();
 
 describe("Factory", function () {
 	it("should construct and destruct", async () => {
@@ -24,7 +32,9 @@ describe("Factory", function () {
 				client: {},
 				fee: {},
 				identity: {},
-				ledger: {},
+				ledger: {
+					transport: await createMockTransport(),
+				},
 				link: {},
 				message: {},
 				peer: {},

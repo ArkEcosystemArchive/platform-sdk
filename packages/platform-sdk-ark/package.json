@@ -24,6 +24,7 @@
 		"@arkecosystem/ledger-transport": "^1.0.5",
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/utils": "^1.1.8",
+		"@ledgerhq/hw-transport-node-hid-singleton": "^5.15.0",
 		"is-url-superb": "^3.0.0",
 		"ky": "^0.19.1",
 		"ky-universal": "^0.6.0",
@@ -31,6 +32,7 @@
 		"semver": "^7.3.2"
 	},
 	"devDependencies": {
+		"@ledgerhq/hw-transport-mocker": "^5.15.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^6.8.0",
 		"@types/eslint-plugin-prettier": "^3.1.0",
