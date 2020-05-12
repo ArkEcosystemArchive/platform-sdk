@@ -2,18 +2,21 @@ import { NumberLike } from "../contracts";
 
 export class NumberFormatter {
 	readonly #locale: string;
-	readonly #style: number;
+	readonly #options: Intl.NumberFormatOptions;
 
-	public constructor(locale: string, style: number) {
+	public constructor (locale: string, options?: Intl.NumberFormatOptions) {
 		this.#locale = locale;
-		this.#style = style;
+		this.#options = options || {};
 	}
 
-	public static format(value: NumberLike): string {
-		return "";
+	public format(value: NumberLike): string {
+		return new Intl.NumberFormat(this.#locale).format(value);
 	}
 
-	public static formatCurrency(value: NumberLike, currency: string): string {
-		return "";
+	public formatCurrency(value: NumberLike, currency: string): string {
+		return new Intl.NumberFormat(this.#locale, {
+			...this.#options,
+			...{ currency }
+		}).format(value);
 	}
 }
