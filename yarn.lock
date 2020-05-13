@@ -571,6 +571,9 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xrp@workspace:packages/platform-sdk-xrp"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@ledgerhq/hw-app-xrp": ^5.15.0
+    "@ledgerhq/hw-transport-mocker": ^5.15.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -1442,6 +1445,16 @@ __metadata:
   version: 5.15.0
   resolution: "@ledgerhq/errors@npm:5.15.0"
   checksum: 2/9bbff90fb17810463d47adae527ddd77fe2d3cc2d7cc51f6ffe5724ebaec1ad54ddc1739c7b30e29719f38f0d8543143edd7c759f38a63a8af9c73d459fa3e9d
+  languageName: node
+  linkType: hard
+
+"@ledgerhq/hw-app-xrp@npm:^5.15.0":
+  version: 5.15.0
+  resolution: "@ledgerhq/hw-app-xrp@npm:5.15.0"
+  dependencies:
+    "@ledgerhq/hw-transport": ^5.15.0
+    bip32-path: 0.4.2
+  checksum: 2/f7c4dc0daea6194654de472f356f756a9a7e30ca56d459fe741add2b83eaeb488a3dd0f3e60ea64f6bc306ee30c81fd25430b32db0e52df39bd1c7449e3ba751
   languageName: node
   linkType: hard
 
@@ -4160,6 +4173,13 @@ __metadata:
   version: 1.0.1
   resolution: "bip174@npm:1.0.1"
   checksum: 2/6a87960aa2fd81c472f4a87f38b8c7281f22ed6602158402e4b10ab7c5a206f57a726bbb6560ce1f6c69a1c57529ccbe46c4e8d4f34106d36f5c9ecbdd8555a4
+  languageName: node
+  linkType: hard
+
+"bip32-path@npm:0.4.2":
+  version: 0.4.2
+  resolution: "bip32-path@npm:0.4.2"
+  checksum: 2/e4416f5b16993d27f5642c059d23d4416333344160b9c7044f6944b0c12fac8c92bdcd0c9a342a6d9d114edb6f3fff8fc4f36da6aaa9e0b6716761238262f79b
   languageName: node
   linkType: hard
 
