@@ -23,7 +23,6 @@
 		"@arkecosystem/crypto": "^2.6.34",
 		"@arkecosystem/ledger-transport": "^1.0.5",
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
-		"@arkecosystem/utils": "^1.1.8",
 		"@ledgerhq/hw-transport-node-hid-singleton": "^5.15.0",
 		"is-url-superb": "^3.0.0",
 		"ky": "^0.19.1",

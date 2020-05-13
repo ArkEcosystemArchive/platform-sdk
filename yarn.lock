@@ -55,7 +55,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-ada@workspace:packages/platform-sdk-ada"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -91,7 +90,6 @@ __metadata:
     "@arkecosystem/crypto": ^2.6.34
     "@arkecosystem/ledger-transport": ^1.0.5
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
@@ -134,7 +132,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-atom@workspace:packages/platform-sdk-atom"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -169,7 +166,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-btc@workspace:packages/platform-sdk-btc"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -205,7 +201,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-coincap@workspace:packages/platform-sdk-coincap"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -238,7 +233,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-coingecko@workspace:packages/platform-sdk-coingecko"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -271,7 +265,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-cryptocompare@workspace:packages/platform-sdk-cryptocompare"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -304,7 +297,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eos@workspace:packages/platform-sdk-eos"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -340,7 +332,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eth@workspace:packages/platform-sdk-eth"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -377,7 +368,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-lsk@workspace:packages/platform-sdk-lsk"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@liskhq/lisk-client": ^2.0
     "@liskhq/lisk-cryptography": ^2.4
     "@liskhq/lisk-transactions": ^2.0
@@ -448,7 +438,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-neo@workspace:packages/platform-sdk-neo"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@cityofzion/neon-js": ^4.7.2
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
@@ -482,7 +471,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-trx@workspace:packages/platform-sdk-trx"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -516,7 +504,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xlm@workspace:packages/platform-sdk-xlm"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -551,7 +538,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xmr@workspace:packages/platform-sdk-xmr"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -585,7 +571,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xrp@workspace:packages/platform-sdk-xrp"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -625,7 +610,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk@workspace:packages/platform-sdk"
   dependencies:
-    "@arkecosystem/utils": ^1.1.8
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -658,7 +642,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arkecosystem/utils@npm:^1.1, @arkecosystem/utils@npm:^1.1.8":
+"@arkecosystem/utils@npm:^1.1":
   version: 1.1.8
   resolution: "@arkecosystem/utils@npm:1.1.8"
   dependencies:

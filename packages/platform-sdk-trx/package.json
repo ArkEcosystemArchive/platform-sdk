@@ -23,7 +23,6 @@
 		"tronweb": "^2.10.1"
 	},
 	"devDependencies": {
-		"@arkecosystem/utils": "^1.1.8",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^6.8.0",
 		"@types/eslint-plugin-prettier": "^3.1.0",

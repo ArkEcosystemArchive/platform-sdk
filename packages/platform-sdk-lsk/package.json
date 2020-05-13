@@ -20,7 +20,6 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
-		"@arkecosystem/utils": "^1.1.8",
 		"@liskhq/lisk-client": "^2.0",
 		"@liskhq/lisk-cryptography": "^2.4",
 		"@liskhq/lisk-transactions": "^2.0"
