@@ -6,12 +6,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.id;
 	}
 
-	public type(): number | undefined {
-		return this.data.type;
-	}
-
-	public typeGroup(): number | undefined {
-		return undefined;
+	public type(): string {
+		return "transfer";
 	}
 
 	public timestamp(): number | undefined {
