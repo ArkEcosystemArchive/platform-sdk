@@ -22,10 +22,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return Utils.BigNumber.ZERO;
 	}
 
-	public nonce(): Utils.BigNumber {
-		return Utils.BigNumber.ZERO;
-	}
-
 	public sender(): string {
 		const event = this.data.events.find((event) => event.type === "message");
 		const attribute = event.attributes.find((attribute) => attribute.key === "sender");

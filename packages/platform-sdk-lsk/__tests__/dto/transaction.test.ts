@@ -29,10 +29,6 @@ describe("TransactionData", function () {
 		expect(subject.confirmations()).toEqual(Utils.BigNumber.make(35754));
 	});
 
-	test("#nonce", () => {
-		expect(subject.nonce()).toEqual(Utils.BigNumber.ZERO);
-	});
-
 	test("#sender", () => {
 		expect(subject.sender()).toBe("1a3aec07d0ff815c910d4c707a66b58a692dacb3de9d7d95a085bcee93738a07");
 	});

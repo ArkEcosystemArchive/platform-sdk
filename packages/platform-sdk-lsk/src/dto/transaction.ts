@@ -22,10 +22,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return Utils.BigNumber.make(this.data.confirmations);
 	}
 
-	public nonce(): Utils.BigNumber {
-		return Utils.BigNumber.ZERO;
-	}
-
 	public sender(): string {
 		return this.data.senderPublicKey;
 	}
