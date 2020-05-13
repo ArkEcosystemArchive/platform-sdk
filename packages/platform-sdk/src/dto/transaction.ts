@@ -26,7 +26,7 @@ export abstract class AbstractTransactionData {
 
 	abstract memo(): string | undefined;
 
-	abstract asset(): any;
+	abstract asset(): object | undefined;
 
 	public toObject(): KeyValuePair {
 		return {

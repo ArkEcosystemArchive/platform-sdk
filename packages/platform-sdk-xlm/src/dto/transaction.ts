@@ -52,7 +52,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return undefined;
 	}
 
-	public asset(): any {
-		throw new Exceptions.NotImplemented(this.constructor.name, "asset");
+	public asset(): object | undefined { {
+		return {};
 	}
 }
