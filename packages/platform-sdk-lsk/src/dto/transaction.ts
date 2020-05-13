@@ -1,13 +1,21 @@
-import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { Utils } from "@arkecosystem/platform-sdk";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
+	readonly #types = {
+		8: "transfer",
+		9: "secondSignature",
+		10: "delegateRegistration",
+		11: "vote",
+		12: "multiSignature",
+	};
+
 	public id(): string {
 		return this.data.id;
 	}
 
 	public type(): string {
-		return "transfer";
+		return this.#types[this.data.type];
 	}
 
 	public timestamp(): number | undefined {
