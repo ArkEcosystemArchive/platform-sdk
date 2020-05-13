@@ -18,15 +18,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		throw new Exceptions.NotImplemented(this.constructor.name, "confirmations");
 	}
 
-	// todo: with the "transaction" method we get a nonce but with "transactions" it isn't available
-	public nonce(): Utils.BigNumber {
-		if (this.data.source_account_sequence) {
-			return Utils.BigNumber.make(this.data.source_account_sequence);
-		}
-
-		return Utils.BigNumber.ZERO;
-	}
-
 	public sender(): string {
 		return this.data.from || this.data.operation.from;
 	}

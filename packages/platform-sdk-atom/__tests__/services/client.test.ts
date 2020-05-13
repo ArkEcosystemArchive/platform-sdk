@@ -28,7 +28,6 @@ describe("ClientService", function () {
 			expect(result.type()).toBe("transfer");
 			expect(result.timestamp()).toBe(1576957341000);
 			expect(result.confirmations()).toEqual(Utils.BigNumber.ZERO);
-			expect(result.nonce()).toEqual(Utils.BigNumber.ZERO);
 			expect(result.sender()).toBe("cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0");
 			expect(result.recipient()).toBe("cosmos14ddvyl5t0hzmknceuv3zzu5szuum4rkygpq5ln");
 			expect(result.amount()).toEqual(Utils.BigNumber.make(10680));
@@ -53,7 +52,6 @@ describe("ClientService", function () {
 			expect(result.data[0].type()).toBe("transfer");
 			expect(result.data[0].timestamp()).toBe(1576957341000);
 			expect(result.data[0].confirmations()).toEqual(Utils.BigNumber.ZERO);
-			expect(result.data[0].nonce()).toEqual(Utils.BigNumber.ZERO);
 			expect(result.data[0].sender()).toBe("cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0");
 			expect(result.data[0].recipient()).toBe("cosmos14ddvyl5t0hzmknceuv3zzu5szuum4rkygpq5ln");
 			expect(result.data[0].amount()).toEqual(Utils.BigNumber.make(10680));

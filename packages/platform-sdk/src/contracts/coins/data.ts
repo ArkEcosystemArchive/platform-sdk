@@ -10,8 +10,6 @@ export interface TransactionData {
 
 	confirmations(): BigNumber;
 
-	nonce(): BigNumber;
-
 	sender(): string;
 
 	recipient(): string;

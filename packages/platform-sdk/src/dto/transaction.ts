@@ -12,8 +12,6 @@ export abstract class AbstractTransactionData {
 
 	abstract confirmations(): BigNumber;
 
-	abstract nonce(): BigNumber;
-
 	abstract sender(): string;
 
 	abstract recipient(): string;
@@ -32,7 +30,6 @@ export abstract class AbstractTransactionData {
 			type: this.type(),
 			timestamp: this.timestamp(),
 			confirmations: this.confirmations(),
-			nonce: this.nonce(),
 			sender: this.sender(),
 			recipient: this.recipient(),
 			amount: this.amount(),

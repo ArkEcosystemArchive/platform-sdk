@@ -18,10 +18,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		throw new Exceptions.NotImplemented(this.constructor.name, "confirmations");
 	}
 
-	public nonce(): Utils.BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "nonce");
-	}
-
 	public sender(): string {
 		throw new Exceptions.NotImplemented(this.constructor.name, "sender");
 	}
