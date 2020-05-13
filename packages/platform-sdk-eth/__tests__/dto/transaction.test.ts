@@ -14,11 +14,7 @@ describe("TransactionData", function () {
 	});
 
 	test("#type", () => {
-		expect(subject.type()).toBeUndefined();
-	});
-
-	test("#typeGroup", () => {
-		expect(subject.typeGroup()).toBeUndefined();
+		expect(subject.type()).toBe("transfer");
 	});
 
 	test("#timestamp", () => {

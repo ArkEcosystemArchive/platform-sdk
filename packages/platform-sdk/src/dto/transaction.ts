@@ -6,9 +6,7 @@ export abstract class AbstractTransactionData {
 
 	abstract id(): string;
 
-	abstract type(): number | undefined;
-
-	abstract typeGroup(): number | undefined;
+	abstract type(): string;
 
 	abstract timestamp(): number | undefined;
 
@@ -32,7 +30,6 @@ export abstract class AbstractTransactionData {
 		return {
 			id: this.id(),
 			type: this.type(),
-			typeGroup: this.typeGroup(),
 			timestamp: this.timestamp(),
 			confirmations: this.confirmations(),
 			nonce: this.nonce(),

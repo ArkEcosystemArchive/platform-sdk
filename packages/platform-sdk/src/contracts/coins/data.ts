@@ -4,9 +4,7 @@ import { KeyValuePair } from "../types";
 export interface TransactionData {
 	id(): string;
 
-	type(): number | undefined;
-
-	typeGroup(): number | undefined;
+	type(): string;
 
 	timestamp(): number | undefined;
 

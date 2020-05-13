@@ -25,8 +25,7 @@ describe("ClientService", function () {
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
 			expect(result.data[0].id()).toBe("718bc4cfc50c361a8afe032e2c170dfebadce16ea72228a57634413b62b7cf24");
-			// expect(result.data[0].type()).toBeUndefined();
-			// expect(result.data[0].typeGroup()).toBeUndefined();
+			expect(result.data[0].type()).toBe("transfer");
 			expect(result.data[0].timestamp()).toBe(1588930966);
 			expect(result.data[0].confirmations()).toEqual(Utils.BigNumber.ZERO);
 			expect(result.data[0].nonce()).toEqual(Utils.BigNumber.ZERO);
