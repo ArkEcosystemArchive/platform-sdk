@@ -46,7 +46,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return undefined;
 	}
 
-	public blockId(): string {
-		return this.data.blockHeight;
+	public asset(): any {
+		throw new Exceptions.NotImplemented(this.constructor.name, "asset");
 	}
 }

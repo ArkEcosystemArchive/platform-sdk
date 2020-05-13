@@ -26,7 +26,7 @@ export abstract class AbstractTransactionData {
 
 	abstract memo(): string | undefined;
 
-	abstract blockId(): string;
+	abstract asset(): any;
 
 	public toObject(): KeyValuePair {
 		return {
@@ -41,7 +41,7 @@ export abstract class AbstractTransactionData {
 			amount: this.amount(),
 			fee: this.fee(),
 			vendorField: this.memo(),
-			blockId: this.blockId(),
+			asset: this.asset(),
 		};
 	}
 

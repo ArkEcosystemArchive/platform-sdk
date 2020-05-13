@@ -35,7 +35,6 @@ describe("ClientService", function () {
 			expect(result.amount()).toEqual(Utils.BigNumber.make(10680));
 			expect(result.fee()).toEqual(Utils.BigNumber.make(36875));
 			expect(result.memo()).toBe("Hello World");
-			expect(result.blockId()).toBe("14990");
 		});
 	});
 
@@ -62,7 +61,6 @@ describe("ClientService", function () {
 			expect(result.data[0].amount()).toEqual(Utils.BigNumber.make(10680));
 			expect(result.data[0].fee()).toEqual(Utils.BigNumber.make(36875));
 			expect(result.data[0].memo()).toBe("Hello World");
-			expect(result.data[0].blockId()).toBe("14990");
 		});
 	});
 

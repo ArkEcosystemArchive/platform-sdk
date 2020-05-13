@@ -53,10 +53,6 @@ describe("TransactionData", function () {
 		expect(subject.memo()).toBeUndefined();
 	});
 
-	test("#blockId", () => {
-		expect(subject.blockId()).toBe("13114381566690093367");
-	});
-
 	test("#toObject", () => {
 		expect(subject.toObject()).toBeObject();
 	});

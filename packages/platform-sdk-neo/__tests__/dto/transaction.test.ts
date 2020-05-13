@@ -28,6 +28,5 @@ describe("TransactionData", function () {
 		expect(result.amount()).toEqual(Utils.BigNumber.make(1));
 		expect(result.fee()).toEqual(Utils.BigNumber.ZERO);
 		// expect(result.memo()).toBeUndefined();
-		expect(result.blockId()).toBe(4259222);
 	});
 });

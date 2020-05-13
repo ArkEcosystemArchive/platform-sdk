@@ -1,4 +1,4 @@
-import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { Utils } from "@arkecosystem/platform-sdk";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
@@ -46,7 +46,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.data;
 	}
 
-	public blockId(): string {
-		return this.data.blockNumber;
+	public asset(): any {
+		throw new Exceptions.NotImplemented(this.constructor.name, "asset");
 	}
 }

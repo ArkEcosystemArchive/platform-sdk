@@ -35,7 +35,6 @@ describe("ClientService", function () {
 			expect(result.data[0].amount()).toEqual(Utils.BigNumber.make(1));
 			expect(result.data[0].fee()).toEqual(Utils.BigNumber.ZERO);
 			// expect(result.data[0].memo()).toBeUndefined();
-			expect(result.data[0].blockId()).toBe(4259222);
 		});
 	});
 

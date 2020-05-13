@@ -104,7 +104,6 @@ describe("ClientService", function () {
 			expect(result.amount()).toEqual(Utils.BigNumber.make(100000));
 			expect(result.fee()).toEqual(Utils.BigNumber.make(1000));
 			// expect(result.memo()).toBeUndefined();
-			// expect(result.blockId()).toBeUndefined();
 		});
 	});
 
