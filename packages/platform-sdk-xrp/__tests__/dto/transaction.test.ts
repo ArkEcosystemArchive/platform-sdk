@@ -11,8 +11,7 @@ describe("TransactionData", function () {
 
 		expect(result).toBeInstanceOf(TransactionData);
 		expect(result.id()).toBe("F4AB442A6D4CBB935D66E1DA7309A5FC71C7143ED4049053EC14E3875B0CF9BF");
-		// expect(result.type()).toBeUndefined();
-		// expect(result.typeGroup()).toBeUndefined();
+		expect(result.type()).toBe("transfer");
 		expect(result.timestamp()).toBe(1363132610000);
 		expect(result.confirmations()).toEqual(Utils.BigNumber.ZERO);
 		expect(result.sender()).toBe("r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59");
