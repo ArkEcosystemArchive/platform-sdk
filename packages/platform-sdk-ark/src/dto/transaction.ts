@@ -53,7 +53,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.vendorField;
 	}
 
-	public asset(): any {
+	public asset(): object | undefined {
 		return this.data.asset;
 	}
 }

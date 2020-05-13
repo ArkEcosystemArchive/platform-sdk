@@ -24,7 +24,7 @@ export interface TransactionData {
 
 	memo(): string | undefined;
 
-	asset(): any;
+	asset(): object | undefined;
 
 	toObject(): KeyValuePair;
 }
