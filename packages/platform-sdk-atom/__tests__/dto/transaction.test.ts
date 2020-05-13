@@ -21,6 +21,5 @@ describe("TransactionData", function () {
 		expect(result.amount()).toEqual(Utils.BigNumber.make(10680));
 		expect(result.fee()).toEqual(Utils.BigNumber.make(36875));
 		expect(result.memo()).toBe("Hello World");
-		expect(result.blockId()).toBe("14990");
 	});
 });

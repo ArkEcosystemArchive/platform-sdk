@@ -46,7 +46,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		throw new Exceptions.NotImplemented(this.constructor.name, "memo");
 	}
 
-	public blockId(): string {
-		return this.data.block_height;
+	public asset(): any {
+		throw new Exceptions.NotImplemented(this.constructor.name, "asset");
 	}
 }

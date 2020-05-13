@@ -53,10 +53,6 @@ describe("TransactionData", function () {
 		expect(subject.memo()).toBe("Account initialization");
 	});
 
-	test("#blockId", () => {
-		expect(subject.blockId()).toBe("6722847676494099642");
-	});
-
 	test("#toObject", () => {
 		expect(subject.toObject()).toBeObject();
 	});
