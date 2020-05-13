@@ -29,7 +29,6 @@ describe("ClientService", function () {
 			// expect(result.data[0].typeGroup()).toBeUndefined();
 			expect(result.data[0].timestamp()).toBe(1588930966);
 			expect(result.data[0].confirmations()).toEqual(Utils.BigNumber.ZERO);
-			expect(result.data[0].nonce()).toEqual(Utils.BigNumber.ZERO);
 			expect(result.data[0].sender()).toBe("AStJyBXGGBK6bwrRfRUHSjp993PB5C9QgF");
 			expect(result.data[0].recipient()).toBe("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");
 			expect(result.data[0].amount()).toEqual(Utils.BigNumber.make(1));

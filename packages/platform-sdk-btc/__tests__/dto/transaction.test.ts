@@ -15,7 +15,6 @@ describe("TransactionData", function () {
 		expect(result.typeGroup()).toBeUndefined();
 		expect(result.timestamp()).toBe(1561095453000);
 		expect(result.confirmations()).toEqual(Utils.BigNumber.make(159414));
-		expect(result.nonce()).toEqual(Utils.BigNumber.ZERO);
 		// expect(result.sender()).toBe("...");
 		// expect(result.recipient()).toBe("...");
 		expect(result.amount()).toEqual(Utils.BigNumber.make(3050000));
