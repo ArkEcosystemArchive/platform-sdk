@@ -41,7 +41,7 @@ describe("ClientService", function () {
 			expect(result.recipient()).toBe("GB2V4J7WTTKLIN5O3QPUAQCOLLIIULJM3FHHAQ7GEQ5EH53BXXQ47HU3");
 			expect(result.amount()).toEqual(Utils.BigNumber.make("100000000"));
 			expect(result.fee()).toEqual(Utils.BigNumber.make("10000000000"));
-			// expect(result.memo()).toBeUndefined();
+			expect(result.memo()).toBeUndefined();
 		});
 	});
 
@@ -68,7 +68,7 @@ describe("ClientService", function () {
 			expect(data[0].recipient()).toBe("GBYUUJHG6F4EPJGNLERINATVQLNDOFRUD7SGJZ26YZLG5PAYLG7XUSGF");
 			expect(data[0].amount()).toEqual(Utils.BigNumber.make("100000000000000"));
 			// expect(data[0].fee()).toEqual(Utils.BigNumber.make("10000000000"));
-			// expect(data[0].memo()).toBeUndefined();
+			expect(data[0].memo()).toBeUndefined();
 		});
 	});
 
