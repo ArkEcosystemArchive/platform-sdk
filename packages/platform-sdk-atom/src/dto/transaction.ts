@@ -56,7 +56,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.tx.value.memo;
 	}
 
-	public asset(): object | undefined { {
+	public asset(): object | undefined {
 		return {};
 	}
 }
