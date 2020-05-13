@@ -49,7 +49,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public memo(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "memo");
+		return undefined;
 	}
 
 	public asset(): any {

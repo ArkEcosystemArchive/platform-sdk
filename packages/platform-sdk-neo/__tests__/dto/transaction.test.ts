@@ -27,6 +27,6 @@ describe("TransactionData", function () {
 		expect(result.recipient()).toBe("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");
 		expect(result.amount()).toEqual(Utils.BigNumber.make(1));
 		expect(result.fee()).toEqual(Utils.BigNumber.ZERO);
-		// expect(result.memo()).toBeUndefined();
+		expect(result.memo()).toBeUndefined();
 	});
 });
