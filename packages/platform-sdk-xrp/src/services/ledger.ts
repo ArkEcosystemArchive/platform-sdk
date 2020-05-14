@@ -12,7 +12,7 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public static async construct(opts: Contracts.LedgerOptions): Promise<LedgerService> {
-		return new LedgerService(opts.transport);
+		return new LedgerService(opts.transport || (await LedgerTransport.create()));
 	}
 
 	public async destruct(): Promise<void> {
@@ -20,19 +20,19 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public async getVersion(): Promise<string> {
-		return await this.#transport.getAppConfiguration().then((result) => {
-			return result.version;
-		});
+		const { version } = await this.#transport.getAppConfiguration();
+		
+		return version;
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
-		return await this.#transport.getAddress(path).then((result) => {
-			return result.publicKey;
-		});
+		const { publicKey } = await this.#transport.getAddress(path);
+		
+		return publicKey;
 	}
 
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
-		return await this.#transport.signTransaction(path, payload);
+		return this.#transport.signTransaction(path, payload);
 	}
 
 	public async signTransactionWithSchnorr(path: string, payload: Buffer): Promise<string> {
