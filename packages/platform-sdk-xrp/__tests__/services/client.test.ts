@@ -11,6 +11,8 @@ let subject: ClientService;
 let wss;
 let receivedSubmit;
 
+jest.setTimeout(30000);
+
 beforeAll(async () => {
 	wss = new WebSocket.Server({ port: 51233 });
 
@@ -18,7 +20,7 @@ beforeAll(async () => {
 		ws.on("message", function incoming(message) {
 			// console.log(`RECEIVED: ${message}`);
 
-			const { id, command, tx_blob } = JSON.parse(message);
+			const { id, command } = JSON.parse(message);
 
 			if (command === "subscribe") {
 				ws.send(
@@ -105,15 +107,24 @@ describe("ClientService", function () {
 		});
 	});
 
-	// todo: always results in "MissingLedgerHistoryError: Server is missing ledger history in the specified range"
-	describe.skip("#transactions", () => {
+	describe("#transactions", () => {
 		it("should succeed", async () => {
 			const result = await subject.transactions({
 				address: "r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59",
+				limit: 10
 			});
 
 			expect(result.data).toBeArray();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
+			expect(result.data[0].id()).toBe("99404A34E8170319521223A6C604AF48B9F1E3000C377E6141F9A1BF60B0B865");
+			expect(result.data[0].type()).toBe("transfer");
+			expect(result.data[0].timestamp()).toBeUndefined();
+			expect(result.data[0].confirmations()).toEqual(Utils.BigNumber.ZERO);
+			expect(result.data[0].sender()).toBe("r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59");
+			expect(result.data[0].recipient()).toBe("rMH4UxPrbuMa1spCBR98hLLyNJp4d8p4tM");
+			expect(result.data[0].amount()).toEqual(Utils.BigNumber.make(100000));
+			expect(result.data[0].fee()).toEqual(Utils.BigNumber.make(1000));
+			expect(result.data[0].memo()).toBeUndefined();
 		});
 	});
 

@@ -152,9 +152,20 @@ export class ClientService implements Contracts.ClientService {
 	public async transactions(
 		query: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
-		const transactions = await this.#connection.getTransactions(query.address, { types: ["payment"] });
+		const transactions = await this.#connection.getTransactions(query.address, {
+			earliestFirst: true,
+			types: ["payment"],
+			limit: query.limit || 100,
+			// includeRawTransactions: true,
+		});
 
-		return { meta: {}, data: transactions.map((transaction) => new TransactionData(transaction)) };
+		return {
+			meta: {},
+			data: transactions
+				// @ts-ignore
+				.filter((transaction) => transaction.specification.source.maxAmount.currency === "XRP")
+				.map((transaction) => new TransactionData(transaction)),
+		};
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {

@@ -12,6 +12,10 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public timestamp(): number | undefined {
+		if (!this.data.outcome.timestamp) {
+			return undefined;
+		}
+
 		return +new Date(this.data.outcome.timestamp);
 	}
 
