@@ -1,8 +1,18 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Api, JsonRpc } from "eosjs";
+import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
+import fetch from "node-fetch";
+import { TextDecoder, TextEncoder } from "util";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #peer: string;
+
+	private constructor(peer: string) {
+		this.#peer = peer;
+	}
+
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		return new TransactionService();
+		return new TransactionService(opts.peer);
 	}
 
 	public async destruct(): Promise<void> {
@@ -13,6 +23,50 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
+		const { client, signatureProvider } = this.getClient(input.sign.passphrase);
+
+		const transfer = await client.transact(
+			{
+				actions: [
+					{
+						account: "eosio.token",
+						name: "transfer",
+						authorization: [
+							{
+								actor: input.data.from,
+								permission: "active",
+							},
+						],
+						data: {
+							from: input.data.from,
+							to: input.data.to,
+							quantity: "0.0001 TNT",
+							memo: input.data.memo,
+						},
+					},
+				],
+			},
+			{
+				blocksBehind: 3,
+				expireSeconds: 30,
+				broadcast: false,
+				sign: false,
+			},
+		);
+
+		const keys = await signatureProvider.getAvailableKeys();
+		transfer.requiredKeys = keys;
+		transfer.chainId = "f16b1833c747c43682f4386fca9cbb327929334a762755ebec17f6f23c9b8a12";
+
+		const sigs = transfer.signatures || null;
+		const signed = await signatureProvider.sign(transfer);
+
+		if (sigs) {
+			signed.signatures = signed.signatures.concat(sigs);
+		}
+
+		return signed;
+
 		throw new Exceptions.NotImplemented(this.constructor.name, "transfer");
 	}
 
@@ -84,5 +138,19 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
+	}
+
+	private getClient(privateKey: string) {
+		const signatureProvider: JsSignatureProvider = new JsSignatureProvider([privateKey]);
+
+		return {
+			client: new Api({
+				rpc: new JsonRpc(this.#peer, { fetch }),
+				signatureProvider,
+				textDecoder: new TextDecoder(),
+				textEncoder: new TextEncoder(),
+			}),
+			signatureProvider,
+		};
 	}
 }
