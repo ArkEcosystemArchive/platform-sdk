@@ -896,6 +896,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-xrp", "workspace:packages/platform-sdk-xrp"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@ledgerhq/hw-app-xrp", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -1806,6 +1809,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@ledgerhq-errors-npm-5.15.0-0117a5ec9f-2.zip/node_modules/@ledgerhq/errors/",
           "packageDependencies": [
             ["@ledgerhq/errors", "npm:5.15.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@ledgerhq/hw-app-xrp", [
+        ["npm:5.15.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-xrp-npm-5.15.0-1b04f718e5-2.zip/node_modules/@ledgerhq/hw-app-xrp/",
+          "packageDependencies": [
+            ["@ledgerhq/hw-app-xrp", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport", "npm:5.15.0"],
+            ["bip32-path", "npm:0.4.2"]
           ],
           "linkType": "HARD",
         }]
@@ -5158,6 +5172,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["tiny-secp256k1", "npm:1.1.4"],
             ["typeforce", "npm:1.18.0"],
             ["wif", "npm:2.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["bip32-path", [
+        ["npm:0.4.2", {
+          "packageLocation": "./.yarn/cache/bip32-path-npm-0.4.2-e8ff6dbc0a-2.zip/node_modules/bip32-path/",
+          "packageDependencies": [
+            ["bip32-path", "npm:0.4.2"]
           ],
           "linkType": "HARD",
         }]

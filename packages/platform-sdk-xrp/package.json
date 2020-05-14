@@ -20,11 +20,14 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
+		"@ledgerhq/hw-app-xrp": "^5.15.0",
+		"@ledgerhq/hw-transport-node-hid-singleton": "^5.15.0",
 		"bignumber.js": "^9.0.0",
 		"ripple-keypairs": "^1.0.0",
 		"ripple-lib": "^1.6.5"
 	},
 	"devDependencies": {
+		"@ledgerhq/hw-transport-mocker": "^5.15.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^6.8.0",
 		"@types/eslint-plugin-prettier": "^3.1.0",
