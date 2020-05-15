@@ -25,12 +25,12 @@ describe("TransactionService", () => {
 	describe("#transfer", () => {
 		it("should verify", async () => {
 			const result: any = await subject.transfer({
-				nonce: 1,
+				nonce: "1",
 				sign: {
 					passphrase: "this is a top secret passphrase",
 				},
 				data: {
-					amount: 1,
+					amount: "1",
 					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 				},
 			});
@@ -42,7 +42,7 @@ describe("TransactionService", () => {
 	describe("#secondSignature", () => {
 		it("should verify", async () => {
 			const result: any = await subject.secondSignature({
-				nonce: 1,
+				nonce: "1",
 				sign: {
 					passphrase: "this is a top secret passphrase",
 				},
@@ -58,7 +58,7 @@ describe("TransactionService", () => {
 	describe("#delegateRegistration", () => {
 		it("should verify", async () => {
 			const result: any = await subject.delegateRegistration({
-				nonce: 1,
+				nonce: "1",
 				sign: {
 					passphrase: "this is a top secret passphrase",
 				},
@@ -74,7 +74,7 @@ describe("TransactionService", () => {
 	describe("#vote", () => {
 		it("should verify", async () => {
 			const result: any = await subject.vote({
-				nonce: 1,
+				nonce: "1",
 				sign: {
 					passphrase: "this is a top secret passphrase",
 				},
@@ -90,7 +90,7 @@ describe("TransactionService", () => {
 	describe("#multiSignature", () => {
 		it("should verify", async () => {
 			const result: any = await subject.multiSignature({
-				nonce: 1,
+				nonce: "1",
 				data: {
 					publicKeys: [
 						"039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
@@ -117,7 +117,7 @@ describe("TransactionService", () => {
 	describe("#ipfs", () => {
 		it("should verify", async () => {
 			const result: any = await subject.ipfs({
-				nonce: 1,
+				nonce: "1",
 				sign: {
 					passphrase: "this is a top secret passphrase",
 				},
@@ -131,15 +131,15 @@ describe("TransactionService", () => {
 	describe("#multiPayment", () => {
 		it("should verify", async () => {
 			const result: any = await subject.multiPayment({
-				nonce: 1,
+				nonce: "1",
 				sign: {
 					passphrase: "this is a top secret passphrase",
 				},
 				data: {
 					payments: [
-						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
-						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
-						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
+						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
+						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
+						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
 					],
 				},
 			});
@@ -151,7 +151,7 @@ describe("TransactionService", () => {
 	describe("#delegateResignation", () => {
 		it("should verify", async () => {
 			const result: any = await subject.delegateResignation({
-				nonce: 1,
+				nonce: "1",
 				sign: {
 					passphrase: "this is a top secret passphrase",
 				},
@@ -164,12 +164,12 @@ describe("TransactionService", () => {
 	describe("#htlcLock", () => {
 		it("should verify", async () => {
 			const result: any = await subject.htlcLock({
-				nonce: 1,
+				nonce: "1",
 				sign: {
 					passphrase: "this is a top secret passphrase",
 				},
 				data: {
-					amount: 1,
+					amount: "1",
 					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 					secretHash: "0f128d401958b1b30ad0d10406f47f9489321017b4614e6cb993fc63913c5454",
 					expiration: {
@@ -186,7 +186,7 @@ describe("TransactionService", () => {
 	describe("#htlcClaim", () => {
 		it("should verify", async () => {
 			const result: any = await subject.htlcClaim({
-				nonce: 1,
+				nonce: "1",
 				sign: {
 					passphrase: "this is a top secret passphrase",
 				},
@@ -203,7 +203,7 @@ describe("TransactionService", () => {
 	describe("#htlcRefund", () => {
 		it("should verify", async () => {
 			const result: any = await subject.htlcRefund({
-				nonce: 1,
+				nonce: "1",
 				sign: {
 					passphrase: "this is a top secret passphrase",
 				},
