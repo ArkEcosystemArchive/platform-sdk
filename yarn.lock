@@ -471,6 +471,9 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-trx@workspace:packages/platform-sdk-trx"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@ledgerhq/hw-app-trx": ^5.15.0
+    "@ledgerhq/hw-transport-mocker": ^5.15.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -1445,6 +1448,16 @@ __metadata:
   version: 5.15.0
   resolution: "@ledgerhq/errors@npm:5.15.0"
   checksum: 2/9bbff90fb17810463d47adae527ddd77fe2d3cc2d7cc51f6ffe5724ebaec1ad54ddc1739c7b30e29719f38f0d8543143edd7c759f38a63a8af9c73d459fa3e9d
+  languageName: node
+  linkType: hard
+
+"@ledgerhq/hw-app-trx@npm:^5.15.0":
+  version: 5.15.0
+  resolution: "@ledgerhq/hw-app-trx@npm:5.15.0"
+  dependencies:
+    "@ledgerhq/errors": ^5.15.0
+    "@ledgerhq/hw-transport": ^5.15.0
+  checksum: 2/9c35471c3d8008bd5e155f2314a6f6880ee2cc9fd99c5f432c8d24101ece659c12c80909e3c7f07c882cd256b4d7cbe3a7121db965bb81888e666fca01e954c4
   languageName: node
   linkType: hard
 

@@ -790,6 +790,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-trx", "workspace:packages/platform-sdk-trx"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@ledgerhq/hw-app-trx", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -1809,6 +1812,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@ledgerhq-errors-npm-5.15.0-0117a5ec9f-2.zip/node_modules/@ledgerhq/errors/",
           "packageDependencies": [
             ["@ledgerhq/errors", "npm:5.15.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@ledgerhq/hw-app-trx", [
+        ["npm:5.15.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-trx-npm-5.15.0-fea58c99a0-2.zip/node_modules/@ledgerhq/hw-app-trx/",
+          "packageDependencies": [
+            ["@ledgerhq/hw-app-trx", "npm:5.15.0"],
+            ["@ledgerhq/errors", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport", "npm:5.15.0"]
           ],
           "linkType": "HARD",
         }]
