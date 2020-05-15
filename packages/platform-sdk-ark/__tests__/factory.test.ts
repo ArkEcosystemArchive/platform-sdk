@@ -23,7 +23,7 @@ describe("Factory", function () {
 			.reply(200, require(`${__dirname}/__fixtures__/client/syncing.json`));
 
 		const result = await Factory.construct({
-			network: "test",
+			network: "devnet",
 			peer: "https://dexplorer.ark.io/api",
 			services: {
 				client: {},
