@@ -20,11 +20,15 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
+		"@ledgerhq/hw-transport-node-hid-singleton": "^5.15.0",
 		"@liskhq/lisk-client": "^2.0",
 		"@liskhq/lisk-cryptography": "^2.4",
-		"@liskhq/lisk-transactions": "^2.0"
+		"@liskhq/lisk-transactions": "^2.0",
+		"dpos-ledger-api": "^3.0.1",
+		"lisk-elements": "^2.4.3"
 	},
 	"devDependencies": {
+		"@ledgerhq/hw-transport-mocker": "^5.15.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^6.8.0",
 		"@types/eslint-plugin-prettier": "^3.1.0",

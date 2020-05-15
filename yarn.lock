@@ -371,6 +371,8 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-lsk@workspace:packages/platform-sdk-lsk"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@ledgerhq/hw-transport-mocker": ^5.15.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@liskhq/lisk-client": ^2.0
     "@liskhq/lisk-cryptography": ^2.4
     "@liskhq/lisk-transactions": ^2.0
@@ -385,6 +387,7 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dpos-ledger-api: ^3.0.1
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -392,6 +395,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    lisk-elements: ^2.4.3
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -4218,7 +4222,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bip32-path@npm:0.4.2":
+"bip32-path@npm:0.4.2, bip32-path@npm:^0.4.2":
   version: 0.4.2
   resolution: "bip32-path@npm:0.4.2"
   checksum: 2/e4416f5b16993d27f5642c059d23d4416333344160b9c7044f6944b0c12fac8c92bdcd0c9a342a6d9d114edb6f3fff8fc4f36da6aaa9e0b6716761238262f79b
@@ -6166,6 +6170,16 @@ __metadata:
   dependencies:
     is-obj: ^2.0.0
   checksum: 2/d2f62e0b5ec467edb8e278ab6070955f0a4aec973ec1fa837ff6152f3cdd96cd2a04c7e2626cb3eac4f639b8f6786b5b87d3c01df7ba729693c636cb78b7ae93
+  languageName: node
+  linkType: hard
+
+"dpos-ledger-api@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "dpos-ledger-api@npm:3.0.1"
+  dependencies:
+    bip32-path: ^0.4.2
+    crc: ^3.5.0
+  checksum: 2/17f466e6eddfc9153d7ec87bb34067e1f5f89a2a8b7bf380aa1a57b72872dabe085b4f429b10453f2103ed814b03a052cd61790b3dd8da1edaf292ae02b053a4
   languageName: node
   linkType: hard
 
@@ -10050,6 +10064,20 @@ fsevents@^2.1.2:
   version: 1.1.6
   resolution: "lines-and-columns@npm:1.1.6"
   checksum: 2/798b80ed7ae3fba34d43fe29591ccb4f16f6fca1da4e1f9922b92264b91d931012433c248daf8e44caa74feb40c0eaa0f27a14f8ee68b6ffb425f3c3f785af27
+  languageName: node
+  linkType: hard
+
+"lisk-elements@npm:^2.4.3":
+  version: 2.4.3
+  resolution: "lisk-elements@npm:2.4.3"
+  dependencies:
+    "@liskhq/lisk-api-client": 2.0.3
+    "@liskhq/lisk-constants": 1.2.3
+    "@liskhq/lisk-cryptography": 2.3.0
+    "@liskhq/lisk-passphrase": 2.0.3
+    "@liskhq/lisk-transactions": 2.3.1
+    "@types/node": 10.12.21
+  checksum: 2/8996c8f2a477e284a2754bd26c6ce50baec46ddedb7dc5ad20094cd7182b74d558be0fb101cbaa86abe8e989d172167390c5b4b31fcbcff92bbb3c60b2d17a4b
   languageName: node
   linkType: hard
 
