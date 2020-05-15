@@ -1,17 +1,20 @@
 export const manifest = {
 	name: "NEO",
 	networks: {
-		live: {
+		mainnet: {
 			ticker: "NEO",
 			explorer: "https://neotracker.io/",
+			crypto: {
+				slip44: 888,
+			},
 		},
-		test: {
+		testnet: {
 			ticker: "NEO",
 			explorer: "https://neoscan-testnet.io/",
+			crypto: {
+				slip44: 888,
+			},
 		},
-	},
-	crypto: {
-		slip44: 888,
 	},
 	behaviours: {
 		Client: {

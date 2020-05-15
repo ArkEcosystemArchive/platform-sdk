@@ -4,14 +4,17 @@ export const manifest = {
 		live: {
 			ticker: "XMR",
 			explorer: "https://moneroblocks.info/",
+			crypto: {
+				slip44: 123,
+			},
 		},
 		test: {
 			ticker: "XMR",
 			explorer: "https://dexplorer.ark.io/",
+			crypto: {
+				slip44: 123,
+			},
 		},
-	},
-	crypto: {
-		slip44: 123,
 	},
 	behaviours: {
 		Client: {

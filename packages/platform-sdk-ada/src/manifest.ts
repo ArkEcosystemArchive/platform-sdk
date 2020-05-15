@@ -1,17 +1,20 @@
 export const manifest = {
 	name: "Cardano",
 	networks: {
-		live: {
+		mainnet: {
 			ticker: "ADA",
 			explorer: "https://explorer.cardano.org/",
+			crypto: {
+				slip44: 1815,
+			},
 		},
-		test: {
+		testnet: {
 			ticker: "ADA",
 			explorer: "https://shelleyexplorer.cardano.org/",
+			crypto: {
+				slip44: 1815,
+			},
 		},
-	},
-	crypto: {
-		slip44: 1815,
 	},
 	behaviours: {
 		Client: {
