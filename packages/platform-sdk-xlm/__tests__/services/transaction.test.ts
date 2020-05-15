@@ -6,7 +6,7 @@ import { identity } from "../__fixtures__/identity";
 
 let subject: TransactionService;
 
-beforeEach(async () => (subject = await TransactionService.construct({ network: "test" })));
+beforeEach(async () => (subject = await TransactionService.construct({ network: "testnet" })));
 
 afterEach(() => nock.cleanAll());
 

@@ -5,7 +5,7 @@ import { Factory } from "../src/factory";
 describe("Factory", function () {
 	it("should construct and destruct", async () => {
 		const result = await Factory.construct({
-			network: "test",
+			network: "testnet",
 			peer: "https://dexplorer.ark.io/api",
 			services: {
 				client: {},

@@ -1,17 +1,46 @@
 export const manifest = {
 	name: "Ethereum",
 	networks: {
-		live: {
+		mainnet: {
 			ticker: "ETH",
 			explorer: "https://etherscan.io/",
+			crypto: {
+				chainId: 1,
+				slip44: 60,
+			},
 		},
-		test: {
+		ropsten: {
 			ticker: "ETH",
-			explorer: "https://rinkeby.etherscan.io/",
+			explorer: "https://ropsten.etherscan.io/",
+			crypto: {
+				chainId: 3,
+				slip44: 60,
+			},
 		},
-	},
-	crypto: {
-		slip44: 60,
+		rinkeby: {
+			rinkeby: "ETH",
+			explorer: "https://rinkeby.etherscan.io/",
+			crypto: {
+				chainId: 4,
+				slip44: 60,
+			},
+		},
+		goerli: {
+			ticker: "ETH",
+			explorer: "https://goerli.etherscan.io/",
+			crypto: {
+				chainId: 5,
+				slip44: 60,
+			},
+		},
+		kovan: {
+			ticker: "ETH",
+			explorer: "https://kovan.etherscan.io/",
+			crypto: {
+				chainId: 42,
+				slip44: 60,
+			},
+		},
 	},
 	behaviours: {
 		Client: {

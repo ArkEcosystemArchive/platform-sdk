@@ -7,7 +7,7 @@ let subject: TransactionService;
 
 beforeEach(
 	async () =>
-		(subject = await TransactionService.construct({ peer: "https://stargate.cosmos.network", network: "testnet" })),
+		(subject = await TransactionService.construct({ network: "cosmos.testnet", peer: "https://stargate.cosmos.network" })),
 );
 
 beforeAll(() => nock.disableNetConnect());

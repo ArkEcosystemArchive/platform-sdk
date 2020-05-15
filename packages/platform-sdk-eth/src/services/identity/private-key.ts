@@ -3,8 +3,16 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { createWallet } from "./utils";
 
 export class PrivateKey implements Contracts.PrivateKey {
+	readonly #slip44;
+
+	public constructor(slip44: number) {
+		this.#slip44 = slip44;
+	}
+
 	public async fromPassphrase(passphrase: string): Promise<string> {
-		return createWallet(passphrase).getPrivateKey().toString("hex");
+		return createWallet(passphrase, this.#slip44)
+			.getPrivateKey()
+			.toString("hex");
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

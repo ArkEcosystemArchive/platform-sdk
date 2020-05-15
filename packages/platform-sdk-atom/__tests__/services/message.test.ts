@@ -5,7 +5,7 @@ import { identity } from "../__fixtures__/identity";
 
 let subject: MessageService;
 
-beforeEach(async () => (subject = await MessageService.construct({})));
+beforeEach(async () => (subject = await MessageService.construct({ network: "cosmos.testnet" })));
 
 describe("MessageService", () => {
 	it("should sign and verify a message", async () => {

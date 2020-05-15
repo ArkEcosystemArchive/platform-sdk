@@ -56,6 +56,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
@@ -66,6 +67,7 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -93,6 +95,7 @@ __metadata:
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/is-url-superb": 3.0.0
@@ -106,6 +109,7 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -133,6 +137,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
@@ -145,6 +150,7 @@ __metadata:
     bech32: ^1.1.4
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -167,6 +173,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
@@ -180,6 +187,7 @@ __metadata:
     bitcore-lib: ^8.17.1
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -298,6 +306,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
@@ -308,6 +317,7 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dlv: ^1.1.3
     eosjs: ^20.0.3
     eosjs-ecc: ^4.0.7
     eslint: ^6.8.0
@@ -336,6 +346,7 @@ __metadata:
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
@@ -347,6 +358,7 @@ __metadata:
     bip39: ^3.0.2
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -375,6 +387,7 @@ __metadata:
     "@liskhq/lisk-cryptography": ^2.4
     "@liskhq/lisk-transactions": ^2.0
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
@@ -385,6 +398,7 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -443,6 +457,7 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@cityofzion/neon-js": ^4.7.2
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
@@ -453,6 +468,7 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -478,6 +494,7 @@ __metadata:
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
@@ -488,6 +505,7 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -514,6 +532,7 @@ __metadata:
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
@@ -524,6 +543,7 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -548,6 +568,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
@@ -558,6 +579,7 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -584,6 +606,7 @@ __metadata:
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
@@ -597,6 +620,7 @@ __metadata:
     bignumber.js: ^9.0.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -2847,6 +2871,13 @@ __metadata:
   version: 3.1.43
   resolution: "@types/crypto-js@npm:3.1.43"
   checksum: 2/f83fe0e4cf74886286972a9f91565bcf01dda4852a7a5acb8f4ea8861c922d894deaf64fb2fb43792988770e239c9b7ec4cbfaa96e80f25f998a0948ce66cdfc
+  languageName: node
+  linkType: hard
+
+"@types/dlv@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@types/dlv@npm:1.1.2"
+  checksum: 2/3db58a852506081b57142f39e588fd16f4a667fb57815b57fe9d4527f90b7b313209d5fa4b6b35138e1696f4245535d7d9d49460c8efad5bf65c27a824dea6ce
   languageName: node
   linkType: hard
 
@@ -6114,6 +6145,13 @@ __metadata:
   dependencies:
     path-type: ^4.0.0
   checksum: 2/687fa3bd604f264042f325d9460e1298447fb32782f30cddc47cb302b742684d13e8ffce4c6f455e0ae92099d71e29f72387379c10b8fd3f6f1bf8992d7c0997
+  languageName: node
+  linkType: hard
+
+"dlv@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "dlv@npm:1.1.3"
+  checksum: 2/3ed2cd5054ed51e3778b5939ec58b16a970ee7447c3fc02b9b75ccd0788cf596b705d0f3060f2f1593432c10809d4289a17166a5723282ab2ead5c37d7c45cf0
   languageName: node
   linkType: hard
 

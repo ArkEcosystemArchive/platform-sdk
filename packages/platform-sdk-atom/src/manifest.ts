@@ -1,18 +1,46 @@
 export const manifest = {
 	name: "Cosmos",
 	networks: {
-		live: {
-			ticker: "ATOM",
-			explorer: "https://cosmos.bigdipper.live/",
+		cosmos: {
+			mainnet: {
+				ticker: "ATOM",
+				explorer: "https://stake.id/",
+				crypto: {
+					chainId: "cosmoshub-3",
+					slip44: 118,
+					bech32: "cosmos",
+				},
+			},
+			testnet: {
+				ticker: "MUON",
+				explorer: "https://gaia.stake.id/",
+				crypto: {
+					chainId: "gaia-13007",
+					slip44: 118,
+					bech32: "cosmos",
+				},
+			},
 		},
-		test: {
-			ticker: "ATOM",
-			explorer: "https://gaia.bigdipper.live/",
+		terra: {
+			mainnet: {
+				ticker: "LUNA",
+				explorer: "https://terra.stake.id/",
+				crypto: {
+					chainId: "columbus-3",
+					slip44: 330,
+					bech32: "terra",
+				},
+			},
+			testnet: {
+				ticker: "LUNA",
+				explorer: "https://soju.stake.id/",
+				crypto: {
+					chainId: "soju-0014",
+					slip44: 330,
+					bech32: "terra",
+				},
+			},
 		},
-	},
-	crypto: {
-		slip44: 118,
-		bech32Prefix: "cosmos",
 	},
 	behaviours: {
 		Client: {

@@ -16,7 +16,7 @@ export class Factory extends Contracts.AbstractFactory {
 		const merge = (options: Contracts.FactoryOptions, service: string) => ({
 			network: options.network,
 			peer: options.peer,
-			...(options.services[service] || {}),
+			...(options.services ? options.services[service] || {} : {}),
 		});
 
 		return new Factory({

@@ -36,10 +36,8 @@ export class PeerService implements Contracts.PeerService {
 					seeds.push({ ip: seed.ip, port });
 				}
 			} else {
-				const fileName: string = network === "live" ? "mainnet" : "devnet";
-
 				const body: any = await ky
-					.get(`https://raw.githubusercontent.com/ArkEcosystem/peers/master/${fileName}.json`)
+					.get(`https://raw.githubusercontent.com/ArkEcosystem/peers/master/${network}.json`)
 					.json();
 
 				for (const seed of body) {

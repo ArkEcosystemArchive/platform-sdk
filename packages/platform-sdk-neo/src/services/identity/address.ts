@@ -3,8 +3,14 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { createWallet, deriveWallet } from "./utils";
 
 export class Address implements Contracts.Address {
+	readonly #slip44;
+
+	public constructor(slip44: number) {
+		this.#slip44 = slip44;
+	}
+
 	public async fromPassphrase(passphrase: string): Promise<string> {
-		return deriveWallet(passphrase).address;
+		return deriveWallet(passphrase, this.#slip44).address;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
