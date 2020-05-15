@@ -30,11 +30,11 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public publicKey(): PublicKey {
-		return new PublicKey();
+		return new PublicKey(this.#slip44);
 	}
 
 	public privateKey(): PrivateKey {
-		return new PrivateKey();
+		return new PrivateKey(this.#slip44);
 	}
 
 	public wif(): WIF {
