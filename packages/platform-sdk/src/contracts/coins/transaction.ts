@@ -20,7 +20,7 @@ export interface TransactionService {
 interface TransactionInput {
 	fee?: string;
 	feeLimit?: string;
-	nonce?: string | number;
+	nonce?: string;
 	sign: {
 		passphrase: string;
 		passphrases?: string[];
@@ -41,7 +41,7 @@ export interface TransactionOptions {
 
 export interface TransferInput extends TransactionInput {
 	data: {
-		amount: string | number;
+		amount: string;
 		from?: string;
 		to: string;
 		memo?: string;
@@ -75,7 +75,7 @@ export interface IpfsInput extends TransactionInput {
 
 export interface MultiPaymentInput extends TransactionInput {
 	data: {
-		payments: { to: string; amount: string | number }[];
+		payments: { to: string; amount: string }[];
 	};
 }
 
@@ -83,7 +83,7 @@ export type DelegateResignationInput = TransactionInput;
 
 export interface HtlcLockInput extends TransactionInput {
 	data: {
-		amount: string | number;
+		amount: string;
 		to: string;
 		secretHash: string;
 		expiration: {
