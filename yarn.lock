@@ -332,6 +332,9 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eth@workspace:packages/platform-sdk-eth"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@ledgerhq/hw-app-eth": ^5.15.0
+    "@ledgerhq/hw-transport-mocker": ^5.15.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -1451,6 +1454,17 @@ __metadata:
   version: 5.15.0
   resolution: "@ledgerhq/errors@npm:5.15.0"
   checksum: 2/9bbff90fb17810463d47adae527ddd77fe2d3cc2d7cc51f6ffe5724ebaec1ad54ddc1739c7b30e29719f38f0d8543143edd7c759f38a63a8af9c73d459fa3e9d
+  languageName: node
+  linkType: hard
+
+"@ledgerhq/hw-app-eth@npm:^5.15.0":
+  version: 5.15.0
+  resolution: "@ledgerhq/hw-app-eth@npm:5.15.0"
+  dependencies:
+    "@ledgerhq/errors": ^5.15.0
+    "@ledgerhq/hw-transport": ^5.15.0
+    bignumber.js: ^9.0.0
+  checksum: 2/6d1c3d71052130b9a7e9128274b66c550cfc6aab7c30308a044cd4af0dbf409ec5a34a9efc2f1ad27a3acea7785d8708ac83f2f0eef9ef870a1fccf3fba7c33f
   languageName: node
   linkType: hard
 
