@@ -8,11 +8,13 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #peer;
 	readonly #chain: string;
 	readonly #identity;
+	readonly #web3;
 
 	private constructor(opts: Contracts.KeyValuePair) {
 		this.#peer = opts.peer;
 		this.#chain = opts.network === "live" ? "mainnet" : "ropsten";
 		this.#identity = opts.identity;
+		this.#web3 = new Web3(""); // todo: provide a host?
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
@@ -30,22 +32,37 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const address: string = await this.#identity.address(input.sign);
-		const privateKey: string = input.sign.privateKey || (await this.#identity.privateKey(input.sign));
+		const senderAddress: string = await this.#identity.address().fromPassphrase(input.sign.passphrase);
+		const privateKey: string =
+			input.sign.privateKey || (await this.#identity.privateKey().fromPassphrase(input.sign.passphrase));
 
-		const { nonce } = await this.get(`wallets/${address}`);
+		const { nonce } = await this.get(`wallets/${senderAddress}`);
 
-		const transaction = new Transaction(
-			{
-				nonce,
+		let data: object;
+
+		if (input.contract && input.contract.address) {
+			data = {
+				nonce: Web3.utils.toHex(Web3.utils.toBN(nonce).add(Web3.utils.toBN("1"))),
+				gasPrice: Web3.utils.toHex(4 * 1e9),
+				gasLimit: Web3.utils.toHex(4000000),
+				to: input.contract.address,
+				value: "0x0",
+				data: this.createContract(input.contract.address)
+					.methods.transfer(input.data.to, input.data.amount)
+					.encodeABI(),
+			};
+		} else {
+			data = {
+				nonce: Web3.utils.toHex(Web3.utils.toBN(nonce).add(Web3.utils.toBN("1"))),
 				gasLimit: Web3.utils.toHex(input.feeLimit),
 				gasPrice: Web3.utils.toHex(input.fee),
 				to: input.data.to,
 				value: Web3.utils.toHex(Web3.utils.toWei(`${input.data.amount}`, "wei")),
 				// data: Utils.Buffoon.fromUTF8(input.to.memo),
-			},
-			{ chain: this.#chain },
-		);
+			};
+		}
+
+		const transaction: Transaction = new Transaction(data, { chain: this.#chain });
 
 		transaction.sign(Utils.Buffoon.fromHex(privateKey));
 
@@ -124,5 +141,36 @@ export class TransactionService implements Contracts.TransactionService {
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return Utils.Http.new(this.#peer).get(path, query);
+	}
+
+	private createContract(contractAddress: string) {
+		return new this.#web3.eth.Contract(
+			[
+				{
+					constant: false,
+					inputs: [
+						{
+							name: "_to",
+							type: "address",
+						},
+						{
+							name: "_value",
+							type: "uint256",
+						},
+					],
+					name: "transfer",
+					outputs: [
+						{
+							name: "success",
+							type: "bool",
+						},
+					],
+					payable: false,
+					stateMutability: "nonpayable",
+					type: "function",
+				},
+			],
+			contractAddress,
+		);
 	}
 }

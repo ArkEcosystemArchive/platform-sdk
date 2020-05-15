@@ -21,13 +21,13 @@ export class LedgerService implements Contracts.LedgerService {
 
 	public async getVersion(): Promise<string> {
 		const { version } = await this.#transport.getAppConfiguration();
-		
+
 		return version;
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
 		const { publicKey } = await this.#transport.getAddress(path);
-		
+
 		return publicKey;
 	}
 

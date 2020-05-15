@@ -29,6 +29,9 @@ interface TransactionInput {
 		secondWif?: string;
 		privateKey?: string;
 	};
+	contract?: {
+		address: string;
+	};
 }
 
 export interface TransactionOptions {

@@ -46,7 +46,12 @@ export class FeeService implements Contracts.FeeService {
 		};
 	}
 
-	private transform(type: string, typeGroup: number, staticFees: object, dynamicFees: object): Contracts.TransactionFee {
+	private transform(
+		type: string,
+		typeGroup: number,
+		staticFees: object,
+		dynamicFees: object,
+	): Contracts.TransactionFee {
 		const dynamicFee = dynamicFees[typeGroup][type];
 
 		return {
