@@ -11,7 +11,7 @@ export class IdentityService implements Contracts.IdentityService {
 	readonly #slip44;
 
 	public constructor(network: string) {
-		(this.#slip44 = manifest.networks[network].slip44), `${network}.slip44`;
+		this.#slip44 = manifest.networks[network].crypto.slip44;
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {

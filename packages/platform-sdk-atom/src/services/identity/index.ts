@@ -13,8 +13,8 @@ export class IdentityService implements Contracts.IdentityService {
 	readonly #bech32;
 
 	public constructor(network: string) {
-		this.#slip44 = delve(manifest.networks, `${network}.slip44`);
-		this.#bech32 = delve(manifest.networks, `${network}.bech32`);
+		this.#slip44 = delve(manifest.networks, `${network}.crypto.slip44`);
+		this.#bech32 = delve(manifest.networks, `${network}.crypto.bech32`);
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {

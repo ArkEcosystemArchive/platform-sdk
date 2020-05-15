@@ -7,7 +7,7 @@ import { TransactionData } from "../../src/dto";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.construct({ network: "test" })));
+beforeEach(async () => (subject = await ClientService.construct({ network: "testnet" })));
 
 afterEach(() => nock.cleanAll());
 
