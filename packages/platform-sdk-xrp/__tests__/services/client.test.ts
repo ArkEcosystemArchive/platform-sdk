@@ -111,7 +111,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			const result = await subject.transactions({
 				address: "r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59",
-				limit: 10
+				limit: 10,
 			});
 
 			expect(result.data).toBeArray();
