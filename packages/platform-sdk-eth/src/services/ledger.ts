@@ -40,7 +40,7 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public async signMessage(path: string, payload: Buffer): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "signMessage");
+		return JSON.stringify(await this.#transport.signPersonalMessage(path, payload));
 	}
 
 	public async signMessageWithSchnorr(path: string, payload: Buffer): Promise<string> {

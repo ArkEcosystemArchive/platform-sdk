@@ -52,10 +52,12 @@ describe("signTransactionWithSchnorr", () => {
 });
 
 describe("signMessage", () => {
-	it("should fail with a 'NotImplemented' error", async () => {
-		const trx = await createMockService("");
+	it("should pass with a signature", async () => {
+		const trx = await createMockService(ledger.message.record);
 
-		await expect(trx.signMessage("", Buffer.alloc(0))).rejects.toThrow();
+		const result = await trx.signMessage(ledger.bip44.path, Buffer.from(ledger.message.payload, "hex"));
+
+		expect(JSON.parse(result)).toEqual(ledger.message.result);
 	});
 });
 
