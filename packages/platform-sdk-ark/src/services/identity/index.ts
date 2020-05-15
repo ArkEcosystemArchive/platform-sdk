@@ -9,7 +9,7 @@ import { WIF } from "./wif";
 
 export class IdentityService implements Contracts.IdentityService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
-		Managers.configManager.setFromPreset(opts.network === "live" ? "mainnet" : "devnet");
+		Managers.configManager.setFromPreset(opts.network);
 
 		return new IdentityService();
 	}

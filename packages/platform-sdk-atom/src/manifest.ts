@@ -8,7 +8,7 @@ export const manifest = {
 				crypto: {
 					chainId: "cosmoshub-3",
 					slip44: 118,
-					bech32Prefix: "cosmos",
+					bech32: "cosmos",
 				},
 			},
 			testnet: {
@@ -17,7 +17,7 @@ export const manifest = {
 				crypto: {
 					chainId: "gaia-13007",
 					slip44: 118,
-					bech32Prefix: "cosmos",
+					bech32: "cosmos",
 				},
 			},
 		},
@@ -28,7 +28,7 @@ export const manifest = {
 				crypto: {
 					chainId: "columbus-3",
 					slip44: 330,
-					bech32Prefix: "terra",
+					bech32: "terra",
 				},
 			},
 			testnet: {
@@ -37,7 +37,7 @@ export const manifest = {
 				crypto: {
 					chainId: "soju-0014",
 					slip44: 330,
-					bech32Prefix: "terra",
+					bech32: "terra",
 				},
 			},
 		},

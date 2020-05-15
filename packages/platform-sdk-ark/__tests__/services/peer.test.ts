@@ -61,7 +61,7 @@ describe("PeerService", () => {
 					.get("/mainnet.json")
 					.reply(200, dummySeeds);
 
-				const peerService: PeerService = await PeerService.construct({ network: "live" });
+				const peerService: PeerService = await PeerService.construct({ network: "mainnet" });
 
 				expect(peerService.getSeeds()).toEqual(dummySeeds.map((peer) => ({ ip: peer.ip, port: 4003 })));
 			});
@@ -81,7 +81,7 @@ describe("PeerService", () => {
 
 				await expect(
 					PeerService.construct({
-						network: "live",
+						network: "mainnet",
 					}),
 				).rejects.toThrowError(new Error("No seeds found"));
 			});

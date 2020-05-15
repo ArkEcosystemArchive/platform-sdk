@@ -1,7 +1,7 @@
 export const manifest = {
 	name: "Bitcoin",
 	networks: {
-		mainnet: {
+		livenet: {
 			ticker: "BTC",
 			explorer: "https://blockstream.info/",
 			crypto: {

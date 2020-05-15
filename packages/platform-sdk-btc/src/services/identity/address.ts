@@ -7,7 +7,7 @@ export class Address implements Contracts.Address {
 	readonly #network: Record<string, any>;
 
 	public constructor(network: string) {
-		this.#network = network === "live" ? Bitcoin.Networks.livenet : Bitcoin.Networks.testnet;
+		this.#network = Bitcoin.Networks[network];
 	}
 
 	public async fromPassphrase(passphrase: string): Promise<string> {

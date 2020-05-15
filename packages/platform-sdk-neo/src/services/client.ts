@@ -23,7 +23,7 @@ export class ClientService implements Contracts.ClientService {
 			test: "https://neoscan-testnet.io/api/test_net/v1/",
 		}[opts.network];
 
-		this.#apiProvider = new api.neoscan.instance(opts.network === "live" ? "MainNet" : "TestNet");
+		this.#apiProvider = new api.neoscan.instance(opts.network === "mainnet" ? "MainNet" : "TestNet");
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {

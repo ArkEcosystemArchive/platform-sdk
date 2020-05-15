@@ -12,7 +12,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 	private constructor(opts: Contracts.KeyValuePair) {
 		this.#peer = opts.peer;
-		this.#chain = opts.network === "live" ? "mainnet" : "ropsten";
+		this.#chain = opts.network;
 		this.#identity = opts.identity;
 		this.#web3 = new Web3(""); // todo: provide a host?
 	}

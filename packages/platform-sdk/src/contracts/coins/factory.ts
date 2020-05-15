@@ -21,9 +21,9 @@ interface FactoryConstructorOptions {
 }
 
 export interface FactoryOptions {
-	network: "live" | "demo" | "test";
-	peer: string;
-	services: {
+	network: string;
+	peer?: string;
+	services?: {
 		client: {};
 		fee: {};
 		identity: {};
