@@ -41,15 +41,15 @@ export class TransactionService implements Contracts.TransactionService {
 		let data: object;
 
 		if (input.contract && input.contract.address) {
-			const contract = await this.createContract(input.contract.address)
-
 			data = {
 				nonce: Web3.utils.toHex(Web3.utils.toBN(nonce).add(Web3.utils.toBN("1"))),
 				gasPrice: Web3.utils.toHex(4 * 1e9),
 				gasLimit: Web3.utils.toHex(4000000),
 				to: input.contract.address,
 				value: "0x0",
-				data: contract.methods.transfer(input.data.to, input.data.amount).encodeABI(),
+				data: this.createContract(input.contract.address)
+					.methods.transfer(input.data.to, input.data.amount)
+					.encodeABI(),
 			};
 		} else {
 			data = {
@@ -143,7 +143,7 @@ export class TransactionService implements Contracts.TransactionService {
 		return Utils.Http.new(this.#peer).get(path, query);
 	}
 
-	private async createContract(contractAddress: string) {
+	private createContract(contractAddress: string) {
 		return new this.#web3.eth.Contract(
 			[
 				{
