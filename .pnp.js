@@ -828,6 +828,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-xlm", "workspace:packages/platform-sdk-xlm"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@ledgerhq/hw-app-str", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -1812,6 +1815,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@ledgerhq-errors-npm-5.15.0-0117a5ec9f-2.zip/node_modules/@ledgerhq/errors/",
           "packageDependencies": [
             ["@ledgerhq/errors", "npm:5.15.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@ledgerhq/hw-app-str", [
+        ["npm:5.15.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-str-npm-5.15.0-1533b8ba5b-2.zip/node_modules/@ledgerhq/hw-app-str/",
+          "packageDependencies": [
+            ["@ledgerhq/hw-app-str", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport", "npm:5.15.0"],
+            ["base32.js", "npm:0.1.0"],
+            ["sha.js", "npm:2.4.11"],
+            ["tweetnacl", "npm:1.0.3"]
           ],
           "linkType": "HARD",
         }]
@@ -17078,6 +17094,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/tweetnacl-npm-1.0.1-2cdcc909e9-2.zip/node_modules/tweetnacl/",
           "packageDependencies": [
             ["tweetnacl", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:1.0.3", {
+          "packageLocation": "./.yarn/cache/tweetnacl-npm-1.0.3-b7eef04660-2.zip/node_modules/tweetnacl/",
+          "packageDependencies": [
+            ["tweetnacl", "npm:1.0.3"]
           ],
           "linkType": "HARD",
         }]

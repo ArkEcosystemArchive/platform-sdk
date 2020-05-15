@@ -507,6 +507,9 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xlm@workspace:packages/platform-sdk-xlm"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@ledgerhq/hw-app-str": ^5.15.0
+    "@ledgerhq/hw-transport-mocker": ^5.15.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -1448,6 +1451,18 @@ __metadata:
   version: 5.15.0
   resolution: "@ledgerhq/errors@npm:5.15.0"
   checksum: 2/9bbff90fb17810463d47adae527ddd77fe2d3cc2d7cc51f6ffe5724ebaec1ad54ddc1739c7b30e29719f38f0d8543143edd7c759f38a63a8af9c73d459fa3e9d
+  languageName: node
+  linkType: hard
+
+"@ledgerhq/hw-app-str@npm:^5.15.0":
+  version: 5.15.0
+  resolution: "@ledgerhq/hw-app-str@npm:5.15.0"
+  dependencies:
+    "@ledgerhq/hw-transport": ^5.15.0
+    base32.js: ^0.1.0
+    sha.js: ^2.3.6
+    tweetnacl: ^1.0.3
+  checksum: 2/188afc34d6563730255cfecf9345425eeea23ff68084658ddc68ba2ae86983d5cbac44d7a62d20883dcf88f4bb9bbb43c9630403e91c9c02ee4bfb318be04677
   languageName: node
   linkType: hard
 
@@ -15068,6 +15083,13 @@ resolve@~1.7.1:
   version: 1.0.1
   resolution: "tweetnacl@npm:1.0.1"
   checksum: 2/45f4a38f0fa3a6bab0465470a9bf8c6293f37ca205d44ff027fe1718845d8f3d95b1b92534d0707540fd31e18f797b48d0753bed8fa10172eb5260648947c8bf
+  languageName: node
+  linkType: hard
+
+"tweetnacl@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "tweetnacl@npm:1.0.3"
+  checksum: 2/1188f3ef85db04d6dba632d211e481ae0a5805974491633ff60bd56ae3362312dfea1515e0d200685867b69ff212e8778e26923f8203e3c335064b07f620a6c7
   languageName: node
   linkType: hard
 
