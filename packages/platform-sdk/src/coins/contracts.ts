@@ -9,31 +9,18 @@ import {
 	TransactionService,
 } from "../contracts/coins";
 
-export interface FactoryServices {
-	client: ClientService;
-	fee: FeeService;
-	identity: IdentityService;
-	ledger: LedgerService;
-	link: LinkService;
-	message: MessageService;
-	peer: PeerService;
-	transaction: TransactionService;
-}
-
-export interface CoinServices {
-	client: any;
-	fee: any;
-	identity: any;
-	ledger: any;
-	link: any;
-	message: any;
-	peer: any;
-	transaction: any;
-}
-
-export interface Coin {
+export interface CoinSpecs {
 	manifest: any;
-	services: CoinServices;
+	services: {
+		client: any;
+		fee: any;
+		identity: any;
+		ledger: any;
+		link: any;
+		message: any;
+		peer: any;
+		transaction: any;
+	};
 }
 
 export interface CoinOptions {
@@ -49,4 +36,15 @@ export interface CoinOptions {
 		peer: {};
 		transaction: {};
 	};
+}
+
+export interface CoinServices {
+	client: ClientService;
+	fee: FeeService;
+	identity: IdentityService;
+	ledger: LedgerService;
+	link: LinkService;
+	message: MessageService;
+	peer: PeerService;
+	transaction: TransactionService;
 }
