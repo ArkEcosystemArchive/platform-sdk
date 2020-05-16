@@ -16,7 +16,7 @@ export class ClientService implements Contracts.ClientService {
 
 	private constructor(network: string) {
 		this.#client = new Stellar.Server(
-			{ live: "https://horizon.stellar.org", test: "https://horizon-testnet.stellar.org" }[network],
+			{ mainnet: "https://horizon.stellar.org", testnet: "https://horizon-testnet.stellar.org" }[network],
 		);
 	}
 

@@ -6,8 +6,8 @@ import { PrivateKey } from "./private-key";
 export class PublicKey implements Contracts.PublicKey {
 	readonly #privateKey: PrivateKey;
 
-	public constructor() {
-		this.#privateKey = new PrivateKey();
+	public constructor(slip44: number) {
+		this.#privateKey = new PrivateKey(slip44);
 	}
 
 	public async fromPassphrase(passphrase: string): Promise<string> {

@@ -1,6 +1,5 @@
 export * from "./client";
 export * from "./data";
-export * from "./factory";
 export * from "./fee";
 export * from "./identity";
 export * from "./ledger";

@@ -17,17 +17,17 @@ export class ClientService implements Contracts.ClientService {
 		"Unknown error.": "ERR_UNKNOWN",
 	};
 
-	private constructor(opts: Contracts.KeyValuePair) {
+	private constructor(network: string) {
 		this.#baseUrl = {
-			live: "https://api.neoscan.io/api/main_net/v1/",
-			test: "https://neoscan-testnet.io/api/test_net/v1/",
-		}[opts.network];
+			mainnet: "https://api.neoscan.io/api/main_net/v1/",
+			testnet: "https://neoscan-testnet.io/api/test_net/v1/",
+		}[network];
 
-		this.#apiProvider = new api.neoscan.instance(opts.network === "live" ? "MainNet" : "TestNet");
+		this.#apiProvider = new api.neoscan.instance(network === "mainnet" ? "MainNet" : "TestNet");
 	}
 
 	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
-		return new ClientService(opts);
+		return new ClientService(opts.network);
 	}
 
 	public async destruct(): Promise<void> {

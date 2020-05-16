@@ -4,8 +4,14 @@ import Wallet from "ethereumjs-wallet";
 import { createWallet } from "./utils";
 
 export class Keys implements Contracts.Keys {
+	readonly #slip44;
+
+	public constructor(slip44: number) {
+		this.#slip44 = slip44;
+	}
+
 	public async fromPassphrase(passphrase: string): Promise<Contracts.KeyPair> {
-		const wallet: Wallet = createWallet(passphrase);
+		const wallet: Wallet = createWallet(passphrase, this.#slip44);
 
 		return {
 			publicKey: wallet.getPublicKey().toString("hex"),

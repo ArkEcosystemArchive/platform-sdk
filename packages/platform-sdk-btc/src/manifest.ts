@@ -1,17 +1,26 @@
 export const manifest = {
 	name: "Bitcoin",
 	networks: {
-		live: {
-			ticker: "BTC",
+		livenet: {
 			explorer: "https://blockstream.info/",
+			currency: {
+				ticker: "BTC",
+				symbol: "BTC",
+			},
+			crypto: {
+				slip44: 0,
+			},
 		},
-		test: {
-			ticker: "BTC",
+		testnet: {
 			explorer: "https://blockstream.info/testnet/",
+			currency: {
+				ticker: "BTC",
+				symbol: "BTC",
+			},
+			crypto: {
+				slip44: 0,
+			},
 		},
-	},
-	crypto: {
-		slip44: 0,
 	},
 	behaviours: {
 		Client: {

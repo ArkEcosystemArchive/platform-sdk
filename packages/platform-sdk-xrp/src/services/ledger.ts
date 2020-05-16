@@ -1,14 +1,14 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import Xrp from "@ledgerhq/hw-app-xrp";
+import Ripple from "@ledgerhq/hw-app-xrp";
 import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
 
 export class LedgerService implements Contracts.LedgerService {
 	readonly #ledger: LedgerTransport;
-	readonly #transport: Xrp;
+	readonly #transport: Ripple;
 
 	private constructor(transport: Contracts.LedgerTransport) {
 		this.#ledger = transport;
-		this.#transport = new Xrp(transport);
+		this.#transport = new Ripple(transport);
 	}
 
 	public static async construct(opts: Contracts.LedgerOptions): Promise<LedgerService> {
@@ -21,13 +21,13 @@ export class LedgerService implements Contracts.LedgerService {
 
 	public async getVersion(): Promise<string> {
 		const { version } = await this.#transport.getAppConfiguration();
-		
+
 		return version;
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
 		const { publicKey } = await this.#transport.getAddress(path);
-		
+
 		return publicKey;
 	}
 

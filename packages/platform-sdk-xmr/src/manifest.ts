@@ -1,17 +1,26 @@
 export const manifest = {
 	name: "Monero",
 	networks: {
-		live: {
-			ticker: "XMR",
+		mainnet: {
 			explorer: "https://moneroblocks.info/",
+			currency: {
+				ticker: "XMR",
+				symbol: "XMR",
+			},
+			crypto: {
+				slip44: 123,
+			},
 		},
-		test: {
-			ticker: "XMR",
+		testnet: {
 			explorer: "https://dexplorer.ark.io/",
+			currency: {
+				ticker: "XMR",
+				symbol: "XMR",
+			},
+			crypto: {
+				slip44: 123,
+			},
 		},
-	},
-	crypto: {
-		slip44: 123,
 	},
 	behaviours: {
 		Client: {

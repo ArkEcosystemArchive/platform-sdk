@@ -5,7 +5,7 @@ import { identity } from "../__fixtures__/identity";
 
 let subject: IdentityService;
 
-beforeEach(async () => (subject = await IdentityService.construct({ network: "test" })));
+beforeEach(async () => (subject = await IdentityService.construct({ network: "ropsten" })));
 
 describe("IdentityService", () => {
 	describe("#address", () => {

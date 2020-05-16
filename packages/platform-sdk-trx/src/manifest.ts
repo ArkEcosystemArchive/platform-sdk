@@ -1,17 +1,26 @@
 export const manifest = {
 	name: "Tron",
 	networks: {
-		live: {
-			ticker: "TRX",
+		mainnet: {
 			explorer: "https://tronscan.org/#/",
+			currency: {
+				ticker: "TRX",
+				symbol: "TRX",
+			},
+			crypto: {
+				slip44: 195,
+			},
 		},
-		test: {
-			ticker: "TRX",
+		testnet: {
 			explorer: "https://shasta.tronscan.org/#/",
+			currency: {
+				ticker: "TRX",
+				symbol: "TRX",
+			},
+			crypto: {
+				slip44: 195,
+			},
 		},
-	},
-	crypto: {
-		slip44: 195,
 	},
 	behaviours: {
 		Client: {

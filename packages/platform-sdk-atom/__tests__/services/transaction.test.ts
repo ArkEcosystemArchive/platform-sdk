@@ -7,7 +7,10 @@ let subject: TransactionService;
 
 beforeEach(
 	async () =>
-		(subject = await TransactionService.construct({ peer: "https://stargate.cosmos.network", network: "testnet" })),
+		(subject = await TransactionService.construct({
+			network: "cosmos.testnet",
+			peer: "https://stargate.cosmos.network",
+		})),
 );
 
 beforeAll(() => nock.disableNetConnect());
@@ -24,7 +27,7 @@ describe("TransactionService", () => {
 					passphrase: "this is a top secret passphrase",
 				},
 				data: {
-					amount: 1,
+					amount: "1",
 					to: "cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap",
 				},
 			});

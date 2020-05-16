@@ -24,7 +24,7 @@ describe("TransactionService", function () {
 				data: {
 					from: testWallet.address,
 					to: "TY689z7Q2NpZYBxGfXbYR4PmS2WXyTNrir",
-					amount: 1,
+					amount: "1",
 				},
 			});
 
