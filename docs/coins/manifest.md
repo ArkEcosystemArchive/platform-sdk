@@ -10,7 +10,7 @@ Lets take the `platform-sdk-ark` manifest as an example. It contains some inform
 export const manifest = {
 	name: "ARK",
 	ticker: "ARK",
-	behaviours: {
+	abilities: {
 		Client: {
 			transaction: true,
 			transactions: true,

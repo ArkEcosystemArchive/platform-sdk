@@ -13,7 +13,7 @@ let subject: PriceTracker;
 beforeEach(() => {
 	subject = new PriceTracker();
 
-	nock(BASE_URL_COINCAP).get("/assets").query(true).reply(200, require("../__fixtures__/assets.json"));
+	nock(BASE_URL_COINCAP).get("/assets").query(true).reply(200, require("./__fixtures__/assets.json"));
 
 	nock(BASE_URL_COINCAP)
 		.get("/assets/ark")
@@ -34,12 +34,12 @@ beforeEach(() => {
 			timestamp: 1581339180902,
 		});
 
-	nock(BASE_URL_COINCAP).get("/rates").reply(200, require("../__fixtures__/rates.json"));
+	nock(BASE_URL_COINCAP).get("/rates").reply(200, require("./__fixtures__/rates.json"));
 
 	nock(BASE_URL_COINCAP)
 		.get("/assets/ark/history")
 		.query(true)
-		.reply(200, require("../__fixtures__/historical.json"));
+		.reply(200, require("./__fixtures__/historical.json"));
 });
 
 describe("PriceTracker", () => {

@@ -36,12 +36,12 @@ beforeEach(() => {
 			},
 		});
 
-	nock(BASE_URL_COINGECKO).get("/coins/ark").reply(200, require("../__fixtures__/market.json"));
+	nock(BASE_URL_COINGECKO).get("/coins/ark").reply(200, require("./__fixtures__/market.json"));
 
 	nock(BASE_URL_COINGECKO)
 		.get("/coins/ark/market_chart")
 		.query(true)
-		.reply(200, require("../__fixtures__/historical.json"));
+		.reply(200, require("./__fixtures__/historical.json"));
 });
 
 describe("PriceTracker", () => {

@@ -16,11 +16,11 @@ beforeEach(() => {
 	nock(BASE_URL_CRYPTOCOMPARE)
 		.get("/data/pricemultifull")
 		.query(true)
-		.reply(200, require("../__fixtures__/market.json"));
+		.reply(200, require("./__fixtures__/market.json"));
 
 	nock(BASE_URL_CRYPTOCOMPARE)
 		.get(/\/data\/histo.+/)
-		.reply(200, require("../__fixtures__/historical.json"));
+		.reply(200, require("./__fixtures__/historical.json"));
 });
 
 describe("PriceTracker", () => {

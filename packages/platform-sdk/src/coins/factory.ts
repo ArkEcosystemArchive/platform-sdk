@@ -8,7 +8,7 @@ import {
 	PeerService,
 	TransactionService,
 } from "../contracts/coins";
-import { CoinOptions, FactoryServices, Coin } from "./contracts";
+import { Coin, CoinOptions, FactoryServices } from "./contracts";
 
 export class CoinFactory {
 	readonly #services: FactoryServices;

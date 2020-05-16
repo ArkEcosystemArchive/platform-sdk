@@ -54,7 +54,7 @@ export const manifest = {
 			},
 		},
 	},
-	behaviours: {
+	abilities: {
 		Client: {
 			transaction: false,
 			transactions: false,
