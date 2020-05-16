@@ -1,3 +1,9 @@
+import * as services from "./services";
+import { manifest } from "./manifest";
+
 export * as DTO from "./dto";
-export * as Services from "./services";
-export * from "./manifest";
+
+export const ARK = {
+	manifest,
+	services,
+};
