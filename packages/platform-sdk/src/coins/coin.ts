@@ -8,10 +8,10 @@ import {
 	PeerService,
 	TransactionService,
 } from "../contracts/coins";
-import { Manifest } from "./manifest";
-import { NetworkRepository } from "./network-repository";
 import { CoinServices } from "./contracts";
 import { Guard } from "./guard";
+import { Manifest } from "./manifest";
+import { NetworkRepository } from "./network-repository";
 
 export class Coin {
 	readonly #network: NetworkRepository;
