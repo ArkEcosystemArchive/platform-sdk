@@ -1,5 +1,3 @@
-import { Class } from "type-fest";
-
 import {
 	ClientService,
 	FeeService,
@@ -22,17 +20,15 @@ export interface FactoryServices {
 	transaction: TransactionService;
 }
 
-export interface Coin {
-	services: {
-		client: Class;
-		fee: Class;
-		identity: Class;
-		ledger: Class;
-		link: Class;
-		message: Class;
-		peer: Class;
-		transaction: Class;
-	};
+export interface CoinServices {
+	client: any;
+	fee: any;
+	identity: any;
+	ledger: any;
+	link: any;
+	message: any;
+	peer: any;
+	transaction: any;
 }
 
 export interface CoinOptions {

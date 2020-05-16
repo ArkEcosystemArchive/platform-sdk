@@ -9,11 +9,11 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #identity: IdentityService;
 
 	readonly #networks = {
-		live: {
+		mainnet: {
 			host: "https://horizon.stellar.org",
 			networkPassphrase: Stellar.Networks.MAINNET,
 		},
-		test: {
+		testnet: {
 			host: "https://horizon-testnet.stellar.org",
 			networkPassphrase: Stellar.Networks.TESTNET,
 		},
