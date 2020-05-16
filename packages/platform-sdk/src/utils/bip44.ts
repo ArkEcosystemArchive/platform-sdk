@@ -35,4 +35,23 @@ export class BIP44 {
 
 		return bip32.fromSeed(bip39.mnemonicToSeedSync(passphrase));
 	}
+
+	public static parse(path: string) {
+		if (!path.match(new RegExp("^((m/)?(44'?)){1}(/[0-9]+'?){2}(/[0-9]+){2}$", "g"))) {
+			throw new Error(path);
+		}
+
+		const result: number[] = [];
+		for (const level of path.replace("m/", "").split("/")) {
+			result.push(+level.replace("'", ""));
+		}
+
+		return {
+			purpose: result[0],
+			coinType: result[1],
+			account: result[2],
+			change: result[3],
+			addressIndex: result[4],
+		};
+	}
 }
