@@ -8,7 +8,7 @@ import {
 	PeerService,
 	TransactionService,
 } from "../contracts/coins";
-import { CoinOptions, CoinServices, FactoryServices } from "./contracts";
+import { CoinOptions, FactoryServices, Coin } from "./contracts";
 
 export class CoinFactory {
 	readonly #services: FactoryServices;
@@ -17,22 +17,26 @@ export class CoinFactory {
 		this.#services = services;
 	}
 
-	public static async construct(coin: CoinServices, options: CoinOptions): Promise<CoinFactory> {
+	public static async construct(coin: Coin, options: CoinOptions): Promise<CoinFactory> {
 		const merge = (options: CoinOptions, service: string) => ({
 			network: options.network,
 			peer: options.peer,
 			...(options.services ? options.services[service] || {} : {}),
 		});
 
+		const { services } = coin;
+
+		// todo: create NetworkRepository instance
+
 		return new CoinFactory({
-			client: await coin.client.construct(merge(options, "client")),
-			fee: await coin.fee.construct(merge(options, "fee")),
-			identity: await coin.identity.construct(merge(options, "identity")),
-			ledger: await coin.ledger.construct(merge(options, "ledger")),
-			link: await coin.link.construct(merge(options, "link")),
-			message: await coin.message.construct(merge(options, "message")),
-			peer: await coin.peer.construct(merge(options, "peer")),
-			transaction: await coin.transaction.construct(merge(options, "transaction")),
+			client: await services.client.construct(merge(options, "client")),
+			fee: await services.fee.construct(merge(options, "fee")),
+			identity: await services.identity.construct(merge(options, "identity")),
+			ledger: await services.ledger.construct(merge(options, "ledger")),
+			link: await services.link.construct(merge(options, "link")),
+			message: await services.message.construct(merge(options, "message")),
+			peer: await services.peer.construct(merge(options, "peer")),
+			transaction: await services.transaction.construct(merge(options, "transaction")),
 		});
 	}
 

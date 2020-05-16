@@ -31,6 +31,11 @@ export interface CoinServices {
 	transaction: any;
 }
 
+export interface Coin {
+	manifest: any;
+	services: CoinServices;
+}
+
 export interface CoinOptions {
 	network: string;
 	peer?: string;
