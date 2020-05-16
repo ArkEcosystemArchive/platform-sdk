@@ -697,6 +697,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-lsk", "workspace:packages/platform-sdk-lsk"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@liskhq/lisk-client", "npm:2.3.1"],
             ["@liskhq/lisk-cryptography", "npm:2.4.2"],
             ["@liskhq/lisk-transactions", "npm:2.3.1"],
@@ -713,6 +715,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["codecov", "npm:3.6.5"],
             ["cross-env", "npm:7.0.2"],
             ["dlv", "npm:1.1.3"],
+            ["dpos-ledger-api", "npm:3.0.1"],
             ["eslint", "npm:6.8.0"],
             ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.11.0"],
             ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:23.8.2"],
@@ -7424,6 +7427,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["dot-prop", "npm:5.2.0"],
             ["is-obj", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["dpos-ledger-api", [
+        ["npm:3.0.1", {
+          "packageLocation": "./.yarn/cache/dpos-ledger-api-npm-3.0.1-16317ece98-2.zip/node_modules/dpos-ledger-api/",
+          "packageDependencies": [
+            ["dpos-ledger-api", "npm:3.0.1"],
+            ["bip32-path", "npm:0.4.2"],
+            ["crc", "npm:3.8.0"]
           ],
           "linkType": "HARD",
         }]
