@@ -2,16 +2,22 @@ export const manifest = {
 	name: "Ethereum",
 	networks: {
 		mainnet: {
-			ticker: "ETH",
 			explorer: "https://etherscan.io/",
+			currency: {
+				ticker: "ETH",
+				symbol: "ETH",
+			},
 			crypto: {
 				chainId: 1,
 				slip44: 60,
 			},
 		},
 		ropsten: {
-			ticker: "ETH",
 			explorer: "https://ropsten.etherscan.io/",
+			currency: {
+				ticker: "ETH",
+				symbol: "ETH",
+			},
 			crypto: {
 				chainId: 3,
 				slip44: 60,
@@ -26,16 +32,22 @@ export const manifest = {
 			},
 		},
 		goerli: {
-			ticker: "ETH",
 			explorer: "https://goerli.etherscan.io/",
+			currency: {
+				ticker: "ETH",
+				symbol: "ETH",
+			},
 			crypto: {
 				chainId: 5,
 				slip44: 60,
 			},
 		},
 		kovan: {
-			ticker: "ETH",
 			explorer: "https://kovan.etherscan.io/",
+			currency: {
+				ticker: "ETH",
+				symbol: "ETH",
+			},
 			crypto: {
 				chainId: 42,
 				slip44: 60,

@@ -2,15 +2,21 @@ export const manifest = {
 	name: "ARK",
 	networks: {
 		mainnet: {
-			ticker: "ARK",
 			explorer: "https://explorer.ark.io/",
+			currency: {
+				ticker: "ARK",
+				symbol: "Ѧ",
+			},
 			crypto: {
 				slip44: 111,
 			},
 		},
 		devnet: {
-			ticker: "DARK",
 			explorer: "https://dexplorer.ark.io/",
+			currency: {
+				ticker: "DARK",
+				symbol: "DѦ",
+			},
 			crypto: {
 				slip44: 111,
 			},

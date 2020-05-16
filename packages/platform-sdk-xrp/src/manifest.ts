@@ -2,15 +2,21 @@ export const manifest = {
 	name: "Ripple",
 	networks: {
 		mainnet: {
-			ticker: "XRP",
 			explorer: "https://bithomp.com/explorer/",
+			currency: {
+				ticker: "XRP",
+				symbol: "XRP",
+			},
 			crypto: {
 				slip44: 144,
 			},
 		},
 		testnet: {
-			ticker: "XRP",
 			explorer: "https://test.bithomp.com/explorer/",
+			currency: {
+				ticker: "XRP",
+				symbol: "XRP",
+			},
 			crypto: {
 				slip44: 144,
 			},
