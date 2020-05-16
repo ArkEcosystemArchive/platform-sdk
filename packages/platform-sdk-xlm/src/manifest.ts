@@ -2,15 +2,21 @@ export const manifest = {
 	name: "Stellar",
 	networks: {
 		mainnet: {
-			ticker: "XLM",
 			explorer: "https://steexp.com/",
+			currency: {
+				ticker: "XLM",
+				symbol: "XLM",
+			},
 			crypto: {
 				slip44: 148,
 			},
 		},
 		testnet: {
-			ticker: "XLM",
 			explorer: "https://testnet.steexp.com/",
+			currency: {
+				ticker: "XLM",
+				symbol: "XLM",
+			},
 			crypto: {
 				slip44: 148,
 			},

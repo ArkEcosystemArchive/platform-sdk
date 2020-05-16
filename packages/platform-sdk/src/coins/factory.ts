@@ -1,5 +1,3 @@
-import { FactoryServices, CoinOptions, CoinServices } from "./contracts";
-
 import {
 	ClientService,
 	FeeService,
@@ -10,6 +8,7 @@ import {
 	PeerService,
 	TransactionService,
 } from "../contracts/coins";
+import { CoinOptions, CoinServices, FactoryServices } from "./contracts";
 
 export class CoinFactory {
 	readonly #services: FactoryServices;

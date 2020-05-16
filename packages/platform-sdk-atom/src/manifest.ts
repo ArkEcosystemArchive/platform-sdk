@@ -3,8 +3,11 @@ export const manifest = {
 	networks: {
 		cosmos: {
 			mainnet: {
-				ticker: "ATOM",
 				explorer: "https://stake.id/",
+				currency: {
+					ticker: "ATOM",
+					symbol: "ATOM",
+				},
 				crypto: {
 					chainId: "cosmoshub-3",
 					slip44: 118,
@@ -12,8 +15,11 @@ export const manifest = {
 				},
 			},
 			testnet: {
-				ticker: "MUON",
 				explorer: "https://gaia.stake.id/",
+				currency: {
+					ticker: "MUON",
+					symbol: "MUON",
+				},
 				crypto: {
 					chainId: "gaia-13007",
 					slip44: 118,
@@ -23,8 +29,11 @@ export const manifest = {
 		},
 		terra: {
 			mainnet: {
-				ticker: "LUNA",
 				explorer: "https://terra.stake.id/",
+				currency: {
+					ticker: "LUNA",
+					symbol: "LUNA",
+				},
 				crypto: {
 					chainId: "columbus-3",
 					slip44: 330,
@@ -32,8 +41,11 @@ export const manifest = {
 				},
 			},
 			testnet: {
-				ticker: "LUNA",
 				explorer: "https://soju.stake.id/",
+				currency: {
+					ticker: "LUNA",
+					symbol: "LUNA",
+				},
 				crypto: {
 					chainId: "soju-0014",
 					slip44: 330,

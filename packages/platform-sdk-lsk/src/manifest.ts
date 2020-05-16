@@ -2,22 +2,31 @@ export const manifest = {
 	name: "Lisk",
 	networks: {
 		mainnet: {
-			ticker: "LSK",
 			explorer: "https://explorer.lisk.io/",
+			currency: {
+				ticker: "LSK",
+				symbol: "LSK",
+			},
 			crypto: {
 				slip44: 134,
 			},
 		},
 		testnet: {
-			ticker: "LSK",
 			explorer: "https://testnet-explorer.lisk.io/",
+			currency: {
+				ticker: "LSK",
+				symbol: "LSK",
+			},
 			crypto: {
 				slip44: 134,
 			},
 		},
 		betanet: {
-			ticker: "LSK",
 			explorer: "https://betanet-explorer.lisk.io/",
+			currency: {
+				ticker: "LSK",
+				symbol: "LSK",
+			},
 			crypto: {
 				slip44: 134,
 			},
