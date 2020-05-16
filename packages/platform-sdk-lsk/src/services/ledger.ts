@@ -52,6 +52,7 @@ export class LedgerService implements Contracts.LedgerService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "signMessageWithSchnorr");
 	}
 
-	getLedgerAccount = (path: string): LedgerAccount =>
-		new LedgerAccount().coinIndex(SupportedCoin.LISK).account(Utils.BIP44.parse(path).account);
+	private getLedgerAccount(path: string): LedgerAccount {
+		return new LedgerAccount().coinIndex(SupportedCoin.LISK).account(Utils.BIP44.parse(path).account);
+	}
 }

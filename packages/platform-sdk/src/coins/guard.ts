@@ -1,6 +1,6 @@
 import delve from "dlv";
 
-class Guard {
+export class Guard {
 	readonly #abilities: object;
 
 	public constructor(abilities: object) {

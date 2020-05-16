@@ -36,10 +36,7 @@ beforeEach(() => {
 
 	nock(BASE_URL_COINCAP).get("/rates").reply(200, require("./__fixtures__/rates.json"));
 
-	nock(BASE_URL_COINCAP)
-		.get("/assets/ark/history")
-		.query(true)
-		.reply(200, require("./__fixtures__/historical.json"));
+	nock(BASE_URL_COINCAP).get("/assets/ark/history").query(true).reply(200, require("./__fixtures__/historical.json"));
 });
 
 describe("PriceTracker", () => {
