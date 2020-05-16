@@ -312,6 +312,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/dlv", "npm:1.1.2"],
             ["@types/eslint", "npm:6.8.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/jest", "npm:25.2.1"],
@@ -327,6 +328,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["codecov", "npm:3.6.5"],
             ["cross-env", "npm:7.0.2"],
             ["dayjs", "npm:1.8.25"],
+            ["dlv", "npm:1.1.3"],
             ["eslint", "npm:6.8.0"],
             ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.11.0"],
             ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:23.8.2"],
