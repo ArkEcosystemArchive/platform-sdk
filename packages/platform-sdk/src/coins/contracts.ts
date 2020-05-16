@@ -9,7 +9,7 @@ import {
 	TransactionService,
 } from "../contracts/coins";
 
-export interface CoinSpecs {
+export interface CoinSpec {
 	manifest: any;
 	services: {
 		client: any;

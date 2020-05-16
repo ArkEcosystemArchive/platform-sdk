@@ -1,10 +1,10 @@
 import { Coin } from "./coin";
-import { CoinOptions, CoinSpecs } from "./contracts";
+import { CoinOptions, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
 import { NetworkRepository } from "./network-repository";
 
 export class CoinFactory {
-	public static async make(coin: CoinSpecs, options: CoinOptions): Promise<Coin> {
+	public static async make(coin: CoinSpec, options: CoinOptions): Promise<Coin> {
 		const merge = (options: CoinOptions, service: string) => ({
 			network: options.network,
 			peer: options.peer,
