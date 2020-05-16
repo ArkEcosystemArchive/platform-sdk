@@ -1,9 +1,7 @@
 import * as services from "./services";
 import { manifest } from "./manifest";
 
-export * as DTO from "./dto";
-
-export const ARK = {
+export const ETH = {
 	manifest,
 	services,
 };

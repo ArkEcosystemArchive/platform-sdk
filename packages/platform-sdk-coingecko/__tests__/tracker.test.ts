@@ -2,7 +2,7 @@ import "jest-extended";
 import { Data } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { PriceTracker } from "../../src/services/tracker";
+import { PriceTracker } from "../src";
 
 const BASE_URL_COINGECKO = "https://api.coingecko.com/api/v3";
 const token = "ARK";
