@@ -11,11 +11,13 @@ import {
 import { Manifest } from "./manifest";
 import { NetworkRepository } from "./network-repository";
 import { CoinServices } from "./contracts";
+import { Guard } from "./guard";
 
 export class Coin {
 	readonly #network: NetworkRepository;
 	readonly #manifest: Manifest;
 	readonly #services: CoinServices;
+	readonly #guard: Guard;
 
 	public constructor({
 		network,
@@ -29,6 +31,7 @@ export class Coin {
 		this.#network = network;
 		this.#manifest = manifest;
 		this.#services = services;
+		this.#guard = new Guard(manifest.get("abilities"));
 	}
 
 	public async destruct(): Promise<void> {
@@ -50,35 +53,39 @@ export class Coin {
 		return this.#manifest;
 	}
 
-	public clientService(): ClientService {
+	public guard(): Guard {
+		return this.#guard;
+	}
+
+	public client(): ClientService {
 		return this.#services.client;
 	}
 
-	public feeService(): FeeService {
+	public fee(): FeeService {
 		return this.#services.fee;
 	}
 
-	public identityService(): IdentityService {
+	public identity(): IdentityService {
 		return this.#services.identity;
 	}
 
-	public ledgerService(): LedgerService {
+	public ledger(): LedgerService {
 		return this.#services.ledger;
 	}
 
-	public linkService(): LinkService {
+	public link(): LinkService {
 		return this.#services.link;
 	}
 
-	public messageService(): MessageService {
+	public message(): MessageService {
 		return this.#services.message;
 	}
 
-	public peerService(): PeerService {
+	public peer(): PeerService {
 		return this.#services.peer;
 	}
 
-	public transactionService(): TransactionService {
+	public transaction(): TransactionService {
 		return this.#services.transaction;
 	}
 }
