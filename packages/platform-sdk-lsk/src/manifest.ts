@@ -32,7 +32,7 @@ export const manifest = {
 			},
 		},
 	},
-	behaviours: {
+	abilities: {
 		Client: {
 			transaction: true,
 			transactions: true,
