@@ -1,3 +1,3 @@
 export * as DTO from "./dto";
-export * from "./factory";
+export * as Services from "./services";
 export * from "./manifest";
