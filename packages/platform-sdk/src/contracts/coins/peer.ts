@@ -19,7 +19,7 @@ export interface PeerResponse {
 export interface PeerService {
 	destruct(): Promise<void>;
 
-	getSeeds(): Peer[];
+	getSeeds(): string[];
 
 	search(opts: any): Promise<PeerResponse[]>;
 

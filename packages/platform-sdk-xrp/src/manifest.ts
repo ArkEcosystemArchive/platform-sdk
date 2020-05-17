@@ -2,7 +2,7 @@ export const manifest = {
 	name: "Ripple",
 	networks: {
 		mainnet: {
-			explorer: "https://bithomp.com/explorer/",
+			explorer: "https://livenet.xrpl.org/",
 			currency: {
 				ticker: "XRP",
 				symbol: "XRP",
@@ -10,9 +10,10 @@ export const manifest = {
 			crypto: {
 				slip44: 144,
 			},
+			hosts: ["wss://s2.ripple.com/"],
 		},
 		testnet: {
-			explorer: "https://test.bithomp.com/explorer/",
+			explorer: "https://testnet.xrpl.org/",
 			currency: {
 				ticker: "XRP",
 				symbol: "XRP",
@@ -20,6 +21,7 @@ export const manifest = {
 			crypto: {
 				slip44: 144,
 			},
+			hosts: ["wss://s.altnet.rippletest.net/"],
 		},
 	},
 	abilities: {

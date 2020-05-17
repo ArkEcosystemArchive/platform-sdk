@@ -10,6 +10,7 @@ export const manifest = {
 			crypto: {
 				slip44: 0,
 			},
+			hosts: [],
 		},
 		testnet: {
 			explorer: "https://blockstream.info/testnet/",
@@ -20,6 +21,7 @@ export const manifest = {
 			crypto: {
 				slip44: 0,
 			},
+			hosts: [],
 		},
 	},
 	abilities: {

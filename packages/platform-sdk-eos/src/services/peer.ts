@@ -1,16 +1,24 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
+import { manifest } from "../manifest";
+
 export class PeerService implements Contracts.PeerService {
-	public static async construct(opts: Contracts.KeyValuePair): Promise<PeerService> {
-		return new PeerService();
+	readonly #seeds: string[];
+
+	private constructor(network: string) {
+		this.#seeds = manifest.networks[network].hosts;
+	}
+
+	public static async construct(config: Coins.Config): Promise<PeerService> {
+		return new PeerService(config.get<string>("network"));
 	}
 
 	public async destruct(): Promise<void> {
 		//
 	}
 
-	public getSeeds(): Contracts.Peer[] {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getSeeds");
+	public getSeeds(): string[] {
+		return this.#seeds;
 	}
 
 	public withVersion(version: string): PeerService {

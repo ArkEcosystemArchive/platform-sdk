@@ -8,10 +8,11 @@ export const manifest = {
 				symbol: "ATOM",
 			},
 			crypto: {
-				chainId: "cosmoshub-3",
+				networkId: "cosmoshub-3",
 				slip44: 118,
 				bech32: "cosmos",
 			},
+			hosts: [],
 		},
 		"cosmos.testnet": {
 			explorer: "https://gaia.stake.id/",
@@ -20,10 +21,11 @@ export const manifest = {
 				symbol: "MUON",
 			},
 			crypto: {
-				chainId: "gaia-13007",
+				networkId: "gaia-13007",
 				slip44: 118,
 				bech32: "cosmos",
 			},
+			hosts: [],
 		},
 		"terra.mainnet": {
 			explorer: "https://terra.stake.id/",
@@ -32,10 +34,11 @@ export const manifest = {
 				symbol: "LUNA",
 			},
 			crypto: {
-				chainId: "columbus-3",
+				networkId: "columbus-3",
 				slip44: 330,
 				bech32: "terra",
 			},
+			hosts: [],
 		},
 		"terra.testnet": {
 			explorer: "https://soju.stake.id/",
@@ -44,10 +47,11 @@ export const manifest = {
 				symbol: "LUNA",
 			},
 			crypto: {
-				chainId: "soju-0014",
+				networkId: "soju-0014",
 				slip44: 330,
 				bech32: "terra",
 			},
+			hosts: [],
 		},
 	},
 	abilities: {

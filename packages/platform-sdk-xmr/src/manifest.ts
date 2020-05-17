@@ -10,6 +10,7 @@ export const manifest = {
 			crypto: {
 				slip44: 123,
 			},
+			hosts: [],
 		},
 		testnet: {
 			explorer: "https://dexplorer.ark.io/",
@@ -20,6 +21,7 @@ export const manifest = {
 			crypto: {
 				slip44: 123,
 			},
+			hosts: [],
 		},
 	},
 	abilities: {

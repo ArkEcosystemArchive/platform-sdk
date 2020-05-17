@@ -1,50 +1,43 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
 import isUrl from "is-url-superb";
-import ky from "ky-universal";
 import orderBy from "lodash.orderby";
 import semver from "semver";
 
+import { manifest } from "../manifest";
+
 export class PeerService implements Contracts.PeerService {
-	private constructor(private readonly seeds: Contracts.Peer[]) {}
+	readonly #seeds: string[];
+
+	private constructor(seeds: string[]) {
+		this.#seeds = seeds;
+	}
 
 	public static async construct(config: Coins.Config): Promise<PeerService> {
-		let { network, peer, defaultPort } = config.all();
+		let { peer } = config.all();
 
-		if (!defaultPort) {
-			defaultPort = 4003;
-		}
-
-		const seeds: Contracts.Peer[] = [];
+		let seeds: string[] = [];
 
 		try {
 			if (peer && isUrl(peer)) {
-				const body: any = await ky.get(`${peer}/peers`).json();
+				const response = await Utils.Http.new(peer).get("peers");
 
-				for (const seed of body.data) {
-					let port = defaultPort;
+				for (const seed of response.data) {
+					let port: number = 4003;
+
 					if (seed.ports) {
-						const walletApiPort = seed.ports["@arkecosystem/core-wallet-api"];
-						const apiPort = seed.ports["@arkecosystem/core-api"];
+						const apiPort: number | undefined = seed.ports["@arkecosystem/core-api"];
 
-						if (walletApiPort >= 1 && walletApiPort <= 65535) {
-							port = walletApiPort;
-						} else if (apiPort >= 1 && apiPort <= 65535) {
+						if (apiPort && apiPort >= 1 && apiPort <= 65535) {
 							port = apiPort;
 						}
 					}
 
-					seeds.push({ ip: seed.ip, port });
+					seeds.push(`http://${seed.ip}:${port}`);
 				}
 			} else {
-				const body: any = await ky
-					.get(`https://raw.githubusercontent.com/ArkEcosystem/peers/master/${network}.json`)
-					.json();
-
-				for (const seed of body) {
-					seeds.push({ ip: seed.ip, port: defaultPort });
-				}
+				seeds = manifest.networks[config.get<string>("network")].hosts;
 			}
-		} catch (error) {
+		} catch {
 			throw new Error("Failed to discovery any peers.");
 		}
 
@@ -59,29 +52,14 @@ export class PeerService implements Contracts.PeerService {
 		//
 	}
 
-	public getSeeds(): Contracts.Peer[] {
-		return this.seeds;
+	public getSeeds(): string[] {
+		return this.#seeds;
 	}
 
 	public async search(options: Contracts.KeyValuePair = {}): Promise<Contracts.PeerResponse[]> {
-		if (!options.retry) {
-			options.retry = { limit: 0 };
-		}
+		const seed: string = this.#seeds[Math.floor(Math.random() * this.#seeds.length)];
 
-		if (!options.timeout) {
-			options.timeout = 3000;
-		}
-
-		const seed: Contracts.Peer = this.seeds[Math.floor(Math.random() * this.seeds.length)];
-
-		const body: any = await ky(`http://${seed.ip}:${seed.port}/api/peers`, {
-			...options,
-			...{
-				headers: {
-					"Content-Type": "application/json",
-				},
-			},
-		}).json();
+		const body: any = await Utils.Http.new(seed).get("api/peers");
 
 		let peers: Contracts.PeerResponse[] = body.data;
 
@@ -140,7 +118,9 @@ export class PeerService implements Contracts.PeerService {
 	public async searchWithoutEstimates(options: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
 		const apiPeers: Contracts.Peer[] = await this.searchWithPlugin("core-api", options);
 
-		const requests = apiPeers.map((peer) => ky.get(`http://${peer.ip}:${peer.port}/api/blocks?limit=1`).json());
+		const requests = apiPeers.map((peer) =>
+			Utils.Http.new(`http://${peer.ip}:${peer.port}`).get("api/blocks?limit=1"),
+		);
 
 		const responses = await Promise.all(requests);
 
