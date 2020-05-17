@@ -5,10 +5,11 @@ interface Network {
 		symbol: string;
 	};
 	crypto: {
-		chainId?: string;
+		networkId?: string;
 		slip44: number;
 		bech32?: string;
 	};
+	hosts: string[];
 }
 
 export class NetworkRepository {

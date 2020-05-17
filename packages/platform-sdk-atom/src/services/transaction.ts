@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
+import { manifest } from "../manifest";
 import { createSignedTransaction } from "../utils/crypto";
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";
@@ -7,11 +8,12 @@ import { IdentityService } from "./identity";
 export class TransactionService implements Contracts.TransactionService {
 	readonly #client;
 	readonly #identity;
-	readonly #chainId = "gaia-13007"; // todo: make this configurable, currently uses testnet
+	readonly #networkId;
 
 	private constructor(opts: Contracts.KeyValuePair) {
 		this.#client = opts.client;
 		this.#identity = opts.identity;
+		this.#networkId = manifest.networks[opts.network].crypto.networkId;
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
@@ -52,7 +54,7 @@ export class TransactionService implements Contracts.TransactionService {
 						},
 					},
 				],
-				chain_id: this.#chainId, // todo: make this configurable
+				chain_id: this.#networkId,
 				fee: {
 					amount: [
 						{

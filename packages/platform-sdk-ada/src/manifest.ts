@@ -10,6 +10,7 @@ export const manifest = {
 			crypto: {
 				slip44: 1815,
 			},
+			hosts: [],
 		},
 		testnet: {
 			explorer: "https://shelleyexplorer.cardano.org/",
@@ -20,6 +21,7 @@ export const manifest = {
 			crypto: {
 				slip44: 1815,
 			},
+			hosts: [],
 		},
 	},
 	abilities: {

@@ -8,9 +8,10 @@ export const manifest = {
 				symbol: "Ξ",
 			},
 			crypto: {
-				chainId: 1,
+				networkId: 1,
 				slip44: 60,
 			},
+			hosts: [],
 		},
 		ropsten: {
 			explorer: "https://ropsten.etherscan.io/",
@@ -19,17 +20,19 @@ export const manifest = {
 				symbol: "Ξ",
 			},
 			crypto: {
-				chainId: 3,
+				networkId: 3,
 				slip44: 60,
 			},
+			hosts: [],
 		},
 		rinkeby: {
 			rinkeby: "ETH",
 			explorer: "https://rinkeby.etherscan.io/",
 			crypto: {
-				chainId: 4,
+				networkId: 4,
 				slip44: 60,
 			},
+			hosts: [],
 		},
 		goerli: {
 			explorer: "https://goerli.etherscan.io/",
@@ -38,9 +41,10 @@ export const manifest = {
 				symbol: "Ξ",
 			},
 			crypto: {
-				chainId: 5,
+				networkId: 5,
 				slip44: 60,
 			},
+			hosts: [],
 		},
 		kovan: {
 			explorer: "https://kovan.etherscan.io/",
@@ -49,9 +53,10 @@ export const manifest = {
 				symbol: "Ξ",
 			},
 			crypto: {
-				chainId: 42,
+				networkId: 42,
 				slip44: 60,
 			},
+			hosts: [],
 		},
 	},
 	abilities: {

@@ -10,6 +10,7 @@ export const manifest = {
 			crypto: {
 				slip44: 148,
 			},
+			hosts: ["https://horizon.stellar.org"],
 		},
 		testnet: {
 			explorer: "https://testnet.steexp.com/",
@@ -20,6 +21,7 @@ export const manifest = {
 			crypto: {
 				slip44: 148,
 			},
+			hosts: ["https://horizon-testnet.stellar.org"],
 		},
 	},
 	abilities: {

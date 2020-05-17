@@ -1,6 +1,8 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import * as transactions from "@liskhq/lisk-transactions";
 
+import { manifest } from "../manifest";
+
 export class TransactionService implements Contracts.TransactionService {
 	readonly #network;
 
@@ -9,8 +11,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
-		// todo: grab the hash from the internal manifest
-		return new TransactionService("7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d");
+		return new TransactionService(manifest.networks[config.get<string>("network")].crypto.networkId);
 	}
 
 	public async destruct(): Promise<void> {
