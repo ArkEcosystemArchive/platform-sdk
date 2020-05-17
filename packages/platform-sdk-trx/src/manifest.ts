@@ -10,6 +10,7 @@ export const manifest = {
 			crypto: {
 				slip44: 195,
 			},
+			hosts: ["https://api.trongrid.io"],
 		},
 		testnet: {
 			explorer: "https://shasta.tronscan.org/#/",
@@ -20,6 +21,7 @@ export const manifest = {
 			crypto: {
 				slip44: 195,
 			},
+			hosts: ["https://api.shasta.trongrid.io"],
 		},
 	},
 	abilities: {
