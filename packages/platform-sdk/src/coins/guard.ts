@@ -1,4 +1,4 @@
-import delve from "dlv";
+import { get } from "dot-prop";
 
 export class Guard {
 	readonly #abilities: object;
@@ -12,7 +12,7 @@ export class Guard {
 	}
 
 	public get(ability: string) {
-		return delve(this.#abilities, ability);
+		return get(this.#abilities, ability);
 	}
 
 	public has(ability: string) {

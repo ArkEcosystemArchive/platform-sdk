@@ -1,4 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { deriveKeypair } from "ripple-keypairs";
 
 export class Keys implements Contracts.Keys {

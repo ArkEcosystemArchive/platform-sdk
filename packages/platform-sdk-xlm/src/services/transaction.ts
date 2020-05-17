@@ -1,4 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
 import { IdentityService } from "./identity";
@@ -25,10 +25,10 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#identity = options.identity;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
-			network: opts.network,
-			identity: await IdentityService.construct(opts),
+			network: config.get("network"),
+			identity: await IdentityService.construct(config),
 		});
 	}
 

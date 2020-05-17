@@ -1,8 +1,8 @@
-import { Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
 import { deriveKeypair, sign, verify } from "ripple-keypairs";
 
 export class MessageService implements Contracts.MessageService {
-	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
+	public static async construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService();
 	}
 

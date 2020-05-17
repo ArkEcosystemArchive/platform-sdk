@@ -3,10 +3,11 @@ import nock from "nock";
 
 import { TransactionService } from "../../src/services/transaction";
 import { identity } from "../__fixtures__/identity";
+import { createConfig } from "../helpers";
 
 let subject: TransactionService;
 
-beforeEach(async () => (subject = await TransactionService.construct({ network: "testnet" })));
+beforeEach(async () => (subject = await TransactionService.construct(createConfig())));
 
 afterEach(() => nock.cleanAll());
 

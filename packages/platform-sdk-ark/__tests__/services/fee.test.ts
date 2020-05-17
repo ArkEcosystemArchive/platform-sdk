@@ -2,10 +2,11 @@ import "jest-extended";
 import nock from "nock";
 
 import { FeeService } from "../../src/services/fee";
+import { createConfig } from "../helpers";
 
 let subject: FeeService;
 
-beforeEach(async () => (subject = await FeeService.construct({ peer: "https://dexplorer.ark.io/api" })));
+beforeEach(async () => (subject = await FeeService.construct(createConfig())));
 
 afterEach(() => nock.cleanAll());
 

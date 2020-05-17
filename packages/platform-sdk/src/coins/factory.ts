@@ -1,30 +1,28 @@
 import { Coin } from "./coin";
+import { Config } from "./config";
 import { CoinOptions, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
 import { NetworkRepository } from "./network-repository";
 
 export class CoinFactory {
 	public static async make(coin: CoinSpec, options: CoinOptions): Promise<Coin> {
-		const merge = (options: CoinOptions, service: string) => ({
-			network: options.network,
-			peer: options.peer,
-			...(options.services ? options.services[service] || {} : {}),
-		});
-
 		const { manifest, services } = coin;
+
+		const config: Config = new Config(options, coin.schema);
 
 		return new Coin({
 			network: new NetworkRepository(manifest.networks),
 			manifest: new Manifest(manifest),
+			config,
 			services: {
-				client: await services.client.construct(merge(options, "client")),
-				fee: await services.fee.construct(merge(options, "fee")),
-				identity: await services.identity.construct(merge(options, "identity")),
-				ledger: await services.ledger.construct(merge(options, "ledger")),
-				link: await services.link.construct(merge(options, "link")),
-				message: await services.message.construct(merge(options, "message")),
-				peer: await services.peer.construct(merge(options, "peer")),
-				transaction: await services.transaction.construct(merge(options, "transaction")),
+				client: await services.client.construct(config),
+				fee: await services.fee.construct(config),
+				identity: await services.identity.construct(config),
+				ledger: await services.ledger.construct(config),
+				link: await services.link.construct(config),
+				message: await services.message.construct(config),
+				peer: await services.peer.construct(config),
+				transaction: await services.transaction.construct(config),
 			},
 		});
 	}

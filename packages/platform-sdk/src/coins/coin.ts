@@ -8,6 +8,7 @@ import {
 	PeerService,
 	TransactionService,
 } from "../contracts/coins";
+import { Config } from "./config";
 import { CoinServices } from "./contracts";
 import { Guard } from "./guard";
 import { Manifest } from "./manifest";
@@ -16,22 +17,26 @@ import { NetworkRepository } from "./network-repository";
 export class Coin {
 	readonly #network: NetworkRepository;
 	readonly #manifest: Manifest;
+	readonly #config: Config;
 	readonly #services: CoinServices;
 	readonly #guard: Guard;
 
 	public constructor({
 		network,
 		manifest,
+		config,
 		services,
 	}: {
 		network: NetworkRepository;
 		manifest: Manifest;
+		config: Config;
 		services: CoinServices;
 	}) {
 		this.#network = network;
 		this.#manifest = manifest;
+		this.#config = config;
 		this.#services = services;
-		this.#guard = new Guard(manifest.get("abilities"));
+		this.#guard = new Guard(manifest.get<object>("abilities")!);
 	}
 
 	public async destruct(): Promise<void> {
@@ -51,6 +56,10 @@ export class Coin {
 
 	public manifest(): Manifest {
 		return this.#manifest;
+	}
+
+	public config(): Config {
+		return this.#config;
 	}
 
 	public guard(): Guard {

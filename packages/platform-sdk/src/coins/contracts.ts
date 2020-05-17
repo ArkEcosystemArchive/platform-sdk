@@ -11,6 +11,7 @@ import {
 
 export interface CoinSpec {
 	manifest: any;
+	schema: any;
 	services: {
 		client: any;
 		fee: any;
@@ -26,16 +27,6 @@ export interface CoinSpec {
 export interface CoinOptions {
 	network: string;
 	peer?: string;
-	services?: {
-		client: {};
-		fee: {};
-		identity: {};
-		ledger: { transport?: any }; // todo: add contract for the transport
-		link: {};
-		message: {};
-		peer: {};
-		transaction: {};
-	};
 }
 
 export interface CoinServices {

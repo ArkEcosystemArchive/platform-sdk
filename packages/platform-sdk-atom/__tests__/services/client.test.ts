@@ -5,10 +5,11 @@ import nock from "nock";
 
 import { ClientService } from "../../src/services/client";
 import { TransactionData, WalletData } from "../../src/dto";
+import { createConfig } from "../helpers";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.construct({ peer: "https://stargate.cosmos.network" })));
+beforeEach(async () => (subject = await ClientService.construct(createConfig())));
 
 beforeAll(() => nock.disableNetConnect());
 

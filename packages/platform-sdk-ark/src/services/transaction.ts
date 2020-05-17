@@ -1,13 +1,13 @@
 import { Connection } from "@arkecosystem/client";
 import { Managers, Transactions } from "@arkecosystem/crypto";
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 export class TransactionService implements Contracts.TransactionService {
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		const connection = new Connection(opts.peer);
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
+		const connection = new Connection(config.get("peer"));
 
-		const { body: config } = await connection.api("node").crypto();
-		Managers.configManager.setConfig(config.data as any);
+		const { body: crypto } = await connection.api("node").crypto();
+		Managers.configManager.setConfig(crypto.data as any);
 
 		const { body: status } = await connection.api("node").syncing();
 		Managers.configManager.setHeight(status.data.height);

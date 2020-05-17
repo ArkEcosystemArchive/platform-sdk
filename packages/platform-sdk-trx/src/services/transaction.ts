@@ -1,4 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import TronWeb from "tronweb";
 
 export class TransactionService implements Contracts.TransactionService {
@@ -10,8 +10,8 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		return new TransactionService(opts.peer);
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
+		return new TransactionService(config.get("peer"));
 	}
 
 	public async destruct(): Promise<void> {

@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import Bitcoin from "bitcore-lib";
 
 import { p2pkh } from "./utils";

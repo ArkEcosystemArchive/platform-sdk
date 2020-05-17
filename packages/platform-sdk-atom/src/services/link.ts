@@ -1,5 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
-import delve from "dlv";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { manifest } from "../manifest";
 
@@ -7,11 +6,11 @@ export class LinkService implements Contracts.LinkService {
 	readonly #baseUrl: string;
 
 	private constructor(network: string) {
-		this.#baseUrl = delve(manifest.networks, `${network}.explorer`);
+		this.#baseUrl = manifest.networks[network].explorer;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<LinkService> {
-		return new LinkService(opts.network);
+	public static async construct(config: Coins.Config): Promise<LinkService> {
+		return new LinkService(config.get("network"));
 	}
 
 	public async destruct(): Promise<void> {

@@ -5,7 +5,7 @@ export const manifest = {
 			explorer: "https://etherscan.io/",
 			currency: {
 				ticker: "ETH",
-				symbol: "ETH",
+				symbol: "Ξ",
 			},
 			crypto: {
 				chainId: 1,
@@ -16,7 +16,7 @@ export const manifest = {
 			explorer: "https://ropsten.etherscan.io/",
 			currency: {
 				ticker: "ETH",
-				symbol: "ETH",
+				symbol: "Ξ",
 			},
 			crypto: {
 				chainId: 3,
@@ -35,7 +35,7 @@ export const manifest = {
 			explorer: "https://goerli.etherscan.io/",
 			currency: {
 				ticker: "ETH",
-				symbol: "ETH",
+				symbol: "Ξ",
 			},
 			crypto: {
 				chainId: 5,
@@ -46,7 +46,7 @@ export const manifest = {
 			explorer: "https://kovan.etherscan.io/",
 			currency: {
 				ticker: "ETH",
-				symbol: "ETH",
+				symbol: "Ξ",
 			},
 			crypto: {
 				chainId: 42,

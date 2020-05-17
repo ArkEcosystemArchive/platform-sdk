@@ -5,7 +5,7 @@ export const manifest = {
 			explorer: "https://blockstream.info/",
 			currency: {
 				ticker: "BTC",
-				symbol: "BTC",
+				symbol: "Ƀ",
 			},
 			crypto: {
 				slip44: 0,
@@ -15,7 +15,7 @@ export const manifest = {
 			explorer: "https://blockstream.info/testnet/",
 			currency: {
 				ticker: "BTC",
-				symbol: "BTC",
+				symbol: "Ƀ",
 			},
 			crypto: {
 				slip44: 0,

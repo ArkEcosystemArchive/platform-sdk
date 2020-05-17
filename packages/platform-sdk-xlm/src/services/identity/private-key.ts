@@ -1,4 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import StellarHDWallet from "stellar-hd-wallet";
 
 export class PrivateKey implements Contracts.PrivateKey {
