@@ -3,12 +3,11 @@ import Ripple from "@ledgerhq/hw-app-xrp";
 import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
 
 export class LedgerService implements Contracts.LedgerService {
-	readonly #ledger: LedgerTransport;
-	readonly #transport: Ripple;
+	#ledger: LedgerTransport;
+	#transport: Ripple;
 
 	private constructor(transport: Contracts.LedgerTransport) {
 		this.#ledger = transport;
-		this.#transport = new Ripple(transport);
 	}
 
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
@@ -20,7 +19,8 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public async connect(): Promise<void> {
-		await this.#ledger.open();
+		this.#ledger = await this.#ledger.open();
+		this.#transport = new Ripple(this.#ledger);
 	}
 
 	public async disconnect(): Promise<void> {
