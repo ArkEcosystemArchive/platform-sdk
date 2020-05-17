@@ -1,4 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { createSignedTransaction } from "../utils/crypto";
 import { ClientService } from "./client";
@@ -14,11 +14,11 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#identity = opts.identity;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
-			...opts,
-			client: await ClientService.construct(opts),
-			identity: await IdentityService.construct(opts),
+			...config.all(),
+			client: await ClientService.construct(config),
+			identity: await IdentityService.construct(config),
 		});
 	}
 

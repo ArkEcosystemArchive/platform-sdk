@@ -3,10 +3,11 @@ import nock from "nock";
 
 import { TransactionService } from "../../src/services/transaction";
 import { testWallet } from "../__fixtures__/wallet";
+import { createConfig } from "../helpers";
 
 let subject: TransactionService;
 
-beforeEach(async () => (subject = await TransactionService.construct({ peer: "https://api.shasta.trongrid.io" })));
+beforeEach(async () => (subject = await TransactionService.construct(createConfig())));
 
 beforeAll(() => nock.disableNetConnect());
 

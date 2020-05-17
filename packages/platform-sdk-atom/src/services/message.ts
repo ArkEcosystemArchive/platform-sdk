@@ -1,4 +1,4 @@
-import { Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
 import { secp256k1 } from "bcrypto";
 
 import { HashAlgorithms } from "../utils/hash";
@@ -11,8 +11,8 @@ export class MessageService implements Contracts.MessageService {
 		this.#identityService = opts.identityService;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
-		return new MessageService({ identityService: await IdentityService.construct(opts) });
+	public static async construct(config: Coins.Config): Promise<MessageService> {
+		return new MessageService({ identityService: await IdentityService.construct(config) });
 	}
 
 	public async destruct(): Promise<void> {

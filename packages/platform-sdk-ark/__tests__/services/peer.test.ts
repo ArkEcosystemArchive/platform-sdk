@@ -2,6 +2,7 @@ import nock from "nock";
 
 import { PeerService } from "../../src/services/peer";
 import { dummyPeersPublicApi, dummyPeersWalletApi, dummySeeds } from "./mocks/peers";
+import { createConfig } from "../helpers";
 
 beforeEach(() => nock.cleanAll());
 
@@ -13,9 +14,11 @@ describe("PeerService", () => {
 					data: dummyPeersWalletApi,
 				});
 
-				const peerService: PeerService = await PeerService.construct({
-					peer: "http://127.0.0.1/api",
-				});
+				const peerService: PeerService = await PeerService.construct(
+					createConfig({
+						peer: "http://127.0.0.1/api",
+					}),
+				);
 
 				expect(peerService.getSeeds()).toEqual(
 					dummyPeersWalletApi.map((peer) => ({
@@ -30,9 +33,11 @@ describe("PeerService", () => {
 					data: dummyPeersPublicApi,
 				});
 
-				const peerService: PeerService = await PeerService.construct({
-					peer: "http://127.0.0.1/api",
-				});
+				const peerService: PeerService = await PeerService.construct(
+					createConfig({
+						peer: "http://127.0.0.1/api",
+					}),
+				);
 
 				expect(peerService.getSeeds()).toEqual(
 					dummyPeersPublicApi.map((peer) => ({
@@ -48,20 +53,22 @@ describe("PeerService", () => {
 				});
 
 				await expect(
-					PeerService.construct({
-						peer: "http://127.0.0.1/api",
-					}),
+					PeerService.construct(
+						createConfig({
+							peer: "http://127.0.0.1/api",
+						}),
+					),
 				).rejects.toThrowError(new Error("No seeds found"));
 			});
 		});
 
 		describe("github", () => {
-			it("should fetch peers", async () => {
+			it.only("should fetch peers", async () => {
 				nock("https://raw.githubusercontent.com/ArkEcosystem/peers/master")
 					.get("/mainnet.json")
 					.reply(200, dummySeeds);
 
-				const peerService: PeerService = await PeerService.construct({ network: "mainnet" });
+				const peerService: PeerService = await PeerService.construct(createConfig({ network: "mainnet" }));
 
 				expect(peerService.getSeeds()).toEqual(dummySeeds.map((peer) => ({ ip: peer.ip, port: 4003 })));
 			});
@@ -70,9 +77,11 @@ describe("PeerService", () => {
 				nock("https://raw.githubusercontent.com/ArkEcosystem/peers/master").get("/failnet.json").reply(404);
 
 				await expect(
-					PeerService.construct({
-						network: "failnet",
-					}),
+					PeerService.construct(
+						createConfig({
+							network: "failnet",
+						}),
+					),
 				).rejects.toThrowError(new Error("Failed to discovery any peers."));
 			});
 
@@ -80,9 +89,11 @@ describe("PeerService", () => {
 				nock("https://raw.githubusercontent.com/ArkEcosystem/peers/master").get("/mainnet.json").reply(200, []);
 
 				await expect(
-					PeerService.construct({
-						network: "mainnet",
-					}),
+					PeerService.construct(
+						createConfig({
+							network: "mainnet",
+						}),
+					),
 				).rejects.toThrowError(new Error("No seeds found"));
 			});
 		});
@@ -95,7 +106,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			peerService = await PeerService.construct({ peer: "http://127.0.0.1/api" });
+			peerService = await PeerService.construct(createConfig({ peer: "http://127.0.0.1/api" }));
 		});
 
 		it("should find peers", async () => {
@@ -182,7 +193,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			peerService = await PeerService.construct({ peer: "http://127.0.0.1/api" });
+			peerService = await PeerService.construct(createConfig({ peer: "http://127.0.0.1/api" }));
 		});
 
 		it("should find peers without the wallet api plugin", async () => {
@@ -236,7 +247,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			peerService = await PeerService.construct({ peer: "http://127.0.0.1/api" });
+			peerService = await PeerService.construct(createConfig({ peer: "http://127.0.0.1/api" }));
 		});
 
 		it("should find peers without estimates", async () => {

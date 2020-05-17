@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import isUrl from "is-url-superb";
 import ky from "ky-universal";
 import orderBy from "lodash.orderby";
@@ -7,8 +7,8 @@ import semver from "semver";
 export class PeerService implements Contracts.PeerService {
 	private constructor(private readonly seeds: Contracts.Peer[]) {}
 
-	public static async construct(options: Contracts.KeyValuePair): Promise<PeerService> {
-		let { network, peer, defaultPort } = options;
+	public static async construct(config: Coins.Config): Promise<PeerService> {
+		let { network, peer, defaultPort } = config.all();
 
 		if (!defaultPort) {
 			defaultPort = 4003;

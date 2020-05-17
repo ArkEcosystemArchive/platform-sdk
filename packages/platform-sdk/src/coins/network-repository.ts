@@ -1,33 +1,42 @@
-import delve from "dlv";
-
-// interface Network {
-// 	explorer: string;
-// 	currency: {
-// 		ticker: string;
-// 		symbol: string;
-// 	};
-// 	crypto: {
-// 		chainId?: string;
-// 		slip44: number;
-// 		bech32?: string;
-// 	};
-// }
-
-// todo: come up with an interface because networks can be nested like "cosmos.mainnet" due to some coins supporting multiple sub-coins or forks like ERC20
-type Network = any;
+interface Network {
+	explorer: string;
+	currency: {
+		ticker: string;
+		symbol: string;
+	};
+	crypto: {
+		chainId?: string;
+		slip44: number;
+		bech32?: string;
+	};
+}
 
 export class NetworkRepository {
-	readonly #networks: Network[];
+	readonly #networks: Record<string, Network>;
 
-	public constructor(networks: Network[]) {
+	public constructor(networks: Record<string, Network>) {
 		this.#networks = networks;
 	}
 
-	public all(): Network[] {
+	public all(): Record<string, Network> {
 		return this.#networks;
 	}
 
 	public get(name: string): Network {
-		return delve(this.#networks, name);
+		const result: Network | undefined = this.#networks[name];
+
+		if (!result) {
+			throw new Error(`The [${name}] network is not supported.`);
+		}
+
+		return result;
+	}
+
+	public push(name: string, data: Network): void {
+		this.#networks[name] = data;
+	}
+
+	public forget(name: string): void {
+		delete this.#networks[name];
 	}
 }

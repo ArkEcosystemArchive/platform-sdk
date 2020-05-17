@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import Bitcoin from "bitcore-lib";
 
 export class PrivateKey implements Contracts.PrivateKey {

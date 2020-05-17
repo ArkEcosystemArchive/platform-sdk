@@ -1,5 +1,5 @@
 import { Connection } from "@arkecosystem/client";
-import { Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
 
 import { DelegateData, TransactionData, WalletData } from "../dto";
 
@@ -12,8 +12,8 @@ export class ClientService implements Contracts.ClientService {
 		this.#connection = new Connection(peer);
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
-		return new ClientService(opts.peer);
+	public static async construct(config: Coins.Config): Promise<ClientService> {
+		return new ClientService(config.get("peer"));
 	}
 
 	public async destruct(): Promise<void> {

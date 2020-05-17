@@ -1,4 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import StellarHDWallet from "stellar-hd-wallet";
 import Stellar from "stellar-sdk";
 

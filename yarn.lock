@@ -55,10 +55,11 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-ada@workspace:packages/platform-sdk-ada"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.1
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
@@ -67,7 +68,6 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
-    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -92,12 +92,13 @@ __metadata:
     "@arkecosystem/crypto": ^2.6.34
     "@arkecosystem/ledger-transport": ^1.0.5
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/is-url-superb": 3.0.0
     "@types/jest": ^25.2.1
     "@types/lodash.orderby": 4.6.6
@@ -109,7 +110,6 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
-    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -136,10 +136,11 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-atom@workspace:packages/platform-sdk-atom"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.1
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
@@ -150,7 +151,6 @@ __metadata:
     bech32: ^1.1.4
     codecov: ^3.6.5
     cross-env: ^7.0.2
-    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -172,10 +172,11 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-btc@workspace:packages/platform-sdk-btc"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.1
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
@@ -187,7 +188,6 @@ __metadata:
     bitcore-lib: ^8.17.1
     codecov: ^3.6.5
     cross-env: ^7.0.2
-    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -305,10 +305,11 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eos@workspace:packages/platform-sdk-eos"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.1
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
@@ -317,7 +318,6 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
-    dlv: ^1.1.3
     eosjs: ^20.0.3
     eosjs-ecc: ^4.0.7
     eslint: ^6.8.0
@@ -342,13 +342,14 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eth@workspace:packages/platform-sdk-eth"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-eth": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.1
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
@@ -358,7 +359,6 @@ __metadata:
     bip39: ^3.0.2
     codecov: ^3.6.5
     cross-env: ^7.0.2
-    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -383,15 +383,16 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-lsk@workspace:packages/platform-sdk-lsk"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@liskhq/lisk-client": ^2.0
     "@liskhq/lisk-cryptography": ^2.4
     "@liskhq/lisk-transactions": ^2.0
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.1
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
@@ -400,7 +401,6 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
-    dlv: ^1.1.3
     dpos-ledger-api: ^3.0.1
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
@@ -459,10 +459,11 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@cityofzion/neon-js": ^4.7.2
+    "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.1
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
@@ -471,7 +472,6 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
-    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -493,13 +493,14 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-trx@workspace:packages/platform-sdk-trx"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-trx": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.1
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
@@ -508,7 +509,6 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
-    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -531,13 +531,14 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xlm@workspace:packages/platform-sdk-xlm"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-str": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.1
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
@@ -546,7 +547,6 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
-    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -570,10 +570,11 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xmr@workspace:packages/platform-sdk-xmr"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.1
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
@@ -582,7 +583,6 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
-    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -605,13 +605,14 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xrp@workspace:packages/platform-sdk-xrp"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-xrp": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.1
     "@types/lodash": 4.14.150
     "@types/node": ^13.13.4
@@ -623,7 +624,6 @@ __metadata:
     bignumber.js: ^9.0.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
-    dlv: ^1.1.3
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -649,10 +649,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk@workspace:packages/platform-sdk"
   dependencies:
+    "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
-    "@types/dlv": 1.1.2
+    "@types/dot-prop": 5.0.1
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.1
     "@types/node": ^13.13.4
     "@types/prettier": ^2.0.0
@@ -666,7 +668,7 @@ __metadata:
     codecov: ^3.6.5
     cross-env: ^7.0.2
     dayjs: ^1.8
-    dlv: ^1.1.3
+    dot-prop: ^5.2.0
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -1207,10 +1209,62 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hapi/address@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@hapi/address@npm:4.0.1"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+  checksum: 2/3b7b3bddb9e86f9eb478f8945f5bb93fb7ee19e935f97e82de69ac193c0ca85cf15f6a525a6ca914cdef894f4c3bd0ee81e3767656fcea01a7a9d6fdaee19fad
+  languageName: node
+  linkType: hard
+
 "@hapi/bourne@npm:^2.0.0":
   version: 2.0.0
   resolution: "@hapi/bourne@npm:2.0.0"
   checksum: 2/97a3e6d44c63debbb170f5966a8076022e2855f1c4fa81edc8c6fd255ba56ce047c3dcce5055858188610eafd77e6420c67ece7fd17e3192830e2fbca7766fd0
+  languageName: node
+  linkType: hard
+
+"@hapi/formula@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@hapi/formula@npm:2.0.0"
+  checksum: 2/02d14257149799b478e21f2620639470efb152f09dd2083fb9a6f247f29760de4af6ceb938b2337ecdf2a0514c2edd5beca6df5415d5c2cea909977fb0da4eaf
+  languageName: node
+  linkType: hard
+
+"@hapi/hoek@npm:^9.0.0":
+  version: 9.0.4
+  resolution: "@hapi/hoek@npm:9.0.4"
+  checksum: 2/d000f60d5e30db7ed2b838a7ec4a757542f04036c8eb431328fd1139f3f7dbd400a2c7d86acbbaf8b8da11dee6f8ae706f6d88bd71c02b3c5f16fd3f6223aa09
+  languageName: node
+  linkType: hard
+
+"@hapi/joi@npm:^17.1.1":
+  version: 17.1.1
+  resolution: "@hapi/joi@npm:17.1.1"
+  dependencies:
+    "@hapi/address": ^4.0.1
+    "@hapi/formula": ^2.0.0
+    "@hapi/hoek": ^9.0.0
+    "@hapi/pinpoint": ^2.0.0
+    "@hapi/topo": ^5.0.0
+  checksum: 2/7547ccf2a8168e4f68f630069ab069f94d0689bd18a034a6dea40cc9c7e88776665670316f65bdd29068dccde111f3d7164504cfaf6db183110b64f36c5643dd
+  languageName: node
+  linkType: hard
+
+"@hapi/pinpoint@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@hapi/pinpoint@npm:2.0.0"
+  checksum: 2/445ca018999145dccff58ca1be71fa533c3124a1d0f256b8c3daf88067992a20aebfbdee49664741cfac160d924c76d24bd3e8eeb521af721e6f606f4bd64634
+  languageName: node
+  linkType: hard
+
+"@hapi/topo@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@hapi/topo@npm:5.0.0"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+  checksum: 2/f92797d5ef54bb801a3591a118ea483ed5a6b41cdd1aaa6f7bf427b64b5f76056bc7063447adf43be8f94b04408228cce12963ea498b8da8f9e01d01c78710ac
   languageName: node
   linkType: hard
 
@@ -2880,10 +2934,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/dlv@npm:1.1.2":
-  version: 1.1.2
-  resolution: "@types/dlv@npm:1.1.2"
-  checksum: 2/3db58a852506081b57142f39e588fd16f4a667fb57815b57fe9d4527f90b7b313209d5fa4b6b35138e1696f4245535d7d9d49460c8efad5bf65c27a824dea6ce
+"@types/dot-prop@npm:5.0.1":
+  version: 5.0.1
+  resolution: "@types/dot-prop@npm:5.0.1"
+  dependencies:
+    dot-prop: "*"
+  checksum: 2/851f13688b674aa885cb44ac61875d7c25c1b4ffa055d60cab809ffec3313a356a48fed97691746f91f3ca4e36a9441ce866ccc16126044680989a6daac15339
   languageName: node
   linkType: hard
 
@@ -2967,6 +3023,13 @@ __metadata:
     "@types/minimatch": "*"
     "@types/node": "*"
   checksum: 2/f74ae67cb205302da0d452e925529f817a253c4dce5d59ae6077d592238b921db750da143b8a5f8427a5011e202937d8a7b264f7d14b0ddc7f8137ca5e1af1b6
+  languageName: node
+  linkType: hard
+
+"@types/hapi__joi@npm:17.1.0":
+  version: 17.1.0
+  resolution: "@types/hapi__joi@npm:17.1.0"
+  checksum: 2/645d3c5428f6d85e61301729d52f55c3a9d96fb1b8118f2708da023ee779e549aa52afe84fd1595413c13c1873ed87ae690b7aa56510b97c660f5e4b4ed166cf
   languageName: node
   linkType: hard
 
@@ -6154,13 +6217,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dlv@npm:^1.1.3":
-  version: 1.1.3
-  resolution: "dlv@npm:1.1.3"
-  checksum: 2/3ed2cd5054ed51e3778b5939ec58b16a970ee7447c3fc02b9b75ccd0788cf596b705d0f3060f2f1593432c10809d4289a17166a5723282ab2ead5c37d7c45cf0
-  languageName: node
-  linkType: hard
-
 "doctrine@npm:^3.0.0":
   version: 3.0.0
   resolution: "doctrine@npm:3.0.0"
@@ -6186,6 +6242,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dot-prop@npm:*, dot-prop@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "dot-prop@npm:5.2.0"
+  dependencies:
+    is-obj: ^2.0.0
+  checksum: 2/d2f62e0b5ec467edb8e278ab6070955f0a4aec973ec1fa837ff6152f3cdd96cd2a04c7e2626cb3eac4f639b8f6786b5b87d3c01df7ba729693c636cb78b7ae93
+  languageName: node
+  linkType: hard
+
 "dot-prop@npm:^3.0.0":
   version: 3.0.0
   resolution: "dot-prop@npm:3.0.0"
@@ -6201,15 +6266,6 @@ __metadata:
   dependencies:
     is-obj: ^1.0.0
   checksum: 2/6dadca2215c4844f8313828a67f4398c87e1dae263a111aa7e9255aecf31647bb4a6e80efdd7a768bb170d47c96265bb744ff659dbf1aa7c8c78d4cfe69be20c
-  languageName: node
-  linkType: hard
-
-"dot-prop@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "dot-prop@npm:5.2.0"
-  dependencies:
-    is-obj: ^2.0.0
-  checksum: 2/d2f62e0b5ec467edb8e278ab6070955f0a4aec973ec1fa837ff6152f3cdd96cd2a04c7e2626cb3eac4f639b8f6786b5b87d3c01df7ba729693c636cb78b7ae93
   languageName: node
   linkType: hard
 

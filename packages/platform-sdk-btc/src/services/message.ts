@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { Message, PrivateKey } from "bitcore-lib";
 
 import { IdentityService } from "./identity";
@@ -10,8 +10,8 @@ export class MessageService implements Contracts.MessageService {
 		this.#identity = identityService;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
-		const identityService = await IdentityService.construct({});
+	public static async construct(config: Coins.Config): Promise<MessageService> {
+		const identityService = await IdentityService.construct(config);
 
 		return new MessageService(identityService);
 	}

@@ -1,9 +1,9 @@
-import { Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
 import StellarHDWallet from "stellar-hd-wallet";
 import Stellar from "stellar-sdk";
 
 export class MessageService implements Contracts.MessageService {
-	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
+	public static async construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService();
 	}
 

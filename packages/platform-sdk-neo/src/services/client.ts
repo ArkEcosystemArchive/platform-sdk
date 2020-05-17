@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import Neon from "@cityofzion/neon-js";
 import { api } from "@cityofzion/neon-js";
 
@@ -26,8 +26,8 @@ export class ClientService implements Contracts.ClientService {
 		this.#apiProvider = new api.neoscan.instance(network === "mainnet" ? "MainNet" : "TestNet");
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
-		return new ClientService(opts.network);
+	public static async construct(config: Coins.Config): Promise<ClientService> {
+		return new ClientService(config.get("network"));
 	}
 
 	public async destruct(): Promise<void> {

@@ -6,10 +6,11 @@ import { ClientService } from "../../src/services/client";
 import { TransactionService } from "../../src/services/transaction";
 import { TransactionData, WalletData } from "../../src/dto";
 import { identity } from "../__fixtures__/identity";
+import { createConfig } from "../helpers";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.construct({ network: "testnet" })));
+beforeEach(async () => (subject = await ClientService.construct(createConfig())));
 
 afterEach(() => nock.cleanAll());
 
@@ -97,7 +98,7 @@ describe("ClientService", function () {
 				.post("/transactions")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
 
-			const transactionService = await TransactionService.construct({ network: "testnet" });
+			const transactionService = await TransactionService.construct(createConfig());
 
 			const result = await subject.broadcast([
 				await transactionService.transfer({
@@ -129,7 +130,7 @@ describe("ClientService", function () {
 				.post("/transactions")
 				.reply(400, require(`${__dirname}/../__fixtures__/client/broadcast-failure.json`));
 
-			const transactionService = await TransactionService.construct({ network: "testnet" });
+			const transactionService = await TransactionService.construct(createConfig());
 
 			const result = await subject.broadcast([
 				await transactionService.transfer({

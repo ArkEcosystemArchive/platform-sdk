@@ -3,10 +3,11 @@ import nock from "nock";
 
 import { ClientService } from "../../src/services/client";
 import { DelegateData, TransactionData, WalletData } from "../../src/dto";
+import { createConfig } from "../helpers";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.construct({ peer: "https://dexplorer.ark.io/api" })));
+beforeEach(async () => (subject = await ClientService.construct(createConfig())));
 
 afterEach(() => nock.cleanAll());
 

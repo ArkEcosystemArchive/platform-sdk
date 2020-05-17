@@ -1,5 +1,5 @@
 import { Connection } from "@arkecosystem/client";
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 export class FeeService implements Contracts.FeeService {
 	readonly #connection: Connection;
@@ -8,8 +8,8 @@ export class FeeService implements Contracts.FeeService {
 		this.#connection = new Connection(peer);
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<FeeService> {
-		return new FeeService(opts.peer);
+	public static async construct(config: Coins.Config): Promise<FeeService> {
+		return new FeeService(config.get("peer"));
 	}
 
 	public async destruct(): Promise<void> {

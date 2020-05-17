@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 
 import { DelegateData, TransactionData, WalletData } from "../dto";
 
@@ -17,8 +17,8 @@ export class ClientService implements Contracts.ClientService {
 		this.#baseUrl = `${peer}/api`;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
-		return new ClientService(opts.peer);
+	public static async construct(config: Coins.Config): Promise<ClientService> {
+		return new ClientService(config.get("peer"));
 	}
 
 	public async destruct(): Promise<void> {

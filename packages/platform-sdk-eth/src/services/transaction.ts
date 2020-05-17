@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import { Transaction } from "ethereumjs-tx";
 import Web3 from "web3";
 
@@ -17,10 +17,10 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#web3 = new Web3(""); // todo: provide a host?
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
-			...opts,
-			identity: await IdentityService.construct(opts),
+			...config.all(),
+			identity: await IdentityService.construct(config),
 		});
 	}
 

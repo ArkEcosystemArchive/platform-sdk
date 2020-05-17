@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
 import { CommHandler, DposLedger, LedgerAccount, SupportedCoin } from "dpos-ledger-api";
 
@@ -12,8 +12,8 @@ export class LedgerService implements Contracts.LedgerService {
 		this.#transport = new DposLedger(new CommHandler(transport));
 	}
 
-	public static async construct(opts: Contracts.LedgerOptions): Promise<LedgerService> {
-		return new LedgerService(opts.transport || (await LedgerTransport.create()));
+	public static async construct(config: Coins.Config): Promise<LedgerService> {
+		return new LedgerService(config.get("services.ledger.transport") || (await LedgerTransport.create()));
 	}
 
 	public async destruct(): Promise<void> {

@@ -2,16 +2,11 @@ import "jest-extended";
 import nock from "nock";
 
 import { TransactionService } from "../../src/services/transaction";
+import { createConfig } from "../helpers";
 
 let subject: TransactionService;
 
-beforeEach(
-	async () =>
-		(subject = await TransactionService.construct({
-			network: "cosmos.testnet",
-			peer: "https://stargate.cosmos.network",
-		})),
-);
+beforeEach(async () => (subject = await TransactionService.construct(createConfig())));
 
 beforeAll(() => nock.disableNetConnect());
 

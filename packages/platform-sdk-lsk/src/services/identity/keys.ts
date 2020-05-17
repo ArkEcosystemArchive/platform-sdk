@@ -1,4 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import * as cryptography from "@liskhq/lisk-cryptography";
 
 export class Keys implements Contracts.Keys {

@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { PriceTracker as CoinCap } from "@arkecosystem/platform-sdk-coincap";
 import { PriceTracker as CoinGecko } from "@arkecosystem/platform-sdk-coingecko";
 import { PriceTracker as CryptoCompare } from "@arkecosystem/platform-sdk-cryptocompare";

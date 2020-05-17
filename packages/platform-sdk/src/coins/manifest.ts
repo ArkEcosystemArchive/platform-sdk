@@ -1,4 +1,4 @@
-import delve from "dlv";
+import { get } from "dot-prop";
 
 export class Manifest {
 	readonly #manifest: object;
@@ -11,7 +11,7 @@ export class Manifest {
 		return this.#manifest;
 	}
 
-	public get<T>(name: string): T {
-		return delve(this.#manifest, name);
+	public get<T>(name: string): T | undefined {
+		return get(this.#manifest, name);
 	}
 }

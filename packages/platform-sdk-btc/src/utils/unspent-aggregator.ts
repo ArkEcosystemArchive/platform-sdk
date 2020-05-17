@@ -1,21 +1,12 @@
-import { Contracts, Utils } from "@arkecosystem/platform-sdk";
-import BigNumber from "bignumber.js";
+import { Utils } from "@arkecosystem/platform-sdk";
 
 import { UnspentTransaction } from "../contracts";
 
 export class UnspentAggregator {
 	readonly #peer;
 
-	private constructor(opts: Contracts.KeyValuePair) {
-		this.#peer = opts.peer;
-	}
-
-	public static async construct(opts: Contracts.KeyValuePair): Promise<UnspentAggregator> {
-		return new UnspentAggregator(opts);
-	}
-
-	public async destruct(): Promise<void> {
-		//
+	public constructor(peer: string) {
+		this.#peer = peer;
 	}
 
 	public async aggregate(address: string, amount: Utils.BigNumber): Promise<UnspentTransaction[]> {

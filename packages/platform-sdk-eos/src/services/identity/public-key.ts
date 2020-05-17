@@ -1,4 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { privateToPublic } from "eosjs-ecc";
 
 export class PublicKey implements Contracts.PublicKey {

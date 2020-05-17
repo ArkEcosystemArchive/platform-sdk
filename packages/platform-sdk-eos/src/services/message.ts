@@ -1,8 +1,8 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import ecc from "eosjs-ecc";
 
 export class MessageService implements Contracts.MessageService {
-	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
+	public static async construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService();
 	}
 

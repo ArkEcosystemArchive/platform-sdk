@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import Web3 from "web3";
 
 import { TransactionData, WalletData } from "../dto";
@@ -22,8 +22,8 @@ export class ClientService implements Contracts.ClientService {
 		this.#peer = peer;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
-		return new ClientService(opts.peer);
+	public static async construct(config: Coins.Config): Promise<ClientService> {
+		return new ClientService(config.get("peer"));
 	}
 
 	public async destruct(): Promise<void> {

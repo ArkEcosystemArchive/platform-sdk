@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { Address } from "./address";
 import { Keys } from "./keys";
@@ -13,8 +13,8 @@ export class IdentityService implements Contracts.IdentityService {
 		this.#network = network;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
-		return new IdentityService(opts.network);
+	public static async construct(config: Coins.Config): Promise<IdentityService> {
+		return new IdentityService(config.get("network"));
 	}
 
 	public async destruct(): Promise<void> {

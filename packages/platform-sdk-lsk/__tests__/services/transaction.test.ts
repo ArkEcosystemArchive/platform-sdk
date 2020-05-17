@@ -2,15 +2,11 @@ import "jest-extended";
 
 import { TransactionService } from "../../src/services/transaction";
 import { identity } from "../__fixtures__/identity";
+import { createConfig } from "../helpers";
 
 let subject: TransactionService;
 
-beforeEach(
-	async () =>
-		(subject = await TransactionService.construct({
-			networkHash: "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
-		})),
-);
+beforeEach(async () => (subject = await TransactionService.construct(createConfig())));
 
 describe("TransactionService", () => {
 	describe("#transfer", () => {

@@ -6,6 +6,7 @@ import fixtures from "./fixtures/rippled";
 
 import { ClientService } from "../../src/services/client";
 import { WalletData, TransactionData } from "../../src/dto";
+import { createConfig } from "../helpers";
 
 let subject: ClientService;
 let wss;
@@ -79,10 +80,7 @@ beforeAll(async () => {
 		});
 	});
 
-	subject = await ClientService.construct({
-		// peer: "wss://s.altnet.rippletest.net:51233",
-		peer: "ws://localhost:51233",
-	});
+	subject = await ClientService.construct(createConfig());
 });
 
 afterAll(() => wss.close());

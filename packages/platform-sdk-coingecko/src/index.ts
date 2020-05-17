@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
 import { HistoricalVolumeTransformer } from "./transformers/historical-volume-transformer";

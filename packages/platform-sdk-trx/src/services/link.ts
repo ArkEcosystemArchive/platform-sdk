@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { manifest } from "../manifest";
 
@@ -9,8 +9,8 @@ export class LinkService implements Contracts.LinkService {
 		this.#baseUrl = manifest.networks[network].explorer;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<LinkService> {
-		return new LinkService(opts.network);
+	public static async construct(config: Coins.Config): Promise<LinkService> {
+		return new LinkService(config.get("network"));
 	}
 
 	public async destruct(): Promise<void> {

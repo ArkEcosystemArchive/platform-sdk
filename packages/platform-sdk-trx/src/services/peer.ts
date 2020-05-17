@@ -1,4 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class PeerService implements Contracts.PeerService {
 	public static async construct(opts: Contracts.KeyValuePair): Promise<PeerService> {
