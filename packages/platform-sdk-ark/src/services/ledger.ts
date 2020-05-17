@@ -3,19 +3,27 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
 
 export class LedgerService implements Contracts.LedgerService {
-	readonly #ledger: LedgerTransport;
-	readonly #transport: ARKTransport;
+	#ledger: LedgerTransport;
+	#transport!: ARKTransport;
 
 	private constructor(transport: Contracts.LedgerTransport) {
 		this.#ledger = transport;
-		this.#transport = new ARKTransport(transport);
 	}
 
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
-		return new LedgerService(config.get("services.ledger.transport") || (await LedgerTransport.create()));
+		return new LedgerService(config.get("services.ledger.transport") || LedgerTransport);
 	}
 
 	public async destruct(): Promise<void> {
+		await this.disconnect();
+	}
+
+	public async connect(): Promise<void> {
+		this.#ledger = await this.#ledger.open();
+		this.#transport = new ARKTransport(this.#ledger);
+	}
+
+	public async disconnect(): Promise<void> {
 		await this.#ledger.close();
 	}
 
