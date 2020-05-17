@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import * as transactions from "@liskhq/lisk-transactions";
+import * as transactionsBeta from "@liskhq/lisk-transactions-new";
 
 import { manifest } from "../manifest";
 
@@ -28,6 +29,7 @@ export class TransactionService implements Contracts.TransactionService {
 				data: {
 					amount: input.data.amount,
 					recipientId: input.data.to,
+					data: input.data.memo,
 				},
 			},
 		});
@@ -141,6 +143,10 @@ export class TransactionService implements Contracts.TransactionService {
 
 		if (input.sign.secondPassphrase) {
 			struct.secondPassphrase = input.sign.secondPassphrase;
+		}
+
+		if (this.#network === manifest.networks.betanet.crypto.networkId) {
+			return transactionsBeta[type](struct);
 		}
 
 		return transactions[type](struct);

@@ -13,7 +13,7 @@ export class PeerService implements Contracts.PeerService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<PeerService> {
-		let { peer } = config.all();
+		const { peer } = config.all();
 
 		let seeds: string[] = [];
 
@@ -22,7 +22,7 @@ export class PeerService implements Contracts.PeerService {
 				const response = await Utils.Http.new(peer).get("peers");
 
 				for (const seed of response.data) {
-					let port: number = 4003;
+					let port = 4003;
 
 					if (seed.ports) {
 						const apiPort: number | undefined = seed.ports["@arkecosystem/core-api"];
