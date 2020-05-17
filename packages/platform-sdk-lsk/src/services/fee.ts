@@ -47,7 +47,7 @@ export class FeeService implements Contracts.FeeService {
 		let fee: number = type === 0 ? 0 : transactions.constants[type];
 
 		if (this.#network === manifest.networks.betanet.crypto.networkId) {
-			fee = transactions.constants[type];
+			fee = transactionsBeta.constants[type];
 		}
 
 		return {
