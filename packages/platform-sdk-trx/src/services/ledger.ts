@@ -12,10 +12,18 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
-		return new LedgerService(config.get("services.ledger.transport") || (await LedgerTransport.create()));
+		return new LedgerService(config.get("services.ledger.transport") || LedgerTransport);
 	}
 
 	public async destruct(): Promise<void> {
+		await this.disconnect();
+	}
+
+	public async connect(): Promise<void> {
+		await this.#ledger.open();
+	}
+
+	public async disconnect(): Promise<void> {
 		await this.#ledger.close();
 	}
 

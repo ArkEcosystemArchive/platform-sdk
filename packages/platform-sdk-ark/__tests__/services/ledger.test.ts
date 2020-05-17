@@ -7,7 +7,7 @@ import { createConfig } from "../helpers";
 const createMockService = async (record: string) =>
 	LedgerService.construct(
 		createConfig({
-			services: { ledger: { transport: await createTransportReplayer(RecordStore.fromString(record)).open() } },
+			services: { ledger: { transport: createTransportReplayer(RecordStore.fromString(record)) } },
 		}),
 	);
 

@@ -18,4 +18,8 @@ export interface LedgerTransport {
 
 export interface LedgerService extends LedgerTransport {
 	destruct(): Promise<void>;
+
+	connect(): Promise<void>;
+
+	disconnect(): Promise<void>;
 }
