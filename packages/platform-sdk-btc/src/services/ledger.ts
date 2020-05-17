@@ -13,6 +13,14 @@ export class LedgerService implements Contracts.LedgerService {
 		//
 	}
 
+	public async connect(): Promise<void> {
+		//
+	}
+
+	public async disconnect(): Promise<void> {
+		//
+	}
+
 	public async getVersion(): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getVersion");
 	}

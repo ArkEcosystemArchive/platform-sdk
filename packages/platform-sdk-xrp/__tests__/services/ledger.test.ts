@@ -5,15 +5,19 @@ import { ledger } from "../__fixtures__/ledger";
 import { createConfig } from "../helpers";
 
 const createMockService = async (record: string) => {
-	return await LedgerService.construct(
+	const transport = await LedgerService.construct(
 		createConfig({
 			services: {
 				ledger: {
-					transport: await createTransportReplayer(RecordStore.fromString(record)).create(),
+					transport: createTransportReplayer(RecordStore.fromString(record)),
 				},
 			},
 		}),
 	);
+
+	await transport.connect();
+
+	return transport;
 };
 
 describe("destruct", () => {
