@@ -705,8 +705,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@liskhq/lisk-client", "npm:2.3.1"],
+            ["@liskhq/lisk-client-new", [
+              "@liskhq/lisk-client",
+              "npm:3.0.0"
+            ]],
             ["@liskhq/lisk-cryptography", "npm:2.4.2"],
             ["@liskhq/lisk-transactions", "npm:2.3.1"],
+            ["@liskhq/lisk-transactions-new", [
+              "@liskhq/lisk-transactions",
+              "npm:3.0.0"
+            ]],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -2908,6 +2916,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:0.19.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/@liskhq-lisk-api-client-npm-3.0.0-f3d2bc080c-2.zip/node_modules/@liskhq/lisk-api-client/",
+          "packageDependencies": [
+            ["@liskhq/lisk-api-client", "npm:3.0.0"],
+            ["@types/node", "npm:12.12.11"],
+            ["axios", "npm:0.19.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@liskhq/lisk-client", [
@@ -2923,6 +2940,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:10.12.21"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/@liskhq-lisk-client-npm-3.0.0-c9cf52f697-2.zip/node_modules/@liskhq/lisk-client/",
+          "packageDependencies": [
+            ["@liskhq/lisk-client", "npm:3.0.0"],
+            ["@liskhq/lisk-api-client", "npm:3.0.0"],
+            ["@liskhq/lisk-constants", "npm:1.3.0"],
+            ["@liskhq/lisk-cryptography", "npm:2.4.0"],
+            ["@liskhq/lisk-passphrase", "npm:3.0.0"],
+            ["@liskhq/lisk-transactions", "npm:3.0.0"],
+            ["@types/node", "npm:12.12.11"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@liskhq/lisk-constants", [
@@ -2931,6 +2961,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@liskhq/lisk-constants", "npm:1.2.3"],
             ["@types/node", "npm:10.12.21"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:1.3.0", {
+          "packageLocation": "./.yarn/cache/@liskhq-lisk-constants-npm-1.3.0-fbc8198825-2.zip/node_modules/@liskhq/lisk-constants/",
+          "packageDependencies": [
+            ["@liskhq/lisk-constants", "npm:1.3.0"],
+            ["@types/node", "npm:12.12.11"]
           ],
           "linkType": "HARD",
         }]
@@ -2943,6 +2981,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@liskhq/bignum", "npm:1.3.1"],
             ["@types/ed2curve", "npm:0.2.2"],
             ["@types/node", "npm:10.12.21"],
+            ["buffer-reverse", "npm:1.0.1"],
+            ["ed2curve", "npm:0.2.1"],
+            ["sodium-native", "npm:2.4.6"],
+            ["tweetnacl", "npm:1.0.1"],
+            ["varuint-bitcoin", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:2.4.0", {
+          "packageLocation": "./.yarn/cache/@liskhq-lisk-cryptography-npm-2.4.0-0bae9efa7a-2.zip/node_modules/@liskhq/lisk-cryptography/",
+          "packageDependencies": [
+            ["@liskhq/lisk-cryptography", "npm:2.4.0"],
+            ["@liskhq/bignum", "npm:1.3.1"],
+            ["@types/ed2curve", "npm:0.2.2"],
+            ["@types/node", "npm:12.12.11"],
             ["buffer-reverse", "npm:1.0.1"],
             ["ed2curve", "npm:0.2.1"],
             ["sodium-native", "npm:2.4.6"],
@@ -2977,6 +3030,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["bip39", "npm:2.5.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/@liskhq-lisk-passphrase-npm-3.0.0-6cf9cd18eb-2.zip/node_modules/@liskhq/lisk-passphrase/",
+          "packageDependencies": [
+            ["@liskhq/lisk-passphrase", "npm:3.0.0"],
+            ["@types/bip39", "npm:2.4.1"],
+            ["@types/node", "npm:12.12.11"],
+            ["bip39", "npm:2.5.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@liskhq/lisk-transactions", [
@@ -2989,6 +3052,35 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:10.12.21"],
             ["ajv", "npm:6.8.1"],
             ["ajv-merge-patch", "virtual:66cfe6bd64c44b6147a4a8cb1b40c44d578a1c518423400c51726b2b755f24aee6b29fe4e69a612729e1a96f43c557cf378653ac91a25b6ece30d0854925bbc4#npm:4.1.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/@liskhq-lisk-transactions-npm-3.0.0-2b615fce83-2.zip/node_modules/@liskhq/lisk-transactions/",
+          "packageDependencies": [
+            ["@liskhq/lisk-transactions", "npm:3.0.0"],
+            ["@liskhq/bignum", "npm:1.3.1"],
+            ["@liskhq/lisk-cryptography", "npm:2.4.0"],
+            ["@liskhq/lisk-validator", "npm:0.3.0"],
+            ["ajv", "npm:6.8.1"],
+            ["ajv-merge-patch", "virtual:66cfe6bd64c44b6147a4a8cb1b40c44d578a1c518423400c51726b2b755f24aee6b29fe4e69a612729e1a96f43c557cf378653ac91a25b6ece30d0854925bbc4#npm:4.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@liskhq/lisk-validator", [
+        ["npm:0.3.0", {
+          "packageLocation": "./.yarn/cache/@liskhq-lisk-validator-npm-0.3.0-b37a6a569f-2.zip/node_modules/@liskhq/lisk-validator/",
+          "packageDependencies": [
+            ["@liskhq/lisk-validator", "npm:0.3.0"],
+            ["@liskhq/bignum", "npm:1.3.1"],
+            ["@liskhq/lisk-cryptography", "npm:2.4.0"],
+            ["@types/node", "npm:12.12.11"],
+            ["@types/semver", "npm:5.5.0"],
+            ["@types/validator", "npm:10.9.0"],
+            ["ajv", "npm:6.9.2"],
+            ["semver", "npm:5.6.0"],
+            ["validator", "npm:10.11.0"]
           ],
           "linkType": "HARD",
         }]
@@ -3753,6 +3845,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@types/semver", [
+        ["npm:5.5.0", {
+          "packageLocation": "./.yarn/cache/@types-semver-npm-5.5.0-8c205b186f-2.zip/node_modules/@types/semver/",
+          "packageDependencies": [
+            ["@types/semver", "npm:5.5.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:7.1.0", {
           "packageLocation": "./.yarn/cache/@types-semver-npm-7.1.0-ce58bbc3b4-2.zip/node_modules/@types/semver/",
           "packageDependencies": [
@@ -3776,6 +3875,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-urijs-npm-1.19.8-0b903f8256-2.zip/node_modules/@types/urijs/",
           "packageDependencies": [
             ["@types/urijs", "npm:1.19.8"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/validator", [
+        ["npm:10.9.0", {
+          "packageLocation": "./.yarn/cache/@types-validator-npm-10.9.0-dce6187fac-2.zip/node_modules/@types/validator/",
+          "packageDependencies": [
+            ["@types/validator", "npm:10.9.0"]
           ],
           "linkType": "HARD",
         }]
@@ -4587,6 +4695,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/ajv-npm-6.8.1-ef7cee5d32-2.zip/node_modules/ajv/",
           "packageDependencies": [
             ["ajv", "npm:6.8.1"],
+            ["fast-deep-equal", "npm:2.0.1"],
+            ["fast-json-stable-stringify", "npm:2.1.0"],
+            ["json-schema-traverse", "npm:0.4.1"],
+            ["uri-js", "npm:4.2.2"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:6.9.2", {
+          "packageLocation": "./.yarn/cache/ajv-npm-6.9.2-ad3edd540c-2.zip/node_modules/ajv/",
+          "packageDependencies": [
+            ["ajv", "npm:6.9.2"],
             ["fast-deep-equal", "npm:2.0.1"],
             ["fast-json-stable-stringify", "npm:2.1.0"],
             ["json-schema-traverse", "npm:0.4.1"],
@@ -15596,6 +15715,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["semver", [
+        ["npm:5.6.0", {
+          "packageLocation": "./.yarn/cache/semver-npm-5.6.0-e2810885c2-2.zip/node_modules/semver/",
+          "packageDependencies": [
+            ["semver", "npm:5.6.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:5.7.1", {
           "packageLocation": "./.yarn/cache/semver-npm-5.7.1-40bcea106b-2.zip/node_modules/semver/",
           "packageDependencies": [
