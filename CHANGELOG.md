@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## 0.8.1 - 2020-05-18### Fixed
+## 0.8.2 - 2020-05-18
+
+### Added
+
+-   Look up nonce if none is provided for `ARK` (8cf5d922, @faustbrian)
+
+## 0.8.1 - 2020-05-18
 
 ### Fixed
 
