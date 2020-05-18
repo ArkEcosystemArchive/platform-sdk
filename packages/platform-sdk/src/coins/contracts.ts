@@ -13,14 +13,14 @@ export interface CoinSpec {
 	manifest: any;
 	schema: any;
 	services: {
-		client: any;
-		fee: any;
-		identity: any;
-		ledger: any;
-		link: any;
-		message: any;
-		peer: any;
-		transaction: any;
+		ClientService: any;
+		FeeService: any;
+		IdentityService: any;
+		LedgerService: any;
+		LinkService: any;
+		MessageService: any;
+		PeerService: any;
+		TransactionService: any;
 	};
 }
 

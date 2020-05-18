@@ -12,7 +12,7 @@ export const manifest = {
 			crypto: {
 				slip44: 0,
 			},
-			hosts: [],
+			hosts: ["https://coins.com/api/btc"],
 		},
 		testnet: {
 			id: "testnet",
@@ -25,7 +25,7 @@ export const manifest = {
 			crypto: {
 				slip44: 0,
 			},
-			hosts: [],
+			hosts: ["https://coins.com/api/btc"],
 		},
 	},
 	abilities: {

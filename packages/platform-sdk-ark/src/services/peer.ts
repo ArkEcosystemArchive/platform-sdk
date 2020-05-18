@@ -3,8 +3,6 @@ import isUrl from "is-url-superb";
 import orderBy from "lodash.orderby";
 import semver from "semver";
 
-import { manifest } from "../manifest";
-
 export class PeerService implements Contracts.PeerService {
 	readonly #seeds: string[];
 

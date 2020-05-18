@@ -14,7 +14,7 @@ export const manifest = {
 				slip44: 118,
 				bech32: "cosmos",
 			},
-			hosts: [],
+			hosts: ["https://api.cosmos.network"],
 		},
 		"cosmos.testnet": {
 			id: "cosmos.testnet",
@@ -29,7 +29,7 @@ export const manifest = {
 				slip44: 118,
 				bech32: "cosmos",
 			},
-			hosts: [],
+			hosts: ["https://stargate.cosmos.network"],
 		},
 		"terra.mainnet": {
 			id: "terra.mainnet",

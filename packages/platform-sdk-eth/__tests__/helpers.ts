@@ -4,7 +4,7 @@ import { schema } from "../src/schema";
 import { manifest } from "../src/manifest";
 
 export const createConfig = (options?: object) => {
-	const config = new Coins.Config(options || { network: "ropsten", peer: "https://coins.com/api/eth" }, schema)
+	const config = new Coins.Config(options || { network: "ropsten" }, schema)
 
 	config.set('network', manifest.networks.ropsten)
 

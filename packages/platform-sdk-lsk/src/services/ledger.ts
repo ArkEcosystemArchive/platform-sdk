@@ -11,7 +11,11 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
-		return new LedgerService(config.get("services.ledger.transport") || LedgerTransport);
+		try {
+			return new LedgerService(config.get("services.ledger.transport"));
+		} catch {
+			return new LedgerService(LedgerTransport);
+		}
 	}
 
 	public async destruct(): Promise<void> {
