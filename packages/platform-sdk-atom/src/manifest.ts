@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Cosmos",
 	networks: {
 		"cosmos.mainnet": {
+			id: "cosmos.mainnet",
+			name: "Cosmos Mainnet",
 			explorer: "https://stake.id/",
 			currency: {
 				ticker: "ATOM",
@@ -15,6 +17,8 @@ export const manifest = {
 			hosts: [],
 		},
 		"cosmos.testnet": {
+			id: "cosmos.testnet",
+			name: "Cosmos Testnet",
 			explorer: "https://gaia.stake.id/",
 			currency: {
 				ticker: "MUON",
@@ -28,6 +32,8 @@ export const manifest = {
 			hosts: [],
 		},
 		"terra.mainnet": {
+			id: "terra.mainnet",
+			name: "Terra Mainnet",
 			explorer: "https://terra.stake.id/",
 			currency: {
 				ticker: "LUNA",
@@ -41,6 +47,8 @@ export const manifest = {
 			hosts: [],
 		},
 		"terra.testnet": {
+			id: "terra.testnet",
+			name: "Terra Testnet",
 			explorer: "https://soju.stake.id/",
 			currency: {
 				ticker: "LUNA",

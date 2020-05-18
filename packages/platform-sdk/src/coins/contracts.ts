@@ -39,3 +39,19 @@ export interface CoinServices {
 	peer: PeerService;
 	transaction: TransactionService;
 }
+
+export interface CoinNetwork {
+	id: string;
+	name: string;
+	explorer: string;
+	currency: {
+		ticker: string;
+		symbol: string;
+	};
+	crypto: {
+		networkId?: string;
+		slip44: number;
+		bech32?: string;
+	};
+	hosts: string[];
+}

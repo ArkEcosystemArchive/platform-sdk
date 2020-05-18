@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Ripple",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://livenet.xrpl.org/",
 			currency: {
 				ticker: "XRP",
@@ -13,6 +15,8 @@ export const manifest = {
 			hosts: ["wss://s2.ripple.com/"],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://testnet.xrpl.org/",
 			currency: {
 				ticker: "XRP",

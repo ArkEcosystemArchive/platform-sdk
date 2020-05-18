@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Stellar",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://steexp.com/",
 			currency: {
 				ticker: "XLM",
@@ -13,6 +15,8 @@ export const manifest = {
 			hosts: ["https://horizon.stellar.org"],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://testnet.steexp.com/",
 			currency: {
 				ticker: "XLM",

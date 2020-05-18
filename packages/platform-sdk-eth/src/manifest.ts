@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Ethereum",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://etherscan.io/",
 			currency: {
 				ticker: "ETH",
@@ -14,6 +16,8 @@ export const manifest = {
 			hosts: [],
 		},
 		ropsten: {
+			id: "ropsten",
+			name: "Ropsten",
 			explorer: "https://ropsten.etherscan.io/",
 			currency: {
 				ticker: "ETH",
@@ -26,7 +30,8 @@ export const manifest = {
 			hosts: [],
 		},
 		rinkeby: {
-			rinkeby: "ETH",
+			id: "rinkeby",
+			name: "Rinkeby",
 			explorer: "https://rinkeby.etherscan.io/",
 			crypto: {
 				networkId: 4,
@@ -35,6 +40,8 @@ export const manifest = {
 			hosts: [],
 		},
 		goerli: {
+			id: "goerli",
+			name: "Goerli",
 			explorer: "https://goerli.etherscan.io/",
 			currency: {
 				ticker: "ETH",
@@ -47,6 +54,8 @@ export const manifest = {
 			hosts: [],
 		},
 		kovan: {
+			id: "kovan",
+			name: "Kovan",
 			explorer: "https://kovan.etherscan.io/",
 			currency: {
 				ticker: "ETH",

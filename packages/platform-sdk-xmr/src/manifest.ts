@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Monero",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://moneroblocks.info/",
 			currency: {
 				ticker: "XMR",
@@ -13,6 +15,8 @@ export const manifest = {
 			hosts: [],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://dexplorer.ark.io/",
 			currency: {
 				ticker: "XMR",

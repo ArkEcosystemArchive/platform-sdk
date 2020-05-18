@@ -9,30 +9,30 @@ import {
 	TransactionService,
 } from "../contracts/coins";
 import { Config } from "./config";
-import { CoinServices } from "./contracts";
+import { CoinNetwork, CoinServices } from "./contracts";
 import { Guard } from "./guard";
 import { Manifest } from "./manifest";
 import { NetworkRepository } from "./network-repository";
 
 export class Coin {
-	readonly #network: NetworkRepository;
+	readonly #networks: NetworkRepository;
 	readonly #manifest: Manifest;
 	readonly #config: Config;
 	readonly #services: CoinServices;
 	readonly #guard: Guard;
 
 	public constructor({
-		network,
+		networks,
 		manifest,
 		config,
 		services,
 	}: {
-		network: NetworkRepository;
+		networks: NetworkRepository;
 		manifest: Manifest;
 		config: Config;
 		services: CoinServices;
 	}) {
-		this.#network = network;
+		this.#networks = networks;
 		this.#manifest = manifest;
 		this.#config = config;
 		this.#services = services;
@@ -50,8 +50,12 @@ export class Coin {
 		await this.#services.transaction.destruct();
 	}
 
-	public network(): NetworkRepository {
-		return this.#network;
+	public network(): CoinNetwork {
+		return this.#config.get("network");
+	}
+
+	public networks(): NetworkRepository {
+		return this.#networks;
 	}
 
 	public manifest(): Manifest {

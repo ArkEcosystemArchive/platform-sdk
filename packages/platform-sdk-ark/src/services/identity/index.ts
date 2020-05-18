@@ -9,7 +9,8 @@ import { WIF } from "./wif";
 
 export class IdentityService implements Contracts.IdentityService {
 	public static async construct(config: Coins.Config): Promise<IdentityService> {
-		Managers.configManager.setFromPreset(config.get("network"));
+		// @ts-ignore
+		Managers.configManager.setFromPreset(config.get<Coins.CoinNetwork>("network").id);
 
 		return new IdentityService();
 	}

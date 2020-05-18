@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Cardano",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://explorer.cardano.org/",
 			currency: {
 				ticker: "ADA",
@@ -13,6 +15,8 @@ export const manifest = {
 			hosts: [],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://shelleyexplorer.cardano.org/",
 			currency: {
 				ticker: "ADA",
