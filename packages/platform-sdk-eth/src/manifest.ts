@@ -13,7 +13,7 @@ export const manifest = {
 				networkId: 1,
 				slip44: 60,
 			},
-			hosts: [],
+			hosts: ["https://coins.com/api/eth"],
 		},
 		ropsten: {
 			id: "ropsten",
@@ -27,7 +27,7 @@ export const manifest = {
 				networkId: 3,
 				slip44: 60,
 			},
-			hosts: [],
+			hosts: ["https://coins.com/api/eth"],
 		},
 		rinkeby: {
 			id: "rinkeby",
@@ -37,7 +37,7 @@ export const manifest = {
 				networkId: 4,
 				slip44: 60,
 			},
-			hosts: [],
+			hosts: ["https://coins.com/api/eth"],
 		},
 		goerli: {
 			id: "goerli",
@@ -51,7 +51,7 @@ export const manifest = {
 				networkId: 5,
 				slip44: 60,
 			},
-			hosts: [],
+			hosts: ["https://coins.com/api/eth"],
 		},
 		kovan: {
 			id: "kovan",
@@ -65,7 +65,7 @@ export const manifest = {
 				networkId: 42,
 				slip44: 60,
 			},
-			hosts: [],
+			hosts: ["https://coins.com/api/eth"],
 		},
 	},
 	abilities: {

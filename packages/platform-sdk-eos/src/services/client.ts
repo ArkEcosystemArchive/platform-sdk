@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import { Api, JsonRpc } from "eosjs";
 import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
 import fetch from "node-fetch";
@@ -22,7 +22,11 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config.get("peer"));
+		try {
+			return new ClientService(config.get<string>("peer"));
+		} catch {
+			return new ClientService(Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts));
+		}
 	}
 
 	public async destruct(): Promise<void> {

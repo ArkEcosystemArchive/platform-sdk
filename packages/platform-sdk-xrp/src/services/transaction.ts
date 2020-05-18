@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import { RippleAPI } from "ripple-lib";
 
 import { IdentityService } from "./identity";
@@ -11,7 +11,14 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
-		const connection = new RippleAPI({ server: config.get("peer") });
+		let connection: RippleAPI;
+		try {
+			connection = new RippleAPI({ server: config.get<string>("peer") });
+		} catch {
+			connection = new RippleAPI({
+				server: Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts),
+			});
+		}
 
 		await connection.connect();
 

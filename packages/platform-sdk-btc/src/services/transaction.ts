@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import BigNumber from "bignumber.js";
 import { Transaction } from "bitcore-lib";
 
@@ -16,9 +16,16 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
+		let unspent: UnspentAggregator;
+		try {
+			unspent = new UnspentAggregator(config.get<string>("peer"));
+		} catch {
+			unspent = new UnspentAggregator(Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts));
+		}
+
 		return new TransactionService({
 			identity: await IdentityService.construct(config),
-			unspent: new UnspentAggregator(config.get("peer")),
+			unspent,
 		});
 	}
 

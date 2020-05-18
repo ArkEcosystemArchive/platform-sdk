@@ -13,7 +13,11 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config.get("peer"));
+		try {
+			return new ClientService(config.get<string>("peer"));
+		} catch {
+			return new ClientService(`${Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
+		}
 	}
 
 	public async destruct(): Promise<void> {

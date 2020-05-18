@@ -29,7 +29,7 @@ export const manifest = {
 				slip44: 194,
 				bech32: "EOS",
 			},
-			hosts: ["https://jungle2.cryptolions.io"],
+			hosts: ["https://api.testnet.eos.io"],
 		},
 		"telos.mainnet": {
 			id: "telos.mainnet",

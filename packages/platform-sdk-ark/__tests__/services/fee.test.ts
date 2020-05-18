@@ -15,10 +15,10 @@ beforeAll(() => nock.disableNetConnect());
 describe("FeeService", function () {
 	describe("#all", () => {
 		it("should succeed", async () => {
-			nock("https://dexplorer.ark.io/api")
-				.get("/node/fees?days=7")
+			nock(/.+/)
+				.get("/api/node/fees?days=7")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/feesByNode.json`))
-				.get("/transactions/fees")
+				.get("/api/transactions/fees")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/feesByType.json`));
 
 			const result = await subject.all(7);

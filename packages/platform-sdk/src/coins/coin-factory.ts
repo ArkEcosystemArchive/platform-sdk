@@ -1,6 +1,6 @@
 import { Coin } from "./coin";
 import { Config } from "./config";
-import { CoinNetwork, CoinOptions, CoinSpec } from "./contracts";
+import { CoinOptions, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
 import { NetworkRepository } from "./network-repository";
 
@@ -18,14 +18,14 @@ export class CoinFactory {
 			manifest: new Manifest(manifest),
 			config,
 			services: {
-				client: await services.client.construct(config),
-				fee: await services.fee.construct(config),
-				identity: await services.identity.construct(config),
-				ledger: await services.ledger.construct(config),
-				link: await services.link.construct(config),
-				message: await services.message.construct(config),
-				peer: await services.peer.construct(config),
-				transaction: await services.transaction.construct(config),
+				client: await services.ClientService.construct(config),
+				fee: await services.FeeService.construct(config),
+				identity: await services.IdentityService.construct(config),
+				ledger: await services.LedgerService.construct(config),
+				link: await services.LinkService.construct(config),
+				message: await services.MessageService.construct(config),
+				peer: await services.PeerService.construct(config),
+				transaction: await services.TransactionService.construct(config),
 			},
 		});
 	}
