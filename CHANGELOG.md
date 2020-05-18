@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.8.3 - 2020-05-18
+
+### Added
+
+-   Generate API documentation with typedoc (4cd3469b, @faustbrian)
+
+### Fixed
+
+-   Increase nonce if retrieved via API (4fbe49d8, @faustbrian)
+
 ## 0.8.2 - 2020-05-18
 
 ### Added
