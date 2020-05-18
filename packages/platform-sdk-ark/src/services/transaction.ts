@@ -1,6 +1,7 @@
 import { Connection } from "@arkecosystem/client";
 import { Managers, Transactions } from "@arkecosystem/crypto";
 import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+
 import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
