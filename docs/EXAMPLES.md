@@ -2,7 +2,11 @@
 
 ## ARK
 
-## Send Transaction
+### Send Transaction
+
+```bash
+node ark.js --passphrase="..." --recipient="..."
+```
 
 ```ts
 import { Coins } from "@arkecosystem/platform-sdk";
