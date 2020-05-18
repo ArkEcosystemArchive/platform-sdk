@@ -2,7 +2,17 @@ import { Connection } from "@arkecosystem/client";
 import { Managers, Transactions } from "@arkecosystem/crypto";
 import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
 
+import { IdentityService } from "./identity";
+
 export class TransactionService implements Contracts.TransactionService {
+	readonly #connection: Connection;
+	readonly #identity: IdentityService;
+
+	private constructor({ connection, identity }) {
+		this.#connection = connection;
+		this.#identity = identity;
+	}
+
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
 		let connection: Connection;
 		try {
@@ -19,7 +29,10 @@ export class TransactionService implements Contracts.TransactionService {
 		const { body: status } = await connection.api("node").syncing();
 		Managers.configManager.setHeight(status.data.height);
 
-		return new TransactionService();
+		return new TransactionService({
+			connection,
+			identity: await IdentityService.construct(config),
+		});
 	}
 
 	public async destruct(): Promise<void> {
@@ -150,7 +163,29 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction = Transactions.BuilderFactory[type]().version(2).nonce(input.nonce);
+		const transaction = Transactions.BuilderFactory[type]().version(2);
+
+		if (input.nonce) {
+			transaction.nonce(input.nonce);
+		} else {
+			let address: string | undefined;
+
+			if (input.sign.passphrase) {
+				address = await this.#identity.address().fromPassphrase(input.sign.passphrase);
+			}
+
+			if (input.sign.wif) {
+				address = await this.#identity.address().fromWIF(input.sign.wif);
+			}
+
+			if (!address) {
+				throw new Error(`Failed to retrieve the nonce for the signer wallet. Please provide one through the [input] parameter.`);
+			}
+
+			const { body } = await this.#connection.api("wallets").get(address);
+
+			transaction.nonce(body.data.nonce);
+		}
 
 		if (input.data && input.data.amount) {
 			transaction.amount(input.data.amount);
