@@ -179,7 +179,7 @@ export class TransactionService implements Contracts.TransactionService {
 			}
 
 			if (!address) {
-				throw new Error(`Failed to retrieve the nonce for the signer wallet.`);
+				throw new Error(`Failed to retrieve the nonce for the signer wallet. Please provide one through the [input] parameter.`);
 			}
 
 			const { body } = await this.#connection.api("wallets").get(address);
