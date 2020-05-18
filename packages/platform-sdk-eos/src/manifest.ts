@@ -2,6 +2,8 @@ export const manifest = {
 	name: "EOS",
 	networks: {
 		"eos.mainnet": {
+			id: "eos.mainnet",
+			name: "EOS Mainnet",
 			explorer: "https://eos.bloks.io/",
 			currency: {
 				ticker: "EOS",
@@ -15,6 +17,8 @@ export const manifest = {
 			hosts: ["https://eos.greymass.com", "https://api.eosn.io", "https://mainnet.genereos.io"],
 		},
 		"eos.testnet": {
+			id: "eos.testnet",
+			name: "EOS Testnet",
 			explorer: "https://eos-test.bloks.io/",
 			currency: {
 				ticker: "EOS",
@@ -28,6 +32,8 @@ export const manifest = {
 			hosts: ["https://jungle2.cryptolions.io"],
 		},
 		"telos.mainnet": {
+			id: "telos.mainnet",
+			name: "TELOS Mainnet",
 			explorer: "https://telos.bloks.io/",
 			currency: {
 				ticker: "TLOS",
@@ -46,6 +52,8 @@ export const manifest = {
 			],
 		},
 		"telos.testnet": {
+			id: "telos.testnet",
+			name: "TELOS Testnet",
 			explorer: "https://telos-test.bloks.io/",
 			currency: {
 				ticker: "TLOS",
@@ -64,6 +72,8 @@ export const manifest = {
 			],
 		},
 		"wax.mainnet": {
+			id: "wax.mainnet",
+			name: "WAX Mainnet",
 			explorer: "https://wax.bloks.io/",
 			currency: {
 				ticker: "WAX",
@@ -77,6 +87,8 @@ export const manifest = {
 			hosts: ["https://wax.eosphere.io"],
 		},
 		"worbli.mainnet": {
+			id: "worbli.mainnet",
+			name: "WORBLI Mainnet",
 			explorer: "https://worbli.bloks.io/",
 			currency: {
 				ticker: "WBI",
@@ -90,6 +102,8 @@ export const manifest = {
 			hosts: ["https://api.worbli.io", "https://worbli-mainnet.eosblocksmith.io"],
 		},
 		"worbli.testnet": {
+			id: "worbli.testnet",
+			name: "WORBLI Testnet",
 			explorer: "https://worbli-test.bloks.io/",
 			currency: {
 				ticker: "WBI",
@@ -103,6 +117,8 @@ export const manifest = {
 			hosts: ["https://worbli-testnet.eosblocksmith.io", "https://worbli-testnet.eosphere.io"],
 		},
 		"meetone.mainnet": {
+			id: "meetone.mainnet",
+			name: "MEETONE Mainnet",
 			explorer: "https://meetone.bloks.io/",
 			currency: {
 				ticker: "MEETONE",
@@ -116,6 +132,8 @@ export const manifest = {
 			hosts: ["https://fullnode.meet.one"],
 		},
 		"bos.mainnet": {
+			id: "bos.mainnet",
+			name: "BOS Mainnet",
 			explorer: "https://bos.bloks.io/",
 			currency: {
 				ticker: "BOS",

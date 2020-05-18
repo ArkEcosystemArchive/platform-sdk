@@ -1,30 +1,18 @@
-interface Network {
-	explorer: string;
-	currency: {
-		ticker: string;
-		symbol: string;
-	};
-	crypto: {
-		networkId?: string;
-		slip44: number;
-		bech32?: string;
-	};
-	hosts: string[];
-}
+import { CoinNetwork } from "./contracts";
 
 export class NetworkRepository {
-	readonly #networks: Record<string, Network>;
+	readonly #networks: Record<string, CoinNetwork>;
 
-	public constructor(networks: Record<string, Network>) {
+	public constructor(networks: Record<string, CoinNetwork>) {
 		this.#networks = networks;
 	}
 
-	public all(): Record<string, Network> {
+	public all(): Record<string, CoinNetwork> {
 		return this.#networks;
 	}
 
-	public get(name: string): Network {
-		const result: Network | undefined = this.#networks[name];
+	public get(name: string): CoinNetwork {
+		const result: CoinNetwork | undefined = this.#networks[name];
 
 		if (!result) {
 			throw new Error(`The [${name}] network is not supported.`);
@@ -33,7 +21,7 @@ export class NetworkRepository {
 		return result;
 	}
 
-	public push(name: string, data: Network): void {
+	public push(name: string, data: CoinNetwork): void {
 		this.#networks[name] = data;
 	}
 

@@ -20,14 +20,16 @@ export class TransactionService implements Contracts.TransactionService {
 	};
 
 	private constructor(options) {
-		this.#client = new Stellar.Server(this.#networks[options.network].host);
-		this.#networkPassphrase = this.#networks[options.network].networkPassphrase;
+		const network = this.#networks[options.network.id];
+
+		this.#client = new Stellar.Server(network.host);
+		this.#networkPassphrase = network.networkPassphrase;
 		this.#identity = options.identity;
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
-			network: config.get("network"),
+			network: config.get<Coins.CoinNetwork>("network"),
 			identity: await IdentityService.construct(config),
 		});
 	}

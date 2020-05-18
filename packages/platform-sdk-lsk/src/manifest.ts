@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Lisk",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://explorer.lisk.io/",
 			currency: {
 				ticker: "LSK",
@@ -31,6 +33,8 @@ export const manifest = {
 			],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://testnet-explorer.lisk.io/",
 			currency: {
 				ticker: "LSK",
@@ -43,6 +47,8 @@ export const manifest = {
 			hosts: ["https://testnet.lisk.io"],
 		},
 		betanet: {
+			id: "betanet",
+			name: "Betanet",
 			explorer: "https://betanet-explorer.lisk.io/",
 			currency: {
 				ticker: "LSK",

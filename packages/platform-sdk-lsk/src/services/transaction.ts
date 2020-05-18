@@ -7,12 +7,12 @@ import { manifest } from "../manifest";
 export class TransactionService implements Contracts.TransactionService {
 	readonly #network;
 
-	private constructor(network: string) {
-		this.#network = network;
+	private constructor (network: Coins.CoinNetwork) {
+		this.#network = network.crypto.networkId;
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(manifest.networks[config.get<string>("network")].crypto.networkId);
+		return new TransactionService(config.get<Coins.CoinNetwork>("network"));
 	}
 
 	public async destruct(): Promise<void> {

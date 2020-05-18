@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Tron",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://tronscan.org/#/",
 			currency: {
 				ticker: "TRX",
@@ -13,6 +15,8 @@ export const manifest = {
 			hosts: ["https://api.trongrid.io"],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://shasta.tronscan.org/#/",
 			currency: {
 				ticker: "TRX",

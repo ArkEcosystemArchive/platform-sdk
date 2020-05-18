@@ -2,6 +2,8 @@ export const manifest = {
 	name: "NEO",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://neotracker.io/",
 			currency: {
 				ticker: "NEO",
@@ -34,6 +36,8 @@ export const manifest = {
 			],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://neoscan-testnet.io/",
 			currency: {
 				ticker: "NEO",

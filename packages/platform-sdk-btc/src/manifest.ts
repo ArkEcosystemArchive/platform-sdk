@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Bitcoin",
 	networks: {
 		livenet: {
+			id: "livenet",
+			name: "Livenet",
 			explorer: "https://blockstream.info/",
 			currency: {
 				ticker: "BTC",
@@ -13,6 +15,8 @@ export const manifest = {
 			hosts: [],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://blockstream.info/testnet/",
 			currency: {
 				ticker: "BTC",

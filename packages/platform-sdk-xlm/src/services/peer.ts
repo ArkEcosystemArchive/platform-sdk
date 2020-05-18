@@ -5,12 +5,12 @@ import { manifest } from "../manifest";
 export class PeerService implements Contracts.PeerService {
 	readonly #seeds: string[];
 
-	private constructor(network: string) {
-		this.#seeds = manifest.networks[network].hosts;
+	private constructor(network: Coins.CoinNetwork) {
+		this.#seeds = network.hosts;
 	}
 
 	public static async construct(config: Coins.Config): Promise<PeerService> {
-		return new PeerService(config.get<string>("network"));
+		return new PeerService(config.get<Coins.CoinNetwork>("network"));
 	}
 
 	public async destruct(): Promise<void> {

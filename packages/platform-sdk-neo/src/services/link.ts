@@ -5,12 +5,12 @@ import { manifest } from "../manifest";
 export class LinkService implements Contracts.LinkService {
 	readonly #baseUrl: string;
 
-	private constructor(network: string) {
-		this.#baseUrl = manifest.networks[network].explorer;
+	private constructor(network: Coins.CoinNetwork) {
+		this.#baseUrl = network.explorer;
 	}
 
 	public static async construct(config: Coins.Config): Promise<LinkService> {
-		return new LinkService(config.get("network"));
+		return new LinkService(config.get<Coins.CoinNetwork>("network"));
 	}
 
 	public async destruct(): Promise<void> {
