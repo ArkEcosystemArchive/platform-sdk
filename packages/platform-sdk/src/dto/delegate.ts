@@ -15,6 +15,8 @@ export abstract class AbstractDelegateData {
 		return {
 			address: this.address(),
 			publicKey: this.publicKey(),
+			username: this.username(),
+			rank: this.rank(),
 		};
 	}
 

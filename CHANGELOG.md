@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.8.0 - 2020-05-18
+
+### Added
+
+- Implement `MessageService` for `XLM` (cbc276b5, @faustbrian)
+- Implement `TransactionData#asset` (2e2bb288, @faustbrian)
+- Implement `LedgerService` for `XRP` (f42be51e, @sleepdefic1t)
+- Support transferring `ERC20` tokens (384eb7c6, @faustbrian)
+- Implement `LedgerService` for `TRX` (9280e618, @faustbrian)
+- Implement `LedgerService` for `XLM` (0daf5b6e, @faustbrian)
+- Implement `LedgerService` for `ETH` (0881ea3a, @faustbrian)
+- Implement `NetworkRepository` (67d190a3, @faustbrian)
+- Implement `Manifest` (acc0300d, @faustbrian)
+- Implement `LedgerService` for LSK`` (cced5708, @sleepdefic1t)
+- Implement `Guard` to protect against bad method calls (0a0a7c1a, @faustbrian)
+- Implement `Config` service for coins (103111f1, @faustbrian)
+- Implement `LedgerService#connect` and `LedgerService#disconnect` (226b7f00, @faustbrian)
+- Handle peer discovery and network identifiers (34e74c27, @faustbrian)
+- Implement `betanet` support for `LSK` (1ba0a846, @faustbrian)
+
+### Changed
+
+- Group repeated `Buffer` behaviours into a class (319d24f3, @faustbrian)
+- Automatically instantiate the `LedgerTransport` (aee01496, @faustbrian)
+- Return `undefined` for `TransactionData#memo` if it doesn't exist (97ae565d, @faustbrian)
+- Expect an `object` for `TransactionData#asset` (710796cf, @faustbrian)
+- Remove `TransactionData#nonce` method (37b9d7ff, @faustbrian)
+- Remove `@arkecosystem/utils` dependency (b3940cdf, @faustbrian)
+- Return a string identifier for `TransactionData#type` (70794060, @faustbrian)
+- Add all supported networks to `manifest` (0c9c9f6a, @faustbrian)
+- Replace `AbstractFactory` with `CoinFactory` (111ee2dd, @faustbrian)
+- Add currency symbols to manifest (a1a8ae21, @faustbrian)
+- Implement `Coin` to slim down `CoinFactory` (651068a7, @faustbrian)
+- Store network object in `Config.network` instead of string (fc870e2c, @faustbrian)
+
+### Fixed
+
+- Return magistrate fees from `FeeService#all` (ba0be8b5, @faustbrian)
+- Only list `XRP` transactions (dc85f366, @faustbrian)
+- Always treat `fee` and `amount` as `string` (9c5b8758, @faustbrian)
+- Export naming (1d3626f9, @faustbrian)
+
 ## 0.7.0 - 2020-05-12
 
 ### Added

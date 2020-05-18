@@ -13,7 +13,6 @@ Create an instance of the factory.
 | options          | object | The options to configure the behaviour of the factory.             |
 | options.network  | string | The name of the network that should be communicated with.          |
 | options.peer     | string | The peer that should be used for network communication.            |
-| options.services | object | The options to configure the behaviour of the underlying services. |
 
 ### Return Value
 
