@@ -13,7 +13,7 @@ export class TransactionService implements Contracts.TransactionService {
 	private constructor(opts: Contracts.KeyValuePair) {
 		this.#client = opts.client;
 		this.#identity = opts.identity;
-		this.#networkId = manifest.networks[opts.network].crypto.networkId;
+		this.#networkId = opts.network.crypto.networkId;
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {

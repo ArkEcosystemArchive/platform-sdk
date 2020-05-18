@@ -1,5 +1,3 @@
-import { KeyValuePair } from "../types";
-
 export interface IdentityService {
 	destruct(): Promise<void>;
 
