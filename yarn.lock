@@ -80,6 +80,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -127,6 +128,7 @@ __metadata:
     rimraf: ^3.0.2
     semver: ^7.3.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -163,6 +165,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -200,6 +203,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -232,6 +236,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -264,6 +269,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -296,6 +302,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -333,6 +340,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -373,6 +381,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
     web3: ^1.2.7
   languageName: unknown
@@ -416,6 +425,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -451,6 +461,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -486,6 +497,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -524,6 +536,7 @@ __metadata:
     rimraf: ^3.0.2
     tronweb: ^2.10.1
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -563,6 +576,7 @@ __metadata:
     stellar-hd-wallet: ^0.0.10
     stellar-sdk: ^5.0.1
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -598,6 +612,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -642,6 +657,7 @@ __metadata:
     ripple-keypairs: ^1.0.0
     ripple-lib: ^1.6.5
     ts-jest: ^25.4.0
+    typedoc: ^0.17.7
     typescript: ^3.8.3
     ws: ^7.3.0
   languageName: unknown
@@ -684,6 +700,7 @@ __metadata:
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
     type-fest: ^0.13.1
+    typedoc: ^0.17.7
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
@@ -8003,7 +8020,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"glob@npm:^7.1.1, glob@npm:^7.1.2, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6":
+"glob@npm:^7.0.0, glob@npm:^7.1.1, glob@npm:^7.1.2, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6":
   version: 7.1.6
   resolution: "glob@npm:7.1.6"
   dependencies:
@@ -8180,7 +8197,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"handlebars@npm:^4.4.0":
+"handlebars@npm:^4.4.0, handlebars@npm:^4.7.6":
   version: 4.7.6
   resolution: "handlebars@npm:4.7.6"
   dependencies:
@@ -8377,6 +8394,13 @@ fsevents@^2.1.2:
   bin:
     he: bin/he
   checksum: 2/b2b167171cf3eeec7db1c016fc650bc588771841b51f0d04538e700412932a1dc710d150bc629acab25b0ecc6ecf6646014dbf10160782b089651b984a3125fc
+  languageName: node
+  linkType: hard
+
+"highlight.js@npm:^10.0.0":
+  version: 10.0.3
+  resolution: "highlight.js@npm:10.0.3"
+  checksum: 2/59d78b9dc985e896c83b2e2ef7550743757775391d1f7f0d3c61105dd368c1a9761e9958e7ed67e4bd14fc390094d143afe8a0c4966ee6b8297b3c637a14d206
   languageName: node
   linkType: hard
 
@@ -8795,6 +8819,13 @@ fsevents@^2.1.2:
     strip-ansi: ^6.0.0
     through: ^2.3.6
   checksum: 2/651838e841b5850a10edb5232d8fda9b119f71b9aa53ff8e52457c29729d86338d52175b8c50f77d9311c4b5b367f9d2090acfc4c54b6d643df59130d66b197a
+  languageName: node
+  linkType: hard
+
+"interpret@npm:^1.0.0":
+  version: 1.2.0
+  resolution: "interpret@npm:1.2.0"
+  checksum: 2/06d0dd4af01f9d0a99af8fb20c888db99e7c1bd28835951646a7e426dd99ccfffb9d06ad2e8f7cb60dd2ecc3e5bc61fe83e04c2cc47d92c7b144ff935673463c
   languageName: node
   linkType: hard
 
@@ -10539,6 +10570,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"lunr@npm:^2.3.8":
+  version: 2.3.8
+  resolution: "lunr@npm:2.3.8"
+  checksum: 2/b542e6e8137b4be932f003996ab7af5f64f5843c752958723f5a04263e401cf3b7e6f32f08aa7afac3cc93c2a3b580ddee3c8dba0d735b9f4b8c121c306dadfa
+  languageName: node
+  linkType: hard
+
 "macos-release@npm:^2.2.0":
   version: 2.3.0
   resolution: "macos-release@npm:2.3.0"
@@ -10659,6 +10697,15 @@ fsevents@^2.1.2:
   dependencies:
     object-visit: ^1.0.0
   checksum: 2/9e85e6d802183927229d9ad04d70a0e0c7225451994605674d3ed4e4a21f817b4d9aba42a775e98078ffe47cf67df44a50eb07f965f14afead5015c8692503bd
+  languageName: node
+  linkType: hard
+
+"marked@npm:1.0.0":
+  version: 1.0.0
+  resolution: "marked@npm:1.0.0"
+  bin:
+    marked: bin/marked
+  checksum: 2/4121f2f5cb7130e57571780181cddac9e3a8692486045f760baad14c6d896c9481180ad8ab8a36fb9476375ddaa860dbc7d29ecf386b2bfa47d4450a9f866cd4
   languageName: node
   linkType: hard
 
@@ -10886,7 +10933,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"minimatch@npm:3.0.4, minimatch@npm:^3.0.4":
+"minimatch@npm:3.0.4, minimatch@npm:^3.0.0, minimatch@npm:^3.0.4":
   version: 3.0.4
   resolution: "minimatch@npm:3.0.4"
   dependencies:
@@ -13150,6 +13197,15 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"rechoir@npm:^0.6.2":
+  version: 0.6.2
+  resolution: "rechoir@npm:0.6.2"
+  dependencies:
+    resolve: ^1.1.6
+  checksum: 2/6646a6bce733282d182bf04816b15d4e2d63736b3453cf62a8568aaa1399621a73b3942315161f549e090f9a3c61bc09f4cb674f928c369a40037621e10295bd
+  languageName: node
+  linkType: hard
+
 "redent@npm:^1.0.0":
   version: 1.0.0
   resolution: "redent@npm:1.0.0"
@@ -13431,7 +13487,7 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
-"resolve@1.x, resolve@^1.10.0, resolve@^1.17.0, resolve@^1.3.2":
+"resolve@1.x, resolve@^1.1.6, resolve@^1.10.0, resolve@^1.17.0, resolve@^1.3.2":
   version: 1.17.0
   resolution: "resolve@npm:1.17.0"
   dependencies:
@@ -13447,7 +13503,7 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@1.x#builtin<compat/resolve>, resolve@patch:resolve@^1.10.0#builtin<compat/resolve>, resolve@patch:resolve@^1.17.0#builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#builtin<compat/resolve>":
+"resolve@patch:resolve@1.x#builtin<compat/resolve>, resolve@patch:resolve@^1.1.6#builtin<compat/resolve>, resolve@patch:resolve@^1.10.0#builtin<compat/resolve>, resolve@patch:resolve@^1.17.0#builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#builtin<compat/resolve>":
   version: 1.17.0
   resolution: "resolve@patch:resolve@npm%3A1.17.0#builtin<compat/resolve>::version=1.17.0&hash=e7677c"
   dependencies:
@@ -14031,6 +14087,19 @@ resolve@~1.7.1:
   version: 3.0.0
   resolution: "shebang-regex@npm:3.0.0"
   checksum: 2/ea18044ffaf18129ced5a246660a9171a7dff98999aaa9de8abb237d8a7711d8a1f76e16881399994ee429156717ce1c6a50c665bb18a4d55a7f80b9125b1f7d
+  languageName: node
+  linkType: hard
+
+"shelljs@npm:^0.8.4":
+  version: 0.8.4
+  resolution: "shelljs@npm:0.8.4"
+  dependencies:
+    glob: ^7.0.0
+    interpret: ^1.0.0
+    rechoir: ^0.6.2
+  bin:
+    shjs: bin/shjs
+  checksum: 2/bdf68e3c2a8a6d191dde3be2800bfcfd688c126344ccaf6cf7024cdaf824d0d3523b8e514cd52264f739cbabd2b0569637dd5a8183377347225af918e03ff5dc
   languageName: node
   linkType: hard
 
@@ -15441,6 +15510,37 @@ resolve@~1.7.1:
   version: 0.0.6
   resolution: "typedarray@npm:0.0.6"
   checksum: 2/c9ef0176aaf32593514c31e5c6edc1db970847aff6e1f0a0570a6ac0cc996335792f394c2fcec59cc76691d22a01888ea073a2f3c6930cfcf7c519addf4e2ad7
+  languageName: node
+  linkType: hard
+
+"typedoc-default-themes@npm:^0.10.1":
+  version: 0.10.1
+  resolution: "typedoc-default-themes@npm:0.10.1"
+  dependencies:
+    lunr: ^2.3.8
+  checksum: 2/0ab5573c23c83c0e4352becebe57cc9bc058acbfa5b942aa056d378db9fbda00cd859e9a593620328f24809599e2a6663c418fbffc03ede75a863aca826ebcdc
+  languageName: node
+  linkType: hard
+
+"typedoc@npm:^0.17.7":
+  version: 0.17.7
+  resolution: "typedoc@npm:0.17.7"
+  dependencies:
+    fs-extra: ^8.1.0
+    handlebars: ^4.7.6
+    highlight.js: ^10.0.0
+    lodash: ^4.17.15
+    lunr: ^2.3.8
+    marked: 1.0.0
+    minimatch: ^3.0.0
+    progress: ^2.0.3
+    shelljs: ^0.8.4
+    typedoc-default-themes: ^0.10.1
+  peerDependencies:
+    typescript: ">=3.8.3"
+  bin:
+    typedoc: bin/typedoc
+  checksum: 2/889301bf0cc6b5180cc1c0af56f8ecc320f0e120da2c0ee96a7b2409b9f7ee5a1605a0f35c1378edfa0994eab9f297e5b17810fdee7ef75ebb1267241883a0b6
   languageName: node
   linkType: hard
 
