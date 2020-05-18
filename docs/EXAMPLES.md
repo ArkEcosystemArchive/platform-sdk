@@ -7,8 +7,9 @@
 ```ts
 import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
+import minimist from "minimist";
 
-const argv = require("minimist")(process.argv.slice(2));
+const argv = minimist(process.argv.slice(2));
 
 const main = async () => {
 	// 1. Instantiate the Coin
