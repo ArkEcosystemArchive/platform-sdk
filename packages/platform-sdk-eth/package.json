@@ -12,6 +12,7 @@
 	"scripts": {
 		"build": "yarn clean && tsc",
 		"build:watch": "yarn build -w",
+		"build:docs": "typedoc --out docs src",
 		"clean": "rimraf .coverage dist tmp",
 		"test": "jest",
 		"test:watch": "jest --watchAll",
@@ -54,6 +55,7 @@
 		"prettier": "^2.0.5",
 		"rimraf": "^3.0.2",
 		"ts-jest": "^25.4.0",
+		"typedoc": "^0.17.7",
 		"typescript": "^3.8.3"
 	},
 	"engines": {
