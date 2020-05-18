@@ -184,7 +184,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			const { body } = await this.#connection.api("wallets").get(address);
 
-			transaction.nonce(body.data.nonce);
+			transaction.nonce(Utils.BigNumber.make(body.data.nonce).plus(1).toFixed());
 		}
 
 		if (input.data && input.data.amount) {

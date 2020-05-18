@@ -15,12 +15,8 @@ const main = async () => {
 	// 1. Instantiate the Coin
 	const adapter = await Coins.CoinFactory.make(ARK, { network: "devnet" });
 
-	// 2. Get the nonce for the signer wallet
-	const wallet = await adapter.client().wallet(await adapter.identity().address().fromPassphrase(argv.passphrase));
-
-	// 3. Sign transaction
+	// 2. Sign transaction
 	const transaction = await adapter.transaction().transfer({
-		nonce: wallet.nonce().plus(1),
 		sign: {
 			passphrase: argv.passphrase,
 		},
@@ -30,7 +26,7 @@ const main = async () => {
 		},
 	});
 
-	// 4. Broadcast transaction
+	// 3. Broadcast transaction
 	console.log(await adapter.client().broadcast([transaction]));
 };
 
