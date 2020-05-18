@@ -14,7 +14,7 @@ beforeAll(() => nock.disableNetConnect());
 describe("ClientService", function () {
 	describe("#transaction", () => {
 		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.get("/api/transactions?id=15562133894377717094")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/transaction.json`));
 
@@ -26,7 +26,7 @@ describe("ClientService", function () {
 
 	describe("#transactions", () => {
 		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.get("/api/transactions?address=6566229458323231555L")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
 
@@ -39,7 +39,7 @@ describe("ClientService", function () {
 
 	describe("#wallet", () => {
 		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.get("/api/accounts?address=6566229458323231555L")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
 
@@ -51,7 +51,7 @@ describe("ClientService", function () {
 
 	describe("#wallets", () => {
 		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.get("/api/accounts?address=6566229458323231555L")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
 
@@ -64,7 +64,7 @@ describe("ClientService", function () {
 
 	describe("#delegate", () => {
 		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.get("/api/delegates?username=cc001")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/delegate.json`));
 
@@ -76,7 +76,7 @@ describe("ClientService", function () {
 
 	describe("#delegates", () => {
 		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.get("/api/delegates")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/delegates.json`));
 
@@ -104,7 +104,7 @@ describe("ClientService", function () {
 		};
 
 		it("should pass", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.post("/api/transactions")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
 
@@ -118,7 +118,7 @@ describe("ClientService", function () {
 		});
 
 		it("should fail", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.post("/api/transactions")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast-failure.json`));
 

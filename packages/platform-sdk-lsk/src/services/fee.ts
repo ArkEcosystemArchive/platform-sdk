@@ -7,7 +7,7 @@ import { manifest } from "../manifest";
 export class FeeService implements Contracts.FeeService {
 	readonly #network;
 
-	private constructor (network: Coins.CoinNetwork) {
+	private constructor(network: Coins.CoinNetwork) {
 		this.#network = network.crypto.networkId;
 	}
 

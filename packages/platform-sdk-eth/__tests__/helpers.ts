@@ -4,9 +4,9 @@ import { schema } from "../src/schema";
 import { manifest } from "../src/manifest";
 
 export const createConfig = (options?: object) => {
-	const config = new Coins.Config(options || { network: "ropsten" }, schema)
+	const config = new Coins.Config(options || { network: "ropsten" }, schema);
 
-	config.set('network', manifest.networks.ropsten)
+	config.set("network", manifest.networks.ropsten);
 
-	return config
+	return config;
 };

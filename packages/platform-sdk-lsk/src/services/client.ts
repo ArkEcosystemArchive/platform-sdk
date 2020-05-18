@@ -14,14 +14,14 @@ export class ClientService implements Contracts.ClientService {
 	};
 
 	private constructor(peer: string) {
-		this.#baseUrl = `${peer}/api`;
+		this.#baseUrl = peer;
 	}
 
 	public static async construct(config: Coins.Config): Promise<ClientService> {
 		try {
 			return new ClientService(config.get<string>("peer"));
 		} catch {
-			return new ClientService(Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts));
+			return new ClientService(`${Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
 		}
 	}
 

@@ -12,7 +12,7 @@ export class FeeService implements Contracts.FeeService {
 		try {
 			return new FeeService(config.get<string>("peer"));
 		} catch {
-			return new FeeService(Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts));
+			return new FeeService(`${Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
 		}
 	}
 

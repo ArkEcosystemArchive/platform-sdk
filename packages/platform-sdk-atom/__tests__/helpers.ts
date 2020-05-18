@@ -4,9 +4,9 @@ import { schema } from "../src/schema";
 import { manifest } from "../src/manifest";
 
 export const createConfig = (options?: object) => {
-	const config = new Coins.Config(options || { network: "cosmos.testnet" }, schema)
+	const config = new Coins.Config(options || { network: "cosmos.testnet" }, schema);
 
-	config.set('network', manifest.networks['cosmos.testnet'])
+	config.set("network", manifest.networks["cosmos.testnet"]);
 
-	return config
+	return config;
 };

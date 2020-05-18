@@ -16,7 +16,7 @@ export class ClientService implements Contracts.ClientService {
 		try {
 			return new ClientService(config.get<string>("peer"));
 		} catch {
-			return new ClientService(Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts));
+			return new ClientService(`${Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
 		}
 	}
 

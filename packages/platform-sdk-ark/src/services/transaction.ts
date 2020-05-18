@@ -8,7 +8,9 @@ export class TransactionService implements Contracts.TransactionService {
 		try {
 			connection = new Connection(config.get<string>("peer"));
 		} catch {
-			connection = new Connection(Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts));
+			connection = new Connection(
+				`${Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`,
+			);
 		}
 
 		const { body: crypto } = await connection.api("node").crypto();
