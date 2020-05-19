@@ -11,11 +11,10 @@ export interface ProfileServiceOptions {
 		adapter: StorageAdapter;
 		serializer?: StorageSerializer;
 		deserializer?: StorageDeserializer;
-	}
+	};
 	key?: string;
 }
 
-// TODO: Move out to another package?
 export interface StorageAdapter {
 	length(): Promise<number>;
 	getItem<T = any>(key: string): Promise<T>;
@@ -24,5 +23,5 @@ export interface StorageAdapter {
 	clear(): Promise<void>;
 }
 
-export type StorageSerializer = (val: any) => any;
-export type StorageDeserializer = (val: any) => any;
+export type StorageSerializer = (value: any) => string;
+export type StorageDeserializer = <T>(value: any) => T;

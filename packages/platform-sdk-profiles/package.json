@@ -20,7 +20,8 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
+		"uuid": "^8.0.0"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
@@ -30,6 +31,7 @@
 		"@types/node": "^13.13.4",
 		"@types/prettier": "^2.0.0",
 		"@types/rimraf": "^3.0.0",
+		"@types/uuid": "7.0.3",
 		"@typescript-eslint/eslint-plugin": "^2.30.0",
 		"@typescript-eslint/parser": "^2.30.0",
 		"codecov": "^3.6.5",
