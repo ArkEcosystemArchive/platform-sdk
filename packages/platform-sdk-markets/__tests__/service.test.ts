@@ -19,7 +19,7 @@ describe("MarketService", () => {
 	const currency = "USD";
 
 	describe.each(["cryptocompare", "coingecko", "coincap"])("%s", (adapter) => {
-		beforeEach(() => (subject = MarketService.construct(adapter)));
+		beforeEach(() => (subject = MarketService.make(adapter)));
 
 		it("should call #verifyToken on the adapter instance", async () => {
 			const spy = createSpyAdapter("verifyToken");
