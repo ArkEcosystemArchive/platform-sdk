@@ -444,6 +444,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-atom", "workspace:packages/platform-sdk-atom"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@hapi/joi", "npm:17.1.1"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -465,6 +467,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:25.5.0"],
             ["jest-extended", "npm:0.11.5"],
+            ["ledger-cosmos-js", "npm:2.1.7"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:4.1.2"],
             ["prettier", "npm:2.0.5"],
@@ -1373,6 +1376,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["regenerator-runtime", "npm:0.13.5"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:7.9.6", {
+          "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.9.6-93b1a0d418-2.zip/node_modules/@babel/runtime/",
+          "packageDependencies": [
+            ["@babel/runtime", "npm:7.9.6"],
+            ["regenerator-runtime", "npm:0.13.5"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@babel/template", [
@@ -1920,6 +1931,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@ledgerhq/devices", [
+        ["npm:4.78.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-devices-npm-4.78.0-2ce7728fc5-2.zip/node_modules/@ledgerhq/devices/",
+          "packageDependencies": [
+            ["@ledgerhq/devices", "npm:4.78.0"],
+            ["@ledgerhq/errors", "npm:4.78.0"],
+            ["@ledgerhq/logs", "npm:4.72.0"],
+            ["rxjs", "npm:6.5.5"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:5.15.0", {
           "packageLocation": "./.yarn/cache/@ledgerhq-devices-npm-5.15.0-5ea9e45111-2.zip/node_modules/@ledgerhq/devices/",
           "packageDependencies": [
@@ -1932,6 +1953,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@ledgerhq/errors", [
+        ["npm:4.78.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-errors-npm-4.78.0-e1cc4ba746-2.zip/node_modules/@ledgerhq/errors/",
+          "packageDependencies": [
+            ["@ledgerhq/errors", "npm:4.78.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:5.15.0", {
           "packageLocation": "./.yarn/cache/@ledgerhq-errors-npm-5.15.0-0117a5ec9f-2.zip/node_modules/@ledgerhq/errors/",
           "packageDependencies": [
@@ -1988,6 +2016,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@ledgerhq/hw-transport", [
+        ["npm:4.78.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-npm-4.78.0-2425736219-2.zip/node_modules/@ledgerhq/hw-transport/",
+          "packageDependencies": [
+            ["@ledgerhq/hw-transport", "npm:4.78.0"],
+            ["@ledgerhq/devices", "npm:4.78.0"],
+            ["@ledgerhq/errors", "npm:4.78.0"],
+            ["events", "npm:3.1.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:5.15.0", {
           "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-npm-5.15.0-102fba08a7-2.zip/node_modules/@ledgerhq/hw-transport/",
           "packageDependencies": [
@@ -2042,6 +2080,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@ledgerhq/logs", [
+        ["npm:4.72.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-logs-npm-4.72.0-1f0cf4e041-2.zip/node_modules/@ledgerhq/logs/",
+          "packageDependencies": [
+            ["@ledgerhq/logs", "npm:4.72.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:5.15.0", {
           "packageLocation": "./.yarn/cache/@ledgerhq-logs-npm-5.15.0-d1dadc1295-2.zip/node_modules/@ledgerhq/logs/",
           "packageDependencies": [
@@ -11821,6 +11866,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["latest-version", "npm:5.1.0"],
             ["package-json", "npm:6.5.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["ledger-cosmos-js", [
+        ["npm:2.1.7", {
+          "packageLocation": "./.yarn/cache/ledger-cosmos-js-npm-2.1.7-da616a7bd2-2.zip/node_modules/ledger-cosmos-js/",
+          "packageDependencies": [
+            ["ledger-cosmos-js", "npm:2.1.7"],
+            ["@babel/runtime", "npm:7.9.6"],
+            ["@ledgerhq/hw-transport", "npm:4.78.0"],
+            ["bech32", "npm:1.1.4"],
+            ["ripemd160", "npm:2.0.2"]
           ],
           "linkType": "HARD",
         }]
