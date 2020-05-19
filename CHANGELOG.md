@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.8.5 - 2020-05-19
+
+### Added
+
+-   Implement `LedgerService` for `ATOM` (6120a2c7, @sleepdefic1t)
+
+### Fixed
+
+-   Wrong method name for static `MarketService` constructor (f315cec9, @faustbrian)
+
 ## 0.8.3 - 2020-05-18
 
 ### Added
