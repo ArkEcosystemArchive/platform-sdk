@@ -1,10 +1,6 @@
-export interface Profile {
-	id: string;
+export interface ProfileData {
 	name: string;
-	// wallets: any;
 }
-
-export type ProfileModel = Omit<Profile, "id">;
 
 export interface ProfileServiceOptions {
 	storage: {
