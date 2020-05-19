@@ -1,9 +1,5 @@
 import { StorageSerializer, StorageDeserializer } from "./interfaces";
 
-export const serializer: StorageSerializer = (val: any) => {
-	return JSON.stringify(val);
-}
+export const serializer: StorageSerializer = (value: any) => JSON.stringify(value);
 
-export const deserializer: StorageDeserializer = (val: any) => {
-	return JSON.parse(val);
-}
+export const deserializer: StorageDeserializer = (value: any) => JSON.parse(value);
