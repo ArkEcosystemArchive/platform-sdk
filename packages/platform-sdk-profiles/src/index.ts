@@ -13,44 +13,62 @@ import { deserializer, serializer } from "./serializer";
 export class ProfileService {
 	readonly #key: string;
 	readonly #storage: StorageAdapter;
-	readonly #storageSerializer: StorageSerializer;
-	readonly #storageDeserializer: StorageDeserializer;
+	readonly #serializer: StorageSerializer;
+	readonly #deserializer: StorageDeserializer;
 
 	public constructor(options: ProfileServiceOptions) {
 		this.#key = options.key || "profiles";
 		this.#storage = options.storage.adapter;
-		this.#storageSerializer = options.storage.serializer || serializer;
-		this.#storageDeserializer = options.storage.deserializer || deserializer;
+		this.#serializer = options.storage.serializer || serializer;
+		this.#deserializer = options.storage.deserializer || deserializer;
 	}
 
 	public async all(): Promise<Profile[]> {
-		return this.#storageDeserializer(await this.#storage.getItem(this.#key));
+		return this.#deserializer(await this.#storage.getItem(this.#key));
 	}
 
-	public async add(profileModel: ProfileModel): Promise<Profile> {
-		// TODO: Validate name and check if it is unique?
-		const profile = {
-			id: await this.generateId(),
-			...profileModel,
-		};
+	public async get(id: string): Promise<Profile> {
+		const profiles = await this.all();
+		const profile = profiles.find((item: Profile) => item.id !== id);
 
-		await this.#storage.setItem(this.#key, this.#storageSerializer(profile));
+		if (!profile) {
+			throw new Error(`No profile found for [${id}].`);
+		}
 
 		return profile;
 	}
 
-	public async remove(id: string): Promise<Profile[]> {
+	public async push(profileModel: ProfileModel): Promise<Profile> {
+		const profiles = await this.all();
+
+		for (const profile of profiles) {
+			if (profile.name === profileModel.name) {
+				throw new Error(`The name [${profileModel.name}] is already taken.`);
+			}
+		}
+
+		const profile = {
+			id: this.generateId(),
+			...profileModel,
+		};
+
+		await this.#storage.setItem(this.#key, this.#serializer(profile));
+
+		return profile;
+	}
+
+	public async forget(id: string): Promise<Profile[]> {
 		const profiles = await this.all();
 		const filtered = profiles.filter((item: Profile) => item.id !== id);
 
-		await this.#storage.setItem(this.#key, this.#storageSerializer(filtered));
+		await this.#storage.setItem(this.#key, this.#serializer(filtered));
 
 		return profiles;
 	}
 
 	// TODO: Add wallets?
 
-	private async generateId(): Promise<string> {
+	private generateId(): string {
 		return uuidv4();
 	}
 }
