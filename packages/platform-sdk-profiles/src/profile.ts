@@ -1,4 +1,4 @@
-import { WalletRepository } from "./wallets/repository";
+import { WalletRepository } from "./wallets/wallet-repository";
 
 export class Profile {
 	readonly #id: string;
@@ -8,7 +8,7 @@ export class Profile {
 	constructor(data: any) {
 		this.#id = data.id;
 		this.#name = data.name;
-		this.#wallets = new WalletRepository({ wallets: data.wallets });
+		this.#wallets = new WalletRepository(data.wallets);
 	}
 
 	public id(): string {

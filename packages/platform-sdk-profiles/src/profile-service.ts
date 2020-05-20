@@ -1,31 +1,25 @@
 import { v4 as uuidv4 } from "uuid";
 
-import {
-	ProfileData,
-	ProfileServiceOptions,
-	StorageAdapter,
-	StorageDeserializer,
-	StorageSerializer,
-} from "./contracts";
+import { ProfileData, ProfileServiceOptions, Storage } from "./contracts";
 import { Profile } from "./profile";
-import { deserializer, serializer } from "./serializer";
+import { StorageFactory } from "./stores/factory";
 
 export class ProfileService {
-	readonly #key: string;
-	readonly #storage: StorageAdapter;
-	readonly #serializer: StorageSerializer;
-	readonly #deserializer: StorageDeserializer;
+	readonly #key: string = "profiles";
+	readonly #storage: Storage;
 
 	public constructor(options: ProfileServiceOptions) {
-		this.#key = options.key || "profiles";
-		this.#storage = options.storage.adapter;
-		this.#serializer = options.storage.serializer || serializer;
-		this.#deserializer = options.storage.deserializer || deserializer;
+		this.#storage = StorageFactory.make(options.storage);
 	}
 
 	public async all(): Promise<Profile[]> {
-		const raw: any[] = this.#deserializer(await this.#storage.getItem(this.#key));
-		return raw.map((item) => new Profile(item));
+		const items = await this.#storage.get<any>(this.#key);
+
+		if (!items) {
+			return [];
+		}
+
+		return items.map((item) => new Profile(item));
 	}
 
 	public async get(id: string): Promise<Profile> {
@@ -49,14 +43,17 @@ export class ProfileService {
 		}
 
 		const profile = new Profile({
-			id: this.generateId(),
+			id: uuidv4(),
 			wallets: [],
 			...data,
 		});
 
 		profiles.push(profile);
 
-		await this.#storage.setItem(this.#key, this.#serializer(profiles.map((item) => item.toObject())));
+		await this.#storage.put(
+			this.#key,
+			profiles.map((item) => item.toObject()),
+		);
 
 		return profile;
 	}
@@ -65,12 +62,11 @@ export class ProfileService {
 		const profiles = await this.all();
 		const filtered = profiles.filter((item: Profile) => item.id() !== id);
 
-		await this.#storage.setItem(this.#key, this.#serializer(filtered.map((item) => item.toObject())));
+		await this.#storage.put(
+			this.#key,
+			filtered.map((item) => item.toObject()),
+		);
 
 		return filtered;
-	}
-
-	private generateId(): string {
-		return uuidv4();
 	}
 }

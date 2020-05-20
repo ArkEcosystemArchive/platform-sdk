@@ -529,6 +529,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    localforage: ^1.7.3
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -8721,6 +8722,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"immediate@npm:~3.0.5":
+  version: 3.0.6
+  resolution: "immediate@npm:3.0.6"
+  checksum: 2/e86d4d20e2da86f9a4629d9aee9d56dfae7d3a7ace7f569b0538f2ec2570d86b3cbdc52c546d23be2cfd28306670f44676fc833cd96d9506659b8c5ab8202ca4
+  languageName: node
+  linkType: hard
+
 "import-fresh@npm:^2.0.0":
   version: 2.0.0
   resolution: "import-fresh@npm:2.0.0"
@@ -10409,6 +10417,15 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"lie@npm:3.1.1":
+  version: 3.1.1
+  resolution: "lie@npm:3.1.1"
+  dependencies:
+    immediate: ~3.0.5
+  checksum: 2/33a07ffeb7eb5aaec59a5f7a72ba7e6a2ce9d011bd7894f36ed11e2da43f076467019e5f9826c5864500c6a792450aa54b263f31cef0a1774553851dce8a501c
+  languageName: node
+  linkType: hard
+
 "lines-and-columns@npm:^1.1.6":
   version: 1.1.6
   resolution: "lines-and-columns@npm:1.1.6"
@@ -10458,6 +10475,15 @@ fsevents@^2.1.2:
   version: 0.0.1
   resolution: "loady@npm:0.0.1"
   checksum: 2/0153902adf0937aad2b2d9ed49d89522552e46dcb3db907ba0c2d2b11a85b65c0ff83fa20ff57c91cca1316236932367f398c06b183e51416b657ca3de9904b7
+  languageName: node
+  linkType: hard
+
+"localforage@npm:^1.7.3":
+  version: 1.7.3
+  resolution: "localforage@npm:1.7.3"
+  dependencies:
+    lie: 3.1.1
+  checksum: 2/07b22c9410b2e4a640d64a6c436ec359976ee4842c373190b882ff882f95678e81285144a5c1c902869bb93d6766cef92a770b9e175c54933fadad7514021a7b
   languageName: node
   linkType: hard
 

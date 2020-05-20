@@ -2,63 +2,43 @@ import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
 
 export class Wallet {
 	readonly #coin: Coins.Coin;
-	readonly #address: string;
-	readonly #publicKey: string;
-	#balance: Utils.BigNumber;
-	#nonce: Utils.BigNumber;
+	readonly #data: Contracts.WalletData;
 
-	private constructor(data: any) {
-		this.#coin = data.coin;
-		this.#address = data.address;
-		this.#publicKey = data.publicKey;
-		this.#balance = data.balance;
-		this.#nonce = data.nonce;
+	private constructor(coin: Coins.Coin, wallet: Contracts.WalletData) {
+		this.#coin = coin;
+		this.#data = wallet;
 	}
 
-	public static async make(passphrase: string, coin: Coins.CoinSpec, network: string): Promise<Wallet> {
-		const adapter = await Coins.CoinFactory.make(coin, { network });
+	public static async make(passphrase: string, spec: Coins.CoinSpec, network: string): Promise<Wallet> {
+		const coin = await Coins.CoinFactory.make(spec, { network });
 
-		const address = await adapter.identity().address().fromPassphrase(passphrase);
-		const publicKey = await adapter.identity().publicKey().fromPassphrase(passphrase);
+		const address: string = await coin.identity().address().fromPassphrase(passphrase);
+		const wallet: Contracts.WalletData = await coin.client().wallet(address);
 
-		const { balance, nonce } = await adapter.client().wallet(address);
-
-		return new Wallet({ coin: adapter, address, publicKey, balance, nonce });
+		return new Wallet(coin, wallet);
 	}
 
-	public coin(): Coins.Coin {
-		return this.#coin;
+	public coin(): string {
+		return this.#coin.config.name;
+	}
+
+	public network(): string {
+		return this.#coin.network().id;
 	}
 
 	public address(): string {
-		return this.#address;
+		return this.#data.address();
 	}
 
-	public publicKey(): string {
-		return this.#publicKey;
+	public publicKey(): string | undefined {
+		return this.#data.publicKey();
 	}
 
-	public balance(format?: boolean): Utils.BigNumber | string {
-		if (format) {
-			// TODO:
-			// @ts-ignore
-			return this.#balance.div(1e8).toFixed();
-		}
-
-		return this.#balance;
+	public balance(): Utils.BigNumber {
+		return this.#data.balance();
 	}
 
-	public async transfer(data: any): Promise<Contracts.BroadcastResponse> {
-		const transaction = await this.#coin.transaction().transfer({
-			sign: {
-				passphrase: data.passphrase,
-			},
-			data: {
-				amount: "1",
-				to: data.recipient,
-			},
-		});
-
-		return this.#coin.client().broadcast([transaction]);
+	public nonce(): Utils.BigNumber {
+		return this.#data.nonce();
 	}
 }

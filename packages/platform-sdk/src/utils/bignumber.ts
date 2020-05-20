@@ -44,6 +44,12 @@ export class BigNumber {
 		return this;
 	}
 
+	public divide(value: NumberLike): BigNumber {
+		this.#value = this.#value.dividedBy(value);
+
+		return this;
+	}
+
 	public times(value: NumberLike): BigNumber {
 		this.#value = this.#value.multipliedBy(value);
 
