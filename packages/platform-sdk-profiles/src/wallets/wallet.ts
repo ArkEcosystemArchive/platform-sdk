@@ -9,17 +9,18 @@ export class Wallet {
 		this.#data = wallet;
 	}
 
-	public static async make(passphrase: string, spec: Coins.CoinSpec, network: string): Promise<Wallet> {
+	public static async fromPassphrase(passphrase: string, spec: Coins.CoinSpec, network: string): Promise<Wallet> {
 		const coin = await Coins.CoinFactory.make(spec, { network });
 
 		const address: string = await coin.identity().address().fromPassphrase(passphrase);
+
 		const wallet: Contracts.WalletData = await coin.client().wallet(address);
 
 		return new Wallet(coin, wallet);
 	}
 
 	public coin(): string {
-		return this.#coin.config.name;
+		return this.#coin.manifest().get<string>("name")!;
 	}
 
 	public network(): string {

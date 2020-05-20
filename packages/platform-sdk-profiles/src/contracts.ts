@@ -1,5 +1,5 @@
-export interface ProfileData {
-	name: string;
+export interface EnvironmentOptions {
+	storage: string;
 }
 
 export interface Storage {
@@ -7,15 +7,11 @@ export interface Storage {
 
 	get<T>(key: string): Promise<T | undefined>;
 
-	put(key: string, value: string | object): Promise<void>;
+	set(key: string, value: string | object): Promise<void>;
 
 	forget(key: string): Promise<void>;
 
 	flush(): Promise<void>;
 
 	count(): Promise<number>;
-}
-
-export interface ProfileServiceOptions {
-	storage: string;
 }

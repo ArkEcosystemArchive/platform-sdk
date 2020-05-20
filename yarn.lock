@@ -75,6 +75,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -119,6 +120,7 @@ __metadata:
     is-url-superb: ^3.0.0
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     ky: ^0.19.1
     ky-universal: ^0.6.0
     lodash.orderby: ^4.6.0
@@ -162,6 +164,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     ledger-cosmos-js: ^2.1.7
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
@@ -201,6 +204,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -234,6 +238,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -267,6 +272,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -300,6 +306,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -337,6 +344,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     node-fetch: ^2.6.0
     npm-check-updates: ^4.1.2
@@ -379,6 +387,7 @@ __metadata:
     ethereumjs-wallet: ^0.6.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -423,6 +432,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -459,6 +469,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -495,6 +506,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -510,7 +522,9 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-profiles@workspace:packages/platform-sdk-profiles"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-ark": "workspace:packages/platform-sdk-ark"
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dot-prop": 5.0.1
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.1
@@ -522,6 +536,7 @@ __metadata:
     "@typescript-eslint/parser": ^2.30.0
     codecov: ^3.6.5
     cross-env: ^7.0.2
+    dot-prop: ^5.2.0
     eslint: ^6.8.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.8.2
@@ -529,6 +544,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     localforage: ^1.7.3
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
@@ -569,6 +585,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -608,6 +625,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -645,6 +663,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     monero-javascript: ^0.2.14
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
@@ -687,6 +706,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     lodash: ^4.17.15
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
@@ -733,6 +753,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^25.4.0
     jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -9697,6 +9718,13 @@ fsevents@^2.1.2:
     jest-get-type: ^25.2.6
     pretty-format: ^25.5.0
   checksum: 2/95e9f6fcef0cc5890983be7e72684bec9407fdc4ef6cdd159883f96c90f0df1cfa2f362b7af0d2c9b44d1ff19ecb1e9160fedcfe7204811129ffa34bd6ed3028
+  languageName: node
+  linkType: hard
+
+"jest-localstorage-mock@npm:^2.4.2":
+  version: 2.4.2
+  resolution: "jest-localstorage-mock@npm:2.4.2"
+  checksum: 2/c582f6d3755968c783cc6ae4c0082a7d0c766514ebc519ed0d44ce7f82c2c513f344e7aaafe9792f354b37cf40eb1c1d2ea7c77328fb859d2cb636e711aea9dd
   languageName: node
   linkType: hard
 
