@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
 import { Message, PrivateKey } from "bitcore-lib";
 
 import { IdentityService } from "./identity";
@@ -21,12 +21,13 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const privateKey = PrivateKey.fromWIF(input.passphrase);
+		const passphrase: string = Utils.BIP39.normalize(input.passphrase);
+		const privateKey = PrivateKey.fromWIF(passphrase);
 		const message = new Message(input.message);
 
 		return {
 			message: input.message,
-			signer: await this.#identity.address().fromWIF(input.passphrase),
+			signer: await this.#identity.address().fromWIF(passphrase),
 			signature: message.sign(privateKey),
 		};
 	}

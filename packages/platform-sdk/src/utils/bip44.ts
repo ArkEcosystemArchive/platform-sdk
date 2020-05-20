@@ -1,6 +1,8 @@
 import * as bip32 from "bip32";
 import * as bip39 from "bip39";
 
+import { BIP39 } from "./bip39";
+
 export class BIP44 {
 	public static deriveChild(
 		passphrase: string,
@@ -18,7 +20,7 @@ export class BIP44 {
 			options.index = 0;
 		}
 
-		return BIP44.deriveMasterKey(passphrase)
+		return BIP44.deriveMasterKey(BIP39.normalize(passphrase))
 			.deriveHardened(44)
 			.deriveHardened(options.coinType)
 			.deriveHardened(options.account)
@@ -31,6 +33,8 @@ export class BIP44 {
 	}
 
 	public static deriveMasterKey(passphrase: string): bip32.BIP32Interface {
+		passphrase = BIP39.normalize(passphrase);
+
 		bip39.validateMnemonic(passphrase);
 
 		return bip32.fromSeed(bip39.mnemonicToSeedSync(passphrase));

@@ -57,7 +57,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("secondSignature", input, options, ({ transaction, data }) =>
-			transaction.signatureAsset(data.passphrase),
+			transaction.signatureAsset(Utils.BIP39.normalize(data.passphrase)),
 		);
 	}
 
@@ -171,7 +171,7 @@ export class TransactionService implements Contracts.TransactionService {
 			let address: string | undefined;
 
 			if (input.sign.passphrase) {
-				address = await this.#identity.address().fromPassphrase(input.sign.passphrase);
+				address = await this.#identity.address().fromPassphrase(Utils.BIP39.normalize(input.sign.passphrase));
 			}
 
 			if (input.sign.wif) {
@@ -214,16 +214,16 @@ export class TransactionService implements Contracts.TransactionService {
 
 		if (Array.isArray(input.sign.passphrases)) {
 			for (let i = 0; i < input.sign.passphrases.length; i++) {
-				transaction.multiSign(input.sign.passphrases[i], i);
+				transaction.multiSign(Utils.BIP39.normalize(input.sign.passphrases[i]), i);
 			}
 		}
 
 		if (input.sign.passphrase) {
-			transaction.sign(input.sign.passphrase);
+			transaction.sign(Utils.BIP39.normalize(input.sign.passphrase));
 		}
 
 		if (input.sign.secondPassphrase) {
-			transaction.secondSign(input.sign.secondPassphrase);
+			transaction.secondSign(Utils.BIP39.normalize(input.sign.secondPassphrase));
 		}
 
 		if (input.sign.wif) {

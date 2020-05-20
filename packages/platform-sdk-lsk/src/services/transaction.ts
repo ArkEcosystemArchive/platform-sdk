@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import * as transactions from "@liskhq/lisk-transactions";
 import * as transactionsBeta from "@liskhq/lisk-transactions-new";
 
@@ -43,7 +43,7 @@ export class TransactionService implements Contracts.TransactionService {
 			...input,
 			...{
 				data: {
-					secondPassphrase: input.data.passphrase,
+					secondPassphrase: Utils.BIP39.normalize(input.data.passphrase),
 				},
 			},
 		});
@@ -138,11 +138,11 @@ export class TransactionService implements Contracts.TransactionService {
 		// todo: support multisignature
 
 		if (input.sign.passphrase) {
-			struct.passphrase = input.sign.passphrase;
+			struct.passphrase = Utils.BIP39.normalize(input.sign.passphrase);
 		}
 
 		if (input.sign.secondPassphrase) {
-			struct.secondPassphrase = input.sign.secondPassphrase;
+			struct.secondPassphrase = Utils.BIP39.normalize(input.sign.secondPassphrase);
 		}
 
 		if (this.#network === manifest.networks.betanet.crypto.networkId) {
