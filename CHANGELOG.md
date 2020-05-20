@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.0 - 2020-05-20
+
+### Changed
+
+-   Setup editor support for yarn berry and typescript (01cd9e5f, @faustbrian)
+
+### Added
+
+-   Implement `platform-sdk-profiles` (f393a561, @luciorubeens)
+-   Implement data storages for profiles (63e8897b, @faustbrian)
+-   Implement `global` and `profile` settings (716ea6a6, @faustbrian)
+-   Add "quarter of year" plugin to `dayjs` (ce9dc6a4, @faustbrian)
+
+### Fixed
+
+-   Normalise passphrases (1eb0d3cb, @faustbrian)
+
 ## 0.8.5 - 2020-05-19
 
 ### Added
