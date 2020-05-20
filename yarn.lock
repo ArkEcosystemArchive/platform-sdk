@@ -3611,15 +3611,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yarnpkg/core@npm:^2.0.0-rc.26":
-  version: 2.0.0-rc.26
-  resolution: "@yarnpkg/core@npm:2.0.0-rc.26"
+"@yarnpkg/core@npm:^2.0.0-rc.27":
+  version: 2.0.0-rc.27
+  resolution: "@yarnpkg/core@npm:2.0.0-rc.27"
   dependencies:
-    "@yarnpkg/fslib": ^2.0.0-rc.18
+    "@yarnpkg/fslib": ^2.0.0-rc.20
     "@yarnpkg/json-proxy": ^2.0.0-rc.7
     "@yarnpkg/libzip": ^2.0.0-rc.11
     "@yarnpkg/parsers": ^2.0.0-rc.11
-    "@yarnpkg/pnp": ^2.0.0-rc.19
+    "@yarnpkg/pnp": ^2.0.0-rc.20
     "@yarnpkg/shell": ^2.0.0-rc.11
     camelcase: ^5.3.1
     chalk: ^3.0.0
@@ -3640,7 +3640,7 @@ __metadata:
     stream-to-promise: ^2.2.0
     tar: ^4.4.6
     tunnel: ^0.0.6
-  checksum: 2/edf083ffdc5dc1a4958381373626a9b6dd4e5ed9e6b3b55e5215f9b54c1cea55ec34384c2cec92dfded7779914610321926fb168d62589ab283b2c32c4a670f5
+  checksum: 2/fbbd62c43d86e6be1747df8c7d6f8c16bba24747699224b94319d50b2d11b112a0d29466ad1e9f669d0da16c87743d2601858fda4bd3fb2842b2e352ba185fa4
   languageName: node
   linkType: hard
 
@@ -3650,6 +3650,15 @@ __metadata:
   dependencies:
     "@yarnpkg/libzip": ^2.0.0-rc.11
   checksum: 2/25fefdffdcf787651f9c1e35087c63174a0ffcc60c3c0168cf0bb00880984e07c1e1ec227b2b4036f952a409853c2d7c807a84c8b2c2d7d82401509667879199
+  languageName: node
+  linkType: hard
+
+"@yarnpkg/fslib@npm:^2.0.0-rc.20":
+  version: 2.0.0-rc.20
+  resolution: "@yarnpkg/fslib@npm:2.0.0-rc.20"
+  dependencies:
+    "@yarnpkg/libzip": ^2.0.0-rc.11
+  checksum: 2/d07e512e5747c1f0a2875bb27ac28790402a042cbd849f1b04d8b05779474b5984bfa7fa63d6f114d759ee8f52b3888ad98fb3105566a46a60b90782798e1d12
   languageName: node
   linkType: hard
 
@@ -3680,22 +3689,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yarnpkg/pnp@npm:^2.0.0-rc.19":
-  version: 2.0.0-rc.19
-  resolution: "@yarnpkg/pnp@npm:2.0.0-rc.19"
+"@yarnpkg/pnp@npm:^2.0.0-rc.20":
+  version: 2.0.0-rc.20
+  resolution: "@yarnpkg/pnp@npm:2.0.0-rc.20"
   dependencies:
     "@types/node": ^13.7.0
-    "@yarnpkg/fslib": ^2.0.0-rc.18
-  checksum: 2/e39bb0f6802cf913b95936f3618984638ccdef2b75cd610e362c8e9be39f18623a3a9e16f4f84f2035e239e09caaef72ce7d83aadbd5a618ad845356ff113d08
+    "@yarnpkg/fslib": ^2.0.0-rc.20
+  checksum: 2/e39835e0b512fb48a0e75a78d11f601c8f63d4d0c3c88a3fc7f96c07fc760a188a8e7a7e680353552ff623799c644857ae338b5f43e93f216869a106c79c6b04
   languageName: node
   linkType: hard
 
-"@yarnpkg/pnpify@npm:^2.0.0-rc.21":
-  version: 2.0.0-rc.21
-  resolution: "@yarnpkg/pnpify@npm:2.0.0-rc.21"
+"@yarnpkg/pnpify@npm:^2.0.0-rc.22":
+  version: 2.0.0-rc.22
+  resolution: "@yarnpkg/pnpify@npm:2.0.0-rc.22"
   dependencies:
-    "@yarnpkg/core": ^2.0.0-rc.26
-    "@yarnpkg/fslib": ^2.0.0-rc.18
+    "@yarnpkg/core": ^2.0.0-rc.27
+    "@yarnpkg/fslib": ^2.0.0-rc.20
     chalk: ^3.0.0
     comment-json: ^2.2.0
     cross-spawn: 6.0.5
@@ -3709,7 +3718,7 @@ __metadata:
       optional: true
   bin:
     pnpify: ./lib/cli.js
-  checksum: 2/d46539062be03e9fddbc2bbc8b6a052a257471856a89a079cda01d0a654c42db0d33fd79c244b3bab45c8f40fcceeeed471394963d813939db40bce6cdf96d1f
+  checksum: 2/7421cb1ec3cb2e98a3fcd35e3e3e6da6313aead5f25f885120b8ff83adf4e0ec0453f3375404959a497f01ddbd0d573057a8d1b2d3c46a9f063d9e62e4596ad5
   languageName: node
   linkType: hard
 
@@ -5565,6 +5574,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"command-exists@npm:1.2.6":
+  version: 1.2.6
+  resolution: "command-exists@npm:1.2.6"
+  checksum: 2/cd86c1214b917adb9dbb845053ccb63b61fc8ed9e1b81b3966d42a362ab06c71fda8a3e70c626d3c35535759083438cdf2e8bab719e28465b7ce4613a3b108f3
+  languageName: node
+  linkType: hard
+
 "commander@npm:2.15.1":
   version: 2.15.1
   resolution: "commander@npm:2.15.1"
@@ -5572,17 +5588,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"commander@npm:^2.11.0, commander@npm:~2.20.3":
+  version: 2.20.3
+  resolution: "commander@npm:2.20.3"
+  checksum: 2/b73428e97de7624323f81ba13f8ed9271de487017432d18b4da3f07cfc528ad754bbd199004bd5d14e0ccd67d1fdfe0ec8dbbd4c438b401df3c4cc387bfd1daa
+  languageName: node
+  linkType: hard
+
 "commander@npm:^5.0.0":
   version: 5.1.0
   resolution: "commander@npm:5.1.0"
   checksum: 2/d16141ea7f580945156fb8a06de2834c4647c7d9d3732ebd4534ab8e0b7c64747db301e18f2b840f28ea8fef51f7a8d6178e674b45a21931f0b65ff1c7f476b3
-  languageName: node
-  linkType: hard
-
-"commander@npm:~2.20.3":
-  version: 2.20.3
-  resolution: "commander@npm:2.20.3"
-  checksum: 2/b73428e97de7624323f81ba13f8ed9271de487017432d18b4da3f07cfc528ad754bbd199004bd5d14e0ccd67d1fdfe0ec8dbbd4c438b401df3c4cc387bfd1daa
   languageName: node
   linkType: hard
 
@@ -6021,6 +6037,13 @@ __metadata:
   version: 4.0.0
   resolution: "crypto-js@npm:4.0.0"
   checksum: 2/fdd1415b9e4b317f6ac7f055a00495dabea6aa93ab82ccd63866b0a76d2da9587942764816a8a7976cb23b8bbfd7eea23ccb852b3fef218d166cc5db8c008ab3
+  languageName: node
+  linkType: hard
+
+"crypto-random-string@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "crypto-random-string@npm:1.0.0"
+  checksum: 2/0876b316ccf6f501d0deda42507adcfff276790eba38ab87ba4a7f77e1f11404f406fa36a8c273e781c9eabbbe5da4eab4d7577ca1e84dcac556743ffc816af5
   languageName: node
   linkType: hard
 
@@ -7816,6 +7839,17 @@ __metadata:
     jsonfile: ^4.0.0
     universalify: ^0.1.0
   checksum: 2/ad42def19446c82543ebfa707250de2e1adff8f1c902f9cad3946f69b3dad326696f70e86c3aebeab4bc4f19ff3ef9abee0460d7fb775122f3dc9142a4b1280f
+  languageName: node
+  linkType: hard
+
+"fs-extra@npm:^7.0.0":
+  version: 7.0.1
+  resolution: "fs-extra@npm:7.0.1"
+  dependencies:
+    graceful-fs: ^4.1.2
+    jsonfile: ^4.0.0
+    universalify: ^0.1.0
+  checksum: 2/0de3773953a13b517f053dbfa291166da076cc563cdd8f0ecefc64018ab15d2614f1707860b82e6b0e41695f613c1855f410749bd01bcb585f0243b1018a6595
   languageName: node
   linkType: hard
 
@@ -12181,6 +12215,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"p-debounce@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "p-debounce@npm:1.0.0"
+  checksum: 2/19ba8ffca37765a30ab2b10baf5014157dfbf6b1bc71e9e3ab7e8c82558986601539f9f8502a8b358fb0ada019c5279a1b4cc52db87609c573ac60c967649fcd
+  languageName: node
+  linkType: hard
+
 "p-each-series@npm:^2.1.0":
   version: 2.1.0
   resolution: "p-each-series@npm:2.1.0"
@@ -12686,7 +12727,7 @@ fsevents@^2.1.2:
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^2.30.0
     "@typescript-eslint/parser": ^2.30.0
-    "@yarnpkg/pnpify": ^2.0.0-rc.21
+    "@yarnpkg/pnpify": ^2.0.0-rc.22
     codecov: ^3.6.5
     cross-env: ^7.0.2
     eslint: ^6.8.0
@@ -12703,6 +12744,7 @@ fsevents@^2.1.2:
     rimraf: ^3.0.2
     ts-jest: ^25.4.0
     typescript: ^3.8.3
+    typescript-language-server: ^0.4.0
   languageName: unknown
   linkType: soft
 
@@ -15174,6 +15216,16 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
+"tempy@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "tempy@npm:0.2.1"
+  dependencies:
+    temp-dir: ^1.0.0
+    unique-string: ^1.0.0
+  checksum: 2/f739531a17d46ae6caa0e8496308cc0b6d0ab00bc419aea8f7288ba380412e23de94a630ad6e875cac494cddb2ea2f0e4cafafd1c4862540a11af862478448cd
+  languageName: node
+  linkType: hard
+
 "term-size@npm:^2.1.0":
   version: 2.2.0
   resolution: "term-size@npm:2.2.0"
@@ -15707,6 +15759,23 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
+"typescript-language-server@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "typescript-language-server@npm:0.4.0"
+  dependencies:
+    command-exists: 1.2.6
+    commander: ^2.11.0
+    fs-extra: ^7.0.0
+    p-debounce: ^1.0.0
+    tempy: ^0.2.1
+    vscode-languageserver: ^5.3.0-next
+    vscode-uri: ^1.0.5
+  bin:
+    typescript-language-server: ./lib/cli.js
+  checksum: 2/0685054b368b04f40434cb49a8fd6406aaa7b635f5ae17ad1005e4d991f9de7640c5279f26750527efca47187150d7314bf9198b41653de0f8ca9ade2430375b
+  languageName: node
+  linkType: hard
+
 typescript@^3.8.3:
   version: 3.8.3
   resolution: "typescript@npm:3.8.3"
@@ -15793,6 +15862,15 @@ typescript@^3.8.3:
   dependencies:
     imurmurhash: ^0.1.4
   checksum: 2/3b17dabc13b3cc41897715e106d4403b88c225739e70bbb6d1142e0fb680261b20574cae133b0ac0eedcf514fc19766d6fa37411f9e9ee038daaa4ae83e7cd70
+  languageName: node
+  linkType: hard
+
+"unique-string@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "unique-string@npm:1.0.0"
+  dependencies:
+    crypto-random-string: ^1.0.0
+  checksum: 2/860f1ab835e8699e19ebaf0d651b967cf926ca80e22ae9f098996f8fec12ca007ac4914bf47e37556aca0ae10bd80ca4322982abfd30abcffec44d5e7612ae5f
   languageName: node
   linkType: hard
 
@@ -16132,6 +16210,56 @@ typescript@^3.8.3:
     core-util-is: 1.0.2
     extsprintf: ^1.2.0
   checksum: 2/38ea80312cb42e5e8b4ac562d108d675b2354a79f8f125d363671f692657461b9181fd26f4fc9acdca433f8afee099cb78058806e1303e6b15b8fb022affba94
+  languageName: node
+  linkType: hard
+
+"vscode-jsonrpc@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "vscode-jsonrpc@npm:5.0.1"
+  checksum: 2/4d9503fef577ce24c1122b8dde9864179aa09539919517fac4162d91e65eff4c2332df096ac3ee7d1b08bda817eafde0a2a6148c34d7364b4e130fe6c0c190fb
+  languageName: node
+  linkType: hard
+
+"vscode-languageserver-protocol@npm:^3.15.0, vscode-languageserver-protocol@npm:^3.15.0-next.8":
+  version: 3.15.3
+  resolution: "vscode-languageserver-protocol@npm:3.15.3"
+  dependencies:
+    vscode-jsonrpc: ^5.0.1
+    vscode-languageserver-types: 3.15.1
+  checksum: 2/2b7b8ff31b63da4aa6e931ebb4e2748aed8c1636e4e582799e0d59a1065e06b4ff9187fdcd6a966ae3cc9912077fb081979a8db75763abfe0ef42ab97b577d15
+  languageName: node
+  linkType: hard
+
+"vscode-languageserver-types@npm:3.15.1":
+  version: 3.15.1
+  resolution: "vscode-languageserver-types@npm:3.15.1"
+  checksum: 2/2c61a5a6238fe1f1d7772dbead991e930b91cf7908fc950e624fc037104eb380b40e479c30e8a8d0a88b59c3d7a97317a568253553b586f58e307d1dec1a198c
+  languageName: node
+  linkType: hard
+
+"vscode-languageserver@npm:^5.3.0-next":
+  version: 5.3.0-next.10
+  resolution: "vscode-languageserver@npm:5.3.0-next.10"
+  dependencies:
+    vscode-languageserver-protocol: ^3.15.0-next.8
+    vscode-textbuffer: ^1.0.0
+  bin:
+    installServerIntoExtension: ./bin/installServerIntoExtension
+  checksum: 2/0b751f689ba677e6bda6a69a708a2f361efca72892ac1803a85040b503ccd9c0589eba932782c21f5d144473db9ca3986768c6a0d020a2e44c8fb50678ff4be8
+  languageName: node
+  linkType: hard
+
+"vscode-textbuffer@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "vscode-textbuffer@npm:1.0.0"
+  checksum: 2/2690b314f545903564083921dc4669c718e0ec7b82df6494dbf733e364a1b1c2f950375c3d09f5ee74628c978f16ebae5b46c31b9634f575ae23700081bd4c5b
+  languageName: node
+  linkType: hard
+
+"vscode-uri@npm:^1.0.5":
+  version: 1.0.8
+  resolution: "vscode-uri@npm:1.0.8"
+  checksum: 2/7e245e8cfbfa5829f92c674ce39829d12dae6858fb1f10db1a8514a838d32aa53a6bc33482abce498c89c4209ff2cb9579b9df7ef215c99fe49d5564f2e8b158
   languageName: node
   linkType: hard
 
