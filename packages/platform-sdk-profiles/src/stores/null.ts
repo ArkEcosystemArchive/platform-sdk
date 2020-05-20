@@ -9,8 +9,12 @@ export class NullStorage implements Storage {
 		return undefined;
 	}
 
-	public async put(key: string, value: string): Promise<void> {
+	public async set(key: string, value: string): Promise<void> {
 		//
+	}
+
+	public async has(key: string): Promise<boolean> {
+		return false;
 	}
 
 	public async forget(key: string): Promise<void> {

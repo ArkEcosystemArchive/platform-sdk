@@ -1,14 +1,19 @@
+import { Storage } from "./contracts";
+import { Settings } from "./settings";
+import { Wallet } from "./wallets/wallet";
 import { WalletRepository } from "./wallets/wallet-repository";
 
 export class Profile {
 	readonly #id: string;
 	#name: string;
-	#wallets: WalletRepository;
+	readonly #wallets: WalletRepository;
+	readonly #settings: Settings;
 
-	constructor(data: any) {
+	public constructor(data: { id: string; name: string; wallets: Wallet[]; storage: Storage }) {
 		this.#id = data.id;
 		this.#name = data.name;
 		this.#wallets = new WalletRepository(data.wallets);
+		this.#settings = new Settings(data.storage, `profiles.${this.#id}`);
 	}
 
 	public id(): string {
@@ -21,6 +26,10 @@ export class Profile {
 
 	public wallets(): WalletRepository {
 		return this.#wallets;
+	}
+
+	public settings(): Settings {
+		return this.#settings;
 	}
 
 	public toObject(): any {

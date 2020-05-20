@@ -19,7 +19,7 @@ export class WalletRepository {
 		return this.#wallets.find((wallet: Wallet) => wallet.publicKey() === publicKey);
 	}
 
-	public findByCoin(coin: string): Wallet | undefined {
-		return this.#wallets.find((wallet: Wallet) => wallet.coin() === coin);
+	public findByCoin(coin: string): Wallet[] {
+		return this.#wallets.filter((wallet: Wallet) => wallet.coin() === coin);
 	}
 }

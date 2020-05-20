@@ -1,14 +1,14 @@
 import { Storage } from "../contracts";
-import { LocalForage } from "./localforage";
+import { LocalStorage } from "./local";
 import { NullStorage } from "./null";
 
 export class StorageFactory {
 	public static make(driver: string): Storage {
 		return {
 			null: new NullStorage(),
-			indexeddb: new LocalForage("indexeddb"),
-			websql: new LocalForage("websql"),
-			localstorage: new LocalForage("localstorage"),
+			indexeddb: new LocalStorage("indexeddb"),
+			websql: new LocalStorage("websql"),
+			localstorage: new LocalStorage("localstorage"),
 		}[driver];
 	}
 }
