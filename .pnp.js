@@ -865,6 +865,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:25.5.0"],
             ["jest-extended", "npm:0.11.5"],
+            ["localforage", "npm:1.7.3"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:4.1.2"],
             ["prettier", "npm:2.0.5"],
@@ -10178,6 +10179,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["immediate", [
+        ["npm:3.0.6", {
+          "packageLocation": "./.yarn/cache/immediate-npm-3.0.6-c27588a2d3-2.zip/node_modules/immediate/",
+          "packageDependencies": [
+            ["immediate", "npm:3.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["import-fresh", [
         ["npm:2.0.0", {
           "packageLocation": "./.yarn/cache/import-fresh-npm-2.0.0-8b4e6073aa-2.zip/node_modules/import-fresh/",
@@ -12012,6 +12022,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["lie", [
+        ["npm:3.1.1", {
+          "packageLocation": "./.yarn/cache/lie-npm-3.1.1-91350720d9-2.zip/node_modules/lie/",
+          "packageDependencies": [
+            ["lie", "npm:3.1.1"],
+            ["immediate", "npm:3.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["lines-and-columns", [
         ["npm:1.1.6", {
           "packageLocation": "./.yarn/cache/lines-and-columns-npm-1.1.6-23e74fab67-2.zip/node_modules/lines-and-columns/",
@@ -12063,6 +12083,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/loady-npm-0.0.1-13bb06e374-2.zip/node_modules/loady/",
           "packageDependencies": [
             ["loady", "npm:0.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["localforage", [
+        ["npm:1.7.3", {
+          "packageLocation": "./.yarn/cache/localforage-npm-1.7.3-6e7a10a2a0-2.zip/node_modules/localforage/",
+          "packageDependencies": [
+            ["localforage", "npm:1.7.3"],
+            ["lie", "npm:3.1.1"]
           ],
           "linkType": "HARD",
         }]

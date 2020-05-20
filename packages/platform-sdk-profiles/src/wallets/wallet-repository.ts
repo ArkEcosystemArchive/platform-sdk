@@ -3,8 +3,8 @@ import { Wallet } from "./wallet";
 export class WalletRepository {
 	readonly #wallets: Wallet[] = [];
 
-	constructor(data: any) {
-		this.#wallets = data.wallets;
+	public constructor(wallets: Wallet[]) {
+		this.#wallets = wallets;
 	}
 
 	public all(): Wallet[] {
@@ -20,6 +20,6 @@ export class WalletRepository {
 	}
 
 	public findByCoin(coin: string): Wallet | undefined {
-		return this.#wallets.find((wallet: Wallet) => wallet.coin().config.name === coin);
+		return this.#wallets.find((wallet: Wallet) => wallet.coin() === coin);
 	}
 }
