@@ -2,7 +2,7 @@ import "jest-extended";
 import { v4 as uuidv4 } from "uuid";
 
 import { Settings } from "../src/settings";
-import { LocalStorage } from "../src/stores/local";
+import { LocalStorage } from "../src/storage/local";
 
 describe.each([["app", "profile.123"]])("Settings(%s)", (namespace) => {
 	let subject: Settings;

@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { NullStorage } from "../../src/stores/null";
+import { NullStorage } from "../../src/storage/null";
 
 let subject: NullStorage;
 

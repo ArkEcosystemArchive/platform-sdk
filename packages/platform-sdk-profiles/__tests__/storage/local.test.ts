@@ -1,7 +1,7 @@
 import "jest-extended";
 import { v4 as uuidv4 } from "uuid";
 
-import { LocalStorage } from "../../src/stores/local";
+import { LocalStorage } from "../../src/storage/local";
 
 let subject: LocalStorage;
 let key: string;

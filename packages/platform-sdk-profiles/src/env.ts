@@ -1,7 +1,7 @@
 import { EnvironmentOptions, Storage } from "./contracts";
 import { Profiles } from "./profiles";
 import { Settings } from "./settings";
-import { StorageFactory } from "./stores/factory";
+import { StorageFactory } from "./storage/factory";
 
 export class Environment {
 	readonly #storage: Storage;
