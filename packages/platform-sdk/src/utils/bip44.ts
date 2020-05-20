@@ -36,7 +36,15 @@ export class BIP44 {
 		return bip32.fromSeed(bip39.mnemonicToSeedSync(passphrase));
 	}
 
-	public static parse(path: string) {
+	public static parse(
+		path: string,
+	): {
+		purpose: number;
+		coinType: number;
+		account: number;
+		change: number;
+		addressIndex: number;
+	} {
 		if (!path.match(new RegExp("^((m/)?(44'?)){1}(/[0-9]+'?){2}(/[0-9]+){2}$", "g"))) {
 			throw new Error(path);
 		}
