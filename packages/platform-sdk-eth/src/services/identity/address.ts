@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import Wallet from "ethereumjs-wallet";
 
 import { createWallet, getAddress } from "./utils";

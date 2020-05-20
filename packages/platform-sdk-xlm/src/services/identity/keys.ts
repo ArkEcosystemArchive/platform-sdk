@@ -1,10 +1,10 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import StellarHDWallet from "stellar-hd-wallet";
 import Stellar from "stellar-sdk";
 
 export class Keys implements Contracts.Keys {
 	public async fromPassphrase(passphrase: string): Promise<Contracts.KeyPair> {
-		const source = StellarHDWallet.fromMnemonic(passphrase);
+		const source = StellarHDWallet.fromMnemonic(Utils.BIP39.normalize(passphrase));
 
 		return {
 			publicKey: source.getPublicKey(0),

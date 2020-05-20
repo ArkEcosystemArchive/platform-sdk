@@ -56,7 +56,10 @@ export class TransactionService implements Contracts.TransactionService {
 			{ maxLedgerVersionOffset: 5 },
 		);
 
-		const { signedTransaction } = this.#connection.sign(prepared.txJSON, input.sign.passphrase);
+		const { signedTransaction } = this.#connection.sign(
+			prepared.txJSON,
+			Utils.BIP39.normalize(input.sign.passphrase),
+		);
 
 		return signedTransaction;
 	}

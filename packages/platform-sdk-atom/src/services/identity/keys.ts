@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
 import { secp256k1 } from "bcrypto";
 
 export class Keys implements Contracts.Keys {
