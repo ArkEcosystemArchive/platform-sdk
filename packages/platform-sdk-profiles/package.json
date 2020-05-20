@@ -1,0 +1,60 @@
+{
+	"name": "@arkecosystem/platform-sdk-profiles",
+	"description": "Cross-Platform Utilities for ARK Applications",
+	"version": "0.8.3",
+	"contributors": [],
+	"license": "MIT",
+	"files": [
+		"/dist"
+	],
+	"main": "dist/index",
+	"types": "dist/index",
+	"scripts": {
+		"build": "yarn clean && tsc",
+		"build:watch": "yarn build -w",
+		"build:docs": "typedoc --out docs src",
+		"clean": "rimraf .coverage dist tmp",
+		"test": "jest",
+		"test:watch": "jest --watchAll",
+		"coverage:report": "codecov",
+		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
+	},
+	"dependencies": {
+		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
+		"uuid": "^8.0.0"
+	},
+	"devDependencies": {
+		"@sindresorhus/tsconfig": "^0.7.0",
+		"@types/eslint": "^6.8.0",
+		"@types/eslint-plugin-prettier": "^3.1.0",
+		"@types/jest": "^25.2.1",
+		"@types/node": "^13.13.4",
+		"@types/prettier": "^2.0.0",
+		"@types/rimraf": "^3.0.0",
+		"@types/uuid": "7.0.3",
+		"@typescript-eslint/eslint-plugin": "^2.30.0",
+		"@typescript-eslint/parser": "^2.30.0",
+		"codecov": "^3.6.5",
+		"cross-env": "^7.0.2",
+		"eslint": "^6.8.0",
+		"eslint-config-prettier": "^6.11.0",
+		"eslint-plugin-jest": "^23.8.2",
+		"eslint-plugin-prettier": "^3.1.3",
+		"eslint-plugin-simple-import-sort": "^5.0.3",
+		"jest": "^25.4.0",
+		"jest-extended": "^0.11.5",
+		"nock": "^12.0.3",
+		"npm-check-updates": "^4.1.2",
+		"prettier": "^2.0.5",
+		"rimraf": "^3.0.2",
+		"ts-jest": "^25.4.0",
+		"typedoc": "^0.17.7",
+		"typescript": "^3.8.3"
+	},
+	"engines": {
+		"node": ">=12.x"
+	},
+	"jest": {
+		"preset": "../../jest.config.js"
+	}
+}

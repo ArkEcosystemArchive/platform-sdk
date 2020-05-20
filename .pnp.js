@@ -75,6 +75,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/platform-sdk-neo"
       },
       {
+        "name": "@arkecosystem/platform-sdk-profiles",
+        "reference": "workspace:packages/platform-sdk-profiles"
+      },
+      {
         "name": "@arkecosystem/platform-sdk-trx",
         "reference": "workspace:packages/platform-sdk-trx"
       },
@@ -107,6 +111,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@arkecosystem/platform-sdk-lsk", ["workspace:packages/platform-sdk-lsk"]],
       ["@arkecosystem/platform-sdk-markets", ["workspace:packages/platform-sdk-markets"]],
       ["@arkecosystem/platform-sdk-neo", ["workspace:packages/platform-sdk-neo"]],
+      ["@arkecosystem/platform-sdk-profiles", ["workspace:packages/platform-sdk-profiles"]],
       ["@arkecosystem/platform-sdk-trx", ["workspace:packages/platform-sdk-trx"]],
       ["@arkecosystem/platform-sdk-xlm", ["workspace:packages/platform-sdk-xlm"]],
       ["@arkecosystem/platform-sdk-xmr", ["workspace:packages/platform-sdk-xmr"]],
@@ -831,6 +836,43 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:25.4.0"],
             ["typedoc", "virtual:d9fc2a8a86b8ed672825915f5974caf338e1e7f788303b0db7f14ed53aeac54a869474c20388b45c211eacd4abaae6e1334d1a851acbe9724de5d1123322994b#npm:0.17.7"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@arkecosystem/platform-sdk-profiles", [
+        ["workspace:packages/platform-sdk-profiles", {
+          "packageLocation": "./packages/platform-sdk-profiles/",
+          "packageDependencies": [
+            ["@arkecosystem/platform-sdk-profiles", "workspace:packages/platform-sdk-profiles"],
+            ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/eslint", "npm:6.8.0"],
+            ["@types/eslint-plugin-prettier", "npm:3.1.0"],
+            ["@types/jest", "npm:25.2.1"],
+            ["@types/node", "npm:13.13.4"],
+            ["@types/prettier", "npm:2.0.0"],
+            ["@types/rimraf", "npm:3.0.0"],
+            ["@types/uuid", "npm:7.0.3"],
+            ["@typescript-eslint/eslint-plugin", "virtual:28bf10013f0dc3f5a648d9c22f70a8dd4890ee90e15e92164892c7edce794c8926350a258d8468ebdf2d34bf06cd3d7052aeb5926b807a64078459f2968d96a2#npm:2.30.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
+            ["codecov", "npm:3.6.5"],
+            ["cross-env", "npm:7.0.2"],
+            ["eslint", "npm:6.8.0"],
+            ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.11.0"],
+            ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:23.8.2"],
+            ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
+            ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
+            ["jest", "npm:25.5.0"],
+            ["jest-extended", "npm:0.11.5"],
+            ["nock", "npm:12.0.3"],
+            ["npm-check-updates", "npm:4.1.2"],
+            ["prettier", "npm:2.0.5"],
+            ["rimraf", "npm:3.0.2"],
+            ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:25.4.0"],
+            ["typedoc", "virtual:d9fc2a8a86b8ed672825915f5974caf338e1e7f788303b0db7f14ed53aeac54a869474c20388b45c211eacd4abaae6e1334d1a851acbe9724de5d1123322994b#npm:0.17.7"],
+            ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"],
+            ["uuid", "npm:8.0.0"]
           ],
           "linkType": "SOFT",
         }]
@@ -3941,6 +3983,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/uuid", [
+        ["npm:7.0.3", {
+          "packageLocation": "./.yarn/cache/@types-uuid-npm-7.0.3-b20d66f343-2.zip/node_modules/@types/uuid/",
+          "packageDependencies": [
+            ["@types/uuid", "npm:7.0.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/validator", [
         ["npm:10.9.0", {
           "packageLocation": "./.yarn/cache/@types-validator-npm-10.9.0-dce6187fac-2.zip/node_modules/@types/validator/",
@@ -4068,6 +4119,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-48815a7543/0/cache/@typescript-eslint-eslint-plugin-npm-2.30.0-b8f3893dcf-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
           "packageDependencies": [
             ["@typescript-eslint/eslint-plugin", "virtual:26859fa1829a07675b71c9bc52cda6bc0a97d0117e81d5b2a6822597e101b555b59348dddc440b57b797d384f3d00c2749f94ffa99f0e5c8cb4462801df482fe#npm:2.30.0"],
+            ["@typescript-eslint/experimental-utils", "virtual:25604aba35f82d61d5b2338307fd46407a46de5a8f33727108ac00da4d2ad8c0c3294d5882c2728ded2a0a42cc5874536d97ac764d3cfe103a5553057b7ecbd4#npm:2.30.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
+            ["eslint", "npm:6.8.0"],
+            ["functional-red-black-tree", "npm:1.0.1"],
+            ["regexpp", "npm:3.1.0"],
+            ["tsutils", "virtual:25604aba35f82d61d5b2338307fd46407a46de5a8f33727108ac00da4d2ad8c0c3294d5882c2728ded2a0a42cc5874536d97ac764d3cfe103a5553057b7ecbd4#npm:3.17.1"],
+            ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"]
+          ],
+          "packagePeers": [
+            "eslint",
+            "@typescript-eslint/parser",
+            "typescript"
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:28bf10013f0dc3f5a648d9c22f70a8dd4890ee90e15e92164892c7edce794c8926350a258d8468ebdf2d34bf06cd3d7052aeb5926b807a64078459f2968d96a2#npm:2.30.0", {
+          "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-13ef9a5ff5/0/cache/@typescript-eslint-eslint-plugin-npm-2.30.0-b8f3893dcf-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
+          "packageDependencies": [
+            ["@typescript-eslint/eslint-plugin", "virtual:28bf10013f0dc3f5a648d9c22f70a8dd4890ee90e15e92164892c7edce794c8926350a258d8468ebdf2d34bf06cd3d7052aeb5926b807a64078459f2968d96a2#npm:2.30.0"],
             ["@typescript-eslint/experimental-utils", "virtual:25604aba35f82d61d5b2338307fd46407a46de5a8f33727108ac00da4d2ad8c0c3294d5882c2728ded2a0a42cc5874536d97ac764d3cfe103a5553057b7ecbd4#npm:2.30.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
             ["eslint", "npm:6.8.0"],
@@ -18021,6 +18091,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/uuid-npm-3.4.0-4fd8ef88ad-2.zip/node_modules/uuid/",
           "packageDependencies": [
             ["uuid", "npm:3.4.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:8.0.0", {
+          "packageLocation": "./.yarn/cache/uuid-npm-8.0.0-591e3a2e23-2.zip/node_modules/uuid/",
+          "packageDependencies": [
+            ["uuid", "npm:8.0.0"]
           ],
           "linkType": "HARD",
         }]
