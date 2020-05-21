@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.30 - 2020-05-21
+
+### Added
+
+-   Added `DateTime#getMillisecond` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getSecond` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getMinute` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getHour` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getDayOfMonth` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getDay` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getWeek` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getMonth` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getQuarter` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getYear` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setMillisecond` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setSecond` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setMinute` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setHour` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setDayOfMonth` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setDay` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setWeek` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setMonth` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setQuarter` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setYear` (6a31e0ae, @faustbrian)
+
+### Fixed
+
+-   Pass the locale when creating a new immutable instance (6b05bbdf, @faustbrian)
+
 ## 0.9.9 - 2020-05-21
 
 ### Added
