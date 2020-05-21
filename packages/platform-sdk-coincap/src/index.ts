@@ -1,4 +1,5 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
 import { MarketTransformer } from "./transformers/market-transformer";
@@ -40,8 +41,8 @@ export class PriceTracker implements Contracts.PriceTracker {
 		const { rates } = await this.getCurrencyData(options.token);
 		const daysSubtract = options.days === 24 ? 1 : options.days;
 		const timeInterval = options.days === 24 ? "h1" : "h12";
-		const startDate = Utils.dayjs().subtract(daysSubtract, "d").valueOf();
-		const endDate = Utils.dayjs().valueOf();
+		const startDate = DateTime.make().subDays(daysSubtract).valueOf();
+		const endDate = DateTime.make().valueOf();
 		const body = await this.#client.get(
 			`assets/${tokenId}/history?interval=${timeInterval}&start=${startDate}&end=${endDate}`,
 		);

@@ -1,4 +1,5 @@
-import { Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 import { convertToCurrency } from "../utils";
 
@@ -12,7 +13,7 @@ export class HistoricalPriceTransformer implements Contracts.HistoricalTransform
 		const datasets = {};
 
 		for (const value of Object.values(this.data) as any) {
-			datasets[Utils.dayjs(value.date).format(dateFormat)] = convertToCurrency(value.priceUsd, {
+			datasets[DateTime.make(value.date).format(dateFormat)] = convertToCurrency(value.priceUsd, {
 				from: currency,
 				to: tokenId,
 				base: tokenId,

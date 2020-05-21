@@ -1,4 +1,5 @@
 import { Contracts, Data, Utils } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
 import { HistoricalVolumeTransformer } from "./transformers/historical-volume-transformer";
@@ -59,7 +60,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		const response = await this.#client.get(`data/dayAvg`, {
 			fsym: options.token,
 			tsym: options.currency,
-			toTs: Utils.dayjs(options.timestamp).unix(),
+			toTs: DateTime.make(options.timestamp).toUNIX(),
 		});
 
 		return response[options.currency.toUpperCase()];
