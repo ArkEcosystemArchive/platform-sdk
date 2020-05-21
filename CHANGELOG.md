@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.32 - 2020-05-21
+
+### Changed
+
+-   Make `BigNumber` immutable (9478fc48, @faustbrian)
+
 ## 0.9.31 - 2020-05-21
 
 ### Added
