@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.31 - 2020-05-21
+
+### Added
+
+-   Implement `BigNumber#comparedTo` (a07e4722, @faustbrian)
+
 ## 0.9.30 - 2020-05-21
 
 ### Added
