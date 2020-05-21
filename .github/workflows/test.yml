@@ -9,6 +9,33 @@ on:
     types: [ready_for_review, synchronize, opened]
 
 jobs:
+  sdk:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install
+        run: yarn install --immutable --immutable-cache
+
+      - name: Build
+        run: yarn run build
+
+      - name: Test
+        run: cd packages/platform-sdk && yarn run test --coverage
+
+      - name: Codecov
+        run: cd packages/platform-sdk && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+
   ark:
     runs-on: ubuntu-latest
 
@@ -63,7 +90,7 @@ jobs:
       - name: Codecov
         run: cd packages/platform-sdk-atom && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
-  coin_cap:
+  coincap:
     runs-on: ubuntu-latest
 
     strategy:
@@ -90,7 +117,7 @@ jobs:
       - name: Codecov
         run: cd packages/platform-sdk-coincap && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
-  coin_gecko:
+  coingecko:
     runs-on: ubuntu-latest
 
     strategy:
@@ -117,7 +144,7 @@ jobs:
       - name: Codecov
         run: cd packages/platform-sdk-coingecko && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
-  crypto_compare:
+  cryptocompare:
     runs-on: ubuntu-latest
 
     strategy:
@@ -278,6 +305,33 @@ jobs:
 
       - name: Codecov
         run: cd packages/platform-sdk-neo && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+
+  profiles:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install
+        run: yarn install --immutable --immutable-cache
+
+      - name: Build
+        run: yarn run build
+
+      - name: Test
+        run: cd packages/platform-sdk-profiles && yarn run test --coverage
+
+      - name: Codecov
+        run: cd packages/platform-sdk-profiles && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
   trx:
     runs-on: ubuntu-latest
