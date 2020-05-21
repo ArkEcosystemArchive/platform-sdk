@@ -1,4 +1,5 @@
-import { Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 export class HistoricalPriceTransformer implements Contracts.HistoricalTransformer {
 	public constructor(private readonly data: Contracts.KeyValuePair) {}
@@ -12,7 +13,7 @@ export class HistoricalPriceTransformer implements Contracts.HistoricalTransform
 		const datasetValues: number[] = Object.values(datasets);
 
 		return {
-			labels: Object.keys(datasets).map((time) => Utils.dayjs(time).format(options.dateFormat)),
+			labels: Object.keys(datasets).map((time) => DateTime.make(time).format(options.dateFormat)),
 			datasets: datasetValues,
 			min: Math.min(...datasetValues),
 			max: Math.max(...datasetValues),

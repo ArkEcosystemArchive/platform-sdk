@@ -63,6 +63,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/platform-sdk-eth"
       },
       {
+        "name": "@arkecosystem/platform-sdk-intl",
+        "reference": "workspace:packages/platform-sdk-intl"
+      },
+      {
         "name": "@arkecosystem/platform-sdk-lsk",
         "reference": "workspace:packages/platform-sdk-lsk"
       },
@@ -108,6 +112,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@arkecosystem/platform-sdk-cryptocompare", ["workspace:packages/platform-sdk-cryptocompare"]],
       ["@arkecosystem/platform-sdk-eos", ["workspace:packages/platform-sdk-eos"]],
       ["@arkecosystem/platform-sdk-eth", ["workspace:packages/platform-sdk-eth"]],
+      ["@arkecosystem/platform-sdk-intl", ["workspace:packages/platform-sdk-intl"]],
       ["@arkecosystem/platform-sdk-lsk", ["workspace:packages/platform-sdk-lsk"]],
       ["@arkecosystem/platform-sdk-markets", ["workspace:packages/platform-sdk-markets"]],
       ["@arkecosystem/platform-sdk-neo", ["workspace:packages/platform-sdk-neo"]],
@@ -540,6 +545,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-coincap", "workspace:packages/platform-sdk-coincap"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -576,6 +582,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-coingecko", "workspace:packages/platform-sdk-coingecko"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -612,6 +619,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-cryptocompare", "workspace:packages/platform-sdk-cryptocompare"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -724,6 +732,42 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["typedoc", "virtual:d9fc2a8a86b8ed672825915f5974caf338e1e7f788303b0db7f14ed53aeac54a869474c20388b45c211eacd4abaae6e1334d1a851acbe9724de5d1123322994b#npm:0.17.7"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"],
             ["web3", "npm:1.2.7"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@arkecosystem/platform-sdk-intl", [
+        ["workspace:packages/platform-sdk-intl", {
+          "packageLocation": "./packages/platform-sdk-intl/",
+          "packageDependencies": [
+            ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
+            ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/eslint", "npm:6.8.0"],
+            ["@types/eslint-plugin-prettier", "npm:3.1.0"],
+            ["@types/jest", "npm:25.2.1"],
+            ["@types/node", "npm:13.13.4"],
+            ["@types/prettier", "npm:2.0.0"],
+            ["@types/rimraf", "npm:3.0.0"],
+            ["@typescript-eslint/eslint-plugin", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:2.30.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
+            ["codecov", "npm:3.6.5"],
+            ["cross-env", "npm:7.0.2"],
+            ["dayjs", "npm:1.8.27"],
+            ["eslint", "npm:6.8.0"],
+            ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.11.0"],
+            ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:23.8.2"],
+            ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
+            ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
+            ["jest", "npm:25.5.0"],
+            ["jest-extended", "npm:0.11.5"],
+            ["jest-localstorage-mock", "npm:2.4.2"],
+            ["nock", "npm:12.0.3"],
+            ["npm-check-updates", "npm:4.1.2"],
+            ["prettier", "npm:2.0.5"],
+            ["rimraf", "npm:3.0.2"],
+            ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:25.4.0"],
+            ["typedoc", "virtual:d9fc2a8a86b8ed672825915f5974caf338e1e7f788303b0db7f14ed53aeac54a869474c20388b45c211eacd4abaae6e1334d1a851acbe9724de5d1123322994b#npm:0.17.7"],
+            ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"]
           ],
           "linkType": "SOFT",
         }]
@@ -4142,6 +4186,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
+        ["virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:2.30.0", {
+          "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-ff626bfab1/0/cache/@typescript-eslint-eslint-plugin-npm-2.30.0-b8f3893dcf-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
+          "packageDependencies": [
+            ["@typescript-eslint/eslint-plugin", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:2.30.0"],
+            ["@typescript-eslint/experimental-utils", "virtual:25604aba35f82d61d5b2338307fd46407a46de5a8f33727108ac00da4d2ad8c0c3294d5882c2728ded2a0a42cc5874536d97ac764d3cfe103a5553057b7ecbd4#npm:2.30.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:2.30.0"],
+            ["eslint", "npm:6.8.0"],
+            ["functional-red-black-tree", "npm:1.0.1"],
+            ["regexpp", "npm:3.1.0"],
+            ["tsutils", "virtual:25604aba35f82d61d5b2338307fd46407a46de5a8f33727108ac00da4d2ad8c0c3294d5882c2728ded2a0a42cc5874536d97ac764d3cfe103a5553057b7ecbd4#npm:3.17.1"],
+            ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"]
+          ],
+          "packagePeers": [
+            "eslint",
+            "@typescript-eslint/parser",
+            "typescript"
+          ],
+          "linkType": "HARD",
+        }],
         ["virtual:26859fa1829a07675b71c9bc52cda6bc0a97d0117e81d5b2a6822597e101b555b59348dddc440b57b797d384f3d00c2749f94ffa99f0e5c8cb4462801df482fe#npm:2.30.0", {
           "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-48815a7543/0/cache/@typescript-eslint-eslint-plugin-npm-2.30.0-b8f3893dcf-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
           "packageDependencies": [
@@ -7338,6 +7401,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/dayjs-npm-1.8.25-936345cab2-2.zip/node_modules/dayjs/",
           "packageDependencies": [
             ["dayjs", "npm:1.8.25"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:1.8.27", {
+          "packageLocation": "./.yarn/cache/dayjs-npm-1.8.27-e055300301-2.zip/node_modules/dayjs/",
+          "packageDependencies": [
+            ["dayjs", "npm:1.8.27"]
           ],
           "linkType": "HARD",
         }]

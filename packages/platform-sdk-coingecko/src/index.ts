@@ -1,4 +1,5 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
 import { HistoricalVolumeTransformer } from "./transformers/historical-volume-transformer";
@@ -53,8 +54,8 @@ export class PriceTracker implements Contracts.PriceTracker {
 		const body = await this.#client.get(`coins/${tokenId}/market_chart/range`, {
 			id: options.token,
 			vs_currency: options.currency,
-			from: Utils.dayjs().subtract(options.days, "d").unix(),
-			to: Utils.dayjs().unix(),
+			from: DateTime.make().subDays(options.days).toUNIX(),
+			to: DateTime.make().toUNIX(),
 		});
 
 		return new HistoricalVolumeTransformer(body).transform(options);

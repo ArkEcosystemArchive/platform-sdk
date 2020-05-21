@@ -20,7 +20,8 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
+		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",

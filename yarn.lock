@@ -220,6 +220,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-coincap@workspace:packages/platform-sdk-coincap"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -254,6 +255,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-coingecko@workspace:packages/platform-sdk-coingecko"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -288,6 +290,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-cryptocompare@workspace:packages/platform-sdk-cryptocompare"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -396,6 +399,40 @@ __metadata:
     typedoc: ^0.17.7
     typescript: ^3.8.3
     web3: ^1.2.7
+  languageName: unknown
+  linkType: soft
+
+"@arkecosystem/platform-sdk-intl@workspace:packages/platform-sdk-intl":
+  version: 0.0.0-use.local
+  resolution: "@arkecosystem/platform-sdk-intl@workspace:packages/platform-sdk-intl"
+  dependencies:
+    "@sindresorhus/tsconfig": ^0.7.0
+    "@types/eslint": ^6.8.0
+    "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/jest": ^25.2.1
+    "@types/node": ^13.13.4
+    "@types/prettier": ^2.0.0
+    "@types/rimraf": ^3.0.0
+    "@typescript-eslint/eslint-plugin": ^2.30.0
+    "@typescript-eslint/parser": ^2.30.0
+    codecov: ^3.6.5
+    cross-env: ^7.0.2
+    dayjs: ^1.8.27
+    eslint: ^6.8.0
+    eslint-config-prettier: ^6.11.0
+    eslint-plugin-jest: ^23.8.2
+    eslint-plugin-prettier: ^3.1.3
+    eslint-plugin-simple-import-sort: ^5.0.3
+    jest: ^25.4.0
+    jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
+    nock: ^12.0.3
+    npm-check-updates: ^4.1.2
+    prettier: ^2.0.5
+    rimraf: ^3.0.2
+    ts-jest: ^25.4.0
+    typedoc: ^0.17.7
+    typescript: ^3.8.3
   languageName: unknown
   linkType: soft
 
@@ -6150,6 +6187,13 @@ __metadata:
   version: 1.8.25
   resolution: "dayjs@npm:1.8.25"
   checksum: 2/7b22c8d2508ddd70865501c15cc4b54cdecabe66bc7885e6c33d12c401074136fcab63e24d595caa14c1b4cbfd8747a08ac8bfb4d751b2b6da9d4697c6673eb5
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.8.27":
+  version: 1.8.27
+  resolution: "dayjs@npm:1.8.27"
+  checksum: 2/e7b40dd16a536ad454c669ab499c068e90fb6f4c98d168d0836a92f5b61030d4c25ba03365b2b39ebd564c8a8adc0f17bd334e22d7ae9f93e00ddb1c6643ff6a
   languageName: node
   linkType: hard
 
