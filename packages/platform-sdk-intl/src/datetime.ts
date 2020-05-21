@@ -1,15 +1,19 @@
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import dayOfYear from "dayjs/plugin/dayOfYear";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import quarterOfYear from "dayjs/plugin/quarterOfYear";
 import toObject from "dayjs/plugin/toObject";
 import utc from "dayjs/plugin/utc";
+import weekOfYear from "dayjs/plugin/weekOfYear";
 
 dayjs.extend(advancedFormat);
+dayjs.extend(dayOfYear);
 dayjs.extend(localizedFormat);
 dayjs.extend(quarterOfYear);
 dayjs.extend(toObject);
 dayjs.extend(utc);
+dayjs.extend(weekOfYear);
 
 type DateTimeLike = string | number | dayjs.Dayjs | DateTime;
 
@@ -48,6 +52,86 @@ export class DateTime {
 
 	public isAfter(value: DateTimeLike): boolean {
 		return this.#instance.isAfter(this.toUTC(value));
+	}
+
+	public getMillisecond(): number {
+		return this.#instance.millisecond();
+	}
+
+	public getSecond(): number {
+		return this.#instance.second();
+	}
+
+	public getMinute(): number {
+		return this.#instance.minute();
+	}
+
+	public getHour(): number {
+		return this.#instance.hour();
+	}
+
+	public getDayOfMonth(): number {
+		return this.#instance.date();
+	}
+
+	public getDay(): number {
+		return this.#instance.dayOfYear();
+	}
+
+	public getWeek(): number {
+		return this.#instance.week();
+	}
+
+	public getMonth(): number {
+		return this.#instance.month();
+	}
+
+	public getQuarter(): number {
+		return this.#instance.quarter();
+	}
+
+	public getYear(): number {
+		return this.#instance.year();
+	}
+
+	public setMillisecond(value: number): DateTime {
+		return DateTime.make(this.#instance.millisecond(value), this.#locale);
+	}
+
+	public setSecond(value: number): DateTime {
+		return DateTime.make(this.#instance.second(value), this.#locale);
+	}
+
+	public setMinute(value: number): DateTime {
+		return DateTime.make(this.#instance.minute(value), this.#locale);
+	}
+
+	public setHour(value: number): DateTime {
+		return DateTime.make(this.#instance.hour(value), this.#locale);
+	}
+
+	public setDayOfMonth(value: number): DateTime {
+		return DateTime.make(this.#instance.date(value), this.#locale);
+	}
+
+	public setDay(value: number): DateTime {
+		return DateTime.make(this.#instance.dayOfYear(value), this.#locale);
+	}
+
+	public setWeek(value: number): DateTime {
+		return DateTime.make(this.#instance.week(value), this.#locale);
+	}
+
+	public setMonth(value: number): DateTime {
+		return DateTime.make(this.#instance.month(value), this.#locale);
+	}
+
+	public setQuarter(value: number): DateTime {
+		return DateTime.make(this.#instance.quarter(value), this.#locale);
+	}
+
+	public setYear(value: number): DateTime {
+		return DateTime.make(this.#instance.year(value), this.#locale);
 	}
 
 	public addMillisecond(): DateTime {
