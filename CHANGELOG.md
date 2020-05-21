@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.4 - 2020-05-21
+
+### Added
+
+-   Remove `dayjs` imports that cause issues (dff61fcd, @faustbrian)
+
 ## 0.9.3 - 2020-05-21
 
 ### Added
