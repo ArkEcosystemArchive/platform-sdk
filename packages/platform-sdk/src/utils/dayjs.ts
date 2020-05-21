@@ -1,6 +1,3 @@
-import "dayjs/plugin/advancedFormat";
-import "dayjs/plugin/localizedFormat";
-import "dayjs/plugin/quarterOfYear";
 import "dayjs/plugin/utc";
 
 import day from "dayjs";
