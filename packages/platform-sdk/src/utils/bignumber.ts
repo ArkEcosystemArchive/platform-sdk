@@ -68,6 +68,10 @@ export class BigNumber {
 		return this.#value.isFinite();
 	}
 
+	public comparedTo(value: NumberLike): number {
+		return this.#value.comparedTo(value);
+	}
+
 	public isEqualTo(value: NumberLike): boolean {
 		return this.#value.isEqualTo(value);
 	}
