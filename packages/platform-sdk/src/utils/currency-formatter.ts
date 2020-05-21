@@ -1,5 +1,4 @@
-import { NumberLike } from "../contracts";
-import { BigNumber } from "./bignumber";
+import { BigNumber, NumberLike } from "./bignumber";
 
 export class CurrencyFormatter {
 	// todo: implement generic formatting method
@@ -10,15 +9,15 @@ export class CurrencyFormatter {
 	}
 
 	public static toBuilder(value: NumberLike, decimals = 8): BigNumber {
-		return BigNumber.make(value).decimalPlaces(decimals);
+		return BigNumber.make(value, decimals);
 	}
 
 	public static subToUnit(value: NumberLike, decimals = 8): BigNumber {
-		return BigNumber.make(value).decimalPlaces(decimals).toHuman();
+		return BigNumber.make(value, decimals).divide(1e8);
 	}
 
 	public static unitToSub(value: NumberLike, decimals = 8): BigNumber {
-		return BigNumber.make(value).decimalPlaces(decimals).toSatoshi();
+		return BigNumber.make(value, decimals).toSatoshi();
 	}
 
 	public static cryptoToCurrency(
