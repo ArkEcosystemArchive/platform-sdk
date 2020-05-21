@@ -22,6 +22,86 @@ test("#isAfter", () => {
 	expect(subject.isAfter(DateTime.make("2020-01-01").addDay())).toBeFalse();
 });
 
+test("#getMillisecond", () => {
+	expect(subject.getMillisecond()).toEqual(0);
+});
+
+test("#getSecond", () => {
+	expect(subject.getSecond()).toEqual(0);
+});
+
+test("#getMinute", () => {
+	expect(subject.getMinute()).toEqual(0);
+});
+
+test("#getHour", () => {
+	expect(subject.getHour()).toEqual(0);
+});
+
+test("#getDayOfMonth", () => {
+	expect(subject.getDayOfMonth()).toEqual(1);
+});
+
+test("#getDay", () => {
+	expect(subject.getDay()).toEqual(1);
+});
+
+test("#getWeek", () => {
+	expect(subject.getWeek()).toEqual(1);
+});
+
+test("#getMonth", () => {
+	expect(subject.getMonth()).toEqual(0);
+});
+
+test("#getQuarter", () => {
+	expect(subject.getQuarter()).toEqual(1);
+});
+
+test("#getYear", () => {
+	expect(subject.getYear()).toEqual(2020);
+});
+
+test("#setMillisecond", () => {
+	expect(subject.setMillisecond(500).getMillisecond()).toEqual(500);
+});
+
+test("#setSecond", () => {
+	expect(subject.setSecond(30).getSecond()).toEqual(30);
+});
+
+test("#setMinute", () => {
+	expect(subject.setMinute(30).getMinute()).toEqual(30);
+});
+
+test("#setHour", () => {
+	expect(subject.setHour(12).getHour()).toEqual(12);
+});
+
+test("#setDayOfMonth", () => {
+	expect(subject.setDayOfMonth(15).getDayOfMonth()).toEqual(15);
+});
+
+test("#setDay", () => {
+	expect(subject.setDay(123).getDay()).toEqual(123);
+});
+
+test("#setWeek", () => {
+	expect(subject.setWeek(26).getWeek()).toEqual(26);
+});
+
+test("#setMonth", () => {
+	expect(subject.setMonth(3).getMonth()).toEqual(3);
+});
+
+test("#setQuarter", () => {
+	expect(subject.setQuarter(2).getQuarter()).toEqual(2);
+});
+
+test("#setYear", () => {
+	expect(subject.setYear(123).getYear()).toEqual(123);
+});
+
 test("#addMillisecond", () => {
 	expect(subject.addMillisecond()).not.toEqual(subject.toString());
 });
