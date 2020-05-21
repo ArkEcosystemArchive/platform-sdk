@@ -11,10 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
--   Added `BigNumber#isGreaterThan` (667c5e6a, @faustbrian)
--   Added `BigNumber#isGreaterThanOrEqualTo` (667c5e6a, @faustbrian)
--   Added `BigNumber#isLessThan` (667c5e6a, @faustbrian)
--   Added `BigNumber#isLessThanOrEqualTo` (667c5e6a, @faustbrian)
+-   Added `BigNumber#isNaN` (24d50d29, @faustbrian)
+-   Added `BigNumber#isPositive` (24d50d29, @faustbrian)
+-   Added `BigNumber#isFinite` (24d50d29, @faustbrian)
 
 ## 0.9.5 - 2020-05-21
 

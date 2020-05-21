@@ -55,6 +55,7 @@ export class BigNumber {
 
 		return this;
 	}
+
 	public isNaN(): boolean {
 		return this.#value.isNaN();
 	}
