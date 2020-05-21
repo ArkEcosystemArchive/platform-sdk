@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { Profile } from "../src/profile";
-import { LocalStorage } from "../src/stores/local";
+import { LocalStorage } from "../src/storage/local";
 import { Settings } from "../src/settings";
 import { WalletRepository } from "../src/wallets/wallet-repository";
 

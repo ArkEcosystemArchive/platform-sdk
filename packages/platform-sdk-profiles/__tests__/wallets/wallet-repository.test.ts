@@ -6,6 +6,7 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Wallet } from "../../src/wallets/wallet";
 import { WalletRepository } from "../../src/wallets/wallet-repository";
 import { identity } from "../__fixtures__/identity";
+import { LocalStorage } from "../../src/storage/local";
 
 let subject: WalletRepository;
 let wallet: Wallet;
@@ -20,9 +21,11 @@ beforeEach(async () => {
 		.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`))
 		.persist();
 
-	wallet = await Wallet.fromPassphrase(identity.passphrase, ARK, "devnet");
+	const storage = new LocalStorage("localstorage");
 
-	subject = new WalletRepository([wallet]);
+	wallet = await Wallet.fromPassphrase({ passphrase: identity.passphrase, coin: ARK, network: "devnet", storage });
+
+	subject = new WalletRepository(storage, [wallet]);
 });
 
 afterEach(() => nock.cleanAll());
@@ -31,6 +34,14 @@ beforeAll(() => nock.disableNetConnect());
 
 test("WalletRepository#all", async () => {
 	expect(subject.all()).toEqual([wallet]);
+});
+
+test("WalletRepository#push", async () => {
+	expect(subject.all()).toHaveLength(1);
+
+	subject.push(wallet);
+
+	expect(subject.all()).toHaveLength(2);
 });
 
 test("WalletRepository#findByAddress", async () => {
@@ -43,4 +54,12 @@ test("WalletRepository#findByPublicKey", async () => {
 
 test("WalletRepository#findByCoin", async () => {
 	expect(subject.findByCoin("ARK")).toEqual([wallet]);
+});
+
+test("WalletRepository#createFromPassphrase", async () => {
+	expect(subject.all()).toHaveLength(1);
+
+	await subject.createFromPassphrase({ passphrase: identity.passphrase, coin: ARK, network: "devnet" });
+
+	expect(subject.all()).toHaveLength(2);
 });

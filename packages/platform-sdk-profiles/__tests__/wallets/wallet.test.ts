@@ -6,6 +6,7 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 
 import { Wallet } from "../../src/wallets/wallet";
 import { identity } from "../__fixtures__/identity";
+import { LocalStorage } from "../../src/storage/local";
 
 let subject: Wallet;
 
@@ -19,7 +20,9 @@ beforeEach(async () => {
 		.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`))
 		.persist();
 
-	subject = await Wallet.fromPassphrase(identity.passphrase, ARK, "devnet");
+	const storage = new LocalStorage("localstorage");
+
+	subject = await Wallet.fromPassphrase({ passphrase: identity.passphrase, coin: ARK, network: "devnet", storage });
 });
 
 afterEach(() => nock.cleanAll());

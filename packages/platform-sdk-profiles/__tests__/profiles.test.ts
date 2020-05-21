@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { Profiles } from "../src/profiles";
-import { LocalStorage } from "../src/stores/local";
+import { LocalStorage } from "../src/storage/local";
 import { Profile } from "../src/profile";
 
 let subject: Profiles;
