@@ -112,7 +112,7 @@ describe("ClientService", function () {
 				limit: 10,
 			});
 
-			expect(result.data).toBeArray();
+			expect(result.data).toBeObject();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
 			expect(result.data[0].id()).toBe("99404A34E8170319521223A6C604AF48B9F1E3000C377E6141F9A1BF60B0B865");
 			expect(result.data[0].type()).toBe("transfer");

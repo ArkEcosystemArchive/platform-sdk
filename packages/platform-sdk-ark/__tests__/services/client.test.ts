@@ -36,7 +36,7 @@ describe("ClientService", function () {
 
 			const result = await subject.transactions({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" });
 
-			expect(result.data).toBeArray();
+			expect(result.data).toBeObject();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
 		});
 	});
@@ -61,7 +61,7 @@ describe("ClientService", function () {
 
 			const result = await subject.wallets({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" });
 
-			expect(result.data).toBeArray();
+			expect(result.data).toBeObject();
 			expect(result.data[0]).toBeInstanceOf(WalletData);
 		});
 	});
@@ -86,7 +86,7 @@ describe("ClientService", function () {
 
 			const result = await subject.delegates();
 
-			expect(result.data).toBeArray();
+			expect(result.data).toBeObject();
 			expect(result.data[0]).toBeInstanceOf(DelegateData);
 		});
 	});
@@ -99,7 +99,7 @@ describe("ClientService", function () {
 
 			const result = await subject.votes("arkx");
 
-			expect(result.data).toBeArray();
+			expect(result.data).toBeObject();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
 		});
 	});
@@ -112,7 +112,7 @@ describe("ClientService", function () {
 
 			const result = await subject.voters("arkx");
 
-			expect(result.data).toBeArray();
+			expect(result.data).toBeObject();
 			expect(result.data[0]).toBeInstanceOf(WalletData);
 		});
 	});

@@ -41,7 +41,7 @@ export class ClientService implements Contracts.ClientService {
 
 	public async transactions(
 		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		const response = await this.get(`get_address_abstracts/${query.address}/${query.page || 1}`);
 
 		return {
@@ -51,7 +51,9 @@ export class ClientService implements Contracts.ClientService {
 				count: response.page_size,
 				current: response.page_number,
 			},
-			data: response.entries.map((transaction) => new TransactionData(transaction)),
+			data: new Coins.TransactionDataCollection(
+				response.entries.map((transaction) => new TransactionData(transaction)),
+			),
 		};
 	}
 
@@ -59,7 +61,9 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
 	}
 
-	public async wallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async wallets(
+		query: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
@@ -69,15 +73,15 @@ export class ClientService implements Contracts.ClientService {
 
 	public async delegates(
 		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
+	): Promise<Contracts.CollectionResponse<Coins.DelegateDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
-	public async votes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	public async votes(id: string): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async voters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async voters(id: string): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 

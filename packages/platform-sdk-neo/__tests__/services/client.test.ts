@@ -23,7 +23,7 @@ describe("ClientService", function () {
 
 			const result = await subject.transactions({ address: "Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF" });
 
-			expect(result.data).toBeArray();
+			expect(result.data).toBeObject();
 			expect(result.data[0]).toBeInstanceOf(TransactionData);
 			expect(result.data[0].id()).toBe("718bc4cfc50c361a8afe032e2c170dfebadce16ea72228a57634413b62b7cf24");
 			expect(result.data[0].type()).toBe("transfer");

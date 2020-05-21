@@ -158,7 +158,7 @@ export class ClientService implements Contracts.ClientService {
 
 	public async transactions(
 		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		const transactions = await this.#connection.getTransactions(query.address, {
 			earliestFirst: true,
 			types: ["payment"],
@@ -168,10 +168,12 @@ export class ClientService implements Contracts.ClientService {
 
 		return {
 			meta: {},
-			data: transactions
-				// @ts-ignore
-				.filter((transaction) => transaction.specification.source.maxAmount.currency === "XRP")
-				.map((transaction) => new TransactionData(transaction)),
+			data: new Coins.TransactionDataCollection(
+				transactions
+					// @ts-ignore
+					.filter((transaction) => transaction.specification.source.maxAmount.currency === "XRP")
+					.map((transaction) => new TransactionData(transaction)),
+			),
 		};
 	}
 
@@ -181,7 +183,9 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData({ account: id, balance: wallet.xrpBalance });
 	}
 
-	public async wallets(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async wallets(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
@@ -191,15 +195,15 @@ export class ClientService implements Contracts.ClientService {
 
 	public async delegates(
 		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
+	): Promise<Contracts.CollectionResponse<Coins.DelegateDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
-	public async votes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	public async votes(id: string): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async voters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async voters(id: string): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
