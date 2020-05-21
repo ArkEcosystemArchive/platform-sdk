@@ -55,6 +55,17 @@ export class BigNumber {
 
 		return this;
 	}
+	public isNaN(): boolean {
+		return this.#value.isNaN();
+	}
+
+	public isPositive(): boolean {
+		return this.#value.isPositive();
+	}
+
+	public isFinite(): boolean {
+		return this.#value.isFinite();
+	}
 
 	public isEqualTo(value: NumberLike): boolean {
 		return this.#value.isEqualTo(value);

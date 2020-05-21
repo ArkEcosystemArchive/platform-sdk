@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.8 - 2020-05-21
+
+### Added
+
+-   Added `BigNumber#isGreaterThan` (667c5e6a, @faustbrian)
+-   Added `BigNumber#isGreaterThanOrEqualTo` (667c5e6a, @faustbrian)
+-   Added `BigNumber#isLessThan` (667c5e6a, @faustbrian)
+-   Added `BigNumber#isLessThanOrEqualTo` (667c5e6a, @faustbrian)
+
 ## 0.9.5 - 2020-05-21
 
 ### Added
