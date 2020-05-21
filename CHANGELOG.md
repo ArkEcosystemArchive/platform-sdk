@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.3 - 2020-05-21
+
+### Added
+
+-   Implement global, profile and wallet data (7b83390e, @faustbrian)
+-   Implement DTO collections (2978b12d, @faustbrian)
+-   Implement URIService (8da9ba53, @faustbrian)
+
 ## 0.9.0 - 2020-05-20
 
 ### Changed
