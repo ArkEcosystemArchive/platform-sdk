@@ -57,7 +57,23 @@ export class BigNumber {
 	}
 
 	public isEqualTo(value: NumberLike): boolean {
-		return this.#value.eq(value);
+		return this.#value.isEqualTo(value);
+	}
+
+	public isGreaterThan(value: NumberLike): boolean {
+		return this.#value.isGreaterThan(value);
+	}
+
+	public isGreaterThanOrEqualTo(value: NumberLike): boolean {
+		return this.#value.isGreaterThanOrEqualTo(value);
+	}
+
+	public isLessThan(value: NumberLike): boolean {
+		return this.#value.isLessThan(value);
+	}
+
+	public isLessThanOrEqualTo(value: NumberLike): boolean {
+		return this.#value.isLessThanOrEqualTo(value);
 	}
 
 	public toHuman(): BigNumber {
