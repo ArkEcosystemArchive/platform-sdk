@@ -11,6 +11,10 @@ export class WalletDataCollection {
 		return this.#wallets;
 	}
 
+	public first(): WalletData {
+		return this.#wallets[0];
+	}
+
 	public findByAddress(address: string): WalletData | undefined {
 		return this.find("address", address);
 	}

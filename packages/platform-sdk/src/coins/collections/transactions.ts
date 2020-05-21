@@ -11,6 +11,10 @@ export class TransactionDataCollection {
 		return this.#transactions;
 	}
 
+	public first(): TransactionData {
+		return this.#transactions[0];
+	}
+
 	public findById(id: string): TransactionData | undefined {
 		return this.find("id", id);
 	}

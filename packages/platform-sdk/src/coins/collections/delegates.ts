@@ -11,6 +11,10 @@ export class DelegateDataCollection {
 		return this.#delegates;
 	}
 
+	public first(): DelegateData {
+		return this.#delegates[0];
+	}
+
 	public findByAddress(address: string): DelegateData | undefined {
 		return this.find("address", address);
 	}

@@ -67,7 +67,12 @@ export class ClientService implements Contracts.ClientService {
 			limit: query.limit || 100,
 		});
 
-		return { meta: {}, data: response.txs.map((transaction) => new TransactionData(transaction)) };
+		return {
+			meta: {},
+			data: new Coins.TransactionDataCollection(
+				response.txs.map((transaction) => new TransactionData(transaction)),
+			),
+		};
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {

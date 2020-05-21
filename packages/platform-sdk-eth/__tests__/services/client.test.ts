@@ -52,7 +52,7 @@ describe("ClientService", function () {
 			});
 
 			expect(result.data).toBeObject();
-			expect(result.data[0]).toBeInstanceOf(TransactionData);
+			expect(result.data.first()).toBeInstanceOf(TransactionData);
 		});
 	});
 
