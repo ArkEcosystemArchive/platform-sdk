@@ -37,10 +37,15 @@ export class ClientService implements Contracts.ClientService {
 
 	public async transactions(
 		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		const result = await this.get("transactions", query);
 
-		return { meta: result.meta, data: result.data.map((transaction) => new TransactionData(transaction)) };
+		return {
+			meta: result.meta,
+			data: new Coins.TransactionDataCollection(
+				result.data.map((transaction) => new TransactionData(transaction)),
+			),
+		};
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -49,10 +54,15 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData(result.data[0]);
 	}
 
-	public async wallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async wallets(
+		query: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		const result = await this.get("accounts", query);
 
-		return { meta: result.meta, data: result.data.map((wallet) => new WalletData(wallet)) };
+		return {
+			meta: result.meta,
+			data: new Coins.WalletDataCollection(result.data.map((wallet) => new WalletData(wallet))),
+		};
 	}
 
 	public async delegate(id: string): Promise<Contracts.DelegateData> {
@@ -63,17 +73,20 @@ export class ClientService implements Contracts.ClientService {
 
 	public async delegates(
 		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
+	): Promise<Contracts.CollectionResponse<Coins.DelegateDataCollection>> {
 		const result = await this.get("delegates");
 
-		return { meta: result.meta, data: result.data.map((wallet) => new DelegateData(wallet)) };
+		return {
+			meta: result.meta,
+			data: new Coins.DelegateDataCollection(result.data.map((wallet) => new DelegateData(wallet))),
+		};
 	}
 
-	public async votes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	public async votes(id: string): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async voters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async voters(id: string): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 

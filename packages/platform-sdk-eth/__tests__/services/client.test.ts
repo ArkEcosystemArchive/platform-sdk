@@ -51,8 +51,8 @@ describe("ClientService", function () {
 				count: 1,
 			});
 
-			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(TransactionData);
+			expect(result.data).toBeObject();
+			expect(result.data.first()).toBeInstanceOf(TransactionData);
 		});
 	});
 
