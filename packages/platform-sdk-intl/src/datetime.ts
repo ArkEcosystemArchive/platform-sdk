@@ -14,10 +14,12 @@ dayjs.extend(utc);
 type DateTimeLike = string | number | dayjs.Dayjs | DateTime;
 
 export class DateTime {
-	#instance: dayjs.Dayjs;
+	readonly #instance: dayjs.Dayjs;
+	readonly #locale: string | undefined;
 
 	private constructor(value?: DateTimeLike, locale?: string) {
 		this.#instance = this.toUTC(value);
+		this.#locale = locale;
 
 		if (!locale) {
 			locale = "en";
@@ -53,7 +55,7 @@ export class DateTime {
 	}
 
 	public addMilliseconds(value: number): DateTime {
-		return DateTime.make(this.#instance.add(value, "millisecond"));
+		return DateTime.make(this.#instance.add(value, "millisecond"), this.#locale);
 	}
 
 	public addSecond(): DateTime {
@@ -61,7 +63,7 @@ export class DateTime {
 	}
 
 	public addSeconds(value: number): DateTime {
-		return DateTime.make(this.#instance.add(value, "second"));
+		return DateTime.make(this.#instance.add(value, "second"), this.#locale);
 	}
 
 	public addMinute(): DateTime {
@@ -69,7 +71,7 @@ export class DateTime {
 	}
 
 	public addMinutes(value: number): DateTime {
-		return DateTime.make(this.#instance.add(value, "minute"));
+		return DateTime.make(this.#instance.add(value, "minute"), this.#locale);
 	}
 
 	public addHour(): DateTime {
@@ -77,7 +79,7 @@ export class DateTime {
 	}
 
 	public addHours(value: number): DateTime {
-		return DateTime.make(this.#instance.add(value, "hour"));
+		return DateTime.make(this.#instance.add(value, "hour"), this.#locale);
 	}
 
 	public addDay(): DateTime {
@@ -85,7 +87,7 @@ export class DateTime {
 	}
 
 	public addDays(value: number): DateTime {
-		return DateTime.make(this.#instance.add(value, "day"));
+		return DateTime.make(this.#instance.add(value, "day"), this.#locale);
 	}
 
 	public addWeek(): DateTime {
@@ -93,7 +95,7 @@ export class DateTime {
 	}
 
 	public addWeeks(value: number): DateTime {
-		return DateTime.make(this.#instance.add(value, "week"));
+		return DateTime.make(this.#instance.add(value, "week"), this.#locale);
 	}
 
 	public addMonth(): DateTime {
@@ -101,7 +103,7 @@ export class DateTime {
 	}
 
 	public addMonths(value: number): DateTime {
-		return DateTime.make(this.#instance.add(value, "month"));
+		return DateTime.make(this.#instance.add(value, "month"), this.#locale);
 	}
 
 	public addQuarter(): DateTime {
@@ -109,7 +111,7 @@ export class DateTime {
 	}
 
 	public addQuarters(value: number): DateTime {
-		return DateTime.make(this.#instance.add(value, "quarter"));
+		return DateTime.make(this.#instance.add(value, "quarter"), this.#locale);
 	}
 
 	public addYear(): DateTime {
@@ -117,7 +119,7 @@ export class DateTime {
 	}
 
 	public addYears(value: number): DateTime {
-		return DateTime.make(this.#instance.add(value, "year"));
+		return DateTime.make(this.#instance.add(value, "year"), this.#locale);
 	}
 
 	public subMillisecond(): DateTime {
@@ -125,7 +127,7 @@ export class DateTime {
 	}
 
 	public subMilliseconds(value: number): DateTime {
-		return DateTime.make(this.#instance.subtract(value, "millisecond"));
+		return DateTime.make(this.#instance.subtract(value, "millisecond"), this.#locale);
 	}
 
 	public subSecond(): DateTime {
@@ -133,7 +135,7 @@ export class DateTime {
 	}
 
 	public subSeconds(value: number): DateTime {
-		return DateTime.make(this.#instance.subtract(value, "second"));
+		return DateTime.make(this.#instance.subtract(value, "second"), this.#locale);
 	}
 
 	public subMinute(): DateTime {
@@ -141,7 +143,7 @@ export class DateTime {
 	}
 
 	public subMinutes(value: number): DateTime {
-		return DateTime.make(this.#instance.subtract(value, "minute"));
+		return DateTime.make(this.#instance.subtract(value, "minute"), this.#locale);
 	}
 
 	public subHour(): DateTime {
@@ -149,7 +151,7 @@ export class DateTime {
 	}
 
 	public subHours(value: number): DateTime {
-		return DateTime.make(this.#instance.subtract(value, "hour"));
+		return DateTime.make(this.#instance.subtract(value, "hour"), this.#locale);
 	}
 
 	public subDay(): DateTime {
@@ -157,7 +159,7 @@ export class DateTime {
 	}
 
 	public subDays(value: number): DateTime {
-		return DateTime.make(this.#instance.subtract(value, "day"));
+		return DateTime.make(this.#instance.subtract(value, "day"), this.#locale);
 	}
 
 	public subWeek(): DateTime {
@@ -165,7 +167,7 @@ export class DateTime {
 	}
 
 	public subWeeks(value: number): DateTime {
-		return DateTime.make(this.#instance.subtract(value, "week"));
+		return DateTime.make(this.#instance.subtract(value, "week"), this.#locale);
 	}
 
 	public subMonth(): DateTime {
@@ -173,7 +175,7 @@ export class DateTime {
 	}
 
 	public subMonths(value: number): DateTime {
-		return DateTime.make(this.#instance.subtract(value, "month"));
+		return DateTime.make(this.#instance.subtract(value, "month"), this.#locale);
 	}
 
 	public subQuarter(): DateTime {
@@ -181,7 +183,7 @@ export class DateTime {
 	}
 
 	public subQuarters(value: number): DateTime {
-		return DateTime.make(this.#instance.subtract(value, "quarter"));
+		return DateTime.make(this.#instance.subtract(value, "quarter"), this.#locale);
 	}
 
 	public subYear(): DateTime {
@@ -189,7 +191,7 @@ export class DateTime {
 	}
 
 	public subYears(value: number): DateTime {
-		return DateTime.make(this.#instance.subtract(value, "year"));
+		return DateTime.make(this.#instance.subtract(value, "year"), this.#locale);
 	}
 
 	public diffInMilliseconds(value: DateTimeLike): number {
