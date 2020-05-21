@@ -1,4 +1,5 @@
 import { Storage } from "./contracts";
+import { Data } from "./data";
 import { Settings } from "./settings";
 import { Wallet } from "./wallets/wallet";
 import { WalletRepository } from "./wallets/wallet-repository";
@@ -7,13 +8,15 @@ export class Profile {
 	readonly #id: string;
 	#name: string;
 	readonly #wallets: WalletRepository;
+	readonly #data: Data;
 	readonly #settings: Settings;
 
-	public constructor(data: { id: string; name: string; wallets: Wallet[]; storage: Storage }) {
-		this.#id = data.id;
-		this.#name = data.name;
-		this.#wallets = new WalletRepository(data.wallets);
-		this.#settings = new Settings(data.storage, `profiles.${this.#id}`);
+	public constructor(input: { id: string; name: string; wallets: Wallet[]; storage: Storage }) {
+		this.#id = input.id;
+		this.#name = input.name;
+		this.#wallets = new WalletRepository(input.storage, input.wallets);
+		this.#data = new Data(input.storage, `profiles.${this.#id}`);
+		this.#settings = new Settings(input.storage, `profiles.${this.#id}`);
 	}
 
 	public id(): string {
@@ -26,6 +29,10 @@ export class Profile {
 
 	public wallets(): WalletRepository {
 		return this.#wallets;
+	}
+
+	public data(): Data {
+		return this.#data;
 	}
 
 	public settings(): Settings {
