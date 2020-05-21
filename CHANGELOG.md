@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.9 - 2020-05-21
+
+### Added
+
+-   Initial draft implementation of `platform-sdk-intl` (49502c33, @faustbrian)
+
 ## 0.9.8 - 2020-05-21
 
 ### Added
