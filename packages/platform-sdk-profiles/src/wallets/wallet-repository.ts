@@ -47,7 +47,7 @@ export class WalletRepository {
 		});
 
 		if (this.findByAddress(wallet.address())) {
-			throw new Error(`The name [${wallet.address()}] already exists.`);
+			throw new Error(`The wallet [${wallet.address()}] already exists.`);
 		}
 
 		this.push(wallet);
