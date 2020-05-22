@@ -1,5 +1,6 @@
 export interface EnvironmentOptions {
 	storage: string;
+	migrations?: Record<string, any>;
 }
 
 export interface Storage {
@@ -14,4 +15,8 @@ export interface Storage {
 	flush(): Promise<void>;
 
 	count(): Promise<number>;
+
+	snapshot(): Promise<void>;
+
+	restore(): Promise<void>;
 }
