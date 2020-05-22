@@ -1,10 +1,14 @@
-export class NumberFormatter {
+export class Numeral {
 	readonly #locale: string;
 	readonly #options: Intl.NumberFormatOptions;
 
-	public constructor(locale: string, options?: Intl.NumberFormatOptions) {
+	private constructor(locale: string, options?: Intl.NumberFormatOptions) {
 		this.#locale = locale;
 		this.#options = options || {};
+	}
+
+	public static make(locale: string, options?: Intl.NumberFormatOptions): Numeral {
+		return new Numeral(locale, options);
 	}
 
 	public format(value: number): string {
@@ -14,7 +18,7 @@ export class NumberFormatter {
 	public formatCurrency(value: number, currency: string): string {
 		return new Intl.NumberFormat(this.#locale, {
 			...this.#options,
-			...{ currency },
+			...{ style: "currency", currency },
 		}).format(value);
 	}
 }
