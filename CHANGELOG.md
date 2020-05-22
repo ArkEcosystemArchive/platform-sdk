@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.35 - 2020-05-22
+
+### Added
+
+-   Get profiles by ID or name (dd15a9dd, @faustbrian)
+
 ## 0.9.34 - 2020-05-22
 
 ### Added
