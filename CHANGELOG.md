@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.34 - 2020-05-22
+
+### Added
+
+-   Implement `censorMemo` method (79c3987d, @faustbrian)
+
+### Changed
+
+-   Remove `PeerService#searchWithPlugin` and `PeerService#searchWithoutEstimates` (519595e7, @faustbrian)
+
 ## 0.9.32 - 2020-05-21
 
 ### Changed
