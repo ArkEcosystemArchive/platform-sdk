@@ -28,4 +28,12 @@ export class NullStorage implements Storage {
 	public async count(): Promise<number> {
 		return 0;
 	}
+
+	public async snapshot(): Promise<void> {
+		//
+	}
+
+	public async restore(): Promise<void> {
+		//
+	}
 }

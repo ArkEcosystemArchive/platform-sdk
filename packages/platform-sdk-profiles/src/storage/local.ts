@@ -4,6 +4,7 @@ import { Storage } from "../contracts";
 
 export class LocalStorage implements Storage {
 	readonly #storage;
+	#snapshot: object | undefined;
 
 	public constructor(driver: string) {
 		this.#storage = localForage.createInstance({
@@ -47,5 +48,21 @@ export class LocalStorage implements Storage {
 
 	public async count(): Promise<number> {
 		return this.#storage.length();
+	}
+
+	public async snapshot(): Promise<void> {
+		this.#snapshot = await this.all();
+	}
+
+	public async restore(): Promise<void> {
+		if (!this.#snapshot) {
+			throw new Error("There is no snapshot to restore.");
+		}
+
+		await this.flush();
+
+		for (const [key, value] of Object.entries(this.#snapshot)) {
+			await this.set(key, value);
+		}
 	}
 }
