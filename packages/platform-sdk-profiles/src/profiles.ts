@@ -44,7 +44,7 @@ export class Profiles {
 
 		for (const profile of profiles) {
 			if (profile.name() === name) {
-				throw new Error(`The name [${name}] is already taken.`);
+				throw new Error(`The profile [${name}] already exists.`);
 			}
 		}
 
