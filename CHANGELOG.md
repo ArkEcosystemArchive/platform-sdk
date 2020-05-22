@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.38 - 2020-05-22
+
+### Added
+
+-   Add `Money` class for currency handling (2667af3e, @faustbrian)
+-   Implement `Numeral` for number formatting (255d273e, @faustbrian)
+
+### Fixed
+
+-   Prevent duplicate wallets per profile (ccfaf1ed, @faustbrian)
+
 ## 0.9.35 - 2020-05-22
 
 ### Added
