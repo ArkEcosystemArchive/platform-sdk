@@ -32,11 +32,11 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-test("WalletRepository#all", async () => {
+test("#all", async () => {
 	expect(subject.all()).toEqual([wallet]);
 });
 
-test("WalletRepository#push", async () => {
+test("#push", async () => {
 	expect(subject.all()).toHaveLength(1);
 
 	subject.push(wallet);
@@ -44,22 +44,30 @@ test("WalletRepository#push", async () => {
 	expect(subject.all()).toHaveLength(2);
 });
 
-test("WalletRepository#findByAddress", async () => {
+test("#findByAddress", async () => {
 	expect(subject.findByAddress(identity.address)).toEqual(wallet);
 });
 
-test("WalletRepository#findByPublicKey", async () => {
+test("#findByPublicKey", async () => {
 	expect(subject.findByPublicKey(identity.publicKey)).toEqual(wallet);
 });
 
-test("WalletRepository#findByCoin", async () => {
+test("#findByCoin", async () => {
 	expect(subject.findByCoin("ARK")).toEqual([wallet]);
 });
 
-test("WalletRepository#createFromPassphrase", async () => {
+test("#createFromPassphrase", async () => {
+	subject.flush();
+
+	const options = { passphrase: identity.passphrase, coin: ARK, network: "devnet" };
+
+	expect(subject.all()).toHaveLength(0);
+
+	await subject.createFromPassphrase(options);
+
 	expect(subject.all()).toHaveLength(1);
 
-	await subject.createFromPassphrase({ passphrase: identity.passphrase, coin: ARK, network: "devnet" });
+	await expect(subject.createFromPassphrase(options)).rejects.toThrowError("already exists");
 
-	expect(subject.all()).toHaveLength(2);
+	expect(subject.all()).toHaveLength(1);
 });

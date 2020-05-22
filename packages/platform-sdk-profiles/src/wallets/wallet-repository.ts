@@ -4,7 +4,7 @@ import { Storage } from "../contracts";
 import { Wallet } from "./wallet";
 
 export class WalletRepository {
-	readonly #wallets: Wallet[] = [];
+	#wallets: Wallet[] = [];
 	readonly #storage: Storage;
 
 	public constructor(storage: Storage, wallets: Wallet[]) {
@@ -32,6 +32,10 @@ export class WalletRepository {
 		return this.#wallets.filter((wallet: Wallet) => wallet.coin().manifest().get<string>("name") === coin);
 	}
 
+	public flush(): void {
+		this.#wallets = [];
+	}
+
 	public async createFromPassphrase(input: {
 		passphrase: string;
 		coin: Coins.CoinSpec;
@@ -41,6 +45,10 @@ export class WalletRepository {
 			...input,
 			storage: this.#storage,
 		});
+
+		if (this.findByAddress(wallet.address())) {
+			throw new Error(`The name [${wallet.address()}] already exists.`);
+		}
 
 		this.push(wallet);
 
