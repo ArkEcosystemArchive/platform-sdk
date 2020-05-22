@@ -30,8 +30,8 @@ export class Wallet {
 		return new Wallet({ coin, storage: input.storage, wallet: await coin.client().wallet(address) });
 	}
 
-	public coin(): string {
-		return this.#coin.manifest().get<string>("name")!;
+	public coin(): Coins.Coin {
+		return this.#coin;
 	}
 
 	public network(): string {
