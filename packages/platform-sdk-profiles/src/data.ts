@@ -44,7 +44,7 @@ export class Data {
 	}
 
 	public async flush(): Promise<void> {
-		this.#storage.set(this.#namespace, {});
+		await this.#storage.set(this.#namespace, {});
 	}
 
 	public async toJSON(): Promise<string> {
