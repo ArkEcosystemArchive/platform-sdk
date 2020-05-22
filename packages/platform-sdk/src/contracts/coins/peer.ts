@@ -22,8 +22,4 @@ export interface PeerService {
 	getSeeds(): string[];
 
 	search(opts: any): Promise<PeerResponse[]>;
-
-	searchWithPlugin(name: string, opts: { additional?: string[] }): Promise<Peer[]>;
-
-	searchWithoutEstimates(opts: { additional?: string[] }): Promise<Peer[]>;
 }

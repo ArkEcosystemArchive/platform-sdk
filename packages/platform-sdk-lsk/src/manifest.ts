@@ -122,8 +122,6 @@ export const manifest = {
 		},
 		Peer: {
 			search: false,
-			searchWithPlugin: false,
-			searchWithoutEstimates: false,
 		},
 		Transaction: {
 			transfer: true,
