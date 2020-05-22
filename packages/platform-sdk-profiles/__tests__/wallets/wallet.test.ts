@@ -1,7 +1,7 @@
 import "jest-extended";
 import nock from "nock";
 
-import { Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Utils } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 
 import { Wallet } from "../../src/wallets/wallet";
@@ -30,7 +30,7 @@ afterEach(() => nock.cleanAll());
 beforeAll(() => nock.disableNetConnect());
 
 test("Wallet#coin", async () => {
-	expect(subject.coin()).toEqual("ARK");
+	expect(subject.coin()).toBeInstanceOf(Coins.Coin);
 });
 
 test("Wallet#network", async () => {
