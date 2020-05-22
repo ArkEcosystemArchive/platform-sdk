@@ -20,10 +20,12 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
-		"dayjs": "^1.8.27"
+		"dayjs": "^1.8.27",
+		"dinero.js": "^1.8.1"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
+		"@types/dinero.js": "1.6.4",
 		"@types/eslint": "^6.8.1",
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/jest": "^25.2.3",

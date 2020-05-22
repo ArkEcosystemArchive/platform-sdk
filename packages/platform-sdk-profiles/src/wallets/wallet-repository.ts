@@ -29,7 +29,7 @@ export class WalletRepository {
 	}
 
 	public findByCoin(coin: string): Wallet[] {
-		return this.#wallets.filter((wallet: Wallet) => wallet.coin() === coin);
+		return this.#wallets.filter((wallet: Wallet) => wallet.coin().manifest().get<string>("name") === coin);
 	}
 
 	public async createFromPassphrase(input: {

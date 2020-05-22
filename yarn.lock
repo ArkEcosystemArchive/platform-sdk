@@ -407,6 +407,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-intl@workspace:packages/platform-sdk-intl"
   dependencies:
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dinero.js": 1.6.4
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.3
@@ -418,6 +419,7 @@ __metadata:
     codecov: ^3.7.0
     cross-env: ^7.0.2
     dayjs: ^1.8.27
+    dinero.js: ^1.8.1
     eslint: ^7.0.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.13.1
@@ -3510,6 +3512,13 @@ __metadata:
   version: 3.1.45
   resolution: "@types/crypto-js@npm:3.1.45"
   checksum: 2/d41d7e6fbd21aee80e8b5946738aef33a174b1933b425d0633b98b14bc63c4dca9394fe1846655aaf149a426309ae2d55a9460be22c412a8c6264e2d311ab806
+  languageName: node
+  linkType: hard
+
+"@types/dinero.js@npm:1.6.4":
+  version: 1.6.4
+  resolution: "@types/dinero.js@npm:1.6.4"
+  checksum: 2/7362a3bba3821b144b10a9263c9089e973ee860a7d4bc02366c7ee9334132262014a3a73704f90465ad99a2ee4daacceeba9af91821aca01b11e7aedceebe950
   languageName: node
   linkType: hard
 
@@ -7154,6 +7163,13 @@ __metadata:
     miller-rabin: ^4.0.0
     randombytes: ^2.0.0
   checksum: 2/c988be315dc9ec83948605da58a25912daaae787d6a5cfa0b0574383dcf9b953aa81ba3109d06bc8590b037259753d2962a362e351efcb4274e94f1b0f277065
+  languageName: node
+  linkType: hard
+
+"dinero.js@npm:^1.8.1":
+  version: 1.8.1
+  resolution: "dinero.js@npm:1.8.1"
+  checksum: 2/579cd7cd6af29a92e733860195831aa31f0f45f85f96075e6a7aa9ff621c119f05045f59651343bc2be2991c27d4448d2bf38610afe7be7f46716a5f0181c77e
   languageName: node
   linkType: hard
 

@@ -1,1 +1,1412 @@
-{"kinds":{"1":"Module","128":"Class","256":"Interface","512":"Constructor","1024":"Property","2048":"Method","16777216":"Reference"},"rows":[{"id":0,"kind":1,"name":"\"contracts\"","url":"modules/_contracts_.html","classes":"tsd-kind-module"},{"id":1,"kind":256,"name":"EnvironmentOptions","url":"interfaces/_contracts_.environmentoptions.html","classes":"tsd-kind-interface tsd-parent-kind-module","parent":"\"contracts\""},{"id":2,"kind":1024,"name":"storage","url":"interfaces/_contracts_.environmentoptions.html#storage","classes":"tsd-kind-property tsd-parent-kind-interface","parent":"\"contracts\".EnvironmentOptions"},{"id":3,"kind":256,"name":"Storage","url":"interfaces/_contracts_.storage.html","classes":"tsd-kind-interface tsd-parent-kind-module","parent":"\"contracts\""},{"id":4,"kind":2048,"name":"all","url":"interfaces/_contracts_.storage.html#all","classes":"tsd-kind-method tsd-parent-kind-interface","parent":"\"contracts\".Storage"},{"id":5,"kind":2048,"name":"get","url":"interfaces/_contracts_.storage.html#get","classes":"tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter","parent":"\"contracts\".Storage"},{"id":6,"kind":2048,"name":"set","url":"interfaces/_contracts_.storage.html#set","classes":"tsd-kind-method tsd-parent-kind-interface","parent":"\"contracts\".Storage"},{"id":7,"kind":2048,"name":"forget","url":"interfaces/_contracts_.storage.html#forget","classes":"tsd-kind-method tsd-parent-kind-interface","parent":"\"contracts\".Storage"},{"id":8,"kind":2048,"name":"flush","url":"interfaces/_contracts_.storage.html#flush","classes":"tsd-kind-method tsd-parent-kind-interface","parent":"\"contracts\".Storage"},{"id":9,"kind":2048,"name":"count","url":"interfaces/_contracts_.storage.html#count","classes":"tsd-kind-method tsd-parent-kind-interface","parent":"\"contracts\".Storage"},{"id":10,"kind":1,"name":"\"data\"","url":"modules/_data_.html","classes":"tsd-kind-module"},{"id":11,"kind":128,"name":"Data","url":"classes/_data_.data.html","classes":"tsd-kind-class tsd-parent-kind-module","parent":"\"data\""},{"id":12,"kind":1024,"name":"#storage","url":"classes/_data_.data.html#_storage","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"data\".Data"},{"id":13,"kind":1024,"name":"#namespace","url":"classes/_data_.data.html#_namespace","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"data\".Data"},{"id":14,"kind":512,"name":"constructor","url":"classes/_data_.data.html#constructor","classes":"tsd-kind-constructor tsd-parent-kind-class","parent":"\"data\".Data"},{"id":15,"kind":2048,"name":"all","url":"classes/_data_.data.html#all","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"data\".Data"},{"id":16,"kind":2048,"name":"get","url":"classes/_data_.data.html#get","classes":"tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter","parent":"\"data\".Data"},{"id":17,"kind":2048,"name":"set","url":"classes/_data_.data.html#set","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"data\".Data"},{"id":18,"kind":2048,"name":"has","url":"classes/_data_.data.html#has","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"data\".Data"},{"id":19,"kind":2048,"name":"forget","url":"classes/_data_.data.html#forget","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"data\".Data"},{"id":20,"kind":2048,"name":"flush","url":"classes/_data_.data.html#flush","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"data\".Data"},{"id":21,"kind":2048,"name":"toJSON","url":"classes/_data_.data.html#tojson","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"data\".Data"},{"id":22,"kind":1,"name":"\"settings\"","url":"modules/_settings_.html","classes":"tsd-kind-module"},{"id":23,"kind":128,"name":"Settings","url":"classes/_settings_.settings.html","classes":"tsd-kind-class tsd-parent-kind-module","parent":"\"settings\""},{"id":24,"kind":1024,"name":"#storage","url":"classes/_settings_.settings.html#_storage","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"settings\".Settings"},{"id":25,"kind":1024,"name":"#namespace","url":"classes/_settings_.settings.html#_namespace","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"settings\".Settings"},{"id":26,"kind":512,"name":"constructor","url":"classes/_settings_.settings.html#constructor","classes":"tsd-kind-constructor tsd-parent-kind-class","parent":"\"settings\".Settings"},{"id":27,"kind":2048,"name":"all","url":"classes/_settings_.settings.html#all","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"settings\".Settings"},{"id":28,"kind":2048,"name":"get","url":"classes/_settings_.settings.html#get","classes":"tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter","parent":"\"settings\".Settings"},{"id":29,"kind":2048,"name":"set","url":"classes/_settings_.settings.html#set","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"settings\".Settings"},{"id":30,"kind":2048,"name":"has","url":"classes/_settings_.settings.html#has","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"settings\".Settings"},{"id":31,"kind":2048,"name":"forget","url":"classes/_settings_.settings.html#forget","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"settings\".Settings"},{"id":32,"kind":2048,"name":"flush","url":"classes/_settings_.settings.html#flush","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"settings\".Settings"},{"id":33,"kind":1,"name":"\"wallets/wallet\"","url":"modules/_wallets_wallet_.html","classes":"tsd-kind-module"},{"id":34,"kind":128,"name":"Wallet","url":"classes/_wallets_wallet_.wallet.html","classes":"tsd-kind-class tsd-parent-kind-module","parent":"\"wallets/wallet\""},{"id":35,"kind":1024,"name":"#coin","url":"classes/_wallets_wallet_.wallet.html#_coin","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"wallets/wallet\".Wallet"},{"id":36,"kind":1024,"name":"#wallet","url":"classes/_wallets_wallet_.wallet.html#_wallet","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"wallets/wallet\".Wallet"},{"id":37,"kind":1024,"name":"#data","url":"classes/_wallets_wallet_.wallet.html#_data","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"wallets/wallet\".Wallet"},{"id":38,"kind":1024,"name":"#settings","url":"classes/_wallets_wallet_.wallet.html#_settings","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"wallets/wallet\".Wallet"},{"id":39,"kind":512,"name":"constructor","url":"classes/_wallets_wallet_.wallet.html#constructor","classes":"tsd-kind-constructor tsd-parent-kind-class tsd-is-private","parent":"\"wallets/wallet\".Wallet"},{"id":40,"kind":2048,"name":"fromPassphrase","url":"classes/_wallets_wallet_.wallet.html#frompassphrase","classes":"tsd-kind-method tsd-parent-kind-class tsd-is-static","parent":"\"wallets/wallet\".Wallet"},{"id":41,"kind":2048,"name":"coin","url":"classes/_wallets_wallet_.wallet.html#coin","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet\".Wallet"},{"id":42,"kind":2048,"name":"network","url":"classes/_wallets_wallet_.wallet.html#network","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet\".Wallet"},{"id":43,"kind":2048,"name":"address","url":"classes/_wallets_wallet_.wallet.html#address","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet\".Wallet"},{"id":44,"kind":2048,"name":"publicKey","url":"classes/_wallets_wallet_.wallet.html#publickey","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet\".Wallet"},{"id":45,"kind":2048,"name":"balance","url":"classes/_wallets_wallet_.wallet.html#balance","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet\".Wallet"},{"id":46,"kind":2048,"name":"nonce","url":"classes/_wallets_wallet_.wallet.html#nonce","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet\".Wallet"},{"id":47,"kind":2048,"name":"data","url":"classes/_wallets_wallet_.wallet.html#data","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet\".Wallet"},{"id":48,"kind":2048,"name":"settings","url":"classes/_wallets_wallet_.wallet.html#settings","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet\".Wallet"},{"id":49,"kind":1,"name":"\"wallets/wallet-repository\"","url":"modules/_wallets_wallet_repository_.html","classes":"tsd-kind-module"},{"id":50,"kind":128,"name":"WalletRepository","url":"classes/_wallets_wallet_repository_.walletrepository.html","classes":"tsd-kind-class tsd-parent-kind-module","parent":"\"wallets/wallet-repository\""},{"id":51,"kind":1024,"name":"#wallets","url":"classes/_wallets_wallet_repository_.walletrepository.html#_wallets","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"wallets/wallet-repository\".WalletRepository"},{"id":52,"kind":1024,"name":"#storage","url":"classes/_wallets_wallet_repository_.walletrepository.html#_storage","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"wallets/wallet-repository\".WalletRepository"},{"id":53,"kind":512,"name":"constructor","url":"classes/_wallets_wallet_repository_.walletrepository.html#constructor","classes":"tsd-kind-constructor tsd-parent-kind-class","parent":"\"wallets/wallet-repository\".WalletRepository"},{"id":54,"kind":2048,"name":"all","url":"classes/_wallets_wallet_repository_.walletrepository.html#all","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet-repository\".WalletRepository"},{"id":55,"kind":2048,"name":"push","url":"classes/_wallets_wallet_repository_.walletrepository.html#push","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet-repository\".WalletRepository"},{"id":56,"kind":2048,"name":"findByAddress","url":"classes/_wallets_wallet_repository_.walletrepository.html#findbyaddress","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet-repository\".WalletRepository"},{"id":57,"kind":2048,"name":"findByPublicKey","url":"classes/_wallets_wallet_repository_.walletrepository.html#findbypublickey","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet-repository\".WalletRepository"},{"id":58,"kind":2048,"name":"findByCoin","url":"classes/_wallets_wallet_repository_.walletrepository.html#findbycoin","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet-repository\".WalletRepository"},{"id":59,"kind":2048,"name":"createFromPassphrase","url":"classes/_wallets_wallet_repository_.walletrepository.html#createfrompassphrase","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"wallets/wallet-repository\".WalletRepository"},{"id":60,"kind":1,"name":"\"profile\"","url":"modules/_profile_.html","classes":"tsd-kind-module"},{"id":61,"kind":128,"name":"Profile","url":"classes/_profile_.profile.html","classes":"tsd-kind-class tsd-parent-kind-module","parent":"\"profile\""},{"id":62,"kind":1024,"name":"#id","url":"classes/_profile_.profile.html#_id","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"profile\".Profile"},{"id":63,"kind":1024,"name":"#name","url":"classes/_profile_.profile.html#_name","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"profile\".Profile"},{"id":64,"kind":1024,"name":"#wallets","url":"classes/_profile_.profile.html#_wallets","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"profile\".Profile"},{"id":65,"kind":1024,"name":"#data","url":"classes/_profile_.profile.html#_data","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"profile\".Profile"},{"id":66,"kind":1024,"name":"#settings","url":"classes/_profile_.profile.html#_settings","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"profile\".Profile"},{"id":67,"kind":512,"name":"constructor","url":"classes/_profile_.profile.html#constructor","classes":"tsd-kind-constructor tsd-parent-kind-class","parent":"\"profile\".Profile"},{"id":68,"kind":2048,"name":"id","url":"classes/_profile_.profile.html#id","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"profile\".Profile"},{"id":69,"kind":2048,"name":"name","url":"classes/_profile_.profile.html#name","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"profile\".Profile"},{"id":70,"kind":2048,"name":"wallets","url":"classes/_profile_.profile.html#wallets","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"profile\".Profile"},{"id":71,"kind":2048,"name":"data","url":"classes/_profile_.profile.html#data","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"profile\".Profile"},{"id":72,"kind":2048,"name":"settings","url":"classes/_profile_.profile.html#settings","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"profile\".Profile"},{"id":73,"kind":2048,"name":"toObject","url":"classes/_profile_.profile.html#toobject","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"profile\".Profile"},{"id":74,"kind":1,"name":"\"profiles\"","url":"modules/_profiles_.html","classes":"tsd-kind-module"},{"id":75,"kind":128,"name":"Profiles","url":"classes/_profiles_.profiles.html","classes":"tsd-kind-class tsd-parent-kind-module","parent":"\"profiles\""},{"id":76,"kind":1024,"name":"#key","url":"classes/_profiles_.profiles.html#_key","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"profiles\".Profiles"},{"id":77,"kind":1024,"name":"#storage","url":"classes/_profiles_.profiles.html#_storage","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"profiles\".Profiles"},{"id":78,"kind":512,"name":"constructor","url":"classes/_profiles_.profiles.html#constructor","classes":"tsd-kind-constructor tsd-parent-kind-class","parent":"\"profiles\".Profiles"},{"id":79,"kind":2048,"name":"all","url":"classes/_profiles_.profiles.html#all","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"profiles\".Profiles"},{"id":80,"kind":2048,"name":"get","url":"classes/_profiles_.profiles.html#get","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"profiles\".Profiles"},{"id":81,"kind":2048,"name":"push","url":"classes/_profiles_.profiles.html#push","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"profiles\".Profiles"},{"id":82,"kind":2048,"name":"forget","url":"classes/_profiles_.profiles.html#forget","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"profiles\".Profiles"},{"id":83,"kind":1,"name":"\"storage/local\"","url":"modules/_storage_local_.html","classes":"tsd-kind-module"},{"id":84,"kind":128,"name":"LocalStorage","url":"classes/_storage_local_.localstorage.html","classes":"tsd-kind-class tsd-parent-kind-module","parent":"\"storage/local\""},{"id":85,"kind":1024,"name":"#storage","url":"classes/_storage_local_.localstorage.html#_storage","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"storage/local\".LocalStorage"},{"id":86,"kind":512,"name":"constructor","url":"classes/_storage_local_.localstorage.html#constructor","classes":"tsd-kind-constructor tsd-parent-kind-class","parent":"\"storage/local\".LocalStorage"},{"id":87,"kind":2048,"name":"all","url":"classes/_storage_local_.localstorage.html#all","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"storage/local\".LocalStorage"},{"id":88,"kind":2048,"name":"get","url":"classes/_storage_local_.localstorage.html#get","classes":"tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter","parent":"\"storage/local\".LocalStorage"},{"id":89,"kind":2048,"name":"set","url":"classes/_storage_local_.localstorage.html#set","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"storage/local\".LocalStorage"},{"id":90,"kind":2048,"name":"has","url":"classes/_storage_local_.localstorage.html#has","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"storage/local\".LocalStorage"},{"id":91,"kind":2048,"name":"forget","url":"classes/_storage_local_.localstorage.html#forget","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"storage/local\".LocalStorage"},{"id":92,"kind":2048,"name":"flush","url":"classes/_storage_local_.localstorage.html#flush","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"storage/local\".LocalStorage"},{"id":93,"kind":2048,"name":"count","url":"classes/_storage_local_.localstorage.html#count","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"storage/local\".LocalStorage"},{"id":94,"kind":1,"name":"\"storage/null\"","url":"modules/_storage_null_.html","classes":"tsd-kind-module"},{"id":95,"kind":128,"name":"NullStorage","url":"classes/_storage_null_.nullstorage.html","classes":"tsd-kind-class tsd-parent-kind-module","parent":"\"storage/null\""},{"id":96,"kind":2048,"name":"all","url":"classes/_storage_null_.nullstorage.html#all","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"storage/null\".NullStorage"},{"id":97,"kind":2048,"name":"get","url":"classes/_storage_null_.nullstorage.html#get","classes":"tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter","parent":"\"storage/null\".NullStorage"},{"id":98,"kind":2048,"name":"set","url":"classes/_storage_null_.nullstorage.html#set","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"storage/null\".NullStorage"},{"id":99,"kind":2048,"name":"has","url":"classes/_storage_null_.nullstorage.html#has","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"storage/null\".NullStorage"},{"id":100,"kind":2048,"name":"forget","url":"classes/_storage_null_.nullstorage.html#forget","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"storage/null\".NullStorage"},{"id":101,"kind":2048,"name":"flush","url":"classes/_storage_null_.nullstorage.html#flush","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"storage/null\".NullStorage"},{"id":102,"kind":2048,"name":"count","url":"classes/_storage_null_.nullstorage.html#count","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"storage/null\".NullStorage"},{"id":103,"kind":1,"name":"\"storage/factory\"","url":"modules/_storage_factory_.html","classes":"tsd-kind-module"},{"id":104,"kind":128,"name":"StorageFactory","url":"classes/_storage_factory_.storagefactory.html","classes":"tsd-kind-class tsd-parent-kind-module","parent":"\"storage/factory\""},{"id":105,"kind":2048,"name":"make","url":"classes/_storage_factory_.storagefactory.html#make","classes":"tsd-kind-method tsd-parent-kind-class tsd-is-static","parent":"\"storage/factory\".StorageFactory"},{"id":106,"kind":1,"name":"\"env\"","url":"modules/_env_.html","classes":"tsd-kind-module"},{"id":107,"kind":128,"name":"Environment","url":"classes/_env_.environment.html","classes":"tsd-kind-class tsd-parent-kind-module","parent":"\"env\""},{"id":108,"kind":1024,"name":"#storage","url":"classes/_env_.environment.html#_storage","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"env\".Environment"},{"id":109,"kind":1024,"name":"#profiles","url":"classes/_env_.environment.html#_profiles","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"env\".Environment"},{"id":110,"kind":1024,"name":"#data","url":"classes/_env_.environment.html#_data","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"env\".Environment"},{"id":111,"kind":1024,"name":"#settings","url":"classes/_env_.environment.html#_settings","classes":"tsd-kind-property tsd-parent-kind-class tsd-is-private","parent":"\"env\".Environment"},{"id":112,"kind":512,"name":"constructor","url":"classes/_env_.environment.html#constructor","classes":"tsd-kind-constructor tsd-parent-kind-class","parent":"\"env\".Environment"},{"id":113,"kind":2048,"name":"profiles","url":"classes/_env_.environment.html#profiles","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"env\".Environment"},{"id":114,"kind":2048,"name":"data","url":"classes/_env_.environment.html#data","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"env\".Environment"},{"id":115,"kind":2048,"name":"settings","url":"classes/_env_.environment.html#settings","classes":"tsd-kind-method tsd-parent-kind-class","parent":"\"env\".Environment"},{"id":116,"kind":1,"name":"\"index\"","url":"modules/_index_.html","classes":"tsd-kind-module"},{"id":117,"kind":16777216,"name":"Environment","url":"modules/_index_.html#environment","classes":"tsd-kind-reference tsd-parent-kind-module","parent":"\"index\""}],"index":{"version":"2.3.8","fields":["name","parent"],"fieldVectors":[["name/0",[0,35.385]],["parent/0",[]],["name/1",[1,43.887]],["parent/1",[0,3.502]],["name/2",[2,26.482]],["parent/2",[3,4.343]],["name/3",[2,26.482]],["parent/3",[0,3.502]],["name/4",[4,27.738]],["parent/4",[5,2.887]],["name/5",[6,29.174]],["parent/5",[5,2.887]],["name/6",[7,30.85]],["parent/6",[5,2.887]],["name/7",[8,29.174]],["parent/7",[5,2.887]],["name/8",[9,30.85]],["parent/8",[5,2.887]],["name/9",[10,35.385]],["parent/9",[5,2.887]],["name/10",[11,25.366]],["parent/10",[]],["name/11",[11,25.366]],["parent/11",[11,2.51]],["name/12",[2,26.482]],["parent/12",[12,2.411]],["name/13",[13,38.762]],["parent/13",[12,2.411]],["name/14",[14,26.482]],["parent/14",[12,2.411]],["name/15",[4,27.738]],["parent/15",[12,2.411]],["name/16",[6,29.174]],["parent/16",[12,2.411]],["name/17",[7,30.85]],["parent/17",[12,2.411]],["name/18",[15,32.863]],["parent/18",[12,2.411]],["name/19",[8,29.174]],["parent/19",[12,2.411]],["name/20",[9,30.85]],["parent/20",[12,2.411]],["name/21",[16,43.887]],["parent/21",[12,2.411]],["name/22",[17,25.366]],["parent/22",[]],["name/23",[17,25.366]],["parent/23",[17,2.51]],["name/24",[2,26.482]],["parent/24",[18,2.51]],["name/25",[13,38.762]],["parent/25",[18,2.51]],["name/26",[14,26.482]],["parent/26",[18,2.51]],["name/27",[4,27.738]],["parent/27",[18,2.51]],["name/28",[6,29.174]],["parent/28",[18,2.51]],["name/29",[7,30.85]],["parent/29",[18,2.51]],["name/30",[15,32.863]],["parent/30",[18,2.51]],["name/31",[8,29.174]],["parent/31",[18,2.51]],["name/32",[9,30.85]],["parent/32",[18,2.51]],["name/33",[19,21.839]],["parent/33",[]],["name/34",[20,38.762]],["parent/34",[19,2.161]],["name/35",[21,38.762]],["parent/35",[22,2.09]],["name/36",[20,38.762]],["parent/36",[22,2.09]],["name/37",[11,25.366]],["parent/37",[22,2.09]],["name/38",[17,25.366]],["parent/38",[22,2.09]],["name/39",[14,26.482]],["parent/39",[22,2.09]],["name/40",[23,43.887]],["parent/40",[22,2.09]],["name/41",[21,38.762]],["parent/41",[22,2.09]],["name/42",[24,43.887]],["parent/42",[22,2.09]],["name/43",[25,43.887]],["parent/43",[22,2.09]],["name/44",[26,43.887]],["parent/44",[22,2.09]],["name/45",[27,43.887]],["parent/45",[22,2.09]],["name/46",[28,43.887]],["parent/46",[22,2.09]],["name/47",[11,25.366]],["parent/47",[22,2.09]],["name/48",[17,25.366]],["parent/48",[22,2.09]],["name/49",[19,15.521,29,27.548]],["parent/49",[]],["name/50",[30,43.887]],["parent/50",[19,1.529,29,2.714]],["name/51",[31,35.385]],["parent/51",[19,1.529,32,1.776]],["name/52",[2,26.482]],["parent/52",[19,1.529,32,1.776]],["name/53",[14,26.482]],["parent/53",[19,1.529,32,1.776]],["name/54",[4,27.738]],["parent/54",[19,1.529,32,1.776]],["name/55",[33,38.762]],["parent/55",[19,1.529,32,1.776]],["name/56",[34,43.887]],["parent/56",[19,1.529,32,1.776]],["name/57",[35,43.887]],["parent/57",[19,1.529,32,1.776]],["name/58",[36,43.887]],["parent/58",[19,1.529,32,1.776]],["name/59",[37,43.887]],["parent/59",[19,1.529,32,1.776]],["name/60",[38,35.385]],["parent/60",[]],["name/61",[38,35.385]],["parent/61",[38,3.502]],["name/62",[39,38.762]],["parent/62",[40,2.238]],["name/63",[41,38.762]],["parent/63",[40,2.238]],["name/64",[31,35.385]],["parent/64",[40,2.238]],["name/65",[11,25.366]],["parent/65",[40,2.238]],["name/66",[17,25.366]],["parent/66",[40,2.238]],["name/67",[14,26.482]],["parent/67",[40,2.238]],["name/68",[39,38.762]],["parent/68",[40,2.238]],["name/69",[41,38.762]],["parent/69",[40,2.238]],["name/70",[31,35.385]],["parent/70",[40,2.238]],["name/71",[11,25.366]],["parent/71",[40,2.238]],["name/72",[17,25.366]],["parent/72",[40,2.238]],["name/73",[42,43.887]],["parent/73",[40,2.238]],["name/74",[43,30.85]],["parent/74",[]],["name/75",[43,30.85]],["parent/75",[43,3.053]],["name/76",[44,43.887]],["parent/76",[45,2.745]],["name/77",[2,26.482]],["parent/77",[45,2.745]],["name/78",[14,26.482]],["parent/78",[45,2.745]],["name/79",[4,27.738]],["parent/79",[45,2.745]],["name/80",[6,29.174]],["parent/80",[45,2.745]],["name/81",[33,38.762]],["parent/81",[45,2.745]],["name/82",[8,29.174]],["parent/82",[45,2.745]],["name/83",[46,38.762]],["parent/83",[]],["name/84",[47,43.887]],["parent/84",[46,3.836]],["name/85",[2,26.482]],["parent/85",[48,2.51]],["name/86",[14,26.482]],["parent/86",[48,2.51]],["name/87",[4,27.738]],["parent/87",[48,2.51]],["name/88",[6,29.174]],["parent/88",[48,2.51]],["name/89",[7,30.85]],["parent/89",[48,2.51]],["name/90",[15,32.863]],["parent/90",[48,2.51]],["name/91",[8,29.174]],["parent/91",[48,2.51]],["name/92",[9,30.85]],["parent/92",[48,2.51]],["name/93",[10,35.385]],["parent/93",[48,2.51]],["name/94",[49,38.762]],["parent/94",[]],["name/95",[50,43.887]],["parent/95",[49,3.836]],["name/96",[4,27.738]],["parent/96",[51,2.745]],["name/97",[6,29.174]],["parent/97",[51,2.745]],["name/98",[7,30.85]],["parent/98",[51,2.745]],["name/99",[15,32.863]],["parent/99",[51,2.745]],["name/100",[8,29.174]],["parent/100",[51,2.745]],["name/101",[9,30.85]],["parent/101",[51,2.745]],["name/102",[10,35.385]],["parent/102",[51,2.745]],["name/103",[52,38.762]],["parent/103",[]],["name/104",[53,43.887]],["parent/104",[52,3.836]],["name/105",[54,43.887]],["parent/105",[55,4.343]],["name/106",[56,38.762]],["parent/106",[]],["name/107",[57,38.762]],["parent/107",[56,3.836]],["name/108",[2,26.482]],["parent/108",[58,2.621]],["name/109",[43,30.85]],["parent/109",[58,2.621]],["name/110",[11,25.366]],["parent/110",[58,2.621]],["name/111",[17,25.366]],["parent/111",[58,2.621]],["name/112",[14,26.482]],["parent/112",[58,2.621]],["name/113",[43,30.85]],["parent/113",[58,2.621]],["name/114",[11,25.366]],["parent/114",[58,2.621]],["name/115",[17,25.366]],["parent/115",[58,2.621]],["name/116",[59,38.762]],["parent/116",[]],["name/117",[57,38.762]],["parent/117",[59,3.836]]],"invertedIndex":[["address",{"_index":25,"name":{"43":{}},"parent":{}}],["all",{"_index":4,"name":{"4":{},"15":{},"27":{},"54":{},"79":{},"87":{},"96":{}},"parent":{}}],["balance",{"_index":27,"name":{"45":{}},"parent":{}}],["coin",{"_index":21,"name":{"35":{},"41":{}},"parent":{}}],["constructor",{"_index":14,"name":{"14":{},"26":{},"39":{},"53":{},"67":{},"78":{},"86":{},"112":{}},"parent":{}}],["contracts",{"_index":0,"name":{"0":{}},"parent":{"1":{},"3":{}}}],["contracts\".environmentoptions",{"_index":3,"name":{},"parent":{"2":{}}}],["contracts\".storage",{"_index":5,"name":{},"parent":{"4":{},"5":{},"6":{},"7":{},"8":{},"9":{}}}],["count",{"_index":10,"name":{"9":{},"93":{},"102":{}},"parent":{}}],["createfrompassphrase",{"_index":37,"name":{"59":{}},"parent":{}}],["data",{"_index":11,"name":{"10":{},"11":{},"37":{},"47":{},"65":{},"71":{},"110":{},"114":{}},"parent":{"11":{}}}],["data\".data",{"_index":12,"name":{},"parent":{"12":{},"13":{},"14":{},"15":{},"16":{},"17":{},"18":{},"19":{},"20":{},"21":{}}}],["env",{"_index":56,"name":{"106":{}},"parent":{"107":{}}}],["env\".environment",{"_index":58,"name":{},"parent":{"108":{},"109":{},"110":{},"111":{},"112":{},"113":{},"114":{},"115":{}}}],["environment",{"_index":57,"name":{"107":{},"117":{}},"parent":{}}],["environmentoptions",{"_index":1,"name":{"1":{}},"parent":{}}],["findbyaddress",{"_index":34,"name":{"56":{}},"parent":{}}],["findbycoin",{"_index":36,"name":{"58":{}},"parent":{}}],["findbypublickey",{"_index":35,"name":{"57":{}},"parent":{}}],["flush",{"_index":9,"name":{"8":{},"20":{},"32":{},"92":{},"101":{}},"parent":{}}],["forget",{"_index":8,"name":{"7":{},"19":{},"31":{},"82":{},"91":{},"100":{}},"parent":{}}],["frompassphrase",{"_index":23,"name":{"40":{}},"parent":{}}],["get",{"_index":6,"name":{"5":{},"16":{},"28":{},"80":{},"88":{},"97":{}},"parent":{}}],["has",{"_index":15,"name":{"18":{},"30":{},"90":{},"99":{}},"parent":{}}],["id",{"_index":39,"name":{"62":{},"68":{}},"parent":{}}],["index",{"_index":59,"name":{"116":{}},"parent":{"117":{}}}],["key",{"_index":44,"name":{"76":{}},"parent":{}}],["localstorage",{"_index":47,"name":{"84":{}},"parent":{}}],["make",{"_index":54,"name":{"105":{}},"parent":{}}],["name",{"_index":41,"name":{"63":{},"69":{}},"parent":{}}],["namespace",{"_index":13,"name":{"13":{},"25":{}},"parent":{}}],["network",{"_index":24,"name":{"42":{}},"parent":{}}],["nonce",{"_index":28,"name":{"46":{}},"parent":{}}],["nullstorage",{"_index":50,"name":{"95":{}},"parent":{}}],["profile",{"_index":38,"name":{"60":{},"61":{}},"parent":{"61":{}}}],["profile\".profile",{"_index":40,"name":{},"parent":{"62":{},"63":{},"64":{},"65":{},"66":{},"67":{},"68":{},"69":{},"70":{},"71":{},"72":{},"73":{}}}],["profiles",{"_index":43,"name":{"74":{},"75":{},"109":{},"113":{}},"parent":{"75":{}}}],["profiles\".profiles",{"_index":45,"name":{},"parent":{"76":{},"77":{},"78":{},"79":{},"80":{},"81":{},"82":{}}}],["publickey",{"_index":26,"name":{"44":{}},"parent":{}}],["push",{"_index":33,"name":{"55":{},"81":{}},"parent":{}}],["repository",{"_index":29,"name":{"49":{}},"parent":{"50":{}}}],["repository\".walletrepository",{"_index":32,"name":{},"parent":{"51":{},"52":{},"53":{},"54":{},"55":{},"56":{},"57":{},"58":{},"59":{}}}],["set",{"_index":7,"name":{"6":{},"17":{},"29":{},"89":{},"98":{}},"parent":{}}],["settings",{"_index":17,"name":{"22":{},"23":{},"38":{},"48":{},"66":{},"72":{},"111":{},"115":{}},"parent":{"23":{}}}],["settings\".settings",{"_index":18,"name":{},"parent":{"24":{},"25":{},"26":{},"27":{},"28":{},"29":{},"30":{},"31":{},"32":{}}}],["storage",{"_index":2,"name":{"2":{},"3":{},"12":{},"24":{},"52":{},"77":{},"85":{},"108":{}},"parent":{}}],["storage/factory",{"_index":52,"name":{"103":{}},"parent":{"104":{}}}],["storage/factory\".storagefactory",{"_index":55,"name":{},"parent":{"105":{}}}],["storage/local",{"_index":46,"name":{"83":{}},"parent":{"84":{}}}],["storage/local\".localstorage",{"_index":48,"name":{},"parent":{"85":{},"86":{},"87":{},"88":{},"89":{},"90":{},"91":{},"92":{},"93":{}}}],["storage/null",{"_index":49,"name":{"94":{}},"parent":{"95":{}}}],["storage/null\".nullstorage",{"_index":51,"name":{},"parent":{"96":{},"97":{},"98":{},"99":{},"100":{},"101":{},"102":{}}}],["storagefactory",{"_index":53,"name":{"104":{}},"parent":{}}],["tojson",{"_index":16,"name":{"21":{}},"parent":{}}],["toobject",{"_index":42,"name":{"73":{}},"parent":{}}],["wallet",{"_index":20,"name":{"34":{},"36":{}},"parent":{}}],["walletrepository",{"_index":30,"name":{"50":{}},"parent":{}}],["wallets",{"_index":31,"name":{"51":{},"64":{},"70":{}},"parent":{}}],["wallets/wallet",{"_index":19,"name":{"33":{},"49":{}},"parent":{"34":{},"50":{},"51":{},"52":{},"53":{},"54":{},"55":{},"56":{},"57":{},"58":{},"59":{}}}],["wallets/wallet\".wallet",{"_index":22,"name":{},"parent":{"35":{},"36":{},"37":{},"38":{},"39":{},"40":{},"41":{},"42":{},"43":{},"44":{},"45":{},"46":{},"47":{},"48":{}}}]],"pipeline":[]}}
+{
+	"kinds": {
+		"1": "Module",
+		"128": "Class",
+		"256": "Interface",
+		"512": "Constructor",
+		"1024": "Property",
+		"2048": "Method",
+		"16777216": "Reference"
+	},
+	"rows": [
+		{
+			"id": 0,
+			"kind": 1,
+			"name": "\"contracts\"",
+			"url": "modules/_contracts_.html",
+			"classes": "tsd-kind-module"
+		},
+		{
+			"id": 1,
+			"kind": 256,
+			"name": "EnvironmentOptions",
+			"url": "interfaces/_contracts_.environmentoptions.html",
+			"classes": "tsd-kind-interface tsd-parent-kind-module",
+			"parent": "\"contracts\""
+		},
+		{
+			"id": 2,
+			"kind": 1024,
+			"name": "storage",
+			"url": "interfaces/_contracts_.environmentoptions.html#storage",
+			"classes": "tsd-kind-property tsd-parent-kind-interface",
+			"parent": "\"contracts\".EnvironmentOptions"
+		},
+		{
+			"id": 3,
+			"kind": 256,
+			"name": "Storage",
+			"url": "interfaces/_contracts_.storage.html",
+			"classes": "tsd-kind-interface tsd-parent-kind-module",
+			"parent": "\"contracts\""
+		},
+		{
+			"id": 4,
+			"kind": 2048,
+			"name": "all",
+			"url": "interfaces/_contracts_.storage.html#all",
+			"classes": "tsd-kind-method tsd-parent-kind-interface",
+			"parent": "\"contracts\".Storage"
+		},
+		{
+			"id": 5,
+			"kind": 2048,
+			"name": "get",
+			"url": "interfaces/_contracts_.storage.html#get",
+			"classes": "tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter",
+			"parent": "\"contracts\".Storage"
+		},
+		{
+			"id": 6,
+			"kind": 2048,
+			"name": "set",
+			"url": "interfaces/_contracts_.storage.html#set",
+			"classes": "tsd-kind-method tsd-parent-kind-interface",
+			"parent": "\"contracts\".Storage"
+		},
+		{
+			"id": 7,
+			"kind": 2048,
+			"name": "forget",
+			"url": "interfaces/_contracts_.storage.html#forget",
+			"classes": "tsd-kind-method tsd-parent-kind-interface",
+			"parent": "\"contracts\".Storage"
+		},
+		{
+			"id": 8,
+			"kind": 2048,
+			"name": "flush",
+			"url": "interfaces/_contracts_.storage.html#flush",
+			"classes": "tsd-kind-method tsd-parent-kind-interface",
+			"parent": "\"contracts\".Storage"
+		},
+		{
+			"id": 9,
+			"kind": 2048,
+			"name": "count",
+			"url": "interfaces/_contracts_.storage.html#count",
+			"classes": "tsd-kind-method tsd-parent-kind-interface",
+			"parent": "\"contracts\".Storage"
+		},
+		{ "id": 10, "kind": 1, "name": "\"data\"", "url": "modules/_data_.html", "classes": "tsd-kind-module" },
+		{
+			"id": 11,
+			"kind": 128,
+			"name": "Data",
+			"url": "classes/_data_.data.html",
+			"classes": "tsd-kind-class tsd-parent-kind-module",
+			"parent": "\"data\""
+		},
+		{
+			"id": 12,
+			"kind": 1024,
+			"name": "#storage",
+			"url": "classes/_data_.data.html#_storage",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"data\".Data"
+		},
+		{
+			"id": 13,
+			"kind": 1024,
+			"name": "#namespace",
+			"url": "classes/_data_.data.html#_namespace",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"data\".Data"
+		},
+		{
+			"id": 14,
+			"kind": 512,
+			"name": "constructor",
+			"url": "classes/_data_.data.html#constructor",
+			"classes": "tsd-kind-constructor tsd-parent-kind-class",
+			"parent": "\"data\".Data"
+		},
+		{
+			"id": 15,
+			"kind": 2048,
+			"name": "all",
+			"url": "classes/_data_.data.html#all",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"data\".Data"
+		},
+		{
+			"id": 16,
+			"kind": 2048,
+			"name": "get",
+			"url": "classes/_data_.data.html#get",
+			"classes": "tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter",
+			"parent": "\"data\".Data"
+		},
+		{
+			"id": 17,
+			"kind": 2048,
+			"name": "set",
+			"url": "classes/_data_.data.html#set",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"data\".Data"
+		},
+		{
+			"id": 18,
+			"kind": 2048,
+			"name": "has",
+			"url": "classes/_data_.data.html#has",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"data\".Data"
+		},
+		{
+			"id": 19,
+			"kind": 2048,
+			"name": "forget",
+			"url": "classes/_data_.data.html#forget",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"data\".Data"
+		},
+		{
+			"id": 20,
+			"kind": 2048,
+			"name": "flush",
+			"url": "classes/_data_.data.html#flush",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"data\".Data"
+		},
+		{
+			"id": 21,
+			"kind": 2048,
+			"name": "toJSON",
+			"url": "classes/_data_.data.html#tojson",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"data\".Data"
+		},
+		{ "id": 22, "kind": 1, "name": "\"settings\"", "url": "modules/_settings_.html", "classes": "tsd-kind-module" },
+		{
+			"id": 23,
+			"kind": 128,
+			"name": "Settings",
+			"url": "classes/_settings_.settings.html",
+			"classes": "tsd-kind-class tsd-parent-kind-module",
+			"parent": "\"settings\""
+		},
+		{
+			"id": 24,
+			"kind": 1024,
+			"name": "#storage",
+			"url": "classes/_settings_.settings.html#_storage",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"settings\".Settings"
+		},
+		{
+			"id": 25,
+			"kind": 1024,
+			"name": "#namespace",
+			"url": "classes/_settings_.settings.html#_namespace",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"settings\".Settings"
+		},
+		{
+			"id": 26,
+			"kind": 512,
+			"name": "constructor",
+			"url": "classes/_settings_.settings.html#constructor",
+			"classes": "tsd-kind-constructor tsd-parent-kind-class",
+			"parent": "\"settings\".Settings"
+		},
+		{
+			"id": 27,
+			"kind": 2048,
+			"name": "all",
+			"url": "classes/_settings_.settings.html#all",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"settings\".Settings"
+		},
+		{
+			"id": 28,
+			"kind": 2048,
+			"name": "get",
+			"url": "classes/_settings_.settings.html#get",
+			"classes": "tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter",
+			"parent": "\"settings\".Settings"
+		},
+		{
+			"id": 29,
+			"kind": 2048,
+			"name": "set",
+			"url": "classes/_settings_.settings.html#set",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"settings\".Settings"
+		},
+		{
+			"id": 30,
+			"kind": 2048,
+			"name": "has",
+			"url": "classes/_settings_.settings.html#has",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"settings\".Settings"
+		},
+		{
+			"id": 31,
+			"kind": 2048,
+			"name": "forget",
+			"url": "classes/_settings_.settings.html#forget",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"settings\".Settings"
+		},
+		{
+			"id": 32,
+			"kind": 2048,
+			"name": "flush",
+			"url": "classes/_settings_.settings.html#flush",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"settings\".Settings"
+		},
+		{
+			"id": 33,
+			"kind": 1,
+			"name": "\"wallets/wallet\"",
+			"url": "modules/_wallets_wallet_.html",
+			"classes": "tsd-kind-module"
+		},
+		{
+			"id": 34,
+			"kind": 128,
+			"name": "Wallet",
+			"url": "classes/_wallets_wallet_.wallet.html",
+			"classes": "tsd-kind-class tsd-parent-kind-module",
+			"parent": "\"wallets/wallet\""
+		},
+		{
+			"id": 35,
+			"kind": 1024,
+			"name": "#coin",
+			"url": "classes/_wallets_wallet_.wallet.html#_coin",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 36,
+			"kind": 1024,
+			"name": "#wallet",
+			"url": "classes/_wallets_wallet_.wallet.html#_wallet",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 37,
+			"kind": 1024,
+			"name": "#data",
+			"url": "classes/_wallets_wallet_.wallet.html#_data",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 38,
+			"kind": 1024,
+			"name": "#settings",
+			"url": "classes/_wallets_wallet_.wallet.html#_settings",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 39,
+			"kind": 512,
+			"name": "constructor",
+			"url": "classes/_wallets_wallet_.wallet.html#constructor",
+			"classes": "tsd-kind-constructor tsd-parent-kind-class tsd-is-private",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 40,
+			"kind": 2048,
+			"name": "fromPassphrase",
+			"url": "classes/_wallets_wallet_.wallet.html#frompassphrase",
+			"classes": "tsd-kind-method tsd-parent-kind-class tsd-is-static",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 41,
+			"kind": 2048,
+			"name": "coin",
+			"url": "classes/_wallets_wallet_.wallet.html#coin",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 42,
+			"kind": 2048,
+			"name": "network",
+			"url": "classes/_wallets_wallet_.wallet.html#network",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 43,
+			"kind": 2048,
+			"name": "address",
+			"url": "classes/_wallets_wallet_.wallet.html#address",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 44,
+			"kind": 2048,
+			"name": "publicKey",
+			"url": "classes/_wallets_wallet_.wallet.html#publickey",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 45,
+			"kind": 2048,
+			"name": "balance",
+			"url": "classes/_wallets_wallet_.wallet.html#balance",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 46,
+			"kind": 2048,
+			"name": "nonce",
+			"url": "classes/_wallets_wallet_.wallet.html#nonce",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 47,
+			"kind": 2048,
+			"name": "data",
+			"url": "classes/_wallets_wallet_.wallet.html#data",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 48,
+			"kind": 2048,
+			"name": "settings",
+			"url": "classes/_wallets_wallet_.wallet.html#settings",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet\".Wallet"
+		},
+		{
+			"id": 49,
+			"kind": 1,
+			"name": "\"wallets/wallet-repository\"",
+			"url": "modules/_wallets_wallet_repository_.html",
+			"classes": "tsd-kind-module"
+		},
+		{
+			"id": 50,
+			"kind": 128,
+			"name": "WalletRepository",
+			"url": "classes/_wallets_wallet_repository_.walletrepository.html",
+			"classes": "tsd-kind-class tsd-parent-kind-module",
+			"parent": "\"wallets/wallet-repository\""
+		},
+		{
+			"id": 51,
+			"kind": 1024,
+			"name": "#wallets",
+			"url": "classes/_wallets_wallet_repository_.walletrepository.html#_wallets",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"wallets/wallet-repository\".WalletRepository"
+		},
+		{
+			"id": 52,
+			"kind": 1024,
+			"name": "#storage",
+			"url": "classes/_wallets_wallet_repository_.walletrepository.html#_storage",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"wallets/wallet-repository\".WalletRepository"
+		},
+		{
+			"id": 53,
+			"kind": 512,
+			"name": "constructor",
+			"url": "classes/_wallets_wallet_repository_.walletrepository.html#constructor",
+			"classes": "tsd-kind-constructor tsd-parent-kind-class",
+			"parent": "\"wallets/wallet-repository\".WalletRepository"
+		},
+		{
+			"id": 54,
+			"kind": 2048,
+			"name": "all",
+			"url": "classes/_wallets_wallet_repository_.walletrepository.html#all",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet-repository\".WalletRepository"
+		},
+		{
+			"id": 55,
+			"kind": 2048,
+			"name": "push",
+			"url": "classes/_wallets_wallet_repository_.walletrepository.html#push",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet-repository\".WalletRepository"
+		},
+		{
+			"id": 56,
+			"kind": 2048,
+			"name": "findByAddress",
+			"url": "classes/_wallets_wallet_repository_.walletrepository.html#findbyaddress",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet-repository\".WalletRepository"
+		},
+		{
+			"id": 57,
+			"kind": 2048,
+			"name": "findByPublicKey",
+			"url": "classes/_wallets_wallet_repository_.walletrepository.html#findbypublickey",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet-repository\".WalletRepository"
+		},
+		{
+			"id": 58,
+			"kind": 2048,
+			"name": "findByCoin",
+			"url": "classes/_wallets_wallet_repository_.walletrepository.html#findbycoin",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet-repository\".WalletRepository"
+		},
+		{
+			"id": 59,
+			"kind": 2048,
+			"name": "createFromPassphrase",
+			"url": "classes/_wallets_wallet_repository_.walletrepository.html#createfrompassphrase",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"wallets/wallet-repository\".WalletRepository"
+		},
+		{ "id": 60, "kind": 1, "name": "\"profile\"", "url": "modules/_profile_.html", "classes": "tsd-kind-module" },
+		{
+			"id": 61,
+			"kind": 128,
+			"name": "Profile",
+			"url": "classes/_profile_.profile.html",
+			"classes": "tsd-kind-class tsd-parent-kind-module",
+			"parent": "\"profile\""
+		},
+		{
+			"id": 62,
+			"kind": 1024,
+			"name": "#id",
+			"url": "classes/_profile_.profile.html#_id",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"profile\".Profile"
+		},
+		{
+			"id": 63,
+			"kind": 1024,
+			"name": "#name",
+			"url": "classes/_profile_.profile.html#_name",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"profile\".Profile"
+		},
+		{
+			"id": 64,
+			"kind": 1024,
+			"name": "#wallets",
+			"url": "classes/_profile_.profile.html#_wallets",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"profile\".Profile"
+		},
+		{
+			"id": 65,
+			"kind": 1024,
+			"name": "#data",
+			"url": "classes/_profile_.profile.html#_data",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"profile\".Profile"
+		},
+		{
+			"id": 66,
+			"kind": 1024,
+			"name": "#settings",
+			"url": "classes/_profile_.profile.html#_settings",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"profile\".Profile"
+		},
+		{
+			"id": 67,
+			"kind": 512,
+			"name": "constructor",
+			"url": "classes/_profile_.profile.html#constructor",
+			"classes": "tsd-kind-constructor tsd-parent-kind-class",
+			"parent": "\"profile\".Profile"
+		},
+		{
+			"id": 68,
+			"kind": 2048,
+			"name": "id",
+			"url": "classes/_profile_.profile.html#id",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"profile\".Profile"
+		},
+		{
+			"id": 69,
+			"kind": 2048,
+			"name": "name",
+			"url": "classes/_profile_.profile.html#name",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"profile\".Profile"
+		},
+		{
+			"id": 70,
+			"kind": 2048,
+			"name": "wallets",
+			"url": "classes/_profile_.profile.html#wallets",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"profile\".Profile"
+		},
+		{
+			"id": 71,
+			"kind": 2048,
+			"name": "data",
+			"url": "classes/_profile_.profile.html#data",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"profile\".Profile"
+		},
+		{
+			"id": 72,
+			"kind": 2048,
+			"name": "settings",
+			"url": "classes/_profile_.profile.html#settings",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"profile\".Profile"
+		},
+		{
+			"id": 73,
+			"kind": 2048,
+			"name": "toObject",
+			"url": "classes/_profile_.profile.html#toobject",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"profile\".Profile"
+		},
+		{ "id": 74, "kind": 1, "name": "\"profiles\"", "url": "modules/_profiles_.html", "classes": "tsd-kind-module" },
+		{
+			"id": 75,
+			"kind": 128,
+			"name": "Profiles",
+			"url": "classes/_profiles_.profiles.html",
+			"classes": "tsd-kind-class tsd-parent-kind-module",
+			"parent": "\"profiles\""
+		},
+		{
+			"id": 76,
+			"kind": 1024,
+			"name": "#key",
+			"url": "classes/_profiles_.profiles.html#_key",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"profiles\".Profiles"
+		},
+		{
+			"id": 77,
+			"kind": 1024,
+			"name": "#storage",
+			"url": "classes/_profiles_.profiles.html#_storage",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"profiles\".Profiles"
+		},
+		{
+			"id": 78,
+			"kind": 512,
+			"name": "constructor",
+			"url": "classes/_profiles_.profiles.html#constructor",
+			"classes": "tsd-kind-constructor tsd-parent-kind-class",
+			"parent": "\"profiles\".Profiles"
+		},
+		{
+			"id": 79,
+			"kind": 2048,
+			"name": "all",
+			"url": "classes/_profiles_.profiles.html#all",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"profiles\".Profiles"
+		},
+		{
+			"id": 80,
+			"kind": 2048,
+			"name": "get",
+			"url": "classes/_profiles_.profiles.html#get",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"profiles\".Profiles"
+		},
+		{
+			"id": 81,
+			"kind": 2048,
+			"name": "push",
+			"url": "classes/_profiles_.profiles.html#push",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"profiles\".Profiles"
+		},
+		{
+			"id": 82,
+			"kind": 2048,
+			"name": "forget",
+			"url": "classes/_profiles_.profiles.html#forget",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"profiles\".Profiles"
+		},
+		{
+			"id": 83,
+			"kind": 1,
+			"name": "\"storage/local\"",
+			"url": "modules/_storage_local_.html",
+			"classes": "tsd-kind-module"
+		},
+		{
+			"id": 84,
+			"kind": 128,
+			"name": "LocalStorage",
+			"url": "classes/_storage_local_.localstorage.html",
+			"classes": "tsd-kind-class tsd-parent-kind-module",
+			"parent": "\"storage/local\""
+		},
+		{
+			"id": 85,
+			"kind": 1024,
+			"name": "#storage",
+			"url": "classes/_storage_local_.localstorage.html#_storage",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"storage/local\".LocalStorage"
+		},
+		{
+			"id": 86,
+			"kind": 512,
+			"name": "constructor",
+			"url": "classes/_storage_local_.localstorage.html#constructor",
+			"classes": "tsd-kind-constructor tsd-parent-kind-class",
+			"parent": "\"storage/local\".LocalStorage"
+		},
+		{
+			"id": 87,
+			"kind": 2048,
+			"name": "all",
+			"url": "classes/_storage_local_.localstorage.html#all",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"storage/local\".LocalStorage"
+		},
+		{
+			"id": 88,
+			"kind": 2048,
+			"name": "get",
+			"url": "classes/_storage_local_.localstorage.html#get",
+			"classes": "tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter",
+			"parent": "\"storage/local\".LocalStorage"
+		},
+		{
+			"id": 89,
+			"kind": 2048,
+			"name": "set",
+			"url": "classes/_storage_local_.localstorage.html#set",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"storage/local\".LocalStorage"
+		},
+		{
+			"id": 90,
+			"kind": 2048,
+			"name": "has",
+			"url": "classes/_storage_local_.localstorage.html#has",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"storage/local\".LocalStorage"
+		},
+		{
+			"id": 91,
+			"kind": 2048,
+			"name": "forget",
+			"url": "classes/_storage_local_.localstorage.html#forget",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"storage/local\".LocalStorage"
+		},
+		{
+			"id": 92,
+			"kind": 2048,
+			"name": "flush",
+			"url": "classes/_storage_local_.localstorage.html#flush",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"storage/local\".LocalStorage"
+		},
+		{
+			"id": 93,
+			"kind": 2048,
+			"name": "count",
+			"url": "classes/_storage_local_.localstorage.html#count",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"storage/local\".LocalStorage"
+		},
+		{
+			"id": 94,
+			"kind": 1,
+			"name": "\"storage/null\"",
+			"url": "modules/_storage_null_.html",
+			"classes": "tsd-kind-module"
+		},
+		{
+			"id": 95,
+			"kind": 128,
+			"name": "NullStorage",
+			"url": "classes/_storage_null_.nullstorage.html",
+			"classes": "tsd-kind-class tsd-parent-kind-module",
+			"parent": "\"storage/null\""
+		},
+		{
+			"id": 96,
+			"kind": 2048,
+			"name": "all",
+			"url": "classes/_storage_null_.nullstorage.html#all",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"storage/null\".NullStorage"
+		},
+		{
+			"id": 97,
+			"kind": 2048,
+			"name": "get",
+			"url": "classes/_storage_null_.nullstorage.html#get",
+			"classes": "tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter",
+			"parent": "\"storage/null\".NullStorage"
+		},
+		{
+			"id": 98,
+			"kind": 2048,
+			"name": "set",
+			"url": "classes/_storage_null_.nullstorage.html#set",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"storage/null\".NullStorage"
+		},
+		{
+			"id": 99,
+			"kind": 2048,
+			"name": "has",
+			"url": "classes/_storage_null_.nullstorage.html#has",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"storage/null\".NullStorage"
+		},
+		{
+			"id": 100,
+			"kind": 2048,
+			"name": "forget",
+			"url": "classes/_storage_null_.nullstorage.html#forget",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"storage/null\".NullStorage"
+		},
+		{
+			"id": 101,
+			"kind": 2048,
+			"name": "flush",
+			"url": "classes/_storage_null_.nullstorage.html#flush",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"storage/null\".NullStorage"
+		},
+		{
+			"id": 102,
+			"kind": 2048,
+			"name": "count",
+			"url": "classes/_storage_null_.nullstorage.html#count",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"storage/null\".NullStorage"
+		},
+		{
+			"id": 103,
+			"kind": 1,
+			"name": "\"storage/factory\"",
+			"url": "modules/_storage_factory_.html",
+			"classes": "tsd-kind-module"
+		},
+		{
+			"id": 104,
+			"kind": 128,
+			"name": "StorageFactory",
+			"url": "classes/_storage_factory_.storagefactory.html",
+			"classes": "tsd-kind-class tsd-parent-kind-module",
+			"parent": "\"storage/factory\""
+		},
+		{
+			"id": 105,
+			"kind": 2048,
+			"name": "make",
+			"url": "classes/_storage_factory_.storagefactory.html#make",
+			"classes": "tsd-kind-method tsd-parent-kind-class tsd-is-static",
+			"parent": "\"storage/factory\".StorageFactory"
+		},
+		{ "id": 106, "kind": 1, "name": "\"env\"", "url": "modules/_env_.html", "classes": "tsd-kind-module" },
+		{
+			"id": 107,
+			"kind": 128,
+			"name": "Environment",
+			"url": "classes/_env_.environment.html",
+			"classes": "tsd-kind-class tsd-parent-kind-module",
+			"parent": "\"env\""
+		},
+		{
+			"id": 108,
+			"kind": 1024,
+			"name": "#storage",
+			"url": "classes/_env_.environment.html#_storage",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"env\".Environment"
+		},
+		{
+			"id": 109,
+			"kind": 1024,
+			"name": "#profiles",
+			"url": "classes/_env_.environment.html#_profiles",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"env\".Environment"
+		},
+		{
+			"id": 110,
+			"kind": 1024,
+			"name": "#data",
+			"url": "classes/_env_.environment.html#_data",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"env\".Environment"
+		},
+		{
+			"id": 111,
+			"kind": 1024,
+			"name": "#settings",
+			"url": "classes/_env_.environment.html#_settings",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"env\".Environment"
+		},
+		{
+			"id": 112,
+			"kind": 512,
+			"name": "constructor",
+			"url": "classes/_env_.environment.html#constructor",
+			"classes": "tsd-kind-constructor tsd-parent-kind-class",
+			"parent": "\"env\".Environment"
+		},
+		{
+			"id": 113,
+			"kind": 2048,
+			"name": "profiles",
+			"url": "classes/_env_.environment.html#profiles",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"env\".Environment"
+		},
+		{
+			"id": 114,
+			"kind": 2048,
+			"name": "data",
+			"url": "classes/_env_.environment.html#data",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"env\".Environment"
+		},
+		{
+			"id": 115,
+			"kind": 2048,
+			"name": "settings",
+			"url": "classes/_env_.environment.html#settings",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"env\".Environment"
+		},
+		{ "id": 116, "kind": 1, "name": "\"index\"", "url": "modules/_index_.html", "classes": "tsd-kind-module" },
+		{
+			"id": 117,
+			"kind": 16777216,
+			"name": "Environment",
+			"url": "modules/_index_.html#environment",
+			"classes": "tsd-kind-reference tsd-parent-kind-module",
+			"parent": "\"index\""
+		}
+	],
+	"index": {
+		"version": "2.3.8",
+		"fields": ["name", "parent"],
+		"fieldVectors": [
+			["name/0", [0, 35.385]],
+			["parent/0", []],
+			["name/1", [1, 43.887]],
+			["parent/1", [0, 3.502]],
+			["name/2", [2, 26.482]],
+			["parent/2", [3, 4.343]],
+			["name/3", [2, 26.482]],
+			["parent/3", [0, 3.502]],
+			["name/4", [4, 27.738]],
+			["parent/4", [5, 2.887]],
+			["name/5", [6, 29.174]],
+			["parent/5", [5, 2.887]],
+			["name/6", [7, 30.85]],
+			["parent/6", [5, 2.887]],
+			["name/7", [8, 29.174]],
+			["parent/7", [5, 2.887]],
+			["name/8", [9, 30.85]],
+			["parent/8", [5, 2.887]],
+			["name/9", [10, 35.385]],
+			["parent/9", [5, 2.887]],
+			["name/10", [11, 25.366]],
+			["parent/10", []],
+			["name/11", [11, 25.366]],
+			["parent/11", [11, 2.51]],
+			["name/12", [2, 26.482]],
+			["parent/12", [12, 2.411]],
+			["name/13", [13, 38.762]],
+			["parent/13", [12, 2.411]],
+			["name/14", [14, 26.482]],
+			["parent/14", [12, 2.411]],
+			["name/15", [4, 27.738]],
+			["parent/15", [12, 2.411]],
+			["name/16", [6, 29.174]],
+			["parent/16", [12, 2.411]],
+			["name/17", [7, 30.85]],
+			["parent/17", [12, 2.411]],
+			["name/18", [15, 32.863]],
+			["parent/18", [12, 2.411]],
+			["name/19", [8, 29.174]],
+			["parent/19", [12, 2.411]],
+			["name/20", [9, 30.85]],
+			["parent/20", [12, 2.411]],
+			["name/21", [16, 43.887]],
+			["parent/21", [12, 2.411]],
+			["name/22", [17, 25.366]],
+			["parent/22", []],
+			["name/23", [17, 25.366]],
+			["parent/23", [17, 2.51]],
+			["name/24", [2, 26.482]],
+			["parent/24", [18, 2.51]],
+			["name/25", [13, 38.762]],
+			["parent/25", [18, 2.51]],
+			["name/26", [14, 26.482]],
+			["parent/26", [18, 2.51]],
+			["name/27", [4, 27.738]],
+			["parent/27", [18, 2.51]],
+			["name/28", [6, 29.174]],
+			["parent/28", [18, 2.51]],
+			["name/29", [7, 30.85]],
+			["parent/29", [18, 2.51]],
+			["name/30", [15, 32.863]],
+			["parent/30", [18, 2.51]],
+			["name/31", [8, 29.174]],
+			["parent/31", [18, 2.51]],
+			["name/32", [9, 30.85]],
+			["parent/32", [18, 2.51]],
+			["name/33", [19, 21.839]],
+			["parent/33", []],
+			["name/34", [20, 38.762]],
+			["parent/34", [19, 2.161]],
+			["name/35", [21, 38.762]],
+			["parent/35", [22, 2.09]],
+			["name/36", [20, 38.762]],
+			["parent/36", [22, 2.09]],
+			["name/37", [11, 25.366]],
+			["parent/37", [22, 2.09]],
+			["name/38", [17, 25.366]],
+			["parent/38", [22, 2.09]],
+			["name/39", [14, 26.482]],
+			["parent/39", [22, 2.09]],
+			["name/40", [23, 43.887]],
+			["parent/40", [22, 2.09]],
+			["name/41", [21, 38.762]],
+			["parent/41", [22, 2.09]],
+			["name/42", [24, 43.887]],
+			["parent/42", [22, 2.09]],
+			["name/43", [25, 43.887]],
+			["parent/43", [22, 2.09]],
+			["name/44", [26, 43.887]],
+			["parent/44", [22, 2.09]],
+			["name/45", [27, 43.887]],
+			["parent/45", [22, 2.09]],
+			["name/46", [28, 43.887]],
+			["parent/46", [22, 2.09]],
+			["name/47", [11, 25.366]],
+			["parent/47", [22, 2.09]],
+			["name/48", [17, 25.366]],
+			["parent/48", [22, 2.09]],
+			["name/49", [19, 15.521, 29, 27.548]],
+			["parent/49", []],
+			["name/50", [30, 43.887]],
+			["parent/50", [19, 1.529, 29, 2.714]],
+			["name/51", [31, 35.385]],
+			["parent/51", [19, 1.529, 32, 1.776]],
+			["name/52", [2, 26.482]],
+			["parent/52", [19, 1.529, 32, 1.776]],
+			["name/53", [14, 26.482]],
+			["parent/53", [19, 1.529, 32, 1.776]],
+			["name/54", [4, 27.738]],
+			["parent/54", [19, 1.529, 32, 1.776]],
+			["name/55", [33, 38.762]],
+			["parent/55", [19, 1.529, 32, 1.776]],
+			["name/56", [34, 43.887]],
+			["parent/56", [19, 1.529, 32, 1.776]],
+			["name/57", [35, 43.887]],
+			["parent/57", [19, 1.529, 32, 1.776]],
+			["name/58", [36, 43.887]],
+			["parent/58", [19, 1.529, 32, 1.776]],
+			["name/59", [37, 43.887]],
+			["parent/59", [19, 1.529, 32, 1.776]],
+			["name/60", [38, 35.385]],
+			["parent/60", []],
+			["name/61", [38, 35.385]],
+			["parent/61", [38, 3.502]],
+			["name/62", [39, 38.762]],
+			["parent/62", [40, 2.238]],
+			["name/63", [41, 38.762]],
+			["parent/63", [40, 2.238]],
+			["name/64", [31, 35.385]],
+			["parent/64", [40, 2.238]],
+			["name/65", [11, 25.366]],
+			["parent/65", [40, 2.238]],
+			["name/66", [17, 25.366]],
+			["parent/66", [40, 2.238]],
+			["name/67", [14, 26.482]],
+			["parent/67", [40, 2.238]],
+			["name/68", [39, 38.762]],
+			["parent/68", [40, 2.238]],
+			["name/69", [41, 38.762]],
+			["parent/69", [40, 2.238]],
+			["name/70", [31, 35.385]],
+			["parent/70", [40, 2.238]],
+			["name/71", [11, 25.366]],
+			["parent/71", [40, 2.238]],
+			["name/72", [17, 25.366]],
+			["parent/72", [40, 2.238]],
+			["name/73", [42, 43.887]],
+			["parent/73", [40, 2.238]],
+			["name/74", [43, 30.85]],
+			["parent/74", []],
+			["name/75", [43, 30.85]],
+			["parent/75", [43, 3.053]],
+			["name/76", [44, 43.887]],
+			["parent/76", [45, 2.745]],
+			["name/77", [2, 26.482]],
+			["parent/77", [45, 2.745]],
+			["name/78", [14, 26.482]],
+			["parent/78", [45, 2.745]],
+			["name/79", [4, 27.738]],
+			["parent/79", [45, 2.745]],
+			["name/80", [6, 29.174]],
+			["parent/80", [45, 2.745]],
+			["name/81", [33, 38.762]],
+			["parent/81", [45, 2.745]],
+			["name/82", [8, 29.174]],
+			["parent/82", [45, 2.745]],
+			["name/83", [46, 38.762]],
+			["parent/83", []],
+			["name/84", [47, 43.887]],
+			["parent/84", [46, 3.836]],
+			["name/85", [2, 26.482]],
+			["parent/85", [48, 2.51]],
+			["name/86", [14, 26.482]],
+			["parent/86", [48, 2.51]],
+			["name/87", [4, 27.738]],
+			["parent/87", [48, 2.51]],
+			["name/88", [6, 29.174]],
+			["parent/88", [48, 2.51]],
+			["name/89", [7, 30.85]],
+			["parent/89", [48, 2.51]],
+			["name/90", [15, 32.863]],
+			["parent/90", [48, 2.51]],
+			["name/91", [8, 29.174]],
+			["parent/91", [48, 2.51]],
+			["name/92", [9, 30.85]],
+			["parent/92", [48, 2.51]],
+			["name/93", [10, 35.385]],
+			["parent/93", [48, 2.51]],
+			["name/94", [49, 38.762]],
+			["parent/94", []],
+			["name/95", [50, 43.887]],
+			["parent/95", [49, 3.836]],
+			["name/96", [4, 27.738]],
+			["parent/96", [51, 2.745]],
+			["name/97", [6, 29.174]],
+			["parent/97", [51, 2.745]],
+			["name/98", [7, 30.85]],
+			["parent/98", [51, 2.745]],
+			["name/99", [15, 32.863]],
+			["parent/99", [51, 2.745]],
+			["name/100", [8, 29.174]],
+			["parent/100", [51, 2.745]],
+			["name/101", [9, 30.85]],
+			["parent/101", [51, 2.745]],
+			["name/102", [10, 35.385]],
+			["parent/102", [51, 2.745]],
+			["name/103", [52, 38.762]],
+			["parent/103", []],
+			["name/104", [53, 43.887]],
+			["parent/104", [52, 3.836]],
+			["name/105", [54, 43.887]],
+			["parent/105", [55, 4.343]],
+			["name/106", [56, 38.762]],
+			["parent/106", []],
+			["name/107", [57, 38.762]],
+			["parent/107", [56, 3.836]],
+			["name/108", [2, 26.482]],
+			["parent/108", [58, 2.621]],
+			["name/109", [43, 30.85]],
+			["parent/109", [58, 2.621]],
+			["name/110", [11, 25.366]],
+			["parent/110", [58, 2.621]],
+			["name/111", [17, 25.366]],
+			["parent/111", [58, 2.621]],
+			["name/112", [14, 26.482]],
+			["parent/112", [58, 2.621]],
+			["name/113", [43, 30.85]],
+			["parent/113", [58, 2.621]],
+			["name/114", [11, 25.366]],
+			["parent/114", [58, 2.621]],
+			["name/115", [17, 25.366]],
+			["parent/115", [58, 2.621]],
+			["name/116", [59, 38.762]],
+			["parent/116", []],
+			["name/117", [57, 38.762]],
+			["parent/117", [59, 3.836]]
+		],
+		"invertedIndex": [
+			["address", { "_index": 25, "name": { "43": {} }, "parent": {} }],
+			[
+				"all",
+				{
+					"_index": 4,
+					"name": { "4": {}, "15": {}, "27": {}, "54": {}, "79": {}, "87": {}, "96": {} },
+					"parent": {}
+				}
+			],
+			["balance", { "_index": 27, "name": { "45": {} }, "parent": {} }],
+			["coin", { "_index": 21, "name": { "35": {}, "41": {} }, "parent": {} }],
+			[
+				"constructor",
+				{
+					"_index": 14,
+					"name": { "14": {}, "26": {}, "39": {}, "53": {}, "67": {}, "78": {}, "86": {}, "112": {} },
+					"parent": {}
+				}
+			],
+			["contracts", { "_index": 0, "name": { "0": {} }, "parent": { "1": {}, "3": {} } }],
+			["contracts\".environmentoptions", { "_index": 3, "name": {}, "parent": { "2": {} } }],
+			[
+				"contracts\".storage",
+				{ "_index": 5, "name": {}, "parent": { "4": {}, "5": {}, "6": {}, "7": {}, "8": {}, "9": {} } }
+			],
+			["count", { "_index": 10, "name": { "9": {}, "93": {}, "102": {} }, "parent": {} }],
+			["createfrompassphrase", { "_index": 37, "name": { "59": {} }, "parent": {} }],
+			[
+				"data",
+				{
+					"_index": 11,
+					"name": { "10": {}, "11": {}, "37": {}, "47": {}, "65": {}, "71": {}, "110": {}, "114": {} },
+					"parent": { "11": {} }
+				}
+			],
+			[
+				"data\".data",
+				{
+					"_index": 12,
+					"name": {},
+					"parent": {
+						"12": {},
+						"13": {},
+						"14": {},
+						"15": {},
+						"16": {},
+						"17": {},
+						"18": {},
+						"19": {},
+						"20": {},
+						"21": {}
+					}
+				}
+			],
+			["env", { "_index": 56, "name": { "106": {} }, "parent": { "107": {} } }],
+			[
+				"env\".environment",
+				{
+					"_index": 58,
+					"name": {},
+					"parent": { "108": {}, "109": {}, "110": {}, "111": {}, "112": {}, "113": {}, "114": {}, "115": {} }
+				}
+			],
+			["environment", { "_index": 57, "name": { "107": {}, "117": {} }, "parent": {} }],
+			["environmentoptions", { "_index": 1, "name": { "1": {} }, "parent": {} }],
+			["findbyaddress", { "_index": 34, "name": { "56": {} }, "parent": {} }],
+			["findbycoin", { "_index": 36, "name": { "58": {} }, "parent": {} }],
+			["findbypublickey", { "_index": 35, "name": { "57": {} }, "parent": {} }],
+			["flush", { "_index": 9, "name": { "8": {}, "20": {}, "32": {}, "92": {}, "101": {} }, "parent": {} }],
+			[
+				"forget",
+				{ "_index": 8, "name": { "7": {}, "19": {}, "31": {}, "82": {}, "91": {}, "100": {} }, "parent": {} }
+			],
+			["frompassphrase", { "_index": 23, "name": { "40": {} }, "parent": {} }],
+			[
+				"get",
+				{ "_index": 6, "name": { "5": {}, "16": {}, "28": {}, "80": {}, "88": {}, "97": {} }, "parent": {} }
+			],
+			["has", { "_index": 15, "name": { "18": {}, "30": {}, "90": {}, "99": {} }, "parent": {} }],
+			["id", { "_index": 39, "name": { "62": {}, "68": {} }, "parent": {} }],
+			["index", { "_index": 59, "name": { "116": {} }, "parent": { "117": {} } }],
+			["key", { "_index": 44, "name": { "76": {} }, "parent": {} }],
+			["localstorage", { "_index": 47, "name": { "84": {} }, "parent": {} }],
+			["make", { "_index": 54, "name": { "105": {} }, "parent": {} }],
+			["name", { "_index": 41, "name": { "63": {}, "69": {} }, "parent": {} }],
+			["namespace", { "_index": 13, "name": { "13": {}, "25": {} }, "parent": {} }],
+			["network", { "_index": 24, "name": { "42": {} }, "parent": {} }],
+			["nonce", { "_index": 28, "name": { "46": {} }, "parent": {} }],
+			["nullstorage", { "_index": 50, "name": { "95": {} }, "parent": {} }],
+			["profile", { "_index": 38, "name": { "60": {}, "61": {} }, "parent": { "61": {} } }],
+			[
+				"profile\".profile",
+				{
+					"_index": 40,
+					"name": {},
+					"parent": {
+						"62": {},
+						"63": {},
+						"64": {},
+						"65": {},
+						"66": {},
+						"67": {},
+						"68": {},
+						"69": {},
+						"70": {},
+						"71": {},
+						"72": {},
+						"73": {}
+					}
+				}
+			],
+			[
+				"profiles",
+				{ "_index": 43, "name": { "74": {}, "75": {}, "109": {}, "113": {} }, "parent": { "75": {} } }
+			],
+			[
+				"profiles\".profiles",
+				{
+					"_index": 45,
+					"name": {},
+					"parent": { "76": {}, "77": {}, "78": {}, "79": {}, "80": {}, "81": {}, "82": {} }
+				}
+			],
+			["publickey", { "_index": 26, "name": { "44": {} }, "parent": {} }],
+			["push", { "_index": 33, "name": { "55": {}, "81": {} }, "parent": {} }],
+			["repository", { "_index": 29, "name": { "49": {} }, "parent": { "50": {} } }],
+			[
+				"repository\".walletrepository",
+				{
+					"_index": 32,
+					"name": {},
+					"parent": {
+						"51": {},
+						"52": {},
+						"53": {},
+						"54": {},
+						"55": {},
+						"56": {},
+						"57": {},
+						"58": {},
+						"59": {}
+					}
+				}
+			],
+			["set", { "_index": 7, "name": { "6": {}, "17": {}, "29": {}, "89": {}, "98": {} }, "parent": {} }],
+			[
+				"settings",
+				{
+					"_index": 17,
+					"name": { "22": {}, "23": {}, "38": {}, "48": {}, "66": {}, "72": {}, "111": {}, "115": {} },
+					"parent": { "23": {} }
+				}
+			],
+			[
+				"settings\".settings",
+				{
+					"_index": 18,
+					"name": {},
+					"parent": {
+						"24": {},
+						"25": {},
+						"26": {},
+						"27": {},
+						"28": {},
+						"29": {},
+						"30": {},
+						"31": {},
+						"32": {}
+					}
+				}
+			],
+			[
+				"storage",
+				{
+					"_index": 2,
+					"name": { "2": {}, "3": {}, "12": {}, "24": {}, "52": {}, "77": {}, "85": {}, "108": {} },
+					"parent": {}
+				}
+			],
+			["storage/factory", { "_index": 52, "name": { "103": {} }, "parent": { "104": {} } }],
+			["storage/factory\".storagefactory", { "_index": 55, "name": {}, "parent": { "105": {} } }],
+			["storage/local", { "_index": 46, "name": { "83": {} }, "parent": { "84": {} } }],
+			[
+				"storage/local\".localstorage",
+				{
+					"_index": 48,
+					"name": {},
+					"parent": {
+						"85": {},
+						"86": {},
+						"87": {},
+						"88": {},
+						"89": {},
+						"90": {},
+						"91": {},
+						"92": {},
+						"93": {}
+					}
+				}
+			],
+			["storage/null", { "_index": 49, "name": { "94": {} }, "parent": { "95": {} } }],
+			[
+				"storage/null\".nullstorage",
+				{
+					"_index": 51,
+					"name": {},
+					"parent": { "96": {}, "97": {}, "98": {}, "99": {}, "100": {}, "101": {}, "102": {} }
+				}
+			],
+			["storagefactory", { "_index": 53, "name": { "104": {} }, "parent": {} }],
+			["tojson", { "_index": 16, "name": { "21": {} }, "parent": {} }],
+			["toobject", { "_index": 42, "name": { "73": {} }, "parent": {} }],
+			["wallet", { "_index": 20, "name": { "34": {}, "36": {} }, "parent": {} }],
+			["walletrepository", { "_index": 30, "name": { "50": {} }, "parent": {} }],
+			["wallets", { "_index": 31, "name": { "51": {}, "64": {}, "70": {} }, "parent": {} }],
+			[
+				"wallets/wallet",
+				{
+					"_index": 19,
+					"name": { "33": {}, "49": {} },
+					"parent": {
+						"34": {},
+						"50": {},
+						"51": {},
+						"52": {},
+						"53": {},
+						"54": {},
+						"55": {},
+						"56": {},
+						"57": {},
+						"58": {},
+						"59": {}
+					}
+				}
+			],
+			[
+				"wallets/wallet\".wallet",
+				{
+					"_index": 22,
+					"name": {},
+					"parent": {
+						"35": {},
+						"36": {},
+						"37": {},
+						"38": {},
+						"39": {},
+						"40": {},
+						"41": {},
+						"42": {},
+						"43": {},
+						"44": {},
+						"45": {},
+						"46": {},
+						"47": {},
+						"48": {}
+					}
+				}
+			]
+		],
+		"pipeline": []
+	}
+}
