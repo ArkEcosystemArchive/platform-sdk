@@ -775,10 +775,12 @@ __metadata:
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^2.30.0
     "@typescript-eslint/parser": ^2.30.0
+    bad-words: ^3.0.3
     bent: ^7.3
     bignumber.js: ^9.0.0
     bip32: ^2.0.5
     bip39: ^3.0.2
+    censorify-it: ^2.1.4
     codecov: ^3.6.5
     cross-env: ^7.0.2
     dayjs: ^1.8
@@ -3742,6 +3744,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node-emoji@npm:1.8.1":
+  version: 1.8.1
+  resolution: "@types/node-emoji@npm:1.8.1"
+  checksum: 2/66678006be9399a7c848167233e651f88a3391e5648995625d539db2d0c68da922c43ab329bd1262dd55e3674cb08ec0e8a9971358cabb0b5076398e64d1aa7e
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*, @types/node@npm:>= 8, @types/node@npm:^13.13.4, @types/node@npm:^13.7.0":
   version: 13.13.4
   resolution: "@types/node@npm:13.13.4"
@@ -4959,6 +4968,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bad-words@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "bad-words@npm:3.0.3"
+  dependencies:
+    badwords-list: ^1.0.0
+  checksum: 2/7d06a82bea47c3087752ffb477a22123e67958717554873b6a842b7f472d5495d9fa5cca3c63851984c4d79e2b8d9128f58e5d65351de1483ea4c0f42108ae22
+  languageName: node
+  linkType: hard
+
+"badwords-list@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "badwords-list@npm:1.0.0"
+  checksum: 2/405b94066500eddc531424a186f92ab6ac3e87f9082cf26a94536b1a30e4444d633394fb8f099f9d375716793d331376c378c74e51715d3190fc1ec468b88e0e
+  languageName: node
+  linkType: hard
+
 "balanced-match@npm:^1.0.0":
   version: 1.0.0
   resolution: "balanced-match@npm:1.0.0"
@@ -5823,6 +5848,15 @@ __metadata:
   version: 0.12.0
   resolution: "caseless@npm:0.12.0"
   checksum: 2/147f48bff9bebf029d7050e2335da3f8d295f26d157edf08d8c3282c804dae04a462c4cd6efa8179755686aa3aeaca5c28f3e7f3559698bc0484c65e46c36c5b
+  languageName: node
+  linkType: hard
+
+"censorify-it@npm:^2.1.4":
+  version: 2.1.4
+  resolution: "censorify-it@npm:2.1.4"
+  dependencies:
+    linkify-it: ^2.2.0
+  checksum: 2/11363cd564288bb38c006cedceaa20163b737011cbbf9e215745c6ea723445efa1d18e6419c414e60208e33eee33a55ce6b070d2ef9417d5b5258b141670b5b5
   languageName: node
   linkType: hard
 
@@ -11735,6 +11769,15 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"linkify-it@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "linkify-it@npm:2.2.0"
+  dependencies:
+    uc.micro: ^1.0.1
+  checksum: 2/7905b34078d1fd85d4310c5c5381164cbdf781835e0cb5ac73d13ff14d0c87347e02655bdff5cec63631949a3b586c5f8e1e81ee0ce62ae799df58178748eb3e
+  languageName: node
+  linkType: hard
+
 "load-json-file@npm:^1.0.0":
   version: 1.1.0
   resolution: "load-json-file@npm:1.1.0"
@@ -11904,6 +11947,13 @@ fsevents@^2.1.2:
   dependencies:
     lodash._reinterpolate: ^3.0.0
   checksum: 2/45546a5b76376b138ef4f01aa2722813127c639428eb9baef3fbac176b509ee2dab5cb9d1ee8267dbeeef8d49371f9a748af3df83649bf8b75fa54993f65b7aa
+  languageName: node
+  linkType: hard
+
+"lodash.toarray@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "lodash.toarray@npm:4.4.0"
+  checksum: 2/f2b8de1812789321335dd5f4cb60625c4b8874cb3b300367d8a22990072459b76eb893feacd243686493393cccd035115cc149563f7aa5123d06d9a3b2825bf1
   languageName: node
   linkType: hard
 
@@ -12910,6 +12960,15 @@ fsevents@^2.1.2:
     chalk: ^1.1.1
     lodash: ^4.2.0
   checksum: 2/d4a402f6acf6d6ae402db8e795edd25d788fec9578a9acc524157cf68776567ca9ba86a92ee3d00505d866bbd9517539fb8e1350175b1e4df491c066b656ba58
+  languageName: node
+  linkType: hard
+
+"node-emoji@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "node-emoji@npm:1.10.0"
+  dependencies:
+    lodash.toarray: ^4.4.0
+  checksum: 2/9c73cd0af03965131225c388339ec5cb3b7239f9d63f15c7755540d265b20a4ecac855fd270af216fb14cdf8232ec4687ab5a52b4b475a681ee1bd74f7562ced
   languageName: node
   linkType: hard
 
@@ -14156,6 +14215,7 @@ fsevents@^2.1.2:
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.3
     "@types/node": ^14.0.5
+    "@types/node-emoji": 1.8.1
     "@types/prettier": ^2.0.1
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^3.0.0
@@ -14172,6 +14232,7 @@ fsevents@^2.1.2:
     jest-extended: ^0.11.5
     lerna: ^3.21.0
     nock: ^12.0.3
+    node-emoji: ^1.10.0
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
     rimraf: ^3.0.2
@@ -17368,6 +17429,13 @@ typescript@^3.9.3:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 2/90e14e645ffddc8ca7045e9710ac13d2e4f00a5160a9bd841ea37834de5515727408a3717d7335af5fb102304042ddbeb9131022c127c85c142a06bfb8e4f848
+  languageName: node
+  linkType: hard
+
+"uc.micro@npm:^1.0.1":
+  version: 1.0.6
+  resolution: "uc.micro@npm:1.0.6"
+  checksum: 2/9dfe5ad0a08059c3eb6ded70b7cfb6fdcb5908b385af9d4717cee7f140571f5c2bb89405093ace07cfd0e283f409495d2feafd321b4b703c1fa3014e129dab27
   languageName: node
   linkType: hard
 

@@ -26,6 +26,7 @@
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/jest": "^25.2.3",
 		"@types/node": "^14.0.5",
+		"@types/node-emoji": "1.8.1",
 		"@types/prettier": "^2.0.1",
 		"@types/rimraf": "^3.0.0",
 		"@typescript-eslint/eslint-plugin": "^3.0.0",
@@ -51,5 +52,8 @@
 	},
 	"workspaces": [
 		"packages/*"
-	]
+	],
+	"dependencies": {
+		"node-emoji": "^1.10.0"
+	}
 }

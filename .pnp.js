@@ -145,6 +145,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:14.0.5"
       ],
       [
+        "@types/node-emoji",
+        "npm:1.8.1"
+      ],
+      [
         "@types/prettier",
         "npm:2.0.1"
       ],
@@ -209,6 +213,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:12.0.3"
       ],
       [
+        "node-emoji",
+        "npm:1.10.0"
+      ],
+      [
         "npm-check-updates",
         "npm:6.0.1"
       ],
@@ -245,6 +253,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/jest", "npm:25.2.3"],
             ["@types/node", "npm:14.0.5"],
+            ["@types/node-emoji", "npm:1.8.1"],
             ["@types/prettier", "npm:2.0.1"],
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.0.0"],
@@ -261,6 +270,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-extended", "npm:0.11.5"],
             ["lerna", "npm:3.21.0"],
             ["nock", "npm:12.0.3"],
+            ["node-emoji", "npm:1.10.0"],
             ["npm-check-updates", "npm:6.0.1"],
             ["prettier", "npm:2.0.5"],
             ["rimraf", "npm:3.0.2"],
@@ -338,10 +348,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:d9fc2a8a86b8ed672825915f5974caf338e1e7f788303b0db7f14ed53aeac54a869474c20388b45c211eacd4abaae6e1334d1a851acbe9724de5d1123322994b#npm:2.30.0"],
             ["@typescript-eslint/parser", "virtual:d9fc2a8a86b8ed672825915f5974caf338e1e7f788303b0db7f14ed53aeac54a869474c20388b45c211eacd4abaae6e1334d1a851acbe9724de5d1123322994b#npm:2.30.0"],
+            ["bad-words", "npm:3.0.3"],
             ["bent", "npm:7.3.0"],
             ["bignumber.js", "npm:9.0.0"],
             ["bip32", "npm:2.0.5"],
             ["bip39", "npm:3.0.2"],
+            ["censorify-it", "npm:2.1.4"],
             ["codecov", "npm:3.6.5"],
             ["cross-env", "npm:7.0.2"],
             ["dayjs", "npm:1.8.25"],
@@ -4333,6 +4345,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/node-emoji", [
+        ["npm:1.8.1", {
+          "packageLocation": "./.yarn/cache/@types-node-emoji-npm-1.8.1-285103c84f-2.zip/node_modules/@types/node-emoji/",
+          "packageDependencies": [
+            ["@types/node-emoji", "npm:1.8.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/normalize-package-data", [
         ["npm:2.4.0", {
           "packageLocation": "./.yarn/cache/@types-normalize-package-data-npm-2.4.0-ed928aaaa8-2.zip/node_modules/@types/normalize-package-data/",
@@ -6018,6 +6039,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["bad-words", [
+        ["npm:3.0.3", {
+          "packageLocation": "./.yarn/cache/bad-words-npm-3.0.3-2db70d1d3f-2.zip/node_modules/bad-words/",
+          "packageDependencies": [
+            ["bad-words", "npm:3.0.3"],
+            ["badwords-list", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["badwords-list", [
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/badwords-list-npm-1.0.0-82abbc9361-2.zip/node_modules/badwords-list/",
+          "packageDependencies": [
+            ["badwords-list", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["balanced-match", [
         ["npm:1.0.0", {
           "packageLocation": "./.yarn/cache/balanced-match-npm-1.0.0-951a2ad706-2.zip/node_modules/balanced-match/",
@@ -6974,6 +7014,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/caseless-npm-0.12.0-e83bc5df83-2.zip/node_modules/caseless/",
           "packageDependencies": [
             ["caseless", "npm:0.12.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["censorify-it", [
+        ["npm:2.1.4", {
+          "packageLocation": "./.yarn/cache/censorify-it-npm-2.1.4-988ff46c72-2.zip/node_modules/censorify-it/",
+          "packageDependencies": [
+            ["censorify-it", "npm:2.1.4"],
+            ["linkify-it", "npm:2.2.0"]
           ],
           "linkType": "HARD",
         }]
@@ -13414,6 +13464,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["linkify-it", [
+        ["npm:2.2.0", {
+          "packageLocation": "./.yarn/cache/linkify-it-npm-2.2.0-3eb4775d11-2.zip/node_modules/linkify-it/",
+          "packageDependencies": [
+            ["linkify-it", "npm:2.2.0"],
+            ["uc.micro", "npm:1.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["load-json-file", [
         ["npm:1.1.0", {
           "packageLocation": "./.yarn/cache/load-json-file-npm-1.1.0-455d5470c2-2.zip/node_modules/load-json-file/",
@@ -13614,6 +13674,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["lodash.templatesettings", "npm:4.2.0"],
             ["lodash._reinterpolate", "npm:3.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["lodash.toarray", [
+        ["npm:4.4.0", {
+          "packageLocation": "./.yarn/cache/lodash.toarray-npm-4.4.0-e7e700a242-2.zip/node_modules/lodash.toarray/",
+          "packageDependencies": [
+            ["lodash.toarray", "npm:4.4.0"]
           ],
           "linkType": "HARD",
         }]
@@ -14700,6 +14769,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["node-alias", "npm:1.0.4"],
             ["chalk", "npm:1.1.3"],
             ["lodash", "npm:4.17.15"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["node-emoji", [
+        ["npm:1.10.0", {
+          "packageLocation": "./.yarn/cache/node-emoji-npm-1.10.0-3bbb4a73cd-2.zip/node_modules/node-emoji/",
+          "packageDependencies": [
+            ["node-emoji", "npm:1.10.0"],
+            ["lodash.toarray", "npm:4.4.0"]
           ],
           "linkType": "HARD",
         }]
@@ -16033,6 +16112,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/jest", "npm:25.2.3"],
             ["@types/node", "npm:14.0.5"],
+            ["@types/node-emoji", "npm:1.8.1"],
             ["@types/prettier", "npm:2.0.1"],
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.0.0"],
@@ -16049,6 +16129,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-extended", "npm:0.11.5"],
             ["lerna", "npm:3.21.0"],
             ["nock", "npm:12.0.3"],
+            ["node-emoji", "npm:1.10.0"],
             ["npm-check-updates", "npm:6.0.1"],
             ["prettier", "npm:2.0.5"],
             ["rimraf", "npm:3.0.2"],
@@ -19532,6 +19613,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["vscode-languageserver", "npm:5.3.0-next.10"],
             ["vscode-languageserver-protocol", "npm:3.15.3"],
             ["vscode-uri", "npm:1.0.8"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["uc.micro", [
+        ["npm:1.0.6", {
+          "packageLocation": "./.yarn/cache/uc.micro-npm-1.0.6-36f3dc2fc4-2.zip/node_modules/uc.micro/",
+          "packageDependencies": [
+            ["uc.micro", "npm:1.0.6"]
           ],
           "linkType": "HARD",
         }]

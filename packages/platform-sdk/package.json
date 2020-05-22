@@ -21,10 +21,12 @@
 	},
 	"dependencies": {
 		"@hapi/joi": "^17.1.1",
+		"bad-words": "^3.0.3",
 		"bent": "^7.3",
 		"bignumber.js": "^9.0.0",
 		"bip32": "^2.0.5",
 		"bip39": "^3.0.2",
+		"censorify-it": "^2.1.4",
 		"dayjs": "^1.8",
 		"dot-prop": "^5.2.0",
 		"type-fest": "^0.13.1"
