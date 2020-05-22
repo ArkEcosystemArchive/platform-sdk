@@ -44,6 +44,6 @@ export class Settings {
 	}
 
 	public async flush(): Promise<void> {
-		this.#storage.set(this.#namespace, {});
+		await this.#storage.set(this.#namespace, {});
 	}
 }
