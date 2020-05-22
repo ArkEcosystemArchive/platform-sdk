@@ -1,5 +1,5 @@
 export interface EnvironmentOptions {
-	storage: string;
+	storage: string | Storage;
 	migrations?: Record<string, any>;
 }
 

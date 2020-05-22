@@ -13,7 +13,12 @@ export class Environment {
 	readonly #migrator: Migrator;
 
 	public constructor(options: EnvironmentOptions) {
-		this.#storage = StorageFactory.make(options.storage);
+		if (typeof options.storage === "string") {
+			this.#storage = StorageFactory.make(options.storage);
+		} else {
+			this.#storage = options.storage;
+		}
+
 		this.#profiles = new Profiles(this.#storage);
 		this.#data = new Data(this.#storage, "app");
 		this.#settings = new Settings(this.#storage, "app");
