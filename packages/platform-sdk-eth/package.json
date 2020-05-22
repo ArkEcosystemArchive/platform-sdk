@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-eth",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.38",
+	"version": "0.9.41",
 	"contributors": [],
 	"license": "MIT",
 	"files": [

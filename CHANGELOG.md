@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.41 - 2020-05-22
+
+### Added
+
+-   Implement `Migrator` for data migrations (a9e38b25, @faustbrian)
+
+### Changed
+
+-   Change duplicate error wording (7eded51e, @faustbrian)
+-   Add allowed signing methods to manifest (a6f2c7f9, @faustbrian)
+
 ## 0.9.38 - 2020-05-22
 
 ### Added
