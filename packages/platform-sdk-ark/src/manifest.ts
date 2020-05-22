@@ -177,4 +177,9 @@ export const manifest = {
 			htlcRefund: true,
 		},
 	},
+	signingMethods: {
+		passphrase: true,
+		privateKey: false,
+		wif: true,
+	},
 };

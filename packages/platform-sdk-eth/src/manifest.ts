@@ -144,4 +144,9 @@ export const manifest = {
 			htlcRefund: false,
 		},
 	},
+	signingMethods: {
+		passphrase: true,
+		privateKey: true,
+		wif: false,
+	},
 };

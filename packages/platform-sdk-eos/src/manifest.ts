@@ -223,4 +223,9 @@ export const manifest = {
 			htlcRefund: false,
 		},
 	},
+	signingMethods: {
+		passphrase: false,
+		privateKey: true,
+		wif: false,
+	},
 };
