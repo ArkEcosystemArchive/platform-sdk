@@ -16,15 +16,18 @@ describe("Profiles", () => {
 
 		await expect(subject.all()).resolves.toHaveLength(1);
 		await expect(subject.get(john.id())).resolves.toBeInstanceOf(Profile);
+		await expect(subject.get(john.name())).resolves.toBeInstanceOf(Profile);
 
 		const jane = await subject.push("Jane");
 
 		await expect(subject.all()).resolves.toHaveLength(2);
 		await expect(subject.get(jane.id())).resolves.toBeInstanceOf(Profile);
+		await expect(subject.get(jane.name())).resolves.toBeInstanceOf(Profile);
 
 		await subject.forget(jane.id());
 
 		await expect(subject.all()).resolves.toHaveLength(1);
 		await expect(subject.get(jane.id())).rejects.toThrow("No profile found for");
+		await expect(subject.get(jane.name())).rejects.toThrow("No profile found for");
 	});
 });

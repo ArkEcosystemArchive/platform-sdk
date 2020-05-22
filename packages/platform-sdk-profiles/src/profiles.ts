@@ -30,7 +30,7 @@ export class Profiles {
 	public async get(id: string): Promise<Profile> {
 		const profiles: Profile[] = await this.all();
 
-		const result: Profile | undefined = profiles.find((item: Profile) => item.id() === id);
+		const result: Profile | undefined = profiles.find((item: Profile) => [item.name(), item.id()].includes(id));
 
 		if (!result) {
 			throw new Error(`No profile found for [${id}].`);
