@@ -1,9 +1,13 @@
 import { Numeral } from "../src/numeral";
 
 test("#format", () => {
-	expect(Numeral.make("fi-FI").format(5000)).toBe("5,000");
+	expect(Numeral.make("en").format(5000)).toBe("5,000");
 });
 
-test("#formatCurrency", () => {
-	expect(Numeral.make("fi-FI").formatCurrency(5000, "EUR")).toBe("€5,000.00");
+test("#formatAsCurrency", () => {
+	expect(Numeral.make("en").formatAsCurrency(5000, "EUR")).toBe("€5,000.00");
+});
+
+test("#formatAsUnit", () => {
+	expect(Numeral.make("en").formatAsUnit(5000, "kilobyte")).toBe("5,000 kB");
 });

@@ -15,10 +15,17 @@ export class Numeral {
 		return new Intl.NumberFormat(this.#locale).format(value);
 	}
 
-	public formatCurrency(value: number, currency: string): string {
+	public formatAsCurrency(value: number, currency: string): string {
 		return new Intl.NumberFormat(this.#locale, {
 			...this.#options,
 			...{ style: "currency", currency },
+		}).format(value);
+	}
+
+	public formatAsUnit(value: number, unit: string): string {
+		return new Intl.NumberFormat(this.#locale, {
+			...this.#options,
+			...{ style: "unit", unit },
 		}).format(value);
 	}
 }
