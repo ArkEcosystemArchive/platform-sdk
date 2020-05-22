@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.42 - 2020-05-22
+
+### Added
+
+-   Allow usage of custom storage implementations (586218bc, @faustbrian)
+
 ## 0.9.41 - 2020-05-22
 
 ### Added
