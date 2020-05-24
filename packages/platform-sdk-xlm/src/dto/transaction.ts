@@ -14,7 +14,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return +new Date(this.data.created_at);
 	}
 
-	public confirmations(): Utils.BigNumber {
+	public confirmations(): BigNumber {
 		throw new Exceptions.NotImplemented(this.constructor.name, "confirmations");
 	}
 
@@ -26,13 +26,13 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.to || this.data.operation.to;
 	}
 
-	public amount(): Utils.BigNumber {
-		return Utils.BigNumber.make((this.data.amount || this.data.operation.amount) * 1e8);
+	public amount(): BigNumber {
+		return BigNumber.make((this.data.amount || this.data.operation.amount) * 1e8);
 	}
 
 	// todo: with the "transaction" method we get a nonce but with "transactions" it isn't available
-	public fee(): Utils.BigNumber {
-		return Utils.BigNumber.make((this.data.fee_charged || 0) * 1e8);
+	public fee(): BigNumber {
+		return BigNumber.make((this.data.fee_charged || 0) * 1e8);
 	}
 
 	public memo(): string | undefined {

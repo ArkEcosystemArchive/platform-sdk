@@ -8,10 +8,10 @@ import { MarketTransformer } from "./transformers/market-transformer";
 export class PriceTracker implements Contracts.PriceTracker {
 	private readonly tokenLookup: Contracts.KeyValuePair = {};
 
-	readonly #client: Utils.Http;
+	readonly #client: Http;
 
 	public constructor() {
-		this.#client = Utils.Http.new("https://api.coingecko.com/api/v3");
+		this.#client = Http.new("https://api.coingecko.com/api/v3");
 	}
 
 	public async verifyToken(token: string): Promise<boolean> {

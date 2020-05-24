@@ -11,7 +11,7 @@ export class PublicKey implements Contracts.PublicKey {
 	}
 
 	public async fromPassphrase(passphrase: string): Promise<string> {
-		const privateKey = Utils.Buffoon.fromHex(await this.#privateKey.fromPassphrase(passphrase));
+		const privateKey = Buffoon.fromHex(await this.#privateKey.fromPassphrase(passphrase));
 		const keyPair = Wallet.fromPrivateKey(privateKey);
 
 		return keyPair.getPublicKey().toString("hex");

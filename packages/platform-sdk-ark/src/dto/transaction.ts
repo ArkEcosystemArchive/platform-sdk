@@ -38,8 +38,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.timestamp.epoch;
 	}
 
-	public confirmations(): Utils.BigNumber {
-		return Utils.BigNumber.make(this.data.confirmations);
+	public confirmations(): BigNumber {
+		return BigNumber.make(this.data.confirmations);
 	}
 
 	public sender(): string {
@@ -50,19 +50,19 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.recipient;
 	}
 
-	public amount(): Utils.BigNumber {
+	public amount(): BigNumber {
 		if (this.data.typeGroup === 0 && this.data.type === 6) {
 			return this.data.asset.payments.reduce(
-				(sum: Utils.BigNumber, { amount }: { amount: string }) => sum.plus(amount),
-				Utils.BigNumber.ZERO,
+				(sum: BigNumber, { amount }: { amount: string }) => sum.plus(amount),
+				BigNumber.ZERO,
 			);
 		}
 
-		return Utils.BigNumber.make(this.data.amount);
+		return BigNumber.make(this.data.amount);
 	}
 
-	public fee(): Utils.BigNumber {
-		return Utils.BigNumber.make(this.data.fee);
+	public fee(): BigNumber {
+		return BigNumber.make(this.data.fee);
 	}
 
 	public memo(): string | undefined {

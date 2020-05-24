@@ -16,7 +16,7 @@ export class TransactionService implements Contracts.TransactionService {
 			connection = new RippleAPI({ server: config.get<string>("peer") });
 		} catch {
 			connection = new RippleAPI({
-				server: Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts),
+				server: Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts),
 			});
 		}
 
@@ -56,10 +56,7 @@ export class TransactionService implements Contracts.TransactionService {
 			{ maxLedgerVersionOffset: 5 },
 		);
 
-		const { signedTransaction } = this.#connection.sign(
-			prepared.txJSON,
-			Utils.BIP39.normalize(input.sign.passphrase),
-		);
+		const { signedTransaction } = this.#connection.sign(prepared.txJSON, BIP39.normalize(input.sign.passphrase));
 
 		return signedTransaction;
 	}

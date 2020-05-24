@@ -96,11 +96,11 @@ describe("ClientService", function () {
 			expect(result.id()).toBe("F4AB442A6D4CBB935D66E1DA7309A5FC71C7143ED4049053EC14E3875B0CF9BF");
 			expect(result.type()).toBe("transfer");
 			expect(result.timestamp()).toBe(1363132610000);
-			expect(result.confirmations()).toEqual(Utils.BigNumber.ZERO);
+			expect(result.confirmations()).toEqual(BigNumber.ZERO);
 			expect(result.sender()).toBe("r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59");
 			expect(result.recipient()).toBe("rMH4UxPrbuMa1spCBR98hLLyNJp4d8p4tM");
-			expect(result.amount()).toEqual(Utils.BigNumber.make(100000));
-			expect(result.fee()).toEqual(Utils.BigNumber.make(1000));
+			expect(result.amount()).toEqual(BigNumber.make(100000));
+			expect(result.fee()).toEqual(BigNumber.make(1000));
 			expect(result.memo()).toBeUndefined();
 		});
 	});
@@ -117,11 +117,11 @@ describe("ClientService", function () {
 			expect(result.data.first().id()).toBe("99404A34E8170319521223A6C604AF48B9F1E3000C377E6141F9A1BF60B0B865");
 			expect(result.data.first().type()).toBe("transfer");
 			expect(result.data.first().timestamp()).toBeUndefined();
-			expect(result.data.first().confirmations()).toEqual(Utils.BigNumber.ZERO);
+			expect(result.data.first().confirmations()).toEqual(BigNumber.ZERO);
 			expect(result.data.first().sender()).toBe("r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59");
 			expect(result.data.first().recipient()).toBe("rMH4UxPrbuMa1spCBR98hLLyNJp4d8p4tM");
-			expect(result.data.first().amount()).toEqual(Utils.BigNumber.make(100000));
-			expect(result.data.first().fee()).toEqual(Utils.BigNumber.make(1000));
+			expect(result.data.first().amount()).toEqual(BigNumber.make(100000));
+			expect(result.data.first().fee()).toEqual(BigNumber.make(1000));
 			expect(result.data.first().memo()).toBeUndefined();
 		});
 	});
@@ -133,7 +133,7 @@ describe("ClientService", function () {
 			expect(result).toBeInstanceOf(WalletData);
 			expect(result.address()).toEqual("rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP");
 			// expect(result.publicKey()).toBeUndefined();
-			expect(result.balance()).toEqual(Utils.BigNumber.make("92291324300"));
+			expect(result.balance()).toEqual(BigNumber.make("92291324300"));
 		});
 	});
 

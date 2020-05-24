@@ -28,11 +28,11 @@ describe("ClientService", function () {
 			expect(result.data.first().id()).toBe("718bc4cfc50c361a8afe032e2c170dfebadce16ea72228a57634413b62b7cf24");
 			expect(result.data.first().type()).toBe("transfer");
 			expect(result.data.first().timestamp()).toBe(1588930966);
-			expect(result.data.first().confirmations()).toEqual(Utils.BigNumber.ZERO);
+			expect(result.data.first().confirmations()).toEqual(BigNumber.ZERO);
 			expect(result.data.first().sender()).toBe("AStJyBXGGBK6bwrRfRUHSjp993PB5C9QgF");
 			expect(result.data.first().recipient()).toBe("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");
-			expect(result.data.first().amount()).toEqual(Utils.BigNumber.make(1));
-			expect(result.data.first().fee()).toEqual(Utils.BigNumber.ZERO);
+			expect(result.data.first().amount()).toEqual(BigNumber.make(1));
+			expect(result.data.first().fee()).toEqual(BigNumber.ZERO);
 			expect(result.data.first().memo()).toBeUndefined();
 		});
 	});

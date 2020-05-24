@@ -65,6 +65,6 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	private getLedgerAccount(path: string): LedgerAccount {
-		return new LedgerAccount().coinIndex(SupportedCoin.LISK).account(Utils.BIP44.parse(path).account);
+		return new LedgerAccount().coinIndex(SupportedCoin.LISK).account(BIP44.parse(path).account);
 	}
 }

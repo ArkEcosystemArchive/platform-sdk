@@ -126,10 +126,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.Http.new(this.#baseUrl).get(path, query);
+		return Http.new(this.#baseUrl).get(path, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.Http.new(this.#baseUrl).post(path, body);
+		return Http.new(this.#baseUrl).post(path, body);
 	}
 }

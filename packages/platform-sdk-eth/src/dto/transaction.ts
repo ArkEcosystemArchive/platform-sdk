@@ -14,8 +14,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return undefined;
 	}
 
-	public confirmations(): Utils.BigNumber {
-		return Utils.BigNumber.make(0);
+	public confirmations(): BigNumber {
+		return BigNumber.make(0);
 	}
 
 	public sender(): string {
@@ -26,12 +26,12 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.to;
 	}
 
-	public amount(): Utils.BigNumber {
-		return Utils.BigNumber.make(this.data.value);
+	public amount(): BigNumber {
+		return BigNumber.make(this.data.value);
 	}
 
-	public fee(): Utils.BigNumber {
-		return Utils.BigNumber.make(this.data.gas);
+	public fee(): BigNumber {
+		return BigNumber.make(this.data.gas);
 	}
 
 	public memo(): string | undefined {

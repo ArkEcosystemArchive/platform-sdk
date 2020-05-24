@@ -46,9 +46,9 @@ test("Wallet#publicKey", async () => {
 });
 
 test("Wallet#balance", async () => {
-	expect(subject.balance()).toEqual(Utils.BigNumber.make("55827093444556"));
+	expect(subject.balance()).toEqual(BigNumber.make("55827093444556"));
 });
 
 test("Wallet#nonce", async () => {
-	expect(subject.nonce()).toEqual(Utils.BigNumber.make("111932"));
+	expect(subject.nonce()).toEqual(BigNumber.make("111932"));
 });

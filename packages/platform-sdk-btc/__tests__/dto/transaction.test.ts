@@ -13,11 +13,11 @@ describe("TransactionData", function () {
 		expect(result.id()).toBe("68ad0264053ab94fa7749e78d2f728911d166ca9af8dbb68e6ee264958ca7f32");
 		expect(result.type()).toBe("transfer");
 		expect(result.timestamp()).toBe(1561095453000);
-		expect(result.confirmations()).toEqual(Utils.BigNumber.make(159414));
+		expect(result.confirmations()).toEqual(BigNumber.make(159414));
 		// expect(result.sender()).toBe("...");
 		// expect(result.recipient()).toBe("...");
-		expect(result.amount()).toEqual(Utils.BigNumber.make(3050000));
-		expect(result.fee()).toEqual(Utils.BigNumber.make(10000));
+		expect(result.amount()).toEqual(BigNumber.make(3050000));
+		expect(result.fee()).toEqual(BigNumber.make(10000));
 		expect(result.memo()).toBeUndefined();
 	});
 });

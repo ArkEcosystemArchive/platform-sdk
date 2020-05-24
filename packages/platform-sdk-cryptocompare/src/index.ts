@@ -6,10 +6,10 @@ import { HistoricalVolumeTransformer } from "./transformers/historical-volume-tr
 import { MarketTransformer } from "./transformers/market-transformer";
 
 export class PriceTracker implements Contracts.PriceTracker {
-	readonly #client: Utils.Http;
+	readonly #client: Http;
 
 	public constructor() {
-		this.#client = Utils.Http.new("https://min-api.cryptocompare.com");
+		this.#client = Http.new("https://min-api.cryptocompare.com");
 	}
 
 	public async verifyToken(token: string): Promise<boolean> {

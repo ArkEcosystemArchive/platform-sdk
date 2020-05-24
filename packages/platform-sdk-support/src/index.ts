@@ -6,4 +6,3 @@ export * from "./bip44";
 export * from "./buffoon";
 export * from "./currency-formatter";
 export * from "./http";
-export * from "./normalise";

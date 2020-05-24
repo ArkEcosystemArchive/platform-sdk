@@ -20,7 +20,7 @@ export class Keys implements Contracts.Keys {
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {
-		const wallet: Wallet = Wallet.fromPrivateKey(Utils.Buffoon.fromHex(privateKey));
+		const wallet: Wallet = Wallet.fromPrivateKey(Buffoon.fromHex(privateKey));
 
 		return {
 			publicKey: wallet.getPublicKey().toString("hex"),

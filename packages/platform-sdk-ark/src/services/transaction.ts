@@ -18,9 +18,7 @@ export class TransactionService implements Contracts.TransactionService {
 		try {
 			connection = new Connection(config.get<string>("peer"));
 		} catch {
-			connection = new Connection(
-				`${Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`,
-			);
+			connection = new Connection(`${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
 		}
 
 		const { body: crypto } = await connection.api("node").crypto();
@@ -57,7 +55,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("secondSignature", input, options, ({ transaction, data }) =>
-			transaction.signatureAsset(Utils.BIP39.normalize(data.passphrase)),
+			transaction.signatureAsset(BIP39.normalize(data.passphrase)),
 		);
 	}
 
@@ -171,7 +169,7 @@ export class TransactionService implements Contracts.TransactionService {
 			let address: string | undefined;
 
 			if (input.sign.passphrase) {
-				address = await this.#identity.address().fromPassphrase(Utils.BIP39.normalize(input.sign.passphrase));
+				address = await this.#identity.address().fromPassphrase(BIP39.normalize(input.sign.passphrase));
 			}
 
 			if (input.sign.wif) {
@@ -186,7 +184,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			const { body } = await this.#connection.api("wallets").get(address);
 
-			transaction.nonce(Utils.BigNumber.make(body.data.nonce).plus(1).toFixed());
+			transaction.nonce(BigNumber.make(body.data.nonce).plus(1).toFixed());
 		}
 
 		if (input.data && input.data.amount) {
@@ -214,16 +212,16 @@ export class TransactionService implements Contracts.TransactionService {
 
 		if (Array.isArray(input.sign.passphrases)) {
 			for (let i = 0; i < input.sign.passphrases.length; i++) {
-				transaction.multiSign(Utils.BIP39.normalize(input.sign.passphrases[i]), i);
+				transaction.multiSign(BIP39.normalize(input.sign.passphrases[i]), i);
 			}
 		}
 
 		if (input.sign.passphrase) {
-			transaction.sign(Utils.BIP39.normalize(input.sign.passphrase));
+			transaction.sign(BIP39.normalize(input.sign.passphrase));
 		}
 
 		if (input.sign.secondPassphrase) {
-			transaction.secondSign(Utils.BIP39.normalize(input.sign.secondPassphrase));
+			transaction.secondSign(BIP39.normalize(input.sign.secondPassphrase));
 		}
 
 		if (input.sign.wif) {

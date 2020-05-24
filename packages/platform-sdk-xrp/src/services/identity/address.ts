@@ -3,7 +3,7 @@ import { deriveAddress, deriveKeypair } from "ripple-keypairs";
 
 export class Address implements Contracts.Address {
 	public async fromPassphrase(passphrase: string): Promise<string> {
-		return deriveAddress(deriveKeypair(Utils.BIP39.normalize(passphrase)).publicKey);
+		return deriveAddress(deriveKeypair(BIP39.normalize(passphrase)).publicKey);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

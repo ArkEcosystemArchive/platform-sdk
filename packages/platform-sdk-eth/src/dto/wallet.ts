@@ -10,11 +10,11 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return undefined;
 	}
 
-	public balance(): Utils.BigNumber {
-		return Utils.BigNumber.make(this.data.balance);
+	public balance(): BigNumber {
+		return BigNumber.make(this.data.balance);
 	}
 
-	public nonce(): Utils.BigNumber {
-		return Utils.BigNumber.make(parseInt(this.data.nonce, 16));
+	public nonce(): BigNumber {
+		return BigNumber.make(parseInt(this.data.nonce, 16));
 	}
 }

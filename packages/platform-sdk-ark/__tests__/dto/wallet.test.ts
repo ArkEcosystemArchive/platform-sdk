@@ -19,7 +19,7 @@ describe("WalletData", function () {
 	});
 
 	test("#balance", () => {
-		expect(subject.balance()).toEqual(Utils.BigNumber.make("55827093444556"));
+		expect(subject.balance()).toEqual(BigNumber.make("55827093444556"));
 	});
 
 	test("#toObject", () => {

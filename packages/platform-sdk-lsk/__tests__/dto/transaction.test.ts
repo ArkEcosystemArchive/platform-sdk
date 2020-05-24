@@ -22,7 +22,7 @@ describe("TransactionData", function () {
 	});
 
 	test("#confirmations", () => {
-		expect(subject.confirmations()).toEqual(Utils.BigNumber.make(35754));
+		expect(subject.confirmations()).toEqual(BigNumber.make(35754));
 	});
 
 	test("#sender", () => {
@@ -34,11 +34,11 @@ describe("TransactionData", function () {
 	});
 
 	test("#amount", () => {
-		expect(subject.amount()).toEqual(Utils.BigNumber.make("1"));
+		expect(subject.amount()).toEqual(BigNumber.make("1"));
 	});
 
 	test("#fee", () => {
-		expect(subject.fee()).toEqual(Utils.BigNumber.make("10000000"));
+		expect(subject.fee()).toEqual(BigNumber.make("10000000"));
 	});
 
 	test("#memo", () => {

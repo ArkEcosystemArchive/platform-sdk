@@ -26,7 +26,7 @@ const sortObject = (obj) => {
 };
 
 export const createSignedTransaction = (stdSignMsg, keyPair) => {
-	const privateKey: Buffer = Utils.Buffoon.fromHex(keyPair.privateKey);
+	const privateKey: Buffer = Buffoon.fromHex(keyPair.privateKey);
 
 	return {
 		msg: stdSignMsg.msgs,
@@ -40,7 +40,7 @@ export const createSignedTransaction = (stdSignMsg, keyPair) => {
 				sequence: stdSignMsg.sequence,
 				pub_key: {
 					type: "tendermint/PubKeySecp256k1",
-					value: Utils.Buffoon.toBase64(secp256k1.publicKeyCreate(privateKey)),
+					value: Buffoon.toBase64(secp256k1.publicKeyCreate(privateKey)),
 				},
 			},
 		],

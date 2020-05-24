@@ -58,13 +58,13 @@ export class TransactionService implements Contracts.TransactionService {
 				gasPrice: Web3.utils.toHex(input.fee),
 				to: input.data.to,
 				value: Web3.utils.toHex(Web3.utils.toWei(`${input.data.amount}`, "wei")),
-				// data: Utils.Buffoon.fromUTF8(input.to.memo),
+				// data: Buffoon.fromUTF8(input.to.memo),
 			};
 		}
 
 		const transaction: Transaction = new Transaction(data, { chain: this.#chain });
 
-		transaction.sign(Utils.Buffoon.fromHex(privateKey));
+		transaction.sign(Buffoon.fromHex(privateKey));
 
 		return "0x" + transaction.serialize().toString("hex");
 	}
@@ -140,7 +140,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.Http.new(this.#peer).get(path, query);
+		return Http.new(this.#peer).get(path, query);
 	}
 
 	private createContract(contractAddress: string) {

@@ -11,7 +11,7 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPassphrase(passphrase: string): Promise<string> {
-		const child = Utils.BIP44.deriveChild(passphrase, { coinType: this.#slip44, index: 0 });
+		const child = BIP44.deriveChild(passphrase, { coinType: this.#slip44, index: 0 });
 		const words = bech32.toWords(child.identifier);
 
 		return bech32.encode(this.#bech32, words);

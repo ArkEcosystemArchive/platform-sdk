@@ -35,11 +35,11 @@ describe("ClientService", function () {
 			expect(result.id()).toBe("264226cb06af3b86299031884175155e67a02e0a8ad0b3ab3a88b409a8c09d5c");
 			expect(result.type()).toBe("transfer");
 			expect(result.timestamp()).toBe(1554840865000);
-			// expect(result.confirmations()).toEqual(Utils.BigNumber.make(159414));
+			// expect(result.confirmations()).toEqual(BigNumber.make(159414));
 			expect(result.sender()).toBe("GAHXEI3BVFOBDHWLC4TJKCGTLY6VMTKMRRWWPKNPPULUC7E3PD63ENKO");
 			expect(result.recipient()).toBe("GB2V4J7WTTKLIN5O3QPUAQCOLLIIULJM3FHHAQ7GEQ5EH53BXXQ47HU3");
-			expect(result.amount()).toEqual(Utils.BigNumber.make("100000000"));
-			expect(result.fee()).toEqual(Utils.BigNumber.make("10000000000"));
+			expect(result.amount()).toEqual(BigNumber.make("100000000"));
+			expect(result.fee()).toEqual(BigNumber.make("10000000000"));
 			expect(result.memo()).toBeUndefined();
 		});
 	});
@@ -60,11 +60,11 @@ describe("ClientService", function () {
 			expect(data.first().id()).toBe("7cea6abe90654578b42ee696e823187d89d91daa157a1077b542ee7c77413ce3");
 			expect(data.first().type()).toBe("transfer");
 			expect(data.first().timestamp()).toBe(1554505662000);
-			// expect(data.first().confirmations()).toEqual(Utils.BigNumber.make(159414));
+			// expect(data.first().confirmations()).toEqual(BigNumber.make(159414));
 			expect(data.first().sender()).toBe("GAGLYFZJMN5HEULSTH5CIGPOPAVUYPG5YSWIYDJMAPIECYEBPM2TA3QR");
 			expect(data.first().recipient()).toBe("GBYUUJHG6F4EPJGNLERINATVQLNDOFRUD7SGJZ26YZLG5PAYLG7XUSGF");
-			expect(data.first().amount()).toEqual(Utils.BigNumber.make("100000000000000"));
-			// expect(data.first().fee()).toEqual(Utils.BigNumber.make("10000000000"));
+			expect(data.first().amount()).toEqual(BigNumber.make("100000000000000"));
+			// expect(data.first().fee()).toEqual(BigNumber.make("10000000000"));
 			expect(data.first().memo()).toBeUndefined();
 		});
 	});
@@ -81,8 +81,8 @@ describe("ClientService", function () {
 			expect(result).toBeInstanceOf(WalletData);
 			expect(result.address()).toBe("GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB");
 			expect(result.publicKey()).toBe("GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB");
-			expect(result.balance()).toEqual(Utils.BigNumber.make("100000000000000"));
-			expect(result.nonce()).toEqual(Utils.BigNumber.make("7275146318446606"));
+			expect(result.balance()).toEqual(BigNumber.make("100000000000000"));
+			expect(result.nonce()).toEqual(BigNumber.make("7275146318446606"));
 		});
 	});
 

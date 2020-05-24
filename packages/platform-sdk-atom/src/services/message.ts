@@ -26,7 +26,7 @@ export class MessageService implements Contracts.MessageService {
 			message: input.message,
 			signer: publicKey,
 			signature: secp256k1
-				.sign(HashAlgorithms.sha256(input.message), Utils.Buffoon.fromHex(privateKey))
+				.sign(HashAlgorithms.sha256(input.message), Buffoon.fromHex(privateKey))
 				.toString("hex"),
 		};
 	}
@@ -34,8 +34,8 @@ export class MessageService implements Contracts.MessageService {
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		return secp256k1.verify(
 			HashAlgorithms.sha256(input.message),
-			Utils.Buffoon.fromHex(input.signature),
-			Utils.Buffoon.fromHex(input.signer),
+			Buffoon.fromHex(input.signature),
+			Buffoon.fromHex(input.signer),
 		);
 	}
 }

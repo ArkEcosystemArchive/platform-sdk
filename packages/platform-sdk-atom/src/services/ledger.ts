@@ -38,14 +38,14 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
-		const pathArray: number[] = Object.values(Utils.BIP44.parse(path));
+		const pathArray: number[] = Object.values(BIP44.parse(path));
 		const { compressed_pk } = await this.#transport.publicKey(pathArray);
 
 		return compressed_pk.toString("hex");
 	}
 
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
-		const pathArray: number[] = Object.values(Utils.BIP44.parse(path));
+		const pathArray: number[] = Object.values(BIP44.parse(path));
 		const { signature } = await this.#transport.sign(pathArray, payload.toString());
 
 		return signature.toString("hex");

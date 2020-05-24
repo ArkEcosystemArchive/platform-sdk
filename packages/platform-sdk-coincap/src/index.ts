@@ -7,10 +7,10 @@ import { MarketTransformer } from "./transformers/market-transformer";
 export class PriceTracker implements Contracts.PriceTracker {
 	private readonly tokenLookup: Contracts.KeyValuePair = {};
 
-	readonly #client: Utils.Http;
+	readonly #client: Http;
 
 	public constructor() {
-		this.#client = Utils.Http.new("https://api.coincap.io/v2");
+		this.#client = Http.new("https://api.coincap.io/v2");
 	}
 
 	public async verifyToken(token: string): Promise<boolean> {

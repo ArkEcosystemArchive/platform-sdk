@@ -19,8 +19,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return +new Date(this.data.outcome.timestamp);
 	}
 
-	public confirmations(): Utils.BigNumber {
-		return Utils.BigNumber.ZERO;
+	public confirmations(): BigNumber {
+		return BigNumber.ZERO;
 	}
 
 	public sender(): string {
@@ -31,16 +31,16 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.specification.destination.address;
 	}
 
-	public amount(): Utils.BigNumber {
+	public amount(): BigNumber {
 		const satoshi: string = new BN(this.data.outcome.deliveredAmount.value).times(1e8).toFixed();
 
-		return Utils.BigNumber.make(satoshi);
+		return BigNumber.make(satoshi);
 	}
 
-	public fee(): Utils.BigNumber {
+	public fee(): BigNumber {
 		const satoshi: string = new BN(this.data.outcome.fee).times(1e8).toFixed();
 
-		return Utils.BigNumber.make(satoshi);
+		return BigNumber.make(satoshi);
 	}
 
 	public memo(): string | undefined {

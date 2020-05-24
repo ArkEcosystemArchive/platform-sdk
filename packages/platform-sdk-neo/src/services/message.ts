@@ -12,7 +12,7 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const passphrase: string = Utils.BIP39.normalize(input.passphrase);
+		const passphrase: string = BIP39.normalize(input.passphrase);
 		const signature = Neon.sign.message(input.message, passphrase);
 
 		return { message: input.message, signer: new wallet.Account(passphrase).publicKey, signature };

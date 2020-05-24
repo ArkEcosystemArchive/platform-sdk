@@ -43,7 +43,7 @@ export class TransactionService implements Contracts.TransactionService {
 			...input,
 			...{
 				data: {
-					secondPassphrase: Utils.BIP39.normalize(input.data.passphrase),
+					secondPassphrase: BIP39.normalize(input.data.passphrase),
 				},
 			},
 		});
@@ -138,11 +138,11 @@ export class TransactionService implements Contracts.TransactionService {
 		// todo: support multisignature
 
 		if (input.sign.passphrase) {
-			struct.passphrase = Utils.BIP39.normalize(input.sign.passphrase);
+			struct.passphrase = BIP39.normalize(input.sign.passphrase);
 		}
 
 		if (input.sign.secondPassphrase) {
-			struct.secondPassphrase = Utils.BIP39.normalize(input.sign.secondPassphrase);
+			struct.secondPassphrase = BIP39.normalize(input.sign.secondPassphrase);
 		}
 
 		if (this.#network === manifest.networks.betanet.crypto.networkId) {

@@ -17,7 +17,7 @@ export class PeerService implements Contracts.PeerService {
 
 		try {
 			if (peer && isUrl(peer)) {
-				const response = await Utils.Http.new(peer).get("peers");
+				const response = await Http.new(peer).get("peers");
 
 				for (const seed of response.data) {
 					let port = 4003;
@@ -57,7 +57,7 @@ export class PeerService implements Contracts.PeerService {
 	public async search(options: Contracts.KeyValuePair = {}): Promise<Contracts.PeerResponse[]> {
 		const seed: string = this.#seeds[Math.floor(Math.random() * this.#seeds.length)];
 
-		const body: any = await Utils.Http.new(seed).get("api/peers");
+		const body: any = await Http.new(seed).get("api/peers");
 
 		let peers: Contracts.PeerResponse[] = body.data;
 

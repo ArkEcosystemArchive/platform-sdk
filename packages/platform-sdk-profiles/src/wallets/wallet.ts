@@ -46,11 +46,11 @@ export class Wallet {
 		return this.#wallet.publicKey();
 	}
 
-	public balance(): Utils.BigNumber {
+	public balance(): BigNumber {
 		return this.#wallet.balance();
 	}
 
-	public nonce(): Utils.BigNumber {
+	public nonce(): BigNumber {
 		return this.#wallet.nonce();
 	}
 

@@ -1,6 +1,14 @@
 import bent from "bent";
 
-import { ensureTrailingSlash } from "./normalise";
+const ensureTrailingSlash = (url: string): string => {
+	const lastCharacter = url.substr(-1);
+
+	if (lastCharacter != "/") {
+		url = url + "/";
+	}
+
+	return url;
+};
 
 export class Http {
 	readonly #host: string | undefined;
