@@ -1,4 +1,5 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Api, JsonRpc } from "eosjs";
 import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
 import fetch from "node-fetch";
@@ -21,8 +22,12 @@ export class ClientService implements Contracts.ClientService {
 		});
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
-		return new ClientService(opts.peer);
+	public static async construct(config: Coins.Config): Promise<ClientService> {
+		try {
+			return new ClientService(config.get<string>("peer"));
+		} catch {
+			return new ClientService(Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts));
+		}
 	}
 
 	public async destruct(): Promise<void> {
@@ -37,7 +42,7 @@ export class ClientService implements Contracts.ClientService {
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-table-information
 	public async transactions(
 		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
 	}
 
@@ -45,7 +50,9 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData(await this.#rpc.get_account(id));
 	}
 
-	public async wallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async wallets(
+		query: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
@@ -55,15 +62,15 @@ export class ClientService implements Contracts.ClientService {
 
 	public async delegates(
 		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
+	): Promise<Contracts.CollectionResponse<Coins.DelegateDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
-	public async votes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	public async votes(id: string): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async voters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async voters(id: string): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 

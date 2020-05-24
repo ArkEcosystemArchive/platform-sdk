@@ -1,4 +1,5 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Api, JsonRpc } from "eosjs";
 import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
 import fetch from "node-fetch";
@@ -11,8 +12,12 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#peer = peer;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		return new TransactionService(opts.peer);
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
+		try {
+			return new TransactionService(config.get<string>("peer"));
+		} catch {
+			return new TransactionService(`${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
+		}
 	}
 
 	public async destruct(): Promise<void> {

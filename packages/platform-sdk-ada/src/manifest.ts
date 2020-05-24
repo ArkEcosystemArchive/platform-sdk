@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Cardano",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://explorer.cardano.org/",
 			currency: {
 				ticker: "ADA",
@@ -10,8 +12,11 @@ export const manifest = {
 			crypto: {
 				slip44: 1815,
 			},
+			hosts: [],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://shelleyexplorer.cardano.org/",
 			currency: {
 				ticker: "ADA",
@@ -20,9 +25,10 @@ export const manifest = {
 			crypto: {
 				slip44: 1815,
 			},
+			hosts: [],
 		},
 	},
-	behaviours: {
+	abilities: {
 		Client: {
 			transaction: false,
 			transactions: false,
@@ -83,8 +89,6 @@ export const manifest = {
 		},
 		Peer: {
 			search: false,
-			searchWithPlugin: false,
-			searchWithoutEstimates: false,
 		},
 		Transaction: {
 			transfer: false,
@@ -99,5 +103,10 @@ export const manifest = {
 			htlcClaim: false,
 			htlcRefund: false,
 		},
+	},
+	signingMethods: {
+		passphrase: false,
+		privateKey: false,
+		wif: false,
 	},
 };

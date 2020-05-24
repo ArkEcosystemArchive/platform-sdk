@@ -2,59 +2,73 @@ export const manifest = {
 	name: "Ethereum",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://etherscan.io/",
 			currency: {
 				ticker: "ETH",
-				symbol: "ETH",
+				symbol: "Ξ",
 			},
 			crypto: {
-				chainId: 1,
+				networkId: 1,
 				slip44: 60,
 			},
+			hosts: ["https://coins.com/api/eth"],
 		},
 		ropsten: {
+			id: "ropsten",
+			name: "Ropsten",
 			explorer: "https://ropsten.etherscan.io/",
 			currency: {
 				ticker: "ETH",
-				symbol: "ETH",
+				symbol: "Ξ",
 			},
 			crypto: {
-				chainId: 3,
+				networkId: 3,
 				slip44: 60,
 			},
+			hosts: ["https://coins.com/api/eth"],
 		},
 		rinkeby: {
-			rinkeby: "ETH",
+			id: "rinkeby",
+			name: "Rinkeby",
 			explorer: "https://rinkeby.etherscan.io/",
 			crypto: {
-				chainId: 4,
+				networkId: 4,
 				slip44: 60,
 			},
+			hosts: ["https://coins.com/api/eth"],
 		},
 		goerli: {
+			id: "goerli",
+			name: "Goerli",
 			explorer: "https://goerli.etherscan.io/",
 			currency: {
 				ticker: "ETH",
-				symbol: "ETH",
+				symbol: "Ξ",
 			},
 			crypto: {
-				chainId: 5,
+				networkId: 5,
 				slip44: 60,
 			},
+			hosts: ["https://coins.com/api/eth"],
 		},
 		kovan: {
+			id: "kovan",
+			name: "Kovan",
 			explorer: "https://kovan.etherscan.io/",
 			currency: {
 				ticker: "ETH",
-				symbol: "ETH",
+				symbol: "Ξ",
 			},
 			crypto: {
-				chainId: 42,
+				networkId: 42,
 				slip44: 60,
 			},
+			hosts: ["https://coins.com/api/eth"],
 		},
 	},
-	behaviours: {
+	abilities: {
 		Client: {
 			transaction: false,
 			transactions: false,
@@ -115,8 +129,6 @@ export const manifest = {
 		},
 		Peer: {
 			search: false,
-			searchWithPlugin: false,
-			searchWithoutEstimates: false,
 		},
 		Transaction: {
 			transfer: true,
@@ -131,5 +143,10 @@ export const manifest = {
 			htlcClaim: false,
 			htlcRefund: false,
 		},
+	},
+	signingMethods: {
+		passphrase: true,
+		privateKey: true,
+		wif: false,
 	},
 };

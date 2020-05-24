@@ -1,7 +1,7 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class MessageService implements Contracts.MessageService {
-	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
+	public static async construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService();
 	}
 

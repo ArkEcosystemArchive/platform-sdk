@@ -1,5 +1,6 @@
 import { Connection } from "@arkecosystem/client";
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 
 export class FeeService implements Contracts.FeeService {
 	readonly #connection: Connection;
@@ -8,8 +9,12 @@ export class FeeService implements Contracts.FeeService {
 		this.#connection = new Connection(peer);
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<FeeService> {
-		return new FeeService(opts.peer);
+	public static async construct(config: Coins.Config): Promise<FeeService> {
+		try {
+			return new FeeService(config.get<string>("peer"));
+		} catch {
+			return new FeeService(`${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
+		}
 	}
 
 	public async destruct(): Promise<void> {

@@ -1,8 +1,8 @@
 export interface TransactionFee {
-	static: number;
-	max: number;
-	min: number;
-	avg: number;
+	static: string;
+	max: string;
+	min: string;
+	avg: string;
 }
 
 export interface TransactionFees {

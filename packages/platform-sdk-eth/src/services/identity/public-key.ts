@@ -1,4 +1,5 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Buffoon } from "@arkecosystem/platform-sdk-support";
 import Wallet from "ethereumjs-wallet";
 
 import { PrivateKey } from "./private-key";
@@ -11,7 +12,7 @@ export class PublicKey implements Contracts.PublicKey {
 	}
 
 	public async fromPassphrase(passphrase: string): Promise<string> {
-		const privateKey = Utils.Buffoon.fromHex(await this.#privateKey.fromPassphrase(passphrase));
+		const privateKey = Buffoon.fromHex(await this.#privateKey.fromPassphrase(passphrase));
 		const keyPair = Wallet.fromPrivateKey(privateKey);
 
 		return keyPair.getPublicKey().toString("hex");

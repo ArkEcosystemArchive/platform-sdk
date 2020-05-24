@@ -1,4 +1,5 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr, BIP39 } from "@arkecosystem/platform-sdk-support";
 import { RippleAPI } from "ripple-lib";
 
 import { IdentityService } from "./identity";
@@ -10,8 +11,15 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#connection = connection;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		const connection = new RippleAPI({ server: opts.peer });
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
+		let connection: RippleAPI;
+		try {
+			connection = new RippleAPI({ server: config.get<string>("peer") });
+		} catch {
+			connection = new RippleAPI({
+				server: Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts),
+			});
+		}
 
 		await connection.connect();
 
@@ -49,7 +57,7 @@ export class TransactionService implements Contracts.TransactionService {
 			{ maxLedgerVersionOffset: 5 },
 		);
 
-		const { signedTransaction } = this.#connection.sign(prepared.txJSON, input.sign.passphrase);
+		const { signedTransaction } = this.#connection.sign(prepared.txJSON, BIP39.normalize(input.sign.passphrase));
 
 		return signedTransaction;
 	}

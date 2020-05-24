@@ -1,17 +1,14 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
-import delve from "dlv";
-
-import { manifest } from "../manifest";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 export class LinkService implements Contracts.LinkService {
 	readonly #baseUrl: string;
 
-	private constructor(network: string) {
-		this.#baseUrl = delve(manifest.networks, `${network}.explorer`);
+	private constructor(network: Coins.CoinNetwork) {
+		this.#baseUrl = network.explorer;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<LinkService> {
-		return new LinkService(opts.network);
+	public static async construct(config: Coins.Config): Promise<LinkService> {
+		return new LinkService(config.get<Coins.CoinNetwork>("network"));
 	}
 
 	public async destruct(): Promise<void> {

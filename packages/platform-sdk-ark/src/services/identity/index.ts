@@ -1,5 +1,5 @@
 import { Managers } from "@arkecosystem/crypto";
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { Address } from "./address";
 import { Keys } from "./keys";
@@ -8,8 +8,9 @@ import { PublicKey } from "./public-key";
 import { WIF } from "./wif";
 
 export class IdentityService implements Contracts.IdentityService {
-	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
-		Managers.configManager.setFromPreset(opts.network);
+	public static async construct(config: Coins.Config): Promise<IdentityService> {
+		// @ts-ignore
+		Managers.configManager.setFromPreset(config.get<Coins.CoinNetwork>("network").id);
 
 		return new IdentityService();
 	}

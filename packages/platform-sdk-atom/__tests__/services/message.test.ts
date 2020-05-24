@@ -2,10 +2,11 @@ import "jest-extended";
 
 import { MessageService } from "../../src/services/message";
 import { identity } from "../__fixtures__/identity";
+import { createConfig } from "../helpers";
 
 let subject: MessageService;
 
-beforeEach(async () => (subject = await MessageService.construct({ network: "cosmos.testnet" })));
+beforeEach(async () => (subject = await MessageService.construct(createConfig())));
 
 describe("MessageService", () => {
 	it("should sign and verify a message", async () => {

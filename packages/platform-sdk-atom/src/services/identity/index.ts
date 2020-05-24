@@ -1,7 +1,5 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
-import delve from "dlv";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
-import { manifest } from "../../manifest";
 import { Address } from "./address";
 import { Keys } from "./keys";
 import { PrivateKey } from "./private-key";
@@ -12,13 +10,13 @@ export class IdentityService implements Contracts.IdentityService {
 	readonly #slip44;
 	readonly #bech32;
 
-	public constructor(network: string) {
-		this.#slip44 = delve(manifest.networks, `${network}.crypto.slip44`);
-		this.#bech32 = delve(manifest.networks, `${network}.crypto.bech32`);
+	public constructor(network: Coins.CoinNetwork) {
+		this.#slip44 = network.crypto.slip44;
+		this.#bech32 = network.crypto.bech32;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
-		return new IdentityService(opts.network);
+	public static async construct(config: Coins.Config): Promise<IdentityService> {
+		return new IdentityService(config.get<Coins.CoinNetwork>("network"));
 	}
 
 	public async destruct(): Promise<void> {

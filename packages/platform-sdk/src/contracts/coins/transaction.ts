@@ -3,17 +3,17 @@ export type SignedTransaction = any;
 
 export interface TransactionService {
 	destruct(): Promise<void>;
-	transfer(data: TransferInput): Promise<SignedTransaction>;
-	secondSignature(data: SecondSignatureInput): Promise<SignedTransaction>;
-	delegateRegistration(data: DelegateRegistrationInput): Promise<SignedTransaction>;
-	vote(data: VoteInput): Promise<SignedTransaction>;
-	multiSignature(data: MultiSignatureInput): Promise<SignedTransaction>;
-	ipfs(data: IpfsInput): Promise<SignedTransaction>;
-	multiPayment(data: MultiPaymentInput): Promise<SignedTransaction>;
-	delegateResignation(data: DelegateResignationInput): Promise<SignedTransaction>;
-	htlcLock(data: HtlcLockInput): Promise<SignedTransaction>;
-	htlcClaim(data: HtlcClaimInput): Promise<SignedTransaction>;
-	htlcRefund(data: HtlcRefundInput): Promise<SignedTransaction>;
+	transfer(input: TransferInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	secondSignature(input: SecondSignatureInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	delegateRegistration(input: DelegateRegistrationInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	vote(input: VoteInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	multiSignature(input: MultiSignatureInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	ipfs(input: IpfsInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	multiPayment(input: MultiPaymentInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	delegateResignation(input: DelegateResignationInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	htlcLock(input: HtlcLockInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	htlcClaim(input: HtlcClaimInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	htlcRefund(input: HtlcRefundInput, options?: TransactionOptions): Promise<SignedTransaction>;
 }
 
 // Transaction Signing

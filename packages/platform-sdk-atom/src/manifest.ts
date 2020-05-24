@@ -1,60 +1,68 @@
 export const manifest = {
 	name: "Cosmos",
 	networks: {
-		cosmos: {
-			mainnet: {
-				explorer: "https://stake.id/",
-				currency: {
-					ticker: "ATOM",
-					symbol: "ATOM",
-				},
-				crypto: {
-					chainId: "cosmoshub-3",
-					slip44: 118,
-					bech32: "cosmos",
-				},
+		"cosmos.mainnet": {
+			id: "cosmos.mainnet",
+			name: "Cosmos Mainnet",
+			explorer: "https://stake.id/",
+			currency: {
+				ticker: "ATOM",
+				symbol: "ATOM",
 			},
-			testnet: {
-				explorer: "https://gaia.stake.id/",
-				currency: {
-					ticker: "MUON",
-					symbol: "MUON",
-				},
-				crypto: {
-					chainId: "gaia-13007",
-					slip44: 118,
-					bech32: "cosmos",
-				},
+			crypto: {
+				networkId: "cosmoshub-3",
+				slip44: 118,
+				bech32: "cosmos",
 			},
+			hosts: ["https://api.cosmos.network"],
 		},
-		terra: {
-			mainnet: {
-				explorer: "https://terra.stake.id/",
-				currency: {
-					ticker: "LUNA",
-					symbol: "LUNA",
-				},
-				crypto: {
-					chainId: "columbus-3",
-					slip44: 330,
-					bech32: "terra",
-				},
+		"cosmos.testnet": {
+			id: "cosmos.testnet",
+			name: "Cosmos Testnet",
+			explorer: "https://gaia.stake.id/",
+			currency: {
+				ticker: "MUON",
+				symbol: "MUON",
 			},
-			testnet: {
-				explorer: "https://soju.stake.id/",
-				currency: {
-					ticker: "LUNA",
-					symbol: "LUNA",
-				},
-				crypto: {
-					chainId: "soju-0014",
-					slip44: 330,
-					bech32: "terra",
-				},
+			crypto: {
+				networkId: "gaia-13007",
+				slip44: 118,
+				bech32: "cosmos",
 			},
+			hosts: ["https://stargate.cosmos.network"],
+		},
+		"terra.mainnet": {
+			id: "terra.mainnet",
+			name: "Terra Mainnet",
+			explorer: "https://terra.stake.id/",
+			currency: {
+				ticker: "LUNA",
+				symbol: "LUNA",
+			},
+			crypto: {
+				networkId: "columbus-3",
+				slip44: 330,
+				bech32: "terra",
+			},
+			hosts: [],
+		},
+		"terra.testnet": {
+			id: "terra.testnet",
+			name: "Terra Testnet",
+			explorer: "https://soju.stake.id/",
+			currency: {
+				ticker: "LUNA",
+				symbol: "LUNA",
+			},
+			crypto: {
+				networkId: "soju-0014",
+				slip44: 330,
+				bech32: "terra",
+			},
+			hosts: [],
 		},
 	},
-	behaviours: {
+	abilities: {
 		Client: {
 			transaction: false,
 			transactions: false,
@@ -115,8 +123,6 @@ export const manifest = {
 		},
 		Peer: {
 			search: false,
-			searchWithPlugin: false,
-			searchWithoutEstimates: false,
 		},
 		Transaction: {
 			transfer: true,
@@ -131,5 +137,10 @@ export const manifest = {
 			htlcClaim: false,
 			htlcRefund: false,
 		},
+	},
+	signingMethods: {
+		passphrase: true,
+		privateKey: false,
+		wif: false,
 	},
 };

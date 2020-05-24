@@ -1,28 +1,26 @@
 import nock from "nock";
 
 import { PeerService } from "../../src/services/peer";
-import { dummyPeersPublicApi, dummyPeersWalletApi, dummySeeds } from "./mocks/peers";
+import { dummyPeersPublicApi, dummyPeersWalletApi } from "./mocks/peers";
+import { createConfig } from "../helpers";
 
 beforeEach(() => nock.cleanAll());
 
 describe("PeerService", () => {
-	describe("new instance", () => {
+	describe("#new", () => {
 		describe("host", () => {
 			it("should fetch peers", async () => {
 				nock("http://127.0.0.1").get("/api/peers").reply(200, {
 					data: dummyPeersWalletApi,
 				});
 
-				const peerService: PeerService = await PeerService.construct({
-					peer: "http://127.0.0.1/api",
-				});
-
-				expect(peerService.getSeeds()).toEqual(
-					dummyPeersWalletApi.map((peer) => ({
-						ip: peer.ip,
-						port: 4140,
-					})),
+				const peerService: PeerService = await PeerService.construct(
+					createConfig({
+						peer: "http://127.0.0.1/api",
+					}),
 				);
+
+				expect(peerService.getSeeds()).toEqual(dummyPeersWalletApi.map((peer) => `http://${peer.ip}:4103`));
 			});
 
 			it("should fetch peers and fallback to public api port", async () => {
@@ -30,16 +28,13 @@ describe("PeerService", () => {
 					data: dummyPeersPublicApi,
 				});
 
-				const peerService: PeerService = await PeerService.construct({
-					peer: "http://127.0.0.1/api",
-				});
-
-				expect(peerService.getSeeds()).toEqual(
-					dummyPeersPublicApi.map((peer) => ({
-						ip: peer.ip,
-						port: 4103,
-					})),
+				const peerService: PeerService = await PeerService.construct(
+					createConfig({
+						peer: "http://127.0.0.1/api",
+					}),
 				);
+
+				expect(peerService.getSeeds()).toEqual(dummyPeersPublicApi.map((peer) => `http://${peer.ip}:4103`));
 			});
 
 			it("should fail if the seed list is empty", async () => {
@@ -48,54 +43,24 @@ describe("PeerService", () => {
 				});
 
 				await expect(
-					PeerService.construct({
-						peer: "http://127.0.0.1/api",
-					}),
-				).rejects.toThrowError(new Error("No seeds found"));
-			});
-		});
-
-		describe("github", () => {
-			it("should fetch peers", async () => {
-				nock("https://raw.githubusercontent.com/ArkEcosystem/peers/master")
-					.get("/mainnet.json")
-					.reply(200, dummySeeds);
-
-				const peerService: PeerService = await PeerService.construct({ network: "mainnet" });
-
-				expect(peerService.getSeeds()).toEqual(dummySeeds.map((peer) => ({ ip: peer.ip, port: 4003 })));
-			});
-
-			it("should fail if a 404 response is received", async () => {
-				nock("https://raw.githubusercontent.com/ArkEcosystem/peers/master").get("/failnet.json").reply(404);
-
-				await expect(
-					PeerService.construct({
-						network: "failnet",
-					}),
-				).rejects.toThrowError(new Error("Failed to discovery any peers."));
-			});
-
-			it("should fail if the seed list is empty", async () => {
-				nock("https://raw.githubusercontent.com/ArkEcosystem/peers/master").get("/mainnet.json").reply(200, []);
-
-				await expect(
-					PeerService.construct({
-						network: "mainnet",
-					}),
+					PeerService.construct(
+						createConfig({
+							peer: "http://127.0.0.1/api",
+						}),
+					),
 				).rejects.toThrowError(new Error("No seeds found"));
 			});
 		});
 	});
 
-	describe("search", () => {
+	describe("#search", () => {
 		let peerService: PeerService;
 		beforeEach(async () => {
 			nock("http://127.0.0.1").get("/api/peers").reply(200, {
 				data: dummyPeersWalletApi,
 			});
 
-			peerService = await PeerService.construct({ peer: "http://127.0.0.1/api" });
+			peerService = await PeerService.construct(createConfig({ peer: "http://127.0.0.1/api" }));
 		});
 
 		it("should find peers", async () => {
@@ -104,30 +69,6 @@ describe("PeerService", () => {
 			});
 
 			await expect(peerService.search()).resolves.toEqual(dummyPeersWalletApi);
-		});
-
-		it("should retry", async () => {
-			nock(/.+/).get("/api/peers").twice().reply(500).get("/api/peers").reply(200, {
-				data: dummyPeersWalletApi,
-			});
-
-			const peers = await peerService.search({
-				retry: { limit: 3 },
-			});
-
-			expect(peers).toEqual(dummyPeersWalletApi);
-		});
-
-		it("should timeout", async () => {
-			nock(/.+/).get("/api/peers").delay(2000).reply(200, {
-				data: dummyPeersWalletApi,
-			});
-
-			await expect(
-				peerService.search({
-					timeout: 1000,
-				}),
-			).rejects.toThrowError(new Error("Request timed out"));
 		});
 
 		it("should filter by version", async () => {
@@ -172,89 +113,6 @@ describe("PeerService", () => {
 				dummyPeersWalletApi[1],
 				dummyPeersWalletApi[0],
 			]);
-		});
-	});
-
-	describe("searchWithPlugin", () => {
-		let peerService: PeerService;
-		beforeEach(async () => {
-			nock("http://127.0.0.1").get("/api/peers").reply(200, {
-				data: dummyPeersWalletApi,
-			});
-
-			peerService = await PeerService.construct({ peer: "http://127.0.0.1/api" });
-		});
-
-		it("should find peers without the wallet api plugin", async () => {
-			nock(/.+/).get("/api/peers").reply(200, {
-				data: dummyPeersPublicApi,
-			});
-
-			await expect(peerService.searchWithPlugin("core-wallet-api")).resolves.toEqual([]);
-		});
-
-		it("should find peers with the wallet api plugin", async () => {
-			nock(/.+/).get("/api/peers").reply(200, {
-				data: dummyPeersWalletApi,
-			});
-
-			const validPeers = dummyPeersWalletApi.map((peer) => ({ ip: peer.ip, port: 4140 }));
-			await expect(peerService.searchWithPlugin("core-wallet-api")).resolves.toEqual(validPeers);
-		});
-
-		it("should get additional peer data", async () => {
-			nock(/.+/).get("/api/peers").reply(200, {
-				data: dummyPeersWalletApi,
-			});
-
-			const validPeers = dummyPeersWalletApi.map((peer) => ({ ip: peer.ip, port: 4140, version: peer.version }));
-			await expect(
-				peerService.searchWithPlugin("core-wallet-api", {
-					additional: ["version"],
-				}),
-			).resolves.toEqual(validPeers);
-		});
-
-		it("should ignore additional peer data that does not exist", async () => {
-			nock(/.+/).get("/api/peers").reply(200, {
-				data: dummyPeersWalletApi,
-			});
-
-			const validPeers = dummyPeersWalletApi.map((peer) => ({ ip: peer.ip, port: 4140 }));
-			await expect(
-				peerService.searchWithPlugin("core-wallet-api", {
-					additional: ["fake"],
-				}),
-			).resolves.toEqual(validPeers);
-		});
-	});
-
-	describe("searchWithoutEstimates", () => {
-		let peerService: PeerService;
-		beforeEach(async () => {
-			nock("http://127.0.0.1").get("/api/peers").reply(200, {
-				data: dummyPeersWalletApi,
-			});
-
-			peerService = await PeerService.construct({ peer: "http://127.0.0.1/api" });
-		});
-
-		it("should find peers without estimates", async () => {
-			nock(/.+/)
-				.get("/api/peers")
-				.reply(200, {
-					data: dummyPeersPublicApi,
-				})
-				.persist()
-				.get("/api/blocks?limit=1")
-				.reply(200, {
-					meta: {
-						totalCountIsEstimate: false,
-					},
-				});
-
-			const validPeers = dummyPeersPublicApi.map((peer) => ({ ip: peer.ip, port: 4103 }));
-			await expect(peerService.searchWithoutEstimates()).resolves.toEqual(validPeers);
 		});
 	});
 });

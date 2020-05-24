@@ -1,4 +1,5 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Buffoon, Http } from "@arkecosystem/platform-sdk-support";
 import { Transaction } from "ethereumjs-tx";
 import Web3 from "web3";
 
@@ -17,10 +18,10 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#web3 = new Web3(""); // todo: provide a host?
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
-			...opts,
-			identity: await IdentityService.construct(opts),
+			...config.all(),
+			identity: await IdentityService.construct(config),
 		});
 	}
 
@@ -58,13 +59,13 @@ export class TransactionService implements Contracts.TransactionService {
 				gasPrice: Web3.utils.toHex(input.fee),
 				to: input.data.to,
 				value: Web3.utils.toHex(Web3.utils.toWei(`${input.data.amount}`, "wei")),
-				// data: Utils.Buffoon.fromUTF8(input.to.memo),
+				// data: Buffoon.fromUTF8(input.to.memo),
 			};
 		}
 
 		const transaction: Transaction = new Transaction(data, { chain: this.#chain });
 
-		transaction.sign(Utils.Buffoon.fromHex(privateKey));
+		transaction.sign(Buffoon.fromHex(privateKey));
 
 		return "0x" + transaction.serialize().toString("hex");
 	}
@@ -140,7 +141,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.Http.new(this.#peer).get(path, query);
+		return Http.new(this.#peer).get(path, query);
 	}
 
 	private createContract(contractAddress: string) {

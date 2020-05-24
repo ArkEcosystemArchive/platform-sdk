@@ -2,7 +2,9 @@ export const manifest = {
 	name: "Ripple",
 	networks: {
 		mainnet: {
-			explorer: "https://bithomp.com/explorer/",
+			id: "mainnet",
+			name: "Mainnet",
+			explorer: "https://livenet.xrpl.org/",
 			currency: {
 				ticker: "XRP",
 				symbol: "XRP",
@@ -10,9 +12,12 @@ export const manifest = {
 			crypto: {
 				slip44: 144,
 			},
+			hosts: ["wss://s2.ripple.com/"],
 		},
 		testnet: {
-			explorer: "https://test.bithomp.com/explorer/",
+			id: "testnet",
+			name: "Testnet",
+			explorer: "https://testnet.xrpl.org/",
 			currency: {
 				ticker: "XRP",
 				symbol: "XRP",
@@ -20,9 +25,10 @@ export const manifest = {
 			crypto: {
 				slip44: 144,
 			},
+			hosts: ["wss://s.altnet.rippletest.net/"],
 		},
 	},
-	behaviours: {
+	abilities: {
 		Client: {
 			transaction: true,
 			transactions: true,
@@ -83,8 +89,6 @@ export const manifest = {
 		},
 		Peer: {
 			search: false,
-			searchWithPlugin: false,
-			searchWithoutEstimates: false,
 		},
 		Transaction: {
 			transfer: true,
@@ -99,5 +103,10 @@ export const manifest = {
 			htlcClaim: false,
 			htlcRefund: false,
 		},
+	},
+	signingMethods: {
+		passphrase: true,
+		privateKey: true,
+		wif: false,
 	},
 };

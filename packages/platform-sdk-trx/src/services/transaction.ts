@@ -1,4 +1,5 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr, BIP39 } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 export class TransactionService implements Contracts.TransactionService {
@@ -10,8 +11,12 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		return new TransactionService(opts.peer);
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
+		try {
+			return new TransactionService(config.get<string>("peer"));
+		} catch {
+			return new TransactionService(Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts));
+		}
 	}
 
 	public async destruct(): Promise<void> {
@@ -29,7 +34,7 @@ export class TransactionService implements Contracts.TransactionService {
 			1,
 		);
 
-		return this.#connection.trx.sign(transaction, input.sign.passphrase);
+		return this.#connection.trx.sign(transaction, BIP39.normalize(input.sign.passphrase));
 	}
 
 	public async secondSignature(

@@ -1,4 +1,5 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP44 } from "@arkecosystem/platform-sdk-support";
 import { secp256k1 } from "bcrypto";
 
 export class Keys implements Contracts.Keys {
@@ -9,7 +10,7 @@ export class Keys implements Contracts.Keys {
 	}
 
 	public async fromPassphrase(passphrase: string): Promise<Contracts.KeyPair> {
-		const privateKey: Buffer | undefined = Utils.BIP44.deriveChild(passphrase, {
+		const privateKey: Buffer | undefined = BIP44.deriveChild(passphrase, {
 			coinType: this.#slip44,
 			index: 0,
 		}).privateKey;

@@ -1,4 +1,5 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr, Http } from "@arkecosystem/platform-sdk-support";
 import Web3 from "web3";
 
 import { TransactionData, WalletData } from "../dto";
@@ -22,8 +23,12 @@ export class ClientService implements Contracts.ClientService {
 		this.#peer = peer;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
-		return new ClientService(opts.peer);
+	public static async construct(config: Coins.Config): Promise<ClientService> {
+		try {
+			return new ClientService(config.get<string>("peer"));
+		} catch {
+			return new ClientService(Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts));
+		}
 	}
 
 	public async destruct(): Promise<void> {
@@ -36,7 +41,7 @@ export class ClientService implements Contracts.ClientService {
 
 	public async transactions(
 		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		const endBlock: number = (await this.get("status")).height;
 		const startBlock: number = endBlock - (query?.count ?? ClientService.MONTH_IN_SECONDS);
 
@@ -57,14 +62,16 @@ export class ClientService implements Contracts.ClientService {
 			}
 		}
 
-		return { meta: {}, data: transactions };
+		return { meta: {}, data: new Coins.TransactionDataCollection(transactions) };
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		return new WalletData(await this.get(`wallets/${id}`));
 	}
 
-	public async wallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async wallets(
+		query: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
@@ -74,15 +81,15 @@ export class ClientService implements Contracts.ClientService {
 
 	public async delegates(
 		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
+	): Promise<Contracts.CollectionResponse<Coins.DelegateDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
-	public async votes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	public async votes(id: string): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async voters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async voters(id: string): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
@@ -129,10 +136,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.Http.new(this.#peer).get(path, query);
+		return Http.new(this.#peer).get(path, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.Http.new(this.#peer).post(path, body);
+		return Http.new(this.#peer).post(path, body);
 	}
 }

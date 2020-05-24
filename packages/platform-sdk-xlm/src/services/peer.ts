@@ -1,16 +1,22 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class PeerService implements Contracts.PeerService {
-	public static async construct(opts: Contracts.KeyValuePair): Promise<PeerService> {
-		return new PeerService();
+	readonly #seeds: string[];
+
+	private constructor(network: Coins.CoinNetwork) {
+		this.#seeds = network.hosts;
+	}
+
+	public static async construct(config: Coins.Config): Promise<PeerService> {
+		return new PeerService(config.get<Coins.CoinNetwork>("network"));
 	}
 
 	public async destruct(): Promise<void> {
 		//
 	}
 
-	public getSeeds(): Contracts.Peer[] {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getSeeds");
+	public getSeeds(): string[] {
+		return this.#seeds;
 	}
 
 	public withVersion(version: string): PeerService {
@@ -27,13 +33,5 @@ export class PeerService implements Contracts.PeerService {
 
 	public async search(opts: any = {}): Promise<Contracts.PeerResponse[]> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "search");
-	}
-
-	public async searchWithPlugin(name: string, opts: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "searchWithPlugin");
-	}
-
-	public async searchWithoutEstimates(opts: { additional?: string[] } = {}): Promise<Contracts.Peer[]> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "searchWithoutEstimates");
 	}
 }

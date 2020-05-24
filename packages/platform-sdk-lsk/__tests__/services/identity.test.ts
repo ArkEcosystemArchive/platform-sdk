@@ -2,10 +2,11 @@ import "jest-extended";
 
 import { IdentityService } from "../../src/services/identity";
 import { identity } from "../__fixtures__/identity";
+import { createConfig } from "../helpers";
 
 let subject: IdentityService;
 
-beforeEach(async () => (subject = await IdentityService.construct({ network: "testnet" })));
+beforeEach(async () => (subject = await IdentityService.construct(createConfig())));
 
 describe("IdentityService", () => {
 	describe("#address", () => {

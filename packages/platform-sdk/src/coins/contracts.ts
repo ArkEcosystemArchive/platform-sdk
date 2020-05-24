@@ -9,7 +9,27 @@ import {
 	TransactionService,
 } from "../contracts/coins";
 
-export interface FactoryServices {
+export interface CoinSpec {
+	manifest: any;
+	schema: any;
+	services: {
+		ClientService: any;
+		FeeService: any;
+		IdentityService: any;
+		LedgerService: any;
+		LinkService: any;
+		MessageService: any;
+		PeerService: any;
+		TransactionService: any;
+	};
+}
+
+export interface CoinOptions {
+	network: string;
+	peer?: string;
+}
+
+export interface CoinServices {
 	client: ClientService;
 	fee: FeeService;
 	identity: IdentityService;
@@ -20,28 +40,18 @@ export interface FactoryServices {
 	transaction: TransactionService;
 }
 
-export interface CoinServices {
-	client: any;
-	fee: any;
-	identity: any;
-	ledger: any;
-	link: any;
-	message: any;
-	peer: any;
-	transaction: any;
-}
-
-export interface CoinOptions {
-	network: string;
-	peer?: string;
-	services?: {
-		client: {};
-		fee: {};
-		identity: {};
-		ledger: { transport?: any }; // todo: add contract for the transport
-		link: {};
-		message: {};
-		peer: {};
-		transaction: {};
+export interface CoinNetwork {
+	id: string;
+	name: string;
+	explorer: string;
+	currency: {
+		ticker: string;
+		symbol: string;
 	};
+	crypto: {
+		networkId?: string;
+		slip44: number;
+		bech32?: string;
+	};
+	hosts: string[];
 }

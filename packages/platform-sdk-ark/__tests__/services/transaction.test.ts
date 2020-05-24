@@ -3,18 +3,19 @@ import { Transactions } from "@arkecosystem/crypto";
 import nock from "nock";
 
 import { TransactionService } from "../../src/services/transaction";
+import { createConfig } from "../helpers";
 
 let subject: TransactionService;
 
 beforeEach(async () => {
-	nock("https://dexplorer.ark.io/api")
-		.get("/node/configuration/crypto")
+	nock(/.+/)
+		.get("/api/node/configuration/crypto")
 		.reply(200, require(`${__dirname}/../__fixtures__/client/cryptoConfiguration.json`))
-		.get("/node/syncing")
+		.get("/api/node/syncing")
 		.reply(200, require(`${__dirname}/../__fixtures__/client/syncing.json`))
 		.persist();
 
-	subject = await TransactionService.construct({ peer: "https://dexplorer.ark.io/api" });
+	subject = await TransactionService.construct(createConfig());
 });
 
 afterEach(() => nock.cleanAll());

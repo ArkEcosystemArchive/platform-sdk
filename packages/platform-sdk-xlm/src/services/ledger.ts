@@ -1,21 +1,33 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Stellar from "@ledgerhq/hw-app-str";
 import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
 
 export class LedgerService implements Contracts.LedgerService {
-	readonly #ledger: LedgerTransport;
-	readonly #transport: Stellar;
+	#ledger: LedgerTransport;
+	#transport!: Stellar;
 
 	private constructor(transport: Contracts.LedgerTransport) {
 		this.#ledger = transport;
-		this.#transport = new Stellar(transport);
 	}
 
-	public static async construct(opts: Contracts.LedgerOptions): Promise<LedgerService> {
-		return new LedgerService(opts.transport || (await LedgerTransport.create()));
+	public static async construct(config: Coins.Config): Promise<LedgerService> {
+		try {
+			return new LedgerService(config.get("services.ledger.transport"));
+		} catch {
+			return new LedgerService(LedgerTransport);
+		}
 	}
 
 	public async destruct(): Promise<void> {
+		await this.disconnect();
+	}
+
+	public async connect(): Promise<void> {
+		this.#ledger = await this.#ledger.open();
+		this.#transport = new Stellar(this.#ledger);
+	}
+
+	public async disconnect(): Promise<void> {
 		await this.#ledger.close();
 	}
 

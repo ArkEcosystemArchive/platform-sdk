@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Monero",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://moneroblocks.info/",
 			currency: {
 				ticker: "XMR",
@@ -10,8 +12,11 @@ export const manifest = {
 			crypto: {
 				slip44: 123,
 			},
+			hosts: [],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://dexplorer.ark.io/",
 			currency: {
 				ticker: "XMR",
@@ -20,9 +25,10 @@ export const manifest = {
 			crypto: {
 				slip44: 123,
 			},
+			hosts: [],
 		},
 	},
-	behaviours: {
+	abilities: {
 		Client: {
 			transaction: false,
 			transactions: false,
@@ -83,8 +89,6 @@ export const manifest = {
 		},
 		Peer: {
 			search: false,
-			searchWithPlugin: false,
-			searchWithoutEstimates: false,
 		},
 		Transaction: {
 			transfer: false,
@@ -99,5 +103,10 @@ export const manifest = {
 			htlcClaim: false,
 			htlcRefund: false,
 		},
+	},
+	signingMethods: {
+		passphrase: false,
+		privateKey: false,
+		wif: false,
 	},
 };

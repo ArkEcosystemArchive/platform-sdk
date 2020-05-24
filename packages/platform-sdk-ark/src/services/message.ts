@@ -1,8 +1,9 @@
 import { Crypto } from "@arkecosystem/crypto";
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-support";
 
 export class MessageService implements Contracts.MessageService {
-	public static async construct(opts: Contracts.KeyValuePair): Promise<MessageService> {
+	public static async construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService();
 	}
 
@@ -11,7 +12,7 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const { message, publicKey, signature } = Crypto.Message.sign(input.message, input.passphrase);
+		const { message, publicKey, signature } = Crypto.Message.sign(input.message, BIP39.normalize(input.passphrase));
 
 		return { message, signer: publicKey, signature };
 	}

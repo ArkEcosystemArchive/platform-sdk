@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Tron",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://tronscan.org/#/",
 			currency: {
 				ticker: "TRX",
@@ -10,8 +12,11 @@ export const manifest = {
 			crypto: {
 				slip44: 195,
 			},
+			hosts: ["https://api.trongrid.io"],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://shasta.tronscan.org/#/",
 			currency: {
 				ticker: "TRX",
@@ -20,9 +25,10 @@ export const manifest = {
 			crypto: {
 				slip44: 195,
 			},
+			hosts: ["https://api.shasta.trongrid.io"],
 		},
 	},
-	behaviours: {
+	abilities: {
 		Client: {
 			transaction: true,
 			transactions: false,
@@ -83,8 +89,6 @@ export const manifest = {
 		},
 		Peer: {
 			search: false,
-			searchWithPlugin: false,
-			searchWithoutEstimates: false,
 		},
 		Transaction: {
 			transfer: true,
@@ -99,5 +103,10 @@ export const manifest = {
 			htlcClaim: false,
 			htlcRefund: false,
 		},
+	},
+	signingMethods: {
+		passphrase: true,
+		privateKey: true,
+		wif: false,
 	},
 };

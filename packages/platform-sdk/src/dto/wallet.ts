@@ -1,5 +1,6 @@
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
+
 import { KeyValuePair } from "../contracts/types";
-import { BigNumber } from "../utils";
 
 export abstract class AbstractWalletData {
 	public constructor(protected readonly data: KeyValuePair) {}

@@ -1,15 +1,19 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-support";
 import * as transactions from "@liskhq/lisk-transactions";
+import * as transactionsBeta from "@liskhq/lisk-transactions-new";
+
+import { manifest } from "../manifest";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #network;
 
-	private constructor(network: string) {
-		this.#network = network;
+	private constructor(network: Coins.CoinNetwork) {
+		this.#network = network.crypto.networkId;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		return new TransactionService(opts.networkHash);
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
+		return new TransactionService(config.get<Coins.CoinNetwork>("network"));
 	}
 
 	public async destruct(): Promise<void> {
@@ -26,6 +30,7 @@ export class TransactionService implements Contracts.TransactionService {
 				data: {
 					amount: input.data.amount,
 					recipientId: input.data.to,
+					data: input.data.memo,
 				},
 			},
 		});
@@ -39,7 +44,7 @@ export class TransactionService implements Contracts.TransactionService {
 			...input,
 			...{
 				data: {
-					secondPassphrase: input.data.passphrase,
+					secondPassphrase: BIP39.normalize(input.data.passphrase),
 				},
 			},
 		});
@@ -134,11 +139,15 @@ export class TransactionService implements Contracts.TransactionService {
 		// todo: support multisignature
 
 		if (input.sign.passphrase) {
-			struct.passphrase = input.sign.passphrase;
+			struct.passphrase = BIP39.normalize(input.sign.passphrase);
 		}
 
 		if (input.sign.secondPassphrase) {
-			struct.secondPassphrase = input.sign.secondPassphrase;
+			struct.secondPassphrase = BIP39.normalize(input.sign.secondPassphrase);
+		}
+
+		if (this.#network === manifest.networks.betanet.crypto.networkId) {
+			return transactionsBeta[type](struct);
 		}
 
 		return transactions[type](struct);

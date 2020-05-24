@@ -1,7 +1,7 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
-import { Services as CoinCap } from "@arkecosystem/platform-sdk-coincap";
-import { Services as CoinGecko } from "@arkecosystem/platform-sdk-coingecko";
-import { Services as CryptoCompare } from "@arkecosystem/platform-sdk-cryptocompare";
+import { PriceTracker as CoinCap } from "@arkecosystem/platform-sdk-coincap";
+import { PriceTracker as CoinGecko } from "@arkecosystem/platform-sdk-coingecko";
+import { PriceTracker as CryptoCompare } from "@arkecosystem/platform-sdk-cryptocompare";
 
 export class MarketService {
 	#adapter: Contracts.PriceTracker;
@@ -10,12 +10,12 @@ export class MarketService {
 		this.#adapter = adapter;
 	}
 
-	public static construct(name: string): MarketService {
+	public static make(name: string): MarketService {
 		return new MarketService(
 			{
-				coincap: new CoinCap.PriceTracker(),
-				coingecko: new CoinGecko.PriceTracker(),
-				cryptocompare: new CryptoCompare.PriceTracker(),
+				coincap: new CoinCap(),
+				coingecko: new CoinGecko(),
+				cryptocompare: new CryptoCompare(),
 			}[name.toLowerCase()],
 		);
 	}

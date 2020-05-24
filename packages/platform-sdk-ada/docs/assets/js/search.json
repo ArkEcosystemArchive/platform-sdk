@@ -1,0 +1,1189 @@
+{
+	"kinds": {
+		"1": "Module",
+		"32": "Variable",
+		"128": "Class",
+		"512": "Constructor",
+		"1024": "Property",
+		"2048": "Method",
+		"2097152": "Object literal"
+	},
+	"rows": [
+		{ "id": 0, "kind": 1, "name": "\"manifest\"", "url": "modules/_manifest_.html", "classes": "tsd-kind-module" },
+		{
+			"id": 1,
+			"kind": 2097152,
+			"name": "manifest",
+			"url": "modules/_manifest_.html#manifest",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-module",
+			"parent": "\"manifest\""
+		},
+		{
+			"id": 2,
+			"kind": 32,
+			"name": "name",
+			"url": "modules/_manifest_.html#manifest.name",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest"
+		},
+		{
+			"id": 3,
+			"kind": 2097152,
+			"name": "networks",
+			"url": "modules/_manifest_.html#manifest.networks",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest"
+		},
+		{
+			"id": 4,
+			"kind": 2097152,
+			"name": "mainnet",
+			"url": "modules/_manifest_.html#manifest.networks.mainnet",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks"
+		},
+		{
+			"id": 5,
+			"kind": 32,
+			"name": "id",
+			"url": "modules/_manifest_.html#manifest.networks.mainnet.id",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.mainnet"
+		},
+		{
+			"id": 6,
+			"kind": 32,
+			"name": "name",
+			"url": "modules/_manifest_.html#manifest.networks.mainnet.name-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.mainnet"
+		},
+		{
+			"id": 7,
+			"kind": 32,
+			"name": "explorer",
+			"url": "modules/_manifest_.html#manifest.networks.mainnet.explorer",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.mainnet"
+		},
+		{
+			"id": 8,
+			"kind": 2097152,
+			"name": "currency",
+			"url": "modules/_manifest_.html#manifest.networks.mainnet.currency",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.mainnet"
+		},
+		{
+			"id": 9,
+			"kind": 32,
+			"name": "ticker",
+			"url": "modules/_manifest_.html#manifest.networks.mainnet.currency.ticker",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.mainnet.currency"
+		},
+		{
+			"id": 10,
+			"kind": 32,
+			"name": "symbol",
+			"url": "modules/_manifest_.html#manifest.networks.mainnet.currency.symbol",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.mainnet.currency"
+		},
+		{
+			"id": 11,
+			"kind": 2097152,
+			"name": "crypto",
+			"url": "modules/_manifest_.html#manifest.networks.mainnet.crypto",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.mainnet"
+		},
+		{
+			"id": 12,
+			"kind": 32,
+			"name": "slip44",
+			"url": "modules/_manifest_.html#manifest.networks.mainnet.crypto.slip44",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.mainnet.crypto"
+		},
+		{
+			"id": 13,
+			"kind": 32,
+			"name": "hosts",
+			"url": "modules/_manifest_.html#manifest.networks.mainnet.hosts",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.mainnet"
+		},
+		{
+			"id": 14,
+			"kind": 2097152,
+			"name": "testnet",
+			"url": "modules/_manifest_.html#manifest.networks.testnet",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks"
+		},
+		{
+			"id": 15,
+			"kind": 32,
+			"name": "id",
+			"url": "modules/_manifest_.html#manifest.networks.testnet.id-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.testnet"
+		},
+		{
+			"id": 16,
+			"kind": 32,
+			"name": "name",
+			"url": "modules/_manifest_.html#manifest.networks.testnet.name-2",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.testnet"
+		},
+		{
+			"id": 17,
+			"kind": 32,
+			"name": "explorer",
+			"url": "modules/_manifest_.html#manifest.networks.testnet.explorer-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.testnet"
+		},
+		{
+			"id": 18,
+			"kind": 2097152,
+			"name": "currency",
+			"url": "modules/_manifest_.html#manifest.networks.testnet.currency-1",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.testnet"
+		},
+		{
+			"id": 19,
+			"kind": 32,
+			"name": "ticker",
+			"url": "modules/_manifest_.html#manifest.networks.testnet.currency-1.ticker-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.testnet.currency"
+		},
+		{
+			"id": 20,
+			"kind": 32,
+			"name": "symbol",
+			"url": "modules/_manifest_.html#manifest.networks.testnet.currency-1.symbol-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.testnet.currency"
+		},
+		{
+			"id": 21,
+			"kind": 2097152,
+			"name": "crypto",
+			"url": "modules/_manifest_.html#manifest.networks.testnet.crypto-1",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.testnet"
+		},
+		{
+			"id": 22,
+			"kind": 32,
+			"name": "slip44",
+			"url": "modules/_manifest_.html#manifest.networks.testnet.crypto-1.slip44-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.testnet.crypto"
+		},
+		{
+			"id": 23,
+			"kind": 32,
+			"name": "hosts",
+			"url": "modules/_manifest_.html#manifest.networks.testnet.hosts-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.networks.testnet"
+		},
+		{
+			"id": 24,
+			"kind": 2097152,
+			"name": "abilities",
+			"url": "modules/_manifest_.html#manifest.abilities",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest"
+		},
+		{
+			"id": 25,
+			"kind": 2097152,
+			"name": "Client",
+			"url": "modules/_manifest_.html#manifest.abilities.client",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities"
+		},
+		{
+			"id": 26,
+			"kind": 32,
+			"name": "transaction",
+			"url": "modules/_manifest_.html#manifest.abilities.client.transaction",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Client"
+		},
+		{
+			"id": 27,
+			"kind": 32,
+			"name": "transactions",
+			"url": "modules/_manifest_.html#manifest.abilities.client.transactions",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Client"
+		},
+		{
+			"id": 28,
+			"kind": 32,
+			"name": "wallet",
+			"url": "modules/_manifest_.html#manifest.abilities.client.wallet",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Client"
+		},
+		{
+			"id": 29,
+			"kind": 32,
+			"name": "wallets",
+			"url": "modules/_manifest_.html#manifest.abilities.client.wallets",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Client"
+		},
+		{
+			"id": 30,
+			"kind": 32,
+			"name": "delegate",
+			"url": "modules/_manifest_.html#manifest.abilities.client.delegate",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Client"
+		},
+		{
+			"id": 31,
+			"kind": 32,
+			"name": "delegates",
+			"url": "modules/_manifest_.html#manifest.abilities.client.delegates",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Client"
+		},
+		{
+			"id": 32,
+			"kind": 32,
+			"name": "votes",
+			"url": "modules/_manifest_.html#manifest.abilities.client.votes",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Client"
+		},
+		{
+			"id": 33,
+			"kind": 32,
+			"name": "voters",
+			"url": "modules/_manifest_.html#manifest.abilities.client.voters",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Client"
+		},
+		{
+			"id": 34,
+			"kind": 32,
+			"name": "configuration",
+			"url": "modules/_manifest_.html#manifest.abilities.client.configuration",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Client"
+		},
+		{
+			"id": 35,
+			"kind": 32,
+			"name": "fees",
+			"url": "modules/_manifest_.html#manifest.abilities.client.fees",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Client"
+		},
+		{
+			"id": 36,
+			"kind": 32,
+			"name": "syncing",
+			"url": "modules/_manifest_.html#manifest.abilities.client.syncing",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Client"
+		},
+		{
+			"id": 37,
+			"kind": 32,
+			"name": "broadcast",
+			"url": "modules/_manifest_.html#manifest.abilities.client.broadcast",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Client"
+		},
+		{
+			"id": 38,
+			"kind": 2097152,
+			"name": "Fee",
+			"url": "modules/_manifest_.html#manifest.abilities.fee",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities"
+		},
+		{
+			"id": 39,
+			"kind": 32,
+			"name": "all",
+			"url": "modules/_manifest_.html#manifest.abilities.fee.all",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Fee"
+		},
+		{
+			"id": 40,
+			"kind": 2097152,
+			"name": "Identity",
+			"url": "modules/_manifest_.html#manifest.abilities.identity",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities"
+		},
+		{
+			"id": 41,
+			"kind": 2097152,
+			"name": "address",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.address",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity"
+		},
+		{
+			"id": 42,
+			"kind": 32,
+			"name": "passphrase",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.address.passphrase",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.address"
+		},
+		{
+			"id": 43,
+			"kind": 32,
+			"name": "multiSignature",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.address.multisignature",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.address"
+		},
+		{
+			"id": 44,
+			"kind": 32,
+			"name": "publicKey",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.address.publickey",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.address"
+		},
+		{
+			"id": 45,
+			"kind": 32,
+			"name": "privateKey",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.address.privatekey",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.address"
+		},
+		{
+			"id": 46,
+			"kind": 32,
+			"name": "wif",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.address.wif",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.address"
+		},
+		{
+			"id": 47,
+			"kind": 2097152,
+			"name": "publicKey",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.publickey-1",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity"
+		},
+		{
+			"id": 48,
+			"kind": 32,
+			"name": "passphrase",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.publickey-1.passphrase-3",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.publicKey"
+		},
+		{
+			"id": 49,
+			"kind": 32,
+			"name": "multiSignature",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.publickey-1.multisignature-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.publicKey"
+		},
+		{
+			"id": 50,
+			"kind": 32,
+			"name": "wif",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.publickey-1.wif-3",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.publicKey"
+		},
+		{
+			"id": 51,
+			"kind": 2097152,
+			"name": "privateKey",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.privatekey-2",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity"
+		},
+		{
+			"id": 52,
+			"kind": 32,
+			"name": "passphrase",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.privatekey-2.passphrase-2",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.privateKey"
+		},
+		{
+			"id": 53,
+			"kind": 32,
+			"name": "wif",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.privatekey-2.wif-2",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.privateKey"
+		},
+		{
+			"id": 54,
+			"kind": 2097152,
+			"name": "wif",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.wif-4",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity"
+		},
+		{
+			"id": 55,
+			"kind": 32,
+			"name": "passphrase",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.wif-4.passphrase-4",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.wif"
+		},
+		{
+			"id": 56,
+			"kind": 2097152,
+			"name": "keyPair",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.keypair",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity"
+		},
+		{
+			"id": 57,
+			"kind": 32,
+			"name": "passphrase",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.keypair.passphrase-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.keyPair"
+		},
+		{
+			"id": 58,
+			"kind": 32,
+			"name": "privateKey",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.keypair.privatekey-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.keyPair"
+		},
+		{
+			"id": 59,
+			"kind": 32,
+			"name": "wif",
+			"url": "modules/_manifest_.html#manifest.abilities.identity.keypair.wif-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Identity.keyPair"
+		},
+		{
+			"id": 60,
+			"kind": 2097152,
+			"name": "Ledger",
+			"url": "modules/_manifest_.html#manifest.abilities.ledger",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities"
+		},
+		{
+			"id": 61,
+			"kind": 32,
+			"name": "getVersion",
+			"url": "modules/_manifest_.html#manifest.abilities.ledger.getversion",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Ledger"
+		},
+		{
+			"id": 62,
+			"kind": 32,
+			"name": "getPublicKey",
+			"url": "modules/_manifest_.html#manifest.abilities.ledger.getpublickey",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Ledger"
+		},
+		{
+			"id": 63,
+			"kind": 32,
+			"name": "signTransaction",
+			"url": "modules/_manifest_.html#manifest.abilities.ledger.signtransaction",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Ledger"
+		},
+		{
+			"id": 64,
+			"kind": 32,
+			"name": "signMessage",
+			"url": "modules/_manifest_.html#manifest.abilities.ledger.signmessage",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Ledger"
+		},
+		{
+			"id": 65,
+			"kind": 2097152,
+			"name": "Link",
+			"url": "modules/_manifest_.html#manifest.abilities.link",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities"
+		},
+		{
+			"id": 66,
+			"kind": 32,
+			"name": "block",
+			"url": "modules/_manifest_.html#manifest.abilities.link.block",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Link"
+		},
+		{
+			"id": 67,
+			"kind": 32,
+			"name": "transaction",
+			"url": "modules/_manifest_.html#manifest.abilities.link.transaction-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Link"
+		},
+		{
+			"id": 68,
+			"kind": 32,
+			"name": "wallet",
+			"url": "modules/_manifest_.html#manifest.abilities.link.wallet-1",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Link"
+		},
+		{
+			"id": 69,
+			"kind": 2097152,
+			"name": "Message",
+			"url": "modules/_manifest_.html#manifest.abilities.message",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities"
+		},
+		{
+			"id": 70,
+			"kind": 32,
+			"name": "sign",
+			"url": "modules/_manifest_.html#manifest.abilities.message.sign",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Message"
+		},
+		{
+			"id": 71,
+			"kind": 32,
+			"name": "verify",
+			"url": "modules/_manifest_.html#manifest.abilities.message.verify",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Message"
+		},
+		{
+			"id": 72,
+			"kind": 2097152,
+			"name": "Peer",
+			"url": "modules/_manifest_.html#manifest.abilities.peer",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities"
+		},
+		{
+			"id": 73,
+			"kind": 32,
+			"name": "search",
+			"url": "modules/_manifest_.html#manifest.abilities.peer.search",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Peer"
+		},
+		{
+			"id": 74,
+			"kind": 2097152,
+			"name": "Transaction",
+			"url": "modules/_manifest_.html#manifest.abilities.transaction-2",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities"
+		},
+		{
+			"id": 75,
+			"kind": 32,
+			"name": "transfer",
+			"url": "modules/_manifest_.html#manifest.abilities.transaction-2.transfer",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Transaction"
+		},
+		{
+			"id": 76,
+			"kind": 32,
+			"name": "secondSignature",
+			"url": "modules/_manifest_.html#manifest.abilities.transaction-2.secondsignature",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Transaction"
+		},
+		{
+			"id": 77,
+			"kind": 32,
+			"name": "delegateRegistration",
+			"url": "modules/_manifest_.html#manifest.abilities.transaction-2.delegateregistration",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Transaction"
+		},
+		{
+			"id": 78,
+			"kind": 32,
+			"name": "vote",
+			"url": "modules/_manifest_.html#manifest.abilities.transaction-2.vote",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Transaction"
+		},
+		{
+			"id": 79,
+			"kind": 32,
+			"name": "multiSignature",
+			"url": "modules/_manifest_.html#manifest.abilities.transaction-2.multisignature-2",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Transaction"
+		},
+		{
+			"id": 80,
+			"kind": 32,
+			"name": "ipfs",
+			"url": "modules/_manifest_.html#manifest.abilities.transaction-2.ipfs",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Transaction"
+		},
+		{
+			"id": 81,
+			"kind": 32,
+			"name": "multiPayment",
+			"url": "modules/_manifest_.html#manifest.abilities.transaction-2.multipayment",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Transaction"
+		},
+		{
+			"id": 82,
+			"kind": 32,
+			"name": "delegateResignation",
+			"url": "modules/_manifest_.html#manifest.abilities.transaction-2.delegateresignation",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Transaction"
+		},
+		{
+			"id": 83,
+			"kind": 32,
+			"name": "htlcLock",
+			"url": "modules/_manifest_.html#manifest.abilities.transaction-2.htlclock",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Transaction"
+		},
+		{
+			"id": 84,
+			"kind": 32,
+			"name": "htlcClaim",
+			"url": "modules/_manifest_.html#manifest.abilities.transaction-2.htlcclaim",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Transaction"
+		},
+		{
+			"id": 85,
+			"kind": 32,
+			"name": "htlcRefund",
+			"url": "modules/_manifest_.html#manifest.abilities.transaction-2.htlcrefund",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.abilities.Transaction"
+		},
+		{
+			"id": 86,
+			"kind": 2097152,
+			"name": "signingMethods",
+			"url": "modules/_manifest_.html#manifest.signingmethods",
+			"classes": "tsd-kind-object-literal tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest"
+		},
+		{
+			"id": 87,
+			"kind": 32,
+			"name": "passphrase",
+			"url": "modules/_manifest_.html#manifest.signingmethods.passphrase-5",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.signingMethods"
+		},
+		{
+			"id": 88,
+			"kind": 32,
+			"name": "privateKey",
+			"url": "modules/_manifest_.html#manifest.signingmethods.privatekey-3",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.signingMethods"
+		},
+		{
+			"id": 89,
+			"kind": 32,
+			"name": "wif",
+			"url": "modules/_manifest_.html#manifest.signingmethods.wif-5",
+			"classes": "tsd-kind-variable tsd-parent-kind-object-literal",
+			"parent": "\"manifest\".manifest.signingMethods"
+		},
+		{
+			"id": 90,
+			"kind": 1,
+			"name": "\"services/link\"",
+			"url": "modules/_services_link_.html",
+			"classes": "tsd-kind-module"
+		},
+		{
+			"id": 91,
+			"kind": 128,
+			"name": "LinkService",
+			"url": "classes/_services_link_.linkservice.html",
+			"classes": "tsd-kind-class tsd-parent-kind-module",
+			"parent": "\"services/link\""
+		},
+		{
+			"id": 92,
+			"kind": 1024,
+			"name": "#baseUrl",
+			"url": "classes/_services_link_.linkservice.html#_baseurl",
+			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
+			"parent": "\"services/link\".LinkService"
+		},
+		{
+			"id": 93,
+			"kind": 512,
+			"name": "constructor",
+			"url": "classes/_services_link_.linkservice.html#constructor",
+			"classes": "tsd-kind-constructor tsd-parent-kind-class tsd-is-private",
+			"parent": "\"services/link\".LinkService"
+		},
+		{
+			"id": 94,
+			"kind": 2048,
+			"name": "construct",
+			"url": "classes/_services_link_.linkservice.html#construct",
+			"classes": "tsd-kind-method tsd-parent-kind-class tsd-is-static",
+			"parent": "\"services/link\".LinkService"
+		},
+		{
+			"id": 95,
+			"kind": 2048,
+			"name": "destruct",
+			"url": "classes/_services_link_.linkservice.html#destruct",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"services/link\".LinkService"
+		},
+		{
+			"id": 96,
+			"kind": 2048,
+			"name": "block",
+			"url": "classes/_services_link_.linkservice.html#block",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"services/link\".LinkService"
+		},
+		{
+			"id": 97,
+			"kind": 2048,
+			"name": "transaction",
+			"url": "classes/_services_link_.linkservice.html#transaction",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"services/link\".LinkService"
+		},
+		{
+			"id": 98,
+			"kind": 2048,
+			"name": "wallet",
+			"url": "classes/_services_link_.linkservice.html#wallet",
+			"classes": "tsd-kind-method tsd-parent-kind-class",
+			"parent": "\"services/link\".LinkService"
+		}
+	],
+	"index": {
+		"version": "2.3.8",
+		"fields": ["name", "parent"],
+		"fieldVectors": [
+			["name/0", [0, 33.524]],
+			["parent/0", []],
+			["name/1", [0, 33.524]],
+			["parent/1", [0, 3.324]],
+			["name/2", [1, 33.524]],
+			["parent/2", [2, 3.075]],
+			["name/3", [3, 41.997]],
+			["parent/3", [2, 3.075]],
+			["name/4", [4, 41.997]],
+			["parent/4", [5, 3.658]],
+			["name/5", [6, 36.889]],
+			["parent/5", [7, 2.711]],
+			["name/6", [1, 33.524]],
+			["parent/6", [7, 2.711]],
+			["name/7", [8, 36.889]],
+			["parent/7", [7, 2.711]],
+			["name/8", [9, 36.889]],
+			["parent/8", [7, 2.711]],
+			["name/9", [10, 36.889]],
+			["parent/9", [11, 3.658]],
+			["name/10", [12, 36.889]],
+			["parent/10", [11, 3.658]],
+			["name/11", [13, 36.889]],
+			["parent/11", [7, 2.711]],
+			["name/12", [14, 36.889]],
+			["parent/12", [15, 4.165]],
+			["name/13", [16, 36.889]],
+			["parent/13", [7, 2.711]],
+			["name/14", [17, 41.997]],
+			["parent/14", [5, 3.658]],
+			["name/15", [6, 36.889]],
+			["parent/15", [18, 2.711]],
+			["name/16", [1, 33.524]],
+			["parent/16", [18, 2.711]],
+			["name/17", [8, 36.889]],
+			["parent/17", [18, 2.711]],
+			["name/18", [9, 36.889]],
+			["parent/18", [18, 2.711]],
+			["name/19", [10, 36.889]],
+			["parent/19", [19, 3.658]],
+			["name/20", [12, 36.889]],
+			["parent/20", [19, 3.658]],
+			["name/21", [13, 36.889]],
+			["parent/21", [18, 2.711]],
+			["name/22", [14, 36.889]],
+			["parent/22", [20, 4.165]],
+			["name/23", [16, 36.889]],
+			["parent/23", [18, 2.711]],
+			["name/24", [21, 41.997]],
+			["parent/24", [2, 3.075]],
+			["name/25", [22, 41.997]],
+			["parent/25", [23, 2.444]],
+			["name/26", [24, 31.011]],
+			["parent/26", [25, 2.062]],
+			["name/27", [26, 41.997]],
+			["parent/27", [25, 2.062]],
+			["name/28", [27, 33.524]],
+			["parent/28", [25, 2.062]],
+			["name/29", [28, 41.997]],
+			["parent/29", [25, 2.062]],
+			["name/30", [29, 41.997]],
+			["parent/30", [25, 2.062]],
+			["name/31", [30, 41.997]],
+			["parent/31", [25, 2.062]],
+			["name/32", [31, 41.997]],
+			["parent/32", [25, 2.062]],
+			["name/33", [32, 41.997]],
+			["parent/33", [25, 2.062]],
+			["name/34", [33, 41.997]],
+			["parent/34", [25, 2.062]],
+			["name/35", [34, 41.997]],
+			["parent/35", [25, 2.062]],
+			["name/36", [35, 41.997]],
+			["parent/36", [25, 2.062]],
+			["name/37", [36, 41.997]],
+			["parent/37", [25, 2.062]],
+			["name/38", [37, 41.997]],
+			["parent/38", [23, 2.444]],
+			["name/39", [38, 41.997]],
+			["parent/39", [39, 4.165]],
+			["name/40", [40, 41.997]],
+			["parent/40", [23, 2.444]],
+			["name/41", [41, 41.997]],
+			["parent/41", [42, 2.876]],
+			["name/42", [43, 27.334]],
+			["parent/42", [44, 2.876]],
+			["name/43", [45, 33.524]],
+			["parent/43", [44, 2.876]],
+			["name/44", [46, 36.889]],
+			["parent/44", [44, 2.876]],
+			["name/45", [47, 31.011]],
+			["parent/45", [44, 2.876]],
+			["name/46", [48, 27.334]],
+			["parent/46", [44, 2.876]],
+			["name/47", [46, 36.889]],
+			["parent/47", [42, 2.876]],
+			["name/48", [43, 27.334]],
+			["parent/48", [49, 3.324]],
+			["name/49", [45, 33.524]],
+			["parent/49", [49, 3.324]],
+			["name/50", [48, 27.334]],
+			["parent/50", [49, 3.324]],
+			["name/51", [47, 31.011]],
+			["parent/51", [42, 2.876]],
+			["name/52", [43, 27.334]],
+			["parent/52", [50, 3.658]],
+			["name/53", [48, 27.334]],
+			["parent/53", [50, 3.658]],
+			["name/54", [48, 27.334]],
+			["parent/54", [42, 2.876]],
+			["name/55", [43, 27.334]],
+			["parent/55", [51, 4.165]],
+			["name/56", [52, 41.997]],
+			["parent/56", [42, 2.876]],
+			["name/57", [43, 27.334]],
+			["parent/57", [53, 3.324]],
+			["name/58", [47, 31.011]],
+			["parent/58", [53, 3.324]],
+			["name/59", [48, 27.334]],
+			["parent/59", [53, 3.324]],
+			["name/60", [54, 41.997]],
+			["parent/60", [23, 2.444]],
+			["name/61", [55, 41.997]],
+			["parent/61", [56, 3.075]],
+			["name/62", [57, 41.997]],
+			["parent/62", [56, 3.075]],
+			["name/63", [58, 41.997]],
+			["parent/63", [56, 3.075]],
+			["name/64", [59, 41.997]],
+			["parent/64", [56, 3.075]],
+			["name/65", [60, 41.997]],
+			["parent/65", [23, 2.444]],
+			["name/66", [61, 36.889]],
+			["parent/66", [62, 3.324]],
+			["name/67", [24, 31.011]],
+			["parent/67", [62, 3.324]],
+			["name/68", [27, 33.524]],
+			["parent/68", [62, 3.324]],
+			["name/69", [63, 41.997]],
+			["parent/69", [23, 2.444]],
+			["name/70", [64, 41.997]],
+			["parent/70", [65, 3.658]],
+			["name/71", [66, 41.997]],
+			["parent/71", [65, 3.658]],
+			["name/72", [67, 41.997]],
+			["parent/72", [23, 2.444]],
+			["name/73", [68, 41.997]],
+			["parent/73", [69, 4.165]],
+			["name/74", [24, 31.011]],
+			["parent/74", [23, 2.444]],
+			["name/75", [70, 41.997]],
+			["parent/75", [71, 2.145]],
+			["name/76", [72, 41.997]],
+			["parent/76", [71, 2.145]],
+			["name/77", [73, 41.997]],
+			["parent/77", [71, 2.145]],
+			["name/78", [74, 41.997]],
+			["parent/78", [71, 2.145]],
+			["name/79", [45, 33.524]],
+			["parent/79", [71, 2.145]],
+			["name/80", [75, 41.997]],
+			["parent/80", [71, 2.145]],
+			["name/81", [76, 41.997]],
+			["parent/81", [71, 2.145]],
+			["name/82", [77, 41.997]],
+			["parent/82", [71, 2.145]],
+			["name/83", [78, 41.997]],
+			["parent/83", [71, 2.145]],
+			["name/84", [79, 41.997]],
+			["parent/84", [71, 2.145]],
+			["name/85", [80, 41.997]],
+			["parent/85", [71, 2.145]],
+			["name/86", [81, 41.997]],
+			["parent/86", [2, 3.075]],
+			["name/87", [43, 27.334]],
+			["parent/87", [82, 3.324]],
+			["name/88", [47, 31.011]],
+			["parent/88", [82, 3.324]],
+			["name/89", [48, 27.334]],
+			["parent/89", [82, 3.324]],
+			["name/90", [83, 36.889]],
+			["parent/90", []],
+			["name/91", [84, 41.997]],
+			["parent/91", [83, 3.658]],
+			["name/92", [85, 41.997]],
+			["parent/92", [86, 2.569]],
+			["name/93", [87, 41.997]],
+			["parent/93", [86, 2.569]],
+			["name/94", [88, 41.997]],
+			["parent/94", [86, 2.569]],
+			["name/95", [89, 41.997]],
+			["parent/95", [86, 2.569]],
+			["name/96", [61, 36.889]],
+			["parent/96", [86, 2.569]],
+			["name/97", [24, 31.011]],
+			["parent/97", [86, 2.569]],
+			["name/98", [27, 33.524]],
+			["parent/98", [86, 2.569]]
+		],
+		"invertedIndex": [
+			["abilities", { "_index": 21, "name": { "24": {} }, "parent": {} }],
+			["address", { "_index": 41, "name": { "41": {} }, "parent": {} }],
+			["all", { "_index": 38, "name": { "39": {} }, "parent": {} }],
+			["baseurl", { "_index": 85, "name": { "92": {} }, "parent": {} }],
+			["block", { "_index": 61, "name": { "66": {}, "96": {} }, "parent": {} }],
+			["broadcast", { "_index": 36, "name": { "37": {} }, "parent": {} }],
+			["client", { "_index": 22, "name": { "25": {} }, "parent": {} }],
+			["configuration", { "_index": 33, "name": { "34": {} }, "parent": {} }],
+			["construct", { "_index": 88, "name": { "94": {} }, "parent": {} }],
+			["constructor", { "_index": 87, "name": { "93": {} }, "parent": {} }],
+			["crypto", { "_index": 13, "name": { "11": {}, "21": {} }, "parent": {} }],
+			["currency", { "_index": 9, "name": { "8": {}, "18": {} }, "parent": {} }],
+			["delegate", { "_index": 29, "name": { "30": {} }, "parent": {} }],
+			["delegateregistration", { "_index": 73, "name": { "77": {} }, "parent": {} }],
+			["delegateresignation", { "_index": 77, "name": { "82": {} }, "parent": {} }],
+			["delegates", { "_index": 30, "name": { "31": {} }, "parent": {} }],
+			["destruct", { "_index": 89, "name": { "95": {} }, "parent": {} }],
+			["explorer", { "_index": 8, "name": { "7": {}, "17": {} }, "parent": {} }],
+			["fee", { "_index": 37, "name": { "38": {} }, "parent": {} }],
+			["fees", { "_index": 34, "name": { "35": {} }, "parent": {} }],
+			["getpublickey", { "_index": 57, "name": { "62": {} }, "parent": {} }],
+			["getversion", { "_index": 55, "name": { "61": {} }, "parent": {} }],
+			["hosts", { "_index": 16, "name": { "13": {}, "23": {} }, "parent": {} }],
+			["htlcclaim", { "_index": 79, "name": { "84": {} }, "parent": {} }],
+			["htlclock", { "_index": 78, "name": { "83": {} }, "parent": {} }],
+			["htlcrefund", { "_index": 80, "name": { "85": {} }, "parent": {} }],
+			["id", { "_index": 6, "name": { "5": {}, "15": {} }, "parent": {} }],
+			["identity", { "_index": 40, "name": { "40": {} }, "parent": {} }],
+			["ipfs", { "_index": 75, "name": { "80": {} }, "parent": {} }],
+			["keypair", { "_index": 52, "name": { "56": {} }, "parent": {} }],
+			["ledger", { "_index": 54, "name": { "60": {} }, "parent": {} }],
+			["link", { "_index": 60, "name": { "65": {} }, "parent": {} }],
+			["linkservice", { "_index": 84, "name": { "91": {} }, "parent": {} }],
+			["mainnet", { "_index": 4, "name": { "4": {} }, "parent": {} }],
+			["manifest", { "_index": 0, "name": { "0": {}, "1": {} }, "parent": { "1": {} } }],
+			["manifest\".manifest", { "_index": 2, "name": {}, "parent": { "2": {}, "3": {}, "24": {}, "86": {} } }],
+			[
+				"manifest\".manifest.abilities",
+				{
+					"_index": 23,
+					"name": {},
+					"parent": { "25": {}, "38": {}, "40": {}, "60": {}, "65": {}, "69": {}, "72": {}, "74": {} }
+				}
+			],
+			[
+				"manifest\".manifest.abilities.client",
+				{
+					"_index": 25,
+					"name": {},
+					"parent": {
+						"26": {},
+						"27": {},
+						"28": {},
+						"29": {},
+						"30": {},
+						"31": {},
+						"32": {},
+						"33": {},
+						"34": {},
+						"35": {},
+						"36": {},
+						"37": {}
+					}
+				}
+			],
+			["manifest\".manifest.abilities.fee", { "_index": 39, "name": {}, "parent": { "39": {} } }],
+			[
+				"manifest\".manifest.abilities.identity",
+				{ "_index": 42, "name": {}, "parent": { "41": {}, "47": {}, "51": {}, "54": {}, "56": {} } }
+			],
+			[
+				"manifest\".manifest.abilities.identity.address",
+				{ "_index": 44, "name": {}, "parent": { "42": {}, "43": {}, "44": {}, "45": {}, "46": {} } }
+			],
+			[
+				"manifest\".manifest.abilities.identity.keypair",
+				{ "_index": 53, "name": {}, "parent": { "57": {}, "58": {}, "59": {} } }
+			],
+			[
+				"manifest\".manifest.abilities.identity.privatekey",
+				{ "_index": 50, "name": {}, "parent": { "52": {}, "53": {} } }
+			],
+			[
+				"manifest\".manifest.abilities.identity.publickey",
+				{ "_index": 49, "name": {}, "parent": { "48": {}, "49": {}, "50": {} } }
+			],
+			["manifest\".manifest.abilities.identity.wif", { "_index": 51, "name": {}, "parent": { "55": {} } }],
+			[
+				"manifest\".manifest.abilities.ledger",
+				{ "_index": 56, "name": {}, "parent": { "61": {}, "62": {}, "63": {}, "64": {} } }
+			],
+			[
+				"manifest\".manifest.abilities.link",
+				{ "_index": 62, "name": {}, "parent": { "66": {}, "67": {}, "68": {} } }
+			],
+			["manifest\".manifest.abilities.message", { "_index": 65, "name": {}, "parent": { "70": {}, "71": {} } }],
+			["manifest\".manifest.abilities.peer", { "_index": 69, "name": {}, "parent": { "73": {} } }],
+			[
+				"manifest\".manifest.abilities.transaction",
+				{
+					"_index": 71,
+					"name": {},
+					"parent": {
+						"75": {},
+						"76": {},
+						"77": {},
+						"78": {},
+						"79": {},
+						"80": {},
+						"81": {},
+						"82": {},
+						"83": {},
+						"84": {},
+						"85": {}
+					}
+				}
+			],
+			["manifest\".manifest.networks", { "_index": 5, "name": {}, "parent": { "4": {}, "14": {} } }],
+			[
+				"manifest\".manifest.networks.mainnet",
+				{ "_index": 7, "name": {}, "parent": { "5": {}, "6": {}, "7": {}, "8": {}, "11": {}, "13": {} } }
+			],
+			["manifest\".manifest.networks.mainnet.crypto", { "_index": 15, "name": {}, "parent": { "12": {} } }],
+			[
+				"manifest\".manifest.networks.mainnet.currency",
+				{ "_index": 11, "name": {}, "parent": { "9": {}, "10": {} } }
+			],
+			[
+				"manifest\".manifest.networks.testnet",
+				{ "_index": 18, "name": {}, "parent": { "15": {}, "16": {}, "17": {}, "18": {}, "21": {}, "23": {} } }
+			],
+			["manifest\".manifest.networks.testnet.crypto", { "_index": 20, "name": {}, "parent": { "22": {} } }],
+			[
+				"manifest\".manifest.networks.testnet.currency",
+				{ "_index": 19, "name": {}, "parent": { "19": {}, "20": {} } }
+			],
+			[
+				"manifest\".manifest.signingmethods",
+				{ "_index": 82, "name": {}, "parent": { "87": {}, "88": {}, "89": {} } }
+			],
+			["message", { "_index": 63, "name": { "69": {} }, "parent": {} }],
+			["multipayment", { "_index": 76, "name": { "81": {} }, "parent": {} }],
+			["multisignature", { "_index": 45, "name": { "43": {}, "49": {}, "79": {} }, "parent": {} }],
+			["name", { "_index": 1, "name": { "2": {}, "6": {}, "16": {} }, "parent": {} }],
+			["networks", { "_index": 3, "name": { "3": {} }, "parent": {} }],
+			[
+				"passphrase",
+				{ "_index": 43, "name": { "42": {}, "48": {}, "52": {}, "55": {}, "57": {}, "87": {} }, "parent": {} }
+			],
+			["peer", { "_index": 67, "name": { "72": {} }, "parent": {} }],
+			["privatekey", { "_index": 47, "name": { "45": {}, "51": {}, "58": {}, "88": {} }, "parent": {} }],
+			["publickey", { "_index": 46, "name": { "44": {}, "47": {} }, "parent": {} }],
+			["search", { "_index": 68, "name": { "73": {} }, "parent": {} }],
+			["secondsignature", { "_index": 72, "name": { "76": {} }, "parent": {} }],
+			["services/link", { "_index": 83, "name": { "90": {} }, "parent": { "91": {} } }],
+			[
+				"services/link\".linkservice",
+				{
+					"_index": 86,
+					"name": {},
+					"parent": { "92": {}, "93": {}, "94": {}, "95": {}, "96": {}, "97": {}, "98": {} }
+				}
+			],
+			["sign", { "_index": 64, "name": { "70": {} }, "parent": {} }],
+			["signingmethods", { "_index": 81, "name": { "86": {} }, "parent": {} }],
+			["signmessage", { "_index": 59, "name": { "64": {} }, "parent": {} }],
+			["signtransaction", { "_index": 58, "name": { "63": {} }, "parent": {} }],
+			["slip44", { "_index": 14, "name": { "12": {}, "22": {} }, "parent": {} }],
+			["symbol", { "_index": 12, "name": { "10": {}, "20": {} }, "parent": {} }],
+			["syncing", { "_index": 35, "name": { "36": {} }, "parent": {} }],
+			["testnet", { "_index": 17, "name": { "14": {} }, "parent": {} }],
+			["ticker", { "_index": 10, "name": { "9": {}, "19": {} }, "parent": {} }],
+			["transaction", { "_index": 24, "name": { "26": {}, "67": {}, "74": {}, "97": {} }, "parent": {} }],
+			["transactions", { "_index": 26, "name": { "27": {} }, "parent": {} }],
+			["transfer", { "_index": 70, "name": { "75": {} }, "parent": {} }],
+			["verify", { "_index": 66, "name": { "71": {} }, "parent": {} }],
+			["vote", { "_index": 74, "name": { "78": {} }, "parent": {} }],
+			["voters", { "_index": 32, "name": { "33": {} }, "parent": {} }],
+			["votes", { "_index": 31, "name": { "32": {} }, "parent": {} }],
+			["wallet", { "_index": 27, "name": { "28": {}, "68": {}, "98": {} }, "parent": {} }],
+			["wallets", { "_index": 28, "name": { "29": {} }, "parent": {} }],
+			[
+				"wif",
+				{ "_index": 48, "name": { "46": {}, "50": {}, "53": {}, "54": {}, "59": {}, "89": {} }, "parent": {} }
+			]
+		],
+		"pipeline": []
+	}
+}

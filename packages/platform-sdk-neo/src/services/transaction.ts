@@ -1,8 +1,8 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { api, wallet } from "@cityofzion/neon-js";
 
 export class TransactionService implements Contracts.TransactionService {
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService();
 	}
 

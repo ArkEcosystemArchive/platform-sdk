@@ -3,17 +3,18 @@ import nock from "nock";
 
 import { ClientService } from "../../src/services/client";
 import { DelegateData, TransactionData, WalletData } from "../../src/dto";
+import { createConfig } from "../helpers";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.construct({ peer: "https://betanet.lisk.io:443" })));
+beforeEach(async () => (subject = await ClientService.construct(createConfig())));
 
 beforeAll(() => nock.disableNetConnect());
 
 describe("ClientService", function () {
 	describe("#transaction", () => {
 		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.get("/api/transactions?id=15562133894377717094")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/transaction.json`));
 
@@ -25,20 +26,20 @@ describe("ClientService", function () {
 
 	describe("#transactions", () => {
 		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.get("/api/transactions?address=6566229458323231555L")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
 
 			const result = await subject.transactions({ address: "6566229458323231555L" });
 
-			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(TransactionData);
+			expect(result.data).toBeObject();
+			expect(result.data.first()).toBeInstanceOf(TransactionData);
 		});
 	});
 
 	describe("#wallet", () => {
 		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.get("/api/accounts?address=6566229458323231555L")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
 
@@ -50,20 +51,20 @@ describe("ClientService", function () {
 
 	describe("#wallets", () => {
 		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.get("/api/accounts?address=6566229458323231555L")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
 
 			const result = await subject.wallets({ address: "6566229458323231555L" });
 
-			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(WalletData);
+			expect(result.data).toBeObject();
+			expect(result.data.first()).toBeInstanceOf(WalletData);
 		});
 	});
 
 	describe("#delegate", () => {
 		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.get("/api/delegates?username=cc001")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/delegate.json`));
 
@@ -75,14 +76,14 @@ describe("ClientService", function () {
 
 	describe("#delegates", () => {
 		it("should succeed", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.get("/api/delegates")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/delegates.json`));
 
 			const result = await subject.delegates();
 
-			expect(result.data).toBeArray();
-			expect(result.data[0]).toBeInstanceOf(DelegateData);
+			expect(result.data).toBeObject();
+			expect(result.data.first()).toBeInstanceOf(DelegateData);
 		});
 	});
 
@@ -103,7 +104,7 @@ describe("ClientService", function () {
 		};
 
 		it("should pass", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.post("/api/transactions")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
 
@@ -117,7 +118,7 @@ describe("ClientService", function () {
 		});
 
 		it("should fail", async () => {
-			nock("https://betanet.lisk.io:443")
+			nock(/.+/)
 				.post("/api/transactions")
 				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast-failure.json`));
 

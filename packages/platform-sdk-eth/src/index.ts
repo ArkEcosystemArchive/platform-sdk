@@ -1,3 +1,9 @@
-export * as DTO from "./dto";
-export * as Services from "./services";
-export * from "./manifest";
+import { manifest } from "./manifest";
+import { schema } from "./schema";
+import * as services from "./services";
+
+export const ETH = {
+	manifest,
+	services,
+	schema,
+};

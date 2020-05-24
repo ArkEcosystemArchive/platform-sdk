@@ -11,6 +11,9 @@
   - [Async Operations](#async-operations)
 - [Functionality](#functionality)
 - [API Methods](#api-methods)
+- [API Documentation](#api-documentation)
+  - [Coins](#coins)
+  - [Markets](#markets)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -97,3 +100,28 @@ To avoid an inconsistent public API where some things are instantiated and calle
 -   [MessageService](./services/message.md)
 -   [PeerService](./services/peer.md)
 -   [TransactionService](./services/transaction.md)
+
+## API Documentation
+
+### Coins
+
+-   [SDK](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk/docs)
+-   [ADA](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-ada/docs)
+-   [ARK](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-ark/docs)
+-   [ATOM](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-atom/docs)
+-   [BTC](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-btc/docs)
+-   [EOS](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-eos/docs)
+-   [ETH](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-eth/docs)
+-   [LSK](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-lsk/docs)
+-   [NEO](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-neo/docs)
+-   [TRX](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-trx/docs)
+-   [XLM](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-xlm/docs)
+-   [XMR](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-xmr/docs)
+-   [XRP](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-xrp/docs)
+
+### Markets
+
+-   [Markets](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-markets/docs)
+-   [CoinCap](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-coincap/docs)
+-   [CoinGecko](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-coingecko/docs)
+-   [CryptoCompare](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-cryptocompare/docs)

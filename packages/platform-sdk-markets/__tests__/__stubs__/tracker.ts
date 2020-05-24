@@ -1,4 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class PriceTracker implements Contracts.PriceTracker {
 	public async verifyToken(token: string): Promise<boolean> {

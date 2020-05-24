@@ -1,7 +1,7 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
-import { DelegateData, TransactionData, WalletData } from "../dto";
+import { TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #client;
@@ -20,8 +20,8 @@ export class ClientService implements Contracts.ClientService {
 		);
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<ClientService> {
-		return new ClientService(opts.network);
+	public static async construct(config: Coins.Config): Promise<ClientService> {
+		return new ClientService(config.get<Coins.CoinNetwork>("network").id);
 	}
 
 	public async destruct(): Promise<void> {
@@ -40,14 +40,16 @@ export class ClientService implements Contracts.ClientService {
 
 	public async transactions(
 		query: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		const { records, next, prev } = await this.#client.transactions().forAccount(query.address).call();
 
 		return {
 			meta: {},
-			data: records
-				.filter((transaction) => transaction.type === "payment")
-				.map((transaction) => new TransactionData(transaction)),
+			data: new Coins.TransactionDataCollection(
+				records
+					.filter((transaction) => transaction.type === "payment")
+					.map((transaction) => new TransactionData(transaction)),
+			),
 		};
 	}
 
@@ -55,7 +57,9 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData(await this.#client.loadAccount(id));
 	}
 
-	public async wallets(query: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async wallets(
+		query: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
@@ -65,15 +69,15 @@ export class ClientService implements Contracts.ClientService {
 
 	public async delegates(
 		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Contracts.DelegateData>> {
+	): Promise<Contracts.CollectionResponse<Coins.DelegateDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
-	public async votes(id: string): Promise<Contracts.CollectionResponse<Contracts.TransactionData>> {
+	public async votes(id: string): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async voters(id: string): Promise<Contracts.CollectionResponse<Contracts.WalletData>> {
+	public async voters(id: string): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 

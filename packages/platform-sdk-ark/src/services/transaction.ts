@@ -1,18 +1,37 @@
 import { Connection } from "@arkecosystem/client";
 import { Managers, Transactions } from "@arkecosystem/crypto";
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Arr, BigNumber, BIP39 } from "@arkecosystem/platform-sdk-support";
+
+import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
-		const connection = new Connection(opts.peer);
+	readonly #connection: Connection;
+	readonly #identity: IdentityService;
 
-		const { body: config } = await connection.api("node").crypto();
-		Managers.configManager.setConfig(config.data as any);
+	private constructor({ connection, identity }) {
+		this.#connection = connection;
+		this.#identity = identity;
+	}
+
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
+		let connection: Connection;
+		try {
+			connection = new Connection(config.get<string>("peer"));
+		} catch {
+			connection = new Connection(`${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
+		}
+
+		const { body: crypto } = await connection.api("node").crypto();
+		Managers.configManager.setConfig(crypto.data as any);
 
 		const { body: status } = await connection.api("node").syncing();
 		Managers.configManager.setHeight(status.data.height);
 
-		return new TransactionService();
+		return new TransactionService({
+			connection,
+			identity: await IdentityService.construct(config),
+		});
 	}
 
 	public async destruct(): Promise<void> {
@@ -37,7 +56,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("secondSignature", input, options, ({ transaction, data }) =>
-			transaction.signatureAsset(data.passphrase),
+			transaction.signatureAsset(BIP39.normalize(data.passphrase)),
 		);
 	}
 
@@ -143,7 +162,31 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction = Transactions.BuilderFactory[type]().version(2).nonce(input.nonce);
+		const transaction = Transactions.BuilderFactory[type]().version(2);
+
+		if (input.nonce) {
+			transaction.nonce(input.nonce);
+		} else {
+			let address: string | undefined;
+
+			if (input.sign.passphrase) {
+				address = await this.#identity.address().fromPassphrase(BIP39.normalize(input.sign.passphrase));
+			}
+
+			if (input.sign.wif) {
+				address = await this.#identity.address().fromWIF(input.sign.wif);
+			}
+
+			if (!address) {
+				throw new Error(
+					`Failed to retrieve the nonce for the signer wallet. Please provide one through the [input] parameter.`,
+				);
+			}
+
+			const { body } = await this.#connection.api("wallets").get(address);
+
+			transaction.nonce(BigNumber.make(body.data.nonce).plus(1).toFixed());
+		}
 
 		if (input.data && input.data.amount) {
 			transaction.amount(input.data.amount);
@@ -170,16 +213,16 @@ export class TransactionService implements Contracts.TransactionService {
 
 		if (Array.isArray(input.sign.passphrases)) {
 			for (let i = 0; i < input.sign.passphrases.length; i++) {
-				transaction.multiSign(input.sign.passphrases[i], i);
+				transaction.multiSign(BIP39.normalize(input.sign.passphrases[i]), i);
 			}
 		}
 
 		if (input.sign.passphrase) {
-			transaction.sign(input.sign.passphrase);
+			transaction.sign(BIP39.normalize(input.sign.passphrase));
 		}
 
 		if (input.sign.secondPassphrase) {
-			transaction.secondSign(input.sign.secondPassphrase);
+			transaction.secondSign(BIP39.normalize(input.sign.secondPassphrase));
 		}
 
 		if (input.sign.wif) {

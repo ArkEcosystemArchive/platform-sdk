@@ -7,6 +7,219 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.42 - 2020-05-22
+
+### Added
+
+-   Allow usage of custom storage implementations (586218bc, @faustbrian)
+
+## 0.9.41 - 2020-05-22
+
+### Added
+
+-   Implement `Migrator` for data migrations (a9e38b25, @faustbrian)
+
+### Changed
+
+-   Change duplicate error wording (7eded51e, @faustbrian)
+-   Add allowed signing methods to manifest (a6f2c7f9, @faustbrian)
+
+## 0.9.38 - 2020-05-22
+
+### Added
+
+-   Add `Money` class for currency handling (2667af3e, @faustbrian)
+-   Implement `Numeral` for number formatting (255d273e, @faustbrian)
+
+### Fixed
+
+-   Prevent duplicate wallets per profile (ccfaf1ed, @faustbrian)
+
+## 0.9.35 - 2020-05-22
+
+### Added
+
+-   Get profiles by ID or name (dd15a9dd, @faustbrian)
+
+## 0.9.34 - 2020-05-22
+
+### Added
+
+-   Implement `censorMemo` method (79c3987d, @faustbrian)
+
+### Changed
+
+-   Remove `PeerService#searchWithPlugin` and `PeerService#searchWithoutEstimates` (519595e7, @faustbrian)
+
+## 0.9.32 - 2020-05-21
+
+### Changed
+
+-   Make `BigNumber` immutable (9478fc48, @faustbrian)
+
+## 0.9.31 - 2020-05-21
+
+### Added
+
+-   Implement `BigNumber#comparedTo` (a07e4722, @faustbrian)
+
+## 0.9.30 - 2020-05-21
+
+### Added
+
+-   Added `DateTime#getMillisecond` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getSecond` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getMinute` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getHour` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getDayOfMonth` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getDay` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getWeek` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getMonth` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getQuarter` (6a31e0ae, @faustbrian)
+-   Added `DateTime#getYear` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setMillisecond` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setSecond` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setMinute` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setHour` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setDayOfMonth` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setDay` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setWeek` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setMonth` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setQuarter` (6a31e0ae, @faustbrian)
+-   Added `DateTime#setYear` (6a31e0ae, @faustbrian)
+
+### Fixed
+
+-   Pass the locale when creating a new immutable instance (6b05bbdf, @faustbrian)
+
+## 0.9.9 - 2020-05-21
+
+### Added
+
+-   Initial draft implementation of `platform-sdk-intl` (49502c33, @faustbrian)
+
+## 0.9.8 - 2020-05-21
+
+### Added
+
+-   Added `BigNumber#isNaN` (24d50d29, @faustbrian)
+-   Added `BigNumber#isPositive` (24d50d29, @faustbrian)
+-   Added `BigNumber#isFinite` (24d50d29, @faustbrian)
+
+## 0.9.5 - 2020-05-21
+
+### Added
+
+-   Added `BigNumber#isGreaterThan` (667c5e6a, @faustbrian)
+-   Added `BigNumber#isGreaterThanOrEqualTo` (667c5e6a, @faustbrian)
+-   Added `BigNumber#isLessThan` (667c5e6a, @faustbrian)
+-   Added `BigNumber#isLessThanOrEqualTo` (667c5e6a, @faustbrian)
+
+## 0.9.4 - 2020-05-21
+
+### Added
+
+-   Remove `dayjs` imports that cause issues (dff61fcd, @faustbrian)
+
+## 0.9.3 - 2020-05-21
+
+### Added
+
+-   Implement global, profile and wallet data (7b83390e, @faustbrian)
+-   Implement DTO collections (2978b12d, @faustbrian)
+-   Implement URIService (8da9ba53, @faustbrian)
+
+## 0.9.0 - 2020-05-20
+
+### Changed
+
+-   Setup editor support for yarn berry and typescript (01cd9e5f, @faustbrian)
+
+### Added
+
+-   Implement `platform-sdk-profiles` (f393a561, @luciorubeens)
+-   Implement data storages for profiles (63e8897b, @faustbrian)
+-   Implement `global` and `profile` settings (716ea6a6, @faustbrian)
+-   Add "quarter of year" plugin to `dayjs` (ce9dc6a4, @faustbrian)
+
+### Fixed
+
+-   Normalise passphrases (1eb0d3cb, @faustbrian)
+
+## 0.8.5 - 2020-05-19
+
+### Added
+
+-   Implement `LedgerService` for `ATOM` (6120a2c7, @sleepdefic1t)
+
+### Fixed
+
+-   Wrong method name for static `MarketService` constructor (f315cec9, @faustbrian)
+
+## 0.8.3 - 2020-05-18
+
+### Added
+
+-   Generate API documentation with typedoc (4cd3469b, @faustbrian)
+
+### Fixed
+
+-   Increase nonce if retrieved via API (4fbe49d8, @faustbrian)
+
+## 0.8.2 - 2020-05-18
+
+### Added
+
+-   Look up nonce if none is provided for `ARK` (8cf5d922, @faustbrian)
+
+## 0.8.1 - 2020-05-18
+
+### Fixed
+
+-   Use fallback host if no peer is provided (81a3328b, @faustbrian)
+
+## 0.8.0 - 2020-05-18
+
+### Added
+
+-   Implement `MessageService` for `XLM` (cbc276b5, @faustbrian)
+-   Implement `TransactionData#asset` (2e2bb288, @faustbrian)
+-   Implement `LedgerService` for `XRP` (f42be51e, @sleepdefic1t)
+-   Support transferring `ERC20` tokens (384eb7c6, @faustbrian)
+-   Implement `LedgerService` for `TRX` (9280e618, @faustbrian)
+-   Implement `LedgerService` for `XLM` (0daf5b6e, @faustbrian)
+-   Implement `LedgerService` for `ETH` (0881ea3a, @faustbrian)
+-   Implement `NetworkRepository` (67d190a3, @faustbrian)
+-   Implement `Manifest` (acc0300d, @faustbrian)
+-   Implement `LedgerService` for LSK`` (cced5708, @sleepdefic1t)
+-   Implement `Guard` to protect against bad method calls (0a0a7c1a, @faustbrian)
+-   Implement `Config` service for coins (103111f1, @faustbrian)
+-   Implement `LedgerService#connect` and `LedgerService#disconnect` (226b7f00, @faustbrian)
+-   Handle peer discovery and network identifiers (34e74c27, @faustbrian)
+-   Implement `betanet` support for `LSK` (1ba0a846, @faustbrian)
+
+### Changed
+
+-   Group repeated `Buffer` behaviours into a class (319d24f3, @faustbrian)
+-   Automatically instantiate the `LedgerTransport` (aee01496, @faustbrian)
+-   Return `undefined` for `TransactionData#memo` if it doesn't exist (97ae565d, @faustbrian)
+-   Expect an `object` for `TransactionData#asset` (710796cf, @faustbrian)
+-   Remove `TransactionData#nonce` method (37b9d7ff, @faustbrian)
+-   Remove `@arkecosystem/utils` dependency (b3940cdf, @faustbrian)
+-   Return a string identifier for `TransactionData#type` (70794060, @faustbrian)
+-   Add all supported networks to `manifest` (0c9c9f6a, @faustbrian)
+-   Replace `AbstractFactory` with `CoinFactory` (111ee2dd, @faustbrian)
+-   Add currency symbols to manifest (a1a8ae21, @faustbrian)
+-   Implement `Coin` to slim down `CoinFactory` (651068a7, @faustbrian)
+-   Store network object in `Config.network` instead of string (fc870e2c, @faustbrian)
+
+### Fixed
+
+-   Return magistrate fees from `FeeService#all` (ba0be8b5, @faustbrian)
+-   Only list `XRP` transactions (dc85f366, @faustbrian)
+-   Always treat `fee` and `amount` as `string` (9c5b8758, @faustbrian)
+-   Export naming (1d3626f9, @faustbrian)
+
 ## 0.7.0 - 2020-05-12
 
 ### Added

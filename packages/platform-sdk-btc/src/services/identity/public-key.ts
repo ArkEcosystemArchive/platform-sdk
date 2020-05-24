@@ -1,9 +1,10 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP44 } from "@arkecosystem/platform-sdk-support";
 import Bitcoin from "bitcore-lib";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromPassphrase(passphrase: string): Promise<string> {
-		return Utils.BIP44.deriveMasterKey(passphrase).publicKey.toString("hex");
+		return BIP44.deriveMasterKey(passphrase).publicKey.toString("hex");
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

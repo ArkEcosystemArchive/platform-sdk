@@ -1,4 +1,5 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr, BIP39 } from "@arkecosystem/platform-sdk-support";
 import BigNumber from "bignumber.js";
 import { Transaction } from "bitcore-lib";
 
@@ -15,10 +16,17 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#unspent = opts.unspent;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<TransactionService> {
+	public static async construct(config: Coins.Config): Promise<TransactionService> {
+		let unspent: UnspentAggregator;
+		try {
+			unspent = new UnspentAggregator(config.get<string>("peer"));
+		} catch {
+			unspent = new UnspentAggregator(Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts));
+		}
+
 		return new TransactionService({
-			identity: await IdentityService.construct(opts),
-			unspent: await UnspentAggregator.construct(opts),
+			identity: await IdentityService.construct(config),
+			unspent,
 		});
 	}
 
@@ -30,8 +38,12 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
+		// NOTE: this is a WIF/PrivateKey - should probably be passed in as wif instead of passphrase
+		const passphrase: string = BIP39.normalize(input.sign.passphrase);
+
 		// 1. Derive the sender address
-		const senderAddress: string = await this.#identity.address({ wif: input.sign.passphrase });
+		const senderAddress: string = await this.#identity.address().fromWIF(passphrase);
+		// ({ wif: input.sign.passphrase });
 
 		// 2. Aggregate the unspent transactions
 		const unspent: UnspentTransaction[] = await this.#unspent.aggregate(senderAddress);
@@ -47,7 +59,7 @@ export class TransactionService implements Contracts.TransactionService {
 			transaction = transaction.fee(input.fee);
 		}
 
-		return transaction.sign(input.sign.passphrase).toString();
+		return transaction.sign(passphrase).toString();
 	}
 
 	public async secondSignature(

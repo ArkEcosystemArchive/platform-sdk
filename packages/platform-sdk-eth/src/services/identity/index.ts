@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { manifest } from "../../manifest";
 import { Address } from "./address";
@@ -10,12 +10,12 @@ import { WIF } from "./wif";
 export class IdentityService implements Contracts.IdentityService {
 	readonly #slip44;
 
-	public constructor(network: string) {
-		this.#slip44 = manifest.networks[network].crypto.slip44;
+	public constructor(network: Coins.CoinNetwork) {
+		this.#slip44 = network.crypto.slip44;
 	}
 
-	public static async construct(opts: Contracts.KeyValuePair): Promise<IdentityService> {
-		return new IdentityService(opts.network);
+	public static async construct(config: Coins.Config): Promise<IdentityService> {
+		return new IdentityService(config.get<Coins.CoinNetwork>("network"));
 	}
 
 	public async destruct(): Promise<void> {

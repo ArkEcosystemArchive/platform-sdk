@@ -2,27 +2,33 @@ export const manifest = {
 	name: "Bitcoin",
 	networks: {
 		livenet: {
+			id: "livenet",
+			name: "Livenet",
 			explorer: "https://blockstream.info/",
 			currency: {
 				ticker: "BTC",
-				symbol: "BTC",
+				symbol: "Ƀ",
 			},
 			crypto: {
 				slip44: 0,
 			},
+			hosts: ["https://coins.com/api/btc"],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://blockstream.info/testnet/",
 			currency: {
 				ticker: "BTC",
-				symbol: "BTC",
+				symbol: "Ƀ",
 			},
 			crypto: {
 				slip44: 0,
 			},
+			hosts: ["https://coins.com/api/btc"],
 		},
 	},
-	behaviours: {
+	abilities: {
 		Client: {
 			transaction: true,
 			transactions: false,
@@ -83,8 +89,6 @@ export const manifest = {
 		},
 		Peer: {
 			search: false,
-			searchWithPlugin: false,
-			searchWithoutEstimates: false,
 		},
 		Transaction: {
 			transfer: true,
@@ -99,5 +103,10 @@ export const manifest = {
 			htlcClaim: false,
 			htlcRefund: false,
 		},
+	},
+	signingMethods: {
+		passphrase: false,
+		privateKey: false,
+		wif: true,
 	},
 };

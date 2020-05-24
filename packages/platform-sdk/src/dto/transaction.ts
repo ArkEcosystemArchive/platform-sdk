@@ -1,5 +1,7 @@
+import { BigNumber, Censor } from "@arkecosystem/platform-sdk-support";
+import emoji from "node-emoji";
+
 import { KeyValuePair } from "../contracts/types";
-import { BigNumber } from "../utils";
 
 export abstract class AbstractTransactionData {
 	public constructor(protected readonly data: KeyValuePair) {}
@@ -41,5 +43,19 @@ export abstract class AbstractTransactionData {
 
 	public raw(): KeyValuePair {
 		return this.data;
+	}
+
+	protected censorMemo(memo?: string): string | undefined {
+		if (memo) {
+			const processor: Censor = new Censor();
+
+			if (processor.isBad(memo)) {
+				return undefined;
+			}
+
+			return processor.process(emoji.emojify(memo));
+		}
+
+		return memo;
 	}
 }

@@ -1,9 +1,10 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-support";
 import { deriveAddress, deriveKeypair } from "ripple-keypairs";
 
 export class Address implements Contracts.Address {
 	public async fromPassphrase(passphrase: string): Promise<string> {
-		return deriveAddress(deriveKeypair(passphrase).publicKey);
+		return deriveAddress(deriveKeypair(BIP39.normalize(passphrase)).publicKey);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

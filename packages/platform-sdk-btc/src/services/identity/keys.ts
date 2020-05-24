@@ -1,9 +1,10 @@
-import { Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
+import { BIP44 } from "@arkecosystem/platform-sdk-support";
 import { PrivateKey, PublicKey } from "bitcore-lib";
 
 export class Keys implements Contracts.Keys {
 	public async fromPassphrase(passphrase: string): Promise<Contracts.KeyPair> {
-		return this.normalize(new PrivateKey(Utils.BIP44.deriveMasterKey(passphrase).privateKey!.toString("hex")));
+		return this.normalize(new PrivateKey(BIP44.deriveMasterKey(passphrase).privateKey!.toString("hex")));
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {

@@ -2,6 +2,8 @@ export const manifest = {
 	name: "Stellar",
 	networks: {
 		mainnet: {
+			id: "mainnet",
+			name: "Mainnet",
 			explorer: "https://steexp.com/",
 			currency: {
 				ticker: "XLM",
@@ -10,8 +12,11 @@ export const manifest = {
 			crypto: {
 				slip44: 148,
 			},
+			hosts: ["https://horizon.stellar.org"],
 		},
 		testnet: {
+			id: "testnet",
+			name: "Testnet",
 			explorer: "https://testnet.steexp.com/",
 			currency: {
 				ticker: "XLM",
@@ -20,9 +25,10 @@ export const manifest = {
 			crypto: {
 				slip44: 148,
 			},
+			hosts: ["https://horizon-testnet.stellar.org"],
 		},
 	},
-	behaviours: {
+	abilities: {
 		Client: {
 			transaction: true,
 			transactions: true,
@@ -83,8 +89,6 @@ export const manifest = {
 		},
 		Peer: {
 			search: false,
-			searchWithPlugin: false,
-			searchWithoutEstimates: false,
 		},
 		Transaction: {
 			transfer: true,
@@ -99,5 +103,10 @@ export const manifest = {
 			htlcClaim: false,
 			htlcRefund: false,
 		},
+	},
+	signingMethods: {
+		passphrase: true,
+		privateKey: false,
+		wif: false,
 	},
 };
