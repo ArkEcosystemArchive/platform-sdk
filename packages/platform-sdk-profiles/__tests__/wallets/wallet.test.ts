@@ -1,8 +1,9 @@
 import "jest-extended";
 import nock from "nock";
 
-import { Coins, Utils } from "@arkecosystem/platform-sdk";
+import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Wallet } from "../../src/wallets/wallet";
 import { identity } from "../__fixtures__/identity";
@@ -46,9 +47,9 @@ test("Wallet#publicKey", async () => {
 });
 
 test("Wallet#balance", async () => {
-	expect(subject.balance()).toEqual(Utils.BigNumber.make("55827093444556"));
+	expect(subject.balance()).toEqual(BigNumber.make("55827093444556"));
 });
 
 test("Wallet#nonce", async () => {
-	expect(subject.nonce()).toEqual(Utils.BigNumber.make("111932"));
+	expect(subject.nonce()).toEqual(BigNumber.make("111932"));
 });

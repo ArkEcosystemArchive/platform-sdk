@@ -1,4 +1,5 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import { RippleAPI } from "ripple-lib";
 
 import { TransactionData, WalletData } from "../dto";
@@ -137,7 +138,7 @@ export class ClientService implements Contracts.ClientService {
 			connection = new RippleAPI({ server: config.get<string>("peer") });
 		} catch {
 			connection = new RippleAPI({
-				server: Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts),
+				server: Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts),
 			});
 		}
 

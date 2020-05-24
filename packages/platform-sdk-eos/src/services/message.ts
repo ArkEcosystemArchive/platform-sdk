@@ -1,4 +1,5 @@
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-support";
 import ecc from "eosjs-ecc";
 
 export class MessageService implements Contracts.MessageService {
@@ -11,7 +12,7 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const passphrase: string = Utils.BIP39.normalize(input.passphrase);
+		const passphrase: string = BIP39.normalize(input.passphrase);
 
 		return {
 			message: input.message,

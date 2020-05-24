@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class PrivateKey implements Contracts.PrivateKey {
 	public async fromPassphrase(passphrase: string): Promise<string> {

@@ -1,4 +1,5 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP44 } from "@arkecosystem/platform-sdk-support";
 import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
 import { CommHandler, DposLedger, LedgerAccount, SupportedCoin } from "dpos-ledger-api";
 
@@ -65,6 +66,6 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	private getLedgerAccount(path: string): LedgerAccount {
-		return new LedgerAccount().coinIndex(SupportedCoin.LISK).account(Utils.BIP44.parse(path).account);
+		return new LedgerAccount().coinIndex(SupportedCoin.LISK).account(BIP44.parse(path).account);
 	}
 }

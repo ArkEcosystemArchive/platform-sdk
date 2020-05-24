@@ -1,5 +1,5 @@
 import { Identities } from "@arkecosystem/crypto";
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class PrivateKey implements Contracts.PrivateKey {
 	public async fromPassphrase(passphrase: string): Promise<string> {

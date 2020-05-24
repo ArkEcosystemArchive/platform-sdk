@@ -1,4 +1,5 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP44 } from "@arkecosystem/platform-sdk-support";
 import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
 import CosmosApp from "ledger-cosmos-js";
 
@@ -38,14 +39,14 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
-		const pathArray: number[] = Object.values(Utils.BIP44.parse(path));
+		const pathArray: number[] = Object.values(BIP44.parse(path));
 		const { compressed_pk } = await this.#transport.publicKey(pathArray);
 
 		return compressed_pk.toString("hex");
 	}
 
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
-		const pathArray: number[] = Object.values(Utils.BIP44.parse(path));
+		const pathArray: number[] = Object.values(BIP44.parse(path));
 		const { signature } = await this.#transport.sign(pathArray, payload.toString());
 
 		return signature.toString("hex");

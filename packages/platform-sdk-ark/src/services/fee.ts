@@ -1,5 +1,6 @@
 import { Connection } from "@arkecosystem/client";
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 
 export class FeeService implements Contracts.FeeService {
 	readonly #connection: Connection;
@@ -12,7 +13,7 @@ export class FeeService implements Contracts.FeeService {
 		try {
 			return new FeeService(config.get<string>("peer"));
 		} catch {
-			return new FeeService(`${Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
+			return new FeeService(`${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
 		}
 	}
 

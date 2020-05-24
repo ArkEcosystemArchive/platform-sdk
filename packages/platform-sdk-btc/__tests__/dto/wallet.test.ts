@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Utils } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../../src/dto/wallet";
 import Fixture from "../__fixtures__/client/wallet.json";
@@ -12,6 +12,6 @@ describe("WalletData", function () {
 		expect(result).toBeInstanceOf(WalletData);
 		expect(result.address()).toBe("my48EN4kDnGEpRZMBfiDS65wdfwfgCGZRz");
 		expect(result.publicKey()).toBe("76a914c05f53de525d80151e209a729cf1c7909c88f88e88ac");
-		expect(result.balance()).toEqual(Utils.BigNumber.make(3050000));
+		expect(result.balance()).toEqual(BigNumber.make(3050000));
 	});
 });

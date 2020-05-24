@@ -1,4 +1,5 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 import { TransactionData, WalletData } from "../dto";
@@ -31,7 +32,7 @@ export class ClientService implements Contracts.ClientService {
 		try {
 			return new ClientService(config.get<string>("peer"));
 		} catch {
-			return new ClientService(Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts));
+			return new ClientService(Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts));
 		}
 	}
 

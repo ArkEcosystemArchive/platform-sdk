@@ -1,8 +1,7 @@
+import { BigNumber, Censor } from "@arkecosystem/platform-sdk-support";
 import emoji from "node-emoji";
 
 import { KeyValuePair } from "../contracts/types";
-import { BigNumber } from "../utils";
-import { Censor } from "../utils/censor";
 
 export abstract class AbstractTransactionData {
 	public constructor(protected readonly data: KeyValuePair) {}

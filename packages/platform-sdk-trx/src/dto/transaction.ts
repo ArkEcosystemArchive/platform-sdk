@@ -1,5 +1,5 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
-import { Utils } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
@@ -14,7 +14,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		throw new Exceptions.NotImplemented(this.constructor.name, "timestamp");
 	}
 
-	public confirmations(): Utils.BigNumber {
+	public confirmations(): BigNumber {
 		throw new Exceptions.NotImplemented(this.constructor.name, "confirmations");
 	}
 
@@ -26,11 +26,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		throw new Exceptions.NotImplemented(this.constructor.name, "recipient");
 	}
 
-	public amount(): Utils.BigNumber {
+	public amount(): BigNumber {
 		throw new Exceptions.NotImplemented(this.constructor.name, "amount");
 	}
 
-	public fee(): Utils.BigNumber {
+	public fee(): BigNumber {
 		throw new Exceptions.NotImplemented(this.constructor.name, "fee");
 	}
 

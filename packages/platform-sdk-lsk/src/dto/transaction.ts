@@ -1,5 +1,5 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
-import { Utils } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	readonly #types = {
@@ -22,8 +22,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.timestamp;
 	}
 
-	public confirmations(): Utils.BigNumber {
-		return Utils.BigNumber.make(this.data.confirmations);
+	public confirmations(): BigNumber {
+		return BigNumber.make(this.data.confirmations);
 	}
 
 	public sender(): string {
@@ -34,12 +34,12 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.recipientId;
 	}
 
-	public amount(): Utils.BigNumber {
-		return Utils.BigNumber.make(this.data.amount);
+	public amount(): BigNumber {
+		return BigNumber.make(this.data.amount);
 	}
 
-	public fee(): Utils.BigNumber {
-		return Utils.BigNumber.make(this.data.fee);
+	public fee(): BigNumber {
+		return BigNumber.make(this.data.fee);
 	}
 
 	public memo(): string | undefined {

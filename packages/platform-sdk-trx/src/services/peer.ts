@@ -1,7 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
-import { manifest } from "../manifest";
-
 export class PeerService implements Contracts.PeerService {
 	readonly #seeds: string[];
 

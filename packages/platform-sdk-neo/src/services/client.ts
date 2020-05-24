@@ -1,8 +1,9 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Http } from "@arkecosystem/platform-sdk-support";
 import Neon from "@cityofzion/neon-js";
 import { api } from "@cityofzion/neon-js";
 
-import { DelegateData, TransactionData, WalletData } from "../dto";
+import { TransactionData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;
@@ -126,10 +127,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.Http.new(this.#baseUrl).get(path, query);
+		return Http.new(this.#baseUrl).get(path, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.Http.new(this.#baseUrl).post(path, body);
+		return Http.new(this.#baseUrl).post(path, body);
 	}
 }

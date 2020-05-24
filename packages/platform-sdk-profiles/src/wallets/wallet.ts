@@ -1,4 +1,5 @@
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Storage } from "../contracts";
 import { Data } from "../data";
@@ -46,11 +47,11 @@ export class Wallet {
 		return this.#wallet.publicKey();
 	}
 
-	public balance(): Utils.BigNumber {
+	public balance(): BigNumber {
 		return this.#wallet.balance();
 	}
 
-	public nonce(): Utils.BigNumber {
+	public nonce(): BigNumber {
 		return this.#wallet.nonce();
 	}
 

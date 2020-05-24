@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class Address implements Contracts.Address {
 	public async fromPassphrase(passphrase: string): Promise<string> {

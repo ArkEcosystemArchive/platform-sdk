@@ -1,5 +1,6 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
+import { Http } from "@arkecosystem/platform-sdk-support";
 
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
 import { HistoricalVolumeTransformer } from "./transformers/historical-volume-transformer";
@@ -8,10 +9,10 @@ import { MarketTransformer } from "./transformers/market-transformer";
 export class PriceTracker implements Contracts.PriceTracker {
 	private readonly tokenLookup: Contracts.KeyValuePair = {};
 
-	readonly #client: Utils.Http;
+	readonly #client: Http;
 
 	public constructor() {
-		this.#client = Utils.Http.new("https://api.coingecko.com/api/v3");
+		this.#client = Http.new("https://api.coingecko.com/api/v3");
 	}
 
 	public async verifyToken(token: string): Promise<boolean> {

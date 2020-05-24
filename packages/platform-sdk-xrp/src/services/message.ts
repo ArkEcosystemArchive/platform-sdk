@@ -1,4 +1,5 @@
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { BIP39, Buffoon } from "@arkecosystem/platform-sdk-support";
 import { deriveKeypair, sign, verify } from "ripple-keypairs";
 
 export class MessageService implements Contracts.MessageService {
@@ -11,16 +12,16 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const { publicKey, privateKey } = deriveKeypair(Utils.BIP39.normalize(input.passphrase));
+		const { publicKey, privateKey } = deriveKeypair(BIP39.normalize(input.passphrase));
 
 		return {
 			message: input.message,
 			signer: publicKey,
-			signature: sign(Utils.Buffoon.toHex(input.message), privateKey),
+			signature: sign(Buffoon.toHex(input.message), privateKey),
 		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return verify(Utils.Buffoon.toHex(input.message), input.signature, input.signer);
+		return verify(Buffoon.toHex(input.message), input.signature, input.signer);
 	}
 }

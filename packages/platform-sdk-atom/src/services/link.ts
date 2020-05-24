@@ -1,7 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
-import { manifest } from "../manifest";
-
 export class LinkService implements Contracts.LinkService {
 	readonly #baseUrl: string;
 

@@ -1,4 +1,5 @@
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { BIP39, Buffoon } from "@arkecosystem/platform-sdk-support";
 import StellarHDWallet from "stellar-hd-wallet";
 import Stellar from "stellar-sdk";
 
@@ -12,20 +13,20 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const privateKey: string = StellarHDWallet.fromMnemonic(Utils.BIP39.normalize(input.passphrase)).getSecret(0);
+		const privateKey: string = StellarHDWallet.fromMnemonic(BIP39.normalize(input.passphrase)).getSecret(0);
 		const source = Stellar.Keypair.fromSecret(privateKey);
 
 		return {
 			message: input.message,
 			signer: source.publicKey(),
-			signature: source.sign(Utils.Buffoon.fromUTF8(input.message)).toString("hex"),
+			signature: source.sign(Buffoon.fromUTF8(input.message)).toString("hex"),
 		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		return Stellar.Keypair.fromPublicKey(input.signer).verify(
-			Utils.Buffoon.fromUTF8(input.message),
-			Utils.Buffoon.fromHex(input.signature),
+			Buffoon.fromUTF8(input.message),
+			Buffoon.fromHex(input.signature),
 		);
 	}
 }

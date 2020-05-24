@@ -55,6 +55,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-ada@workspace:packages/platform-sdk-ada"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
@@ -94,6 +95,7 @@ __metadata:
     "@arkecosystem/crypto": ^2.6.37
     "@arkecosystem/ledger-transport": ^1.0.5
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
@@ -140,6 +142,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-atom@workspace:packages/platform-sdk-atom"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
@@ -181,6 +184,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-btc@workspace:packages/platform-sdk-btc"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
@@ -221,6 +225,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -256,6 +261,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -291,6 +297,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -325,6 +332,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eos@workspace:packages/platform-sdk-eos"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
@@ -364,6 +372,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eth@workspace:packages/platform-sdk-eth"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-eth": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
@@ -443,6 +452,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-lsk@workspace:packages/platform-sdk-lsk"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
@@ -524,6 +534,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-neo@workspace:packages/platform-sdk-neo"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@cityofzion/neon-js": ^4.8.0
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
@@ -562,6 +573,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-ark": "workspace:packages/platform-sdk-ark"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/dot-prop": 5.0.1
     "@types/eslint": ^6.8.0
@@ -598,11 +610,54 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@arkecosystem/platform-sdk-support@workspace:packages/platform-sdk-support":
+  version: 0.0.0-use.local
+  resolution: "@arkecosystem/platform-sdk-support@workspace:packages/platform-sdk-support"
+  dependencies:
+    "@sindresorhus/tsconfig": ^0.7.0
+    "@types/bent": 7.0.2
+    "@types/dot-prop": 5.0.1
+    "@types/eslint": ^6.8.0
+    "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
+    "@types/jest": ^25.2.1
+    "@types/node": ^13.13.4
+    "@types/prettier": ^2.0.0
+    "@types/rimraf": ^3.0.0
+    "@typescript-eslint/eslint-plugin": ^2.30.0
+    "@typescript-eslint/parser": ^2.30.0
+    bad-words: ^3.0.3
+    bent: ^7.3.1
+    bignumber.js: ^9.0.0
+    bip32: ^2.0.5
+    bip39: ^3.0.2
+    censorify-it: ^2.1.4
+    codecov: ^3.6.5
+    cross-env: ^7.0.2
+    eslint: ^6.8.0
+    eslint-config-prettier: ^6.11.0
+    eslint-plugin-jest: ^23.8.2
+    eslint-plugin-prettier: ^3.1.3
+    eslint-plugin-simple-import-sort: ^5.0.3
+    jest: ^25.4.0
+    jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
+    nock: ^12.0.3
+    npm-check-updates: ^4.1.2
+    prettier: ^2.0.5
+    rimraf: ^3.0.2
+    ts-jest: ^25.4.0
+    typedoc: ^0.17.7
+    typescript: ^3.8.3
+  languageName: unknown
+  linkType: soft
+
 "@arkecosystem/platform-sdk-trx@workspace:packages/platform-sdk-trx":
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-trx@workspace:packages/platform-sdk-trx"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-trx": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
@@ -643,6 +698,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xlm@workspace:packages/platform-sdk-xlm"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-str": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
@@ -684,6 +740,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xmr@workspace:packages/platform-sdk-xmr"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
@@ -721,6 +778,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xrp@workspace:packages/platform-sdk-xrp"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-xrp": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
@@ -767,6 +825,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk@workspace:packages/platform-sdk"
   dependencies:
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/dot-prop": 5.0.1
@@ -3454,6 +3513,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/bent@npm:7.0.2":
+  version: 7.0.2
+  resolution: "@types/bent@npm:7.0.2"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2/44aa78fb033773e00007351f954339f679b8ba2165bf12f640f63f85c67c6331d3491690708efc593b1518368ce5fc6aa423a1bca74875d63726304c4a20d349
+  languageName: node
+  linkType: hard
+
 "@types/bip39@npm:2.4.1":
   version: 2.4.1
   resolution: "@types/bip39@npm:2.4.1"
@@ -5113,6 +5181,17 @@ __metadata:
     caseless: ~0.12.0
     is-stream: ^2.0.0
   checksum: 2/889ea06597c24a03a45d0e9f7123061581caff5659ca2dcdd7c30fba4928e7951ca0cbfbecccb1f2c2414db7a5fa72845ea393c7f825f713f2219a3bdb74aeca
+  languageName: node
+  linkType: hard
+
+"bent@npm:^7.3.1":
+  version: 7.3.1
+  resolution: "bent@npm:7.3.1"
+  dependencies:
+    bytesish: ^0.4.1
+    caseless: ~0.12.0
+    is-stream: ^2.0.0
+  checksum: 2/dc53e0cb7baa33d8acdcbce1b6e0b79437bee73bc6130d002b7718b2060fe8c40fecf5f76863f31f11149520e163bbe2597a358736445e7ca86364fa76215178
   languageName: node
   linkType: hard
 

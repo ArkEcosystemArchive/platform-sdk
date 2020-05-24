@@ -1,4 +1,5 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr, BIP39 } from "@arkecosystem/platform-sdk-support";
 import BigNumber from "bignumber.js";
 import { Transaction } from "bitcore-lib";
 
@@ -20,7 +21,7 @@ export class TransactionService implements Contracts.TransactionService {
 		try {
 			unspent = new UnspentAggregator(config.get<string>("peer"));
 		} catch {
-			unspent = new UnspentAggregator(Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts));
+			unspent = new UnspentAggregator(Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts));
 		}
 
 		return new TransactionService({
@@ -38,7 +39,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		// NOTE: this is a WIF/PrivateKey - should probably be passed in as wif instead of passphrase
-		const passphrase: string = Utils.BIP39.normalize(input.sign.passphrase);
+		const passphrase: string = BIP39.normalize(input.sign.passphrase);
 
 		// 1. Derive the sender address
 		const senderAddress: string = await this.#identity.address().fromWIF(passphrase);

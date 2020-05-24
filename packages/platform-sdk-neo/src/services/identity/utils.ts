@@ -1,10 +1,10 @@
-import { Utils } from "@arkecosystem/platform-sdk";
+import { BIP44 } from "@arkecosystem/platform-sdk-support";
 import { wallet } from "@cityofzion/neon-js";
 
 export const createWallet = (input: string) => new wallet.Account(input);
 
 export const deriveWallet = (passphrase: string, coinType: number, index = 0) =>
-	createWallet(Utils.BIP44.deriveChild(passphrase, { coinType, index }).privateKey!.toString("hex"));
+	createWallet(BIP44.deriveChild(passphrase, { coinType, index }).privateKey!.toString("hex"));
 
 export const deriveKeyPair = (input: string) => {
 	const { publicKey, privateKey } = createWallet(input);

@@ -1,4 +1,5 @@
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-support";
 import Neon from "@cityofzion/neon-js";
 import { wallet } from "@cityofzion/neon-js";
 
@@ -12,7 +13,7 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const passphrase: string = Utils.BIP39.normalize(input.passphrase);
+		const passphrase: string = BIP39.normalize(input.passphrase);
 		const signature = Neon.sign.message(input.message, passphrase);
 
 		return { message: input.message, signer: new wallet.Account(passphrase).publicKey, signature };

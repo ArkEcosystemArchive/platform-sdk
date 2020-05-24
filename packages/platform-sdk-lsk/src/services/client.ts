@@ -1,4 +1,5 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr, Http } from "@arkecosystem/platform-sdk-support";
 
 import { DelegateData, TransactionData, WalletData } from "../dto";
 
@@ -21,7 +22,7 @@ export class ClientService implements Contracts.ClientService {
 		try {
 			return new ClientService(config.get<string>("peer"));
 		} catch {
-			return new ClientService(`${Utils.randomArrayElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
+			return new ClientService(`${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
 		}
 	}
 
@@ -127,10 +128,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.Http.new(this.#baseUrl).get(path, query);
+		return Http.new(this.#baseUrl).get(path, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Utils.Http.new(this.#baseUrl).post(path, body);
+		return Http.new(this.#baseUrl).post(path, body);
 	}
 }
