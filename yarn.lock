@@ -55,6 +55,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-ada@workspace:packages/platform-sdk-ada"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
@@ -94,6 +95,7 @@ __metadata:
     "@arkecosystem/crypto": ^2.6.37
     "@arkecosystem/ledger-transport": ^1.0.5
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
@@ -140,6 +142,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-atom@workspace:packages/platform-sdk-atom"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
@@ -181,6 +184,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-btc@workspace:packages/platform-sdk-btc"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
@@ -221,6 +225,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -256,6 +261,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -291,6 +297,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -325,6 +332,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eos@workspace:packages/platform-sdk-eos"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.0
@@ -364,6 +372,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eth@workspace:packages/platform-sdk-eth"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-eth": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
@@ -443,6 +452,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-lsk@workspace:packages/platform-sdk-lsk"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
@@ -524,6 +534,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-neo@workspace:packages/platform-sdk-neo"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@cityofzion/neon-js": ^4.8.0
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
@@ -562,6 +573,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-ark": "workspace:packages/platform-sdk-ark"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/dot-prop": 5.0.1
     "@types/eslint": ^6.8.0
@@ -645,6 +657,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-trx@workspace:packages/platform-sdk-trx"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-trx": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
@@ -685,6 +698,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xlm@workspace:packages/platform-sdk-xlm"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-str": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
@@ -726,6 +740,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xmr@workspace:packages/platform-sdk-xmr"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
@@ -763,6 +778,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xrp@workspace:packages/platform-sdk-xrp"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-xrp": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0

@@ -1,5 +1,6 @@
 import { Connection } from "@arkecosystem/client";
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 
 export class FeeService implements Contracts.FeeService {
 	readonly #connection: Connection;

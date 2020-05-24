@@ -1,4 +1,5 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP44 } from "@arkecosystem/platform-sdk-support";
 import bech32 from "bech32";
 
 export class Address implements Contracts.Address {

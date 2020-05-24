@@ -1,7 +1,7 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
-import { DelegateData, TransactionData, WalletData } from "../dto";
+import { TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #client;

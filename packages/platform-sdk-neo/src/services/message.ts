@@ -1,4 +1,5 @@
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-support";
 import Neon from "@cityofzion/neon-js";
 import { wallet } from "@cityofzion/neon-js";
 

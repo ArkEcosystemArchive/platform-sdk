@@ -1,5 +1,6 @@
 import { Crypto } from "@arkecosystem/crypto";
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-support";
 
 export class MessageService implements Contracts.MessageService {
 	public static async construct(config: Coins.Config): Promise<MessageService> {

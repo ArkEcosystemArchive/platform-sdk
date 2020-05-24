@@ -1,4 +1,5 @@
-import { Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
+import { BIP44 } from "@arkecosystem/platform-sdk-support";
 import { PrivateKey, PublicKey } from "bitcore-lib";
 
 export class Keys implements Contracts.Keys {

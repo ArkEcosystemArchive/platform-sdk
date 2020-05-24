@@ -1,1 +1,5 @@
-export const randomArrayElement = (items: any[]) => items[Math.floor(Math.random() * items.length)];
+export class Arr {
+	public static randomElement(items: any[]) {
+		return items[Math.floor(Math.random() * items.length)];
+	}
+}

@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Utils } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../../src/dto/wallet";
 import fixtures from "../services/fixtures/responses";

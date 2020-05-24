@@ -1,6 +1,7 @@
 import { Connection } from "@arkecosystem/client";
 import { Managers, Transactions } from "@arkecosystem/crypto";
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Arr, BigNumber, BIP39 } from "@arkecosystem/platform-sdk-support";
 
 import { IdentityService } from "./identity";
 

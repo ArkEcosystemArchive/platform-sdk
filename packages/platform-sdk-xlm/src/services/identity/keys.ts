@@ -1,4 +1,5 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-support";
 import StellarHDWallet from "stellar-hd-wallet";
 import Stellar from "stellar-sdk";
 

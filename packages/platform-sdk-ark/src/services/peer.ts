@@ -1,4 +1,5 @@
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Http } from "@arkecosystem/platform-sdk-support";
 import isUrl from "is-url-superb";
 import orderBy from "lodash.orderby";
 import semver from "semver";

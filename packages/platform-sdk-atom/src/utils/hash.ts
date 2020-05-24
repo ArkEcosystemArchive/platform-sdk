@@ -1,4 +1,4 @@
-import { Utils } from "@arkecosystem/platform-sdk";
+import { Buffoon } from "@arkecosystem/platform-sdk-support";
 import { RIPEMD160, SHA256 } from "bcrypto";
 
 export class HashAlgorithms {

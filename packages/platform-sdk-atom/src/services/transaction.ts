@@ -1,6 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
-import { manifest } from "../manifest";
 import { createSignedTransaction } from "../utils/crypto";
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";

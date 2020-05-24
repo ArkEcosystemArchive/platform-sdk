@@ -1,4 +1,4 @@
-import { Utils } from "@arkecosystem/platform-sdk";
+import { BigNumber, Http } from "@arkecosystem/platform-sdk-support";
 
 import { UnspentTransaction } from "../contracts";
 

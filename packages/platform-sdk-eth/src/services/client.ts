@@ -1,4 +1,5 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr, Http } from "@arkecosystem/platform-sdk-support";
 import Web3 from "web3";
 
 import { TransactionData, WalletData } from "../dto";

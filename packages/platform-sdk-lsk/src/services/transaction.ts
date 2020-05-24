@@ -1,4 +1,5 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-support";
 import * as transactions from "@liskhq/lisk-transactions";
 import * as transactionsBeta from "@liskhq/lisk-transactions-new";
 

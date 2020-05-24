@@ -1,5 +1,6 @@
-import { Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
+import { Http } from "@arkecosystem/platform-sdk-support";
 
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
 import { MarketTransformer } from "./transformers/market-transformer";

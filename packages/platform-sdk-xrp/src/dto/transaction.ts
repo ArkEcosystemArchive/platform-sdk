@@ -1,5 +1,5 @@
-import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
-import { Utils } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import BN from "bignumber.js";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {

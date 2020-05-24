@@ -1,4 +1,5 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr, Http } from "@arkecosystem/platform-sdk-support";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;

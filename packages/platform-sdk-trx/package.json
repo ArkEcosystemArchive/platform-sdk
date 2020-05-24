@@ -21,6 +21,7 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
+		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@hapi/joi": "^17.1.1",
 		"@ledgerhq/hw-app-trx": "^5.15.0",
 		"@ledgerhq/hw-transport-node-hid-singleton": "^5.15.0",

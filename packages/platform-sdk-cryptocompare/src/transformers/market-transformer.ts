@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class MarketTransformer implements Contracts.MarketTransformer {
 	public constructor(private readonly data: Contracts.KeyValuePair) {}

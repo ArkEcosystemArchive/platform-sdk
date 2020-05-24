@@ -1,4 +1,4 @@
-import { Utils } from "@arkecosystem/platform-sdk";
+import { BIP44 } from "@arkecosystem/platform-sdk-support";
 import { wallet } from "@cityofzion/neon-js";
 
 export const createWallet = (input: string) => new wallet.Account(input);

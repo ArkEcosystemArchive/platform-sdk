@@ -1,4 +1,4 @@
-import { Utils } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../../src/dto";
 import Fixture from "../__fixtures__/client/wallet.json";

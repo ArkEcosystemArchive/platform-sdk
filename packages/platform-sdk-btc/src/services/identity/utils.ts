@@ -1,4 +1,4 @@
-import { Utils } from "@arkecosystem/platform-sdk";
+import { BIP44 } from "@arkecosystem/platform-sdk-support";
 import * as bitcoin from "bitcoinjs-lib";
 
 export const p2pkh = async (passphrase: string, network: string) =>

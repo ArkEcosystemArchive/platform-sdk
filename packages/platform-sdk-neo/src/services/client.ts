@@ -1,8 +1,9 @@
-import { Coins, Contracts, Exceptions, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Http } from "@arkecosystem/platform-sdk-support";
 import Neon from "@cityofzion/neon-js";
 import { api } from "@cityofzion/neon-js";
 
-import { DelegateData, TransactionData, WalletData } from "../dto";
+import { TransactionData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #baseUrl: string;

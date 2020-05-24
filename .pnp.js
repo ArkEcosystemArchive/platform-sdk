@@ -382,6 +382,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-ada", "workspace:packages/platform-sdk-ada"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
@@ -423,6 +424,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/crypto", "npm:2.6.37"],
             ["@arkecosystem/ledger-transport", "npm:1.0.5"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
@@ -471,6 +473,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-atom", "workspace:packages/platform-sdk-atom"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
@@ -514,6 +517,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-btc", "workspace:packages/platform-sdk-btc"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
@@ -556,6 +560,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-coincap", "workspace:packages/platform-sdk-coincap"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -593,6 +598,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-coingecko", "workspace:packages/platform-sdk-coingecko"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -630,6 +636,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-cryptocompare", "workspace:packages/platform-sdk-cryptocompare"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -666,6 +673,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-eos", "workspace:packages/platform-sdk-eos"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.0"],
@@ -707,6 +715,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-eth", "workspace:packages/platform-sdk-eth"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-app-eth", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
@@ -790,6 +799,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-lsk", "workspace:packages/platform-sdk-lsk"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
@@ -881,6 +891,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-neo", "workspace:packages/platform-sdk-neo"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@cityofzion/neon-js", "npm:4.8.0"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -921,6 +932,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-profiles", "workspace:packages/platform-sdk-profiles"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/dot-prop", "npm:5.0.1"],
             ["@types/eslint", "npm:6.8.0"],
@@ -1008,6 +1020,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-trx", "workspace:packages/platform-sdk-trx"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-app-trx", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
@@ -1050,6 +1063,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-xlm", "workspace:packages/platform-sdk-xlm"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-app-str", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
@@ -1093,6 +1107,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-xmr", "workspace:packages/platform-sdk-xmr"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
@@ -1132,6 +1147,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-xrp", "workspace:packages/platform-sdk-xrp"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-app-xrp", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],

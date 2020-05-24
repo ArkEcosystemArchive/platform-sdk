@@ -1,5 +1,5 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
-import { Utils } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
 	public address(): string {

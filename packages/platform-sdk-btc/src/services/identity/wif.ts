@@ -1,4 +1,5 @@
-import { Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
+import { BIP44 } from "@arkecosystem/platform-sdk-support";
 
 export class WIF implements Contracts.WIF {
 	public async fromPassphrase(passphrase: string): Promise<string> {

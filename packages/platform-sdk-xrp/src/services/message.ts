@@ -1,4 +1,5 @@
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { BIP39, Buffoon } from "@arkecosystem/platform-sdk-support";
 import { deriveKeypair, sign, verify } from "ripple-keypairs";
 
 export class MessageService implements Contracts.MessageService {

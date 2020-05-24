@@ -1,8 +1,9 @@
 import "jest-extended";
 import nock from "nock";
 
-import { Coins, Utils } from "@arkecosystem/platform-sdk";
+import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Wallet } from "../../src/wallets/wallet";
 import { identity } from "../__fixtures__/identity";

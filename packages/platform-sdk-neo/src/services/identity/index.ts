@@ -1,6 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
-import { manifest } from "../../manifest";
 import { Address } from "./address";
 import { Keys } from "./keys";
 import { PrivateKey } from "./private-key";

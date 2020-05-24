@@ -1,5 +1,6 @@
 import { Connection } from "@arkecosystem/client";
-import { Coins, Contracts, Utils } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Arr, Http } from "@arkecosystem/platform-sdk-support";
 
 import { DelegateData, TransactionData, WalletData } from "../dto";
 

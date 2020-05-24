@@ -1,6 +1,7 @@
 import "jest-extended";
+
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import WebSocket from "ws";
-import { Utils } from "@arkecosystem/platform-sdk";
 
 import fixtures from "./fixtures/rippled";
 

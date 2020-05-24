@@ -1,4 +1,4 @@
-import { Utils } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-support";
 import * as bip39 from "bip39";
 import Wallet from "ethereumjs-wallet";
 import hdkey from "ethereumjs-wallet/hdkey";
