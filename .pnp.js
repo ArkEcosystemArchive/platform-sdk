@@ -668,6 +668,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:25.5.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
+            ["keytar", "npm:6.0.0"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:4.1.2"],
             ["prettier", "npm:2.0.5"],
@@ -13441,6 +13442,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["keytar", [
+        ["npm:6.0.0", {
+          "packageLocation": "./.yarn/unplugged/keytar-npm-6.0.0-c54d394ea8/node_modules/keytar/",
+          "packageDependencies": [
+            ["keytar", "npm:6.0.0"],
+            ["node-addon-api", "npm:3.0.0"],
+            ["node-gyp", "npm:6.1.0"],
+            ["prebuild-install", "npm:5.3.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["keyv", [
         ["npm:3.1.0", {
           "packageLocation": "./.yarn/cache/keyv-npm-3.1.0-81c9ff4454-2.zip/node_modules/keyv/",
@@ -14952,6 +14965,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["node-abi", "npm:2.16.0"],
             ["semver", "npm:5.7.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["node-addon-api", [
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/unplugged/node-addon-api-npm-3.0.0-b51323d354/node_modules/node-addon-api/",
+          "packageDependencies": [
+            ["node-addon-api", "npm:3.0.0"],
+            ["node-gyp", "npm:6.1.0"]
           ],
           "linkType": "HARD",
         }]
