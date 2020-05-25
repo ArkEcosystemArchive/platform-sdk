@@ -55,6 +55,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-ada@workspace:packages/platform-sdk-ada"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
@@ -95,6 +96,7 @@ __metadata:
     "@arkecosystem/crypto": ^2.6.37
     "@arkecosystem/ledger-transport": ^1.0.5
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
@@ -142,6 +144,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-atom@workspace:packages/platform-sdk-atom"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
@@ -184,6 +187,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-btc@workspace:packages/platform-sdk-btc"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
@@ -291,6 +295,45 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@arkecosystem/platform-sdk-crypto@workspace:packages/platform-sdk-crypto":
+  version: 0.0.0-use.local
+  resolution: "@arkecosystem/platform-sdk-crypto@workspace:packages/platform-sdk-crypto"
+  dependencies:
+    "@sindresorhus/tsconfig": ^0.7.0
+    "@types/bent": 7.0.2
+    "@types/dot-prop": 5.0.1
+    "@types/eslint": ^6.8.0
+    "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.0
+    "@types/jest": ^25.2.1
+    "@types/node": ^13.13.4
+    "@types/prettier": ^2.0.0
+    "@types/rimraf": ^3.0.0
+    "@typescript-eslint/eslint-plugin": ^2.30.0
+    "@typescript-eslint/parser": ^2.30.0
+    bcrypto: ^5.1.0
+    bip32: ^2.0.5
+    bip39: ^3.0.2
+    codecov: ^3.6.5
+    cross-env: ^7.0.2
+    eslint: ^6.8.0
+    eslint-config-prettier: ^6.11.0
+    eslint-plugin-jest: ^23.8.2
+    eslint-plugin-prettier: ^3.1.3
+    eslint-plugin-simple-import-sort: ^5.0.3
+    jest: ^25.4.0
+    jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
+    nock: ^12.0.3
+    npm-check-updates: ^4.1.2
+    prettier: ^2.0.5
+    rimraf: ^3.0.2
+    ts-jest: ^25.4.0
+    typedoc: ^0.17.7
+    typescript: ^3.8.3
+  languageName: unknown
+  linkType: soft
+
 "@arkecosystem/platform-sdk-cryptocompare@workspace:packages/platform-sdk-cryptocompare":
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-cryptocompare@workspace:packages/platform-sdk-cryptocompare"
@@ -332,6 +375,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eos@workspace:packages/platform-sdk-eos"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
@@ -372,6 +416,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eth@workspace:packages/platform-sdk-eth"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-eth": ^5.15.0
@@ -452,6 +497,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-lsk@workspace:packages/platform-sdk-lsk"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
@@ -534,6 +580,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-neo@workspace:packages/platform-sdk-neo"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@cityofzion/neon-js": ^4.8.0
     "@hapi/joi": ^17.1.1
@@ -629,8 +676,6 @@ __metadata:
     bad-words: ^3.0.3
     bent: ^7.3.1
     bignumber.js: ^9.0.0
-    bip32: ^2.0.5
-    bip39: ^3.0.2
     censorify-it: ^2.1.4
     codecov: ^3.6.5
     cross-env: ^7.0.2
@@ -657,6 +702,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-trx@workspace:packages/platform-sdk-trx"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-trx": ^5.15.0
@@ -698,6 +744,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xlm@workspace:packages/platform-sdk-xlm"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-str": ^5.15.0
@@ -740,6 +787,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xmr@workspace:packages/platform-sdk-xmr"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
@@ -778,6 +826,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-xrp@workspace:packages/platform-sdk-xrp"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-xrp": ^5.15.0

@@ -51,6 +51,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/platform-sdk-coingecko"
       },
       {
+        "name": "@arkecosystem/platform-sdk-crypto",
+        "reference": "workspace:packages/platform-sdk-crypto"
+      },
+      {
         "name": "@arkecosystem/platform-sdk-cryptocompare",
         "reference": "workspace:packages/platform-sdk-cryptocompare"
       },
@@ -113,6 +117,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@arkecosystem/platform-sdk-btc", ["workspace:packages/platform-sdk-btc"]],
       ["@arkecosystem/platform-sdk-coincap", ["workspace:packages/platform-sdk-coincap"]],
       ["@arkecosystem/platform-sdk-coingecko", ["workspace:packages/platform-sdk-coingecko"]],
+      ["@arkecosystem/platform-sdk-crypto", ["workspace:packages/platform-sdk-crypto"]],
       ["@arkecosystem/platform-sdk-cryptocompare", ["workspace:packages/platform-sdk-cryptocompare"]],
       ["@arkecosystem/platform-sdk-eos", ["workspace:packages/platform-sdk-eos"]],
       ["@arkecosystem/platform-sdk-eth", ["workspace:packages/platform-sdk-eth"]],
@@ -382,6 +387,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-ada", "workspace:packages/platform-sdk-ada"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -424,6 +430,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/crypto", "npm:2.6.37"],
             ["@arkecosystem/ledger-transport", "npm:1.0.5"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
@@ -473,6 +480,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-atom", "workspace:packages/platform-sdk-atom"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
@@ -517,6 +525,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-btc", "workspace:packages/platform-sdk-btc"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -629,6 +638,47 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT",
         }]
       ]],
+      ["@arkecosystem/platform-sdk-crypto", [
+        ["workspace:packages/platform-sdk-crypto", {
+          "packageLocation": "./packages/platform-sdk-crypto/",
+          "packageDependencies": [
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
+            ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/bent", "npm:7.0.2"],
+            ["@types/dot-prop", "npm:5.0.1"],
+            ["@types/eslint", "npm:6.8.0"],
+            ["@types/eslint-plugin-prettier", "npm:3.1.0"],
+            ["@types/hapi__joi", "npm:17.1.0"],
+            ["@types/jest", "npm:25.2.1"],
+            ["@types/node", "npm:13.13.4"],
+            ["@types/prettier", "npm:2.0.0"],
+            ["@types/rimraf", "npm:3.0.0"],
+            ["@typescript-eslint/eslint-plugin", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:2.30.0"],
+            ["@typescript-eslint/parser", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:2.30.0"],
+            ["bcrypto", "npm:5.1.0"],
+            ["bip32", "npm:2.0.5"],
+            ["bip39", "npm:3.0.2"],
+            ["codecov", "npm:3.6.5"],
+            ["cross-env", "npm:7.0.2"],
+            ["eslint", "npm:6.8.0"],
+            ["eslint-config-prettier", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:6.11.0"],
+            ["eslint-plugin-jest", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:23.8.2"],
+            ["eslint-plugin-prettier", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:3.1.3"],
+            ["eslint-plugin-simple-import-sort", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:5.0.3"],
+            ["jest", "npm:25.5.0"],
+            ["jest-extended", "npm:0.11.5"],
+            ["jest-localstorage-mock", "npm:2.4.2"],
+            ["nock", "npm:12.0.3"],
+            ["npm-check-updates", "npm:4.1.2"],
+            ["prettier", "npm:2.0.5"],
+            ["rimraf", "npm:3.0.2"],
+            ["ts-jest", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:25.4.0"],
+            ["typedoc", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:0.17.7"],
+            ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
       ["@arkecosystem/platform-sdk-cryptocompare", [
         ["workspace:packages/platform-sdk-cryptocompare", {
           "packageLocation": "./packages/platform-sdk-cryptocompare/",
@@ -673,6 +723,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-eos", "workspace:packages/platform-sdk-eos"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -715,6 +766,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-eth", "workspace:packages/platform-sdk-eth"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-app-eth", "npm:5.15.0"],
@@ -799,6 +851,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-lsk", "workspace:packages/platform-sdk-lsk"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
@@ -891,6 +944,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-neo", "workspace:packages/platform-sdk-neo"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@cityofzion/neon-js", "npm:4.8.0"],
             ["@hapi/joi", "npm:17.1.1"],
@@ -990,8 +1044,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["bad-words", "npm:3.0.3"],
             ["bent", "npm:7.3.1"],
             ["bignumber.js", "npm:9.0.0"],
-            ["bip32", "npm:2.0.5"],
-            ["bip39", "npm:3.0.2"],
             ["censorify-it", "npm:2.1.4"],
             ["codecov", "npm:3.6.5"],
             ["cross-env", "npm:7.0.2"],
@@ -1020,6 +1072,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-trx", "workspace:packages/platform-sdk-trx"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-app-trx", "npm:5.15.0"],
@@ -1063,6 +1116,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-xlm", "workspace:packages/platform-sdk-xlm"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-app-str", "npm:5.15.0"],
@@ -1107,6 +1161,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-xmr", "workspace:packages/platform-sdk-xmr"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -1147,6 +1202,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-xrp", "workspace:packages/platform-sdk-xrp"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@ledgerhq/hw-app-xrp", "npm:5.15.0"],
@@ -4740,6 +4796,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["semver", "npm:7.3.2"],
             ["tsutils", "virtual:27d283bfa448c2d7b13edad832a29e54145a07dc9d8e04a6acd39dc5fd689086ca75cd172ceecc47a24df46c6a01c91a9fe093fcaa71c8c45871ee9b8d3590d1#npm:3.17.1"],
             ["typescript", "patch:typescript@npm%3A3.9.3#builtin<compat/typescript>::version=3.9.3&hash=c79188"]
+          ],
+          "packagePeers": [
+            "eslint",
+            "@typescript-eslint/parser",
+            "typescript"
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:2.30.0", {
+          "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-8205c4df6b/0/cache/@typescript-eslint-eslint-plugin-npm-2.30.0-b8f3893dcf-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
+          "packageDependencies": [
+            ["@typescript-eslint/eslint-plugin", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:2.30.0"],
+            ["@typescript-eslint/experimental-utils", "virtual:901458100b46b52e9b750f65f032857d704622579e1ef3a3c7788687fbf3811575a467f6bf8c4a4a82578047c0a5b979f1e8ce827c0571aa0cb6d32eb2d2fe0c#npm:2.30.0"],
+            ["@typescript-eslint/parser", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:2.30.0"],
+            ["eslint", "npm:6.8.0"],
+            ["functional-red-black-tree", "npm:1.0.1"],
+            ["regexpp", "npm:3.1.0"],
+            ["tsutils", "virtual:901458100b46b52e9b750f65f032857d704622579e1ef3a3c7788687fbf3811575a467f6bf8c4a4a82578047c0a5b979f1e8ce827c0571aa0cb6d32eb2d2fe0c#npm:3.17.1"],
+            ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=c79188"]
           ],
           "packagePeers": [
             "eslint",

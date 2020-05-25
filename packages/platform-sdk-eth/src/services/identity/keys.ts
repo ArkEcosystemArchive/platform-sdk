@@ -1,5 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Buffoon } from "@arkecosystem/platform-sdk-support";
+import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import Wallet from "ethereumjs-wallet";
 
 import { createWallet } from "./utils";

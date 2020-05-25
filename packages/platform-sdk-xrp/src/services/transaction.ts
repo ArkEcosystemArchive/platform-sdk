@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr, BIP39 } from "@arkecosystem/platform-sdk-support";
+import {  BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import { RippleAPI } from "ripple-lib";
 
 import { IdentityService } from "./identity";

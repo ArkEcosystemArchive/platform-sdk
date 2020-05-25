@@ -1,5 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { BIP39, Buffoon } from "@arkecosystem/platform-sdk-support";
+import { BIP39, Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import StellarHDWallet from "stellar-hd-wallet";
 import Stellar from "stellar-sdk";
 
