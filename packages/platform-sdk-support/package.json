@@ -20,8 +20,8 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
+		"@kodekeep/reqwest": "^0.3.0",
 		"bad-words": "^3.0.3",
-		"bent": "^7.3.1",
 		"bignumber.js": "^9.0.0",
 		"censorify-it": "^2.1.4"
 	},

@@ -662,6 +662,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-support@workspace:packages/platform-sdk-support"
   dependencies:
+    "@kodekeep/reqwest": ^0.3.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/bent": 7.0.2
     "@types/dot-prop": 5.0.1
@@ -675,7 +676,6 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^2.30.0
     "@typescript-eslint/parser": ^2.30.0
     bad-words: ^3.0.3
-    bent: ^7.3.1
     bignumber.js: ^9.0.0
     censorify-it: ^2.1.4
     codecov: ^3.6.5
@@ -2078,6 +2078,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@kodekeep/reqwest@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@kodekeep/reqwest@npm:0.3.0"
+  dependencies:
+    got: ^11.1.4
+    is-url-superb: ^3.0.0
+    socks-proxy-agent: ^5.0.0
+    tough-cookie: ^4.0.0
+  checksum: 2/2edad251c27b4c3ac3a6de59b355305638fa548eed307ec3e8712011f7588af1fea1a0b2bff095855672327a2edd4109be7bcde4742e1aa966a8b47e474ca759
+  languageName: node
+  linkType: hard
+
 "@ledgerhq/devices@npm:^4.78.0":
   version: 4.78.0
   resolution: "@ledgerhq/devices@npm:4.78.0"
@@ -3465,7 +3477,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sindresorhus/is@npm:^2.1.0":
+"@sindresorhus/is@npm:^2.1.0, @sindresorhus/is@npm:^2.1.1":
   version: 2.1.1
   resolution: "@sindresorhus/is@npm:2.1.1"
   checksum: 2/884e1277e1142e40488190765dc889c7a6c4574ee1962757fe0fd130ab21cdfd83778bbcf25dc4bc70e97027098495e883ccefeeafe6888a62f7e9e6f6f29068
@@ -3506,7 +3518,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@szmarczak/http-timer@npm:^4.0.0":
+"@szmarczak/http-timer@npm:^4.0.0, @szmarczak/http-timer@npm:^4.0.5":
   version: 4.0.5
   resolution: "@szmarczak/http-timer@npm:4.0.5"
   dependencies:
@@ -5234,17 +5246,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bent@npm:^7.3.1":
-  version: 7.3.1
-  resolution: "bent@npm:7.3.1"
-  dependencies:
-    bytesish: ^0.4.1
-    caseless: ~0.12.0
-    is-stream: ^2.0.0
-  checksum: 2/dc53e0cb7baa33d8acdcbce1b6e0b79437bee73bc6130d002b7718b2060fe8c40fecf5f76863f31f11149520e163bbe2597a358736445e7ca86364fa76215178
-  languageName: node
-  linkType: hard
-
 "bigi@npm:1.4.2, bigi@npm:^1.1.0":
   version: 1.4.2
   resolution: "bigi@npm:1.4.2"
@@ -5856,6 +5857,13 @@ __metadata:
   version: 4.2.2
   resolution: "cacheable-lookup@npm:4.2.2"
   checksum: 2/f7ca6e4225d54606c55555622eb8b2260b1c092255df88ff70feac07d332c15da9c1e8e24c08d49c6f9aeecc560dd98090ceb1c943b520c3c8f229912bb185d7
+  languageName: node
+  linkType: hard
+
+"cacheable-lookup@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "cacheable-lookup@npm:5.0.3"
+  checksum: 2/a51e3ddb824865b87895a915fc41be6e2097b62932e5441c357711bb87ec23b0a738a7b7a5cefd9043dacd4ed31ca56b62528ec60ba020e360f07175b6ca5bfe
   languageName: node
   linkType: hard
 
@@ -7061,6 +7069,15 @@ __metadata:
   dependencies:
     mimic-response: ^2.0.0
   checksum: 2/c5ba32725f138ecdaee8d477243b8fa51c7cb458fa7b694804d1fd6236251b23dfd140a1458da370e0e31a5caf91ffa851f0a9288546e8d0f230cb0a29886b5c
+  languageName: node
+  linkType: hard
+
+"decompress-response@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "decompress-response@npm:6.0.0"
+  dependencies:
+    mimic-response: ^3.1.0
+  checksum: 2/bb8b8c42be7767994764d27f91a3949e3dc9008da82f1aaeab1de40f1ebb50d7abf17b31b2e4000f8d267a1e75f76052efd58d4419124c04bf430e184c164fad
   languageName: node
   linkType: hard
 
@@ -9225,6 +9242,26 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"got@npm:^11.1.4":
+  version: 11.1.4
+  resolution: "got@npm:11.1.4"
+  dependencies:
+    "@sindresorhus/is": ^2.1.1
+    "@szmarczak/http-timer": ^4.0.5
+    "@types/cacheable-request": ^6.0.1
+    "@types/responselike": ^1.0.0
+    cacheable-lookup: ^5.0.3
+    cacheable-request: ^7.0.1
+    decompress-response: ^6.0.0
+    get-stream: ^5.1.0
+    http2-wrapper: ^1.0.0-beta.4.5
+    lowercase-keys: ^2.0.0
+    p-cancelable: ^2.0.0
+    responselike: ^2.0.0
+  checksum: 2/bd65705130ae32a63ad789283f200611ab960bde552a608cff6364390bc6c3e83b5f372fd1030a9567314cbd6ef442e58ffd9a3d1e1041037371d3d45b0afc00
+  languageName: node
+  linkType: hard
+
 "got@npm:^7.1.0":
   version: 7.1.0
   resolution: "got@npm:7.1.0"
@@ -9607,6 +9644,16 @@ fsevents@^2.1.2:
     quick-lru: ^5.0.0
     resolve-alpn: ^1.0.0
   checksum: 2/82a35520d1f890b19076987f1a06dd8802c070bd51249fb09dcf067e4175fc30a4833c3cef80f6e5fc8fee92dc4f45915c94e82ee32b4bcce1f65beb612dc566
+  languageName: node
+  linkType: hard
+
+"http2-wrapper@npm:^1.0.0-beta.4.5":
+  version: 1.0.0-beta.4.6
+  resolution: "http2-wrapper@npm:1.0.0-beta.4.6"
+  dependencies:
+    quick-lru: ^5.0.0
+    resolve-alpn: ^1.0.0
+  checksum: 2/e9c4838a9ba372e23e1b6437c60adbc578c3e7790095ffb82a7dccc29888014a1228a2575f409f8e9ad9164af1860a0e17ee493cd128d6a7934ba83e0133a08b
   languageName: node
   linkType: hard
 
@@ -12573,6 +12620,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"mimic-response@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "mimic-response@npm:3.1.0"
+  checksum: 2/cfbf19f66de6ad46df7481d9e8c1a7f30b6fa77dd771ad4a72a0443265041a39768182bde6d1de39001c2774168635bc74f42902e401c8ba33db55d69b773004
+  languageName: node
+  linkType: hard
+
 "min-document@npm:^2.19.0":
   version: 2.19.0
   resolution: "min-document@npm:2.19.0"
@@ -14686,7 +14740,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"psl@npm:^1.1.24, psl@npm:^1.1.28":
+"psl@npm:^1.1.24, psl@npm:^1.1.28, psl@npm:^1.1.33":
   version: 1.8.0
   resolution: "psl@npm:1.8.0"
   checksum: 2/92d47c6257456878bfa8190d76b84de69bcefdc129eeee3f9fe204c15fd08d35fe5b8627033f39b455e40a9375a1474b25ff4ab2c5448dd8c8f75da692d0f5b4
@@ -17220,6 +17274,17 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
+"tough-cookie@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "tough-cookie@npm:4.0.0"
+  dependencies:
+    psl: ^1.1.33
+    punycode: ^2.1.1
+    universalify: ^0.1.2
+  checksum: 2/161dc4728e2801c1bd3b32d4d14abd2762120d9ed0b96d892720440aa04ed0ad6c425c38195265c74366fe01d8aaf1cc0a31636cb18b82c9b6ce630743210235
+  languageName: node
+  linkType: hard
+
 "tough-cookie@npm:~2.4.3":
   version: 2.4.3
   resolution: "tough-cookie@npm:2.4.3"
@@ -17711,7 +17776,7 @@ typescript@^3.9.3:
   languageName: node
   linkType: hard
 
-"universalify@npm:^0.1.0":
+"universalify@npm:^0.1.0, universalify@npm:^0.1.2":
   version: 0.1.2
   resolution: "universalify@npm:0.1.2"
   checksum: 2/420fc6547357782c700d53e9a92506a8e95345b13e97684c8f9ab75237912ec2ebb6af8ac10d4f7406b7b6bd21c58f6c5c0811414fb0b4091b78b4743fa6806e
