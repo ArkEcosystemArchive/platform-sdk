@@ -21,4 +21,8 @@ export class Address implements Contracts.Address {
 	public async fromWIF(wif: string): Promise<string> {
 		return Identities.Address.fromWIF(wif);
 	}
+
+	public async validate(address: string): Promise<boolean> {
+		return Identities.Address.validate(address);
+	}
 }

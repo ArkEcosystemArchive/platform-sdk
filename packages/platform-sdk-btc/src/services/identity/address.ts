@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Bitcoin from "bitcore-lib";
 
 import { p2pkh } from "./utils";
@@ -52,5 +52,9 @@ export class Address implements Contracts.Address {
 		}
 
 		return address.toString();
+	}
+
+	public async validate(address: string): Promise<boolean> {
+		throw new Exceptions.NotSupported(this.constructor.name, "validate");
 	}
 }
