@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr, BIP39 } from "@arkecosystem/platform-sdk-support";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import BigNumber from "bignumber.js";
 import { Transaction } from "bitcore-lib";
 

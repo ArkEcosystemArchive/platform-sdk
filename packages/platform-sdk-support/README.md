@@ -13,7 +13,7 @@ This package is currently still under early development and subject to breaking 
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk
+yarn add @arkecosystem/platform-sdk-support
 ```
 
 ## Usage

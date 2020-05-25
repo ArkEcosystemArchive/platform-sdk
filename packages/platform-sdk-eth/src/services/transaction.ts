@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Buffoon, Http } from "@arkecosystem/platform-sdk-support";
+import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
+import { Http } from "@arkecosystem/platform-sdk-support";
 import { Transaction } from "ethereumjs-tx";
 import Web3 from "web3";
 

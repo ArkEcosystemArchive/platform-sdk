@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr, BIP39 } from "@arkecosystem/platform-sdk-support";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 export class TransactionService implements Contracts.TransactionService {
