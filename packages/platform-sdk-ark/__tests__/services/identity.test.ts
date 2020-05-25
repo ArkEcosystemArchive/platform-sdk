@@ -38,7 +38,7 @@ describe("IdentityService", () => {
 
 		it("should validate an address", () => {
 			expect(subject.address().validate(identity.address)).toBeTrue();
-			expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).toBeTrue();
+			expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).toBeFalse();
 			expect(subject.address().validate("ABC")).toBeFalse();
 		});
 	});
