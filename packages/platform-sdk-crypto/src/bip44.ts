@@ -1,5 +1,4 @@
 import * as bip32 from "bip32";
-import * as bip39 from "bip39";
 
 import { BIP39 } from "./bip39";
 
@@ -35,9 +34,9 @@ export class BIP44 {
 	public static deriveMasterKey(passphrase: string): bip32.BIP32Interface {
 		passphrase = BIP39.normalize(passphrase);
 
-		bip39.validateMnemonic(passphrase);
+		BIP39.validate(passphrase);
 
-		return bip32.fromSeed(bip39.mnemonicToSeedSync(passphrase));
+		return bip32.fromSeed(BIP39.toSeed(passphrase));
 	}
 
 	public static parse(
