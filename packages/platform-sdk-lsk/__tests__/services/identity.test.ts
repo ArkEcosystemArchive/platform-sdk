@@ -36,9 +36,9 @@ describe("IdentityService", () => {
 			await expect(subject.address().fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
 		});
 
-		it("should validate an address", () => {
-			expect(subject.address().validate(identity.address)).toBeTrue();
-			expect(subject.address().validate("ABC")).toBeFalse();
+		it("should validate an address", async () => {
+			await expect(subject.address().validate(identity.address)).resolves.toBeTrue();
+			await expect(subject.address().validate("ABC")).resolves.toBeFalse();
 		});
 	});
 

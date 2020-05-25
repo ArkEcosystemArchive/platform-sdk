@@ -36,10 +36,10 @@ describe("IdentityService", () => {
 			expect(result).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 		});
 
-		it("should validate an address", () => {
-			expect(subject.address().validate(identity.address)).toBeTrue();
-			expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).toBeFalse();
-			expect(subject.address().validate("ABC")).toBeFalse();
+		it("should validate an address", async () => {
+			await expect(subject.address().validate(identity.address)).resolves.toBeTrue();
+			await expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).resolves.toBeFalse();
+			await expect(subject.address().validate("ABC")).resolves.toBeFalse();
 		});
 	});
 

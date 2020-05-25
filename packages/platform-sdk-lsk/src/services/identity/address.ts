@@ -24,6 +24,12 @@ export class Address implements Contracts.Address {
 	}
 
 	public async validate(address: string): Promise<boolean> {
-		return transactions.utils.validateAddress(address);
+		try {
+			transactions.utils.validateAddress(address);
+
+			return true;
+		} catch {
+			return false;
+		}
 	}
 }
