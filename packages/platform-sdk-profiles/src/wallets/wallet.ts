@@ -63,6 +63,15 @@ export class Wallet {
 		return this.#settings;
 	}
 
+	/**
+	 * All methods below this line are convenience methods that serve as proxies to the underlying coin implementation.
+	 *
+	 * The purpose of these methods is to reduce duplication and prevent consumers from implementing
+	 * convoluted custom implementations that deviate from how things should be used.
+	 *
+	 * Any changes in how things need to be handled by consumers should be made in this package!
+	 */
+
 	public transactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		return this.#coin.client().transactions({ address: this.address() });
 	}
