@@ -37,7 +37,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(
-		query: Contracts.KeyValuePair,
+		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		const result = await this.get("transactions", query);
 
@@ -56,7 +56,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallets(
-		query: Contracts.KeyValuePair,
+		query: Contracts.ClientWalletsInput,
 	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		const result = await this.get("accounts", query);
 
