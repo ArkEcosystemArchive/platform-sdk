@@ -3,7 +3,7 @@ import * as cryptography from "@liskhq/lisk-cryptography";
 
 export class Address implements Contracts.Address {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return cryptography.getAddressFromPassphrase(passphrase);
+		return cryptography.getAddressFromPassphrase(mnemonic);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

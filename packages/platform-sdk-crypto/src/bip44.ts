@@ -4,7 +4,7 @@ import { BIP39 } from "./bip39";
 
 export class BIP44 {
 	public static deriveChild(
-		passphrase: string,
+		mnemonic: string,
 		options: { coinType: number; account?: number; change?: number; index?: number },
 	): bip32.BIP32Interface {
 		if (options.account === undefined) {
@@ -19,7 +19,7 @@ export class BIP44 {
 			options.index = 0;
 		}
 
-		return BIP44.deriveMasterKey(BIP39.normalize(passphrase))
+		return BIP44.deriveMasterKey(BIP39.normalize(mnemonic))
 			.deriveHardened(44)
 			.deriveHardened(options.coinType)
 			.deriveHardened(options.account)
@@ -27,16 +27,14 @@ export class BIP44 {
 			.derive(options.index);
 	}
 
-	public static deriveChildFromPath(passphrase: string, path: string, index = 0): bip32.BIP32Interface {
-		return BIP44.deriveMasterKey(passphrase).derivePath(`${path}${index}`);
+	public static deriveChildFromPath(mnemonic: string, path: string, index = 0): bip32.BIP32Interface {
+		return BIP44.deriveMasterKey(mnemonic).derivePath(`${path}${index}`);
 	}
 
-	public static deriveMasterKey(passphrase: string): bip32.BIP32Interface {
-		passphrase = BIP39.normalize(passphrase);
+	public static deriveMasterKey(mnemonic: string): bip32.BIP32Interface {
+		BIP39.validate(mnemonic);
 
-		BIP39.validate(passphrase);
-
-		return bip32.fromSeed(BIP39.toSeed(passphrase));
+		return bip32.fromSeed(BIP39.toSeed(mnemonic));
 	}
 
 	public static parse(

@@ -3,7 +3,7 @@ import * as cryptography from "@liskhq/lisk-cryptography";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return cryptography.getPrivateAndPublicKeyFromPassphrase(passphrase).publicKey;
+		return cryptography.getPrivateAndPublicKeyFromPassphrase(mnemonic).publicKey;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

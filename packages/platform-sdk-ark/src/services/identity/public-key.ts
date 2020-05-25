@@ -3,7 +3,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return Identities.PublicKey.fromMnemonic(passphrase);
+		return Identities.PublicKey.fromPassphrase(mnemonic);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

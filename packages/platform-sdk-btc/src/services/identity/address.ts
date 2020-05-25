@@ -11,7 +11,7 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return (await p2pkh(passphrase, this.#network.name)).address!;
+		return (await p2pkh(mnemonic, this.#network.name)).address!;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

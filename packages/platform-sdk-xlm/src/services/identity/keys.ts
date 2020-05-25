@@ -5,7 +5,7 @@ import Stellar from "stellar-sdk";
 
 export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
-		const source = StellarHDWallet.fromMnemonic(BIP39.normalize(passphrase));
+		const source = StellarHDWallet.fromMnemonic(BIP39.normalize(mnemonic));
 
 		return {
 			publicKey: source.getPublicKey(0),

@@ -4,7 +4,7 @@ import Bitcoin from "bitcore-lib";
 
 export class PrivateKey implements Contracts.PrivateKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return BIP44.deriveMasterKey(passphrase).privateKey!.toString("hex");
+		return BIP44.deriveMasterKey(mnemonic).privateKey!.toString("hex");
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

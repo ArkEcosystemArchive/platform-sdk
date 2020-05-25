@@ -3,7 +3,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class PrivateKey implements Contracts.PrivateKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return Identities.PrivateKey.fromMnemonic(passphrase);
+		return Identities.PrivateKey.fromPassphrase(mnemonic);
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

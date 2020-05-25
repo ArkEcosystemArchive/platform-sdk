@@ -3,7 +3,7 @@ import { privateToPublic } from "eosjs-ecc";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return privateToPublic(passphrase);
+		return privateToPublic(mnemonic);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

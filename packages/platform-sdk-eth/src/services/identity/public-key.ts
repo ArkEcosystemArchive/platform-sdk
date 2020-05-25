@@ -12,7 +12,7 @@ export class PublicKey implements Contracts.PublicKey {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		const privateKey = Buffoon.fromHex(await this.#privateKey.fromMnemonic(passphrase));
+		const privateKey = Buffoon.fromHex(await this.#privateKey.fromMnemonic(mnemonic));
 		const keyPair = Wallet.fromPrivateKey(privateKey);
 
 		return keyPair.getPublicKey().toString("hex");

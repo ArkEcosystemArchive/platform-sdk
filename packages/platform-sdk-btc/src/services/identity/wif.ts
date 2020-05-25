@@ -3,6 +3,6 @@ import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 
 export class WIF implements Contracts.WIF {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return BIP44.deriveMasterKey(passphrase).toWIF();
+		return BIP44.deriveMasterKey(mnemonic).toWIF();
 	}
 }

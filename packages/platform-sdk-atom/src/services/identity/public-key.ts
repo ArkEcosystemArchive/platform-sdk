@@ -10,7 +10,7 @@ export class PublicKey implements Contracts.PublicKey {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		const { publicKey } = await this.#keys.fromMnemonic(passphrase);
+		const { publicKey } = await this.#keys.fromMnemonic(mnemonic);
 
 		if (!publicKey) {
 			throw new Error("Failed to derive the public key.");

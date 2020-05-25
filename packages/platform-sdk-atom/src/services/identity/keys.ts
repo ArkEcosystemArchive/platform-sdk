@@ -10,7 +10,7 @@ export class Keys implements Contracts.Keys {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
-		const privateKey: Buffer | undefined = BIP44.deriveChild(passphrase, {
+		const privateKey: Buffer | undefined = BIP44.deriveChild(mnemonic, {
 			coinType: this.#slip44,
 			index: 0,
 		}).privateKey;

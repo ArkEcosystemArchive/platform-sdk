@@ -10,7 +10,7 @@ export class Keys implements Contracts.Keys {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
-		const { publicKey, privateKey } = deriveWallet(passphrase, this.#slip44);
+		const { publicKey, privateKey } = deriveWallet(mnemonic, this.#slip44);
 
 		return { publicKey, privateKey };
 	}

@@ -10,6 +10,6 @@ export class WIF implements Contracts.WIF {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return deriveWallet(passphrase, this.#slip44).WIF;
+		return deriveWallet(mnemonic, this.#slip44).WIF;
 	}
 }

@@ -10,7 +10,7 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return deriveWallet(passphrase, this.#slip44).address;
+		return deriveWallet(mnemonic, this.#slip44).address;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

@@ -12,7 +12,7 @@ export class Keys implements Contracts.Keys {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
-		const wallet: Wallet = createWallet(passphrase, this.#slip44);
+		const wallet: Wallet = createWallet(mnemonic, this.#slip44);
 
 		return {
 			publicKey: wallet.getPublicKey().toString("hex"),

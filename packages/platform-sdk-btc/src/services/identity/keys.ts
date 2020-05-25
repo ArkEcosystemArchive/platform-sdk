@@ -4,7 +4,7 @@ import { PrivateKey, PublicKey } from "bitcore-lib";
 
 export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
-		return this.normalize(new PrivateKey(BIP44.deriveMasterKey(passphrase).privateKey!.toString("hex")));
+		return this.normalize(new PrivateKey(BIP44.deriveMasterKey(mnemonic).privateKey!.toString("hex")));
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {

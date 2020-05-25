@@ -12,7 +12,7 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return getAddress(createWallet(passphrase, this.#slip44));
+		return getAddress(createWallet(mnemonic, this.#slip44));
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

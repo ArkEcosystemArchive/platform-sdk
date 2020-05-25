@@ -3,7 +3,7 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
-		const { publicKey, privateKey } = Identities.Keys.fromMnemonic(passphrase);
+		const { publicKey, privateKey } = Identities.Keys.fromPassphrase(mnemonic);
 
 		return { publicKey, privateKey };
 	}
