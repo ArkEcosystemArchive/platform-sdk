@@ -22,4 +22,8 @@ export class Address implements Contracts.Address {
 	public async fromWIF(wif: string): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
 	}
+
+	public async validate(address: string): Promise<boolean> {
+		throw new Exceptions.NotSupported(this.constructor.name, "validate");
+	}
 }

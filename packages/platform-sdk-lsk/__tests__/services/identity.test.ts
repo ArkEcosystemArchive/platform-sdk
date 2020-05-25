@@ -35,6 +35,11 @@ describe("IdentityService", () => {
 		it("should generate an output from a wif", async () => {
 			await expect(subject.address().fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
 		});
+
+		it("should validate an address", () => {
+			expect(subject.address().validate(identity.address)).toBeTrue();
+			expect(subject.address().validate("ABC")).toBeFalse();
+		});
 	});
 
 	describe("#publicKey", () => {

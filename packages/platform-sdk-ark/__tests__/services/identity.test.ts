@@ -35,6 +35,12 @@ describe("IdentityService", () => {
 
 			expect(result).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 		});
+
+		it("should validate an address", () => {
+			expect(subject.address().validate(identity.address)).toBeTrue();
+			expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).toBeTrue();
+			expect(subject.address().validate("ABC")).toBeFalse();
+		});
 	});
 
 	describe("#publicKey", () => {
