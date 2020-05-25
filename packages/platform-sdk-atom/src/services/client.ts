@@ -59,7 +59,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(
-		query: Contracts.KeyValuePair,
+		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		const response = await this.get("txs", {
 			"message.action": "send",
@@ -83,7 +83,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallets(
-		query: Contracts.KeyValuePair,
+		query: Contracts.ClientWalletsInput,
 	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}

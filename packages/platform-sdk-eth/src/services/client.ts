@@ -40,10 +40,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(
-		query: Contracts.KeyValuePair,
+		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		const endBlock: number = (await this.get("status")).height;
-		const startBlock: number = endBlock - (query?.count ?? ClientService.MONTH_IN_SECONDS);
+		const startBlock: number = endBlock - (query?.limit ?? ClientService.MONTH_IN_SECONDS);
 
 		const transactions: TransactionData[] = [];
 		for (let i = startBlock; i < endBlock; i++) {
@@ -70,7 +70,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallets(
-		query: Contracts.KeyValuePair,
+		query: Contracts.ClientWalletsInput,
 	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
