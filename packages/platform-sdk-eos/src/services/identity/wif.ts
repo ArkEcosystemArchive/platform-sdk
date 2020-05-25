@@ -2,7 +2,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 import { seedPrivate } from "eosjs-ecc";
 
 export class WIF implements Contracts.WIF {
-	public async fromPassphrase(passphrase: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string): Promise<string> {
 		return seedPrivate(passphrase);
 	}
 }

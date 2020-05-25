@@ -11,7 +11,7 @@ export class Keys implements Contracts.Keys {
 		this.#slip44 = slip44;
 	}
 
-	public async fromPassphrase(passphrase: string): Promise<Contracts.KeyPair> {
+	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
 		const wallet: Wallet = createWallet(passphrase, this.#slip44);
 
 		return {

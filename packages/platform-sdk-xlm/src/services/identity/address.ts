@@ -3,7 +3,7 @@ import StellarHDWallet from "stellar-hd-wallet";
 import Stellar from "stellar-sdk";
 
 export class Address implements Contracts.Address {
-	public async fromPassphrase(passphrase: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string): Promise<string> {
 		return StellarHDWallet.fromMnemonic(passphrase).getPublicKey(0);
 	}
 

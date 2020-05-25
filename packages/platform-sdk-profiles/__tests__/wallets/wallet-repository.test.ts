@@ -23,7 +23,7 @@ beforeEach(async () => {
 
 	const storage = new LocalStorage("localstorage");
 
-	wallet = await Wallet.fromPassphrase({ passphrase: identity.passphrase, coin: ARK, network: "devnet", storage });
+	wallet = await Wallet.fromMnemonic({ passphrase: identity.passphrase, coin: ARK, network: "devnet", storage });
 
 	subject = new WalletRepository(storage, [wallet]);
 });

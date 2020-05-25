@@ -3,7 +3,7 @@ import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import Bitcoin from "bitcore-lib";
 
 export class PublicKey implements Contracts.PublicKey {
-	public async fromPassphrase(passphrase: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string): Promise<string> {
 		return BIP44.deriveMasterKey(passphrase).publicKey.toString("hex");
 	}
 

@@ -9,7 +9,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 		this.#slip44 = slip44;
 	}
 
-	public async fromPassphrase(passphrase: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string): Promise<string> {
 		return createWallet(passphrase, this.#slip44)
 			.getPrivateKey()
 			.toString("hex");

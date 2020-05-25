@@ -18,7 +18,7 @@ export class Wallet {
 		this.#settings = new Settings(input.storage, `wallets.${this.address()}`);
 	}
 
-	public static async fromPassphrase(input: {
+	public static async fromMnemonic(input: {
 		passphrase: string;
 		coin: Coins.CoinSpec;
 		network: string;
@@ -26,7 +26,7 @@ export class Wallet {
 	}): Promise<Wallet> {
 		const coin = await Coins.CoinFactory.make(input.coin, { network: input.network });
 
-		const address: string = await coin.identity().address().fromPassphrase(input.passphrase);
+		const address: string = await coin.identity().address().fromMnemonic(input.passphrase);
 
 		return new Wallet({ coin, storage: input.storage, wallet: await coin.client().wallet(address) });
 	}

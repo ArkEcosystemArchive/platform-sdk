@@ -41,7 +41,7 @@ export class WalletRepository {
 		coin: Coins.CoinSpec;
 		network: string;
 	}): Promise<Wallet> {
-		const wallet: Wallet = await Wallet.fromPassphrase({
+		const wallet: Wallet = await Wallet.fromMnemonic({
 			...input,
 			storage: this.#storage,
 		});

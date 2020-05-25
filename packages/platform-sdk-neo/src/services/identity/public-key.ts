@@ -9,7 +9,7 @@ export class PublicKey implements Contracts.PublicKey {
 		this.#slip44 = slip44;
 	}
 
-	public async fromPassphrase(passphrase: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string): Promise<string> {
 		return deriveWallet(passphrase, this.#slip44).publicKey;
 	}
 

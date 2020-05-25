@@ -1,8 +1,8 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class Address implements Contracts.Address {
-	public async fromPassphrase(passphrase: string): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPassphrase");
+	public async fromMnemonic(mnemonic: string): Promise<string> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

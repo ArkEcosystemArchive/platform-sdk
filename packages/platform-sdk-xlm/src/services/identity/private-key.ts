@@ -2,7 +2,7 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import StellarHDWallet from "stellar-hd-wallet";
 
 export class PrivateKey implements Contracts.PrivateKey {
-	public async fromPassphrase(passphrase: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string): Promise<string> {
 		return StellarHDWallet.fromMnemonic(passphrase).getSecret(0);
 	}
 

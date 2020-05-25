@@ -10,7 +10,7 @@ export class Address implements Contracts.Address {
 		this.#network = Bitcoin.Networks[network];
 	}
 
-	public async fromPassphrase(passphrase: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string): Promise<string> {
 		return (await p2pkh(passphrase, this.#network.name)).address!;
 	}
 

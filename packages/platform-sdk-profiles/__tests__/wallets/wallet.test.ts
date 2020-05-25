@@ -23,7 +23,7 @@ beforeEach(async () => {
 
 	const storage = new LocalStorage("localstorage");
 
-	subject = await Wallet.fromPassphrase({ passphrase: identity.passphrase, coin: ARK, network: "devnet", storage });
+	subject = await Wallet.fromMnemonic({ passphrase: identity.passphrase, coin: ARK, network: "devnet", storage });
 });
 
 afterEach(() => nock.cleanAll());

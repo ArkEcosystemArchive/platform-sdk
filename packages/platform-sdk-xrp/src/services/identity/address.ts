@@ -3,7 +3,7 @@ import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { deriveAddress, deriveKeypair } from "ripple-keypairs";
 
 export class Address implements Contracts.Address {
-	public async fromPassphrase(passphrase: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string): Promise<string> {
 		return deriveAddress(deriveKeypair(BIP39.normalize(passphrase)).publicKey);
 	}
 

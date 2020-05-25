@@ -10,7 +10,7 @@ export const identity = {
 	// Multi Signature
 	multiSignature: {
 		min: 3,
-		publicKeys: ["secret 1", "secret 2", "secret 3"].map((secret) => Identities.PublicKey.fromPassphrase(secret)),
+		publicKeys: ["secret 1", "secret 2", "secret 3"].map((secret) => Identities.PublicKey.fromMnemonic(secret)),
 	},
 	multiSignatureAddress: "DMS861mLRrtH47QUMVif3C2rBCAdHbmwsi",
 	multiSignaturePublicKey: "0279f05076556da7173610a7676399c3620276ebbf8c67552ad3b1f26ec7627794",

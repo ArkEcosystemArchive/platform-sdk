@@ -11,7 +11,7 @@ beforeEach(async () => (subject = await IdentityService.construct(createConfig()
 describe("IdentityService", () => {
 	describe("#address", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.address().fromPassphrase(identity.passphrase);
+			const result: any = await subject.address().fromMnemonic(identity.passphrase);
 
 			expect(result).toBe(identity.address);
 		});
@@ -45,7 +45,7 @@ describe("IdentityService", () => {
 
 	describe("#publicKey", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.publicKey().fromPassphrase(identity.passphrase);
+			const result: any = await subject.publicKey().fromMnemonic(identity.passphrase);
 
 			expect(result).toBe(identity.publicKey);
 		});
@@ -65,7 +65,7 @@ describe("IdentityService", () => {
 
 	describe("#privateKey", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.privateKey().fromPassphrase(identity.passphrase);
+			const result: any = await subject.privateKey().fromMnemonic(identity.passphrase);
 
 			expect(result).toBe(identity.privateKey);
 		});
@@ -79,7 +79,7 @@ describe("IdentityService", () => {
 
 	describe("#wif", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.wif().fromPassphrase(identity.passphrase);
+			const result: any = await subject.wif().fromMnemonic(identity.passphrase);
 
 			expect(result).toBe(identity.wif);
 		});
@@ -87,7 +87,7 @@ describe("IdentityService", () => {
 
 	describe("#keys", () => {
 		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.keys().fromPassphrase(identity.passphrase);
+			const result: any = await subject.keys().fromMnemonic(identity.passphrase);
 
 			expect(result).toEqual({
 				privateKey: identity.privateKey,
