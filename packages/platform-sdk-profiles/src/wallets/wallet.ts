@@ -62,4 +62,16 @@ export class Wallet {
 	public settings(): Settings {
 		return this.#settings;
 	}
+
+	public transactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().transactions({ address: this.address() });
+	}
+
+	public sentTransactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().transactions({ senderId: this.address() });
+	}
+
+	public receivedTransactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().transactions({ recipientId: this.address() });
+	}
 }
