@@ -22,7 +22,8 @@
 	"dependencies": {
 		"bcrypto": "^5.1.0",
 		"bip32": "^2.0.5",
-		"bip39": "^3.0.2"
+		"bip39": "^3.0.2",
+		"keytar": "^6.0.0"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",

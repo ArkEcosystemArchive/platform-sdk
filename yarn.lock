@@ -324,6 +324,7 @@ __metadata:
     jest: ^25.4.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
+    keytar: ^6.0.0
     nock: ^12.0.3
     npm-check-updates: ^4.1.2
     prettier: ^2.0.5
@@ -11711,6 +11712,17 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"keytar@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "keytar@npm:6.0.0"
+  dependencies:
+    node-addon-api: ^3.0.0
+    node-gyp: latest
+    prebuild-install: 5.3.3
+  checksum: 2/dc26f787a729b44c4e5c47b8c0e2303333d5f5b5d74a99ab4ec25ceeef2810eb7e38822aabb57213d282be1401b77fb5a878aadfc14fe0af73da4e7a6330e234
+  languageName: node
+  linkType: hard
+
 "keyv@npm:^3.0.0":
   version: 3.1.0
   resolution: "keyv@npm:3.1.0"
@@ -13101,6 +13113,15 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"node-addon-api@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "node-addon-api@npm:3.0.0"
+  dependencies:
+    node-gyp: latest
+  checksum: 2/c38b1f757d092d4874eae5b525bab0dc00bc58f6a78950598a1f1539dbdf3fda79755009c3b98f8ff110011561327d5854a3567b0c834440b73afdbe5163c450
+  languageName: node
+  linkType: hard
+
 "node-alias@npm:^1.0.4":
   version: 1.0.4
   resolution: "node-alias@npm:1.0.4"
@@ -14409,7 +14430,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"prebuild-install@npm:^5.3.3":
+"prebuild-install@npm:5.3.3, prebuild-install@npm:^5.3.3":
   version: 5.3.3
   resolution: "prebuild-install@npm:5.3.3"
   dependencies:
