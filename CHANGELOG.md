@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.54 - 2020-05-2
+
+### Changed
+
+-   Require the consumer to specify an HTTP client (d8dbe30a, @faustbrian)
+
 ## 0.9.53 - 2020-05-27
 
 ### Fixed
