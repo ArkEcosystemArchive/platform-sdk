@@ -8,6 +8,7 @@ import { Settings } from "./settings";
 import { StorageFactory } from "./storage/factory";
 
 export class Environment {
+	readonly #httpClient: Contracts.HttpClient;
 	readonly #storage: Storage;
 	readonly #profiles: Profiles;
 	readonly #data: Data;
@@ -15,13 +16,15 @@ export class Environment {
 	readonly #migrator: Migrator;
 
 	public constructor(options: EnvironmentOptions) {
+		this.#httpClient = options.httpClient;
+
 		if (typeof options.storage === "string") {
 			this.#storage = StorageFactory.make(options.storage);
 		} else {
 			this.#storage = options.storage;
 		}
 
-		this.#profiles = new Profiles(this.#storage);
+		this.#profiles = new Profiles({ httpClient: this.#httpClient, storage: this.#storage });
 		this.#data = new Data(this.#storage, "app");
 		this.#settings = new Settings(this.#storage, "app");
 

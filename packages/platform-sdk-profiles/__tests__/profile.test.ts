@@ -4,6 +4,7 @@ import { Profile } from "../src/profile";
 import { LocalStorage } from "../src/storage/local";
 import { Settings } from "../src/settings";
 import { WalletRepository } from "../src/wallets/wallet-repository";
+import { HttpClient } from "./stubs/client";
 
 let subject: Profile;
 
@@ -12,6 +13,7 @@ beforeEach(() => {
 		id: "uuid",
 		name: "Primary",
 		wallets: [],
+		httpClient: new HttpClient(),
 		storage: new LocalStorage("localstorage"),
 	});
 });
