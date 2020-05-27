@@ -1,4 +1,8 @@
 import { Connection } from "@arkecosystem/client";
+import {
+	Builders as MagistrateBuilders,
+	Transactions as MagistrateTransactions,
+} from "@arkecosystem/core-magistrate-crypto";
 import { Managers, Transactions } from "@arkecosystem/crypto";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
@@ -6,9 +10,26 @@ import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { IdentityService } from "./identity";
 
+// TODO: get rid of this once AIP36 is implemented
+Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BusinessRegistrationTransaction);
+Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BusinessResignationTransaction);
+Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BusinessUpdateTransaction);
+Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BridgechainRegistrationTransaction);
+Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BridgechainResignationTransaction);
+Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BridgechainUpdateTransaction);
+
 export class TransactionService implements Contracts.TransactionService {
 	readonly #connection: Connection;
 	readonly #identity: IdentityService;
+
+	readonly #magistrateBuilders = {
+		businessRegistration: MagistrateBuilders.BusinessRegistrationBuilder,
+		businessResignation: MagistrateBuilders.BusinessResignationBuilder,
+		businessUpdate: MagistrateBuilders.BusinessUpdateBuilder,
+		bridgechainRegistration: MagistrateBuilders.BridgechainRegistrationBuilder,
+		bridgechainResignation: MagistrateBuilders.BridgechainResignationBuilder,
+		bridgechainUpdate: MagistrateBuilders.BridgechainUpdateBuilder,
+	};
 
 	private constructor({ connection, identity }) {
 		this.#connection = connection;
@@ -157,13 +178,82 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 	}
 
+	// TODO: rework this once AIP36 is implemented
+	public async businessRegistration(
+		input: Contracts.BusinessRegistrationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("businessRegistration", input, options, ({ transaction, data }) =>
+			transaction.businessRegistrationAsset({
+				lockTransactionId: data.lockTransactionId,
+			}),
+		);
+	}
+
+	public async businessResignation(
+		input: Contracts.BusinessResignationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("businessResignation", input, options);
+	}
+
+	public async businessUpdate(
+		input: Contracts.BusinessUpdateInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("businessUpdate", input, options, ({ transaction, data }) =>
+			transaction.businessUpdateAsset({
+				lockTransactionId: data.lockTransactionId,
+			}),
+		);
+	}
+
+	public async bridgechainRegistration(
+		input: Contracts.BridgechainRegistrationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("bridgechainRegistration", input, options, ({ transaction, data }) =>
+			transaction.bridgechainRegistrationAsset({
+				lockTransactionId: data.lockTransactionId,
+			}),
+		);
+	}
+
+	public async bridgechainResignation(
+		input: Contracts.BridgechainResignationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("bridgechainResignation", input, options, ({ transaction, data }) =>
+			transaction.bridgechainResignationAsset({
+				lockTransactionId: data.lockTransactionId,
+			}),
+		);
+	}
+
+	public async bridgechainUpdate(
+		input: Contracts.BridgechainUpdateInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.createFromData("bridgechainUpdate", input, options, ({ transaction, data }) =>
+			transaction.bridgechainUpdateAsset({
+				lockTransactionId: data.lockTransactionId,
+			}),
+		);
+	}
+
 	private async createFromData(
 		type: string,
 		input: Contracts.KeyValuePair,
 		options?: Contracts.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction = Transactions.BuilderFactory[type]().version(2);
+		let transaction;
+
+		if (this.#magistrateBuilders[type]) {
+			transaction = new this.#magistrateBuilders[type]();
+		} else {
+			transaction = Transactions.BuilderFactory[type]().version(2);
+		}
 
 		if (input.nonce) {
 			transaction.nonce(input.nonce);

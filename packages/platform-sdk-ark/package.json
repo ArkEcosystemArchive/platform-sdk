@@ -21,6 +21,7 @@
 	},
 	"dependencies": {
 		"@arkecosystem/client": "^1.1",
+		"@arkecosystem/core-magistrate-crypto": "^2.6.37",
 		"@arkecosystem/crypto": "^2.6.37",
 		"@arkecosystem/ledger-transport": "^1.0.5",
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
