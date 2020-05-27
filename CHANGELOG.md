@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.52 - 2020-05-27
+
+### Added
+
+-   Implement `BIP39#generate` (e1dff21c, @faustbrian)
+-   Integrate `@arkecosystem/core-magistrate-crypto` (220fcdfa, @faustbrian)
+
 ## 0.9.50 - 2020-05-25
 
 ### Added
