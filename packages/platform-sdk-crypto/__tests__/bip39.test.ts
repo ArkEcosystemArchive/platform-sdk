@@ -14,6 +14,17 @@ const french: string =
 	"remplir lézard temporel refuge éclipse furtif bermuda victoire angle pollen appeler affaire citoyen farine fermer";
 const random: string = "@!#$^$%^&*&^(";
 
+test("#generate", async () => {
+	expect(BIP39.generate("chinese_simplified")).toBeString();
+	expect(BIP39.generate("chinese_traditional")).toBeString();
+	expect(BIP39.generate("english")).toBeString();
+	expect(BIP39.generate("french")).toBeString();
+	expect(BIP39.generate("italian")).toBeString();
+	expect(BIP39.generate("japanese")).toBeString();
+	expect(BIP39.generate("korean")).toBeString();
+	expect(BIP39.generate("spanish")).toBeString();
+});
+
 test("#validate", async () => {
 	expect(BIP39.validate(english, "english")).toBeTrue();
 	expect(BIP39.validate(japanese, "japanese")).toBeTrue();
