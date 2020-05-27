@@ -1,6 +1,6 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import ky from "ky";
+import ky from "ky-universal";
 
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
 import { HistoricalVolumeTransformer } from "./transformers/historical-volume-transformer";

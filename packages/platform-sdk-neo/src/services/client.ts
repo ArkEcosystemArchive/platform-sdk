@@ -22,8 +22,8 @@ export class ClientService implements Contracts.ClientService {
 		this.#http = http;
 
 		this.#peer = {
-			mainnet: "https://api.neoscan.io/api/main_net/v1/",
-			testnet: "https://neoscan-testnet.io/api/test_net/v1/",
+			mainnet: "https://api.neoscan.io/api/main_net/v1",
+			testnet: "https://neoscan-testnet.io/api/test_net/v1",
 		}[network];
 
 		this.#apiProvider = new api.neoscan.instance(network === "mainnet" ? "MainNet" : "TestNet");
