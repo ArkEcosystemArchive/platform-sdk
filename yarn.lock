@@ -679,7 +679,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-support@workspace:packages/platform-sdk-support"
   dependencies:
-    "@kodekeep/reqwest": ^0.3.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/bent": 7.0.2
     "@types/dot-prop": 5.0.1
@@ -1830,18 +1829,6 @@ __metadata:
     "@types/yargs": ^15.0.0
     chalk: ^4.0.0
   checksum: 2/50f40cece96f298ec0da9d94d9099e3c837403b63b3132f085eee47d0f627c07d4418ee60828a3ef3a5fd15b741dd390078d089f5a65161c0378d4876ce27935
-  languageName: node
-  linkType: hard
-
-"@kodekeep/reqwest@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@kodekeep/reqwest@npm:0.3.0"
-  dependencies:
-    got: ^11.1.4
-    is-url-superb: ^3.0.0
-    socks-proxy-agent: ^5.0.0
-    tough-cookie: ^4.0.0
-  checksum: 2/2edad251c27b4c3ac3a6de59b355305638fa548eed307ec3e8712011f7588af1fea1a0b2bff095855672327a2edd4109be7bcde4742e1aa966a8b47e474ca759
   languageName: node
   linkType: hard
 
@@ -11032,7 +11019,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"psl@npm:^1.1.24, psl@npm:^1.1.28, psl@npm:^1.1.33":
+"psl@npm:^1.1.24, psl@npm:^1.1.28":
   version: 1.8.0
   resolution: "psl@npm:1.8.0"
   checksum: 2/92d47c6257456878bfa8190d76b84de69bcefdc129eeee3f9fe204c15fd08d35fe5b8627033f39b455e40a9375a1474b25ff4ab2c5448dd8c8f75da692d0f5b4
@@ -13130,17 +13117,6 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"tough-cookie@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "tough-cookie@npm:4.0.0"
-  dependencies:
-    psl: ^1.1.33
-    punycode: ^2.1.1
-    universalify: ^0.1.2
-  checksum: 2/161dc4728e2801c1bd3b32d4d14abd2762120d9ed0b96d892720440aa04ed0ad6c425c38195265c74366fe01d8aaf1cc0a31636cb18b82c9b6ce630743210235
-  languageName: node
-  linkType: hard
-
 "tough-cookie@npm:~2.4.3":
   version: 2.4.3
   resolution: "tough-cookie@npm:2.4.3"
@@ -13512,7 +13488,7 @@ typescript@^3.9.3:
   languageName: node
   linkType: hard
 
-"universalify@npm:^0.1.0, universalify@npm:^0.1.2":
+"universalify@npm:^0.1.0":
   version: 0.1.2
   resolution: "universalify@npm:0.1.2"
   checksum: 2/420fc6547357782c700d53e9a92506a8e95345b13e97684c8f9ab75237912ec2ebb6af8ac10d4f7406b7b6bd21c58f6c5c0811414fb0b4091b78b4743fa6806e

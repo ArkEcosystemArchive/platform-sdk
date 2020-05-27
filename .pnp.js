@@ -1043,7 +1043,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/platform-sdk-support/",
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
-            ["@kodekeep/reqwest", "npm:0.3.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/bent", "npm:7.0.2"],
             ["@types/dot-prop", "npm:5.0.1"],
@@ -2241,19 +2240,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/istanbul-reports", "npm:1.1.1"],
             ["@types/yargs", "npm:15.0.4"],
             ["chalk", "npm:4.0.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@kodekeep/reqwest", [
-        ["npm:0.3.0", {
-          "packageLocation": "./.yarn/cache/@kodekeep-reqwest-npm-0.3.0-2352511841-2.zip/node_modules/@kodekeep/reqwest/",
-          "packageDependencies": [
-            ["@kodekeep/reqwest", "npm:0.3.0"],
-            ["got", "npm:11.1.4"],
-            ["is-url-superb", "npm:3.0.0"],
-            ["socks-proxy-agent", "npm:5.0.0"],
-            ["tough-cookie", "npm:4.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -15156,16 +15142,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ip-regex", "npm:2.1.0"],
             ["psl", "npm:1.8.0"],
             ["punycode", "npm:2.1.1"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:4.0.0", {
-          "packageLocation": "./.yarn/cache/tough-cookie-npm-4.0.0-7c5f3086af-2.zip/node_modules/tough-cookie/",
-          "packageDependencies": [
-            ["tough-cookie", "npm:4.0.0"],
-            ["psl", "npm:1.8.0"],
-            ["punycode", "npm:2.1.1"],
-            ["universalify", "npm:0.1.2"]
           ],
           "linkType": "HARD",
         }]
