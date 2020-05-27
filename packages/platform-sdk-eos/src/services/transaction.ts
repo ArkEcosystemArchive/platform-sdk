@@ -6,17 +6,25 @@ import fetch from "node-fetch";
 import { TextDecoder, TextEncoder } from "util";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #networkId: string;
 	readonly #peer: string;
 
-	private constructor(peer: string) {
+	private constructor({ networkId, peer }) {
+		this.#networkId = networkId;
 		this.#peer = peer;
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
 		try {
-			return new TransactionService(config.get<string>("peer"));
+			return new TransactionService({
+				networkId: config.get<string>("network.crypto.networkId"),
+				peer: config.get<string>("peer"),
+			});
 		} catch {
-			return new TransactionService(Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts));
+			return new TransactionService({
+				networkId: config.get<string>("network.crypto.networkId"),
+				peer: Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts),
+			});
 		}
 	}
 
@@ -45,7 +53,7 @@ export class TransactionService implements Contracts.TransactionService {
 						data: {
 							from: input.data.from,
 							to: input.data.to,
-							quantity: "0.0001 TNT",
+							quantity: "0.0001 TNT", // todo: use network specific token
 							memo: input.data.memo,
 						},
 					},
@@ -59,20 +67,18 @@ export class TransactionService implements Contracts.TransactionService {
 			},
 		);
 
-		const keys = await signatureProvider.getAvailableKeys();
+		const keys: string[] = await signatureProvider.getAvailableKeys();
 		transfer.requiredKeys = keys;
-		transfer.chainId = "f16b1833c747c43682f4386fca9cbb327929334a762755ebec17f6f23c9b8a12";
+		transfer.chainId = this.#networkId;
 
-		const sigs = transfer.signatures || null;
-		const signed = await signatureProvider.sign(transfer);
+		const signatures = transfer.signatures || null;
+		const transaction = await signatureProvider.sign(transfer);
 
-		if (sigs) {
-			signed.signatures = signed.signatures.concat(sigs);
+		if (signatures) {
+			transaction.signatures = transaction.signatures.concat(signatures);
 		}
 
-		return signed;
-
-		throw new Exceptions.NotImplemented(this.constructor.name, "transfer");
+		return transaction;
 	}
 
 	public async secondSignature(
