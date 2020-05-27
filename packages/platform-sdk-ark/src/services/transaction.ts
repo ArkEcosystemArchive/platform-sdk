@@ -202,9 +202,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("businessUpdate", input, options, ({ transaction, data }) =>
-			transaction.businessUpdateAsset({
-				lockTransactionId: data.lockTransactionId,
-			}),
+			transaction.businessUpdateAsset(data),
 		);
 	}
 
@@ -213,9 +211,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("bridgechainRegistration", input, options, ({ transaction, data }) =>
-			transaction.bridgechainRegistrationAsset({
-				lockTransactionId: data.lockTransactionId,
-			}),
+			transaction.bridgechainRegistrationAsset(data),
 		);
 	}
 
@@ -224,9 +220,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("bridgechainResignation", input, options, ({ transaction, data }) =>
-			transaction.bridgechainResignationAsset({
-				lockTransactionId: data.lockTransactionId,
-			}),
+			transaction.bridgechainResignationAsset(data),
 		);
 	}
 
@@ -235,9 +229,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("bridgechainUpdate", input, options, ({ transaction, data }) =>
-			transaction.bridgechainUpdateAsset({
-				lockTransactionId: data.lockTransactionId,
-			}),
+			transaction.bridgechainUpdateAsset(data),
 		);
 	}
 
