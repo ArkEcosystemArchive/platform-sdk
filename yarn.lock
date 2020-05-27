@@ -15,6 +15,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@arkecosystem/core-magistrate-crypto@npm:^2.6.37":
+  version: 2.6.37
+  resolution: "@arkecosystem/core-magistrate-crypto@npm:2.6.37"
+  dependencies:
+    "@arkecosystem/crypto": ^2.6.37
+    bytebuffer: ^5.0.1
+  checksum: 2/b129efee01fee2761d9c1b67449b74c823c346ad660be9f1b2f6a082f37533ed84d4029b60eeb0694a7a7693da9e45e76a653547b532e085d8f2562d38c5df23
+  languageName: node
+  linkType: hard
+
 "@arkecosystem/crypto@npm:^2.6.37":
   version: 2.6.37
   resolution: "@arkecosystem/crypto@npm:2.6.37"
@@ -93,6 +103,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-ark@workspace:packages/platform-sdk-ark"
   dependencies:
     "@arkecosystem/client": ^1.1
+    "@arkecosystem/core-magistrate-crypto": ^2.6.37
     "@arkecosystem/crypto": ^2.6.37
     "@arkecosystem/ledger-transport": ^1.0.5
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"

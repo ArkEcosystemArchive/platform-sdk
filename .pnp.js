@@ -288,6 +288,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@arkecosystem/core-magistrate-crypto", [
+        ["npm:2.6.37", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-core-magistrate-crypto-npm-2.6.37-caff460223-2.zip/node_modules/@arkecosystem/core-magistrate-crypto/",
+          "packageDependencies": [
+            ["@arkecosystem/core-magistrate-crypto", "npm:2.6.37"],
+            ["@arkecosystem/crypto", "npm:2.6.37"],
+            ["bytebuffer", "npm:5.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@arkecosystem/crypto", [
         ["npm:2.6.37", {
           "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-2.6.37-bf1f09b908-2.zip/node_modules/@arkecosystem/crypto/",
@@ -422,6 +433,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
             ["@arkecosystem/client", "npm:1.1.3"],
+            ["@arkecosystem/core-magistrate-crypto", "npm:2.6.37"],
             ["@arkecosystem/crypto", "npm:2.6.37"],
             ["@arkecosystem/ledger-transport", "npm:1.0.5"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
