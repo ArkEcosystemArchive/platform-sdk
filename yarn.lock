@@ -201,6 +201,9 @@ __metadata:
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@hapi/joi": ^17.1.1
+    "@ledgerhq/hw-app-btc": ^5.15.2
+    "@ledgerhq/hw-transport-mocker": ^5.15.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -1870,6 +1873,20 @@ __metadata:
   version: 5.15.0
   resolution: "@ledgerhq/errors@npm:5.15.0"
   checksum: 2/9bbff90fb17810463d47adae527ddd77fe2d3cc2d7cc51f6ffe5724ebaec1ad54ddc1739c7b30e29719f38f0d8543143edd7c759f38a63a8af9c73d459fa3e9d
+  languageName: node
+  linkType: hard
+
+"@ledgerhq/hw-app-btc@npm:^5.15.2":
+  version: 5.15.2
+  resolution: "@ledgerhq/hw-app-btc@npm:5.15.2"
+  dependencies:
+    "@ledgerhq/hw-transport": ^5.15.0
+    bip32-path: ^0.4.2
+    invariant: ^2.2.4
+    ripemd160: 2
+    semver: ^7.3.2
+    sha.js: 2
+  checksum: 2/ca143173dde78251fa74e9c9275d6bd9312f1dde0c3ef2d8f3f94252a849b85f69fe71c63ae06722ba0d9fab6d8ba6489e4de1992b9e74c738a8d3787ae333d2
   languageName: node
   linkType: hard
 
@@ -7568,6 +7585,15 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"invariant@npm:^2.2.4":
+  version: 2.2.4
+  resolution: "invariant@npm:2.2.4"
+  dependencies:
+    loose-envify: ^1.0.0
+  checksum: 2/96d8a2a4f0ad21020c5847546fc36bec5c0870d99f071aaa93df00c1036439d48211a1823ab6128f78a15ccc4c4f62baf6a65f6c0ed489270dd44d0a04f443a1
+  languageName: node
+  linkType: hard
+
 "ip-regex@npm:^2.1.0":
   version: 2.1.0
   resolution: "ip-regex@npm:2.1.0"
@@ -8619,7 +8645,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"js-tokens@npm:^4.0.0":
+"js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
   checksum: 2/1fc4e4667ac2d972aba65148b9cbf9c17566b2394d3504238d8492bbd3e68f496c657eab06b26b40b17db5cac0a34d153a12130e2d2d2bb6dc2cdc8a4764eb1b
@@ -9183,6 +9209,17 @@ fsevents@^2.1.2:
   version: 3.2.0
   resolution: "long@npm:3.2.0"
   checksum: 2/abfdbab5ddaea449b64d0f44d7450d0f3b5b79bc8a934f29d41cb728e5557831d5cb1c8ef93fc8da77563b39a6d807ab1e8f87c7e70ff5ead5b53803e3eb4c8f
+  languageName: node
+  linkType: hard
+
+"loose-envify@npm:^1.0.0":
+  version: 1.4.0
+  resolution: "loose-envify@npm:1.4.0"
+  dependencies:
+    js-tokens: ^3.0.0 || ^4.0.0
+  bin:
+    loose-envify: cli.js
+  checksum: 2/5c3b47bbe5f597a3889fb001a3a98aaea2a3fafa48089c19034de1e0121bf57dbee609d184478514d74d5c5a7e9cfa3d846343455e5123b060040d46c39e91dc
   languageName: node
   linkType: hard
 
@@ -11661,7 +11698,7 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"ripemd160@npm:^2.0.0, ripemd160@npm:^2.0.1, ripemd160@npm:^2.0.2":
+"ripemd160@npm:2, ripemd160@npm:^2.0.0, ripemd160@npm:^2.0.1, ripemd160@npm:^2.0.2":
   version: 2.0.2
   resolution: "ripemd160@npm:2.0.2"
   dependencies:
@@ -12073,7 +12110,7 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"sha.js@npm:^2.3.6, sha.js@npm:^2.4.0, sha.js@npm:^2.4.8":
+"sha.js@npm:2, sha.js@npm:^2.3.6, sha.js@npm:^2.4.0, sha.js@npm:^2.4.8":
   version: 2.4.11
   resolution: "sha.js@npm:2.4.11"
   dependencies:
