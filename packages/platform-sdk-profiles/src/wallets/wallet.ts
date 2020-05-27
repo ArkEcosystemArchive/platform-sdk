@@ -22,9 +22,10 @@ export class Wallet {
 		passphrase: string;
 		coin: Coins.CoinSpec;
 		network: string;
+		httpClient: Contracts.HttpClient;
 		storage: Storage;
 	}): Promise<Wallet> {
-		const coin = await Coins.CoinFactory.make(input.coin, { network: input.network });
+		const coin = await Coins.CoinFactory.make(input.coin, { network: input.network, httpClient: input.httpClient });
 
 		const address: string = await coin.identity().address().fromPassphrase(input.passphrase);
 

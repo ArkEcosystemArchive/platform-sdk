@@ -1,12 +1,12 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Http } from "@arkecosystem/platform-sdk-support";
 import Neon from "@cityofzion/neon-js";
 import { api } from "@cityofzion/neon-js";
 
 import { TransactionData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
-	readonly #baseUrl: string;
+	readonly #http: Contracts.HttpClient;
+	readonly #peer: string;
 	readonly #apiProvider;
 
 	readonly #broadcastErrors: Record<string, string> = {
@@ -18,17 +18,22 @@ export class ClientService implements Contracts.ClientService {
 		"Unknown error.": "ERR_UNKNOWN",
 	};
 
-	private constructor(network: string) {
-		this.#baseUrl = {
-			mainnet: "https://api.neoscan.io/api/main_net/v1/",
-			testnet: "https://neoscan-testnet.io/api/test_net/v1/",
+	private constructor({ http, network }) {
+		this.#http = http;
+
+		this.#peer = {
+			mainnet: "https://api.neoscan.io/api/main_net/v1",
+			testnet: "https://neoscan-testnet.io/api/test_net/v1",
 		}[network];
 
 		this.#apiProvider = new api.neoscan.instance(network === "mainnet" ? "MainNet" : "TestNet");
 	}
 
 	public static async construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config.get<Coins.CoinNetwork>("network").id);
+		return new ClientService({
+			http: config.get<Contracts.HttpClient>("httpClient"),
+			network: config.get<Coins.CoinNetwork>("network").id,
+		});
 	}
 
 	public async destruct(): Promise<void> {
@@ -127,10 +132,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Http.new(this.#baseUrl).get(path, query);
+		return this.#http.get(`${this.#peer}/${path}`, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Http.new(this.#baseUrl).post(path, body);
+		return this.#http.post(`${this.#peer}/${path}`, body);
 	}
 }

@@ -1,3 +1,5 @@
+import { Contracts } from "@arkecosystem/platform-sdk";
+
 import { Storage } from "./contracts";
 import { Data } from "./data";
 import { Settings } from "./settings";
@@ -11,10 +13,20 @@ export class Profile {
 	readonly #data: Data;
 	readonly #settings: Settings;
 
-	public constructor(input: { id: string; name: string; wallets: Wallet[]; storage: Storage }) {
+	public constructor(input: {
+		id: string;
+		name: string;
+		wallets: Wallet[];
+		httpClient: Contracts.HttpClient;
+		storage: Storage;
+	}) {
 		this.#id = input.id;
 		this.#name = input.name;
-		this.#wallets = new WalletRepository(input.storage, input.wallets);
+		this.#wallets = new WalletRepository({
+			httpClient: input.httpClient,
+			storage: input.storage,
+			wallets: input.wallets,
+		});
 		this.#data = new Data(input.storage, `profiles.${this.#id}`);
 		this.#settings = new Settings(input.storage, `profiles.${this.#id}`);
 	}

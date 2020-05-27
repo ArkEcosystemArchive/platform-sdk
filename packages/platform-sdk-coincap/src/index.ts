@@ -1,6 +1,6 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import { Http } from "@arkecosystem/platform-sdk-support";
+import ky from "ky-universal";
 
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
 import { MarketTransformer } from "./transformers/market-transformer";
@@ -8,11 +8,7 @@ import { MarketTransformer } from "./transformers/market-transformer";
 export class PriceTracker implements Contracts.PriceTracker {
 	private readonly tokenLookup: Contracts.KeyValuePair = {};
 
-	readonly #client: Http;
-
-	public constructor() {
-		this.#client = Http.new("https://api.coincap.io/v2");
-	}
+	readonly #host: string = "https://api.coincap.io/v2";
 
 	public async verifyToken(token: string): Promise<boolean> {
 		try {
@@ -44,7 +40,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		const timeInterval = options.days === 24 ? "h1" : "h12";
 		const startDate = DateTime.make().subDays(daysSubtract).valueOf();
 		const endDate = DateTime.make().valueOf();
-		const body = await this.#client.get(
+		const body = await this.get(
 			`assets/${tokenId}/history?interval=${timeInterval}&start=${startDate}&end=${endDate}`,
 		);
 
@@ -69,7 +65,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 			return this.tokenLookup[token.toUpperCase()];
 		}
 
-		const body = await this.#client.get(`assets?limit=${limit}`);
+		const body = await this.get(`assets?limit=${limit}`);
 
 		for (const value of Object.values(body.data)) {
 			// @ts-ignore
@@ -82,13 +78,13 @@ export class PriceTracker implements Contracts.PriceTracker {
 	private async fetchTokenData(token: string): Promise<Contracts.KeyValuePair> {
 		const tokenId = await this.getTokenId(token);
 
-		const body = await this.#client.get(`assets/${tokenId}`);
+		const body = await this.get(`assets/${tokenId}`);
 
 		return body.data;
 	}
 
 	private async getCurrencyData(token: string): Promise<Contracts.KeyValuePair> {
-		const body = await this.#client.get(`rates`);
+		const body = await this.get(`rates`);
 		const { data, timestamp } = body;
 		const tokenData = await this.fetchTokenData(token);
 
@@ -104,5 +100,9 @@ export class PriceTracker implements Contracts.PriceTracker {
 		}
 
 		return response;
+	}
+
+	private async get(path: string): Promise<any> {
+		return ky.get(`${this.#host}/${path}`).json();
 	}
 }

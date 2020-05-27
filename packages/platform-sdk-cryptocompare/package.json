@@ -22,7 +22,9 @@
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
-		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
+		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
+		"ky": "^0.20.0",
+		"ky-universal": "^0.7.0"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",

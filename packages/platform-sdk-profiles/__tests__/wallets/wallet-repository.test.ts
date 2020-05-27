@@ -7,6 +7,7 @@ import { Wallet } from "../../src/wallets/wallet";
 import { WalletRepository } from "../../src/wallets/wallet-repository";
 import { identity } from "../__fixtures__/identity";
 import { LocalStorage } from "../../src/storage/local";
+import { HttpClient } from "../stubs/client";
 
 let subject: WalletRepository;
 let wallet: Wallet;
@@ -23,9 +24,15 @@ beforeEach(async () => {
 
 	const storage = new LocalStorage("localstorage");
 
-	wallet = await Wallet.fromPassphrase({ passphrase: identity.passphrase, coin: ARK, network: "devnet", storage });
+	wallet = await Wallet.fromPassphrase({
+		passphrase: identity.passphrase,
+		coin: ARK,
+		network: "devnet",
+		httpClient: new HttpClient(),
+		storage,
+	});
 
-	subject = new WalletRepository(storage, [wallet]);
+	subject = new WalletRepository({ httpClient: new HttpClient(), storage, wallets: [wallet] });
 });
 
 afterEach(() => nock.cleanAll());

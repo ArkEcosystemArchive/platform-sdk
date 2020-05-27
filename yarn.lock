@@ -132,12 +132,11 @@ __metadata:
     eslint-plugin-jest: ^23.13.2
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
+    got: ^11.1.4
     is-url-superb: ^3.0.0
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
-    ky: ^0.20.0
-    ky-universal: ^0.6.0
     lodash.orderby: ^4.6.0
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
@@ -179,6 +178,7 @@ __metadata:
     eslint-plugin-jest: ^23.13.2
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
+    got: ^11.1.4
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
@@ -260,6 +260,8 @@ __metadata:
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
+    ky: ^0.20.0
+    ky-universal: ^0.7.0
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
@@ -296,6 +298,8 @@ __metadata:
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
+    ky: ^0.20.0
+    ky-universal: ^0.7.0
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
@@ -372,6 +376,8 @@ __metadata:
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
+    ky: ^0.20.0
+    ky-universal: ^0.7.0
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
@@ -454,6 +460,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     ethereumjs-tx: ^2.1.2
     ethereumjs-wallet: ^0.6.3
+    got: ^11.1.4
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
@@ -537,6 +544,7 @@ __metadata:
     eslint-plugin-jest: ^23.13.2
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
+    got: ^11.1.4
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
@@ -613,6 +621,7 @@ __metadata:
     eslint-plugin-jest: ^23.13.2
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
+    got: ^11.1.4
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
@@ -653,6 +662,7 @@ __metadata:
     eslint-plugin-jest: ^23.13.2
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
+    got: ^11.1.4
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
@@ -673,7 +683,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-support@workspace:packages/platform-sdk-support"
   dependencies:
-    "@kodekeep/reqwest": ^0.3.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/bent": 7.0.2
     "@types/dot-prop": 5.0.1
@@ -1824,18 +1833,6 @@ __metadata:
     "@types/yargs": ^15.0.0
     chalk: ^4.0.0
   checksum: 2/50f40cece96f298ec0da9d94d9099e3c837403b63b3132f085eee47d0f627c07d4418ee60828a3ef3a5fd15b741dd390078d089f5a65161c0378d4876ce27935
-  languageName: node
-  linkType: hard
-
-"@kodekeep/reqwest@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@kodekeep/reqwest@npm:0.3.0"
-  dependencies:
-    got: ^11.1.4
-    is-url-superb: ^3.0.0
-    socks-proxy-agent: ^5.0.0
-    tough-cookie: ^4.0.0
-  checksum: 2/2edad251c27b4c3ac3a6de59b355305638fa548eed307ec3e8712011f7588af1fea1a0b2bff095855672327a2edd4109be7bcde4742e1aa966a8b47e474ca759
   languageName: node
   linkType: hard
 
@@ -4229,7 +4226,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"buffer-from@npm:1.x, buffer-from@npm:^1.0.0":
+"buffer-from@npm:1.x, buffer-from@npm:^1.0.0, buffer-from@npm:^1.1.1":
   version: 1.1.1
   resolution: "buffer-from@npm:1.1.1"
   checksum: 2/540ceb79c4f5bfcadaabbc18324fa84c50dc52905084be7c03596a339cf5a88513bee6831ce9b36ddd046fab09257a7c80686e129d0559a0cfd141da196ad956
@@ -5099,6 +5096,15 @@ __metadata:
   dependencies:
     assert-plus: ^1.0.0
   checksum: 2/5959409ee42dc4bdbf3fa384b801ece580ca336658bb0342ffab0099b3fc6bf9b3e239e1b82dcc4fcaeee315353e08f2eae47b0928a6a579391598c44958afa1
+  languageName: node
+  linkType: hard
+
+"data-uri-to-buffer@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "data-uri-to-buffer@npm:3.0.0"
+  dependencies:
+    buffer-from: ^1.1.1
+  checksum: 2/e870d70678c777355a9923a29f49a713b738251ffb165153d30862eb86edcda7c336c2877b8fb5d04689b61a2f73d43e654a330a9e8b2faaca41f89ba3415a44
   languageName: node
   linkType: hard
 
@@ -6456,6 +6462,13 @@ __metadata:
   dependencies:
     bser: 2.1.1
   checksum: 2/f9ec24592a45026a6a7f54034a4b5efb010cac7d7fbc234fe9ae5d725c13efa9be0ded1ae348473fc42af4e28eea53f8b993857c0c49e6d721f7c9eb5b21217f
+  languageName: node
+  linkType: hard
+
+"fetch-blob@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "fetch-blob@npm:1.0.6"
+  checksum: 2/d79ff6a4af89357d82970588d6a0b28803c03ef9a28df3d4fa48e73a63bc2cf2765bdfc47a2412070f836e4bcb1c65ea7bf506a5fd006bbb9d8e63ee03db34ab
   languageName: node
   linkType: hard
 
@@ -8923,19 +8936,19 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"ky-universal@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "ky-universal@npm:0.6.0"
+"ky-universal@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "ky-universal@npm:0.7.0"
   dependencies:
     abort-controller: ^3.0.0
-    node-fetch: ^2.6.0
+    node-fetch: ^3.0.0-beta.6-exportfix
   peerDependencies:
     ky: ">=0.17.0"
     web-streams-polyfill: ">=2.0.0"
   peerDependenciesMeta:
     web-streams-polyfill:
       optional: true
-  checksum: 2/955e7eda3b0acfe7137d4d1cb48045370755c0f66eef9ac08edef29e540eb3db53dbfe470a1768e902b277eeb780a24ad9559e47a3134bbd103e298ef089b7a3
+  checksum: 2/8ad44cf6ac6a7e375ca0c13fb7fa3274273bd45a879a43d8d6915013fb2772e9006984d938e74d4ae5f834be3428f47fc923d1f603d911f71e8eabec05387ed5
   languageName: node
   linkType: hard
 
@@ -9917,6 +9930,16 @@ fsevents@^2.1.2:
   version: 2.6.0
   resolution: "node-fetch@npm:2.6.0"
   checksum: 2/dd9f586a9f7ddb7dd94d2aba9cb693d32f5001e9850098512fbc8a4cbdd56838afa08ed0a6725b9fce9b01ec12b713e622cbfc16d92762d8b937b238330a632a
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:^3.0.0-beta.6-exportfix":
+  version: 3.0.0-beta.6-exportfix
+  resolution: "node-fetch@npm:3.0.0-beta.6-exportfix"
+  dependencies:
+    data-uri-to-buffer: ^3.0.0
+    fetch-blob: ^1.0.6
+  checksum: 2/9a98f12932a21004120f5f1a94563c5fb64b1001284618a1d2612b708bdb2c4763fc883113b3bd22a729a24ceeffe5a728bd4c334151991513994f57ac4e9fc7
   languageName: node
   linkType: hard
 
@@ -11000,7 +11023,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"psl@npm:^1.1.24, psl@npm:^1.1.28, psl@npm:^1.1.33":
+"psl@npm:^1.1.24, psl@npm:^1.1.28":
   version: 1.8.0
   resolution: "psl@npm:1.8.0"
   checksum: 2/92d47c6257456878bfa8190d76b84de69bcefdc129eeee3f9fe204c15fd08d35fe5b8627033f39b455e40a9375a1474b25ff4ab2c5448dd8c8f75da692d0f5b4
@@ -13098,17 +13121,6 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"tough-cookie@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "tough-cookie@npm:4.0.0"
-  dependencies:
-    psl: ^1.1.33
-    punycode: ^2.1.1
-    universalify: ^0.1.2
-  checksum: 2/161dc4728e2801c1bd3b32d4d14abd2762120d9ed0b96d892720440aa04ed0ad6c425c38195265c74366fe01d8aaf1cc0a31636cb18b82c9b6ce630743210235
-  languageName: node
-  linkType: hard
-
 "tough-cookie@npm:~2.4.3":
   version: 2.4.3
   resolution: "tough-cookie@npm:2.4.3"
@@ -13480,7 +13492,7 @@ typescript@^3.9.3:
   languageName: node
   linkType: hard
 
-"universalify@npm:^0.1.0, universalify@npm:^0.1.2":
+"universalify@npm:^0.1.0":
   version: 0.1.2
   resolution: "universalify@npm:0.1.2"
   checksum: 2/420fc6547357782c700d53e9a92506a8e95345b13e97684c8f9ab75237912ec2ebb6af8ac10d4f7406b7b6bd21c58f6c5c0811414fb0b4091b78b4743fa6806e

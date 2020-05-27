@@ -3,10 +3,11 @@ import "jest-extended";
 import { Profiles } from "../src/profiles";
 import { LocalStorage } from "../src/storage/local";
 import { Profile } from "../src/profile";
+import { HttpClient } from "./stubs/client";
 
 let subject: Profiles;
 
-beforeEach(() => (subject = new Profiles(new LocalStorage("localstorage"))));
+beforeEach(() => (subject = new Profiles({ httpClient: new HttpClient(), storage: new LocalStorage("localstorage") })));
 
 describe("Profiles", () => {
 	it("should push, get, list and forget any given profiles", async () => {
