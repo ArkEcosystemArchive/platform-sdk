@@ -1,3 +1,5 @@
+import { Contracts } from "@arkecosystem/platform-sdk";
+
 import { EnvironmentOptions, Storage } from "./contracts";
 import { Data } from "./data";
 import { Migrator } from "./migrator";

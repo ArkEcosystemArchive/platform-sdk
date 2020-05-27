@@ -1,6 +1,7 @@
 export * from "./client";
 export * from "./data";
 export * from "./fee";
+export * from "./http";
 export * from "./identity";
 export * from "./ledger";
 export * from "./link";

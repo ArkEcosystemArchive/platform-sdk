@@ -1,18 +1,26 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr, Http } from "@arkecosystem/platform-sdk-support";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 
 export class ClientService implements Contracts.ClientService {
-	readonly #baseUrl: string;
+	readonly #http: Contracts.HttpClient;
+	readonly #peer: string;
 
-	private constructor(peer: string) {
-		this.#baseUrl = `${peer}/api`;
+	private constructor({ http, peer }) {
+		this.#http = http;
+		this.#peer = `${peer}/api`;
 	}
 
 	public static async construct(config: Coins.Config): Promise<ClientService> {
 		try {
-			return new ClientService(config.get<string>("peer"));
+			return new ClientService({
+				http: config.get<Contracts.HttpClient>("httpClient"),
+				peer: config.get<string>("peer"),
+			});
 		} catch {
-			return new ClientService(Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts));
+			return new ClientService({
+				http: config.get<Contracts.HttpClient>("httpClient"),
+				peer: Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts),
+			});
 		}
 	}
 
@@ -67,10 +75,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Http.new(this.#baseUrl).get(path, query);
+		return this.#http.get(`${this.#peer}/${path}`, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Http.new(this.#baseUrl).post(path, body);
+		return this.#http.post(`${this.#peer}/${path}`, body);
 	}
 }

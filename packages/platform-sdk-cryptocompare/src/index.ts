@@ -1,21 +1,17 @@
 import { Contracts, Data } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import { Http } from "@arkecosystem/platform-sdk-support";
+import ky from "ky";
 
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
 import { HistoricalVolumeTransformer } from "./transformers/historical-volume-transformer";
 import { MarketTransformer } from "./transformers/market-transformer";
 
 export class PriceTracker implements Contracts.PriceTracker {
-	readonly #client: Http;
-
-	public constructor() {
-		this.#client = Http.new("https://min-api.cryptocompare.com");
-	}
+	readonly #host: string = "https://min-api.cryptocompare.com";
 
 	public async verifyToken(token: string): Promise<boolean> {
 		try {
-			const body = await this.#client.get("data/price", {
+			const body = await this.get("data/price", {
 				fsym: token,
 				tsyms: "BTC",
 			});
@@ -27,7 +23,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	public async marketData(token: string): Promise<Contracts.MarketDataCollection> {
-		const body = await this.#client.get("data/pricemultifull", {
+		const body = await this.get("data/pricemultifull", {
 			fsyms: token,
 			tsyms: Object.keys(Data.CURRENCIES).join(","),
 		});
@@ -36,7 +32,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	public async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
-		const body = await this.#client.get(`data/histo${options.type}`, {
+		const body = await this.get(`data/histo${options.type}`, {
 			fsym: options.token,
 			tsym: options.currency,
 			toTs: Math.round(new Date().getTime() / 1000),
@@ -47,7 +43,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	public async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
-		const body = await this.#client.get(`data/histo${options.type}`, {
+		const body = await this.get(`data/histo${options.type}`, {
 			fsym: options.token,
 			tsym: options.currency,
 			toTs: Math.round(new Date().getTime() / 1000),
@@ -58,12 +54,16 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	public async dailyAverage(options: Contracts.DailyAverageOptions): Promise<number> {
-		const response = await this.#client.get(`data/dayAvg`, {
+		const response = await this.get(`data/dayAvg`, {
 			fsym: options.token,
 			tsym: options.currency,
 			toTs: DateTime.make(options.timestamp).toUNIX(),
 		});
 
 		return response[options.currency.toUpperCase()];
+	}
+
+	private async get(path: string, searchParams = {}): Promise<any> {
+		return ky.get(`${this.#host}/${path}`, { searchParams }).json();
 	}
 }
