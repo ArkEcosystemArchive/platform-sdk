@@ -1,6 +1,10 @@
-import { mnemonicToSeedSync, validateMnemonic, wordlists } from "bip39";
+import { generateMnemonic, mnemonicToSeedSync, validateMnemonic, wordlists } from "bip39";
 
 export class BIP39 {
+	public static generate(locale = "english"): string {
+		return generateMnemonic(undefined, undefined, wordlists[locale]);
+	}
+
 	public static validate(passphrase: string, locale = "english"): boolean {
 		return validateMnemonic(BIP39.normalize(passphrase), wordlists[locale]);
 	}
