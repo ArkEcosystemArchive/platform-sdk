@@ -1,5 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-support";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { deriveAddress, deriveKeypair } from "ripple-keypairs";
 
 export class Address implements Contracts.Address {
@@ -21,5 +21,9 @@ export class Address implements Contracts.Address {
 
 	public async fromWIF(wif: string): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
+	}
+
+	public async validate(address: string): Promise<boolean> {
+		throw new Exceptions.NotSupported(this.constructor.name, "validate");
 	}
 }

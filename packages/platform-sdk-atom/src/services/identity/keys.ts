@@ -1,5 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP44 } from "@arkecosystem/platform-sdk-support";
+import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { secp256k1 } from "bcrypto";
 
 export class Keys implements Contracts.Keys {

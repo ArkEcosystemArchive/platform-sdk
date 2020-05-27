@@ -1,16 +1,19 @@
-import { BigNumber, Http } from "@arkecosystem/platform-sdk-support";
+import { Contracts } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { UnspentTransaction } from "../contracts";
 
 export class UnspentAggregator {
-	readonly #peer;
+	readonly #http: Contracts.HttpClient;
+	readonly #peer: string;
 
-	public constructor(peer: string) {
+	public constructor({ http, peer }) {
+		this.#http = http;
 		this.#peer = peer;
 	}
 
 	public async aggregate(address: string, amount: BigNumber): Promise<UnspentTransaction[]> {
-		const response = await Http.new(this.#peer).get(`wallets/${address}/transactions/unspent`);
+		const response = await this.#http.get(`${this.#peer}/wallets/${address}/transactions/unspent`);
 
 		return response.map((transaction) => ({
 			address: transaction.address,

@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-support";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import * as transactions from "@liskhq/lisk-transactions";
 import * as transactionsBeta from "@liskhq/lisk-transactions-new";
 
@@ -120,6 +120,48 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
+	}
+
+	public async businessRegistration(
+		input: Contracts.BusinessRegistrationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "businessRegistration");
+	}
+
+	public async businessResignation(
+		input: Contracts.BusinessResignationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "businessResignation");
+	}
+
+	public async businessUpdate(
+		input: Contracts.BusinessUpdateInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "businessUpdate");
+	}
+
+	public async bridgechainRegistration(
+		input: Contracts.BridgechainRegistrationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainRegistration");
+	}
+
+	public async bridgechainResignation(
+		input: Contracts.BridgechainResignationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainResignation");
+	}
+
+	public async bridgechainUpdate(
+		input: Contracts.BridgechainUpdateInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainUpdate");
 	}
 
 	private async createFromData(

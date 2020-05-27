@@ -1,24 +1,25 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { Http } from "@arkecosystem/platform-sdk-support";
 import isUrl from "is-url-superb";
 import orderBy from "lodash.orderby";
 import semver from "semver";
 
 export class PeerService implements Contracts.PeerService {
+	readonly #http: Contracts.HttpClient;
 	readonly #seeds: string[];
 
-	private constructor(seeds: string[]) {
+	private constructor({ http, seeds }) {
+		this.#http = http;
 		this.#seeds = seeds;
 	}
 
 	public static async construct(config: Coins.Config): Promise<PeerService> {
-		const { peer } = config.all();
+		const { httpClient, peer } = config.all();
 
 		let seeds: string[] = [];
 
 		try {
 			if (peer && isUrl(peer)) {
-				const response = await Http.new(peer).get("peers");
+				const response = await httpClient.get(`${peer}/peers`);
 
 				for (const seed of response.data) {
 					let port = 4003;
@@ -36,7 +37,8 @@ export class PeerService implements Contracts.PeerService {
 			} else {
 				seeds = config.get<Coins.CoinNetwork>("network").hosts;
 			}
-		} catch {
+		} catch (e) {
+			console.log(e);
 			throw new Error("Failed to discovery any peers.");
 		}
 
@@ -44,7 +46,7 @@ export class PeerService implements Contracts.PeerService {
 			throw new Error("No seeds found");
 		}
 
-		return new PeerService(seeds);
+		return new PeerService({ http: httpClient, seeds });
 	}
 
 	public async destruct(): Promise<void> {
@@ -58,7 +60,7 @@ export class PeerService implements Contracts.PeerService {
 	public async search(options: Contracts.KeyValuePair = {}): Promise<Contracts.PeerResponse[]> {
 		const seed: string = this.#seeds[Math.floor(Math.random() * this.#seeds.length)];
 
-		const body: any = await Http.new(seed).get("api/peers");
+		const body: any = await this.#http.get(`${seed}/api/peers`);
 
 		let peers: Contracts.PeerResponse[] = body.data;
 

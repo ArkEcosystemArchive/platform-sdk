@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr, Http } from "@arkecosystem/platform-sdk-support";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import Web3 from "web3";
 
 import { TransactionData, WalletData } from "../dto";
@@ -7,6 +7,7 @@ import { TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	static readonly MONTH_IN_SECONDS = 8640 * 30;
 
+	readonly #http: Contracts.HttpClient;
 	readonly #peer: string;
 
 	readonly #broadcastErrors: Record<string, string> = {
@@ -19,15 +20,22 @@ export class ClientService implements Contracts.ClientService {
 		"intrinsic gas too low": "ERR_INTRINSIC_GAS",
 	};
 
-	private constructor(peer: string) {
+	private constructor({ http, peer }) {
+		this.#http = http;
 		this.#peer = peer;
 	}
 
 	public static async construct(config: Coins.Config): Promise<ClientService> {
 		try {
-			return new ClientService(config.get<string>("peer"));
+			return new ClientService({
+				http: config.get<Contracts.HttpClient>("httpClient"),
+				peer: config.get<string>("peer"),
+			});
 		} catch {
-			return new ClientService(Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts));
+			return new ClientService({
+				http: config.get<Contracts.HttpClient>("httpClient"),
+				peer: Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts),
+			});
 		}
 	}
 
@@ -40,10 +48,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(
-		query: Contracts.KeyValuePair,
+		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		const endBlock: number = (await this.get("status")).height;
-		const startBlock: number = endBlock - (query?.count ?? ClientService.MONTH_IN_SECONDS);
+		const startBlock: number = endBlock - (query?.limit ?? ClientService.MONTH_IN_SECONDS);
 
 		const transactions: TransactionData[] = [];
 		for (let i = startBlock; i < endBlock; i++) {
@@ -70,7 +78,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallets(
-		query: Contracts.KeyValuePair,
+		query: Contracts.ClientWalletsInput,
 	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
@@ -136,10 +144,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Http.new(this.#peer).get(path, query);
+		return this.#http.get(`${this.#peer}/${path}`, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Http.new(this.#peer).post(path, body);
+		return this.#http.post(`${this.#peer}/${path}`, body);
 	}
 }

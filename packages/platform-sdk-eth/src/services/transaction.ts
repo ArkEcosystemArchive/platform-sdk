@@ -1,17 +1,19 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Buffoon, Http } from "@arkecosystem/platform-sdk-support";
+import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import { Transaction } from "ethereumjs-tx";
 import Web3 from "web3";
 
 import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #http: Contracts.HttpClient;
 	readonly #peer;
 	readonly #chain: string;
 	readonly #identity;
 	readonly #web3;
 
 	private constructor(opts: Contracts.KeyValuePair) {
+		this.#http = opts.http;
 		this.#peer = opts.peer;
 		this.#chain = opts.network;
 		this.#identity = opts.identity;
@@ -140,8 +142,50 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
 	}
 
+	public async businessRegistration(
+		input: Contracts.BusinessRegistrationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "businessRegistration");
+	}
+
+	public async businessResignation(
+		input: Contracts.BusinessResignationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "businessResignation");
+	}
+
+	public async businessUpdate(
+		input: Contracts.BusinessUpdateInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "businessUpdate");
+	}
+
+	public async bridgechainRegistration(
+		input: Contracts.BridgechainRegistrationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainRegistration");
+	}
+
+	public async bridgechainResignation(
+		input: Contracts.BridgechainResignationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainResignation");
+	}
+
+	public async bridgechainUpdate(
+		input: Contracts.BridgechainUpdateInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainUpdate");
+	}
+
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Http.new(this.#peer).get(path, query);
+		return this.#http.get(`${this.#peer}/${path}`, query);
 	}
 
 	private createContract(contractAddress: string) {

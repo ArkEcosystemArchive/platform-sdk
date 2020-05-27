@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP44 } from "@arkecosystem/platform-sdk-support";
+import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
 import { CommHandler, DposLedger, LedgerAccount, SupportedCoin } from "dpos-ledger-api";
 

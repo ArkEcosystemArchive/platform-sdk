@@ -1,6 +1,7 @@
 import {
 	ClientService,
 	FeeService,
+	HttpClient,
 	IdentityService,
 	LedgerService,
 	LinkService,
@@ -27,6 +28,7 @@ export interface CoinSpec {
 export interface CoinOptions {
 	network: string;
 	peer?: string;
+	httpClient: HttpClient;
 }
 
 export interface CoinServices {

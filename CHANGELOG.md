@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.54 - 2020-05-2
+
+### Changed
+
+-   Require the consumer to specify an HTTP client (d8dbe30a, @faustbrian)
+
+## 0.9.53 - 2020-05-27
+
+### Fixed
+
+-   Import `dayjs` plugins to force type inclusion (d0de77dd, @faustbrian)
+
+## 0.9.52 - 2020-05-27
+
+### Added
+
+-   Implement `BIP39#generate` (e1dff21c, @faustbrian)
+-   Integrate `@arkecosystem/core-magistrate-crypto` (220fcdfa, @faustbrian)
+
+## 0.9.50 - 2020-05-25
+
+### Added
+
+-   Integrate `keytar` for system keychain access (a2390870, @faustbrian)
+-   Implement `BIP39#validate` (eb90324c, @faustbrian)
+-   Implement `Wallet#transactions/sentTransactions/receivedTransactions` (5b45733c, @faustbrian)
+-   Implement `Address#validate` (1196c9df, @faustbrian)
+-   Add `ClientTransactionsInput` and `ClientWalletsInput` contracts (7f72b3ea, @faustbrian)
+
+### Changed
+
+-   Extract supportive functionality into `platform-sdk-support` package (e02ed115, @faustbrian)
+-   Move crypto functionality into `platform-sdk-crypto` (50c63489, @faustbrian)
+-   Replace `bent` with `reqwest` (bb2ad1d9, @faustbrian)
+
 ## 0.9.42 - 2020-05-22
 
 ### Added

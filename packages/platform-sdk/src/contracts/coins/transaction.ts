@@ -3,6 +3,8 @@ export type SignedTransaction = any;
 
 export interface TransactionService {
 	destruct(): Promise<void>;
+
+	// Core
 	transfer(input: TransferInput, options?: TransactionOptions): Promise<SignedTransaction>;
 	secondSignature(input: SecondSignatureInput, options?: TransactionOptions): Promise<SignedTransaction>;
 	delegateRegistration(input: DelegateRegistrationInput, options?: TransactionOptions): Promise<SignedTransaction>;
@@ -14,6 +16,20 @@ export interface TransactionService {
 	htlcLock(input: HtlcLockInput, options?: TransactionOptions): Promise<SignedTransaction>;
 	htlcClaim(input: HtlcClaimInput, options?: TransactionOptions): Promise<SignedTransaction>;
 	htlcRefund(input: HtlcRefundInput, options?: TransactionOptions): Promise<SignedTransaction>;
+
+	// Magistrate
+	businessRegistration(input: BusinessRegistrationInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	businessResignation(input: BusinessResignationInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	businessUpdate(input: BusinessUpdateInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	bridgechainRegistration(
+		input: BridgechainRegistrationInput,
+		options?: TransactionOptions,
+	): Promise<SignedTransaction>;
+	bridgechainResignation(
+		input: BridgechainResignationInput,
+		options?: TransactionOptions,
+	): Promise<SignedTransaction>;
+	bridgechainUpdate(input: BridgechainUpdateInput, options?: TransactionOptions): Promise<SignedTransaction>;
 }
 
 // Transaction Signing
@@ -102,4 +118,58 @@ export interface HtlcClaimInput extends TransactionInput {
 
 export interface HtlcRefundInput extends TransactionInput {
 	data: { lockTransactionId: string };
+}
+
+// TODO: get rid of this once AIP36 is implemented
+export interface BusinessRegistrationInput extends TransactionInput {
+	data: {
+		name: string;
+		website: string;
+		vat?: string;
+		repository?: string;
+	};
+}
+
+export interface BusinessResignationInput extends TransactionInput {
+	data: {};
+}
+
+export interface BusinessUpdateInput extends TransactionInput {
+	data: {
+		name?: string;
+		website?: string;
+		vat?: string;
+		repository?: string;
+	};
+}
+
+export interface BridgechainRegistrationInput extends TransactionInput {
+	data: {
+		name: string;
+		seedNodes: string[];
+		genesisHash: string;
+		bridgechainRepository: string;
+		bridgechainAssetRepository?: string;
+		ports: {
+			[name: string]: number;
+		};
+	};
+}
+
+export interface BridgechainResignationInput extends TransactionInput {
+	data: {
+		bridgechainId: string;
+	};
+}
+
+export interface BridgechainUpdateInput extends TransactionInput {
+	data: {
+		bridgechainId: string;
+		seedNodes?: string[];
+		ports?: {
+			[name: string]: number;
+		};
+		bridgechainRepository?: string;
+		bridgechainAssetRepository?: string;
+	};
 }

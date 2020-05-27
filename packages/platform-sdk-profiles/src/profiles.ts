@@ -1,3 +1,4 @@
+import { Contracts } from "@arkecosystem/platform-sdk";
 import { v4 as uuidv4 } from "uuid";
 
 import { Storage } from "./contracts";
@@ -5,9 +6,12 @@ import { Profile } from "./profile";
 
 export class Profiles {
 	readonly #key: string = "profiles";
+
+	readonly #httpClient: Contracts.HttpClient;
 	readonly #storage: Storage;
 
-	public constructor(storage: Storage) {
+	public constructor({ httpClient, storage }) {
+		this.#httpClient = httpClient;
 		this.#storage = storage;
 	}
 
@@ -22,6 +26,7 @@ export class Profiles {
 			(profile) =>
 				new Profile({
 					...profile,
+					httpClient: this.#httpClient,
 					storage: this.#storage,
 				}),
 		);
@@ -52,6 +57,7 @@ export class Profiles {
 			id: uuidv4(),
 			name,
 			wallets: [],
+			httpClient: this.#httpClient,
 			storage: this.#storage,
 		});
 

@@ -1,4 +1,4 @@
-import { Buffoon } from "@arkecosystem/platform-sdk-support";
+import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import { secp256k1 } from "bcrypto";
 
 import { HashAlgorithms } from "./hash";

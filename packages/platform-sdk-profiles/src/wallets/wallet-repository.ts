@@ -1,13 +1,16 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { Storage } from "../contracts";
 import { Wallet } from "./wallet";
 
 export class WalletRepository {
 	#wallets: Wallet[] = [];
+
+	readonly #httpClient: Contracts.HttpClient;
 	readonly #storage: Storage;
 
-	public constructor(storage: Storage, wallets: Wallet[]) {
+	public constructor({ httpClient, storage, wallets }) {
+		this.#httpClient = httpClient;
 		this.#storage = storage;
 		this.#wallets = wallets;
 	}
@@ -43,6 +46,7 @@ export class WalletRepository {
 	}): Promise<Wallet> {
 		const wallet: Wallet = await Wallet.fromPassphrase({
 			...input,
+			httpClient: this.#httpClient,
 			storage: this.#storage,
 		});
 

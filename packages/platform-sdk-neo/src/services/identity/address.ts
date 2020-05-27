@@ -28,4 +28,8 @@ export class Address implements Contracts.Address {
 	public async fromWIF(wif: string): Promise<string> {
 		return createWallet(wif).address;
 	}
+
+	public async validate(address: string): Promise<boolean> {
+		throw new Exceptions.NotSupported(this.constructor.name, "validate");
+	}
 }

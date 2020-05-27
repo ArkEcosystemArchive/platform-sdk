@@ -8,6 +8,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { Wallet } from "../../src/wallets/wallet";
 import { identity } from "../__fixtures__/identity";
 import { LocalStorage } from "../../src/storage/local";
+import { HttpClient } from "../stubs/client";
 
 let subject: Wallet;
 
@@ -23,7 +24,13 @@ beforeEach(async () => {
 
 	const storage = new LocalStorage("localstorage");
 
-	subject = await Wallet.fromPassphrase({ passphrase: identity.passphrase, coin: ARK, network: "devnet", storage });
+	subject = await Wallet.fromPassphrase({
+		passphrase: identity.passphrase,
+		coin: ARK,
+		network: "devnet",
+		httpClient: new HttpClient(),
+		storage,
+	});
 });
 
 afterEach(() => nock.cleanAll());

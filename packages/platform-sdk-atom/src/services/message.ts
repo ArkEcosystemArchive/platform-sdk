@@ -1,5 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { Buffoon } from "@arkecosystem/platform-sdk-support";
+import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import { secp256k1 } from "bcrypto";
 
 import { HashAlgorithms } from "../utils/hash";

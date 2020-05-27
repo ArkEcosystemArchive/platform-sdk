@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr, BIP39 } from "@arkecosystem/platform-sdk-support";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import BigNumber from "bignumber.js";
 import { Transaction } from "bitcore-lib";
 
@@ -19,9 +20,15 @@ export class TransactionService implements Contracts.TransactionService {
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
 		let unspent: UnspentAggregator;
 		try {
-			unspent = new UnspentAggregator(config.get<string>("peer"));
+			unspent = new UnspentAggregator({
+				http: config.get<Contracts.HttpClient>("httpClient"),
+				peer: config.get<string>("peer"),
+			});
 		} catch {
-			unspent = new UnspentAggregator(Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts));
+			unspent = new UnspentAggregator({
+				http: config.get<Contracts.HttpClient>("httpClient"),
+				peer: Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts),
+			});
 		}
 
 		return new TransactionService({
@@ -130,5 +137,47 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
+	}
+
+	public async businessRegistration(
+		input: Contracts.BusinessRegistrationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "businessRegistration");
+	}
+
+	public async businessResignation(
+		input: Contracts.BusinessResignationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "businessResignation");
+	}
+
+	public async businessUpdate(
+		input: Contracts.BusinessUpdateInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "businessUpdate");
+	}
+
+	public async bridgechainRegistration(
+		input: Contracts.BridgechainRegistrationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainRegistration");
+	}
+
+	public async bridgechainResignation(
+		input: Contracts.BridgechainResignationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainResignation");
+	}
+
+	public async bridgechainUpdate(
+		input: Contracts.BridgechainUpdateInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainUpdate");
 	}
 }

@@ -1,23 +1,31 @@
 import { Connection } from "@arkecosystem/client";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { Arr, Http } from "@arkecosystem/platform-sdk-support";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { DelegateData, TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
-	readonly #baseUrl: string;
+	readonly #http: Contracts.HttpClient;
+	readonly #peer: string;
 	readonly #connection: Connection;
 
-	private constructor(peer: string) {
-		this.#baseUrl = peer;
+	private constructor({ http, peer }) {
+		this.#http = http;
+		this.#peer = peer;
 		this.#connection = new Connection(peer);
 	}
 
 	public static async construct(config: Coins.Config): Promise<ClientService> {
 		try {
-			return new ClientService(config.get<string>("peer"));
+			return new ClientService({
+				http: config.get<Contracts.HttpClient>("httpClient"),
+				peer: config.get<string>("peer"),
+			});
 		} catch {
-			return new ClientService(`${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
+			return new ClientService({
+				http: config.get<Contracts.HttpClient>("httpClient"),
+				peer: `${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`,
+			});
 		}
 	}
 
@@ -32,7 +40,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(
-		query: Contracts.KeyValuePair,
+		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		const { body } = await this.#connection.api("transactions").search(query);
 
@@ -49,7 +57,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallets(
-		query: Contracts.KeyValuePair,
+		query: Contracts.ClientWalletsInput,
 	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		const { body } = await this.#connection.api("wallets").search(query);
 
@@ -135,6 +143,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return Http.new(this.#baseUrl).post(path, body);
+		return this.#http.post(`${this.#peer}/${path}`, body);
 	}
 }

@@ -49,7 +49,7 @@ describe("ClientService", function () {
 
 			const result = await subject.transactions({
 				address: "0x8e5231be3b71afdd0c417164986573fecddbae59",
-				count: 1,
+				limit: 1,
 			});
 
 			expect(result.data).toBeObject();

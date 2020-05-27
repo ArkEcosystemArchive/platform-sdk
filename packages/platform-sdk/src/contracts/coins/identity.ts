@@ -23,6 +23,7 @@ export interface Address {
 	fromPublicKey(publicKey: string): Promise<string>;
 	fromPrivateKey(privateKey: string): Promise<string>;
 	fromWIF(wif: string): Promise<string>;
+	validate(address: string): Promise<boolean>;
 }
 
 export interface PublicKey {

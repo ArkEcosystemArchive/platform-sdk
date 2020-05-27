@@ -1,4 +1,4 @@
-import { BIP44 } from "@arkecosystem/platform-sdk-support";
+import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { wallet } from "@cityofzion/neon-js";
 
 export const createWallet = (input: string) => new wallet.Account(input);
