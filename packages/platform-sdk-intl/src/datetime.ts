@@ -37,9 +37,13 @@ export class DateTime {
 			locale = "en";
 		}
 
-		require(`dayjs/locale/${locale}`);
+		try {
+			require(`dayjs/locale/${locale}`);
 
-		this.#instance.locale(locale);
+			this.#instance.locale(locale);
+		} catch {
+			console.debug(`Failed to load data for the [${locale}] locale.`);
+		}
 	}
 
 	public static make(value?: DateTimeLike, locale?: string): DateTime {
