@@ -1,8 +1,31 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Api, JsonRpc } from "eosjs";
+import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
+import fetch from "node-fetch";
+import { TextDecoder, TextEncoder } from "util";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #networkId: string;
+	readonly #peer: string;
+
+	private constructor({ networkId, peer }) {
+		this.#networkId = networkId;
+		this.#peer = peer;
+	}
+
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService();
+		try {
+			return new TransactionService({
+				networkId: config.get<string>("network.crypto.networkId"),
+				peer: config.get<string>("peer"),
+			});
+		} catch {
+			return new TransactionService({
+				networkId: config.get<string>("network.crypto.networkId"),
+				peer: Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts),
+			});
+		}
 	}
 
 	public async destruct(): Promise<void> {
@@ -13,7 +36,49 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transfer");
+		const { client, signatureProvider } = this.getClient(input.sign.passphrase);
+
+		const transfer = await client.transact(
+			{
+				actions: [
+					{
+						account: "eosio.token",
+						name: "transfer",
+						authorization: [
+							{
+								actor: input.data.from,
+								permission: "active",
+							},
+						],
+						data: {
+							from: input.data.from,
+							to: input.data.to,
+							quantity: "0.0001 TNT", // todo: use network specific token
+							memo: input.data.memo,
+						},
+					},
+				],
+			},
+			{
+				blocksBehind: 3,
+				expireSeconds: 30,
+				broadcast: false,
+				sign: false,
+			},
+		);
+
+		const keys: string[] = await signatureProvider.getAvailableKeys();
+		transfer.requiredKeys = keys;
+		transfer.chainId = this.#networkId;
+
+		const signatures = transfer.signatures || null;
+		const transaction = await signatureProvider.sign(transfer);
+
+		if (signatures) {
+			transaction.signatures = transaction.signatures.concat(signatures);
+		}
+
+		return transaction;
 	}
 
 	public async secondSignature(
@@ -126,5 +191,19 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainUpdate");
+	}
+
+	private getClient(privateKey: string) {
+		const signatureProvider: JsSignatureProvider = new JsSignatureProvider([privateKey]);
+
+		return {
+			client: new Api({
+				rpc: new JsonRpc(this.#peer, { fetch }),
+				signatureProvider,
+				textDecoder: new TextDecoder(),
+				textEncoder: new TextEncoder(),
+			}),
+			signatureProvider,
+		};
 	}
 }
