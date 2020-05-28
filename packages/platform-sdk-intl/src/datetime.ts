@@ -38,7 +38,7 @@ export class DateTime {
 		}
 
 		try {
-			require(`dayjs/locale/${locale}`);
+			require(`dayjs/locale/${locale}.js`);
 
 			this.#instance.locale(locale);
 		} catch {
