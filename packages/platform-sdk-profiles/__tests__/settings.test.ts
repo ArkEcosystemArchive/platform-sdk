@@ -1,21 +1,20 @@
 import "jest-extended";
-import { v4 as uuidv4 } from "uuid";
 
-import { Settings } from "../src/settings";
+import { Settings, WalletSetting, ProfileSetting } from "../src/settings";
 import { LocalStorage } from "../src/storage/local";
 
-describe.each([["app", "profile.123"]])("Settings(%s)", (namespace) => {
+describe.each([["profile", "wallet"]])("Settings(%s)", (type) => {
 	let subject: Settings;
 	let key: string;
 
 	beforeEach(() => {
-		subject = new Settings(new LocalStorage("localstorage"), namespace);
+		subject = new Settings({ namespace: `${type}s.123`, storage: new LocalStorage("localstorage"), type });
 		subject.flush();
 
-		key = uuidv4();
+		key = type === "profile" ? ProfileSetting.Locale : WalletSetting.Peer;
 	});
 
-	test("Settings#all", async () => {
+	test("#all", async () => {
 		await expect(subject.all()).resolves.toEqual({});
 
 		await subject.set(key, "value");
@@ -27,17 +26,17 @@ describe.each([["app", "profile.123"]])("Settings(%s)", (namespace) => {
 		await expect(subject.all()).resolves.toEqual({});
 	});
 
-	test("Settings#get", async () => {
+	test("#get", async () => {
 		await subject.set(key, "value");
 
 		await expect(subject.get(key)).resolves.toBe("value");
 	});
 
-	test("Settings#set", async () => {
+	test("#set", async () => {
 		await expect(subject.set(key, "value")).resolves.toBeUndefined();
 	});
 
-	test("Settings#has", async () => {
+	test("#has", async () => {
 		await expect(subject.has(key)).resolves.toBeFalse();
 
 		await subject.set(key, "value");
@@ -45,7 +44,7 @@ describe.each([["app", "profile.123"]])("Settings(%s)", (namespace) => {
 		await expect(subject.has(key)).resolves.toBeTrue();
 	});
 
-	test("Settings#forget", async () => {
+	test("#forget", async () => {
 		await expect(subject.has(key)).resolves.toBeFalse();
 
 		await subject.set(key, "value");
@@ -57,7 +56,7 @@ describe.each([["app", "profile.123"]])("Settings(%s)", (namespace) => {
 		await expect(subject.has(key)).resolves.toBeFalse();
 	});
 
-	test("Settings#flush", async () => {
+	test("#flush", async () => {
 		await expect(subject.has(key)).resolves.toBeFalse();
 
 		await subject.set(key, "value");
@@ -67,5 +66,12 @@ describe.each([["app", "profile.123"]])("Settings(%s)", (namespace) => {
 		await subject.flush();
 
 		await expect(subject.has(key)).resolves.toBeFalse();
+	});
+
+	it("should throw if an invalid key is used", async () => {
+		await expect(subject.get("invalid")).rejects.toThrowError("is not a valid setting");
+		await expect(subject.set("invalid", "value")).rejects.toThrowError("is not a valid setting");
+		await expect(subject.has("invalid")).rejects.toThrowError("is not a valid setting");
+		await expect(subject.forget("invalid")).rejects.toThrowError("is not a valid setting");
 	});
 });
