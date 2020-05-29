@@ -4,7 +4,6 @@ import { EnvironmentOptions, Storage } from "./contracts";
 import { Data } from "./data";
 import { Migrator } from "./migrator";
 import { Profiles } from "./profiles";
-import { Settings } from "./settings";
 import { StorageFactory } from "./storage/factory";
 
 export class Environment {
@@ -12,7 +11,6 @@ export class Environment {
 	readonly #storage: Storage;
 	readonly #profiles: Profiles;
 	readonly #data: Data;
-	readonly #settings: Settings;
 	readonly #migrator: Migrator;
 
 	public constructor(options: EnvironmentOptions) {
@@ -26,7 +24,6 @@ export class Environment {
 
 		this.#profiles = new Profiles({ httpClient: this.#httpClient, storage: this.#storage });
 		this.#data = new Data(this.#storage, "app");
-		this.#settings = new Settings(this.#storage, "app");
 
 		this.#migrator = new Migrator({
 			profiles: this.#profiles,
@@ -41,10 +38,6 @@ export class Environment {
 
 	public data(): Data {
 		return this.#data;
-	}
-
-	public settings(): Settings {
-		return this.#settings;
 	}
 
 	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {

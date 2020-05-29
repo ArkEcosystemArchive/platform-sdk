@@ -103,7 +103,7 @@ export class ClientService implements Contracts.ClientService {
 			},
 			{
 				blocksBehind: 3,
-				expireSeconds: 30
+				expireSeconds: 30,
 			},
 		);
 		console.dir(result);
