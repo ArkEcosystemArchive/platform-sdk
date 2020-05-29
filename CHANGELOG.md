@@ -7,7 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## 0.9.54 - 2020-05-2
+## 0.9.59 - 2020-05-29
+
+### Added
+
+-   Implement `TransactionService#transfer` (#228) (fb39d338, @faustbrian)
+-   Implement `LedgerService` (#363) (3f6cf1c0, @sleepdefic1t)
+
+### Changed
+
+-   Fix type inclusion errors (#367) (26255039, @goga-m)
+
+### Fixed
+
+-   Prevent locale change for `DateTime` if it is invalid (#362) (e5253074, @faustbrian)
+-   Prevent invalid settings from being stored (#366) (b9c5dac2, @faustbrian)
+
+## 0.9.54 - 2020-05-27
 
 ### Changed
 
