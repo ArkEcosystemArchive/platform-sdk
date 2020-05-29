@@ -1,11 +1,3 @@
-import "dayjs/plugin/advancedFormat";
-import "dayjs/plugin/dayOfYear";
-import "dayjs/plugin/localizedFormat";
-import "dayjs/plugin/quarterOfYear";
-import "dayjs/plugin/toObject";
-import "dayjs/plugin/utc";
-import "dayjs/plugin/weekOfYear";
-
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import dayOfYear from "dayjs/plugin/dayOfYear";
@@ -38,7 +30,7 @@ export class DateTime {
 		}
 
 		try {
-			require(`dayjs/locale/${locale}`);
+			require(`dayjs/locale/${locale}.js`);
 
 			this.#instance.locale(locale);
 		} catch {
