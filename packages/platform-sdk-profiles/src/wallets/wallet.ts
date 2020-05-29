@@ -15,7 +15,11 @@ export class Wallet {
 		this.#coin = input.coin;
 		this.#wallet = input.wallet;
 		this.#data = new Data(input.storage, `wallets.${this.address()}`);
-		this.#settings = new Settings(input.storage, `wallets.${this.address()}`);
+		this.#settings = new Settings({
+			namespace: `wallets.${this.address()}`,
+			storage: input.storage,
+			type: "wallet",
+		});
 	}
 
 	public static async fromPassphrase(input: {

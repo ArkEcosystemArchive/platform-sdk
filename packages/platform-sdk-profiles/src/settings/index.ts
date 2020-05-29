@@ -1,14 +1,17 @@
 import { delete as forget, get, has, set } from "dot-prop";
 
-import { Storage } from "./contracts";
+import { Storage } from "../contracts";
+import { ProfileSetting, WalletSetting } from "./enums";
 
 export class Settings {
-	readonly #storage: Storage;
 	readonly #namespace: string;
+	readonly #storage: Storage;
+	readonly #type: string;
 
-	public constructor(storage: Storage, namespace: string) {
-		this.#storage = storage;
+	public constructor({ namespace, storage, type }) {
 		this.#namespace = `settings.${namespace}`;
+		this.#storage = storage;
+		this.#type = type;
 	}
 
 	public async all(): Promise<object | undefined> {
@@ -16,10 +19,14 @@ export class Settings {
 	}
 
 	public async get<T>(key: string, defaultValue?: T): Promise<T | undefined> {
+		this.assertValidKey(key);
+
 		return get(await this.all(), key, defaultValue);
 	}
 
 	public async set(key: string, value: string | object): Promise<void> {
+		this.assertValidKey(key);
+
 		const result: object = (await this.all()) || {};
 
 		set(result, key, value);
@@ -28,10 +35,14 @@ export class Settings {
 	}
 
 	public async has(key: string): Promise<boolean> {
+		this.assertValidKey(key);
+
 		return has(await this.all(), key);
 	}
 
 	public async forget(key: string): Promise<void> {
+		this.assertValidKey(key);
+
 		let result: object | undefined = await this.#storage.get(this.#namespace);
 
 		if (!result) {
@@ -45,5 +56,21 @@ export class Settings {
 
 	public async flush(): Promise<void> {
 		await this.#storage.set(this.#namespace, {});
+	}
+
+	private assertValidKey(key: string): void {
+		const throwInvalidKey = (key: string, type: string) => {
+			throw new Error(`The [${key}] is not a valid setting for the [${type}] type.`);
+		};
+
+		if (this.#type === "profile" && !(key in ProfileSetting)) {
+			throwInvalidKey(key, this.#type);
+		}
+
+		if (this.#type === "wallet" && !(key in WalletSetting)) {
+			throwInvalidKey(key, this.#type);
+		}
+
+		throw new Error(`Failed to find any valid settings for the [${this.#type}] type.`);
 	}
 }

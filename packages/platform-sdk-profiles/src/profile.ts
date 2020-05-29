@@ -28,7 +28,7 @@ export class Profile {
 			wallets: input.wallets,
 		});
 		this.#data = new Data(input.storage, `profiles.${this.#id}`);
-		this.#settings = new Settings(input.storage, `profiles.${this.#id}`);
+		this.#settings = new Settings({ namespace: `profiles.${this.#id}`, storage: input.storage, type: "profile" });
 	}
 
 	public id(): string {
