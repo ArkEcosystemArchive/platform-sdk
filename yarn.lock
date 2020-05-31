@@ -320,18 +320,22 @@ __metadata:
   dependencies:
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/bent": 7.0.2
+    "@types/bip38": 2.0.1
     "@types/dot-prop": 5.0.1
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/hapi__joi": 17.1.0
     "@types/jest": ^25.2.3
     "@types/node": ^14.0.5
+    "@types/node-forge": 0.9.3
     "@types/prettier": ^2.0.1
     "@types/rimraf": ^3.0.0
+    "@types/wif": 2.0.1
     "@typescript-eslint/eslint-plugin": ^3.0.1
     "@typescript-eslint/parser": ^3.0.1
     bcrypto: ^5.1.0
     bip32: ^2.0.5
+    bip38: ^3.1.1
     bip39: ^3.0.2
     codecov: ^3.7.0
     cross-env: ^7.0.2
@@ -345,12 +349,15 @@ __metadata:
     jest-localstorage-mock: ^2.4.2
     keytar: ^6.0.1
     nock: ^12.0.3
+    node-forge: ^0.9.1
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
     rimraf: ^3.0.2
+    safe-buffer: ^5.2.1
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    wif: ^2.0.6
   languageName: unknown
   linkType: soft
 
@@ -2404,6 +2411,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/bip38@npm:2.0.1":
+  version: 2.0.1
+  resolution: "@types/bip38@npm:2.0.1"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2/95b626137317618d6546a9db96b8982ae158d001b7f208d3d84c3323170e5f990e4a28e5f02743d077047d4a152e003dde3bcf682b30a1f3d02136a8dea0fe30
+  languageName: node
+  linkType: hard
+
 "@types/bip39@npm:2.4.1":
   version: 2.4.1
   resolution: "@types/bip39@npm:2.4.1"
@@ -2704,6 +2720,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node-forge@npm:0.9.3":
+  version: 0.9.3
+  resolution: "@types/node-forge@npm:0.9.3"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2/e3d3433e5faf7e3c969764f86d9213739d0a953213c876f340b4549bafc4cce76cad9add351391346e4f19b4d4f0dfb914dfc7356953f4d6a09666d84b822d3c
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*, @types/node@npm:>= 8, @types/node@npm:^13.7.0":
   version: 13.13.4
   resolution: "@types/node@npm:13.13.4"
@@ -2850,6 +2875,15 @@ __metadata:
   version: 10.9.0
   resolution: "@types/validator@npm:10.9.0"
   checksum: 2/d2f176fdac47a22f13ed68194900f9b600b69bab73251d7db495c0f0423236e4d20c6067f7befb891ea7bc05f3ce4f871a90cdaa2d30d04fa0c36fe26b2c3e50
+  languageName: node
+  linkType: hard
+
+"@types/wif@npm:2.0.1":
+  version: 2.0.1
+  resolution: "@types/wif@npm:2.0.1"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2/a0c0edbee5dc7d421436c82742c8414da56805156590d52b7ab644b7b9f154b540d081b008a3d6caeac40b1a58c65ac4c4b485137ae191ce118f4f95f3f35a08
   languageName: node
   linkType: hard
 
@@ -3816,7 +3850,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bigi@npm:1.4.2, bigi@npm:^1.1.0":
+"bigi@npm:1.4.2, bigi@npm:^1.1.0, bigi@npm:^1.2.0":
   version: 1.4.2
   resolution: "bigi@npm:1.4.2"
   checksum: 2/1cf78da7b300a018da23f47e4c93aa105ef57f9f07499f91d2ed2285a36d9ac67bb4be57a0e08df5760d4cef4caaa2a1ef6c9651b4a40247c8f02b080214400f
@@ -3879,6 +3913,22 @@ __metadata:
     typeforce: ^1.11.5
     wif: ^2.0.6
   checksum: 2/c00e0deaae659bd897c9208dafc82bd2a3db572d73b32985e6fbec943646fe80ceafb5010c0b7299dd0fd1e53c5ec73a1131970c966aeb644fee598e3d96febb
+  languageName: node
+  linkType: hard
+
+"bip38@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "bip38@npm:3.1.1"
+  dependencies:
+    bigi: ^1.2.0
+    browserify-aes: ^1.0.1
+    bs58check: <3.0.0
+    buffer-xor: ^1.0.2
+    create-hash: ^1.1.1
+    ecurve: ^1.0.0
+    safe-buffer: ~5.1.1
+    scryptsy: ^2.1.0
+  checksum: 2/e593140aad2138119d102165d29da237858fd19fab8a47c42de8bc3065994064253bc3749f1fc50ed893a507b0226a54857b5191c8db02aff81008b18ab1a9c0
   languageName: node
   linkType: hard
 
@@ -4118,7 +4168,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserify-aes@npm:^1.0.0, browserify-aes@npm:^1.0.4, browserify-aes@npm:^1.0.6, browserify-aes@npm:^1.2.0":
+"browserify-aes@npm:^1.0.0, browserify-aes@npm:^1.0.1, browserify-aes@npm:^1.0.4, browserify-aes@npm:^1.0.6, browserify-aes@npm:^1.2.0":
   version: 1.2.0
   resolution: "browserify-aes@npm:1.2.0"
   dependencies:
@@ -4944,7 +4994,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-hash@npm:^1.1.0, create-hash@npm:^1.1.2, create-hash@npm:^1.2.0":
+"create-hash@npm:^1.1.0, create-hash@npm:^1.1.1, create-hash@npm:^1.1.2, create-hash@npm:^1.2.0":
   version: 1.2.0
   resolution: "create-hash@npm:1.2.0"
   dependencies:
@@ -5539,6 +5589,16 @@ __metadata:
   dependencies:
     bigi: ^1.1.0
   checksum: 2/c1146753cd1d85e09f476af8bf9a54de1ff5f4a61c53fe81cfd6499c2f038545681bd7d00c1c4a67c5912946b8c69a5dd057ec41dba19d77141d16d2bdce031c
+  languageName: node
+  linkType: hard
+
+"ecurve@npm:^1.0.0":
+  version: 1.0.6
+  resolution: "ecurve@npm:1.0.6"
+  dependencies:
+    bigi: ^1.1.0
+    safe-buffer: ^5.0.1
+  checksum: 2/aafaf69d1220f8351dd827a7c0d87981bf799b5e122839e46db86efee01025c2eba299c5b41fe1683f83237da2a9a9d252f236364d9d223e5b07da494dc5ae24
   languageName: node
   linkType: hard
 
@@ -9981,6 +10041,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"node-forge@npm:^0.9.1":
+  version: 0.9.1
+  resolution: "node-forge@npm:0.9.1"
+  checksum: 2/ea02560ccd0ab7301b8310a7698912a8dafb3a1c1f0ff89dd82e4f0369dc1dab63cc011c123f809a27409c59a02f43b5f663582720be458fd82c65d81ad7bc66
+  languageName: node
+  linkType: hard
+
 "node-gyp-build@npm:^4.1.0":
   version: 4.2.2
   resolution: "node-gyp-build@npm:4.2.2"
@@ -11841,6 +11908,13 @@ resolve@~1.7.1:
   version: 5.2.0
   resolution: "safe-buffer@npm:5.2.0"
   checksum: 2/e513079353a235749e64dc3b1ade741caf651c09d1291ee826e68d42c08913dcd2c76b291dd23979b0fd0bd551d99f4a3d8cc05aef4e9c75bebf6cbbd310b129
+  languageName: node
+  linkType: hard
+
+"safe-buffer@npm:^5.2.1":
+  version: 5.2.1
+  resolution: "safe-buffer@npm:5.2.1"
+  checksum: 2/0bb57f0d8f9d1fa4fe35ad8a2db1f83a027d48f2822d59ede88fd5cd4ddad83c0b497213feb7a70fbf90597a70c5217f735b0eb1850df40ce9b4ae81dd22b3f9
   languageName: node
   linkType: hard
 

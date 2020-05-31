@@ -660,18 +660,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/bent", "npm:7.0.2"],
+            ["@types/bip38", "npm:2.0.1"],
             ["@types/dot-prop", "npm:5.0.1"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/hapi__joi", "npm:17.1.0"],
             ["@types/jest", "npm:25.2.3"],
             ["@types/node", "npm:14.0.5"],
+            ["@types/node-forge", "npm:0.9.3"],
             ["@types/prettier", "npm:2.0.1"],
             ["@types/rimraf", "npm:3.0.0"],
+            ["@types/wif", "npm:2.0.1"],
             ["@typescript-eslint/eslint-plugin", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:3.0.1"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.0.1"],
             ["bcrypto", "npm:5.1.0"],
             ["bip32", "npm:2.0.5"],
+            ["bip38", "npm:3.1.1"],
             ["bip39", "npm:3.0.2"],
             ["codecov", "npm:3.7.0"],
             ["cross-env", "npm:7.0.2"],
@@ -685,12 +689,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["keytar", "npm:6.0.1"],
             ["nock", "npm:12.0.3"],
+            ["node-forge", "npm:0.9.1"],
             ["npm-check-updates", "npm:6.0.1"],
             ["prettier", "npm:2.0.5"],
             ["rimraf", "npm:3.0.2"],
+            ["safe-buffer", "npm:5.2.1"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.0.0"],
             ["typedoc", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:0.17.7"],
-            ["typescript", "patch:typescript@npm%3A3.9.3#builtin<compat/typescript>::version=3.9.3&hash=c79188"]
+            ["typescript", "patch:typescript@npm%3A3.9.3#builtin<compat/typescript>::version=3.9.3&hash=c79188"],
+            ["wif", "npm:2.0.6"]
           ],
           "linkType": "SOFT",
         }]
@@ -2841,6 +2848,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/bip38", [
+        ["npm:2.0.1", {
+          "packageLocation": "./.yarn/cache/@types-bip38-npm-2.0.1-629ead85d2-2.zip/node_modules/@types/bip38/",
+          "packageDependencies": [
+            ["@types/bip38", "npm:2.0.1"],
+            ["@types/node", "npm:13.13.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/bip39", [
         ["npm:2.4.1", {
           "packageLocation": "./.yarn/cache/@types-bip39-npm-2.4.1-2eefadffcc-2.zip/node_modules/@types/bip39/",
@@ -3248,6 +3265,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/node-forge", [
+        ["npm:0.9.3", {
+          "packageLocation": "./.yarn/cache/@types-node-forge-npm-0.9.3-94ad9b86f1-2.zip/node_modules/@types/node-forge/",
+          "packageDependencies": [
+            ["@types/node-forge", "npm:0.9.3"],
+            ["@types/node", "npm:13.13.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/normalize-package-data", [
         ["npm:2.4.0", {
           "packageLocation": "./.yarn/cache/@types-normalize-package-data-npm-2.4.0-ed928aaaa8-2.zip/node_modules/@types/normalize-package-data/",
@@ -3353,6 +3380,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-validator-npm-10.9.0-dce6187fac-2.zip/node_modules/@types/validator/",
           "packageDependencies": [
             ["@types/validator", "npm:10.9.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/wif", [
+        ["npm:2.0.1", {
+          "packageLocation": "./.yarn/cache/@types-wif-npm-2.0.1-7f0bb11cda-2.zip/node_modules/@types/wif/",
+          "packageDependencies": [
+            ["@types/wif", "npm:2.0.1"],
+            ["@types/node", "npm:13.13.4"]
           ],
           "linkType": "HARD",
         }]
@@ -4936,6 +4973,23 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/bip32-path-npm-0.4.2-e8ff6dbc0a-2.zip/node_modules/bip32-path/",
           "packageDependencies": [
             ["bip32-path", "npm:0.4.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["bip38", [
+        ["npm:3.1.1", {
+          "packageLocation": "./.yarn/cache/bip38-npm-3.1.1-7e9e6c8c9b-2.zip/node_modules/bip38/",
+          "packageDependencies": [
+            ["bip38", "npm:3.1.1"],
+            ["bigi", "npm:1.4.2"],
+            ["browserify-aes", "npm:1.2.0"],
+            ["bs58check", "npm:2.1.2"],
+            ["buffer-xor", "npm:1.0.3"],
+            ["create-hash", "npm:1.2.0"],
+            ["ecurve", "npm:1.0.6"],
+            ["safe-buffer", "npm:5.1.2"],
+            ["scryptsy", "npm:2.1.0"]
           ],
           "linkType": "HARD",
         }]
@@ -6810,6 +6864,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["ecurve", "npm:1.0.5"],
             ["bigi", "npm:1.4.2"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:1.0.6", {
+          "packageLocation": "./.yarn/cache/ecurve-npm-1.0.6-002f57f49a-2.zip/node_modules/ecurve/",
+          "packageDependencies": [
+            ["ecurve", "npm:1.0.6"],
+            ["bigi", "npm:1.4.2"],
+            ["safe-buffer", "npm:5.2.0"]
           ],
           "linkType": "HARD",
         }]
@@ -11707,6 +11770,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["node-forge", [
+        ["npm:0.9.1", {
+          "packageLocation": "./.yarn/cache/node-forge-npm-0.9.1-eb93645c5c-2.zip/node_modules/node-forge/",
+          "packageDependencies": [
+            ["node-forge", "npm:0.9.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["node-gyp", [
         ["npm:6.1.0", {
           "packageLocation": "./.yarn/unplugged/node-gyp-npm-6.1.0-6c401fe21b/node_modules/node-gyp/",
@@ -13745,6 +13817,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/safe-buffer-npm-5.2.0-ceb420bcee-2.zip/node_modules/safe-buffer/",
           "packageDependencies": [
             ["safe-buffer", "npm:5.2.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.2.1", {
+          "packageLocation": "./.yarn/cache/safe-buffer-npm-5.2.1-3481c8aa9b-2.zip/node_modules/safe-buffer/",
+          "packageDependencies": [
+            ["safe-buffer", "npm:5.2.1"]
           ],
           "linkType": "HARD",
         }]
