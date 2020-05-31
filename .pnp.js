@@ -675,7 +675,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.0.1"],
             ["bcrypto", "npm:5.1.0"],
             ["bip32", "npm:2.0.5"],
-            ["bip38", "npm:3.1.0"],
+            ["bip38", "npm:3.1.1"],
             ["bip39", "npm:3.0.2"],
             ["codecov", "npm:3.7.0"],
             ["cross-env", "npm:7.0.2"],
@@ -4978,16 +4978,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["bip38", [
-        ["npm:3.1.0", {
-          "packageLocation": "./.yarn/cache/bip38-npm-3.1.0-f2bcae6b96-2.zip/node_modules/bip38/",
+        ["npm:3.1.1", {
+          "packageLocation": "./.yarn/cache/bip38-npm-3.1.1-7e9e6c8c9b-2.zip/node_modules/bip38/",
           "packageDependencies": [
-            ["bip38", "npm:3.1.0"],
+            ["bip38", "npm:3.1.1"],
             ["bigi", "npm:1.4.2"],
             ["browserify-aes", "npm:1.2.0"],
             ["bs58check", "npm:2.1.2"],
             ["buffer-xor", "npm:1.0.3"],
             ["create-hash", "npm:1.2.0"],
             ["ecurve", "npm:1.0.6"],
+            ["safe-buffer", "npm:5.1.2"],
             ["scryptsy", "npm:2.1.0"]
           ],
           "linkType": "HARD",

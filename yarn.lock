@@ -335,7 +335,7 @@ __metadata:
     "@typescript-eslint/parser": ^3.0.1
     bcrypto: ^5.1.0
     bip32: ^2.0.5
-    bip38: ^3.1.0
+    bip38: ^3.1.1
     bip39: ^3.0.2
     codecov: ^3.7.0
     cross-env: ^7.0.2
@@ -3916,9 +3916,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bip38@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "bip38@npm:3.1.0"
+"bip38@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "bip38@npm:3.1.1"
   dependencies:
     bigi: ^1.2.0
     browserify-aes: ^1.0.1
@@ -3926,8 +3926,9 @@ __metadata:
     buffer-xor: ^1.0.2
     create-hash: ^1.1.1
     ecurve: ^1.0.0
+    safe-buffer: ~5.1.1
     scryptsy: ^2.1.0
-  checksum: 2/b4b927a80336deb8f0a5e75d5d427de33f994bacd18314a8c1e42bb4b4919de570508fbe00a5b44ab3b0057e6c0dde36e8a239d4cfc91b66d7574f0d367d340f
+  checksum: 2/e593140aad2138119d102165d29da237858fd19fab8a47c42de8bc3065994064253bc3749f1fc50ed893a507b0226a54857b5191c8db02aff81008b18ab1a9c0
   languageName: node
   linkType: hard
 
