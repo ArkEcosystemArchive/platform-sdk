@@ -5,8 +5,10 @@ export class BIP38 {
 		return bip38.encrypt(buffer, compressed, passphrase);
 	}
 
-	public static decrypt(string: string, passphrase: string) {
-		return bip38.decrypt(string, passphrase);
+	public static decrypt(string: string, passphrase: string): { compressed: boolean; privateKey: string } {
+		const { compressed, privateKey } = bip38.decrypt(string, passphrase);
+
+		return { compressed, privateKey: privateKey.toString("hex") };
 	}
 
 	public static verify(string: string): boolean {

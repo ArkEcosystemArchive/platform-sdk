@@ -13,3 +13,14 @@ test("#encrypt", async () => {
 		"6PRVWUbkzzsbcVac2qwfssoUJAN1Xhrg6bNk8J7Nzm5H7kxEbn2Nh2ZoGg",
 	);
 });
+
+test("#decrypt", async () => {
+	expect(BIP38.decrypt("6PRVWUbkzzsbcVac2qwfssoUJAN1Xhrg6bNk8J7Nzm5H7kxEbn2Nh2ZoGg", passphrase)).toEqual({
+		compressed: false,
+		privateKey: "cbf4b9f70470856bb4f40f80b87edb90865997ffee6df315ab166d713af433a5",
+	});
+});
+
+test("#verify", async () => {
+	expect(BIP38.verify("6PRVWUbkzzsbcVac2qwfssoUJAN1Xhrg6bNk8J7Nzm5H7kxEbn2Nh2ZoGg")).toBeTrue();
+});
