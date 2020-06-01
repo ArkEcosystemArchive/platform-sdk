@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.62 - 2020-06-01
+
+### Added
+
+-   Generate avatar for profiles and wallets (741eb37f, @faustbrian)
+
 ## 0.9.61 - 2020-06-01
 
 ### Added
