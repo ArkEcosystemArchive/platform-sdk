@@ -5,6 +5,8 @@ import { Data } from "./data";
 import { Settings } from "./settings";
 import { Wallet } from "./wallet";
 import { WalletRepository } from "./wallet-repository";
+import { Avatar } from "./avatar";
+import { ProfileSetting } from "./enums";
 
 export class Profile {
 	readonly #id: string;
@@ -12,6 +14,7 @@ export class Profile {
 	readonly #wallets: WalletRepository;
 	readonly #data: Data;
 	readonly #settings: Settings;
+	readonly #avatar: string;
 
 	public constructor(input: {
 		id: string;
@@ -29,6 +32,7 @@ export class Profile {
 		});
 		this.#data = new Data(input.storage, `profiles.${this.#id}`);
 		this.#settings = new Settings({ namespace: `profiles.${this.#id}`, storage: input.storage, type: "profile" });
+		this.#avatar = Avatar.make(this.id());
 	}
 
 	public id(): string {
@@ -37,6 +41,10 @@ export class Profile {
 
 	public name(): string {
 		return this.#name;
+	}
+
+	public avatar(): string {
+		return this.#avatar;
 	}
 
 	public wallets(): WalletRepository {
@@ -56,6 +64,7 @@ export class Profile {
 			id: this.#id,
 			name: this.#name,
 			wallets: this.#wallets.all(),
+			settings: this.#settings.all(),
 		};
 	}
 }
