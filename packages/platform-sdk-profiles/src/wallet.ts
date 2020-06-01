@@ -4,6 +4,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { Storage } from "./contracts";
 import { Data } from "./data";
 import { Settings } from "./settings";
+import { Avatar } from "./avatar";
 
 export class Wallet {
 	readonly #coin: Coins.Coin;
@@ -21,7 +22,7 @@ export class Wallet {
 			storage: input.storage,
 			type: "wallet",
 		});
-		this.#avatar = Avatar.make(this.id());
+		this.#avatar = Avatar.make(this.address());
 	}
 
 	public static async fromPassphrase(input: {
