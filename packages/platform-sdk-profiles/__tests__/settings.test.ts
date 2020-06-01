@@ -1,6 +1,7 @@
 import "jest-extended";
 
-import { Settings, WalletSetting, ProfileSetting } from "../src/settings";
+import { Settings } from "../src/settings";
+import { WalletSetting, ProfileSetting } from "../src/enums";
 import { LocalStorage } from "../src/storage/local";
 
 describe.each([["profile", "wallet"]])("Settings(%s)", (type) => {

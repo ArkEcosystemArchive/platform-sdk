@@ -3,11 +3,11 @@ import nock from "nock";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 
-import { Wallet } from "../../src/wallets/wallet";
-import { WalletRepository } from "../../src/wallets/wallet-repository";
-import { identity } from "../__fixtures__/identity";
-import { LocalStorage } from "../../src/storage/local";
-import { HttpClient } from "../stubs/client";
+import { Wallet } from "../src/wallet";
+import { WalletRepository } from "../src/wallet-repository";
+import { identity } from "./__fixtures__/identity";
+import { LocalStorage } from "../src/storage/local";
+import { HttpClient } from "./stubs/client";
 
 let subject: WalletRepository;
 let wallet: Wallet;
@@ -15,11 +15,11 @@ let wallet: Wallet;
 beforeEach(async () => {
 	nock(/.+/)
 		.get("/api/node/configuration/crypto")
-		.reply(200, require(`${__dirname}/../__fixtures__/client/cryptoConfiguration.json`))
+		.reply(200, require("./__fixtures__/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
-		.reply(200, require(`${__dirname}/../__fixtures__/client/syncing.json`))
+		.reply(200, require("./__fixtures__/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`))
+		.reply(200, require("./__fixtures__/client/wallet.json"))
 		.persist();
 
 	const storage = new LocalStorage("localstorage");

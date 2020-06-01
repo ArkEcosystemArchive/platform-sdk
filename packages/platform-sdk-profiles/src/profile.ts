@@ -3,8 +3,8 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 import { Storage } from "./contracts";
 import { Data } from "./data";
 import { Settings } from "./settings";
-import { Wallet } from "./wallets/wallet";
-import { WalletRepository } from "./wallets/wallet-repository";
+import { Wallet } from "./wallet";
+import { WalletRepository } from "./wallet-repository";
 
 export class Profile {
 	readonly #id: string;
