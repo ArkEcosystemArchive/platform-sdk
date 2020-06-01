@@ -85,8 +85,8 @@ export class BigNumber {
 		return BigNumber.make(this.#value.multipliedBy(1e8));
 	}
 
-	public toFixed(): string {
-		return this.#value.toFixed();
+	public toFixed(decimals?: number): string {
+		return !!decimals ? this.#value.toFixed(decimals) : this.#value.toFixed();
 	}
 
 	public toNumber(): number {

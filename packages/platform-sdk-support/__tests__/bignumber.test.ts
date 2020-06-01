@@ -85,6 +85,7 @@ test("#toSatoshi", () => {
 
 test("#toFixed", () => {
 	expect(subject.toFixed()).toEqual("1");
+	expect(subject.toFixed(2)).toEqual("1.00");
 });
 
 test("#toNumber", () => {
