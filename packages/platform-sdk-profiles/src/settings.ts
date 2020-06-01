@@ -1,6 +1,6 @@
 import { delete as forget, get, has, set } from "dot-prop";
 
-import { Storage } from "../contracts";
+import { Storage } from "./contracts";
 import { ProfileSetting, WalletSetting } from "./enums";
 
 export class Settings {

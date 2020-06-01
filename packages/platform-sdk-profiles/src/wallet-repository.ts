@@ -1,6 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
-import { Storage } from "../contracts";
+import { Storage } from "./contracts";
 import { Wallet } from "./wallet";
 
 export class WalletRepository {
