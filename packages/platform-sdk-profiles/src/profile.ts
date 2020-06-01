@@ -1,12 +1,12 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
+import { Avatar } from "./avatar";
 import { Storage } from "./contracts";
 import { Data } from "./data";
+import { ProfileSetting } from "./enums";
 import { Settings } from "./settings";
 import { Wallet } from "./wallet";
 import { WalletRepository } from "./wallet-repository";
-import { Avatar } from "./avatar";
-import { ProfileSetting } from "./enums";
 
 export class Profile {
 	readonly #id: string;
@@ -59,12 +59,17 @@ export class Profile {
 		return this.#settings;
 	}
 
-	public toObject(): any {
+	public async toObject(): Promise<{
+		id: string;
+		name: string;
+		wallets: Wallet[];
+		settings: object | undefined;
+	}> {
 		return {
 			id: this.#id,
 			name: this.#name,
 			wallets: this.#wallets.all(),
-			settings: this.#settings.all(),
+			settings: await this.#settings.all(),
 		};
 	}
 }

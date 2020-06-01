@@ -35,5 +35,5 @@ test("Profile#settings", async () => {
 });
 
 test("Profile#toObject", async () => {
-	expect(subject.toObject()).toEqual({ id: "uuid", name: "Primary", wallets: [] });
+	expect(subject.toObject()).resolves.toEqual({ id: "uuid", name: "Primary", wallets: [], settings: {} });
 });

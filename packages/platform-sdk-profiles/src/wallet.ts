@@ -1,10 +1,10 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { Avatar } from "./avatar";
 import { Storage } from "./contracts";
 import { Data } from "./data";
 import { Settings } from "./settings";
-import { Avatar } from "./avatar";
 
 export class Wallet {
 	readonly #coin: Coins.Coin;
