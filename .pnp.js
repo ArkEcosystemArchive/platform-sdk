@@ -1020,6 +1020,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/jest", "npm:25.2.3"],
+            ["@types/mersenne-twister", "npm:1.1.2"],
             ["@types/node", "npm:14.0.5"],
             ["@types/prettier", "npm:2.0.1"],
             ["@types/rimraf", "npm:3.0.0"],
@@ -1040,6 +1041,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["localforage", "npm:1.7.3"],
+            ["mersenne-twister", "npm:1.1.0"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:6.0.1"],
             ["prettier", "npm:2.0.5"],
@@ -3185,6 +3187,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-long-npm-4.0.1-022c8b6e77-2.zip/node_modules/@types/long/",
           "packageDependencies": [
             ["@types/long", "npm:4.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/mersenne-twister", [
+        ["npm:1.1.2", {
+          "packageLocation": "./.yarn/cache/@types-mersenne-twister-npm-1.1.2-812040bef6-2.zip/node_modules/@types/mersenne-twister/",
+          "packageDependencies": [
+            ["@types/mersenne-twister", "npm:1.1.2"]
           ],
           "linkType": "HARD",
         }]
@@ -11108,6 +11119,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/merkle-lib-npm-2.0.10-878da678e5-2.zip/node_modules/merkle-lib/",
           "packageDependencies": [
             ["merkle-lib", "npm:2.0.10"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["mersenne-twister", [
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/mersenne-twister-npm-1.1.0-d969b9d094-2.zip/node_modules/mersenne-twister/",
+          "packageDependencies": [
+            ["mersenne-twister", "npm:1.1.0"]
           ],
           "linkType": "HARD",
         }]

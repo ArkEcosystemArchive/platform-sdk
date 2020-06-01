@@ -1,7 +1,9 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
+import { Avatar } from "./avatar";
 import { Storage } from "./contracts";
 import { Data } from "./data";
+import { ProfileSetting } from "./enums";
 import { Settings } from "./settings";
 import { Wallet } from "./wallet";
 import { WalletRepository } from "./wallet-repository";
@@ -12,6 +14,7 @@ export class Profile {
 	readonly #wallets: WalletRepository;
 	readonly #data: Data;
 	readonly #settings: Settings;
+	readonly #avatar: string;
 
 	public constructor(input: {
 		id: string;
@@ -29,6 +32,7 @@ export class Profile {
 		});
 		this.#data = new Data(input.storage, `profiles.${this.#id}`);
 		this.#settings = new Settings({ namespace: `profiles.${this.#id}`, storage: input.storage, type: "profile" });
+		this.#avatar = Avatar.make(this.id());
 	}
 
 	public id(): string {
@@ -37,6 +41,10 @@ export class Profile {
 
 	public name(): string {
 		return this.#name;
+	}
+
+	public avatar(): string {
+		return this.#avatar;
 	}
 
 	public wallets(): WalletRepository {
@@ -51,11 +59,17 @@ export class Profile {
 		return this.#settings;
 	}
 
-	public toObject(): any {
+	public async toObject(): Promise<{
+		id: string;
+		name: string;
+		wallets: Wallet[];
+		settings: object | undefined;
+	}> {
 		return {
 			id: this.#id,
 			name: this.#name,
 			wallets: this.#wallets.all(),
+			settings: await this.#settings.all(),
 		};
 	}
 }

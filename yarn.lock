@@ -658,6 +658,7 @@ __metadata:
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^25.2.3
+    "@types/mersenne-twister": 1.1.2
     "@types/node": ^14.0.5
     "@types/prettier": ^2.0.1
     "@types/rimraf": ^3.0.0
@@ -678,6 +679,7 @@ __metadata:
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     localforage: ^1.7.3
+    mersenne-twister: ^1.1.0
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
@@ -2703,6 +2705,13 @@ __metadata:
   version: 4.0.1
   resolution: "@types/long@npm:4.0.1"
   checksum: 2/ed2a125330dbf2b425b2e58b1e1151a37106ceeec973f9f191fba0bda83ed00fae6d858254022e8b6e7165fec5f0c3872b7cb5f425c753383fed54699fb63b38
+  languageName: node
+  linkType: hard
+
+"@types/mersenne-twister@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@types/mersenne-twister@npm:1.1.2"
+  checksum: 2/0123b7734040227db0c36655aefe6502a27dadd4b70af5aec9253a262f79d29ac1a739f1b39904c1ea05532bdb5ff7ecf9300b1f473f70eba524c8d4dbd3e290
   languageName: node
   linkType: hard
 
@@ -9429,6 +9438,13 @@ fsevents@^2.1.2:
   version: 2.0.10
   resolution: "merkle-lib@npm:2.0.10"
   checksum: 2/9b142633d687291d7e9dc6afd7c44499dc380725b066ada5320e37d1e6376c2b1e736f3800a76f4aff074a2b66d9aa5de3b5ddc457acf1311a3c0624cd0d1275
+  languageName: node
+  linkType: hard
+
+"mersenne-twister@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "mersenne-twister@npm:1.1.0"
+  checksum: 2/e95c91184cd42cf7e4d86722a4f322fd70e95b9bc164b96409e2280abea38c9f82205611c07b5d964cd8d5220633d8f0266e8f5a52b951eea25f02d75aaaf275
   languageName: node
   linkType: hard
 

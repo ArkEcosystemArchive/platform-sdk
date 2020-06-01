@@ -63,10 +63,7 @@ export class Profiles {
 
 		profiles.push(result);
 
-		await this.#storage.set(
-			this.#key,
-			profiles.map((item: Profile) => item.toObject()),
-		);
+		await this.#storage.set(this.#key, await Promise.all(profiles.map((item: Profile) => item.toObject())));
 
 		return result;
 	}
@@ -80,10 +77,7 @@ export class Profiles {
 			throw new Error(`No profile found for [${id}].`);
 		}
 
-		await this.#storage.set(
-			this.#key,
-			result.map((item: Profile) => item.toObject()),
-		);
+		await this.#storage.set(this.#key, await Promise.all(result.map((item: Profile) => item.toObject())));
 
 		return result;
 	}

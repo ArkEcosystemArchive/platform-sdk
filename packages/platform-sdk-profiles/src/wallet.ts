@@ -1,6 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { Avatar } from "./avatar";
 import { Storage } from "./contracts";
 import { Data } from "./data";
 import { Settings } from "./settings";
@@ -10,6 +11,7 @@ export class Wallet {
 	readonly #wallet: Contracts.WalletData;
 	readonly #data: Data;
 	readonly #settings: Settings;
+	readonly #avatar: string;
 
 	private constructor(input: { coin: Coins.Coin; storage: Storage; wallet: Contracts.WalletData }) {
 		this.#coin = input.coin;
@@ -20,6 +22,7 @@ export class Wallet {
 			storage: input.storage,
 			type: "wallet",
 		});
+		this.#avatar = Avatar.make(this.address());
 	}
 
 	public static async fromPassphrase(input: {
@@ -29,7 +32,10 @@ export class Wallet {
 		httpClient: Contracts.HttpClient;
 		storage: Storage;
 	}): Promise<Wallet> {
-		const coin = await Coins.CoinFactory.make(input.coin, { network: input.network, httpClient: input.httpClient });
+		const coin = await Coins.CoinFactory.make(input.coin, {
+			network: input.network,
+			httpClient: input.httpClient,
+		});
 
 		const address: string = await coin.identity().address().fromPassphrase(input.passphrase);
 
@@ -42,6 +48,10 @@ export class Wallet {
 
 	public network(): string {
 		return this.#coin.network().id;
+	}
+
+	public avatar(): string {
+		return this.#avatar;
 	}
 
 	public address(): string {
