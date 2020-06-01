@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-coingecko",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.62",
+	"version": "0.9.63",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
