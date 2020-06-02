@@ -354,6 +354,10 @@ export class DateTime {
 		return this.#instance.valueOf();
 	}
 
+	public toDate(): Date {
+		return this.#instance.toDate();
+	}
+
 	private toUTC(value?: DateTimeLike): dayjs.Dayjs {
 		if (value instanceof DateTime) {
 			return dayjs.utc(value.valueOf());

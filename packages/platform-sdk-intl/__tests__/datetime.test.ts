@@ -305,3 +305,7 @@ test("#toUNIX", () => {
 test("#valueOf", () => {
 	expect(subject.valueOf()).toBe(1577836800000);
 });
+
+test("#toDate", () => {
+	expect(subject.toDate()).toBeDate();
+});
