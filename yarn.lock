@@ -792,6 +792,7 @@ __metadata:
     "@types/node": ^14.0.5
     "@types/prettier": ^2.0.1
     "@types/rimraf": ^3.0.0
+    "@types/sodium-native": 2.3.5
     "@typescript-eslint/eslint-plugin": ^3.0.1
     "@typescript-eslint/parser": ^3.0.1
     codecov: ^3.7.0
@@ -808,6 +809,7 @@ __metadata:
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
     rimraf: ^3.0.2
+    sodium-native: ^3.1.1
     stellar-hd-wallet: ^0.0.10
     stellar-sdk: ^5.0.3
     ts-jest: ^26.0.0
@@ -2856,6 +2858,15 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 2/f72d56e80bc382e16e20e2370be4dc1d776fb67db91afcb88f7069f57450f8f1b282075d33ccb23d2455881c2e4279f31cd69e3d2f6f5f75d58a0d510e48bb6f
+  languageName: node
+  linkType: hard
+
+"@types/sodium-native@npm:2.3.5":
+  version: 2.3.5
+  resolution: "@types/sodium-native@npm:2.3.5"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2/c56f01069e0097437b5154abd5b9a06f3af6996a8e801af14e6c62d4b2e3dce6355eab2dd4630e364592cd37a987dfc39c6bceb1a8031d39889a8bba7656ca24
   languageName: node
   linkType: hard
 
@@ -10064,7 +10075,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"node-gyp-build@npm:^4.1.0":
+"node-gyp-build@npm:^4.1.0, node-gyp-build@npm:^4.2.0":
   version: 4.2.2
   resolution: "node-gyp-build@npm:4.2.2"
   bin:
@@ -12405,6 +12416,17 @@ resolve@~1.7.1:
     node-gyp: latest
     node-gyp-build: ^4.1.0
   checksum: 2/2976d8a24173083c1947a07c64f1d7dc37b7a891cd66697020f1fd13ab366d5fabb4995d163dfae24f9e373a846a0d30b939ecb2743d0982d2c98afce378bbfa
+  languageName: node
+  linkType: hard
+
+"sodium-native@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "sodium-native@npm:3.1.1"
+  dependencies:
+    ini: ^1.3.5
+    node-gyp: latest
+    node-gyp-build: ^4.2.0
+  checksum: 2/0a6cfbdb87cf11db71a67da7df4f47a5ea421811eb21ed825bd2ce90a1fdcfcf6b2b43f85d39ba6543e2ada776876e08393d6d35df4faf2aeb29fa88421954ae
   languageName: node
   linkType: hard
 
