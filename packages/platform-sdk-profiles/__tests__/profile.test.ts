@@ -8,12 +8,11 @@ import { HttpClient } from "./stubs/client";
 
 let subject: Profile;
 
-beforeEach(() => {
-	subject = new Profile({
+beforeEach(async () => {
+	subject = await Profile.make({
 		id: "uuid",
 		name: "Primary",
 		wallets: [],
-		contacts: [],
 		httpClient: new HttpClient(),
 		storage: new LocalStorage("localstorage"),
 	});
@@ -40,7 +39,6 @@ test("Profile#toObject", async () => {
 		id: "uuid",
 		name: "Primary",
 		wallets: [],
-		contacts: [],
 		settings: {},
 	});
 });

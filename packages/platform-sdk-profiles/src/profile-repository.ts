@@ -1,4 +1,5 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
+import { promises } from "fs";
 import { v4 as uuidv4 } from "uuid";
 
 import { Storage } from "./contracts";
@@ -22,13 +23,14 @@ export class ProfileRepository {
 			return [];
 		}
 
-		return result.map(
-			(profile) =>
-				new Profile({
+		return Promise.all(
+			result.map((profile) =>
+				Profile.make({
 					...profile,
 					httpClient: this.#httpClient,
 					storage: this.#storage,
 				}),
+			),
 		);
 	}
 
@@ -53,11 +55,10 @@ export class ProfileRepository {
 			}
 		}
 
-		const result: Profile = new Profile({
+		const result: Profile = await Profile.make({
 			id: uuidv4(),
 			name,
 			wallets: [],
-			contacts: [],
 			httpClient: this.#httpClient,
 			storage: this.#storage,
 		});

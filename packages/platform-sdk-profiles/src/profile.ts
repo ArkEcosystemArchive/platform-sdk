@@ -1,13 +1,20 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { Avatar } from "./avatar";
-import { Contact } from "./contact";
 import { ContactRepository } from "./contact-repository";
 import { Storage } from "./contracts";
 import { Data } from "./data";
 import { Settings } from "./settings";
 import { Wallet } from "./wallet";
 import { WalletRepository } from "./wallet-repository";
+
+interface ProfileConstructor {
+	id: string;
+	name: string;
+	wallets: Wallet[];
+	httpClient: Contracts.HttpClient;
+	storage: Storage;
+}
 
 export class Profile {
 	readonly #id: string;
@@ -18,25 +25,33 @@ export class Profile {
 	readonly #settings: Settings;
 	readonly #avatar: string;
 
-	public constructor(input: {
-		id: string;
-		name: string;
-		wallets: Wallet[];
-		contacts: Contact[];
-		httpClient: Contracts.HttpClient;
-		storage: Storage;
-	}) {
+	private constructor(input) {
+		// Data
 		this.#id = input.id;
 		this.#name = input.name;
+		this.#avatar = Avatar.make(this.id());
+
+		// Stores
+		this.#data = new Data(input.storage, `profiles.${this.#id}`);
+		this.#settings = new Settings({
+			namespace: `profiles.${this.#id}`,
+			storage: input.storage,
+			type: "profile",
+		});
+
+		// Repositories
 		this.#wallets = new WalletRepository({
 			httpClient: input.httpClient,
 			storage: input.storage,
 			wallets: input.wallets,
 		});
-		this.#contacts = new ContactRepository({ storage: input.storage, contacts: input.contacts });
-		this.#data = new Data(input.storage, `profiles.${this.#id}`);
-		this.#settings = new Settings({ namespace: `profiles.${this.#id}`, storage: input.storage, type: "profile" });
-		this.#avatar = Avatar.make(this.id());
+		this.#contacts = input.contacts;
+	}
+
+	public static async make(input: ProfileConstructor): Promise<Profile> {
+		const data: Data = new Data(input.storage, `profiles.${input.id}`);
+
+		return new Profile({ ...input, contacts: await ContactRepository.make(data), data });
 	}
 
 	public id(): string {
@@ -71,14 +86,12 @@ export class Profile {
 		id: string;
 		name: string;
 		wallets: Wallet[];
-		contacts: Contact[];
 		settings: object | undefined;
 	}> {
 		return {
 			id: this.#id,
 			name: this.#name,
 			wallets: this.#wallets.all(),
-			contacts: this.#contacts.all(),
 			settings: await this.#settings.all(),
 		};
 	}
