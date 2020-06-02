@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import dayjs, { QUnitType, ConfigType } from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import dayOfYear from "dayjs/plugin/dayOfYear";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -6,6 +6,7 @@ import quarterOfYear from "dayjs/plugin/quarterOfYear";
 import toObject from "dayjs/plugin/toObject";
 import utc from "dayjs/plugin/utc";
 import weekOfYear from "dayjs/plugin/weekOfYear";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(advancedFormat);
 dayjs.extend(dayOfYear);
@@ -14,6 +15,7 @@ dayjs.extend(quarterOfYear);
 dayjs.extend(toObject);
 dayjs.extend(utc);
 dayjs.extend(weekOfYear);
+dayjs.extend(relativeTime);
 
 type DateTimeLike = string | number | dayjs.Dayjs | DateTime;
 
@@ -322,6 +324,18 @@ export class DateTime {
 		return this.#instance.format(value);
 	}
 
+	public startOf(unit: QUnitType): DateTime {
+		return DateTime.make(this.#instance.startOf(unit), this.#locale);
+	}
+
+	public from(compared: ConfigType, withoutSuffix?: boolean): string {
+		return this.#instance.from(compared, withoutSuffix);
+	}
+
+	public fromNow(withoutSuffix?: boolean): string {
+		return this.#instance.fromNow(withoutSuffix);
+	}
+
 	public toObject(): {
 		years: number;
 		months: number;
@@ -348,6 +362,10 @@ export class DateTime {
 
 	public toUNIX(): number {
 		return this.#instance.unix();
+	}
+
+	public toDate(): Date {
+		return this.#instance.toDate();
 	}
 
 	public valueOf(): number {

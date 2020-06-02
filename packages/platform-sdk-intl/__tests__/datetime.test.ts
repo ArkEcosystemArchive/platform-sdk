@@ -305,3 +305,31 @@ test("#toUNIX", () => {
 test("#valueOf", () => {
 	expect(subject.valueOf()).toBe(1577836800000);
 });
+
+test("#toDate", () => {
+	expect(subject.toDate()).toBeDate();
+});
+
+test("#startOf", () => {
+	expect(subject.startOf("year").toISOString()).toBe("2020-01-01T00:00:00.000Z");
+});
+
+test("#from", () => {
+	expect(subject.from("2019")).toBe("in a year");
+	expect(subject.from("2019", true)).toBe("a year");
+
+	expect(subject.from("2018")).toBe("in 2 years");
+	expect(subject.from("2018", true)).toBe("2 years");
+
+	expect(subject.from("2021")).toBe("a year ago");
+	expect(subject.from("2021", true)).toBe("a year");
+
+	expect(subject.from("2022")).toBe("2 years ago");
+	expect(subject.from("2022", true)).toBe("2 years");
+});
+
+test("#fromNow", () => {
+	const now = DateTime.make().toString();
+	const fromNow = subject.from(now).toString();
+	expect(subject.fromNow()).toBe(fromNow);
+});
