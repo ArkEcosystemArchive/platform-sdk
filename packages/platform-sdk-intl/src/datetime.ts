@@ -324,6 +324,18 @@ export class DateTime {
 		return this.#instance.format(value);
 	}
 
+	public startOf(unit: QUnitType): DateTime {
+		return DateTime.make(this.#instance.startOf(unit), this.#locale);
+	}
+
+	public from(compared: ConfigType, withoutSuffix?: boolean): string {
+		return this.#instance.from(compared, withoutSuffix);
+	}
+
+	public fromNow(withoutSuffix?: boolean): string {
+		return this.#instance.fromNow(withoutSuffix);
+	}
+
 	public toObject(): {
 		years: number;
 		months: number;
@@ -352,24 +364,12 @@ export class DateTime {
 		return this.#instance.unix();
 	}
 
-	public valueOf(): number {
-		return this.#instance.valueOf();
-	}
-
 	public toDate(): Date {
 		return this.#instance.toDate();
 	}
 
-	public startOf(unit: QUnitType): DateTime {
-		return DateTime.make(this.#instance.startOf(unit), this.#locale);
-	}
-
-	public from(compared: ConfigType, withoutSuffix?: boolean): string {
-		return this.#instance.from(compared, withoutSuffix);
-	}
-
-	public fromNow(withoutSuffix?: boolean): string {
-		return this.#instance.fromNow(withoutSuffix);
+	public valueOf(): number {
+		return this.#instance.valueOf();
 	}
 
 	private toUTC(value?: DateTimeLike): dayjs.Dayjs {
