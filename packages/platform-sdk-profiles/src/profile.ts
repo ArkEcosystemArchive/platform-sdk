@@ -1,9 +1,10 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { Avatar } from "./avatar";
+import { Contact } from "./contact";
+import { ContactRepository } from "./contact-repository";
 import { Storage } from "./contracts";
 import { Data } from "./data";
-import { ProfileSetting } from "./enums";
 import { Settings } from "./settings";
 import { Wallet } from "./wallet";
 import { WalletRepository } from "./wallet-repository";
@@ -12,6 +13,7 @@ export class Profile {
 	readonly #id: string;
 	#name: string;
 	readonly #wallets: WalletRepository;
+	readonly #contacts: ContactRepository;
 	readonly #data: Data;
 	readonly #settings: Settings;
 	readonly #avatar: string;
@@ -20,6 +22,7 @@ export class Profile {
 		id: string;
 		name: string;
 		wallets: Wallet[];
+		contacts: Contact[];
 		httpClient: Contracts.HttpClient;
 		storage: Storage;
 	}) {
@@ -30,6 +33,7 @@ export class Profile {
 			storage: input.storage,
 			wallets: input.wallets,
 		});
+		this.#contacts = new ContactRepository({ storage: input.storage, contacts: input.contacts });
 		this.#data = new Data(input.storage, `profiles.${this.#id}`);
 		this.#settings = new Settings({ namespace: `profiles.${this.#id}`, storage: input.storage, type: "profile" });
 		this.#avatar = Avatar.make(this.id());
@@ -51,6 +55,10 @@ export class Profile {
 		return this.#wallets;
 	}
 
+	public contacts(): ContactRepository {
+		return this.#contacts;
+	}
+
 	public data(): Data {
 		return this.#data;
 	}
@@ -63,12 +71,14 @@ export class Profile {
 		id: string;
 		name: string;
 		wallets: Wallet[];
+		contacts: Contact[];
 		settings: object | undefined;
 	}> {
 		return {
 			id: this.#id,
 			name: this.#name,
 			wallets: this.#wallets.all(),
+			contacts: this.#contacts.all(),
 			settings: await this.#settings.all(),
 		};
 	}

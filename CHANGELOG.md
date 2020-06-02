@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
--    Add `decimals` parameter to `BigNumber#toFixed` (7f6c2fd9, @goga-m)
+-   Add `decimals` parameter to `BigNumber#toFixed` (7f6c2fd9, @goga-m)
 
 ## 0.9.62 - 2020-06-01
 

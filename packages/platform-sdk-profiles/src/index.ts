@@ -1,10 +1,12 @@
 export * as Enums from "./enums";
+export * from "./contact-repository";
+export * from "./contact";
 export * from "./contracts";
 export * from "./data";
 export * from "./env";
 export * from "./migrator";
 export * from "./profile";
-export * from "./profiles";
+export * from "./profile-repository";
 export * from "./settings";
 export * from "./wallet-repository";
 export * from "./wallet";

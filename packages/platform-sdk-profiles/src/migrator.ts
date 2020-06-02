@@ -3,15 +3,15 @@ import semver from "semver";
 
 import { Storage } from "./contracts";
 import { Data } from "./data";
-import { Profiles } from "./profiles";
+import { ProfileRepository } from "./profile-repository";
 
 export class Migrator {
 	readonly #data: Data;
-	readonly #profiles: Profiles;
+	readonly #profiles: ProfileRepository;
 	readonly #storage: Storage;
 	readonly #namespace: string = "migrations";
 
-	public constructor({ data, profiles, storage }: { data: Data; profiles: Profiles; storage: Storage }) {
+	public constructor({ data, profiles, storage }: { data: Data; profiles: ProfileRepository; storage: Storage }) {
 		this.#data = data;
 		this.#profiles = profiles;
 		this.#storage = storage;

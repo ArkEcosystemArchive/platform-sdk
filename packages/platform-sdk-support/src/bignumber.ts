@@ -86,7 +86,7 @@ export class BigNumber {
 	}
 
 	public toFixed(decimals?: number): string {
-		return !!decimals ? this.#value.toFixed(decimals) : this.#value.toFixed();
+		return decimals ? this.#value.toFixed(decimals) : this.#value.toFixed();
 	}
 
 	public toNumber(): number {
