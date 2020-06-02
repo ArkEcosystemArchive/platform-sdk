@@ -1160,6 +1160,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:14.0.5"],
             ["@types/prettier", "npm:2.0.1"],
             ["@types/rimraf", "npm:3.0.0"],
+            ["@types/sodium-native", "npm:2.3.5"],
             ["@typescript-eslint/eslint-plugin", "virtual:26859fa1829a07675b71c9bc52cda6bc0a97d0117e81d5b2a6822597e101b555b59348dddc440b57b797d384f3d00c2749f94ffa99f0e5c8cb4462801df482fe#npm:3.0.1"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.0.1"],
             ["codecov", "npm:3.7.0"],
@@ -1176,6 +1177,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["npm-check-updates", "npm:6.0.1"],
             ["prettier", "npm:2.0.5"],
             ["rimraf", "npm:3.0.2"],
+            ["sodium-native", "npm:3.1.1"],
             ["stellar-hd-wallet", "npm:0.0.10"],
             ["stellar-sdk", "npm:5.0.3"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.0.0"],
@@ -3354,6 +3356,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-semver-npm-7.2.0-ddf29bfc54-2.zip/node_modules/@types/semver/",
           "packageDependencies": [
             ["@types/semver", "npm:7.2.0"],
+            ["@types/node", "npm:13.13.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/sodium-native", [
+        ["npm:2.3.5", {
+          "packageLocation": "./.yarn/cache/@types-sodium-native-npm-2.3.5-78746861c6-2.zip/node_modules/@types/sodium-native/",
+          "packageDependencies": [
+            ["@types/sodium-native", "npm:2.3.5"],
             ["@types/node", "npm:13.13.4"]
           ],
           "linkType": "HARD",
@@ -14352,6 +14364,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["sodium-native", "npm:2.4.6"],
             ["ini", "npm:1.3.5"],
             ["nan", "npm:2.14.1"],
+            ["node-gyp", "npm:6.1.0"],
+            ["node-gyp-build", "npm:4.2.2"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:3.1.1", {
+          "packageLocation": "./.yarn/unplugged/sodium-native-npm-3.1.1-fae78dbb56/node_modules/sodium-native/",
+          "packageDependencies": [
+            ["sodium-native", "npm:3.1.1"],
+            ["ini", "npm:1.3.5"],
             ["node-gyp", "npm:6.1.0"],
             ["node-gyp-build", "npm:4.2.2"]
           ],
