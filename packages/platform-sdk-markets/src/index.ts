@@ -28,6 +28,10 @@ export class MarketService {
 		return this.#adapter.verifyToken(token);
 	}
 
+	public async somethingwithoutcoverage(token: string): Promise<boolean> {
+		return this.#adapter.verifyToken(token);
+	}
+
 	public async marketData(token: string): Promise<Contracts.MarketDataCollection> {
 		return this.#adapter.marketData(token);
 	}
