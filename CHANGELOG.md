@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.69 - 2020-06-02
+
+### Added
+
+-   Implement `DateTime#toDate/startOf/from/fromNow` methods (dfcbcc34, @goga-m)
+
+### Changed
+
+-   Add `sodium-native` as dependency (50d76623, @faustbrian)
+
 ## 0.9.67 - 2020-06-02
 
 ### Fixed
