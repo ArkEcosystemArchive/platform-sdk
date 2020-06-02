@@ -24,4 +24,17 @@ export interface Storage {
 	restore(): Promise<void>;
 }
 
+// Contacts
 export type ContactAddress = { coin: string; network: string; address: string };
+
+export interface ContactStruct {
+	name: string;
+	addresses: ContactAddress[];
+	starred: boolean;
+}
+
+export interface Contact extends ContactStruct {
+	id: string;
+}
+
+export type ContactList = Contact[];

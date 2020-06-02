@@ -1,71 +1,61 @@
 import "jest-extended";
 
-import { Contact } from "../src/contact";
 import { ContactRepository } from "../src/contact-repository";
+import { Data } from "../src/data";
 import { LocalStorage } from "../src/storage/local";
 
 let subject: ContactRepository;
 
-const john = new Contact({
+const john = {
 	name: "John Doe",
 	addresses: [{ coin: "Bitcoin", network: "livenet", address: "LIVENET-ADDRESS" }],
 	starred: false,
-});
+};
 
-const jane = new Contact({
+const jane = {
 	name: "Jane Doe",
 	addresses: [{ coin: "Ethereum", network: "testnet", address: "TESTNET-ADDRESS" }],
 	starred: true,
-});
+};
 
 beforeEach(async () => {
-	subject = new ContactRepository({ contacts: [john, jane], storage: new LocalStorage("localstorage") });
+	subject = await ContactRepository.make(new Data(new LocalStorage("localstorage"), "profiles.123"));
 });
 
-test("Contact#all", async () => {
-	expect(subject.all()).toEqual([john, jane]);
-});
+it("should push and ", async () => {
+	expect(subject.all()).toHaveLength(0);
 
-test("Contact#starred", async () => {
-	expect(subject.starred()).toEqual([jane]);
-});
+	await subject.create(john);
 
-test("Contact#push", async () => {
-	subject.flush();
+	expect(subject.all()).toHaveLength(1);
 
-	expect(subject.all()).toEqual([]);
+	await subject.create(jane);
 
-	subject.push(john);
-
-	expect(subject.all()).toEqual([john]);
-
-	subject.push(jane);
-
-	expect(subject.all()).toEqual([john, jane]);
+	expect(subject.all()).toHaveLength(2);
 });
 
 test("Contact#findByAddress", async () => {
-	expect(subject.findByAddress(john.addresses()[0].address)).toEqual([john]);
-	expect(subject.findByAddress(jane.addresses()[0].address)).toEqual([jane]);
-	expect(subject.findByAddress("invalid")).toEqual([]);
+	expect(subject.findByAddress(john.addresses[0].address)).toHaveLength(1);
+	expect(subject.findByAddress(jane.addresses[0].address)).toHaveLength(1);
+	expect(subject.findByAddress("invalid")).toHaveLength(0);
 });
 
 test("Contact#findByCoin", async () => {
-	expect(subject.findByCoin(john.addresses()[0].coin)).toEqual([john]);
-	expect(subject.findByCoin(jane.addresses()[0].coin)).toEqual([jane]);
-	expect(subject.findByCoin("invalid")).toEqual([]);
+	expect(subject.findByCoin(john.addresses[0].coin)).toHaveLength(1);
+	expect(subject.findByCoin(jane.addresses[0].coin)).toHaveLength(1);
+	expect(subject.findByCoin("invalid")).toHaveLength(0);
 });
 
 test("Contact#findByNetwork", async () => {
-	expect(subject.findByNetwork(john.addresses()[0].network)).toEqual([john]);
-	expect(subject.findByNetwork(jane.addresses()[0].network)).toEqual([jane]);
-	expect(subject.findByNetwork("invalid")).toEqual([]);
+	expect(subject.findByNetwork(john.addresses[0].network)).toHaveLength(1);
+	expect(subject.findByNetwork(jane.addresses[0].network)).toHaveLength(1);
+	expect(subject.findByNetwork("invalid")).toHaveLength(0);
 });
 
 test("Contact#flush", async () => {
-	expect(subject.all()).toEqual([john, jane]);
+	expect(subject.all()).toHaveLength(2);
 
-	subject.flush();
+	await subject.flush();
 
-	expect(subject.all()).toEqual([]);
+	expect(subject.all()).toHaveLength(0);
 });
