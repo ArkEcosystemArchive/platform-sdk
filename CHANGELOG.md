@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.67 - 2020-06-02
+
+### Fixed
+
+-   Use same data store for profile and contacts (f5f751d6, @faustbrian)
+
+## 0.9.66 - 2020-06-02
+
+### Added
+
+-   Implement CRUD actions for contacts (108f9536, @faustbrian)
+
+### Changed
+
+-   Automatically persist contacts as profile data (1312f7fb, @faustbrian)
+
 ## 0.9.64 - 2020-06-02
 
 ### Added

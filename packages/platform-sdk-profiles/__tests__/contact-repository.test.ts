@@ -1,71 +1,104 @@
 import "jest-extended";
 
-import { Contact } from "../src/contact";
 import { ContactRepository } from "../src/contact-repository";
+import { Data } from "../src/data";
 import { LocalStorage } from "../src/storage/local";
 
 let subject: ContactRepository;
 
-const john = new Contact({
+const john = {
 	name: "John Doe",
 	addresses: [{ coin: "Bitcoin", network: "livenet", address: "LIVENET-ADDRESS" }],
 	starred: false,
-});
+};
 
-const jane = new Contact({
+const jane = {
 	name: "Jane Doe",
 	addresses: [{ coin: "Ethereum", network: "testnet", address: "TESTNET-ADDRESS" }],
 	starred: true,
-});
+};
 
 beforeEach(async () => {
-	subject = new ContactRepository({ contacts: [john, jane], storage: new LocalStorage("localstorage") });
+	subject = await ContactRepository.make(new Data(new LocalStorage("localstorage"), "profiles.123"));
+
+	await subject.flush();
 });
 
-test("Contact#all", async () => {
-	expect(subject.all()).toEqual([john, jane]);
+test("Contact#create", async () => {
+	expect(subject.all()).toHaveLength(0);
+
+	await subject.create(john);
+
+	expect(subject.all()).toHaveLength(1);
+
+	await subject.create(jane);
+
+	expect(subject.all()).toHaveLength(2);
 });
 
-test("Contact#starred", async () => {
-	expect(subject.starred()).toEqual([jane]);
+test("Contact#find", async () => {
+	expect(() => subject.find("invalid")).toThrowError("Failed to find");
+
+	const contact = await subject.create(john);
+
+	expect(subject.find(contact.id)).toBeObject();
+	expect(subject.find(contact.name)).toBeObject();
 });
 
-test("Contact#push", async () => {
-	subject.flush();
+test("Contact#update", async () => {
+	await expect(subject.update("invalid", { name: "Jane Doe" })).rejects.toThrowError("Failed to find");
 
-	expect(subject.all()).toEqual([]);
+	const contact = await subject.create(john);
 
-	subject.push(john);
+	await subject.update(contact.id, { name: "Jane Doe" });
 
-	expect(subject.all()).toEqual([john]);
+	expect(subject.find(contact.id)).not.toEqual(contact);
+});
 
-	subject.push(jane);
+test("Contact#destroy", async () => {
+	await expect(subject.destroy("invalid")).rejects.toThrowError("Failed to find");
 
-	expect(subject.all()).toEqual([john, jane]);
+	const contact = await subject.create(john);
+
+	await subject.destroy(contact.id);
+
+	expect(() => subject.find(contact.id)).toThrowError("Failed to find");
 });
 
 test("Contact#findByAddress", async () => {
-	expect(subject.findByAddress(john.addresses()[0].address)).toEqual([john]);
-	expect(subject.findByAddress(jane.addresses()[0].address)).toEqual([jane]);
-	expect(subject.findByAddress("invalid")).toEqual([]);
+	await subject.create(john);
+	await subject.create(jane);
+
+	expect(subject.findByAddress(john.addresses[0].address)).toHaveLength(1);
+	expect(subject.findByAddress(jane.addresses[0].address)).toHaveLength(1);
+	expect(subject.findByAddress("invalid")).toHaveLength(0);
 });
 
 test("Contact#findByCoin", async () => {
-	expect(subject.findByCoin(john.addresses()[0].coin)).toEqual([john]);
-	expect(subject.findByCoin(jane.addresses()[0].coin)).toEqual([jane]);
-	expect(subject.findByCoin("invalid")).toEqual([]);
+	await subject.create(john);
+	await subject.create(jane);
+
+	expect(subject.findByCoin(john.addresses[0].coin)).toHaveLength(1);
+	expect(subject.findByCoin(jane.addresses[0].coin)).toHaveLength(1);
+	expect(subject.findByCoin("invalid")).toHaveLength(0);
 });
 
 test("Contact#findByNetwork", async () => {
-	expect(subject.findByNetwork(john.addresses()[0].network)).toEqual([john]);
-	expect(subject.findByNetwork(jane.addresses()[0].network)).toEqual([jane]);
-	expect(subject.findByNetwork("invalid")).toEqual([]);
+	await subject.create(john);
+	await subject.create(jane);
+
+	expect(subject.findByNetwork(john.addresses[0].network)).toHaveLength(1);
+	expect(subject.findByNetwork(jane.addresses[0].network)).toHaveLength(1);
+	expect(subject.findByNetwork("invalid")).toHaveLength(0);
 });
 
 test("Contact#flush", async () => {
-	expect(subject.all()).toEqual([john, jane]);
+	await subject.create(john);
+	await subject.create(jane);
 
-	subject.flush();
+	expect(subject.all()).toHaveLength(2);
 
-	expect(subject.all()).toEqual([]);
+	await subject.flush();
+
+	expect(subject.all()).toHaveLength(0);
 });
