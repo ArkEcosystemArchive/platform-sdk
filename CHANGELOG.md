@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.64 - 2020-06-02
+
+### Added
+
+-   Implement `Contacts` (8b79e798, @faustbrian)
+
 ## 0.9.63 - 2020-06-01
 
 ### Changed
