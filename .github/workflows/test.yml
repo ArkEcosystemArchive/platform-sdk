@@ -1,579 +1,444 @@
 name: Test
 
 on:
-    push:
-        branches:
-            - "master"
-            - "develop"
-    pull_request:
-        types: [ready_for_review, synchronize, opened]
+  push:
+    branches:
+      - "master"
+      - "develop"
+  pull_request:
+    types: [ready_for_review, synchronize, opened]
 
 jobs:
-    sdk:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk/.coverage/lcov.info
-
-    ark:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-ark && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-ark/.coverage/lcov.info
-
-    atom:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-atom && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-atom/.coverage/lcov.info
-
-    btc:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-btc && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-btc/.coverage/lcov.info
-
-    coincap:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-coincap && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-coincap/.coverage/lcov.info
-
-    coingecko:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-coingecko && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-coingecko/.coverage/lcov.info
-
-    crypto:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-cryptocompare/.coverage/lcov.info
-
-    cryptocompare:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-cryptocompare/.coverage/lcov.info
-
-    eos:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-eos && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-eos/.coverage/lcov.info
-
-    eth:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-eth && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-eth/.coverage/lcov.info
-
-    intl:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-intl && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-intl/.coverage/lcov.info
-
-    lsk:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-lsk && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-lsk/.coverage/lcov.info
-
-    markets:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-markets && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-markets/.coverage/lcov.info
-
-    neo:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-neo && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-neo/.coverage/lcov.info
-
-    profiles:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-profiles && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-profiles/.coverage/lcov.info
-
-    support:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-support && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-support/.coverage/lcov.info
-
-    trx:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-trx && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-trx/.coverage/lcov.info
-
-    xlm:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-xlm && yarn run test --coverage
-
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-xlm/.coverage/lcov.info
-
-    xrp:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Build
-              run: yarn run build
-
-            - name: Test
-              run: cd packages/platform-sdk-xrp && yarn run test --coverage
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-xrp/.coverage/lcov.info
+  # sdk:
+  #     runs-on: ubuntu-latest
+
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+
+  #     steps:
+  #         - uses: actions/checkout@v2
+
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+
+  #         - name: Build
+  #           run: yarn run build
+
+  #         - name: Test
+  #           run: cd packages/platform-sdk && yarn run test --coverage
+
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk/.coverage/lcov.info
+
+  ark:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install
+        run: yarn install --immutable --immutable-cache
+
+      - name: Build
+        run: yarn run build
+
+      - name: Test
+        run: cd packages/platform-sdk-ark && yarn run test --coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: packages/platform-sdk-ark/.coverage/lcov.info
+  # atom:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-atom && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-atom/.coverage/lcov.info
+  # btc:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-btc && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-btc/.coverage/lcov.info
+  # coincap:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-coincap && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-coincap/.coverage/lcov.info
+  # coingecko:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-coingecko && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-coingecko/.coverage/lcov.info
+  # crypto:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-cryptocompare/.coverage/lcov.info
+  # cryptocompare:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-cryptocompare/.coverage/lcov.info
+  # eos:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-eos && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-eos/.coverage/lcov.info
+  # eth:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-eth && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-eth/.coverage/lcov.info
+  # intl:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-intl && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-intl/.coverage/lcov.info
+  # lsk:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-lsk && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-lsk/.coverage/lcov.info
+  # markets:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-markets && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-markets/.coverage/lcov.info
+  # neo:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-neo && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-neo/.coverage/lcov.info
+  # profiles:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-profiles && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-profiles/.coverage/lcov.info
+  # support:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-support && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-support/.coverage/lcov.info
+  # trx:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-trx && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-trx/.coverage/lcov.info
+  # xlm:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-xlm && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-xlm/.coverage/lcov.info
+  # xrp:
+  #     runs-on: ubuntu-latest
+  #     strategy:
+  #         matrix:
+  #             node-version: [12.x]
+  #     steps:
+  #         - uses: actions/checkout@v2
+  #         - name: Use Node.js ${{ matrix.node-version }}
+  #           uses: actions/setup-node@v1
+  #           with:
+  #               node-version: ${{ matrix.node-version }}
+  #         - name: Install
+  #           run: yarn install --immutable --immutable-cache
+  #         - name: Build
+  #           run: yarn run build
+  #         - name: Test
+  #           run: cd packages/platform-sdk-xrp && yarn run test --coverage
+  #         - name: Coveralls
+  #           uses: coverallsapp/github-action@master
+  #           with:
+  #               github-token: ${{ secrets.GITHUB_TOKEN }}
+  #               path-to-lcov: packages/platform-sdk-xrp/.coverage/lcov.info
