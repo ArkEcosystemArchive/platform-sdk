@@ -309,3 +309,7 @@ test("#valueOf", () => {
 test("#toDate", () => {
 	expect(subject.toDate()).toBeDate();
 });
+
+test("#startOf", () => {
+	expect(subject.startOf("year").toISOString()).toBe("2020-01-01T00:00:00.000Z");
+});

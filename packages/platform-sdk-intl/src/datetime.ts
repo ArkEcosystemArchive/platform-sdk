@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import dayjs, { QUnitType } from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import dayOfYear from "dayjs/plugin/dayOfYear";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -356,6 +356,10 @@ export class DateTime {
 
 	public toDate(): Date {
 		return this.#instance.toDate();
+	}
+
+	public startOf(unit: QUnitType): DateTime {
+		return DateTime.make(this.#instance.startOf(unit), this.#locale);
 	}
 
 	private toUTC(value?: DateTimeLike): dayjs.Dayjs {
