@@ -77,7 +77,7 @@ export class ContactRepository {
 	}
 
 	private findIndex(id: string): number {
-		const index: number = this.#contacts.findIndex((contact: Contact) => contact.id === id);
+		const index: number = this.#contacts.findIndex((contact: Contact) => contact.id === id || contact.name === id);
 
 		if (index === -1) {
 			throw new Error(`Failed to find a contact for [${id}].`);

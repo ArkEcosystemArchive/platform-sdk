@@ -42,6 +42,7 @@ test("Contact#find", async () => {
 	const contact = await subject.create(john);
 
 	expect(subject.find(contact.id)).toBeObject();
+	expect(subject.find(contact.name)).toBeObject();
 });
 
 test("Contact#update", async () => {
