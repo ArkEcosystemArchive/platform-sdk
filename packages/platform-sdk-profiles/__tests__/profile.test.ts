@@ -13,27 +13,34 @@ beforeEach(() => {
 		id: "uuid",
 		name: "Primary",
 		wallets: [],
+		contacts: [],
 		httpClient: new HttpClient(),
 		storage: new LocalStorage("localstorage"),
 	});
 });
 
-test("Profile#id", async () => {
+test("Profile#id", () => {
 	expect(subject.id()).toBe("uuid");
 });
 
-test("Profile#name", async () => {
+test("Profile#name", () => {
 	expect(subject.name()).toBe("Primary");
 });
 
-test("Profile#wallets", async () => {
+test("Profile#wallets", () => {
 	expect(subject.wallets()).toBeInstanceOf(WalletRepository);
 });
 
-test("Profile#settings", async () => {
+test("Profile#settings", () => {
 	expect(subject.settings()).toBeInstanceOf(Settings);
 });
 
 test("Profile#toObject", async () => {
-	expect(subject.toObject()).resolves.toEqual({ id: "uuid", name: "Primary", wallets: [], settings: {} });
+	await expect(subject.toObject()).resolves.toEqual({
+		id: "uuid",
+		name: "Primary",
+		wallets: [],
+		contacts: [],
+		settings: {},
+	});
 });

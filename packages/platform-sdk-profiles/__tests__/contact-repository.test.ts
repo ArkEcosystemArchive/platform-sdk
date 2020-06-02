@@ -2,6 +2,7 @@ import "jest-extended";
 
 import { Contact } from "../src/contact";
 import { ContactRepository } from "../src/contact-repository";
+import { LocalStorage } from "../src/storage/local";
 
 let subject: ContactRepository;
 
@@ -18,7 +19,7 @@ const jane = new Contact({
 });
 
 beforeEach(async () => {
-	subject = new ContactRepository([john, jane]);
+	subject = new ContactRepository({ contacts: [john, jane], storage: new LocalStorage("localstorage") });
 });
 
 test("Contact#all", async () => {

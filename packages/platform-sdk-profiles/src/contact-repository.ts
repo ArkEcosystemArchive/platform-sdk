@@ -1,10 +1,12 @@
 import { Contact } from "./contact";
-import { ContactAddress } from "./contracts";
+import { ContactAddress, Storage } from "./contracts";
 
 export class ContactRepository {
+	readonly #storage: Storage;
 	#contacts: Contact[] = [];
 
-	public constructor(contacts: Contact[]) {
+	public constructor({ contacts, storage }: { contacts: Contact[]; storage: Storage }) {
+		this.#storage = storage;
 		this.#contacts = contacts;
 	}
 

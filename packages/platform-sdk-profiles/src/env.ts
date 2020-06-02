@@ -3,13 +3,13 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 import { EnvironmentOptions, Storage } from "./contracts";
 import { Data } from "./data";
 import { Migrator } from "./migrator";
-import { Profiles } from "./profiles";
+import { ProfileRepository } from "./profile-repository";
 import { StorageFactory } from "./storage/factory";
 
 export class Environment {
 	readonly #httpClient: Contracts.HttpClient;
 	readonly #storage: Storage;
-	readonly #profiles: Profiles;
+	readonly #profiles: ProfileRepository;
 	readonly #data: Data;
 	readonly #migrator: Migrator;
 
@@ -22,7 +22,7 @@ export class Environment {
 			this.#storage = options.storage;
 		}
 
-		this.#profiles = new Profiles({ httpClient: this.#httpClient, storage: this.#storage });
+		this.#profiles = new ProfileRepository({ httpClient: this.#httpClient, storage: this.#storage });
 		this.#data = new Data(this.#storage, "app");
 
 		this.#migrator = new Migrator({
@@ -32,7 +32,7 @@ export class Environment {
 		});
 	}
 
-	public profiles(): Profiles {
+	public profiles(): ProfileRepository {
 		return this.#profiles;
 	}
 

@@ -1,15 +1,18 @@
 import "jest-extended";
 
-import { Profiles } from "../src/profiles";
+import { ProfileRepository } from "../src/profile-repository";
 import { LocalStorage } from "../src/storage/local";
 import { Profile } from "../src/profile";
 import { HttpClient } from "./stubs/client";
 
-let subject: Profiles;
+let subject: ProfileRepository;
 
-beforeEach(() => (subject = new Profiles({ httpClient: new HttpClient(), storage: new LocalStorage("localstorage") })));
+beforeEach(
+	() =>
+		(subject = new ProfileRepository({ httpClient: new HttpClient(), storage: new LocalStorage("localstorage") })),
+);
 
-describe("Profiles", () => {
+describe("ProfileRepository", () => {
 	it("should push, get, list and forget any given profiles", async () => {
 		await expect(subject.all()).resolves.toHaveLength(0);
 

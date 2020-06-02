@@ -33,7 +33,7 @@ export class Profile {
 			storage: input.storage,
 			wallets: input.wallets,
 		});
-		this.#contacts = new ContactRepository(input.contacts);
+		this.#contacts = new ContactRepository({ storage: input.storage, contacts: input.contacts });
 		this.#data = new Data(input.storage, `profiles.${this.#id}`);
 		this.#settings = new Settings({ namespace: `profiles.${this.#id}`, storage: input.storage, type: "profile" });
 		this.#avatar = Avatar.make(this.id());

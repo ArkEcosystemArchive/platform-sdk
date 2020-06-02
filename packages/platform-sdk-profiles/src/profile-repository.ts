@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Storage } from "./contracts";
 import { Profile } from "./profile";
 
-export class Profiles {
+export class ProfileRepository {
 	readonly #key: string = "profiles";
 
 	readonly #httpClient: Contracts.HttpClient;

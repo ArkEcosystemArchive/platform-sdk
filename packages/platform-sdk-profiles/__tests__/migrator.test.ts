@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Profiles } from "../src/profiles";
+import { ProfileRepository } from "../src/profile-repository";
 import { Migrator } from "../src/migrator";
 import { Data } from "../src/data";
 import { LocalStorage } from "../src/storage/local";
@@ -8,13 +8,13 @@ import { HttpClient } from "./stubs/client";
 
 let subject: Migrator;
 let storage: LocalStorage;
-let profiles: Profiles;
+let profiles: ProfileRepository;
 let data: Data;
 
 beforeEach(async () => {
 	const httpClient = new HttpClient();
 	storage = new LocalStorage("localstorage");
-	profiles = new Profiles({ httpClient, storage });
+	profiles = new ProfileRepository({ httpClient, storage });
 	data = new Data(storage, "app");
 
 	subject = new Migrator({
