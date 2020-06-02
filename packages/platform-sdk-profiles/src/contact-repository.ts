@@ -20,24 +20,30 @@ export class ContactRepository {
 		return this.#contacts;
 	}
 
-	public async create(contact: ContactStruct): Promise<void> {
-		this.#contacts.push({ id: uuidv4(), ...contact });
+	public async create(data: ContactStruct): Promise<Contact> {
+		const contact: Contact = { id: uuidv4(), ...data };
+
+		this.#contacts.push(contact);
 
 		await this.persist();
+
+		return contact;
 	}
 
 	public find(id: string): Contact {
-		return this.#contacts[id];
+		return this.#contacts[this.findIndex(id)];
 	}
 
 	public async update(id: string, data: object): Promise<void> {
-		this.#contacts = { ...this.#contacts[id], ...data };
+		const index: number = this.findIndex(id);
+
+		this.#contacts[index] = { ...this.#contacts[index], ...data };
 
 		await this.persist();
 	}
 
 	public async destroy(id: string): Promise<void> {
-		delete this.#contacts[id];
+		this.#contacts.splice(this.findIndex(id), 1);
 
 		await this.persist();
 	}
@@ -68,5 +74,15 @@ export class ContactRepository {
 
 	private async persist(): Promise<void> {
 		await this.#data.set("contacts", this.#contacts);
+	}
+
+	private findIndex(id: string): number {
+		const index: number = this.#contacts.findIndex((contact: Contact) => contact.id === id);
+
+		if (index === -1) {
+			throw new Error(`Failed to find a contact for [${id}].`);
+		}
+
+		return index;
 	}
 }
