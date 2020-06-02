@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.67 - 2020-06-02
+
+### Fixed
+
+-   Use same data store for profile and contacts (f5f751d6, @faustbrian)
+
 ## 0.9.66 - 2020-06-02
 
 ### Added
