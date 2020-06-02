@@ -32,7 +32,7 @@ export class Profile {
 		this.#avatar = Avatar.make(this.id());
 
 		// Stores
-		this.#data = new Data(input.storage, `profiles.${this.#id}`);
+		this.#data = input.data;
 		this.#settings = new Settings({
 			namespace: `profiles.${this.#id}`,
 			storage: input.storage,
