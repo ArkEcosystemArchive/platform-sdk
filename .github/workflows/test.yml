@@ -429,9 +429,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-markets && yarn run test --coverage
 
-            # - name: Codecov
-            #   run: cd packages/platform-sdk-markets && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
-
             - name: Coveralls
               uses: coverallsapp/github-action@master
               with:
