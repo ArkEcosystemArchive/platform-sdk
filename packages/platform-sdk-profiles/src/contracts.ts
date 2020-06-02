@@ -23,3 +23,5 @@ export interface Storage {
 
 	restore(): Promise<void>;
 }
+
+export type ContactAddress = { coin: string; network: string; address: string };

@@ -57,6 +57,7 @@ export class Profiles {
 			id: uuidv4(),
 			name,
 			wallets: [],
+			contacts: [],
 			httpClient: this.#httpClient,
 			storage: this.#storage,
 		});

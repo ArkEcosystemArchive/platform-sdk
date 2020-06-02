@@ -1,4 +1,6 @@
 export * as Enums from "./enums";
+export * from "./contact-repository";
+export * from "./contact";
 export * from "./contracts";
 export * from "./data";
 export * from "./env";
