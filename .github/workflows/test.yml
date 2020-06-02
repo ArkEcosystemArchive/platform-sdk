@@ -40,6 +40,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk/.coverage
 
     ark:
         runs-on: ubuntu-latest
@@ -72,6 +73,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-ark/.coverage
 
     atom:
         runs-on: ubuntu-latest
@@ -104,6 +106,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-atom/.coverage
 
     btc:
         runs-on: ubuntu-latest
@@ -136,6 +139,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-btc/.coverage
 
     coincap:
         runs-on: ubuntu-latest
@@ -168,6 +172,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-coincap/.coverage
 
     coingecko:
         runs-on: ubuntu-latest
@@ -200,6 +205,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-coingecko/.coverage
 
     crypto:
         runs-on: ubuntu-latest
@@ -232,6 +238,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-cryptocompare/.coverage
 
     cryptocompare:
         runs-on: ubuntu-latest
@@ -264,6 +271,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-cryptocompare/.coverage
 
     eos:
         runs-on: ubuntu-latest
@@ -296,6 +304,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-eos/.coverage
 
     eth:
         runs-on: ubuntu-latest
@@ -328,6 +337,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-eth/.coverage
 
     intl:
         runs-on: ubuntu-latest
@@ -360,6 +370,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-intl/.coverage
 
     lsk:
         runs-on: ubuntu-latest
@@ -392,6 +403,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-lsk/.coverage
 
     markets:
         runs-on: ubuntu-latest
@@ -424,6 +436,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-markets/.coverage
 
     neo:
         runs-on: ubuntu-latest
@@ -456,6 +469,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-neo/.coverage
 
     profiles:
         runs-on: ubuntu-latest
@@ -488,6 +502,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-profiles/.coverage
 
     support:
         runs-on: ubuntu-latest
@@ -520,6 +535,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-support/.coverage
 
     trx:
         runs-on: ubuntu-latest
@@ -552,6 +568,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-trx/.coverage
 
     xlm:
         runs-on: ubuntu-latest
@@ -584,6 +601,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-xlm/.coverage
 
     xrp:
         runs-on: ubuntu-latest
@@ -615,3 +633,4 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: packages/platform-sdk-xrp/.coverage
