@@ -21,9 +21,7 @@ export class ContactRepository {
 	}
 
 	public async create(contact: ContactStruct): Promise<void> {
-		const id: string = uuidv4();
-
-		this.#contacts.push({ id, ...contact });
+		this.#contacts.push({ id: uuidv4(), ...contact });
 
 		await this.persist();
 	}
