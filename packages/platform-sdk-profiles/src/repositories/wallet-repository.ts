@@ -3,7 +3,7 @@ import { inject, injectable } from "inversify";
 
 import { container } from "../container";
 import { Wallet } from "../wallet";
-import { Identifiers } from "./contracts";
+import { Identifiers } from "../contracts";
 import { Data } from "./data-repository";
 
 @injectable()
