@@ -5,7 +5,7 @@ export const identity = {
 	publicKey: "ceb7bb7475a14b729eba069dfb27715331727a910acf5773a950ed4f863c89ed",
 	address: "15957226662510576840L",
 	wif: "...",
-	mnemonic: "this is a top secret mnemonic",
+	mnemonic: "this is a top secret passphrase",
 	// Multi Signature
 	multiSignature: { min: 0, publicKeys: [] },
 	multiSignatureAddress: "...",
