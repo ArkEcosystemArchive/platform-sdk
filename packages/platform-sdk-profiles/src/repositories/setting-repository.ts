@@ -1,21 +1,26 @@
 import { delete as forget, get, has, set } from "dot-prop";
+import { inject, injectable } from "inversify";
 
-import { Storage } from "./contracts";
-import { ProfileSetting, WalletSetting } from "./enums";
+import { Identifiers, Storage } from "../contracts";
+import { ProfileSetting, WalletSetting } from "../enums";
 
+@injectable()
 export class Settings {
-	readonly #namespace: string;
-	readonly #storage: Storage;
-	readonly #type: string;
+	@inject(Identifiers.Storage)
+	private readonly storage!: Storage;
 
-	public constructor({ namespace, storage, type }) {
+	#namespace!: string;
+	#type!: string;
+
+	public scope(namespace: string, type: string): Settings {
 		this.#namespace = `settings.${namespace}`;
-		this.#storage = storage;
 		this.#type = type;
+
+		return this;
 	}
 
 	public async all(): Promise<object | undefined> {
-		return (await this.#storage.get(this.#namespace)) || {};
+		return (await this.storage.get(this.#namespace)) || {};
 	}
 
 	public async get<T>(key: string, defaultValue?: T): Promise<T | undefined> {
@@ -31,7 +36,7 @@ export class Settings {
 
 		set(result, key, value);
 
-		await this.#storage.set(this.#namespace, result);
+		await this.storage.set(this.#namespace, result);
 	}
 
 	public async has(key: string): Promise<boolean> {
@@ -43,7 +48,7 @@ export class Settings {
 	public async forget(key: string): Promise<void> {
 		this.assertValidKey(key);
 
-		let result: object | undefined = await this.#storage.get(this.#namespace);
+		let result: object | undefined = await this.storage.get(this.#namespace);
 
 		if (!result) {
 			result = {};
@@ -51,11 +56,11 @@ export class Settings {
 
 		forget(result, key);
 
-		await this.#storage.set(this.#namespace, result);
+		await this.storage.set(this.#namespace, result);
 	}
 
 	public async flush(): Promise<void> {
-		await this.#storage.set(this.#namespace, {});
+		await this.storage.set(this.#namespace, {});
 	}
 
 	private assertValidKey(key: string): void {

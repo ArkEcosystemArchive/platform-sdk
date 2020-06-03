@@ -23,8 +23,10 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"dot-prop": "^5.2.0",
+		"inversify": "^5.0.1",
 		"localforage": "^1.7.3",
 		"mersenne-twister": "^1.1.0",
+		"reflect-metadata": "^0.1.13",
 		"semver": "^7.3.2",
 		"uuid": "^8.1.0"
 	},

@@ -1,37 +1,31 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
-import { promises } from "fs";
+import { inject, injectable } from "inversify";
 import { v4 as uuidv4 } from "uuid";
 
-import { Storage } from "./contracts";
-import { Profile } from "./profile";
+import { Identifiers, ProfileFactory, Storage } from "../contracts";
+import { Profile } from "../profile";
 
+@injectable()
 export class ProfileRepository {
 	readonly #key: string = "profiles";
 
-	readonly #httpClient: Contracts.HttpClient;
-	readonly #storage: Storage;
+	@inject(Identifiers.HttpClient)
+	private readonly httpClient!: Contracts.HttpClient;
 
-	public constructor({ httpClient, storage }) {
-		this.#httpClient = httpClient;
-		this.#storage = storage;
-	}
+	@inject(Identifiers.Storage)
+	private readonly storage!: Storage;
+
+	@inject(Identifiers.ProfileFactory)
+	private readonly createProfileFactory!: ProfileFactory;
 
 	public async all(): Promise<Profile[]> {
-		const result: any[] | undefined = await this.#storage.get(this.#key);
+		const result: any[] | undefined = await this.storage.get(this.#key);
 
 		if (!result) {
 			return [];
 		}
 
-		return Promise.all(
-			result.map((profile) =>
-				Profile.make({
-					...profile,
-					httpClient: this.#httpClient,
-					storage: this.#storage,
-				}),
-			),
-		);
+		return Promise.all(result.map((profile) => this.createProfileFactory(profile.id, profile.name)));
 	}
 
 	public async get(id: string): Promise<Profile> {
@@ -55,17 +49,11 @@ export class ProfileRepository {
 			}
 		}
 
-		const result: Profile = await Profile.make({
-			id: uuidv4(),
-			name,
-			wallets: [],
-			httpClient: this.#httpClient,
-			storage: this.#storage,
-		});
+		const result: Profile = this.createProfileFactory(uuidv4(), name);
 
 		profiles.push(result);
 
-		await this.#storage.set(this.#key, await Promise.all(profiles.map((item: Profile) => item.toObject())));
+		await this.storage.set(this.#key, await Promise.all(profiles.map((item: Profile) => item.toObject())));
 
 		return result;
 	}
@@ -79,7 +67,7 @@ export class ProfileRepository {
 			throw new Error(`No profile found for [${id}].`);
 		}
 
-		await this.#storage.set(this.#key, await Promise.all(result.map((item: Profile) => item.toObject())));
+		await this.storage.set(this.#key, await Promise.all(result.map((item: Profile) => item.toObject())));
 
 		return result;
 	}

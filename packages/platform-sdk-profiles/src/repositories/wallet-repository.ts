@@ -1,19 +1,12 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins } from "@arkecosystem/platform-sdk";
+import { injectable } from "inversify";
 
-import { Storage } from "./contracts";
-import { Wallet } from "./wallet";
+import { container } from "../container";
+import { Wallet } from "../wallet";
 
+@injectable()
 export class WalletRepository {
 	#wallets: Wallet[] = [];
-
-	readonly #httpClient: Contracts.HttpClient;
-	readonly #storage: Storage;
-
-	public constructor({ httpClient, storage, wallets }) {
-		this.#httpClient = httpClient;
-		this.#storage = storage;
-		this.#wallets = wallets;
-	}
 
 	public all(): Wallet[] {
 		return this.#wallets;
@@ -39,16 +32,11 @@ export class WalletRepository {
 		this.#wallets = [];
 	}
 
-	public async createFromPassphrase(input: {
-		mnemonic: string;
-		coin: Coins.CoinSpec;
-		network: string;
-	}): Promise<Wallet> {
-		const wallet: Wallet = await Wallet.fromMnemonic({
-			...input,
-			httpClient: this.#httpClient,
-			storage: this.#storage,
-		});
+	public async createFromMnemonic(mnemonic: string, coin: Coins.CoinSpec, network: string): Promise<Wallet> {
+		const wallet: Wallet = container.resolve(Wallet);
+
+		await wallet.setCoin(coin, network);
+		await wallet.setIdentity(mnemonic);
 
 		if (this.findByAddress(wallet.address())) {
 			throw new Error(`The wallet [${wallet.address()}] already exists.`);

@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Environment } from "../src/env";
+import { Environment } from "../src";
 import { ProfileRepository } from "../src/profile-repository";
 import { HttpClient } from "./stubs/client";
 

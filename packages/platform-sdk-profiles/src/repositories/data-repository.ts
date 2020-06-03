@@ -1,18 +1,23 @@
 import { delete as forget, get, has, set } from "dot-prop";
+import { inject, injectable } from "inversify";
 
-import { Storage } from "./contracts";
+import { Identifiers, Storage } from "../contracts";
 
+@injectable()
 export class Data {
-	readonly #storage: Storage;
-	readonly #namespace: string;
+	@inject(Identifiers.Storage)
+	private readonly storage!: Storage;
 
-	public constructor(storage: Storage, namespace: string) {
-		this.#storage = storage;
+	#namespace = "data.app";
+
+	public scope(namespace: string): Data {
 		this.#namespace = `data.${namespace}`;
+
+		return this;
 	}
 
 	public async all(): Promise<object | undefined> {
-		return (await this.#storage.get(this.#namespace)) || {};
+		return (await this.storage.get(this.#namespace)) || {};
 	}
 
 	public async get<T>(key: string, defaultValue?: T): Promise<T | undefined> {
@@ -24,7 +29,7 @@ export class Data {
 
 		set(result, key, value);
 
-		await this.#storage.set(this.#namespace, result);
+		await this.storage.set(this.#namespace, result);
 	}
 
 	public async has(key: string): Promise<boolean> {
@@ -32,7 +37,7 @@ export class Data {
 	}
 
 	public async forget(key: string): Promise<void> {
-		let result: object | undefined = await this.#storage.get(this.#namespace);
+		let result: object | undefined = await this.storage.get(this.#namespace);
 
 		if (!result) {
 			result = {};
@@ -40,11 +45,11 @@ export class Data {
 
 		forget(result, key);
 
-		await this.#storage.set(this.#namespace, result);
+		await this.storage.set(this.#namespace, result);
 	}
 
 	public async flush(): Promise<void> {
-		await this.#storage.set(this.#namespace, {});
+		await this.storage.set(this.#namespace, {});
 	}
 
 	public async toJSON(): Promise<string> {

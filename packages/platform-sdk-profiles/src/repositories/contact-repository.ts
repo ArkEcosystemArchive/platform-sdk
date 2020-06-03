@@ -1,19 +1,16 @@
+import { postConstruct } from "inversify";
 import { v4 as uuidv4 } from "uuid";
 
-import { Contact, ContactAddress, ContactList, ContactStruct } from "./contracts";
-import { Data } from "./data";
+import { Contact, ContactAddress, ContactList, ContactStruct } from "../contracts";
+import { Data } from "./data-repository";
 
 export class ContactRepository {
-	readonly #data: Data;
+	#data!: Data;
 	#contacts: ContactList = [];
 
-	private constructor({ contacts, data }) {
-		this.#contacts = contacts;
+	public async setData(data: Data): Promise<void> {
 		this.#data = data;
-	}
-
-	public static async make(data: Data): Promise<ContactRepository> {
-		return new ContactRepository({ contacts: await data.get("contacts", []), data });
+		this.#contacts = (await data.get("contacts")) || [];
 	}
 
 	public all(): ContactList {

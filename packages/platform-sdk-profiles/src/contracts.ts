@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 export interface EnvironmentOptions {
 	storage: string | Storage;
@@ -38,3 +38,29 @@ export interface Contact extends ContactStruct {
 }
 
 export type ContactList = Contact[];
+
+// Container Bindings - TODO: remove I prefix
+export interface IContactRepository {}
+export interface IData {}
+export interface IHttpClient {}
+export interface IProfileRepository {}
+export interface ISettings {}
+export interface IWallet {}
+export interface IWalletRepository {}
+
+export const Identifiers = {
+	ContactFactory: Symbol.for("ContactFactory"),
+	ContactRepository: Symbol.for("ContactRepository"),
+	Data: Symbol.for("Data"),
+	HttpClient: Symbol.for("HttpClient"),
+	Migrator: Symbol.for("Migrator"),
+	ProfileFactory: Symbol.for("ProfileFactory"),
+	ProfileRepository: Symbol.for("ProfileRepository"),
+	Settings: Symbol.for("Settings"),
+	Storage: Symbol.for("Storage"),
+	WalletFactory: Symbol.for("WalletFactory"),
+	WalletRepository: Symbol.for("WalletRepository"),
+};
+
+export type ProfileFactory = (id: string, name: string) => any;
+export type WalletFactory = (mnemonic: string, coin: Coins.CoinSpec, network: string) => any;
