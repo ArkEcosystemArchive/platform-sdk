@@ -78,7 +78,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
 		return this.createFromData("secondSignature", input, options, ({ transaction, data }) =>
-			transaction.signatureAsset(BIP39.normalize(data.passphrase)),
+			transaction.signatureAsset(BIP39.normalize(data.mnemonic)),
 		);
 	}
 
@@ -252,8 +252,8 @@ export class TransactionService implements Contracts.TransactionService {
 		} else {
 			let address: string | undefined;
 
-			if (input.sign.passphrase) {
-				address = await this.#identity.address().fromPassphrase(BIP39.normalize(input.sign.passphrase));
+			if (input.sign.mnemonic) {
+				address = await this.#identity.address().fromMnemonic(BIP39.normalize(input.sign.mnemonic));
 			}
 
 			if (input.sign.wif) {
@@ -294,14 +294,14 @@ export class TransactionService implements Contracts.TransactionService {
 			}).toString("hex");
 		}
 
-		if (Array.isArray(input.sign.passphrases)) {
-			for (let i = 0; i < input.sign.passphrases.length; i++) {
-				transaction.multiSign(BIP39.normalize(input.sign.passphrases[i]), i);
+		if (Array.isArray(input.sign.mnemonics)) {
+			for (let i = 0; i < input.sign.mnemonics.length; i++) {
+				transaction.multiSign(BIP39.normalize(input.sign.mnemonics[i]), i);
 			}
 		}
 
-		if (input.sign.passphrase) {
-			transaction.sign(BIP39.normalize(input.sign.passphrase));
+		if (input.sign.mnemonic) {
+			transaction.sign(BIP39.normalize(input.sign.mnemonic));
 		}
 
 		if (input.sign.secondPassphrase) {

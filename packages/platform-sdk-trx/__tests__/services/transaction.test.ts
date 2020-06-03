@@ -20,7 +20,7 @@ describe("TransactionService", function () {
 
 			const result = await subject.transfer({
 				sign: {
-					passphrase: testWallet.privateKey,
+					mnemonic: testWallet.privateKey,
 				},
 				data: {
 					from: testWallet.address,

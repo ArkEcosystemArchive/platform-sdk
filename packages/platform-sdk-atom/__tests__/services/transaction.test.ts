@@ -19,7 +19,7 @@ describe("TransactionService", () => {
 
 			const result: any = await subject.transfer({
 				sign: {
-					passphrase: "this is a top secret passphrase",
+					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
 					amount: "1",

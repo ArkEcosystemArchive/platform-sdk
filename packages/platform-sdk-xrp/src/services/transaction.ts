@@ -35,7 +35,7 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const sender: string = await new IdentityService().address().fromPassphrase(input.sign.passphrase);
+		const sender: string = await new IdentityService().address().fromMnemonic(input.sign.mnemonic);
 
 		const prepared = await this.#connection.preparePayment(
 			sender,
@@ -58,7 +58,7 @@ export class TransactionService implements Contracts.TransactionService {
 			{ maxLedgerVersionOffset: 5 },
 		);
 
-		const { signedTransaction } = this.#connection.sign(prepared.txJSON, BIP39.normalize(input.sign.passphrase));
+		const { signedTransaction } = this.#connection.sign(prepared.txJSON, BIP39.normalize(input.sign.mnemonic));
 
 		return signedTransaction;
 	}

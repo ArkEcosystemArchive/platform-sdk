@@ -12,7 +12,7 @@ describe("MessageService", () => {
 	it("should sign and verify a message", async () => {
 		const result: any = await subject.sign({
 			message: "Hello World",
-			passphrase: identity.passphrase,
+			mnemonic: identity.mnemonic,
 		});
 
 		await expect(subject.verify(result)).resolves.toBeTrue();

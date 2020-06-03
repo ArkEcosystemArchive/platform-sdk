@@ -35,7 +35,7 @@ export class TransactionService implements Contracts.TransactionService {
 			1,
 		);
 
-		return this.#connection.trx.sign(transaction, BIP39.normalize(input.sign.passphrase));
+		return this.#connection.trx.sign(transaction, BIP39.normalize(input.sign.mnemonic));
 	}
 
 	public async secondSignature(

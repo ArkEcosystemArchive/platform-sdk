@@ -23,7 +23,7 @@ describe("TransactionService", () => {
 
 			const result: any = await subject.transfer({
 				sign: {
-					passphrase: identity.passphrase,
+					mnemonic: identity.mnemonic,
 				},
 				data: {
 					amount: "10000000",

@@ -44,7 +44,7 @@ export class TransactionService implements Contracts.TransactionService {
 			...input,
 			...{
 				data: {
-					secondPassphrase: BIP39.normalize(input.data.passphrase),
+					secondPassphrase: BIP39.normalize(input.data.mnemonic),
 				},
 			},
 		});
@@ -180,8 +180,8 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// todo: support multisignature
 
-		if (input.sign.passphrase) {
-			struct.passphrase = BIP39.normalize(input.sign.passphrase);
+		if (input.sign.mnemonic) {
+			struct.mnemonic = BIP39.normalize(input.sign.mnemonic);
 		}
 
 		if (input.sign.secondPassphrase) {

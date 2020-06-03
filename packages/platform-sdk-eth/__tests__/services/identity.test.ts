@@ -10,8 +10,8 @@ beforeEach(async () => (subject = await IdentityService.construct(createConfig()
 
 describe("IdentityService", () => {
 	describe("#address", () => {
-		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.address().fromPassphrase(identity.passphrase);
+		it("should generate an output from a mnemonic", async () => {
+			const result: any = await subject.address().fromMnemonic(identity.mnemonic);
 
 			expect(result).toBe(identity.address);
 		});
@@ -40,8 +40,8 @@ describe("IdentityService", () => {
 	});
 
 	describe("#publicKey", () => {
-		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.publicKey().fromPassphrase(identity.passphrase);
+		it("should generate an output from a mnemonic", async () => {
+			const result: any = await subject.publicKey().fromMnemonic(identity.mnemonic);
 
 			expect(result).toBe(identity.publicKey);
 		});
@@ -58,8 +58,8 @@ describe("IdentityService", () => {
 	});
 
 	describe("#privateKey", () => {
-		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.privateKey().fromPassphrase(identity.passphrase);
+		it("should generate an output from a mnemonic", async () => {
+			const result: any = await subject.privateKey().fromMnemonic(identity.mnemonic);
 
 			expect(result).toBe(identity.privateKey);
 		});
@@ -70,14 +70,14 @@ describe("IdentityService", () => {
 	});
 
 	describe("#wif", () => {
-		it("should generate an output from a passphrase", async () => {
-			await expect(subject.wif().fromPassphrase(identity.passphrase)).rejects.toThrow(/is not supported/);
+		it("should generate an output from a mnemonic", async () => {
+			await expect(subject.wif().fromMnemonic(identity.mnemonic)).rejects.toThrow(/is not supported/);
 		});
 	});
 
 	describe("#keys", () => {
-		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.keys().fromPassphrase(identity.passphrase);
+		it("should generate an output from a mnemonic", async () => {
+			const result: any = await subject.keys().fromMnemonic(identity.mnemonic);
 
 			expect(result).toEqual({
 				privateKey: identity.privateKey,

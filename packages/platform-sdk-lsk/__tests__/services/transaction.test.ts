@@ -15,7 +15,7 @@ describe("TransactionService", () => {
 
 			const result: any = await service.transfer({
 				sign: {
-					passphrase: identity.passphrase,
+					mnemonic: identity.mnemonic,
 				},
 				data: {
 					amount: "1",
@@ -31,10 +31,10 @@ describe("TransactionService", () => {
 		it("should verify", async () => {
 			const result: any = await subject.secondSignature({
 				sign: {
-					passphrase: identity.passphrase,
+					mnemonic: identity.mnemonic,
 				},
 				data: {
-					passphrase: identity.passphrase,
+					mnemonic: identity.mnemonic,
 				},
 			});
 
@@ -46,7 +46,7 @@ describe("TransactionService", () => {
 		it("should verify", async () => {
 			const result: any = await subject.delegateRegistration({
 				sign: {
-					passphrase: identity.passphrase,
+					mnemonic: identity.mnemonic,
 				},
 				data: {
 					username: "johndoe",
@@ -61,7 +61,7 @@ describe("TransactionService", () => {
 		it("should verify", async () => {
 			const result: any = await subject.vote({
 				sign: {
-					passphrase: identity.passphrase,
+					mnemonic: identity.mnemonic,
 				},
 				data: {
 					vote: "9d3058175acab969f41ad9b86f7a2926c74258670fe56b37c429c01fca9f2f0f",
@@ -75,7 +75,7 @@ describe("TransactionService", () => {
 	describe("#multiSignature", () => {
 		it("should verify", async () => {
 			const result: any = await subject.multiSignature({
-				sign: { passphrase: identity.passphrase },
+				sign: { mnemonic: identity.mnemonic },
 				data: {
 					publicKeys: [
 						"9d3058175acab969f41ad9b86f7a2926c74258670fe56b37c429c01fca9f2f0f",

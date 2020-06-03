@@ -13,10 +13,10 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const passphrase: string = BIP39.normalize(input.passphrase);
-		const signature = Neon.sign.message(input.message, passphrase);
+		const mnemonic: string = BIP39.normalize(input.mnemonic);
+		const signature = Neon.sign.message(input.message, mnemonic);
 
-		return { message: input.message, signer: new wallet.Account(passphrase).publicKey, signature };
+		return { message: input.message, signer: new wallet.Account(mnemonic).publicKey, signature };
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {

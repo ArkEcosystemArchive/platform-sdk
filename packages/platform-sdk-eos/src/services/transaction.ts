@@ -36,7 +36,7 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const { client, signatureProvider } = this.getClient(input.sign.passphrase);
+		const { client, signatureProvider } = this.getClient(input.sign.mnemonic);
 
 		const transfer = await client.transact(
 			{

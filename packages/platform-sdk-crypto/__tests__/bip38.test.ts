@@ -3,19 +3,19 @@ import wif from "wif";
 
 import { BIP38 } from "../src/bip38";
 
-const passphrase: string = "TestingOneTwoThree";
+const mnemonic: string = "TestingOneTwoThree";
 
 test("#encrypt", async () => {
 	// @ts-ignore
 	const { compressed, privateKey } = wif.decode("5KN7MzqK5wt2TP1fQCYyHBtDrXdJuXbUzm4A9rKAteGu3Qi5CVR");
 
-	expect(BIP38.encrypt(privateKey, passphrase, compressed)).toBe(
+	expect(BIP38.encrypt(privateKey, mnemonic, compressed)).toBe(
 		"6PRVWUbkzzsbcVac2qwfssoUJAN1Xhrg6bNk8J7Nzm5H7kxEbn2Nh2ZoGg",
 	);
 });
 
 test("#decrypt", async () => {
-	expect(BIP38.decrypt("6PRVWUbkzzsbcVac2qwfssoUJAN1Xhrg6bNk8J7Nzm5H7kxEbn2Nh2ZoGg", passphrase)).toEqual({
+	expect(BIP38.decrypt("6PRVWUbkzzsbcVac2qwfssoUJAN1Xhrg6bNk8J7Nzm5H7kxEbn2Nh2ZoGg", mnemonic)).toEqual({
 		compressed: false,
 		privateKey: "cbf4b9f70470856bb4f40f80b87edb90865997ffee6df315ab166d713af433a5",
 	});

@@ -2,8 +2,8 @@ import { Identities } from "@arkecosystem/crypto";
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 export class PublicKey implements Contracts.PublicKey {
-	public async fromPassphrase(passphrase: string): Promise<string> {
-		return Identities.PublicKey.fromPassphrase(passphrase);
+	public async fromMnemonic(mnemonic: string): Promise<string> {
+		return Identities.PublicKey.fromPassphrase(mnemonic);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

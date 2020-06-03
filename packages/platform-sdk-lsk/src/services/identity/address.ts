@@ -3,8 +3,8 @@ import * as cryptography from "@liskhq/lisk-cryptography";
 import * as transactions from "@liskhq/lisk-transactions";
 
 export class Address implements Contracts.Address {
-	public async fromPassphrase(passphrase: string): Promise<string> {
-		return cryptography.getAddressFromPassphrase(passphrase);
+	public async fromMnemonic(mnemonic: string): Promise<string> {
+		return cryptography.getAddressFromPassphrase(mnemonic);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

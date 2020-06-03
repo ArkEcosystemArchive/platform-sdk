@@ -28,7 +28,7 @@ describe("TransactionService", () => {
 			const result: any = await subject.transfer({
 				nonce: "1",
 				sign: {
-					passphrase: "this is a top secret passphrase",
+					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
 					amount: "1",
@@ -45,10 +45,10 @@ describe("TransactionService", () => {
 			const result: any = await subject.secondSignature({
 				nonce: "1",
 				sign: {
-					passphrase: "this is a top secret passphrase",
+					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
-					passphrase: "this is a top secret second passphrase",
+					mnemonic: "this is a top secret second mnemonic",
 				},
 			});
 
@@ -61,7 +61,7 @@ describe("TransactionService", () => {
 			const result: any = await subject.delegateRegistration({
 				nonce: "1",
 				sign: {
-					passphrase: "this is a top secret passphrase",
+					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
 					username: "johndoe",
@@ -77,7 +77,7 @@ describe("TransactionService", () => {
 			const result: any = await subject.vote({
 				nonce: "1",
 				sign: {
-					passphrase: "this is a top secret passphrase",
+					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
 					vote: "+03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
@@ -102,12 +102,12 @@ describe("TransactionService", () => {
 					senderPublicKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
 				},
 				sign: {
-					passphrases: [
+					mnemonics: [
 						"this is a top secret passphrase 1",
 						"this is a top secret passphrase 2",
 						"this is a top secret passphrase 3",
 					],
-					passphrase: "this is a top secret passphrase 1",
+					mnemonic: "this is a top secret passphrase 1",
 				},
 			});
 
@@ -120,7 +120,7 @@ describe("TransactionService", () => {
 			const result: any = await subject.ipfs({
 				nonce: "1",
 				sign: {
-					passphrase: "this is a top secret passphrase",
+					mnemonic: "this is a top secret passphrase",
 				},
 				data: { hash: "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9w" },
 			});
@@ -134,7 +134,7 @@ describe("TransactionService", () => {
 			const result: any = await subject.multiPayment({
 				nonce: "1",
 				sign: {
-					passphrase: "this is a top secret passphrase",
+					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
 					payments: [
@@ -154,7 +154,7 @@ describe("TransactionService", () => {
 			const result: any = await subject.delegateResignation({
 				nonce: "1",
 				sign: {
-					passphrase: "this is a top secret passphrase",
+					mnemonic: "this is a top secret passphrase",
 				},
 			});
 
@@ -167,7 +167,7 @@ describe("TransactionService", () => {
 			const result: any = await subject.htlcLock({
 				nonce: "1",
 				sign: {
-					passphrase: "this is a top secret passphrase",
+					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
 					amount: "1",
@@ -189,7 +189,7 @@ describe("TransactionService", () => {
 			const result: any = await subject.htlcClaim({
 				nonce: "1",
 				sign: {
-					passphrase: "this is a top secret passphrase",
+					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
 					lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
@@ -206,7 +206,7 @@ describe("TransactionService", () => {
 			const result: any = await subject.htlcRefund({
 				nonce: "1",
 				sign: {
-					passphrase: "this is a top secret passphrase",
+					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
 					lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",

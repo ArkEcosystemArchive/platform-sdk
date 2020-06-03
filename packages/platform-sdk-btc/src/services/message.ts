@@ -22,13 +22,13 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const passphrase: string = BIP39.normalize(input.passphrase);
-		const privateKey = PrivateKey.fromWIF(passphrase);
+		const mnemonic: string = BIP39.normalize(input.mnemonic);
+		const privateKey = PrivateKey.fromWIF(mnemonic);
 		const message = new Message(input.message);
 
 		return {
 			message: input.message,
-			signer: await this.#identity.address().fromWIF(passphrase),
+			signer: await this.#identity.address().fromWIF(mnemonic),
 			signature: message.sign(privateKey),
 		};
 	}

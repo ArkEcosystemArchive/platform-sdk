@@ -104,7 +104,7 @@ describe("ClientService", function () {
 			const result = await subject.broadcast([
 				await transactionService.transfer({
 					sign: {
-						passphrase: identity.passphrase,
+						mnemonic: identity.mnemonic,
 					},
 					data: {
 						amount: "10000000",
@@ -136,7 +136,7 @@ describe("ClientService", function () {
 			const result = await subject.broadcast([
 				await transactionService.transfer({
 					sign: {
-						passphrase: identity.passphrase,
+						mnemonic: identity.mnemonic,
 					},
 					data: {
 						amount: "10000000",

@@ -14,5 +14,5 @@ export interface SignedMessage {
 
 export interface MessageInput {
 	message: string;
-	passphrase: string;
+	mnemonic: string;
 }
