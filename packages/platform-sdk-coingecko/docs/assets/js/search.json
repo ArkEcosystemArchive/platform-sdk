@@ -138,21 +138,13 @@
 		{
 			"id": 18,
 			"kind": 1024,
-			"name": "#client",
-			"url": "classes/_index_.pricetracker.html#_client",
+			"name": "#host",
+			"url": "classes/_index_.pricetracker.html#_host",
 			"classes": "tsd-kind-property tsd-parent-kind-class tsd-is-private",
 			"parent": "\"index\".PriceTracker"
 		},
 		{
 			"id": 19,
-			"kind": 512,
-			"name": "constructor",
-			"url": "classes/_index_.pricetracker.html#constructor",
-			"classes": "tsd-kind-constructor tsd-parent-kind-class",
-			"parent": "\"index\".PriceTracker"
-		},
-		{
-			"id": 20,
 			"kind": 2048,
 			"name": "verifyToken",
 			"url": "classes/_index_.pricetracker.html#verifytoken",
@@ -160,7 +152,7 @@
 			"parent": "\"index\".PriceTracker"
 		},
 		{
-			"id": 21,
+			"id": 20,
 			"kind": 2048,
 			"name": "marketData",
 			"url": "classes/_index_.pricetracker.html#marketdata",
@@ -168,7 +160,7 @@
 			"parent": "\"index\".PriceTracker"
 		},
 		{
-			"id": 22,
+			"id": 21,
 			"kind": 2048,
 			"name": "historicalPrice",
 			"url": "classes/_index_.pricetracker.html#historicalprice",
@@ -176,7 +168,7 @@
 			"parent": "\"index\".PriceTracker"
 		},
 		{
-			"id": 23,
+			"id": 22,
 			"kind": 2048,
 			"name": "historicalVolume",
 			"url": "classes/_index_.pricetracker.html#historicalvolume",
@@ -184,7 +176,7 @@
 			"parent": "\"index\".PriceTracker"
 		},
 		{
-			"id": 24,
+			"id": 23,
 			"kind": 2048,
 			"name": "dailyAverage",
 			"url": "classes/_index_.pricetracker.html#dailyaverage",
@@ -192,10 +184,18 @@
 			"parent": "\"index\".PriceTracker"
 		},
 		{
-			"id": 25,
+			"id": 24,
 			"kind": 2048,
 			"name": "getTokenId",
 			"url": "classes/_index_.pricetracker.html#gettokenid",
+			"classes": "tsd-kind-method tsd-parent-kind-class tsd-is-private",
+			"parent": "\"index\".PriceTracker"
+		},
+		{
+			"id": 25,
+			"kind": 2048,
+			"name": "get",
+			"url": "classes/_index_.pricetracker.html#get",
 			"classes": "tsd-kind-method tsd-parent-kind-class tsd-is-private",
 			"parent": "\"index\".PriceTracker"
 		}
@@ -208,7 +208,7 @@
 			["parent/0", []],
 			["name/1", [3, 30.946]],
 			["parent/1", [0, 0.699, 1, 1.178, 2, 1.054]],
-			["name/2", [4, 19.183]],
+			["name/2", [4, 21.874]],
 			["parent/2", [0, 0.699, 1, 1.178, 5, 1.513]],
 			["name/3", [6, 21.874]],
 			["parent/3", [0, 0.699, 1, 1.178, 5, 1.513]],
@@ -218,7 +218,7 @@
 			["parent/5", []],
 			["name/6", [9, 30.946]],
 			["parent/6", [0, 0.699, 2, 1.054, 8, 1.178]],
-			["name/7", [4, 19.183]],
+			["name/7", [4, 21.874]],
 			["parent/7", [0, 0.699, 8, 1.178, 10, 1.513]],
 			["name/8", [6, 21.874]],
 			["parent/8", [0, 0.699, 8, 1.178, 10, 1.513]],
@@ -228,7 +228,7 @@
 			["parent/10", []],
 			["name/11", [12, 30.946]],
 			["parent/11", [2, 1.298, 11, 1.45]],
-			["name/12", [4, 19.183]],
+			["name/12", [4, 21.874]],
 			["parent/12", [11, 1.45, 13, 1.862]],
 			["name/13", [6, 21.874]],
 			["parent/13", [11, 1.45, 13, 1.862]],
@@ -242,31 +242,32 @@
 			["parent/17", [17, 1.237]],
 			["name/18", [18, 30.946]],
 			["parent/18", [17, 1.237]],
-			["name/19", [4, 19.183]],
+			["name/19", [19, 30.946]],
 			["parent/19", [17, 1.237]],
-			["name/20", [19, 30.946]],
+			["name/20", [20, 30.946]],
 			["parent/20", [17, 1.237]],
-			["name/21", [20, 30.946]],
+			["name/21", [21, 30.946]],
 			["parent/21", [17, 1.237]],
-			["name/22", [21, 30.946]],
+			["name/22", [22, 30.946]],
 			["parent/22", [17, 1.237]],
-			["name/23", [22, 30.946]],
+			["name/23", [23, 30.946]],
 			["parent/23", [17, 1.237]],
-			["name/24", [23, 30.946]],
+			["name/24", [24, 30.946]],
 			["parent/24", [17, 1.237]],
-			["name/25", [24, 30.946]],
+			["name/25", [25, 30.946]],
 			["parent/25", [17, 1.237]]
 		],
 		"invertedIndex": [
-			["client", { "_index": 18, "name": { "18": {} }, "parent": {} }],
-			["constructor", { "_index": 4, "name": { "2": {}, "7": {}, "12": {}, "19": {} }, "parent": {} }],
-			["dailyaverage", { "_index": 23, "name": { "24": {} }, "parent": {} }],
+			["constructor", { "_index": 4, "name": { "2": {}, "7": {}, "12": {} }, "parent": {} }],
+			["dailyaverage", { "_index": 23, "name": { "23": {} }, "parent": {} }],
 			["data", { "_index": 6, "name": { "3": {}, "8": {}, "13": {} }, "parent": {} }],
-			["gettokenid", { "_index": 24, "name": { "25": {} }, "parent": {} }],
-			["historicalprice", { "_index": 21, "name": { "22": {} }, "parent": {} }],
+			["get", { "_index": 25, "name": { "25": {} }, "parent": {} }],
+			["gettokenid", { "_index": 24, "name": { "24": {} }, "parent": {} }],
+			["historicalprice", { "_index": 21, "name": { "21": {} }, "parent": {} }],
 			["historicalpricetransformer", { "_index": 3, "name": { "1": {} }, "parent": {} }],
-			["historicalvolume", { "_index": 22, "name": { "23": {} }, "parent": {} }],
+			["historicalvolume", { "_index": 22, "name": { "22": {} }, "parent": {} }],
 			["historicalvolumetransformer", { "_index": 9, "name": { "6": {} }, "parent": {} }],
+			["host", { "_index": 18, "name": { "18": {} }, "parent": {} }],
 			["index", { "_index": 14, "name": { "15": {} }, "parent": { "16": {} } }],
 			[
 				"index\".pricetracker",
@@ -286,7 +287,7 @@
 					}
 				}
 			],
-			["marketdata", { "_index": 20, "name": { "21": {} }, "parent": {} }],
+			["marketdata", { "_index": 20, "name": { "20": {} }, "parent": {} }],
 			["markettransformer", { "_index": 12, "name": { "11": {} }, "parent": {} }],
 			["price", { "_index": 1, "name": { "0": {} }, "parent": { "1": {}, "2": {}, "3": {}, "4": {} } }],
 			["pricetracker", { "_index": 15, "name": { "16": {} }, "parent": {} }],
@@ -320,7 +321,7 @@
 				"transformers/market",
 				{ "_index": 11, "name": { "10": {} }, "parent": { "11": {}, "12": {}, "13": {}, "14": {} } }
 			],
-			["verifytoken", { "_index": 19, "name": { "20": {} }, "parent": {} }],
+			["verifytoken", { "_index": 19, "name": { "19": {} }, "parent": {} }],
 			["volume", { "_index": 8, "name": { "5": {} }, "parent": { "6": {}, "7": {}, "8": {}, "9": {} } }]
 		],
 		"pipeline": []

@@ -84,8 +84,8 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_identity_.publickey.html#frommnemonic" class="tsd-kind-icon">from<wbr>Mnemonic</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_identity_.publickey.html#frommultisignature" class="tsd-kind-icon">from<wbr>Multi<wbr>Signature</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_identity_.publickey.html#frompassphrase" class="tsd-kind-icon">from<wbr>Passphrase</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_identity_.publickey.html#fromwif" class="tsd-kind-icon">fromWIF</a></li>
 							</ul>
 						</section>
@@ -94,6 +94,29 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="frommnemonic" class="tsd-anchor"></a>
+					<h3>from<wbr>Mnemonic</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">from<wbr>Mnemonic<span class="tsd-signature-symbol">(</span>mnemonic<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk/src/contracts/coins/identity.ts#L30">packages/platform-sdk/src/contracts/coins/identity.ts:30</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>mnemonic: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="frommultisignature" class="tsd-anchor"></a>
 					<h3>from<wbr>Multi<wbr>Signature</h3>
@@ -104,7 +127,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk/src/contracts/coins/identity.ts#L30">packages/platform-sdk/src/contracts/coins/identity.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk/src/contracts/coins/identity.ts#L31">packages/platform-sdk/src/contracts/coins/identity.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -121,29 +144,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="frompassphrase" class="tsd-anchor"></a>
-					<h3>from<wbr>Passphrase</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">from<wbr>Passphrase<span class="tsd-signature-symbol">(</span>passphrase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk/src/contracts/coins/identity.ts#L29">packages/platform-sdk/src/contracts/coins/identity.ts:29</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>passphrase: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="fromwif" class="tsd-anchor"></a>
 					<h3>fromWIF</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -153,7 +153,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk/src/contracts/coins/identity.ts#L31">packages/platform-sdk/src/contracts/coins/identity.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk/src/contracts/coins/identity.ts#L32">packages/platform-sdk/src/contracts/coins/identity.ts:32</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -202,10 +202,10 @@
 						<a href="_contracts_coins_identity_.publickey.html" class="tsd-kind-icon">Public<wbr>Key</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_contracts_coins_identity_.publickey.html#frommultisignature" class="tsd-kind-icon">from<wbr>Multi<wbr>Signature</a>
+								<a href="_contracts_coins_identity_.publickey.html#frommnemonic" class="tsd-kind-icon">from<wbr>Mnemonic</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_contracts_coins_identity_.publickey.html#frompassphrase" class="tsd-kind-icon">from<wbr>Passphrase</a>
+								<a href="_contracts_coins_identity_.publickey.html#frommultisignature" class="tsd-kind-icon">from<wbr>Multi<wbr>Signature</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_contracts_coins_identity_.publickey.html#fromwif" class="tsd-kind-icon">fromWIF</a>

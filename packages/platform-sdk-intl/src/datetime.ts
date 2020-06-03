@@ -1,12 +1,12 @@
-import dayjs, { QUnitType, ConfigType } from "dayjs";
+import dayjs, { ConfigType, QUnitType } from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import dayOfYear from "dayjs/plugin/dayOfYear";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import quarterOfYear from "dayjs/plugin/quarterOfYear";
+import relativeTime from "dayjs/plugin/relativeTime";
 import toObject from "dayjs/plugin/toObject";
 import utc from "dayjs/plugin/utc";
 import weekOfYear from "dayjs/plugin/weekOfYear";
-import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(advancedFormat);
 dayjs.extend(dayOfYear);

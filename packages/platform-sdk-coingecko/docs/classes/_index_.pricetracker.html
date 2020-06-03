@@ -87,16 +87,10 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_index_.pricetracker.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_index_.pricetracker.html#_client" class="tsd-kind-icon">#client</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_index_.pricetracker.html#_host" class="tsd-kind-icon">#host</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_index_.pricetracker.html#tokenlookup" class="tsd-kind-icon">token<wbr>Lookup</a></li>
 							</ul>
 						</section>
@@ -104,6 +98,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_index_.pricetracker.html#dailyaverage" class="tsd-kind-icon">daily<wbr>Average</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_index_.pricetracker.html#get" class="tsd-kind-icon">get</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_index_.pricetracker.html#gettokenid" class="tsd-kind-icon">get<wbr>Token<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_index_.pricetracker.html#historicalprice" class="tsd-kind-icon">historical<wbr>Price</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_index_.pricetracker.html#historicalvolume" class="tsd-kind-icon">historical<wbr>Volume</a></li>
@@ -114,35 +109,15 @@
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Price<wbr>Tracker<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_index_.pricetracker.html" class="tsd-signature-type">PriceTracker</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-coingecko/src/index.ts#L12">index.ts:12</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_index_.pricetracker.html" class="tsd-signature-type">PriceTracker</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_client" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #client</h3>
-					<div class="tsd-signature tsd-kind-icon">#client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Http</span></div>
+					<a name="_host" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #host</h3>
+					<div class="tsd-signature tsd-kind-icon">#host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;https://api.coingecko.com/api/v3&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-coingecko/src/index.ts#L12">index.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-coingecko/src/index.ts#L12">index.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -152,7 +127,7 @@
 					<div class="tsd-signature tsd-kind-icon">token<wbr>Lookup<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Contracts.KeyValuePair</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-coingecko/src/index.ts#L10">index.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-coingecko/src/index.ts#L10">index.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -169,7 +144,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-coingecko/src/index.ts#L65">index.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-coingecko/src/index.ts#L61">index.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -183,6 +158,34 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="get" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, searchParams<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-coingecko/src/index.ts#L81">index.ts:81</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> searchParams: <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<ul class="tsd-parameters">
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="gettokenid" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Token<wbr>Id</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -192,7 +195,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-coingecko/src/index.ts#L69">index.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-coingecko/src/index.ts#L65">index.ts:65</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -215,7 +218,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-coingecko/src/index.ts#L41">index.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-coingecko/src/index.ts#L37">index.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -238,7 +241,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-coingecko/src/index.ts#L52">index.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-coingecko/src/index.ts#L48">index.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -261,7 +264,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-coingecko/src/index.ts#L33">index.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-coingecko/src/index.ts#L29">index.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -284,7 +287,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-coingecko/src/index.ts#L18">index.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-coingecko/src/index.ts#L14">index.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -326,17 +329,17 @@
 					<li class="current tsd-kind-class tsd-parent-kind-module">
 						<a href="_index_.pricetracker.html" class="tsd-kind-icon">Price<wbr>Tracker</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_index_.pricetracker.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_index_.pricetracker.html#_client" class="tsd-kind-icon">#client</a>
+								<a href="_index_.pricetracker.html#_host" class="tsd-kind-icon">#host</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_index_.pricetracker.html#tokenlookup" class="tsd-kind-icon">token<wbr>Lookup</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_index_.pricetracker.html#dailyaverage" class="tsd-kind-icon">daily<wbr>Average</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_index_.pricetracker.html#get" class="tsd-kind-icon">get</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_index_.pricetracker.html#gettokenid" class="tsd-kind-icon">get<wbr>Token<wbr>Id</a>
@@ -368,7 +371,6 @@
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">

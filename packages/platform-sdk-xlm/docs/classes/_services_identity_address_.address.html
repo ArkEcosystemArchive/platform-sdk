@@ -90,11 +90,12 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_services_identity_address_.address.html#frommnemonic" class="tsd-kind-icon">from<wbr>Mnemonic</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_services_identity_address_.address.html#frommultisignature" class="tsd-kind-icon">from<wbr>Multi<wbr>Signature</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_services_identity_address_.address.html#frompassphrase" class="tsd-kind-icon">from<wbr>Passphrase</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_services_identity_address_.address.html#fromprivatekey" class="tsd-kind-icon">from<wbr>Private<wbr>Key</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_services_identity_address_.address.html#frompublickey" class="tsd-kind-icon">from<wbr>Public<wbr>Key</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_services_identity_address_.address.html#fromwif" class="tsd-kind-icon">fromWIF</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_services_identity_address_.address.html#validate" class="tsd-kind-icon">validate</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,6 +103,29 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="frommnemonic" class="tsd-anchor"></a>
+					<h3>from<wbr>Mnemonic</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">from<wbr>Mnemonic<span class="tsd-signature-symbol">(</span>mnemonic<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-xlm/src/services/identity/address.ts#L6">platform-sdk-xlm/src/services/identity/address.ts:6</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>mnemonic: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="frommultisignature" class="tsd-anchor"></a>
 					<h3>from<wbr>Multi<wbr>Signature</h3>
@@ -112,7 +136,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-xlm/src/services/identity/address.ts#L10">platform-sdk-xlm/src/services/identity/address.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-xlm/src/services/identity/address.ts#L10">platform-sdk-xlm/src/services/identity/address.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -129,29 +153,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="frompassphrase" class="tsd-anchor"></a>
-					<h3>from<wbr>Passphrase</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">from<wbr>Passphrase<span class="tsd-signature-symbol">(</span>passphrase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-xlm/src/services/identity/address.ts#L6">platform-sdk-xlm/src/services/identity/address.ts:6</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>passphrase: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="fromprivatekey" class="tsd-anchor"></a>
 					<h3>from<wbr>Private<wbr>Key</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -161,7 +162,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-xlm/src/services/identity/address.ts#L18">platform-sdk-xlm/src/services/identity/address.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-xlm/src/services/identity/address.ts#L18">platform-sdk-xlm/src/services/identity/address.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -184,7 +185,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-xlm/src/services/identity/address.ts#L14">platform-sdk-xlm/src/services/identity/address.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-xlm/src/services/identity/address.ts#L14">platform-sdk-xlm/src/services/identity/address.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -207,7 +208,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-xlm/src/services/identity/address.ts#L22">platform-sdk-xlm/src/services/identity/address.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-xlm/src/services/identity/address.ts#L22">platform-sdk-xlm/src/services/identity/address.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -217,6 +218,29 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="validate" class="tsd-anchor"></a>
+					<h3>validate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">validate<span class="tsd-signature-symbol">(</span>address<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-xlm/src/services/identity/address.ts#L26">platform-sdk-xlm/src/services/identity/address.ts:26</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>address: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -304,10 +328,10 @@
 						<a href="_services_identity_address_.address.html" class="tsd-kind-icon">Address</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_services_identity_address_.address.html#frommultisignature" class="tsd-kind-icon">from<wbr>Multi<wbr>Signature</a>
+								<a href="_services_identity_address_.address.html#frommnemonic" class="tsd-kind-icon">from<wbr>Mnemonic</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_services_identity_address_.address.html#frompassphrase" class="tsd-kind-icon">from<wbr>Passphrase</a>
+								<a href="_services_identity_address_.address.html#frommultisignature" class="tsd-kind-icon">from<wbr>Multi<wbr>Signature</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_services_identity_address_.address.html#fromprivatekey" class="tsd-kind-icon">from<wbr>Private<wbr>Key</a>
@@ -317,6 +341,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_services_identity_address_.address.html#fromwif" class="tsd-kind-icon">fromWIF</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_services_identity_address_.address.html#validate" class="tsd-kind-icon">validate</a>
 							</li>
 						</ul>
 					</li>
