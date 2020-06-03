@@ -45,12 +45,12 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		// NOTE: this is a WIF/PrivateKey - should probably be passed in as wif instead of passphrase
-		const passphrase: string = BIP39.normalize(input.sign.passphrase);
+		// NOTE: this is a WIF/PrivateKey - should probably be passed in as wif instead of mnemonic
+		const mnemonic: string = BIP39.normalize(input.sign.mnemonic);
 
 		// 1. Derive the sender address
-		const senderAddress: string = await this.#identity.address().fromWIF(passphrase);
-		// ({ wif: input.sign.passphrase });
+		const senderAddress: string = await this.#identity.address().fromWIF(mnemonic);
+		// ({ wif: input.sign.mnemonic });
 
 		// 2. Aggregate the unspent transactions
 		const unspent: UnspentTransaction[] = await this.#unspent.aggregate(senderAddress);
@@ -66,7 +66,7 @@ export class TransactionService implements Contracts.TransactionService {
 			transaction = transaction.fee(input.fee);
 		}
 
-		return transaction.sign(passphrase).toString();
+		return transaction.sign(mnemonic).toString();
 	}
 
 	public async secondSignature(

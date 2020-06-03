@@ -12,12 +12,12 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const passphrase: string = BIP39.normalize(input.passphrase);
+		const mnemonic: string = BIP39.normalize(input.mnemonic);
 
 		return {
 			message: input.message,
-			signer: ecc.privateToPublic(passphrase),
-			signature: ecc.sign(input.message, passphrase),
+			signer: ecc.privateToPublic(mnemonic),
+			signature: ecc.sign(input.message, mnemonic),
 		};
 	}
 

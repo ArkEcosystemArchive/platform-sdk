@@ -2,8 +2,8 @@ import { Identities } from "@arkecosystem/crypto";
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class Address implements Contracts.Address {
-	public async fromPassphrase(passphrase: string): Promise<string> {
-		return Identities.Address.fromPassphrase(passphrase);
+	public async fromMnemonic(mnemonic: string): Promise<string> {
+		return Identities.Address.fromPassphrase(mnemonic);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

@@ -9,8 +9,8 @@ export class PrivateKey implements Contracts.PrivateKey {
 		this.#keys = new Keys(slip44);
 	}
 
-	public async fromPassphrase(passphrase: string): Promise<string> {
-		const { privateKey } = await this.#keys.fromPassphrase(passphrase);
+	public async fromMnemonic(mnemonic: string): Promise<string> {
+		const { privateKey } = await this.#keys.fromMnemonic(mnemonic);
 
 		if (!privateKey) {
 			throw new Error("Failed to derive the private key.");

@@ -4,7 +4,7 @@ export const identity = {
 	publicKey: "0360729fb3c4733e43bf91e5208b0d240f8d8de239cff3f2ebd616b94faa0007f4",
 	address: "12eUJoaWBENQ3tNZE52ZQaHqr3v4tTX4os",
 	wif: "KwG2BU1ERd3ndbFUrdpR7ymLZbsd7xZpPKxsgJzUf76A4q9CkBpY",
-	passphrase: "praise you muffin lion enable neck grocery crumble super myself license ghost",
+	mnemonic: "praise you muffin lion enable neck grocery crumble super myself license ghost",
 	// Multi Signature
 	multiSignature: {
 		min: 2,

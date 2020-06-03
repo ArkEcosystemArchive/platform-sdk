@@ -2481,7 +2481,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@liskhq/lisk-api-client", "npm:2.0.3"],
             ["@liskhq/lisk-constants", "npm:1.2.3"],
             ["@liskhq/lisk-cryptography", "npm:2.3.0"],
-            ["@liskhq/lisk-passphrase", "npm:2.0.3"],
+            ["@liskhq/lisk-mnemonic", "npm:2.0.3"],
             ["@liskhq/lisk-transactions", "npm:2.3.1"],
             ["@types/node", "npm:10.12.21"]
           ],
@@ -2494,7 +2494,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@liskhq/lisk-api-client", "npm:3.0.0"],
             ["@liskhq/lisk-constants", "npm:1.3.0"],
             ["@liskhq/lisk-cryptography", "npm:2.4.0"],
-            ["@liskhq/lisk-passphrase", "npm:3.0.0"],
+            ["@liskhq/lisk-mnemonic", "npm:3.0.0"],
             ["@liskhq/lisk-transactions", "npm:3.0.0"],
             ["@types/node", "npm:12.12.11"]
           ],
@@ -2566,11 +2566,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["@liskhq/lisk-passphrase", [
+      ["@liskhq/lisk-mnemonic", [
         ["npm:2.0.3", {
-          "packageLocation": "./.yarn/cache/@liskhq-lisk-passphrase-npm-2.0.3-c5bcdc2d3c-2.zip/node_modules/@liskhq/lisk-passphrase/",
+          "packageLocation": "./.yarn/cache/@liskhq-lisk-mnemonic-npm-2.0.3-c5bcdc2d3c-2.zip/node_modules/@liskhq/lisk-mnemonic/",
           "packageDependencies": [
-            ["@liskhq/lisk-passphrase", "npm:2.0.3"],
+            ["@liskhq/lisk-mnemonic", "npm:2.0.3"],
             ["@types/bip39", "npm:2.4.1"],
             ["@types/node", "npm:10.12.21"],
             ["bip39", "npm:2.5.0"]
@@ -2578,9 +2578,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }],
         ["npm:3.0.0", {
-          "packageLocation": "./.yarn/cache/@liskhq-lisk-passphrase-npm-3.0.0-6cf9cd18eb-2.zip/node_modules/@liskhq/lisk-passphrase/",
+          "packageLocation": "./.yarn/cache/@liskhq-lisk-mnemonic-npm-3.0.0-6cf9cd18eb-2.zip/node_modules/@liskhq/lisk-mnemonic/",
           "packageDependencies": [
-            ["@liskhq/lisk-passphrase", "npm:3.0.0"],
+            ["@liskhq/lisk-mnemonic", "npm:3.0.0"],
             ["@types/bip39", "npm:2.4.1"],
             ["@types/node", "npm:12.12.11"],
             ["bip39", "npm:2.5.0"]

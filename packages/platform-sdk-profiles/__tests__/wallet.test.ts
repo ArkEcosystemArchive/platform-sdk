@@ -24,8 +24,8 @@ beforeEach(async () => {
 
 	const storage = new LocalStorage("localstorage");
 
-	subject = await Wallet.fromPassphrase({
-		passphrase: identity.passphrase,
+	subject = await Wallet.fromMnemonic({
+		mnemonic: identity.mnemonic,
 		coin: ARK,
 		network: "devnet",
 		httpClient: new HttpClient(),

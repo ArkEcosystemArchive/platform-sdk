@@ -31,7 +31,7 @@
 -   Sign-Out
 -   Select Sign-In
 -   At the Sign-In page, change the network to ‘Testnet’
--   Enter passphrase to sign in
+-   Enter mnemonic to sign in
 -   Select the ‘Wallet’ tab
 -   Under ‘Wallet details’, your Lisk testnet address will be displayed.
 
@@ -98,7 +98,7 @@ Follow on-screen instructions to claim tokens
 
 -   Install Metamask Chrome Extension - https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn
 -   Follow on-screen instructions to create a Metamask account
--   Secure passphrase safely
+-   Secure mnemonic safely
 -   Select the Ropsten Network from the Network Switcher
 -   Select ‘Account Details’
 -   Select ‘Export Private Key’

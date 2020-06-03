@@ -12,7 +12,7 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const { publicKey, privateKey } = deriveKeypair(BIP39.normalize(input.passphrase));
+		const { publicKey, privateKey } = deriveKeypair(BIP39.normalize(input.mnemonic));
 
 		return {
 			message: input.message,

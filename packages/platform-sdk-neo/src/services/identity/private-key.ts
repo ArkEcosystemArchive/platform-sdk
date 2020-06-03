@@ -9,8 +9,8 @@ export class PrivateKey implements Contracts.PrivateKey {
 		this.#slip44 = slip44;
 	}
 
-	public async fromPassphrase(passphrase: string): Promise<string> {
-		return deriveWallet(passphrase, this.#slip44).privateKey;
+	public async fromMnemonic(mnemonic: string): Promise<string> {
+		return deriveWallet(mnemonic, this.#slip44).privateKey;
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

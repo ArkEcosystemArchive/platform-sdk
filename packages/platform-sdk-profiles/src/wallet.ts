@@ -25,8 +25,8 @@ export class Wallet {
 		this.#avatar = Avatar.make(this.address());
 	}
 
-	public static async fromPassphrase(input: {
-		passphrase: string;
+	public static async fromMnemonic(input: {
+		mnemonic: string;
 		coin: Coins.CoinSpec;
 		network: string;
 		httpClient: Contracts.HttpClient;
@@ -37,7 +37,7 @@ export class Wallet {
 			httpClient: input.httpClient,
 		});
 
-		const address: string = await coin.identity().address().fromPassphrase(input.passphrase);
+		const address: string = await coin.identity().address().fromMnemonic(input.mnemonic);
 
 		return new Wallet({ coin, storage: input.storage, wallet: await coin.client().wallet(address) });
 	}

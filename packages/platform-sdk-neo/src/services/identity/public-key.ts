@@ -9,8 +9,8 @@ export class PublicKey implements Contracts.PublicKey {
 		this.#slip44 = slip44;
 	}
 
-	public async fromPassphrase(passphrase: string): Promise<string> {
-		return deriveWallet(passphrase, this.#slip44).publicKey;
+	public async fromMnemonic(mnemonic: string): Promise<string> {
+		return deriveWallet(mnemonic, this.#slip44).publicKey;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

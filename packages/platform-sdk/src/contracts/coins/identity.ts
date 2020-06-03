@@ -18,7 +18,7 @@ export interface KeyPair {
 }
 
 export interface Address {
-	fromPassphrase(passphrase: string): Promise<string>;
+	fromMnemonic(mnemonic: string): Promise<string>;
 	fromMultiSignature(min: number, publicKeys: string[]): Promise<string>;
 	fromPublicKey(publicKey: string): Promise<string>;
 	fromPrivateKey(privateKey: string): Promise<string>;
@@ -27,21 +27,21 @@ export interface Address {
 }
 
 export interface PublicKey {
-	fromPassphrase(passphrase: string): Promise<string>;
+	fromMnemonic(mnemonic: string): Promise<string>;
 	fromMultiSignature(min: number, publicKeys: string[]): Promise<string>;
 	fromWIF(wif: string): Promise<string>;
 }
 
 export interface PrivateKey {
-	fromPassphrase(passphrase: string): Promise<string>;
+	fromMnemonic(mnemonic: string): Promise<string>;
 	fromWIF(wif: string): Promise<string>;
 }
 
 export interface WIF {
-	fromPassphrase(passphrase: string): Promise<string>;
+	fromMnemonic(mnemonic: string): Promise<string>;
 }
 
 export interface Keys {
-	fromPassphrase(passphrase: string): Promise<KeyPair>;
+	fromMnemonic(mnemonic: string): Promise<KeyPair>;
 	fromWIF(wif: string): Promise<KeyPair>;
 }

@@ -24,8 +24,8 @@ beforeEach(async () => {
 
 	const storage = new LocalStorage("localstorage");
 
-	wallet = await Wallet.fromPassphrase({
-		passphrase: identity.passphrase,
+	wallet = await Wallet.fromMnemonic({
+		mnemonic: identity.mnemonic,
 		coin: ARK,
 		network: "devnet",
 		httpClient: new HttpClient(),
@@ -66,7 +66,7 @@ test("#findByCoin", async () => {
 test("#createFromPassphrase", async () => {
 	subject.flush();
 
-	const options = { passphrase: identity.passphrase, coin: ARK, network: "devnet" };
+	const options = { mnemonic: identity.mnemonic, coin: ARK, network: "devnet" };
 
 	expect(subject.all()).toHaveLength(0);
 

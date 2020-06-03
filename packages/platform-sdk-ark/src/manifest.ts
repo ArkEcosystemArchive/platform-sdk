@@ -121,26 +121,26 @@ export const manifest = {
 		},
 		Identity: {
 			address: {
-				passphrase: true,
+				mnemonic: true,
 				multiSignature: true,
 				publicKey: true,
 				privateKey: true,
 				wif: true,
 			},
 			publicKey: {
-				passphrase: true,
+				mnemonic: true,
 				multiSignature: true,
 				wif: true,
 			},
 			privateKey: {
-				passphrase: true,
+				mnemonic: true,
 				wif: true,
 			},
 			wif: {
-				passphrase: true,
+				mnemonic: true,
 			},
 			keyPair: {
-				passphrase: true,
+				mnemonic: true,
 				privateKey: false,
 				wif: true,
 			},
@@ -178,7 +178,7 @@ export const manifest = {
 		},
 	},
 	signingMethods: {
-		passphrase: true,
+		mnemonic: true,
 		privateKey: false,
 		wif: true,
 	},

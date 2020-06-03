@@ -2055,7 +2055,7 @@ __metadata:
     "@liskhq/lisk-api-client": 3.0.0
     "@liskhq/lisk-constants": 1.3.0
     "@liskhq/lisk-cryptography": 2.4.0
-    "@liskhq/lisk-passphrase": 3.0.0
+    "@liskhq/lisk-mnemonic": 3.0.0
     "@liskhq/lisk-transactions": 3.0.0
     "@types/node": 12.12.11
   checksum: 2/98e5314634c004d3aab11f8f499d85c35a0556051b8e5b3ecbe5cd287d78c256a76beb74c1b12ae0ed49e1d66885592a53a293071eaad200e6a3a7282e632e22
@@ -2069,7 +2069,7 @@ __metadata:
     "@liskhq/lisk-api-client": 2.0.3
     "@liskhq/lisk-constants": 1.2.3
     "@liskhq/lisk-cryptography": 2.3.0
-    "@liskhq/lisk-passphrase": 2.0.3
+    "@liskhq/lisk-mnemonic": 2.0.3
     "@liskhq/lisk-transactions": 2.3.1
     "@types/node": 10.12.21
   checksum: 2/436999ac760bbd76b190e1e3ccc05b22cb348a3936d869773220c0afb0a274cce4d6c57fdeafaa43320e5925224891a2ad9ab5b86500dcf16cda467777769e5e
@@ -2151,9 +2151,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@liskhq/lisk-passphrase@npm:2.0.3":
+"@liskhq/lisk-mnemonic@npm:2.0.3":
   version: 2.0.3
-  resolution: "@liskhq/lisk-passphrase@npm:2.0.3"
+  resolution: "@liskhq/lisk-mnemonic@npm:2.0.3"
   dependencies:
     "@types/bip39": 2.4.1
     "@types/node": 10.12.21
@@ -2162,9 +2162,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@liskhq/lisk-passphrase@npm:3.0.0":
+"@liskhq/lisk-mnemonic@npm:3.0.0":
   version: 3.0.0
-  resolution: "@liskhq/lisk-passphrase@npm:3.0.0"
+  resolution: "@liskhq/lisk-mnemonic@npm:3.0.0"
   dependencies:
     "@types/bip39": 2.4.1
     "@types/node": 12.12.11

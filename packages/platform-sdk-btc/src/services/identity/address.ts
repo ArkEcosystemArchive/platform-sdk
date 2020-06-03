@@ -10,8 +10,8 @@ export class Address implements Contracts.Address {
 		this.#network = Bitcoin.Networks[network];
 	}
 
-	public async fromPassphrase(passphrase: string): Promise<string> {
-		return (await p2pkh(passphrase, this.#network.name)).address!;
+	public async fromMnemonic(mnemonic: string): Promise<string> {
+		return (await p2pkh(mnemonic, this.#network.name)).address!;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

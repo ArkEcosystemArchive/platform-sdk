@@ -10,8 +10,8 @@ beforeEach(async () => (subject = await IdentityService.construct(createConfig()
 
 describe("IdentityService", () => {
 	describe("#address", () => {
-		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.address().fromPassphrase(identity.passphrase);
+		it("should generate an output from a mnemonic", async () => {
+			const result: any = await subject.address().fromMnemonic(identity.mnemonic);
 
 			expect(result).toBe(identity.address);
 		});
@@ -24,8 +24,8 @@ describe("IdentityService", () => {
 	});
 
 	describe("#keys", () => {
-		it("should generate an output from a passphrase", async () => {
-			const result: any = await subject.keys().fromPassphrase(identity.passphrase);
+		it("should generate an output from a mnemonic", async () => {
+			const result: any = await subject.keys().fromMnemonic(identity.mnemonic);
 
 			expect(result).toEqual({
 				privateKey: identity.privateKey,

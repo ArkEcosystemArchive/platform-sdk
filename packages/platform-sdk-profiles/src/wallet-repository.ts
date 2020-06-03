@@ -40,11 +40,11 @@ export class WalletRepository {
 	}
 
 	public async createFromPassphrase(input: {
-		passphrase: string;
+		mnemonic: string;
 		coin: Coins.CoinSpec;
 		network: string;
 	}): Promise<Wallet> {
-		const wallet: Wallet = await Wallet.fromPassphrase({
+		const wallet: Wallet = await Wallet.fromMnemonic({
 			...input,
 			httpClient: this.#httpClient,
 			storage: this.#storage,

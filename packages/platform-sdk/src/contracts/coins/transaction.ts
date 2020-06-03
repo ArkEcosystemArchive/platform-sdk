@@ -38,8 +38,8 @@ interface TransactionInput {
 	feeLimit?: string;
 	nonce?: string;
 	sign: {
-		passphrase: string;
-		passphrases?: string[];
+		mnemonic: string;
+		mnemonics?: string[];
 		secondPassphrase?: string;
 		wif?: string;
 		secondWif?: string;
@@ -65,7 +65,7 @@ export interface TransferInput extends TransactionInput {
 }
 
 export interface SecondSignatureInput extends TransactionInput {
-	data: { passphrase: string };
+	data: { mnemonic: string };
 }
 
 export interface DelegateRegistrationInput extends TransactionInput {

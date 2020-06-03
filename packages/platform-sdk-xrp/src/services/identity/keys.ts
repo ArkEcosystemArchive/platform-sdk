@@ -2,8 +2,8 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { deriveKeypair } from "ripple-keypairs";
 
 export class Keys implements Contracts.Keys {
-	public async fromPassphrase(passphrase: string): Promise<Contracts.KeyPair> {
-		return deriveKeypair(passphrase);
+	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
+		return deriveKeypair(mnemonic);
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {

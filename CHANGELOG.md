@@ -246,7 +246,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
--   Normalise passphrases (1eb0d3cb, @faustbrian)
+-   Normalise mnemonics (1eb0d3cb, @faustbrian)
 
 ## 0.8.5 - 2020-05-19
 
@@ -326,7 +326,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
--   Implement passphrase derivation for `IdentityService` for `XLM` (0c5ec51d, @faustbrian)
+-   Implement mnemonic derivation for `IdentityService` for `XLM` (0c5ec51d, @faustbrian)
 -   Implement `ClientService#transactions` (15ffde49, @faustbrian)
 -   Implement `NumberFormatter` and `CurrencyFormatter` (6eebe105, 71d61016, @faustbrian)
 -   Setup boilerplate for `XLM` (a61a40e0, @faustbrian)
@@ -360,7 +360,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
--   Implement passphrase derivation for `ETH` (b6f3931a, @faustbrian)
+-   Implement mnemonic derivation for `ETH` (b6f3931a, @faustbrian)
 -   Implement `IdentityService` for `NEO` (863671f5, @faustbrian)
 -   Implement `MessageService` for `NEO` (8c91be4d, @faustbrian)
 -   Implement `TransactionService#transfer` for `NEO` (1968e333, @faustbrian)
@@ -375,7 +375,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
--   Implement passphrase usage for `IdentityService` for `BTC` (ff3796dd, @faustbrian)
+-   Implement mnemonic usage for `IdentityService` for `BTC` (ff3796dd, @faustbrian)
 
 ### Changed
 
