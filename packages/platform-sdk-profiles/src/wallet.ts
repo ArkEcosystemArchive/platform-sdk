@@ -26,6 +26,7 @@ export class Wallet {
 	}
 
 	public static async fromMnemonic(input: {
+		id: string;
 		mnemonic: string;
 		coin: Coins.CoinSpec;
 		network: string;
@@ -51,6 +52,7 @@ export class Wallet {
 	}
 
 	public avatar(): string {
+		// TODO: get either the setting or default avatar
 		return this.#avatar;
 	}
 
@@ -76,6 +78,15 @@ export class Wallet {
 
 	public settings(): Settings {
 		return this.#settings;
+	}
+
+	public toObject(): object {
+		return {
+			coin: this.coin(), // TODO: turn into string
+			network: this.network(), // TODO: turn into string
+			address: this.address(),
+			publicKey: this.publicKey(),
+		};
 	}
 
 	/**
