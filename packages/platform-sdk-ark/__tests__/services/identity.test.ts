@@ -11,7 +11,7 @@ beforeEach(async () => (subject = await IdentityService.construct(createConfig()
 describe("IdentityService", () => {
 	describe("#address", () => {
 		it("should generate an output from a mnemonic", async () => {
-			const result: any = await subject.address().fromPassphrase(identity.mnemonic);
+			const result: any = await subject.address().fromMnemonic(identity.mnemonic);
 
 			expect(result).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 		});
@@ -45,7 +45,7 @@ describe("IdentityService", () => {
 
 	describe("#publicKey", () => {
 		it("should generate an output from a mnemonic", async () => {
-			const result: any = await subject.publicKey().fromPassphrase(identity.mnemonic);
+			const result: any = await subject.publicKey().fromMnemonic(identity.mnemonic);
 
 			expect(result).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 		});
@@ -67,7 +67,7 @@ describe("IdentityService", () => {
 
 	describe("#privateKey", () => {
 		it("should generate an output from a mnemonic", async () => {
-			const result: any = await subject.privateKey().fromPassphrase(identity.mnemonic);
+			const result: any = await subject.privateKey().fromMnemonic(identity.mnemonic);
 
 			expect(result).toBe("d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712");
 		});
@@ -81,7 +81,7 @@ describe("IdentityService", () => {
 
 	describe("#wif", () => {
 		it("should generate an output from a mnemonic", async () => {
-			const result: any = await subject.wif().fromPassphrase(identity.mnemonic);
+			const result: any = await subject.wif().fromMnemonic(identity.mnemonic);
 
 			expect(result).toBe("SGq4xLgZKCGxs7bjmwnBrWcT4C1ADFEermj846KC97FSv1WFD1dA");
 		});
@@ -89,7 +89,7 @@ describe("IdentityService", () => {
 
 	describe("#keys", () => {
 		it("should generate an output from a mnemonic", async () => {
-			const result: any = await subject.keys().fromPassphrase(identity.mnemonic);
+			const result: any = await subject.keys().fromMnemonic(identity.mnemonic);
 
 			expect(result).toEqual({
 				privateKey: "d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",

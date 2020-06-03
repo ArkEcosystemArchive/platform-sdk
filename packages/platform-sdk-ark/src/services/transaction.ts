@@ -253,7 +253,7 @@ export class TransactionService implements Contracts.TransactionService {
 			let address: string | undefined;
 
 			if (input.sign.mnemonic) {
-				address = await this.#identity.address().fromPassphrase(BIP39.normalize(input.sign.mnemonic));
+				address = await this.#identity.address().fromMnemonic(BIP39.normalize(input.sign.mnemonic));
 			}
 
 			if (input.sign.wif) {
