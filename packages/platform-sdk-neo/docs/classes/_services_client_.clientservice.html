@@ -97,7 +97,8 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_services_client_.clientservice.html#_apiprovider" class="tsd-kind-icon">#api<wbr>Provider</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_services_client_.clientservice.html#_baseurl" class="tsd-kind-icon">#base<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_services_client_.clientservice.html#_http" class="tsd-kind-icon">#http</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_services_client_.clientservice.html#_peer" class="tsd-kind-icon">#peer</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -134,19 +135,27 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Client<wbr>Service<span class="tsd-signature-symbol">(</span>network<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_services_client_.clientservice.html" class="tsd-signature-type">ClientService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Client<wbr>Service<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>http<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>network<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_services_client_.clientservice.html" class="tsd-signature-type">ClientService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L19">platform-sdk-neo/src/services/client.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L19">platform-sdk-neo/src/services/client.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>network: <span class="tsd-signature-type">string</span></h5>
+									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>http<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>network<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>http<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>network<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
+										</li>
+									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_services_client_.clientservice.html" class="tsd-signature-type">ClientService</a></h4>
@@ -162,17 +171,27 @@
 					<div class="tsd-signature tsd-kind-icon">#api<wbr>Provider<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L10">platform-sdk-neo/src/services/client.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L10">platform-sdk-neo/src/services/client.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_baseurl" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #base<wbr>Url</h3>
-					<div class="tsd-signature tsd-kind-icon">#base<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="_http" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #http</h3>
+					<div class="tsd-signature tsd-kind-icon">#http<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HttpClient</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L9">platform-sdk-neo/src/services/client.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L8">platform-sdk-neo/src/services/client.ts:8</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_peer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #peer</h3>
+					<div class="tsd-signature tsd-kind-icon">#peer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L9">platform-sdk-neo/src/services/client.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,7 +208,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L93">platform-sdk-neo/src/services/client.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L98">platform-sdk-neo/src/services/client.ts:98</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -212,7 +231,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L71">platform-sdk-neo/src/services/client.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L76">platform-sdk-neo/src/services/client.ts:76</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -235,7 +254,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L75">platform-sdk-neo/src/services/client.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L80">platform-sdk-neo/src/services/client.ts:80</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -258,7 +277,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L34">platform-sdk-neo/src/services/client.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L39">platform-sdk-neo/src/services/client.ts:39</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -275,7 +294,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L129">platform-sdk-neo/src/services/client.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L134">platform-sdk-neo/src/services/client.ts:134</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -301,7 +320,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L133">platform-sdk-neo/src/services/client.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L138">platform-sdk-neo/src/services/client.ts:138</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -327,7 +346,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L89">platform-sdk-neo/src/services/client.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L94">platform-sdk-neo/src/services/client.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -344,7 +363,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L39">platform-sdk-neo/src/services/client.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L44">platform-sdk-neo/src/services/client.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -361,19 +380,19 @@
 					<a name="transactions" class="tsd-anchor"></a>
 					<h3>transactions</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">transactions<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Contracts.KeyValuePair</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CollectionResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TransactionDataCollection</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">transactions<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ClientTransactionsInput</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CollectionResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TransactionDataCollection</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L43">platform-sdk-neo/src/services/client.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L48">platform-sdk-neo/src/services/client.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>query: <span class="tsd-signature-type">Contracts.KeyValuePair</span></h5>
+									<h5>query: <span class="tsd-signature-type">ClientTransactionsInput</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CollectionResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TransactionDataCollection</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -390,7 +409,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L85">platform-sdk-neo/src/services/client.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L90">platform-sdk-neo/src/services/client.ts:90</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -413,7 +432,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L81">platform-sdk-neo/src/services/client.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L86">platform-sdk-neo/src/services/client.ts:86</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -436,7 +455,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L61">platform-sdk-neo/src/services/client.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L66">platform-sdk-neo/src/services/client.ts:66</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -453,19 +472,19 @@
 					<a name="wallets" class="tsd-anchor"></a>
 					<h3>wallets</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">wallets<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Contracts.KeyValuePair</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CollectionResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">WalletDataCollection</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">wallets<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ClientWalletsInput</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CollectionResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">WalletDataCollection</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L65">platform-sdk-neo/src/services/client.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L70">platform-sdk-neo/src/services/client.ts:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>query: <span class="tsd-signature-type">Contracts.KeyValuePair</span></h5>
+									<h5>query: <span class="tsd-signature-type">ClientWalletsInput</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CollectionResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">WalletDataCollection</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -482,7 +501,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L30">platform-sdk-neo/src/services/client.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L32">platform-sdk-neo/src/services/client.ts:32</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -504,7 +523,7 @@
 					<div class="tsd-signature tsd-kind-icon">#broadcast<wbr>Errors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L12">platform-sdk-neo/src/services/client.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L12">platform-sdk-neo/src/services/client.ts:12</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -513,7 +532,7 @@
 						<div class="tsd-signature tsd-kind-icon">Block or transaction already exists and cannot be sent repeatedly.<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;ERR_DUPLICATE&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L13">platform-sdk-neo/src/services/client.ts:13</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L13">platform-sdk-neo/src/services/client.ts:13</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -523,7 +542,7 @@
 						<div class="tsd-signature tsd-kind-icon">Block or transaction validation failed.<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;ERR_VALIDATION_FAILED&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L16">platform-sdk-neo/src/services/client.ts:16</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L16">platform-sdk-neo/src/services/client.ts:16</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -533,7 +552,7 @@
 						<div class="tsd-signature tsd-kind-icon">One of the <wbr>Policy filters failed.<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;ERR_POLICY_FILTER_FAILED&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L17">platform-sdk-neo/src/services/client.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L17">platform-sdk-neo/src/services/client.ts:17</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -543,7 +562,7 @@
 						<div class="tsd-signature tsd-kind-icon">The block cannot be validated.<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;ERR_VALIDATION_FAILED&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L15">platform-sdk-neo/src/services/client.ts:15</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L15">platform-sdk-neo/src/services/client.ts:15</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -553,7 +572,7 @@
 						<div class="tsd-signature tsd-kind-icon">The memory pool is full and no more transactions can be sent.<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;ERR_EXCESS&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L14">platform-sdk-neo/src/services/client.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L14">platform-sdk-neo/src/services/client.ts:14</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -563,7 +582,7 @@
 						<div class="tsd-signature tsd-kind-icon">Unknown error.<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;ERR_UNKNOWN&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/e95c217/packages/platform-sdk-neo/src/services/client.ts#L18">platform-sdk-neo/src/services/client.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-neo/src/services/client.ts#L18">platform-sdk-neo/src/services/client.ts:18</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -661,7 +680,10 @@
 								<a href="_services_client_.clientservice.html#_apiprovider" class="tsd-kind-icon">#api<wbr>Provider</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_services_client_.clientservice.html#_baseurl" class="tsd-kind-icon">#base<wbr>Url</a>
+								<a href="_services_client_.clientservice.html#_http" class="tsd-kind-icon">#http</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_services_client_.clientservice.html#_peer" class="tsd-kind-icon">#peer</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_services_client_.clientservice.html#broadcast" class="tsd-kind-icon">broadcast</a>

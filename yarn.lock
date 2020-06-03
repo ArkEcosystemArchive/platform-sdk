@@ -646,6 +646,43 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@arkecosystem/platform-sdk-news@workspace:packages/platform-sdk-news":
+  version: 0.0.0-use.local
+  resolution: "@arkecosystem/platform-sdk-news@workspace:packages/platform-sdk-news"
+  dependencies:
+    "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@sindresorhus/tsconfig": ^0.7.0
+    "@types/eslint": ^6.8.1
+    "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/fs-extra": 9.0.1
+    "@types/jest": ^25.2.3
+    "@types/node": ^14.0.5
+    "@types/prettier": ^2.0.1
+    "@types/rimraf": ^3.0.0
+    "@typescript-eslint/eslint-plugin": ^3.0.1
+    "@typescript-eslint/parser": ^3.0.1
+    codecov: ^3.7.0
+    cross-env: ^7.0.2
+    eslint: ^7.1.0
+    eslint-config-prettier: ^6.11.0
+    eslint-plugin-jest: ^23.13.2
+    eslint-plugin-prettier: ^3.1.3
+    eslint-plugin-simple-import-sort: ^5.0.3
+    fs-extra: ^9.0.0
+    jest: ^26.0.1
+    jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
+    nock: ^12.0.3
+    npm-check-updates: ^6.0.1
+    prettier: ^2.0.5
+    rimraf: ^3.0.2
+    rss-parser: ^3.8.0
+    ts-jest: ^26.0.0
+    typedoc: ^0.17.7
+    typescript: ^3.9.3
+  languageName: unknown
+  linkType: soft
+
 "@arkecosystem/platform-sdk-profiles@workspace:packages/platform-sdk-profiles":
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-profiles@workspace:packages/platform-sdk-profiles"
@@ -2585,6 +2622,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/fs-extra@npm:9.0.1":
+  version: 9.0.1
+  resolution: "@types/fs-extra@npm:9.0.1"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2/a7c0f7373620b5045fb5fc6ccc28c8752a08f93c03127036e292cfa35bf123bd2cdbe534aaac5800a8383af37490c8b8d1192361ea24a4c7e4177ebe97c3b429
+  languageName: node
+  linkType: hard
+
 "@types/glob@npm:*, @types/glob@npm:^7.1.1":
   version: 7.1.1
   resolution: "@types/glob@npm:7.1.1"
@@ -3613,6 +3659,13 @@ __metadata:
   version: 0.4.0
   resolution: "asynckit@npm:0.4.0"
   checksum: 2/a024000b9ddd938e2f27b3cb8188f96a5e1fff58185e98b84862fc4e01de279a547874a800340c2b106bb9de9b0fc61c6c683bc6892abf65e6be29a96addafd3
+  languageName: node
+  linkType: hard
+
+"at-least-node@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "at-least-node@npm:1.0.0"
+  checksum: 2/8f33efc16287ed39766065c718a2d36a469f702c66c6eb41fa460c0c62bca395301a6a02946e315ae4a84c9cc7f44c94ec73a556bc2a1049350da98d0b013afe
   languageName: node
   linkType: hard
 
@@ -5716,6 +5769,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"entities@npm:^1.1.1":
+  version: 1.1.2
+  resolution: "entities@npm:1.1.2"
+  checksum: 2/3a4259db358c612853e616915d398e692a3c5dbaa4da44b9a6fce15ab88615cadc9790af608c3bee152972ece69ae61a22f4a13272fd943db2ceaee02ce5cc87
+  languageName: node
+  linkType: hard
+
 "env-paths@npm:^2.2.0":
   version: 2.2.0
   resolution: "env-paths@npm:2.2.0"
@@ -6769,6 +6829,18 @@ __metadata:
     jsonfile: ^4.0.0
     universalify: ^0.1.0
   checksum: 2/056a96d4f55ab8728b021e251175a4a6440d1edb5845e6c2e8e010019bde3e63de188a0eb99386c21c71804ca1a571cd6e08f507971f10a2bc4f4f7667720fa4
+  languageName: node
+  linkType: hard
+
+"fs-extra@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "fs-extra@npm:9.0.0"
+  dependencies:
+    at-least-node: ^1.0.0
+    graceful-fs: ^4.2.0
+    jsonfile: ^6.0.1
+    universalify: ^1.0.0
+  checksum: 2/518828d6e5c33d71cb075f3c25629f857b4a0d1fca5c3b6c8cdee876fa972e0661003491fc7d49d9e4d1c19aec8af6edf045e849a1110f2f879880975f4f6955
   languageName: node
   linkType: hard
 
@@ -8917,6 +8989,19 @@ fsevents@^2.1.2:
     graceful-fs:
       optional: true
   checksum: 2/a40b7b64da41c84b0dc7ad753737ba240bb0dc50a94be20ec0b73459707dede69a6f89eb44b4d29e6994ed93ddf8c9b6e57f6b1f09dd707567959880ad6cee7f
+  languageName: node
+  linkType: hard
+
+"jsonfile@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "jsonfile@npm:6.0.1"
+  dependencies:
+    graceful-fs: ^4.1.6
+    universalify: ^1.0.0
+  dependenciesMeta:
+    graceful-fs:
+      optional: true
+  checksum: 2/ebd6932424db468226b0b525b5b8acefd97e46f4fc5f36232c94e928b405716b47b2d7c2342025ecd7a0219f2146ae613d33878b917505698b7dc36ebe082c11
   languageName: node
   linkType: hard
 
@@ -11894,6 +11979,16 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
+"rss-parser@npm:^3.8.0":
+  version: 3.8.0
+  resolution: "rss-parser@npm:3.8.0"
+  dependencies:
+    entities: ^1.1.1
+    xml2js: ^0.4.19
+  checksum: 2/b48ae9948314ad7839c7cb8f5e56845c6aec8e2035ebd571e4175af71768a4f7a4e7785e21320f01cb6c33dcd9c32291463fc3662fdc9f8603da698b12faf366
+  languageName: node
+  linkType: hard
+
 "rsvp@npm:^4.8.4":
   version: 4.8.5
   resolution: "rsvp@npm:4.8.5"
@@ -11977,6 +12072,13 @@ resolve@~1.7.1:
   bin:
     sane: ./src/cli.js
   checksum: 2/e384e252021b1afef7459e994fe3ea79d114a0e7d23a03e660444abf15a2b4c50ce7eac2810b2c289e857c618d96fb35ee66356ebd4d6cb97cb11b54b2b29600
+  languageName: node
+  linkType: hard
+
+"sax@npm:>=0.6.0":
+  version: 1.2.4
+  resolution: "sax@npm:1.2.4"
+  checksum: 2/9d7668d69105e89e2c1a4b2fdc12c72e1a2f78b825f7b4a8a2ea5cdfebf70920bd17715bed55264c3b3959616a0695f8ad2d098bf6944fbd0953ee9c695dceef
   languageName: node
   linkType: hard
 
@@ -13649,6 +13751,13 @@ typescript@^3.9.3:
   languageName: node
   linkType: hard
 
+"universalify@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "universalify@npm:1.0.0"
+  checksum: 2/d74303a8d9ff18598804f3e9f261c9376cad55b81a92346f086e59261803ae75bef347044dd6a25549eb3b1490c0dd106dc07154cd7ccad8f037fdae947c125d
+  languageName: node
+  linkType: hard
+
 "unorm@npm:^1.3.3":
   version: 1.6.0
   resolution: "unorm@npm:1.6.0"
@@ -14565,6 +14674,23 @@ typescript@^3.9.3:
   version: 3.0.0
   resolution: "xml-name-validator@npm:3.0.0"
   checksum: 2/b96679a42e6be36d2433987fe3cc45e972d20d7c2c2a787a2d6b2da94392bd9f23f671cdba29a91211289a2fa8e6965e466dbc1105d0e5730fc3a43e4f1a0688
+  languageName: node
+  linkType: hard
+
+"xml2js@npm:^0.4.19":
+  version: 0.4.23
+  resolution: "xml2js@npm:0.4.23"
+  dependencies:
+    sax: ">=0.6.0"
+    xmlbuilder: ~11.0.0
+  checksum: 2/5e6e53955714a9d094c9f39ac7509706d136a3dae76684059019ca949e131775f69715715879df86b1a49519ffea3805ff2e930596e229c5f6228ce027e8a80e
+  languageName: node
+  linkType: hard
+
+"xmlbuilder@npm:~11.0.0":
+  version: 11.0.1
+  resolution: "xmlbuilder@npm:11.0.1"
+  checksum: 2/8f479b28b5897d903dc514c45c54c869b2f798c0eb44b11e35f7d6e3e631fb9d7aaaec6b9db6b92b715b4ded00d9d8ed8c08e9fd7e2a5f220b14b7b54403fa10
   languageName: node
   linkType: hard
 
