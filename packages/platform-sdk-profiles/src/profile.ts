@@ -41,6 +41,7 @@ export class Profile {
 
 		// Repositories
 		this.#wallets = new WalletRepository({
+			data: input.data,
 			httpClient: input.httpClient,
 			storage: input.storage,
 			wallets: input.wallets,
