@@ -1,11 +1,16 @@
 import { Coins } from "@arkecosystem/platform-sdk";
-import { injectable } from "inversify";
+import { inject, injectable } from "inversify";
 
 import { container } from "../container";
 import { Wallet } from "../wallet";
+import { Identifiers } from "./contracts";
+import { Data } from "./data-repository";
 
 @injectable()
 export class WalletRepository {
+	@inject(Identifiers.Data)
+	private dataRepository!: Data;
+
 	#wallets: Wallet[] = [];
 
 	public all(): Wallet[] {
@@ -56,25 +61,11 @@ export class WalletRepository {
 		await this.persist();
 	}
 
-<<<<<<< HEAD:packages/platform-sdk-profiles/src/repositories/wallet-repository.ts
 	public async createFromMnemonic(mnemonic: string, coin: Coins.CoinSpec, network: string): Promise<Wallet> {
 		const wallet: Wallet = container.resolve(Wallet);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setIdentity(mnemonic);
-=======
-	public async createFromPassphrase(input: {
-		mnemonic: string;
-		coin: Coins.CoinSpec;
-		network: string;
-	}): Promise<Wallet> {
-		const wallet: Wallet = await Wallet.fromMnemonic({
-			id: uuidv4(),
-			...input,
-			httpClient: this.#httpClient,
-			storage: this.#storage,
-		});
->>>>>>> origin/develop:packages/platform-sdk-profiles/src/wallet-repository.ts
 
 		if (this.findByAddress(wallet.address())) {
 			throw new Error(`The wallet [${wallet.address()}] already exists.`);
@@ -86,7 +77,7 @@ export class WalletRepository {
 	}
 
 	private async persist(): Promise<void> {
-		await this.#data.set("wallets", this.#wallets);
+		await this.dataRepository.set("wallets", this.#wallets);
 	}
 
 	private findIndex(id: string): number {
