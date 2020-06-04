@@ -4,8 +4,8 @@ export class SettingRepository {
 	#storage: DataRepository;
 	#allowedKeys: string[];
 
-	public constructor(type: string, allowedKeys: string[]) {
-		this.#storage = new DataRepository(type, "setting");
+	public constructor(allowedKeys: string[]) {
+		this.#storage = new DataRepository();
 		this.#allowedKeys = allowedKeys;
 	}
 

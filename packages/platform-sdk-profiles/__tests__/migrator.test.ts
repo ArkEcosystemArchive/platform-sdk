@@ -14,7 +14,7 @@ let profiles: ProfileRepository;
 let data: DataRepository;
 
 beforeEach(async () => {
-	data = new DataRepository("app", "data");
+	data = new DataRepository();
 	storage = new LocalStorage("localstorage");
 
 	container.set(Identifiers.Storage, storage);

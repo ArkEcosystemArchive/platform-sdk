@@ -1,5 +1,5 @@
 export const manifest = {
-	name: "Monero",
+	name: "XMR",
 	networks: {
 		mainnet: {
 			id: "mainnet",

@@ -35,21 +35,21 @@ afterEach(() => nock.cleanAll());
 beforeAll(() => nock.disableNetConnect());
 
 test("#all", async () => {
-	expect(subject.all()).toHaveLength(1);
+	expect(subject.keys()).toHaveLength(1);
 });
 
 test("#create", async () => {
 	subject.flush();
 
-	expect(subject.all()).toHaveLength(0);
+	expect(subject.keys()).toHaveLength(0);
 
 	await subject.create(identity.mnemonic, ARK, "devnet");
 
-	expect(subject.all()).toHaveLength(1);
+	expect(subject.keys()).toHaveLength(1);
 
 	await expect(subject.create(identity.mnemonic, ARK, "devnet")).rejects.toThrowError("already exists");
 
-	expect(subject.all()).toHaveLength(1);
+	expect(subject.keys()).toHaveLength(1);
 });
 
 test("#findByAddress", async () => {

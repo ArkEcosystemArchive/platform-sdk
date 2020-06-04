@@ -35,26 +35,57 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-test("Wallet#coin", async () => {
+test("Wallet#coin", () => {
 	expect(subject.coin()).toBeInstanceOf(Coins.Coin);
 });
 
-test("Wallet#network", async () => {
+test("Wallet#network", () => {
 	expect(subject.network()).toEqual("devnet");
 });
 
-test("Wallet#address", async () => {
+test("Wallet#address", () => {
 	expect(subject.address()).toEqual(identity.address);
 });
 
-test("Wallet#publicKey", async () => {
+test("Wallet#publicKey", () => {
 	expect(subject.publicKey()).toEqual(identity.publicKey);
 });
 
-test("Wallet#balance", async () => {
+test("Wallet#balance", () => {
 	expect(subject.balance()).toEqual(BigNumber.make("55827093444556"));
 });
 
-test("Wallet#nonce", async () => {
+test("Wallet#nonce", () => {
 	expect(subject.nonce()).toEqual(BigNumber.make("111932"));
+});
+
+test("Wallet#toObject", () => {
+	expect(subject.toObject()).toEqual({
+		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		coin: "ARK",
+		coinConfig: {
+			network: {
+				crypto: {
+					slip44: 111,
+				},
+				currency: {
+					symbol: "DѦ",
+					ticker: "DARK",
+				},
+				explorer: "https://dexplorer.ark.io/",
+				hosts: [
+					"https://dexplorer.ark.io",
+					"http://167.114.29.51:4003",
+					"http://167.114.29.52:4003",
+					"http://167.114.29.53:4003",
+					"http://167.114.29.54:4003",
+					"http://167.114.29.55:4003",
+				],
+				id: "devnet",
+				name: "Devnet",
+			},
+		},
+		network: "devnet",
+		publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+	});
 });

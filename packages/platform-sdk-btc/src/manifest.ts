@@ -1,5 +1,5 @@
 export const manifest = {
-	name: "Bitcoin",
+	name: "BTC",
 	networks: {
 		livenet: {
 			id: "livenet",

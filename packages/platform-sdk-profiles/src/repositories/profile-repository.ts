@@ -7,19 +7,20 @@ export class ProfileRepository {
 	readonly #data: DataRepository;
 
 	public constructor() {
-		this.#data = new DataRepository("app", "profiles");
+		this.#data = new DataRepository();
 	}
 
 	public async fill(profiles: object): Promise<void> {
 		for (const [id, profile] of Object.entries(profiles)) {
 			const result: Profile = new Profile(profile.id, profile.name);
 
+			for (const wallet of Object.values(profile.wallets)) {
+				await result.wallets().createFromObject(wallet as any);
+			}
+
 			result.contacts().fill(profile.contacts);
 			result.data().fill(profile.data);
 			result.settings().fill(profile.settings);
-
-			// Wallets need special treatment because they have an Coin SDK instance attached
-			// result.wallets().fill(profile.wallets);
 
 			this.#data.set(id, result);
 		}

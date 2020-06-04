@@ -22,19 +22,19 @@ beforeEach(() => {
 	subject.flush();
 });
 
-test("Contact#create", () => {
-	expect(subject.all()).toHaveLength(0);
+test("ContactRepository#create", () => {
+	expect(subject.keys()).toHaveLength(0);
 
 	subject.create(john);
 
-	expect(subject.all()).toHaveLength(1);
+	expect(subject.keys()).toHaveLength(1);
 
 	subject.create(jane);
 
-	expect(subject.all()).toHaveLength(2);
+	expect(subject.keys()).toHaveLength(2);
 });
 
-test("Contact#find", () => {
+test("ContactRepository#find", () => {
 	expect(() => subject.find("invalid")).toThrowError("Failed to find");
 
 	const contact = subject.create(john);
@@ -42,7 +42,7 @@ test("Contact#find", () => {
 	expect(subject.find(contact.id)).toBeObject();
 });
 
-test("Contact#update", () => {
+test("ContactRepository#update", () => {
 	expect(() => subject.update("invalid", { name: "Jane Doe" })).toThrowError("Failed to find");
 
 	const contact = subject.create(john);
@@ -52,7 +52,7 @@ test("Contact#update", () => {
 	expect(subject.find(contact.id)).not.toEqual(contact);
 });
 
-test("Contact#destroy", () => {
+test("ContactRepository#destroy", () => {
 	expect(() => subject.destroy("invalid")).toThrowError("Failed to find");
 
 	const contact = subject.create(john);
@@ -62,7 +62,7 @@ test("Contact#destroy", () => {
 	expect(() => subject.find(contact.id)).toThrowError("Failed to find");
 });
 
-test("Contact#findByAddress", () => {
+test("ContactRepository#findByAddress", () => {
 	subject.create(john);
 	subject.create(jane);
 
@@ -71,7 +71,7 @@ test("Contact#findByAddress", () => {
 	expect(subject.findByAddress("invalid")).toHaveLength(0);
 });
 
-test("Contact#findByCoin", () => {
+test("ContactRepository#findByCoin", () => {
 	subject.create(john);
 	subject.create(jane);
 
@@ -80,7 +80,7 @@ test("Contact#findByCoin", () => {
 	expect(subject.findByCoin("invalid")).toHaveLength(0);
 });
 
-test("Contact#findByNetwork", () => {
+test("ContactRepository#findByNetwork", () => {
 	subject.create(john);
 	subject.create(jane);
 
@@ -89,13 +89,13 @@ test("Contact#findByNetwork", () => {
 	expect(subject.findByNetwork("invalid")).toHaveLength(0);
 });
 
-test("Contact#flush", () => {
+test("ContactRepository#flush", () => {
 	subject.create(john);
 	subject.create(jane);
 
-	expect(subject.all()).toHaveLength(2);
+	expect(subject.keys()).toHaveLength(2);
 
 	subject.flush();
 
-	expect(subject.all()).toHaveLength(0);
+	expect(subject.keys()).toHaveLength(0);
 });

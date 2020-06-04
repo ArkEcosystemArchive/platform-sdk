@@ -1,5 +1,5 @@
 export const manifest = {
-	name: "Lisk",
+	name: "LSK",
 	networks: {
 		mainnet: {
 			id: "mainnet",

@@ -3,7 +3,7 @@ import nock from "nock";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 
-import { Environment, Identifiers } from "../src";
+import { Environment, Profile, Identifiers } from "../src";
 import { DataRepository } from "../src/repositories/data-repository";
 import { ProfileRepository } from "../src/repositories/profile-repository";
 import { HttpClient } from "./stubs/client";
@@ -92,8 +92,6 @@ it("should have a data repository", async () => {
 });
 
 it.only("should listen for data modifications, save it and load it", async () => {
-	const emitSpy = jest.spyOn(container.get<any>(Identifiers.EventEmitter), "emit");
-
 	/**
 	 * Save data in the current environment.
 	 */
@@ -116,17 +114,21 @@ it.only("should listen for data modifications, save it and load it", async () =>
 	// Create a Setting
 	profile.settings().set("ADVANCED_MODE", "value");
 
-	expect(emitSpy).toHaveBeenCalledTimes(6);
-
-	jest.clearAllMocks();
+	// Persist the data for the next instance to use.
+	await subject.persist();
 
 	/**
 	 * Load data that the previous environment instance saved.
 	 */
 
 	const newEnv = new Environment({ httpClient: new HttpClient(), storage: new StubStorage() });
-
 	await newEnv.boot();
 
-	// console.log(newEnv.profiles().get(profile.id()));
+	const newProfile = newEnv.profiles().get(profile.id());
+
+	expect(newProfile).toBeInstanceOf(Profile);
+	expect(newProfile.wallets().keys()).toHaveLength(1);
+	expect(newProfile.contacts().keys()).toHaveLength(1);
+	expect(newProfile.data().all()).toEqual({ key: "value" });
+	expect(newProfile.settings().all()).toEqual({ ADVANCED_MODE: "value" });
 });

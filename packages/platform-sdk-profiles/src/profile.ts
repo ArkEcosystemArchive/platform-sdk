@@ -19,8 +19,8 @@ export class Profile {
 		this.#name = name;
 		this.#contactRepository = new ContactRepository();
 		this.#walletRepository = new WalletRepository();
-		this.#dataRepository = new DataRepository("profile", "data");
-		this.#settingRepository = new SettingRepository("profile", Object.values(ProfileSetting));
+		this.#dataRepository = new DataRepository();
+		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
 	}
 
 	public id(): string {

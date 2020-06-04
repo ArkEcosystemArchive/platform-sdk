@@ -1,8 +1,5 @@
-import Emittery from "emittery";
-
 import { container } from "./container";
 import { EnvironmentOptions, Identifiers, Storage } from "./contracts";
-import { DataEvent } from "./enums";
 import { Migrator } from "./migrator";
 import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
@@ -13,6 +10,15 @@ export class Environment {
 		this.registerBindings(options);
 	}
 
+	/**
+	 * Load the data from the storage.
+	 *
+	 * This has to be manually called and should always be called before booting
+	 * of the environment instance. This will generally be only called on application start.
+	 *
+	 * @returns {Promise<void>}
+	 * @memberof Environment
+	 */
 	public async boot(): Promise<void> {
 		const { profiles, data }: any = await container.get<Storage>(Identifiers.Storage).all();
 
@@ -23,9 +29,23 @@ export class Environment {
 		if (data) {
 			this.data().fill(data);
 		}
+	}
 
-		// Register the listeners last to not corrupt the storage when restoring data.
-		this.registerListeners();
+	/**
+	 * Save the data to the storage.
+	 *
+	 * This has to be manually called and should always be called before disposing
+	 * of the environment instance. For example on application shutdown or when switching profiles.
+	 *
+	 * @returns {Promise<void>}
+	 * @memberof Environment
+	 */
+	public async persist(): Promise<void> {
+		const storage: Storage = container.get<Storage>(Identifiers.Storage);
+
+		await storage.set("profiles", this.profiles().toObject());
+
+		await storage.set("data", this.data().all());
 	}
 
 	public profiles(): ProfileRepository {
@@ -46,20 +66,8 @@ export class Environment {
 			typeof options.storage === "string" ? StorageFactory.make(options.storage) : options.storage,
 		);
 
-		container.set(Identifiers.AppData, new DataRepository("app", "data"));
+		container.set(Identifiers.AppData, new DataRepository());
 		container.set(Identifiers.HttpClient, options.httpClient);
 		container.set(Identifiers.ProfileRepository, new ProfileRepository());
-	}
-
-	private registerListeners(): void {
-		const emitter: Emittery = container.get<Emittery>(Identifiers.EventEmitter);
-		const storage: Storage = container.get<Storage>(Identifiers.Storage);
-
-		// eslint-disable-next-line @typescript-eslint/no-misused-promises
-		emitter.on(DataEvent.Modified, async () => {
-			await storage.set("profiles", this.profiles().toObject());
-
-			await storage.set("data", this.data().all());
-		});
 	}
 }

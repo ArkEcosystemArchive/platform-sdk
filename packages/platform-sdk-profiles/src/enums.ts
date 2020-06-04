@@ -23,7 +23,3 @@ export enum WalletSetting {
 	Avatar = "AVATAR",
 	Peer = "PEER",
 }
-
-export enum DataEvent {
-	Modified = "MODIFIED",
-}

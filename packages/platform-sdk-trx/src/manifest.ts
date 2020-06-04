@@ -1,5 +1,5 @@
 export const manifest = {
-	name: "Tron",
+	name: "TRX",
 	networks: {
 		mainnet: {
 			id: "mainnet",

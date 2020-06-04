@@ -16,6 +16,7 @@
 		"version:check": "yarn version check --interactive",
 		"format": "yarn lint && yarn prettier",
 		"lint": "eslint packages/**/src/** --ext .ts --fix",
+		"lint:tests": "eslint packages/**/__tests__/** --ext .ts --fix",
 		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\"",
 		"test": "yarn workspaces foreach -pt run test",
 		"toc:coins": "yarn dlx doctoc docs/coins/index.md"

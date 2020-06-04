@@ -7,7 +7,7 @@ export class ContactRepository {
 	#data: DataRepository;
 
 	public constructor() {
-		this.#data = new DataRepository("profile", "contact");
+		this.#data = new DataRepository();
 	}
 
 	public all(): Record<string, Contact> {
@@ -15,11 +15,11 @@ export class ContactRepository {
 	}
 
 	public keys(): string[] {
-		return Object.keys(this.#data.all());
+		return this.#data.keys();
 	}
 
 	public values(): Contact[] {
-		return Object.values(this.#data.all());
+		return this.#data.values();
 	}
 
 	public create(data: ContactStruct): Contact {

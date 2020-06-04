@@ -1057,9 +1057,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-profiles", "workspace:packages/platform-sdk-profiles"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-ada", "workspace:packages/platform-sdk-ada"],
             ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
+            ["@arkecosystem/platform-sdk-atom", "workspace:packages/platform-sdk-atom"],
+            ["@arkecosystem/platform-sdk-btc", "workspace:packages/platform-sdk-btc"],
+            ["@arkecosystem/platform-sdk-eos", "workspace:packages/platform-sdk-eos"],
+            ["@arkecosystem/platform-sdk-eth", "workspace:packages/platform-sdk-eth"],
+            ["@arkecosystem/platform-sdk-lsk", "workspace:packages/platform-sdk-lsk"],
+            ["@arkecosystem/platform-sdk-neo", "workspace:packages/platform-sdk-neo"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
+            ["@arkecosystem/platform-sdk-trx", "workspace:packages/platform-sdk-trx"],
+            ["@arkecosystem/platform-sdk-xlm", "workspace:packages/platform-sdk-xlm"],
+            ["@arkecosystem/platform-sdk-xmr", "workspace:packages/platform-sdk-xmr"],
+            ["@arkecosystem/platform-sdk-xrp", "workspace:packages/platform-sdk-xrp"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/async", "npm:3.2.3"],
             ["@types/dot-prop", "npm:5.0.1"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -1075,7 +1087,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["codecov", "npm:3.7.0"],
             ["cross-env", "npm:7.0.2"],
             ["dot-prop", "npm:5.2.0"],
-            ["emittery", "npm:0.7.0"],
             ["eslint", "npm:7.1.0"],
             ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.11.0"],
             ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:23.13.2"],
@@ -2838,6 +2849,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@tootallnate-once-npm-1.1.2-0517220057-2.zip/node_modules/@tootallnate/once/",
           "packageDependencies": [
             ["@tootallnate/once", "npm:1.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/async", [
+        ["npm:3.2.3", {
+          "packageLocation": "./.yarn/cache/@types-async-npm-3.2.3-6a0ab833b7-2.zip/node_modules/@types/async/",
+          "packageDependencies": [
+            ["@types/async", "npm:3.2.3"]
           ],
           "linkType": "HARD",
         }]
@@ -7029,15 +7049,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["inherits", "npm:2.0.4"],
             ["minimalistic-assert", "npm:1.0.1"],
             ["minimalistic-crypto-utils", "npm:1.0.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["emittery", [
-        ["npm:0.7.0", {
-          "packageLocation": "./.yarn/cache/emittery-npm-0.7.0-09a1d2a436-2.zip/node_modules/emittery/",
-          "packageDependencies": [
-            ["emittery", "npm:0.7.0"]
           ],
           "linkType": "HARD",
         }]

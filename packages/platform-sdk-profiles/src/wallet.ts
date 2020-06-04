@@ -17,8 +17,8 @@ export class Wallet {
 	#avatar!: string;
 
 	public constructor() {
-		this.#dataRepository = new DataRepository("wallet", "data");
-		this.#settingRepository = new SettingRepository("wallet", Object.values(WalletSetting));
+		this.#dataRepository = new DataRepository();
+		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 	}
 
 	/**
@@ -35,7 +35,11 @@ export class Wallet {
 	}
 
 	public async setIdentity(mnemonic: string): Promise<Wallet> {
-		this.#wallet = await this.#coin.client().wallet(await this.#coin.identity().address().fromMnemonic(mnemonic));
+		return this.setAddress(await this.#coin.identity().address().fromMnemonic(mnemonic));
+	}
+
+	public async setAddress(address: string): Promise<Wallet> {
+		this.#wallet = await this.#coin.client().wallet(address);
 
 		this.setAvatar(Avatar.make(this.address()));
 
@@ -92,8 +96,12 @@ export class Wallet {
 	}
 
 	public toObject(): object {
+		const coinConfig = { ...this.coin().config().all() };
+		delete coinConfig.httpClient;
+
 		return {
 			coin: this.coin().manifest().get<string>("name"),
+			coinConfig,
 			network: this.network(),
 			address: this.address(),
 			publicKey: this.publicKey(),
