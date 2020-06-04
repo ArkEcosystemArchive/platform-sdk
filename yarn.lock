@@ -78,6 +78,7 @@ __metadata:
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^3.0.1
     "@typescript-eslint/parser": ^3.0.1
+    cardano-crypto.js: ^5.3.4
     codecov: ^3.7.0
     cross-env: ^7.0.2
     eslint: ^7.1.0
@@ -85,6 +86,7 @@ __metadata:
     eslint-plugin-jest: ^23.13.2
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
+    got: ^11.2.0
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
@@ -4173,6 +4175,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"borc@npm:^2.1.1":
+  version: 2.1.2
+  resolution: "borc@npm:2.1.2"
+  dependencies:
+    bignumber.js: ^9.0.0
+    buffer: ^5.5.0
+    commander: ^2.15.0
+    ieee754: ^1.1.13
+    iso-url: ~0.4.7
+    json-text-sequence: ~0.1.0
+    readable-stream: ^3.6.0
+  checksum: 2/cde79b18adc3a18160daf6bf2090cc16cfecb4a05775dcfb0d2557134ee6486f21b789bab37ddc9b4cee361ab310a9a6754d3079a7b655927fd60181b1a23516
+  languageName: node
+  linkType: hard
+
 "boxen@npm:^4.2.0":
   version: 4.2.0
   resolution: "boxen@npm:4.2.0"
@@ -4586,6 +4603,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cardano-crypto.js@npm:^5.3.4":
+  version: 5.3.4
+  resolution: "cardano-crypto.js@npm:5.3.4"
+  dependencies:
+    bip39: ^3.0.2
+    borc: ^2.1.1
+    pbkdf2: ^3.0.17
+  checksum: 2/530be26e315d54d13d63a280c6325748a7d6c0410cd060e368f6e76f4ee60a8c1e5d50acafc7ebc2c3ea6ca78606d55867948c9388510f43be7f5c1d48a3af0c
+  languageName: node
+  linkType: hard
+
 "caseless@npm:~0.12.0":
   version: 0.12.0
   resolution: "caseless@npm:0.12.0"
@@ -4906,7 +4934,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^2.11.0, commander@npm:~2.20.3":
+"commander@npm:^2.11.0, commander@npm:^2.15.0, commander@npm:~2.20.3":
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
   checksum: 2/b73428e97de7624323f81ba13f8ed9271de487017432d18b4da3f07cfc528ad754bbd199004bd5d14e0ccd67d1fdfe0ec8dbbd4c438b401df3c4cc387bfd1daa
@@ -5481,6 +5509,13 @@ __metadata:
   version: 1.0.0
   resolution: "delegates@npm:1.0.0"
   checksum: 2/7459e34d29cadd9bfd340728bfcc70ea96da5d940fb197298b523f805822680e583cba3ec34d36a18004325f1ec9de55e202a92b414d01db18cd87bb8a2ae5bd
+  languageName: node
+  linkType: hard
+
+"delimit-stream@npm:0.1.0":
+  version: 0.1.0
+  resolution: "delimit-stream@npm:0.1.0"
+  checksum: 2/eacce31ba874c495ef392952253461cde11e0e3838b82bd6e1561f71a493087a0529679b6bbd296965889e0cc3963cf1380439b892f1982d6f6d0682d89bcdf1
   languageName: node
   linkType: hard
 
@@ -7173,6 +7208,26 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"got@npm:^11.2.0":
+  version: 11.2.0
+  resolution: "got@npm:11.2.0"
+  dependencies:
+    "@sindresorhus/is": ^2.1.1
+    "@szmarczak/http-timer": ^4.0.5
+    "@types/cacheable-request": ^6.0.1
+    "@types/responselike": ^1.0.0
+    cacheable-lookup: ^5.0.3
+    cacheable-request: ^7.0.1
+    decompress-response: ^6.0.0
+    get-stream: ^5.1.0
+    http2-wrapper: ^1.0.0-beta.4.5
+    lowercase-keys: ^2.0.0
+    p-cancelable: ^2.0.0
+    responselike: ^2.0.0
+  checksum: 2/ebffdc20ac5ba1233472cbecdfea6158194520bc7a99b487fbe41adcfdc500413129ed4bfd22b78de8ae8de7995be5b24a5998501d05391e36b82eeba6ef9fd9
+  languageName: node
+  linkType: hard
+
 "got@npm:^7.1.0":
   version: 7.1.0
   resolution: "got@npm:7.1.0"
@@ -7596,7 +7651,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"ieee754@npm:^1.1.4":
+"ieee754@npm:^1.1.13, ieee754@npm:^1.1.4":
   version: 1.1.13
   resolution: "ieee754@npm:1.1.13"
   checksum: 2/9ef12932e8aeae1c614f314783b3770fac5daae7ae92ebffcda97da58efd77c0289181093666f6048e02c566ceeec4d0edf3b04b57ce8e0b57e9b3814a870469
@@ -8158,6 +8213,13 @@ fsevents@^2.1.2:
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
   checksum: 2/7b437980bb77881a146fba85cfbdf01edc2b148673e9c2722a1e49661fea73adf524430a80fdbfb8ce9f60d43224e682c657c45030482bd39e0c488fc29b4afe
+  languageName: node
+  linkType: hard
+
+"iso-url@npm:~0.4.7":
+  version: 0.4.7
+  resolution: "iso-url@npm:0.4.7"
+  checksum: 2/9bf6b011bfd13c24f9bd640c77ac7f84d4aa7dd434f34569d3dd7ca4fcfcf831927d255b6e7ca58a39af6b87d6d30d8be907b5423fd8dfba89fd3b661b69fa19
   languageName: node
   linkType: hard
 
@@ -8985,6 +9047,15 @@ fsevents@^2.1.2:
   version: 5.0.1
   resolution: "json-stringify-safe@npm:5.0.1"
   checksum: 2/261dfb8eb3e72c8b0dda11fd7c20c151ffc1d1b03e529245d51708c8dd8d8c6a225880464adf41a570dff6e5c805fd9d1f47fed948cfb526e4fbe5a67ce4e5f4
+  languageName: node
+  linkType: hard
+
+"json-text-sequence@npm:~0.1.0":
+  version: 0.1.1
+  resolution: "json-text-sequence@npm:0.1.1"
+  dependencies:
+    delimit-stream: 0.1.0
+  checksum: 2/a0fd488708d925c263d92d06aa3b3a7ac2e29afa1065567c8798a034928ec57e5bfcf2d02ac94e96692443ca65c9298e1c6009e1fb0060390f6205866a3ba2a3
   languageName: node
   linkType: hard
 
@@ -10918,6 +10989,19 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"pbkdf2@npm:^3.0.17":
+  version: 3.1.0
+  resolution: "pbkdf2@npm:3.1.0"
+  dependencies:
+    create-hash: ^1.1.2
+    create-hmac: ^1.1.4
+    ripemd160: ^2.0.1
+    safe-buffer: ^5.0.1
+    sha.js: ^2.4.8
+  checksum: 2/c5d07ddbc0f888dd3b74c19cc286dc1fb9c1f4bc5812a02442f9f3dec6e648ff19e0fbc86ed11f6d4f851d1dadf22f7cc96cf9f4d09c4469b530e0d1a8c08523
+  languageName: node
+  linkType: hard
+
 "pbkdf2@npm:^3.0.3, pbkdf2@npm:^3.0.9":
   version: 3.0.17
   resolution: "pbkdf2@npm:3.0.17"
@@ -11496,7 +11580,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"readable-stream@npm:^3.1.1, readable-stream@npm:^3.4.0":
+"readable-stream@npm:^3.1.1, readable-stream@npm:^3.4.0, readable-stream@npm:^3.6.0":
   version: 3.6.0
   resolution: "readable-stream@npm:3.6.0"
   dependencies:
