@@ -81,22 +81,22 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-private"><a href="_profile_.profile.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_profile_.profile.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_profile_.profile.html#_avatar" class="tsd-kind-icon">#avatar</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_profile_.profile.html#_contacts" class="tsd-kind-icon">#contacts</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_profile_.profile.html#_data" class="tsd-kind-icon">#data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_profile_.profile.html#_contactrepository" class="tsd-kind-icon">#contact<wbr>Repository</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_profile_.profile.html#_datarepository" class="tsd-kind-icon">#data<wbr>Repository</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_profile_.profile.html#_id" class="tsd-kind-icon">#id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_profile_.profile.html#_name" class="tsd-kind-icon">#name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_profile_.profile.html#_settings" class="tsd-kind-icon">#settings</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_profile_.profile.html#_wallets" class="tsd-kind-icon">#wallets</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_profile_.profile.html#_settingrepository" class="tsd-kind-icon">#setting<wbr>Repository</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_profile_.profile.html#_walletrepository" class="tsd-kind-icon">#wallet<wbr>Repository</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -110,31 +110,33 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_profile_.profile.html#settings" class="tsd-kind-icon">settings</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_profile_.profile.html#toobject" class="tsd-kind-icon">to<wbr>Object</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_profile_.profile.html#wallets" class="tsd-kind-icon">wallets</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_profile_.profile.html#make" class="tsd-kind-icon">make</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-private">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
 					<a name="constructor" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Profile<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_profile_.profile.html" class="tsd-signature-type">Profile</a></li>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Profile<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_profile_.profile.html" class="tsd-signature-type">Profile</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L26">profile.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L15">platform-sdk-profiles/src/profile.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>input: <span class="tsd-signature-type">any</span></h5>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_profile_.profile.html" class="tsd-signature-type">Profile</a></h4>
@@ -146,41 +148,41 @@
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_avatar" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #avatar</h3>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #avatar</h3>
 					<div class="tsd-signature tsd-kind-icon">#avatar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L26">profile.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L15">platform-sdk-profiles/src/profile.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_contacts" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #contacts</h3>
-					<div class="tsd-signature tsd-kind-icon">#contacts<span class="tsd-signature-symbol">:</span> <a href="_contact_repository_.contactrepository.html" class="tsd-signature-type">ContactRepository</a></div>
+					<a name="_contactrepository" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #contact<wbr>Repository</h3>
+					<div class="tsd-signature tsd-kind-icon">#contact<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="_repositories_contact_repository_.contactrepository.html" class="tsd-signature-type">ContactRepository</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L23">profile.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L8">platform-sdk-profiles/src/profile.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_data" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #data</h3>
-					<div class="tsd-signature tsd-kind-icon">#data<span class="tsd-signature-symbol">:</span> <a href="_data_.data.html" class="tsd-signature-type">Data</a></div>
+					<a name="_datarepository" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #data<wbr>Repository</h3>
+					<div class="tsd-signature tsd-kind-icon">#data<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="_repositories_data_repository_.datarepository.html" class="tsd-signature-type">DataRepository</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L24">profile.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L10">platform-sdk-profiles/src/profile.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #id</h3>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #id</h3>
 					<div class="tsd-signature tsd-kind-icon">#id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L20">profile.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L13">platform-sdk-profiles/src/profile.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -190,27 +192,27 @@
 					<div class="tsd-signature tsd-kind-icon">#name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L21">profile.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L14">platform-sdk-profiles/src/profile.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_settings" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #settings</h3>
-					<div class="tsd-signature tsd-kind-icon">#settings<span class="tsd-signature-symbol">:</span> <a href="_settings_.settings.html" class="tsd-signature-type">Settings</a></div>
+					<a name="_settingrepository" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #setting<wbr>Repository</h3>
+					<div class="tsd-signature tsd-kind-icon">#setting<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="_repositories_setting_repository_.settingrepository.html" class="tsd-signature-type">SettingRepository</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L25">profile.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L11">platform-sdk-profiles/src/profile.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_wallets" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #wallets</h3>
-					<div class="tsd-signature tsd-kind-icon">#wallets<span class="tsd-signature-symbol">:</span> <a href="_wallet_repository_.walletrepository.html" class="tsd-signature-type">WalletRepository</a></div>
+					<a name="_walletrepository" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #wallet<wbr>Repository</h3>
+					<div class="tsd-signature tsd-kind-icon">#wallet<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="_repositories_wallet_repository_.walletrepository.html" class="tsd-signature-type">WalletRepository</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L22">profile.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L9">platform-sdk-profiles/src/profile.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -227,7 +229,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L65">profile.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L34">platform-sdk-profiles/src/profile.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -238,16 +240,16 @@
 					<a name="contacts" class="tsd-anchor"></a>
 					<h3>contacts</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">contacts<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_contact_repository_.contactrepository.html" class="tsd-signature-type">ContactRepository</a></li>
+						<li class="tsd-signature tsd-kind-icon">contacts<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_repositories_contact_repository_.contactrepository.html" class="tsd-signature-type">ContactRepository</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L73">profile.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L42">platform-sdk-profiles/src/profile.ts:42</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_contact_repository_.contactrepository.html" class="tsd-signature-type">ContactRepository</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_repositories_contact_repository_.contactrepository.html" class="tsd-signature-type">ContactRepository</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -255,16 +257,16 @@
 					<a name="data" class="tsd-anchor"></a>
 					<h3>data</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_data_.data.html" class="tsd-signature-type">Data</a></li>
+						<li class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_repositories_data_repository_.datarepository.html" class="tsd-signature-type">DataRepository</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L77">profile.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L46">platform-sdk-profiles/src/profile.ts:46</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_data_.data.html" class="tsd-signature-type">Data</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_repositories_data_repository_.datarepository.html" class="tsd-signature-type">DataRepository</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -278,7 +280,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L57">profile.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L26">platform-sdk-profiles/src/profile.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -295,7 +297,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L61">profile.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L30">platform-sdk-profiles/src/profile.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -306,16 +308,16 @@
 					<a name="settings" class="tsd-anchor"></a>
 					<h3>settings</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">settings<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_settings_.settings.html" class="tsd-signature-type">Settings</a></li>
+						<li class="tsd-signature tsd-kind-icon">settings<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_repositories_setting_repository_.settingrepository.html" class="tsd-signature-type">SettingRepository</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L81">profile.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L50">platform-sdk-profiles/src/profile.ts:50</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_settings_.settings.html" class="tsd-signature-type">Settings</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_repositories_setting_repository_.settingrepository.html" class="tsd-signature-type">SettingRepository</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -323,16 +325,36 @@
 					<a name="toobject" class="tsd-anchor"></a>
 					<h3>to<wbr>Object</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Object<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>settings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">; </span>wallets<span class="tsd-signature-symbol">: </span><a href="_wallet_.wallet.html" class="tsd-signature-type">Wallet</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Object<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>contacts<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">; </span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>settings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">; </span>wallets<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L85">profile.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L54">platform-sdk-profiles/src/profile.ts:54</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>settings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">; </span>wallets<span class="tsd-signature-symbol">: </span><a href="_wallet_.wallet.html" class="tsd-signature-type">Wallet</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>contacts<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">; </span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>settings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">; </span>wallets<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>contacts<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>settings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>wallets<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+								</li>
+							</ul>
 						</li>
 					</ul>
 				</section>
@@ -340,39 +362,16 @@
 					<a name="wallets" class="tsd-anchor"></a>
 					<h3>wallets</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">wallets<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_wallet_repository_.walletrepository.html" class="tsd-signature-type">WalletRepository</a></li>
+						<li class="tsd-signature tsd-kind-icon">wallets<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_repositories_wallet_repository_.walletrepository.html" class="tsd-signature-type">WalletRepository</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L69">profile.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/profile.ts#L38">platform-sdk-profiles/src/profile.ts:38</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_wallet_repository_.walletrepository.html" class="tsd-signature-type">WalletRepository</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="make" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> make</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">make<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><a href="../interfaces/_profile_.profileconstructor.html" class="tsd-signature-type">ProfileConstructor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_profile_.profile.html" class="tsd-signature-type">Profile</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/f7fc2aa8/packages/platform-sdk-profiles/src/profile.ts#L51">profile.ts:51</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>input: <a href="../interfaces/_profile_.profileconstructor.html" class="tsd-signature-type">ProfileConstructor</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_profile_.profile.html" class="tsd-signature-type">Profile</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_repositories_wallet_repository_.walletrepository.html" class="tsd-signature-type">WalletRepository</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -388,13 +387,10 @@
 						<a href="../modules/_avatar_.html">&quot;avatar&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_contact_repository_.html">&quot;contact-<wbr>repository&quot;</a>
+						<a href="../modules/_container_.html">&quot;container&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_contracts_.html">&quot;contracts&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_data_.html">&quot;data&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_enums_.html">&quot;enums&quot;</a>
@@ -412,10 +408,19 @@
 						<a href="../modules/_profile_.html">&quot;profile&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_profile_repository_.html">&quot;profile-<wbr>repository&quot;</a>
+						<a href="../modules/_repositories_contact_repository_.html">&quot;repositories/contact-<wbr>repository&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_settings_.html">&quot;settings&quot;</a>
+						<a href="../modules/_repositories_data_repository_.html">&quot;repositories/data-<wbr>repository&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_repositories_profile_repository_.html">&quot;repositories/profile-<wbr>repository&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_repositories_setting_repository_.html">&quot;repositories/setting-<wbr>repository&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_repositories_wallet_repository_.html">&quot;repositories/wallet-<wbr>repository&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_storage_factory_.html">&quot;storage/factory&quot;</a>
@@ -429,9 +434,6 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_wallet_.html">&quot;wallet&quot;</a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_wallet_repository_.html">&quot;wallet-<wbr>repository&quot;</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
@@ -441,17 +443,17 @@
 					<li class="current tsd-kind-class tsd-parent-kind-module">
 						<a href="_profile_.profile.html" class="tsd-kind-icon">Profile</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-private">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="_profile_.profile.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_profile_.profile.html#_avatar" class="tsd-kind-icon">#avatar</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_profile_.profile.html#_contacts" class="tsd-kind-icon">#contacts</a>
+								<a href="_profile_.profile.html#_contactrepository" class="tsd-kind-icon">#contact<wbr>Repository</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_profile_.profile.html#_data" class="tsd-kind-icon">#data</a>
+								<a href="_profile_.profile.html#_datarepository" class="tsd-kind-icon">#data<wbr>Repository</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_profile_.profile.html#_id" class="tsd-kind-icon">#id</a>
@@ -460,10 +462,10 @@
 								<a href="_profile_.profile.html#_name" class="tsd-kind-icon">#name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_profile_.profile.html#_settings" class="tsd-kind-icon">#settings</a>
+								<a href="_profile_.profile.html#_settingrepository" class="tsd-kind-icon">#setting<wbr>Repository</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_profile_.profile.html#_wallets" class="tsd-kind-icon">#wallets</a>
+								<a href="_profile_.profile.html#_walletrepository" class="tsd-kind-icon">#wallet<wbr>Repository</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_profile_.profile.html#avatar" class="tsd-kind-icon">avatar</a>
@@ -489,16 +491,10 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_profile_.profile.html#wallets" class="tsd-kind-icon">wallets</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="_profile_.profile.html#make" class="tsd-kind-icon">make</a>
-							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../interfaces/_profile_.profileconstructor.html" class="tsd-kind-icon">Profile<wbr>Constructor</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
@@ -509,11 +505,14 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -523,9 +522,6 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
