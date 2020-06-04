@@ -37,8 +37,6 @@ export interface Contact extends ContactStruct {
 	id: string;
 }
 
-export type ContactList = Contact[];
-
 // Container Bindings - TODO: remove I prefix
 export const Identifiers = {
 	AppData: "Data<App>",

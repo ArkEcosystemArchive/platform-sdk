@@ -37,8 +37,7 @@ export class PeerService implements Contracts.PeerService {
 			} else {
 				seeds = config.get<Coins.CoinNetwork>("network").hosts;
 			}
-		} catch (e) {
-			console.log(e);
+		} catch {
 			throw new Error("Failed to discovery any peers.");
 		}
 

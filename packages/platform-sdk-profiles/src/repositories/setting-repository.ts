@@ -1,19 +1,24 @@
-import { ProfileSetting, WalletSetting } from "../enums";
 import { DataRepository } from "./data-repository";
 
 export class SettingRepository {
 	#storage: DataRepository;
-	#type: string;
 	#allowedKeys: string[];
 
 	public constructor(type: string, allowedKeys: string[]) {
 		this.#storage = new DataRepository(type, "setting");
-		this.#type = type;
 		this.#allowedKeys = allowedKeys;
 	}
 
 	public all(): object {
 		return this.#storage.all();
+	}
+
+	public keys(): object {
+		return this.#storage.keys();
+	}
+
+	public values(): object {
+		return this.#storage.values();
 	}
 
 	public get<T>(key: string, defaultValue?: T): T | undefined {
@@ -26,6 +31,10 @@ export class SettingRepository {
 		this.assertValidKey(key);
 
 		this.#storage.set(key, value);
+	}
+
+	public fill(entries: object): void {
+		this.#storage.fill(entries);
 	}
 
 	public has(key: string): boolean {
@@ -45,15 +54,10 @@ export class SettingRepository {
 	}
 
 	private assertValidKey(key: string): void {
-		const allowedKeys = {
-			profile: Object.values(ProfileSetting),
-			wallet: Object.values(WalletSetting),
-		}[this.#type];
-
-		if (allowedKeys.includes(key)) {
+		if (this.#allowedKeys.includes(key)) {
 			return;
 		}
 
-		throw new Error(`The [${key}] is not a valid setting for the [${this.#type}] type.`);
+		throw new Error(`The [${key}] is not a valid setting.`);
 	}
 }

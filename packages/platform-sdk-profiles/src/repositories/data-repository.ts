@@ -42,6 +42,12 @@ export class DataRepository {
 			.emit(DataEvent.Modified, { namespace: this.#namespace, type: this.#type });
 	}
 
+	public fill(entries: object): void {
+		for (const [key, value] of Object.entries(entries)) {
+			this.set(key, value);
+		}
+	}
+
 	public has(key: string): boolean {
 		return dot.has(this.#storage, key);
 	}

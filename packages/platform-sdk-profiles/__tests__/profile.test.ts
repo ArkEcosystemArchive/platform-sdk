@@ -5,7 +5,6 @@ import { Profile, ContactRepository, SettingRepository, WalletRepository, Identi
 import { container } from "../src/container";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { Wallet } from "../src/wallet";
 import { identity } from "./__fixtures__/identity";
 import { HttpClient } from "./stubs/client";
 import { DataRepository } from "../src/repositories/data-repository";

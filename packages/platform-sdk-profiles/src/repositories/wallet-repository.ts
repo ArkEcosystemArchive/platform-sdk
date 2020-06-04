@@ -10,8 +10,16 @@ export class WalletRepository {
 		this.#data = new DataRepository("profile", "wallet");
 	}
 
-	public all(): Wallet[] {
-		return Object.values(this.#data.all());
+	public all(): Record<string, Wallet> {
+		return this.#data.all() as Record<string, Wallet>;
+	}
+
+	public keys(): string[] {
+		return this.#data.keys();
+	}
+
+	public values(): Wallet[] {
+		return this.#data.values();
 	}
 
 	public async create(mnemonic: string, coin: Coins.CoinSpec, network: string): Promise<Wallet> {
@@ -43,18 +51,28 @@ export class WalletRepository {
 	}
 
 	public findByAddress(address: string): Wallet | undefined {
-		return this.all().find((wallet: Wallet) => wallet.address() === address);
+		return this.values().find((wallet: Wallet) => wallet.address() === address);
 	}
 
 	public findByPublicKey(publicKey: string): Wallet | undefined {
-		return this.all().find((wallet: Wallet) => wallet.publicKey() === publicKey);
+		return this.values().find((wallet: Wallet) => wallet.publicKey() === publicKey);
 	}
 
 	public findByCoin(coin: string): Wallet[] {
-		return this.all().filter((wallet: Wallet) => wallet.coin().manifest().get<string>("name") === coin);
+		return this.values().filter((wallet: Wallet) => wallet.coin().manifest().get<string>("name") === coin);
 	}
 
 	public async flush(): Promise<void> {
 		this.#data.flush();
+	}
+
+	public toObject(): Record<string, object> {
+		const result: Record<string, object> = {};
+
+		for (const [id, wallet] of Object.entries(this.#data.all())) {
+			result[id] = wallet.toObject();
+		}
+
+		return result;
 	}
 }

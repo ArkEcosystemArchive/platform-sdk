@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { Contact, ContactAddress, ContactList, ContactStruct } from "../contracts";
+import { Contact, ContactAddress, ContactStruct } from "../contracts";
 import { DataRepository } from "./data-repository";
 
 export class ContactRepository {
@@ -10,7 +10,15 @@ export class ContactRepository {
 		this.#data = new DataRepository("profile", "contact");
 	}
 
-	public all(): ContactList {
+	public all(): Record<string, Contact> {
+		return this.#data.all() as Record<string, Contact>;
+	}
+
+	public keys(): string[] {
+		return Object.keys(this.#data.all());
+	}
+
+	public values(): Contact[] {
 		return Object.values(this.#data.all());
 	}
 
@@ -20,6 +28,10 @@ export class ContactRepository {
 		this.#data.set(contact.id, contact);
 
 		return contact;
+	}
+
+	public fill(entries: object): void {
+		this.#data.fill(entries);
 	}
 
 	public find(id: string): Contact {
@@ -46,20 +58,20 @@ export class ContactRepository {
 		this.#data.flush();
 	}
 
-	public findByAddress(value: string): ContactList {
+	public findByAddress(value: string): Contact[] {
 		return this.findByColumn("address", value);
 	}
 
-	public findByCoin(value: string): ContactList {
+	public findByCoin(value: string): Contact[] {
 		return this.findByColumn("coin", value);
 	}
 
-	public findByNetwork(value: string): ContactList {
+	public findByNetwork(value: string): Contact[] {
 		return this.findByColumn("network", value);
 	}
 
-	private findByColumn(column: string, value: string): ContactList {
-		const result: ContactList = [];
+	private findByColumn(column: string, value: string): Contact[] {
+		const result: Contact[] = [];
 
 		for (const [id, contact] of Object.entries(this.all())) {
 			if (contact.addresses.find((address: ContactAddress) => address[column] === value)) {

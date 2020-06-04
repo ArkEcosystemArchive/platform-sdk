@@ -93,8 +93,8 @@ export class Wallet {
 
 	public toObject(): object {
 		return {
-			coin: this.coin(), // TODO: turn into string
-			network: this.network(), // TODO: turn into string
+			coin: this.coin().manifest().get<string>("name"),
+			network: this.network(),
 			address: this.address(),
 			publicKey: this.publicKey(),
 		};
