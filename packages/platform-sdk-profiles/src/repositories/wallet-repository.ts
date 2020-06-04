@@ -18,6 +18,13 @@ import { DataRepository } from "./data-repository";
 export class WalletRepository {
 	#data: DataRepository;
 
+	/**
+	 * @TODO
+	 *
+	 * Think about how to remove this because we don't want this package to know what coins are
+	 * but we need to map a string like ARK to the concrete implementation when restoring a coin from
+	 * the storage where the coin and network are stored as strings.
+	 */
 	readonly #coinMap = {
 		// Cardano,
 		ARK,
