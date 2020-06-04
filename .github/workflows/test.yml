@@ -38,7 +38,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk/.coverage/lcov.info:lcov
 
     ark:
@@ -70,7 +70,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-ark && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-ark
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-ark/.coverage/lcov.info:lcov
 
     atom:
@@ -102,7 +102,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-atom && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-atom
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-atom/.coverage/lcov.info:lcov
 
     btc:
@@ -134,7 +134,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-btc && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-btc
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-btc/.coverage/lcov.info:lcov
 
     coincap:
@@ -166,7 +166,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-coincap && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-coincap
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-coincap/.coverage/lcov.info:lcov
 
     coingecko:
@@ -198,7 +198,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-coingecko && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-coingecko
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-coingecko/.coverage/lcov.info:lcov
 
     crypto:
@@ -230,7 +230,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-cryptocompare
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-cryptocompare/.coverage/lcov.info:lcov
 
     cryptocompare:
@@ -262,7 +262,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-cryptocompare
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-cryptocompare/.coverage/lcov.info:lcov
 
     eos:
@@ -294,7 +294,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-eos && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-eos
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-eos/.coverage/lcov.info:lcov
 
     eth:
@@ -326,7 +326,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-eth && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-eth
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-eth/.coverage/lcov.info:lcov
 
     intl:
@@ -358,7 +358,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-intl && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-intl
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-intl/.coverage/lcov.info:lcov
 
     lsk:
@@ -390,7 +390,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-lsk && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-lsk
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-lsk/.coverage/lcov.info:lcov
 
     markets:
@@ -422,7 +422,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-markets && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-markets
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-markets/.coverage/lcov.info:lcov
 
     neo:
@@ -454,7 +454,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-neo && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-neo
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-neo/.coverage/lcov.info:lcov
 
     news:
@@ -486,7 +486,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-news && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-news
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-news/.coverage/lcov.info:lcov
 
     profiles:
@@ -518,7 +518,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-profiles && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-profiles
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-profiles/.coverage/lcov.info:lcov
 
     support:
@@ -550,7 +550,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-support && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-support
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-support/.coverage/lcov.info:lcov
 
     trx:
@@ -582,7 +582,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-trx && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-trx
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-trx/.coverage/lcov.info:lcov
 
     xlm:
@@ -614,7 +614,7 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-xlm && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-xlm
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-xlm/.coverage/lcov.info:lcov
 
     xrp:
@@ -646,5 +646,5 @@ jobs:
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
-                  coverageCommand: cd packages/platform-sdk-xrp && yarn run test --coverage
+                  coverageCommand: yarn run test --coverage --cwd=packages/platform-sdk-xrp
                   coverageLocations: ${{github.workspace}}/packages/platform-sdk-xrp/.coverage/lcov.info:lcov
