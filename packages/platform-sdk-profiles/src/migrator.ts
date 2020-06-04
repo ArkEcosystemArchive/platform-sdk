@@ -1,23 +1,23 @@
 import { get, set } from "dot-prop";
-import { inject, injectable } from "inversify";
 import semver from "semver";
 
+import { container } from "./container";
 import { Identifiers, Storage } from "./contracts";
-import { Data } from "./repositories/data-repository";
+import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
 
-@injectable()
 export class Migrator {
-	@inject(Identifiers.Data)
-	private readonly data!: Data;
-
-	@inject(Identifiers.ProfileRepository)
-	private readonly profiles!: ProfileRepository;
-
-	@inject(Identifiers.Storage)
-	private readonly storage!: Storage;
+	readonly #profiles: ProfileRepository;
+	readonly #data: DataRepository;
+	readonly #storage: Storage;
 
 	readonly #namespace: string = "migrations";
+
+	public constructor() {
+		this.#profiles = container.get(Identifiers.ProfileRepository);
+		this.#data = container.get(Identifiers.AppData);
+		this.#storage = container.get(Identifiers.Storage);
+	}
 
 	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
 		let previousMigratedVersion: string = await this.getPreviousMigratedVersion("0.0.0");
@@ -28,15 +28,19 @@ export class Migrator {
 
 		for (const version of newerVersions) {
 			try {
-				await this.storage.snapshot();
+				this.#data.snapshot();
 
-				await migrations[version]({ data: this.data, profiles: this.profiles });
+				await this.#storage.snapshot();
+
+				await migrations[version]({ data: this.#data, profiles: this.#profiles });
 
 				await this.set(version);
 
 				previousMigratedVersion = version;
 			} catch (error) {
-				await this.storage.restore();
+				this.#data.restore();
+
+				await this.#storage.restore();
 
 				throw new Error(
 					`Something went wrong during the migration! Changes applied to the store until this failed migration will be restored. ${error}`,
@@ -81,14 +85,14 @@ export class Migrator {
 	}
 
 	private async set(migration: string): Promise<void> {
-		const result: object = (await this.storage.get(this.#namespace)) || {};
+		const result: object = (await this.#storage.get(this.#namespace)) || {};
 
 		set(result, "latest", migration);
 
-		await this.storage.set(this.#namespace, result);
+		await this.#storage.set(this.#namespace, result);
 	}
 
 	private async getPreviousMigratedVersion(defaultVersion: string): Promise<string> {
-		return get(this.storage.get(this.#namespace), "latest", defaultVersion);
+		return get(this.#storage.get(this.#namespace), "latest", defaultVersion);
 	}
 }

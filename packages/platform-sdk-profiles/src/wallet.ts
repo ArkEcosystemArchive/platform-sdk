@@ -1,29 +1,25 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { inject, injectable, postConstruct } from "inversify";
 
 import { Avatar } from "./avatar";
-import { Identifiers, Storage } from "./contracts";
-import { Data } from "./repositories/data-repository";
-import { Settings } from "./repositories/setting-repository";
+import { container } from "./container";
+import { Identifiers } from "./contracts";
+import { WalletSetting } from "./enums";
+import { DataRepository } from "./repositories/data-repository";
+import { SettingRepository } from "./repositories/setting-repository";
 
-@injectable()
 export class Wallet {
+	#dataRepository!: DataRepository;
+	#settingRepository!: SettingRepository;
+
 	#coin!: Coins.Coin;
 	#wallet!: Contracts.WalletData;
 	#avatar!: string;
 
-	@inject(Identifiers.Data)
-	private readonly dataRepo!: Data;
-
-	@inject(Identifiers.HttpClient)
-	private readonly httpClient!: Contracts.HttpClient;
-
-	@inject(Identifiers.Settings)
-	private settingsRepository!: Settings;
-
-	@inject(Identifiers.Storage)
-	private readonly storage!: Storage;
+	public constructor() {
+		this.#dataRepository = new DataRepository("wallet", "data");
+		this.#settingRepository = new SettingRepository("wallet", Object.values(WalletSetting));
+	}
 
 	/**
 	 * These methods allow to switch out the underlying implementation of certain things like the coin.
@@ -32,7 +28,7 @@ export class Wallet {
 	public async setCoin(coin: Coins.CoinSpec, network: string): Promise<Wallet> {
 		this.#coin = await Coins.CoinFactory.make(coin, {
 			network,
-			httpClient: this.httpClient,
+			httpClient: container.get(Identifiers.HttpClient),
 		});
 
 		return this;
@@ -41,17 +37,15 @@ export class Wallet {
 	public async setIdentity(mnemonic: string): Promise<Wallet> {
 		this.#wallet = await this.#coin.client().wallet(await this.#coin.identity().address().fromMnemonic(mnemonic));
 
-		this.settingsRepository = this.settings().scope(`wallets.${this.address()}`, "wallet");
-
-		await this.setAvatar(Avatar.make(this.address()));
+		this.setAvatar(Avatar.make(this.address()));
 
 		return this;
 	}
 
-	public async setAvatar(value: string): Promise<Wallet> {
+	public setAvatar(value: string): Wallet {
 		this.#avatar = value;
 
-		await this.settings().set("avatar", value);
+		this.settings().set(WalletSetting.Avatar, value);
 
 		return this;
 	}
@@ -89,12 +83,12 @@ export class Wallet {
 		return this.#wallet.nonce();
 	}
 
-	public data(): Data {
-		return this.dataRepo;
+	public data(): DataRepository {
+		return this.#dataRepository;
 	}
 
-	public settings(): Settings {
-		return this.settingsRepository;
+	public settings(): SettingRepository {
+		return this.#settingRepository;
 	}
 
 	public toObject(): object {

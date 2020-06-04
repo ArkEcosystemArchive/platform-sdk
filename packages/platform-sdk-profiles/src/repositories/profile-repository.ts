@@ -1,43 +1,27 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
-import { inject, injectable } from "inversify";
 import { v4 as uuidv4 } from "uuid";
 
-import { Identifiers, ProfileFactory, Storage } from "../contracts";
 import { Profile } from "../profile";
+import { DataRepository } from "./data-repository";
 
-@injectable()
 export class ProfileRepository {
-	readonly #key: string = "profiles";
+	readonly #data: DataRepository;
 
-	@inject(Identifiers.HttpClient)
-	private readonly httpClient!: Contracts.HttpClient;
-
-	@inject(Identifiers.Storage)
-	private readonly storage!: Storage;
-
-	@inject(Identifiers.ProfileFactory)
-	private readonly createProfileFactory!: ProfileFactory;
-
-	public async all(): Promise<Profile[]> {
-		const result: any[] | undefined = await this.storage.get(this.#key);
-
-		if (!result) {
-			return [];
-		}
-
-		return Promise.all(result.map((profile) => this.createProfileFactory(profile.id, profile.name)));
+	public constructor() {
+		this.#data = new DataRepository("app", "profiles");
 	}
 
-	public async get(id: string): Promise<Profile> {
-		const profiles: Profile[] = await this.all();
+	public async all(): Promise<Profile[]> {
+		const profiles: Profile[] = Object.values({ ...this.#data.all() });
 
-		const result: Profile | undefined = profiles.find((item: Profile) => [item.name(), item.id()].includes(id));
+		return Promise.all(profiles.map((profile: any) => this.createProfile(profile.id, profile.name)));
+	}
 
-		if (!result) {
+	public get(id: string): Profile {
+		if (this.#data.missing(id)) {
 			throw new Error(`No profile found for [${id}].`);
 		}
 
-		return result;
+		return this.#data.get(id) as Profile;
 	}
 
 	public async push(name: string): Promise<Profile> {
@@ -49,26 +33,30 @@ export class ProfileRepository {
 			}
 		}
 
-		const result: Profile = this.createProfileFactory(uuidv4(), name);
+		const id: string = uuidv4();
+		const result: Profile = await this.createProfile(id, name);
 
-		profiles.push(result);
-
-		await this.storage.set(this.#key, await Promise.all(profiles.map((item: Profile) => item.toObject())));
+		this.#data.set(id, result);
 
 		return result;
 	}
 
-	public async forget(id: string): Promise<Profile[]> {
-		const profiles: Profile[] = await this.all();
-
-		const result: Profile[] | undefined = profiles.filter((item: Profile) => item.id() !== id);
-
-		if (!result) {
+	public forget(id: string): void {
+		if (this.#data.missing(id)) {
 			throw new Error(`No profile found for [${id}].`);
 		}
 
-		await this.storage.set(this.#key, await Promise.all(result.map((item: Profile) => item.toObject())));
+		this.#data.forget(id);
+	}
 
-		return result;
+	private async createProfile(id: string, name: string): Promise<Profile> {
+		const profile: Profile = new Profile(id, name);
+
+		// TODO: load contacts
+		// TODO: load wallets
+		// TODO: load data
+		// TODO: load settings
+
+		return profile;
 	}
 }

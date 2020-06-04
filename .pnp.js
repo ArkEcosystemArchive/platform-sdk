@@ -1075,13 +1075,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["codecov", "npm:3.7.0"],
             ["cross-env", "npm:7.0.2"],
             ["dot-prop", "npm:5.2.0"],
+            ["emittery", "npm:0.7.0"],
             ["eslint", "npm:7.1.0"],
             ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.11.0"],
             ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:23.13.2"],
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["got", "npm:11.1.4"],
-            ["inversify", "npm:5.0.1"],
             ["jest", "npm:26.0.1"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
@@ -1090,7 +1090,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:6.0.1"],
             ["prettier", "npm:2.0.5"],
-            ["reflect-metadata", "npm:0.1.13"],
             ["rimraf", "npm:3.0.2"],
             ["semver", "npm:7.3.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.0.0"],
@@ -7034,6 +7033,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["emittery", [
+        ["npm:0.7.0", {
+          "packageLocation": "./.yarn/cache/emittery-npm-0.7.0-09a1d2a436-2.zip/node_modules/emittery/",
+          "packageDependencies": [
+            ["emittery", "npm:0.7.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["emoji-regex", [
         ["npm:7.0.3", {
           "packageLocation": "./.yarn/cache/emoji-regex-npm-7.0.3-cfe9479bb3-2.zip/node_modules/emoji-regex/",
@@ -9268,15 +9276,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["invariant", "npm:2.2.4"],
             ["loose-envify", "npm:1.4.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["inversify", [
-        ["npm:5.0.1", {
-          "packageLocation": "./.yarn/cache/inversify-npm-5.0.1-6f6ad10d83-2.zip/node_modules/inversify/",
-          "packageDependencies": [
-            ["inversify", "npm:5.0.1"]
           ],
           "linkType": "HARD",
         }]
@@ -13412,15 +13411,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["rechoir", "npm:0.6.2"],
             ["resolve", "patch:resolve@npm%3A1.17.0#builtin<compat/resolve>::version=1.17.0&hash=e7677c"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["reflect-metadata", [
-        ["npm:0.1.13", {
-          "packageLocation": "./.yarn/cache/reflect-metadata-npm-0.1.13-c525998e20-2.zip/node_modules/reflect-metadata/",
-          "packageDependencies": [
-            ["reflect-metadata", "npm:0.1.13"]
           ],
           "linkType": "HARD",
         }]

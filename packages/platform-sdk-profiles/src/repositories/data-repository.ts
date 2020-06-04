@@ -1,58 +1,91 @@
-import { delete as forget, get, has, set } from "dot-prop";
-import { inject, injectable } from "inversify";
+import dot from "dot-prop";
+import Emittery from "emittery";
 
-import { Identifiers, Storage } from "../contracts";
+import { container } from "../container";
+import { Identifiers } from "../contracts";
+import { DataEvent } from "../enums";
 
-@injectable()
-export class Data {
-	@inject(Identifiers.Storage)
-	private readonly storage!: Storage;
+export class DataRepository {
+	#storage: object = {};
+	#snapshot: object | undefined;
 
-	#namespace = "data.app";
+	#namespace!: string;
+	#type!: string;
 
-	public scope(namespace: string): Data {
-		this.#namespace = `data.${namespace}`;
-
-		return this;
+	public constructor(namespace: string, type: string) {
+		this.#namespace = namespace;
+		this.#type = type;
 	}
 
-	public async all(): Promise<object | undefined> {
-		return (await this.storage.get(this.#namespace)) || {};
+	public all(): object {
+		return this.#storage;
 	}
 
-	public async get<T>(key: string, defaultValue?: T): Promise<T | undefined> {
-		return get(await this.all(), key, defaultValue);
+	public keys(): string[] {
+		return Object.keys(this.#storage);
 	}
 
-	public async set(key: string, value: string | object): Promise<void> {
-		const result: object = (await this.all()) || {};
-
-		set(result, key, value);
-
-		await this.storage.set(this.#namespace, result);
+	public values<T>(): T[] {
+		return Object.values(this.#storage);
 	}
 
-	public async has(key: string): Promise<boolean> {
-		return has(await this.all(), key);
+	public get<T>(key: string, defaultValue?: T | undefined): T | undefined {
+		return dot.get(this.#storage, key, defaultValue);
 	}
 
-	public async forget(key: string): Promise<void> {
-		let result: object | undefined = await this.storage.get(this.#namespace);
+	public set(key: string, value: unknown): void {
+		dot.set(this.#storage, key, value);
 
-		if (!result) {
-			result = {};
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
+		container
+			.get<Emittery>(Identifiers.EventEmitter)
+			.emit(DataEvent.Modified, { namespace: this.#namespace, type: this.#type });
+	}
+
+	public has(key: string): boolean {
+		return dot.has(this.#storage, key);
+	}
+
+	public missing(key: string): boolean {
+		return !this.has(key);
+	}
+
+	public forget(key: string): void {
+		dot.delete(this.#storage, key);
+
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
+		container.get<Emittery>(Identifiers.EventEmitter).emit(DataEvent.Modified, {
+			namespace: this.#namespace,
+			type: this.#type,
+		});
+	}
+
+	public flush(): void {
+		this.#storage = {};
+
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
+		container
+			.get<Emittery>(Identifiers.EventEmitter)
+			.emit(DataEvent.Modified, { namespace: this.#namespace, type: this.#type });
+	}
+
+	public snapshot(): void {
+		this.#snapshot = { ...this.all() };
+	}
+
+	public restore(): void {
+		if (!this.#snapshot) {
+			throw new Error("There is no snapshot to restore.");
 		}
 
-		forget(result, key);
+		this.flush();
 
-		await this.storage.set(this.#namespace, result);
+		for (const [key, value] of Object.entries(this.#snapshot)) {
+			this.set(key, value);
+		}
 	}
 
-	public async flush(): Promise<void> {
-		await this.storage.set(this.#namespace, {});
-	}
-
-	public async toJSON(): Promise<string> {
-		return JSON.stringify(await this.all());
+	public toJSON(): string {
+		return JSON.stringify(this.#storage);
 	}
 }

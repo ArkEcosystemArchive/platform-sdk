@@ -1,66 +1,47 @@
-import { delete as forget, get, has, set } from "dot-prop";
-import { inject, injectable } from "inversify";
-
-import { Identifiers, Storage } from "../contracts";
 import { ProfileSetting, WalletSetting } from "../enums";
+import { DataRepository } from "./data-repository";
 
-@injectable()
-export class Settings {
-	@inject(Identifiers.Storage)
-	private readonly storage!: Storage;
+export class SettingRepository {
+	#storage: DataRepository;
+	#type: string;
+	#allowedKeys: string[];
 
-	#namespace!: string;
-	#type!: string;
-
-	public scope(namespace: string, type: string): Settings {
-		this.#namespace = `settings.${namespace}`;
+	public constructor(type: string, allowedKeys: string[]) {
+		this.#storage = new DataRepository(type, "setting");
 		this.#type = type;
-
-		return this;
+		this.#allowedKeys = allowedKeys;
 	}
 
-	public async all(): Promise<object | undefined> {
-		return (await this.storage.get(this.#namespace)) || {};
+	public all(): object {
+		return this.#storage.all();
 	}
 
-	public async get<T>(key: string, defaultValue?: T): Promise<T | undefined> {
+	public get<T>(key: string, defaultValue?: T): T | undefined {
 		this.assertValidKey(key);
 
-		return get(await this.all(), key, defaultValue);
+		return this.#storage.get(key, defaultValue);
 	}
 
-	public async set(key: string, value: string | object): Promise<void> {
+	public set(key: string, value: string | object): void {
 		this.assertValidKey(key);
 
-		const result: object = (await this.all()) || {};
-
-		set(result, key, value);
-
-		await this.storage.set(this.#namespace, result);
+		this.#storage.set(key, value);
 	}
 
-	public async has(key: string): Promise<boolean> {
+	public has(key: string): boolean {
 		this.assertValidKey(key);
 
-		return has(await this.all(), key);
+		return this.#storage.has(key);
 	}
 
-	public async forget(key: string): Promise<void> {
+	public forget(key: string): void {
 		this.assertValidKey(key);
 
-		let result: object | undefined = await this.storage.get(this.#namespace);
-
-		if (!result) {
-			result = {};
-		}
-
-		forget(result, key);
-
-		await this.storage.set(this.#namespace, result);
+		this.#storage.forget(key);
 	}
 
-	public async flush(): Promise<void> {
-		await this.storage.set(this.#namespace, {});
+	public flush(): void {
+		this.#storage.flush();
 	}
 
 	private assertValidKey(key: string): void {

@@ -40,26 +40,22 @@ export interface Contact extends ContactStruct {
 export type ContactList = Contact[];
 
 // Container Bindings - TODO: remove I prefix
-export interface IContactRepository {}
-export interface IData {}
-export interface IHttpClient {}
-export interface IProfileRepository {}
-export interface ISettings {}
-export interface IWallet {}
-export interface IWalletRepository {}
-
 export const Identifiers = {
-	ContactFactory: Symbol.for("ContactFactory"),
-	ContactRepository: Symbol.for("ContactRepository"),
-	Data: Symbol.for("Data"),
-	HttpClient: Symbol.for("HttpClient"),
-	Migrator: Symbol.for("Migrator"),
-	ProfileFactory: Symbol.for("ProfileFactory"),
-	ProfileRepository: Symbol.for("ProfileRepository"),
-	Settings: Symbol.for("Settings"),
-	Storage: Symbol.for("Storage"),
-	WalletFactory: Symbol.for("WalletFactory"),
-	WalletRepository: Symbol.for("WalletRepository"),
+	AppData: "Data<App>",
+	ProfileData: "Data<Profile>",
+
+	ContactFactory: "ContactFactory",
+	ContactRepository: "ContactRepository",
+	DataRepository: "DataRepository",
+	EventEmitter: "EventEmitter",
+	HttpClient: "HttpClient",
+	Migrator: "Migrator",
+	ProfileFactory: "ProfileFactory",
+	ProfileRepository: "ProfileRepository",
+	SettingRepository: "SettingRepository",
+	Storage: "Storage",
+	WalletFactory: "WalletFactory",
+	WalletRepository: "WalletRepository",
 };
 
 export type ProfileFactory = (id: string, name: string) => any;

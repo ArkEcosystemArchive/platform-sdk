@@ -1,55 +1,26 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
-import { inject } from "inversify";
-
-import { Avatar } from "./avatar";
-import { Identifiers, Storage } from "./contracts";
+import { ProfileSetting } from "./enums";
 import { ContactRepository } from "./repositories/contact-repository";
-import { Data } from "./repositories/data-repository";
-import { Settings } from "./repositories/setting-repository";
+import { DataRepository } from "./repositories/data-repository";
+import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
-import { Wallet } from "./wallet";
-
-interface ProfileConstructor {
-	id: string;
-	name: string;
-	wallets: Wallet[];
-	httpClient: Contracts.HttpClient;
-	storage: Storage;
-}
 
 export class Profile {
-	@inject(Identifiers.WalletRepository)
-	private walletRepository!: WalletRepository;
-
-	@inject(Identifiers.ContactRepository)
-	private contactRepository!: ContactRepository;
-
-	@inject(Identifiers.Data)
-	private dataRepository!: Data;
-
-	@inject(Identifiers.Settings)
-	private settingsRepository!: Settings;
+	#contactRepository!: ContactRepository;
+	#walletRepository!: WalletRepository;
+	#dataRepository!: DataRepository;
+	#settingRepository!: SettingRepository;
 
 	#id!: string;
 	#name!: string;
 	#avatar!: string;
 
-	public async setId(id: string): Promise<Profile> {
+	public constructor(id: string, name: string) {
 		this.#id = id;
-
-		this.dataRepository = this.data().scope(`profiles.${id}`);
-		this.settingsRepository = this.settings().scope(`profiles.${id}`, "profile");
-
-		// TODO: inject the data and load contactRepository
-		await this.contactRepository.setData(this.data());
-
-		return this;
-	}
-
-	public setName(name: string): Profile {
 		this.#name = name;
-
-		return this;
+		this.#contactRepository = new ContactRepository();
+		this.#walletRepository = new WalletRepository();
+		this.#dataRepository = new DataRepository("profile", "data");
+		this.#settingRepository = new SettingRepository("profile", Object.values(ProfileSetting));
 	}
 
 	public id(): string {
@@ -65,32 +36,29 @@ export class Profile {
 	}
 
 	public wallets(): WalletRepository {
-		return this.walletRepository;
+		return this.#walletRepository;
 	}
 
 	public contacts(): ContactRepository {
-		return this.contactRepository;
+		return this.#contactRepository;
 	}
 
-	public data(): Data {
-		return this.dataRepository;
+	public data(): DataRepository {
+		return this.#dataRepository;
 	}
 
-	public settings(): Settings {
-		return this.settingsRepository;
+	public settings(): SettingRepository {
+		return this.#settingRepository;
 	}
 
-	public async toObject(): Promise<{
-		id: string;
-		name: string;
-		wallets: Wallet[];
-		settings: object | undefined;
-	}> {
+	public async toObject(): Promise<any> {
 		return {
 			id: this.#id,
 			name: this.#name,
 			wallets: this.wallets().all(),
-			settings: await this.settings().all(),
+			contacts: this.contacts().all(),
+			data: this.data().all(),
+			settings: this.settings().all(),
 		};
 	}
 }

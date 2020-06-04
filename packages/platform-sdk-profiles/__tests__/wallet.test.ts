@@ -7,7 +7,8 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Wallet } from "../src/wallet";
 import { identity } from "./__fixtures__/identity";
-import { LocalStorage } from "../src/storage/local";
+import { container } from "../src/container";
+import { Identifiers } from "../src/contracts";
 import { HttpClient } from "./stubs/client";
 
 let subject: Wallet;
@@ -22,15 +23,12 @@ beforeEach(async () => {
 		.reply(200, require("./__fixtures__/client/wallet.json"))
 		.persist();
 
-	const storage = new LocalStorage("localstorage");
+	container.set(Identifiers.HttpClient, new HttpClient());
 
-	subject = await Wallet.fromMnemonic({
-		mnemonic: identity.mnemonic,
-		coin: ARK,
-		network: "devnet",
-		httpClient: new HttpClient(),
-		storage,
-	});
+	subject = new Wallet();
+
+	await subject.setCoin(ARK, "devnet");
+	await subject.setIdentity(identity.mnemonic);
 });
 
 afterEach(() => nock.cleanAll());

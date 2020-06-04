@@ -1,54 +1,49 @@
-import { postConstruct } from "inversify";
 import { v4 as uuidv4 } from "uuid";
 
 import { Contact, ContactAddress, ContactList, ContactStruct } from "../contracts";
-import { Data } from "./data-repository";
+import { DataRepository } from "./data-repository";
 
 export class ContactRepository {
-	#data!: Data;
-	#contacts: ContactList = [];
+	#data: DataRepository;
 
-	public async setData(data: Data): Promise<void> {
-		this.#data = data;
-		this.#contacts = (await data.get("contacts")) || [];
+	public constructor() {
+		this.#data = new DataRepository("profile", "contact");
 	}
 
 	public all(): ContactList {
-		return this.#contacts;
+		return Object.values(this.#data.all());
 	}
 
-	public async create(data: ContactStruct): Promise<Contact> {
+	public create(data: ContactStruct): Contact {
 		const contact: Contact = { id: uuidv4(), ...data };
 
-		this.#contacts.push(contact);
-
-		await this.persist();
+		this.#data.set(contact.id, contact);
 
 		return contact;
 	}
 
 	public find(id: string): Contact {
-		return this.#contacts[this.findIndex(id)];
+		const contact: Contact | undefined = this.#data.get(id);
+
+		if (!contact) {
+			throw new Error(`Failed to find a contact for [${id}].`);
+		}
+
+		return contact;
 	}
 
-	public async update(id: string, data: object): Promise<void> {
-		const index: number = this.findIndex(id);
-
-		this.#contacts[index] = { ...this.#contacts[index], ...data };
-
-		await this.persist();
+	public update(id: string, data: object): void {
+		this.#data.set(id, { ...this.find(id), ...data });
 	}
 
-	public async destroy(id: string): Promise<void> {
-		this.#contacts.splice(this.findIndex(id), 1);
+	public destroy(id: string): void {
+		this.find(id);
 
-		await this.persist();
+		this.#data.forget(id);
 	}
 
-	public async flush(): Promise<void> {
-		this.#contacts = [];
-
-		await this.persist();
+	public flush(): void {
+		this.#data.flush();
 	}
 
 	public findByAddress(value: string): ContactList {
@@ -64,22 +59,14 @@ export class ContactRepository {
 	}
 
 	private findByColumn(column: string, value: string): ContactList {
-		return this.#contacts.filter((contact: Contact) =>
-			contact.addresses.find((address: ContactAddress) => address[column] === value),
-		);
-	}
+		const result: ContactList = [];
 
-	private async persist(): Promise<void> {
-		await this.#data.set("contacts", this.#contacts);
-	}
-
-	private findIndex(id: string): number {
-		const index: number = this.#contacts.findIndex((contact: Contact) => contact.id === id || contact.name === id);
-
-		if (index === -1) {
-			throw new Error(`Failed to find a contact for [${id}].`);
+		for (const [id, contact] of Object.entries(this.all())) {
+			if (contact.addresses.find((address: ContactAddress) => address[column] === value)) {
+				result.push(contact);
+			}
 		}
 
-		return index;
+		return result;
 	}
 }
