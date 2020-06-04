@@ -33,8 +33,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk/.coverage/lcov.info:lcov
 
     ark:
         runs-on: ubuntu-latest
@@ -60,8 +65,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-ark && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-ark && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-ark/.coverage/lcov.info:lcov
 
     atom:
         runs-on: ubuntu-latest
@@ -87,8 +97,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-atom && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-atom && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-atom/.coverage/lcov.info:lcov
 
     btc:
         runs-on: ubuntu-latest
@@ -114,8 +129,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-btc && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-btc && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-btc/.coverage/lcov.info:lcov
 
     coincap:
         runs-on: ubuntu-latest
@@ -141,8 +161,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-coincap && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-coincap && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-coincap/.coverage/lcov.info:lcov
 
     coingecko:
         runs-on: ubuntu-latest
@@ -168,8 +193,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-coingecko && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-coingecko && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-coingecko/.coverage/lcov.info:lcov
 
     crypto:
         runs-on: ubuntu-latest
@@ -195,8 +225,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-cryptocompare && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-cryptocompare/.coverage/lcov.info:lcov
 
     cryptocompare:
         runs-on: ubuntu-latest
@@ -222,8 +257,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-cryptocompare && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-cryptocompare/.coverage/lcov.info:lcov
 
     eos:
         runs-on: ubuntu-latest
@@ -249,8 +289,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-eos && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-eos && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-eos/.coverage/lcov.info:lcov
 
     eth:
         runs-on: ubuntu-latest
@@ -276,8 +321,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-eth && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-eth && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-eth/.coverage/lcov.info:lcov
 
     intl:
         runs-on: ubuntu-latest
@@ -303,8 +353,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-intl && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-intl && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-intl/.coverage/lcov.info:lcov
 
     lsk:
         runs-on: ubuntu-latest
@@ -330,8 +385,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-lsk && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-lsk && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-lsk/.coverage/lcov.info:lcov
 
     markets:
         runs-on: ubuntu-latest
@@ -357,8 +417,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-markets && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-markets && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-markets/.coverage/lcov.info:lcov
 
     neo:
         runs-on: ubuntu-latest
@@ -384,8 +449,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-neo && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-neo && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-neo/.coverage/lcov.info:lcov
 
     news:
         runs-on: ubuntu-latest
@@ -411,8 +481,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-news && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-news && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-news/.coverage/lcov.info:lcov
 
     profiles:
         runs-on: ubuntu-latest
@@ -438,8 +513,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-profiles && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-profiles && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-profiles/.coverage/lcov.info:lcov
 
     support:
         runs-on: ubuntu-latest
@@ -465,8 +545,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-support && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-support && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-support/.coverage/lcov.info:lcov
 
     trx:
         runs-on: ubuntu-latest
@@ -492,8 +577,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-trx && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-trx && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-trx/.coverage/lcov.info:lcov
 
     xlm:
         runs-on: ubuntu-latest
@@ -519,8 +609,13 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-xlm && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-xlm && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-xlm/.coverage/lcov.info:lcov
 
     xrp:
         runs-on: ubuntu-latest
@@ -546,5 +641,10 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-xrp && yarn run test --coverage
 
-            - name: Codecov
-              run: cd packages/platform-sdk-xrp && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+            - name: Execute tests & Report coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                  coverageCommand: yarn run test --coverage
+                  coverageLocations: ${{github.workspace}}/packages/platform-sdk-xrp/.coverage/lcov.info:lcov
