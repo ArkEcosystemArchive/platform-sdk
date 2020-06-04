@@ -1,5 +1,5 @@
 export const manifest = {
-	name: "Stellar",
+	name: "XLM",
 	networks: {
 		mainnet: {
 			id: "mainnet",

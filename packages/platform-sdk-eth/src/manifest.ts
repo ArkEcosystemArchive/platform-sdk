@@ -1,5 +1,5 @@
 export const manifest = {
-	name: "Ethereum",
+	name: "ETH",
 	networks: {
 		mainnet: {
 			id: "mainnet",

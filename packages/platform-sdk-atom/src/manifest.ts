@@ -1,5 +1,5 @@
 export const manifest = {
-	name: "Cosmos",
+	name: "ATOM",
 	networks: {
 		"cosmos.mainnet": {
 			id: "cosmos.mainnet",

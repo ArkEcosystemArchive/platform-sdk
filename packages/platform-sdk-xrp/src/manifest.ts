@@ -1,5 +1,5 @@
 export const manifest = {
-	name: "Ripple",
+	name: "XRP",
 	networks: {
 		mainnet: {
 			id: "mainnet",

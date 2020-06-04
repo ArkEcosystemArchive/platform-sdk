@@ -4,9 +4,6 @@ import nock from "nock";
 import { Profile, ContactRepository, SettingRepository, WalletRepository, Identifiers } from "../src";
 import { container } from "../src/container";
 
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { Wallet } from "../src/wallet";
-import { identity } from "./__fixtures__/identity";
 import { HttpClient } from "./stubs/client";
 import { DataRepository } from "../src/repositories/data-repository";
 
@@ -25,7 +22,7 @@ beforeAll(() => {
 	container.set(Identifiers.HttpClient, new HttpClient());
 });
 
-beforeEach(async () => {
+beforeEach(() => {
 	subject = new Profile("uuid", "John Doe");
 });
 
@@ -57,58 +54,13 @@ it("should have a settings repository", () => {
 	expect(subject.settings()).toBeInstanceOf(SettingRepository);
 });
 
-it("should modify CONTACTS and and emit a MODIFIED event", () => {
-	const emitSpy = jest.spyOn(container.get<any>(Identifiers.EventEmitter), "emit");
-
-	subject.contacts().create({
-		name: "Jane Doe",
-		addresses: [{ coin: "Ethereum", network: "testnet", address: "TESTNET-ADDRESS" }],
-		starred: true,
+test("Profile#toObject", () => {
+	expect(subject.toObject()).toEqual({
+		id: "uuid",
+		name: "John Doe",
+		contacts: {},
+		data: {},
+		settings: {},
+		wallets: {},
 	});
-
-	expect(emitSpy).toHaveBeenNthCalledWith(1, "MODIFIED", { namespace: "profile", type: "contact" });
-
-	jest.clearAllMocks();
 });
-
-it("should modify WALLETS and and emit a MODIFIED event", async () => {
-	const emitSpy = jest.spyOn(container.get<any>(Identifiers.EventEmitter), "emit");
-
-	await subject.wallets().create(identity.mnemonic, ARK, "devnet");
-
-	expect(emitSpy).toHaveBeenNthCalledWith(1, "MODIFIED", { namespace: "wallet", type: "setting" });
-	expect(emitSpy).toHaveBeenNthCalledWith(2, "MODIFIED", { namespace: "profile", type: "wallet" });
-
-	jest.clearAllMocks();
-});
-
-it("should modify DATA and and emit a MODIFIED event", () => {
-	const emitSpy = jest.spyOn(container.get<any>(Identifiers.EventEmitter), "emit");
-
-	subject.data().set("key", "value");
-
-	expect(emitSpy).toHaveBeenNthCalledWith(1, "MODIFIED", { namespace: "profile", type: "data" });
-
-	jest.clearAllMocks();
-});
-
-it("should modify SETTINGS and and emit a MODIFIED event", () => {
-	const emitSpy = jest.spyOn(container.get<any>(Identifiers.EventEmitter), "emit");
-
-	subject.settings().set("ADVANCED_MODE", "value");
-
-	expect(emitSpy).toHaveBeenNthCalledWith(1, "MODIFIED", { namespace: "profile", type: "setting" });
-
-	jest.clearAllMocks();
-});
-
-// test("Profile#toObject", async () => {
-// 	await expect(subject.toObject()).resolves.toEqual({
-// 		id: "uuid",
-// 		name: "John Doe",
-// 		wallets: [],
-// 		contacts: [],
-// 		data: [],
-// 		settings: {},
-// 	});
-// });

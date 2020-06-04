@@ -688,9 +688,21 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-profiles@workspace:packages/platform-sdk-profiles"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-ada": "workspace:packages/platform-sdk-ada"
     "@arkecosystem/platform-sdk-ark": "workspace:packages/platform-sdk-ark"
+    "@arkecosystem/platform-sdk-atom": "workspace:packages/platform-sdk-atom"
+    "@arkecosystem/platform-sdk-btc": "workspace:packages/platform-sdk-btc"
+    "@arkecosystem/platform-sdk-eos": "workspace:packages/platform-sdk-eos"
+    "@arkecosystem/platform-sdk-eth": "workspace:packages/platform-sdk-eth"
+    "@arkecosystem/platform-sdk-lsk": "workspace:packages/platform-sdk-lsk"
+    "@arkecosystem/platform-sdk-neo": "workspace:packages/platform-sdk-neo"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
+    "@arkecosystem/platform-sdk-trx": "workspace:packages/platform-sdk-trx"
+    "@arkecosystem/platform-sdk-xlm": "workspace:packages/platform-sdk-xlm"
+    "@arkecosystem/platform-sdk-xmr": "workspace:packages/platform-sdk-xmr"
+    "@arkecosystem/platform-sdk-xrp": "workspace:packages/platform-sdk-xrp"
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/async": 3.2.3
     "@types/dot-prop": 5.0.1
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -706,7 +718,6 @@ __metadata:
     codecov: ^3.7.0
     cross-env: ^7.0.2
     dot-prop: ^5.2.0
-    emittery: ^0.7.0
     eslint: ^7.1.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.13.2
@@ -2400,6 +2411,13 @@ __metadata:
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
   checksum: 2/d030f3fb14e0373dbf5005d8f696ff34fda87bf56744bea611fc737449bfc0687ebcb28ee8ba4c6624877f51b18d701c0d417d793f406006a192f4721911d048
+  languageName: node
+  linkType: hard
+
+"@types/async@npm:3.2.3":
+  version: 3.2.3
+  resolution: "@types/async@npm:3.2.3"
+  checksum: 2/d0120df75bce7c20b06e3a4f9c3942cd865293e7af3b996868770fe07e2318841ba405f1ab56789bb1ad089f2ec736baff470ec03e28fdc2c273f7305197d3cf
   languageName: node
   linkType: hard
 
@@ -5719,13 +5737,6 @@ __metadata:
     minimalistic-assert: ^1.0.0
     minimalistic-crypto-utils: ^1.0.0
   checksum: 2/90742af62ee9a34cd45855cbddfaa9442e2f83a4d5eed61e31a87769fbaaadcc091a0938ee715ceadd9c845df798808476aeacdf9c687e73726b2ffe843d94fe
-  languageName: node
-  linkType: hard
-
-"emittery@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "emittery@npm:0.7.0"
-  checksum: 2/dcbf207e5fd9820c90994ac74dd6bc2828e413042d7f5175bb88f809e2e8c136346e7323ff70356a0b5a05250fdd4a15bfca2da3dc7e13b88db975897a11d65a
   languageName: node
   linkType: hard
 

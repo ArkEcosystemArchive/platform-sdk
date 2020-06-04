@@ -7,13 +7,29 @@ export class ProfileRepository {
 	readonly #data: DataRepository;
 
 	public constructor() {
-		this.#data = new DataRepository("app", "profiles");
+		this.#data = new DataRepository();
+	}
+
+	public async fill(profiles: object): Promise<void> {
+		for (const [id, profile] of Object.entries(profiles)) {
+			const result: Profile = new Profile(profile.id, profile.name);
+
+			for (const wallet of Object.values(profile.wallets)) {
+				await result.wallets().createFromObject(wallet as any);
+			}
+
+			result.contacts().fill(profile.contacts);
+			result.data().fill(profile.data);
+			result.settings().fill(profile.settings);
+
+			this.#data.set(id, result);
+		}
 	}
 
 	public async all(): Promise<Profile[]> {
-		const profiles: Profile[] = Object.values({ ...this.#data.all() });
+		const profiles: Profile[] = Object.values(this.#data.all());
 
-		return Promise.all(profiles.map((profile: any) => this.createProfile(profile.id, profile.name)));
+		return Promise.all(profiles.map((profile: any) => new Profile(profile.id, profile.name)));
 	}
 
 	public get(id: string): Profile {
@@ -24,7 +40,7 @@ export class ProfileRepository {
 		return this.#data.get(id) as Profile;
 	}
 
-	public async push(name: string): Promise<Profile> {
+	public async create(name: string): Promise<Profile> {
 		const profiles: Profile[] = await this.all();
 
 		for (const profile of profiles) {
@@ -34,7 +50,7 @@ export class ProfileRepository {
 		}
 
 		const id: string = uuidv4();
-		const result: Profile = await this.createProfile(id, name);
+		const result: Profile = new Profile(id, name);
 
 		this.#data.set(id, result);
 
@@ -49,14 +65,13 @@ export class ProfileRepository {
 		this.#data.forget(id);
 	}
 
-	private async createProfile(id: string, name: string): Promise<Profile> {
-		const profile: Profile = new Profile(id, name);
+	public toObject(): Record<string, object> {
+		const result: Record<string, object> = {};
 
-		// TODO: load contacts
-		// TODO: load wallets
-		// TODO: load data
-		// TODO: load settings
+		for (const [id, profile] of Object.entries(this.#data.all())) {
+			result[id] = profile.toObject();
+		}
 
-		return profile;
+		return result;
 	}
 }

@@ -19,8 +19,8 @@ export class Profile {
 		this.#name = name;
 		this.#contactRepository = new ContactRepository();
 		this.#walletRepository = new WalletRepository();
-		this.#dataRepository = new DataRepository("profile", "data");
-		this.#settingRepository = new SettingRepository("profile", Object.values(ProfileSetting));
+		this.#dataRepository = new DataRepository();
+		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
 	}
 
 	public id(): string {
@@ -51,11 +51,18 @@ export class Profile {
 		return this.#settingRepository;
 	}
 
-	public async toObject(): Promise<any> {
+	public toObject(): {
+		id: string;
+		name: string;
+		wallets: object;
+		contacts: object;
+		data: object;
+		settings: object;
+	} {
 		return {
-			id: this.#id,
-			name: this.#name,
-			wallets: this.wallets().all(),
+			id: this.id(),
+			name: this.name(),
+			wallets: this.wallets().toObject(),
 			contacts: this.contacts().all(),
 			data: this.data().all(),
 			settings: this.settings().all(),
