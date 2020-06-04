@@ -33,11 +33,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     ark:
         runs-on: ubuntu-latest
@@ -63,11 +60,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-ark && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-ark/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-ark && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     atom:
         runs-on: ubuntu-latest
@@ -93,11 +87,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-atom && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-atom/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-atom && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     btc:
         runs-on: ubuntu-latest
@@ -123,11 +114,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-btc && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-btc/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-btc && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     coincap:
         runs-on: ubuntu-latest
@@ -153,11 +141,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-coincap && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-coincap/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-coincap && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     coingecko:
         runs-on: ubuntu-latest
@@ -183,11 +168,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-coingecko && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-coingecko/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-coingecko && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     crypto:
         runs-on: ubuntu-latest
@@ -213,11 +195,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-cryptocompare/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-cryptocompare && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     cryptocompare:
         runs-on: ubuntu-latest
@@ -243,11 +222,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-cryptocompare/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-cryptocompare && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     eos:
         runs-on: ubuntu-latest
@@ -273,11 +249,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-eos && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-eos/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-eos && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     eth:
         runs-on: ubuntu-latest
@@ -303,11 +276,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-eth && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-eth/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-eth && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     intl:
         runs-on: ubuntu-latest
@@ -333,11 +303,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-intl && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-intl/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-intl && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     lsk:
         runs-on: ubuntu-latest
@@ -363,11 +330,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-lsk && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-lsk/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-lsk && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     markets:
         runs-on: ubuntu-latest
@@ -393,11 +357,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-markets && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-markets/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-markets && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     neo:
         runs-on: ubuntu-latest
@@ -423,11 +384,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-neo && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-neo/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-neo && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     news:
         runs-on: ubuntu-latest
@@ -453,11 +411,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-news && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-news/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-news && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     profiles:
         runs-on: ubuntu-latest
@@ -483,11 +438,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-profiles && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-profiles/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-profiles && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     support:
         runs-on: ubuntu-latest
@@ -513,11 +465,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-support && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-support/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-support && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     trx:
         runs-on: ubuntu-latest
@@ -543,11 +492,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-trx && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-trx/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-trx && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     xlm:
         runs-on: ubuntu-latest
@@ -573,11 +519,8 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-xlm && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-xlm/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-xlm && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
 
     xrp:
         runs-on: ubuntu-latest
@@ -603,8 +546,5 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-xrp && yarn run test --coverage
 
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  path-to-lcov: packages/platform-sdk-xrp/.coverage/lcov.info
+            - name: Codecov
+              run: cd packages/platform-sdk-xrp && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
