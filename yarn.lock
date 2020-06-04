@@ -706,6 +706,7 @@ __metadata:
     codecov: ^3.7.0
     cross-env: ^7.0.2
     dot-prop: ^5.2.0
+    emittery: ^0.7.0
     eslint: ^7.1.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.13.2
@@ -5718,6 +5719,13 @@ __metadata:
     minimalistic-assert: ^1.0.0
     minimalistic-crypto-utils: ^1.0.0
   checksum: 2/90742af62ee9a34cd45855cbddfaa9442e2f83a4d5eed61e31a87769fbaaadcc091a0938ee715ceadd9c845df798808476aeacdf9c687e73726b2ffe843d94fe
+  languageName: node
+  linkType: hard
+
+"emittery@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "emittery@npm:0.7.0"
+  checksum: 2/dcbf207e5fd9820c90994ac74dd6bc2828e413042d7f5175bb88f809e2e8c136346e7323ff70356a0b5a05250fdd4a15bfca2da3dc7e13b88db975897a11d65a
   languageName: node
   linkType: hard
 

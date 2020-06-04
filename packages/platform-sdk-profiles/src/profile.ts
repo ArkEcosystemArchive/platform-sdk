@@ -1,58 +1,26 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
-
-import { Avatar } from "./avatar";
-import { ContactRepository } from "./contact-repository";
-import { Storage } from "./contracts";
-import { Data } from "./data";
-import { Settings } from "./settings";
-import { Wallet } from "./wallet";
-import { WalletRepository } from "./wallet-repository";
-
-interface ProfileConstructor {
-	id: string;
-	name: string;
-	wallets: Wallet[];
-	httpClient: Contracts.HttpClient;
-	storage: Storage;
-}
+import { ProfileSetting } from "./enums";
+import { ContactRepository } from "./repositories/contact-repository";
+import { DataRepository } from "./repositories/data-repository";
+import { SettingRepository } from "./repositories/setting-repository";
+import { WalletRepository } from "./repositories/wallet-repository";
 
 export class Profile {
-	readonly #id: string;
-	#name: string;
-	readonly #wallets: WalletRepository;
-	readonly #contacts: ContactRepository;
-	readonly #data: Data;
-	readonly #settings: Settings;
-	readonly #avatar: string;
+	#contactRepository!: ContactRepository;
+	#walletRepository!: WalletRepository;
+	#dataRepository!: DataRepository;
+	#settingRepository!: SettingRepository;
 
-	private constructor(input) {
-		// Data
-		this.#id = input.id;
-		this.#name = input.name;
-		this.#avatar = Avatar.make(this.id());
+	#id!: string;
+	#name!: string;
+	#avatar!: string;
 
-		// Stores
-		this.#data = input.data;
-		this.#settings = new Settings({
-			namespace: `profiles.${this.#id}`,
-			storage: input.storage,
-			type: "profile",
-		});
-
-		// Repositories
-		this.#wallets = new WalletRepository({
-			data: input.data,
-			httpClient: input.httpClient,
-			storage: input.storage,
-			wallets: input.wallets,
-		});
-		this.#contacts = input.contacts;
-	}
-
-	public static async make(input: ProfileConstructor): Promise<Profile> {
-		const data: Data = new Data(input.storage, `profiles.${input.id}`);
-
-		return new Profile({ ...input, contacts: await ContactRepository.make(data), data });
+	public constructor(id: string, name: string) {
+		this.#id = id;
+		this.#name = name;
+		this.#contactRepository = new ContactRepository();
+		this.#walletRepository = new WalletRepository();
+		this.#dataRepository = new DataRepository("profile", "data");
+		this.#settingRepository = new SettingRepository("profile", Object.values(ProfileSetting));
 	}
 
 	public id(): string {
@@ -68,32 +36,29 @@ export class Profile {
 	}
 
 	public wallets(): WalletRepository {
-		return this.#wallets;
+		return this.#walletRepository;
 	}
 
 	public contacts(): ContactRepository {
-		return this.#contacts;
+		return this.#contactRepository;
 	}
 
-	public data(): Data {
-		return this.#data;
+	public data(): DataRepository {
+		return this.#dataRepository;
 	}
 
-	public settings(): Settings {
-		return this.#settings;
+	public settings(): SettingRepository {
+		return this.#settingRepository;
 	}
 
-	public async toObject(): Promise<{
-		id: string;
-		name: string;
-		wallets: Wallet[];
-		settings: object | undefined;
-	}> {
+	public async toObject(): Promise<any> {
 		return {
 			id: this.#id,
 			name: this.#name,
-			wallets: this.#wallets.all(),
-			settings: await this.#settings.all(),
+			wallets: this.wallets().all(),
+			contacts: this.contacts().all(),
+			data: this.data().all(),
+			settings: this.settings().all(),
 		};
 	}
 }

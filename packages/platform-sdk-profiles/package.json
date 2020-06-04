@@ -23,6 +23,7 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"dot-prop": "^5.2.0",
+		"emittery": "^0.7.0",
 		"localforage": "^1.7.3",
 		"mersenne-twister": "^1.1.0",
 		"semver": "^7.3.2",

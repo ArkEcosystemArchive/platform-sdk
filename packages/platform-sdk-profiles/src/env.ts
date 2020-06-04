@@ -1,46 +1,37 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
-
-import { EnvironmentOptions, Storage } from "./contracts";
-import { Data } from "./data";
+import { container } from "./container";
+import { EnvironmentOptions, Identifiers } from "./contracts";
 import { Migrator } from "./migrator";
-import { ProfileRepository } from "./profile-repository";
+import { DataRepository } from "./repositories/data-repository";
+import { ProfileRepository } from "./repositories/profile-repository";
 import { StorageFactory } from "./storage/factory";
 
 export class Environment {
-	readonly #httpClient: Contracts.HttpClient;
-	readonly #storage: Storage;
-	readonly #profiles: ProfileRepository;
-	readonly #data: Data;
-	readonly #migrator: Migrator;
-
 	public constructor(options: EnvironmentOptions) {
-		this.#httpClient = options.httpClient;
+		// It's important that the storage gets bound first because all data is persisted through it.
+		container.set(
+			Identifiers.Storage,
+			typeof options.storage === "string" ? StorageFactory.make(options.storage) : options.storage,
+		);
 
-		if (typeof options.storage === "string") {
-			this.#storage = StorageFactory.make(options.storage);
-		} else {
-			this.#storage = options.storage;
-		}
+		// These are bindings to access and manipulate the underlying data.
+		container.set(Identifiers.AppData, new DataRepository("app", "data"));
+		container.set(Identifiers.HttpClient, options.httpClient);
+		container.set(Identifiers.ProfileRepository, new ProfileRepository());
 
-		this.#profiles = new ProfileRepository({ httpClient: this.#httpClient, storage: this.#storage });
-		this.#data = new Data(this.#storage, "app");
+		// TODO: listen for data events and update the storage
 
-		this.#migrator = new Migrator({
-			profiles: this.#profiles,
-			data: this.#data,
-			storage: this.#storage,
-		});
+		// container.get<any>(Identifiers.EventEmitter).on(DataEvent.Modified, (data) => console.log(data));
 	}
 
 	public profiles(): ProfileRepository {
-		return this.#profiles;
+		return container.get(Identifiers.ProfileRepository);
 	}
 
-	public data(): Data {
-		return this.#data;
+	public data(): DataRepository {
+		return container.get(Identifiers.AppData);
 	}
 
 	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
-		await this.#migrator.migrate(migrations, versionToMigrate);
+		await container.get<Migrator>(Identifiers.Migrator).migrate(migrations, versionToMigrate);
 	}
 }

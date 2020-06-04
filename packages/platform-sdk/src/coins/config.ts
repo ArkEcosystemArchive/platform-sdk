@@ -3,7 +3,7 @@ import { get, has, set } from "dot-prop";
 export class Config {
 	readonly #config: Record<string, any>;
 
-	public constructor(config: object, schema) {
+	public constructor(config: object, schema: { validate: Function }) {
 		const { value, error } = schema.validate(config);
 
 		if (error) {
@@ -27,7 +27,7 @@ export class Config {
 		return value;
 	}
 
-	public set(key: string, value: any): void {
+	public set(key: string, value: unknown): void {
 		set(this.#config, key, value);
 	}
 

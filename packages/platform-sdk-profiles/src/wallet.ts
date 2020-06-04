@@ -2,46 +2,57 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Avatar } from "./avatar";
-import { Storage } from "./contracts";
-import { Data } from "./data";
-import { Settings } from "./settings";
+import { container } from "./container";
+import { Identifiers } from "./contracts";
+import { WalletSetting } from "./enums";
+import { DataRepository } from "./repositories/data-repository";
+import { SettingRepository } from "./repositories/setting-repository";
 
 export class Wallet {
-	readonly #coin: Coins.Coin;
-	readonly #wallet: Contracts.WalletData;
-	readonly #data: Data;
-	readonly #settings: Settings;
-	readonly #avatar: string;
+	#dataRepository!: DataRepository;
+	#settingRepository!: SettingRepository;
 
-	private constructor(input: { coin: Coins.Coin; storage: Storage; wallet: Contracts.WalletData }) {
-		this.#coin = input.coin;
-		this.#wallet = input.wallet;
-		this.#data = new Data(input.storage, `wallets.${this.address()}`);
-		this.#settings = new Settings({
-			namespace: `wallets.${this.address()}`,
-			storage: input.storage,
-			type: "wallet",
-		});
-		this.#avatar = Avatar.make(this.address());
+	#coin!: Coins.Coin;
+	#wallet!: Contracts.WalletData;
+	#avatar!: string;
+
+	public constructor() {
+		this.#dataRepository = new DataRepository("wallet", "data");
+		this.#settingRepository = new SettingRepository("wallet", Object.values(WalletSetting));
 	}
 
-	public static async fromMnemonic(input: {
-		id: string;
-		mnemonic: string;
-		coin: Coins.CoinSpec;
-		network: string;
-		httpClient: Contracts.HttpClient;
-		storage: Storage;
-	}): Promise<Wallet> {
-		const coin = await Coins.CoinFactory.make(input.coin, {
-			network: input.network,
-			httpClient: input.httpClient,
+	/**
+	 * These methods allow to switch out the underlying implementation of certain things like the coin.
+	 */
+
+	public async setCoin(coin: Coins.CoinSpec, network: string): Promise<Wallet> {
+		this.#coin = await Coins.CoinFactory.make(coin, {
+			network,
+			httpClient: container.get(Identifiers.HttpClient),
 		});
 
-		const address: string = await coin.identity().address().fromMnemonic(input.mnemonic);
-
-		return new Wallet({ coin, storage: input.storage, wallet: await coin.client().wallet(address) });
+		return this;
 	}
+
+	public async setIdentity(mnemonic: string): Promise<Wallet> {
+		this.#wallet = await this.#coin.client().wallet(await this.#coin.identity().address().fromMnemonic(mnemonic));
+
+		this.setAvatar(Avatar.make(this.address()));
+
+		return this;
+	}
+
+	public setAvatar(value: string): Wallet {
+		this.#avatar = value;
+
+		this.settings().set(WalletSetting.Avatar, value);
+
+		return this;
+	}
+
+	/**
+	 * These methods serve as getters to the underlying data and dependencies.
+	 */
 
 	public coin(): Coins.Coin {
 		return this.#coin;
@@ -72,12 +83,12 @@ export class Wallet {
 		return this.#wallet.nonce();
 	}
 
-	public data(): Data {
-		return this.#data;
+	public data(): DataRepository {
+		return this.#dataRepository;
 	}
 
-	public settings(): Settings {
-		return this.#settings;
+	public settings(): SettingRepository {
+		return this.#settingRepository;
 	}
 
 	public toObject(): object {

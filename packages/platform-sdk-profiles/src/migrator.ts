@@ -1,20 +1,22 @@
 import { get, set } from "dot-prop";
 import semver from "semver";
 
-import { Storage } from "./contracts";
-import { Data } from "./data";
-import { ProfileRepository } from "./profile-repository";
+import { container } from "./container";
+import { Identifiers, Storage } from "./contracts";
+import { DataRepository } from "./repositories/data-repository";
+import { ProfileRepository } from "./repositories/profile-repository";
 
 export class Migrator {
-	readonly #data: Data;
 	readonly #profiles: ProfileRepository;
+	readonly #data: DataRepository;
 	readonly #storage: Storage;
+
 	readonly #namespace: string = "migrations";
 
-	public constructor({ data, profiles, storage }: { data: Data; profiles: ProfileRepository; storage: Storage }) {
-		this.#data = data;
-		this.#profiles = profiles;
-		this.#storage = storage;
+	public constructor() {
+		this.#profiles = container.get(Identifiers.ProfileRepository);
+		this.#data = container.get(Identifiers.AppData);
+		this.#storage = container.get(Identifiers.Storage);
 	}
 
 	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
@@ -26,6 +28,8 @@ export class Migrator {
 
 		for (const version of newerVersions) {
 			try {
+				this.#data.snapshot();
+
 				await this.#storage.snapshot();
 
 				await migrations[version]({ data: this.#data, profiles: this.#profiles });
@@ -34,6 +38,8 @@ export class Migrator {
 
 				previousMigratedVersion = version;
 			} catch (error) {
+				this.#data.restore();
+
 				await this.#storage.restore();
 
 				throw new Error(
