@@ -200,8 +200,10 @@ export class TransactionService implements Contracts.TransactionService {
 			client: new Api({
 				rpc: new JsonRpc(this.#peer, { fetch }),
 				signatureProvider,
-				textDecoder: new TextDecoder(),
+				// @ts-ignore - this started to error out of nowhere when building
 				textEncoder: new TextEncoder(),
+				// @ts-ignore - this started to error out of nowhere when building
+				textDecoder: new TextDecoder(),
 			}),
 			signatureProvider,
 		};

@@ -17,7 +17,9 @@ export class ClientService implements Contracts.ClientService {
 		this.#api = new Api({
 			rpc: this.#rpc,
 			signatureProvider: new JsSignatureProvider([]),
+			// @ts-ignore - this started to error out of nowhere when building
 			textDecoder: new TextDecoder(),
+			// @ts-ignore - this started to error out of nowhere when building
 			textEncoder: new TextEncoder(),
 		});
 	}
