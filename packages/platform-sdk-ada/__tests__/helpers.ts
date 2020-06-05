@@ -7,7 +7,7 @@ import { HttpClient } from "./services/stubs/client";
 export const createConfig = (options?: object) => {
 	const config = new Coins.Config(
 		{
-			...(options || { network: "devnet" }),
+			...(options || { network: "testnet" }),
 			...{ httpClient: new HttpClient() },
 		},
 		schema,
