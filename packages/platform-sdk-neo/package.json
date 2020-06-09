@@ -24,7 +24,7 @@
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@cityofzion/neon-js": "^4.8.0",
-		"@hapi/joi": "^17.1.1"
+		"yup": "^0.29.1"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",

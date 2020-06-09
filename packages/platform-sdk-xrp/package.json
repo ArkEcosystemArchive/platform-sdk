@@ -23,12 +23,12 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"@hapi/joi": "^17.1.1",
 		"@ledgerhq/hw-app-xrp": "^5.15.0",
 		"@ledgerhq/hw-transport-node-hid-singleton": "^5.15.0",
 		"bignumber.js": "^9.0.0",
 		"ripple-keypairs": "^1.0.1",
-		"ripple-lib": "^1.7.1"
+		"ripple-lib": "^1.7.1",
+		"yup": "^0.29.1"
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.15.0",

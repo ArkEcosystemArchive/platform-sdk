@@ -67,7 +67,6 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -97,6 +96,7 @@ __metadata:
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -111,7 +111,6 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
@@ -148,6 +147,7 @@ __metadata:
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -158,7 +158,6 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
@@ -192,6 +191,7 @@ __metadata:
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -202,7 +202,6 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-btc": ^5.15.2
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
@@ -237,6 +236,7 @@ __metadata:
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -408,7 +408,6 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -439,6 +438,7 @@ __metadata:
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -449,7 +449,6 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-eth": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
@@ -485,6 +484,7 @@ __metadata:
     typedoc: ^0.17.7
     typescript: ^3.9.3
     web3: ^1.2.8
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -531,7 +531,6 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@liskhq/lisk-client": ^2.0
@@ -568,6 +567,7 @@ __metadata:
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -616,7 +616,6 @@ __metadata:
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@cityofzion/neon-js": ^4.8.0
-    "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -645,6 +644,7 @@ __metadata:
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -779,6 +779,7 @@ __metadata:
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -789,7 +790,6 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-trx": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
@@ -821,6 +821,7 @@ __metadata:
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -831,7 +832,6 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-str": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
@@ -866,6 +866,7 @@ __metadata:
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -876,7 +877,6 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -905,6 +905,7 @@ __metadata:
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -915,7 +916,6 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@hapi/joi": ^17.1.1
     "@ledgerhq/hw-app-xrp": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
     "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
@@ -954,6 +954,7 @@ __metadata:
     typedoc: ^0.17.7
     typescript: ^3.9.3
     ws: ^7.3.0
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -962,7 +963,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk@workspace:packages/platform-sdk"
   dependencies:
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@hapi/joi": ^17.1.1
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/dot-prop": 5.0.1
     "@types/eslint": ^6.8.1
@@ -1002,6 +1002,7 @@ __metadata:
     type-fest: ^0.15.0
     typedoc: ^0.17.7
     typescript: ^3.9.3
+    yup: ^0.29.1
   languageName: unknown
   linkType: soft
 
@@ -1339,6 +1340,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.9.6":
+  version: 7.10.2
+  resolution: "@babel/runtime@npm:7.10.2"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 2/0f3466d63518eca76e58ee523a21d9181949e10eb6d51d4e84d42702da5fae06f90f5e1e0a8e51420feb432ee73d7b6aae4a03d2210ac5c8aeaba3d2de7f2bf9
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.3.3, @babel/template@npm:^7.7.4, @babel/template@npm:^7.8.3, @babel/template@npm:^7.8.6":
   version: 7.8.6
   resolution: "@babel/template@npm:7.8.6"
@@ -1578,62 +1588,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/address@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@hapi/address@npm:4.0.1"
-  dependencies:
-    "@hapi/hoek": ^9.0.0
-  checksum: 2/3b7b3bddb9e86f9eb478f8945f5bb93fb7ee19e935f97e82de69ac193c0ca85cf15f6a525a6ca914cdef894f4c3bd0ee81e3767656fcea01a7a9d6fdaee19fad
-  languageName: node
-  linkType: hard
-
 "@hapi/bourne@npm:^2.0.0":
   version: 2.0.0
   resolution: "@hapi/bourne@npm:2.0.0"
   checksum: 2/97a3e6d44c63debbb170f5966a8076022e2855f1c4fa81edc8c6fd255ba56ce047c3dcce5055858188610eafd77e6420c67ece7fd17e3192830e2fbca7766fd0
-  languageName: node
-  linkType: hard
-
-"@hapi/formula@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@hapi/formula@npm:2.0.0"
-  checksum: 2/02d14257149799b478e21f2620639470efb152f09dd2083fb9a6f247f29760de4af6ceb938b2337ecdf2a0514c2edd5beca6df5415d5c2cea909977fb0da4eaf
-  languageName: node
-  linkType: hard
-
-"@hapi/hoek@npm:^9.0.0":
-  version: 9.0.4
-  resolution: "@hapi/hoek@npm:9.0.4"
-  checksum: 2/d000f60d5e30db7ed2b838a7ec4a757542f04036c8eb431328fd1139f3f7dbd400a2c7d86acbbaf8b8da11dee6f8ae706f6d88bd71c02b3c5f16fd3f6223aa09
-  languageName: node
-  linkType: hard
-
-"@hapi/joi@npm:^17.1.1":
-  version: 17.1.1
-  resolution: "@hapi/joi@npm:17.1.1"
-  dependencies:
-    "@hapi/address": ^4.0.1
-    "@hapi/formula": ^2.0.0
-    "@hapi/hoek": ^9.0.0
-    "@hapi/pinpoint": ^2.0.0
-    "@hapi/topo": ^5.0.0
-  checksum: 2/7547ccf2a8168e4f68f630069ab069f94d0689bd18a034a6dea40cc9c7e88776665670316f65bdd29068dccde111f3d7164504cfaf6db183110b64f36c5643dd
-  languageName: node
-  linkType: hard
-
-"@hapi/pinpoint@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@hapi/pinpoint@npm:2.0.0"
-  checksum: 2/445ca018999145dccff58ca1be71fa533c3124a1d0f256b8c3daf88067992a20aebfbdee49664741cfac160d924c76d24bd3e8eeb521af721e6f606f4bd64634
-  languageName: node
-  linkType: hard
-
-"@hapi/topo@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "@hapi/topo@npm:5.0.0"
-  dependencies:
-    "@hapi/hoek": ^9.0.0
-  checksum: 2/f92797d5ef54bb801a3591a118ea483ed5a6b41cdd1aaa6f7bf427b64b5f76056bc7063447adf43be8f94b04408228cce12963ea498b8da8f9e01d01c78710ac
   languageName: node
   linkType: hard
 
@@ -6789,6 +6747,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fn-name@npm:~3.0.0":
+  version: 3.0.0
+  resolution: "fn-name@npm:3.0.0"
+  checksum: 2/dd2190001862d3ea6d1f0788c58d083593166debfa65ff77473a3d37795548e92e5d050ca32f90781fa5c270901694c45022fc90ff2fa50f44aa302f20916589
+  languageName: node
+  linkType: hard
+
 "follow-redirects@npm:1.5.10":
   version: 1.5.10
   resolution: "follow-redirects@npm:1.5.10"
@@ -9367,6 +9332,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"lodash-es@npm:^4.17.11":
+  version: 4.17.15
+  resolution: "lodash-es@npm:4.17.15"
+  checksum: 2/ee2871b76deefd1754527e659a8c8b688f2e427e67b30709296878e18ad9cb54b4f0fc16a7161298156b4e0ebc2a37dfe501a3ea8725f195763f9de8a7ba6da6
+  languageName: node
+  linkType: hard
+
 "lodash.get@npm:^4.4.2":
   version: 4.4.2
   resolution: "lodash.get@npm:4.4.2"
@@ -11333,6 +11305,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"property-expr@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "property-expr@npm:2.0.2"
+  checksum: 2/c31524b5c2bf94ead23d9b255529bd34c1856161e107fb1eba4adf12c5eb04eb0eee7e1d55b3406da4503879d609663b64d0feef274487d49d7c8ef6b6e51fb8
+  languageName: node
+  linkType: hard
+
 "proxy-addr@npm:~2.0.5":
   version: 2.0.6
   resolution: "proxy-addr@npm:2.0.6"
@@ -13172,6 +13151,13 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
+"synchronous-promise@npm:^2.0.10":
+  version: 2.0.13
+  resolution: "synchronous-promise@npm:2.0.13"
+  checksum: 2/8e182d5999ea709ea39dd11b0c5feae564ba1cce99dc0bab475751086f0b08dfd1e318f01ba51913102b476f464c44b45f162feaaf54d1b69afadeb9bd8888e1
+  languageName: node
+  linkType: hard
+
 "table@npm:^5.2.3":
   version: 5.4.6
   resolution: "table@npm:5.4.6"
@@ -13452,6 +13438,13 @@ resolve@~1.7.1:
   version: 2.3.6
   resolution: "toml@npm:2.3.6"
   checksum: 2/dc54322634b39ea0feda6ccf1631edb9296acee66aed87d55594b8882d59e3cef3111f6138357427e1208564ed3518e4675586313cb2694fe9cb6858d9711a29
+  languageName: node
+  linkType: hard
+
+"toposort@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "toposort@npm:2.0.2"
+  checksum: 2/9e70bf92de5e65e77e89065f34b642a9ae75be5cf4896152b5a131ca66c77c4d9edf056942e988e29b534a83643f38860e148aa939cd3c489d00abbf5639f54f
   languageName: node
   linkType: hard
 
@@ -14872,5 +14865,20 @@ typescript@^3.9.3:
     y18n: ^4.0.0
     yargs-parser: ^18.1.1
   checksum: 2/6504a0bb4e6f5933ebaaa52307943a9cdb44da6200cd1ca8794aaa1d18b70f0acd2f49f46630b07bd4d2aa12cb1fe666b186d367c36fa1b4998f7ce8bdc9ffdf
+  languageName: node
+  linkType: hard
+
+"yup@npm:^0.29.1":
+  version: 0.29.1
+  resolution: "yup@npm:0.29.1"
+  dependencies:
+    "@babel/runtime": ^7.9.6
+    fn-name: ~3.0.0
+    lodash: ^4.17.15
+    lodash-es: ^4.17.11
+    property-expr: ^2.0.2
+    synchronous-promise: ^2.0.10
+    toposort: ^2.0.2
+  checksum: 2/963d4dbdb6bcd75f0af2cf8cc11f29e316f19929de0917c5d1cf452cbef69a8583e82bcc8d19bb44d6e74e492dfdbaa54617c8bfb0222a810d38d07bc610b1d3
   languageName: node
   linkType: hard

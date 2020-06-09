@@ -1,10 +1,12 @@
-import Joi from "@hapi/joi";
+import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
-export const schema = Joi.object({
-	network: Joi.string().allow("mainnet", "devnet"),
-	peer: Joi.string().uri().optional(),
-	httpClient: Joi.object(),
-	services: Joi.object()
-		.keys({ ledger: Joi.object().keys({ transport: Joi.function().class() }) })
-		.optional(),
+export const schema = ValidatorSchema.object().shape({
+	network: ValidatorSchema.string().oneOf(["mainnet", "testnet"]),
+	peer: ValidatorSchema.string().url().notRequired(),
+	httpClient: ValidatorSchema.object(),
+	services: ValidatorSchema.object()
+		.shape({
+			ledger: ValidatorSchema.object().shape({ transport: ValidatorSchema.mixed().notRequired() }),
+		})
+		.default(undefined),
 });

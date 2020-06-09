@@ -1,7 +1,7 @@
-import Joi from "@hapi/joi";
+import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
-export const schema = Joi.object({
-	network: Joi.string().allow(
+export const schema = ValidatorSchema.object().shape({
+	network: ValidatorSchema.string().oneOf([
 		"eos.mainnet",
 		"eos.testnet",
 		"telos.mainnet",
@@ -11,6 +11,6 @@ export const schema = Joi.object({
 		"worbli.testnet",
 		"meetone.mainnet",
 		"bos.mainnet",
-	),
-	peer: Joi.string().uri().optional(),
+	]),
+	peer: ValidatorSchema.string().url().notRequired(),
 });

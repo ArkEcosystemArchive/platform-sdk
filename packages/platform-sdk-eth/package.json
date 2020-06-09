@@ -23,13 +23,13 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"@hapi/joi": "^17.1.1",
 		"@ledgerhq/hw-app-eth": "^5.15.0",
 		"@ledgerhq/hw-transport-node-hid-singleton": "^5.15.0",
 		"bip39": "^3.0.2",
 		"ethereumjs-tx": "^2.1.2",
 		"ethereumjs-wallet": "^0.6.3",
-		"web3": "^1.2.8"
+		"web3": "^1.2.8",
+		"yup": "^0.29.1"
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.15.0",
