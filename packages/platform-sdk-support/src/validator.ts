@@ -8,6 +8,7 @@ export class Validator {
 		this.#error = undefined;
 
 		try {
+			// return schema.validateSync(data, { strict: true });
 			return schema.validateSync(data);
 		} catch (error) {
 			if (error instanceof ValidationError) {

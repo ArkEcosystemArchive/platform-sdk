@@ -91,7 +91,7 @@ it("should have a data repository", async () => {
 	expect(subject.data()).toBeInstanceOf(DataRepository);
 });
 
-it.only("should listen for data modifications, save it and load it", async () => {
+it("should listen for data modifications, save it and load it", async () => {
 	/**
 	 * Save data in the current environment.
 	 */

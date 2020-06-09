@@ -7,6 +7,9 @@ import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
 import { StorageFactory } from "./storage/factory";
 
+const mapRules = (map: object, rule: Function) =>
+	Object.keys(map).reduce((newMap, key) => ({ ...newMap, [key]: rule }), {});
+
 export class Environment {
 	public constructor(options: EnvironmentOptions) {
 		this.registerBindings(options);
@@ -24,76 +27,84 @@ export class Environment {
 	public async boot(): Promise<void> {
 		const { profiles, data }: any = await container.get<Storage>(Identifiers.Storage).all();
 
-		const { array, boolean, object, string, number } = ValidatorSchema;
+		const { array, boolean, object, string, number, lazy } = ValidatorSchema;
 
 		const validator = new Validator();
 
-		const attributes = validator.validate(
-			{ profiles, data },
-			object({
-				profiles: object().shape({
-					key: object().shape({
-						id: string(),
-						name: string(),
-						wallets: object().shape({
-							key: {
-								coin: string(),
-								coinConfig: {
-									network: {
-										id: string(),
-										name: string(),
-										explorer: string(),
-										currency: {
-											ticker: string(),
-											symbol: string(),
-										},
-										crypto: {
-											slip44: number().integer(),
-										},
-										hosts: array().of(string()),
-									},
-								},
-								network: string(),
-								address: string(),
-								publicKey: string(),
-								data: object(),
-								settings: object(),
-							},
-						}),
-						contacts: object().shape({
-							key: {
-								id: string(),
-								name: string(),
-								addresses: array().of(
-									object({
-										coin: string(),
-										network: string(),
-										address: string(),
-									}),
-								),
-								starred: boolean(),
-							},
-							data: object(),
-							settings: object(),
-						}),
-					}),
-				}),
-				data: object(),
-			}),
-		);
+		const schema = lazy(({ profiles }) => {
+			const rules = {};
 
-		console.log(JSON.stringify(attributes, null, 4));
+			for (const key of Object.keys(profiles)) {
+				rules[key] = object({
+					id: string().required(),
+					name: string().required(),
+					wallets: object(
+						mapRules(
+							profiles[key].wallets,
+							object({
+								coin: string().required(),
+								coinConfig: object({
+									network: object({
+										id: string().required(),
+										name: string().required(),
+										explorer: string().required(),
+										currency: object({
+											ticker: string().required(),
+											symbol: string().required(),
+										}).required(),
+										crypto: object({
+											slip44: number().integer().required(),
+										}).required(),
+										hosts: array().of(string()).required(),
+									}).noUnknown(),
+								}).noUnknown(),
+								network: string().required(),
+								address: string().required(),
+								publicKey: string().required(),
+								data: object().required(),
+								settings: object().required(),
+							}).noUnknown(),
+						),
+					),
+					contacts: object(
+						mapRules(
+							profiles[key].contacts,
+							object({
+								id: string().required(),
+								name: string().required(),
+								addresses: array()
+									.of(
+										object({
+											coin: string().required(),
+											network: string().required(),
+											address: string().required(),
+										}).noUnknown(),
+									)
+									.required(),
+								starred: boolean().required(),
+							}).noUnknown(),
+						),
+					),
+					data: object().required(),
+					settings: object().required(),
+				}).noUnknown();
+			}
+
+			return object({ profiles: object(rules), data: object() });
+		});
+
+		const validated = schema.validateSync({ profiles, data }, { strict: true });
 
 		if (validator.fails()) {
 			throw new Error("Terminating due to corrupted state.");
 		}
 
-		if (profiles) {
-			await this.profiles().fill(profiles);
+		if (validated.profiles) {
+			await this.profiles().fill(validated.profiles);
 		}
 
-		if (data) {
-			this.data().fill(data);
+		if (validated.data) {
+			this.data().fill(validated.data);
 		}
 	}
 
