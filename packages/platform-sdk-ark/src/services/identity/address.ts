@@ -1,7 +1,13 @@
 import { Identities } from "@arkecosystem/crypto";
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class Address implements Contracts.Address {
+	readonly #config: Coins.Config;
+
+	public constructor(config: Coins.Config) {
+		this.#config = config;
+	}
+
 	public async fromMnemonic(mnemonic: string): Promise<string> {
 		return Identities.Address.fromPassphrase(mnemonic);
 	}
@@ -23,6 +29,16 @@ export class Address implements Contracts.Address {
 	}
 
 	public async validate(address: string): Promise<boolean> {
+		if (this.#config.get("network.id") === "mainnet") {
+			const response = await this.#config
+				.get<Contracts.HttpClient>("httpClient")
+				.get(`https://neoscan.io/api/test_net/v1/get_last_transactions_by_address/${address}/1`);
+
+			if (response && response.length > 0) {
+				throw new Error("This address exists on the NEO Mainnet.");
+			}
+		}
+
 		return Identities.Address.validate(address);
 	}
 }

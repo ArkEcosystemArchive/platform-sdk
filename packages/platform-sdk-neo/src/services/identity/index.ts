@@ -7,14 +7,14 @@ import { PublicKey } from "./public-key";
 import { WIF } from "./wif";
 
 export class IdentityService implements Contracts.IdentityService {
-	readonly #slip44;
+	readonly #config: Coins.Config;
 
-	public constructor(network: Coins.CoinNetwork) {
-		this.#slip44 = network.crypto.slip44;
+	private constructor(config: Coins.Config) {
+		this.#config = config;
 	}
 
 	public static async construct(config: Coins.Config): Promise<IdentityService> {
-		return new IdentityService(config.get<Coins.CoinNetwork>("network"));
+		return new IdentityService(config);
 	}
 
 	public async destruct(): Promise<void> {
@@ -22,22 +22,22 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public address(): Address {
-		return new Address(this.#slip44);
+		return new Address(this.#config);
 	}
 
 	public publicKey(): PublicKey {
-		return new PublicKey(this.#slip44);
+		return new PublicKey(this.#config);
 	}
 
 	public privateKey(): PrivateKey {
-		return new PrivateKey(this.#slip44);
+		return new PrivateKey(this.#config);
 	}
 
 	public wif(): WIF {
-		return new WIF(this.#slip44);
+		return new WIF(this.#config);
 	}
 
 	public keys(): Keys {
-		return new Keys(this.#slip44);
+		return new Keys(this.#config);
 	}
 }

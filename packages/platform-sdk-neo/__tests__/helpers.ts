@@ -10,7 +10,8 @@ export const createConfig = (options?: object) => {
 		schema,
 	);
 
-	config.set("network", manifest.networks.testnet);
+	// @ts-ignore
+	config.set("network", manifest.networks[options?.network || "testnet"]);
 
 	return config;
 };

@@ -13,7 +13,8 @@ export const createConfig = (options?: object) => {
 		schema,
 	);
 
-	config.set("network", manifest.networks.devnet);
+	// @ts-ignore
+	config.set("network", manifest.networks[options?.network || "devnet"]);
 
 	return config;
 };
