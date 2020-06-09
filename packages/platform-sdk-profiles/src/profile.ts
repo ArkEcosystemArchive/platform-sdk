@@ -3,6 +3,7 @@ import { ContactRepository } from "./repositories/contact-repository";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
+import { ProfileStruct } from "./contracts";
 
 export class Profile {
 	#contactRepository!: ContactRepository;
@@ -51,14 +52,7 @@ export class Profile {
 		return this.#settingRepository;
 	}
 
-	public toObject(): {
-		id: string;
-		name: string;
-		wallets: object;
-		contacts: object;
-		data: object;
-		settings: object;
-	} {
+	public toObject(): ProfileStruct {
 		return {
 			id: this.id(),
 			name: this.name(),

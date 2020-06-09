@@ -51,3 +51,37 @@ export const Identifiers = {
 	Storage: "Storage",
 	WalletRepository: "WalletRepository",
 };
+
+// Structs
+export interface WalletStruct {
+	coin: string;
+	coinConfig: {
+		network: {
+			crypto: {
+				slip44: number;
+			};
+			currency: {
+				symbol: string;
+				ticker: string;
+			};
+			explorer: string;
+			hosts: string[];
+			id: string;
+			name: string;
+		};
+	};
+	network: string;
+	address: string;
+	publicKey: string;
+	data: Record<string, any>;
+	settings: Record<string, any>;
+}
+
+export interface ProfileStruct {
+	id: string;
+	name: string;
+	wallets: Record<string, any>;
+	contacts: Record<string, any>;
+	data: Record<string, any>;
+	settings: Record<string, any>;
+}

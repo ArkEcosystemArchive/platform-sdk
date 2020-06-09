@@ -3,7 +3,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Avatar } from "./avatar";
 import { container } from "./container";
-import { Identifiers } from "./contracts";
+import { Identifiers, WalletStruct } from "./contracts";
 import { WalletSetting } from "./enums";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
@@ -95,7 +95,7 @@ export class Wallet {
 		return this.#settingRepository;
 	}
 
-	public toObject(): object {
+	public toObject(): WalletStruct {
 		const coinConfig = { ...this.coin().config().all() };
 		delete coinConfig.httpClient;
 
