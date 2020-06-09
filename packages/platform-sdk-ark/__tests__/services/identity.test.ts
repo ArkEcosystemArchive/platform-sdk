@@ -42,7 +42,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should detect NEO duplicates on mainnet", async () => {
-			nock("https://neoscan.io/api/test_net/v1/")
+			nock("https://neoscan.io/api/main_net/v1/")
 				.get("/get_last_transactions_by_address/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX/1")
 				.thrice()
 				.reply(200, require(`${__dirname}/../__fixtures__/identity/neo-duplicate.json`));
