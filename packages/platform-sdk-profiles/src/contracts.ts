@@ -1,6 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 export interface EnvironmentOptions {
+	coins: Record<string, any>;
 	storage: string | Storage;
 	httpClient: Contracts.HttpClient;
 	migrations?: Record<string, any>;
@@ -37,24 +38,16 @@ export interface Contact extends ContactStruct {
 	id: string;
 }
 
-// Container Bindings - TODO: remove I prefix
+// Container Bindings
 export const Identifiers = {
 	AppData: "Data<App>",
-	ProfileData: "Data<Profile>",
-
-	ContactFactory: "ContactFactory",
+	Coins: "Coins",
 	ContactRepository: "ContactRepository",
 	DataRepository: "DataRepository",
-	EventEmitter: "EventEmitter",
 	HttpClient: "HttpClient",
 	Migrator: "Migrator",
-	ProfileFactory: "ProfileFactory",
 	ProfileRepository: "ProfileRepository",
 	SettingRepository: "SettingRepository",
 	Storage: "Storage",
-	WalletFactory: "WalletFactory",
 	WalletRepository: "WalletRepository",
 };
-
-export type ProfileFactory = (id: string, name: string) => any;
-export type WalletFactory = (mnemonic: string, coin: Coins.CoinSpec, network: string) => any;
