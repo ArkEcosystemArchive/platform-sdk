@@ -39,24 +39,26 @@ describe("URIService", () => {
 
 	it("should fail to deserialize with minimal schema", () => {
 		expect(() => subject.deserialize("ark:DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9")).toThrowError(
-			"The given data is malformed.",
+			"The given data is malformed: ValidationError: amount is a required field",
 		);
 	});
 
 	it("should fail to deserialize with custom network", () => {
 		expect(() => subject.deserialize("ark:LNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9")).toThrowError(
-			"The given data is malformed.",
+			"The given data is malformed: ValidationError: amount is a required field",
 		);
 	});
 
 	it("should fail to deserialize with with params", () => {
 		expect(() => subject.deserialize("ark:DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9?amount=1.2&")).toThrowError(
-			"The given data is malformed.",
+			"The given data is malformed: ValidationError: recipient is a required field",
 		);
 	});
 
 	it("should fail to deserialize with wrong address", () => {
-		expect(() => subject.deserialize("ark:x")).toThrowError("The given data is malformed.");
+		expect(() => subject.deserialize("ark:x")).toThrowError(
+			"The given data is malformed: ValidationError: amount is a required field",
+		);
 	});
 
 	it("should fail to deserialize with wrong protocol", () => {

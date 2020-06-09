@@ -23,10 +23,10 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"@hapi/joi": "^17.1.1",
 		"@ledgerhq/hw-app-trx": "^5.15.0",
 		"@ledgerhq/hw-transport-node-hid-singleton": "^5.15.0",
-		"tronweb": "^2.10.2"
+		"tronweb": "^2.10.2",
+		"yup": "^0.29.1"
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.15.0",

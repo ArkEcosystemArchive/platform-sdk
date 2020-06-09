@@ -22,7 +22,8 @@
 	"dependencies": {
 		"bad-words": "^3.0.3",
 		"bignumber.js": "^9.0.0",
-		"censorify-it": "^2.1.4"
+		"censorify-it": "^2.1.4",
+		"yup": "^0.29.1"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
