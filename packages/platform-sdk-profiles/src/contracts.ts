@@ -25,14 +25,48 @@ export interface Storage {
 	restore(): Promise<void>;
 }
 
-// Contacts
-export type ContactAddress = { coin: string; network: string; address: string };
+// Structs
+export interface ProfileStruct {
+	id: string;
+	name: string;
+	wallets: Record<string, any>;
+	contacts: Record<string, any>;
+	data: Record<string, any>;
+	settings: Record<string, any>;
+}
+
+export interface WalletStruct {
+	coin: string | undefined;
+	coinConfig: {
+		network: {
+			crypto: {
+				slip44: number;
+			};
+			currency: {
+				symbol: string;
+				ticker: string;
+			};
+			explorer: string;
+			hosts: string[];
+			id: string;
+			name: string;
+		};
+	};
+	network: string;
+	address: string;
+	publicKey: string | undefined;
+	data: Record<string, any>;
+	settings: Record<string, any>;
+}
 
 export interface ContactStruct {
 	name: string;
 	addresses: ContactAddress[];
 	starred: boolean;
 }
+
+// Contacts
+export type ContactAddress = { coin: string; network: string; address: string };
 
 export interface Contact extends ContactStruct {
 	id: string;
