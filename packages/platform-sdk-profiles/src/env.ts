@@ -69,5 +69,7 @@ export class Environment {
 		container.set(Identifiers.AppData, new DataRepository());
 		container.set(Identifiers.HttpClient, options.httpClient);
 		container.set(Identifiers.ProfileRepository, new ProfileRepository());
+
+		container.set(Identifiers.Coins, options.coins);
 	}
 }
