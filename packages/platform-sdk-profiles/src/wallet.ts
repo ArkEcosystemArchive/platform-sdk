@@ -105,6 +105,8 @@ export class Wallet {
 			network: this.network(),
 			address: this.address(),
 			publicKey: this.publicKey(),
+			data: this.data().all(),
+			settings: this.settings().all(),
 		};
 	}
 
