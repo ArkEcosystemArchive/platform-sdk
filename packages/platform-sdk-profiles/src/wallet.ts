@@ -96,7 +96,7 @@ export class Wallet {
 	}
 
 	public toObject(): WalletStruct {
-		const coinConfig = { ...this.coin().config().all() };
+		const coinConfig: any = { ...this.coin().config().all() };
 		delete coinConfig.httpClient;
 
 		return {
