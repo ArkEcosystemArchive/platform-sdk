@@ -25,34 +25,16 @@ export interface Storage {
 	restore(): Promise<void>;
 }
 
-// Contacts
-export type ContactAddress = { coin: string; network: string; address: string };
-
-export interface ContactStruct {
-	name: string;
-	addresses: ContactAddress[];
-	starred: boolean;
-}
-
-export interface Contact extends ContactStruct {
-	id: string;
-}
-
-// Container Bindings
-export const Identifiers = {
-	AppData: "Data<App>",
-	Coins: "Coins",
-	ContactRepository: "ContactRepository",
-	DataRepository: "DataRepository",
-	HttpClient: "HttpClient",
-	Migrator: "Migrator",
-	ProfileRepository: "ProfileRepository",
-	SettingRepository: "SettingRepository",
-	Storage: "Storage",
-	WalletRepository: "WalletRepository",
-};
-
 // Structs
+export interface ProfileStruct {
+	id: string;
+	name: string;
+	wallets: Record<string, any>;
+	contacts: Record<string, any>;
+	data: Record<string, any>;
+	settings: Record<string, any>;
+}
+
 export interface WalletStruct {
 	coin: string;
 	coinConfig: {
@@ -77,11 +59,29 @@ export interface WalletStruct {
 	settings: Record<string, any>;
 }
 
-export interface ProfileStruct {
-	id: string;
+export interface ContactStruct {
 	name: string;
-	wallets: Record<string, any>;
-	contacts: Record<string, any>;
-	data: Record<string, any>;
-	settings: Record<string, any>;
+	addresses: ContactAddress[];
+	starred: boolean;
 }
+
+// Contacts
+export type ContactAddress = { coin: string; network: string; address: string };
+
+export interface Contact extends ContactStruct {
+	id: string;
+}
+
+// Container Bindings
+export const Identifiers = {
+	AppData: "Data<App>",
+	Coins: "Coins",
+	ContactRepository: "ContactRepository",
+	DataRepository: "DataRepository",
+	HttpClient: "HttpClient",
+	Migrator: "Migrator",
+	ProfileRepository: "ProfileRepository",
+	SettingRepository: "SettingRepository",
+	Storage: "Storage",
+	WalletRepository: "WalletRepository",
+};
