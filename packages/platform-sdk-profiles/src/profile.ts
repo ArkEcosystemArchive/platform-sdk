@@ -1,9 +1,9 @@
+import { ProfileStruct } from "./contracts";
 import { ProfileSetting } from "./enums";
 import { ContactRepository } from "./repositories/contact-repository";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
-import { ProfileStruct } from "./contracts";
 
 export class Profile {
 	#contactRepository!: ContactRepository;
