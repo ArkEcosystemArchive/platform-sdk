@@ -1,8 +1,13 @@
 import "jest-extended";
+import nock from "nock";
 
 import { IdentityService } from "../../src/services/identity";
 import { identity } from "../__fixtures__/identity";
 import { createConfig } from "../helpers";
+
+afterEach(() => nock.cleanAll());
+
+beforeAll(() => nock.disableNetConnect());
 
 let subject: IdentityService;
 
@@ -32,6 +37,24 @@ describe("IdentityService", () => {
 			const result: any = await subject.address().fromWIF(identity.wif);
 
 			expect(result).toBe(identity.address);
+		});
+
+		it("should detect NEO duplicates on mainnet", async () => {
+			nock("https://explorer.ark.io/api/")
+				.get("/wallets/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")
+				.thrice()
+				.reply(200, require(`${__dirname}/../__fixtures__/identity/ark-duplicate.json`));
+
+			subject = await IdentityService.construct(createConfig({ network: "mainnet" }));
+
+			await expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).rejects.toThrow(
+				"This address exists on the ARK Mainnet.",
+			);
+		});
+
+		it("should validate an address", async () => {
+			await expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).resolves.toBeTrue();
+			await expect(subject.address().validate("ABC")).resolves.toBeFalse();
 		});
 	});
 

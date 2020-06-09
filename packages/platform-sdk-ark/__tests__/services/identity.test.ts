@@ -1,4 +1,5 @@
 import "jest-extended";
+import nock from "nock";
 
 import { IdentityService } from "../../src/services/identity";
 import { identity } from "../__fixtures__/identity";
@@ -7,6 +8,10 @@ import { createConfig } from "../helpers";
 let subject: IdentityService;
 
 beforeEach(async () => (subject = await IdentityService.construct(createConfig())));
+
+afterEach(() => nock.cleanAll());
+
+beforeAll(() => nock.disableNetConnect());
 
 describe("IdentityService", () => {
 	describe("#address", () => {
@@ -34,6 +39,19 @@ describe("IdentityService", () => {
 			const result: any = await subject.address().fromWIF(identity.wif);
 
 			expect(result).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+		});
+
+		it("should detect NEO duplicates on mainnet", async () => {
+			nock("https://neoscan.io/api/main_net/v1/")
+				.get("/get_last_transactions_by_address/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX/1")
+				.thrice()
+				.reply(200, require(`${__dirname}/../__fixtures__/identity/neo-duplicate.json`));
+
+			subject = await IdentityService.construct(createConfig({ network: "mainnet" }));
+
+			await expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).rejects.toThrow(
+				"This address exists on the NEO Mainnet.",
+			);
 		});
 
 		it("should validate an address", async () => {
