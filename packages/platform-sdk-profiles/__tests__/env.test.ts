@@ -91,7 +91,7 @@ it("should have a data repository", async () => {
 	expect(subject.data()).toBeInstanceOf(DataRepository);
 });
 
-it("should listen for data modifications, save it and load it", async () => {
+it.only("should listen for data modifications, save it and load it", async () => {
 	/**
 	 * Save data in the current environment.
 	 */
@@ -113,6 +113,9 @@ it("should listen for data modifications, save it and load it", async () => {
 
 	// Create a Setting
 	profile.settings().set("ADVANCED_MODE", "value");
+
+	// Create a Global DataEntry
+	subject.data().set("key", "value");
 
 	// Persist the data for the next instance to use.
 	await subject.persist();

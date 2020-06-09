@@ -1,3 +1,5 @@
+import { Validator, ValidatorSchema } from "@arkecosystem/platform-sdk-support";
+
 import { container } from "./container";
 import { EnvironmentOptions, Identifiers, Storage } from "./contracts";
 import { Migrator } from "./migrator";
@@ -21,6 +23,70 @@ export class Environment {
 	 */
 	public async boot(): Promise<void> {
 		const { profiles, data }: any = await container.get<Storage>(Identifiers.Storage).all();
+
+		const { array, boolean, object, string, number } = ValidatorSchema;
+
+		const validator = new Validator();
+
+		const attributes = validator.validate(
+			{ profiles, data },
+			object({
+				profiles: object().shape({
+					key: object().shape({
+						id: string(),
+						name: string(),
+						wallets: object().shape({
+							key: {
+								coin: string(),
+								coinConfig: {
+									network: {
+										id: string(),
+										name: string(),
+										explorer: string(),
+										currency: {
+											ticker: string(),
+											symbol: string(),
+										},
+										crypto: {
+											slip44: number().integer(),
+										},
+										hosts: array().of(string()),
+									},
+								},
+								network: string(),
+								address: string(),
+								publicKey: string(),
+								data: object(),
+								settings: object(),
+							},
+						}),
+						contacts: object().shape({
+							key: {
+								id: string(),
+								name: string(),
+								addresses: array().of(
+									object({
+										coin: string(),
+										network: string(),
+										address: string(),
+									}),
+								),
+								starred: boolean(),
+							},
+							data: object(),
+							settings: object(),
+						}),
+					}),
+				}),
+				data: object(),
+			}),
+		);
+
+		console.log(JSON.stringify(attributes, null, 4));
+
+		if (validator.fails()) {
+			throw new Error("Terminating due to corrupted state.");
+		}
 
 		if (profiles) {
 			await this.profiles().fill(profiles);

@@ -29,4 +29,8 @@ export class Validator {
 	public errors(): string[] | undefined {
 		return this.#error?.errors;
 	}
+
+	public error(): ValidationError | undefined {
+		return this.#error;
+	}
 }
