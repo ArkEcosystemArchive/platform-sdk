@@ -59,14 +59,20 @@ test("#nonce", () => {
 	expect(subject.nonce()).toEqual(BigNumber.make("111932"));
 });
 
-test("#toObject", () => {
-	expect(subject.toObject()).toEqual({
-		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		coin: "ARK",
-		coinConfig: {
+describe.each([123, 456, 789])("%s", (slip44) => {
+	test("#toObject", () => {
+		subject.coin().config().set("network.crypto.slip44", slip44);
+		subject.data().set("key", "value");
+
+		const actual: any = subject.toObject();
+
+		expect(actual).toContainAllKeys(["address", "coin", "coinConfig", "network", "publicKey", "data", "settings"]);
+		expect(actual.address).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+		expect(actual.coin).toBe("ARK");
+		expect(actual.coinConfig).toEqual({
 			network: {
 				crypto: {
-					slip44: 111,
+					slip44,
 				},
 				currency: {
 					symbol: "DѦ",
@@ -84,41 +90,12 @@ test("#toObject", () => {
 				id: "devnet",
 				name: "Devnet",
 			},
-		},
-		network: "devnet",
-		publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-	});
-});
-
-test("#toObject with custom slip44", () => {
-	subject.coin().config().set("network.crypto.slip44", 123);
-
-	expect(subject.toObject()).toEqual({
-		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		coin: "ARK",
-		coinConfig: {
-			network: {
-				crypto: {
-					slip44: 123,
-				},
-				currency: {
-					symbol: "DѦ",
-					ticker: "DARK",
-				},
-				explorer: "https://dexplorer.ark.io/",
-				hosts: [
-					"https://dexplorer.ark.io",
-					"http://167.114.29.51:4003",
-					"http://167.114.29.52:4003",
-					"http://167.114.29.53:4003",
-					"http://167.114.29.54:4003",
-					"http://167.114.29.55:4003",
-				],
-				id: "devnet",
-				name: "Devnet",
-			},
-		},
-		network: "devnet",
-		publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		});
+		expect(actual.network).toBe("devnet");
+		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+		expect(actual.data).toBeObject();
+		expect(actual.data.key).toBe("value");
+		expect(actual.settings).toBeObject();
+		expect(actual.settings.AVATAR).toBeString();
 	});
 });
