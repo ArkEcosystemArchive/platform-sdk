@@ -78,7 +78,7 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	subject = new Environment({ httpClient: new HttpClient(), storage: new StubStorage() });
+	subject = new Environment({ coins: { ARK }, httpClient: new HttpClient(), storage: new StubStorage() });
 
 	await subject.boot();
 });
@@ -121,7 +121,7 @@ it("should listen for data modifications, save it and load it", async () => {
 	 * Load data that the previous environment instance saved.
 	 */
 
-	const newEnv = new Environment({ httpClient: new HttpClient(), storage: new StubStorage() });
+	const newEnv = new Environment({ coins: { ARK }, httpClient: new HttpClient(), storage: new StubStorage() });
 	await newEnv.boot();
 
 	const newProfile = newEnv.profiles().get(profile.id());
