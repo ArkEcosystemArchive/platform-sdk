@@ -23,12 +23,12 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"@hapi/joi": "^17.1.1",
 		"@ledgerhq/hw-app-btc": "^5.15.2",
 		"@ledgerhq/hw-transport-node-hid-singleton": "^5.15.0",
 		"bignumber.js": "^9.0.0",
 		"bitcoinjs-lib": "^5.1.8",
-		"bitcore-lib": "^8.20.3"
+		"bitcore-lib": "^8.20.3",
+		"yup": "^0.29.1"
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.15.0",

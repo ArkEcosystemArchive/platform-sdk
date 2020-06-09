@@ -1,5 +1,5 @@
-import Joi from "@hapi/joi";
 import querystring from "querystring";
+import { number, object, string } from "yup";
 
 import { URIService as Contract } from "../../contracts/coins/uri";
 
@@ -21,27 +21,29 @@ export class URIService implements Contract {
 			throw new Error("The given data is malformed.");
 		}
 
-		const { value: result, error } = Joi.object({
-			method: Joi.string().required(),
-			coin: Joi.string().required(),
-			network: Joi.string().required(),
-			recipient: Joi.string().required(),
-			amount: Joi.number().required(),
-			memo: Joi.string().optional(),
-		}).validate({
-			method: parsed[1],
-			...querystring.parse(parsed[2].substring(1)),
-		});
+		try {
+			const result = object()
+				.shape({
+					method: string().required(),
+					coin: string().required(),
+					network: string().required(),
+					recipient: string().required(),
+					amount: number().required(),
+					memo: string(),
+				})
+				.validateSync({
+					method: parsed[1],
+					...querystring.parse(parsed[2].substring(1)),
+				});
 
-		if (error) {
-			throw new Error("The given data is malformed.");
+			for (const [key, value] of Object.entries(result)) {
+				result[key] = this.decodeURIComponent(value);
+			}
+
+			return result;
+		} catch (error) {
+			throw new Error(`The given data is malformed: ${error}`);
 		}
-
-		for (const [key, value] of Object.entries(result)) {
-			result[key] = this.decodeURIComponent(value);
-		}
-
-		return result;
 	}
 
 	private decodeURIComponent(value): string {
