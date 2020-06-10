@@ -7,9 +7,6 @@ import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
 import { StorageFactory } from "./storage/factory";
 
-const mapRules = (map: object, rule: Function) =>
-	Object.keys(map).reduce((newMap, key) => ({ ...newMap, [key]: rule }), {});
-
 export class Environment {
 	public constructor(options: EnvironmentOptions) {
 		this.registerBindings(options);
@@ -25,7 +22,62 @@ export class Environment {
 	 * @memberof Environment
 	 */
 	public async boot(): Promise<void> {
-		const { profiles, data }: any = await container.get<Storage>(Identifiers.Storage).all();
+		const { data, profiles } = await this.validateStorage();
+
+		if (data) {
+			this.data().fill(data);
+		}
+
+		if (profiles) {
+			await this.profiles().fill(profiles);
+		}
+	}
+
+	/**
+	 * Save the data to the storage.
+	 *
+	 * This has to be manually called and should always be called before disposing
+	 * of the environment instance. For example on application shutdown or when switching profiles.
+	 *
+	 * @returns {Promise<void>}
+	 * @memberof Environment
+	 */
+	public async persist(): Promise<void> {
+		const storage: Storage = container.get<Storage>(Identifiers.Storage);
+
+		await storage.set("profiles", this.profiles().toObject());
+
+		await storage.set("data", this.data().all());
+	}
+
+	public profiles(): ProfileRepository {
+		return container.get(Identifiers.ProfileRepository);
+	}
+
+	public data(): DataRepository {
+		return container.get(Identifiers.AppData);
+	}
+
+	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
+		await container.get<Migrator>(Identifiers.Migrator).migrate(migrations, versionToMigrate);
+	}
+
+	private registerBindings(options: EnvironmentOptions): void {
+		container.set(
+			Identifiers.Storage,
+			typeof options.storage === "string" ? StorageFactory.make(options.storage) : options.storage,
+		);
+
+		container.set(Identifiers.AppData, new DataRepository());
+		container.set(Identifiers.HttpClient, options.httpClient);
+		container.set(Identifiers.ProfileRepository, new ProfileRepository());
+
+		container.set(Identifiers.Coins, options.coins);
+	}
+
+	private async validateStorage(): Promise<{ profiles; data }> {
+		const mapRules = (map: object, rule: Function) =>
+			Object.keys(map).reduce((newMap, key) => ({ ...newMap, [key]: rule }), {});
 
 		const { array, boolean, object, string, number, lazy } = ValidatorSchema;
 
@@ -93,60 +145,28 @@ export class Environment {
 			return object({ profiles: object(rules), data: object() });
 		});
 
-		const validated = schema.validateSync({ profiles, data }, { strict: true });
+		// @ts-ignore
+		let { data, profiles } = await container.get<Storage>(Identifiers.Storage).all();
+
+		if (!data) {
+			data = {};
+		}
+
+		if (!profiles) {
+			profiles = {};
+		}
+
+		const validated = schema.validateSync(
+			{ data, profiles },
+			{
+				strict: true,
+			},
+		);
 
 		if (validator.fails()) {
 			throw new Error("Terminating due to corrupted state.");
 		}
 
-		if (validated.profiles) {
-			await this.profiles().fill(validated.profiles);
-		}
-
-		if (validated.data) {
-			this.data().fill(validated.data);
-		}
-	}
-
-	/**
-	 * Save the data to the storage.
-	 *
-	 * This has to be manually called and should always be called before disposing
-	 * of the environment instance. For example on application shutdown or when switching profiles.
-	 *
-	 * @returns {Promise<void>}
-	 * @memberof Environment
-	 */
-	public async persist(): Promise<void> {
-		const storage: Storage = container.get<Storage>(Identifiers.Storage);
-
-		await storage.set("profiles", this.profiles().toObject());
-
-		await storage.set("data", this.data().all());
-	}
-
-	public profiles(): ProfileRepository {
-		return container.get(Identifiers.ProfileRepository);
-	}
-
-	public data(): DataRepository {
-		return container.get(Identifiers.AppData);
-	}
-
-	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
-		await container.get<Migrator>(Identifiers.Migrator).migrate(migrations, versionToMigrate);
-	}
-
-	private registerBindings(options: EnvironmentOptions): void {
-		container.set(
-			Identifiers.Storage,
-			typeof options.storage === "string" ? StorageFactory.make(options.storage) : options.storage,
-		);
-
-		container.set(Identifiers.AppData, new DataRepository());
-		container.set(Identifiers.HttpClient, options.httpClient);
-		container.set(Identifiers.ProfileRepository, new ProfileRepository());
-
-		container.set(Identifiers.Coins, options.coins);
+		return validated;
 	}
 }
