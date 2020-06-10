@@ -616,6 +616,8 @@ __metadata:
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@cityofzion/neon-js": ^4.8.0
+    "@ledgerhq/hw-transport-mocker": ^5.15.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -1965,6 +1967,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ledgerhq/hw-transport-node-hid-noevents@npm:^5.16.0":
+  version: 5.16.0
+  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:5.16.0"
+  dependencies:
+    "@ledgerhq/devices": ^5.15.0
+    "@ledgerhq/errors": ^5.15.0
+    "@ledgerhq/hw-transport": ^5.15.0
+    "@ledgerhq/logs": ^5.15.0
+    node-hid: ^1.2.0
+  checksum: 2/b33a94056db29b0d8f062cdbdc6bfb06026946b1c7f17245fbbb4eaf085a7317e136e486b2e488446cc4b9977c8d063f2bdbc826257db51d4cab0cb7cb31a1bc
+  languageName: node
+  linkType: hard
+
 "@ledgerhq/hw-transport-node-hid-singleton@npm:^5.15.0":
   version: 5.15.0
   resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:5.15.0"
@@ -1978,6 +1993,22 @@ __metadata:
     node-hid: ^1.2.0
     usb-detection: ^4.9.0
   checksum: 2/3d12d4c5d4e8815c55fd48dda5922aa260cd731a6740321cdffb8174b611d0ac61876a35157b4ca4eb2f7a7c5a37fcd31634b2fd62522c10bf7916f2c1b152ad
+  languageName: node
+  linkType: hard
+
+"@ledgerhq/hw-transport-node-hid-singleton@npm:^5.16.0":
+  version: 5.16.0
+  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:5.16.0"
+  dependencies:
+    "@ledgerhq/devices": ^5.15.0
+    "@ledgerhq/errors": ^5.15.0
+    "@ledgerhq/hw-transport": ^5.15.0
+    "@ledgerhq/hw-transport-node-hid-noevents": ^5.16.0
+    "@ledgerhq/logs": ^5.15.0
+    lodash: ^4.17.15
+    node-hid: ^1.2.0
+    usb-detection: ^4.9.0
+  checksum: 2/a0b1240c8dc88e8a0f8975a117c1801cb9fa54170327f94de5e27124e4f7b3eae83a87e30fe1236925e20c89384e6869e35d861b88df144e1a8e00f20f9068f0
   languageName: node
   linkType: hard
 
