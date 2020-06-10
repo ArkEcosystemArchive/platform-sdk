@@ -114,6 +114,9 @@ it("should listen for data modifications, save it and load it", async () => {
 	// Create a Setting
 	profile.settings().set("ADVANCED_MODE", "value");
 
+	// Create a Global DataEntry
+	subject.data().set("key", "value");
+
 	// Persist the data for the next instance to use.
 	await subject.persist();
 
