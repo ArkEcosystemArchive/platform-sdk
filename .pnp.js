@@ -981,6 +981,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@cityofzion/neon-js", "npm:4.8.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -2403,6 +2405,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["node-hid", "npm:1.2.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:5.16.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-node-hid-noevents-npm-5.16.0-538c7ecb3a-2.zip/node_modules/@ledgerhq/hw-transport-node-hid-noevents/",
+          "packageDependencies": [
+            ["@ledgerhq/hw-transport-node-hid-noevents", "npm:5.16.0"],
+            ["@ledgerhq/devices", "npm:5.15.0"],
+            ["@ledgerhq/errors", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport", "npm:5.15.0"],
+            ["@ledgerhq/logs", "npm:5.15.0"],
+            ["node-hid", "npm:1.2.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@ledgerhq/hw-transport-node-hid-singleton", [
@@ -2414,6 +2428,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@ledgerhq/errors", "npm:5.15.0"],
             ["@ledgerhq/hw-transport", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-node-hid-noevents", "npm:5.15.0"],
+            ["@ledgerhq/logs", "npm:5.15.0"],
+            ["lodash", "npm:4.17.15"],
+            ["node-hid", "npm:1.2.0"],
+            ["usb-detection", "npm:4.9.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.16.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-node-hid-singleton-npm-5.16.0-a548e7f181-2.zip/node_modules/@ledgerhq/hw-transport-node-hid-singleton/",
+          "packageDependencies": [
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
+            ["@ledgerhq/devices", "npm:5.15.0"],
+            ["@ledgerhq/errors", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport-node-hid-noevents", "npm:5.16.0"],
             ["@ledgerhq/logs", "npm:5.15.0"],
             ["lodash", "npm:4.17.15"],
             ["node-hid", "npm:1.2.0"],
