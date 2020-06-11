@@ -40,7 +40,7 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.SecondSignatureInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("registersecondMnemonic", {
+		return this.createFromData("registerSecondPassphrase", {
 			...input,
 			...{
 				data: {
@@ -181,11 +181,11 @@ export class TransactionService implements Contracts.TransactionService {
 		// todo: support multisignature
 
 		if (input.sign.mnemonic) {
-			struct.mnemonic = BIP39.normalize(input.sign.mnemonic);
+			struct.passphrase = BIP39.normalize(input.sign.mnemonic);
 		}
 
 		if (input.sign.secondMnemonic) {
-			struct.secondMnemonic = BIP39.normalize(input.sign.secondMnemonic);
+			struct.secondPassphrase = BIP39.normalize(input.sign.secondMnemonic);
 		}
 
 		if (this.#network === manifest.networks.betanet.crypto.networkId) {
