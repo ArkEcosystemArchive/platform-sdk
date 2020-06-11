@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.84 - 2020-06-11
+
+### Added
+
+-   Initial implementation of `platform-sdk-news` (623cb841, @faustbrian)
+-   Automatically persist wallets after CRUD operations (c21a698a, @faustbrian)
+-   Implement methods to save and load all environment data (25fd1632, @faustbrian)
+-   Implement `MessageService#sign/verify` (b5da8dc3, @faustbrian)
+-   Validate ARK and NEO addresses to avoid collisions (dd5540a4, @faustbrian)
+-   Validate storage data on read/write (c6866b71, @faustbrian)
+-   Implement `LedgerService` for `NEO` (4578aebc, @sleepdefic1t)
+
+### Changed
+
+-   Rename `passphrase` to `mnemonic` (f7fc2aa8, @faustbrian)
+-   Use container to manage references (510e7e72, @faustbrian)
+-   Replace `@hapi/joi` with `yup` (16d5d2f7, @faustbrian)
+-   Pass supported coins to `Environment` (14936722, @faustbrian)
+-   Add `ProfileStruct` and `WalletStruct` contracts (33f204f3, @faustbrian)
+-   Rename `secondPassphrase` to `secondMnemonic` (a74e0549, @faustbrian)
+
+### Fixed
+
+-   Include data and settings in wallet object (2746433a, @faustbrian)
+-   Handle connection attempt to peer of a different network (dbc3921d, @faustbrian)
+
 ## 0.9.69 - 2020-06-02
 
 ### Added
