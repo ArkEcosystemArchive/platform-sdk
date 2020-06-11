@@ -4,16 +4,19 @@ import { PeerService } from "../../src/services/peer";
 import { dummyPeersPublicApi, dummyPeersWalletApi } from "./mocks/peers";
 import { createConfig } from "../helpers";
 
-beforeEach(() => nock.cleanAll());
+beforeEach(() => {
+	nock.cleanAll();
+
+	nock("http://127.0.0.1")
+		.get("/api/node/configuration")
+		.reply(200, require("../__fixtures__/client/configuration.json"))
+		.persist();
+});
 
 describe("PeerService", () => {
 	describe("#new", () => {
 		describe("host", () => {
 			it("should throw if the peer is on the wrong network", async () => {
-				nock("http://127.0.0.1")
-					.get("/api/node/configuration")
-					.reply(200, require("../__fixtures__/client/configuration.json"));
-
 				await expect(
 					PeerService.construct(
 						createConfig({
