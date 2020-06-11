@@ -62,12 +62,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-ada && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-ada && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-ada/.coverage-ada/lcov.info
+                  file: packages/platform-sdk-ada/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -93,12 +93,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-ark && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-ark && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-ark/.coverage-ark/lcov.info
+                  file: packages/platform-sdk-ark/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -124,12 +124,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-atom && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-atom && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-atom/.coverage-atom/lcov.info
+                  file: packages/platform-sdk-atom/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -155,12 +155,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-btc && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-btc && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-btc/.coverage-btc/lcov.info
+                  file: packages/platform-sdk-btc/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -186,12 +186,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-coincap && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-coincap && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-coincap/.coverage-coincap/lcov.info
+                  file: packages/platform-sdk-coincap/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -217,12 +217,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-coingecko && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-coingecko && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-coingecko/.coverage-coingecko/lcov.info
+                  file: packages/platform-sdk-coingecko/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -248,12 +248,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-cryptocompare/.coverage-cryptocompare/lcov.info
+                  file: packages/platform-sdk-cryptocompare/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -279,12 +279,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-cryptocompare/.coverage-cryptocompare/lcov.info
+                  file: packages/platform-sdk-cryptocompare/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -310,12 +310,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-eos && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-eos && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-eos/.coverage-eos/lcov.info
+                  file: packages/platform-sdk-eos/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -341,12 +341,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-eth && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-eth && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-eth/.coverage-eth/lcov.info
+                  file: packages/platform-sdk-eth/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -372,12 +372,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-intl && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-intl && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-intl/.coverage-intl/lcov.info
+                  file: packages/platform-sdk-intl/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -403,12 +403,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-lsk && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-lsk && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-lsk/.coverage-lsk/lcov.info
+                  file: packages/platform-sdk-lsk/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -434,12 +434,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-markets && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-markets && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-markets/.coverage-markets/lcov.info
+                  file: packages/platform-sdk-markets/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -465,12 +465,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-neo && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-neo && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-neo/.coverage-neo/lcov.info
+                  file: packages/platform-sdk-neo/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -496,12 +496,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-news && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-news && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-news/.coverage-news/lcov.info
+                  file: packages/platform-sdk-news/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -527,12 +527,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-profiles && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-profiles && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-profiles/.coverage-profiles/lcov.info
+                  file: packages/platform-sdk-profiles/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -558,12 +558,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-support && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-support && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-support/.coverage-support/lcov.info
+                  file: packages/platform-sdk-support/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -589,12 +589,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-trx && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-trx && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-trx/.coverage-trx/lcov.info
+                  file: packages/platform-sdk-trx/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -620,12 +620,12 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-xlm && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-xlm && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-xlm/.coverage-xlm/lcov.info
+                  file: packages/platform-sdk-xlm/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
 
@@ -651,11 +651,11 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-xrp && yarn run test --coverage --coverageDirectory
+              run: cd packages/platform-sdk-xrp && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
               with:
-                  file: packages/platform-sdk-xrp/.coverage-xrp/lcov.info
+                  file: packages/platform-sdk-xrp/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
