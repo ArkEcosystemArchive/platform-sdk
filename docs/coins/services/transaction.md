@@ -50,7 +50,7 @@ Creates a new Transfer transaction.
 | sign                  | object   | The object containing all data required for the signing.                                               |
 | sign.passphrase       | string   | The passphrase of the signer.                                                                          |
 | sign.passphrases      | string[] | The passphrases of all signers.                                                                        |
-| sign.secondPassphrase | string   | The second passphrase of the signer.                                                                   |
+| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
 | sign.wif              | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif        | string   | The second WIF of the signer.                                                                          |
 
@@ -93,7 +93,7 @@ Creates a new Second Signature Registration transaction.
 | sign                  | object   | The object containing all data required for the signing.                                               |
 | sign.passphrase       | string   | The passphrase of the signer.                                                                          |
 | sign.passphrases      | string[] | The passphrases of all signers.                                                                        |
-| sign.secondPassphrase | string   | The second passphrase of the signer.                                                                   |
+| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
 | sign.wif              | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif        | string   | The second WIF of the signer.                                                                          |
 
@@ -135,7 +135,7 @@ Creates a new Delegate Registration transaction.
 | sign                  | object   | The object containing all data required for the signing.                                               |
 | sign.passphrase       | string   | The passphrase of the signer.                                                                          |
 | sign.passphrases      | string[] | The passphrases of all signers.                                                                        |
-| sign.secondPassphrase | string   | The second passphrase of the signer.                                                                   |
+| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
 | sign.wif              | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif        | string   | The second WIF of the signer.                                                                          |
 
@@ -177,7 +177,7 @@ Creates a new Vote transaction.
 | sign                  | object   | The object containing all data required for the signing.                                               |
 | sign.passphrase       | string   | The passphrase of the signer.                                                                          |
 | sign.passphrases      | string[] | The passphrases of all signers.                                                                        |
-| sign.secondPassphrase | string   | The second passphrase of the signer.                                                                   |
+| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
 | sign.wif              | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif        | string   | The second WIF of the signer.                                                                          |
 
@@ -219,7 +219,7 @@ Creates a new Multi-Signature Registration transaction.
 | sign                  | object   | The object containing all data required for the signing.                                               |
 | sign.passphrase       | string   | The passphrase of the signer.                                                                          |
 | sign.passphrases      | string[] | The passphrases of all signers.                                                                        |
-| sign.secondPassphrase | string   | The second passphrase of the signer.                                                                   |
+| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
 | sign.wif              | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif        | string   | The second WIF of the signer.                                                                          |
 
@@ -272,7 +272,7 @@ Creates a new IPFS transaction.
 | sign                  | object   | The object containing all data required for the signing.                                               |
 | sign.passphrase       | string   | The passphrase of the signer.                                                                          |
 | sign.passphrases      | string[] | The passphrases of all signers.                                                                        |
-| sign.secondPassphrase | string   | The second passphrase of the signer.                                                                   |
+| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
 | sign.wif              | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif        | string   | The second WIF of the signer.                                                                          |
 
@@ -314,7 +314,7 @@ Creates a new Multi-Payment transaction.
 | sign                    | object   | The object containing all data required for the signing.                                               |
 | sign.passphrase         | string   | The passphrase of the signer.                                                                          |
 | sign.passphrases        | string[] | The passphrases of all signers.                                                                        |
-| sign.secondPassphrase   | string   | The second passphrase of the signer.                                                                   |
+| sign.secondMnemonic   | string   | The second passphrase of the signer.                                                                   |
 | sign.wif                | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif          | string   | The second WIF of the signer.                                                                          |
 
@@ -358,7 +358,7 @@ Creates a new Delegate Resignation transaction.
 | sign                  | object   | The object containing all data required for the signing.                                               |
 | sign.passphrase       | string   | The passphrase of the signer.                                                                          |
 | sign.passphrases      | string[] | The passphrases of all signers.                                                                        |
-| sign.secondPassphrase | string   | The second passphrase of the signer.                                                                   |
+| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
 | sign.wif              | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif        | string   | The second WIF of the signer.                                                                          |
 
@@ -402,7 +402,7 @@ Creates a new HTLC Lock transaction.
 | sign                  | object   | The object containing all data required for the signing.                                               |
 | sign.passphrase       | string   | The passphrase of the signer.                                                                          |
 | sign.passphrases      | string[] | The passphrases of all signers.                                                                        |
-| sign.secondPassphrase | string   | The second passphrase of the signer.                                                                   |
+| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
 | sign.wif              | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif        | string   | The second WIF of the signer.                                                                          |
 
@@ -451,7 +451,7 @@ Creates a new HTLC Claim transaction.
 | sign                   | object   | The object containing all data required for the signing.                                               |
 | sign.passphrase        | string   | The passphrase of the signer.                                                                          |
 | sign.passphrases       | string[] | The passphrases of all signers.                                                                        |
-| sign.secondPassphrase  | string   | The second passphrase of the signer.                                                                   |
+| sign.secondMnemonic  | string   | The second passphrase of the signer.                                                                   |
 | sign.wif               | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif         | string   | The second WIF of the signer.                                                                          |
 
@@ -494,7 +494,7 @@ Creates a new HTLC Refund transaction.
 | sign                   | object   | The object containing all data required for the signing.                                               |
 | sign.passphrase        | string   | The passphrase of the signer.                                                                          |
 | sign.passphrases       | string[] | The passphrases of all signers.                                                                        |
-| sign.secondPassphrase  | string   | The second passphrase of the signer.                                                                   |
+| sign.secondMnemonic  | string   | The second passphrase of the signer.                                                                   |
 | sign.wif               | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif         | string   | The second WIF of the signer.                                                                          |
 

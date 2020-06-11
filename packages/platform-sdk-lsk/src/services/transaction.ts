@@ -40,11 +40,11 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.SecondSignatureInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("registerSecondPassphrase", {
+		return this.createFromData("registersecondMnemonic", {
 			...input,
 			...{
 				data: {
-					secondPassphrase: BIP39.normalize(input.data.mnemonic),
+					secondMnemonic: BIP39.normalize(input.data.mnemonic),
 				},
 			},
 		});
@@ -184,8 +184,8 @@ export class TransactionService implements Contracts.TransactionService {
 			struct.mnemonic = BIP39.normalize(input.sign.mnemonic);
 		}
 
-		if (input.sign.secondPassphrase) {
-			struct.secondPassphrase = BIP39.normalize(input.sign.secondPassphrase);
+		if (input.sign.secondMnemonic) {
+			struct.secondMnemonic = BIP39.normalize(input.sign.secondMnemonic);
 		}
 
 		if (this.#network === manifest.networks.betanet.crypto.networkId) {
