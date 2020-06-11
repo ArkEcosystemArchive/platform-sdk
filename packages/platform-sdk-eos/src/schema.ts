@@ -13,4 +13,12 @@ export const schema = ValidatorSchema.object().shape({
 		"bos.mainnet",
 	]),
 	peer: ValidatorSchema.string().url().notRequired(),
+	httpClient: ValidatorSchema.object(),
+	services: ValidatorSchema.object()
+		.shape({
+			ledger: ValidatorSchema.object().shape({
+				transport: ValidatorSchema.mixed().notRequired(),
+			}),
+		})
+		.default(undefined),
 });
