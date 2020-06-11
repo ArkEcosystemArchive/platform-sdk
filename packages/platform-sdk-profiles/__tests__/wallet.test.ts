@@ -14,7 +14,11 @@ import { HttpClient } from "./stubs/client";
 let subject: Wallet;
 
 beforeEach(async () => {
+	nock.cleanAll();
+
 	nock(/.+/)
+		.get("/api/node/configuration")
+		.reply(200, require("./__fixtures__/client/configuration.json"))
 		.get("/api/node/configuration/crypto")
 		.reply(200, require("./__fixtures__/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
@@ -30,8 +34,6 @@ beforeEach(async () => {
 	await subject.setCoin(ARK, "devnet");
 	await subject.setIdentity(identity.mnemonic);
 });
-
-afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 

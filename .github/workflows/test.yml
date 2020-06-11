@@ -34,7 +34,11 @@ jobs:
               run: cd packages/platform-sdk && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     ada:
         runs-on: ubuntu-latest
@@ -61,7 +65,11 @@ jobs:
               run: cd packages/platform-sdk-ada && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-ada && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-ada/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     ark:
         runs-on: ubuntu-latest
@@ -88,7 +96,11 @@ jobs:
               run: cd packages/platform-sdk-ark && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-ark && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-ark/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     atom:
         runs-on: ubuntu-latest
@@ -115,7 +127,11 @@ jobs:
               run: cd packages/platform-sdk-atom && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-atom && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-atom/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     btc:
         runs-on: ubuntu-latest
@@ -142,7 +158,11 @@ jobs:
               run: cd packages/platform-sdk-btc && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-btc && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-btc/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     coincap:
         runs-on: ubuntu-latest
@@ -169,7 +189,11 @@ jobs:
               run: cd packages/platform-sdk-coincap && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-coincap && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-coincap/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     coingecko:
         runs-on: ubuntu-latest
@@ -196,7 +220,11 @@ jobs:
               run: cd packages/platform-sdk-coingecko && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-coingecko && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-coingecko/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     crypto:
         runs-on: ubuntu-latest
@@ -223,7 +251,11 @@ jobs:
               run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-cryptocompare && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-cryptocompare/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     cryptocompare:
         runs-on: ubuntu-latest
@@ -250,7 +282,11 @@ jobs:
               run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-cryptocompare && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-cryptocompare/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     eos:
         runs-on: ubuntu-latest
@@ -277,7 +313,11 @@ jobs:
               run: cd packages/platform-sdk-eos && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-eos && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-eos/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     eth:
         runs-on: ubuntu-latest
@@ -304,7 +344,11 @@ jobs:
               run: cd packages/platform-sdk-eth && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-eth && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-eth/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     intl:
         runs-on: ubuntu-latest
@@ -331,7 +375,11 @@ jobs:
               run: cd packages/platform-sdk-intl && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-intl && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-intl/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     lsk:
         runs-on: ubuntu-latest
@@ -358,7 +406,11 @@ jobs:
               run: cd packages/platform-sdk-lsk && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-lsk && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-lsk/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     markets:
         runs-on: ubuntu-latest
@@ -385,7 +437,11 @@ jobs:
               run: cd packages/platform-sdk-markets && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-markets && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-markets/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     neo:
         runs-on: ubuntu-latest
@@ -412,7 +468,11 @@ jobs:
               run: cd packages/platform-sdk-neo && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-neo && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-neo/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     news:
         runs-on: ubuntu-latest
@@ -439,7 +499,11 @@ jobs:
               run: cd packages/platform-sdk-news && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-news && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-news/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     profiles:
         runs-on: ubuntu-latest
@@ -466,7 +530,11 @@ jobs:
               run: cd packages/platform-sdk-profiles && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-profiles && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-profiles/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     support:
         runs-on: ubuntu-latest
@@ -493,7 +561,11 @@ jobs:
               run: cd packages/platform-sdk-support && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-support && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-support/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     trx:
         runs-on: ubuntu-latest
@@ -520,7 +592,11 @@ jobs:
               run: cd packages/platform-sdk-trx && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-trx && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-trx/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     xlm:
         runs-on: ubuntu-latest
@@ -547,7 +623,11 @@ jobs:
               run: cd packages/platform-sdk-xlm && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-xlm && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-xlm/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
 
     xrp:
         runs-on: ubuntu-latest
@@ -574,4 +654,8 @@ jobs:
               run: cd packages/platform-sdk-xrp && yarn run test --coverage
 
             - name: Codecov
-              run: cd packages/platform-sdk-xrp && yarn run coverage:report --token=${{ secrets.CODECOV_TOKEN }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: packages/platform-sdk-xrp/.coverage/lcov.info
+                  flags: unit
+                  fail_ci_if_error: true
