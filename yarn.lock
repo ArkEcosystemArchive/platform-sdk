@@ -53,10 +53,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/ledger-transport@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "@arkecosystem/ledger-transport@npm:1.0.5"
-  checksum: 2/ba6f63e2da925f2afd93b6520f6b36239f5fa2642be400e73bbbffd04ec764674103f93b347908035f50ca04d26b169648a2c356e8957886993b6a9350c41ea4
+"@arkecosystem/ledger-transport@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@arkecosystem/ledger-transport@npm:1.1.2"
+  dependencies:
+    "@ledgerhq/errors": ^5.13.1
+  checksum: 2/b1b810bcd97d4fff99ce0075b5228f856fb19a6bdad8ad9bc93248ce2df36585cb30101ee4125dc5503d9a89bb4ee4344f7e0afec8f36e094e5ce869962c4690
   languageName: node
   linkType: hard
 
@@ -107,7 +109,7 @@ __metadata:
     "@arkecosystem/client": ^1.1
     "@arkecosystem/core-magistrate-crypto": ^2.6.37
     "@arkecosystem/crypto": ^2.6.37
-    "@arkecosystem/ledger-transport": ^1.0.5
+    "@arkecosystem/ledger-transport": ^1.1.2
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
@@ -1882,7 +1884,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/errors@npm:^5.15.0":
+"@ledgerhq/errors@npm:^5.13.1, @ledgerhq/errors@npm:^5.15.0":
   version: 5.15.0
   resolution: "@ledgerhq/errors@npm:5.15.0"
   checksum: 2/9bbff90fb17810463d47adae527ddd77fe2d3cc2d7cc51f6ffe5724ebaec1ad54ddc1739c7b30e29719f38f0d8543143edd7c759f38a63a8af9c73d459fa3e9d

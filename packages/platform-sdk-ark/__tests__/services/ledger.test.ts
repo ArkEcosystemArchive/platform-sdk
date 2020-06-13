@@ -20,6 +20,20 @@ const createMockService = async (record: string) => {
 	return transport;
 };
 
+describe("constructor", () => {
+	it("should pass with an empty configuration", async () => {
+		const transport = await LedgerService.construct(
+			createConfig({
+				services: {
+					ledger: {},
+				},
+			}),
+		);
+
+		expect(transport).toBeInstanceOf(LedgerService);
+	});
+});
+
 describe("destruct", () => {
 	it("should pass with a resolved transport closure", async () => {
 		const ark = await createMockService("");
@@ -55,7 +69,7 @@ describe("signTransaction", () => {
 });
 
 describe("signTransactionWithSchnorr", () => {
-	it("should pass with a /*schnorr*/ ecdsa signature", async () => {
+	it("should pass with a schnorr signature", async () => {
 		const ark = await createMockService(ledger.transaction.schnorr.record);
 
 		await expect(
@@ -75,7 +89,7 @@ describe("signMessage", () => {
 });
 
 describe("signMessageWithSchnorr", () => {
-	it("should pass with a /*schnorr*/ ecdsa signature", async () => {
+	it("should pass with a schnorr signature", async () => {
 		const ark = await createMockService(ledger.message.schnorr.record);
 
 		await expect(
