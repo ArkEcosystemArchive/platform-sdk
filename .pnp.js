@@ -334,10 +334,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@arkecosystem/ledger-transport", [
-        ["npm:1.0.5", {
-          "packageLocation": "./.yarn/cache/@arkecosystem-ledger-transport-npm-1.0.5-0dc8a10a7f-2.zip/node_modules/@arkecosystem/ledger-transport/",
+        ["npm:1.1.2", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-ledger-transport-npm-1.1.2-6673f7706c-2.zip/node_modules/@arkecosystem/ledger-transport/",
           "packageDependencies": [
-            ["@arkecosystem/ledger-transport", "npm:1.0.5"]
+            ["@arkecosystem/ledger-transport", "npm:1.1.2"],
+            ["@ledgerhq/errors", "npm:5.15.0"]
           ],
           "linkType": "HARD",
         }]
@@ -442,7 +443,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/client", "npm:1.1.3"],
             ["@arkecosystem/core-magistrate-crypto", "npm:2.6.37"],
             ["@arkecosystem/crypto", "npm:2.6.37"],
-            ["@arkecosystem/ledger-transport", "npm:1.0.5"],
+            ["@arkecosystem/ledger-transport", "npm:1.1.2"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
