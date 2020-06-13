@@ -22,7 +22,7 @@ export class URIService implements Contract {
 		}
 
 		try {
-			const result = object()
+			const result: any = object()
 				.shape({
 					method: string().required(),
 					coin: string().required(),

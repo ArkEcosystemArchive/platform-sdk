@@ -752,6 +752,7 @@ __metadata:
     "@types/node": ^14.0.13
     "@types/prettier": ^2.0.1
     "@types/rimraf": ^3.0.0
+    "@types/yup": ^0.29.3
     "@typescript-eslint/eslint-plugin": ^3.2.0
     "@typescript-eslint/parser": ^3.2.0
     bad-words: ^3.0.3
@@ -968,6 +969,7 @@ __metadata:
     "@types/node-emoji": 1.8.1
     "@types/prettier": ^2.0.1
     "@types/rimraf": ^3.0.0
+    "@types/yup": ^0.29.3
     "@typescript-eslint/eslint-plugin": ^3.2.0
     "@typescript-eslint/parser": ^3.2.0
     bad-words: ^3.0.3
@@ -3076,6 +3078,13 @@ __metadata:
   dependencies:
     "@types/yargs-parser": "*"
   checksum: 2/03117288be47750740fd8bb670cf987360fc49b374348ce0c17efa743dcfdb52aa97ce001c606924fb062fe24800f680d0db78e1e5bc32c5e3a9f0248050d4d7
+  languageName: node
+  linkType: hard
+
+"@types/yup@npm:^0.29.3":
+  version: 0.29.3
+  resolution: "@types/yup@npm:0.29.3"
+  checksum: 2/e0f62d3bdc6ae5ac08098205dda64d91455633b84faf2c77f5dcb26ec5ae1e0489ae16ed5ef1a1eacd5db2ae8804a1d11312c821d4e8d55ed0c97ebce5bb1a22
   languageName: node
   linkType: hard
 

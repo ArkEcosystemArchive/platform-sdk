@@ -83,6 +83,7 @@ export class Environment {
 
 		const validator = new Validator();
 
+		// @ts-ignore - yup typings are causing issues
 		const schema = lazy(({ profiles }) => {
 			const rules = {};
 
@@ -93,6 +94,7 @@ export class Environment {
 					wallets: object(
 						mapRules(
 							profiles[key].wallets,
+							// @ts-ignore - yup typings are causing issues
 							object({
 								coin: string().required(),
 								coinConfig: object({
@@ -121,6 +123,7 @@ export class Environment {
 					contacts: object(
 						mapRules(
 							profiles[key].contacts,
+							// @ts-ignore - yup typings are causing issues
 							object({
 								id: string().required(),
 								name: string().required(),

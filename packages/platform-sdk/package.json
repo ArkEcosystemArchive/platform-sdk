@@ -21,6 +21,7 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
+		"@types/yup": "^0.29.3",
 		"bad-words": "^3.0.3",
 		"bent": "^7.3",
 		"bignumber.js": "^9.0.0",
