@@ -2,3 +2,4 @@
 .pnp.js
 .yarn/**
 packages/**/dist
+docs
