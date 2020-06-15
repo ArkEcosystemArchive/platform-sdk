@@ -52,12 +52,12 @@ test("ContactRepository#update", () => {
 	expect(subject.find(contact.id)).not.toEqual(contact);
 });
 
-test("ContactRepository#destroy", () => {
-	expect(() => subject.destroy("invalid")).toThrowError("Failed to find");
+test("ContactRepository#forget", () => {
+	expect(() => subject.forget("invalid")).toThrowError("Failed to find");
 
 	const contact = subject.create(john);
 
-	subject.destroy(contact.id);
+	subject.forget(contact.id);
 
 	expect(() => subject.find(contact.id)).toThrowError("Failed to find");
 });
