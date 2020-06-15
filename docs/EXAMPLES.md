@@ -114,10 +114,7 @@ profile.wallets().values();
 await profile.wallets().create("this is a top secret passphrase", ARK, "devnet");
 
 // Find the wallet by the given ID
-profile.wallets().find("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-
-// Forget the wallet for the given ID
-profile.wallets().forget("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+profile.wallets().findById("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 
 // Find the wallet for the given address
 profile.wallets().findByAddress("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
@@ -127,6 +124,9 @@ profile.wallets().findByPublicKey("034151a3ec46b5670a682b0a63394f863587d1bc97483
 
 // Find all wallets that use the given coin
 profile.wallets().findByCoin("ARK");
+
+// Forget the wallet for the given ID
+profile.wallets().forget("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 
 // Forget all wallets (Use with caution!)
 profile.wallets().flush();
@@ -161,7 +161,7 @@ profile.contacts().create({
 });
 
 // Find the contact for the given ID
-profile.contacts().find("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+profile.contacts().findById("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 
 // Find the contact for the given address
 profile.contacts().findByAddress("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");

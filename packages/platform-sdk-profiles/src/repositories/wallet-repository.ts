@@ -47,7 +47,7 @@ export class WalletRepository {
 		return this.storeWallet(wallet.id(), wallet);
 	}
 
-	public find(id: string): Wallet {
+	public findById(id: string): Wallet {
 		const wallet: Wallet | undefined = this.#data.get(id);
 
 		if (!wallet) {
@@ -55,10 +55,6 @@ export class WalletRepository {
 		}
 
 		return wallet;
-	}
-
-	public forget(id: string): void {
-		this.#data.forget(id);
 	}
 
 	public findByAddress(address: string): Wallet | undefined {
@@ -71,6 +67,10 @@ export class WalletRepository {
 
 	public findByCoin(coin: string): Wallet[] {
 		return this.values().filter((wallet: Wallet) => wallet.coin().manifest().get<string>("name") === coin);
+	}
+
+	public forget(id: string): void {
+		this.#data.forget(id);
 	}
 
 	public flush(): void {
