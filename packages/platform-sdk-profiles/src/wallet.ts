@@ -12,6 +12,7 @@ export class Wallet {
 	#dataRepository!: DataRepository;
 	#settingRepository!: SettingRepository;
 
+	#id!: string;
 	#coin!: Coins.Coin;
 	#wallet!: Contracts.WalletData;
 	#avatar!: string;
@@ -58,6 +59,10 @@ export class Wallet {
 	 * These methods serve as getters to the underlying data and dependencies.
 	 */
 
+	public id(): string {
+		return this.#id;
+	}
+
 	public coin(): Coins.Coin {
 		return this.#coin;
 	}
@@ -100,6 +105,7 @@ export class Wallet {
 		delete coinConfig.httpClient;
 
 		return {
+			id: this.id(),
 			coin: this.coin().manifest().get<string>("name"),
 			coinConfig,
 			network: this.network(),

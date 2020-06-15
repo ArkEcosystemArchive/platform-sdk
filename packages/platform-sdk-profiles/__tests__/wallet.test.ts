@@ -69,6 +69,7 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		const actual: any = subject.toObject();
 
 		expect(actual).toContainAllKeys(["address", "coin", "coinConfig", "network", "publicKey", "data", "settings"]);
+		expect(actual.id).toBeString();
 		expect(actual.address).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 		expect(actual.coin).toBe("ARK");
 		expect(actual.coinConfig).toEqual({

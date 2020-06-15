@@ -1,4 +1,5 @@
 import { Coins } from "@arkecosystem/platform-sdk";
+import { v4 as uuidv4 } from "uuid";
 
 import { container } from "../container";
 import { Identifiers } from "../contracts";
@@ -30,7 +31,7 @@ export class WalletRepository {
 		await wallet.setCoin(coin, network);
 		await wallet.setIdentity(mnemonic);
 
-		return this.storeWallet(wallet);
+		return this.storeWallet(uuidv4(), wallet);
 	}
 
 	public async createFromObject({ coin, coinConfig, network, address }): Promise<Wallet> {
@@ -43,7 +44,7 @@ export class WalletRepository {
 			wallet.coin().config().set(key, value);
 		}
 
-		return this.storeWallet(wallet);
+		return this.storeWallet(wallet.id(), wallet);
 	}
 
 	public find(id: string): Wallet {
@@ -86,12 +87,12 @@ export class WalletRepository {
 		return result;
 	}
 
-	private storeWallet(wallet: Wallet): Wallet {
+	private storeWallet(id: string, wallet: Wallet): Wallet {
 		if (this.findByAddress(wallet.address())) {
 			throw new Error(`The wallet [${wallet.address()}] already exists.`);
 		}
 
-		this.#data.set(wallet.address(), wallet);
+		this.#data.set(id, wallet);
 
 		return wallet;
 	}
