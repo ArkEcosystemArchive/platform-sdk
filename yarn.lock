@@ -268,8 +268,6 @@ __metadata:
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
-    ky: ^0.20.0
-    ky-universal: ^0.7.0
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
@@ -306,8 +304,6 @@ __metadata:
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
-    ky: ^0.20.0
-    ky-universal: ^0.7.0
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
@@ -388,11 +384,10 @@ __metadata:
     eslint-plugin-jest: ^23.13.2
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
+    got: ^11.3.0
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
-    ky: ^0.20.0
-    ky-universal: ^0.7.0
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
@@ -4385,7 +4380,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"buffer-from@npm:1.x, buffer-from@npm:^1.0.0, buffer-from@npm:^1.1.1":
+"buffer-from@npm:1.x, buffer-from@npm:^1.0.0":
   version: 1.1.1
   resolution: "buffer-from@npm:1.1.1"
   checksum: 2/540ceb79c4f5bfcadaabbc18324fa84c50dc52905084be7c03596a339cf5a88513bee6831ce9b36ddd046fab09257a7c80686e129d0559a0cfd141da196ad956
@@ -5266,15 +5261,6 @@ __metadata:
   dependencies:
     assert-plus: ^1.0.0
   checksum: 2/5959409ee42dc4bdbf3fa384b801ece580ca336658bb0342ffab0099b3fc6bf9b3e239e1b82dcc4fcaeee315353e08f2eae47b0928a6a579391598c44958afa1
-  languageName: node
-  linkType: hard
-
-"data-uri-to-buffer@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "data-uri-to-buffer@npm:3.0.0"
-  dependencies:
-    buffer-from: ^1.1.1
-  checksum: 2/e870d70678c777355a9923a29f49a713b738251ffb165153d30862eb86edcda7c336c2877b8fb5d04689b61a2f73d43e654a330a9e8b2faaca41f89ba3415a44
   languageName: node
   linkType: hard
 
@@ -6659,13 +6645,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fetch-blob@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "fetch-blob@npm:1.0.6"
-  checksum: 2/d79ff6a4af89357d82970588d6a0b28803c03ef9a28df3d4fa48e73a63bc2cf2765bdfc47a2412070f836e4bcb1c65ea7bf506a5fd006bbb9d8e63ee03db34ab
-  languageName: node
-  linkType: hard
-
 "figgy-pudding@npm:^3.5.1":
   version: 3.5.2
   resolution: "figgy-pudding@npm:3.5.2"
@@ -7214,6 +7193,26 @@ fsevents@^2.1.2:
     p-cancelable: ^2.0.0
     responselike: ^2.0.0
   checksum: 2/ebffdc20ac5ba1233472cbecdfea6158194520bc7a99b487fbe41adcfdc500413129ed4bfd22b78de8ae8de7995be5b24a5998501d05391e36b82eeba6ef9fd9
+  languageName: node
+  linkType: hard
+
+"got@npm:^11.3.0":
+  version: 11.3.0
+  resolution: "got@npm:11.3.0"
+  dependencies:
+    "@sindresorhus/is": ^2.1.1
+    "@szmarczak/http-timer": ^4.0.5
+    "@types/cacheable-request": ^6.0.1
+    "@types/responselike": ^1.0.0
+    cacheable-lookup: ^5.0.3
+    cacheable-request: ^7.0.1
+    decompress-response: ^6.0.0
+    get-stream: ^5.1.0
+    http2-wrapper: ^1.0.0-beta.4.5
+    lowercase-keys: ^2.0.0
+    p-cancelable: ^2.0.0
+    responselike: ^2.0.0
+  checksum: 2/67fcd36e73401068fcb379dd3e4fc00db15cfb2e66922de7b7004dea3c8e36098a5c5ea58fe587c393b3bfe41861f7da4dca8b324b549fd61ec9ac81d1f8bfde
   languageName: node
   linkType: hard
 
@@ -9207,33 +9206,10 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"ky-universal@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "ky-universal@npm:0.7.0"
-  dependencies:
-    abort-controller: ^3.0.0
-    node-fetch: ^3.0.0-beta.6-exportfix
-  peerDependencies:
-    ky: ">=0.17.0"
-    web-streams-polyfill: ">=2.0.0"
-  peerDependenciesMeta:
-    web-streams-polyfill:
-      optional: true
-  checksum: 2/8ad44cf6ac6a7e375ca0c13fb7fa3274273bd45a879a43d8d6915013fb2772e9006984d938e74d4ae5f834be3428f47fc923d1f603d911f71e8eabec05387ed5
-  languageName: node
-  linkType: hard
-
 "ky@npm:^0.19.0":
   version: 0.19.1
   resolution: "ky@npm:0.19.1"
   checksum: 2/c578336aca3fa83472e5332cf69c589c023c7da04b5afc49ea16127fea62887ca7f6c2f1395564cacb9c031ddd723699a0d056b95e9f814be4512d3aa3948c68
-  languageName: node
-  linkType: hard
-
-"ky@npm:^0.20.0":
-  version: 0.20.0
-  resolution: "ky@npm:0.20.0"
-  checksum: 2/a1239f72749870da4dca4728a9d9675ca2ed2a8d793d868c8621bae29e79a0adece10f44c6ac930811ad93a9b1b86a491ca44d09c2784dacb38179cf98829ebe
   languageName: node
   linkType: hard
 
@@ -10226,16 +10202,6 @@ fsevents@^2.1.2:
   version: 2.6.0
   resolution: "node-fetch@npm:2.6.0"
   checksum: 2/dd9f586a9f7ddb7dd94d2aba9cb693d32f5001e9850098512fbc8a4cbdd56838afa08ed0a6725b9fce9b01ec12b713e622cbfc16d92762d8b937b238330a632a
-  languageName: node
-  linkType: hard
-
-"node-fetch@npm:^3.0.0-beta.6-exportfix":
-  version: 3.0.0-beta.6-exportfix
-  resolution: "node-fetch@npm:3.0.0-beta.6-exportfix"
-  dependencies:
-    data-uri-to-buffer: ^3.0.0
-    fetch-blob: ^1.0.6
-  checksum: 2/9a98f12932a21004120f5f1a94563c5fb64b1001284618a1d2612b708bdb2c4763fc883113b3bd22a729a24ceeffe5a728bd4c334151991513994f57ac4e9fc7
   languageName: node
   linkType: hard
 

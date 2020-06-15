@@ -608,8 +608,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.0.1"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
-            ["ky", "npm:0.20.0"],
-            ["ky-universal", "virtual:b34b9bc6f10f72f91d12ee6861aaaf26cd01b0cbc2d4b1f3d92ef8a293da36e5d7764aa00d22f2a155c81016fd5d79fe982282d6a06462b6e57c7311c97e4706#npm:0.7.0"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:6.0.1"],
             ["prettier", "npm:2.0.5"],
@@ -648,8 +646,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.0.1"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
-            ["ky", "npm:0.20.0"],
-            ["ky-universal", "virtual:b34b9bc6f10f72f91d12ee6861aaaf26cd01b0cbc2d4b1f3d92ef8a293da36e5d7764aa00d22f2a155c81016fd5d79fe982282d6a06462b6e57c7311c97e4706#npm:0.7.0"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:6.0.1"],
             ["prettier", "npm:2.0.5"],
@@ -734,11 +730,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:23.13.2"],
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
+            ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
-            ["ky", "npm:0.20.0"],
-            ["ky-universal", "virtual:b34b9bc6f10f72f91d12ee6861aaaf26cd01b0cbc2d4b1f3d92ef8a293da36e5d7764aa00d22f2a155c81016fd5d79fe982282d6a06462b6e57c7311c97e4706#npm:0.7.0"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:6.0.1"],
             ["prettier", "npm:2.0.5"],
@@ -6494,16 +6489,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["data-uri-to-buffer", [
-        ["npm:3.0.0", {
-          "packageLocation": "./.yarn/cache/data-uri-to-buffer-npm-3.0.0-c2647a7a16-2.zip/node_modules/data-uri-to-buffer/",
-          "packageDependencies": [
-            ["data-uri-to-buffer", "npm:3.0.0"],
-            ["buffer-from", "npm:1.1.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["data-urls", [
         ["npm:2.0.0", {
           "packageLocation": "./.yarn/cache/data-urls-npm-2.0.0-2b80c32b82-2.zip/node_modules/data-urls/",
@@ -8060,15 +8045,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["fetch-blob", [
-        ["npm:1.0.6", {
-          "packageLocation": "./.yarn/cache/fetch-blob-npm-1.0.6-af4e50804a-2.zip/node_modules/fetch-blob/",
-          "packageDependencies": [
-            ["fetch-blob", "npm:1.0.6"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["figgy-pudding", [
         ["npm:3.5.2", {
           "packageLocation": "./.yarn/cache/figgy-pudding-npm-3.5.2-2f4e3e1305-2.zip/node_modules/figgy-pudding/",
@@ -8628,6 +8604,26 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/got-npm-11.2.0-2092d28c81-2.zip/node_modules/got/",
           "packageDependencies": [
             ["got", "npm:11.2.0"],
+            ["@sindresorhus/is", "npm:2.1.1"],
+            ["@szmarczak/http-timer", "npm:4.0.5"],
+            ["@types/cacheable-request", "npm:6.0.1"],
+            ["@types/keyv", "npm:3.1.1"],
+            ["@types/responselike", "npm:1.0.0"],
+            ["cacheable-lookup", "npm:5.0.3"],
+            ["cacheable-request", "npm:7.0.1"],
+            ["decompress-response", "npm:6.0.0"],
+            ["get-stream", "npm:5.1.0"],
+            ["http2-wrapper", "npm:1.0.0-beta.4.6"],
+            ["lowercase-keys", "npm:2.0.0"],
+            ["p-cancelable", "npm:2.0.0"],
+            ["responselike", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:11.3.0", {
+          "packageLocation": "./.yarn/cache/got-npm-11.3.0-d6f4b25567-2.zip/node_modules/got/",
+          "packageDependencies": [
+            ["got", "npm:11.3.0"],
             ["@sindresorhus/is", "npm:2.1.1"],
             ["@szmarczak/http-timer", "npm:4.0.5"],
             ["@types/cacheable-request", "npm:6.0.1"],
@@ -10844,13 +10840,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ky", "npm:0.19.1"]
           ],
           "linkType": "HARD",
-        }],
-        ["npm:0.20.0", {
-          "packageLocation": "./.yarn/cache/ky-npm-0.20.0-d4da5f5f22-2.zip/node_modules/ky/",
-          "packageDependencies": [
-            ["ky", "npm:0.20.0"]
-          ],
-          "linkType": "HARD",
         }]
       ]],
       ["ky-universal", [
@@ -10861,21 +10850,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["abort-controller", "npm:3.0.0"],
             ["ky", "npm:0.19.1"],
             ["node-fetch", "npm:2.6.0"],
-            ["web-streams-polyfill", null]
-          ],
-          "packagePeers": [
-            "ky",
-            "web-streams-polyfill"
-          ],
-          "linkType": "HARD",
-        }],
-        ["virtual:b34b9bc6f10f72f91d12ee6861aaaf26cd01b0cbc2d4b1f3d92ef8a293da36e5d7764aa00d22f2a155c81016fd5d79fe982282d6a06462b6e57c7311c97e4706#npm:0.7.0", {
-          "packageLocation": "./.yarn/$$virtual/ky-universal-virtual-dd95d7babc/0/cache/ky-universal-npm-0.7.0-f9fdc8e5e2-2.zip/node_modules/ky-universal/",
-          "packageDependencies": [
-            ["ky-universal", "virtual:b34b9bc6f10f72f91d12ee6861aaaf26cd01b0cbc2d4b1f3d92ef8a293da36e5d7764aa00d22f2a155c81016fd5d79fe982282d6a06462b6e57c7311c97e4706#npm:0.7.0"],
-            ["abort-controller", "npm:3.0.0"],
-            ["ky", "npm:0.20.0"],
-            ["node-fetch", "npm:3.0.0-beta.6-exportfix"],
             ["web-streams-polyfill", null]
           ],
           "packagePeers": [
@@ -11987,15 +11961,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/node-fetch-npm-2.6.0-29c7a53447-2.zip/node_modules/node-fetch/",
           "packageDependencies": [
             ["node-fetch", "npm:2.6.0"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:3.0.0-beta.6-exportfix", {
-          "packageLocation": "./.yarn/cache/node-fetch-npm-3.0.0-beta.6-exportfix-563e8258fb-2.zip/node_modules/node-fetch/",
-          "packageDependencies": [
-            ["node-fetch", "npm:3.0.0-beta.6-exportfix"],
-            ["data-uri-to-buffer", "npm:3.0.0"],
-            ["fetch-blob", "npm:1.0.6"]
           ],
           "linkType": "HARD",
         }]
