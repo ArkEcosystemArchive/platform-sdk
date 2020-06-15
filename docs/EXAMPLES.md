@@ -81,16 +81,16 @@ profile.settings().keys();
 profile.settings().values();
 
 // Get the value for the given key
-profile.settings().get<T>(key: string, defaultValue?: T);
+profile.settings().get("theme", "light");
 
 // Set the value for the given key
-profile.settings().set(key: string, value: string | object);
+profile.settings().set("theme", "dark");
 
 // Check if a setting for the given key exists
-profile.settings().has(key: string);
+profile.settings().has("theme");
 
 // Forget the value for the given key
-profile.settings().forget(key: string);
+profile.settings().forget("theme");
 
 // Forget all settings (Use with caution!)
 profile.settings().flush();
@@ -179,9 +179,9 @@ profile.contacts().forget("uuid");
 profile.contacts().flush();
 ```
 
-### Transactions
+## Transactions
 
-## Sign and broadcast a transaction through a wallet
+### Sign and broadcast a transaction through a wallet
 
 ```ts
 const wallet = await profile.wallets().create("this is a top secret passphrase", ARK, "devnet");
