@@ -26,16 +26,17 @@ export class WalletRepository {
 	}
 
 	public async create(mnemonic: string, coin: Coins.CoinSpec, network: string): Promise<Wallet> {
-		const wallet: Wallet = new Wallet();
+		const id: string = uuidv4();
+		const wallet: Wallet = new Wallet(id);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setIdentity(mnemonic);
 
-		return this.storeWallet(uuidv4(), wallet);
+		return this.storeWallet(id, wallet);
 	}
 
-	public async createFromObject({ coin, coinConfig, network, address }): Promise<Wallet> {
-		const wallet: Wallet = new Wallet();
+	public async createFromObject({ id, coin, coinConfig, network, address }): Promise<Wallet> {
+		const wallet: Wallet = new Wallet(id);
 
 		await wallet.setCoin(container.get<any>(Identifiers.Coins)[coin], network);
 		await wallet.setAddress(address);

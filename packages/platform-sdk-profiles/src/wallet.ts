@@ -17,7 +17,8 @@ export class Wallet {
 	#wallet!: Contracts.WalletData;
 	#avatar!: string;
 
-	public constructor() {
+	public constructor(id: string) {
+		this.#id = id;
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 	}
