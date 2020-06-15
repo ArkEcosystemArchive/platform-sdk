@@ -18,7 +18,7 @@ These methods are accessible through `env.profiles()` which exposes a `ProfileRe
 
 ```ts
 // Get a list of all data profiles
-env.dprofiles().all();
+env.profiles().all();
 
 // Create a new profile for the given name
 await env.profiles().create("John Doe");
@@ -29,16 +29,16 @@ env.profiles().forget("uuid");
 
 ### Data
 
-These methods are accessible through `env.data()`, `profile.data()` and `wallet.data()` which expose a `SettingRepository` instance.
+These methods are accessible through `env.data()`, `profile.data()` and `wallet.data()` which expose a `DataRepository` instance.
 
 ```ts
 // Get a list of all data with key and value
 profile.data().all();
 
-// Get a list of all setting keys
+// Get a list of all data keys
 profile.data().keys();
 
-// Get a list of all setting values
+// Get a list of all data values
 profile.data().values();
 
 // Get the value for the given key
@@ -47,10 +47,10 @@ profile.data().get("theme");
 // Set the value for the given key
 profile.data().set("theme", "dark");
 
-// Check if a setting for the given key exists
+// Check if a data for the given key exists
 profile.data().has("theme");
 
-// Check if a setting for the given key is missing
+// Check if a data for the given key is missing
 profile.data().missing("theme");
 
 // Forget the value for the given key
@@ -59,7 +59,7 @@ profile.data().forget("theme");
 // Forget all data (Use with caution!)
 profile.data().flush();
 
-// Take a snapshot of the current settings (Use with caution!)
+// Take a snapshot of the current data (Use with caution!)
 profile.data().snapshot();
 
 // Restore a previously taken snapshot (Use with caution!)
@@ -114,10 +114,7 @@ profile.wallets().values();
 await profile.wallets().create("this is a top secret passphrase", ARK, "devnet");
 
 // Find the wallet by the given ID
-profile.wallets().find("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-
-// Forget the wallet for the given ID
-profile.wallets().forget("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+profile.wallets().findById("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 
 // Find the wallet for the given address
 profile.wallets().findByAddress("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
@@ -127,6 +124,9 @@ profile.wallets().findByPublicKey("034151a3ec46b5670a682b0a63394f863587d1bc97483
 
 // Find all wallets that use the given coin
 profile.wallets().findByCoin("ARK");
+
+// Forget the wallet for the given ID
+profile.wallets().forget("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 
 // Forget all wallets (Use with caution!)
 profile.wallets().flush();
@@ -161,7 +161,7 @@ profile.contacts().create({
 });
 
 // Find the contact for the given ID
-profile.contacts().find("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+profile.contacts().findById("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 
 // Find the contact for the given address
 profile.contacts().findByAddress("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");

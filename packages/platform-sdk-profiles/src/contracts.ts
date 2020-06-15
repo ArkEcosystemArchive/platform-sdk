@@ -36,6 +36,7 @@ export interface ProfileStruct {
 }
 
 export interface WalletStruct {
+	id: string;
 	coin: string | undefined;
 	coinConfig: {
 		network: {
