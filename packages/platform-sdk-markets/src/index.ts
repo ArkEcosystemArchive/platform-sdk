@@ -10,12 +10,12 @@ export class MarketService {
 		this.#adapter = adapter;
 	}
 
-	public static make(name: string): MarketService {
+	public static make(name: string, httpClient: Contracts.HttpClient): MarketService {
 		return new MarketService(
 			{
-				coincap: new CoinCap(),
-				coingecko: new CoinGecko(),
-				cryptocompare: new CryptoCompare(),
+				coincap: new CoinCap(httpClient),
+				coingecko: new CoinGecko(httpClient),
+				cryptocompare: new CryptoCompare(httpClient),
 			}[name.toLowerCase()],
 		);
 	}

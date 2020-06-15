@@ -2,6 +2,7 @@ import "jest-extended";
 
 import { MarketService } from "../src";
 import { PriceTracker } from "./__stubs__/tracker";
+import { HttpClient } from "./__stubs__/client";
 
 let subject: MarketService;
 
@@ -19,7 +20,7 @@ describe("MarketService", () => {
 	const currency = "USD";
 
 	describe.each(["cryptocompare", "coingecko", "coincap"])("%s", (adapter) => {
-		beforeEach(() => (subject = MarketService.make(adapter)));
+		beforeEach(() => (subject = MarketService.make(adapter, new HttpClient())));
 
 		it("should call #verifyToken on the adapter instance", async () => {
 			const spy = createSpyAdapter("verifyToken");
