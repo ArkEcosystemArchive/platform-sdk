@@ -48,7 +48,7 @@ export class ContactRepository {
 		this.#data.set(id, { ...this.find(id), ...data });
 	}
 
-	public destroy(id: string): void {
+	public forget(id: string): void {
 		this.find(id);
 
 		this.#data.forget(id);

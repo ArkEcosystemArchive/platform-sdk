@@ -56,7 +56,7 @@ export class WalletRepository {
 		return wallet;
 	}
 
-	public async destroy(id: string): Promise<void> {
+	public forget(id: string): void {
 		this.#data.forget(id);
 	}
 
@@ -72,7 +72,7 @@ export class WalletRepository {
 		return this.values().filter((wallet: Wallet) => wallet.coin().manifest().get<string>("name") === coin);
 	}
 
-	public async flush(): Promise<void> {
+	public flush(): void {
 		this.#data.flush();
 	}
 
