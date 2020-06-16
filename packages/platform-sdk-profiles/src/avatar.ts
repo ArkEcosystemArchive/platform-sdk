@@ -42,14 +42,11 @@ export class Avatar {
 
 		for (let index = 0; index < shapesLength; index++) {
 			const { angle, x, y } = this.calculateRandomPoints(generator);
-			const color = this.getRandomColor(generator);
+
 			gradients.push(
-				`conic-gradient(
-						from ${angle * 100}deg at ${x * 100}% ${y * 100}%,
-						${color},
-						calc(${index} * 100% / ${shapesLength}),
-						transparent 0
-					)`,
+				`conic-gradient(from ${angle * 100}deg at ${x * 100}% ${y * 100}%, ${this.getRandomColor(
+					generator,
+				)}, calc(${index} * 100% / ${shapesLength}), transparent 0)`,
 			);
 		}
 

@@ -78,7 +78,7 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	subject = new Environment({ httpClient: new HttpClient(), storage: new StubStorage() });
+	subject = new Environment({ coins: { ARK }, httpClient: new HttpClient(), storage: new StubStorage() });
 
 	await subject.boot();
 });
@@ -91,7 +91,7 @@ it("should have a data repository", async () => {
 	expect(subject.data()).toBeInstanceOf(DataRepository);
 });
 
-it.only("should listen for data modifications, save it and load it", async () => {
+it("should listen for data modifications, save it and load it", async () => {
 	/**
 	 * Save data in the current environment.
 	 */
@@ -114,6 +114,9 @@ it.only("should listen for data modifications, save it and load it", async () =>
 	// Create a Setting
 	profile.settings().set("ADVANCED_MODE", "value");
 
+	// Create a Global DataEntry
+	subject.data().set("key", "value");
+
 	// Persist the data for the next instance to use.
 	await subject.persist();
 
@@ -121,7 +124,7 @@ it.only("should listen for data modifications, save it and load it", async () =>
 	 * Load data that the previous environment instance saved.
 	 */
 
-	const newEnv = new Environment({ httpClient: new HttpClient(), storage: new StubStorage() });
+	const newEnv = new Environment({ coins: { ARK }, httpClient: new HttpClient(), storage: new StubStorage() });
 	await newEnv.boot();
 
 	const newProfile = newEnv.profiles().get(profile.id());

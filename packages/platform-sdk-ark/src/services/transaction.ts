@@ -304,8 +304,8 @@ export class TransactionService implements Contracts.TransactionService {
 			transaction.sign(BIP39.normalize(input.sign.mnemonic));
 		}
 
-		if (input.sign.secondPassphrase) {
-			transaction.secondSign(BIP39.normalize(input.sign.secondPassphrase));
+		if (input.sign.secondMnemonic) {
+			transaction.secondSign(BIP39.normalize(input.sign.secondMnemonic));
 		}
 
 		if (input.sign.wif) {

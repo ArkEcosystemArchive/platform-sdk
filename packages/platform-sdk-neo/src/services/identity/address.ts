@@ -1,16 +1,16 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { createWallet, deriveWallet } from "./utils";
 
 export class Address implements Contracts.Address {
-	readonly #slip44;
+	readonly #config: Coins.Config;
 
-	public constructor(slip44: number) {
-		this.#slip44 = slip44;
+	public constructor(config: Coins.Config) {
+		this.#config = config;
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return deriveWallet(mnemonic, this.#slip44).address;
+		return deriveWallet(mnemonic, this.#config.get<number>("network.crypto.slip44")).address;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -30,6 +30,23 @@ export class Address implements Contracts.Address {
 	}
 
 	public async validate(address: string): Promise<boolean> {
-		throw new Exceptions.NotSupported(this.constructor.name, "validate");
+		if (this.#config.get("network.id") === "mainnet") {
+			let response;
+
+			try {
+				response = await this.#config
+					.get<Contracts.HttpClient>("httpClient")
+					.get(`https://explorer.ark.io/api/wallets/${address}`);
+			} catch {
+				response = undefined;
+			}
+
+			if (response && response.data) {
+				throw new Error("This address exists on the ARK Mainnet.");
+			}
+		}
+
+		// TODO: implement actual validation of NEO addresses
+		return address.length === 34;
 	}
 }

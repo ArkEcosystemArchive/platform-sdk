@@ -32,6 +32,7 @@ describe("TransactionService", () => {
 			const result: any = await subject.secondSignature({
 				sign: {
 					mnemonic: identity.mnemonic,
+					secondMnemonic: identity.mnemonic,
 				},
 				data: {
 					mnemonic: identity.mnemonic,

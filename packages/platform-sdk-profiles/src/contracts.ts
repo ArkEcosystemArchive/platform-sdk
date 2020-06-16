@@ -1,6 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 export interface EnvironmentOptions {
+	coins: Record<string, any>;
 	storage: string | Storage;
 	httpClient: Contracts.HttpClient;
 	migrations?: Record<string, any>;
@@ -24,8 +25,40 @@ export interface Storage {
 	restore(): Promise<void>;
 }
 
-// Contacts
-export type ContactAddress = { coin: string; network: string; address: string };
+// Structs
+export interface ProfileStruct {
+	id: string;
+	name: string;
+	wallets: Record<string, any>;
+	contacts: Record<string, any>;
+	data: Record<string, any>;
+	settings: Record<string, any>;
+}
+
+export interface WalletStruct {
+	id: string;
+	coin: string | undefined;
+	coinConfig: {
+		network: {
+			crypto: {
+				slip44: number;
+			};
+			currency: {
+				symbol: string;
+				ticker: string;
+			};
+			explorer: string;
+			hosts: string[];
+			id: string;
+			name: string;
+		};
+	};
+	network: string;
+	address: string;
+	publicKey: string | undefined;
+	data: Record<string, any>;
+	settings: Record<string, any>;
+}
 
 export interface ContactStruct {
 	name: string;
@@ -33,28 +66,23 @@ export interface ContactStruct {
 	starred: boolean;
 }
 
+// Contacts
+export type ContactAddress = { coin: string; network: string; address: string };
+
 export interface Contact extends ContactStruct {
 	id: string;
 }
 
-// Container Bindings - TODO: remove I prefix
+// Container Bindings
 export const Identifiers = {
 	AppData: "Data<App>",
-	ProfileData: "Data<Profile>",
-
-	ContactFactory: "ContactFactory",
+	Coins: "Coins",
 	ContactRepository: "ContactRepository",
 	DataRepository: "DataRepository",
-	EventEmitter: "EventEmitter",
 	HttpClient: "HttpClient",
 	Migrator: "Migrator",
-	ProfileFactory: "ProfileFactory",
 	ProfileRepository: "ProfileRepository",
 	SettingRepository: "SettingRepository",
 	Storage: "Storage",
-	WalletFactory: "WalletFactory",
 	WalletRepository: "WalletRepository",
 };
-
-export type ProfileFactory = (id: string, name: string) => any;
-export type WalletFactory = (mnemonic: string, coin: Coins.CoinSpec, network: string) => any;

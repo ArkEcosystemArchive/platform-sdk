@@ -3,7 +3,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Avatar } from "./avatar";
 import { container } from "./container";
-import { Identifiers } from "./contracts";
+import { Identifiers, WalletStruct } from "./contracts";
 import { WalletSetting } from "./enums";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
@@ -12,11 +12,13 @@ export class Wallet {
 	#dataRepository!: DataRepository;
 	#settingRepository!: SettingRepository;
 
+	#id!: string;
 	#coin!: Coins.Coin;
 	#wallet!: Contracts.WalletData;
 	#avatar!: string;
 
-	public constructor() {
+	public constructor(id: string) {
+		this.#id = id;
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 	}
@@ -58,6 +60,10 @@ export class Wallet {
 	 * These methods serve as getters to the underlying data and dependencies.
 	 */
 
+	public id(): string {
+		return this.#id;
+	}
+
 	public coin(): Coins.Coin {
 		return this.#coin;
 	}
@@ -95,16 +101,19 @@ export class Wallet {
 		return this.#settingRepository;
 	}
 
-	public toObject(): object {
-		const coinConfig = { ...this.coin().config().all() };
+	public toObject(): WalletStruct {
+		const coinConfig: any = { ...this.coin().config().all() };
 		delete coinConfig.httpClient;
 
 		return {
+			id: this.id(),
 			coin: this.coin().manifest().get<string>("name"),
 			coinConfig,
 			network: this.network(),
 			address: this.address(),
 			publicKey: this.publicKey(),
+			data: this.data().all(),
+			settings: this.settings().all(),
 		};
 	}
 
@@ -117,15 +126,31 @@ export class Wallet {
 	 * Any changes in how things need to be handled by consumers should be made in this package!
 	 */
 
-	public transactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().transactions({ address: this.address() });
+	public transactions(
+		query: Contracts.ClientTransactionsInput,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().transactions({ address: this.address(), ...query });
 	}
 
-	public sentTransactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().transactions({ senderId: this.address() });
+	public sentTransactions(
+		query: Contracts.ClientTransactionsInput,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().transactions({ senderId: this.address(), ...query });
 	}
 
-	public receivedTransactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().transactions({ recipientId: this.address() });
+	public receivedTransactions(
+		query: Contracts.ClientTransactionsInput,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().transactions({ recipientId: this.address(), ...query });
+	}
+
+	public votes(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().votes(this.address(), query);
+	}
+
+	public voters(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+		return this.#coin.client().voters(this.address(), query);
 	}
 }

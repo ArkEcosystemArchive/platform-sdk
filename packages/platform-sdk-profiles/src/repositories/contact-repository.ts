@@ -34,7 +34,7 @@ export class ContactRepository {
 		this.#data.fill(entries);
 	}
 
-	public find(id: string): Contact {
+	public findById(id: string): Contact {
 		const contact: Contact | undefined = this.#data.get(id);
 
 		if (!contact) {
@@ -45,11 +45,11 @@ export class ContactRepository {
 	}
 
 	public update(id: string, data: object): void {
-		this.#data.set(id, { ...this.find(id), ...data });
+		this.#data.set(id, { ...this.findById(id), ...data });
 	}
 
-	public destroy(id: string): void {
-		this.find(id);
+	public forget(id: string): void {
+		this.findById(id);
 
 		this.#data.forget(id);
 	}

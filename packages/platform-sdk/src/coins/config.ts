@@ -3,14 +3,12 @@ import { get, has, set } from "dot-prop";
 export class Config {
 	readonly #config: Record<string, any>;
 
-	public constructor(config: object, schema: { validate: Function }) {
-		const { value, error } = schema.validate(config);
-
-		if (error) {
+	public constructor(config: object, schema: { validateSync: Function }) {
+		try {
+			this.#config = schema.validateSync(config);
+		} catch (error) {
 			throw new Error(`Failed to validate the configuration: ${error}`);
 		}
-
-		this.#config = value;
 	}
 
 	public all(): Record<string, any> {

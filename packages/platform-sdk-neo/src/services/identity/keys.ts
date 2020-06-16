@@ -1,16 +1,16 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { deriveKeyPair, deriveWallet } from "./utils";
 
 export class Keys implements Contracts.Keys {
-	readonly #slip44;
+	readonly #config: Coins.Config;
 
-	public constructor(slip44: number) {
-		this.#slip44 = slip44;
+	public constructor(config: Coins.Config) {
+		this.#config = config;
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
-		const { publicKey, privateKey } = deriveWallet(mnemonic, this.#slip44);
+		const { publicKey, privateKey } = deriveWallet(mnemonic, this.#config.get<number>("network.crypto.slip44"));
 
 		return { publicKey, privateKey };
 	}

@@ -76,15 +76,15 @@
 								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_contracts_.contact.html" class="tsd-kind-icon">Contact</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_contracts_.contactstruct.html" class="tsd-kind-icon">Contact<wbr>Struct</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_contracts_.environmentoptions.html" class="tsd-kind-icon">Environment<wbr>Options</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_contracts_.profilestruct.html" class="tsd-kind-icon">Profile<wbr>Struct</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_contracts_.storage.html" class="tsd-kind-icon">Storage</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_contracts_.walletstruct.html" class="tsd-kind-icon">Wallet<wbr>Struct</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_contracts_.html#contactaddress" class="tsd-kind-icon">Contact<wbr>Address</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_contracts_.html#profilefactory" class="tsd-kind-icon">Profile<wbr>Factory</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_contracts_.html#walletfactory" class="tsd-kind-icon">Wallet<wbr>Factory</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -104,7 +104,7 @@
 					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>address<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>coin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>network<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L28">platform-sdk-profiles/src/contracts.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-profiles/src/contracts.ts#L69">contracts.ts:69</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -122,77 +122,6 @@
 						</ul>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
-					<a name="profilefactory" class="tsd-anchor"></a>
-					<h3>Profile<wbr>Factory</h3>
-					<div class="tsd-signature tsd-kind-icon">Profile<wbr>Factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L59">platform-sdk-profiles/src/contracts.ts:59</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>id: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>name: <span class="tsd-signature-type">string</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
-					<a name="walletfactory" class="tsd-anchor"></a>
-					<h3>Wallet<wbr>Factory</h3>
-					<div class="tsd-signature tsd-kind-icon">Wallet<wbr>Factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>mnemonic<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, coin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CoinSpec</span>, network<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L60">platform-sdk-profiles/src/contracts.ts:60</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>mnemonic<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, coin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CoinSpec</span>, network<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>mnemonic: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>coin: <span class="tsd-signature-type">CoinSpec</span></h5>
-											</li>
-											<li>
-												<h5>network: <span class="tsd-signature-type">string</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Object literals</h2>
@@ -202,7 +131,7 @@
 					<div class="tsd-signature tsd-kind-icon">Identifiers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L41">platform-sdk-profiles/src/contracts.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-profiles/src/contracts.ts#L76">contracts.ts:76</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -211,17 +140,17 @@
 						<div class="tsd-signature tsd-kind-icon">App<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Data&lt;App&gt;&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L42">platform-sdk-profiles/src/contracts.ts:42</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-profiles/src/contracts.ts#L77">contracts.ts:77</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="identifiers.contactfactory" class="tsd-anchor"></a>
-						<h3>Contact<wbr>Factory</h3>
-						<div class="tsd-signature tsd-kind-icon">Contact<wbr>Factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;ContactFactory&quot;</span></div>
+						<a name="identifiers.coins" class="tsd-anchor"></a>
+						<h3>Coins</h3>
+						<div class="tsd-signature tsd-kind-icon">Coins<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Coins&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L45">platform-sdk-profiles/src/contracts.ts:45</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-profiles/src/contracts.ts#L78">contracts.ts:78</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -231,7 +160,7 @@
 						<div class="tsd-signature tsd-kind-icon">Contact<wbr>Repository<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;ContactRepository&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L46">platform-sdk-profiles/src/contracts.ts:46</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-profiles/src/contracts.ts#L79">contracts.ts:79</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -241,17 +170,7 @@
 						<div class="tsd-signature tsd-kind-icon">Data<wbr>Repository<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;DataRepository&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L47">platform-sdk-profiles/src/contracts.ts:47</a></li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="identifiers.eventemitter" class="tsd-anchor"></a>
-						<h3>Event<wbr>Emitter</h3>
-						<div class="tsd-signature tsd-kind-icon">Event<wbr>Emitter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;EventEmitter&quot;</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L48">platform-sdk-profiles/src/contracts.ts:48</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-profiles/src/contracts.ts#L80">contracts.ts:80</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -261,7 +180,7 @@
 						<div class="tsd-signature tsd-kind-icon">Http<wbr>Client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;HttpClient&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L49">platform-sdk-profiles/src/contracts.ts:49</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-profiles/src/contracts.ts#L81">contracts.ts:81</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -271,27 +190,7 @@
 						<div class="tsd-signature tsd-kind-icon">Migrator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Migrator&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L50">platform-sdk-profiles/src/contracts.ts:50</a></li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="identifiers.profiledata" class="tsd-anchor"></a>
-						<h3>Profile<wbr>Data</h3>
-						<div class="tsd-signature tsd-kind-icon">Profile<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Data&lt;Profile&gt;&quot;</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L43">platform-sdk-profiles/src/contracts.ts:43</a></li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="identifiers.profilefactory-1" class="tsd-anchor"></a>
-						<h3>Profile<wbr>Factory</h3>
-						<div class="tsd-signature tsd-kind-icon">Profile<wbr>Factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;ProfileFactory&quot;</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L51">platform-sdk-profiles/src/contracts.ts:51</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-profiles/src/contracts.ts#L82">contracts.ts:82</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -301,7 +200,7 @@
 						<div class="tsd-signature tsd-kind-icon">Profile<wbr>Repository<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;ProfileRepository&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L52">platform-sdk-profiles/src/contracts.ts:52</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-profiles/src/contracts.ts#L83">contracts.ts:83</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -311,7 +210,7 @@
 						<div class="tsd-signature tsd-kind-icon">Setting<wbr>Repository<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;SettingRepository&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L53">platform-sdk-profiles/src/contracts.ts:53</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-profiles/src/contracts.ts#L84">contracts.ts:84</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -321,17 +220,7 @@
 						<div class="tsd-signature tsd-kind-icon">Storage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Storage&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L54">platform-sdk-profiles/src/contracts.ts:54</a></li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="identifiers.walletfactory-1" class="tsd-anchor"></a>
-						<h3>Wallet<wbr>Factory</h3>
-						<div class="tsd-signature tsd-kind-icon">Wallet<wbr>Factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;WalletFactory&quot;</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L55">platform-sdk-profiles/src/contracts.ts:55</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-profiles/src/contracts.ts#L85">contracts.ts:85</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -341,7 +230,7 @@
 						<div class="tsd-signature tsd-kind-icon">Wallet<wbr>Repository<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;WalletRepository&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/25fd1632/packages/platform-sdk-profiles/src/contracts.ts#L56">platform-sdk-profiles/src/contracts.ts:56</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-profiles/src/contracts.ts#L86">contracts.ts:86</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -419,16 +308,16 @@
 						<a href="../interfaces/_contracts_.environmentoptions.html" class="tsd-kind-icon">Environment<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_contracts_.profilestruct.html" class="tsd-kind-icon">Profile<wbr>Struct</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="../interfaces/_contracts_.storage.html" class="tsd-kind-icon">Storage</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_contracts_.walletstruct.html" class="tsd-kind-icon">Wallet<wbr>Struct</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="_contracts_.html#contactaddress" class="tsd-kind-icon">Contact<wbr>Address</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="_contracts_.html#profilefactory" class="tsd-kind-icon">Profile<wbr>Factory</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="_contracts_.html#walletfactory" class="tsd-kind-icon">Wallet<wbr>Factory</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-parent-kind-module">
 						<a href="_contracts_.html#identifiers" class="tsd-kind-icon">Identifiers</a>

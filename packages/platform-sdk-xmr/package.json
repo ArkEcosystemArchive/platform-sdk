@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-xmr",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.69",
+	"version": "0.9.84",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -23,8 +23,8 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"@hapi/joi": "^17.1.1",
-		"monero-javascript": "^0.2.14"
+		"monero-javascript": "^0.2.14",
+		"yup": "^0.29.1"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",

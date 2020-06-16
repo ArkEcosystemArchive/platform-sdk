@@ -1,16 +1,16 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { createWallet, deriveWallet } from "./utils";
 
 export class PublicKey implements Contracts.PublicKey {
-	readonly #slip44;
+	readonly #config: Coins.Config;
 
-	public constructor(slip44: number) {
-		this.#slip44 = slip44;
+	public constructor(config: Coins.Config) {
+		this.#config = config;
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return deriveWallet(mnemonic, this.#slip44).publicKey;
+		return deriveWallet(mnemonic, this.#config.get<number>("network.crypto.slip44")).publicKey;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

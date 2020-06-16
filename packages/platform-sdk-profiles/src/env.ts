@@ -1,3 +1,5 @@
+import { Validator, ValidatorSchema } from "@arkecosystem/platform-sdk-support";
+
 import { container } from "./container";
 import { EnvironmentOptions, Identifiers, Storage } from "./contracts";
 import { Migrator } from "./migrator";
@@ -20,14 +22,14 @@ export class Environment {
 	 * @memberof Environment
 	 */
 	public async boot(): Promise<void> {
-		const { profiles, data }: any = await container.get<Storage>(Identifiers.Storage).all();
-
-		if (profiles) {
-			await this.profiles().fill(profiles);
-		}
+		const { data, profiles } = await this.validateStorage();
 
 		if (data) {
 			this.data().fill(data);
+		}
+
+		if (profiles) {
+			await this.profiles().fill(profiles);
 		}
 	}
 
@@ -69,5 +71,103 @@ export class Environment {
 		container.set(Identifiers.AppData, new DataRepository());
 		container.set(Identifiers.HttpClient, options.httpClient);
 		container.set(Identifiers.ProfileRepository, new ProfileRepository());
+
+		container.set(Identifiers.Coins, options.coins);
+	}
+
+	private async validateStorage(): Promise<{ profiles; data }> {
+		const mapRules = (map: object, rule: Function) =>
+			Object.keys(map).reduce((newMap, key) => ({ ...newMap, [key]: rule }), {});
+
+		const { array, boolean, object, string, number, lazy } = ValidatorSchema;
+
+		const validator = new Validator();
+
+		const schema = lazy(({ profiles }) => {
+			const rules = {};
+
+			for (const key of Object.keys(profiles)) {
+				rules[key] = object({
+					id: string().required(),
+					name: string().required(),
+					wallets: object(
+						mapRules(
+							profiles[key].wallets,
+							object({
+								id: string().required(),
+								coin: string().required(),
+								coinConfig: object({
+									network: object({
+										id: string().required(),
+										name: string().required(),
+										explorer: string().required(),
+										currency: object({
+											ticker: string().required(),
+											symbol: string().required(),
+										}).required(),
+										crypto: object({
+											slip44: number().integer().required(),
+										}).required(),
+										hosts: array().of(string()).required(),
+									}).noUnknown(),
+								}).noUnknown(),
+								network: string().required(),
+								address: string().required(),
+								publicKey: string().required(),
+								data: object().required(),
+								settings: object().required(),
+							}).noUnknown(),
+						),
+					),
+					contacts: object(
+						mapRules(
+							profiles[key].contacts,
+							object({
+								id: string().required(),
+								name: string().required(),
+								addresses: array()
+									.of(
+										object({
+											coin: string().required(),
+											network: string().required(),
+											address: string().required(),
+										}).noUnknown(),
+									)
+									.required(),
+								starred: boolean().required(),
+							}).noUnknown(),
+						),
+					),
+					data: object().required(),
+					settings: object().required(),
+				}).noUnknown();
+			}
+
+			return object({ profiles: object(rules), data: object() });
+		});
+
+		// @ts-ignore
+		let { data, profiles } = await container.get<Storage>(Identifiers.Storage).all();
+
+		if (!data) {
+			data = {};
+		}
+
+		if (!profiles) {
+			profiles = {};
+		}
+
+		const validated = schema.validateSync(
+			{ data, profiles },
+			{
+				strict: true,
+			},
+		);
+
+		if (validator.fails()) {
+			throw new Error("Terminating due to corrupted state.");
+		}
+
+		return validated;
 	}
 }

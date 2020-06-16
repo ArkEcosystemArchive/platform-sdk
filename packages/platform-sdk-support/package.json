@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-support",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.69",
+	"version": "0.9.84",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -12,7 +12,6 @@
 	"scripts": {
 		"build": "yarn clean && tsc",
 		"build:watch": "yarn build -w",
-		"build:docs": "typedoc --out docs src",
 		"clean": "rimraf .coverage dist tmp",
 		"test": "jest",
 		"test:watch": "jest --watchAll",
@@ -22,7 +21,8 @@
 	"dependencies": {
 		"bad-words": "^3.0.3",
 		"bignumber.js": "^9.0.0",
-		"censorify-it": "^2.1.4"
+		"censorify-it": "^2.1.4",
+		"yup": "^0.29.1"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",

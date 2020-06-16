@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-ark",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.69",
+	"version": "0.9.84",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -23,15 +23,15 @@
 		"@arkecosystem/client": "^1.1",
 		"@arkecosystem/core-magistrate-crypto": "^2.6.37",
 		"@arkecosystem/crypto": "^2.6.37",
-		"@arkecosystem/ledger-transport": "^1.0.5",
+		"@arkecosystem/ledger-transport": "^1.1.2",
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"@hapi/joi": "^17.1.1",
 		"@ledgerhq/hw-transport-node-hid-singleton": "^5.15.0",
 		"is-url-superb": "^3.0.0",
 		"lodash.orderby": "^4.6.0",
-		"semver": "^7.3.2"
+		"semver": "^7.3.2",
+		"yup": "^0.29.1"
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.15.0",
@@ -55,7 +55,7 @@
 		"eslint-plugin-jest": "^23.13.2",
 		"eslint-plugin-prettier": "^3.1.3",
 		"eslint-plugin-simple-import-sort": "^5.0.3",
-		"got": "^11.1.4",
+		"got": "^11.3.0",
 		"jest": "^26.0.1",
 		"jest-extended": "^0.11.5",
 		"jest-localstorage-mock": "^2.4.2",

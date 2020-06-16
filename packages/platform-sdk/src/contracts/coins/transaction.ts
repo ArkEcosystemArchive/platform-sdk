@@ -40,7 +40,7 @@ interface TransactionInput {
 	sign: {
 		mnemonic: string;
 		mnemonics?: string[];
-		secondPassphrase?: string;
+		secondMnemonic?: string;
 		wif?: string;
 		secondWif?: string;
 		privateKey?: string;

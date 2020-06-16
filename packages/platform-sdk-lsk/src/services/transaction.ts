@@ -44,7 +44,7 @@ export class TransactionService implements Contracts.TransactionService {
 			...input,
 			...{
 				data: {
-					secondPassphrase: BIP39.normalize(input.data.mnemonic),
+					secondMnemonic: BIP39.normalize(input.data.mnemonic),
 				},
 			},
 		});
@@ -181,11 +181,11 @@ export class TransactionService implements Contracts.TransactionService {
 		// todo: support multisignature
 
 		if (input.sign.mnemonic) {
-			struct.mnemonic = BIP39.normalize(input.sign.mnemonic);
+			struct.passphrase = BIP39.normalize(input.sign.mnemonic);
 		}
 
-		if (input.sign.secondPassphrase) {
-			struct.secondPassphrase = BIP39.normalize(input.sign.secondPassphrase);
+		if (input.sign.secondMnemonic) {
+			struct.secondPassphrase = BIP39.normalize(input.sign.secondMnemonic);
 		}
 
 		if (this.#network === manifest.networks.betanet.crypto.networkId) {

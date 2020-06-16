@@ -8,11 +8,16 @@ import { PublicKey } from "./public-key";
 import { WIF } from "./wif";
 
 export class IdentityService implements Contracts.IdentityService {
-	public static async construct(config: Coins.Config): Promise<IdentityService> {
-		// @ts-ignore
-		Managers.configManager.setFromPreset(config.get<Coins.CoinNetwork>("network").id);
+	readonly #config: Coins.Config;
 
-		return new IdentityService();
+	private constructor(config: Coins.Config) {
+		this.#config = config;
+	}
+
+	public static async construct(config: Coins.Config): Promise<IdentityService> {
+		Managers.configManager.setFromPreset(config.get<Coins.CoinNetwork>("network").id as any);
+
+		return new IdentityService(config);
 	}
 
 	public async destruct(): Promise<void> {
@@ -20,7 +25,7 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public address(): Address {
-		return new Address();
+		return new Address(this.#config);
 	}
 
 	public publicKey(): PublicKey {

@@ -35,11 +35,11 @@ test("ContactRepository#create", () => {
 });
 
 test("ContactRepository#find", () => {
-	expect(() => subject.find("invalid")).toThrowError("Failed to find");
+	expect(() => subject.findById("invalid")).toThrowError("Failed to find");
 
 	const contact = subject.create(john);
 
-	expect(subject.find(contact.id)).toBeObject();
+	expect(subject.findById(contact.id)).toBeObject();
 });
 
 test("ContactRepository#update", () => {
@@ -49,17 +49,17 @@ test("ContactRepository#update", () => {
 
 	subject.update(contact.id, { name: "Jane Doe" });
 
-	expect(subject.find(contact.id)).not.toEqual(contact);
+	expect(subject.findById(contact.id)).not.toEqual(contact);
 });
 
-test("ContactRepository#destroy", () => {
-	expect(() => subject.destroy("invalid")).toThrowError("Failed to find");
+test("ContactRepository#forget", () => {
+	expect(() => subject.forget("invalid")).toThrowError("Failed to find");
 
 	const contact = subject.create(john);
 
-	subject.destroy(contact.id);
+	subject.forget(contact.id);
 
-	expect(() => subject.find(contact.id)).toThrowError("Failed to find");
+	expect(() => subject.findById(contact.id)).toThrowError("Failed to find");
 });
 
 test("ContactRepository#findByAddress", () => {

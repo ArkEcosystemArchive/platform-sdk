@@ -3,6 +3,7 @@ import { Data } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { PriceTracker } from "../src";
+import { HttpClient } from "./__stubs__/client";
 
 const BASE_URL_COINGECKO = "https://api.coingecko.com/api/v3";
 const token = "ARK";
@@ -11,7 +12,8 @@ const currency = "USD";
 let subject: PriceTracker;
 
 beforeEach(() => {
-	subject = new PriceTracker();
+	subject = new PriceTracker(new HttpClient());
+
 	nock(BASE_URL_COINGECKO)
 		.get("/coins/list")
 		.reply(200, [
