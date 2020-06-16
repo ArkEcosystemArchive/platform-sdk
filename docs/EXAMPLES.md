@@ -238,6 +238,15 @@ await wallet.signMessageWithLedger(path, payload);
 
 // Sign a message with ledger using schnorr
 await wallet.signMessageWithLedgerUsingSchnorr(path, payload);
+
+// Get an explorer link for a block
+await wallet.linkForBlock(id);
+
+// Get an explorer link for a transaction
+await wallet.linkForTransaction(id);
+
+// Get an explorer link for a wallet
+await wallet.linkForWallet(id);
 ```
 
 ## Contacts
