@@ -154,12 +154,8 @@ export class ClientService implements Contracts.ClientService {
 
 	private createMetaPagination(body): Contracts.MetaPagination {
 		return {
-			// Counting
-			pageCount: body.meta.pageCount,
-			totalCount: body.meta.totalCount,
-			// Paging
+			prev: body.meta.previous,
 			next: body.meta.next,
-			previous: body.meta.previous,
 		};
 	}
 }

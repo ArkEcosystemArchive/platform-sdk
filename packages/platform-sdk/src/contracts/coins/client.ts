@@ -4,12 +4,8 @@ import { DelegateData, TransactionData, WalletData } from "./data";
 import { SignedTransaction } from "./transaction";
 
 export interface MetaPagination {
-	// Counting
-	pageCount?: number;
-	totalCount?: number;
-	// Paging
-	next: string;
-	previous: string;
+	prev: string | undefined;
+	next: string | undefined;
 }
 
 export interface CollectionResponse<T> {

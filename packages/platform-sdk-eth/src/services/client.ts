@@ -70,6 +70,7 @@ export class ClientService implements Contracts.ClientService {
 			}
 		}
 
+		// @ts-ignore - fix pagination later on
 		return { meta: {}, data: new Coins.TransactionDataCollection(transactions) };
 	}
 
