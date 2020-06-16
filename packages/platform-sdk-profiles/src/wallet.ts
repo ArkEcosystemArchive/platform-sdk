@@ -150,9 +150,7 @@ export class Wallet {
 		return this.#coin.client().votes(this.address(), query);
 	}
 
-	public voters(
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public voters(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		return this.#coin.client().voters(this.address(), query);
 	}
 }
