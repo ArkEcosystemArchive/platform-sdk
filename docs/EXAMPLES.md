@@ -196,6 +196,24 @@ await wallet.createBridgechainResignation(input, options);
 
 // Create a new bridgechain update transaction
 await wallet.createBridgechainUpdate(input, options);
+
+// Get the version from ledger
+await wallet.getVersionFromLedger();
+
+// Get a public key from ledger
+await wallet.getPublicKeyFromLedger(path);
+
+// Sign a transaction with ledger
+await wallet.signTransactionWithLedger(path, payload);
+
+// Sign a transaction with ledger using schnorr
+await wallet.signTransactionWithLedgerUsingSchnorr(path, payload);
+
+// Sign a message with ledger
+await wallet.signMessageWithLedger(path, payload);
+
+// Sign a message with ledger using schnorr
+await wallet.signMessageWithLedgerUsingSchnorr(path, payload);
 ```
 
 ## Contacts

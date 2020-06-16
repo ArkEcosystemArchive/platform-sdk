@@ -272,4 +272,28 @@ export class Wallet {
 	): Promise<Contracts.SignedTransaction> {
 		return this.#coin.transaction().bridgechainUpdate(input, options);
 	}
+
+	public getVersionFromLedger(): Promise<string> {
+		return this.#coin.ledger().getVersion();
+	}
+
+	public getPublicKeyFromLedger(path: string): Promise<string> {
+		return this.#coin.ledger().getPublicKey(path);
+	}
+
+	public signTransactionWithLedger(path: string, payload: Buffer): Promise<string> {
+		return this.#coin.ledger().signTransaction(path, payload);
+	}
+
+	public signTransactionWithLedgerUsingSchnorr(path: string, payload: Buffer): Promise<string> {
+		return this.#coin.ledger().signTransactionWithSchnorr(path, payload);
+	}
+
+	public signMessageWithLedger(path: string, payload: Buffer): Promise<string> {
+		return this.#coin.ledger().signMessage(path, payload);
+	}
+
+	public signMessageWithLedgerUsingSchnorr(path: string, payload: Buffer): Promise<string> {
+		return this.#coin.ledger().signMessageWithSchnorr(path, payload);
+	}
 }
