@@ -153,6 +153,6 @@ export class Wallet {
 	public voters(
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().votes(this.address(), query);
+		return this.#coin.client().voters(this.address(), query);
 	}
 }
