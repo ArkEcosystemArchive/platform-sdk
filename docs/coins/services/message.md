@@ -51,7 +51,7 @@ This method returns a promise that resolves with an object with the following st
 ```ts
 {
 	message: 'Hello World',
-	signer: '034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192',
+	signatory: '034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192',
 	signature: '304402200fb4adddd1f1d652b544ea6ab62828a0a65b712ed447e2538db0caebfa68929e02205ecb2e1c63b29879c2ecf1255db506d671c8b3fa6017f67cfd1bf07e6edd1cc8'
 }
 ```
@@ -77,8 +77,8 @@ Verifies a signed message that was created using the `MessageService#sign` metho
 | --------------- | ------ | --------------------------------------------------------- |
 | input           | object | The input that will be used to verify the message.        |
 | input.message   | string | The message that should match the signature.              |
-| input.signer    | string | The unique identifier of the signer.                      |
-| input.signature | string | The unique signature that matches the message and signer. |
+| input.signatory    | string | The unique identifier of the signatory.                      |
+| input.signature | string | The unique signature that matches the message and signatory. |
 
 ### Return Value
 
@@ -89,7 +89,7 @@ This method returns a promise that resolves with a boolean value.
 ```ts
 messageService.verify({
 	message: "Hello World",
-	signer: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+	signatory: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
 	signature:
 		"304402200fb4adddd1f1d652b544ea6ab62828a0a65b712ed447e2538db0caebfa68929e02205ecb2e1c63b29879c2ecf1255db506d671c8b3fa6017f67cfd1bf07e6edd1cc8",
 });

@@ -48,11 +48,11 @@ Creates a new Transfer transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
-| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
-| sign.wif            | string   | The WIF of the signer.                                                                                 |
-| sign.secondWif      | string   | The second WIF of the signer.                                                                          |
+| sign.mnemonic     | string   | The mnemonic of the signatory.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signatories.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signatory.                                                                   |
+| sign.wif            | string   | The WIF of the signatory.                                                                                 |
+| sign.secondWif      | string   | The second WIF of the signatory.                                                                          |
 
 ### Return Value
 
@@ -91,11 +91,11 @@ Creates a new Second Signature Registration transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
-| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
-| sign.wif            | string   | The WIF of the signer.                                                                                 |
-| sign.secondWif      | string   | The second WIF of the signer.                                                                          |
+| sign.mnemonic     | string   | The mnemonic of the signatory.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signatories.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signatory.                                                                   |
+| sign.wif            | string   | The WIF of the signatory.                                                                                 |
+| sign.secondWif      | string   | The second WIF of the signatory.                                                                          |
 
 ### Return Value
 
@@ -133,11 +133,11 @@ Creates a new Delegate Registration transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
-| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
-| sign.wif            | string   | The WIF of the signer.                                                                                 |
-| sign.secondWif      | string   | The second WIF of the signer.                                                                          |
+| sign.mnemonic     | string   | The mnemonic of the signatory.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signatories.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signatory.                                                                   |
+| sign.wif            | string   | The WIF of the signatory.                                                                                 |
+| sign.secondWif      | string   | The second WIF of the signatory.                                                                          |
 
 ### Return Value
 
@@ -175,11 +175,11 @@ Creates a new Vote transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
-| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
-| sign.wif            | string   | The WIF of the signer.                                                                                 |
-| sign.secondWif      | string   | The second WIF of the signer.                                                                          |
+| sign.mnemonic     | string   | The mnemonic of the signatory.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signatories.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signatory.                                                                   |
+| sign.wif            | string   | The WIF of the signatory.                                                                                 |
+| sign.secondWif      | string   | The second WIF of the signatory.                                                                          |
 
 ### Return Value
 
@@ -217,11 +217,11 @@ Creates a new Multi-Signature Registration transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
-| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
-| sign.wif            | string   | The WIF of the signer.                                                                                 |
-| sign.secondWif      | string   | The second WIF of the signer.                                                                          |
+| sign.mnemonic     | string   | The mnemonic of the signatory.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signatories.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signatory.                                                                   |
+| sign.wif            | string   | The WIF of the signatory.                                                                                 |
+| sign.secondWif      | string   | The second WIF of the signatory.                                                                          |
 
 ### Return Value
 
@@ -270,11 +270,11 @@ Creates a new IPFS transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
-| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
-| sign.wif            | string   | The WIF of the signer.                                                                                 |
-| sign.secondWif      | string   | The second WIF of the signer.                                                                          |
+| sign.mnemonic     | string   | The mnemonic of the signatory.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signatories.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signatory.                                                                   |
+| sign.wif            | string   | The WIF of the signatory.                                                                                 |
+| sign.secondWif      | string   | The second WIF of the signatory.                                                                          |
 
 ### Return Value
 
@@ -312,11 +312,11 @@ Creates a new Multi-Payment transaction.
 | feeLimit                | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce                   | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                    | object   | The object containing all data required for the signing.                                               |
-| sign.mnemonic         | string   | The mnemonic of the signer.                                                                          |
-| sign.mnemonics        | string[] | The mnemonics of all signers.                                                                        |
-| sign.secondMnemonic     | string   | The second mnemonic of the signer.                                                                   |
-| sign.wif                | string   | The WIF of the signer.                                                                                 |
-| sign.secondWif          | string   | The second WIF of the signer.                                                                          |
+| sign.mnemonic         | string   | The mnemonic of the signatory.                                                                          |
+| sign.mnemonics        | string[] | The mnemonics of all signatories.                                                                        |
+| sign.secondMnemonic     | string   | The second mnemonic of the signatory.                                                                   |
+| sign.wif                | string   | The WIF of the signatory.                                                                                 |
+| sign.secondWif          | string   | The second WIF of the signatory.                                                                          |
 
 ### Return Value
 
@@ -356,11 +356,11 @@ Creates a new Delegate Resignation transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
-| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
-| sign.wif            | string   | The WIF of the signer.                                                                                 |
-| sign.secondWif      | string   | The second WIF of the signer.                                                                          |
+| sign.mnemonic     | string   | The mnemonic of the signatory.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signatories.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signatory.                                                                   |
+| sign.wif            | string   | The WIF of the signatory.                                                                                 |
+| sign.secondWif      | string   | The second WIF of the signatory.                                                                          |
 
 ### Return Value
 
@@ -400,11 +400,11 @@ Creates a new HTLC Lock transaction.
 | feeLimit              | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce                 | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                  | object   | The object containing all data required for the signing.                                               |
-| sign.mnemonic       | string   | The mnemonic of the signer.                                                                          |
-| sign.mnemonics      | string[] | The mnemonics of all signers.                                                                        |
-| sign.secondMnemonic   | string   | The second mnemonic of the signer.                                                                   |
-| sign.wif              | string   | The WIF of the signer.                                                                                 |
-| sign.secondWif        | string   | The second WIF of the signer.                                                                          |
+| sign.mnemonic       | string   | The mnemonic of the signatory.                                                                          |
+| sign.mnemonics      | string[] | The mnemonics of all signatories.                                                                        |
+| sign.secondMnemonic   | string   | The second mnemonic of the signatory.                                                                   |
+| sign.wif              | string   | The WIF of the signatory.                                                                                 |
+| sign.secondWif        | string   | The second WIF of the signatory.                                                                          |
 
 ### Return Value
 
@@ -449,11 +449,11 @@ Creates a new HTLC Claim transaction.
 | feeLimit               | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce                  | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                   | object   | The object containing all data required for the signing.                                               |
-| sign.mnemonic        | string   | The mnemonic of the signer.                                                                          |
-| sign.mnemonics       | string[] | The mnemonics of all signers.                                                                        |
-| sign.secondMnemonic    | string   | The second mnemonic of the signer.                                                                   |
-| sign.wif               | string   | The WIF of the signer.                                                                                 |
-| sign.secondWif         | string   | The second WIF of the signer.                                                                          |
+| sign.mnemonic        | string   | The mnemonic of the signatory.                                                                          |
+| sign.mnemonics       | string[] | The mnemonics of all signatories.                                                                        |
+| sign.secondMnemonic    | string   | The second mnemonic of the signatory.                                                                   |
+| sign.wif               | string   | The WIF of the signatory.                                                                                 |
+| sign.secondWif         | string   | The second WIF of the signatory.                                                                          |
 
 ### Return Value
 
@@ -492,11 +492,11 @@ Creates a new HTLC Refund transaction.
 | feeLimit               | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce                  | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                   | object   | The object containing all data required for the signing.                                               |
-| sign.mnemonic        | string   | The mnemonic of the signer.                                                                          |
-| sign.mnemonics       | string[] | The mnemonics of all signers.                                                                        |
-| sign.secondMnemonic    | string   | The second mnemonic of the signer.                                                                   |
-| sign.wif               | string   | The WIF of the signer.                                                                                 |
-| sign.secondWif         | string   | The second WIF of the signer.                                                                          |
+| sign.mnemonic        | string   | The mnemonic of the signatory.                                                                          |
+| sign.mnemonics       | string[] | The mnemonics of all signatories.                                                                        |
+| sign.secondMnemonic    | string   | The second mnemonic of the signatory.                                                                   |
+| sign.wif               | string   | The WIF of the signatory.                                                                                 |
+| sign.secondWif         | string   | The second WIF of the signatory.                                                                          |
 
 ### Return Value
 

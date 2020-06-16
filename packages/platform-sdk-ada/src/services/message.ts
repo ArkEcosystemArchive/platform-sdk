@@ -16,7 +16,7 @@ export class MessageService implements Contracts.MessageService {
 
 		return {
 			message: input.message,
-			signer: walletSecret.slice(64, 96).toString("hex"),
+			signatory: walletSecret.slice(64, 96).toString("hex"),
 			signature: sign(new Buffer(input.message), walletSecret).toString("hex"),
 		};
 	}
@@ -24,7 +24,7 @@ export class MessageService implements Contracts.MessageService {
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		return verify(
 			Buffer.from(input.message, "utf8"),
-			Buffer.from(input.signer, "hex"),
+			Buffer.from(input.signatory, "hex"),
 			Buffer.from(input.signature, "hex"),
 		);
 	}

@@ -28,12 +28,12 @@ export class MessageService implements Contracts.MessageService {
 
 		return {
 			message: input.message,
-			signer: await this.#identity.address().fromWIF(mnemonic),
+			signatory: await this.#identity.address().fromWIF(mnemonic),
 			signature: message.sign(privateKey),
 		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return new Message(input.message).verify(input.signer, input.signature);
+		return new Message(input.message).verify(input.signatory, input.signature);
 	}
 }
