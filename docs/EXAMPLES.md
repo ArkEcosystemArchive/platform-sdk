@@ -149,6 +149,8 @@ await wallet.voters();
 
 ## Contacts
 
+These methods are accessible through `profile.contacts()` which exposes a `ContactRepository` instance.
+
 ```ts
 // Get a list of all contacts with key and value
 profile.contacts().all();
