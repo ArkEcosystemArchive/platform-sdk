@@ -126,15 +126,33 @@ export class Wallet {
 	 * Any changes in how things need to be handled by consumers should be made in this package!
 	 */
 
-	public transactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().transactions({ address: this.address() });
+	public transactions(
+		query: Contracts.ClientTransactionsInput,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().transactions({ address: this.address(), ...query });
 	}
 
-	public sentTransactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().transactions({ senderId: this.address() });
+	public sentTransactions(
+		query: Contracts.ClientTransactionsInput,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().transactions({ senderId: this.address(), ...query });
 	}
 
-	public receivedTransactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().transactions({ recipientId: this.address() });
+	public receivedTransactions(
+		query: Contracts.ClientTransactionsInput,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().transactions({ recipientId: this.address(), ...query });
+	}
+
+	public votes(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().votes(this.address(), query);
+	}
+
+	public voters(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().votes(this.address(), query);
 	}
 }
