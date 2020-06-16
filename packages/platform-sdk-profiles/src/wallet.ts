@@ -273,6 +273,14 @@ export class Wallet {
 		return this.#coin.transaction().bridgechainUpdate(input, options);
 	}
 
+	public signMessage(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+		return this.#coin.message().sign(input);
+	}
+
+	public verifyMessage(input: Contracts.SignedMessage): Promise<boolean> {
+		return this.#coin.message().verify(input);
+	}
+
 	public getVersionFromLedger(): Promise<string> {
 		return this.#coin.ledger().getVersion();
 	}
@@ -295,5 +303,5 @@ export class Wallet {
 
 	public signMessageWithLedgerUsingSchnorr(path: string, payload: Buffer): Promise<string> {
 		return this.#coin.ledger().signMessageWithSchnorr(path, payload);
-	}
+  }
 }
