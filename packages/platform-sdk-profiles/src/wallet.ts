@@ -272,4 +272,12 @@ export class Wallet {
 	): Promise<Contracts.SignedTransaction> {
 		return this.#coin.transaction().bridgechainUpdate(input, options);
 	}
+
+	public signMessage(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+		return this.#coin.message().sign(input);
+	}
+
+	public verifyMessage(input: Contracts.SignedMessage): Promise<boolean> {
+		return this.#coin.message().verify(input);
+	}
 }
