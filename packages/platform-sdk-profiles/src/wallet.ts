@@ -332,4 +332,17 @@ export class Wallet {
 	public signMessageWithLedgerUsingSchnorr(path: string, payload: Buffer): Promise<string> {
 		return this.#coin.ledger().signMessageWithSchnorr(path, payload);
 	}
+
+	// TODO: move those into view models once implemented
+	public linkForBlock(id: string): string {
+		return this.#coin.link().block(id);
+	}
+
+	public linkForTransaction(id: string): string {
+		return this.#coin.link().transaction(id);
+	}
+
+	public linkForWallet(id: string): string {
+		return this.#coin.link().wallet(id);
+	}
 }
