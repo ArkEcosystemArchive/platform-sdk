@@ -196,6 +196,12 @@ await wallet.createBridgechainResignation(input, options);
 
 // Create a new bridgechain update transaction
 await wallet.createBridgechainUpdate(input, options);
+
+// Sign a new message
+await wallet.signMessage(input);
+
+// Verify an existing message
+await wallet.verifyMessage(input);
 ```
 
 ## Contacts
