@@ -70,8 +70,7 @@ export class ClientService implements Contracts.ClientService {
 			}
 		}
 
-		// @ts-ignore - fix pagination later on
-		return { meta: {}, data: new Coins.TransactionDataCollection(transactions) };
+		return { meta: { prev: undefined, next: undefined }, data: new Coins.TransactionDataCollection(transactions) };
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
