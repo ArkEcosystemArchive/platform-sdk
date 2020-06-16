@@ -44,7 +44,7 @@ export class ClientService implements Contracts.ClientService {
 		const { records, next, prev } = await this.#client.transactions().forAccount(query.address).call();
 
 		return {
-			meta: {},
+			meta: { prev, next },
 			data: new Coins.TransactionDataCollection(
 				records
 					.filter((transaction) => transaction.type === "payment")

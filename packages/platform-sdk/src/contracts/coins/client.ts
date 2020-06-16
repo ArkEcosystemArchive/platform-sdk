@@ -3,8 +3,13 @@ import { KeyValuePair } from "../types";
 import { DelegateData, TransactionData, WalletData } from "./data";
 import { SignedTransaction } from "./transaction";
 
+export interface MetaPagination {
+	prev: string | undefined;
+	next: string | undefined;
+}
+
 export interface CollectionResponse<T> {
-	meta: KeyValuePair;
+	meta: MetaPagination;
 	data: T;
 }
 
@@ -35,10 +40,12 @@ export interface ClientService {
 }
 
 export interface ClientPagination {
-	// Offsetting
+	// Paging
 	page?: number;
-	limit?: number;
+	perPage?: number;
+	// Offsetting
 	offset?: number;
+	limit?: number;
 	// Sorting
 	orderBy?: string;
 }
