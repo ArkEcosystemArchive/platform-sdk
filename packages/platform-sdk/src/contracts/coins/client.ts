@@ -26,8 +26,8 @@ export interface ClientService {
 	delegate(id: string): Promise<DelegateData>;
 	delegates(query?: ClientWalletsInput): Promise<CollectionResponse<DelegateDataCollection>>;
 
-	votes(id: string): Promise<CollectionResponse<TransactionDataCollection>>;
-	voters(id: string): Promise<CollectionResponse<WalletDataCollection>>;
+	votes(id: string, query?: KeyValuePair): Promise<CollectionResponse<TransactionDataCollection>>;
+	voters(id: string, query?: KeyValuePair): Promise<CollectionResponse<WalletDataCollection>>;
 
 	syncing(): Promise<boolean>;
 

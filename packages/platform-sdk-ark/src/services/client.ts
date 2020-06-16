@@ -84,8 +84,11 @@ export class ClientService implements Contracts.ClientService {
 		};
 	}
 
-	public async votes(id: string): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		const { body } = await this.#connection.api("wallets").votes(id);
+	public async votes(
+		id: string,
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		const { body } = await this.#connection.api("wallets").votes(id, query);
 
 		return {
 			meta: body.meta,
@@ -93,8 +96,11 @@ export class ClientService implements Contracts.ClientService {
 		};
 	}
 
-	public async voters(id: string): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
-		const { body } = await this.#connection.api("delegates").voters(id);
+	public async voters(
+		id: string,
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+		const { body } = await this.#connection.api("delegates").voters(id, query);
 
 		return {
 			meta: body.meta,
