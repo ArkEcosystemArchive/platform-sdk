@@ -18,13 +18,13 @@ export class MessageService implements Contracts.MessageService {
 
 		return {
 			message: input.message,
-			signer: source.publicKey(),
+			signatory: source.publicKey(),
 			signature: source.sign(Buffoon.fromUTF8(input.message)).toString("hex"),
 		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return Stellar.Keypair.fromPublicKey(input.signer).verify(
+		return Stellar.Keypair.fromPublicKey(input.signatory).verify(
 			Buffoon.fromUTF8(input.message),
 			Buffoon.fromHex(input.signature),
 		);
