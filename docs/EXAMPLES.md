@@ -140,11 +140,29 @@ await wallet.sentTransactions();
 // List all transactions that a wallet received
 await wallet.receivedTransactions();
 
+// Get information about a wallet from the network
+await wallet.wallet("username");
+
+// Get a list of wallets from the network that match the given criteria
+await wallet.wallets({ ... });
+
+// Get information about a delegate from the network
+await wallet.delegate("username");
+
+// Get a list of delegates from the network that match the given criteria
+await wallet.delegates({ ... });
+
 // List all votes that a wallet casted
 await wallet.votes();
 
 // List all voters that a wallet has
 await wallet.voters();
+
+// Check if the peer is syncing
+await wallet.syncing();
+
+// Broadcast all of the given transactions
+await wallet.broadcast([transaction, transaction, transaction]);
 
 // Create a new transfer transaction
 await wallet.createTransfer(input, options);

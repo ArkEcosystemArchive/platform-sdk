@@ -144,6 +144,26 @@ export class Wallet {
 		return this.#coin.client().transactions({ recipientId: this.address(), ...query });
 	}
 
+	public async wallet(id: string): Promise<Contracts.WalletData> {
+		return this.#coin.client().wallet(id);
+	}
+
+	public async wallets(
+		query: Contracts.ClientWalletsInput,
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+		return this.#coin.client().wallets(query);
+	}
+
+	public async delegate(id: string): Promise<Contracts.DelegateData> {
+		return this.#coin.client().delegate(id);
+	}
+
+	public async delegates(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.DelegateDataCollection>> {
+		return this.#coin.client().delegates(query);
+	}
+
 	public votes(
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
@@ -152,6 +172,14 @@ export class Wallet {
 
 	public voters(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		return this.#coin.client().voters(this.address(), query);
+	}
+
+	public async syncing(): Promise<boolean> {
+		return this.#coin.client().syncing();
+	}
+
+	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+		return this.#coin.client().broadcast(transactions);
 	}
 
 	public createTransfer(
@@ -303,5 +331,5 @@ export class Wallet {
 
 	public signMessageWithLedgerUsingSchnorr(path: string, payload: Buffer): Promise<string> {
 		return this.#coin.ledger().signMessageWithSchnorr(path, payload);
-  }
+	}
 }
