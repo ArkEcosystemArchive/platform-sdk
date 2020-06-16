@@ -45,7 +45,7 @@ export class ClientService implements Contracts.ClientService {
 		const { body } = await this.#connection.api("transactions").search(query);
 
 		return {
-			meta: body.meta,
+			meta: this.createMetaPagination(body),
 			data: new Coins.TransactionDataCollection(body.data.map((transaction) => new TransactionData(transaction))),
 		};
 	}
@@ -62,7 +62,7 @@ export class ClientService implements Contracts.ClientService {
 		const { body } = await this.#connection.api("wallets").search(query);
 
 		return {
-			meta: body.meta,
+			meta: this.createMetaPagination(body),
 			data: new Coins.WalletDataCollection(body.data.map((wallet) => new WalletData(wallet))),
 		};
 	}
@@ -79,7 +79,7 @@ export class ClientService implements Contracts.ClientService {
 		const { body } = await this.#connection.api("delegates").all(query);
 
 		return {
-			meta: body.meta,
+			meta: this.createMetaPagination(body),
 			data: new Coins.DelegateDataCollection(body.data.map((wallet) => new DelegateData(wallet))),
 		};
 	}
@@ -91,7 +91,7 @@ export class ClientService implements Contracts.ClientService {
 		const { body } = await this.#connection.api("wallets").votes(id, query);
 
 		return {
-			meta: body.meta,
+			meta: this.createMetaPagination(body),
 			data: new Coins.TransactionDataCollection(body.data.map((transaction) => new TransactionData(transaction))),
 		};
 	}
@@ -103,7 +103,7 @@ export class ClientService implements Contracts.ClientService {
 		const { body } = await this.#connection.api("delegates").voters(id, query);
 
 		return {
-			meta: body.meta,
+			meta: this.createMetaPagination(body),
 			data: new Coins.WalletDataCollection(body.data.map((wallet) => new WalletData(wallet))),
 		};
 	}
@@ -150,5 +150,16 @@ export class ClientService implements Contracts.ClientService {
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return this.#http.post(`${this.#peer}/${path}`, body);
+	}
+
+	private createMetaPagination(body): Contracts.MetaPagination {
+		return {
+			// Counting
+			pageCount: body.meta.pageCount,
+			totalCount: body.meta.totalCount,
+			// Paging
+			next: body.meta.next,
+			previous: body.meta.previous,
+		};
 	}
 }

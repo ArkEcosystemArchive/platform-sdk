@@ -131,14 +131,20 @@ profile.wallets().forget("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 // Forget all wallets (Use with caution!)
 profile.wallets().flush();
 
-// List all transactions that wallet has sent or received
+// List all transactions that a wallet has sent or received
 await wallet.transactions();
 
-// List all transactions that wallet has sent
+// List all transactions that a wallet has sent
 await wallet.sentTransactions();
 
-// List all transactions that wallet received
+// List all transactions that a wallet received
 await wallet.receivedTransactions();
+
+// List all votes that a wallet casted
+await wallet.votes();
+
+// List all voters that a wallet has
+await wallet.voters();
 ```
 
 ## Contacts
