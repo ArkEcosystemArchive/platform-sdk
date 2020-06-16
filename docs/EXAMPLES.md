@@ -17,7 +17,7 @@ const env = new Environment({ coins: { ARK }, httpClient: new HttpClient(), stor
 These methods are accessible through `env.profiles()` which exposes a `ProfileRepository` instance.
 
 ```ts
-// Get a list of all data profiles
+// Get a list of all profiles
 env.profiles().all();
 
 // Create a new profile for the given name
