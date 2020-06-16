@@ -153,4 +153,123 @@ export class Wallet {
 	public voters(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		return this.#coin.client().voters(this.address(), query);
 	}
+
+	public createTransfer(
+		input: Contracts.TransferInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().transfer(input, options);
+	}
+
+	public createSecondSignature(
+		input: Contracts.SecondSignatureInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().secondSignature(input, options);
+	}
+
+	public createDelegateRegistration(
+		input: Contracts.DelegateRegistrationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().delegateRegistration(input, options);
+	}
+
+	public createVote(
+		input: Contracts.VoteInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().vote(input, options);
+	}
+
+	public createMultiSignature(
+		input: Contracts.MultiSignatureInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().multiSignature(input, options);
+	}
+
+	public createIpfs(
+		input: Contracts.IpfsInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().ipfs(input, options);
+	}
+
+	public createMultiPayment(
+		input: Contracts.MultiPaymentInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().multiPayment(input, options);
+	}
+
+	public createDelegateResignation(
+		input: Contracts.DelegateResignationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().delegateResignation(input, options);
+	}
+
+	public createHtlcLock(
+		input: Contracts.HtlcLockInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().htlcLock(input, options);
+	}
+
+	public createHtlcClaim(
+		input: Contracts.HtlcClaimInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().htlcClaim(input, options);
+	}
+
+	public createHtlcRefund(
+		input: Contracts.HtlcRefundInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().htlcRefund(input, options);
+	}
+
+	public createBusinessRegistration(
+		input: Contracts.BusinessRegistrationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().businessRegistration(input, options);
+	}
+
+	public createBusinessResignation(
+		input: Contracts.BusinessResignationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().businessResignation(input, options);
+	}
+
+	public createBusinessUpdate(
+		input: Contracts.BusinessUpdateInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().businessUpdate(input, options);
+	}
+
+	public createBridgechainRegistration(
+		input: Contracts.BridgechainRegistrationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().bridgechainRegistration(input, options);
+	}
+
+	public createBridgechainResignation(
+		input: Contracts.BridgechainResignationInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().bridgechainResignation(input, options);
+	}
+
+	public createBridgechainUpdate(
+		input: Contracts.BridgechainUpdateInput,
+		options?: Contracts.TransactionOptions,
+	): Promise<Contracts.SignedTransaction> {
+		return this.#coin.transaction().bridgechainUpdate(input, options);
+	}
 }

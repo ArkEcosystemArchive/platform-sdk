@@ -145,9 +145,62 @@ await wallet.votes();
 
 // List all voters that a wallet has
 await wallet.voters();
+
+// Create a new transfer transaction
+await wallet.createTransfer(input, options);
+
+// Create a new second signature transaction
+await wallet.createSecondSignature(input, options);
+
+// Create a new delegate registration transaction
+await wallet.createDelegateRegistration(input, options);
+
+// Create a new vote transaction
+await wallet.createVote(input, options);
+
+// Create a new multi signature transaction
+await wallet.createMultiSignature(input, options);
+
+// Create a new ipfs transaction
+await wallet.createIpfs(input, options);
+
+// Create a new multi payment transaction
+await wallet.createMultiPayment(input, options);
+
+// Create a new delegate resignation transaction
+await wallet.createDelegateResignation(input, options);
+
+// Create a new htlc lock transaction
+await wallet.createHtlcLock(input, options);
+
+// Create a new htlc claim transaction
+await wallet.createHtlcClaim(input, options);
+
+// Create a new htlc refund transaction
+await wallet.createHtlcRefund(input, options);
+
+// Create a new business registration transaction
+await wallet.createBusinessRegistration(input, options);
+
+// Create a new business resignation transaction
+await wallet.createBusinessResignation(input, options);
+
+// Create a new business update transaction
+await wallet.createBusinessUpdate(input, options);
+
+// Create a new bridgechain registration transaction
+await wallet.createBridgechainRegistration(input, options);
+
+// Create a new bridgechain resignation transaction
+await wallet.createBridgechainResignation(input, options);
+
+// Create a new bridgechain update transaction
+await wallet.createBridgechainUpdate(input, options);
 ```
 
 ## Contacts
+
+These methods are accessible through `profile.contacts()` which exposes a `ContactRepository` instance.
 
 ```ts
 // Get a list of all contacts with key and value
