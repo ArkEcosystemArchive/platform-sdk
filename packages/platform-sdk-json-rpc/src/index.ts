@@ -1,13 +1,14 @@
 import { Server } from "@hapi/hapi";
-import RPC from "@hapist/json-rpc";
+import RPC from "@kodekeep/hapi-json-rpc";
 
-import { methods } from "./methods";
 import { logger } from "./logger";
+import { methods } from "./methods";
 
 export const start = async (host: string, port: number): Promise<Server> => {
 	const server: Server = new Server({ host, port });
 
 	await server.register({
+		// @ts-ignore
 		plugin: RPC,
 		options: {
 			methods,

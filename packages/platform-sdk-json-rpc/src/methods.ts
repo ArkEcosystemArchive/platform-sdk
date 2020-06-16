@@ -1,22 +1,4 @@
-export const methods = [
-	{
-		name: "identities.wif.fromPassphrase",
-		async method(params: { passphrase: string }) {
-			return {
-				wif: "",
-			};
-		},
-		schema: {
-			type: "object",
-			properties: {
-				network: {
-					type: "string",
-				},
-				passphrase: {
-					type: "string",
-				},
-			},
-			required: ["network", "passphrase"],
-		},
-	},
-];
+import { feeMethods } from "./methods/fee";
+import { identityMethods } from "./methods/identity";
+
+export const methods = [...feeMethods, ...identityMethods];
