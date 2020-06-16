@@ -48,9 +48,9 @@ Creates a new Transfer transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.passphrase     | string   | The passphrase of the signer.                                                                          |
-| sign.passphrases    | string[] | The passphrases of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
+| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
 | sign.wif            | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif      | string   | The second WIF of the signer.                                                                          |
 
@@ -66,7 +66,7 @@ This method returns a promise that resolves with an object with the following st
 await transactionService.transfer({
 	nonce: 1,
 	sign: {
-		passphrase: "this is a top secret passphrase",
+		mnemonic: "this is a top secret mnemonic",
 	},
 	data: {
 		amount: 1,
@@ -86,14 +86,14 @@ Creates a new Second Signature Registration transaction.
 | Name                | Type     | Description                                                                                            |
 | ------------------- | -------- | ------------------------------------------------------------------------------------------------------ |
 | data                | object   | The object containing all data required for the transaction.                                           |
-| data.passphrase     | string   | The passphrase that should be used as a second passphrase.                                             |
+| data.mnemonic     | string   | The mnemonic that should be used as a second mnemonic.                                             |
 | fee                 | string   | The fee that should be used for the transaction. **This can be optional on a per coin basis.**         |
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.passphrase     | string   | The passphrase of the signer.                                                                          |
-| sign.passphrases    | string[] | The passphrases of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
+| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
 | sign.wif            | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif      | string   | The second WIF of the signer.                                                                          |
 
@@ -109,10 +109,10 @@ This method returns a promise that resolves with an object with the following st
 await transactionService.secondSignature({
 	nonce: 1,
 	sign: {
-		passphrase: "this is a top secret passphrase",
+		mnemonic: "this is a top secret mnemonic",
 	},
 	data: {
-		passphrase: "this is a top secret second passphrase",
+		mnemonic: "this is a top secret second mnemonic",
 	},
 });
 ```
@@ -133,9 +133,9 @@ Creates a new Delegate Registration transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.passphrase     | string   | The passphrase of the signer.                                                                          |
-| sign.passphrases    | string[] | The passphrases of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
+| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
 | sign.wif            | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif      | string   | The second WIF of the signer.                                                                          |
 
@@ -151,7 +151,7 @@ This method returns a promise that resolves with an object with the following st
 await transactionService.delegateRegistration({
 	nonce: 1,
 	sign: {
-		passphrase: "this is a top secret passphrase",
+		mnemonic: "this is a top secret mnemonic",
 	},
 	data: {
 		username: "johndoe",
@@ -175,9 +175,9 @@ Creates a new Vote transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.passphrase     | string   | The passphrase of the signer.                                                                          |
-| sign.passphrases    | string[] | The passphrases of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
+| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
 | sign.wif            | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif      | string   | The second WIF of the signer.                                                                          |
 
@@ -193,7 +193,7 @@ This method returns a promise that resolves with an object with the following st
 await transactionService.vote({
 	nonce: 1,
 	sign: {
-		passphrase: "this is a top secret passphrase",
+		mnemonic: "this is a top secret mnemonic",
 	},
 	data: {
 		vote: "+03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
@@ -217,9 +217,9 @@ Creates a new Multi-Signature Registration transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.passphrase     | string   | The passphrase of the signer.                                                                          |
-| sign.passphrases    | string[] | The passphrases of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
+| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
 | sign.wif            | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif      | string   | The second WIF of the signer.                                                                          |
 
@@ -244,12 +244,12 @@ await transactionService.multiSignature({
 		senderPublicKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
 	},
 	sign: {
-		passphrases: [
-			"this is a top secret passphrase 1",
-			"this is a top secret passphrase 2",
-			"this is a top secret passphrase 3",
+		mnemonics: [
+			"this is a top secret mnemonic 1",
+			"this is a top secret mnemonic 2",
+			"this is a top secret mnemonic 3",
 		],
-		passphrase: "this is a top secret passphrase 1",
+		mnemonic: "this is a top secret mnemonic 1",
 	},
 });
 ```
@@ -270,9 +270,9 @@ Creates a new IPFS transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.passphrase     | string   | The passphrase of the signer.                                                                          |
-| sign.passphrases    | string[] | The passphrases of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
+| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
 | sign.wif            | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif      | string   | The second WIF of the signer.                                                                          |
 
@@ -288,7 +288,7 @@ This method returns a promise that resolves with an object with the following st
 await transactionService.ipfs({
 	nonce: 1,
 	sign: {
-		passphrase: "this is a top secret passphrase",
+		mnemonic: "this is a top secret mnemonic",
 	},
 	data: { hash: "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9w" },
 });
@@ -312,9 +312,9 @@ Creates a new Multi-Payment transaction.
 | feeLimit                | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce                   | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                    | object   | The object containing all data required for the signing.                                               |
-| sign.passphrase         | string   | The passphrase of the signer.                                                                          |
-| sign.passphrases        | string[] | The passphrases of all signers.                                                                        |
-| sign.secondMnemonic     | string   | The second passphrase of the signer.                                                                   |
+| sign.mnemonic         | string   | The mnemonic of the signer.                                                                          |
+| sign.mnemonics        | string[] | The mnemonics of all signers.                                                                        |
+| sign.secondMnemonic     | string   | The second mnemonic of the signer.                                                                   |
 | sign.wif                | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif          | string   | The second WIF of the signer.                                                                          |
 
@@ -330,7 +330,7 @@ This method returns a promise that resolves with an object with the following st
 await transactionService.multiPayment({
 	nonce: 1,
 	sign: {
-		passphrase: "this is a top secret passphrase",
+		mnemonic: "this is a top secret mnemonic",
 	},
 	data: {
 		payments: [
@@ -356,9 +356,9 @@ Creates a new Delegate Resignation transaction.
 | feeLimit            | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce               | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                | object   | The object containing all data required for the signing.                                               |
-| sign.passphrase     | string   | The passphrase of the signer.                                                                          |
-| sign.passphrases    | string[] | The passphrases of all signers.                                                                        |
-| sign.secondMnemonic | string   | The second passphrase of the signer.                                                                   |
+| sign.mnemonic     | string   | The mnemonic of the signer.                                                                          |
+| sign.mnemonics    | string[] | The mnemonics of all signers.                                                                        |
+| sign.secondMnemonic | string   | The second mnemonic of the signer.                                                                   |
 | sign.wif            | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif      | string   | The second WIF of the signer.                                                                          |
 
@@ -374,7 +374,7 @@ This method returns a promise that resolves with an object with the following st
 await transactionService.delegateResignation({
 	nonce: 1,
 	sign: {
-		passphrase: "this is a top secret passphrase",
+		mnemonic: "this is a top secret mnemonic",
 	},
 });
 ```
@@ -400,9 +400,9 @@ Creates a new HTLC Lock transaction.
 | feeLimit              | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce                 | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                  | object   | The object containing all data required for the signing.                                               |
-| sign.passphrase       | string   | The passphrase of the signer.                                                                          |
-| sign.passphrases      | string[] | The passphrases of all signers.                                                                        |
-| sign.secondMnemonic   | string   | The second passphrase of the signer.                                                                   |
+| sign.mnemonic       | string   | The mnemonic of the signer.                                                                          |
+| sign.mnemonics      | string[] | The mnemonics of all signers.                                                                        |
+| sign.secondMnemonic   | string   | The second mnemonic of the signer.                                                                   |
 | sign.wif              | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif        | string   | The second WIF of the signer.                                                                          |
 
@@ -418,7 +418,7 @@ This method returns a promise that resolves with an object with the following st
 await transactionService.htlcLock({
 	nonce: 1,
 	sign: {
-		passphrase: "this is a top secret passphrase",
+		mnemonic: "this is a top secret mnemonic",
 	},
 	data: {
 		amount: 1,
@@ -449,9 +449,9 @@ Creates a new HTLC Claim transaction.
 | feeLimit               | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce                  | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                   | object   | The object containing all data required for the signing.                                               |
-| sign.passphrase        | string   | The passphrase of the signer.                                                                          |
-| sign.passphrases       | string[] | The passphrases of all signers.                                                                        |
-| sign.secondMnemonic    | string   | The second passphrase of the signer.                                                                   |
+| sign.mnemonic        | string   | The mnemonic of the signer.                                                                          |
+| sign.mnemonics       | string[] | The mnemonics of all signers.                                                                        |
+| sign.secondMnemonic    | string   | The second mnemonic of the signer.                                                                   |
 | sign.wif               | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif         | string   | The second WIF of the signer.                                                                          |
 
@@ -467,7 +467,7 @@ This method returns a promise that resolves with an object with the following st
 await transactionService.htlcClaim({
 	nonce: 1,
 	sign: {
-		passphrase: "this is a top secret passphrase",
+		mnemonic: "this is a top secret mnemonic",
 	},
 	data: {
 		lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
@@ -492,9 +492,9 @@ Creates a new HTLC Refund transaction.
 | feeLimit               | string   | The maximum fee that should be used for the transaction. **This can be optional on a per coin basis.** |
 | nonce                  | string   | The expected nonce of the transaction. **This can be optional on a per coin basis.**                   |
 | sign                   | object   | The object containing all data required for the signing.                                               |
-| sign.passphrase        | string   | The passphrase of the signer.                                                                          |
-| sign.passphrases       | string[] | The passphrases of all signers.                                                                        |
-| sign.secondMnemonic    | string   | The second passphrase of the signer.                                                                   |
+| sign.mnemonic        | string   | The mnemonic of the signer.                                                                          |
+| sign.mnemonics       | string[] | The mnemonics of all signers.                                                                        |
+| sign.secondMnemonic    | string   | The second mnemonic of the signer.                                                                   |
 | sign.wif               | string   | The WIF of the signer.                                                                                 |
 | sign.secondWif         | string   | The second WIF of the signer.                                                                          |
 
@@ -510,7 +510,7 @@ This method returns a promise that resolves with an object with the following st
 await transactionService.htlcRefund({
 	nonce: 1,
 	sign: {
-		passphrase: "this is a top secret passphrase",
+		mnemonic: "this is a top secret mnemonic",
 	},
 	data: {
 		lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
