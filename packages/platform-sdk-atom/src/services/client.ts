@@ -78,8 +78,8 @@ export class ClientService implements Contracts.ClientService {
 
 		return {
 			meta: {
-				prev: response._links.prev.href,
-				next: response._links.next.href,
+				prev: undefined, // @TODO: build from URL and page_number
+				next: undefined, // @TODO: build from URL and page_number
 			},
 			data: new Coins.TransactionDataCollection(
 				response.txs.map((transaction) => new TransactionData(transaction)),

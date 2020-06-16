@@ -48,7 +48,7 @@ export class ClientService implements Contracts.ClientService {
 	public async transactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		const basePath = `get_address_abstracts/${query.address}/`;
+		const basePath = `get_address_abstracts/${query.address}`;
 		const basePage = query.page || 1;
 
 		const response = await this.get(`${basePath}/${basePage}`);
