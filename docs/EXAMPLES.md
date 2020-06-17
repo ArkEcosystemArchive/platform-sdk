@@ -304,7 +304,7 @@ profile.notifications().keys();
 profile.notifications().values();
 
 // Create a new notification for the given data
-profile.notifications().create({
+profile.notifications().push({
 	icon: "warning",
 	name: "Ledger Update Available",
 	body: "...",
