@@ -89,6 +89,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -138,6 +139,7 @@ __metadata:
     got: ^11.3.0
     is-url-superb: ^3.0.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     lodash.orderby: ^4.6.0
@@ -183,6 +185,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     ledger-cosmos-js: ^2.1.7
@@ -229,6 +232,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -267,6 +271,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -304,6 +309,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -347,6 +353,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     keytar: ^6.0.1
@@ -388,6 +395,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -429,6 +437,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -475,6 +484,7 @@ __metadata:
     ethereumjs-wallet: ^0.6.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -513,6 +523,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -549,6 +560,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -596,6 +608,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -635,6 +648,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -676,6 +690,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -713,6 +728,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     fs-extra: ^9.0.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -757,6 +773,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     localforage: ^1.7.3
@@ -800,11 +817,13 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
+    qrious: ^4.0.2
     rimraf: ^3.0.2
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
@@ -841,6 +860,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -884,6 +904,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -925,6 +946,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     monero-javascript: ^0.2.14
@@ -970,6 +992,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     lodash: ^4.17.15
@@ -1021,6 +1044,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -5340,6 +5364,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"color-convert@npm:~0.5.0":
+  version: 0.5.3
+  resolution: "color-convert@npm:0.5.3"
+  checksum: 2/8170311e6c630b6f95f28b52f69c8ec4da2fced6ac0ad3d59bdc6657d8f871553a14cba5cbb1e6a405f06839556dd0b1f76391de76a314708bf94b0f51c19ff6
+  languageName: node
+  linkType: hard
+
 "color-name@npm:1.1.3":
   version: 1.1.3
   resolution: "color-name@npm:1.1.3"
@@ -5685,6 +5716,13 @@ __metadata:
   version: 2.0.0
   resolution: "crypto-random-string@npm:2.0.0"
   checksum: 2/7bc19f6cafe3194a434198c9414941cc36d874e1f85b6fcba573b5623f77a440c0a10a94c0d0da26d7d23d85b6fe07354e589ef1a0fe2d7b32e0bab9e70ca4c1
+  languageName: node
+  linkType: hard
+
+"cssfontparser@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "cssfontparser@npm:1.2.1"
+  checksum: 2/ee7bef1622227795bfd31a55838fa4c0ae091914433295bbf7d680eea8623cb90279dd8eec20e2cc97092b000a71468c803149f55bff5e443596ddef29250151
   languageName: node
   linkType: hard
 
@@ -8775,6 +8813,16 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"jest-canvas-mock@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "jest-canvas-mock@npm:2.2.0"
+  dependencies:
+    cssfontparser: ^1.2.1
+    parse-color: ^1.0.0
+  checksum: 2/bef62ef8735b53f2f4636e957492a0a864586e4ed35e37bc5fbfd151fe632ea2bc4be5c1724e40172a403b6fffcb989db66194686e47ddf1105481188b2c3b7f
+  languageName: node
+  linkType: hard
+
 "jest-changed-files@npm:^26.0.1":
   version: 26.0.1
   resolution: "jest-changed-files@npm:26.0.1"
@@ -11330,6 +11378,15 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"parse-color@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "parse-color@npm:1.0.0"
+  dependencies:
+    color-convert: ~0.5.0
+  checksum: 2/b8784c7c462bc9db24f7b0a7823dd26f7fc51d5c15485e73b263db0016111969c6b89dd135a25233d3f611e15264be5efbb9034ae1d1c1b70690d24559298381
+  languageName: node
+  linkType: hard
+
 "parse-headers@npm:^2.0.0":
   version: 2.0.3
   resolution: "parse-headers@npm:2.0.3"
@@ -11529,6 +11586,7 @@ fsevents@^2.1.2:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
@@ -11877,6 +11935,13 @@ fsevents@^2.1.2:
   dependencies:
     bitcoin-ops: ^1.3.0
   checksum: 2/fc65c14a4a34dfe133f6360cd26f787ea59cd22ec8534fa9763a9abee1e63913497443940d18b43dcd188c8328fe644516dde5bfc0cfd80e0fa59c2eb4b699a6
+  languageName: node
+  linkType: hard
+
+"qrious@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "qrious@npm:4.0.2"
+  checksum: 2/66bf11f005c9cca1477c107801e44d7654c6c639906fdd7c794008238c8226bf50a4644372681218bb0f3361167188887976bbad4b3a46e6d0ce67f9b090d2c6
   languageName: node
   linkType: hard
 

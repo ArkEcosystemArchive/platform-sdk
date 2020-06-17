@@ -217,6 +217,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:26.0.1"
       ],
       [
+        "jest-canvas-mock",
+        "npm:2.2.0"
+      ],
+      [
         "jest-extended",
         "npm:0.11.5"
       ],
@@ -274,6 +278,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:6.0.1"],
@@ -382,6 +387,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -426,6 +432,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -477,6 +484,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["got", "npm:11.3.0"],
             ["is-url-superb", "npm:3.0.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["lodash.orderby", "npm:4.6.0"],
@@ -524,6 +532,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["ledger-cosmos-js", "npm:2.1.7"],
@@ -572,6 +581,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -612,6 +622,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -651,6 +662,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -696,6 +708,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["keytar", "npm:6.0.1"],
@@ -739,6 +752,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -782,6 +796,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -830,6 +845,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ethereumjs-wallet", "npm:0.6.3"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -870,6 +886,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -908,6 +925,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -963,6 +981,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -1004,6 +1023,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -1047,6 +1067,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -1086,6 +1107,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["fs-extra", "npm:9.0.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -1132,6 +1154,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["localforage", "npm:1.7.3"],
@@ -1177,11 +1200,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:6.0.1"],
             ["prettier", "npm:2.0.5"],
+            ["qrious", "npm:4.0.2"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.0.0"],
             ["typedoc", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:0.17.7"],
@@ -1220,6 +1245,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -1265,6 +1291,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["nock", "npm:12.0.3"],
@@ -1308,6 +1335,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["monero-javascript", "npm:0.2.14"],
@@ -1355,6 +1383,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["lodash", "npm:4.17.15"],
@@ -6579,6 +6608,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["color-convert", [
+        ["npm:0.5.3", {
+          "packageLocation": "./.yarn/cache/color-convert-npm-0.5.3-be3d6c0bf9-2.zip/node_modules/color-convert/",
+          "packageDependencies": [
+            ["color-convert", "npm:0.5.3"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:1.9.3", {
           "packageLocation": "./.yarn/cache/color-convert-npm-1.9.3-1fe690075e-2.zip/node_modules/color-convert/",
           "packageDependencies": [
@@ -6980,6 +7016,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/crypto-random-string-npm-2.0.0-8ab47992ef-2.zip/node_modules/crypto-random-string/",
           "packageDependencies": [
             ["crypto-random-string", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["cssfontparser", [
+        ["npm:1.2.1", {
+          "packageLocation": "./.yarn/cache/cssfontparser-npm-1.2.1-f48947509b-2.zip/node_modules/cssfontparser/",
+          "packageDependencies": [
+            ["cssfontparser", "npm:1.2.1"]
           ],
           "linkType": "HARD",
         }]
@@ -10471,6 +10516,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["jest-canvas-mock", [
+        ["npm:2.2.0", {
+          "packageLocation": "./.yarn/cache/jest-canvas-mock-npm-2.2.0-192873b5bf-2.zip/node_modules/jest-canvas-mock/",
+          "packageDependencies": [
+            ["jest-canvas-mock", "npm:2.2.0"],
+            ["cssfontparser", "npm:1.2.1"],
+            ["parse-color", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["jest-changed-files", [
         ["npm:26.0.1", {
           "packageLocation": "./.yarn/cache/jest-changed-files-npm-26.0.1-2872c33809-2.zip/node_modules/jest-changed-files/",
@@ -13236,6 +13292,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["parse-color", [
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/parse-color-npm-1.0.0-6b3625bdf5-2.zip/node_modules/parse-color/",
+          "packageDependencies": [
+            ["parse-color", "npm:1.0.0"],
+            ["color-convert", "npm:0.5.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["parse-headers", [
         ["npm:2.0.3", {
           "packageLocation": "./.yarn/cache/parse-headers-npm-2.0.3-e1dfb36b2e-2.zip/node_modules/parse-headers/",
@@ -13464,6 +13530,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.3"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["jest", "npm:26.0.1"],
+            ["jest-canvas-mock", "npm:2.2.0"],
             ["jest-extended", "npm:0.11.5"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:6.0.1"],
@@ -13845,6 +13912,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["pushdata-bitcoin", "npm:1.0.1"],
             ["bitcoin-ops", "npm:1.4.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["qrious", [
+        ["npm:4.0.2", {
+          "packageLocation": "./.yarn/cache/qrious-npm-4.0.2-9d7db0e444-2.zip/node_modules/qrious/",
+          "packageDependencies": [
+            ["qrious", "npm:4.0.2"]
           ],
           "linkType": "HARD",
         }]
