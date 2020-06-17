@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.105 - 2020-06-17
+
+### Fixed
+
+-   Add `qrious` as production dependency (923a287d, @faustbrian)
+
 ## 0.9.104 - 2020-06-17
 
 ### Added
