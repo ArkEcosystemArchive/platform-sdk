@@ -59,6 +59,7 @@ test("Profile#toObject", () => {
 		id: "uuid",
 		name: "John Doe",
 		contacts: {},
+		notifications: {},
 		data: {},
 		settings: {},
 		wallets: {},

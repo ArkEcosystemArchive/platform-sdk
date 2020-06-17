@@ -19,6 +19,7 @@ export class ProfileRepository {
 			}
 
 			result.contacts().fill(profile.contacts);
+			result.notifications().fill(profile.notifications);
 			result.data().fill(profile.data);
 			result.settings().fill(profile.settings);
 
