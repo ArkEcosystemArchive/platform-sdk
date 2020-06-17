@@ -23,7 +23,6 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"@ledgerhq/hw-transport-node-hid-singleton": "^5.15.0",
 		"bcrypto": "^5.1.0",
 		"bech32": "^1.1.4",
 		"ledger-cosmos-js": "^2.1.7",

@@ -1,31 +1,22 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
-import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
-import CosmosApp from "ledger-cosmos-js";
+import Cosmos from "ledger-cosmos-js";
 
 export class LedgerService implements Contracts.LedgerService {
-	#ledger: LedgerTransport;
-	#transport: CosmosApp;
-
-	private constructor(transport: Contracts.LedgerTransport) {
-		this.#ledger = transport;
-	}
+	#ledger: Contracts.LedgerTransport;
+	#transport!: Cosmos;
 
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
-		try {
-			return new LedgerService(config.get("services.ledger.transport"));
-		} catch {
-			return new LedgerService(LedgerTransport);
-		}
+		return new LedgerService();
 	}
 
 	public async destruct(): Promise<void> {
 		await this.disconnect();
 	}
 
-	public async connect(): Promise<void> {
-		this.#ledger = await this.#ledger.create();
-		this.#transport = new CosmosApp(this.#ledger);
+	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
+		this.#ledger = await transport.create();
+		this.#transport = new Cosmos(this.#ledger);
 	}
 
 	public async disconnect(): Promise<void> {

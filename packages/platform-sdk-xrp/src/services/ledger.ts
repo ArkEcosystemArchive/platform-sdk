@@ -1,29 +1,25 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Ripple from "@ledgerhq/hw-app-xrp";
-import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
 
 export class LedgerService implements Contracts.LedgerService {
-	#ledger: LedgerTransport;
-	#transport: Ripple;
+	#config: Coins.Config;
+	#ledger: Contracts.LedgerTransport;
+	#transport!: Ripple;
 
-	private constructor(transport: Contracts.LedgerTransport) {
-		this.#ledger = transport;
+	private constructor(config: Coins.Config) {
+		this.#config = config;
 	}
 
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
-		try {
-			return new LedgerService(config.get("services.ledger.transport"));
-		} catch {
-			return new LedgerService(LedgerTransport);
-		}
+		return new LedgerService(config);
 	}
 
 	public async destruct(): Promise<void> {
 		await this.disconnect();
 	}
 
-	public async connect(): Promise<void> {
-		this.#ledger = await this.#ledger.open();
+	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
+		this.#ledger = await transport.open();
 		this.#transport = new Ripple(this.#ledger);
 	}
 

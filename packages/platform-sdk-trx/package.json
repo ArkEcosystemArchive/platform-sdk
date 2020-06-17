@@ -24,7 +24,6 @@
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@ledgerhq/hw-app-trx": "^5.15.0",
-		"@ledgerhq/hw-transport-node-hid-singleton": "^5.15.0",
 		"tronweb": "^2.10.2",
 		"yup": "^0.29.1"
 	},

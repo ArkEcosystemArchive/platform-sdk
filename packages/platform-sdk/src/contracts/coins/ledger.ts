@@ -2,7 +2,16 @@ export interface LedgerOptions {
 	transport: LedgerTransport;
 }
 
-export interface LedgerTransport {
+// TODO: create a proper contract for this
+export type LedgerTransport = any;
+
+export interface LedgerService {
+	destruct(): Promise<void>;
+
+	connect(transport: LedgerTransport): Promise<void>;
+
+	disconnect(): Promise<void>;
+
 	getVersion(): Promise<string>;
 
 	getPublicKey(path: string): Promise<string>;
@@ -14,12 +23,4 @@ export interface LedgerTransport {
 	signMessage(path: string, payload: Buffer): Promise<string>;
 
 	signMessageWithSchnorr(path: string, payload: Buffer): Promise<string>;
-}
-
-export interface LedgerService extends LedgerTransport {
-	destruct(): Promise<void>;
-
-	connect(): Promise<void>;
-
-	disconnect(): Promise<void>;
 }
