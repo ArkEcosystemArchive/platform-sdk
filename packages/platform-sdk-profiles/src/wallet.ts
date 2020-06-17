@@ -126,6 +126,50 @@ export class Wallet {
 	 * Any changes in how things need to be handled by consumers should be made in this package!
 	 */
 
+	public manifest(): Coins.Manifest {
+		return this.#coin.manifest();
+	}
+
+	public config(): Coins.Config {
+		return this.#coin.config();
+	}
+
+	public guard(): Coins.Guard {
+		return this.#coin.guard();
+	}
+
+	public client(): Contracts.ClientService {
+		return this.#coin.client();
+	}
+
+	public fee(): Contracts.FeeService {
+		return this.#coin.fee();
+	}
+
+	public identity(): Contracts.IdentityService {
+		return this.#coin.identity();
+	}
+
+	public ledger(): Contracts.LedgerService {
+		return this.#coin.ledger();
+	}
+
+	public link(): Contracts.LinkService {
+		return this.#coin.link();
+	}
+
+	public message(): Contracts.MessageService {
+		return this.#coin.message();
+	}
+
+	public peer(): Contracts.PeerService {
+		return this.#coin.peer();
+	}
+
+	public transaction(): Contracts.TransactionService {
+		return this.#coin.transaction();
+	}
+
 	public transactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
@@ -180,169 +224,5 @@ export class Wallet {
 
 	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
 		return this.#coin.client().broadcast(transactions);
-	}
-
-	public createTransfer(
-		input: Contracts.TransferInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().transfer(input, options);
-	}
-
-	public createSecondSignature(
-		input: Contracts.SecondSignatureInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().secondSignature(input, options);
-	}
-
-	public createDelegateRegistration(
-		input: Contracts.DelegateRegistrationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().delegateRegistration(input, options);
-	}
-
-	public createVote(
-		input: Contracts.VoteInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().vote(input, options);
-	}
-
-	public createMultiSignature(
-		input: Contracts.MultiSignatureInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().multiSignature(input, options);
-	}
-
-	public createIpfs(
-		input: Contracts.IpfsInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().ipfs(input, options);
-	}
-
-	public createMultiPayment(
-		input: Contracts.MultiPaymentInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().multiPayment(input, options);
-	}
-
-	public createDelegateResignation(
-		input: Contracts.DelegateResignationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().delegateResignation(input, options);
-	}
-
-	public createHtlcLock(
-		input: Contracts.HtlcLockInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().htlcLock(input, options);
-	}
-
-	public createHtlcClaim(
-		input: Contracts.HtlcClaimInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().htlcClaim(input, options);
-	}
-
-	public createHtlcRefund(
-		input: Contracts.HtlcRefundInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().htlcRefund(input, options);
-	}
-
-	public createBusinessRegistration(
-		input: Contracts.BusinessRegistrationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().businessRegistration(input, options);
-	}
-
-	public createBusinessResignation(
-		input: Contracts.BusinessResignationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().businessResignation(input, options);
-	}
-
-	public createBusinessUpdate(
-		input: Contracts.BusinessUpdateInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().businessUpdate(input, options);
-	}
-
-	public createBridgechainRegistration(
-		input: Contracts.BridgechainRegistrationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().bridgechainRegistration(input, options);
-	}
-
-	public createBridgechainResignation(
-		input: Contracts.BridgechainResignationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().bridgechainResignation(input, options);
-	}
-
-	public createBridgechainUpdate(
-		input: Contracts.BridgechainUpdateInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.#coin.transaction().bridgechainUpdate(input, options);
-	}
-
-	public signMessage(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		return this.#coin.message().sign(input);
-	}
-
-	public verifyMessage(input: Contracts.SignedMessage): Promise<boolean> {
-		return this.#coin.message().verify(input);
-	}
-
-	public getVersionFromLedger(): Promise<string> {
-		return this.#coin.ledger().getVersion();
-	}
-
-	public getPublicKeyFromLedger(path: string): Promise<string> {
-		return this.#coin.ledger().getPublicKey(path);
-	}
-
-	public signTransactionWithLedger(path: string, payload: Buffer): Promise<string> {
-		return this.#coin.ledger().signTransaction(path, payload);
-	}
-
-	public signTransactionWithLedgerUsingSchnorr(path: string, payload: Buffer): Promise<string> {
-		return this.#coin.ledger().signTransactionWithSchnorr(path, payload);
-	}
-
-	public signMessageWithLedger(path: string, payload: Buffer): Promise<string> {
-		return this.#coin.ledger().signMessage(path, payload);
-	}
-
-	public signMessageWithLedgerUsingSchnorr(path: string, payload: Buffer): Promise<string> {
-		return this.#coin.ledger().signMessageWithSchnorr(path, payload);
-	}
-
-	// TODO: move those into view models once implemented
-	public linkForBlock(id: string): string {
-		return this.#coin.link().block(id);
-	}
-
-	public linkForTransaction(id: string): string {
-		return this.#coin.link().transaction(id);
-	}
-
-	public linkForWallet(id: string): string {
-		return this.#coin.link().wallet(id);
 	}
 }

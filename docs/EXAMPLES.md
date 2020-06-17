@@ -159,94 +159,94 @@ await wallet.votes();
 await wallet.voters();
 
 // Check if the peer is syncing
-await wallet.syncing();
+await wallet.client().syncing();
 
 // Broadcast all of the given transactions
-await wallet.broadcast([transaction, transaction, transaction]);
+await wallet.client().broadcast([transaction, transaction, transaction]);
 
 // Create a new transfer transaction
-await wallet.createTransfer(input, options);
+await wallet.transaction().transfer(input, options);
 
 // Create a new second signature transaction
-await wallet.createSecondSignature(input, options);
+await wallet.transaction().secondSignature(input, options);
 
 // Create a new delegate registration transaction
-await wallet.createDelegateRegistration(input, options);
+await wallet.transaction().delegateRegistration(input, options);
 
 // Create a new vote transaction
-await wallet.createVote(input, options);
+await wallet.transaction().vote(input, options);
 
 // Create a new multi signature transaction
-await wallet.createMultiSignature(input, options);
+await wallet.transaction().multiSignature(input, options);
 
 // Create a new ipfs transaction
-await wallet.createIpfs(input, options);
+await wallet.transaction().ipfs(input, options);
 
 // Create a new multi payment transaction
-await wallet.createMultiPayment(input, options);
+await wallet.transaction().multiPayment(input, options);
 
 // Create a new delegate resignation transaction
-await wallet.createDelegateResignation(input, options);
+await wallet.transaction().delegateResignation(input, options);
 
 // Create a new htlc lock transaction
-await wallet.createHtlcLock(input, options);
+await wallet.transaction().htlcLock(input, options);
 
 // Create a new htlc claim transaction
-await wallet.createHtlcClaim(input, options);
+await wallet.transaction().htlcClaim(input, options);
 
 // Create a new htlc refund transaction
-await wallet.createHtlcRefund(input, options);
+await wallet.transaction().htlcRefund(input, options);
 
 // Create a new business registration transaction
-await wallet.createBusinessRegistration(input, options);
+await wallet.transaction().businessRegistration(input, options);
 
 // Create a new business resignation transaction
-await wallet.createBusinessResignation(input, options);
+await wallet.transaction().businessResignation(input, options);
 
 // Create a new business update transaction
-await wallet.createBusinessUpdate(input, options);
+await wallet.transaction().businessUpdate(input, options);
 
 // Create a new bridgechain registration transaction
-await wallet.createBridgechainRegistration(input, options);
+await wallet.transaction().bridgechainRegistration(input, options);
 
 // Create a new bridgechain resignation transaction
-await wallet.createBridgechainResignation(input, options);
+await wallet.transaction().bridgechainResignation(input, options);
 
 // Create a new bridgechain update transaction
-await wallet.createBridgechainUpdate(input, options);
+await wallet.transaction().bridgechainUpdate(input, options);
 
 // Sign a new message
-await wallet.signMessage(input);
+await wallet.message().sign(input);
 
 // Verify an existing message
-await wallet.verifyMessage(input);
+await wallet.message().verify(input);
 
 // Get the version from ledger
-await wallet.getVersionFromLedger();
+await wallet.ledger().getVersion();
 
 // Get a public key from ledger
-await wallet.getPublicKeyFromLedger(path);
+await wallet.ledger().getPublicKey(path);
 
 // Sign a transaction with ledger
-await wallet.signTransactionWithLedger(path, payload);
+await wallet.ledger().signTransaction(path, payload);
 
 // Sign a transaction with ledger using schnorr
-await wallet.signTransactionWithLedgerUsingSchnorr(path, payload);
+await wallet.ledger().signTransactionWithSchnorr(path, payload);
 
 // Sign a message with ledger
-await wallet.signMessageWithLedger(path, payload);
+await wallet.ledger().signMessage(path, payload);
 
 // Sign a message with ledger using schnorr
-await wallet.signMessageWithLedgerUsingSchnorr(path, payload);
+await wallet.ledger().signMessageWithSchnorr(path, payload);
 
 // Get an explorer link for a block
-await wallet.linkForBlock(id);
+await wallet.link().block(id);
 
 // Get an explorer link for a transaction
-await wallet.linkForTransaction(id);
+await wallet.link().transaction(id);
 
 // Get an explorer link for a wallet
-await wallet.linkForWallet(id);
+await wallet.link().wallet(id);
 ```
 
 ## Contacts
@@ -297,7 +297,7 @@ profile.contacts().flush();
 const wallet = await profile.wallets().create("this is a top secret passphrase", ARK, "devnet");
 
 // 4. Create a new transaction
-const transaction = await wallet.coin().transaction().transfer({
+const transaction = await wallet.transaction().transfer({
     sign: {
         mnemonic: "this is a top secret passphrase",
     },
@@ -308,5 +308,5 @@ const transaction = await wallet.coin().transaction().transfer({
 });
 
 // 5. Broadcast the transaction
-console.log(await wallet.coin().client().broadcast([transaction]));
+console.log(await wallet.client().broadcast([transaction]));
 ```
