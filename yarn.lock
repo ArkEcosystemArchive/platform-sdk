@@ -89,6 +89,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -138,6 +139,7 @@ __metadata:
     got: ^11.3.0
     is-url-superb: ^3.0.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     lodash.orderby: ^4.6.0
@@ -183,6 +185,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     ledger-cosmos-js: ^2.1.7
@@ -229,6 +232,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -267,6 +271,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -304,6 +309,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -347,6 +353,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     keytar: ^6.0.1
@@ -388,6 +395,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -429,6 +437,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -475,6 +484,7 @@ __metadata:
     ethereumjs-wallet: ^0.6.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -513,6 +523,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -549,6 +560,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -596,6 +608,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -635,6 +648,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -676,6 +690,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -713,6 +728,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     fs-extra: ^9.0.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -757,6 +773,7 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     localforage: ^1.7.3
@@ -843,6 +860,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -886,6 +904,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -927,6 +946,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     monero-javascript: ^0.2.14
@@ -972,6 +992,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     lodash: ^4.17.15
@@ -1023,6 +1044,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -11564,6 +11586,7 @@ fsevents@^2.1.2:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
+    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
