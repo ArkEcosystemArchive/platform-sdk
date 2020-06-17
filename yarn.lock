@@ -115,7 +115,6 @@ __metadata:
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -163,7 +162,6 @@ __metadata:
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -209,7 +207,6 @@ __metadata:
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-app-btc": ^5.15.2
     "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -416,7 +413,6 @@ __metadata:
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -461,7 +457,6 @@ __metadata:
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-app-eth": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -582,7 +577,6 @@ __metadata:
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@liskhq/lisk-client": ^2.0
     "@liskhq/lisk-client-new": "npm:@liskhq/lisk-client@=3.0.0"
     "@liskhq/lisk-cryptography": ^2.4
@@ -670,7 +664,6 @@ __metadata:
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@cityofzion/neon-js": ^4.8.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -841,7 +834,6 @@ __metadata:
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-app-trx": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -884,7 +876,6 @@ __metadata:
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-app-str": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -970,7 +961,6 @@ __metadata:
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-app-xrp": ^5.15.0
     "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.15.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^6.8.1
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -2356,64 +2346,6 @@ __metadata:
     "@ledgerhq/hw-transport": ^5.15.0
     "@ledgerhq/logs": ^5.15.0
   checksum: 2/21689aaf637d42a131419dc3e507c74c6474e631dfbaa87252a40e3cac80af63a4b54d1f371ac5154956ad544e9248566c55e5ba07799ff1d1f2ecc38f94d90c
-  languageName: node
-  linkType: hard
-
-"@ledgerhq/hw-transport-node-hid-noevents@npm:^5.15.0":
-  version: 5.15.0
-  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:5.15.0"
-  dependencies:
-    "@ledgerhq/devices": ^5.15.0
-    "@ledgerhq/errors": ^5.15.0
-    "@ledgerhq/hw-transport": ^5.15.0
-    "@ledgerhq/logs": ^5.15.0
-    node-hid: ^1.2.0
-  checksum: 2/788ce32dd8d4e8331a0b788655fda7faea34c93a87b5b25f6222b21d13c55e85eee391e55a9bd9a0461010cdf6facb3b688853778bb6c96a91909ffe9b6a4a95
-  languageName: node
-  linkType: hard
-
-"@ledgerhq/hw-transport-node-hid-noevents@npm:^5.16.0":
-  version: 5.16.0
-  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:5.16.0"
-  dependencies:
-    "@ledgerhq/devices": ^5.15.0
-    "@ledgerhq/errors": ^5.15.0
-    "@ledgerhq/hw-transport": ^5.15.0
-    "@ledgerhq/logs": ^5.15.0
-    node-hid: ^1.2.0
-  checksum: 2/b33a94056db29b0d8f062cdbdc6bfb06026946b1c7f17245fbbb4eaf085a7317e136e486b2e488446cc4b9977c8d063f2bdbc826257db51d4cab0cb7cb31a1bc
-  languageName: node
-  linkType: hard
-
-"@ledgerhq/hw-transport-node-hid-singleton@npm:^5.15.0":
-  version: 5.15.0
-  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:5.15.0"
-  dependencies:
-    "@ledgerhq/devices": ^5.15.0
-    "@ledgerhq/errors": ^5.15.0
-    "@ledgerhq/hw-transport": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-noevents": ^5.15.0
-    "@ledgerhq/logs": ^5.15.0
-    lodash: ^4.17.15
-    node-hid: ^1.2.0
-    usb-detection: ^4.9.0
-  checksum: 2/3d12d4c5d4e8815c55fd48dda5922aa260cd731a6740321cdffb8174b611d0ac61876a35157b4ca4eb2f7a7c5a37fcd31634b2fd62522c10bf7916f2c1b152ad
-  languageName: node
-  linkType: hard
-
-"@ledgerhq/hw-transport-node-hid-singleton@npm:^5.16.0":
-  version: 5.16.0
-  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:5.16.0"
-  dependencies:
-    "@ledgerhq/devices": ^5.15.0
-    "@ledgerhq/errors": ^5.15.0
-    "@ledgerhq/hw-transport": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-noevents": ^5.16.0
-    "@ledgerhq/logs": ^5.15.0
-    lodash: ^4.17.15
-    node-hid: ^1.2.0
-    usb-detection: ^4.9.0
-  checksum: 2/a0b1240c8dc88e8a0f8975a117c1801cb9fa54170327f94de5e27124e4f7b3eae83a87e30fe1236925e20c89384e6869e35d861b88df144e1a8e00f20f9068f0
   languageName: node
   linkType: hard
 
@@ -6822,13 +6754,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eventemitter2@npm:^5.0.1":
-  version: 5.0.1
-  resolution: "eventemitter2@npm:5.0.1"
-  checksum: 2/9f09a225e1d2cda18cfff04c042866b97c298bfca28a1f3224ac0adf4bb237642999135ce98860513c50524d7be1149d5de07c57e89368c00fb75e137ab40df9
-  languageName: node
-  linkType: hard
-
 "eventemitter3@npm:3.1.2, eventemitter3@npm:^3.1.0":
   version: 3.1.2
   resolution: "eventemitter3@npm:3.1.2"
@@ -10767,20 +10692,6 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"node-hid@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "node-hid@npm:1.2.0"
-  dependencies:
-    bindings: ^1.5.0
-    nan: ^2.14.0
-    node-gyp: latest
-    prebuild-install: ^5.3.3
-  bin:
-    hid-showdevices: src/show-devices.js
-  checksum: 2/fe9552ef299b4a331f22192312b09d873dd5c4277c1e0f2daf8b297af955df3ccaa10ef9053856cc7ebb371557ea42dd042b114e877167878590a31d0304731b
-  languageName: node
-  linkType: hard
-
 "node-int64@npm:^0.4.0":
   version: 0.4.0
   resolution: "node-int64@npm:0.4.0"
@@ -11634,31 +11545,6 @@ fsevents@^2.1.2:
   bin:
     prebuild-install: ./bin.js
   checksum: 2/34c354c1d3c887b9d6f599f0838d1ca104c5f6ff7fed417556e7945d5b38c0858365e4573aed21faa2f430618dc5ab98858474c55f5697e11fc6440237bac9e0
-  languageName: node
-  linkType: hard
-
-"prebuild-install@npm:^5.3.3":
-  version: 5.3.3
-  resolution: "prebuild-install@npm:5.3.3"
-  dependencies:
-    detect-libc: ^1.0.3
-    expand-template: ^2.0.3
-    github-from-package: 0.0.0
-    minimist: ^1.2.0
-    mkdirp: ^0.5.1
-    napi-build-utils: ^1.0.1
-    node-abi: ^2.7.0
-    noop-logger: ^0.1.1
-    npmlog: ^4.0.1
-    pump: ^3.0.0
-    rc: ^1.2.7
-    simple-get: ^3.0.3
-    tar-fs: ^2.0.0
-    tunnel-agent: ^0.6.0
-    which-pm-runs: ^1.0.0
-  bin:
-    prebuild-install: ./bin.js
-  checksum: 2/1a266151ec485c79a0cfabd3275ecc477913f6eef3de456ac24f05154a966862f935fdf1f7e3011a9edc755b8530f4b7376e842c41587eacd541ef15d21647ea
   languageName: node
   linkType: hard
 
@@ -14548,19 +14434,6 @@ typescript@^3.9.3:
   version: 0.4.4
   resolution: "urlgrey@npm:0.4.4"
   checksum: 2/9c124ff8c1d705e2606e665c9a5307d85b233f887429bd3398d9dc171d14679f469e274ab8632e976c6faf05c678c39209f3a328932839dfec1837b47bd29d55
-  languageName: node
-  linkType: hard
-
-"usb-detection@npm:^4.9.0":
-  version: 4.9.0
-  resolution: "usb-detection@npm:4.9.0"
-  dependencies:
-    bindings: ^1.3.0
-    eventemitter2: ^5.0.1
-    nan: ^2.13.2
-    node-gyp: latest
-    prebuild-install: ^5.3.3
-  checksum: 2/d8cec709fda4951c26f43fea81fd36b3f542d102ac1b0f177d49b75e7d9f7cbf7d7dfa10b6ad33acb61ae3a2ec7e22665d31e2d7b43e54f28c97a4216514f720
   languageName: node
   linkType: hard
 

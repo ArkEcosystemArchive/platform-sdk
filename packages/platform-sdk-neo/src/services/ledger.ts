@@ -1,31 +1,24 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
-import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
 
 export class LedgerService implements Contracts.LedgerService {
-	#ledger: LedgerTransport;
-	#transport: any;
+	#ledger: Contracts.LedgerTransport;
 	#bip44SessionPath: string;
 
-	private constructor(transport: Contracts.LedgerTransport) {
-		this.#ledger = transport;
+	private constructor() {
 		this.#bip44SessionPath = "";
 	}
 
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
-		try {
-			return new LedgerService(config.get("services.ledger.transport"));
-		} catch {
-			return new LedgerService(LedgerTransport);
-		}
+		return new LedgerService();
 	}
 
 	public async destruct(): Promise<void> {
 		await this.disconnect();
 	}
 
-	public async connect(): Promise<void> {
-		this.#ledger = await this.#ledger.create();
+	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
+		this.#ledger = await transport.create();
 	}
 
 	public async disconnect(): Promise<void> {
@@ -100,7 +93,11 @@ export class LedgerService implements Contracts.LedgerService {
 	 * modified from:
 	 * - https://github.com/CityOfZion/neon-js/blob/master/packages/neon-ledger/src/main.ts.ts
 	 */
-	private async neoSignTransaction(transport: LedgerTransport, path: string, payload: Buffer): Promise<string> {
+	private async neoSignTransaction(
+		transport: Contracts.LedgerTransport,
+		path: string,
+		payload: Buffer,
+	): Promise<string> {
 		const chunks: string[] = payload.toString().match(/.{1,510}/g) || [];
 
 		for (let i = 0; i < chunks.length - 1; i++) {

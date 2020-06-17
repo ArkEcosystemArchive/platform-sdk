@@ -1,19 +1,15 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class LedgerService implements Contracts.LedgerService {
-	private constructor(transport: Contracts.LedgerTransport) {
-		//
-	}
-
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
-		return new LedgerService(config.get("services.ledger.transport"));
+		return new LedgerService();
 	}
 
 	public async destruct(): Promise<void> {
 		//
 	}
 
-	public async connect(): Promise<void> {
+	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
 		//
 	}
 

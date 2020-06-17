@@ -1,32 +1,23 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import Btc from "@ledgerhq/hw-app-btc";
+import Bitcoin from "@ledgerhq/hw-app-btc";
 import { getAppAndVersion } from "@ledgerhq/hw-app-btc/lib/getAppAndVersion";
 import { serializeTransactionOutputs } from "@ledgerhq/hw-app-btc/lib/serializeTransaction";
-import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
 
 export class LedgerService implements Contracts.LedgerService {
-	#ledger: LedgerTransport;
-	#transport: Btc;
-
-	private constructor(transport: Contracts.LedgerTransport) {
-		this.#ledger = transport;
-	}
+	#ledger: Contracts.LedgerTransport;
+	#transport!: Bitcoin;
 
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
-		try {
-			return new LedgerService(config.get("services.ledger.transport"));
-		} catch {
-			return new LedgerService(LedgerTransport);
-		}
+		return new LedgerService();
 	}
 
 	public async destruct(): Promise<void> {
 		await this.disconnect();
 	}
 
-	public async connect(): Promise<void> {
-		this.#ledger = await this.#ledger.create();
-		this.#transport = new Btc(this.#ledger);
+	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
+		this.#ledger = await transport.create();
+		this.#transport = new Bitcoin(this.#ledger);
 	}
 
 	public async disconnect(): Promise<void> {

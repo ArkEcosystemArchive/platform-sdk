@@ -460,7 +460,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -510,7 +509,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -558,7 +556,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-app-btc", "npm:5.15.2"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -775,7 +772,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -822,7 +818,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-app-eth", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -949,7 +944,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@liskhq/lisk-client", "npm:2.3.1"],
             ["@liskhq/lisk-client-new", [
               "@liskhq/lisk-client",
@@ -1047,7 +1041,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@cityofzion/neon-js", "npm:4.8.0"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -1226,7 +1219,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-app-trx", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -1271,7 +1263,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-app-str", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -1361,7 +1352,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-app-xrp", "npm:5.15.0"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:6.8.1"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -2842,64 +2832,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
             ["@ledgerhq/hw-transport", "npm:5.15.0"],
             ["@ledgerhq/logs", "npm:5.15.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@ledgerhq/hw-transport-node-hid-noevents", [
-        ["npm:5.15.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-node-hid-noevents-npm-5.15.0-5a87a5b7d7-2.zip/node_modules/@ledgerhq/hw-transport-node-hid-noevents/",
-          "packageDependencies": [
-            ["@ledgerhq/hw-transport-node-hid-noevents", "npm:5.15.0"],
-            ["@ledgerhq/devices", "npm:5.15.0"],
-            ["@ledgerhq/errors", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport", "npm:5.15.0"],
-            ["@ledgerhq/logs", "npm:5.15.0"],
-            ["node-hid", "npm:1.2.0"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:5.16.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-node-hid-noevents-npm-5.16.0-538c7ecb3a-2.zip/node_modules/@ledgerhq/hw-transport-node-hid-noevents/",
-          "packageDependencies": [
-            ["@ledgerhq/hw-transport-node-hid-noevents", "npm:5.16.0"],
-            ["@ledgerhq/devices", "npm:5.15.0"],
-            ["@ledgerhq/errors", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport", "npm:5.15.0"],
-            ["@ledgerhq/logs", "npm:5.15.0"],
-            ["node-hid", "npm:1.2.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@ledgerhq/hw-transport-node-hid-singleton", [
-        ["npm:5.15.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-node-hid-singleton-npm-5.15.0-2987273893-2.zip/node_modules/@ledgerhq/hw-transport-node-hid-singleton/",
-          "packageDependencies": [
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.15.0"],
-            ["@ledgerhq/devices", "npm:5.15.0"],
-            ["@ledgerhq/errors", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-noevents", "npm:5.15.0"],
-            ["@ledgerhq/logs", "npm:5.15.0"],
-            ["lodash", "npm:4.17.15"],
-            ["node-hid", "npm:1.2.0"],
-            ["usb-detection", "npm:4.9.0"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:5.16.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-node-hid-singleton-npm-5.16.0-a548e7f181-2.zip/node_modules/@ledgerhq/hw-transport-node-hid-singleton/",
-          "packageDependencies": [
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
-            ["@ledgerhq/devices", "npm:5.15.0"],
-            ["@ledgerhq/errors", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-noevents", "npm:5.16.0"],
-            ["@ledgerhq/logs", "npm:5.15.0"],
-            ["lodash", "npm:4.17.15"],
-            ["node-hid", "npm:1.2.0"],
-            ["usb-detection", "npm:4.9.0"]
           ],
           "linkType": "HARD",
         }]
@@ -8270,15 +8202,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["eventemitter2", [
-        ["npm:5.0.1", {
-          "packageLocation": "./.yarn/cache/eventemitter2-npm-5.0.1-aa7b2f7474-2.zip/node_modules/eventemitter2/",
-          "packageDependencies": [
-            ["eventemitter2", "npm:5.0.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["eventemitter3", [
         ["npm:3.1.2", {
           "packageLocation": "./.yarn/cache/eventemitter3-npm-3.1.2-a68b03e1ea-2.zip/node_modules/eventemitter3/",
@@ -12624,19 +12547,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["node-hid", [
-        ["npm:1.2.0", {
-          "packageLocation": "./.yarn/unplugged/node-hid-npm-1.2.0-0be6c8cbab/node_modules/node-hid/",
-          "packageDependencies": [
-            ["node-hid", "npm:1.2.0"],
-            ["bindings", "npm:1.5.0"],
-            ["nan", "npm:2.14.1"],
-            ["node-gyp", "npm:6.1.0"],
-            ["prebuild-install", "npm:5.3.3"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["node-int64", [
         ["npm:0.4.0", {
           "packageLocation": "./.yarn/cache/node-int64-npm-0.4.0-0dc04ec3b2-2.zip/node_modules/node-int64/",
@@ -13562,28 +13472,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["prebuild-install", [
-        ["npm:5.3.3", {
-          "packageLocation": "./.yarn/cache/prebuild-install-npm-5.3.3-db2bb47eb4-2.zip/node_modules/prebuild-install/",
-          "packageDependencies": [
-            ["prebuild-install", "npm:5.3.3"],
-            ["detect-libc", "npm:1.0.3"],
-            ["expand-template", "npm:2.0.3"],
-            ["github-from-package", "npm:0.0.0"],
-            ["minimist", "npm:1.2.5"],
-            ["mkdirp", "npm:0.5.5"],
-            ["napi-build-utils", "npm:1.0.2"],
-            ["node-abi", "npm:2.16.0"],
-            ["noop-logger", "npm:0.1.1"],
-            ["npmlog", "npm:4.1.2"],
-            ["pump", "npm:3.0.0"],
-            ["rc", "npm:1.2.8"],
-            ["simple-get", "npm:3.1.0"],
-            ["tar-fs", "npm:2.1.0"],
-            ["tunnel-agent", "npm:0.6.0"],
-            ["which-pm-runs", "npm:1.0.0"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:5.3.4", {
           "packageLocation": "./.yarn/cache/prebuild-install-npm-5.3.4-80bbe56393-2.zip/node_modules/prebuild-install/",
           "packageDependencies": [
@@ -16772,20 +16660,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/urlgrey-npm-0.4.4-a1b175fb65-2.zip/node_modules/urlgrey/",
           "packageDependencies": [
             ["urlgrey", "npm:0.4.4"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["usb-detection", [
-        ["npm:4.9.0", {
-          "packageLocation": "./.yarn/unplugged/usb-detection-npm-4.9.0-8550fd9c67/node_modules/usb-detection/",
-          "packageDependencies": [
-            ["usb-detection", "npm:4.9.0"],
-            ["bindings", "npm:1.5.0"],
-            ["eventemitter2", "npm:5.0.1"],
-            ["nan", "npm:2.14.1"],
-            ["node-gyp", "npm:6.1.0"],
-            ["prebuild-install", "npm:5.3.3"]
           ],
           "linkType": "HARD",
         }]

@@ -24,7 +24,6 @@
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@cityofzion/neon-js": "^4.8.0",
-		"@ledgerhq/hw-transport-node-hid-singleton": "^5.16.0",
 		"yup": "^0.29.1"
 	},
 	"devDependencies": {
