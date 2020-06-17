@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.106 - 2020-06-17
+
+### Fixed
+
+-   Set profile avatar based on ID (53ef7ca9, @faustbrian)
+
 ## 0.9.105 - 2020-06-17
 
 ### Fixed
