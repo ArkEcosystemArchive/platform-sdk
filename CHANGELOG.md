@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.104 - 2020-06-17
+
+### Added
+
+-   Implement `WalletRepository#createRandom` (3c9f4b3c, @faustbrian)
+
+### Changed
+
+-   Require ledger transport to be explicitly passed in (56b38e8e, @faustbrian)
+
 ## 0.9.102 - 2020-06-17
 
 ### Added
