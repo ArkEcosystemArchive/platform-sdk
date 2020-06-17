@@ -138,6 +138,7 @@ export class Environment {
 							}).noUnknown(),
 						),
 					),
+					notifications: object().required(),
 					data: object().required(),
 					settings: object().required(),
 				}).noUnknown();
