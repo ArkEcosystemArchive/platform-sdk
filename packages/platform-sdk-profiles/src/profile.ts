@@ -1,3 +1,4 @@
+import { Avatar } from "./avatar";
 import { ProfileStruct } from "./contracts";
 import { ProfileSetting } from "./enums";
 import { ContactRepository } from "./repositories/contact-repository";
@@ -20,6 +21,7 @@ export class Profile {
 	public constructor(id: string, name: string) {
 		this.#id = id;
 		this.#name = name;
+		this.#avatar = Avatar.make(id);
 		this.#contactRepository = new ContactRepository();
 		this.#walletRepository = new WalletRepository();
 		this.#notificationRepository = new NotificationRepository();
