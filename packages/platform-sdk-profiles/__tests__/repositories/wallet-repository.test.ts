@@ -22,7 +22,7 @@ beforeEach(async () => {
 		.reply(200, require("../__fixtures__/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
 		.reply(200, require("../__fixtures__/client/syncing.json"))
-		.get(/api\/wallets\/.+/)
+		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../__fixtures__/client/wallet.json"))
 		.persist();
 
