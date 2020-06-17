@@ -22,7 +22,7 @@ beforeEach(async () => {
 		.reply(200, require("../__fixtures__/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
 		.reply(200, require("../__fixtures__/client/syncing.json"))
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get(/api\/wallets\/.+/)
 		.reply(200, require("../__fixtures__/client/wallet.json"))
 		.persist();
 
@@ -51,6 +51,15 @@ test("#create", async () => {
 	await expect(subject.create(identity.mnemonic, ARK, "devnet")).rejects.toThrowError("already exists");
 
 	expect(subject.keys()).toHaveLength(1);
+});
+
+test("#createRandom", async () => {
+	subject.flush();
+
+	const wallet = await subject.createRandom(ARK, "devnet");
+
+	expect(wallet.mnemonic).toBeString();
+	expect(wallet.wallet).toBeInstanceOf(Wallet);
 });
 
 test("#findByAddress", async () => {
