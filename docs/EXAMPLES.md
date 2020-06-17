@@ -289,6 +289,44 @@ profile.contacts().forget("uuid");
 profile.contacts().flush();
 ```
 
+## Notifications
+
+These methods are accessible through `profile.notifications()` which exposes a `NotificationRepository` instance.
+
+```ts
+// Get a list of all notifications with key and value
+profile.notifications().all();
+
+// Get a list of all notification keys
+profile.notifications().keys();
+
+// Get a list of all notification values
+profile.notifications().values();
+
+// Create a new notification for the given data
+profile.notifications().create({
+	icon: "warning",
+	name: "Ledger Update Available",
+	body: "...",
+	action: "Read Changelog",
+});
+
+// Forget the notification for the given ID
+profile.notifications().forget("uuid");
+
+// Forget all notifications (Use with caution!)
+profile.notifications().flush();
+
+// Get all read notifications
+profile.notifications().read();
+
+// Get all unread notifications
+profile.notifications().unread();
+
+// Mark the for the given ID as read
+profile.notifications().markAsRead("uuid");
+```
+
 ## Transactions
 
 ### Sign and broadcast a transaction through a wallet
