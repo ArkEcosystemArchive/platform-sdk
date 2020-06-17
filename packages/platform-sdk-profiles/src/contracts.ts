@@ -31,6 +31,7 @@ export interface ProfileStruct {
 	name: string;
 	wallets: Record<string, any>;
 	contacts: Record<string, any>;
+	notifications: Record<string, any>;
 	data: Record<string, any>;
 	settings: Record<string, any>;
 }

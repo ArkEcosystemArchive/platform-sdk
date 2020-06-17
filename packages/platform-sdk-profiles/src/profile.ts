@@ -2,12 +2,14 @@ import { ProfileStruct } from "./contracts";
 import { ProfileSetting } from "./enums";
 import { ContactRepository } from "./repositories/contact-repository";
 import { DataRepository } from "./repositories/data-repository";
+import { NotificationRepository } from "./repositories/notification-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
 
 export class Profile {
 	#contactRepository!: ContactRepository;
 	#walletRepository!: WalletRepository;
+	#notificationRepository!: NotificationRepository;
 	#dataRepository!: DataRepository;
 	#settingRepository!: SettingRepository;
 
@@ -20,6 +22,7 @@ export class Profile {
 		this.#name = name;
 		this.#contactRepository = new ContactRepository();
 		this.#walletRepository = new WalletRepository();
+		this.#notificationRepository = new NotificationRepository();
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
 	}
@@ -40,6 +43,10 @@ export class Profile {
 		return this.#walletRepository;
 	}
 
+	public notifications(): NotificationRepository {
+		return this.#notificationRepository;
+	}
+
 	public contacts(): ContactRepository {
 		return this.#contactRepository;
 	}
@@ -58,6 +65,7 @@ export class Profile {
 			name: this.name(),
 			wallets: this.wallets().toObject(),
 			contacts: this.contacts().all(),
+			notifications: this.notifications().all(),
 			data: this.data().all(),
 			settings: this.settings().all(),
 		};
