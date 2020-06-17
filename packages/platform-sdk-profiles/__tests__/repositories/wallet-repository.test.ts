@@ -53,6 +53,15 @@ test("#create", async () => {
 	expect(subject.keys()).toHaveLength(1);
 });
 
+test("#createRandom", async () => {
+	subject.flush();
+
+	const wallet = await subject.createRandom(ARK, "devnet");
+
+	expect(wallet.mnemonic).toBeString();
+	expect(wallet.wallet).toBeInstanceOf(Wallet);
+});
+
 test("#findByAddress", async () => {
 	expect(subject.findByAddress(identity.address)).toBeInstanceOf(Wallet);
 });

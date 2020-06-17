@@ -15,6 +15,9 @@ export class Wallet {
 	#id!: string;
 	#coin!: Coins.Coin;
 	#wallet!: Contracts.WalletData;
+
+	#address!: string;
+	#publicKey!: string | undefined;
 	#avatar!: string;
 
 	public constructor(id: string) {
@@ -37,11 +40,30 @@ export class Wallet {
 	}
 
 	public async setIdentity(mnemonic: string): Promise<Wallet> {
-		return this.setAddress(await this.#coin.identity().address().fromMnemonic(mnemonic));
+		this.#address = await this.#coin.identity().address().fromMnemonic(mnemonic);
+		this.#publicKey = await this.#coin.identity().publicKey().fromMnemonic(mnemonic);
+
+		return this.setAddress(this.#address);
 	}
 
 	public async setAddress(address: string): Promise<Wallet> {
-		this.#wallet = await this.#coin.client().wallet(address);
+		const isValidAddress: boolean = await this.coin().identity().address().validate(address);
+
+		if (!isValidAddress) {
+			throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
+		}
+
+		try {
+			this.#wallet = await this.#coin.client().wallet(address);
+			this.#address = this.#wallet.address();
+		} catch {
+			/**
+			 * TODO: decide what to do if the wallet couldn't be found
+			 *
+			 * A missing wallet could mean that the wallet is legitimate
+			 * but has no transactions or that the address is wrong.
+			 */
+		}
 
 		this.setAvatar(Avatar.make(this.address()));
 
@@ -78,11 +100,11 @@ export class Wallet {
 	}
 
 	public address(): string {
-		return this.#wallet.address();
+		return this.#address;
 	}
 
 	public publicKey(): string | undefined {
-		return this.#wallet.publicKey();
+		return this.#publicKey;
 	}
 
 	public balance(): BigNumber {
