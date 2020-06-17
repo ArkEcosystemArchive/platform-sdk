@@ -1,4 +1,5 @@
 import { Coins } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { v4 as uuidv4 } from "uuid";
 
 import { container } from "../container";
@@ -33,6 +34,12 @@ export class WalletRepository {
 		await wallet.setIdentity(mnemonic);
 
 		return this.storeWallet(id, wallet);
+	}
+
+	public async createRandom(coin: Coins.CoinSpec, network: string): Promise<{ mnemonic: string; wallet: Wallet }> {
+		const mnemonic: string = BIP39.generate();
+
+		return { mnemonic, wallet: await this.create(mnemonic, coin, network) };
 	}
 
 	public async createFromObject({ id, coin, coinConfig, network, address }): Promise<Wallet> {
