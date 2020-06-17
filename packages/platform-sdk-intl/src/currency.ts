@@ -1,26 +1,56 @@
 // Based on https://github.com/LedgerHQ/ledger-live-common/blob/master/src/currencies/sanitizeValueString.js
 
-export interface CurrencyUnit {
-	// display name of a given unit (example: satoshi)
-	name: string;
-	// string to use when formatting the unit. like 'BTC' or 'USD'
-	code: string;
-	// number of digits after the '.'
-	magnitude: number;
-	// should it always print all digits even if they are 0 (usually: true for fiats, false for cryptos)
-	showAllDigits?: boolean;
-}
+const getSeparators = (locale: string): { decimal: number; thousands: number } => {
+	const localeNotAvailable = (1.2).toLocaleString("en", { style: "currency", currency: "USD" }) !== "$1.20";
+
+	let result;
+
+	if (localeNotAvailable) {
+		const staticFallback = {
+			en: ["-$1.00", "10,000.2"],
+			es: ["-1,00 US$", "10.000,2"],
+			fr: ["-1,00 $US", "10 000,2"],
+			ja: ["-US$1.00", "10,000.2"],
+			ko: ["-US$1.00", "10,000.2"],
+			ru: ["-1,00 $", "10 000,2"],
+			zh: ["-US$1.00", "10,000.2"],
+		};
+
+		result = staticFallback[Object.keys(staticFallback).includes(locale) ? locale : "en"][1];
+	} else {
+		result = (10000.2).toLocaleString(locale);
+	}
+
+	let decimal;
+	let thousands;
+
+	for (let i = 0; i < result.length; i++) {
+		const c = result[i];
+
+		if (/[0-9]/.test(c)) {
+			continue;
+		}
+
+		if (!thousands) {
+			thousands = c;
+		} else {
+			decimal = c;
+		}
+	}
+
+	return { decimal, thousands };
+};
 
 export class Currency {
 	public static fromString(
-		unit: CurrencyUnit,
 		valueString: string,
+		magnitude = 8,
 		locale?: string,
 	): {
 		display: string;
 		value: string;
 	} {
-		const seperator = Currency.getSeparators(locale || "en-US");
+		const seperator = getSeparators(locale || "en-US");
 		const dot = seperator.decimal || ".";
 
 		let display = "";
@@ -32,7 +62,11 @@ export class Currency {
 			if ("0123456789".indexOf(c) !== -1) {
 				if (decimals >= 0) {
 					decimals++;
-					if (decimals > unit.magnitude) break;
+
+					if (decimals > magnitude) {
+						break;
+					}
+
 					value = value === "0" ? c : value + c;
 					display += c;
 				} else if (value !== "0") {
@@ -43,7 +77,7 @@ export class Currency {
 					display = c;
 				}
 			} else if (decimals === -1 && (c === "," || c === ".")) {
-				if (unit.magnitude === 0) {
+				if (magnitude === 0) {
 					// in this specific case, we will never allow commas
 					return { display, value };
 				}
@@ -56,7 +90,7 @@ export class Currency {
 				display += dot;
 			}
 		}
-		for (let i = Math.max(0, decimals); i < unit.magnitude; ++i) {
+		for (let i = Math.max(0, decimals); i < magnitude; ++i) {
 			value += "0";
 		}
 
@@ -65,46 +99,5 @@ export class Currency {
 		}
 
 		return { display, value };
-	}
-
-	private static getSeparators(locale: string): { decimal: number; thousands: number } {
-		const localeNotAvailable = (1.2).toLocaleString("en", { style: "currency", currency: "USD" }) !== "$1.20";
-
-		let result;
-
-		if (localeNotAvailable) {
-			const staticFallback = {
-				en: ["-$1.00", "10,000.2"],
-				es: ["-1,00 US$", "10.000,2"],
-				fr: ["-1,00 $US", "10 000,2"],
-				ja: ["-US$1.00", "10,000.2"],
-				ko: ["-US$1.00", "10,000.2"],
-				ru: ["-1,00 $", "10 000,2"],
-				zh: ["-US$1.00", "10,000.2"],
-			};
-
-			result = staticFallback[Object.keys(staticFallback).includes(locale) ? locale : "en"][1];
-		} else {
-			result = (10000.2).toLocaleString(locale);
-		}
-
-		let decimal;
-		let thousands;
-
-		for (let i = 0; i < result.length; i++) {
-			const c = result[i];
-
-			if (/[0-9]/.test(c)) {
-				continue;
-			}
-
-			if (!thousands) {
-				thousands = c;
-			} else {
-				decimal = c;
-			}
-		}
-
-		return { decimal, thousands };
 	}
 }
