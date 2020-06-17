@@ -47,11 +47,22 @@ export class Wallet {
 	}
 
 	public async setAddress(address: string): Promise<Wallet> {
+		const isValidAddress: boolean = await this.coin().identity().address().validate(address);
+
+		if (!isValidAddress) {
+			throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
+		}
+
 		try {
 			this.#wallet = await this.#coin.client().wallet(address);
 			this.#address = this.#wallet.address();
 		} catch {
-			// TODO: decide what to do if the wallet couldn't be found
+			/**
+			 * TODO: decide what to do if the wallet couldn't be found
+			 *
+			 * A missing wallet could mean that the wallet is legitimate
+			 * but has no transactions or that the address is wrong.
+			 */
 		}
 
 		this.setAvatar(Avatar.make(this.address()));
