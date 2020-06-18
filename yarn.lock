@@ -113,8 +113,8 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
+    "@ledgerhq/hw-transport-mocker": ^5.17.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.17.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -160,8 +160,8 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
+    "@ledgerhq/hw-transport-mocker": ^5.17.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.17.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -204,9 +204,9 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@ledgerhq/hw-app-btc": ^5.16.0
-    "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
+    "@ledgerhq/hw-app-btc": ^5.17.0
+    "@ledgerhq/hw-transport-mocker": ^5.17.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.17.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -410,8 +410,8 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
+    "@ledgerhq/hw-transport-mocker": ^5.17.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.17.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -453,9 +453,9 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@ledgerhq/hw-app-eth": ^5.16.0
-    "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
+    "@ledgerhq/hw-app-eth": ^5.17.0
+    "@ledgerhq/hw-transport-mocker": ^5.17.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.17.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -535,8 +535,8 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
+    "@ledgerhq/hw-transport-mocker": ^5.17.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.17.0
     "@liskhq/lisk-client": ^2.0
     "@liskhq/lisk-client-new": "npm:@liskhq/lisk-client@=3.0.0"
     "@liskhq/lisk-cryptography": ^2.4
@@ -620,8 +620,8 @@ __metadata:
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@cityofzion/neon-js": ^4.8.0
-    "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
+    "@ledgerhq/hw-transport-mocker": ^5.17.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.17.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -785,9 +785,9 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@ledgerhq/hw-app-trx": ^5.15.0
-    "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
+    "@ledgerhq/hw-app-trx": ^5.17.0
+    "@ledgerhq/hw-transport-mocker": ^5.17.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.17.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -827,9 +827,9 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@ledgerhq/hw-app-str": ^5.15.0
-    "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
+    "@ledgerhq/hw-app-str": ^5.17.0
+    "@ledgerhq/hw-transport-mocker": ^5.17.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.17.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -911,9 +911,9 @@ __metadata:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
-    "@ledgerhq/hw-app-xrp": ^5.15.0
-    "@ledgerhq/hw-transport-mocker": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-singleton": ^5.16.0
+    "@ledgerhq/hw-app-xrp": ^5.17.0
+    "@ledgerhq/hw-transport-mocker": ^5.17.0
+    "@ledgerhq/hw-transport-node-hid-singleton": ^5.17.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -1975,14 +1975,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/devices@npm:^5.15.0":
-  version: 5.15.0
-  resolution: "@ledgerhq/devices@npm:5.15.0"
+"@ledgerhq/devices@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@ledgerhq/devices@npm:5.17.0"
   dependencies:
-    "@ledgerhq/errors": ^5.15.0
-    "@ledgerhq/logs": ^5.15.0
+    "@ledgerhq/errors": ^5.17.0
+    "@ledgerhq/logs": ^5.17.0
     rxjs: ^6.5.5
-  checksum: 2/d788f3378ee7284b4e1be4ca1cc677a7be9622d18077de7b474798073cca8d9605f3318a5a83848b319dceba81793c2d14ad2116a2081c0db3aee630a7830991
+  checksum: 2/7b3480d129f45a03b6c6ca40cdb579cddd6a79bf958253b63e5573b3e255b65bc3db0dd447a9c8ad39c368ed25eb734ccd6565967f5df8d4600e48f90eb18721
   languageName: node
   linkType: hard
 
@@ -1993,106 +1993,114 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/errors@npm:^5.13.1, @ledgerhq/errors@npm:^5.15.0":
+"@ledgerhq/errors@npm:^5.13.1":
   version: 5.15.0
   resolution: "@ledgerhq/errors@npm:5.15.0"
   checksum: 2/9bbff90fb17810463d47adae527ddd77fe2d3cc2d7cc51f6ffe5724ebaec1ad54ddc1739c7b30e29719f38f0d8543143edd7c759f38a63a8af9c73d459fa3e9d
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-app-btc@npm:^5.16.0":
-  version: 5.16.0
-  resolution: "@ledgerhq/hw-app-btc@npm:5.16.0"
+"@ledgerhq/errors@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@ledgerhq/errors@npm:5.17.0"
+  checksum: 2/d1c830226113368a39a2165c13485375ee05c95ff81c247cb34b14a76f92da59e8a45d706aa19a69504c9e2ec4ff4945bdb1973318e792fd34eaf50915ecf875
+  languageName: node
+  linkType: hard
+
+"@ledgerhq/hw-app-btc@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@ledgerhq/hw-app-btc@npm:5.17.0"
   dependencies:
-    "@ledgerhq/hw-transport": ^5.15.0
+    "@ledgerhq/hw-transport": ^5.17.0
+    "@ledgerhq/logs": ^5.17.0
     bip32-path: ^0.4.2
     invariant: ^2.2.4
     ripemd160: 2
     semver: ^7.3.2
     sha.js: 2
-  checksum: 2/07dc06b58670cd31f7e700ebe69f3b25b236903af4e3a89073f939073f469def852d264a582d2053f1177eaf978e0f16d9439500dbcc4c87dcf2cbbcb1e315fd
+  checksum: 2/6076f9e0c4e126d5f2d30d7f2d0f22dcd0d259c17504ce8fc57eba2d4605eae679aa930377e91be76fe0e678434a04ce874b0a87ed0891bcce92c8202142fa49
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-app-eth@npm:^5.16.0":
-  version: 5.16.0
-  resolution: "@ledgerhq/hw-app-eth@npm:5.16.0"
+"@ledgerhq/hw-app-eth@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@ledgerhq/hw-app-eth@npm:5.17.0"
   dependencies:
-    "@ledgerhq/errors": ^5.15.0
-    "@ledgerhq/hw-transport": ^5.15.0
+    "@ledgerhq/errors": ^5.17.0
+    "@ledgerhq/hw-transport": ^5.17.0
     bignumber.js: ^9.0.0
-  checksum: 2/9742bf59aaeaea72ff229c9b15156c87c1b6345097cc850d68290164a2dec5ccafcb9c672800c9c9e9e3b62c17854f44f75022ff444281f6642f7c49015b1ac2
+  checksum: 2/e13b02de4d40c8e0ed5994dfeb11519a7037d83bdc6cb0a47d88ddf92cad2b38a34c9bdf93b6cc993370739edda3b522f286f7d0b53d3fd429b9eaae6d9c10c3
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-app-str@npm:^5.15.0":
-  version: 5.15.0
-  resolution: "@ledgerhq/hw-app-str@npm:5.15.0"
+"@ledgerhq/hw-app-str@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@ledgerhq/hw-app-str@npm:5.17.0"
   dependencies:
-    "@ledgerhq/hw-transport": ^5.15.0
+    "@ledgerhq/hw-transport": ^5.17.0
     base32.js: ^0.1.0
     sha.js: ^2.3.6
     tweetnacl: ^1.0.3
-  checksum: 2/188afc34d6563730255cfecf9345425eeea23ff68084658ddc68ba2ae86983d5cbac44d7a62d20883dcf88f4bb9bbb43c9630403e91c9c02ee4bfb318be04677
+  checksum: 2/e65ddcc388ef76dac84a90570a5580356f1ecc89a0005ad5e7c7969c19ad5b8a05d153be849ebc26685b38e6b7b5ff9007e2fcd4c63709f34df075345d656e5f
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-app-trx@npm:^5.15.0":
-  version: 5.15.0
-  resolution: "@ledgerhq/hw-app-trx@npm:5.15.0"
+"@ledgerhq/hw-app-trx@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@ledgerhq/hw-app-trx@npm:5.17.0"
   dependencies:
-    "@ledgerhq/errors": ^5.15.0
-    "@ledgerhq/hw-transport": ^5.15.0
-  checksum: 2/9c35471c3d8008bd5e155f2314a6f6880ee2cc9fd99c5f432c8d24101ece659c12c80909e3c7f07c882cd256b4d7cbe3a7121db965bb81888e666fca01e954c4
+    "@ledgerhq/errors": ^5.17.0
+    "@ledgerhq/hw-transport": ^5.17.0
+  checksum: 2/c14dc0e0a5ff99fa5558a03edf459d39d76a7b25f9c0f71d3a0bcd5d0543aadbe3bfe49d713a6f3847398c648c209ad39b0ad31d7a84ed244a6137aca288686f
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-app-xrp@npm:^5.15.0":
-  version: 5.15.0
-  resolution: "@ledgerhq/hw-app-xrp@npm:5.15.0"
+"@ledgerhq/hw-app-xrp@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@ledgerhq/hw-app-xrp@npm:5.17.0"
   dependencies:
-    "@ledgerhq/hw-transport": ^5.15.0
+    "@ledgerhq/hw-transport": ^5.17.0
     bip32-path: 0.4.2
-  checksum: 2/f7c4dc0daea6194654de472f356f756a9a7e30ca56d459fe741add2b83eaeb488a3dd0f3e60ea64f6bc306ee30c81fd25430b32db0e52df39bd1c7449e3ba751
+  checksum: 2/a73df7c92fb20e12b14ad60e62f485795d976c9cf2fff55b5880f63438bc8f9979ac905465a41067a1b6c0166618c0af05c067200d8f895e9a75006cd5a12d67
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-mocker@npm:^5.15.0":
-  version: 5.15.0
-  resolution: "@ledgerhq/hw-transport-mocker@npm:5.15.0"
+"@ledgerhq/hw-transport-mocker@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@ledgerhq/hw-transport-mocker@npm:5.17.0"
   dependencies:
-    "@ledgerhq/hw-transport": ^5.15.0
-    "@ledgerhq/logs": ^5.15.0
-  checksum: 2/21689aaf637d42a131419dc3e507c74c6474e631dfbaa87252a40e3cac80af63a4b54d1f371ac5154956ad544e9248566c55e5ba07799ff1d1f2ecc38f94d90c
+    "@ledgerhq/hw-transport": ^5.17.0
+    "@ledgerhq/logs": ^5.17.0
+  checksum: 2/4e4a86e26493969f6263898e15e6787f10be7b33bd0a043d79d94572c436b2c8a4865ef75658fe7953b3022c782acb1e48fa22fa781a7c151bc1a84313c29031
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-node-hid-noevents@npm:^5.16.0":
-  version: 5.16.0
-  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:5.16.0"
+"@ledgerhq/hw-transport-node-hid-noevents@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@ledgerhq/hw-transport-node-hid-noevents@npm:5.17.0"
   dependencies:
-    "@ledgerhq/devices": ^5.15.0
-    "@ledgerhq/errors": ^5.15.0
-    "@ledgerhq/hw-transport": ^5.15.0
-    "@ledgerhq/logs": ^5.15.0
+    "@ledgerhq/devices": ^5.17.0
+    "@ledgerhq/errors": ^5.17.0
+    "@ledgerhq/hw-transport": ^5.17.0
+    "@ledgerhq/logs": ^5.17.0
     node-hid: ^1.2.0
-  checksum: 2/b33a94056db29b0d8f062cdbdc6bfb06026946b1c7f17245fbbb4eaf085a7317e136e486b2e488446cc4b9977c8d063f2bdbc826257db51d4cab0cb7cb31a1bc
+  checksum: 2/33ed988d251a5795cd7a468f25110a025bac348ba2116629e4a2cf600163f6cf7dc61e7579c0f9d0f40f5c1fbdddedce74e37809df8183f744b77943c7ee3b9a
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport-node-hid-singleton@npm:^5.16.0":
-  version: 5.16.0
-  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:5.16.0"
+"@ledgerhq/hw-transport-node-hid-singleton@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@ledgerhq/hw-transport-node-hid-singleton@npm:5.17.0"
   dependencies:
-    "@ledgerhq/devices": ^5.15.0
-    "@ledgerhq/errors": ^5.15.0
-    "@ledgerhq/hw-transport": ^5.15.0
-    "@ledgerhq/hw-transport-node-hid-noevents": ^5.16.0
-    "@ledgerhq/logs": ^5.15.0
+    "@ledgerhq/devices": ^5.17.0
+    "@ledgerhq/errors": ^5.17.0
+    "@ledgerhq/hw-transport": ^5.17.0
+    "@ledgerhq/hw-transport-node-hid-noevents": ^5.17.0
+    "@ledgerhq/logs": ^5.17.0
     lodash: ^4.17.15
     node-hid: ^1.2.0
     usb-detection: ^4.9.0
-  checksum: 2/a0b1240c8dc88e8a0f8975a117c1801cb9fa54170327f94de5e27124e4f7b3eae83a87e30fe1236925e20c89384e6869e35d861b88df144e1a8e00f20f9068f0
+  checksum: 2/8e8b82dd1745ce407049ffca271c4a3890ab9a3a12a18ef1a597c19794d04de1c02f41e7045a466345a9d1e117dfd602541a3e61930de806944b5d3f1accd4a8
   languageName: node
   linkType: hard
 
@@ -2107,14 +2115,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-transport@npm:^5.15.0":
-  version: 5.15.0
-  resolution: "@ledgerhq/hw-transport@npm:5.15.0"
+"@ledgerhq/hw-transport@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@ledgerhq/hw-transport@npm:5.17.0"
   dependencies:
-    "@ledgerhq/devices": ^5.15.0
-    "@ledgerhq/errors": ^5.15.0
+    "@ledgerhq/devices": ^5.17.0
+    "@ledgerhq/errors": ^5.17.0
     events: ^3.1.0
-  checksum: 2/76e419d690df38db2aea725cbd7f355d4700256811e166af196320828f92b9ea3bea0d1fc06d04b587c0592540cce382c266752010575e552d88b28e2e2d2fe4
+  checksum: 2/95d96f49acffc922ee11d419508b2e594e52d48fd4db38b0a00e906b8a00037006a78a96b4b56a8dfa766ec48b381d3d7e7bfca302cd4eb92e6a52063e403d35
   languageName: node
   linkType: hard
 
@@ -2125,10 +2133,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/logs@npm:^5.15.0":
-  version: 5.15.0
-  resolution: "@ledgerhq/logs@npm:5.15.0"
-  checksum: 2/13d695a9cea5f3a9c8345adff57a05983c29d9b0610f5e3f90bc62e0239658530dbd344dfb8a2bb8bd8b34a564222963ddbdf618b018e8021868d95cead94df9
+"@ledgerhq/logs@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@ledgerhq/logs@npm:5.17.0"
+  checksum: 2/454d38f0d6b417aea834965a37067ea8c67e92c195f1ef108f96711728f68f26261a49017c211009fb3aba64d6f386714bb96420dc00555bc56f03c473d2238b
   languageName: node
   linkType: hard
 

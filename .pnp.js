@@ -447,8 +447,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
-            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.17.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -496,8 +496,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
-            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.17.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -542,9 +542,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
-            ["@ledgerhq/hw-app-btc", "npm:5.16.0"],
-            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
+            ["@ledgerhq/hw-app-btc", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.17.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -758,8 +758,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
-            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.17.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -803,9 +803,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
-            ["@ledgerhq/hw-app-eth", "npm:5.16.0"],
-            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
+            ["@ledgerhq/hw-app-eth", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.17.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -889,8 +889,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
-            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.17.0"],
             ["@liskhq/lisk-client", "npm:2.3.1"],
             ["@liskhq/lisk-client-new", [
               "@liskhq/lisk-client",
@@ -984,8 +984,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@cityofzion/neon-js", "npm:4.8.0"],
-            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.17.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -1157,9 +1157,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
-            ["@ledgerhq/hw-app-trx", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
+            ["@ledgerhq/hw-app-trx", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.17.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -1201,9 +1201,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
-            ["@ledgerhq/hw-app-str", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
+            ["@ledgerhq/hw-app-str", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.17.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -1289,9 +1289,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
-            ["@ledgerhq/hw-app-xrp", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
+            ["@ledgerhq/hw-app-xrp", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.17.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -2378,12 +2378,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:5.15.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-devices-npm-5.15.0-5ea9e45111-2.zip/node_modules/@ledgerhq/devices/",
+        ["npm:5.17.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-devices-npm-5.17.0-32ca3c23e0-2.zip/node_modules/@ledgerhq/devices/",
           "packageDependencies": [
-            ["@ledgerhq/devices", "npm:5.15.0"],
-            ["@ledgerhq/errors", "npm:5.15.0"],
-            ["@ledgerhq/logs", "npm:5.15.0"],
+            ["@ledgerhq/devices", "npm:5.17.0"],
+            ["@ledgerhq/errors", "npm:5.17.0"],
+            ["@ledgerhq/logs", "npm:5.17.0"],
             ["rxjs", "npm:6.5.5"]
           ],
           "linkType": "HARD",
@@ -2403,14 +2403,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@ledgerhq/errors", "npm:5.15.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:5.17.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-errors-npm-5.17.0-dafe661064-2.zip/node_modules/@ledgerhq/errors/",
+          "packageDependencies": [
+            ["@ledgerhq/errors", "npm:5.17.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@ledgerhq/hw-app-btc", [
-        ["npm:5.16.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-btc-npm-5.16.0-40feab515a-2.zip/node_modules/@ledgerhq/hw-app-btc/",
+        ["npm:5.17.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-btc-npm-5.17.0-d159eae1ab-2.zip/node_modules/@ledgerhq/hw-app-btc/",
           "packageDependencies": [
-            ["@ledgerhq/hw-app-btc", "npm:5.16.0"],
-            ["@ledgerhq/hw-transport", "npm:5.15.0"],
+            ["@ledgerhq/hw-app-btc", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport", "npm:5.17.0"],
+            ["@ledgerhq/logs", "npm:5.17.0"],
             ["bip32-path", "npm:0.4.2"],
             ["invariant", "npm:2.2.4"],
             ["ripemd160", "npm:2.0.2"],
@@ -2421,23 +2429,23 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@ledgerhq/hw-app-eth", [
-        ["npm:5.16.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-eth-npm-5.16.0-9f4aee0c75-2.zip/node_modules/@ledgerhq/hw-app-eth/",
+        ["npm:5.17.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-eth-npm-5.17.0-94531ff11a-2.zip/node_modules/@ledgerhq/hw-app-eth/",
           "packageDependencies": [
-            ["@ledgerhq/hw-app-eth", "npm:5.16.0"],
-            ["@ledgerhq/errors", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport", "npm:5.15.0"],
+            ["@ledgerhq/hw-app-eth", "npm:5.17.0"],
+            ["@ledgerhq/errors", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport", "npm:5.17.0"],
             ["bignumber.js", "npm:9.0.0"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@ledgerhq/hw-app-str", [
-        ["npm:5.15.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-str-npm-5.15.0-1533b8ba5b-2.zip/node_modules/@ledgerhq/hw-app-str/",
+        ["npm:5.17.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-str-npm-5.17.0-5d4457c0ff-2.zip/node_modules/@ledgerhq/hw-app-str/",
           "packageDependencies": [
-            ["@ledgerhq/hw-app-str", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport", "npm:5.15.0"],
+            ["@ledgerhq/hw-app-str", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport", "npm:5.17.0"],
             ["base32.js", "npm:0.1.0"],
             ["sha.js", "npm:2.4.11"],
             ["tweetnacl", "npm:1.0.3"]
@@ -2446,22 +2454,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@ledgerhq/hw-app-trx", [
-        ["npm:5.15.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-trx-npm-5.15.0-fea58c99a0-2.zip/node_modules/@ledgerhq/hw-app-trx/",
+        ["npm:5.17.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-trx-npm-5.17.0-9ab3abd0f6-2.zip/node_modules/@ledgerhq/hw-app-trx/",
           "packageDependencies": [
-            ["@ledgerhq/hw-app-trx", "npm:5.15.0"],
-            ["@ledgerhq/errors", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport", "npm:5.15.0"]
+            ["@ledgerhq/hw-app-trx", "npm:5.17.0"],
+            ["@ledgerhq/errors", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport", "npm:5.17.0"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@ledgerhq/hw-app-xrp", [
-        ["npm:5.15.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-xrp-npm-5.15.0-1b04f718e5-2.zip/node_modules/@ledgerhq/hw-app-xrp/",
+        ["npm:5.17.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-app-xrp-npm-5.17.0-a8115e4883-2.zip/node_modules/@ledgerhq/hw-app-xrp/",
           "packageDependencies": [
-            ["@ledgerhq/hw-app-xrp", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport", "npm:5.15.0"],
+            ["@ledgerhq/hw-app-xrp", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport", "npm:5.17.0"],
             ["bip32-path", "npm:0.4.2"]
           ],
           "linkType": "HARD",
@@ -2478,52 +2486,52 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:5.15.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-npm-5.15.0-102fba08a7-2.zip/node_modules/@ledgerhq/hw-transport/",
+        ["npm:5.17.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-npm-5.17.0-05f9fb34d0-2.zip/node_modules/@ledgerhq/hw-transport/",
           "packageDependencies": [
-            ["@ledgerhq/hw-transport", "npm:5.15.0"],
-            ["@ledgerhq/devices", "npm:5.15.0"],
-            ["@ledgerhq/errors", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport", "npm:5.17.0"],
+            ["@ledgerhq/devices", "npm:5.17.0"],
+            ["@ledgerhq/errors", "npm:5.17.0"],
             ["events", "npm:3.1.0"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@ledgerhq/hw-transport-mocker", [
-        ["npm:5.15.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-mocker-npm-5.15.0-8ed2c94c4e-2.zip/node_modules/@ledgerhq/hw-transport-mocker/",
+        ["npm:5.17.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-mocker-npm-5.17.0-f01506c9a7-2.zip/node_modules/@ledgerhq/hw-transport-mocker/",
           "packageDependencies": [
-            ["@ledgerhq/hw-transport-mocker", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport", "npm:5.15.0"],
-            ["@ledgerhq/logs", "npm:5.15.0"]
+            ["@ledgerhq/hw-transport-mocker", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport", "npm:5.17.0"],
+            ["@ledgerhq/logs", "npm:5.17.0"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@ledgerhq/hw-transport-node-hid-noevents", [
-        ["npm:5.16.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-node-hid-noevents-npm-5.16.0-538c7ecb3a-2.zip/node_modules/@ledgerhq/hw-transport-node-hid-noevents/",
+        ["npm:5.17.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-node-hid-noevents-npm-5.17.0-aac22e62e6-2.zip/node_modules/@ledgerhq/hw-transport-node-hid-noevents/",
           "packageDependencies": [
-            ["@ledgerhq/hw-transport-node-hid-noevents", "npm:5.16.0"],
-            ["@ledgerhq/devices", "npm:5.15.0"],
-            ["@ledgerhq/errors", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport", "npm:5.15.0"],
-            ["@ledgerhq/logs", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport-node-hid-noevents", "npm:5.17.0"],
+            ["@ledgerhq/devices", "npm:5.17.0"],
+            ["@ledgerhq/errors", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport", "npm:5.17.0"],
+            ["@ledgerhq/logs", "npm:5.17.0"],
             ["node-hid", "npm:1.2.0"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@ledgerhq/hw-transport-node-hid-singleton", [
-        ["npm:5.16.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-node-hid-singleton-npm-5.16.0-a548e7f181-2.zip/node_modules/@ledgerhq/hw-transport-node-hid-singleton/",
+        ["npm:5.17.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-node-hid-singleton-npm-5.17.0-757105d1e1-2.zip/node_modules/@ledgerhq/hw-transport-node-hid-singleton/",
           "packageDependencies": [
-            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.16.0"],
-            ["@ledgerhq/devices", "npm:5.15.0"],
-            ["@ledgerhq/errors", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport", "npm:5.15.0"],
-            ["@ledgerhq/hw-transport-node-hid-noevents", "npm:5.16.0"],
-            ["@ledgerhq/logs", "npm:5.15.0"],
+            ["@ledgerhq/hw-transport-node-hid-singleton", "npm:5.17.0"],
+            ["@ledgerhq/devices", "npm:5.17.0"],
+            ["@ledgerhq/errors", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport", "npm:5.17.0"],
+            ["@ledgerhq/hw-transport-node-hid-noevents", "npm:5.17.0"],
+            ["@ledgerhq/logs", "npm:5.17.0"],
             ["lodash", "npm:4.17.15"],
             ["node-hid", "npm:1.2.0"],
             ["usb-detection", "npm:4.9.0"]
@@ -2539,10 +2547,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:5.15.0", {
-          "packageLocation": "./.yarn/cache/@ledgerhq-logs-npm-5.15.0-d1dadc1295-2.zip/node_modules/@ledgerhq/logs/",
+        ["npm:5.17.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-logs-npm-5.17.0-0bc51f35cd-2.zip/node_modules/@ledgerhq/logs/",
           "packageDependencies": [
-            ["@ledgerhq/logs", "npm:5.15.0"]
+            ["@ledgerhq/logs", "npm:5.17.0"]
           ],
           "linkType": "HARD",
         }]

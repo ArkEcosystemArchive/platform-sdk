@@ -23,7 +23,7 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"@ledgerhq/hw-transport-node-hid-singleton": "^5.16.0",
+		"@ledgerhq/hw-transport-node-hid-singleton": "^5.17.0",
 		"@liskhq/lisk-client": "^2.0",
 		"@liskhq/lisk-client-new": "npm:@liskhq/lisk-client@=3.0.0",
 		"@liskhq/lisk-cryptography": "^2.4",
@@ -33,7 +33,7 @@
 		"yup": "^0.29.1"
 	},
 	"devDependencies": {
-		"@ledgerhq/hw-transport-mocker": "^5.15.0",
+		"@ledgerhq/hw-transport-mocker": "^5.17.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^7.2.0",
 		"@types/eslint-plugin-prettier": "^3.1.0",

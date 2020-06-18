@@ -23,8 +23,8 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"@ledgerhq/hw-app-eth": "^5.16.0",
-		"@ledgerhq/hw-transport-node-hid-singleton": "^5.16.0",
+		"@ledgerhq/hw-app-eth": "^5.17.0",
+		"@ledgerhq/hw-transport-node-hid-singleton": "^5.17.0",
 		"bip39": "^3.0.2",
 		"ethereumjs-tx": "^2.1.2",
 		"ethereumjs-wallet": "^0.6.3",
@@ -32,7 +32,7 @@
 		"yup": "^0.29.1"
 	},
 	"devDependencies": {
-		"@ledgerhq/hw-transport-mocker": "^5.15.0",
+		"@ledgerhq/hw-transport-mocker": "^5.17.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^7.2.0",
 		"@types/eslint-plugin-prettier": "^3.1.0",
