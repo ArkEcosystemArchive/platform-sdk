@@ -1178,7 +1178,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["npm-check-updates", "npm:6.0.1"],
             ["prettier", "npm:2.0.5"],
             ["qrcode", "npm:1.4.4"],
-            ["qrious", "npm:4.0.2"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.0.0"],
             ["typedoc", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:0.17.7"],
@@ -13827,15 +13826,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["isarray", "npm:2.0.5"],
             ["pngjs", "npm:3.4.0"],
             ["yargs", "npm:13.3.2"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["qrious", [
-        ["npm:4.0.2", {
-          "packageLocation": "./.yarn/cache/qrious-npm-4.0.2-9d7db0e444-2.zip/node_modules/qrious/",
-          "packageDependencies": [
-            ["qrious", "npm:4.0.2"]
           ],
           "linkType": "HARD",
         }]

@@ -23,7 +23,6 @@
 		"bignumber.js": "^9.0.0",
 		"censorify-it": "^2.1.4",
 		"qrcode": "^1.4.4",
-		"qrious": "^4.0.2",
 		"yup": "^0.29.1"
 	},
 	"devDependencies": {

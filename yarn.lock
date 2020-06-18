@@ -801,7 +801,6 @@ __metadata:
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
     qrcode: ^1.4.4
-    qrious: ^4.0.2
     rimraf: ^3.0.2
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
@@ -11849,13 +11848,6 @@ fsevents@^2.1.2:
   bin:
     qrcode: ./bin/qrcode
   checksum: 2/125b75136305c51c5f5f313d36912ae537c43cc4f35d396ed64fc0567ed78510841a4bac56d8de4126d9479225d2ac991b47e4cc053a7ef38208b162d671b893
-  languageName: node
-  linkType: hard
-
-"qrious@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "qrious@npm:4.0.2"
-  checksum: 2/66bf11f005c9cca1477c107801e44d7654c6c639906fdd7c794008238c8226bf50a4644372681218bb0f3361167188887976bbad4b3a46e6d0ce67f9b090d2c6
   languageName: node
   linkType: hard
 
