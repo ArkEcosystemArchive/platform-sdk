@@ -89,7 +89,6 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -138,7 +137,6 @@ __metadata:
     got: ^11.3.0
     is-url-superb: ^3.0.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     lodash.orderby: ^4.6.0
@@ -183,7 +181,6 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     ledger-cosmos-js: ^2.1.7
@@ -229,7 +226,6 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -268,7 +264,6 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -306,7 +301,6 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -350,7 +344,6 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     keytar: ^6.0.1
@@ -392,7 +385,6 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -433,7 +425,6 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -479,7 +470,6 @@ __metadata:
     ethereumjs-wallet: ^0.6.3
     got: ^11.3.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -518,7 +508,6 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -555,7 +544,6 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -602,7 +590,6 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -642,7 +629,6 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -683,7 +669,6 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -721,7 +706,6 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     fs-extra: ^9.0.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -767,7 +751,6 @@ __metadata:
     eslint-plugin-simple-import-sort: ^5.0.3
     got: ^11.3.0
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     localforage: ^1.7.3
@@ -797,6 +780,7 @@ __metadata:
     "@types/jest": ^25.2.3
     "@types/node": ^14.0.5
     "@types/prettier": ^2.0.1
+    "@types/qrcode": 1.3.4
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^3.0.1
     "@typescript-eslint/parser": ^3.0.1
@@ -811,13 +795,12 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
     prettier: ^2.0.5
-    qrious: ^4.0.2
+    qrcode: ^1.4.4
     rimraf: ^3.0.2
     ts-jest: ^26.0.0
     typedoc: ^0.17.7
@@ -853,7 +836,6 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -896,7 +878,6 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -938,7 +919,6 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     monero-javascript: ^0.2.14
@@ -983,7 +963,6 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     lodash: ^4.17.15
@@ -1035,7 +1014,6 @@ __metadata:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     nock: ^12.0.3
@@ -3275,6 +3253,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/qrcode@npm:1.3.4":
+  version: 1.3.4
+  resolution: "@types/qrcode@npm:1.3.4"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2/d9a5a2c4329bb051488643827d191f12d0563584bd843515ba5e259607113e7e1e4bb27dcff0279b1ed3c4ed8868fbe05df0657102ab2bc386724e989ab7f49b
+  languageName: node
+  linkType: hard
+
 "@types/randombytes@npm:^2.0.0":
   version: 2.0.0
   resolution: "@types/randombytes@npm:2.0.0"
@@ -4803,6 +4790,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"buffer-alloc-unsafe@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "buffer-alloc-unsafe@npm:1.1.0"
+  checksum: 2/f5ab30acb1270dbec68283464d757eb1bf694557a06f27d542344bd1474e4bb202db35be1e04c804e28880eb2092dacbe39870204bc14934377f74925a4aac5c
+  languageName: node
+  linkType: hard
+
+"buffer-alloc@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "buffer-alloc@npm:1.2.0"
+  dependencies:
+    buffer-alloc-unsafe: ^1.1.0
+    buffer-fill: ^1.0.0
+  checksum: 2/0a66de89687b503644bd1a5996ac3492f8f6a154f352baae72b410db1c1a12f6ccfb9e088d838cca8648e64049140ae4ffca6a54620dec8a3aba7d114d7697db
+  languageName: node
+  linkType: hard
+
 "buffer-compare@npm:=1.1.1":
   version: 1.1.1
   resolution: "buffer-compare@npm:1.1.1"
@@ -4810,7 +4814,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"buffer-from@npm:1.x, buffer-from@npm:^1.0.0":
+"buffer-fill@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "buffer-fill@npm:1.0.0"
+  checksum: 2/099a16038eaa2586c12b902e68e300f2e0d581c8bfdbe5c8937757ea20c375167e0dfe1891585b99ae1b4385d7ed18b4f2d4b3f85120252778fe45489ee519f1
+  languageName: node
+  linkType: hard
+
+"buffer-from@npm:1.x, buffer-from@npm:^1.0.0, buffer-from@npm:^1.1.1":
   version: 1.1.1
   resolution: "buffer-from@npm:1.1.1"
   checksum: 2/540ceb79c4f5bfcadaabbc18324fa84c50dc52905084be7c03596a339cf5a88513bee6831ce9b36ddd046fab09257a7c80686e129d0559a0cfd141da196ad956
@@ -4847,7 +4858,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"buffer@npm:^5.0.5, buffer@npm:^5.1.0, buffer@npm:^5.5.0":
+"buffer@npm:^5.0.5, buffer@npm:^5.1.0, buffer@npm:^5.4.3, buffer@npm:^5.5.0":
   version: 5.6.0
   resolution: "buffer@npm:5.6.0"
   dependencies:
@@ -5213,6 +5224,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cliui@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "cliui@npm:5.0.0"
+  dependencies:
+    string-width: ^3.1.0
+    strip-ansi: ^5.2.0
+    wrap-ansi: ^5.1.0
+  checksum: 2/25e61dc985279bd7ec16715df53288346e5c36ff43956f7de31bf55b2432ce1259e75148b28c3ed41265caf1baee1d204363c429ae5fee54e6f78bed5a5d82b3
+  languageName: node
+  linkType: hard
+
 "cliui@npm:^6.0.0":
   version: 6.0.0
   resolution: "cliui@npm:6.0.0"
@@ -5294,13 +5316,6 @@ __metadata:
   dependencies:
     color-name: ~1.1.4
   checksum: 2/3d5d8a011a43012ca11b6d739049ecf2055d95582fd16ec44bf1e685eb0baa5cc652002be8a1dc92b429c8d87418287d0528266a7595cb1ad8a7f4f1d3049df2
-  languageName: node
-  linkType: hard
-
-"color-convert@npm:~0.5.0":
-  version: 0.5.3
-  resolution: "color-convert@npm:0.5.3"
-  checksum: 2/8170311e6c630b6f95f28b52f69c8ec4da2fced6ac0ad3d59bdc6657d8f871553a14cba5cbb1e6a405f06839556dd0b1f76391de76a314708bf94b0f51c19ff6
   languageName: node
   linkType: hard
 
@@ -5649,13 +5664,6 @@ __metadata:
   version: 2.0.0
   resolution: "crypto-random-string@npm:2.0.0"
   checksum: 2/7bc19f6cafe3194a434198c9414941cc36d874e1f85b6fcba573b5623f77a440c0a10a94c0d0da26d7d23d85b6fe07354e589ef1a0fe2d7b32e0bab9e70ca4c1
-  languageName: node
-  linkType: hard
-
-"cssfontparser@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "cssfontparser@npm:1.2.1"
-  checksum: 2/ee7bef1622227795bfd31a55838fa4c0ae091914433295bbf7d680eea8623cb90279dd8eec20e2cc97092b000a71468c803149f55bff5e443596ddef29250151
   languageName: node
   linkType: hard
 
@@ -6031,6 +6039,13 @@ __metadata:
     miller-rabin: ^4.0.0
     randombytes: ^2.0.0
   checksum: 2/c988be315dc9ec83948605da58a25912daaae787d6a5cfa0b0574383dcf9b953aa81ba3109d06bc8590b037259753d2962a362e351efcb4274e94f1b0f277065
+  languageName: node
+  linkType: hard
+
+"dijkstrajs@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "dijkstrajs@npm:1.0.1"
+  checksum: 2/d19594fc0ae242397fc946aae5eaf50c1b691d3b716286eabcfabf72e6b98a17b3c7bd8626634601953cf92c79bd354a68f0e5f9bebe4baa68367b14e28d35cb
   languageName: node
   linkType: hard
 
@@ -8629,6 +8644,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"isarray@npm:^2.0.1":
+  version: 2.0.5
+  resolution: "isarray@npm:2.0.5"
+  checksum: 2/cfb3e907b3c7957fb18e479bbe9102df4e84c5386839b4a33076f38ee31a8934e77d43ff517967fd39192a7c06b894770454886a5ffc8a3ddc36f6b746d70726
+  languageName: node
+  linkType: hard
+
 "isexe@npm:^2.0.0":
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
@@ -8736,16 +8758,6 @@ fsevents@^2.1.2:
     has-to-string-tag-x: ^1.2.0
     is-object: ^1.0.1
   checksum: 2/2c63877b4e0cbd7af36502ac08cb7814393e11871324967117f43dda57cbeab8a192f3bfca8bfa088f3c9886a93518f9d77136043ef2c65054b541eb6bd9a7c6
-  languageName: node
-  linkType: hard
-
-"jest-canvas-mock@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "jest-canvas-mock@npm:2.2.0"
-  dependencies:
-    cssfontparser: ^1.2.1
-    parse-color: ^1.0.0
-  checksum: 2/bef62ef8735b53f2f4636e957492a0a864586e4ed35e37bc5fbfd151fe632ea2bc4be5c1724e40172a403b6fffcb989db66194686e47ddf1105481188b2c3b7f
   languageName: node
   linkType: hard
 
@@ -11290,15 +11302,6 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"parse-color@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "parse-color@npm:1.0.0"
-  dependencies:
-    color-convert: ~0.5.0
-  checksum: 2/b8784c7c462bc9db24f7b0a7823dd26f7fc51d5c15485e73b263db0016111969c6b89dd135a25233d3f611e15264be5efbb9034ae1d1c1b70690d24559298381
-  languageName: node
-  linkType: hard
-
 "parse-headers@npm:^2.0.0":
   version: 2.0.3
   resolution: "parse-headers@npm:2.0.3"
@@ -11498,7 +11501,6 @@ fsevents@^2.1.2:
     eslint-plugin-prettier: ^3.1.3
     eslint-plugin-simple-import-sort: ^5.0.3
     jest: ^26.0.1
-    jest-canvas-mock: ^2.2.0
     jest-extended: ^0.11.5
     nock: ^12.0.3
     npm-check-updates: ^6.0.1
@@ -11514,6 +11516,13 @@ fsevents@^2.1.2:
   version: 7.0.0
   resolution: "pluralize@npm:7.0.0"
   checksum: 2/d35d8aeda1eb2f81123131e76ed0f2f48d681abfa4c46e4c6fdd6dca622650c8bd531aa0c5a3c7f779bd9660d08ceb51660e1f55def4bd14328ecfa76fe69962
+  languageName: node
+  linkType: hard
+
+"pngjs@npm:^3.3.0":
+  version: 3.4.0
+  resolution: "pngjs@npm:3.4.0"
+  checksum: 2/aa6d2cb4dd770cab9b06d9169aa94f134d7ff7dae3a73310709f0f0b4cdbcca2a8bfa7fa6f4d610719d5a3aa848447e6a755730e5dc911a38e8ec4d7a64dc214
   languageName: node
   linkType: hard
 
@@ -11825,10 +11834,20 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"qrious@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "qrious@npm:4.0.2"
-  checksum: 2/66bf11f005c9cca1477c107801e44d7654c6c639906fdd7c794008238c8226bf50a4644372681218bb0f3361167188887976bbad4b3a46e6d0ce67f9b090d2c6
+"qrcode@npm:^1.4.4":
+  version: 1.4.4
+  resolution: "qrcode@npm:1.4.4"
+  dependencies:
+    buffer: ^5.4.3
+    buffer-alloc: ^1.2.0
+    buffer-from: ^1.1.1
+    dijkstrajs: ^1.0.1
+    isarray: ^2.0.1
+    pngjs: ^3.3.0
+    yargs: ^13.2.4
+  bin:
+    qrcode: ./bin/qrcode
+  checksum: 2/125b75136305c51c5f5f313d36912ae537c43cc4f35d396ed64fc0567ed78510841a4bac56d8de4126d9479225d2ac991b47e4cc053a7ef38208b162d671b893
   languageName: node
   linkType: hard
 
@@ -13387,7 +13406,7 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"string-width@npm:^3.0.0":
+"string-width@npm:^3.0.0, string-width@npm:^3.1.0":
   version: 3.1.0
   resolution: "string-width@npm:3.1.0"
   dependencies:
@@ -13469,7 +13488,7 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"strip-ansi@npm:^5.1.0":
+"strip-ansi@npm:^5.0.0, strip-ansi@npm:^5.1.0, strip-ansi@npm:^5.2.0":
   version: 5.2.0
   resolution: "strip-ansi@npm:5.2.0"
   dependencies:
@@ -15078,6 +15097,17 @@ typescript@^3.9.3:
   languageName: node
   linkType: hard
 
+"wrap-ansi@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "wrap-ansi@npm:5.1.0"
+  dependencies:
+    ansi-styles: ^3.2.0
+    string-width: ^3.0.0
+    strip-ansi: ^5.0.0
+  checksum: 2/9622c3aa2742645e9a6941d297436a433c65ffe1b1416578ad56e0df657716bda6857401c5c9cc485c0abbc04e852aafedf295d87e2d6ec58a01799d6bcb2fdf
+  languageName: node
+  linkType: hard
+
 "wrap-ansi@npm:^6.2.0":
   version: 6.2.0
   resolution: "wrap-ansi@npm:6.2.0"
@@ -15290,6 +15320,34 @@ typescript@^3.9.3:
     camelcase: ^5.0.0
     decamelize: ^1.2.0
   checksum: 2/33871721679053cc38165afc6356c06c3e820459589b5db78f315886105070eb90cbb583cd6515fa4231937d60c80262ca2b7c486d5942576802446318a39597
+  languageName: node
+  linkType: hard
+
+"yargs-parser@npm:^13.1.2":
+  version: 13.1.2
+  resolution: "yargs-parser@npm:13.1.2"
+  dependencies:
+    camelcase: ^5.0.0
+    decamelize: ^1.2.0
+  checksum: 2/82d3b7ab99085d70a5121399ad407d2b98d296538bf7012ac2ce044a61160ca891ea617de6374699d81955d9a61c36a3b2a6a51588e38f710bd211ce2e63c33c
+  languageName: node
+  linkType: hard
+
+"yargs@npm:^13.2.4":
+  version: 13.3.2
+  resolution: "yargs@npm:13.3.2"
+  dependencies:
+    cliui: ^5.0.0
+    find-up: ^3.0.0
+    get-caller-file: ^2.0.1
+    require-directory: ^2.1.1
+    require-main-filename: ^2.0.0
+    set-blocking: ^2.0.0
+    string-width: ^3.0.0
+    which-module: ^2.0.0
+    y18n: ^4.0.0
+    yargs-parser: ^13.1.2
+  checksum: 2/92c612cd14a9217d7421ae4f42bc7c460472633bfc2e45f7f86cd614a61a845670d3bac7c2228c39df7fcecce0b8c12b2af65c785b1f757de974dcf84b5074f9
   languageName: node
   linkType: hard
 
