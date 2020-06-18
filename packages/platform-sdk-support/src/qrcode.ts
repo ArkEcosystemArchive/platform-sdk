@@ -1,29 +1,27 @@
-import QRious from "qrious";
+import BaseCode from "qrcode";
+
+type StringType = "utf8" | "svg" | "terminal" | undefined;
 
 export class QRCode {
-	readonly #instance: QRious;
+	readonly #value: string;
 
-	private constructor() {
-		this.#instance = new QRious();
+	private constructor(value: string) {
+		this.#value = value;
 	}
 
 	public static fromString(value: string): QRCode {
-		return new QRCode().set({ value });
+		return new QRCode(value);
 	}
 
 	public static fromObject(value: object): QRCode {
-		return new QRCode().set({
-			value: JSON.stringify(value),
-		});
+		return new QRCode(JSON.stringify(value));
 	}
 
-	public set(value: object): QRCode {
-		this.#instance.set(value);
-
-		return this;
+	public async toDataURL(): Promise<string> {
+		return BaseCode.toDataURL(this.#value);
 	}
 
-	public toDataURL(): string {
-		return this.#instance.toDataURL("image/png");
+	public async toString(type: StringType = "utf8"): Promise<string> {
+		return BaseCode.toString(this.#value, { type });
 	}
 }
