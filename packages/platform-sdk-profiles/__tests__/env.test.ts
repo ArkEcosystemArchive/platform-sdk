@@ -91,7 +91,7 @@ it("should have a data repository", async () => {
 	expect(subject.data()).toBeInstanceOf(DataRepository);
 });
 
-it("should listen for data modifications, save it and load it", async () => {
+it("should create a profile with data and persist it when instructed to do so", async () => {
 	/**
 	 * Save data in the current environment.
 	 */
@@ -102,7 +102,6 @@ it("should listen for data modifications, save it and load it", async () => {
 	profile.contacts().create({
 		name: "Jane Doe",
 		addresses: [{ coin: "Ethereum", network: "testnet", address: "TESTNET-ADDRESS" }],
-		starred: true,
 	});
 
 	// Create a Wallet

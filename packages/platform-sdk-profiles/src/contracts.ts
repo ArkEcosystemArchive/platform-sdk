@@ -61,18 +61,15 @@ export interface WalletStruct {
 	settings: Record<string, any>;
 }
 
+// Contacts
 export interface ContactStruct {
+	id: string;
 	name: string;
 	addresses: ContactAddress[];
 	starred: boolean;
 }
 
-// Contacts
 export type ContactAddress = { coin: string; network: string; address: string; avatar?: string };
-
-export interface Contact extends ContactStruct {
-	id: string;
-}
 
 // Container Bindings
 export const Identifiers = {
