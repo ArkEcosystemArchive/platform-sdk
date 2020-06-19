@@ -1,5 +1,6 @@
 import "jest-extended";
 import nock from "nock";
+import { v4 as uuidv4 } from "uuid";
 
 import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
@@ -29,7 +30,7 @@ beforeEach(async () => {
 
 	container.set(Identifiers.HttpClient, new HttpClient());
 
-	subject = new Wallet();
+	subject = new Wallet(uuidv4());
 
 	await subject.setCoin(ARK, "devnet");
 	await subject.setIdentity(identity.mnemonic);
@@ -68,7 +69,17 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 
 		const actual: any = subject.toObject();
 
-		expect(actual).toContainAllKeys(["address", "coin", "coinConfig", "network", "publicKey", "data", "settings"]);
+		expect(actual).toContainAllKeys([
+			"id",
+			"address",
+			"coin",
+			"coinConfig",
+			"network",
+			"publicKey",
+			"data",
+			"settings",
+		]);
+		expect(actual.id).toBeString();
 		expect(actual.address).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 		expect(actual.coin).toBe("ARK");
 		expect(actual.coinConfig).toEqual({

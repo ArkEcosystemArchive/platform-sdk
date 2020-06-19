@@ -7,6 +7,54 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.106 - 2020-06-17
+
+### Fixed
+
+-   Set profile avatar based on ID (53ef7ca9, @faustbrian)
+
+## 0.9.105 - 2020-06-17
+
+### Fixed
+
+-   Add `qrious` as production dependency (923a287d, @faustbrian)
+
+## 0.9.104 - 2020-06-17
+
+### Added
+
+-   Implement `WalletRepository#createRandom` (3c9f4b3c, @faustbrian)
+
+### Changed
+
+-   Require ledger transport to be explicitly passed in (56b38e8e, @faustbrian)
+
+## 0.9.102 - 2020-06-17
+
+### Added
+
+-   Implement `LedgerService` for `EOS` (9cbd966d, @sleepdefic1t)
+-   Add `Wallet#votes` and `Wallet#voter` proxy methods (e10f20bd, @faustbrian)
+-   Add `MetaPagination` contract (e8c9f64b, @faustbrian)
+-   Add `TransactionService` proxy methods to `Wallet` (873939a6, @faustbrian)
+-   Add `MessageService` proxy methods to `Wallet` (122deec2, @faustbrian)
+-   Add `LedgerService` proxy methods to `Wallet` (31e1a213, @faustbrian)
+-   Add `ClientService` proxy methods to `Wallet` (1a8784f3, @faustbrian)
+-   Add `LinkService` proxy methods to `Wallet` (b59fe627, @faustbrian)
+-   Implement notifications (62979b01, @faustbrian)
+-   Implement `Currency#fromString` to parse currency strings (ed20a90b, @faustbrian)
+-   Implement `QRCode` (c6f9bb78, @faustbrian)
+
+### Changed
+
+-   Update `LedgerService` (e03a8753, @sleepdefic1t)
+-   Use UUID as wallet identifier (f59dbae1, @faustbrian)
+-   Pass in `HttpClient` instance to markets (3adf9249, @faustbrian)
+-   Make `ProfileRepository#all/create` sync (285453cc, @faustbrian)
+-   Setup boilerplate for `platform-sdk-json-rpc` (baa64776, @faustbrian)
+-   Rename `signer` to `signatory` (1c0d1d6b, @faustbrian)
+-   Less noisy coin proxy methods (9e8e003e, @faustbrian)
+
 ## 0.9.84 - 2020-06-11
 
 ### Added

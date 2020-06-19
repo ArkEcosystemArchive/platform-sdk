@@ -14,10 +14,14 @@ export class MessageService implements Contracts.MessageService {
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		const { message, publicKey, signature } = Crypto.Message.sign(input.message, BIP39.normalize(input.mnemonic));
 
-		return { message, signer: publicKey, signature };
+		return { message, signatory: publicKey, signature };
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return Crypto.Message.verify({ message: input.message, publicKey: input.signer, signature: input.signature });
+		return Crypto.Message.verify({
+			message: input.message,
+			publicKey: input.signatory,
+			signature: input.signature,
+		});
 	}
 }

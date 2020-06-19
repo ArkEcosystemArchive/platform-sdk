@@ -12,11 +12,16 @@ export class Wallet {
 	#dataRepository!: DataRepository;
 	#settingRepository!: SettingRepository;
 
+	#id!: string;
 	#coin!: Coins.Coin;
 	#wallet!: Contracts.WalletData;
+
+	#address!: string;
+	#publicKey!: string | undefined;
 	#avatar!: string;
 
-	public constructor() {
+	public constructor(id: string) {
+		this.#id = id;
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 	}
@@ -35,11 +40,30 @@ export class Wallet {
 	}
 
 	public async setIdentity(mnemonic: string): Promise<Wallet> {
-		return this.setAddress(await this.#coin.identity().address().fromMnemonic(mnemonic));
+		this.#address = await this.#coin.identity().address().fromMnemonic(mnemonic);
+		this.#publicKey = await this.#coin.identity().publicKey().fromMnemonic(mnemonic);
+
+		return this.setAddress(this.#address);
 	}
 
 	public async setAddress(address: string): Promise<Wallet> {
-		this.#wallet = await this.#coin.client().wallet(address);
+		const isValidAddress: boolean = await this.coin().identity().address().validate(address);
+
+		if (!isValidAddress) {
+			throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
+		}
+
+		try {
+			this.#wallet = await this.#coin.client().wallet(address);
+			this.#address = this.#wallet.address();
+		} catch {
+			/**
+			 * TODO: decide what to do if the wallet couldn't be found
+			 *
+			 * A missing wallet could mean that the wallet is legitimate
+			 * but has no transactions or that the address is wrong.
+			 */
+		}
 
 		this.setAvatar(Avatar.make(this.address()));
 
@@ -58,6 +82,10 @@ export class Wallet {
 	 * These methods serve as getters to the underlying data and dependencies.
 	 */
 
+	public id(): string {
+		return this.#id;
+	}
+
 	public coin(): Coins.Coin {
 		return this.#coin;
 	}
@@ -72,11 +100,11 @@ export class Wallet {
 	}
 
 	public address(): string {
-		return this.#wallet.address();
+		return this.#address;
 	}
 
 	public publicKey(): string | undefined {
-		return this.#wallet.publicKey();
+		return this.#publicKey;
 	}
 
 	public balance(): BigNumber {
@@ -100,6 +128,7 @@ export class Wallet {
 		delete coinConfig.httpClient;
 
 		return {
+			id: this.id(),
 			coin: this.coin().manifest().get<string>("name"),
 			coinConfig,
 			network: this.network(),
@@ -119,15 +148,103 @@ export class Wallet {
 	 * Any changes in how things need to be handled by consumers should be made in this package!
 	 */
 
-	public transactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().transactions({ address: this.address() });
+	public manifest(): Coins.Manifest {
+		return this.#coin.manifest();
 	}
 
-	public sentTransactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().transactions({ senderId: this.address() });
+	public config(): Coins.Config {
+		return this.#coin.config();
 	}
 
-	public receivedTransactions(): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().transactions({ recipientId: this.address() });
+	public guard(): Coins.Guard {
+		return this.#coin.guard();
+	}
+
+	public client(): Contracts.ClientService {
+		return this.#coin.client();
+	}
+
+	public fee(): Contracts.FeeService {
+		return this.#coin.fee();
+	}
+
+	public identity(): Contracts.IdentityService {
+		return this.#coin.identity();
+	}
+
+	public ledger(): Contracts.LedgerService {
+		return this.#coin.ledger();
+	}
+
+	public link(): Contracts.LinkService {
+		return this.#coin.link();
+	}
+
+	public message(): Contracts.MessageService {
+		return this.#coin.message();
+	}
+
+	public peer(): Contracts.PeerService {
+		return this.#coin.peer();
+	}
+
+	public transaction(): Contracts.TransactionService {
+		return this.#coin.transaction();
+	}
+
+	public transactions(
+		query: Contracts.ClientTransactionsInput,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().transactions({ address: this.address(), ...query });
+	}
+
+	public sentTransactions(
+		query: Contracts.ClientTransactionsInput,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().transactions({ senderId: this.address(), ...query });
+	}
+
+	public receivedTransactions(
+		query: Contracts.ClientTransactionsInput,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().transactions({ recipientId: this.address(), ...query });
+	}
+
+	public async wallet(id: string): Promise<Contracts.WalletData> {
+		return this.#coin.client().wallet(id);
+	}
+
+	public async wallets(
+		query: Contracts.ClientWalletsInput,
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+		return this.#coin.client().wallets(query);
+	}
+
+	public async delegate(id: string): Promise<Contracts.DelegateData> {
+		return this.#coin.client().delegate(id);
+	}
+
+	public async delegates(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.DelegateDataCollection>> {
+		return this.#coin.client().delegates(query);
+	}
+
+	public votes(
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		return this.#coin.client().votes(this.address(), query);
+	}
+
+	public voters(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+		return this.#coin.client().voters(this.address(), query);
+	}
+
+	public async syncing(): Promise<boolean> {
+		return this.#coin.client().syncing();
+	}
+
+	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+		return this.#coin.client().broadcast(transactions);
 	}
 }

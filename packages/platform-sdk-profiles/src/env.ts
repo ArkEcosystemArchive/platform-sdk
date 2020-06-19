@@ -94,6 +94,7 @@ export class Environment {
 						mapRules(
 							profiles[key].wallets,
 							object({
+								id: string().required(),
 								coin: string().required(),
 								coinConfig: object({
 									network: object({
@@ -137,6 +138,7 @@ export class Environment {
 							}).noUnknown(),
 						),
 					),
+					notifications: object().required(),
 					data: object().required(),
 					settings: object().required(),
 				}).noUnknown();

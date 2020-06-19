@@ -3,6 +3,7 @@ import { Data } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { PriceTracker } from "../src";
+import { HttpClient } from "./__stubs__/client";
 
 const BASE_URL_COINCAP = "https://api.coincap.io/v2";
 const token = "ARK";
@@ -11,7 +12,7 @@ const currency = "USD";
 let subject: PriceTracker;
 
 beforeEach(() => {
-	subject = new PriceTracker();
+	subject = new PriceTracker(new HttpClient());
 
 	nock(BASE_URL_COINCAP).get("/assets").query(true).reply(200, require("./__fixtures__/assets.json"));
 

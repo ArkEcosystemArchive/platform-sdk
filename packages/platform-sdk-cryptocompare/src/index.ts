@@ -1,13 +1,17 @@
 import { Contracts, Data } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import ky from "ky-universal";
 
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
 import { HistoricalVolumeTransformer } from "./transformers/historical-volume-transformer";
 import { MarketTransformer } from "./transformers/market-transformer";
 
 export class PriceTracker implements Contracts.PriceTracker {
+	readonly #httpClient: Contracts.HttpClient;
 	readonly #host: string = "https://min-api.cryptocompare.com";
+
+	public constructor(httpClient: Contracts.HttpClient) {
+		this.#httpClient = httpClient;
+	}
 
 	public async verifyToken(token: string): Promise<boolean> {
 		try {
@@ -63,7 +67,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return response[options.currency.toUpperCase()];
 	}
 
-	private async get(path: string, searchParams = {}): Promise<any> {
-		return ky.get(`${this.#host}/${path}`, { searchParams }).json();
+	private async get(path: string, query = {}): Promise<any> {
+		return this.#httpClient.get(`${this.#host}/${path}`, query);
 	}
 }

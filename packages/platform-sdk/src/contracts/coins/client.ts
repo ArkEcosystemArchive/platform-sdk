@@ -3,8 +3,13 @@ import { KeyValuePair } from "../types";
 import { DelegateData, TransactionData, WalletData } from "./data";
 import { SignedTransaction } from "./transaction";
 
+export interface MetaPagination {
+	prev: string | undefined;
+	next: string | undefined;
+}
+
 export interface CollectionResponse<T> {
-	meta: KeyValuePair;
+	meta: MetaPagination;
 	data: T;
 }
 
@@ -26,8 +31,8 @@ export interface ClientService {
 	delegate(id: string): Promise<DelegateData>;
 	delegates(query?: ClientWalletsInput): Promise<CollectionResponse<DelegateDataCollection>>;
 
-	votes(id: string): Promise<CollectionResponse<TransactionDataCollection>>;
-	voters(id: string): Promise<CollectionResponse<WalletDataCollection>>;
+	votes(id: string, query?: KeyValuePair): Promise<CollectionResponse<TransactionDataCollection>>;
+	voters(id: string, query?: KeyValuePair): Promise<CollectionResponse<WalletDataCollection>>;
 
 	syncing(): Promise<boolean>;
 
@@ -35,10 +40,12 @@ export interface ClientService {
 }
 
 export interface ClientPagination {
-	// Offsetting
+	// Paging
 	page?: number;
-	limit?: number;
+	perPage?: number;
+	// Offsetting
 	offset?: number;
+	limit?: number;
 	// Sorting
 	orderBy?: string;
 }

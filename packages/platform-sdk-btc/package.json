@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-btc",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.84",
+	"version": "0.9.106",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -24,7 +24,6 @@
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@ledgerhq/hw-app-btc": "^5.17.0",
-		"@ledgerhq/hw-transport-node-hid-singleton": "^5.17.0",
 		"bignumber.js": "^9.0.0",
 		"bitcoinjs-lib": "^5.1.10",
 		"bitcore-lib": "^8.20.4",

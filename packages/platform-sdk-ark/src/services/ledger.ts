@@ -1,29 +1,20 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import LedgerTransport from "@ledgerhq/hw-transport-node-hid-singleton";
 
 export class LedgerService implements Contracts.LedgerService {
-	#ledger: LedgerTransport;
+	#ledger: Contracts.LedgerTransport;
 	#transport!: ARKTransport;
 
-	private constructor(transport: Contracts.LedgerTransport) {
-		this.#ledger = transport;
-	}
-
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
-		try {
-			return new LedgerService(config.get("services.ledger.transport"));
-		} catch {
-			return new LedgerService(LedgerTransport);
-		}
+		return new LedgerService();
 	}
 
 	public async destruct(): Promise<void> {
 		await this.disconnect();
 	}
 
-	public async connect(): Promise<void> {
-		this.#ledger = await this.#ledger.open();
+	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
+		this.#ledger = await transport.open();
 		this.#transport = new ARKTransport(this.#ledger);
 	}
 
@@ -44,7 +35,7 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public async signTransactionWithSchnorr(path: string, payload: Buffer): Promise<string> {
-		return this.#transport.signTransaction(path, payload);
+		return this.#transport.signTransactionWithSchnorr(path, payload);
 	}
 
 	public async signMessage(path: string, payload: Buffer): Promise<string> {
@@ -52,6 +43,6 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public async signMessageWithSchnorr(path: string, payload: Buffer): Promise<string> {
-		return this.#transport.signMessage(path, payload);
+		return this.#transport.signMessageWithSchnorr(path, payload);
 	}
 }

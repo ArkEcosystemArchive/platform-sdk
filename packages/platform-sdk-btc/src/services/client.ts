@@ -68,11 +68,17 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
-	public async votes(id: string): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public async votes(
+		id: string,
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async voters(id: string): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async voters(
+		id: string,
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 

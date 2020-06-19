@@ -45,7 +45,7 @@ export class ClientService implements Contracts.ClientService {
 		const { body } = await this.#connection.api("transactions").search(query);
 
 		return {
-			meta: body.meta,
+			meta: this.createMetaPagination(body),
 			data: new Coins.TransactionDataCollection(body.data.map((transaction) => new TransactionData(transaction))),
 		};
 	}
@@ -62,7 +62,7 @@ export class ClientService implements Contracts.ClientService {
 		const { body } = await this.#connection.api("wallets").search(query);
 
 		return {
-			meta: body.meta,
+			meta: this.createMetaPagination(body),
 			data: new Coins.WalletDataCollection(body.data.map((wallet) => new WalletData(wallet))),
 		};
 	}
@@ -79,25 +79,31 @@ export class ClientService implements Contracts.ClientService {
 		const { body } = await this.#connection.api("delegates").all(query);
 
 		return {
-			meta: body.meta,
+			meta: this.createMetaPagination(body),
 			data: new Coins.DelegateDataCollection(body.data.map((wallet) => new DelegateData(wallet))),
 		};
 	}
 
-	public async votes(id: string): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		const { body } = await this.#connection.api("wallets").votes(id);
+	public async votes(
+		id: string,
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		const { body } = await this.#connection.api("wallets").votes(id, query);
 
 		return {
-			meta: body.meta,
+			meta: this.createMetaPagination(body),
 			data: new Coins.TransactionDataCollection(body.data.map((transaction) => new TransactionData(transaction))),
 		};
 	}
 
-	public async voters(id: string): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
-		const { body } = await this.#connection.api("delegates").voters(id);
+	public async voters(
+		id: string,
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+		const { body } = await this.#connection.api("delegates").voters(id, query);
 
 		return {
-			meta: body.meta,
+			meta: this.createMetaPagination(body),
 			data: new Coins.WalletDataCollection(body.data.map((wallet) => new WalletData(wallet))),
 		};
 	}
@@ -144,5 +150,12 @@ export class ClientService implements Contracts.ClientService {
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return this.#http.post(`${this.#peer}/${path}`, body);
+	}
+
+	private createMetaPagination(body): Contracts.MetaPagination {
+		return {
+			prev: body.meta.previous,
+			next: body.meta.next,
+		};
 	}
 }

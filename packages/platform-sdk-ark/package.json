@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-ark",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.84",
+	"version": "0.9.106",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -27,7 +27,6 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"@ledgerhq/hw-transport-node-hid-singleton": "^5.16.0",
 		"is-url-superb": "^3.0.0",
 		"lodash.orderby": "^4.6.0",
 		"semver": "^7.3.2",

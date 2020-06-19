@@ -96,7 +96,7 @@ it("should listen for data modifications, save it and load it", async () => {
 	 * Save data in the current environment.
 	 */
 
-	const profile = await subject.profiles().create("John Doe");
+	const profile = subject.profiles().create("John Doe");
 
 	// Create a Contact
 	profile.contacts().create({
@@ -107,6 +107,14 @@ it("should listen for data modifications, save it and load it", async () => {
 
 	// Create a Wallet
 	await profile.wallets().create(identity.mnemonic, ARK, "devnet");
+
+	// Create a Notification
+	profile.notifications().push({
+		icon: "warning",
+		name: "Ledger Update Available",
+		body: "...",
+		action: "Read Changelog",
+	});
 
 	// Create a DataEntry
 	profile.data().set("key", "value");
@@ -132,6 +140,7 @@ it("should listen for data modifications, save it and load it", async () => {
 	expect(newProfile).toBeInstanceOf(Profile);
 	expect(newProfile.wallets().keys()).toHaveLength(1);
 	expect(newProfile.contacts().keys()).toHaveLength(1);
+	expect(newProfile.notifications().keys()).toHaveLength(1);
 	expect(newProfile.data().all()).toEqual({ key: "value" });
 	expect(newProfile.settings().all()).toEqual({ ADVANCED_MODE: "value" });
 });

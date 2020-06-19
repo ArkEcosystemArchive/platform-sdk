@@ -98,7 +98,6 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_services_ledger_.ledgerservice.html#_bip44sessionpath" class="tsd-kind-icon">#bip44<wbr>Session<wbr>Path</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_services_ledger_.ledgerservice.html#_ledger" class="tsd-kind-icon">#ledger</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_services_ledger_.ledgerservice.html#_transport" class="tsd-kind-icon">#transport</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -128,21 +127,15 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Ledger<wbr>Service<span class="tsd-signature-symbol">(</span>transport<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LedgerTransport</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_services_ledger_.ledgerservice.html" class="tsd-signature-type">LedgerService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Ledger<wbr>Service<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_services_ledger_.ledgerservice.html" class="tsd-signature-type">LedgerService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L8">platform-sdk-neo/src/services/ledger.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L6">platform-sdk-neo/src/services/ledger.ts:6</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>transport: <span class="tsd-signature-type">LedgerTransport</span></h5>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_services_ledger_.ledgerservice.html" class="tsd-signature-type">LedgerService</a></h4>
 						</li>
 					</ul>
@@ -156,27 +149,17 @@
 					<div class="tsd-signature tsd-kind-icon">#bip44<wbr>Session<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L8">platform-sdk-neo/src/services/ledger.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L6">platform-sdk-neo/src/services/ledger.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_ledger" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #ledger</h3>
-					<div class="tsd-signature tsd-kind-icon">#ledger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">LedgerTransport</span></div>
+					<div class="tsd-signature tsd-kind-icon">#ledger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Contracts.LedgerTransport</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L6">platform-sdk-neo/src/services/ledger.ts:6</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_transport" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #transport</h3>
-					<div class="tsd-signature tsd-kind-icon">#transport<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L7">platform-sdk-neo/src/services/ledger.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L5">platform-sdk-neo/src/services/ledger.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -187,15 +170,21 @@
 					<a name="connect" class="tsd-anchor"></a>
 					<h3>connect</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">(</span>transport<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Contracts.LedgerTransport</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L27">platform-sdk-neo/src/services/ledger.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L20">platform-sdk-neo/src/services/ledger.ts:20</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transport: <span class="tsd-signature-type">Contracts.LedgerTransport</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -210,7 +199,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L23">platform-sdk-neo/src/services/ledger.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L16">platform-sdk-neo/src/services/ledger.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -227,7 +216,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L31">platform-sdk-neo/src/services/ledger.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L24">platform-sdk-neo/src/services/ledger.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -244,7 +233,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L41">platform-sdk-neo/src/services/ledger.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L34">platform-sdk-neo/src/services/ledger.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -267,7 +256,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L35">platform-sdk-neo/src/services/ledger.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L28">platform-sdk-neo/src/services/ledger.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -284,7 +273,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L79">platform-sdk-neo/src/services/ledger.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L72">platform-sdk-neo/src/services/ledger.ts:72</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -310,13 +299,13 @@
 					<a name="neosigntransaction" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> neo<wbr>Sign<wbr>Transaction</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">neo<wbr>Sign<wbr>Transaction<span class="tsd-signature-symbol">(</span>transport<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LedgerTransport</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">neo<wbr>Sign<wbr>Transaction<span class="tsd-signature-symbol">(</span>transport<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Contracts.LedgerTransport</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L103">platform-sdk-neo/src/services/ledger.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L96">platform-sdk-neo/src/services/ledger.ts:96</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -331,7 +320,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>transport: <span class="tsd-signature-type">LedgerTransport</span></h5>
+									<h5>transport: <span class="tsd-signature-type">Contracts.LedgerTransport</span></h5>
 								</li>
 								<li>
 									<h5>path: <span class="tsd-signature-type">string</span></h5>
@@ -354,7 +343,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L66">platform-sdk-neo/src/services/ledger.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L59">platform-sdk-neo/src/services/ledger.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -380,7 +369,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L70">platform-sdk-neo/src/services/ledger.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L63">platform-sdk-neo/src/services/ledger.ts:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -406,7 +395,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L48">platform-sdk-neo/src/services/ledger.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L41">platform-sdk-neo/src/services/ledger.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -432,7 +421,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L62">platform-sdk-neo/src/services/ledger.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L55">platform-sdk-neo/src/services/ledger.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -458,7 +447,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L93">platform-sdk-neo/src/services/ledger.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L86">platform-sdk-neo/src/services/ledger.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -490,7 +479,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/60c6d161/packages/platform-sdk-neo/src/services/ledger.ts#L15">platform-sdk-neo/src/services/ledger.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/6ec661fc/packages/platform-sdk-neo/src/services/ledger.ts#L12">platform-sdk-neo/src/services/ledger.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -597,9 +586,6 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_services_ledger_.ledgerservice.html#_ledger" class="tsd-kind-icon">#ledger</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_services_ledger_.ledgerservice.html#_transport" class="tsd-kind-icon">#transport</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_services_ledger_.ledgerservice.html#connect" class="tsd-kind-icon">connect</a>

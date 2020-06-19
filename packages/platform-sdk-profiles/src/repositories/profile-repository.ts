@@ -19,6 +19,7 @@ export class ProfileRepository {
 			}
 
 			result.contacts().fill(profile.contacts);
+			result.notifications().fill(profile.notifications);
 			result.data().fill(profile.data);
 			result.settings().fill(profile.settings);
 
@@ -26,10 +27,8 @@ export class ProfileRepository {
 		}
 	}
 
-	public async all(): Promise<Profile[]> {
-		const profiles: Profile[] = Object.values(this.#data.all());
-
-		return Promise.all(profiles.map((profile: any) => new Profile(profile.id, profile.name)));
+	public all(): Profile[] {
+		return Object.values(this.#data.all());
 	}
 
 	public get(id: string): Profile {
@@ -40,8 +39,8 @@ export class ProfileRepository {
 		return this.#data.get(id) as Profile;
 	}
 
-	public async create(name: string): Promise<Profile> {
-		const profiles: Profile[] = await this.all();
+	public create(name: string): Profile {
+		const profiles: Profile[] = this.all();
 
 		for (const profile of profiles) {
 			if (profile.name() === name) {

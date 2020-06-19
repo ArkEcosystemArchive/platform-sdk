@@ -1,4 +1,6 @@
 import { Coins } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import { v4 as uuidv4 } from "uuid";
 
 import { container } from "../container";
 import { Identifiers } from "../contracts";
@@ -25,16 +27,23 @@ export class WalletRepository {
 	}
 
 	public async create(mnemonic: string, coin: Coins.CoinSpec, network: string): Promise<Wallet> {
-		const wallet: Wallet = new Wallet();
+		const id: string = uuidv4();
+		const wallet: Wallet = new Wallet(id);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setIdentity(mnemonic);
 
-		return this.storeWallet(wallet);
+		return this.storeWallet(id, wallet);
 	}
 
-	public async createFromObject({ coin, coinConfig, network, address }): Promise<Wallet> {
-		const wallet: Wallet = new Wallet();
+	public async createRandom(coin: Coins.CoinSpec, network: string): Promise<{ mnemonic: string; wallet: Wallet }> {
+		const mnemonic: string = BIP39.generate();
+
+		return { mnemonic, wallet: await this.create(mnemonic, coin, network) };
+	}
+
+	public async createFromObject({ id, coin, coinConfig, network, address }): Promise<Wallet> {
+		const wallet: Wallet = new Wallet(id);
 
 		await wallet.setCoin(container.get<any>(Identifiers.Coins)[coin], network);
 		await wallet.setAddress(address);
@@ -43,10 +52,10 @@ export class WalletRepository {
 			wallet.coin().config().set(key, value);
 		}
 
-		return this.storeWallet(wallet);
+		return this.storeWallet(wallet.id(), wallet);
 	}
 
-	public find(id: string): Wallet {
+	public findById(id: string): Wallet {
 		const wallet: Wallet | undefined = this.#data.get(id);
 
 		if (!wallet) {
@@ -54,10 +63,6 @@ export class WalletRepository {
 		}
 
 		return wallet;
-	}
-
-	public async destroy(id: string): Promise<void> {
-		this.#data.forget(id);
 	}
 
 	public findByAddress(address: string): Wallet | undefined {
@@ -72,7 +77,11 @@ export class WalletRepository {
 		return this.values().filter((wallet: Wallet) => wallet.coin().manifest().get<string>("name") === coin);
 	}
 
-	public async flush(): Promise<void> {
+	public forget(id: string): void {
+		this.#data.forget(id);
+	}
+
+	public flush(): void {
 		this.#data.flush();
 	}
 
@@ -86,12 +95,12 @@ export class WalletRepository {
 		return result;
 	}
 
-	private storeWallet(wallet: Wallet): Wallet {
+	private storeWallet(id: string, wallet: Wallet): Wallet {
 		if (this.findByAddress(wallet.address())) {
 			throw new Error(`The wallet [${wallet.address()}] already exists.`);
 		}
 
-		this.#data.set(wallet.address(), wallet);
+		this.#data.set(id, wallet);
 
 		return wallet;
 	}

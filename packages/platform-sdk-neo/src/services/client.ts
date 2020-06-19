@@ -48,14 +48,18 @@ export class ClientService implements Contracts.ClientService {
 	public async transactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		const response = await this.get(`get_address_abstracts/${query.address}/${query.page || 1}`);
+		const basePath = `get_address_abstracts/${query.address}`;
+		const basePage = query.page || 1;
+
+		const response = await this.get(`${basePath}/${basePage}`);
+
+		const prevPage = response.page_number > 1 ? basePage - 1 : undefined;
+		const nextPage = response.total_pages > 1 ? basePage + 1 : undefined;
 
 		return {
 			meta: {
-				pageCount: response.total_pages,
-				totalCount: response.total_entries,
-				count: response.page_size,
-				current: response.page_number,
+				prev: `${this.#peer}/${basePath}/${prevPage}`,
+				next: `${this.#peer}/${basePath}/${nextPage}`,
 			},
 			data: new Coins.TransactionDataCollection(
 				response.entries.map((transaction) => new TransactionData(transaction)),
@@ -83,11 +87,17 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
-	public async votes(id: string): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public async votes(
+		id: string,
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async voters(id: string): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async voters(
+		id: string,
+		query?: Contracts.KeyValuePair,
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 

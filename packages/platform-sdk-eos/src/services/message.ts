@@ -16,12 +16,12 @@ export class MessageService implements Contracts.MessageService {
 
 		return {
 			message: input.message,
-			signer: ecc.privateToPublic(mnemonic),
+			signatory: ecc.privateToPublic(mnemonic),
 			signature: ecc.sign(input.message, mnemonic),
 		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return ecc.verify(input.signature, input.message, input.signer);
+		return ecc.verify(input.signature, input.message, input.signatory);
 	}
 }

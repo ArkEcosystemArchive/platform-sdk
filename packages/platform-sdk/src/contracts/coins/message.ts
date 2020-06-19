@@ -8,7 +8,7 @@ export interface MessageService {
 
 export interface SignedMessage {
 	message: string;
-	signer: string;
+	signatory: string;
 	signature: string;
 }
 

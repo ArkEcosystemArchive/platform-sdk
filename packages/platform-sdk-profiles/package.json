@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-profiles",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.84",
+	"version": "0.9.106",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -21,6 +21,7 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
+		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"dot-prop": "^5.2.0",
 		"localforage": "^1.7.4",

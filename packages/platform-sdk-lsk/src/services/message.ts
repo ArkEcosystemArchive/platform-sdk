@@ -13,13 +13,13 @@ export class MessageService implements Contracts.MessageService {
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		const { message, publicKey, signature } = cryptography.signMessageWithPassphrase(input.message, input.mnemonic);
 
-		return { message, signer: publicKey, signature };
+		return { message, signatory: publicKey, signature };
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		return cryptography.verifyMessageWithPublicKey({
 			message: input.message,
-			publicKey: input.signer,
+			publicKey: input.signatory,
 			signature: input.signature,
 		});
 	}
