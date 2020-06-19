@@ -131,6 +131,7 @@ export class Environment {
 											coin: string().required(),
 											network: string().required(),
 											address: string().required(),
+											avatar: string().required(),
 										}).noUnknown(),
 									)
 									.required(),
