@@ -12,7 +12,6 @@
 	"scripts": {
 		"build": "yarn clean && tsc",
 		"build:watch": "yarn build -w",
-		"build:docs": "typedoc --out docs src",
 		"clean": "rimraf .coverage dist tmp",
 		"test": "jest",
 		"test:watch": "jest --watchAll",
