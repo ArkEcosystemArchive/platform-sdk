@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { Avatar } from "../avatar";
-import { Contact, ContactAddress, ContactStruct } from "../contracts";
+import { Contact } from "../contact";
+import { ContactAddress } from "../contracts";
 import { DataRepository } from "./data-repository";
 
 export class ContactRepository {
@@ -23,20 +23,20 @@ export class ContactRepository {
 		return this.#data.values();
 	}
 
-	public create(data: ContactStruct): Contact {
-		for (const item of data.addresses) {
-			item.avatar = Avatar.make(item.address);
-		}
+	public create(data: { name: string; addresses: ContactAddress[] }): Contact {
+		const id: string = uuidv4();
 
-		const contact: Contact = { id: uuidv4(), ...data };
+		const contact: Contact = new Contact({ id, starred: false, ...data });
 
-		this.#data.set(contact.id, contact);
+		this.#data.set(id, contact);
 
 		return contact;
 	}
 
-	public fill(entries: object): void {
-		this.#data.fill(entries);
+	public fill(contacts: object): void {
+		for (const [id, contact] of Object.entries(contacts)) {
+			this.#data.set(id, new Contact(contact));
+		}
 	}
 
 	public findById(id: string): Contact {
@@ -78,10 +78,20 @@ export class ContactRepository {
 	private findByColumn(column: string, value: string): Contact[] {
 		const result: Contact[] = [];
 
-		for (const [id, contact] of Object.entries(this.all())) {
-			if (contact.addresses.find((address: ContactAddress) => address[column] === value)) {
+		for (const contact of Object.values(this.all())) {
+			if (contact.addresses().find((address: ContactAddress) => address[column] === value)) {
 				result.push(contact);
 			}
+		}
+
+		return result;
+	}
+
+	public toObject(): Record<string, object> {
+		const result: Record<string, object> = {};
+
+		for (const [id, contact] of Object.entries(this.#data.all())) {
+			result[id] = contact.toObject();
 		}
 
 		return result;

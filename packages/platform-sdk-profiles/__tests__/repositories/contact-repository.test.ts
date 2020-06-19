@@ -7,13 +7,11 @@ let subject: ContactRepository;
 const john = {
 	name: "John Doe",
 	addresses: [{ coin: "Bitcoin", network: "livenet", address: "LIVENET-ADDRESS" }],
-	starred: false,
 };
 
 const jane = {
 	name: "Jane Doe",
 	addresses: [{ coin: "Ethereum", network: "testnet", address: "TESTNET-ADDRESS" }],
-	starred: true,
 };
 
 beforeEach(() => {
@@ -39,7 +37,7 @@ test("ContactRepository#find", () => {
 
 	const contact = subject.create(john);
 
-	expect(subject.findById(contact.id)).toBeObject();
+	expect(subject.findById(contact.id())).toBeObject();
 });
 
 test("ContactRepository#update", () => {
@@ -47,9 +45,9 @@ test("ContactRepository#update", () => {
 
 	const contact = subject.create(john);
 
-	subject.update(contact.id, { name: "Jane Doe" });
+	subject.update(contact.id(), { name: "Jane Doe" });
 
-	expect(subject.findById(contact.id)).not.toEqual(contact);
+	expect(subject.findById(contact.id())).not.toEqual(contact);
 });
 
 test("ContactRepository#forget", () => {
@@ -57,9 +55,9 @@ test("ContactRepository#forget", () => {
 
 	const contact = subject.create(john);
 
-	subject.forget(contact.id);
+	subject.forget(contact.id());
 
-	expect(() => subject.findById(contact.id)).toThrowError("Failed to find");
+	expect(() => subject.findById(contact.id())).toThrowError("Failed to find");
 });
 
 test("ContactRepository#findByAddress", () => {

@@ -66,7 +66,7 @@ export class Profile {
 			id: this.id(),
 			name: this.name(),
 			wallets: this.wallets().toObject(),
-			contacts: this.contacts().all(),
+			contacts: this.contacts().toObject(),
 			notifications: this.notifications().all(),
 			data: this.data().all(),
 			settings: this.settings().all(),
