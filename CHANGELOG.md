@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.110 - 2020-06-19
+
+### Changed
+
+-   Turn contact POJO into a class (661793a4, @faustbrian)
+
+### Fixed
+
+-   Add missing exports (82698aa4, @faustbrian)
+
 ## 0.9.108 - 2020-06-19
 
 ### Added
