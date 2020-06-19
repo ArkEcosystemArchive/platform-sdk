@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.108 - 2020-06-19
+
+### Added
+
+-   Add avatar to contacts (b092f931, @faustbrian)
+
+### Changed
+
+-   Replace `qrious` with `node-qrcode` (e2bb32ca, @faustbrian)
+
 ## 0.9.106 - 2020-06-17
 
 ### Fixed
