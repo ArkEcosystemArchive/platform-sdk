@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
+import { Avatar } from "../avatar";
 import { Contact, ContactAddress, ContactStruct } from "../contracts";
 import { DataRepository } from "./data-repository";
 
@@ -23,6 +24,10 @@ export class ContactRepository {
 	}
 
 	public create(data: ContactStruct): Contact {
+		for (const item of data.addresses) {
+			item.avatar = Avatar.make(item.address);
+		}
+
 		const contact: Contact = { id: uuidv4(), ...data };
 
 		this.#data.set(contact.id, contact);

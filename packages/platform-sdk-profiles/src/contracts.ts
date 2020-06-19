@@ -68,7 +68,7 @@ export interface ContactStruct {
 }
 
 // Contacts
-export type ContactAddress = { coin: string; network: string; address: string };
+export type ContactAddress = { coin: string; network: string; address: string; avatar?: string };
 
 export interface Contact extends ContactStruct {
 	id: string;
