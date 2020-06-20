@@ -54,6 +54,8 @@ export class Wallet {
 			throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
 		}
 
+		this.#address = address;
+
 		try {
 			const { balance, nonce } = await this.#coin.client().wallet(address);
 
