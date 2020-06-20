@@ -109,6 +109,10 @@ export class Environment {
 											slip44: number().integer().required(),
 										}).required(),
 										hosts: array().of(string()).required(),
+										voting: object({
+											enabled: boolean().required(),
+											signular: boolean().required(),
+										}).required(),
 									}).noUnknown(),
 								}).noUnknown(),
 								network: string().required(),
