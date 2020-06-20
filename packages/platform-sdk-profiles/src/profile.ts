@@ -1,3 +1,5 @@
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
+
 import { Avatar } from "./avatar";
 import { ProfileStruct } from "./contracts";
 import { ProfileSetting } from "./enums";
@@ -6,6 +8,7 @@ import { DataRepository } from "./repositories/data-repository";
 import { NotificationRepository } from "./repositories/notification-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
+import { Wallet } from "./wallet";
 
 export class Profile {
 	#contactRepository!: ContactRepository;
@@ -39,6 +42,12 @@ export class Profile {
 
 	public avatar(): string {
 		return this.#avatar;
+	}
+
+	public balance(): BigNumber {
+		return this.wallets()
+			.values()
+			.reduce((total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()), BigNumber.ZERO);
 	}
 
 	public wallets(): WalletRepository {
