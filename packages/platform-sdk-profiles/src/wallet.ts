@@ -97,14 +97,8 @@ export class Wallet {
 		return this.#coin.network().id;
 	}
 
-	public avatar(): string {
-		const value: string | undefined = this.data().get(WalletSetting.Avatar);
-
-		if (value === undefined) {
-			return this.#avatar;
-		}
-
-		return value;
+	public alias(): string | undefined {
+		return this.data().get(WalletSetting.Alias);
 	}
 
 	public address(): string {
@@ -133,6 +127,16 @@ export class Wallet {
 		}
 
 		return BigNumber.make(value);
+	}
+
+	public avatar(): string {
+		const value: string | undefined = this.data().get(WalletSetting.Avatar);
+
+		if (value === undefined) {
+			return this.#avatar;
+		}
+
+		return value;
 	}
 
 	public data(): DataRepository {
