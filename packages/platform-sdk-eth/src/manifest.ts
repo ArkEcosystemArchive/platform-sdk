@@ -14,6 +14,10 @@ export const manifest = {
 				slip44: 60,
 			},
 			hosts: ["https://coins.com/api/eth"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		ropsten: {
 			id: "ropsten",
@@ -28,6 +32,10 @@ export const manifest = {
 				slip44: 60,
 			},
 			hosts: ["https://coins.com/api/eth"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		rinkeby: {
 			id: "rinkeby",
@@ -38,6 +46,10 @@ export const manifest = {
 				slip44: 60,
 			},
 			hosts: ["https://coins.com/api/eth"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		goerli: {
 			id: "goerli",
@@ -52,6 +64,10 @@ export const manifest = {
 				slip44: 60,
 			},
 			hosts: ["https://coins.com/api/eth"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		kovan: {
 			id: "kovan",
@@ -66,6 +82,10 @@ export const manifest = {
 				slip44: 60,
 			},
 			hosts: ["https://coins.com/api/eth"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 	},
 	abilities: {

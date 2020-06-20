@@ -31,6 +31,10 @@ export const manifest = {
 				"https://hub37.lisk.io",
 				"https://hub38.lisk.io",
 			],
+			voting: {
+				enabled: true,
+				singular: false,
+			},
 		},
 		testnet: {
 			id: "testnet",
@@ -45,6 +49,10 @@ export const manifest = {
 				slip44: 134,
 			},
 			hosts: ["https://testnet.lisk.io"],
+			voting: {
+				enabled: true,
+				singular: false,
+			},
 		},
 		betanet: {
 			id: "betanet",
@@ -59,6 +67,10 @@ export const manifest = {
 				slip44: 134,
 			},
 			hosts: ["https://betanet.lisk.io"],
+			voting: {
+				enabled: true,
+				singular: false,
+			},
 		},
 	},
 	abilities: {

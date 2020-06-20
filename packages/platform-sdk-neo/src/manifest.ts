@@ -34,6 +34,10 @@ export const manifest = {
 				"https://seed8.cityofzion.io:443",
 				"https://seed9.cityofzion.io:443",
 			],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		testnet: {
 			id: "testnet",
@@ -61,6 +65,10 @@ export const manifest = {
 				"http://seed9.ngd.network:20332",
 				"http://seed10.ngd.network:20332",
 			],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 	},
 	abilities: {

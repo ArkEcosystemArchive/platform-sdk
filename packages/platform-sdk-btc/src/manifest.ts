@@ -13,6 +13,10 @@ export const manifest = {
 				slip44: 0,
 			},
 			hosts: ["https://coins.com/api/btc"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		testnet: {
 			id: "testnet",
@@ -26,6 +30,10 @@ export const manifest = {
 				slip44: 0,
 			},
 			hosts: ["https://coins.com/api/btc"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 	},
 	abilities: {

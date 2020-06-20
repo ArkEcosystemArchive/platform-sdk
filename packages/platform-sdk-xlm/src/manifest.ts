@@ -13,6 +13,10 @@ export const manifest = {
 				slip44: 148,
 			},
 			hosts: ["https://horizon.stellar.org"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		testnet: {
 			id: "testnet",
@@ -26,6 +30,10 @@ export const manifest = {
 				slip44: 148,
 			},
 			hosts: ["https://horizon-testnet.stellar.org"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 	},
 	abilities: {
