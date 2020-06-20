@@ -15,6 +15,10 @@ export const manifest = {
 				bech32: "EOS",
 			},
 			hosts: ["https://eos.greymass.com", "https://api.eosn.io", "https://mainnet.genereos.io"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		"eos.testnet": {
 			id: "eos.testnet",
@@ -30,6 +34,10 @@ export const manifest = {
 				bech32: "EOS",
 			},
 			hosts: ["https://api.testnet.eos.io"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		"telos.mainnet": {
 			id: "telos.mainnet",
@@ -50,6 +58,10 @@ export const manifest = {
 				"https://telos-mainnet.eosblocksmith.io",
 				"https://telos.caleos.io",
 			],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		"telos.testnet": {
 			id: "telos.testnet",
@@ -70,6 +82,10 @@ export const manifest = {
 				"https://testnet.telos.caleos.io",
 				"https://api-test.telosfoundation.io",
 			],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		"wax.mainnet": {
 			id: "wax.mainnet",
@@ -85,6 +101,10 @@ export const manifest = {
 				bech32: "WAX",
 			},
 			hosts: ["https://wax.eosphere.io"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		"worbli.mainnet": {
 			id: "worbli.mainnet",
@@ -100,6 +120,10 @@ export const manifest = {
 				bech32: "WBI",
 			},
 			hosts: ["https://api.worbli.io", "https://worbli-mainnet.eosblocksmith.io"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		"worbli.testnet": {
 			id: "worbli.testnet",
@@ -115,6 +139,10 @@ export const manifest = {
 				bech32: "WBI",
 			},
 			hosts: ["https://worbli-testnet.eosblocksmith.io", "https://worbli-testnet.eosphere.io"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		"meetone.mainnet": {
 			id: "meetone.mainnet",
@@ -130,6 +158,10 @@ export const manifest = {
 				bech32: "MEETONE",
 			},
 			hosts: ["https://fullnode.meet.one"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		"bos.mainnet": {
 			id: "bos.mainnet",
@@ -145,6 +177,10 @@ export const manifest = {
 				bech32: "BOS",
 			},
 			hosts: ["https://api.boscore.io"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 	},
 	abilities: {

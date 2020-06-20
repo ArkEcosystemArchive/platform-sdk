@@ -79,6 +79,10 @@ export const manifest = {
 				"http://46.105.160.106:4003",
 				"http://46.105.160.107:4003",
 			],
+			voting: {
+				enabled: true,
+				singular: true,
+			},
 		},
 		devnet: {
 			id: "devnet",
@@ -99,6 +103,10 @@ export const manifest = {
 				"http://167.114.29.54:4003",
 				"http://167.114.29.55:4003",
 			],
+			voting: {
+				enabled: true,
+				singular: true,
+			},
 		},
 	},
 	abilities: {

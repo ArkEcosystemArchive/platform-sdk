@@ -15,6 +15,10 @@ export const manifest = {
 				bech32: "cosmos",
 			},
 			hosts: ["https://api.cosmos.network"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		"cosmos.testnet": {
 			id: "cosmos.testnet",
@@ -30,6 +34,10 @@ export const manifest = {
 				bech32: "cosmos",
 			},
 			hosts: ["https://stargate.cosmos.network"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		"terra.mainnet": {
 			id: "terra.mainnet",
@@ -45,6 +53,10 @@ export const manifest = {
 				bech32: "terra",
 			},
 			hosts: [],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		"terra.testnet": {
 			id: "terra.testnet",
@@ -60,6 +72,10 @@ export const manifest = {
 				bech32: "terra",
 			},
 			hosts: [],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 	},
 	abilities: {

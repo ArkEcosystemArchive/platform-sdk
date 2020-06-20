@@ -13,6 +13,10 @@ export const manifest = {
 				slip44: 144,
 			},
 			hosts: ["wss://s2.ripple.com/"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		testnet: {
 			id: "testnet",
@@ -26,6 +30,10 @@ export const manifest = {
 				slip44: 144,
 			},
 			hosts: ["wss://s.altnet.rippletest.net/"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 	},
 	abilities: {

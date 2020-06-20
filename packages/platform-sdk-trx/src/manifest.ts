@@ -13,6 +13,10 @@ export const manifest = {
 				slip44: 195,
 			},
 			hosts: ["https://api.trongrid.io"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 		testnet: {
 			id: "testnet",
@@ -26,6 +30,10 @@ export const manifest = {
 				slip44: 195,
 			},
 			hosts: ["https://api.shasta.trongrid.io"],
+			voting: {
+				enabled: false,
+				singular: false,
+			},
 		},
 	},
 	abilities: {
