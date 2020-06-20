@@ -98,7 +98,7 @@ export class Wallet {
 	}
 
 	public alias(): string | undefined {
-		return this.data().get(WalletSetting.Alias);
+		return this.settings().get(WalletSetting.Alias);
 	}
 
 	public address(): string {
