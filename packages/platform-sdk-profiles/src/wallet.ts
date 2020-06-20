@@ -7,6 +7,7 @@ import { Identifiers, WalletStruct } from "./contracts";
 import { WalletSetting } from "./enums";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
+import { WalletAttribute } from "./wallet.models";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
@@ -54,8 +55,10 @@ export class Wallet {
 		}
 
 		try {
-			this.#wallet = await this.#coin.client().wallet(address);
-			this.#address = this.#wallet.address();
+			const { balance, nonce } = await this.#coin.client().wallet(address);
+
+			this.data().set(WalletAttribute.Balance, balance);
+			this.data().set(WalletAttribute.Sequence, nonce);
 		} catch {
 			/**
 			 * TODO: decide what to do if the wallet couldn't be found
@@ -95,8 +98,13 @@ export class Wallet {
 	}
 
 	public avatar(): string {
-		// TODO: get either the setting or default avatar
-		return this.#avatar;
+		const value: string | undefined = this.data().get(WalletSetting.Avatar);
+
+		if (value === undefined) {
+			return this.#avatar;
+		}
+
+		return value;
 	}
 
 	public address(): string {
@@ -108,11 +116,23 @@ export class Wallet {
 	}
 
 	public balance(): BigNumber {
-		return this.#wallet.balance();
+		const value: string | undefined = this.data().get(WalletAttribute.Balance);
+
+		if (value === undefined) {
+			return BigNumber.ZERO;
+		}
+
+		return BigNumber.make(value);
 	}
 
 	public nonce(): BigNumber {
-		return this.#wallet.nonce();
+		const value: string | undefined = this.data().get(WalletAttribute.Sequence);
+
+		if (value === undefined) {
+			return BigNumber.ZERO;
+		}
+
+		return BigNumber.make(value);
 	}
 
 	public data(): DataRepository {
