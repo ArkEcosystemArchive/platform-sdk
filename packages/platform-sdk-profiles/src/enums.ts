@@ -20,6 +20,7 @@ export enum ProfileSetting {
 }
 
 export enum WalletSetting {
+	Alias = "ALIAS",
 	Avatar = "AVATAR",
 	Peer = "PEER",
 }
