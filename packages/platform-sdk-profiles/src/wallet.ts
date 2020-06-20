@@ -108,6 +108,7 @@ export class Wallet {
 	}
 
 	public balance(): BigNumber {
+		// TODO: cache this value for offline support
 		return this.#wallet.balance();
 	}
 
