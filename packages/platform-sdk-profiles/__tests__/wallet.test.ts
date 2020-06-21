@@ -102,6 +102,10 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 				],
 				id: "devnet",
 				name: "Devnet",
+				voting: {
+					enabled: true,
+					singular: true,
+				},
 			},
 		});
 		expect(actual.network).toBe("devnet");

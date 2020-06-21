@@ -7,20 +7,8 @@ export class Guard {
 		this.#abilities = abilities;
 	}
 
-	public all(): object {
-		return this.#abilities;
-	}
-
-	public get(ability: string) {
-		return get(this.#abilities, ability);
-	}
-
-	public has(ability: string) {
-		return this.get(ability) !== undefined;
-	}
-
 	public allows(ability: string): boolean {
-		return this.get(ability) === true;
+		return get(this.#abilities, ability) === true;
 	}
 
 	public denies(ability: string): boolean {
