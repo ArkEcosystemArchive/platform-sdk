@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.115 - 2020-06-21
+
+### Added
+
+-   Cache the balance and nonce of a wallet (0ac07619, @faustbrian)
+-   Implement `Profile#balance` (7df6ff94, @faustbrian)
+-   Implement `Wallet#alias` (77f192c0, @faustbrian)
+
+### Changed
+
+-   Expose voting support through manifest (bfcdf086, @faustbrian)
+
+### Fixed
+
+-   Set wallet avatar and include voting manifest into validation (342e6788, @faustbrian)
+
 ## 0.9.110 - 2020-06-19
 
 ### Changed
