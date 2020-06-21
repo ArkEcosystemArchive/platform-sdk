@@ -111,7 +111,7 @@ export class Environment {
 										hosts: array().of(string()).required(),
 										voting: object({
 											enabled: boolean().required(),
-											signular: boolean().required(),
+											singular: boolean().required(),
 										}).required(),
 									}).noUnknown(),
 								}).noUnknown(),
