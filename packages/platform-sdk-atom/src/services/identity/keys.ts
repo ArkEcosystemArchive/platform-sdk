@@ -1,17 +1,17 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { secp256k1 } from "bcrypto";
 
 export class Keys implements Contracts.Keys {
-	readonly #slip44;
+	readonly #config: Coins.Config;
 
-	public constructor(slip44: number) {
-		this.#slip44 = slip44;
+	public constructor(config: Coins.Config) {
+		this.#config = config;
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
 		const privateKey: Buffer | undefined = BIP44.deriveChild(mnemonic, {
-			coinType: this.#slip44,
+			coinType: this.#config.get("network.crypto.slip44"),
 			index: 0,
 		}).privateKey;
 

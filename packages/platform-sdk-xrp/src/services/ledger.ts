@@ -2,16 +2,11 @@ import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Ripple from "@ledgerhq/hw-app-xrp";
 
 export class LedgerService implements Contracts.LedgerService {
-	#config: Coins.Config;
 	#ledger: Contracts.LedgerTransport;
 	#transport!: Ripple;
 
-	private constructor(config: Coins.Config) {
-		this.#config = config;
-	}
-
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
-		return new LedgerService(config);
+		return new LedgerService();
 	}
 
 	public async destruct(): Promise<void> {

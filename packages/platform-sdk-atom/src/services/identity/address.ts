@@ -1,21 +1,22 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import bech32 from "bech32";
 
 export class Address implements Contracts.Address {
-	readonly #slip44;
-	readonly #bech32;
+	readonly #config: Coins.Config;
 
-	public constructor(slip44: number, bech32: string) {
-		this.#slip44 = slip44;
-		this.#bech32 = bech32;
+	public constructor(config: Coins.Config) {
+		this.#config = config;
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		const child = BIP44.deriveChild(mnemonic, { coinType: this.#slip44, index: 0 });
+		const child = BIP44.deriveChild(mnemonic, {
+			coinType: this.#config.get("network.crypto.slip44"),
+			index: 0,
+		});
 		const words = bech32.toWords(child.identifier);
 
-		return bech32.encode(this.#bech32, words);
+		return bech32.encode(this.#config.get("network.crypto.bech32"), words);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

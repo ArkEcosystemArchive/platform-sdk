@@ -1,16 +1,16 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { createWallet } from "./utils";
 
 export class PrivateKey implements Contracts.PrivateKey {
-	readonly #slip44;
+	readonly #config: Coins.Config;
 
-	public constructor(slip44: number) {
-		this.#slip44 = slip44;
+	public constructor(config: Coins.Config) {
+		this.#config = config;
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return createWallet(mnemonic, this.#slip44)
+		return createWallet(mnemonic, this.#config.get("network.crypto.slip44"))
 			.getPrivateKey()
 			.toString("hex");
 	}

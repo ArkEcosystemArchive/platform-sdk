@@ -147,7 +147,7 @@ export class ClientService implements Contracts.ClientService {
 		return new ClientService(connection);
 	}
 
-	public async destruct() {
+	public async destruct(): Promise<void> {
 		await this.#connection.disconnect();
 	}
 
