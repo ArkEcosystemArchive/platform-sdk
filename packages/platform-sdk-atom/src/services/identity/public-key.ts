@@ -10,7 +10,7 @@ export class PublicKey implements Contracts.PublicKey {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		const keys = new Keys(this.#config.get("network.crypto.slip44"));
+		const keys = new Keys(this.#config);
 		const { publicKey } = await keys.fromMnemonic(mnemonic);
 
 		if (!publicKey) {

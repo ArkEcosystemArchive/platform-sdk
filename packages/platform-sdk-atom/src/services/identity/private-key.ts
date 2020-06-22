@@ -10,7 +10,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		const keys = new Keys(this.#config.get("network.crypto.slip44"));
+		const keys = new Keys(this.#config);
 		const { privateKey } = await keys.fromMnemonic(mnemonic);
 
 		if (!privateKey) {
