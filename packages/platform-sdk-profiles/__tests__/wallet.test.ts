@@ -57,6 +57,10 @@ test("#network", () => {
 		],
 		id: "devnet",
 		name: "Devnet",
+		voting: {
+			enabled: true,
+			singular: true,
+		},
 	});
 });
 
