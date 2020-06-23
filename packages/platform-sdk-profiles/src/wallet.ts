@@ -170,18 +170,22 @@ export class Wallet {
 	 */
 
 	public isKnown(): boolean {
+		// TODO: automatically determine this
 		return this.data().has(WalletFlag.Known);
 	}
 
 	public isLedger(): boolean {
+		// TODO: automatically determine this
 		return this.data().has(WalletFlag.Ledger);
 	}
 
 	public isMultiSig(): boolean {
+		// TODO: automatically determine this
 		return this.data().has(WalletFlag.MultiSig);
 	}
 
 	public isSecondSig(): boolean {
+		// TODO: automatically determine this
 		return this.data().has(WalletFlag.SecondSig);
 	}
 
