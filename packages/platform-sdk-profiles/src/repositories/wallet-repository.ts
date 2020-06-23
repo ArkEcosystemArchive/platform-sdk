@@ -85,6 +85,10 @@ export class WalletRepository {
 		this.#data.flush();
 	}
 
+	public count(): number {
+		return this.keys().length;
+	}
+
 	public toObject(): Record<string, object> {
 		const result: Record<string, object> = {};
 

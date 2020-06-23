@@ -81,4 +81,20 @@ export class Profile {
 			settings: this.settings().all(),
 		};
 	}
+
+	/**
+	 * These methods serve as helpers to aggregate certain data for UI consumption.
+	 */
+
+	public countContacts(): number {
+		return this.contacts().count();
+	}
+
+	public countNotifications(): number {
+		return this.notifications().count();
+	}
+
+	public countWallets(): number {
+		return this.wallets().count();
+	}
 }
