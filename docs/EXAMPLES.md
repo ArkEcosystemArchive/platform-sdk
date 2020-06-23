@@ -21,7 +21,7 @@ These methods are accessible through `env.profiles()` which exposes a `ProfileRe
 env.profiles().all();
 
 // Create a new profile for the given name
-await env.profiles().create("John Doe");
+env.profiles().create("John Doe");
 
 // Forget the profile for the given ID
 env.profiles().forget("uuid");

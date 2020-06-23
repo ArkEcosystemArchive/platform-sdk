@@ -81,4 +81,40 @@ export class Profile {
 			settings: this.settings().all(),
 		};
 	}
+
+	/**
+	 * These methods serve as helpers to aggregate certain data for UI consumption.
+	 */
+
+	public countContacts(): number {
+		return this.contacts().count();
+	}
+
+	public countNotifications(): number {
+		return this.notifications().count();
+	}
+
+	public countWallets(): number {
+		return this.wallets().count();
+	}
+
+	public balancePerCoin(): Record<string, { total: number; percentage: number }> {
+		const result = {};
+
+		const totalByProfile: BigNumber = this.balance();
+
+		for (const [coin, wallets] of Object.entries(this.wallets().allByCoin())) {
+			const totalByCoin: BigNumber = Object.values(wallets).reduce(
+				(total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()),
+				BigNumber.ZERO,
+			);
+
+			result[coin] = {
+				total: totalByCoin.toFixed(),
+				percentage: totalByCoin.divide(totalByProfile).times(100).toFixed(2),
+			};
+		}
+
+		return result;
+	}
 }

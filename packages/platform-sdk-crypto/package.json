@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-crypto",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.115",
+	"version": "0.9.122",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -20,7 +20,7 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
-		"bcrypto": "^5.1.0",
+		"bcrypto": "^5.2.0",
 		"bip32": "^2.0.5",
 		"bip38": "^3.1.1",
 		"bip39": "^3.0.2",
@@ -42,13 +42,13 @@
 		"@types/prettier": "^2.0.1",
 		"@types/rimraf": "^3.0.0",
 		"@types/wif": "2.0.1",
-		"@typescript-eslint/eslint-plugin": "^3.3.0",
-		"@typescript-eslint/parser": "^3.3.0",
+		"@typescript-eslint/eslint-plugin": "^3.4.0",
+		"@typescript-eslint/parser": "^3.4.0",
 		"codecov": "^3.7.0",
 		"cross-env": "^7.0.2",
-		"eslint": "^7.2.0",
+		"eslint": "^7.3.1",
 		"eslint-config-prettier": "^6.11.0",
-		"eslint-plugin-jest": "^23.13.2",
+		"eslint-plugin-jest": "^23.16.0",
 		"eslint-plugin-prettier": "^3.1.4",
 		"eslint-plugin-simple-import-sort": "^5.0.3",
 		"jest": "^26.0.1",
@@ -58,7 +58,7 @@
 		"npm-check-updates": "^7.0.1",
 		"prettier": "^2.0.5",
 		"rimraf": "^3.0.2",
-		"ts-jest": "^26.1.0",
+		"ts-jest": "^26.1.1",
 		"typedoc": "^0.17.7",
 		"typescript": "^3.9.5",
 		"wif": "^2.0.6"

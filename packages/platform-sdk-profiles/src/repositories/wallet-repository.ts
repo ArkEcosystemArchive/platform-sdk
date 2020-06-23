@@ -18,6 +18,24 @@ export class WalletRepository {
 		return this.#data.all() as Record<string, Wallet>;
 	}
 
+	public allByCoin(): Record<string, Record<string, Wallet>> {
+		const result = {};
+
+		for (const [id, wallet] of Object.entries(this.all())) {
+			const coin: string | undefined = wallet.currency();
+
+			if (coin) {
+				if (!result[coin]) {
+					result[coin] = {};
+				}
+
+				result[coin][id] = wallet;
+			}
+		}
+
+		return result;
+	}
+
 	public keys(): string[] {
 		return this.#data.keys();
 	}
@@ -83,6 +101,10 @@ export class WalletRepository {
 
 	public flush(): void {
 		this.#data.flush();
+	}
+
+	public count(): number {
+		return this.keys().length;
 	}
 
 	public toObject(): Record<string, object> {
