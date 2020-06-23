@@ -173,6 +173,11 @@ export class Wallet {
 	 * These methods serve as identifiers for special types of wallets.
 	 */
 
+	public isDelegate(): boolean {
+		// TODO: automatically determine this
+		return this.data().has(WalletFlag.SecondSig);
+	}
+
 	public isKnown(): boolean {
 		// TODO: automatically determine this
 		return this.data().has(WalletFlag.Known);
