@@ -23,6 +23,10 @@ export class WalletDataCollection {
 		return this.find("publicKey", publicKey);
 	}
 
+	public findByUsername(username: string): WalletData | undefined {
+		return this.find("username", username);
+	}
+
 	private find(key: string, value: string): WalletData | undefined {
 		return this.#wallets.find((wallet: WalletData) => wallet[key]() === value);
 	}

@@ -5,6 +5,7 @@ import { KeyValuePair } from "../contracts/types";
 export abstract class AbstractWalletData {
 	public constructor(protected readonly data: KeyValuePair) {}
 
+	// Wallet
 	abstract address(): string;
 
 	abstract publicKey(): string | undefined;
@@ -13,12 +14,22 @@ export abstract class AbstractWalletData {
 
 	abstract nonce(): BigNumber;
 
+	// Delegate
+	abstract username(): string | undefined;
+
+	abstract rank(): number | undefined;
+
+	abstract votes(): BigNumber | undefined;
+
 	public toObject(): KeyValuePair {
 		return {
 			address: this.address(),
 			publicKey: this.publicKey(),
 			balance: this.balance(),
 			nonce: this.nonce(),
+			username: this.username(),
+			rank: this.rank(),
+			votes: this.votes(),
 		};
 	}
 

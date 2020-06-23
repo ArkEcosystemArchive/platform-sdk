@@ -1,4 +1,4 @@
-import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
@@ -16,5 +16,17 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 
 	public nonce(): BigNumber {
 		return BigNumber.make(parseInt(this.data.nonce, 16));
+	}
+
+	public username(): string | undefined {
+		throw new Exceptions.NotImplemented(this.constructor.name, "username");
+	}
+
+	public rank(): number | undefined {
+		throw new Exceptions.NotImplemented(this.constructor.name, "rank");
+	}
+
+	public votes(): BigNumber | undefined {
+		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 }

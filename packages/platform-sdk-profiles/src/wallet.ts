@@ -291,13 +291,13 @@ export class Wallet {
 		return this.#coin.client().wallets(query);
 	}
 
-	public async delegate(id: string): Promise<Contracts.DelegateData> {
+	public async delegate(id: string): Promise<Contracts.WalletData> {
 		return this.#coin.client().delegate(id);
 	}
 
 	public async delegates(
 		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.DelegateDataCollection>> {
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		return this.#coin.client().delegates(query);
 	}
 

@@ -1,7 +1,7 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
-import { DelegateData, TransactionData, WalletData } from "../dto";
+import { TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #http: Contracts.HttpClient;
@@ -74,20 +74,20 @@ export class ClientService implements Contracts.ClientService {
 		};
 	}
 
-	public async delegate(id: string): Promise<Contracts.DelegateData> {
+	public async delegate(id: string): Promise<Contracts.WalletData> {
 		const result = await this.get("delegates", { username: id });
 
-		return new DelegateData(result.data[0]);
+		return new WalletData(result.data[0]);
 	}
 
 	public async delegates(
 		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.DelegateDataCollection>> {
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		const result = await this.get("delegates");
 
 		return {
 			meta: result.meta,
-			data: new Coins.DelegateDataCollection(result.data.map((wallet) => new DelegateData(wallet))),
+			data: new Coins.WalletDataCollection(result.data.map((wallet) => new WalletData(wallet))),
 		};
 	}
 
