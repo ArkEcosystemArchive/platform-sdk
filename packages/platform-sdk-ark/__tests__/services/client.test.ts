@@ -2,7 +2,7 @@ import "jest-extended";
 import nock from "nock";
 
 import { ClientService } from "../../src/services/client";
-import { DelegateData, TransactionData, WalletData } from "../../src/dto";
+import { TransactionData, WalletData } from "../../src/dto";
 import { createConfig } from "../helpers";
 
 let subject: ClientService;
@@ -74,7 +74,7 @@ describe("ClientService", function () {
 
 			const result = await subject.delegate("arkx");
 
-			expect(result).toBeInstanceOf(DelegateData);
+			expect(result).toBeInstanceOf(WalletData);
 		});
 	});
 
@@ -87,7 +87,7 @@ describe("ClientService", function () {
 			const result = await subject.delegates();
 
 			expect(result.data).toBeObject();
-			expect(result.data.first()).toBeInstanceOf(DelegateData);
+			expect(result.data.first()).toBeInstanceOf(WalletData);
 		});
 	});
 
