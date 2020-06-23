@@ -58,13 +58,13 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
-	public async delegate(id: string): Promise<Contracts.DelegateData> {
+	public async delegate(id: string): Promise<Contracts.WalletData> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
 	}
 
 	public async delegates(
 		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.DelegateDataCollection>> {
+	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 

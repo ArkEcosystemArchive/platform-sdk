@@ -1,6 +1,6 @@
-import { DelegateDataCollection, TransactionDataCollection, WalletDataCollection } from "../../coins";
+import { TransactionDataCollection, WalletDataCollection } from "../../coins";
 import { KeyValuePair } from "../types";
-import { DelegateData, TransactionData, WalletData } from "./data";
+import { TransactionData, WalletData } from "./data";
 import { SignedTransaction } from "./transaction";
 
 export interface MetaPagination {
@@ -28,8 +28,8 @@ export interface ClientService {
 	wallet(id: string): Promise<WalletData>;
 	wallets(query: ClientWalletsInput): Promise<CollectionResponse<WalletDataCollection>>;
 
-	delegate(id: string): Promise<DelegateData>;
-	delegates(query?: ClientWalletsInput): Promise<CollectionResponse<DelegateDataCollection>>;
+	delegate(id: string): Promise<WalletData>;
+	delegates(query?: ClientWalletsInput): Promise<CollectionResponse<WalletDataCollection>>;
 
 	votes(id: string, query?: KeyValuePair): Promise<CollectionResponse<TransactionDataCollection>>;
 	voters(id: string, query?: KeyValuePair): Promise<CollectionResponse<WalletDataCollection>>;

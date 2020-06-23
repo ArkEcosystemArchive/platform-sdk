@@ -27,6 +27,7 @@ export interface TransactionData {
 }
 
 export interface WalletData {
+	// Wallet
 	address(): string;
 
 	publicKey(): string | undefined;
@@ -35,17 +36,12 @@ export interface WalletData {
 
 	nonce(): BigNumber;
 
-	toObject(): KeyValuePair;
-}
+	// Delegate
+	username(): string | undefined;
 
-export interface DelegateData {
-	address(): string;
+	rank(): number | undefined;
 
-	publicKey(): string;
-
-	username(): string;
-
-	rank(): number;
+	votes(): BigNumber | undefined;
 
 	toObject(): KeyValuePair;
 }

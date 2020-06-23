@@ -17,4 +17,16 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	public nonce(): BigNumber {
 		return BigNumber.make(this.data.nonce);
 	}
+
+	public username(): string | undefined {
+		return this.data.username;
+	}
+
+	public rank(): number | undefined {
+		return this.data.rank;
+	}
+
+	public votes(): BigNumber | undefined {
+		return BigNumber.make(this.data.votes);
+	}
 }
