@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.122 - 2020-06-23
+
+### Added
+
+-   Implement `Markdown` parser (13cc7f57, @faustbrian)
+
+### Changed
+
+-   Update dependencies (4977bf01, @faustbrian)
+
 ## 0.9.120 - 2020-06-23
 
 ### Added
