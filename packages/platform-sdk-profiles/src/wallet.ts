@@ -174,13 +174,11 @@ export class Wallet {
 	 */
 
 	public isDelegate(): boolean {
-		// TODO: automatically determine this
-		return this.data().has(WalletFlag.SecondSig);
+		return this.#wallet.isDelegate();
 	}
 
 	public isKnown(): boolean {
-		// TODO: automatically determine this
-		return this.data().has(WalletFlag.Known);
+		return this.#wallet.isKnown();
 	}
 
 	public isLedger(): boolean {
@@ -188,14 +186,12 @@ export class Wallet {
 		return this.data().has(WalletFlag.Ledger);
 	}
 
-	public isMultiSig(): boolean {
-		// TODO: automatically determine this
-		return this.data().has(WalletFlag.MultiSig);
+	public isMultiSignature(): boolean {
+		return this.#wallet.isMultiSignature();
 	}
 
-	public isSecondSig(): boolean {
-		// TODO: automatically determine this
-		return this.data().has(WalletFlag.SecondSig);
+	public isSecondSignature(): boolean {
+		return this.#wallet.isSecondSignature();
 	}
 
 	public isStarred(): boolean {

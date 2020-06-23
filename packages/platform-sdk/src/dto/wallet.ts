@@ -21,6 +21,15 @@ export abstract class AbstractWalletData {
 
 	abstract votes(): BigNumber | undefined;
 
+	// Flags
+	abstract isDelegate(): boolean;
+
+	abstract isKnown(): boolean;
+
+	abstract isMultiSignature(): boolean;
+
+	abstract isSecondSignature(): boolean;
+
 	public toObject(): KeyValuePair {
 		return {
 			address: this.address(),

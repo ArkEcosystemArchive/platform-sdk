@@ -29,4 +29,20 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	public votes(): BigNumber | undefined {
 		return BigNumber.make(this.data.votes);
 	}
+
+	public isDelegate(): boolean {
+		return !!this.data.delegate;
+	}
+
+	public isKnown(): boolean {
+		return false;
+	}
+
+	public isMultiSignature(): boolean {
+		return false;
+	}
+
+	public isSecondSignature(): boolean {
+		return !!this.data.secondPublicKey;
+	}
 }

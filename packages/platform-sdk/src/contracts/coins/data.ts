@@ -43,6 +43,15 @@ export interface WalletData {
 
 	votes(): BigNumber | undefined;
 
+	// Flags
+	isDelegate(): boolean;
+
+	isKnown(): boolean;
+
+	isMultiSignature(): boolean;
+
+	isSecondSignature(): boolean;
+
 	toObject(): KeyValuePair;
 }
 

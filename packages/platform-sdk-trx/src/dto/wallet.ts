@@ -29,4 +29,20 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	public votes(): BigNumber | undefined {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
+
+	public isDelegate(): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "isDelegate");
+	}
+
+	public isKnown(): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "isKnown");
+	}
+
+	public isMultiSignature(): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignature");
+	}
+
+	public isSecondSignature(): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "isSecondSignature");
+	}
 }
