@@ -7,7 +7,7 @@ import { Identifiers, WalletStruct } from "./contracts";
 import { WalletSetting } from "./enums";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
-import { WalletAttribute } from "./wallet.models";
+import { WalletAttribute, WalletFlag } from "./wallet.models";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
@@ -57,10 +57,10 @@ export class Wallet {
 		this.#address = address;
 
 		try {
-			const { balance, nonce } = await this.#coin.client().wallet(address);
+			this.#wallet = await this.#coin.client().wallet(address);
 
-			this.data().set(WalletAttribute.Balance, balance);
-			this.data().set(WalletAttribute.Sequence, nonce);
+			this.data().set(WalletAttribute.Balance, this.#wallet.balance());
+			this.data().set(WalletAttribute.Sequence, this.#wallet.nonce());
 		} catch {
 			/**
 			 * TODO: decide what to do if the wallet couldn't be found
@@ -163,6 +163,30 @@ export class Wallet {
 			data: this.data().all(),
 			settings: this.settings().all(),
 		};
+	}
+
+	/**
+	 * These methods serve as identifiers for special types of wallets.
+	 */
+
+	public isKnown(): boolean {
+		return this.data().has(WalletFlag.Known);
+	}
+
+	public isLedger(): boolean {
+		return this.data().has(WalletFlag.Ledger);
+	}
+
+	public isMultiSig(): boolean {
+		return this.data().has(WalletFlag.MultiSig);
+	}
+
+	public isSecondSig(): boolean {
+		return this.data().has(WalletFlag.SecondSig);
+	}
+
+	public isStarred(): boolean {
+		return this.data().has(WalletFlag.Starred);
 	}
 
 	/**
