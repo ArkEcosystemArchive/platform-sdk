@@ -193,6 +193,14 @@ export class Wallet {
 		return this.data().has(WalletFlag.Starred);
 	}
 
+	public toggleStarred(): void {
+		if (this.isStarred()) {
+			this.data().forget(WalletFlag.Starred);
+		} else {
+			this.data().set(WalletFlag.Starred, true);
+		}
+	}
+
 	/**
 	 * All methods below this line are convenience methods that serve as proxies to the underlying coin implementation.
 	 *
