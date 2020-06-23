@@ -75,7 +75,7 @@ test("#balancePerCoin", async () => {
 	await subject.wallets().import(identity.mnemonic, ARK, "devnet");
 
 	expect(subject.balancePerCoin()).toEqual({
-		ARK: {
+		DARK: {
 			percentage: "100.00",
 			total: "55827093444556",
 		},

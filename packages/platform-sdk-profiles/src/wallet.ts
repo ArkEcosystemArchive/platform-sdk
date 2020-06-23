@@ -95,8 +95,12 @@ export class Wallet {
 		return this.#coin;
 	}
 
-	public network(): string {
-		return this.#coin.network().id;
+	public network(): Coins.CoinNetwork {
+		return this.#coin.network();
+	}
+
+	public currency(): string {
+		return this.network().currency.ticker;
 	}
 
 	public alias(): string | undefined {
@@ -157,7 +161,7 @@ export class Wallet {
 			id: this.id(),
 			coin: this.coin().manifest().get<string>("name"),
 			coinConfig,
-			network: this.network(),
+			network: this.network().id,
 			address: this.address(),
 			publicKey: this.publicKey(),
 			data: this.data().all(),
