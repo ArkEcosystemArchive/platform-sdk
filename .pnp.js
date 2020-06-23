@@ -1158,6 +1158,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:14.0.13"],
             ["@types/prettier", "npm:2.0.1"],
             ["@types/qrcode", "npm:1.3.4"],
+            ["@types/remarkable", "npm:1.7.4"],
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:3.3.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.3.0"],
@@ -1171,6 +1172,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:23.13.2"],
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.4"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
+            ["front-matter", "npm:4.0.2"],
             ["jest", "npm:26.0.1"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
@@ -1178,6 +1180,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["npm-check-updates", "npm:7.0.1"],
             ["prettier", "npm:2.0.5"],
             ["qrcode", "npm:1.4.4"],
+            ["remarkable", "npm:2.0.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.1.0"],
             ["typedoc", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:0.17.7"],
@@ -3978,6 +3981,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/remarkable", [
+        ["npm:1.7.4", {
+          "packageLocation": "./.yarn/cache/@types-remarkable-npm-1.7.4-5e1dbe1a05-2.zip/node_modules/@types/remarkable/",
+          "packageDependencies": [
+            ["@types/remarkable", "npm:1.7.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/responselike", [
         ["npm:1.0.0", {
           "packageLocation": "./.yarn/cache/@types-responselike-npm-1.0.0-85dd08af42-2.zip/node_modules/@types/responselike/",
@@ -5359,6 +5371,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/atomic-sleep-npm-1.0.0-17d8a762a3-2.zip/node_modules/atomic-sleep/",
           "packageDependencies": [
             ["atomic-sleep", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["autolinker", [
+        ["npm:3.14.1", {
+          "packageLocation": "./.yarn/cache/autolinker-npm-3.14.1-3b1b54025b-2.zip/node_modules/autolinker/",
+          "packageDependencies": [
+            ["autolinker", "npm:3.14.1"],
+            ["tslib", "npm:1.11.2"]
           ],
           "linkType": "HARD",
         }]
@@ -9008,6 +9030,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/fresh-npm-0.5.2-ad2bb4c0a2-2.zip/node_modules/fresh/",
           "packageDependencies": [
             ["fresh", "npm:0.5.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["front-matter", [
+        ["npm:4.0.2", {
+          "packageLocation": "./.yarn/cache/front-matter-npm-4.0.2-e1cc0efa69-2.zip/node_modules/front-matter/",
+          "packageDependencies": [
+            ["front-matter", "npm:4.0.2"],
+            ["js-yaml", "npm:3.13.1"]
           ],
           "linkType": "HARD",
         }]
@@ -14361,6 +14393,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["registry-url", "npm:5.1.0"],
             ["rc", "npm:1.2.8"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["remarkable", [
+        ["npm:2.0.1", {
+          "packageLocation": "./.yarn/cache/remarkable-npm-2.0.1-3506d862ee-2.zip/node_modules/remarkable/",
+          "packageDependencies": [
+            ["remarkable", "npm:2.0.1"],
+            ["argparse", "npm:1.0.10"],
+            ["autolinker", "npm:3.14.1"]
           ],
           "linkType": "HARD",
         }]
