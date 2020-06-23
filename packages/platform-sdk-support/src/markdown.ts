@@ -9,7 +9,7 @@ export class Markdown {
 
 		return {
 			meta: attributes as MarkdownMeta,
-			content: new Remarkable().render(body).trim(),
+			content: new Remarkable("commonmark").render(body).trim(),
 		};
 	}
 }
