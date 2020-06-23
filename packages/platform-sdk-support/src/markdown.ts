@@ -1,5 +1,6 @@
 import FrontMatter from "front-matter";
 import { Remarkable } from "remarkable";
+import { linkify } from "remarkable/linkify";
 
 type MarkdownMeta = Record<string, string | number>;
 
@@ -9,7 +10,7 @@ export class Markdown {
 
 		return {
 			meta: attributes as MarkdownMeta,
-			content: new Remarkable("commonmark").render(body).trim(),
+			content: new Remarkable("commonmark").use(linkify).render(body).trim(),
 		};
 	}
 }
