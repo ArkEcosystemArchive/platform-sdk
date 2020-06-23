@@ -22,7 +22,7 @@ export class WalletRepository {
 		const result = {};
 
 		for (const [id, wallet] of Object.entries(this.all())) {
-			const coin: string | undefined = wallet.coin().manifest().get<string>("name");
+			const coin: string | undefined = wallet.currency();
 
 			if (coin) {
 				if (!result[coin]) {
@@ -101,6 +101,10 @@ export class WalletRepository {
 
 	public flush(): void {
 		this.#data.flush();
+	}
+
+	public count(): number {
+		return this.keys().length;
 	}
 
 	public toObject(): Record<string, object> {

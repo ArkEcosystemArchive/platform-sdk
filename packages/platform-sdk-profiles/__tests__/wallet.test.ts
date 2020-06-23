@@ -43,7 +43,25 @@ test("#coin", () => {
 });
 
 test("#network", () => {
-	expect(subject.network()).toEqual("devnet");
+	expect(subject.network()).toEqual({
+		crypto: { slip44: 111 },
+		currency: { symbol: "DѦ", ticker: "DARK" },
+		explorer: "https://dexplorer.ark.io/",
+		hosts: [
+			"https://dexplorer.ark.io",
+			"http://167.114.29.51:4003",
+			"http://167.114.29.52:4003",
+			"http://167.114.29.53:4003",
+			"http://167.114.29.54:4003",
+			"http://167.114.29.55:4003",
+		],
+		id: "devnet",
+		name: "Devnet",
+		voting: {
+			enabled: true,
+			singular: true,
+		},
+	});
 });
 
 test("#address", () => {

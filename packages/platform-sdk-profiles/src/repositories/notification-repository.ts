@@ -65,6 +65,10 @@ export class NotificationRepository {
 		this.#storage.flush();
 	}
 
+	public count(): number {
+		return this.keys().length;
+	}
+
 	/**
 	 * Convenience methods to interact with notifications states.
 	 */

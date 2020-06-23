@@ -63,6 +63,10 @@ export class ContactRepository {
 		this.#data.flush();
 	}
 
+	public count(): number {
+		return this.keys().length;
+	}
+
 	public findByAddress(value: string): Contact[] {
 		return this.findByColumn("address", value);
 	}

@@ -41,7 +41,7 @@ test("#all", async () => {
 
 test("#allByCoin", async () => {
 	expect(subject.allByCoin()).toBeObject();
-	expect(subject.allByCoin().ARK).toBeObject();
+	expect(subject.allByCoin().DARK).toBeObject();
 });
 
 test("#import", async () => {
