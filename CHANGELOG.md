@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.125 - 2020-06-23
+
+### Added
+
+-   Implement `Wallet#isDelegate` (#474) (9d8c2326, @faustbrian)
+
+### Changed
+
+-   Rename `WalletRepository#createRandom/createFromObject` to `WalletRepository#generate/restore` (#472) (7ac4fd69, @faustbrian)
+-   Update `ethereumjs-wallet` to `0.6.4` (#476) (f2125632, @faustbrian)
+
 ## 0.9.122 - 2020-06-23
 
 ### Added

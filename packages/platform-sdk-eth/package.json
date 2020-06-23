@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-eth",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.122",
+	"version": "0.9.125",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -26,7 +26,7 @@
 		"@ledgerhq/hw-app-eth": "^5.17.0",
 		"bip39": "^3.0.2",
 		"ethereumjs-tx": "^2.1.2",
-		"ethereumjs-wallet": "^0.6.3",
+		"ethereumjs-wallet": "^0.6.4",
 		"web3": "^1.2.9",
 		"yup": "^0.29.1"
 	},

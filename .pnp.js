@@ -822,7 +822,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.4"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["ethereumjs-tx", "npm:2.1.2"],
-            ["ethereumjs-wallet", "npm:0.6.3"],
+            ["ethereumjs-wallet", "npm:0.6.4"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
             ["jest-extended", "npm:0.11.5"],
@@ -8315,17 +8315,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ethereumjs-wallet", [
-        ["npm:0.6.3", {
-          "packageLocation": "./.yarn/cache/ethereumjs-wallet-npm-0.6.3-99913dd613-2.zip/node_modules/ethereumjs-wallet/",
+        ["npm:0.6.4", {
+          "packageLocation": "./.yarn/cache/ethereumjs-wallet-npm-0.6.4-67126aa7d3-2.zip/node_modules/ethereumjs-wallet/",
           "packageDependencies": [
-            ["ethereumjs-wallet", "npm:0.6.3"],
+            ["ethereumjs-wallet", "npm:0.6.4"],
             ["aes-js", "npm:3.1.2"],
             ["bs58check", "npm:2.1.2"],
             ["ethereumjs-util", "npm:6.2.0"],
             ["hdkey", "npm:1.1.2"],
             ["randombytes", "npm:2.1.0"],
             ["safe-buffer", "npm:5.2.0"],
-            ["scrypt.js", "npm:0.3.0"],
+            ["scryptsy", "npm:1.2.1"],
             ["utf8", "npm:3.0.0"],
             ["uuid", "npm:3.4.0"]
           ],
@@ -14817,17 +14817,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["scrypt", [
-        ["npm:6.0.3", {
-          "packageLocation": "./.yarn/unplugged/scrypt-npm-6.0.3-4138106ba6/node_modules/scrypt/",
-          "packageDependencies": [
-            ["scrypt", "npm:6.0.3"],
-            ["nan", "npm:2.14.1"],
-            ["node-gyp", "npm:6.1.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["scrypt-js", [
         ["npm:2.0.4", {
           "packageLocation": "./.yarn/cache/scrypt-js-npm-2.0.4-d3712b5675-2.zip/node_modules/scrypt-js/",
@@ -14847,17 +14836,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/scrypt-js-npm-3.0.1-fd2d3fa606-2.zip/node_modules/scrypt-js/",
           "packageDependencies": [
             ["scrypt-js", "npm:3.0.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["scrypt.js", [
-        ["npm:0.3.0", {
-          "packageLocation": "./.yarn/cache/scrypt.js-npm-0.3.0-25c2a3a4b5-2.zip/node_modules/scrypt.js/",
-          "packageDependencies": [
-            ["scrypt.js", "npm:0.3.0"],
-            ["scrypt", "npm:6.0.3"],
-            ["scryptsy", "npm:1.2.1"]
           ],
           "linkType": "HARD",
         }]
