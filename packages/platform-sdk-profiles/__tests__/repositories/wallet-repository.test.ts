@@ -30,7 +30,7 @@ beforeEach(async () => {
 
 	subject = new WalletRepository();
 
-	await subject.create(identity.mnemonic, ARK, "devnet");
+	await subject.import(identity.mnemonic, ARK, "devnet");
 });
 
 beforeAll(() => nock.disableNetConnect());
@@ -44,16 +44,16 @@ test("#allByCoin", async () => {
 	expect(subject.allByCoin().ARK).toBeObject();
 });
 
-test("#create", async () => {
+test("#import", async () => {
 	subject.flush();
 
 	expect(subject.keys()).toHaveLength(0);
 
-	await subject.create(identity.mnemonic, ARK, "devnet");
+	await subject.import(identity.mnemonic, ARK, "devnet");
 
 	expect(subject.keys()).toHaveLength(1);
 
-	await expect(subject.create(identity.mnemonic, ARK, "devnet")).rejects.toThrowError("already exists");
+	await expect(subject.import(identity.mnemonic, ARK, "devnet")).rejects.toThrowError("already exists");
 
 	expect(subject.keys()).toHaveLength(1);
 });

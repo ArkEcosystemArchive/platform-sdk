@@ -1,19 +1,19 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import Wallet from "ethereumjs-wallet";
 
 import { PrivateKey } from "./private-key";
 
 export class PublicKey implements Contracts.PublicKey {
-	readonly #privateKey: PrivateKey;
+	readonly #config: Coins.Config;
 
-	public constructor(slip44: number) {
-		this.#privateKey = new PrivateKey(slip44);
+	public constructor(config: Coins.Config) {
+		this.#config = config;
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		const privateKey = Buffoon.fromHex(await this.#privateKey.fromMnemonic(mnemonic));
-		const keyPair = Wallet.fromPrivateKey(privateKey);
+		const privateKey = new PrivateKey(this.#config);
+		const keyPair = Wallet.fromPrivateKey(Buffoon.fromHex(await privateKey.fromMnemonic(mnemonic)));
 
 		return keyPair.getPublicKey().toString("hex");
 	}

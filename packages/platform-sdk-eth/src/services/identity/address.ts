@@ -1,18 +1,18 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import Wallet from "ethereumjs-wallet";
 
 import { createWallet, getAddress } from "./utils";
 
 export class Address implements Contracts.Address {
-	readonly #slip44;
+	readonly #config: Coins.Config;
 
-	public constructor(slip44: number) {
-		this.#slip44 = slip44;
+	public constructor(config: Coins.Config) {
+		this.#config = config;
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return getAddress(createWallet(mnemonic, this.#slip44));
+		return getAddress(createWallet(mnemonic, this.#config.get("network.crypto.slip44")));
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
