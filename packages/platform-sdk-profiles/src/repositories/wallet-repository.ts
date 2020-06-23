@@ -18,6 +18,24 @@ export class WalletRepository {
 		return this.#data.all() as Record<string, Wallet>;
 	}
 
+	public allByCoin(): Record<string, Record<string, Wallet>> {
+		const result = {};
+
+		for (const [id, wallet] of Object.entries(this.all())) {
+			const coin: string | undefined = wallet.coin().manifest().get<string>("name");
+
+			if (coin) {
+				if (!result[coin]) {
+					result[coin] = {};
+				}
+
+				result[coin][id] = wallet;
+			}
+		}
+
+		return result;
+	}
+
 	public keys(): string[] {
 		return this.#data.keys();
 	}
@@ -26,7 +44,7 @@ export class WalletRepository {
 		return this.#data.values();
 	}
 
-	public async create(mnemonic: string, coin: Coins.CoinSpec, network: string): Promise<Wallet> {
+	public async import(mnemonic: string, coin: Coins.CoinSpec, network: string): Promise<Wallet> {
 		const id: string = uuidv4();
 		const wallet: Wallet = new Wallet(id);
 
@@ -39,7 +57,7 @@ export class WalletRepository {
 	public async createRandom(coin: Coins.CoinSpec, network: string): Promise<{ mnemonic: string; wallet: Wallet }> {
 		const mnemonic: string = BIP39.generate();
 
-		return { mnemonic, wallet: await this.create(mnemonic, coin, network) };
+		return { mnemonic, wallet: await this.import(mnemonic, coin, network) };
 	}
 
 	public async createFromObject({ id, coin, coinConfig, network, address }): Promise<Wallet> {
