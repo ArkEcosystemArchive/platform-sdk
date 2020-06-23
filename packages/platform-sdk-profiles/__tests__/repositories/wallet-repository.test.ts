@@ -36,7 +36,12 @@ beforeEach(async () => {
 beforeAll(() => nock.disableNetConnect());
 
 test("#all", async () => {
-	expect(subject.keys()).toHaveLength(1);
+	expect(subject.all()).toBeObject();
+});
+
+test("#allByCoin", async () => {
+	expect(subject.allByCoin()).toBeObject();
+	expect(subject.allByCoin().ARK).toBeObject();
 });
 
 test("#import", async () => {
