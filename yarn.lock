@@ -467,7 +467,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.4
     eslint-plugin-simple-import-sort: ^5.0.3
     ethereumjs-tx: ^2.1.2
-    ethereumjs-wallet: ^0.6.3
+    ethereumjs-wallet: ^0.6.4
     got: ^11.3.0
     jest: ^26.0.1
     jest-extended: ^0.11.5
@@ -6871,20 +6871,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ethereumjs-wallet@npm:^0.6.3":
-  version: 0.6.3
-  resolution: "ethereumjs-wallet@npm:0.6.3"
+"ethereumjs-wallet@npm:^0.6.4":
+  version: 0.6.4
+  resolution: "ethereumjs-wallet@npm:0.6.4"
   dependencies:
     aes-js: ^3.1.1
     bs58check: ^2.1.2
     ethereumjs-util: ^6.0.0
-    hdkey: ^1.1.0
+    hdkey: ^1.1.1
     randombytes: ^2.0.6
     safe-buffer: ^5.1.2
-    scrypt.js: ^0.3.0
+    scryptsy: ^1.2.1
     utf8: ^3.0.0
     uuid: ^3.3.2
-  checksum: 2/cfd66848665b9e3b540d2793efa9f308b49648cd7aee8b08a7b808401df4ca0bc96dee0418b24c8860cf47d3eaab687b1cd6fa19873144e08eedca4527d24cfc
+  checksum: 2/0e799a5ae66abc25dd84e66a5b5ce71bc72f6ce7795af11b10b79ec25f59cb532f329a4245f76106b996532dda915838cab946ef7c2d55c97257632ddc73c70d
   languageName: node
   linkType: hard
 
@@ -8019,7 +8019,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hdkey@npm:^1.1.0":
+"hdkey@npm:^1.1.1":
   version: 1.1.2
   resolution: "hdkey@npm:1.1.2"
   dependencies:
@@ -10634,7 +10634,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nan@npm:^2.0.8, nan@npm:^2.13.1, nan@npm:^2.13.2, nan@npm:^2.14.0":
+"nan@npm:^2.13.1, nan@npm:^2.13.2, nan@npm:^2.14.0":
   version: 2.14.1
   resolution: "nan@npm:2.14.1"
   dependencies:
@@ -12785,29 +12785,6 @@ resolve@~1.7.1:
   version: 3.0.1
   resolution: "scrypt-js@npm:3.0.1"
   checksum: 2/2ae93c4dd519c05a53c169fb92bbc2f76c38c7b2a277492e098f300caf099ccfae07de06441f9a9af4fceda1af65c9fff3a1af6b33da293586cd3ea33db7d40d
-  languageName: node
-  linkType: hard
-
-"scrypt.js@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "scrypt.js@npm:0.3.0"
-  dependencies:
-    scrypt: ^6.0.2
-    scryptsy: ^1.2.1
-  dependenciesMeta:
-    scrypt:
-      optional: true
-  checksum: 2/bba18e2fef2af2c03be5a7a573a1e67e13f7ac664fb01b90f8c9d6036e58ecb03821ee2a525a27efff4cdf04135ef41cac18e878935b522971c3ea868aca57de
-  languageName: node
-  linkType: hard
-
-"scrypt@npm:^6.0.2":
-  version: 6.0.3
-  resolution: "scrypt@npm:6.0.3"
-  dependencies:
-    nan: ^2.0.8
-    node-gyp: latest
-  checksum: 2/137831c39f2b1b5de54163a395ee20b86471dea6144983eade5e41ce02a3fa24748570e5d6668f3a1f26dddf84f68db0e6932c1a946c9d547204b1fd84ae6788
   languageName: node
   linkType: hard
 
