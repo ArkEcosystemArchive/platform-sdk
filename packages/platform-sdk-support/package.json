@@ -22,7 +22,9 @@
 		"bad-words": "^3.0.3",
 		"bignumber.js": "^9.0.0",
 		"censorify-it": "^2.1.4",
+		"front-matter": "^4.0.2",
 		"qrcode": "^1.4.4",
+		"remarkable": "^2.0.1",
 		"yup": "^0.29.1"
 	},
 	"devDependencies": {

@@ -794,6 +794,7 @@ __metadata:
     eslint-plugin-jest: ^23.13.2
     eslint-plugin-prettier: ^3.1.4
     eslint-plugin-simple-import-sort: ^5.0.3
+    front-matter: ^4.0.2
     jest: ^26.0.1
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
@@ -801,6 +802,7 @@ __metadata:
     npm-check-updates: ^7.0.1
     prettier: ^2.0.5
     qrcode: ^1.4.4
+    remarkable: ^2.0.1
     rimraf: ^3.0.2
     ts-jest: ^26.1.0
     typedoc: ^0.17.7
@@ -4102,7 +4104,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"argparse@npm:^1.0.7":
+"argparse@npm:^1.0.10, argparse@npm:^1.0.7":
   version: 1.0.10
   resolution: "argparse@npm:1.0.10"
   dependencies:
@@ -4251,6 +4253,15 @@ __metadata:
   version: 1.0.0
   resolution: "atomic-sleep@npm:1.0.0"
   checksum: 2/2c6fa68cafef5ec1501245da00cde40b8f7ac71428bd727a923ea883b81ad643667a85677056cd663ad3ca584a49dbeb3a1bd4e6c70c1e9e36afd71b6e36ef96
+  languageName: node
+  linkType: hard
+
+"autolinker@npm:^3.11.0":
+  version: 3.14.1
+  resolution: "autolinker@npm:3.14.1"
+  dependencies:
+    tslib: ^1.9.3
+  checksum: 2/0ce159e8ff5f68c6936fa042561b4bc9d27e317f4a39583db072d5a6703e1b67ca08700fd2576d2ffb8a20d7c78a1b2838808108574c6cd9d68d2a1501fb6377
   languageName: node
   linkType: hard
 
@@ -7518,6 +7529,15 @@ __metadata:
   version: 0.5.2
   resolution: "fresh@npm:0.5.2"
   checksum: 2/2f76c8505d1ea5a6d5accea3e7aff0b796bfa43364c84929254f33909fa08640948bd1728220d1ff5f4c2b378a65e97da647f2fe0f2b7ddb44001f6e0dc2e91f
+  languageName: node
+  linkType: hard
+
+"front-matter@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "front-matter@npm:4.0.2"
+  dependencies:
+    js-yaml: ^3.13.1
+  checksum: 2/2447caa3155a00007a4ee5ca8c616f470c9779eab72846b0d6720ac780c4607740060322a85e71f9d93bda7c927ef02903d7778d3043824c9fe2259a476669fb
   languageName: node
   linkType: hard
 
@@ -12378,6 +12398,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"remarkable@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "remarkable@npm:2.0.1"
+  dependencies:
+    argparse: ^1.0.10
+    autolinker: ^3.11.0
+  bin:
+    remarkable: bin/remarkable.js
+  checksum: 2/020afe2520317dfd84880aece3f42fc0684267c28a246a42d1e7f8c756da67cde81cbc8ad7ca52c00116df054cc268b336be5add33ab8030a93de50b1db205be
+  languageName: node
+  linkType: hard
+
 "remove-trailing-separator@npm:^1.0.1":
   version: 1.1.0
   resolution: "remove-trailing-separator@npm:1.1.0"
@@ -14275,7 +14307,7 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.10.0":
+"tslib@npm:^1.10.0, tslib@npm:^1.9.3":
   version: 1.11.2
   resolution: "tslib@npm:1.11.2"
   checksum: 2/9465e3dd4e348757bef369934c73990193cf069c13d487e566b1ce7802bd7e6ab7d5dc16ac97b31d076d29d8bfc4f358457ce4040ec97b9a1e9b3fa6cf1ded7a
