@@ -1,9 +1,12 @@
 import "jest-extended";
 import nock from "nock";
 
+import { ARK } from "@arkecosystem/platform-sdk-ark";
+
 import { Profile, ContactRepository, SettingRepository, WalletRepository, Identifiers } from "../src";
 import { container } from "../src/container";
 
+import { identity } from "./__fixtures__/identity";
 import { HttpClient } from "./stubs/client";
 import { DataRepository } from "../src/repositories/data-repository";
 
@@ -54,7 +57,7 @@ it("should have a settings repository", () => {
 	expect(subject.settings()).toBeInstanceOf(SettingRepository);
 });
 
-test("Profile#toObject", () => {
+test("#toObject", () => {
 	expect(subject.toObject()).toEqual({
 		id: "uuid",
 		name: "John Doe",
@@ -63,5 +66,18 @@ test("Profile#toObject", () => {
 		data: {},
 		settings: {},
 		wallets: {},
+	});
+});
+
+test("#balancePerCoin", async () => {
+	container.set(Identifiers.HttpClient, new HttpClient());
+
+	await subject.wallets().import(identity.mnemonic, ARK, "devnet");
+
+	expect(subject.balancePerCoin()).toEqual({
+		ARK: {
+			percentage: "100.00",
+			total: "55827093444556",
+		},
 	});
 });

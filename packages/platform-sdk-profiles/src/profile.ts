@@ -98,14 +98,21 @@ export class Profile {
 		return this.wallets().count();
 	}
 
-	public balancePerCoin(): Record<string, number> {
+	public balancePerCoin(): Record<string, { total: number; percentage: number }> {
 		const result = {};
 
+		const totalByProfile: BigNumber = this.balance();
+
 		for (const [coin, wallets] of Object.entries(this.wallets().allByCoin())) {
-			result[coin] = Object.values(wallets).reduce(
+			const totalByCoin: BigNumber = Object.values(wallets).reduce(
 				(total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()),
 				BigNumber.ZERO,
 			);
+
+			result[coin] = {
+				total: totalByCoin.toFixed(),
+				percentage: totalByCoin.divide(totalByProfile).times(100).toFixed(2),
+			};
 		}
 
 		return result;
