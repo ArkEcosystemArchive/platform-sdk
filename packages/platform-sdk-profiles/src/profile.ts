@@ -97,4 +97,17 @@ export class Profile {
 	public countWallets(): number {
 		return this.wallets().count();
 	}
+
+	public balancePerCoin(): Record<string, number> {
+		const result = {};
+
+		for (const [coin, wallets] of Object.entries(this.wallets().allByCoin())) {
+			result[coin] = Object.values(wallets).reduce(
+				(total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()),
+				BigNumber.ZERO,
+			);
+		}
+
+		return result;
+	}
 }
