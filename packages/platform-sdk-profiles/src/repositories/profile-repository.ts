@@ -15,7 +15,7 @@ export class ProfileRepository {
 			const result: Profile = new Profile(profile.id, profile.name);
 
 			for (const wallet of Object.values(profile.wallets)) {
-				await result.wallets().createFromObject(wallet as any);
+				await result.wallets().restore(wallet as any);
 			}
 
 			result.contacts().fill(profile.contacts);

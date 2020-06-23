@@ -54,13 +54,13 @@ export class WalletRepository {
 		return this.storeWallet(id, wallet);
 	}
 
-	public async createRandom(coin: Coins.CoinSpec, network: string): Promise<{ mnemonic: string; wallet: Wallet }> {
+	public async generate(coin: Coins.CoinSpec, network: string): Promise<{ mnemonic: string; wallet: Wallet }> {
 		const mnemonic: string = BIP39.generate();
 
 		return { mnemonic, wallet: await this.import(mnemonic, coin, network) };
 	}
 
-	public async createFromObject({ id, coin, coinConfig, network, address }): Promise<Wallet> {
+	public async restore({ id, coin, coinConfig, network, address }): Promise<Wallet> {
 		const wallet: Wallet = new Wallet(id);
 
 		await wallet.setCoin(container.get<any>(Identifiers.Coins)[coin], network);

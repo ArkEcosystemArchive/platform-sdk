@@ -58,10 +58,10 @@ test("#import", async () => {
 	expect(subject.keys()).toHaveLength(1);
 });
 
-test("#createRandom", async () => {
+test("#generate", async () => {
 	subject.flush();
 
-	const wallet = await subject.createRandom(ARK, "devnet");
+	const wallet = await subject.generate(ARK, "devnet");
 
 	expect(wallet.mnemonic).toBeString();
 	expect(wallet.wallet).toBeInstanceOf(Wallet);
