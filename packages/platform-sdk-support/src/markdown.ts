@@ -1,5 +1,4 @@
 import FrontMatter from "front-matter";
-// @ts-ignore - bugged types
 import { Remarkable } from "remarkable";
 
 type MarkdownMeta = Record<string, string | number>;

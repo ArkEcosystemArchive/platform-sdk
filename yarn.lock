@@ -781,7 +781,6 @@ __metadata:
     "@types/node": ^14.0.13
     "@types/prettier": ^2.0.1
     "@types/qrcode": 1.3.4
-    "@types/remarkable": 1.7.4
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^3.3.0
     "@typescript-eslint/parser": ^3.3.0
@@ -3437,13 +3436,6 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 2/56317c6b53f8d3bc753a645e1ab0183353a9c080263f7e5a06f3b46a861e1b70eb1ceee6b0d73b0c01c81037732b2d03b38bb5c92eafc18d30a142f2d9cb2355
-  languageName: node
-  linkType: hard
-
-"@types/remarkable@npm:1.7.4":
-  version: 1.7.4
-  resolution: "@types/remarkable@npm:1.7.4"
-  checksum: 2/5ba1ca461a44cac5a324490d633db05db229072a481e77e1f968bb84e0bbb3e5d44ff89d8b0217f35c183022c877a47a47f431c7872c99e5d9b48ae9fbe74df2
   languageName: node
   linkType: hard
 
