@@ -5,6 +5,7 @@ import {
 	LedgerService,
 	LinkService,
 	MessageService,
+	MultiSignatureService,
 	PeerService,
 	TransactionService,
 } from "../contracts/coins";
@@ -92,6 +93,10 @@ export class Coin {
 
 	public message(): MessageService {
 		return this.#services.message;
+	}
+
+	public multiSignature(): MultiSignatureService {
+		return this.#services.multiSignature;
 	}
 
 	public peer(): PeerService {
