@@ -13,6 +13,7 @@ export const manifest = {
 				slip44: 0,
 			},
 			hosts: ["https://coins.com/api/btc"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -30,6 +31,7 @@ export const manifest = {
 				slip44: 0,
 			},
 			hosts: ["https://coins.com/api/btc"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,

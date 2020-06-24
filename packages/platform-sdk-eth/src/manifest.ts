@@ -14,6 +14,7 @@ export const manifest = {
 				slip44: 60,
 			},
 			hosts: ["https://coins.com/api/eth"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -32,6 +33,7 @@ export const manifest = {
 				slip44: 60,
 			},
 			hosts: ["https://coins.com/api/eth"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -46,6 +48,7 @@ export const manifest = {
 				slip44: 60,
 			},
 			hosts: ["https://coins.com/api/eth"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -64,6 +67,7 @@ export const manifest = {
 				slip44: 60,
 			},
 			hosts: ["https://coins.com/api/eth"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -82,6 +86,7 @@ export const manifest = {
 				slip44: 60,
 			},
 			hosts: ["https://coins.com/api/eth"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,

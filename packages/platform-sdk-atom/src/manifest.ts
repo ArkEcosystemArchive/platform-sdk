@@ -15,6 +15,7 @@ export const manifest = {
 				bech32: "cosmos",
 			},
 			hosts: ["https://api.cosmos.network"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -34,6 +35,7 @@ export const manifest = {
 				bech32: "cosmos",
 			},
 			hosts: ["https://stargate.cosmos.network"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -53,6 +55,7 @@ export const manifest = {
 				bech32: "terra",
 			},
 			hosts: [],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -72,6 +75,7 @@ export const manifest = {
 				bech32: "terra",
 			},
 			hosts: [],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,

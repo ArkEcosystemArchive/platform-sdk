@@ -13,6 +13,7 @@ export const manifest = {
 				slip44: 195,
 			},
 			hosts: ["https://api.trongrid.io"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -30,6 +31,7 @@ export const manifest = {
 				slip44: 195,
 			},
 			hosts: ["https://api.shasta.trongrid.io"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
