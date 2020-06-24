@@ -13,6 +13,7 @@ export const manifest = {
 				slip44: 144,
 			},
 			hosts: ["wss://s2.ripple.com/"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -30,6 +31,7 @@ export const manifest = {
 				slip44: 144,
 			},
 			hosts: ["wss://s.altnet.rippletest.net/"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,

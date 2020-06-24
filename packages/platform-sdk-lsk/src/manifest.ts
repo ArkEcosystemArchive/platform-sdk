@@ -31,6 +31,7 @@ export const manifest = {
 				"https://hub37.lisk.io",
 				"https://hub38.lisk.io",
 			],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: true,
 				singular: false,
@@ -49,6 +50,7 @@ export const manifest = {
 				slip44: 134,
 			},
 			hosts: ["https://testnet.lisk.io"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: true,
 				singular: false,
@@ -67,6 +69,7 @@ export const manifest = {
 				slip44: 134,
 			},
 			hosts: ["https://betanet.lisk.io"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: true,
 				singular: false,

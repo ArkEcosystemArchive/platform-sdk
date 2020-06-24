@@ -13,6 +13,7 @@ export const manifest = {
 				slip44: 148,
 			},
 			hosts: ["https://horizon.stellar.org"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -30,6 +31,7 @@ export const manifest = {
 				slip44: 148,
 			},
 			hosts: ["https://horizon-testnet.stellar.org"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,

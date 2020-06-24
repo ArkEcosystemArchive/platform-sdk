@@ -13,6 +13,7 @@ export const schema = ValidatorSchema.object().shape({
 		"bos.mainnet",
 	]),
 	peer: ValidatorSchema.string().url().notRequired(),
+	peerMultiSignature: ValidatorSchema.string().url().notRequired(),
 	httpClient: ValidatorSchema.object(),
 	services: ValidatorSchema.object()
 		.shape({

@@ -109,6 +109,7 @@ export class Environment {
 											slip44: number().integer().required(),
 										}).required(),
 										hosts: array().of(string()).required(),
+										hostsMultiSignature: array().of(string()),
 										voting: object({
 											enabled: boolean().required(),
 											singular: boolean().required(),

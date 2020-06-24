@@ -15,6 +15,7 @@ export const manifest = {
 				bech32: "EOS",
 			},
 			hosts: ["https://eos.greymass.com", "https://api.eosn.io", "https://mainnet.genereos.io"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -34,6 +35,7 @@ export const manifest = {
 				bech32: "EOS",
 			},
 			hosts: ["https://api.testnet.eos.io"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -58,6 +60,7 @@ export const manifest = {
 				"https://telos-mainnet.eosblocksmith.io",
 				"https://telos.caleos.io",
 			],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -82,6 +85,7 @@ export const manifest = {
 				"https://testnet.telos.caleos.io",
 				"https://api-test.telosfoundation.io",
 			],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -101,6 +105,7 @@ export const manifest = {
 				bech32: "WAX",
 			},
 			hosts: ["https://wax.eosphere.io"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -120,6 +125,7 @@ export const manifest = {
 				bech32: "WBI",
 			},
 			hosts: ["https://api.worbli.io", "https://worbli-mainnet.eosblocksmith.io"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -139,6 +145,7 @@ export const manifest = {
 				bech32: "WBI",
 			},
 			hosts: ["https://worbli-testnet.eosblocksmith.io", "https://worbli-testnet.eosphere.io"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -158,6 +165,7 @@ export const manifest = {
 				bech32: "MEETONE",
 			},
 			hosts: ["https://fullnode.meet.one"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -177,6 +185,7 @@ export const manifest = {
 				bech32: "BOS",
 			},
 			hosts: ["https://api.boscore.io"],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,

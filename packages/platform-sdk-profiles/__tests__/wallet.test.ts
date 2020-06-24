@@ -55,6 +55,7 @@ test("#network", () => {
 			"http://167.114.29.54:4003",
 			"http://167.114.29.55:4003",
 		],
+		hostsMultiSignature: [],
 		id: "devnet",
 		name: "Devnet",
 		voting: {
@@ -118,6 +119,7 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 					"http://167.114.29.54:4003",
 					"http://167.114.29.55:4003",
 				],
+				hostsMultiSignature: [],
 				id: "devnet",
 				name: "Devnet",
 				voting: {

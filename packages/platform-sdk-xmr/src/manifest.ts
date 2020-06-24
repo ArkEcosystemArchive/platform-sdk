@@ -13,6 +13,7 @@ export const manifest = {
 				slip44: 123,
 			},
 			hosts: [],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
@@ -30,6 +31,7 @@ export const manifest = {
 				slip44: 123,
 			},
 			hosts: [],
+			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
 				singular: false,
