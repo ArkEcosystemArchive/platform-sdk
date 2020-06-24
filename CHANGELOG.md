@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.129 - 2020-06-24
+
+### Added
+
+-   Implement `MultiSignatureService` (986b54bf, @faustbrian)
+
+### Changed
+
+-   Add Multi-Signature hosts to manifest (c43c4424, @faustbrian)
+
 ## 0.9.127 - 2020-06-24
 
 ### Added
