@@ -24,6 +24,7 @@ export class CoinFactory {
 				ledger: await services.LedgerService.construct(config),
 				link: await services.LinkService.construct(config),
 				message: await services.MessageService.construct(config),
+				multiSignature: await services.MultiSignatureService.construct(config),
 				peer: await services.PeerService.construct(config),
 				transaction: await services.TransactionService.construct(config),
 			},

@@ -6,6 +6,7 @@ import {
 	LedgerService,
 	LinkService,
 	MessageService,
+	MultiSignatureService,
 	PeerService,
 	TransactionService,
 } from "../contracts/coins";
@@ -20,6 +21,7 @@ export interface CoinSpec {
 		LedgerService: any;
 		LinkService: any;
 		MessageService: any;
+		MultiSignatureService: any;
 		PeerService: any;
 		TransactionService: any;
 	};
@@ -39,6 +41,7 @@ export interface CoinServices {
 	ledger: LedgerService;
 	link: LinkService;
 	message: MessageService;
+	multiSignature: MultiSignatureService;
 	peer: PeerService;
 	transaction: TransactionService;
 }
