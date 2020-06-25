@@ -2,6 +2,8 @@ import "jest-extended";
 import nock from "nock";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
+import { BTC } from "@arkecosystem/platform-sdk-btc";
+import { ETH } from "@arkecosystem/platform-sdk-eth";
 
 import { Wallet } from "../../src/wallet";
 import { WalletRepository } from "../../src/repositories/wallet-repository";
@@ -80,45 +82,50 @@ test("#findByCoin", () => {
 });
 
 describe("#sortBy", () => {
-	it("should sort by address", async () => {
+	let walletARK: Wallet;
+	let walletBTC: Wallet;
+	let walletETH: Wallet;
+
+	beforeEach(async () => {
 		subject.flush();
 
-		await subject.import("a", ARK, "devnet");
-		await subject.import("b", ARK, "devnet");
-		await subject.import("c", ARK, "devnet");
+		walletARK = await subject.import("a", ARK, "devnet");
+		walletBTC = await subject.import("b", BTC, "testnet");
+		walletETH = await subject.import("c", ETH, "ropsten");
+	});
 
+	it("should sort by coin", async () => {
+		const wallets = subject.sortBy("coin");
+
+		expect(wallets[0].address()).toBe(walletBTC.address()); // BTC
+		expect(wallets[1].address()).toBe(walletARK.address()); // DARK
+		expect(wallets[2].address()).toBe(walletETH.address()); // ETH
+	});
+
+	it("should sort by address", async () => {
 		const wallets = subject.sortBy("address");
 
-		expect(wallets[0].address()).toBe("DCDLm4EYkpe1XmbEwL5ZZrZ93Pmfnnn4Vo");
-		expect(wallets[1].address()).toBe("DFyDKsyvR4x9D9zrfEaPmeJxSniT5N5qY8");
-		expect(wallets[2].address()).toBe("DTRdbaUW3RQQSL5By4G43JVaeHiqfVp9oh");
+		expect(wallets[0].address()).toBe(walletETH.address());
+		expect(wallets[1].address()).toBe(walletARK.address());
+		expect(wallets[2].address()).toBe(walletBTC.address());
 	});
 
 	it("should sort by type", async () => {
-		subject.flush();
-
-		(await subject.import("a", ARK, "devnet")).toggleStarred();
-		await subject.import("b", ARK, "devnet");
-		(await subject.import("c", ARK, "devnet")).toggleStarred();
+		walletARK.toggleStarred();
+		walletETH.toggleStarred();
 
 		const wallets = subject.sortBy("type");
 
-		expect(wallets[0].address()).toBe("DFyDKsyvR4x9D9zrfEaPmeJxSniT5N5qY8");
-		expect(wallets[1].address()).toBe("DTRdbaUW3RQQSL5By4G43JVaeHiqfVp9oh");
-		expect(wallets[2].address()).toBe("DCDLm4EYkpe1XmbEwL5ZZrZ93Pmfnnn4Vo");
+		expect(wallets[0].address()).toBe(walletBTC.address());
+		expect(wallets[1].address()).toBe(walletARK.address());
+		expect(wallets[2].address()).toBe(walletETH.address());
 	});
 
 	it("should sort by balance", async () => {
-		subject.flush();
-
-		await subject.import("a", ARK, "devnet");
-		await subject.import("b", ARK, "devnet");
-		await subject.import("c", ARK, "devnet");
-
 		const wallets = subject.sortBy("balance");
 
-		expect(wallets[0].address()).toBe("DTRdbaUW3RQQSL5By4G43JVaeHiqfVp9oh");
-		expect(wallets[1].address()).toBe("DFyDKsyvR4x9D9zrfEaPmeJxSniT5N5qY8");
-		expect(wallets[2].address()).toBe("DCDLm4EYkpe1XmbEwL5ZZrZ93Pmfnnn4Vo");
+		expect(wallets[0].address()).toBe(walletARK.address());
+		expect(wallets[1].address()).toBe(walletBTC.address());
+		expect(wallets[2].address()).toBe(walletETH.address());
 	});
 });

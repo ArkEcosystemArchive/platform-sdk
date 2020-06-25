@@ -119,10 +119,13 @@ export class WalletRepository {
 	}
 
 	public sortBy(column: string, direction: "asc" | "desc" = "asc"): Wallet[] {
-		// TODO: sort by coin/asset (String)
 		// TODO: sort by balance as fiat (BigInt)
 
-		const sortFunction = (wallet) => {
+		const sortFunction = (wallet: Wallet) => {
+			if (column === "coin") {
+				return wallet.currency();
+			}
+
 			if (column === "type") {
 				return wallet.isStarred();
 			}

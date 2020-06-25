@@ -195,15 +195,11 @@ export class Wallet {
 	}
 
 	public isStarred(): boolean {
-		return this.data().has(WalletFlag.Starred);
+		return this.data().get(WalletFlag.Starred) === true;
 	}
 
 	public toggleStarred(): void {
-		if (this.isStarred()) {
-			this.data().forget(WalletFlag.Starred);
-		} else {
-			this.data().set(WalletFlag.Starred, true);
-		}
+		this.data().set(WalletFlag.Starred, !this.isStarred());
 	}
 
 	/**
