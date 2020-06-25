@@ -745,6 +745,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^3.4.0
     "@typescript-eslint/parser": ^3.4.0
     codecov: ^3.7.0
+    collect.js: ^4.27.3
     cross-env: ^7.0.2
     dot-prop: ^5.2.0
     eslint: ^7.3.1
@@ -5455,6 +5456,13 @@ __metadata:
   version: 1.0.1
   resolution: "collect-v8-coverage@npm:1.0.1"
   checksum: 2/2fc4c79300d6e22169cb0f85e00565079c3939679b7021179db73419f773454166654c7b82372b080c780a9643de4002ec5bb909be55e7018aba3e8cb4f8b01f
+  languageName: node
+  linkType: hard
+
+"collect.js@npm:^4.27.3":
+  version: 4.27.3
+  resolution: "collect.js@npm:4.27.3"
+  checksum: 2/2743d63f78db40780a05df2b5ac5edc33cc25cf82e38465f0f07b0d12e3de37e13ba695e28cde2712ea2309ee0fdddddab4f7f5e33ff87ba3eb37ccd1798aa22
   languageName: node
   linkType: hard
 

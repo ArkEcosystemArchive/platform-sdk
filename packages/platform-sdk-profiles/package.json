@@ -24,6 +24,7 @@
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@arkecosystem/utils": "^1.1.8",
+		"collect.js": "^4.27.3",
 		"dot-prop": "^5.2.0",
 		"localforage": "^1.7.4",
 		"mersenne-twister": "^1.1.0",
