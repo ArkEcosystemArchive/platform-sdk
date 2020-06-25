@@ -35,11 +35,11 @@ beforeEach(async () => {
 
 beforeAll(() => nock.disableNetConnect());
 
-test("#all", async () => {
+test("#all", () => {
 	expect(subject.all()).toBeObject();
 });
 
-test("#allByCoin", async () => {
+test("#allByCoin", () => {
 	expect(subject.allByCoin()).toBeObject();
 	expect(subject.allByCoin().DARK).toBeObject();
 });
@@ -67,14 +67,58 @@ test("#generate", async () => {
 	expect(wallet.wallet).toBeInstanceOf(Wallet);
 });
 
-test("#findByAddress", async () => {
+test("#findByAddress", () => {
 	expect(subject.findByAddress(identity.address)).toBeInstanceOf(Wallet);
 });
 
-test("#findByPublicKey", async () => {
+test("#findByPublicKey", () => {
 	expect(subject.findByPublicKey(identity.publicKey)).toBeInstanceOf(Wallet);
 });
 
-test("#findByCoin", async () => {
+test("#findByCoin", () => {
 	expect(subject.findByCoin("ARK")).toHaveLength(1);
+});
+
+describe("#sortBy", () => {
+	it("should sort by address", async () => {
+		subject.flush();
+
+		await subject.import("a", ARK, "devnet");
+		await subject.import("b", ARK, "devnet");
+		await subject.import("c", ARK, "devnet");
+
+		const wallets = subject.sortBy("address");
+
+		expect(wallets[0].address()).toBe("DCDLm4EYkpe1XmbEwL5ZZrZ93Pmfnnn4Vo");
+		expect(wallets[1].address()).toBe("DFyDKsyvR4x9D9zrfEaPmeJxSniT5N5qY8");
+		expect(wallets[2].address()).toBe("DTRdbaUW3RQQSL5By4G43JVaeHiqfVp9oh");
+	});
+
+	it("should sort by type", async () => {
+		subject.flush();
+
+		(await subject.import("a", ARK, "devnet")).toggleStarred();
+		await subject.import("b", ARK, "devnet");
+		(await subject.import("c", ARK, "devnet")).toggleStarred();
+
+		const wallets = subject.sortBy("type");
+
+		expect(wallets[0].address()).toBe("DFyDKsyvR4x9D9zrfEaPmeJxSniT5N5qY8");
+		expect(wallets[1].address()).toBe("DTRdbaUW3RQQSL5By4G43JVaeHiqfVp9oh");
+		expect(wallets[2].address()).toBe("DCDLm4EYkpe1XmbEwL5ZZrZ93Pmfnnn4Vo");
+	});
+
+	it("should sort by balance", async () => {
+		subject.flush();
+
+		await subject.import("a", ARK, "devnet");
+		await subject.import("b", ARK, "devnet");
+		await subject.import("c", ARK, "devnet");
+
+		const wallets = subject.sortBy("balance");
+
+		expect(wallets[0].address()).toBe("DTRdbaUW3RQQSL5By4G43JVaeHiqfVp9oh");
+		expect(wallets[1].address()).toBe("DFyDKsyvR4x9D9zrfEaPmeJxSniT5N5qY8");
+		expect(wallets[2].address()).toBe("DCDLm4EYkpe1XmbEwL5ZZrZ93Pmfnnn4Vo");
+	});
 });

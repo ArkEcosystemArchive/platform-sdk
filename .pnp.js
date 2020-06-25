@@ -1102,6 +1102,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
+            ["@arkecosystem/utils", "npm:1.1.8"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/async", "npm:3.2.3"],
             ["@types/dot-prop", "npm:5.0.1"],
