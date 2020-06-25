@@ -2,6 +2,8 @@ import "jest-extended";
 import nock from "nock";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
+import { BTC } from "@arkecosystem/platform-sdk-btc";
+import { ETH } from "@arkecosystem/platform-sdk-eth";
 
 import { Wallet } from "../../src/wallet";
 import { WalletRepository } from "../../src/repositories/wallet-repository";
@@ -35,11 +37,11 @@ beforeEach(async () => {
 
 beforeAll(() => nock.disableNetConnect());
 
-test("#all", async () => {
+test("#all", () => {
 	expect(subject.all()).toBeObject();
 });
 
-test("#allByCoin", async () => {
+test("#allByCoin", () => {
 	expect(subject.allByCoin()).toBeObject();
 	expect(subject.allByCoin().DARK).toBeObject();
 });
@@ -67,14 +69,63 @@ test("#generate", async () => {
 	expect(wallet.wallet).toBeInstanceOf(Wallet);
 });
 
-test("#findByAddress", async () => {
+test("#findByAddress", () => {
 	expect(subject.findByAddress(identity.address)).toBeInstanceOf(Wallet);
 });
 
-test("#findByPublicKey", async () => {
+test("#findByPublicKey", () => {
 	expect(subject.findByPublicKey(identity.publicKey)).toBeInstanceOf(Wallet);
 });
 
-test("#findByCoin", async () => {
+test("#findByCoin", () => {
 	expect(subject.findByCoin("ARK")).toHaveLength(1);
+});
+
+describe("#sortBy", () => {
+	let walletARK: Wallet;
+	let walletBTC: Wallet;
+	let walletETH: Wallet;
+
+	beforeEach(async () => {
+		subject.flush();
+
+		walletARK = await subject.import("a", ARK, "devnet");
+		walletBTC = await subject.import("b", BTC, "testnet");
+		walletETH = await subject.import("c", ETH, "ropsten");
+	});
+
+	it("should sort by coin", async () => {
+		const wallets = subject.sortBy("coin");
+
+		expect(wallets[0].address()).toBe(walletBTC.address()); // BTC
+		expect(wallets[1].address()).toBe(walletARK.address()); // DARK
+		expect(wallets[2].address()).toBe(walletETH.address()); // ETH
+	});
+
+	it("should sort by address", async () => {
+		const wallets = subject.sortBy("address");
+
+		expect(wallets[0].address()).toBe(walletETH.address());
+		expect(wallets[1].address()).toBe(walletARK.address());
+		expect(wallets[2].address()).toBe(walletBTC.address());
+	});
+
+	it("should sort by type", async () => {
+		walletARK.toggleStarred();
+		walletETH.toggleStarred();
+
+		const wallets = subject.sortBy("type");
+
+		expect(wallets[0].address()).toBe(walletBTC.address());
+		expect(wallets[1].address()).toBe(walletARK.address());
+		expect(wallets[2].address()).toBe(walletETH.address());
+	});
+
+	it("should sort by balance", async () => {
+		const wallets = subject.sortBy("balance");
+
+		expect(wallets[0].address()).toBe(walletARK.address());
+		expect(wallets[1].address()).toBe(walletBTC.address());
+		expect(wallets[2].address()).toBe(walletETH.address());
+	});
 });

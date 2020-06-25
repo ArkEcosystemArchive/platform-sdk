@@ -23,6 +23,7 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
+		"@arkecosystem/utils": "^1.1.8",
 		"dot-prop": "^5.2.0",
 		"localforage": "^1.7.4",
 		"mersenne-twister": "^1.1.0",
@@ -31,6 +32,8 @@
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-ark": "workspace:packages/platform-sdk-ark",
+		"@arkecosystem/platform-sdk-btc": "workspace:packages/platform-sdk-btc",
+		"@arkecosystem/platform-sdk-eth": "workspace:packages/platform-sdk-eth",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/async": "3.2.3",
 		"@types/dot-prop": "5.0.1",

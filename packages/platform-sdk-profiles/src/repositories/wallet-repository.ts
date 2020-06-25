@@ -1,5 +1,6 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import { sortBy, sortByDesc } from "@arkecosystem/utils";
 import { v4 as uuidv4 } from "uuid";
 
 import { container } from "../container";
@@ -115,6 +116,32 @@ export class WalletRepository {
 		}
 
 		return result;
+	}
+
+	public sortBy(column: string, direction: "asc" | "desc" = "asc"): Wallet[] {
+		// TODO: sort by balance as fiat (BigInt)
+
+		const sortFunction = (wallet: Wallet) => {
+			if (column === "coin") {
+				return wallet.currency();
+			}
+
+			if (column === "type") {
+				return wallet.isStarred();
+			}
+
+			if (column === "balance") {
+				return wallet.balance().toFixed();
+			}
+
+			return wallet[column]();
+		};
+
+		if (direction === "asc") {
+			return sortBy(this.values(), sortFunction);
+		}
+
+		return sortByDesc(this.values(), sortFunction);
 	}
 
 	private storeWallet(id: string, wallet: Wallet): Wallet {
