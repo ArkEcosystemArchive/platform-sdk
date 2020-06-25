@@ -822,7 +822,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.4"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
             ["ethereumjs-tx", "npm:2.1.2"],
-            ["ethereumjs-wallet", "npm:0.6.4"],
+            ["ethereumjs-wallet", "npm:1.0.0"],
             ["got", "npm:11.3.0"],
             ["jest", "npm:26.0.1"],
             ["jest-extended", "npm:0.11.5"],
@@ -3878,6 +3878,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/pbkdf2", [
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/@types-pbkdf2-npm-3.0.0-42ce5c3efe-2.zip/node_modules/@types/pbkdf2/",
+          "packageDependencies": [
+            ["@types/pbkdf2", "npm:3.0.0"],
+            ["@types/node", "npm:13.13.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/pino", [
         ["npm:6.3.0", {
           "packageLocation": "./.yarn/cache/@types-pino-npm-6.3.0-963164cfc9-2.zip/node_modules/@types/pino/",
@@ -3952,6 +3962,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@types/rimraf", "npm:3.0.0"],
             ["@types/glob", "npm:7.1.1"],
+            ["@types/node", "npm:13.13.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/secp256k1", [
+        ["npm:4.0.1", {
+          "packageLocation": "./.yarn/cache/@types-secp256k1-npm-4.0.1-8a8b04cf55-2.zip/node_modules/@types/secp256k1/",
+          "packageDependencies": [
+            ["@types/secp256k1", "npm:4.0.1"],
             ["@types/node", "npm:13.13.4"]
           ],
           "linkType": "HARD",
@@ -5850,6 +5870,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["blakejs", [
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/blakejs-npm-1.1.0-b189e40bb9-2.zip/node_modules/blakejs/",
+          "packageDependencies": [
+            ["blakejs", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["bluebird", [
         ["npm:3.7.2", {
           "packageLocation": "./.yarn/cache/bluebird-npm-3.7.2-6a54136ee3-2.zip/node_modules/bluebird/",
@@ -5878,6 +5907,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/bn.js-npm-5.1.1-d7439ccaad-2.zip/node_modules/bn.js/",
           "packageDependencies": [
             ["bn.js", "npm:5.1.1"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.1.2", {
+          "packageLocation": "./.yarn/cache/bn.js-npm-5.1.2-cb72ababd7-2.zip/node_modules/bn.js/",
+          "packageDependencies": [
+            ["bn.js", "npm:5.1.2"]
           ],
           "linkType": "HARD",
         }]
@@ -8279,6 +8315,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["ethereum-cryptography", [
+        ["npm:0.1.3", {
+          "packageLocation": "./.yarn/cache/ethereum-cryptography-npm-0.1.3-ab43fc624b-2.zip/node_modules/ethereum-cryptography/",
+          "packageDependencies": [
+            ["ethereum-cryptography", "npm:0.1.3"],
+            ["@types/pbkdf2", "npm:3.0.0"],
+            ["@types/secp256k1", "npm:4.0.1"],
+            ["blakejs", "npm:1.1.0"],
+            ["browserify-aes", "npm:1.2.0"],
+            ["bs58check", "npm:2.1.2"],
+            ["create-hash", "npm:1.2.0"],
+            ["create-hmac", "npm:1.1.7"],
+            ["hash.js", "npm:1.1.7"],
+            ["keccak", "npm:3.0.0"],
+            ["pbkdf2", "npm:3.1.0"],
+            ["randombytes", "npm:2.1.0"],
+            ["safe-buffer", "npm:5.2.0"],
+            ["scrypt-js", "npm:3.0.1"],
+            ["secp256k1", "npm:4.0.1"],
+            ["setimmediate", "npm:1.0.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["ethereumjs-common", [
         ["npm:1.5.0", {
           "packageLocation": "./.yarn/cache/ethereumjs-common-npm-1.5.0-c4b6e9daa1-2.zip/node_modules/ethereumjs-common/",
@@ -8313,20 +8373,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["secp256k1", "npm:3.8.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:7.0.2", {
+          "packageLocation": "./.yarn/cache/ethereumjs-util-npm-7.0.2-42ed91599b-2.zip/node_modules/ethereumjs-util/",
+          "packageDependencies": [
+            ["ethereumjs-util", "npm:7.0.2"],
+            ["@types/bn.js", "npm:4.11.6"],
+            ["bn.js", "npm:5.1.2"],
+            ["create-hash", "npm:1.2.0"],
+            ["ethjs-util", "npm:0.1.6"],
+            ["keccak", "npm:3.0.0"],
+            ["rlp", "npm:2.2.5"],
+            ["secp256k1", "npm:4.0.1"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["ethereumjs-wallet", [
-        ["npm:0.6.4", {
-          "packageLocation": "./.yarn/cache/ethereumjs-wallet-npm-0.6.4-67126aa7d3-2.zip/node_modules/ethereumjs-wallet/",
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/ethereumjs-wallet-npm-1.0.0-b319edb749-2.zip/node_modules/ethereumjs-wallet/",
           "packageDependencies": [
-            ["ethereumjs-wallet", "npm:0.6.4"],
+            ["ethereumjs-wallet", "npm:1.0.0"],
             ["aes-js", "npm:3.1.2"],
             ["bs58check", "npm:2.1.2"],
-            ["ethereumjs-util", "npm:6.2.0"],
-            ["hdkey", "npm:1.1.2"],
+            ["ethereum-cryptography", "npm:0.1.3"],
+            ["ethereumjs-util", "npm:7.0.2"],
             ["randombytes", "npm:2.1.0"],
-            ["safe-buffer", "npm:5.2.0"],
-            ["scryptsy", "npm:1.2.1"],
+            ["scrypt-js", "npm:3.0.1"],
             ["utf8", "npm:3.0.0"],
             ["uuid", "npm:3.4.0"]
           ],
@@ -9575,18 +9648,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["hash.js", "npm:1.1.7"],
             ["inherits", "npm:2.0.4"],
             ["minimalistic-assert", "npm:1.0.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["hdkey", [
-        ["npm:1.1.2", {
-          "packageLocation": "./.yarn/cache/hdkey-npm-1.1.2-9e141b07e7-2.zip/node_modules/hdkey/",
-          "packageDependencies": [
-            ["hdkey", "npm:1.1.2"],
-            ["bs58check", "npm:2.1.2"],
-            ["safe-buffer", "npm:5.2.0"],
-            ["secp256k1", "npm:3.8.0"]
           ],
           "linkType": "HARD",
         }]
@@ -11425,6 +11486,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["safe-buffer", "npm:5.2.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/unplugged/keccak-npm-3.0.0-bf79dd3efc/node_modules/keccak/",
+          "packageDependencies": [
+            ["keccak", "npm:3.0.0"],
+            ["node-addon-api", "npm:2.0.1"],
+            ["node-gyp", "npm:6.1.0"],
+            ["node-gyp-build", "npm:4.2.2"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["keytar", [
@@ -12599,6 +12670,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["node-addon-api", [
+        ["npm:2.0.1", {
+          "packageLocation": "./.yarn/unplugged/node-addon-api-npm-2.0.1-09527beff6/node_modules/node-addon-api/",
+          "packageDependencies": [
+            ["node-addon-api", "npm:2.0.1"],
+            ["node-gyp", "npm:6.1.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:3.0.0", {
           "packageLocation": "./.yarn/unplugged/node-addon-api-npm-3.0.0-b51323d354/node_modules/node-addon-api/",
           "packageDependencies": [
@@ -14698,6 +14777,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["bn.js", "npm:4.11.8"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:2.2.5", {
+          "packageLocation": "./.yarn/cache/rlp-npm-2.2.5-824e1be763-2.zip/node_modules/rlp/",
+          "packageDependencies": [
+            ["rlp", "npm:2.2.5"],
+            ["bn.js", "npm:4.11.8"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["rss-parser", [
@@ -14842,14 +14929,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["scryptsy", [
-        ["npm:1.2.1", {
-          "packageLocation": "./.yarn/cache/scryptsy-npm-1.2.1-6e0bd2ca6b-2.zip/node_modules/scryptsy/",
-          "packageDependencies": [
-            ["scryptsy", "npm:1.2.1"],
-            ["pbkdf2", "npm:3.0.17"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:2.1.0", {
           "packageLocation": "./.yarn/cache/scryptsy-npm-2.1.0-7d7fbe38f3-2.zip/node_modules/scryptsy/",
           "packageDependencies": [
@@ -14872,6 +14951,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["nan", "npm:2.14.1"],
             ["node-gyp", "npm:6.1.0"],
             ["safe-buffer", "npm:5.2.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:4.0.1", {
+          "packageLocation": "./.yarn/unplugged/secp256k1-npm-4.0.1-f5f79449d4/node_modules/secp256k1/",
+          "packageDependencies": [
+            ["secp256k1", "npm:4.0.1"],
+            ["elliptic", "npm:6.5.2"],
+            ["node-addon-api", "npm:2.0.1"],
+            ["node-gyp", "npm:6.1.0"],
+            ["node-gyp-build", "npm:4.2.2"]
           ],
           "linkType": "HARD",
         }]

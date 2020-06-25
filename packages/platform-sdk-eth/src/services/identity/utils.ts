@@ -1,6 +1,5 @@
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import Wallet from "ethereumjs-wallet";
-import hdkey from "ethereumjs-wallet/hdkey";
+import Wallet, { hdkey } from "ethereumjs-wallet";
 
 export const createWallet = (mnemonic: string, coinType: number): Wallet =>
 	hdkey.fromMasterSeed(BIP39.toSeed(mnemonic)).derivePath(`m/44'/${coinType}'/0'/0/0`).getWallet();
