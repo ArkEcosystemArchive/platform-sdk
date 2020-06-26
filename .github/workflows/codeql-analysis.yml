@@ -1,32 +1,38 @@
-name: "Code Scanning"
+name: "CodeQL Analysis"
 
 on:
   push:
+    branches:
+      - "master"
+      - "develop"
   pull_request:
+    types: [ready_for_review, synchronize, opened]
   schedule:
-    - cron: '0 14 * * 3'
+    - cron: "0 14 * * 3"
 
 jobs:
   CodeQL-Build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
 
-    - run: git checkout HEAD^2
-      if: ${{ github.event_name == 'pull_request' }}
+      - run: git checkout HEAD^2
+        if: ${{ github.event_name == 'pull_request' }}
 
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
-      with:
-        languages: javascript
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: javascript
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v1
+      - name: Install
+        run: yarn install --immutable --immutable-cache
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
+      - name: Build
+        run: yarn run build
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
