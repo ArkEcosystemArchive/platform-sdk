@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.132 - 2020-06-27
+
+### Added
+
+-   Implement `WalletRepository#sortBy` (34bd7116, @faustbrian)
+
+### Changed
+
+-   Update `ethereumjs-wallet` to `1.0.0` (e28f8c3f, @faustbrian)
+
+### Fixed
+
+-   Use `day` instead of `date` for differences (e217a2d0, @faustbrian)
+
 ## 0.9.129 - 2020-06-24
 
 ### Added
