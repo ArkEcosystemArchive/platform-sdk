@@ -301,7 +301,7 @@ export class DateTime {
 	}
 
 	public diffInDays(value: DateTimeLike): number {
-		return this.#instance.diff(this.toUTC(value), "date");
+		return this.#instance.diff(this.toUTC(value), "day");
 	}
 
 	public diffInWeeks(value: DateTimeLike): number {

@@ -247,7 +247,7 @@ test("#diffInHours", () => {
 });
 
 test("#diffInDays", () => {
-	expect(subject.diffInDays(subject.addDay())).toBe(-86400000);
+	expect(subject.diffInDays(subject.addDay())).toBe(-1);
 });
 
 test("#diffInWeeks", () => {
