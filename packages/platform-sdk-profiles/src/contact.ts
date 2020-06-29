@@ -1,13 +1,13 @@
-import { Avatar } from "./avatar";
-import { ContactAddress, ContactStruct } from "./contracts";
+import { ContactStruct } from "./contracts";
 import { Profile } from "./profile";
+import { ContactAddressRepository } from "./repositories/contact-address-repository";
 
 export class Contact {
 	#profile: Profile;
 
 	#id: string;
 	#name: string;
-	#addresses: ContactAddress[] = [];
+	#addresses: ContactAddressRepository;
 	#starred: boolean;
 
 	public constructor({ id, name, starred, addresses }: ContactStruct, profile: Profile) {
@@ -16,10 +16,11 @@ export class Contact {
 		this.#id = id;
 		this.#name = name;
 		this.#starred = starred;
-		this.#addresses = addresses;
 
-		for (const item of this.#addresses) {
-			item.avatar = Avatar.make(item.address);
+		this.#addresses = new ContactAddressRepository(this.#profile);
+
+		if (addresses) {
+			this.#addresses.fill(addresses);
 		}
 	}
 
@@ -35,7 +36,7 @@ export class Contact {
 		return this.#starred;
 	}
 
-	public addresses(): ContactAddress[] {
+	public addresses(): ContactAddressRepository {
 		return this.#addresses;
 	}
 
@@ -44,7 +45,7 @@ export class Contact {
 			id: this.id(),
 			name: this.name(),
 			starred: this.isStarred(),
-			addresses: this.addresses(),
+			addresses: this.addresses().toObject(),
 		};
 	}
 }

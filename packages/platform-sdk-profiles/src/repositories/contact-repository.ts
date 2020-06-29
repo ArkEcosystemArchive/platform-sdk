@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 
 import { Contact } from "../contact";
-import { ContactAddress } from "../contracts";
+import { ContactAddress } from "../contact-address";
 import { Profile } from "../profile";
 import { DataRepository } from "./data-repository";
 
@@ -26,10 +26,10 @@ export class ContactRepository {
 		return this.#data.values();
 	}
 
-	public create(data: { name: string; addresses: ContactAddress[] }): Contact {
+	public create(name: string): Contact {
 		const id: string = uuidv4();
 
-		const contact: Contact = new Contact({ id, starred: false, ...data }, this.#profile);
+		const contact: Contact = new Contact({ id, name, starred: false }, this.#profile);
 
 		this.#data.set(id, contact);
 
@@ -86,7 +86,12 @@ export class ContactRepository {
 		const result: Contact[] = [];
 
 		for (const contact of Object.values(this.all())) {
-			if (contact.addresses().find((address: ContactAddress) => address[column] === value)) {
+			const match: ContactAddress | undefined = contact
+				.addresses()
+				.values()
+				.find((address: ContactAddress) => address[column] === value);
+
+			if (match) {
 				result.push(contact);
 			}
 		}
