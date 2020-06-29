@@ -795,6 +795,7 @@ __metadata:
     jest-localstorage-mock: ^2.4.2
     localforage: ^1.7.4
     mersenne-twister: ^1.1.0
+    moize: ^5.4.7
     nock: ^12.0.3
     npm-check-updates: ^7.0.1
     prettier: ^2.0.5
@@ -8402,6 +8403,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-equals@npm:^1.6.0":
+  version: 1.6.3
+  resolution: "fast-equals@npm:1.6.3"
+  checksum: 2/d71f0f03a02a83ba15f8bcd6fb9abba16cc9446d510b0e1b4b9cd2e5de87121289472e3c9a200bb76656e71fde1bb980e2e708e2e66a224afada4d12b412e8f5
+  languageName: node
+  linkType: hard
+
 "fast-fifo@npm:^1.0.0":
   version: 1.0.0
   resolution: "fast-fifo@npm:1.0.0"
@@ -8471,6 +8479,13 @@ __metadata:
   version: 2.1.1
   resolution: "fast-sort@npm:2.1.1"
   checksum: 2/0b6b93ecdce995b3a3e46e650acf9a8e2553d50736524f795c573fe9d00f954ea9f539a02530149ded59fc06d66cde00063222e1790ad5325315301f745216fc
+  languageName: node
+  linkType: hard
+
+"fast-stringify@npm:^1.1.0":
+  version: 1.1.2
+  resolution: "fast-stringify@npm:1.1.2"
+  checksum: 2/3d21a2243ecf128943ebfaaf2aa8d3ce9cef84e981ecaf58591855a4168c6ddb8824019ac8cfe7aba609b32a2bde4c12f2d8d276a5e58fc3582ba4c4834ccdd7
   languageName: node
   linkType: hard
 
@@ -13339,6 +13354,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"micro-memoize@npm:^2.1.1":
+  version: 2.1.2
+  resolution: "micro-memoize@npm:2.1.2"
+  checksum: 2/b5c9626fd3acd0d0db026dd28989e84a9c49bb968739d7b05b77bb797de4cc421b2ee289e036c3a069a2f7bfd223edbb6790476ee0128a069f6c84e4168c7187
+  languageName: node
+  linkType: hard
+
 "micromatch@npm:4.x, micromatch@npm:^4.0.2":
   version: 4.0.2
   resolution: "micromatch@npm:4.0.2"
@@ -13668,6 +13690,17 @@ __metadata:
   version: 4.12.0
   resolution: "mock-fs@npm:4.12.0"
   checksum: 2/d2bd01b4108d3931e0188a8f06968357af45bc9b0a145d847ecec4eb508edea6205038fd0b8b28ca73438c9a00be43425efe86800306fe8da9ab50f2104601c2
+  languageName: node
+  linkType: hard
+
+"moize@npm:^5.4.7":
+  version: 5.4.7
+  resolution: "moize@npm:5.4.7"
+  dependencies:
+    fast-equals: ^1.6.0
+    fast-stringify: ^1.1.0
+    micro-memoize: ^2.1.1
+  checksum: 2/8e7a81620f6c3d9183765354ebd63a4c83d6471ab8115f4f6bb094a0030ccd796714c7c5626bd91090a1aaf4bddf6d951a721bc2fc278de1619810edd5207455
   languageName: node
   linkType: hard
 

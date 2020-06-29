@@ -1177,6 +1177,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["localforage", "npm:1.7.4"],
             ["mersenne-twister", "npm:1.1.0"],
+            ["moize", "npm:5.4.7"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:7.0.1"],
             ["prettier", "npm:2.0.5"],
@@ -9986,6 +9987,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["fast-equals", [
+        ["npm:1.6.3", {
+          "packageLocation": "./.yarn/cache/fast-equals-npm-1.6.3-da14f1a74d-2.zip/node_modules/fast-equals/",
+          "packageDependencies": [
+            ["fast-equals", "npm:1.6.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["fast-fifo", [
         ["npm:1.0.0", {
           "packageLocation": "./.yarn/cache/fast-fifo-npm-1.0.0-b902730938-2.zip/node_modules/fast-fifo/",
@@ -10070,6 +10080,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/fast-sort-npm-2.1.1-1e46a5ac54-2.zip/node_modules/fast-sort/",
           "packageDependencies": [
             ["fast-sort", "npm:2.1.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["fast-stringify", [
+        ["npm:1.1.2", {
+          "packageLocation": "./.yarn/cache/fast-stringify-npm-1.1.2-00aecad5c1-2.zip/node_modules/fast-stringify/",
+          "packageDependencies": [
+            ["fast-stringify", "npm:1.1.2"]
           ],
           "linkType": "HARD",
         }]
@@ -15397,6 +15416,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["micro-memoize", [
+        ["npm:2.1.2", {
+          "packageLocation": "./.yarn/cache/micro-memoize-npm-2.1.2-38626904a5-2.zip/node_modules/micro-memoize/",
+          "packageDependencies": [
+            ["micro-memoize", "npm:2.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["micromatch", [
         ["npm:3.1.10", {
           "packageLocation": "./.yarn/cache/micromatch-npm-3.1.10-016e80c79d-2.zip/node_modules/micromatch/",
@@ -15742,6 +15770,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/mock-fs-npm-4.12.0-d8c7880552-2.zip/node_modules/mock-fs/",
           "packageDependencies": [
             ["mock-fs", "npm:4.12.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["moize", [
+        ["npm:5.4.7", {
+          "packageLocation": "./.yarn/cache/moize-npm-5.4.7-e75181cd67-2.zip/node_modules/moize/",
+          "packageDependencies": [
+            ["moize", "npm:5.4.7"],
+            ["fast-equals", "npm:1.6.3"],
+            ["fast-stringify", "npm:1.1.2"],
+            ["micro-memoize", "npm:2.1.2"]
           ],
           "linkType": "HARD",
         }]
