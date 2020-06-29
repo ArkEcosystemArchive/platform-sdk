@@ -1,3 +1,5 @@
+import { Contracts } from "@arkecosystem/platform-sdk";
+
 import { Avatar } from "./avatar";
 
 export interface ContactAddressProps {
@@ -10,9 +12,11 @@ export interface ContactAddressProps {
 
 export class ContactAddress {
 	readonly #data: ContactAddressProps;
+	readonly #wallet: Contracts.WalletData;
 
-	public constructor(data: ContactAddressProps) {
+	public constructor(data: ContactAddressProps, wallet: Contracts.WalletData) {
 		this.#data = data;
+		this.#wallet = wallet;
 	}
 
 	public id(): string {
@@ -40,23 +44,19 @@ export class ContactAddress {
 	}
 
 	public isDelegate(): boolean {
-		return false;
+		return this.#wallet.isDelegate();
 	}
 
 	public isKnown(): boolean {
-		return false;
-	}
-
-	public isLedger(): boolean {
-		return false;
+		return this.#wallet.isKnown();
 	}
 
 	public isMultiSignature(): boolean {
-		return false;
+		return this.#wallet.isMultiSignature();
 	}
 
 	public isSecondSignature(): boolean {
-		return false;
+		return this.#wallet.isSecondSignature();
 	}
 
 	public toObject(): ContactAddressProps {
