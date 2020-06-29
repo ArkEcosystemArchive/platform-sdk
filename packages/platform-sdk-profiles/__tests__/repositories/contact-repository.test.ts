@@ -1,6 +1,7 @@
 import "jest-extended";
 
 import { ContactRepository } from "../../src/repositories/contact-repository";
+import { Profile } from "../../src/profile";
 
 let subject: ContactRepository;
 
@@ -15,7 +16,7 @@ const jane = {
 };
 
 beforeEach(() => {
-	subject = new ContactRepository();
+	subject = new ContactRepository(new Profile("profile-id", "John Doe"));
 
 	subject.flush();
 });
