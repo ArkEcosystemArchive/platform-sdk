@@ -520,6 +520,41 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@arkecosystem/platform-sdk-ipfs@workspace:packages/platform-sdk-ipfs":
+  version: 0.0.0-use.local
+  resolution: "@arkecosystem/platform-sdk-ipfs@workspace:packages/platform-sdk-ipfs"
+  dependencies:
+    "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dinero.js": 1.6.4
+    "@types/eslint": ^7.2.0
+    "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/jest": ^26.0.0
+    "@types/node": ^14.0.13
+    "@types/prettier": ^2.0.1
+    "@types/rimraf": ^3.0.0
+    "@typescript-eslint/eslint-plugin": ^3.4.0
+    "@typescript-eslint/parser": ^3.4.0
+    codecov: ^3.7.0
+    cross-env: ^7.0.2
+    eslint: ^7.3.1
+    eslint-config-prettier: ^6.11.0
+    eslint-plugin-jest: ^23.16.0
+    eslint-plugin-prettier: ^3.1.4
+    eslint-plugin-simple-import-sort: ^5.0.3
+    jest: ^26.0.1
+    jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.2
+    js-ipfs: ^0.0.301
+    nock: ^12.0.3
+    npm-check-updates: ^7.0.1
+    prettier: ^2.0.5
+    rimraf: ^3.0.2
+    ts-jest: ^26.1.1
+    typedoc: ^0.17.7
+    typescript: ^3.9.5
+  languageName: unknown
+  linkType: soft
+
 "@arkecosystem/platform-sdk-json-rpc@workspace:packages/platform-sdk-json-rpc":
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-json-rpc@workspace:packages/platform-sdk-json-rpc"
@@ -9462,6 +9497,13 @@ __metadata:
   version: 1.4.0
   resolution: "jju@npm:1.4.0"
   checksum: 2/a58023d40e8e262366e95175dec782c7dc6ad94f2ad1fafe91f675ca6177505b4a8e679cec49c800acb8ceab9391856c7c03e871b30ef0590115d081fad814b9
+  languageName: node
+  linkType: hard
+
+"js-ipfs@npm:^0.0.301":
+  version: 0.0.301
+  resolution: "js-ipfs@npm:0.0.301"
+  checksum: 2/9b2881adafc74b6b9cfe256a2e0de9863c65f182ce55c281fd368713dcea436ae15ae288a0aaad94f7cc939c1baba206d067a3f5c54bccf5ac6ce01a62a2f0c2
   languageName: node
   linkType: hard
 

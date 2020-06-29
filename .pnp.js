@@ -71,6 +71,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/platform-sdk-intl"
       },
       {
+        "name": "@arkecosystem/platform-sdk-ipfs",
+        "reference": "workspace:packages/platform-sdk-ipfs"
+      },
+      {
         "name": "@arkecosystem/platform-sdk-json-rpc",
         "reference": "workspace:packages/platform-sdk-json-rpc"
       },
@@ -130,6 +134,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@arkecosystem/platform-sdk-eos", ["workspace:packages/platform-sdk-eos"]],
       ["@arkecosystem/platform-sdk-eth", ["workspace:packages/platform-sdk-eth"]],
       ["@arkecosystem/platform-sdk-intl", ["workspace:packages/platform-sdk-intl"]],
+      ["@arkecosystem/platform-sdk-ipfs", ["workspace:packages/platform-sdk-ipfs"]],
       ["@arkecosystem/platform-sdk-json-rpc", ["workspace:packages/platform-sdk-json-rpc"]],
       ["@arkecosystem/platform-sdk-lsk", ["workspace:packages/platform-sdk-lsk"]],
       ["@arkecosystem/platform-sdk-markets", ["workspace:packages/platform-sdk-markets"]],
@@ -867,6 +872,43 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.0.1"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
+            ["nock", "npm:12.0.3"],
+            ["npm-check-updates", "npm:7.0.1"],
+            ["prettier", "npm:2.0.5"],
+            ["rimraf", "npm:3.0.2"],
+            ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.1.1"],
+            ["typedoc", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:0.17.7"],
+            ["typescript", "patch:typescript@npm%3A3.9.5#builtin<compat/typescript>::version=3.9.5&hash=c79188"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@arkecosystem/platform-sdk-ipfs", [
+        ["workspace:packages/platform-sdk-ipfs", {
+          "packageLocation": "./packages/platform-sdk-ipfs/",
+          "packageDependencies": [
+            ["@arkecosystem/platform-sdk-ipfs", "workspace:packages/platform-sdk-ipfs"],
+            ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/dinero.js", "npm:1.6.4"],
+            ["@types/eslint", "npm:7.2.0"],
+            ["@types/eslint-plugin-prettier", "npm:3.1.0"],
+            ["@types/jest", "npm:26.0.0"],
+            ["@types/node", "npm:14.0.13"],
+            ["@types/prettier", "npm:2.0.1"],
+            ["@types/rimraf", "npm:3.0.0"],
+            ["@typescript-eslint/eslint-plugin", "virtual:44c3f5307e198523833a6b143068a7391d863839f60ef3bb55fc4bcca564f3aeb0c61f6d306d39a88149c4404f99e029db522e58b7739baf0d25e79d25586d70#npm:3.4.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.4.0"],
+            ["codecov", "npm:3.7.0"],
+            ["cross-env", "npm:7.0.2"],
+            ["eslint", "npm:7.3.1"],
+            ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.11.0"],
+            ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:23.16.0"],
+            ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.4"],
+            ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
+            ["jest", "npm:26.0.1"],
+            ["jest-extended", "npm:0.11.5"],
+            ["jest-localstorage-mock", "npm:2.4.2"],
+            ["js-ipfs", "npm:0.0.301"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:7.0.1"],
             ["prettier", "npm:2.0.5"],
@@ -4280,6 +4322,27 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-5f8f497bda/0/cache/@typescript-eslint-eslint-plugin-npm-3.4.0-aa81f1ce08-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
           "packageDependencies": [
             ["@typescript-eslint/eslint-plugin", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:3.4.0"],
+            ["@typescript-eslint/experimental-utils", "virtual:de9e6920f7f160b09a74a060c2fb634edb1394141969ab4172df93171ccdba91f40c758ed926b8a15fe66137a97f8d04a4bdce508d518f35867fbba845439505#npm:3.4.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.4.0"],
+            ["debug", "virtual:3a4dedf3f7af41df4edd570c93c4126de67c5e458a3b579d255b1e8423f52c355b4621ca7129f7769a7e7f91c1e0abff031564e672c722042a1e843d1951cc0f#npm:4.1.1"],
+            ["eslint", "npm:7.3.1"],
+            ["functional-red-black-tree", "npm:1.0.1"],
+            ["regexpp", "npm:3.1.0"],
+            ["semver", "npm:7.3.2"],
+            ["tsutils", "virtual:de9e6920f7f160b09a74a060c2fb634edb1394141969ab4172df93171ccdba91f40c758ed926b8a15fe66137a97f8d04a4bdce508d518f35867fbba845439505#npm:3.17.1"],
+            ["typescript", "patch:typescript@npm%3A3.9.5#builtin<compat/typescript>::version=3.9.5&hash=c79188"]
+          ],
+          "packagePeers": [
+            "eslint",
+            "@typescript-eslint/parser",
+            "typescript"
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:44c3f5307e198523833a6b143068a7391d863839f60ef3bb55fc4bcca564f3aeb0c61f6d306d39a88149c4404f99e029db522e58b7739baf0d25e79d25586d70#npm:3.4.0", {
+          "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-e69deb8cc2/0/cache/@typescript-eslint-eslint-plugin-npm-3.4.0-aa81f1ce08-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
+          "packageDependencies": [
+            ["@typescript-eslint/eslint-plugin", "virtual:44c3f5307e198523833a6b143068a7391d863839f60ef3bb55fc4bcca564f3aeb0c61f6d306d39a88149c4404f99e029db522e58b7739baf0d25e79d25586d70#npm:3.4.0"],
             ["@typescript-eslint/experimental-utils", "virtual:de9e6920f7f160b09a74a060c2fb634edb1394141969ab4172df93171ccdba91f40c758ed926b8a15fe66137a97f8d04a4bdce508d518f35867fbba845439505#npm:3.4.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.4.0"],
             ["debug", "virtual:3a4dedf3f7af41df4edd570c93c4126de67c5e458a3b579d255b1e8423f52c355b4621ca7129f7769a7e7f91c1e0abff031564e672c722042a1e843d1951cc0f#npm:4.1.1"],
@@ -11174,6 +11237,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/jju-npm-1.4.0-670678eaa3-2.zip/node_modules/jju/",
           "packageDependencies": [
             ["jju", "npm:1.4.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["js-ipfs", [
+        ["npm:0.0.301", {
+          "packageLocation": "./.yarn/cache/js-ipfs-npm-0.0.301-9aeca118cc-2.zip/node_modules/js-ipfs/",
+          "packageDependencies": [
+            ["js-ipfs", "npm:0.0.301"]
           ],
           "linkType": "HARD",
         }]
