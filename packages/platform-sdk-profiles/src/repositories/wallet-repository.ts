@@ -7,12 +7,15 @@ import { container } from "../container";
 import { Identifiers } from "../contracts";
 import { Wallet } from "../wallet";
 import { DataRepository } from "./data-repository";
+import { Profile } from "../profile";
 
 export class WalletRepository {
 	#data: DataRepository;
+	#profile: Profile;
 
-	public constructor() {
+	public constructor(profile: Profile) {
 		this.#data = new DataRepository();
+		this.#profile = profile;
 	}
 
 	public all(): Record<string, Wallet> {

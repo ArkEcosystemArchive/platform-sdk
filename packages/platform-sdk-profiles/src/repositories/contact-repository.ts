@@ -3,12 +3,15 @@ import { v4 as uuidv4 } from "uuid";
 import { Contact } from "../contact";
 import { ContactAddress } from "../contracts";
 import { DataRepository } from "./data-repository";
+import { Profile } from "../profile";
 
 export class ContactRepository {
 	#data: DataRepository;
+	#profile: Profile;
 
-	public constructor() {
+	public constructor(profile: Profile) {
 		this.#data = new DataRepository();
+		this.#profile = profile;
 	}
 
 	public all(): Record<string, Contact> {

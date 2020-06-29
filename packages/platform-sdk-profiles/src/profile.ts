@@ -25,8 +25,8 @@ export class Profile {
 		this.#id = id;
 		this.#name = name;
 		this.#avatar = Avatar.make(id);
-		this.#contactRepository = new ContactRepository();
-		this.#walletRepository = new WalletRepository();
+		this.#contactRepository = new ContactRepository(this);
+		this.#walletRepository = new WalletRepository(this);
 		this.#notificationRepository = new NotificationRepository();
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
