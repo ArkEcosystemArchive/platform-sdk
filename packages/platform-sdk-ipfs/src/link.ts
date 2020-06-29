@@ -3,7 +3,7 @@ export class Link {
 		return `https://gateway.ipfs.io/ipfs/${id}`;
 	}
 
-	public static cloudFlare(id: string): string {
+	public static cloudflare(id: string): string {
 		return `https://cloudflare-ipfs.com/ipfs/${id}`;
 	}
 }
