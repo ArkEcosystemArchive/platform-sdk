@@ -299,26 +299,26 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@arkecosystem/core-magistrate-crypto", [
-        ["npm:2.6.39", {
-          "packageLocation": "./.yarn/cache/@arkecosystem-core-magistrate-crypto-npm-2.6.39-89d23bfd3d-2.zip/node_modules/@arkecosystem/core-magistrate-crypto/",
+        ["npm:2.6.42", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-core-magistrate-crypto-npm-2.6.42-c712cc4309-2.zip/node_modules/@arkecosystem/core-magistrate-crypto/",
           "packageDependencies": [
-            ["@arkecosystem/core-magistrate-crypto", "npm:2.6.39"],
-            ["@arkecosystem/crypto", "npm:2.6.39"],
+            ["@arkecosystem/core-magistrate-crypto", "npm:2.6.42"],
+            ["@arkecosystem/crypto", "npm:2.6.42"],
             ["bytebuffer", "npm:5.0.1"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@arkecosystem/crypto", [
-        ["npm:2.6.39", {
-          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-2.6.39-e3d8cea673-2.zip/node_modules/@arkecosystem/crypto/",
+        ["npm:2.6.42", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-2.6.42-82d93b6bcc-2.zip/node_modules/@arkecosystem/crypto/",
           "packageDependencies": [
-            ["@arkecosystem/crypto", "npm:2.6.39"],
+            ["@arkecosystem/crypto", "npm:2.6.42"],
             ["@arkecosystem/utils", "npm:1.1.8"],
             ["@types/bytebuffer", "npm:5.0.40"],
             ["ajv", "npm:6.12.2"],
-            ["ajv-keywords", "virtual:e3d8cea6735e4ed3c0ae1f5fd7b46c118dade3672e79efa2943b8bd137a38d5f8fea4a3e6557055c48d05cdb4ab66a7a373443471e3d781a86448ca5f58c2366#npm:3.4.1"],
-            ["bcrypto", "npm:4.3.2"],
+            ["ajv-keywords", "virtual:82d93b6bcc7fa2f706975ac718fd33b0406844413675b9a407a8eb4ebfe7d0ab66c7e4359f86f58e17f87287c78a63c17de790919949c903005f8387cae99dba#npm:3.4.1"],
+            ["bcrypto", "npm:5.2.0"],
             ["bip32", "npm:2.0.5"],
             ["bip39", "npm:3.0.2"],
             ["browserify-aes", "npm:1.2.0"],
@@ -446,8 +446,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
             ["@arkecosystem/client", "npm:1.1.3"],
-            ["@arkecosystem/core-magistrate-crypto", "npm:2.6.39"],
-            ["@arkecosystem/crypto", "npm:2.6.39"],
+            ["@arkecosystem/core-magistrate-crypto", "npm:2.6.42"],
+            ["@arkecosystem/crypto", "npm:2.6.42"],
             ["@arkecosystem/ledger-transport", "npm:1.1.2"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
@@ -5030,10 +5030,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ajv-keywords", [
-        ["virtual:e3d8cea6735e4ed3c0ae1f5fd7b46c118dade3672e79efa2943b8bd137a38d5f8fea4a3e6557055c48d05cdb4ab66a7a373443471e3d781a86448ca5f58c2366#npm:3.4.1", {
-          "packageLocation": "./.yarn/$$virtual/ajv-keywords-virtual-be64f955bb/0/cache/ajv-keywords-npm-3.4.1-851fd088de-2.zip/node_modules/ajv-keywords/",
+        ["virtual:82d93b6bcc7fa2f706975ac718fd33b0406844413675b9a407a8eb4ebfe7d0ab66c7e4359f86f58e17f87287c78a63c17de790919949c903005f8387cae99dba#npm:3.4.1", {
+          "packageLocation": "./.yarn/$$virtual/ajv-keywords-virtual-2aeeadea99/0/cache/ajv-keywords-npm-3.4.1-851fd088de-2.zip/node_modules/ajv-keywords/",
           "packageDependencies": [
-            ["ajv-keywords", "virtual:e3d8cea6735e4ed3c0ae1f5fd7b46c118dade3672e79efa2943b8bd137a38d5f8fea4a3e6557055c48d05cdb4ab66a7a373443471e3d781a86448ca5f58c2366#npm:3.4.1"],
+            ["ajv-keywords", "virtual:82d93b6bcc7fa2f706975ac718fd33b0406844413675b9a407a8eb4ebfe7d0ab66c7e4359f86f58e17f87287c78a63c17de790919949c903005f8387cae99dba#npm:3.4.1"],
             ["ajv", "npm:6.12.2"]
           ],
           "packagePeers": [
@@ -5611,18 +5611,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["bcrypto", [
-        ["npm:4.3.2", {
-          "packageLocation": "./.yarn/unplugged/bcrypto-npm-4.3.2-36dfeed24f/node_modules/bcrypto/",
-          "packageDependencies": [
-            ["bcrypto", "npm:4.3.2"],
-            ["bsert", "npm:0.0.10"],
-            ["bufio", "npm:1.0.6"],
-            ["loady", "npm:0.0.1"],
-            ["nan", "npm:2.14.1"],
-            ["node-gyp", "npm:6.1.0"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:5.2.0", {
           "packageLocation": "./.yarn/unplugged/bcrypto-npm-5.2.0-2fca13eaee/node_modules/bcrypto/",
           "packageDependencies": [
@@ -6274,13 +6262,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["bufio", [
-        ["npm:1.0.6", {
-          "packageLocation": "./.yarn/cache/bufio-npm-1.0.6-7876f5278e-2.zip/node_modules/bufio/",
-          "packageDependencies": [
-            ["bufio", "npm:1.0.6"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:1.0.7", {
           "packageLocation": "./.yarn/cache/bufio-npm-1.0.7-f7ef1d1822-2.zip/node_modules/bufio/",
           "packageDependencies": [
