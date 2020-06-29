@@ -26,12 +26,36 @@ export class Contact {
 		return this.#name;
 	}
 
+	public addresses(): ContactAddress[] {
+		return this.#addresses;
+	}
+
+	public isDelegate(): boolean {
+		return false;
+	}
+
+	public isKnown(): boolean {
+		return false;
+	}
+
+	public isLedger(): boolean {
+		return false;
+	}
+
+	public isMultiSignature(): boolean {
+		return false;
+	}
+
+	public isSecondSignature(): boolean {
+		return false;
+	}
+
 	public isStarred(): boolean {
 		return this.#starred;
 	}
 
-	public addresses(): ContactAddress[] {
-		return this.#addresses;
+	public toggleStarred(): void {
+		this.#starred = !this.isStarred();
 	}
 
 	public toObject(): ContactStruct {
