@@ -36,9 +36,13 @@ export class ContactRepository {
 		return contact;
 	}
 
-	public fill(contacts: object): void {
+	public async fill(contacts: object): Promise<void> {
 		for (const [id, contact] of Object.entries(contacts)) {
-			this.#data.set(id, new Contact(contact, this.#profile));
+			const instance: Contact = new Contact(contact, this.#profile);
+
+			await instance.restore(contact.addresses);
+
+			this.#data.set(id, instance);
 		}
 	}
 

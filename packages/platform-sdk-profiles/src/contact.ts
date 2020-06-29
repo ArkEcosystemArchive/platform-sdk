@@ -10,7 +10,7 @@ export class Contact {
 	#addresses: ContactAddressRepository;
 	#starred: boolean;
 
-	public constructor({ id, name, starred, addresses }: ContactStruct, profile: Profile) {
+	public constructor({ id, name, starred }: ContactStruct, profile: Profile) {
 		this.#profile = profile;
 
 		this.#id = id;
@@ -18,11 +18,10 @@ export class Contact {
 		this.#starred = starred;
 
 		this.#addresses = new ContactAddressRepository(this.#profile);
+	}
 
-		if (addresses) {
-			// eslint-disable-next-line @typescript-eslint/no-floating-promises
-			this.#addresses.fill(addresses);
-		}
+	public async restore(addresses: object[]): Promise<void> {
+		await this.#addresses.fill(addresses);
 	}
 
 	public id(): string {
@@ -50,7 +49,7 @@ export class Contact {
 			id: this.id(),
 			name: this.name(),
 			starred: this.isStarred(),
-			addresses: this.addresses().toObject(),
+			addresses: this.addresses().toArray(),
 		};
 	}
 }

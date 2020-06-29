@@ -44,9 +44,9 @@ export class ContactAddressRepository {
 		return address;
 	}
 
-	public async fill(addresses: object): Promise<void> {
-		for (const [id, address] of Object.entries(addresses)) {
-			this.#data.set(id, await ContactAddress.make(address, this.#profile));
+	public async fill(addresses: any[]): Promise<void> {
+		for (const address of addresses) {
+			this.#data.set(address.id, await ContactAddress.make(address, this.#profile));
 		}
 	}
 
@@ -105,11 +105,11 @@ export class ContactAddressRepository {
 		return this.#data.count();
 	}
 
-	public toObject(): Record<string, object> {
-		const result: Record<string, object> = {};
+	public toArray(): object[] {
+		const result: object[] = [];
 
-		for (const [id, address] of Object.entries(this.#data.all())) {
-			result[id] = address.toObject();
+		for (const address of this.values()) {
+			result.push(address.toObject());
 		}
 
 		return result;
