@@ -1,6 +1,8 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { Avatar } from "./avatar";
+import { Profile } from "./profile";
+import { Wallet } from "./wallet";
 
 export interface ContactAddressProps {
 	id: string;
@@ -14,9 +16,19 @@ export class ContactAddress {
 	readonly #data: ContactAddressProps;
 	readonly #wallet: Contracts.WalletData;
 
-	public constructor(data: ContactAddressProps, wallet: Contracts.WalletData) {
+	private constructor(data: ContactAddressProps, wallet: Contracts.WalletData) {
 		this.#data = data;
 		this.#wallet = wallet;
+	}
+
+	public static async make(data: ContactAddressProps, profile: Profile): Promise<ContactAddress> {
+		const wallet: Wallet = profile.wallets().findByCoinWithNetwork(data.coin, data.network)[0];
+
+		if (!wallet) {
+			throw new Error(`This profile does not contain any wallets for ${data.coin}/${data.network}.`);
+		}
+
+		return new ContactAddress(data, await wallet.wallet(data.address));
 	}
 
 	public id(): string {

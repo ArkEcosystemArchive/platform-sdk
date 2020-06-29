@@ -99,10 +99,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	const profile = subject.profiles().create("John Doe");
 
 	// Create a Contact
-	profile.contacts().create({
-		name: "Jane Doe",
-		addresses: [{ coin: "Ethereum", network: "testnet", address: "TESTNET-ADDRESS" }],
-	});
+	profile.contacts().create("Jane Doe");
 
 	// Create a Wallet
 	await profile.wallets().import(identity.mnemonic, ARK, "devnet");

@@ -89,7 +89,7 @@ export class ContactRepository {
 			const match: ContactAddress | undefined = contact
 				.addresses()
 				.values()
-				.find((address: ContactAddress) => address[column] === value);
+				.find((address: ContactAddress) => address[column]() === value);
 
 			if (match) {
 				result.push(contact);

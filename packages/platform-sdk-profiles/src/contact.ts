@@ -20,6 +20,7 @@ export class Contact {
 		this.#addresses = new ContactAddressRepository(this.#profile);
 
 		if (addresses) {
+			// eslint-disable-next-line @typescript-eslint/no-floating-promises
 			this.#addresses.fill(addresses);
 		}
 	}

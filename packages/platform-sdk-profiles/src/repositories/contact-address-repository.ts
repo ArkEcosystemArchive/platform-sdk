@@ -35,26 +35,18 @@ export class ContactAddressRepository {
 	}
 
 	public async create(data: ContactAddressInput): Promise<ContactAddress> {
-		// Check if there is a wallet. This will throw if none is found!
-		const wallet: Wallet = this.#profile.wallets().findByCoinWithNetwork(data.coin, data.network)[0];
-
-		if (!wallet) {
-			throw new Error(`This profile does not contain any wallets for ${data.coin}/${data.network}.`);
-		}
-
-		// Create the address and store it
 		const id: string = uuidv4();
 
-		const address: ContactAddress = new ContactAddress({ id, ...data }, await wallet.wallet(data.address));
+		const address: ContactAddress = await ContactAddress.make({ id, ...data }, this.#profile);
 
 		this.#data.set(id, address);
 
 		return address;
 	}
 
-	public fill(addresses: object): void {
+	public async fill(addresses: object): Promise<void> {
 		for (const [id, address] of Object.entries(addresses)) {
-			this.#data.set(id, new ContactAddress(address));
+			this.#data.set(id, await ContactAddress.make(address, this.#profile));
 		}
 	}
 
