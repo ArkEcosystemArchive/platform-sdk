@@ -5,6 +5,7 @@ import { Avatar } from "./avatar";
 import { container } from "./container";
 import { Identifiers, WalletStruct } from "./contracts";
 import { WalletSetting } from "./enums";
+import { Profile } from "./profile";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletAttribute, WalletFlag } from "./wallet.models";
@@ -12,6 +13,8 @@ import { WalletAttribute, WalletFlag } from "./wallet.models";
 export class Wallet {
 	#dataRepository!: DataRepository;
 	#settingRepository!: SettingRepository;
+
+	#profile!: Profile;
 
 	#id!: string;
 	#coin!: Coins.Coin;
@@ -21,8 +24,9 @@ export class Wallet {
 	#publicKey!: string | undefined;
 	#avatar!: string;
 
-	public constructor(id: string) {
+	public constructor(id: string, profile: Profile) {
 		this.#id = id;
+		this.#profile = profile;
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 	}

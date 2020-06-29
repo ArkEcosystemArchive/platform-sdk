@@ -11,6 +11,7 @@ import { identity } from "./__fixtures__/identity";
 import { container } from "../src/container";
 import { Identifiers } from "../src/contracts";
 import { HttpClient } from "./stubs/client";
+import { Profile } from "../src/profile";
 
 let subject: Wallet;
 
@@ -30,7 +31,7 @@ beforeEach(async () => {
 
 	container.set(Identifiers.HttpClient, new HttpClient());
 
-	subject = new Wallet(uuidv4());
+	subject = new Wallet(uuidv4(), new Profile("profile-id", "John Doe"));
 
 	await subject.setCoin(ARK, "devnet");
 	await subject.setIdentity(identity.mnemonic);
