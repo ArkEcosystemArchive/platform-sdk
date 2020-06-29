@@ -2,8 +2,8 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Contact } from "../contact";
 import { ContactAddress } from "../contracts";
-import { DataRepository } from "./data-repository";
 import { Profile } from "../profile";
+import { DataRepository } from "./data-repository";
 
 export class ContactRepository {
 	#data: DataRepository;
@@ -29,7 +29,7 @@ export class ContactRepository {
 	public create(data: { name: string; addresses: ContactAddress[] }): Contact {
 		const id: string = uuidv4();
 
-		const contact: Contact = new Contact({ id, starred: false, ...data });
+		const contact: Contact = new Contact({ id, starred: false, ...data }, this.#profile);
 
 		this.#data.set(id, contact);
 
@@ -38,7 +38,7 @@ export class ContactRepository {
 
 	public fill(contacts: object): void {
 		for (const [id, contact] of Object.entries(contacts)) {
-			this.#data.set(id, new Contact(contact));
+			this.#data.set(id, new Contact(contact, this.#profile));
 		}
 	}
 

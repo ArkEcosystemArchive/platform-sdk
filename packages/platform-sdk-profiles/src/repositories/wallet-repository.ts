@@ -5,9 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 
 import { container } from "../container";
 import { Identifiers } from "../contracts";
+import { Profile } from "../profile";
 import { Wallet } from "../wallet";
 import { DataRepository } from "./data-repository";
-import { Profile } from "../profile";
 
 export class WalletRepository {
 	#data: DataRepository;
@@ -50,7 +50,7 @@ export class WalletRepository {
 
 	public async import(mnemonic: string, coin: Coins.CoinSpec, network: string): Promise<Wallet> {
 		const id: string = uuidv4();
-		const wallet: Wallet = new Wallet(id);
+		const wallet: Wallet = new Wallet(id, this.#profile);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setIdentity(mnemonic);
@@ -65,7 +65,7 @@ export class WalletRepository {
 	}
 
 	public async restore({ id, coin, coinConfig, network, address }): Promise<Wallet> {
-		const wallet: Wallet = new Wallet(id);
+		const wallet: Wallet = new Wallet(id, this.#profile);
 
 		await wallet.setCoin(container.get<any>(Identifiers.Coins)[coin], network);
 		await wallet.setAddress(address);
