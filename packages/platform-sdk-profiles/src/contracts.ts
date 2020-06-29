@@ -1,5 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
+import { ContactAddressProps } from "./contact-address";
+
 export interface EnvironmentOptions {
 	coins: Record<string, any>;
 	storage: string | Storage;
@@ -65,11 +67,9 @@ export interface WalletStruct {
 export interface ContactStruct {
 	id: string;
 	name: string;
-	addresses: ContactAddress[];
+	addresses?: object;
 	starred: boolean;
 }
-
-export type ContactAddress = { coin: string; network: string; address: string; avatar?: string };
 
 // Container Bindings
 export const Identifiers = {

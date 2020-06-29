@@ -46,6 +46,10 @@ export class DataRepository {
 		this.#storage = {};
 	}
 
+	public count(): number {
+		return this.keys().length;
+	}
+
 	public snapshot(): void {
 		this.#snapshot = { ...this.all() };
 	}
