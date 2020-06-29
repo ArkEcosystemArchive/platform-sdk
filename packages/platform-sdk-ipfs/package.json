@@ -20,13 +20,15 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
-		"js-ipfs": "^0.0.301"
+		"ipfs": "^0.47.0",
+		"it-all": "^1.0.2"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/dinero.js": "1.6.4",
 		"@types/eslint": "^7.2.0",
 		"@types/eslint-plugin-prettier": "^3.1.0",
+		"@types/it-all": "1.0.0",
 		"@types/jest": "^26.0.0",
 		"@types/node": "^14.0.13",
 		"@types/prettier": "^2.0.1",
