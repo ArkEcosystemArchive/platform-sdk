@@ -36,26 +36,6 @@ export class Contact {
 		return this.#addresses;
 	}
 
-	public isDelegate(): boolean {
-		return false;
-	}
-
-	public isKnown(): boolean {
-		return false;
-	}
-
-	public isLedger(): boolean {
-		return false;
-	}
-
-	public isMultiSignature(): boolean {
-		return false;
-	}
-
-	public isSecondSignature(): boolean {
-		return false;
-	}
-
 	public isStarred(): boolean {
 		return this.#starred;
 	}

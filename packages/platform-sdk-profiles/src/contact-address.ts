@@ -39,6 +39,26 @@ export class ContactAddress {
 		return Avatar.make(this.#data.address);
 	}
 
+	public isDelegate(): boolean {
+		return false;
+	}
+
+	public isKnown(): boolean {
+		return false;
+	}
+
+	public isLedger(): boolean {
+		return false;
+	}
+
+	public isMultiSignature(): boolean {
+		return false;
+	}
+
+	public isSecondSignature(): boolean {
+		return false;
+	}
+
 	public toObject(): ContactAddressProps {
 		return {
 			id: this.id(),
