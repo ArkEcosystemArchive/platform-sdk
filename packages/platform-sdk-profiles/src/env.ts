@@ -130,16 +130,15 @@ export class Environment {
 							object({
 								id: string().required(),
 								name: string().required(),
-								addresses: array()
-									.of(
-										object({
-											coin: string().required(),
-											network: string().required(),
-											address: string().required(),
-											avatar: string().required(),
-										}).noUnknown(),
-									)
-									.required(),
+								addresses: array().of(
+									object({
+										id: string().required(),
+										coin: string().required(),
+										network: string().required(),
+										name: string().required(),
+										address: string().required(),
+									}).noUnknown(),
+								),
 								starred: boolean().required(),
 							}).noUnknown(),
 						),

@@ -3,10 +3,10 @@ import got from "got";
 
 export class HttpClient implements Contracts.HttpClient {
 	public async get(path: string, searchParams = {}): Promise<Record<string, any>> {
-		return got.get(path, { searchParams }).json();
+		return got.get(path, { searchParams, timeout: 1000 }).json();
 	}
 
 	public async post(path: string, body, headers = {}) {
-		return got.post(path, { body: JSON.stringify(body), headers }).json();
+		return got.post(path, { body: JSON.stringify(body), headers, timeout: 1000 }).json();
 	}
 }

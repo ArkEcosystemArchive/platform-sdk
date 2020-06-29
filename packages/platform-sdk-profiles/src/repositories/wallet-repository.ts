@@ -99,6 +99,13 @@ export class WalletRepository {
 		return this.values().filter((wallet: Wallet) => wallet.coin().manifest().get<string>("name") === coin);
 	}
 
+	public findByCoinWithNetwork(coin: string, network: string): Wallet[] {
+		return this.values().filter(
+			(wallet: Wallet) =>
+				wallet.coin().manifest().get<string>("name") === coin || wallet.network().id === network,
+		);
+	}
+
 	public forget(id: string): void {
 		this.#data.forget(id);
 	}
