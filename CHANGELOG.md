@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.133 - 2020-06-29
+
+### Changed
+
+-   Update crypto dependencies to 2.6.42 (4ee8e951, @faustbrian)
+
 ## 0.9.132 - 2020-06-27
 
 ### Added
