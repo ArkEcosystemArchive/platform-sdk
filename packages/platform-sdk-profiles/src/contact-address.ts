@@ -20,7 +20,7 @@ export class ContactAddress {
 	private constructor(data: ContactAddressProps, wallet: Contracts.WalletData) {
 		this.#data = data;
 		this.#wallet = wallet;
-		this.#avatar = Avatar.make(data.address);
+		this.#avatar = Avatar.make(data.id);
 	}
 
 	public static async make(data: ContactAddressProps, profile: Profile): Promise<ContactAddress> {
