@@ -15,10 +15,12 @@ export interface ContactAddressProps {
 export class ContactAddress {
 	readonly #data: ContactAddressProps;
 	readonly #wallet: Contracts.WalletData;
+	readonly #avatar: string;
 
 	private constructor(data: ContactAddressProps, wallet: Contracts.WalletData) {
 		this.#data = data;
 		this.#wallet = wallet;
+		this.#avatar = Avatar.make(data.address);
 	}
 
 	public static async make(data: ContactAddressProps, profile: Profile): Promise<ContactAddress> {
@@ -52,7 +54,7 @@ export class ContactAddress {
 	}
 
 	public avatar(): string {
-		return Avatar.make(this.#data.address);
+		return this.#avatar;
 	}
 
 	public isDelegate(): boolean {
