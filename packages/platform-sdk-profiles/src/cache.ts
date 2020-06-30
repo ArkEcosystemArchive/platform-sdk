@@ -5,7 +5,7 @@ import dot from "dot-prop";
 type CacheStore = Record<string, { expires_at: DateTime; value: unknown }>;
 
 export class Cache {
-	#prefix: string;
+	readonly #prefix: string;
 	#cache: CacheStore = {};
 
 	public constructor(prefix: string) {
@@ -16,11 +16,15 @@ export class Cache {
 		return this.#cache;
 	}
 
+	public keys(): string[] {
+		return Object.keys(this.#cache);
+	}
+
 	public get<T>(key: string): T {
 		const value: T | undefined = dot.get(this.#cache, this.getCacheKey(key));
 
 		if (value === undefined) {
-			throw new Error(`The [${key}] is an unknown configuration value.`);
+			throw new Error(`The [${key}] is an unknown cache value.`);
 		}
 
 		return value;
@@ -43,8 +47,12 @@ export class Cache {
 		dot.delete(this.#cache, this.getCacheKey(key));
 	}
 
+	public flush(key: string): void {
+		this.#cache = {};
+	}
+
 	private getCacheKey(value: unknown): string {
-		return SHA1.digest(`${this.#prefix}.${JSON.stringify(value)}`).toString("hex");
+		return SHA1.digest(Buffer.from(`${this.#prefix}.${JSON.stringify(value)}`, "utf-8")).toString("hex");
 	}
 
 	private checkExpiration = (ttl: number) => {
