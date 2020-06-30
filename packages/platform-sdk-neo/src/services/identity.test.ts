@@ -1,9 +1,9 @@
 import "jest-extended";
 import nock from "nock";
 
-import { IdentityService } from "../../src/services/identity";
-import { identity } from "../__fixtures__/identity";
-import { createConfig } from "../helpers";
+import { IdentityService } from "./identity";
+import { identity } from "../../test/fixtures/identity";
+import { createConfig } from "../../test/helpers";
 
 afterEach(() => nock.cleanAll());
 
@@ -43,7 +43,7 @@ describe("IdentityService", () => {
 			nock("https://explorer.ark.io/api/")
 				.get("/wallets/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")
 				.thrice()
-				.reply(200, require(`${__dirname}/../__fixtures__/identity/ark-duplicate.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/identity/ark-duplicate.json`));
 
 			subject = await IdentityService.construct(createConfig({ network: "mainnet" }));
 

@@ -3,11 +3,11 @@ import "jest-extended";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { ClientService } from "../../src/services/client";
-import { TransactionService } from "../../src/services/transaction";
-import { TransactionData, WalletData } from "../../src/dto";
-import { identity } from "../__fixtures__/identity";
-import { createConfig } from "../helpers";
+import { ClientService } from "./client";
+import { TransactionService } from "./transaction";
+import { TransactionData, WalletData } from "../dto";
+import { identity } from "../../test/fixtures/identity";
+import { createConfig } from "../../test/helpers";
 
 let subject: ClientService;
 
@@ -23,10 +23,10 @@ describe("ClientService", function () {
 			nock("https://horizon-testnet.stellar.org")
 				.get("/transactions/264226cb06af3b86299031884175155e67a02e0a8ad0b3ab3a88b409a8c09d5c")
 				.query(true)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transaction.json`))
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction.json`))
 				.get("/transactions/264226cb06af3b86299031884175155e67a02e0a8ad0b3ab3a88b409a8c09d5c/operations")
 				.query(true)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transaction-operations.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction-operations.json`));
 
 			const result = await subject.transaction(
 				"264226cb06af3b86299031884175155e67a02e0a8ad0b3ab3a88b409a8c09d5c",
@@ -50,7 +50,7 @@ describe("ClientService", function () {
 			nock("https://horizon-testnet.stellar.org")
 				.get("/accounts/GAHXEI3BVFOBDHWLC4TJKCGTLY6VMTKMRRWWPKNPPULUC7E3PD63ENKO/transactions")
 				.query(true)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 			const { data } = await subject.transactions({
 				address: "GAHXEI3BVFOBDHWLC4TJKCGTLY6VMTKMRRWWPKNPPULUC7E3PD63ENKO",
@@ -75,7 +75,7 @@ describe("ClientService", function () {
 			nock("https://horizon-testnet.stellar.org")
 				.get("/accounts/GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB")
 				.query(true)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result = await subject.wallet("GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB");
 
@@ -92,12 +92,12 @@ describe("ClientService", function () {
 			nock("https://horizon-testnet.stellar.org")
 				.get("/accounts/GCGYSPQBSQCJKNDXDISBSXAM3THK7MACUVZGEMXF6XRZCPGAWCUGXVNC")
 				.query(true)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`))
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`))
 				.persist();
 
 			nock("https://horizon-testnet.stellar.org")
 				.post("/transactions")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const transactionService = await TransactionService.construct(createConfig());
 
@@ -124,12 +124,12 @@ describe("ClientService", function () {
 			nock("https://horizon-testnet.stellar.org")
 				.get("/accounts/GCGYSPQBSQCJKNDXDISBSXAM3THK7MACUVZGEMXF6XRZCPGAWCUGXVNC")
 				.query(true)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`))
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`))
 				.persist();
 
 			nock("https://horizon-testnet.stellar.org")
 				.post("/transactions")
-				.reply(400, require(`${__dirname}/../__fixtures__/client/broadcast-failure.json`));
+				.reply(400, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const transactionService = await TransactionService.construct(createConfig());
 

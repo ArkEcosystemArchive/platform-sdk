@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Keychain } from "../src/keychain";
+import { Keychain } from "./keychain";
 
 const service: string = "platform-sdk";
 const account: string = "john";

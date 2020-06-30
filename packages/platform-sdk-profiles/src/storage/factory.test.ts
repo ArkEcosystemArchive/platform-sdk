@@ -1,8 +1,8 @@
 import "jest-extended";
 
-import { StorageFactory } from "../../src/storage/factory";
-import { NullStorage } from "../../src/storage/null";
-import { LocalStorage } from "../../src/storage/local";
+import { StorageFactory } from "./factory";
+import { NullStorage } from "./null";
+import { LocalStorage } from "./local";
 
 test("StorageFactory#null", () => {
 	expect(StorageFactory.make("null")).toBeInstanceOf(NullStorage);

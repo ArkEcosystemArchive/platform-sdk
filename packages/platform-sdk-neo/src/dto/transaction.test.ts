@@ -2,7 +2,7 @@ import "jest-extended";
 
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { TransactionData } from "../../src/dto/transaction";
+import { TransactionData } from "./transaction";
 
 describe("TransactionData", function () {
 	it("should succeed", async () => {

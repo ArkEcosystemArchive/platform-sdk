@@ -1,8 +1,8 @@
 import "jest-extended";
 import nock from "nock";
 
-import { FeeService } from "../../src/services/fee";
-import { createConfig } from "../helpers";
+import { FeeService } from "./fee";
+import { createConfig } from "../../test/helpers";
 
 let subject: FeeService;
 
@@ -17,9 +17,9 @@ describe("FeeService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/node/fees?days=7")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/feesByNode.json`))
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/feesByNode.json`))
 				.get("/api/transactions/fees")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/feesByType.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/feesByType.json`));
 
 			const result = await subject.all(7);
 

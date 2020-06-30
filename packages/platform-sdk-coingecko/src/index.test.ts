@@ -2,8 +2,8 @@ import "jest-extended";
 import { Data } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { PriceTracker } from "../src";
-import { HttpClient } from "./__stubs__/client";
+import { PriceTracker } from "./index";
+import { HttpClient } from "../test/stubs/client";
 
 const BASE_URL_COINGECKO = "https://api.coingecko.com/api/v3";
 const token = "ARK";
@@ -38,12 +38,12 @@ beforeEach(() => {
 			},
 		});
 
-	nock(BASE_URL_COINGECKO).get("/coins/ark").reply(200, require("./__fixtures__/market.json"));
+	nock(BASE_URL_COINGECKO).get("/coins/ark").reply(200, require("../test/fixtures/market.json"));
 
 	nock(BASE_URL_COINGECKO)
 		.get("/coins/ark/market_chart")
 		.query(true)
-		.reply(200, require("./__fixtures__/historical.json"));
+		.reply(200, require("../test/fixtures/historical.json"));
 });
 
 describe("PriceTracker", () => {

@@ -1,12 +1,12 @@
 import "jest-extended";
 
-import { ProfileRepository } from "../src/repositories/profile-repository";
-import { Migrator } from "../src/migrator";
-import { DataRepository } from "../src/repositories/data-repository";
-import { LocalStorage } from "../src/storage/local";
-import { HttpClient } from "./stubs/client";
-import { container } from "../src/container";
-import { Identifiers } from "../src/contracts";
+import { ProfileRepository } from "./repositories/profile-repository";
+import { Migrator } from "./migrator";
+import { DataRepository } from "./repositories/data-repository";
+import { LocalStorage } from "./storage/local";
+import { HttpClient } from "../test/stubs/client";
+import { container } from "./container";
+import { Identifiers } from "./contracts";
 
 let subject: Migrator;
 let storage: LocalStorage;

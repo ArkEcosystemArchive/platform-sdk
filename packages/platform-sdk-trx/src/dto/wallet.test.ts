@@ -1,7 +1,7 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { WalletData } from "../../src/dto";
-import Fixture from "../__fixtures__/client/wallet.json";
+import { WalletData } from "./dto";
+import Fixture from "../../test/fixtures/client/wallet.json";
 
 let subject: WalletData;
 

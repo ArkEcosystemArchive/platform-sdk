@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { DateTime } from "../src/datetime";
+import { DateTime } from "./datetime";
 
 let subject: DateTime;
 beforeEach(() => (subject = DateTime.make("2020-01-01")));

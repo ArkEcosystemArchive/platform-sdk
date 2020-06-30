@@ -1,9 +1,9 @@
 import "jest-extended";
 import nock from "nock";
 
-import { IdentityService } from "../../src/services/identity";
-import { identity } from "../__fixtures__/identity";
-import { createConfig } from "../helpers";
+import { IdentityService } from "./identity";
+import { identity } from "../../test/fixtures/identity";
+import { createConfig } from "../../test/helpers";
 
 let subject: IdentityService;
 
@@ -45,7 +45,7 @@ describe("IdentityService", () => {
 			nock("https://neoscan.io/api/main_net/v1/")
 				.get("/get_last_transactions_by_address/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX/1")
 				.thrice()
-				.reply(200, require(`${__dirname}/../__fixtures__/identity/neo-duplicate.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/identity/neo-duplicate.json`));
 
 			subject = await IdentityService.construct(createConfig({ network: "mainnet" }));
 

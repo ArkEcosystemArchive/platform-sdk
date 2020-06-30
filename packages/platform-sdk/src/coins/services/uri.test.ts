@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { URIService } from "../../../src/coins/services/uri";
+import { URIService } from "./uri";
 
 let subject: URIService;
 

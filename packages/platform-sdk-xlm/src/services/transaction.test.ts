@@ -1,9 +1,9 @@
 import "jest-extended";
 import nock from "nock";
 
-import { TransactionService } from "../../src/services/transaction";
-import { identity } from "../__fixtures__/identity";
-import { createConfig } from "../helpers";
+import { TransactionService } from "./transaction";
+import { identity } from "../../test/fixtures/identity";
+import { createConfig } from "../../test/helpers";
 
 let subject: TransactionService;
 
@@ -19,7 +19,7 @@ describe("TransactionService", () => {
 			nock("https://horizon-testnet.stellar.org")
 				.get("/accounts/GCGYSPQBSQCJKNDXDISBSXAM3THK7MACUVZGEMXF6XRZCPGAWCUGXVNC")
 				.query(true)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result: any = await subject.transfer({
 				sign: {

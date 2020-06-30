@@ -4,11 +4,11 @@ import nock from "nock";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 
 import { Environment, Profile, Identifiers } from "../src";
-import { DataRepository } from "../src/repositories/data-repository";
-import { ProfileRepository } from "../src/repositories/profile-repository";
-import { HttpClient } from "./stubs/client";
-import { container } from "../src/container";
-import { identity } from "./__fixtures__/identity";
+import { DataRepository } from "./repositories/data-repository";
+import { ProfileRepository } from "./repositories/profile-repository";
+import { HttpClient } from "../test/stubs/client";
+import { container } from "./container";
+import { identity } from "../test/fixtures/identity";
 import { writeFileSync, readFileSync } from "fs";
 import { resolve } from "path";
 
@@ -67,11 +67,11 @@ class StubStorage {
 beforeAll(() => {
 	nock(/.+/)
 		.get("/api/node/configuration/crypto")
-		.reply(200, require("./__fixtures__/client/cryptoConfiguration.json"))
+		.reply(200, require("../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
-		.reply(200, require("./__fixtures__/client/syncing.json"))
+		.reply(200, require("../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("./__fixtures__/client/wallet.json"))
+		.reply(200, require("../test/fixtures/client/wallet.json"))
 		.persist();
 
 	container.set(Identifiers.HttpClient, new HttpClient());

@@ -1,6 +1,6 @@
-import { HistoricalVolumeTransformer } from "../../src/transformers//historical-volume-transformer";
+import { HistoricalVolumeTransformer } from "./historical-volume-transformer";
 
-const stubResponse = require("../__fixtures__/historical-volume.json");
+const stubResponse = require("../../test/fixtures/historical-volume.json");
 const stubOptions = { type: "day", dateFormat: "DD.MM" };
 
 describe("CoinGecko", function () {

@@ -2,8 +2,8 @@ import "jest-extended";
 import { Data } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { PriceTracker } from "../src";
-import { HttpClient } from "./__stubs__/client";
+import { PriceTracker } from "./index";
+import { HttpClient } from "../test/stubs/client";
 
 const BASE_URL_COINCAP = "https://api.coincap.io/v2";
 const token = "ARK";
@@ -14,7 +14,7 @@ let subject: PriceTracker;
 beforeEach(() => {
 	subject = new PriceTracker(new HttpClient());
 
-	nock(BASE_URL_COINCAP).get("/assets").query(true).reply(200, require("./__fixtures__/assets.json"));
+	nock(BASE_URL_COINCAP).get("/assets").query(true).reply(200, require("../test/fixtures/assets.json"));
 
 	nock(BASE_URL_COINCAP)
 		.get("/assets/ark")
@@ -35,9 +35,12 @@ beforeEach(() => {
 			timestamp: 1581339180902,
 		});
 
-	nock(BASE_URL_COINCAP).get("/rates").reply(200, require("./__fixtures__/rates.json"));
+	nock(BASE_URL_COINCAP).get("/rates").reply(200, require("../test/fixtures/rates.json"));
 
-	nock(BASE_URL_COINCAP).get("/assets/ark/history").query(true).reply(200, require("./__fixtures__/historical.json"));
+	nock(BASE_URL_COINCAP)
+		.get("/assets/ark/history")
+		.query(true)
+		.reply(200, require("../test/fixtures/historical.json"));
 });
 
 describe("PriceTracker", () => {

@@ -2,7 +2,7 @@ import { Coins } from "@arkecosystem/platform-sdk";
 
 import { manifest } from "../src/manifest";
 import { schema } from "../src/schema";
-import { HttpClient } from "./services/stubs/client";
+import { HttpClient } from "./stubs/client";
 
 export const createConfig = (options?: object) => {
 	const config = new Coins.Config(

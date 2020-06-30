@@ -1,8 +1,8 @@
 import "jest-extended";
 import { createTransportReplayer, RecordStore, RecordStoreOptions } from "@ledgerhq/hw-transport-mocker";
-import { LedgerService } from "../../src/services/ledger";
-import { ledger } from "../__fixtures__/ledger";
-import { createConfig } from "../helpers";
+import { LedgerService } from "./ledger";
+import { ledger } from "../../test/fixtures/ledger";
+import { createConfig } from "../../test/helpers";
 
 const createMockService = async (record: string, opts?: RecordStoreOptions) => {
 	const transport = await LedgerService.construct(createConfig());

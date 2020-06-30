@@ -2,8 +2,8 @@ import "jest-extended";
 
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { TransactionData } from "../../src/dto/transaction";
-import Fixture from "../__fixtures__/client/transaction.json";
+import { TransactionData } from "./transaction";
+import Fixture from "../../test/fixtures/client/transaction.json";
 
 describe("TransactionData", function () {
 	it("should succeed", async () => {

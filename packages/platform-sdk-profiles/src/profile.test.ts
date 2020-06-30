@@ -4,22 +4,22 @@ import nock from "nock";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 
 import { Profile, ContactRepository, SettingRepository, WalletRepository, Identifiers } from "../src";
-import { container } from "../src/container";
+import { container } from "./container";
 
-import { identity } from "./__fixtures__/identity";
-import { HttpClient } from "./stubs/client";
-import { DataRepository } from "../src/repositories/data-repository";
+import { identity } from "../test/fixtures/identity";
+import { HttpClient } from "../test/stubs/client";
+import { DataRepository } from "./repositories/data-repository";
 
 let subject: Profile;
 
 beforeAll(() => {
 	nock(/.+/)
 		.get("/api/node/configuration/crypto")
-		.reply(200, require("./__fixtures__/client/cryptoConfiguration.json"))
+		.reply(200, require("../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
-		.reply(200, require("./__fixtures__/client/syncing.json"))
+		.reply(200, require("../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("./__fixtures__/client/wallet.json"))
+		.reply(200, require("../test/fixtures/client/wallet.json"))
 		.persist();
 
 	container.set(Identifiers.HttpClient, new HttpClient());

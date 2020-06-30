@@ -1,8 +1,8 @@
 import "jest-extended";
 
-import { TransactionService } from "../../src/services/transaction";
-import { identity } from "../__fixtures__/identity";
-import { createConfig } from "../helpers";
+import { TransactionService } from "./transaction";
+import { identity } from "../../test/fixtures/identity";
+import { createConfig } from "../../test/helpers";
 
 let subject: TransactionService;
 

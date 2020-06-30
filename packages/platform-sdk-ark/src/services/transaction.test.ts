@@ -2,17 +2,17 @@ import "jest-extended";
 import { Transactions } from "@arkecosystem/crypto";
 import nock from "nock";
 
-import { TransactionService } from "../../src/services/transaction";
-import { createConfig } from "../helpers";
+import { TransactionService } from "./transaction";
+import { createConfig } from "../../test/helpers";
 
 let subject: TransactionService;
 
 beforeEach(async () => {
 	nock(/.+/)
 		.get("/api/node/configuration/crypto")
-		.reply(200, require(`${__dirname}/../__fixtures__/client/cryptoConfiguration.json`))
+		.reply(200, require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`))
 		.get("/api/node/syncing")
-		.reply(200, require(`${__dirname}/../__fixtures__/client/syncing.json`))
+		.reply(200, require(`${__dirname}/../../test/fixtures/client/syncing.json`))
 		.persist();
 
 	subject = await TransactionService.construct(createConfig());

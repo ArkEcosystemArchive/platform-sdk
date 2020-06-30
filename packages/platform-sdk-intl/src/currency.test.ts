@@ -1,4 +1,4 @@
-import { Currency } from "../src/currency";
+import { Currency } from "./currency";
 
 test("#fromString", () => {
 	expect(Currency.fromString("Ѧ 0,0001")).toEqual({ display: "0.0001", value: "10000" });

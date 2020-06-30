@@ -1,7 +1,7 @@
 import "jest-extended";
 
-import { SettingRepository } from "../../src/repositories/setting-repository";
-import { WalletSetting, ProfileSetting } from "../../src/enums";
+import { SettingRepository } from "./setting-repository";
+import { WalletSetting, ProfileSetting } from "../enums";
 
 describe.each([["profile", "wallet"]])("SettingRepository(%s)", (type) => {
 	let subject: SettingRepository;

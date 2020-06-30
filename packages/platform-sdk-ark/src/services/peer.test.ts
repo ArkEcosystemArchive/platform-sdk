@@ -1,15 +1,15 @@
 import nock from "nock";
 
-import { PeerService } from "../../src/services/peer";
-import { dummyPeersPublicApi, dummyPeersWalletApi } from "./mocks/peers";
-import { createConfig } from "../helpers";
+import { PeerService } from "./peer";
+import { dummyPeersPublicApi, dummyPeersWalletApi } from "../../test/mocks/peers";
+import { createConfig } from "../../test/helpers";
 
 beforeEach(() => {
 	nock.cleanAll();
 
 	nock("http://127.0.0.1")
 		.get("/api/node/configuration")
-		.reply(200, require("../__fixtures__/client/configuration.json"))
+		.reply(200, require("../../test/fixtures/client/configuration.json"))
 		.persist();
 });
 

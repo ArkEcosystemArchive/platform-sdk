@@ -1,8 +1,8 @@
 import "jest-extended";
 
-import { MessageService } from "../../src/services/message";
-import { identity } from "../__fixtures__/identity";
-import { createConfig } from "../helpers";
+import { MessageService } from "./message";
+import { identity } from "../../test/fixtures/identity";
+import { createConfig } from "../../test/helpers";
 
 let subject: MessageService;
 

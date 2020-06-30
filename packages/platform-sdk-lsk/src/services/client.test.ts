@@ -1,9 +1,9 @@
 import "jest-extended";
 import nock from "nock";
 
-import { ClientService } from "../../src/services/client";
-import { TransactionData, WalletData } from "../../src/dto";
-import { createConfig } from "../helpers";
+import { ClientService } from "./client";
+import { TransactionData, WalletData } from "../dto";
+import { createConfig } from "../../test/helpers";
 
 let subject: ClientService;
 
@@ -16,7 +16,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/transactions?id=15562133894377717094")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transaction.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction.json`));
 
 			const result = await subject.transaction("15562133894377717094");
 
@@ -28,7 +28,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/transactions?address=6566229458323231555L")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({ address: "6566229458323231555L" });
 
@@ -41,7 +41,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/accounts?address=6566229458323231555L")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result = await subject.wallet("6566229458323231555L");
 
@@ -53,7 +53,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/accounts?address=6566229458323231555L")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets.json`));
 
 			const result = await subject.wallets({ address: "6566229458323231555L" });
 
@@ -66,7 +66,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/delegates?username=cc001")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/delegate.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/delegate.json`));
 
 			const result = await subject.delegate("cc001");
 
@@ -78,7 +78,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/delegates")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/delegates.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/delegates.json`));
 
 			const result = await subject.delegates();
 
@@ -106,7 +106,7 @@ describe("ClientService", function () {
 		it("should pass", async () => {
 			nock(/.+/)
 				.post("/api/transactions")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([transactionPayload]);
 
@@ -120,7 +120,7 @@ describe("ClientService", function () {
 		it("should fail", async () => {
 			nock(/.+/)
 				.post("/api/transactions")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast-failure.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const result = await subject.broadcast([transactionPayload]);
 

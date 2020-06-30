@@ -1,9 +1,9 @@
 import "jest-extended";
 import nock from "nock";
 
-import { TransactionService } from "../../src/services/transaction";
-import { testWallet } from "../__fixtures__/wallet";
-import { createConfig } from "../helpers";
+import { TransactionService } from "./transaction";
+import { testWallet } from "../../test/fixtures/wallet";
+import { createConfig } from "../../test/helpers";
 
 let subject: TransactionService;
 
@@ -16,7 +16,7 @@ describe("TransactionService", function () {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
 				.post("/wallet/createtransaction")
-				.reply(200, require(`${__dirname}/../__fixtures__/crypto/transfer.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/crypto/transfer.json`));
 
 			const result = await subject.transfer({
 				sign: {

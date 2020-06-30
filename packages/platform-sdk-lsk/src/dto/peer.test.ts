@@ -1,5 +1,5 @@
-import { PeerData } from "../../src/dto";
-import Fixture from "../__fixtures__/client/peers.json";
+import { PeerData } from "./peer";
+import Fixture from "../../test/fixtures/client/peers.json";
 
 let subject: PeerData;
 

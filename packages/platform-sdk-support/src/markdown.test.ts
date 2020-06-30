@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Markdown } from "../src/markdown";
+import { Markdown } from "./markdown";
 
 test("#parse", () => {
 	expect(

@@ -1,6 +1,6 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { WalletData } from "../../src/dto";
+import { WalletData } from "./wallet";
 
 let subject: WalletData;
 

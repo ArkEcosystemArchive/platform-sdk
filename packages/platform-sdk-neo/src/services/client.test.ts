@@ -3,9 +3,9 @@ import "jest-extended";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { ClientService } from "../../src/services/client";
-import { TransactionData } from "../../src/dto";
-import { createConfig } from "../helpers";
+import { ClientService } from "./client";
+import { TransactionData } from "../dto/transaction";
+import { createConfig } from "../../test/helpers";
 
 let subject: ClientService;
 
@@ -20,7 +20,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://neoscan-testnet.io/api/test_net/v1/")
 				.get("/get_address_abstracts/Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF/1")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({ address: "Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF" });
 
@@ -42,9 +42,9 @@ describe("ClientService", function () {
 		it("should pass", async () => {
 			nock("https://neoscan-testnet.io/api/test_net/v1/")
 				.get("/get_balance/Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/balance.json`))
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/balance.json`))
 				.post("/api/transactions")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast(["transactionPayload"]);
 
@@ -58,7 +58,7 @@ describe("ClientService", function () {
 		it("should fail", async () => {
 			nock("https://neoscan-testnet.io/api/test_net/v1/")
 				.post("/api/transactions")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast-failure.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const result = await subject.broadcast(["transactionPayload"]);
 

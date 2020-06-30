@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Money } from "../src/money";
+import { Money } from "./money";
 
 let subject: Money;
 beforeEach(() => (subject = Money.make(5000, "EUR")));

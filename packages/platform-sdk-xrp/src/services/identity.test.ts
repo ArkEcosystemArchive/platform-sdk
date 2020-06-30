@@ -1,8 +1,8 @@
 import "jest-extended";
 
-import { IdentityService } from "../../src/services/identity";
-import { identity } from "../__fixtures__/identity";
-import { createConfig } from "../helpers";
+import { IdentityService } from "./identity";
+import { identity } from "../../test/fixtures/identity";
+import { createConfig } from "../../test/helpers";
 
 let subject: IdentityService;
 

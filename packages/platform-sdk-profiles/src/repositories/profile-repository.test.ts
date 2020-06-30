@@ -1,7 +1,7 @@
 import "jest-extended";
 
-import { ProfileRepository } from "../../src/repositories/profile-repository";
-import { Profile } from "../../src/profile";
+import { ProfileRepository } from "./profile-repository";
+import { Profile } from "../profile";
 
 let subject: ProfileRepository;
 

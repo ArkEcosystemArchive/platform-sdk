@@ -3,11 +3,11 @@ import "jest-extended";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import WebSocket from "ws";
 
-import fixtures from "./fixtures/rippled";
+import fixtures from "../../test/fixtures/services/rippled";
 
-import { ClientService } from "../../src/services/client";
-import { WalletData, TransactionData } from "../../src/dto";
-import { createConfig } from "../helpers";
+import { ClientService } from "./client";
+import { WalletData, TransactionData } from "../dto";
+import { createConfig } from "../../test/helpers";
 
 let subject: ClientService;
 let wss;

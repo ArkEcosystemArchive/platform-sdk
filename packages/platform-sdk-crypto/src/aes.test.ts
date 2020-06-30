@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { AES } from "../src/aes";
+import { AES } from "./aes";
 
 const message = "Hello World";
 const password = "password";

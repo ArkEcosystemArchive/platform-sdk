@@ -1,9 +1,9 @@
 import "jest-extended";
 import nock from "nock";
 
-import { ClientService } from "../../src/services/client";
-import { WalletData } from "../../src/dto";
-import { createConfig } from "../helpers";
+import { ClientService } from "./client";
+import { WalletData } from "../dto";
+import { createConfig } from "../../test/helpers";
 
 let subject: ClientService;
 
@@ -18,7 +18,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://api.testnet.eos.io")
 				.post("/v1/chain/get_account")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result = await subject.wallet("bdfkbzietxos");
 

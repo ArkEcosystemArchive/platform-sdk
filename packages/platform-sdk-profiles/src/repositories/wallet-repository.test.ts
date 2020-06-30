@@ -5,13 +5,13 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
 
-import { Wallet } from "../../src/wallet";
-import { WalletRepository } from "../../src/repositories/wallet-repository";
-import { identity } from "../__fixtures__/identity";
-import { container } from "../../src/container";
-import { Identifiers } from "../../src/contracts";
-import { HttpClient } from "../stubs/client";
-import { Profile } from "../../src/profile";
+import { Wallet } from "../wallet";
+import { WalletRepository } from "./wallet-repository";
+import { identity } from "../../test/fixtures/identity";
+import { container } from "../container";
+import { Identifiers } from "../contracts";
+import { HttpClient } from "../../test/stubs/client";
+import { Profile } from "../profile";
 
 let subject: WalletRepository;
 
@@ -20,13 +20,13 @@ beforeEach(async () => {
 
 	nock(/.+/)
 		.get("/api/node/configuration")
-		.reply(200, require("../__fixtures__/client/configuration.json"))
+		.reply(200, require("../../test/fixtures/client/configuration.json"))
 		.get("/api/node/configuration/crypto")
-		.reply(200, require("../__fixtures__/client/cryptoConfiguration.json"))
+		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
-		.reply(200, require("../__fixtures__/client/syncing.json"))
+		.reply(200, require("../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../__fixtures__/client/wallet.json"))
+		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
 
 	container.set(Identifiers.HttpClient, new HttpClient());

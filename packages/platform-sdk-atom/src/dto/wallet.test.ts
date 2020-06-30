@@ -2,8 +2,8 @@ import "jest-extended";
 
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { WalletData } from "../../src/dto/wallet";
-import Fixture from "../__fixtures__/client/wallet.json";
+import { WalletData } from "./wallet";
+import Fixture from "../../test/fixtures/client/wallet.json";
 
 describe("WalletData", function () {
 	it("should succeed", async () => {

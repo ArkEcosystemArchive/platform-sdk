@@ -1,6 +1,6 @@
-import { HistoricalPriceTransformer } from "../../src/transformers/historical-price-transformer";
+import { HistoricalPriceTransformer } from "./historical-price-transformer";
 
-const stubResponse = require("../__fixtures__/historical.json");
+const stubResponse = require("../../test/fixtures/historical.json");
 
 const stubOptions = {
 	token: "ark",

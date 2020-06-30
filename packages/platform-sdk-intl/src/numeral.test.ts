@@ -1,4 +1,4 @@
-import { Numeral } from "../src/numeral";
+import { Numeral } from "./numeral";
 
 test("#format", () => {
 	expect(Numeral.make("en").format(5000)).toBe("5,000");

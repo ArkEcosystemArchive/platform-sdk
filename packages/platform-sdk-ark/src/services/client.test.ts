@@ -1,9 +1,9 @@
 import "jest-extended";
 import nock from "nock";
 
-import { ClientService } from "../../src/services/client";
-import { TransactionData, WalletData } from "../../src/dto";
-import { createConfig } from "../helpers";
+import { ClientService } from "./client";
+import { TransactionData, WalletData } from "../dto";
+import { createConfig } from "../../test/helpers";
 
 let subject: ClientService;
 
@@ -18,7 +18,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/transactions/3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transaction.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction.json`));
 
 			const result = await subject.transaction(
 				"3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
@@ -32,7 +32,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.post("/api/transactions/search")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" });
 
@@ -45,7 +45,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/wallets/DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result = await subject.wallet("DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9");
 
@@ -57,7 +57,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.post("/api/wallets/search")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallets.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets.json`));
 
 			const result = await subject.wallets({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" });
 
@@ -70,7 +70,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/delegates/arkx")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/delegate.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/delegate.json`));
 
 			const result = await subject.delegate("arkx");
 
@@ -82,7 +82,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/delegates")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/delegates.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/delegates.json`));
 
 			const result = await subject.delegates();
 
@@ -95,7 +95,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/wallets/arkx/votes")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/votes.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/votes.json`));
 
 			const result = await subject.votes("arkx");
 
@@ -108,7 +108,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/delegates/arkx/voters")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/voters.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/voters.json`));
 
 			const result = await subject.voters("arkx");
 
@@ -121,7 +121,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/node/syncing")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/syncing.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/syncing.json`));
 
 			const result = await subject.syncing();
 
@@ -133,7 +133,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.post("/api/transactions")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([]);
 

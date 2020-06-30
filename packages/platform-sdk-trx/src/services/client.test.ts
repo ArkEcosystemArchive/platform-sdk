@@ -1,9 +1,9 @@
 import "jest-extended";
 import nock from "nock";
 
-import { ClientService } from "../../src/services/client";
-import { TransactionData, WalletData } from "../../src/dto";
-import { createConfig } from "../helpers";
+import { ClientService } from "./client";
+import { TransactionData, WalletData } from "../dto";
+import { createConfig } from "../../test/helpers";
 
 let subject: ClientService;
 
@@ -16,7 +16,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
 				.post("/wallet/gettransactionbyid")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transaction.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction.json`));
 
 			const result = await subject.transaction(
 				"0daa9f2507c4e79e39391ea165bb76ed018c4cd69d7da129edf9e95f0dae99e2",
@@ -30,7 +30,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
 				.post("/walletsolidity/getaccount")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result = await subject.wallet("TTSFjEG3Lu9WkHdp4JrWYhbGP6K1REqnGQ");
 
@@ -42,10 +42,10 @@ describe("ClientService", function () {
 		it("should pass", async () => {
 			nock("https://api.shasta.trongrid.io")
 				.post("/wallet/broadcasttransaction")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([
-				require(`${__dirname}/../__fixtures__/crypto/transferSigned.json`),
+				require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
 			]);
 
 			expect(result).toEqual({
@@ -58,10 +58,10 @@ describe("ClientService", function () {
 		it("should fail", async () => {
 			nock("https://api.shasta.trongrid.io")
 				.post("/wallet/broadcasttransaction")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast-failure.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const result = await subject.broadcast([
-				require(`${__dirname}/../__fixtures__/crypto/transferSigned.json`),
+				require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
 			]);
 
 			expect(result).toEqual({

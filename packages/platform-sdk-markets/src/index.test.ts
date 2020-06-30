@@ -1,8 +1,8 @@
 import "jest-extended";
 
-import { MarketService } from "../src";
-import { PriceTracker } from "./__stubs__/tracker";
-import { HttpClient } from "./__stubs__/client";
+import { MarketService } from "./index";
+import { PriceTracker } from "../test/stubs/tracker";
+import { HttpClient } from "../test/stubs/client";
 
 let subject: MarketService;
 

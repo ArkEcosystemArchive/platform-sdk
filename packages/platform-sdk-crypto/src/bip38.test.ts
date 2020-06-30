@@ -1,7 +1,7 @@
 import "jest-extended";
 import wif from "wif";
 
-import { BIP38 } from "../src/bip38";
+import { BIP38 } from "./bip38";
 
 const mnemonic: string = "TestingOneTwoThree";
 

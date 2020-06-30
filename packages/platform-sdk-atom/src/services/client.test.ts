@@ -3,9 +3,9 @@ import "jest-extended";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { ClientService } from "../../src/services/client";
-import { TransactionData, WalletData } from "../../src/dto";
-import { createConfig } from "../helpers";
+import { ClientService } from "./client";
+import { TransactionData, WalletData } from "../dto";
+import { createConfig } from "../../test/helpers";
 
 let subject: ClientService;
 
@@ -18,7 +18,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://stargate.cosmos.network")
 				.get("/txs/B0DB35EADB3655E954A785B1ED0402222EF8C7061B22E52720AB1CE027ADBD11")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transaction.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction.json`));
 
 			const result = await subject.transaction(
 				"B0DB35EADB3655E954A785B1ED0402222EF8C7061B22E52720AB1CE027ADBD11",
@@ -43,7 +43,7 @@ describe("ClientService", function () {
 				.get(
 					"/txs?message.action=send&message.sender=cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0&page=1&limit=100",
 				)
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transactions.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({ address: "cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0" });
 
@@ -65,7 +65,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://stargate.cosmos.network")
 				.get("/auth/accounts/cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result = await subject.wallet("cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0");
 
@@ -81,7 +81,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://stargate.cosmos.network")
 				.get("/syncing")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/syncing.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/syncing.json`));
 
 			const result = await subject.syncing();
 
@@ -120,7 +120,7 @@ describe("ClientService", function () {
 		it("should pass", async () => {
 			nock("https://stargate.cosmos.network")
 				.post("/txs")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([transactionPayload]);
 
@@ -134,7 +134,7 @@ describe("ClientService", function () {
 		it("should fail", async () => {
 			nock("https://stargate.cosmos.network")
 				.post("/txs")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast-failure.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const result = await subject.broadcast([transactionPayload]);
 

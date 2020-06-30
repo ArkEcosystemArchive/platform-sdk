@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { NotificationRepository } from "../../src/repositories/notification-repository";
+import { NotificationRepository } from "./notification-repository";
 
 let subject: NotificationRepository;
 

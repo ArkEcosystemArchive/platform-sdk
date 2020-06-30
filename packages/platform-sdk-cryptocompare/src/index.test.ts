@@ -2,8 +2,8 @@ import "jest-extended";
 import { Data } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { PriceTracker } from "../src";
-import { HttpClient } from "./__stubs__/client";
+import { PriceTracker } from "./index";
+import { HttpClient } from "../test/stubs/client";
 
 const BASE_URL_CRYPTOCOMPARE = "https://min-api.cryptocompare.com";
 const token = "ARK";
@@ -17,11 +17,11 @@ beforeEach(() => {
 	nock(BASE_URL_CRYPTOCOMPARE)
 		.get("/data/pricemultifull")
 		.query(true)
-		.reply(200, require("./__fixtures__/market.json"));
+		.reply(200, require("../test/fixtures/market.json"));
 
 	nock(BASE_URL_CRYPTOCOMPARE)
 		.get(/\/data\/histo.+/)
-		.reply(200, require("./__fixtures__/historical.json"));
+		.reply(200, require("../test/fixtures/historical.json"));
 });
 
 describe("PriceTracker", () => {

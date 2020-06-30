@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Validator, ValidatorSchema } from "../src";
+import { Validator, ValidatorSchema } from "./validator";
 
 let subject: Validator;
 beforeEach(() => (subject = new Validator()));

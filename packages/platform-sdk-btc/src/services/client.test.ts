@@ -3,9 +3,9 @@ import "jest-extended";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { ClientService } from "../../src/services/client";
-import { TransactionData, WalletData } from "../../src/dto";
-import { createConfig } from "../helpers";
+import { ClientService } from "./client";
+import { TransactionData, WalletData } from "../dto";
+import { createConfig } from "../../test/helpers";
 
 let subject: ClientService;
 
@@ -20,7 +20,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://coins.com")
 				.get("/api/btc/transactions/68ad0264053ab94fa7749e78d2f728911d166ca9af8dbb68e6ee264958ca7f32")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/transaction.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction.json`));
 
 			const result = await subject.transaction(
 				"68ad0264053ab94fa7749e78d2f728911d166ca9af8dbb68e6ee264958ca7f32",
@@ -43,7 +43,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://coins.com")
 				.get("/api/btc/wallets/my48EN4kDnGEpRZMBfiDS65wdfwfgCGZRz")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/wallet.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result = await subject.wallet("my48EN4kDnGEpRZMBfiDS65wdfwfgCGZRz");
 
@@ -58,7 +58,7 @@ describe("ClientService", function () {
 		it("should pass", async () => {
 			nock("https://coins.com")
 				.post("/api/btc/transactions")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast(["transactionPayload"]);
 
@@ -72,7 +72,7 @@ describe("ClientService", function () {
 		it("should fail", async () => {
 			nock("https://coins.com")
 				.post("/api/btc/transactions")
-				.reply(200, require(`${__dirname}/../__fixtures__/client/broadcast-failure.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const result = await subject.broadcast(["transactionPayload"]);
 

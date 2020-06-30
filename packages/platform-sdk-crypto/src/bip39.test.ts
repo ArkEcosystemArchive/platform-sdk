@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { BIP39 } from "../src/bip39";
+import { BIP39 } from "./bip39";
 
 const english: string =
 	"slogan miracle truck skate erosion huge bright where aspect rural average almost cram glide gown";
