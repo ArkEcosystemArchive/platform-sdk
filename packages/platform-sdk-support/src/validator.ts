@@ -1,6 +1,8 @@
 // @ts-ignore - Cannot find module 'yup' or its corresponding type declarations.
 import { ValidationError } from "yup";
 
+export * as ValidatorSchema from "yup";
+
 export class Validator {
 	#error: ValidationError | undefined;
 

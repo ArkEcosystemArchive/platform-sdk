@@ -167,8 +167,6 @@ export class ClientService implements Contracts.ClientService {
 			// includeRawTransactions: true,
 		});
 
-		console.log(transactions);
-
 		return {
 			meta: {
 				prev: undefined,
