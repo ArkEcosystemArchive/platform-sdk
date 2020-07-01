@@ -782,6 +782,7 @@ __metadata:
     "@types/uuid": 8.0.0
     "@typescript-eslint/eslint-plugin": ^3.4.0
     "@typescript-eslint/parser": ^3.4.0
+    "@vechain/picasso": ^2.0.0
     bcrypto: ^5.2.0
     codecov: ^3.7.0
     cross-env: ^7.0.2
@@ -796,7 +797,6 @@ __metadata:
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.2
     localforage: ^1.7.4
-    mersenne-twister: ^1.1.0
     nock: ^12.0.3
     npm-check-updates: ^7.0.1
     prettier: ^2.0.5
@@ -4182,6 +4182,15 @@ __metadata:
     typescript:
       optional: true
   checksum: 2/96cb85cd30266c3293930abc391a0a8f8549ca37c51fda4ec8675483809d517ae1333cfa63be46545f0cbf682660ad10390710eb2cb5f0096c0ee4ec5f3b1af9
+  languageName: node
+  linkType: hard
+
+"@vechain/picasso@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@vechain/picasso@npm:2.0.0"
+  dependencies:
+    mersenne-twister: ^1.1.0
+  checksum: 2/6a881e579c3a1e42f342fe8222e2e8f21d5658fa120a5ece789684aa78a3903167b3a966a9fce2d9f42fb14fe0490b9d12f4220198e1bdad1de2df9eb250e8b9
   languageName: node
   linkType: hard
 
