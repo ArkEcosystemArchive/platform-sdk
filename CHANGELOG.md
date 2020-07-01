@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.139 - 2020-07-01
+
+### Added
+
+-   Implement `platform-sdk-ipfs` (cc8668bb, @faustbrian)
+-   Flag contacts with types like wallets (3ddcc5ea, @faustbrian)
+-   Implement `Cache` (1346dc0c, @faustbrian)
+
+### Changed
+
+-   Pass profile to `Wallet` and `Contact` (86c4e4f9, @faustbrian)
+-   Cache the avatar of a contact address (1386e629, @faustbrian)
+-   Use `@vechain/picasso` for avatars (5f4f02c8, @faustbrian)
+
 ## 0.9.133 - 2020-06-29
 
 ### Changed
