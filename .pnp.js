@@ -1179,7 +1179,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.2"],
             ["localforage", "npm:1.7.4"],
-            ["mersenne-twister", "npm:1.1.0"],
             ["nock", "npm:12.0.3"],
             ["npm-check-updates", "npm:7.0.1"],
             ["prettier", "npm:2.0.5"],

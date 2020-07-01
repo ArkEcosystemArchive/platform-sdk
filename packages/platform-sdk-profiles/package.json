@@ -29,7 +29,6 @@
 		"bcrypto": "^5.2.0",
 		"dot-prop": "^5.2.0",
 		"localforage": "^1.7.4",
-		"mersenne-twister": "^1.1.0",
 		"semver": "^7.3.2",
 		"uuid": "^8.1.0"
 	},
