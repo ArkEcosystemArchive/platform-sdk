@@ -24,7 +24,7 @@ export class Profile {
 	public constructor(id: string, name: string) {
 		this.#id = id;
 		this.#name = name;
-		this.#avatar = Avatar.make(id);
+		this.#avatar = Avatar.make(name);
 		this.#walletRepository = new WalletRepository(this);
 		this.#contactRepository = new ContactRepository(this);
 		this.#notificationRepository = new NotificationRepository();
