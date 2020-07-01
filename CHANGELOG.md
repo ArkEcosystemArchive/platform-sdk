@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.140 - 2020-07-01
+
+### Changed
+
+-   Use deterministic values for avatar generation (8c0f4b84, @faustbrian)
+
 ## 0.9.139 - 2020-07-01
 
 ### Added
