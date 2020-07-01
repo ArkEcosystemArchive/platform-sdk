@@ -25,6 +25,7 @@
 		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@arkecosystem/utils": "^1.1.8",
+		"@vechain/picasso": "^2.0.0",
 		"bcrypto": "^5.2.0",
 		"dot-prop": "^5.2.0",
 		"localforage": "^1.7.4",
