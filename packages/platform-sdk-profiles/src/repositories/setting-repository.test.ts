@@ -1,6 +1,7 @@
 import "jest-extended";
 
-import { ProfileSetting, WalletSetting } from "../enums";
+import { ProfileSetting } from "../profile.models";
+import { WalletSetting } from "../wallet.models";
 import { SettingRepository } from "./setting-repository";
 
 describe.each([["profile", "wallet"]])("SettingRepository(%s)", (type) => {

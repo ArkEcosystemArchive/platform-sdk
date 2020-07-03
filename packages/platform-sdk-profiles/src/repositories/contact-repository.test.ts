@@ -6,7 +6,7 @@ import nock from "nock";
 import { identity } from "../../test/fixtures/identity";
 import { HttpClient } from "../../test/stubs/client";
 import { container } from "../container";
-import { Identifiers } from "../contracts";
+import { Identifiers } from "../container.models";
 import { Profile } from "../profile";
 import { Wallet } from "../wallet";
 import { ContactRepository } from "./contact-repository";
