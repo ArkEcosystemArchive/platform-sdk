@@ -1,12 +1,12 @@
 import "jest-extended";
 
-import { ProfileRepository } from "./repositories/profile-repository";
-import { Migrator } from "./migrator";
-import { DataRepository } from "./repositories/data-repository";
-import { LocalStorage } from "./storage/local";
 import { HttpClient } from "../test/stubs/client";
 import { container } from "./container";
 import { Identifiers } from "./contracts";
+import { Migrator } from "./migrator";
+import { DataRepository } from "./repositories/data-repository";
+import { ProfileRepository } from "./repositories/profile-repository";
+import { LocalStorage } from "./storage/local";
 
 let subject: Migrator;
 let storage: LocalStorage;
@@ -42,7 +42,7 @@ it("should save the project version when a migration occurs", async () => {
 
 	await subject.migrate(migrations, "0.0.4");
 	await expect(storage.get("migrations")).resolves.toEqual({ latest: "0.0.4" });
-	await expect(data.get("key")).toEqual("value");
+	expect(data.get("key")).toEqual("value");
 });
 
 it("should not run the migration when the version does not change", async () => {
@@ -52,11 +52,11 @@ it("should not run the migration when the version does not change", async () => 
 
 	await subject.migrate(migrations, "0.0.2");
 	await expect(storage.get("migrations")).resolves.toEqual({ latest: "0.0.2" });
-	await expect(data.has("key")).toBeFalse();
+	expect(data.has("key")).toBeFalse();
 
 	await subject.migrate(migrations, "0.0.2");
 	await expect(storage.get("migrations")).resolves.toEqual({ latest: "0.0.2" });
-	await expect(data.has("key")).toBeFalse();
+	expect(data.has("key")).toBeFalse();
 });
 
 it("should run the migration when the version changes", async () => {
@@ -66,12 +66,12 @@ it("should run the migration when the version changes", async () => {
 
 	await subject.migrate(migrations, "0.0.2");
 	await expect(storage.get("migrations")).resolves.toEqual({ latest: "0.0.2" });
-	await expect(data.has("key")).toBeFalse();
+	expect(data.has("key")).toBeFalse();
 
 	await subject.migrate(migrations, "1.1.0");
 	await expect(storage.get("migrations")).resolves.toEqual({ latest: "1.1.0" });
-	await expect(data.has("key")).toBeTrue();
-	await expect(data.get("key")).toEqual("value");
+	expect(data.has("key")).toBeTrue();
+	expect(data.get("key")).toEqual("value");
 });
 
 it("should run the migration when the version uses semver comparisons", async () => {
@@ -81,7 +81,7 @@ it("should run the migration when the version uses semver comparisons", async ()
 
 	await subject.migrate(migrations, "1.0.2");
 	await expect(storage.get("migrations")).resolves.toEqual({ latest: "1.0.2" });
-	await expect(data.get("key")).toEqual("value");
+	expect(data.get("key")).toEqual("value");
 });
 
 it("should run the migration when the version uses multiple semver comparisons", async () => {
@@ -92,11 +92,11 @@ it("should run the migration when the version uses multiple semver comparisons",
 
 	await subject.migrate(migrations, "1.0.2");
 	await expect(storage.get("migrations")).resolves.toEqual({ latest: "1.0.2" });
-	await expect(data.get("key")).toEqual("value");
+	expect(data.get("key")).toEqual("value");
 
 	await subject.migrate(migrations, "2.0.1");
 	await expect(storage.get("migrations")).resolves.toEqual({ latest: "2.0.1" });
-	await expect(data.get("key")).toEqual("new value");
+	expect(data.get("key")).toEqual("new value");
 });
 
 it("should run all valid migrations when the version uses multiple semver comparisons", async () => {
@@ -114,11 +114,11 @@ it("should run all valid migrations when the version uses multiple semver compar
 
 	await subject.migrate(migrations, "2.4.0");
 	await expect(storage.get("migrations")).resolves.toEqual({ latest: "2.4.0" });
-	await expect(data.get("key1")).toEqual("value1");
-	await expect(data.get("key2")).toEqual("value2");
-	await expect(data.get("key3")).toEqual("value3");
-	await expect(data.get("key4")).toEqual("value4");
-	await expect(data.get("key5")).toEqual("value5");
+	expect(data.get("key1")).toEqual("value1");
+	expect(data.get("key2")).toEqual("value2");
+	expect(data.get("key3")).toEqual("value3");
+	expect(data.get("key4")).toEqual("value4");
+	expect(data.get("key5")).toEqual("value5");
 });
 
 it("should cleanup migrations with non-numeric values", async () => {
@@ -136,11 +136,11 @@ it("should cleanup migrations with non-numeric values", async () => {
 
 	await subject.migrate(migrations, "2.4.0");
 	await expect(storage.get("migrations")).resolves.toEqual({ latest: "2.4.0" });
-	await expect(data.get("key1")).toEqual("value1");
-	await expect(data.get("key2")).toEqual("value2");
-	await expect(data.get("key3")).toEqual("value3");
-	await expect(data.get("key4")).toEqual("value4");
-	await expect(data.get("key5")).toEqual("value5");
+	expect(data.get("key1")).toEqual("value1");
+	expect(data.get("key2")).toEqual("value2");
+	expect(data.get("key3")).toEqual("value3");
+	expect(data.get("key4")).toEqual("value4");
+	expect(data.get("key5")).toEqual("value5");
 });
 
 test("should rollback changes if a migration failed", async () => {
@@ -164,5 +164,5 @@ test("should rollback changes if a migration failed", async () => {
 	await expect(subject.migrate(failingMigrations, "1.0.2")).rejects.toThrowError(/throw the migration and rollback/);
 
 	await expect(storage.get("migrations")).resolves.toEqual({ latest: "1.0.0" });
-	await expect(data.get("key")).toEqual("initial update");
+	expect(data.get("key")).toEqual("initial update");
 });

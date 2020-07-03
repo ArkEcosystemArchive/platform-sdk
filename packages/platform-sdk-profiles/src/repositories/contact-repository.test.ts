@@ -1,15 +1,15 @@
 import "jest-extended";
-import nock from "nock";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
+import nock from "nock";
 
-import { ContactRepository } from "./contact-repository";
-import { Profile } from "../profile";
-import { Wallet } from "../wallet";
+import { identity } from "../../test/fixtures/identity";
+import { HttpClient } from "../../test/stubs/client";
 import { container } from "../container";
 import { Identifiers } from "../contracts";
-import { HttpClient } from "../../test/stubs/client";
-import { identity } from "../../test/fixtures/identity";
+import { Profile } from "../profile";
+import { Wallet } from "../wallet";
+import { ContactRepository } from "./contact-repository";
 
 let subject: ContactRepository;
 
@@ -80,28 +80,28 @@ test("ContactRepository#forget", () => {
 });
 
 test("ContactRepository#findByAddress", async () => {
-	const wallet = await (await subject.create(name)).addresses().create(addr);
+	const wallet = await subject.create(name).addresses().create(addr);
 
 	expect(subject.findByAddress(wallet.address())).toHaveLength(1);
 	expect(subject.findByAddress("invalid")).toHaveLength(0);
 });
 
 test("ContactRepository#findByCoin", async () => {
-	const wallet = await (await subject.create(name)).addresses().create(addr);
+	const wallet = await subject.create(name).addresses().create(addr);
 
 	expect(subject.findByCoin(wallet.coin())).toHaveLength(1);
 	expect(subject.findByCoin("invalid")).toHaveLength(0);
 });
 
 test("ContactRepository#findByNetwork", async () => {
-	const wallet = await (await subject.create(name)).addresses().create(addr);
+	const wallet = await subject.create(name).addresses().create(addr);
 
 	expect(subject.findByNetwork(wallet.network())).toHaveLength(1);
 	expect(subject.findByNetwork("invalid")).toHaveLength(0);
 });
 
 test("ContactRepository#flush", async () => {
-	const wallet = await (await subject.create(name)).addresses().create(addr);
+	const wallet = await subject.create(name).addresses().create(addr);
 
 	expect(subject.keys()).toHaveLength(1);
 

@@ -1,9 +1,10 @@
 import "jest-extended";
+
 import nock from "nock";
 
-import { TransactionService } from "./transaction";
 import { testWallet } from "../../test/fixtures/wallet";
 import { createConfig } from "../../test/helpers";
+import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 

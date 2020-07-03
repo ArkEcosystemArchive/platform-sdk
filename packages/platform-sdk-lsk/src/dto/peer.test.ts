@@ -1,5 +1,5 @@
-import { PeerData } from "./peer";
 import Fixture from "../../test/fixtures/client/peers.json";
+import { PeerData } from "./peer";
 
 let subject: PeerData;
 

@@ -1,9 +1,10 @@
 import "jest-extended";
+
 import nock from "nock";
 
-import { IdentityService } from "./identity";
 import { identity } from "../../test/fixtures/identity";
 import { createConfig } from "../../test/helpers";
+import { IdentityService } from "./identity";
 
 let subject: IdentityService;
 

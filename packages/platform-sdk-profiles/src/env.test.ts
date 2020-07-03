@@ -1,16 +1,16 @@
 import "jest-extended";
-import nock from "nock";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
+import { readFileSync, writeFileSync } from "fs";
+import nock from "nock";
+import { resolve } from "path";
 
-import { Environment, Profile, Identifiers } from "../src";
-import { DataRepository } from "./repositories/data-repository";
-import { ProfileRepository } from "./repositories/profile-repository";
+import { Environment, Identifiers, Profile } from "../src";
+import { identity } from "../test/fixtures/identity";
 import { HttpClient } from "../test/stubs/client";
 import { container } from "./container";
-import { identity } from "../test/fixtures/identity";
-import { writeFileSync, readFileSync } from "fs";
-import { resolve } from "path";
+import { DataRepository } from "./repositories/data-repository";
+import { ProfileRepository } from "./repositories/profile-repository";
 
 let subject: Environment;
 

@@ -1,8 +1,8 @@
 import nock from "nock";
 
-import { PeerService } from "./peer";
-import { dummyPeersPublicApi, dummyPeersWalletApi } from "../../test/mocks/peers";
 import { createConfig } from "../../test/helpers";
+import { dummyPeersPublicApi, dummyPeersWalletApi } from "../../test/mocks/peers";
+import { PeerService } from "./peer";
 
 beforeEach(() => {
 	nock.cleanAll();

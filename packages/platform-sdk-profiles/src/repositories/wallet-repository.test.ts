@@ -1,17 +1,17 @@
 import "jest-extended";
-import nock from "nock";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
+import nock from "nock";
 
-import { Wallet } from "../wallet";
-import { WalletRepository } from "./wallet-repository";
 import { identity } from "../../test/fixtures/identity";
+import { HttpClient } from "../../test/stubs/client";
 import { container } from "../container";
 import { Identifiers } from "../contracts";
-import { HttpClient } from "../../test/stubs/client";
 import { Profile } from "../profile";
+import { Wallet } from "../wallet";
+import { WalletRepository } from "./wallet-repository";
 
 let subject: WalletRepository;
 

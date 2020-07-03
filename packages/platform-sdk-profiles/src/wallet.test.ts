@@ -1,17 +1,17 @@
 import "jest-extended";
-import nock from "nock";
-import { v4 as uuidv4 } from "uuid";
 
 import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import nock from "nock";
+import { v4 as uuidv4 } from "uuid";
 
-import { Wallet } from "./wallet";
 import { identity } from "../test/fixtures/identity";
+import { HttpClient } from "../test/stubs/client";
 import { container } from "./container";
 import { Identifiers } from "./contracts";
-import { HttpClient } from "../test/stubs/client";
 import { Profile } from "./profile";
+import { Wallet } from "./wallet";
 
 let subject: Wallet;
 

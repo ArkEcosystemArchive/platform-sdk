@@ -1,9 +1,10 @@
 import "jest-extended";
+
 import nock from "nock";
 
-import { ClientService } from "./client";
-import { WalletData } from "../dto";
 import { createConfig } from "../../test/helpers";
+import { WalletData } from "../dto";
+import { ClientService } from "./client";
 
 let subject: ClientService;
 

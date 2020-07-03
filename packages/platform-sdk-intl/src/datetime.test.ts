@@ -5,8 +5,6 @@ import { DateTime } from "./datetime";
 let subject: DateTime;
 beforeEach(() => (subject = DateTime.make("2020-01-01")));
 
-test("#setLocale", () => {});
-
 test("#isBefore", () => {
 	expect(subject.isBefore(DateTime.make("2020-01-01").addDay())).toBeTrue();
 	expect(subject.isBefore(DateTime.make("2020-01-01").subDay())).toBeFalse();

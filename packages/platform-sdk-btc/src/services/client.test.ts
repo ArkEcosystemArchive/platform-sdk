@@ -3,9 +3,9 @@ import "jest-extended";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { ClientService } from "./client";
-import { TransactionData, WalletData } from "../dto";
 import { createConfig } from "../../test/helpers";
+import { TransactionData, WalletData } from "../dto";
+import { ClientService } from "./client";
 
 let subject: ClientService;
 

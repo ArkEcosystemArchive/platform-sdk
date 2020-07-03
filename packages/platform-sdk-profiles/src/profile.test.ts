@@ -1,13 +1,12 @@
 import "jest-extended";
-import nock from "nock";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
+import nock from "nock";
 
-import { Profile, ContactRepository, SettingRepository, WalletRepository, Identifiers } from "../src";
-import { container } from "./container";
-
+import { ContactRepository, Identifiers, Profile, SettingRepository, WalletRepository } from "../src";
 import { identity } from "../test/fixtures/identity";
 import { HttpClient } from "../test/stubs/client";
+import { container } from "./container";
 import { DataRepository } from "./repositories/data-repository";
 
 let subject: Profile;
@@ -35,10 +34,6 @@ it("should have an id", () => {
 
 it("should have a name", () => {
 	expect(subject.name()).toBe("John Doe");
-});
-
-it("should have a wallets repository", () => {
-	expect(subject.wallets()).toBeInstanceOf(WalletRepository);
 });
 
 it("should have a wallets repository", () => {

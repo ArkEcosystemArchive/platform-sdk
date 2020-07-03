@@ -1,8 +1,9 @@
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Avatar } from "./avatar";
-import { ProfileStruct, Identifiers } from "./contracts";
+import { container } from "./container";
+import { Identifiers, ProfileStruct } from "./contracts";
 import { ProfileSetting } from "./enums";
 import { ContactRepository } from "./repositories/contact-repository";
 import { DataRepository } from "./repositories/data-repository";
@@ -10,7 +11,6 @@ import { NotificationRepository } from "./repositories/notification-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
 import { Wallet } from "./wallet";
-import { container } from "./container";
 
 export class Profile {
 	#contactRepository!: ContactRepository;
@@ -131,7 +131,7 @@ export class Profile {
 		);
 	}
 
-	public async exchangeRate(token: string): Promise<number> {
+	public async getExchangeRate(token: string): Promise<number> {
 		return this.market().dailyAverage(
 			token,
 			this.settings().get(ProfileSetting.ChartCurrency) || "BTC",
