@@ -1,4 +1,4 @@
-import { Storage } from "../contracts";
+import { Storage } from "../env.models";
 import { LocalStorage } from "./local";
 import { NullStorage } from "./null";
 

@@ -2,7 +2,7 @@ import "jest-extended";
 
 import { HttpClient } from "../test/stubs/client";
 import { container } from "./container";
-import { Identifiers } from "./contracts";
+import { Identifiers } from "./container.models";
 import { Migrator } from "./migrator";
 import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";

@@ -1,3 +1,13 @@
+export interface ProfileStruct {
+	id: string;
+	name: string;
+	wallets: Record<string, any>;
+	contacts: Record<string, any>;
+	notifications: Record<string, any>;
+	data: Record<string, any>;
+	settings: Record<string, any>;
+}
+
 export enum ProfileSetting {
 	AdvancedMode = "ADVANCED_MODE",
 	Avatar = "AVATAR",
@@ -17,14 +27,4 @@ export enum ProfileSetting {
 	Theme = "THEME",
 	DateFormat = "DATE_FORMAT",
 	TimeFormat = "TIME_FORMAT",
-}
-
-export enum WalletSetting {
-	Alias = "ALIAS",
-	Avatar = "AVATAR",
-	Peer = "PEER",
-}
-
-export enum WalletData {
-	ExchangeRate = "EXCHANGE_RATE",
 }
