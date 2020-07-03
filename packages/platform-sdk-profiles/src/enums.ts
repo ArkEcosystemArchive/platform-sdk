@@ -24,3 +24,7 @@ export enum WalletSetting {
 	Avatar = "AVATAR",
 	Peer = "PEER",
 }
+
+export enum WalletData {
+	ExchangeRate = "EXCHANGE_RATE",
+}

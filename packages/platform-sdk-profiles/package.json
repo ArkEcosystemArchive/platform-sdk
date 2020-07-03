@@ -23,6 +23,7 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
+		"@arkecosystem/platform-sdk-markets": "workspace:packages/platform-sdk-markets",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@arkecosystem/utils": "^1.1.8",
 		"@vechain/picasso": "^2.0.0",
