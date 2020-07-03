@@ -1,4 +1,4 @@
-import { ContactStruct } from "./contracts";
+import { ContactStruct } from "./contact.models";
 import { Profile } from "./profile";
 import { ContactAddressRepository } from "./repositories/contact-address-repository";
 

@@ -1,10 +1,12 @@
 import { Validator, ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
 import { container } from "./container";
-import { EnvironmentOptions, Identifiers, Storage } from "./contracts";
+import { Identifiers } from "./container.models";
+import { EnvironmentOptions } from "./env.models";
 import { Migrator } from "./migrator";
 import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
+import { Storage } from "./storage.models";
 import { StorageFactory } from "./storage/factory";
 
 export class Environment {

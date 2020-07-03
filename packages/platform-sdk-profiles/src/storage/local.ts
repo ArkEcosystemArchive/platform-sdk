@@ -1,6 +1,6 @@
 import localForage from "localforage";
 
-import { Storage } from "../contracts";
+import { Storage } from "../storage.models";
 
 export class LocalStorage implements Storage {
 	readonly #storage;

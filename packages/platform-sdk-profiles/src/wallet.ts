@@ -3,12 +3,12 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Avatar } from "./avatar";
 import { container } from "./container";
-import { Identifiers, WalletStruct } from "./contracts";
-import { WalletData, WalletSetting } from "./enums";
+import { Identifiers } from "./container.models";
 import { Profile } from "./profile";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { createTransactionDataCollection } from "./transaction.helpers";
+import { WalletData, WalletSetting, WalletStruct } from "./wallet.models";
 import { WalletAttribute, WalletFlag } from "./wallet.models";
 
 export class Wallet {

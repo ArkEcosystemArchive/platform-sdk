@@ -3,8 +3,8 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Avatar } from "./avatar";
 import { container } from "./container";
-import { Identifiers, ProfileStruct } from "./contracts";
-import { ProfileSetting } from "./enums";
+import { Identifiers } from "./container.models";
+import { ProfileSetting, ProfileStruct } from "./profile.models";
 import { ContactRepository } from "./repositories/contact-repository";
 import { DataRepository } from "./repositories/data-repository";
 import { NotificationRepository } from "./repositories/notification-repository";

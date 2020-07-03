@@ -4,7 +4,7 @@ import { sortBy, sortByDesc } from "@arkecosystem/utils";
 import { v4 as uuidv4 } from "uuid";
 
 import { container } from "../container";
-import { Identifiers } from "../contracts";
+import { Identifiers } from "../container.models";
 import { Profile } from "../profile";
 import { Wallet } from "../wallet";
 import { DataRepository } from "./data-repository";
