@@ -1,6 +1,6 @@
 import localForage from "localforage";
 
-import { Storage } from "../storage.models";
+import { Storage } from "../env.models";
 
 export class LocalStorage implements Storage {
 	readonly #storage;

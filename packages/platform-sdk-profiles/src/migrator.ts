@@ -5,7 +5,7 @@ import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
-import { Storage } from "./storage.models";
+import { Storage } from "./env.models";
 
 export class Migrator {
 	readonly #profiles: ProfileRepository;

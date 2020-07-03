@@ -1,4 +1,4 @@
-import { Storage } from "../storage.models";
+import { Storage } from "../env.models";
 
 export class NullStorage implements Storage {
 	public async all(): Promise<object> {

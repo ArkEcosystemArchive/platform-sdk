@@ -1,6 +1,5 @@
 export * from "./avatar";
 export * from "./contact";
-export * from "./storage.models";
 export * from "./env";
 export * from "./migrator";
 export * from "./profile";
@@ -11,7 +10,6 @@ export * from "./contact.models";
 export * from "./container.models";
 export * from "./env.models";
 export * from "./profile.models";
-export * from "./storage.models";
 export * from "./wallet.models";
 
 // Repositories
