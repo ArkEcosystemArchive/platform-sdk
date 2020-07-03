@@ -62,6 +62,6 @@ export class Cache {
 			}
 		}
 
-		setTimeout(this.checkExpiration, ttl * 1000, true);
+		// setTimeout(this.checkExpiration, ttl * 1000, true);
 	};
 }

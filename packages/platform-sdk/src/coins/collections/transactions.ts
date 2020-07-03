@@ -1,7 +1,7 @@
 import { TransactionData } from "../../contracts";
 
 export class TransactionDataCollection {
-	readonly #transactions: TransactionData[];
+	#transactions: TransactionData[];
 
 	public constructor(transactions: TransactionData[]) {
 		this.#transactions = transactions;

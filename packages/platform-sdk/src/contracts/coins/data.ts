@@ -15,6 +15,8 @@ export interface TransactionData {
 
 	recipient(): string;
 
+	recipients(): MultiPaymentRecipient[];
+
 	amount(): BigNumber;
 
 	fee(): BigNumber;
@@ -22,6 +24,46 @@ export interface TransactionData {
 	memo(): string | undefined;
 
 	asset(): object | undefined;
+
+	isTransfer(): boolean;
+
+	isSecondSignature(): boolean;
+
+	isDelegateRegistration(): boolean;
+
+	isVote(): boolean;
+
+	isMultiSignature(): boolean;
+
+	isIpfs(): boolean;
+
+	isMultiPayment(): boolean;
+
+	isDelegateResignation(): boolean;
+
+	isHtlcLock(): boolean;
+
+	isHtlcClaim(): boolean;
+
+	isHtlcRefund(): boolean;
+
+	isBusinessRegistration(): boolean;
+
+	isBusinessResignation(): boolean;
+
+	isBusinessUpdate(): boolean;
+
+	isBridgechainRegistration(): boolean;
+
+	isBridgechainResignation(): boolean;
+
+	isBridgechainUpdate(): boolean;
+
+	isEntityRegistration(): boolean;
+
+	isEntityResignation(): boolean;
+
+	isEntityUpdate(): boolean;
 
 	toObject(): KeyValuePair;
 }
@@ -67,4 +109,9 @@ export interface PeerData {
 	latency(): number;
 
 	toObject(): KeyValuePair;
+}
+
+export interface MultiPaymentRecipient {
+	address: string;
+	amount: BigNumber;
 }
