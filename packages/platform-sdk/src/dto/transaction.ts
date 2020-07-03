@@ -1,6 +1,7 @@
 import { BigNumber, Censor } from "@arkecosystem/platform-sdk-support";
 import emoji from "node-emoji";
 
+import { MultiPaymentRecipient } from "../contracts/coins/data";
 import { KeyValuePair } from "../contracts/types";
 
 export abstract class AbstractTransactionData {
@@ -18,6 +19,8 @@ export abstract class AbstractTransactionData {
 
 	abstract recipient(): string;
 
+	abstract recipients(): MultiPaymentRecipient[];
+
 	abstract amount(): BigNumber;
 
 	abstract fee(): BigNumber;
@@ -25,6 +28,46 @@ export abstract class AbstractTransactionData {
 	abstract memo(): string | undefined;
 
 	abstract asset(): object | undefined;
+
+	abstract isTransfer(): boolean;
+
+	abstract isSecondSignature(): boolean;
+
+	abstract isDelegateRegistration(): boolean;
+
+	abstract isVote(): boolean;
+
+	abstract isMultiSignature(): boolean;
+
+	abstract isIpfs(): boolean;
+
+	abstract isMultiPayment(): boolean;
+
+	abstract isDelegateResignation(): boolean;
+
+	abstract isHtlcLock(): boolean;
+
+	abstract isHtlcClaim(): boolean;
+
+	abstract isHtlcRefund(): boolean;
+
+	abstract isBusinessRegistration(): boolean;
+
+	abstract isBusinessResignation(): boolean;
+
+	abstract isBusinessUpdate(): boolean;
+
+	abstract isBridgechainRegistration(): boolean;
+
+	abstract isBridgechainResignation(): boolean;
+
+	abstract isBridgechainUpdate(): boolean;
+
+	abstract isEntityRegistration(): boolean;
+
+	abstract isEntityResignation(): boolean;
+
+	abstract isEntityUpdate(): boolean;
 
 	public toObject(): KeyValuePair {
 		return {

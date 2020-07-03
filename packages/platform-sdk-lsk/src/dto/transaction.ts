@@ -1,4 +1,4 @@
-import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
@@ -34,6 +34,10 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.recipientId;
 	}
 
+	public recipients(): Contracts.MultiPaymentRecipient[] {
+		throw new Exceptions.NotImplemented(this.constructor.name, "recipients");
+	}
+
 	public amount(): BigNumber {
 		return BigNumber.make(this.data.amount);
 	}
@@ -48,5 +52,85 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 	public asset(): object | undefined {
 		return {};
+	}
+
+	public isTransfer(): boolean {
+		return this.data.type === 8;
+	}
+
+	public isSecondSignature(): boolean {
+		return this.data.type === 9;
+	}
+
+	public isDelegateRegistration(): boolean {
+		return this.data.type === 10;
+	}
+
+	public isVote(): boolean {
+		return this.data.type === 11;
+	}
+
+	public isMultiSignature(): boolean {
+		return this.data.type === 12;
+	}
+
+	public isIpfs(): boolean {
+		return false;
+	}
+
+	public isMultiPayment(): boolean {
+		return false;
+	}
+
+	public isDelegateResignation(): boolean {
+		return false;
+	}
+
+	public isHtlcLock(): boolean {
+		return false;
+	}
+
+	public isHtlcClaim(): boolean {
+		return false;
+	}
+
+	public isHtlcRefund(): boolean {
+		return false;
+	}
+
+	public isBusinessRegistration(): boolean {
+		return false;
+	}
+
+	public isBusinessResignation(): boolean {
+		return false;
+	}
+
+	public isBusinessUpdate(): boolean {
+		return false;
+	}
+
+	public isBridgechainRegistration(): boolean {
+		return false;
+	}
+
+	public isBridgechainResignation(): boolean {
+		return false;
+	}
+
+	public isBridgechainUpdate(): boolean {
+		return false;
+	}
+
+	public isEntityRegistration(): boolean {
+		return false;
+	}
+
+	public isEntityResignation(): boolean {
+		return false;
+	}
+
+	public isEntityUpdate(): boolean {
+		return false;
 	}
 }

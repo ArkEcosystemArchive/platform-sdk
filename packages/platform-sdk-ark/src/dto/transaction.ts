@@ -50,8 +50,16 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.recipient;
 	}
 
+	public recipients(): Contracts.MultiPaymentRecipient[] {
+		if (!this.isMultiPayment()) {
+			return [];
+		}
+
+		return this.data.asset.payments;
+	}
+
 	public amount(): BigNumber {
-		if (this.data.typeGroup === 0 && this.data.type === 6) {
+		if (this.isMultiPayment()) {
 			return this.data.asset.payments.reduce(
 				(sum: BigNumber, { amount }: { amount: string }) => sum.plus(amount),
 				BigNumber.ZERO,
@@ -71,5 +79,85 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 	public asset(): object | undefined {
 		return this.data.asset;
+	}
+
+	public isTransfer(): boolean {
+		return this.data.typeGroup === 1 && this.data.type === 0;
+	}
+
+	public isSecondSignature(): boolean {
+		return this.data.typeGroup === 1 && this.data.type === 1;
+	}
+
+	public isDelegateRegistration(): boolean {
+		return this.data.typeGroup === 1 && this.data.type === 2;
+	}
+
+	public isVote(): boolean {
+		return this.data.typeGroup === 1 && this.data.type === 3;
+	}
+
+	public isMultiSignature(): boolean {
+		return this.data.typeGroup === 1 && this.data.type === 4;
+	}
+
+	public isIpfs(): boolean {
+		return this.data.typeGroup === 1 && this.data.type === 5;
+	}
+
+	public isMultiPayment(): boolean {
+		return this.data.typeGroup === 1 && this.data.type === 6;
+	}
+
+	public isDelegateResignation(): boolean {
+		return this.data.typeGroup === 1 && this.data.type === 7;
+	}
+
+	public isHtlcLock(): boolean {
+		return this.data.typeGroup === 1 && this.data.type === 8;
+	}
+
+	public isHtlcClaim(): boolean {
+		return this.data.typeGroup === 1 && this.data.type === 9;
+	}
+
+	public isHtlcRefund(): boolean {
+		return this.data.typeGroup === 1 && this.data.type === 10;
+	}
+
+	public isBusinessRegistration(): boolean {
+		return this.data.typeGroup === 2 && this.data.type === 0;
+	}
+
+	public isBusinessResignation(): boolean {
+		return this.data.typeGroup === 2 && this.data.type === 1;
+	}
+
+	public isBusinessUpdate(): boolean {
+		return this.data.typeGroup === 2 && this.data.type === 2;
+	}
+
+	public isBridgechainRegistration(): boolean {
+		return this.data.typeGroup === 2 && this.data.type === 3;
+	}
+
+	public isBridgechainResignation(): boolean {
+		return this.data.typeGroup === 2 && this.data.type === 4;
+	}
+
+	public isBridgechainUpdate(): boolean {
+		return this.data.typeGroup === 2 && this.data.type === 5;
+	}
+
+	public isEntityRegistration(): boolean {
+		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === 0;
+	}
+
+	public isEntityResignation(): boolean {
+		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === 1;
+	}
+
+	public isEntityUpdate(): boolean {
+		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === 2;
 	}
 }

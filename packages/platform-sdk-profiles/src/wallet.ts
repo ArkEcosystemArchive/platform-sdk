@@ -9,6 +9,8 @@ import { Profile } from "./profile";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletAttribute, WalletFlag } from "./wallet.models";
+import { TransactionData } from "./transaction";
+import { createTransactionDataCollection } from "./transaction.helpers";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
@@ -259,22 +261,31 @@ export class Wallet {
 		return this.#coin.transaction();
 	}
 
-	public transactions(
+	public async transactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().transactions({ address: this.address(), ...query });
+		return createTransactionDataCollection(
+			await this.#coin.client().transactions({ address: this.address(), ...query }),
+			this,
+		);
 	}
 
-	public sentTransactions(
+	public async sentTransactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().transactions({ senderId: this.address(), ...query });
+		return createTransactionDataCollection(
+			await this.#coin.client().transactions({ senderId: this.address(), ...query }),
+			this,
+		);
 	}
 
-	public receivedTransactions(
+	public async receivedTransactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.#coin.client().transactions({ recipientId: this.address(), ...query });
+		return createTransactionDataCollection(
+			await this.#coin.client().transactions({ recipientId: this.address(), ...query }),
+			this,
+		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
