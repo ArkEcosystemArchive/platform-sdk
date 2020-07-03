@@ -1,7 +1,8 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { MarketService } from "@arkecosystem/platform-sdk-markets";
 
 import { Avatar } from "./avatar";
-import { ProfileStruct } from "./contracts";
+import { ProfileStruct, Identifiers } from "./contracts";
 import { ProfileSetting } from "./enums";
 import { ContactRepository } from "./repositories/contact-repository";
 import { DataRepository } from "./repositories/data-repository";
@@ -9,6 +10,7 @@ import { NotificationRepository } from "./repositories/notification-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
 import { Wallet } from "./wallet";
+import { container } from "./container";
 
 export class Profile {
 	#contactRepository!: ContactRepository;
@@ -116,5 +118,24 @@ export class Profile {
 		}
 
 		return result;
+	}
+
+	/**
+	 * These methods serve as helpers to interact with exchange markets.
+	 */
+
+	public market(): MarketService {
+		return MarketService.make(
+			this.settings().get(ProfileSetting.MarketProvider) || "coingecko",
+			container.get(Identifiers.HttpClient),
+		);
+	}
+
+	public async exchangeRate(token: string): Promise<number> {
+		return this.market().dailyAverage(
+			token,
+			this.settings().get(ProfileSetting.ChartCurrency) || "BTC",
+			+Date.now(),
+		);
 	}
 }
