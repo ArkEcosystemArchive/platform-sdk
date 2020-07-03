@@ -1,8 +1,9 @@
 import "jest-extended";
+
 import nock from "nock";
 
-import { TransactionService } from "./transaction";
 import { createConfig } from "../../test/helpers";
+import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 

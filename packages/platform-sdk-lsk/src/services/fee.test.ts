@@ -1,7 +1,7 @@
 import "jest-extended";
 
-import { FeeService } from "./fee";
 import { createConfig } from "../../test/helpers";
+import { FeeService } from "./fee";
 
 let subject: FeeService;
 

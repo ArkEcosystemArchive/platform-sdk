@@ -2,8 +2,8 @@ import "jest-extended";
 
 import { Keychain } from "./keychain";
 
-const service: string = "platform-sdk";
-const account: string = "john";
+const service = "platform-sdk";
+const account = "john";
 
 test.skip("sets, gets and forgets an account for the given service", async () => {
 	await Keychain.set(service, account, "secret");

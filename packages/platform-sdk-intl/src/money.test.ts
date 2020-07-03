@@ -68,10 +68,6 @@ test("#isNegative", () => {
 	expect(Money.make(1, "EUR").isNegative()).toBeFalse();
 });
 
-test("#getAmount", () => {
-	expect(subject.getAmount()).toBe(5000);
-});
-
 test("#getCurrency", () => {
 	expect(subject.getCurrency()).toBe("EUR");
 });

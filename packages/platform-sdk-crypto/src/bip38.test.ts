@@ -1,9 +1,10 @@
 import "jest-extended";
+
 import wif from "wif";
 
 import { BIP38 } from "./bip38";
 
-const mnemonic: string = "TestingOneTwoThree";
+const mnemonic = "TestingOneTwoThree";
 
 test("#encrypt", async () => {
 	// @ts-ignore

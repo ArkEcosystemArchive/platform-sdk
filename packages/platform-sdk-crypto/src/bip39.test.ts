@@ -2,17 +2,16 @@ import "jest-extended";
 
 import { BIP39 } from "./bip39";
 
-const english: string =
-	"slogan miracle truck skate erosion huge bright where aspect rural average almost cram glide gown";
-const japanese: string =
+const english = "slogan miracle truck skate erosion huge bright where aspect rural average almost cram glide gown";
+const japanese =
 	"ひつぎ　ためる　むすぶ　ひかん　こうちゃ　すきま　えつらん　るいけい　いとこ　のちほど　いやす　あんまり　ぎしき　じだい　しなん";
-const korean: string =
+const korean =
 	"직업 여섯 포인트 지급 백색 손가락 그림 화요일 계절 정말 골짜기 개별 덩어리 상자 생신";
-const chinese_simplified: string = "凤 谢 迈 霸 夫 祖 知 徙 合 恰 相 多 难 雨 孩";
-const chinese_traditional: string = "鳳 謝 邁 霸 夫 祖 知 徙 合 恰 相 多 難 雨 孩";
-const french: string =
+const chinese_simplified = "凤 谢 迈 霸 夫 祖 知 徙 合 恰 相 多 难 雨 孩";
+const chinese_traditional = "鳳 謝 邁 霸 夫 祖 知 徙 合 恰 相 多 難 雨 孩";
+const french =
 	"remplir lézard temporel refuge éclipse furtif bermuda victoire angle pollen appeler affaire citoyen farine fermer";
-const random: string = "@!#$^$%^&*&^(";
+const random = "@!#$^$%^&*&^(";
 
 test("#generate", async () => {
 	expect(BIP39.generate("chinese_simplified")).toBeString();

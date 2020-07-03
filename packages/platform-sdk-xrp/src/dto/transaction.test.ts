@@ -2,8 +2,8 @@ import "jest-extended";
 
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { TransactionData } from "./transaction";
 import fixtures from "../../test/fixtures/services/responses";
+import { TransactionData } from "./transaction";
 
 describe("TransactionData", function () {
 	it("should succeed", async () => {

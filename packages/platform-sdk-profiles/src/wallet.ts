@@ -4,13 +4,12 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { Avatar } from "./avatar";
 import { container } from "./container";
 import { Identifiers, WalletStruct } from "./contracts";
-import { WalletSetting } from "./enums";
+import { WalletData, WalletSetting } from "./enums";
 import { Profile } from "./profile";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
-import { WalletAttribute, WalletFlag } from "./wallet.models";
-import { TransactionData } from "./transaction";
 import { createTransactionDataCollection } from "./transaction.helpers";
+import { WalletAttribute, WalletFlag } from "./wallet.models";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
@@ -324,5 +323,13 @@ export class Wallet {
 
 	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
 		return this.#coin.client().broadcast(transactions);
+	}
+
+	/**
+	 * These methods serve as helpers to interact with exchange markets.
+	 */
+
+	public async updateExchangeRate(): Promise<void> {
+		this.data().set(WalletData.ExchangeRate, this.#profile.getExchangeRate(this.currency()));
 	}
 }
