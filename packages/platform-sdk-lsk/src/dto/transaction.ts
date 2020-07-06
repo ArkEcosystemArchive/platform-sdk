@@ -50,7 +50,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.asset.data;
 	}
 
-	public asset(): object | undefined {
+	public asset(): Record<string, unknown> {
 		return {};
 	}
 
@@ -67,7 +67,31 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isVote(): boolean {
-		return this.data.type === 11;
+		if (this.data.type !== 11) {
+			return false;
+		}
+
+		for (const vote of this.asset().votes as string[]) {
+			if (vote.startsWith("+")) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public isUnvote(): boolean {
+		if (this.data.type !== 11) {
+			return false;
+		}
+
+		for (const vote of this.asset().votes as string[]) {
+			if (vote.startsWith("-")) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public isMultiSignature(): boolean {

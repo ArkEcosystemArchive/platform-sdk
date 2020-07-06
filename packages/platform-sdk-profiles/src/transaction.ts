@@ -65,7 +65,7 @@ export class TransactionData {
 		return this.#transaction.memo();
 	}
 
-	public asset(): object | undefined {
+	public asset(): Record<string, unknown> {
 		return this.#transaction.asset();
 	}
 
@@ -91,6 +91,10 @@ export class TransactionData {
 
 	public isVote(): boolean {
 		return this.#transaction.isVote();
+	}
+
+	public isUnvote(): boolean {
+		return this.#transaction.isUnvote();
 	}
 
 	public isMultiSignature(): boolean {

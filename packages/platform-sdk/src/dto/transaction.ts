@@ -27,7 +27,7 @@ export abstract class AbstractTransactionData {
 
 	abstract memo(): string | undefined;
 
-	abstract asset(): object | undefined;
+	abstract asset(): Record<string, unknown>;
 
 	abstract isTransfer(): boolean;
 
@@ -36,6 +36,8 @@ export abstract class AbstractTransactionData {
 	abstract isDelegateRegistration(): boolean;
 
 	abstract isVote(): boolean;
+
+	abstract isUnvote(): boolean;
 
 	abstract isMultiSignature(): boolean;
 
