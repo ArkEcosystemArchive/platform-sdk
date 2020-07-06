@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.144 - 2020-07-06
+
+### Added
+
+-   Implement `is*` methods to determine transaction types (85d09e1c, @faustbrian)
+-   Implement exchange rate fetching (14eca3c7, @faustbrian)
+-   Implement `TransactionData#isUnvote` (43d8abea, @faustbrian)
+
+### Changed
+
+-   Organise models into separate files by type (56232394, @faustbrian)
+
 ## 0.9.140 - 2020-07-01
 
 ### Changed
