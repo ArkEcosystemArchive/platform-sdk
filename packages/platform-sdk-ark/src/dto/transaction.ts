@@ -77,7 +77,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.vendorField;
 	}
 
-	public asset(): object | undefined {
+	public asset(): Record<string, unknown> {
 		return this.data.asset;
 	}
 
@@ -94,7 +94,23 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isVote(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 3;
+		const isVote = this.data.typeGroup === 1 && this.data.type === 3;
+
+		if (!isVote) {
+			return false;
+		}
+
+		return (this.asset().votes as string[])[0].startsWith("+");
+	}
+
+	public isUnvote(): boolean {
+		const isVote = this.data.typeGroup === 1 && this.data.type === 3;
+
+		if (!isVote) {
+			return false;
+		}
+
+		return (this.asset().votes as string[])[0].startsWith("-");
 	}
 
 	public isMultiSignature(): boolean {

@@ -51,7 +51,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return undefined;
 	}
 
-	public asset(): object | undefined {
+	public asset(): Record<string, unknown> {
 		return {};
 	}
 
@@ -68,6 +68,10 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isVote(): boolean {
+		return false;
+	}
+
+	public isUnvote(): boolean {
 		return false;
 	}
 

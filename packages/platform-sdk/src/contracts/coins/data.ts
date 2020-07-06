@@ -23,7 +23,7 @@ export interface TransactionData {
 
 	memo(): string | undefined;
 
-	asset(): object | undefined;
+	asset(): Record<string, unknown>;
 
 	isTransfer(): boolean;
 
@@ -32,6 +32,8 @@ export interface TransactionData {
 	isDelegateRegistration(): boolean;
 
 	isVote(): boolean;
+
+	isUnvote(): boolean;
 
 	isMultiSignature(): boolean;
 
