@@ -4,17 +4,6 @@
 __metadata:
   version: 4
 
-"@arkecosystem/client@npm:^1.1":
-  version: 1.1.3
-  resolution: "@arkecosystem/client@npm:1.1.3"
-  dependencies:
-    is-url-superb: ^3.0.0
-    ky: ^0.19.0
-    ky-universal: ^0.5.0
-  checksum: 2/d7506b609d8fe4b25dd2b0473d5d5aa1f39ce0781675468580433b0e2e893d166896cb63863287f29a6ba094daf80c1b4b4cc56fefc0f6f3a879ada64b28e832
-  languageName: node
-  linkType: hard
-
 "@arkecosystem/core-magistrate-crypto@npm:^2.6.42":
   version: 2.6.42
   resolution: "@arkecosystem/core-magistrate-crypto@npm:2.6.42"
@@ -106,7 +95,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-ark@workspace:packages/platform-sdk-ark"
   dependencies:
-    "@arkecosystem/client": ^1.1
     "@arkecosystem/core-magistrate-crypto": ^2.6.42
     "@arkecosystem/crypto": ^2.6.42
     "@arkecosystem/ledger-transport": ^1.1.2
@@ -11059,7 +11047,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-url-superb@npm:*, is-url-superb@npm:^3.0.0":
+"is-url-superb@npm:*":
   version: 3.0.0
   resolution: "is-url-superb@npm:3.0.0"
   dependencies:
@@ -12888,29 +12876,6 @@ __metadata:
   version: 3.0.3
   resolution: "kleur@npm:3.0.3"
   checksum: 2/20ef0e37fb3f9aebbec8a75b61f547051aa61e3a6c51bd2678e77a11d69d73885a76966aea77f09c40677c7dfa274a5e16741ec89859213c9f798d4a96f77521
-  languageName: node
-  linkType: hard
-
-"ky-universal@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "ky-universal@npm:0.5.0"
-  dependencies:
-    abort-controller: ^3.0.0
-    node-fetch: ^2.6.0
-  peerDependencies:
-    ky: ">=0.17.0"
-    web-streams-polyfill: ">=2.0.0"
-  peerDependenciesMeta:
-    web-streams-polyfill:
-      optional: true
-  checksum: 2/41e57d37763299062d189539432fa0c1c147b9d97da68e51b8164c0c3864a8575088bdcacf212e78ac8b6e6e3be2e4765af2b0a3e6f7449b34d8986078b9d6e5
-  languageName: node
-  linkType: hard
-
-"ky@npm:^0.19.0":
-  version: 0.19.1
-  resolution: "ky@npm:0.19.1"
-  checksum: 2/c578336aca3fa83472e5332cf69c589c023c7da04b5afc49ea16127fea62887ca7f6c2f1395564cacb9c031ddd723699a0d056b95e9f814be4512d3aa3948c68
   languageName: node
   linkType: hard
 

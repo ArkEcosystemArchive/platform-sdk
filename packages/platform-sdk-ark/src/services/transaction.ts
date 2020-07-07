@@ -19,8 +19,9 @@ Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.
 Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BridgechainUpdateTransaction);
 
 export class TransactionService implements Contracts.TransactionService {
-	readonly #connection: Connection;
+	readonly #http: Contracts.HttpClient;
 	readonly #identity: IdentityService;
+	readonly #peer: string;
 
 	readonly #magistrateBuilders = {
 		businessRegistration: MagistrateBuilders.BusinessRegistrationBuilder,
@@ -31,27 +32,31 @@ export class TransactionService implements Contracts.TransactionService {
 		bridgechainUpdate: MagistrateBuilders.BridgechainUpdateBuilder,
 	};
 
-	private constructor({ connection, identity }) {
-		this.#connection = connection;
+	private constructor({ http, identity, peer }) {
+		this.#http = http;
 		this.#identity = identity;
+		this.#peer = peer;
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
-		let connection: Connection;
+		const http: Contracts.HttpClient = config.get<Contracts.HttpClient>("httpClient");
+
+		let peer: string;
 		try {
-			connection = new Connection(config.get<string>("peer"));
+			peer = config.get<string>("peer");
 		} catch {
-			connection = new Connection(`${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
+			peer = `${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`;
 		}
 
-		const { body: crypto } = await connection.api("node").crypto();
-		Managers.configManager.setConfig(crypto.data as any);
+		const crypto = await http.get(`${peer}/node/configuration/crypto`);
+		Managers.configManager.setConfig(crypto.data);
 
-		const { body: status } = await connection.api("node").syncing();
+		const status = await http.get(`${peer}/node/syncing`);
 		Managers.configManager.setHeight(status.data.height);
 
 		return new TransactionService({
-			connection,
+			http,
+			peer,
 			identity: await IdentityService.construct(config),
 		});
 	}
@@ -266,7 +271,7 @@ export class TransactionService implements Contracts.TransactionService {
 				);
 			}
 
-			const { body } = await this.#connection.api("wallets").get(address);
+			const { body } = await this.#http.get(`${this.#peer}/wallets/${address}`);
 
 			transaction.nonce(BigNumber.make(body.data.nonce).plus(1).toFixed());
 		}

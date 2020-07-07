@@ -1,19 +1,26 @@
-import { Connection } from "@arkecosystem/client";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
 export class FeeService implements Contracts.FeeService {
-	readonly #connection: Connection;
+	readonly #http: Contracts.HttpClient;
+	readonly #peer: string;
 
-	private constructor(peer: string) {
-		this.#connection = new Connection(peer);
+	private constructor({ http, peer }) {
+		this.#http = http;
+		this.#peer = peer;
 	}
 
 	public static async construct(config: Coins.Config): Promise<FeeService> {
 		try {
-			return new FeeService(config.get<string>("peer"));
+			return new FeeService({
+				http: config.get<Contracts.HttpClient>("httpClient"),
+				peer: config.get<string>("peer"),
+			});
 		} catch {
-			return new FeeService(`${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`);
+			return new FeeService({
+				http: config.get<Contracts.HttpClient>("httpClient"),
+				peer: `${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`,
+			});
 		}
 	}
 
@@ -22,11 +29,11 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	public async all(days: number): Promise<Contracts.TransactionFees> {
-		const node = await this.#connection.api("node").fees(days);
-		const type = await this.#connection.api("transactions").fees();
+		const node = await this.get("node/fees", { days });
+		const type = await this.get("transactions/fees");
 
-		const staticFees: object = type.body.data;
-		const dynamicFees: object = node.body.data;
+		const staticFees: object = type.data;
+		const dynamicFees: object = node.data;
 
 		return {
 			// Core
@@ -65,5 +72,9 @@ export class FeeService implements Contracts.FeeService {
 			min: dynamicFee ? dynamicFee.min : 0,
 			avg: dynamicFee ? dynamicFee.avg : 0,
 		};
+	}
+
+	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		return this.#http.get(`${this.#peer}/${path}`, query);
 	}
 }
