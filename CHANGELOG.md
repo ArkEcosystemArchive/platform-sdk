@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.145 - 2020-07-07
+
+### Changed
+
+-   Use configured HTTP client instead of `@arkecosystem/client` (#521) (2938d0b8, @faustbrian)
+
 ## 0.9.144 - 2020-07-06
 
 ### Added

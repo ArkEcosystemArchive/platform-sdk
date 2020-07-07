@@ -1,4 +1,3 @@
-import { Connection } from "@arkecosystem/client";
 import {
 	Builders as MagistrateBuilders,
 	Transactions as MagistrateTransactions,
