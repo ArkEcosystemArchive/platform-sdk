@@ -1,4 +1,3 @@
-import { Connection } from "@arkecosystem/client";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
@@ -7,12 +6,10 @@ import { TransactionData, WalletData } from "../dto";
 export class ClientService implements Contracts.ClientService {
 	readonly #http: Contracts.HttpClient;
 	readonly #peer: string;
-	readonly #connection: Connection;
 
 	private constructor({ http, peer }) {
 		this.#http = http;
 		this.#peer = peer;
-		this.#connection = new Connection(peer);
 	}
 
 	public static async construct(config: Coins.Config): Promise<ClientService> {
@@ -34,7 +31,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
-		const { body } = await this.#connection.api("transactions").get(id);
+		const body = await this.get(`transactions/${id}`);
 
 		return new TransactionData(body.data);
 	}
@@ -42,7 +39,7 @@ export class ClientService implements Contracts.ClientService {
 	public async transactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		const { body } = await this.#connection.api("transactions").search(query);
+		const body = await this.post("transactions/search", query);
 
 		return {
 			meta: this.createMetaPagination(body),
@@ -51,7 +48,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { body } = await this.#connection.api("wallets").get(id);
+		const body = await this.get(`wallets/${id}`);
 
 		return new WalletData(body.data);
 	}
@@ -59,7 +56,7 @@ export class ClientService implements Contracts.ClientService {
 	public async wallets(
 		query: Contracts.ClientWalletsInput,
 	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
-		const { body } = await this.#connection.api("wallets").search(query);
+		const body = await this.post("wallets/search", query);
 
 		return {
 			meta: this.createMetaPagination(body),
@@ -68,7 +65,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async delegate(id: string): Promise<Contracts.WalletData> {
-		const { body } = await this.#connection.api("delegates").get(id);
+		const body = await this.get(`delegates/${id}`);
 
 		return new WalletData(body.data);
 	}
@@ -76,7 +73,7 @@ export class ClientService implements Contracts.ClientService {
 	public async delegates(
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
-		const { body } = await this.#connection.api("delegates").all(query);
+		const body = await this.get("delegates", query);
 
 		return {
 			meta: this.createMetaPagination(body),
@@ -88,7 +85,7 @@ export class ClientService implements Contracts.ClientService {
 		id: string,
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		const { body } = await this.#connection.api("wallets").votes(id, query);
+		const body = await this.get(`wallets/${id}/votes`, query);
 
 		return {
 			meta: this.createMetaPagination(body),
@@ -100,7 +97,7 @@ export class ClientService implements Contracts.ClientService {
 		id: string,
 		query?: Contracts.KeyValuePair,
 	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
-		const { body } = await this.#connection.api("delegates").voters(id, query);
+		const body = await this.get(`delegates/${id}/voters`, query);
 
 		return {
 			meta: this.createMetaPagination(body),
@@ -109,7 +106,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async syncing(): Promise<boolean> {
-		const { body } = await this.#connection.api("node").syncing();
+		const body = await this.get("node/syncing");
 
 		return body.data.syncing;
 	}
@@ -146,6 +143,10 @@ export class ClientService implements Contracts.ClientService {
 		}
 
 		return result;
+	}
+
+	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		return this.#http.get(`${this.#peer}/${path}`, query);
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {

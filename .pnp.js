@@ -291,18 +291,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT",
         }]
       ]],
-      ["@arkecosystem/client", [
-        ["npm:1.1.3", {
-          "packageLocation": "./.yarn/cache/@arkecosystem-client-npm-1.1.3-613567cf98-2.zip/node_modules/@arkecosystem/client/",
-          "packageDependencies": [
-            ["@arkecosystem/client", "npm:1.1.3"],
-            ["is-url-superb", "npm:3.0.0"],
-            ["ky", "npm:0.19.1"],
-            ["ky-universal", "virtual:613567cf98cb2fe89179dc3e1fb1b628bca4f13860a02e080f2792d7b8fa0de6b7a6c5fdb95c610a9a7436236d3d34b0611ae14a9bf1fb78c46ddca9c7367fdf#npm:0.5.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["@arkecosystem/core-magistrate-crypto", [
         ["npm:2.6.42", {
           "packageLocation": "./.yarn/cache/@arkecosystem-core-magistrate-crypto-npm-2.6.42-c712cc4309-2.zip/node_modules/@arkecosystem/core-magistrate-crypto/",
@@ -450,7 +438,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/platform-sdk-ark/",
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
-            ["@arkecosystem/client", "npm:1.1.3"],
             ["@arkecosystem/core-magistrate-crypto", "npm:2.6.42"],
             ["@arkecosystem/crypto", "npm:2.6.42"],
             ["@arkecosystem/ledger-transport", "npm:1.1.2"],
@@ -14795,32 +14782,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/kleur-npm-3.0.3-f6f53649a4-2.zip/node_modules/kleur/",
           "packageDependencies": [
             ["kleur", "npm:3.0.3"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["ky", [
-        ["npm:0.19.1", {
-          "packageLocation": "./.yarn/cache/ky-npm-0.19.1-50d280f216-2.zip/node_modules/ky/",
-          "packageDependencies": [
-            ["ky", "npm:0.19.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["ky-universal", [
-        ["virtual:613567cf98cb2fe89179dc3e1fb1b628bca4f13860a02e080f2792d7b8fa0de6b7a6c5fdb95c610a9a7436236d3d34b0611ae14a9bf1fb78c46ddca9c7367fdf#npm:0.5.0", {
-          "packageLocation": "./.yarn/$$virtual/ky-universal-virtual-ecd46ba146/0/cache/ky-universal-npm-0.5.0-03774d9985-2.zip/node_modules/ky-universal/",
-          "packageDependencies": [
-            ["ky-universal", "virtual:613567cf98cb2fe89179dc3e1fb1b628bca4f13860a02e080f2792d7b8fa0de6b7a6c5fdb95c610a9a7436236d3d34b0611ae14a9bf1fb78c46ddca9c7367fdf#npm:0.5.0"],
-            ["abort-controller", "npm:3.0.0"],
-            ["ky", "npm:0.19.1"],
-            ["node-fetch", "npm:2.6.0"],
-            ["web-streams-polyfill", null]
-          ],
-          "packagePeers": [
-            "ky",
-            "web-streams-polyfill"
           ],
           "linkType": "HARD",
         }]
