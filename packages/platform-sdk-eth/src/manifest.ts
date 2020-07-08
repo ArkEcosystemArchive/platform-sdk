@@ -43,6 +43,10 @@ export const manifest = {
 			id: "rinkeby",
 			name: "Rinkeby",
 			explorer: "https://rinkeby.etherscan.io/",
+			currency: {
+				ticker: "ETH",
+				symbol: "Ξ",
+			},
 			crypto: {
 				networkId: 4,
 				slip44: 60,
