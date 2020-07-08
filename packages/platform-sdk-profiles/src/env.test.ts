@@ -1,68 +1,19 @@
 import "jest-extended";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { readFileSync, writeFileSync } from "fs";
+import { BTC } from "@arkecosystem/platform-sdk-btc";
+import { ETH } from "@arkecosystem/platform-sdk-eth";
 import nock from "nock";
-import { resolve } from "path";
 
 import { Environment, Identifiers, Profile } from "../src";
 import { identity } from "../test/fixtures/identity";
 import { HttpClient } from "../test/stubs/client";
+import { StubStorage } from "../test/stubs/storage";
 import { container } from "./container";
 import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
 
 let subject: Environment;
-
-class StubStorage {
-	readonly #storage;
-
-	public constructor() {
-		try {
-			this.#storage = JSON.parse(readFileSync(resolve(__dirname, "env.json")).toString());
-		} catch {
-			this.#storage = {};
-		}
-	}
-
-	public async all(): Promise<object> {
-		return this.#storage;
-	}
-
-	public async get<T = any>(key: string): Promise<T | undefined> {
-		return this.#storage[key];
-	}
-
-	public async set(key: string, value: string | object): Promise<void> {
-		this.#storage[key] = value;
-
-		writeFileSync(resolve(__dirname, "env.json"), JSON.stringify(this.#storage));
-	}
-
-	public async has(key: string): Promise<boolean> {
-		return Object.keys(this.#storage).includes(key);
-	}
-
-	public async forget(key: string): Promise<void> {
-		//
-	}
-
-	public async flush(): Promise<void> {
-		//
-	}
-
-	public async count(): Promise<number> {
-		return 0;
-	}
-
-	public async snapshot(): Promise<void> {
-		//
-	}
-
-	public async restore(): Promise<void> {
-		//
-	}
-}
 
 beforeAll(() => {
 	nock(/.+/)
@@ -78,7 +29,7 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	subject = new Environment({ coins: { ARK }, httpClient: new HttpClient(), storage: new StubStorage() });
+	subject = new Environment({ coins: { ARK, BTC, ETH }, httpClient: new HttpClient(), storage: new StubStorage() });
 
 	await subject.boot();
 });
@@ -89,6 +40,20 @@ it("should have a profile repository", async () => {
 
 it("should have a data repository", async () => {
 	expect(subject.data()).toBeInstanceOf(DataRepository);
+});
+
+it("should have available networks", async () => {
+	expect(subject.availableNetworks()).toEqual([
+		{ coin: "ARK", network: "Mainnet", ticker: "ARK", symbol: "Ѧ" },
+		{ coin: "ARK", network: "Devnet", ticker: "DARK", symbol: "DѦ" },
+		{ coin: "BTC", network: "Livenet", ticker: "BTC", symbol: "Ƀ" },
+		{ coin: "BTC", network: "Testnet", ticker: "BTC", symbol: "Ƀ" },
+		{ coin: "ETH", network: "Mainnet", ticker: "ETH", symbol: "Ξ" },
+		{ coin: "ETH", network: "Ropsten", ticker: "ETH", symbol: "Ξ" },
+		{ coin: "ETH", network: "Rinkeby", ticker: "ETH", symbol: "Ξ" },
+		{ coin: "ETH", network: "Goerli", ticker: "ETH", symbol: "Ξ" },
+		{ coin: "ETH", network: "Kovan", ticker: "ETH", symbol: "Ξ" },
+	]);
 });
 
 it("should create a profile with data and persist it when instructed to do so", async () => {

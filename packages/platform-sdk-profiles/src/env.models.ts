@@ -1,7 +1,16 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+
+export type CoinList = Record<string, Coins.CoinSpec>;
+
+export interface CoinType {
+	coin: string;
+	network: string;
+	ticker: string;
+	symbol: string;
+}
 
 export interface EnvironmentOptions {
-	coins: Record<string, any>;
+	coins: CoinList;
 	storage: string | Storage;
 	httpClient: Contracts.HttpClient;
 	migrations?: Record<string, any>;
