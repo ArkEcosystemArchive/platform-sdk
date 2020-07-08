@@ -131,7 +131,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	const newEnv = new Environment({ coins: { ARK }, httpClient: new HttpClient(), storage: new StubStorage() });
 	await newEnv.boot();
 
-	const newProfile = newEnv.profiles().get(profile.id());
+	const newProfile = newEnv.profiles().findById(profile.id());
 
 	expect(newProfile).toBeInstanceOf(Profile);
 	expect(newProfile.wallets().keys()).toHaveLength(1);
