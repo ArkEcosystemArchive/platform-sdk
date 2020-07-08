@@ -34,7 +34,7 @@ export class ProfileRepository {
 		return Object.values(this.#data.all());
 	}
 
-	public get(id: string): Profile {
+	public findById(id: string): Profile {
 		if (this.#data.missing(id)) {
 			throw new Error(`No profile found for [${id}].`);
 		}

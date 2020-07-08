@@ -14,16 +14,16 @@ describe("ProfileRepository", () => {
 		const john = subject.create("John");
 
 		expect(subject.all()).toHaveLength(1);
-		expect(subject.get(john.id())).toBeInstanceOf(Profile);
+		expect(subject.findById(john.id())).toBeInstanceOf(Profile);
 
 		const jane = subject.create("Jane");
 
 		expect(subject.all()).toHaveLength(2);
-		expect(subject.get(jane.id())).toBeInstanceOf(Profile);
+		expect(subject.findById(jane.id())).toBeInstanceOf(Profile);
 
 		subject.forget(jane.id());
 
 		expect(subject.all()).toHaveLength(1);
-		expect(() => subject.get(jane.id())).toThrow("No profile found for");
+		expect(() => subject.findById(jane.id())).toThrow("No profile found for");
 	});
 });
