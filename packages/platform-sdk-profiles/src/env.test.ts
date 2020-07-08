@@ -44,15 +44,15 @@ it("should have a data repository", async () => {
 
 it("should have available networks", async () => {
 	expect(subject.availableNetworks()).toEqual([
-		{ coin: "ARK", network: "Mainnet", currency: "ARK", symbol: "Ѧ" },
-		{ coin: "ARK", network: "Devnet", currency: "DARK", symbol: "DѦ" },
-		{ coin: "BTC", network: "Livenet", currency: "BTC", symbol: "Ƀ" },
-		{ coin: "BTC", network: "Testnet", currency: "BTC", symbol: "Ƀ" },
-		{ coin: "ETH", network: "Mainnet", currency: "ETH", symbol: "Ξ" },
-		{ coin: "ETH", network: "Ropsten", currency: "ETH", symbol: "Ξ" },
-		{ coin: "ETH", network: "Rinkeby", currency: "ETH", symbol: "Ξ" },
-		{ coin: "ETH", network: "Goerli", currency: "ETH", symbol: "Ξ" },
-		{ coin: "ETH", network: "Kovan", currency: "ETH", symbol: "Ξ" },
+		{ coin: "ARK", network: "Mainnet", ticker: "ARK", symbol: "Ѧ" },
+		{ coin: "ARK", network: "Devnet", ticker: "DARK", symbol: "DѦ" },
+		{ coin: "BTC", network: "Livenet", ticker: "BTC", symbol: "Ƀ" },
+		{ coin: "BTC", network: "Testnet", ticker: "BTC", symbol: "Ƀ" },
+		{ coin: "ETH", network: "Mainnet", ticker: "ETH", symbol: "Ξ" },
+		{ coin: "ETH", network: "Ropsten", ticker: "ETH", symbol: "Ξ" },
+		{ coin: "ETH", network: "Rinkeby", ticker: "ETH", symbol: "Ξ" },
+		{ coin: "ETH", network: "Goerli", ticker: "ETH", symbol: "Ξ" },
+		{ coin: "ETH", network: "Kovan", ticker: "ETH", symbol: "Ξ" },
 	]);
 });
 

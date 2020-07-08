@@ -5,7 +5,7 @@ export type CoinList = Record<string, Coins.CoinSpec>;
 export interface CoinType {
 	coin: string;
 	network: string;
-	currency: string;
+	ticker: string;
 	symbol: string;
 }
 

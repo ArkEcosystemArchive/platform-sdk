@@ -75,7 +75,7 @@ export class Environment {
 				result.push({
 					coin,
 					network: network.name,
-					currency: network.currency.ticker,
+					ticker: network.currency.ticker,
 					symbol: network.currency.symbol,
 				});
 			}
