@@ -109,10 +109,17 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_dto_wallet_.walletdata.html#address" class="tsd-kind-icon">address</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_dto_wallet_.walletdata.html#balance" class="tsd-kind-icon">balance</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_dto_wallet_.walletdata.html#isdelegate" class="tsd-kind-icon">is<wbr>Delegate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_dto_wallet_.walletdata.html#isknown" class="tsd-kind-icon">is<wbr>Known</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_dto_wallet_.walletdata.html#ismultisignature" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_dto_wallet_.walletdata.html#issecondsignature" class="tsd-kind-icon">is<wbr>Second<wbr>Signature</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_dto_wallet_.walletdata.html#nonce" class="tsd-kind-icon">nonce</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_dto_wallet_.walletdata.html#publickey" class="tsd-kind-icon">public<wbr>Key</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_dto_wallet_.walletdata.html#rank" class="tsd-kind-icon">rank</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_dto_wallet_.walletdata.html#raw" class="tsd-kind-icon">raw</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_dto_wallet_.walletdata.html#toobject" class="tsd-kind-icon">to<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_dto_wallet_.walletdata.html#username" class="tsd-kind-icon">username</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_dto_wallet_.walletdata.html#votes" class="tsd-kind-icon">votes</a></li>
 							</ul>
 						</section>
 					</div>
@@ -172,7 +179,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.address</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/b092f931/packages/platform-sdk-xmr/src/dto/wallet.ts#L5">platform-sdk-xmr/src/dto/wallet.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-xmr/src/dto/wallet.ts#L5">platform-sdk-xmr/src/dto/wallet.ts:5</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -190,10 +197,82 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.balance</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/b092f931/packages/platform-sdk-xmr/src/dto/wallet.ts#L13">platform-sdk-xmr/src/dto/wallet.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-xmr/src/dto/wallet.ts#L13">platform-sdk-xmr/src/dto/wallet.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="isdelegate" class="tsd-anchor"></a>
+					<h3>is<wbr>Delegate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Delegate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides AbstractWalletData.isDelegate</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-xmr/src/dto/wallet.ts#L33">platform-sdk-xmr/src/dto/wallet.ts:33</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="isknown" class="tsd-anchor"></a>
+					<h3>is<wbr>Known</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Known<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides AbstractWalletData.isKnown</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-xmr/src/dto/wallet.ts#L37">platform-sdk-xmr/src/dto/wallet.ts:37</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="ismultisignature" class="tsd-anchor"></a>
+					<h3>is<wbr>Multi<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Multi<wbr>Signature<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides AbstractWalletData.isMultiSignature</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-xmr/src/dto/wallet.ts#L41">platform-sdk-xmr/src/dto/wallet.ts:41</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="issecondsignature" class="tsd-anchor"></a>
+					<h3>is<wbr>Second<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Second<wbr>Signature<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides AbstractWalletData.isSecondSignature</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-xmr/src/dto/wallet.ts#L45">platform-sdk-xmr/src/dto/wallet.ts:45</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -208,7 +287,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.nonce</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/b092f931/packages/platform-sdk-xmr/src/dto/wallet.ts#L17">platform-sdk-xmr/src/dto/wallet.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-xmr/src/dto/wallet.ts#L17">platform-sdk-xmr/src/dto/wallet.ts:17</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
@@ -226,10 +305,28 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.publicKey</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/b092f931/packages/platform-sdk-xmr/src/dto/wallet.ts#L9">platform-sdk-xmr/src/dto/wallet.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-xmr/src/dto/wallet.ts#L9">platform-sdk-xmr/src/dto/wallet.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="rank" class="tsd-anchor"></a>
+					<h3>rank</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">rank<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides AbstractWalletData.rank</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-xmr/src/dto/wallet.ts#L25">platform-sdk-xmr/src/dto/wallet.ts:25</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -244,7 +341,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_dto_wallet_.walletdata.html">WalletData</a>.<a href="_dto_wallet_.walletdata.html#raw">raw</a></p>
 								<ul>
-									<li>Defined in platform-sdk/dist/dto/wallet.d.ts:11</li>
+									<li>Defined in platform-sdk/dist/dto/wallet.d.ts:18</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">KeyValuePair</span></h4>
@@ -262,10 +359,46 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_dto_wallet_.walletdata.html">WalletData</a>.<a href="_dto_wallet_.walletdata.html#toobject">toObject</a></p>
 								<ul>
-									<li>Defined in platform-sdk/dist/dto/wallet.d.ts:10</li>
+									<li>Defined in platform-sdk/dist/dto/wallet.d.ts:17</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">KeyValuePair</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="username" class="tsd-anchor"></a>
+					<h3>username</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides AbstractWalletData.username</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-xmr/src/dto/wallet.ts#L21">platform-sdk-xmr/src/dto/wallet.ts:21</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="votes" class="tsd-anchor"></a>
+					<h3>votes</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">votes<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumber</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides AbstractWalletData.votes</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-xmr/src/dto/wallet.ts#L29">platform-sdk-xmr/src/dto/wallet.ts:29</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -276,9 +409,6 @@
 				<ul>
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_dto_delegate_.html">&quot;dto/delegate&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_dto_index_.html">&quot;dto/index&quot;</a>
@@ -338,6 +468,9 @@
 						<a href="../modules/_services_message_.html">&quot;services/message&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="../modules/_services_multi_signature_.html">&quot;services/multi-<wbr>signature&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="../modules/_services_peer_.html">&quot;services/peer&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -365,16 +498,37 @@
 								<a href="_dto_wallet_.walletdata.html#balance" class="tsd-kind-icon">balance</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_dto_wallet_.walletdata.html#isdelegate" class="tsd-kind-icon">is<wbr>Delegate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_dto_wallet_.walletdata.html#isknown" class="tsd-kind-icon">is<wbr>Known</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_dto_wallet_.walletdata.html#ismultisignature" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_dto_wallet_.walletdata.html#issecondsignature" class="tsd-kind-icon">is<wbr>Second<wbr>Signature</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_dto_wallet_.walletdata.html#nonce" class="tsd-kind-icon">nonce</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_dto_wallet_.walletdata.html#publickey" class="tsd-kind-icon">public<wbr>Key</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_dto_wallet_.walletdata.html#rank" class="tsd-kind-icon">rank</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_dto_wallet_.walletdata.html#raw" class="tsd-kind-icon">raw</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_dto_wallet_.walletdata.html#toobject" class="tsd-kind-icon">to<wbr>Object</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_dto_wallet_.walletdata.html#username" class="tsd-kind-icon">username</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_dto_wallet_.walletdata.html#votes" class="tsd-kind-icon">votes</a>
 							</li>
 						</ul>
 					</li>
@@ -409,6 +563,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

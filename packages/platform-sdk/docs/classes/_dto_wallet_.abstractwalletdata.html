@@ -98,10 +98,17 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#address" class="tsd-kind-icon">address</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#balance" class="tsd-kind-icon">balance</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#isdelegate" class="tsd-kind-icon">is<wbr>Delegate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#isknown" class="tsd-kind-icon">is<wbr>Known</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#ismultisignature" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#issecondsignature" class="tsd-kind-icon">is<wbr>Second<wbr>Signature</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#nonce" class="tsd-kind-icon">nonce</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#publickey" class="tsd-kind-icon">public<wbr>Key</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#rank" class="tsd-kind-icon">rank</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#raw" class="tsd-kind-icon">raw</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#toobject" class="tsd-kind-icon">to<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#username" class="tsd-kind-icon">username</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_wallet_.abstractwalletdata.html#votes" class="tsd-kind-icon">votes</a></li>
 							</ul>
 						</section>
 					</div>
@@ -119,7 +126,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/b092f931/packages/platform-sdk/src/dto/wallet.ts#L5">packages/platform-sdk/src/dto/wallet.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L5">packages/platform-sdk/src/dto/wallet.ts:5</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -141,7 +148,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="../modules/_contracts_types_.html#keyvaluepair" class="tsd-signature-type">KeyValuePair</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/b092f931/packages/platform-sdk/src/dto/wallet.ts#L6">packages/platform-sdk/src/dto/wallet.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L6">packages/platform-sdk/src/dto/wallet.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -158,7 +165,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/b092f931/packages/platform-sdk/src/dto/wallet.ts#L8">packages/platform-sdk/src/dto/wallet.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L9">packages/platform-sdk/src/dto/wallet.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -175,10 +182,78 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/b092f931/packages/platform-sdk/src/dto/wallet.ts#L12">packages/platform-sdk/src/dto/wallet.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L13">packages/platform-sdk/src/dto/wallet.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isdelegate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> is<wbr>Delegate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Delegate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L25">packages/platform-sdk/src/dto/wallet.ts:25</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isknown" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> is<wbr>Known</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Known<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L27">packages/platform-sdk/src/dto/wallet.ts:27</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ismultisignature" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> is<wbr>Multi<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Multi<wbr>Signature<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L29">packages/platform-sdk/src/dto/wallet.ts:29</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="issecondsignature" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> is<wbr>Second<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Second<wbr>Signature<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L31">packages/platform-sdk/src/dto/wallet.ts:31</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -192,7 +267,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/b092f931/packages/platform-sdk/src/dto/wallet.ts#L14">packages/platform-sdk/src/dto/wallet.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L15">packages/platform-sdk/src/dto/wallet.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
@@ -209,10 +284,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/b092f931/packages/platform-sdk/src/dto/wallet.ts#L10">packages/platform-sdk/src/dto/wallet.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L11">packages/platform-sdk/src/dto/wallet.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="rank" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> rank</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">rank<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L20">packages/platform-sdk/src/dto/wallet.ts:20</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -226,7 +318,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/b092f931/packages/platform-sdk/src/dto/wallet.ts#L25">packages/platform-sdk/src/dto/wallet.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L45">packages/platform-sdk/src/dto/wallet.ts:45</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../modules/_contracts_types_.html#keyvaluepair" class="tsd-signature-type">KeyValuePair</a></h4>
@@ -243,10 +335,44 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/b092f931/packages/platform-sdk/src/dto/wallet.ts#L16">packages/platform-sdk/src/dto/wallet.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L33">packages/platform-sdk/src/dto/wallet.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../modules/_contracts_types_.html#keyvaluepair" class="tsd-signature-type">KeyValuePair</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="username" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> username</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L18">packages/platform-sdk/src/dto/wallet.ts:18</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="votes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> votes</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">votes<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumber</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk/src/dto/wallet.ts#L22">packages/platform-sdk/src/dto/wallet.ts:22</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -283,16 +409,37 @@
 								<a href="_dto_wallet_.abstractwalletdata.html#balance" class="tsd-kind-icon">balance</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_dto_wallet_.abstractwalletdata.html#isdelegate" class="tsd-kind-icon">is<wbr>Delegate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_dto_wallet_.abstractwalletdata.html#isknown" class="tsd-kind-icon">is<wbr>Known</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_dto_wallet_.abstractwalletdata.html#ismultisignature" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_dto_wallet_.abstractwalletdata.html#issecondsignature" class="tsd-kind-icon">is<wbr>Second<wbr>Signature</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_dto_wallet_.abstractwalletdata.html#nonce" class="tsd-kind-icon">nonce</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_dto_wallet_.abstractwalletdata.html#publickey" class="tsd-kind-icon">public<wbr>Key</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_dto_wallet_.abstractwalletdata.html#rank" class="tsd-kind-icon">rank</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_dto_wallet_.abstractwalletdata.html#raw" class="tsd-kind-icon">raw</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_dto_wallet_.abstractwalletdata.html#toobject" class="tsd-kind-icon">to<wbr>Object</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_dto_wallet_.abstractwalletdata.html#username" class="tsd-kind-icon">username</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_dto_wallet_.abstractwalletdata.html#votes" class="tsd-kind-icon">votes</a>
 							</li>
 						</ul>
 					</li>
@@ -308,13 +455,14 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
@@ -331,6 +479,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

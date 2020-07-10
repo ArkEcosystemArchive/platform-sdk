@@ -1,0 +1,980 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>TransactionData | @arkecosystem/platform-sdk-profiles</title>
+	<meta name="description" content="Documentation for @arkecosystem/platform-sdk-profiles">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@arkecosystem/platform-sdk-profiles</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_src_transaction_.html">&quot;src/transaction&quot;</a>
+				</li>
+				<li>
+					<a href="_src_transaction_.transactiondata.html">TransactionData</a>
+				</li>
+			</ul>
+			<h1>Class TransactionData</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>This class serves as a wrapper around the original TransactionData
+						because certain behaviours can&#39;t be leaked into coin implementations.</p>
+					</div>
+					<p>For example to determine if a transaction was sent or received it is
+						necessary to know the address and public key but API calls always only
+						know either of them, not both. This is because only 1 of them is required
+					by APIs to return transactions based on a unique identifier.</p>
+					<p>To avoid leaking behaviours into the coin implementations or having to do
+						identity computations inside of them we will simply do some generic checks
+					in this class which also provides us more flexibility like adding fiat methods.</p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">TransactionData</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_transaction_.transactiondata.html#_transaction" class="tsd-kind-icon">#transaction</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_transaction_.transactiondata.html#_wallet" class="tsd-kind-icon">#wallet</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#amount" class="tsd-kind-icon">amount</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#asset" class="tsd-kind-icon">asset</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#confirmations" class="tsd-kind-icon">confirmations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#fee" class="tsd-kind-icon">fee</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isbridgechainregistration" class="tsd-kind-icon">is<wbr>Bridgechain<wbr>Registration</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isbridgechainresignation" class="tsd-kind-icon">is<wbr>Bridgechain<wbr>Resignation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isbridgechainupdate" class="tsd-kind-icon">is<wbr>Bridgechain<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isbusinessregistration" class="tsd-kind-icon">is<wbr>Business<wbr>Registration</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isbusinessresignation" class="tsd-kind-icon">is<wbr>Business<wbr>Resignation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isbusinessupdate" class="tsd-kind-icon">is<wbr>Business<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isdelegateregistration" class="tsd-kind-icon">is<wbr>Delegate<wbr>Registration</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isdelegateresignation" class="tsd-kind-icon">is<wbr>Delegate<wbr>Resignation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isentityregistration" class="tsd-kind-icon">is<wbr>Entity<wbr>Registration</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isentityresignation" class="tsd-kind-icon">is<wbr>Entity<wbr>Resignation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isentityupdate" class="tsd-kind-icon">is<wbr>Entity<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#ishtlcclaim" class="tsd-kind-icon">is<wbr>Htlc<wbr>Claim</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#ishtlclock" class="tsd-kind-icon">is<wbr>Htlc<wbr>Lock</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#ishtlcrefund" class="tsd-kind-icon">is<wbr>Htlc<wbr>Refund</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isipfs" class="tsd-kind-icon">is<wbr>Ipfs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#ismultipayment" class="tsd-kind-icon">is<wbr>Multi<wbr>Payment</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#ismultisignature" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isreceived" class="tsd-kind-icon">is<wbr>Received</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#issecondsignature" class="tsd-kind-icon">is<wbr>Second<wbr>Signature</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#issent" class="tsd-kind-icon">is<wbr>Sent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#istransfer" class="tsd-kind-icon">is<wbr>Transfer</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isunvote" class="tsd-kind-icon">is<wbr>Unvote</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#isvote" class="tsd-kind-icon">is<wbr>Vote</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#memo" class="tsd-kind-icon">memo</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#recipient" class="tsd-kind-icon">recipient</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#recipients" class="tsd-kind-icon">recipients</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#sender" class="tsd-kind-icon">sender</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#timestamp" class="tsd-kind-icon">timestamp</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#toobject" class="tsd-kind-icon">to<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_transaction_.transactiondata.html#type" class="tsd-kind-icon">type</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Transaction<wbr>Data<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TransactionData</span>, wallet<span class="tsd-signature-symbol">: </span><a href="_src_wallet_.wallet.html" class="tsd-signature-type">Wallet</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_transaction_.transactiondata.html" class="tsd-signature-type">TransactionData</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L21">src/transaction.ts:21</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <span class="tsd-signature-type">TransactionData</span></h5>
+								</li>
+								<li>
+									<h5>wallet: <a href="_src_wallet_.wallet.html" class="tsd-signature-type">Wallet</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_src_transaction_.transactiondata.html" class="tsd-signature-type">TransactionData</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_transaction" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #transaction</h3>
+					<div class="tsd-signature tsd-kind-icon">#transaction<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TransactionData</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L20">src/transaction.ts:20</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_wallet" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #wallet</h3>
+					<div class="tsd-signature tsd-kind-icon">#wallet<span class="tsd-signature-symbol">:</span> <a href="_src_wallet_.wallet.html" class="tsd-signature-type">Wallet</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L21">src/transaction.ts:21</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="amount" class="tsd-anchor"></a>
+					<h3>amount</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">amount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumber</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L56">src/transaction.ts:56</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="asset" class="tsd-anchor"></a>
+					<h3>asset</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">asset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L68">src/transaction.ts:68</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="confirmations" class="tsd-anchor"></a>
+					<h3>confirmations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">confirmations<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumber</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L40">src/transaction.ts:40</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="fee" class="tsd-anchor"></a>
+					<h3>fee</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">fee<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumber</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L60">src/transaction.ts:60</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L28">src/transaction.ts:28</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isbridgechainregistration" class="tsd-anchor"></a>
+					<h3>is<wbr>Bridgechain<wbr>Registration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Bridgechain<wbr>Registration<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L140">src/transaction.ts:140</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isbridgechainresignation" class="tsd-anchor"></a>
+					<h3>is<wbr>Bridgechain<wbr>Resignation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Bridgechain<wbr>Resignation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L144">src/transaction.ts:144</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isbridgechainupdate" class="tsd-anchor"></a>
+					<h3>is<wbr>Bridgechain<wbr>Update</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Bridgechain<wbr>Update<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L148">src/transaction.ts:148</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isbusinessregistration" class="tsd-anchor"></a>
+					<h3>is<wbr>Business<wbr>Registration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Business<wbr>Registration<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L128">src/transaction.ts:128</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isbusinessresignation" class="tsd-anchor"></a>
+					<h3>is<wbr>Business<wbr>Resignation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Business<wbr>Resignation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L132">src/transaction.ts:132</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isbusinessupdate" class="tsd-anchor"></a>
+					<h3>is<wbr>Business<wbr>Update</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Business<wbr>Update<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L136">src/transaction.ts:136</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isdelegateregistration" class="tsd-anchor"></a>
+					<h3>is<wbr>Delegate<wbr>Registration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Delegate<wbr>Registration<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L88">src/transaction.ts:88</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isdelegateresignation" class="tsd-anchor"></a>
+					<h3>is<wbr>Delegate<wbr>Resignation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Delegate<wbr>Resignation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L112">src/transaction.ts:112</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isentityregistration" class="tsd-anchor"></a>
+					<h3>is<wbr>Entity<wbr>Registration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Entity<wbr>Registration<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L152">src/transaction.ts:152</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isentityresignation" class="tsd-anchor"></a>
+					<h3>is<wbr>Entity<wbr>Resignation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Entity<wbr>Resignation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L156">src/transaction.ts:156</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isentityupdate" class="tsd-anchor"></a>
+					<h3>is<wbr>Entity<wbr>Update</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Entity<wbr>Update<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L160">src/transaction.ts:160</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ishtlcclaim" class="tsd-anchor"></a>
+					<h3>is<wbr>Htlc<wbr>Claim</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Htlc<wbr>Claim<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L120">src/transaction.ts:120</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ishtlclock" class="tsd-anchor"></a>
+					<h3>is<wbr>Htlc<wbr>Lock</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Htlc<wbr>Lock<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L116">src/transaction.ts:116</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ishtlcrefund" class="tsd-anchor"></a>
+					<h3>is<wbr>Htlc<wbr>Refund</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Htlc<wbr>Refund<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L124">src/transaction.ts:124</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isipfs" class="tsd-anchor"></a>
+					<h3>is<wbr>Ipfs</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Ipfs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L104">src/transaction.ts:104</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ismultipayment" class="tsd-anchor"></a>
+					<h3>is<wbr>Multi<wbr>Payment</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Multi<wbr>Payment<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L108">src/transaction.ts:108</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ismultisignature" class="tsd-anchor"></a>
+					<h3>is<wbr>Multi<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Multi<wbr>Signature<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L100">src/transaction.ts:100</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isreceived" class="tsd-anchor"></a>
+					<h3>is<wbr>Received</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Received<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L76">src/transaction.ts:76</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="issecondsignature" class="tsd-anchor"></a>
+					<h3>is<wbr>Second<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Second<wbr>Signature<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L84">src/transaction.ts:84</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="issent" class="tsd-anchor"></a>
+					<h3>is<wbr>Sent</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Sent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L72">src/transaction.ts:72</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="istransfer" class="tsd-anchor"></a>
+					<h3>is<wbr>Transfer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Transfer<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L80">src/transaction.ts:80</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isunvote" class="tsd-anchor"></a>
+					<h3>is<wbr>Unvote</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Unvote<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L96">src/transaction.ts:96</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isvote" class="tsd-anchor"></a>
+					<h3>is<wbr>Vote</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Vote<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L92">src/transaction.ts:92</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="memo" class="tsd-anchor"></a>
+					<h3>memo</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">memo<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L64">src/transaction.ts:64</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="recipient" class="tsd-anchor"></a>
+					<h3>recipient</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">recipient<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L48">src/transaction.ts:48</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="recipients" class="tsd-anchor"></a>
+					<h3>recipients</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">recipients<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MultiPaymentRecipient</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L52">src/transaction.ts:52</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">MultiPaymentRecipient</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="sender" class="tsd-anchor"></a>
+					<h3>sender</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">sender<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L44">src/transaction.ts:44</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="timestamp" class="tsd-anchor"></a>
+					<h3>timestamp</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">timestamp<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L36">src/transaction.ts:36</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="toobject" class="tsd-anchor"></a>
+					<h3>to<wbr>Object</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Object<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L164">src/transaction.ts:164</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="type" class="tsd-anchor"></a>
+					<h3>type</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c63de791/packages/platform-sdk-profiles/src/transaction.ts#L32">src/transaction.ts:32</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/_src_transaction_.html">&quot;src/transaction&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-module">
+						<a href="_src_transaction_.transactiondata.html" class="tsd-kind-icon">Transaction<wbr>Data</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_src_transaction_.transactiondata.html#_transaction" class="tsd-kind-icon">#transaction</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_src_transaction_.transactiondata.html#_wallet" class="tsd-kind-icon">#wallet</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#amount" class="tsd-kind-icon">amount</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#asset" class="tsd-kind-icon">asset</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#confirmations" class="tsd-kind-icon">confirmations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#fee" class="tsd-kind-icon">fee</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isbridgechainregistration" class="tsd-kind-icon">is<wbr>Bridgechain<wbr>Registration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isbridgechainresignation" class="tsd-kind-icon">is<wbr>Bridgechain<wbr>Resignation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isbridgechainupdate" class="tsd-kind-icon">is<wbr>Bridgechain<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isbusinessregistration" class="tsd-kind-icon">is<wbr>Business<wbr>Registration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isbusinessresignation" class="tsd-kind-icon">is<wbr>Business<wbr>Resignation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isbusinessupdate" class="tsd-kind-icon">is<wbr>Business<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isdelegateregistration" class="tsd-kind-icon">is<wbr>Delegate<wbr>Registration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isdelegateresignation" class="tsd-kind-icon">is<wbr>Delegate<wbr>Resignation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isentityregistration" class="tsd-kind-icon">is<wbr>Entity<wbr>Registration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isentityresignation" class="tsd-kind-icon">is<wbr>Entity<wbr>Resignation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isentityupdate" class="tsd-kind-icon">is<wbr>Entity<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#ishtlcclaim" class="tsd-kind-icon">is<wbr>Htlc<wbr>Claim</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#ishtlclock" class="tsd-kind-icon">is<wbr>Htlc<wbr>Lock</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#ishtlcrefund" class="tsd-kind-icon">is<wbr>Htlc<wbr>Refund</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isipfs" class="tsd-kind-icon">is<wbr>Ipfs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#ismultipayment" class="tsd-kind-icon">is<wbr>Multi<wbr>Payment</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#ismultisignature" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isreceived" class="tsd-kind-icon">is<wbr>Received</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#issecondsignature" class="tsd-kind-icon">is<wbr>Second<wbr>Signature</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#issent" class="tsd-kind-icon">is<wbr>Sent</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#istransfer" class="tsd-kind-icon">is<wbr>Transfer</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isunvote" class="tsd-kind-icon">is<wbr>Unvote</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#isvote" class="tsd-kind-icon">is<wbr>Vote</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#memo" class="tsd-kind-icon">memo</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#recipient" class="tsd-kind-icon">recipient</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#recipients" class="tsd-kind-icon">recipients</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#sender" class="tsd-kind-icon">sender</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#timestamp" class="tsd-kind-icon">timestamp</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#toobject" class="tsd-kind-icon">to<wbr>Object</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_transaction_.transactiondata.html#type" class="tsd-kind-icon">type</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
