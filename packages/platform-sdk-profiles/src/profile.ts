@@ -134,7 +134,7 @@ export class Profile {
 	public async getExchangeRate(token: string): Promise<number> {
 		return this.market().dailyAverage(
 			token,
-			this.settings().get(ProfileSetting.ChartCurrency) || "BTC",
+			this.settings().get(ProfileSetting.ExchangeCurrency) || "BTC",
 			+Date.now(),
 		);
 	}
