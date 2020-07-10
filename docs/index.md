@@ -1,21 +1,5 @@
 # Documentation
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
--   [Architecture](#architecture)
-    -   [Contracts](#contracts)
-    -   [Not Supported](#not-supported)
-    -   [Not Implemented](#not-implemented)
-    -   [Async Operations](#async-operations)
--   [Functionality](#functionality)
--   [API Methods](#api-methods)
--   [API Documentation](#api-documentation)
-    -   [Coins](#coins)
-    -   [Markets](#markets)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 ## Architecture
 
 ### Contracts
@@ -89,17 +73,6 @@ To avoid an inconsistent public API where some things are instantiated and calle
 | TransactionService | htlcClaim                 | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 | TransactionService | htlcRefund                | :x:                | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                |
 
-## API Methods
-
--   [ClientService](./services/client.md)
--   [FeeService](./services/fee.md)
--   [IdentityService](./services/identity.md)
--   [LedgerService](./services/ledger.md)
--   [LinkService](./services/link.md)
--   [MessageService](./services/message.md)
--   [PeerService](./services/peer.md)
--   [TransactionService](./services/transaction.md)
-
 ## API Documentation
 
 ### Coins
@@ -124,3 +97,13 @@ To avoid an inconsistent public API where some things are instantiated and calle
 -   [CoinCap](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-coincap/docs)
 -   [CoinGecko](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-coingecko/docs)
 -   [CryptoCompare](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-cryptocompare/docs)
+
+### Miscellaneous
+
+-   [Crypto](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-crypto/docs)
+-   [Intl](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-intl/docs)
+-   [Ipfs](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-ipfs/docs)
+-   [JSON-RPC](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-json-rpc/docs)
+-   [News](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-news/docs)
+-   [Profiles](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-profiles/docs)
+-   [Support](https://github.com/ArkEcosystem/platform-sdk/tree/master/packages/platform-sdk-support/docs)
