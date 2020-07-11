@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.148 - 2020-07-11
+
+### Added
+
+-   Implement `Environment#availableNetworks` to expose available networks (c63de791, @faustbrian)
+
+### Changed
+
+-   Rename `ProfileRepository#get` to `ProfileRepository#findById` (ec8d4be2, @faustbrian)
+-   Organise profile setting keys (1dadcbe7, @faustbrian)
+
 ## 0.9.145 - 2020-07-07
 
 ### Changed
