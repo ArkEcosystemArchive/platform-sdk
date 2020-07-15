@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.149 - 2020-07-15
+
+### Changed
+
+-   Expect coin to be a string (74bcd0f2, @faustbrian)
+
 ## 0.9.148 - 2020-07-11
 
 ### Added
@@ -22,7 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
--   Use configured HTTP client instead of `@arkecosystem/client` (#521) (2938d0b8, @faustbrian)
+-   Use configured HTTP client instead of `@arkecosystem/client` (2938d0b8, @faustbrian)
 
 ## 0.9.144 - 2020-07-06
 
