@@ -48,17 +48,17 @@ export class WalletRepository {
 		return this.#data.values();
 	}
 
-	public async import(mnemonic: string, coin: Coins.CoinSpec, network: string): Promise<Wallet> {
+	public async import(mnemonic: string, coin: string, network: string): Promise<Wallet> {
 		const id: string = uuidv4();
 		const wallet: Wallet = new Wallet(id, this.#profile);
 
-		await wallet.setCoin(coin, network);
+		await wallet.setCoin(container.get<Coins.CoinSpec>(Identifiers.Coins)[coin.toUpperCase()], network);
 		await wallet.setIdentity(mnemonic);
 
 		return this.storeWallet(id, wallet);
 	}
 
-	public async generate(coin: Coins.CoinSpec, network: string): Promise<{ mnemonic: string; wallet: Wallet }> {
+	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: Wallet }> {
 		const mnemonic: string = BIP39.generate();
 
 		return { mnemonic, wallet: await this.import(mnemonic, coin, network) };
@@ -67,7 +67,7 @@ export class WalletRepository {
 	public async restore({ id, coin, coinConfig, network, address }): Promise<Wallet> {
 		const wallet: Wallet = new Wallet(id, this.#profile);
 
-		await wallet.setCoin(container.get<any>(Identifiers.Coins)[coin], network);
+		await wallet.setCoin(container.get<Coins.CoinSpec>(Identifiers.Coins)[coin], network);
 		await wallet.setAddress(address);
 
 		for (const [key, value] of Object.entries(coinConfig)) {
