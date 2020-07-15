@@ -32,9 +32,10 @@ beforeEach(async () => {
 		.persist();
 
 	container.set(Identifiers.HttpClient, new HttpClient());
+	container.set(Identifiers.Coins, { ARK });
 
 	const profile = new Profile("profile-id", "John Doe");
-	walletARK = await profile.wallets().import(identity.mnemonic, ARK, "devnet");
+	walletARK = await profile.wallets().import(identity.mnemonic, "ARK", "devnet");
 
 	subject = new ContactRepository(profile);
 

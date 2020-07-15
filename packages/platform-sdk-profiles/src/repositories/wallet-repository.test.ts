@@ -30,10 +30,11 @@ beforeEach(async () => {
 		.persist();
 
 	container.set(Identifiers.HttpClient, new HttpClient());
+	container.set(Identifiers.Coins, { ARK, BTC, ETH });
 
 	subject = new WalletRepository(new Profile("profile-id", "John Doe"));
 
-	await subject.import(identity.mnemonic, ARK, "devnet");
+	await subject.import(identity.mnemonic, "ARK", "devnet");
 });
 
 beforeAll(() => nock.disableNetConnect());
@@ -52,11 +53,11 @@ test("#import", async () => {
 
 	expect(subject.keys()).toHaveLength(0);
 
-	await subject.import(identity.mnemonic, ARK, "devnet");
+	await subject.import(identity.mnemonic, "ARK", "devnet");
 
 	expect(subject.keys()).toHaveLength(1);
 
-	await expect(subject.import(identity.mnemonic, ARK, "devnet")).rejects.toThrowError("already exists");
+	await expect(subject.import(identity.mnemonic, "ARK", "devnet")).rejects.toThrowError("already exists");
 
 	expect(subject.keys()).toHaveLength(1);
 });
@@ -64,7 +65,7 @@ test("#import", async () => {
 test("#generate", async () => {
 	subject.flush();
 
-	const wallet = await subject.generate(ARK, "devnet");
+	const wallet = await subject.generate("ARK", "devnet");
 
 	expect(wallet.mnemonic).toBeString();
 	expect(wallet.wallet).toBeInstanceOf(Wallet);
@@ -90,9 +91,9 @@ describe("#sortBy", () => {
 	beforeEach(async () => {
 		subject.flush();
 
-		walletARK = await subject.import("a", ARK, "devnet");
-		walletBTC = await subject.import("b", BTC, "testnet");
-		walletETH = await subject.import("c", ETH, "ropsten");
+		walletARK = await subject.import("a", "ARK", "devnet");
+		walletBTC = await subject.import("b", "BTC", "testnet");
+		walletETH = await subject.import("c", "ETH", "ropsten");
 	});
 
 	it("should sort by coin", async () => {

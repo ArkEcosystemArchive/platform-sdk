@@ -22,6 +22,7 @@ beforeAll(() => {
 		.persist();
 
 	container.set(Identifiers.HttpClient, new HttpClient());
+	container.set(Identifiers.Coins, { ARK });
 });
 
 beforeEach(() => {
@@ -67,7 +68,7 @@ test("#toObject", () => {
 test("#balancePerCoin", async () => {
 	container.set(Identifiers.HttpClient, new HttpClient());
 
-	await subject.wallets().import(identity.mnemonic, ARK, "devnet");
+	await subject.wallets().import(identity.mnemonic, "ARK", "devnet");
 
 	expect(subject.balancePerCoin()).toEqual({
 		DARK: {

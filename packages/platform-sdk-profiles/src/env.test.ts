@@ -26,6 +26,7 @@ beforeAll(() => {
 		.persist();
 
 	container.set(Identifiers.HttpClient, new HttpClient());
+	container.set(Identifiers.Coins, { ARK, BTC, ETH });
 });
 
 beforeEach(async () => {
@@ -67,7 +68,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	profile.contacts().create("Jane Doe");
 
 	// Create a Wallet
-	await profile.wallets().import(identity.mnemonic, ARK, "devnet");
+	await profile.wallets().import(identity.mnemonic, "ARK", "devnet");
 
 	// Create a Notification
 	profile.notifications().push({
