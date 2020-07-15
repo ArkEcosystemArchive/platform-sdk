@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-lsk
 
 ## Usage
 
-Documentation can be found [here](/docs/index.md).
+Documentation can be found [here](https://platform-sdk-lsk.netlify.app/).
 
 ## Security
 

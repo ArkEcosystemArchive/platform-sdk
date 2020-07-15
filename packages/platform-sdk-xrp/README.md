@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-xrp
 
 ## Usage
 
-Documentation can be found [here](/docs/index.md).
+Documentation can be found [here](https://platform-sdk-xrp.netlify.app/).
 
 ## Security
 
