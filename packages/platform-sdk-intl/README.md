@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-intl
 
 ## Usage
 
-Documentation can be found [here](./docs/README.md).
+Documentation can be found [here](https://platform-sdk-intl.netlify.app/).
 
 ## Security
 

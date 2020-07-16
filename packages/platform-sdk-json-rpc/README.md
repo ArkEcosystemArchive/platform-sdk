@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-json-rpc
 
 ## Usage
 
-Documentation can be found [here](./docs/README.md).
+Documentation can be found [here](https://platform-sdk-json-rpc.netlify.app/).
 
 ## Security
 

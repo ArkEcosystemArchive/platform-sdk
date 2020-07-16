@@ -13,12 +13,12 @@ This package is currently still under early development and subject to breaking 
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-coingecko
+yarn add @arkecosystem/platform-sdk-coingecko
 ```
 
 ## Usage
 
-Documentation can be found [here](./docs/README.md).
+Documentation can be found [here](https://platform-sdk-coingecko.netlify.app/).
 
 ## Security
 
