@@ -23,7 +23,7 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"bn.js": "4.11.6",
+		"bn.js": "5.1.2",
 		"elliptic": "^6.5.3",
 		"eosjs": "^21.0.2",
 		"node-fetch": "^2.6.0",
@@ -54,12 +54,12 @@
 		"jest-extended": "^0.11.5",
 		"jest-localstorage-mock": "^2.4.2",
 		"nock": "^13.0.2",
-		"npm-check-updates": "^7.0.1",
+		"npm-check-updates": "^7.0.2",
 		"prettier": "^2.0.5",
 		"rimraf": "^3.0.2",
-		"ts-jest": "^26.1.2",
+		"ts-jest": "^26.1.3",
 		"typedoc": "^0.17.8",
-		"typescript": "^3.9.6"
+		"typescript": "^3.9.7"
 	},
 	"engines": {
 		"node": ">=12.x"
