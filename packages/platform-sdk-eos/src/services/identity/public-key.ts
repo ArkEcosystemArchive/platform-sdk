@@ -1,5 +1,6 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { privateToPublic } from "eosjs-ecc";
+
+import { privateToPublic } from "../helpers";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
