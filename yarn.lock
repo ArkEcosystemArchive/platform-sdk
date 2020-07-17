@@ -394,6 +394,8 @@ __metadata:
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-transport-mocker": ^5.19.0
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/bn.js": 4.11.6
+    "@types/elliptic": 6.4.12
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/hapi__joi": 17.1.4
@@ -403,10 +405,11 @@ __metadata:
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^3.6.0
     "@typescript-eslint/parser": ^3.6.0
+    bn.js: 4.11.6
     codecov: ^3.7.0
     cross-env: ^7.0.2
-    eosjs: ^20.0.3
-    eosjs-ecc: ^4.0.7
+    elliptic: ^6.5.3
+    eosjs: ^21.0.2
     eslint: ^7.4.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.18.0
@@ -1373,15 +1376,6 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 2/2a50685d023bc609b01a3fd7ed3af03bc36c575da8d02199ed51cb24e8e068f26a128a20486cd502abe9e1d4c02e0264b8a58f1a5143e1291ca3508a948ada97
-  languageName: node
-  linkType: hard
-
-"@babel/runtime@npm:7.6.0":
-  version: 7.6.0
-  resolution: "@babel/runtime@npm:7.6.0"
-  dependencies:
-    regenerator-runtime: ^0.13.2
-  checksum: 2/a24813fb9936561455ebb3ec35cfb1c70a8de982ca78e9286ea7cf824208e8f09a019923a304076623714b35be8fb9bfce779a511f7b5d12f158518d5f4a3aa6
   languageName: node
   linkType: hard
 
@@ -5418,7 +5412,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-runtime@npm:6.26.0, babel-runtime@npm:^6.26.0, babel-runtime@npm:^6.6.1":
+"babel-runtime@npm:^6.26.0, babel-runtime@npm:^6.6.1":
   version: 6.26.0
   resolution: "babel-runtime@npm:6.26.0"
   dependencies:
@@ -5584,7 +5578,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bigi@npm:1.4.2, bigi@npm:^1.1.0, bigi@npm:^1.2.0":
+"bigi@npm:^1.1.0, bigi@npm:^1.2.0":
   version: 1.4.2
   resolution: "bigi@npm:1.4.2"
   checksum: 2/1cf78da7b300a018da23f47e4c93aa105ef57f9f07499f91d2ed2285a36d9ac67bb4be57a0e08df5760d4cef4caaa2a1ef6c9651b4a40247c8f02b080214400f
@@ -5939,19 +5933,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserify-aes@npm:1.0.6":
-  version: 1.0.6
-  resolution: "browserify-aes@npm:1.0.6"
-  dependencies:
-    buffer-xor: ^1.0.2
-    cipher-base: ^1.0.0
-    create-hash: ^1.1.0
-    evp_bytestokey: ^1.0.0
-    inherits: ^2.0.1
-  checksum: 2/bcd5c6d4a34f262dbc0155e53f58362ef35cd6075f97dd74fea87bfecb5ba1ccf50479d5252e0522f9e5eb5f908b5147f21fa55f421f34ea3f8f2fe901d6834a
-  languageName: node
-  linkType: hard
-
 "browserify-aes@npm:^1.0.0, browserify-aes@npm:^1.0.1, browserify-aes@npm:^1.0.4, browserify-aes@npm:^1.0.6, browserify-aes@npm:^1.2.0":
   version: 1.2.0
   resolution: "browserify-aes@npm:1.2.0"
@@ -6170,7 +6151,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bytebuffer@npm:5.0.1, bytebuffer@npm:^5.0.1":
+"bytebuffer@npm:^5.0.1":
   version: 5.0.1
   resolution: "bytebuffer@npm:5.0.1"
   dependencies:
@@ -6902,18 +6883,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-hash@npm:1.1.3":
-  version: 1.1.3
-  resolution: "create-hash@npm:1.1.3"
-  dependencies:
-    cipher-base: ^1.0.1
-    inherits: ^2.0.1
-    ripemd160: ^2.0.0
-    sha.js: ^2.4.0
-  checksum: 2/64e537c63fd1d524bc90e1bbf0412a730b4e61908568b5f5403fe9002a304dd853f31789a46b81de8b4417eb3482638f94eb7c299f37e2669d86d116379eb621
-  languageName: node
-  linkType: hard
-
 "create-hash@npm:^1.1.0, create-hash@npm:^1.1.1, create-hash@npm:^1.1.2, create-hash@npm:^1.2.0":
   version: 1.2.0
   resolution: "create-hash@npm:1.2.0"
@@ -6924,20 +6893,6 @@ __metadata:
     ripemd160: ^2.0.1
     sha.js: ^2.4.0
   checksum: 2/5565182efc3603e4d34c3ce13fd0765a058b27f91e49ba8e720e30ba8bfc53e9cd835e5343136000b6f210a979fe1041a4f3fe728e866e64f34db04b068fd725
-  languageName: node
-  linkType: hard
-
-"create-hmac@npm:1.1.6":
-  version: 1.1.6
-  resolution: "create-hmac@npm:1.1.6"
-  dependencies:
-    cipher-base: ^1.0.3
-    create-hash: ^1.1.0
-    inherits: ^2.0.1
-    ripemd160: ^2.0.0
-    safe-buffer: ^5.0.1
-    sha.js: ^2.4.8
-  checksum: 2/3053d3811ef3bd05e21ca0e62985c3993d979cb6716bcef0f90354acc583a6f29834cc669e43215a46a902ee57e60e69c98fe273a38f3ce304e09c4af515ad10
   languageName: node
   linkType: hard
 
@@ -7680,15 +7635,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ecurve@npm:1.0.5":
-  version: 1.0.5
-  resolution: "ecurve@npm:1.0.5"
-  dependencies:
-    bigi: ^1.1.0
-  checksum: 2/c1146753cd1d85e09f476af8bf9a54de1ff5f4a61c53fe81cfd6499c2f038545681bd7d00c1c4a67c5912946b8c69a5dd057ec41dba19d77141d16d2bdce031c
-  languageName: node
-  linkType: hard
-
 "ecurve@npm:^1.0.0":
   version: 1.0.6
   resolution: "ecurve@npm:1.0.6"
@@ -7727,6 +7673,21 @@ __metadata:
     minimalistic-assert: ^1.0.0
     minimalistic-crypto-utils: ^1.0.0
   checksum: 2/84df133c94a0985c359a5f0a45a27f8208b5dcbc486e5557480fcbf6d50041e3bccb0de7ab4b021f313755bf8657a79f53ff67c555203eecb6d81bfc10292825
+  languageName: node
+  linkType: hard
+
+"elliptic@npm:6.5.3, elliptic@npm:^6.5.3":
+  version: 6.5.3
+  resolution: "elliptic@npm:6.5.3"
+  dependencies:
+    bn.js: ^4.4.0
+    brorand: ^1.0.1
+    hash.js: ^1.0.0
+    hmac-drbg: ^1.0.0
+    inherits: ^2.0.1
+    minimalistic-assert: ^1.0.0
+    minimalistic-crypto-utils: ^1.0.0
+  checksum: 2/b66cf0b8f8d9a4d47992e6f0b754cbe4c0681b78b7d6691529c99fc79d8a87069f354a665a528c4bdd0327e1d937c617f9bb2fef1aa92761e4c2b7f73200af38
   languageName: node
   linkType: hard
 
@@ -7887,31 +7848,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eosjs-ecc@npm:4.0.7, eosjs-ecc@npm:^4.0.7":
-  version: 4.0.7
-  resolution: "eosjs-ecc@npm:4.0.7"
+"eosjs@npm:^21.0.2":
+  version: 21.0.2
+  resolution: "eosjs@npm:21.0.2"
   dependencies:
-    "@babel/runtime": 7.6.0
-    bigi: 1.4.2
-    browserify-aes: 1.0.6
-    bs58: 4.0.1
-    bytebuffer: 5.0.1
-    create-hash: 1.1.3
-    create-hmac: 1.1.6
-    ecurve: 1.0.5
-    randombytes: 2.0.5
-  checksum: 2/d40f1bc6aa680f1dfaea03e68c18975bb6d54b38f5136a71331e041d428e1a29bd41a961f3dde1a8a46b52dd04623cf12286857a6349d5966f7e4142cdc4b492
-  languageName: node
-  linkType: hard
-
-"eosjs@npm:^20.0.3":
-  version: 20.0.3
-  resolution: "eosjs@npm:20.0.3"
-  dependencies:
-    babel-runtime: 6.26.0
-    eosjs-ecc: 4.0.7
-    text-encoding: 0.7.0
-  checksum: 2/38262295ccb05d6ae1a836fafb035ee134051814b90cface71d510edd1cdfa423bdfb350a78903b5cf19ca584c26b26ce19bda864a00586554ce30a6d8ad54d6
+    elliptic: 6.5.3
+    hash.js: 1.1.7
+    pako: 1.0.11
+  checksum: 2/f20ce70a84103de4e809922243c7c2928cf803877b7a990d185c88fa92013b23ad6a94472befe562c981a5c5e5b52a81a4ea7f847db33cf77783598af807d8b5
   languageName: node
   linkType: hard
 
@@ -9825,7 +9769,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hash.js@npm:^1.0.0, hash.js@npm:^1.0.3, hash.js@npm:^1.1.7":
+"hash.js@npm:1.1.7, hash.js@npm:^1.0.0, hash.js@npm:^1.0.3, hash.js@npm:^1.1.7":
   version: 1.1.7
   resolution: "hash.js@npm:1.1.7"
   dependencies:
@@ -15819,6 +15763,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pako@npm:1.0.11":
+  version: 1.0.11
+  resolution: "pako@npm:1.0.11"
+  checksum: 2/71c60150b68220ec52a404f3c39a4ed38f750e42452b88fe0eb2e6b5c98e91f73f706444359b097aca1e6db83ef8fef50b5a9ec100e30a606cda6da8d45e5439
+  languageName: node
+  linkType: hard
+
 "parent-module@npm:^1.0.0":
   version: 1.0.1
   resolution: "parent-module@npm:1.0.1"
@@ -16729,15 +16680,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"randombytes@npm:2.0.5":
-  version: 2.0.5
-  resolution: "randombytes@npm:2.0.5"
-  dependencies:
-    safe-buffer: ^5.1.0
-  checksum: 2/0997fef27077ed75792d5b7f87662a2eac237c69c2ba761cafaea00c7cae90b5e0f4f17ce18f5a9044072b51effe9f7b4835ef6cda6f8aa6d7f3eb30973daf12
-  languageName: node
-  linkType: hard
-
 "randombytes@npm:^2.0.0, randombytes@npm:^2.0.1, randombytes@npm:^2.0.3, randombytes@npm:^2.0.5, randombytes@npm:^2.0.6, randombytes@npm:^2.1.0":
   version: 2.1.0
   resolution: "randombytes@npm:2.1.0"
@@ -16924,7 +16866,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"regenerator-runtime@npm:^0.13.2, regenerator-runtime@npm:^0.13.4":
+"regenerator-runtime@npm:^0.13.4":
   version: 0.13.5
   resolution: "regenerator-runtime@npm:0.13.5"
   checksum: 2/8d8ee0eca26e0491085033caf2b1b95379c4db21e38d79cde52bbd4014a3865eee26ec0f4f958682e8600f185f2f5dbcd8c6685b9b9261639767929c19b5bcd2
@@ -18883,7 +18825,7 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"text-encoding@npm:0.7.0, text-encoding@npm:^0.7.0":
+"text-encoding@npm:^0.7.0":
   version: 0.7.0
   resolution: "text-encoding@npm:0.7.0"
   checksum: 2/476a7565817bf24460e35832f1d41a888586242536c4703273496d8d706447df0bce8fa8e70c50c050345d6533747ead5925e11cf7869f027200d8dcfe0690b6

@@ -751,6 +751,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.19.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/bn.js", "npm:4.11.6"],
+            ["@types/elliptic", "npm:6.4.12"],
             ["@types/eslint", "npm:7.2.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/hapi__joi", "npm:17.1.4"],
@@ -760,10 +762,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:497a22e8558f3d1a03b24ba5feaddab7b12dd0a3d2cc05e50ea0ba72a7b1bf8685c9a333a3ffc7cd0850edbae4c4119e8fe36695705a512b4bff5d5b396aa9a2#npm:3.6.0"],
             ["@typescript-eslint/parser", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:3.6.0"],
+            ["bn.js", "npm:4.11.6"],
             ["codecov", "npm:3.7.0"],
             ["cross-env", "npm:7.0.2"],
-            ["eosjs", "npm:20.0.3"],
-            ["eosjs-ecc", "npm:4.0.7"],
+            ["elliptic", "npm:6.5.3"],
+            ["eosjs", "npm:21.0.2"],
             ["eslint", "npm:7.4.0"],
             ["eslint-config-prettier", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:6.11.0"],
             ["eslint-plugin-jest", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:23.18.0"],
@@ -1776,14 +1779,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.10.2-a84cbd8811-2.zip/node_modules/@babel/runtime/",
           "packageDependencies": [
             ["@babel/runtime", "npm:7.10.2"],
-            ["regenerator-runtime", "npm:0.13.5"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:7.6.0", {
-          "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.6.0-9739cfe9fc-2.zip/node_modules/@babel/runtime/",
-          "packageDependencies": [
-            ["@babel/runtime", "npm:7.6.0"],
             ["regenerator-runtime", "npm:0.13.5"]
           ],
           "linkType": "HARD",
@@ -7199,18 +7194,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["browserify-aes", [
-        ["npm:1.0.6", {
-          "packageLocation": "./.yarn/cache/browserify-aes-npm-1.0.6-5876764433-2.zip/node_modules/browserify-aes/",
-          "packageDependencies": [
-            ["browserify-aes", "npm:1.0.6"],
-            ["buffer-xor", "npm:1.0.3"],
-            ["cipher-base", "npm:1.0.4"],
-            ["create-hash", "npm:1.2.0"],
-            ["evp_bytestokey", "npm:1.0.3"],
-            ["inherits", "npm:2.0.4"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:1.2.0", {
           "packageLocation": "./.yarn/cache/browserify-aes-npm-1.2.0-2ad4aeefbe-2.zip/node_modules/browserify-aes/",
           "packageDependencies": [
@@ -8284,17 +8267,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["create-hash", [
-        ["npm:1.1.3", {
-          "packageLocation": "./.yarn/cache/create-hash-npm-1.1.3-8725c5adf1-2.zip/node_modules/create-hash/",
-          "packageDependencies": [
-            ["create-hash", "npm:1.1.3"],
-            ["cipher-base", "npm:1.0.4"],
-            ["inherits", "npm:2.0.4"],
-            ["ripemd160", "npm:2.0.2"],
-            ["sha.js", "npm:2.4.11"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:1.2.0", {
           "packageLocation": "./.yarn/cache/create-hash-npm-1.2.0-afd048e1ce-2.zip/node_modules/create-hash/",
           "packageDependencies": [
@@ -8309,19 +8281,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["create-hmac", [
-        ["npm:1.1.6", {
-          "packageLocation": "./.yarn/cache/create-hmac-npm-1.1.6-eb5c8566c2-2.zip/node_modules/create-hmac/",
-          "packageDependencies": [
-            ["create-hmac", "npm:1.1.6"],
-            ["cipher-base", "npm:1.0.4"],
-            ["create-hash", "npm:1.2.0"],
-            ["inherits", "npm:2.0.4"],
-            ["ripemd160", "npm:2.0.2"],
-            ["safe-buffer", "npm:5.2.0"],
-            ["sha.js", "npm:2.4.11"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:1.1.7", {
           "packageLocation": "./.yarn/cache/create-hmac-npm-1.1.7-b4ef32668a-2.zip/node_modules/create-hmac/",
           "packageDependencies": [
@@ -9173,14 +9132,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ecurve", [
-        ["npm:1.0.5", {
-          "packageLocation": "./.yarn/cache/ecurve-npm-1.0.5-2f786984dd-2.zip/node_modules/ecurve/",
-          "packageDependencies": [
-            ["ecurve", "npm:1.0.5"],
-            ["bigi", "npm:1.4.2"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:1.0.6", {
           "packageLocation": "./.yarn/cache/ecurve-npm-1.0.6-002f57f49a-2.zip/node_modules/ecurve/",
           "packageDependencies": [
@@ -9229,6 +9180,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/elliptic-npm-6.5.2-d5bae60fab-2.zip/node_modules/elliptic/",
           "packageDependencies": [
             ["elliptic", "npm:6.5.2"],
+            ["bn.js", "npm:4.11.8"],
+            ["brorand", "npm:1.1.0"],
+            ["hash.js", "npm:1.1.7"],
+            ["hmac-drbg", "npm:1.0.1"],
+            ["inherits", "npm:2.0.4"],
+            ["minimalistic-assert", "npm:1.0.1"],
+            ["minimalistic-crypto-utils", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:6.5.3", {
+          "packageLocation": "./.yarn/cache/elliptic-npm-6.5.3-783c509c01-2.zip/node_modules/elliptic/",
+          "packageDependencies": [
+            ["elliptic", "npm:6.5.3"],
             ["bn.js", "npm:4.11.8"],
             ["brorand", "npm:1.1.0"],
             ["hash.js", "npm:1.1.7"],
@@ -9396,31 +9361,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["eosjs", [
-        ["npm:20.0.3", {
-          "packageLocation": "./.yarn/cache/eosjs-npm-20.0.3-417dbb6532-2.zip/node_modules/eosjs/",
+        ["npm:21.0.2", {
+          "packageLocation": "./.yarn/cache/eosjs-npm-21.0.2-047daf3463-2.zip/node_modules/eosjs/",
           "packageDependencies": [
-            ["eosjs", "npm:20.0.3"],
-            ["babel-runtime", "npm:6.26.0"],
-            ["eosjs-ecc", "npm:4.0.7"],
-            ["text-encoding", "npm:0.7.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["eosjs-ecc", [
-        ["npm:4.0.7", {
-          "packageLocation": "./.yarn/cache/eosjs-ecc-npm-4.0.7-a418aa59a6-2.zip/node_modules/eosjs-ecc/",
-          "packageDependencies": [
-            ["eosjs-ecc", "npm:4.0.7"],
-            ["@babel/runtime", "npm:7.6.0"],
-            ["bigi", "npm:1.4.2"],
-            ["browserify-aes", "npm:1.0.6"],
-            ["bs58", "npm:4.0.1"],
-            ["bytebuffer", "npm:5.0.1"],
-            ["create-hash", "npm:1.1.3"],
-            ["create-hmac", "npm:1.1.6"],
-            ["ecurve", "npm:1.0.5"],
-            ["randombytes", "npm:2.0.5"]
+            ["eosjs", "npm:21.0.2"],
+            ["bn.js", "npm:4.11.6"],
+            ["elliptic", "npm:6.5.3"],
+            ["hash.js", "npm:1.1.7"],
+            ["pako", "npm:1.0.11"]
           ],
           "linkType": "HARD",
         }]
@@ -18011,6 +17959,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["pako", [
+        ["npm:1.0.11", {
+          "packageLocation": "./.yarn/cache/pako-npm-1.0.11-b8f1b69d3e-2.zip/node_modules/pako/",
+          "packageDependencies": [
+            ["pako", "npm:1.0.11"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["parent-module", [
         ["npm:1.0.1", {
           "packageLocation": "./.yarn/cache/parent-module-npm-1.0.1-1fae11b095-2.zip/node_modules/parent-module/",
@@ -19011,14 +18968,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["randombytes", [
-        ["npm:2.0.5", {
-          "packageLocation": "./.yarn/cache/randombytes-npm-2.0.5-7cebe2baa8-2.zip/node_modules/randombytes/",
-          "packageDependencies": [
-            ["randombytes", "npm:2.0.5"],
-            ["safe-buffer", "npm:5.2.0"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:2.1.0", {
           "packageLocation": "./.yarn/cache/randombytes-npm-2.1.0-e3da76bccf-2.zip/node_modules/randombytes/",
           "packageDependencies": [
