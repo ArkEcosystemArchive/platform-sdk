@@ -23,6 +23,7 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
+		"bn.js": "^5.1.2",
 		"elliptic": "^6.5.3",
 		"eosjs": "^21.0.2",
 		"node-fetch": "^2.6.0",
@@ -31,6 +32,7 @@
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.19.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
+		"@types/bn.js": "4.11.6",
 		"@types/elliptic": "6.4.12",
 		"@types/eslint": "^7.2.0",
 		"@types/eslint-plugin-prettier": "^3.1.0",

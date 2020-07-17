@@ -751,6 +751,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.19.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/bn.js", "npm:4.11.6"],
             ["@types/elliptic", "npm:6.4.12"],
             ["@types/eslint", "npm:7.2.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -761,6 +762,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:497a22e8558f3d1a03b24ba5feaddab7b12dd0a3d2cc05e50ea0ba72a7b1bf8685c9a333a3ffc7cd0850edbae4c4119e8fe36695705a512b4bff5d5b396aa9a2#npm:3.6.0"],
             ["@typescript-eslint/parser", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:3.6.0"],
+            ["bn.js", "npm:5.1.2"],
             ["codecov", "npm:3.7.0"],
             ["cross-env", "npm:7.0.2"],
             ["elliptic", "npm:6.5.3"],
@@ -9363,6 +9365,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/eosjs-npm-21.0.2-047daf3463-2.zip/node_modules/eosjs/",
           "packageDependencies": [
             ["eosjs", "npm:21.0.2"],
+            ["bn.js", "npm:5.1.2"],
             ["elliptic", "npm:6.5.3"],
             ["hash.js", "npm:1.1.7"],
             ["pako", "npm:1.0.11"]

@@ -394,6 +394,7 @@ __metadata:
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-transport-mocker": ^5.19.0
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/bn.js": 4.11.6
     "@types/elliptic": 6.4.12
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -404,6 +405,7 @@ __metadata:
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^3.6.0
     "@typescript-eslint/parser": ^3.6.0
+    bn.js: ^5.1.2
     codecov: ^3.7.0
     cross-env: ^7.0.2
     elliptic: ^6.5.3
@@ -5796,6 +5798,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bn.js@npm:*, bn.js@npm:^5.1.2":
+  version: 5.1.2
+  resolution: "bn.js@npm:5.1.2"
+  checksum: 2/ed0f337a224d874c8c58c604f8454184cd7069a6619c65a556e1b3a9544f7d22013add4460381288a9676e188e9f0e6e672a4ab8676d4834119d20f8ad782892
+  languageName: node
+  linkType: hard
+
 "bn.js@npm:4.11.6":
   version: 4.11.6
   resolution: "bn.js@npm:4.11.6"
@@ -5814,13 +5823,6 @@ __metadata:
   version: 5.1.1
   resolution: "bn.js@npm:5.1.1"
   checksum: 2/67915e456a8f2c2549cb5e556ff8d6dc479b227a7a75ea66c1d5a42253bc9abc95ce08f0b1c37ba068d0d9b9bfb9f79f151087c9166d6fe0d1600c7849290fd6
-  languageName: node
-  linkType: hard
-
-"bn.js@npm:^5.1.2":
-  version: 5.1.2
-  resolution: "bn.js@npm:5.1.2"
-  checksum: 2/ed0f337a224d874c8c58c604f8454184cd7069a6619c65a556e1b3a9544f7d22013add4460381288a9676e188e9f0e6e672a4ab8676d4834119d20f8ad782892
   languageName: node
   linkType: hard
 
