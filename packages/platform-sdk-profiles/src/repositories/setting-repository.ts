@@ -34,7 +34,9 @@ export class SettingRepository {
 	}
 
 	public fill(entries: object): void {
-		this.#storage.fill(entries);
+		for (const [key, value] of Object.entries(entries)) {
+			this.set(key, value);
+		}
 	}
 
 	public has(key: string): boolean {
