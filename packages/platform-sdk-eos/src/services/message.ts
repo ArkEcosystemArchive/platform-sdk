@@ -1,6 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import ecc from "eosjs-ecc";
+
+import { privateToPublic, sign, verify } from "../crypto";
 
 export class MessageService implements Contracts.MessageService {
 	public static async construct(config: Coins.Config): Promise<MessageService> {
@@ -16,12 +17,12 @@ export class MessageService implements Contracts.MessageService {
 
 		return {
 			message: input.message,
-			signatory: ecc.privateToPublic(mnemonic),
-			signature: ecc.sign(input.message, mnemonic),
+			signatory: privateToPublic(mnemonic),
+			signature: sign(input.message, mnemonic),
 		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return ecc.verify(input.signature, input.message, input.signatory);
+		return verify(input.signature, input.message, input.signatory);
 	}
 }

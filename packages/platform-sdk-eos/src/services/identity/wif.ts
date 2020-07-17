@@ -1,8 +1,7 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
-import { seedPrivate } from "eosjs-ecc";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class WIF implements Contracts.WIF {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return seedPrivate(mnemonic);
+		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
 	}
 }
