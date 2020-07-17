@@ -20,7 +20,7 @@ These methods are accessible through `env.profiles()` which exposes a `ProfileRe
 // Get a list of all profiles
 env.profiles().all();
 
-// Create a new profile for the given name
+// Find the profile for the given ID
 env.profiles().findById("uuid");
 
 // Create a new profile for the given name
