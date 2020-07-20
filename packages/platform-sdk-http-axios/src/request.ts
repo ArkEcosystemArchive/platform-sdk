@@ -1,30 +1,15 @@
-// import { Contracts } from "@arkecosystem/platform-sdk";
-// import axios from "axios";
-
-// export class HttpClient implements Contracts.HttpClient {
-// 	public async get(path: string, searchParams?: Record<string, any>): Promise<Contracts.HttpClientResponse> {
-// 		const response = await axios.get(path, { params: searchParams });
-
-// 		return response.data;
-// 	}
-
-// 	public async post(path: string, body: object, headers = {}): Promise<Contracts.HttpClientResponse> {
-// 		const response = await axios.post(path, body, { headers });
-
-// 		return response.data;
-// 	}
-// }
-
-import { Contracts } from "@arkecosystem/platform-sdk";
-import { Request as BaseRequest, RequestOptions } from "@arkecosystem/platform-sdk-http";
+import { Contracts, Http } from "@arkecosystem/platform-sdk";
 import axios from "axios";
-import { URLSearchParams } from "url";
 
 import { Response } from "./response";
 
-export class Request extends BaseRequest implements Contracts.HttpClient {
-	protected async send(method: string, url: string, data?: { query?: object; data?: any }): Promise<Response> {
-		const options: RequestOptions = {
+export class Request extends Http.Request {
+	protected async send(
+		method: string,
+		url: string,
+		data?: { query?: object; data?: any },
+	): Promise<Contracts.HttpResponse> {
+		const options: Http.RequestOptions = {
 			...this._options,
 		};
 

@@ -21,7 +21,6 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
-		"@arkecosystem/platform-sdk-http": "workspace:packages/platform-sdk-http",
 		"node-fetch": "^2.6.0"
 	},
 	"devDependencies": {

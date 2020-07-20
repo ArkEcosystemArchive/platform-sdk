@@ -1,8 +1,7 @@
-import { Primitive } from "type-fest";
-
+import { HttpResponse } from "../contracts";
 import { RequestException } from "./exceptions";
 
-export abstract class Response {
+export class Response implements HttpResponse {
 	protected _response;
 
 	protected _error: Error | undefined;
@@ -19,15 +18,15 @@ export abstract class Response {
 		return this._body;
 	}
 
-	public json(): Record<string, Primitive> {
+	public json(): Record<string, any> {
 		return JSON.parse(this._body);
 	}
 
-	public header(header: string): Primitive {
+	public header(header: string): any {
 		return this.headers()[header];
 	}
 
-	public headers(): Record<string, Primitive> {
+	public headers(): Record<string, any> {
 		return this._response.headers;
 	}
 
@@ -59,7 +58,7 @@ export abstract class Response {
 		return this.status() >= 500;
 	}
 
-	public throw(): Response {
+	public throw(): HttpResponse {
 		if (this.serverError() || this.clientError()) {
 			throw new RequestException(this, this._error);
 		}

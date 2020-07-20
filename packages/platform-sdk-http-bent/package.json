@@ -21,7 +21,6 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
-		"@arkecosystem/platform-sdk-http": "workspace:packages/platform-sdk-http",
 		"bent": "^7.3.7"
 	},
 	"devDependencies": {

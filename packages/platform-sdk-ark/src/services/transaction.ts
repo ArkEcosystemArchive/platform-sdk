@@ -47,10 +47,10 @@ export class TransactionService implements Contracts.TransactionService {
 			peer = `${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`;
 		}
 
-		const crypto = await http.get(`${peer}/node/configuration/crypto`);
+		const crypto: any = (await http.get(`${peer}/node/configuration/crypto`)).json();
 		Managers.configManager.setConfig(crypto.data);
 
-		const status = await http.get(`${peer}/node/syncing`);
+		const status: any = (await http.get(`${peer}/node/syncing`)).json();
 		Managers.configManager.setHeight(status.data.height);
 
 		return new TransactionService({
@@ -270,7 +270,7 @@ export class TransactionService implements Contracts.TransactionService {
 				);
 			}
 
-			const { body } = await this.#http.get(`${this.#peer}/wallets/${address}`);
+			const body: any = (await this.#http.get(`${this.#peer}/wallets/${address}`)).json();
 
 			transaction.nonce(BigNumber.make(body.data.nonce).plus(1).toFixed());
 		}

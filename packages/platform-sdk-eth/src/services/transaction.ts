@@ -185,7 +185,9 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return this.#http.get(`${this.#peer}/${path}`, query);
+		const response = await this.#http.get(`${this.#peer}/${path}`, query);
+
+		return response.json();
 	}
 
 	private createContract(contractAddress: string) {

@@ -112,7 +112,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
-		const { data, errors } = await this.post("transactions", { transactions });
+		const { data, errors } = (await this.post("transactions", { transactions })).json();
 
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
@@ -146,14 +146,20 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return this.#http.get(`${this.#peer}/${path}`, query);
+		const response = await this.#http.get(`${this.#peer}/${path}`, query);
+
+		return response.json();
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return this.#http.post(`${this.#peer}/${path}`, body);
+		const response = await this.#http.post(`${this.#peer}/${path}`, body);
+
+		return response.json();
 	}
 
-	private createMetaPagination(body): Contracts.MetaPagination {
+	private createMetaPagination(response): Contracts.MetaPagination {
+		const body = response.json();
+
 		return {
 			prev: body.meta.previous,
 			next: body.meta.next,

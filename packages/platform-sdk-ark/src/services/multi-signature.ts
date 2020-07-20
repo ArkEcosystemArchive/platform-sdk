@@ -53,11 +53,15 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return this.#http.get(`${this.getPeer()}/${path}`, query);
+		const response = await this.#http.get(`${this.getPeer()}/${path}`, query);
+
+		return response.json();
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return this.#http.post(`${this.getPeer()}/${path}`, body);
+		const response = await this.#http.post(`${this.getPeer()}/${path}`, body);
+
+		return response.json();
 	}
 
 	private getPeer(): string {

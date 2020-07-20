@@ -20,7 +20,7 @@ export class PeerService implements Contracts.PeerService {
 		// Validation
 		let response;
 		try {
-			response = await httpClient.get(`${peer}/node/configuration`);
+			response = (await httpClient.get(`${peer}/node/configuration`)).json();
 		} catch {
 			// We don't know what went wrong so we continue.
 		}
@@ -34,7 +34,7 @@ export class PeerService implements Contracts.PeerService {
 		// Seeds
 		try {
 			if (peer && isUrl(peer)) {
-				const response = await httpClient.get(`${peer}/peers`);
+				const response = (await httpClient.get(`${peer}/peers`)).json();
 
 				for (const seed of response.data) {
 					let port = 4003;
@@ -74,7 +74,7 @@ export class PeerService implements Contracts.PeerService {
 	public async search(options: Contracts.KeyValuePair = {}): Promise<Contracts.PeerResponse[]> {
 		const seed: string = this.#seeds[Math.floor(Math.random() * this.#seeds.length)];
 
-		const body: any = await this.#http.get(`${seed}/api/peers`);
+		const body: any = (await this.#http.get(`${seed}/api/peers`)).json();
 
 		let peers: Contracts.PeerResponse[] = body.data;
 

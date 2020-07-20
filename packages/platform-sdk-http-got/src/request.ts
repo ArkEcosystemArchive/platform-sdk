@@ -1,13 +1,14 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
-import { Request as BaseRequest, RequestOptions } from "@arkecosystem/platform-sdk-http";
+import { Contracts, Http } from "@arkecosystem/platform-sdk";
 import got from "got";
 import { URLSearchParams } from "url";
 
-import { Response } from "./response";
-
-export class Request extends BaseRequest implements Contracts.HttpClient {
-	protected async send(method: string, url: string, data?: { query?: object; data?: any }): Promise<Response> {
-		const options: RequestOptions = {
+export class Request extends Http.Request {
+	protected async send(
+		method: string,
+		url: string,
+		data?: { query?: object; data?: any },
+	): Promise<Contracts.HttpResponse> {
+		const options: Http.RequestOptions = {
 			...this._options,
 		};
 
@@ -38,9 +39,9 @@ export class Request extends BaseRequest implements Contracts.HttpClient {
 		}
 
 		try {
-			return new Response(await got[method.toLowerCase()](url.replace(/^\/+/g, ""), options));
+			return new Http.Response(await got[method.toLowerCase()](url.replace(/^\/+/g, ""), options));
 		} catch (error) {
-			return new Response(error.response, error);
+			return new Http.Response(error.response, error);
 		}
 	}
 }
