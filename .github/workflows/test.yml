@@ -248,12 +248,12 @@ jobs:
         run: yarn run build
 
       - name: Test
-        run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
+        run: cd packages/platform-sdk-crypto && yarn run test --coverage
 
       - name: Codecov
         uses: codecov/codecov-action@v1
         with:
-          file: packages/platform-sdk-cryptocompare/.coverage/lcov.info
+          file: packages/platform-sdk-crypto/.coverage/lcov.info
           flags: unit
           fail_ci_if_error: true
 

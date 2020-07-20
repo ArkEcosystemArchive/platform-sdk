@@ -107,6 +107,8 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	private async get(path: string): Promise<any> {
-		return this.#httpClient.get(`${this.#host}/${path}`);
+		const response = await this.#httpClient.get(`${this.#host}/${path}`);
+
+		return response.json();
 	}
 }
