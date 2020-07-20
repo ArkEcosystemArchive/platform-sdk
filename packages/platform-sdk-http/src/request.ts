@@ -53,24 +53,6 @@ export abstract class Request {
 		return this;
 	}
 
-	public withoutRedirecting(): Request {
-		this._options.followRedirects = false;
-
-		return this;
-	}
-
-	public withoutVerifying(): Request {
-		this._options.verify = false;
-
-		return this;
-	}
-
-	public withAgent(agent: { http; https }): Request {
-		this._options.agent = agent;
-
-		return this;
-	}
-
 	public timeout(seconds: number): Request {
 		this._options.timeout = seconds;
 

@@ -3,24 +3,24 @@ import { Primitive } from "type-fest";
 import { RequestException } from "./exceptions";
 
 export abstract class Response {
-	readonly #response;
+	protected _response;
 
-	readonly #error: Error | undefined;
+	protected _error: Error | undefined;
 
-	readonly #body: string;
+	protected _body: string;
 
 	public constructor(response, error?: Error | undefined) {
-		this.#response = response;
-		this.#body = response.body || "";
-		this.#error = error;
+		this._response = response;
+		this._body = response.body || "";
+		this._error = error;
 	}
 
 	public body(): string {
-		return this.#body;
+		return this._body;
 	}
 
 	public json(): Record<string, Primitive> {
-		return JSON.parse(this.#body);
+		return JSON.parse(this._body);
 	}
 
 	public header(header: string): Primitive {
@@ -28,11 +28,11 @@ export abstract class Response {
 	}
 
 	public headers(): Record<string, Primitive> {
-		return this.#response.headers;
+		return this._response.headers;
 	}
 
 	public status(): number {
-		return this.#response.statusCode;
+		return this._response.statusCode;
 	}
 
 	public successful(): boolean {
@@ -61,7 +61,7 @@ export abstract class Response {
 
 	public throw(): Response {
 		if (this.serverError() || this.clientError()) {
-			throw new RequestException(this, this.#error);
+			throw new RequestException(this, this._error);
 		}
 
 		return this;

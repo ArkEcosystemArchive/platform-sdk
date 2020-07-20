@@ -44,15 +44,19 @@ export class Request extends BaseRequest implements Contracts.HttpClient {
 		}
 
 		try {
-			let request;
+			let response;
 
 			if (method === "GET") {
-				request = bent(method)(url);
+				response = await bent(method)(url);
 			} else {
-				request = bent(method)(url, options.json || options.body, options.headers);
+				response = await bent(method)(url, options.json || options.body, options.headers);
 			}
 
-			return new Response(await request.json());
+			return new Response({
+				body: await response.json(),
+				headers: response.headers,
+				statusCode: response.statusCode,
+			});
 		} catch (error) {
 			return new Response(error.response, error);
 		}

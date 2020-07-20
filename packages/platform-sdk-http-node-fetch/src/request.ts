@@ -27,24 +27,22 @@ export class Request extends BaseRequest implements Contracts.HttpClient {
 			}
 
 			if (this._bodyFormat === "form_params") {
-				options.body = new URLSearchParams();
-
-				for (const [key, value] of Object.entries(data.data)) {
-					options.body.set(key, value);
-				}
+				throw new Error("Method form_params is not supported.");
 			}
 
 			if (this._bodyFormat === "multipart") {
-				options.body = new FormData();
-
-				for (const [key, value] of Object.entries(data.data)) {
-					options.body.append(key, value);
-				}
+				throw new Error("Method multipart is not supported.");
 			}
 		}
 
 		try {
-			return new Response(await fetch(url.replace(/^\/+/g, ""), options));
+			const response = await fetch(url.replace(/^\/+/g, ""), options);
+
+			return new Response({
+				body: await response.json(),
+				headers: response.headers,
+				statusCode: response.status,
+			});
 		} catch (error) {
 			return new Response(error.response, error);
 		}

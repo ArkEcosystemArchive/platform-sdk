@@ -1,16 +1,16 @@
 import nock from "nock";
 
-import { HttpClient } from "./request";
+import { Request } from "./request";
 
-let subject: HttpClient;
+let subject: Request;
 
 beforeAll(() => {
 	nock.disableNetConnect();
 
-	subject = new HttpClient();
+	subject = new Request();
 });
 
-describe("HttpClient", () => {
+describe("Request", () => {
 	it("should get with params", async () => {
 		const responseBody = {
 			args: { key: "value" },
@@ -20,7 +20,9 @@ describe("HttpClient", () => {
 
 		nock("http://httpbin.org/").get("/get").query(true).reply(200, responseBody);
 
-		await expect(subject.get("http://httpbin.org/get", { key: "value" })).resolves.toEqual(responseBody);
+		const response = await subject.get("http://httpbin.org/get", { key: "value" });
+
+		expect(response.json()).toEqual(responseBody);
 	});
 
 	it("should get without params", async () => {
@@ -32,7 +34,9 @@ describe("HttpClient", () => {
 
 		nock("http://httpbin.org/").get("/get").reply(200, responseBody);
 
-		await expect(subject.get("http://httpbin.org/get")).resolves.toEqual(responseBody);
+		const response = await subject.get("http://httpbin.org/get");
+
+		expect(response.json()).toEqual(responseBody);
 	});
 
 	it("should post with body", async () => {
@@ -50,7 +54,9 @@ describe("HttpClient", () => {
 
 		nock("http://httpbin.org/").post("/post").reply(200, responseBody);
 
-		await expect(subject.post("http://httpbin.org/post", { key: "value" })).resolves.toEqual(responseBody);
+		const response = await subject.post("http://httpbin.org/post", { key: "value" });
+
+		expect(response.json()).toEqual(responseBody);
 	});
 
 	it("should post with headers", async () => {
@@ -69,8 +75,10 @@ describe("HttpClient", () => {
 
 		nock("http://httpbin.org/").post("/post").reply(200, responseBody);
 
-		await expect(
-			subject.post("http://httpbin.org/post", { key: "value" }, { Authorization: "Bearer TOKEN" }),
-		).resolves.toEqual(responseBody);
+		const response = await subject
+			.withHeaders({ Authorization: "Bearer TOKEN" })
+			.post("http://httpbin.org/post", { key: "value" });
+
+		expect(response.json()).toEqual(responseBody);
 	});
 });
