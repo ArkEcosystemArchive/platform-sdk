@@ -10,6 +10,7 @@
 					"coinConfig": {
 						"network": {
 							"id": "devnet",
+							"type": "test",
 							"name": "Devnet",
 							"explorer": "https://dexplorer.ark.io/",
 							"currency": { "ticker": "DARK", "symbol": "DѦ" },

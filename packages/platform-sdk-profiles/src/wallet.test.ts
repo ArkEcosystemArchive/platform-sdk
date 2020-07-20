@@ -59,6 +59,7 @@ test("#network", () => {
 		hostsMultiSignature: [],
 		id: "devnet",
 		name: "Devnet",
+		type: "test",
 		voting: {
 			enabled: true,
 			singular: true,
@@ -122,6 +123,7 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 				],
 				hostsMultiSignature: [],
 				id: "devnet",
+				type: "test",
 				name: "Devnet",
 				voting: {
 					enabled: true,

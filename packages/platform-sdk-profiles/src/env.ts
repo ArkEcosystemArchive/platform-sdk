@@ -133,6 +133,7 @@ export class Environment {
 								coinConfig: object({
 									network: object({
 										id: string().required(),
+										type: string().required(),
 										name: string().required(),
 										explorer: string().required(),
 										currency: object({
