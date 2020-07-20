@@ -3,9 +3,9 @@ import semver from "semver";
 
 import { container } from "./container";
 import { Identifiers } from "./container.models";
+import { Storage } from "./env.models";
 import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
-import { Storage } from "./env.models";
 
 export class Migrator {
 	readonly #profiles: ProfileRepository;

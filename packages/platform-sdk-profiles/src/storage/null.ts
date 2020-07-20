@@ -1,7 +1,7 @@
 import { Storage } from "../env.models";
 
 export class NullStorage implements Storage {
-	public async all(): Promise<object> {
+	public async all(): Promise<Record<string, unknown>> {
 		return {};
 	}
 
