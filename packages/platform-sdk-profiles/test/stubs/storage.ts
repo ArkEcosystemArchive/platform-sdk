@@ -3,7 +3,9 @@ import "jest-extended";
 import { readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
-export class StubStorage {
+import { Storage } from "../../src/env.models";
+
+export class StubStorage implements Storage {
 	readonly #storage;
 
 	public constructor() {
@@ -14,7 +16,7 @@ export class StubStorage {
 		}
 	}
 
-	public async all(): Promise<object> {
+	public async all(): Promise<Record<string, unknown>> {
 		return this.#storage;
 	}
 

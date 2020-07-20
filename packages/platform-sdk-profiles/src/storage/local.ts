@@ -16,8 +16,8 @@ export class LocalStorage implements Storage {
 		});
 	}
 
-	public async all(): Promise<object> {
-		const result: object = {};
+	public async all(): Promise<Record<string, unknown>> {
+		const result: Record<string, unknown> = {};
 
 		for (const key of await this.#storage.keys()) {
 			result[key] = await this.get(key);
