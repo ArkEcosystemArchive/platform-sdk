@@ -25,6 +25,7 @@
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
 	},
 	"devDependencies": {
+		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^7.2.0",
 		"@types/eslint-plugin-prettier": "^3.1.0",

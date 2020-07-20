@@ -1,6 +1,7 @@
 import "jest-extended";
 
-import { HttpClient } from "../test/stubs/client";
+import { Request } from "@arkecosystem/platform-sdk-http-got";
+
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Migrator } from "./migrator";
@@ -18,7 +19,7 @@ beforeEach(async () => {
 	storage = new LocalStorage("localstorage");
 
 	container.set(Identifiers.Storage, storage);
-	container.set(Identifiers.HttpClient, new HttpClient());
+	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.ProfileRepository, new ProfileRepository());
 	container.set(Identifiers.AppData, data);
 

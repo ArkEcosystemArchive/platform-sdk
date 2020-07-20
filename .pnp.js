@@ -266,6 +266,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.1.1"
       ],
       [
+        "type-fest",
+        "npm:0.16.0"
+      ],
+      [
         "typescript",
         "patch:typescript@npm%3A3.9.5#builtin<compat/typescript>::version=3.9.5&hash=c79188"
       ],
@@ -305,6 +309,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.0.5"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.1.1"],
+            ["type-fest", "npm:0.16.0"],
             ["typescript", "patch:typescript@npm%3A3.9.5#builtin<compat/typescript>::version=3.9.5&hash=c79188"],
             ["typescript-language-server", "npm:0.4.0"]
           ],
@@ -418,6 +423,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-ada", "workspace:packages/platform-sdk-ada"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.0"],
@@ -463,6 +469,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/ledger-transport", "npm:1.1.2"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.19.1"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -511,6 +518,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-atom", "workspace:packages/platform-sdk-atom"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.19.1"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -556,6 +564,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-btc", "workspace:packages/platform-sdk-btc"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-app-btc", "npm:5.19.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.19.1"],
@@ -601,6 +610,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-coincap", "workspace:packages/platform-sdk-coincap"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -640,6 +650,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-coingecko", "workspace:packages/platform-sdk-coingecko"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -728,6 +739,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-cryptocompare", "workspace:packages/platform-sdk-cryptocompare"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -815,6 +827,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-eth", "workspace:packages/platform-sdk-eth"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-app-eth", "npm:5.19.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.19.1"],
@@ -1137,6 +1150,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-lsk", "workspace:packages/platform-sdk-lsk"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.19.1"],
             ["@liskhq/lisk-client", "npm:2.3.1"],
@@ -1193,6 +1207,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-coincap", "workspace:packages/platform-sdk-coincap"],
             ["@arkecosystem/platform-sdk-coingecko", "workspace:packages/platform-sdk-coingecko"],
             ["@arkecosystem/platform-sdk-cryptocompare", "workspace:packages/platform-sdk-cryptocompare"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.0"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -1231,6 +1246,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-neo", "workspace:packages/platform-sdk-neo"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@cityofzion/neon-js", "npm:4.8.0"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.19.1"],
@@ -1316,6 +1332,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-btc", "workspace:packages/platform-sdk-btc"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-eth", "workspace:packages/platform-sdk-eth"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@arkecosystem/platform-sdk-markets", "workspace:packages/platform-sdk-markets"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
@@ -1504,6 +1521,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-xmr", "workspace:packages/platform-sdk-xmr"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.0"],
@@ -18747,6 +18765,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.0.5"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.1.1"],
+            ["type-fest", "npm:0.16.0"],
             ["typescript", "patch:typescript@npm%3A3.9.5#builtin<compat/typescript>::version=3.9.5&hash=c79188"],
             ["typescript-language-server", "npm:0.4.0"]
           ],

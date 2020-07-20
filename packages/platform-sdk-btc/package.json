@@ -30,6 +30,7 @@
 		"yup": "^0.29.1"
 	},
 	"devDependencies": {
+		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
 		"@ledgerhq/hw-transport-mocker": "^5.19.1",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^7.2.0",

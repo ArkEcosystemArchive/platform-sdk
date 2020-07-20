@@ -1,9 +1,9 @@
 import "jest-extended";
 
 import { Data } from "@arkecosystem/platform-sdk";
+import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { HttpClient } from "../test/stubs/client";
 import { PriceTracker } from "./index";
 
 const BASE_URL_COINCAP = "https://api.coincap.io/v2";
@@ -13,7 +13,7 @@ const currency = "USD";
 let subject: PriceTracker;
 
 beforeEach(() => {
-	subject = new PriceTracker(new HttpClient());
+	subject = new PriceTracker(new Request());
 
 	nock(BASE_URL_COINCAP).get("/assets").query(true).reply(200, require("../test/fixtures/assets.json"));
 

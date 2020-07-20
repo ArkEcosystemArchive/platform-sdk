@@ -4,12 +4,12 @@ import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
+import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
 import { Environment, Identifiers, Profile } from "../src";
 import storageData from "../test/fixtures/env-storage.json";
 import { identity } from "../test/fixtures/identity";
-import { HttpClient } from "../test/stubs/client";
 import { StubStorage } from "../test/stubs/storage";
 import { container } from "./container";
 import { DataRepository } from "./repositories/data-repository";
@@ -27,12 +27,12 @@ beforeAll(() => {
 		.reply(200, require("../test/fixtures/client/wallet.json"))
 		.persist();
 
-	container.set(Identifiers.HttpClient, new HttpClient());
+	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK, BTC, ETH });
 });
 
 beforeEach(async () => {
-	subject = new Environment({ coins: { ARK, BTC, ETH }, httpClient: new HttpClient(), storage: new StubStorage() });
+	subject = new Environment({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
 
 	await subject.boot();
 });
@@ -90,7 +90,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	 * Load data that the previous environment instance saved.
 	 */
 
-	const newEnv = new Environment({ coins: { ARK }, httpClient: new HttpClient(), storage: new StubStorage() });
+	const newEnv = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
 	await newEnv.boot();
 
 	const newProfile = newEnv.profiles().findById(profile.id());
@@ -104,7 +104,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 });
 
 it("should boot the environment from fixed data", async () => {
-	const env = new Environment({ coins: { ARK }, httpClient: new HttpClient(), storage: new StubStorage() });
+	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
 	await env.bootFromObject(storageData);
 
 	const newProfile = env.profiles().findById("b999d134-7a24-481e-a95d-bc47c543bfc9");

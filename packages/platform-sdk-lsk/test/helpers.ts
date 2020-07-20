@@ -1,12 +1,12 @@
 import { Coins } from "@arkecosystem/platform-sdk";
+import { Request } from "@arkecosystem/platform-sdk-http-got";
 
 import { manifest } from "../src/manifest";
 import { schema } from "../src/schema";
-import { HttpClient } from "./stubs/client";
 
 export const createConfig = (options?: object) => {
 	const config = new Coins.Config(
-		{ ...(options || { network: "testnet" }), ...{ httpClient: new HttpClient() } },
+		{ ...(options || { network: "testnet" }), ...{ httpClient: new Request() } },
 		schema,
 	);
 

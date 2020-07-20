@@ -34,9 +34,11 @@ export class Address implements Contracts.Address {
 			let response;
 
 			try {
-				response = await this.#config
-					.get<Contracts.HttpClient>("httpClient")
-					.get(`https://explorer.ark.io/api/wallets/${address}`);
+				response = (
+					await this.#config
+						.get<Contracts.HttpClient>("httpClient")
+						.get(`https://explorer.ark.io/api/wallets/${address}`)
+				).json();
 			} catch {
 				response = undefined;
 			}
