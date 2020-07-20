@@ -480,6 +480,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-http-axios@workspace:packages/platform-sdk-http-axios"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-http": "workspace:packages/platform-sdk-http"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -517,6 +518,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-http-bent@workspace:packages/platform-sdk-http-bent"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-http": "workspace:packages/platform-sdk-http"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/bent": 7.3.0
     "@types/eslint": ^7.2.0
@@ -555,6 +557,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-http-got@workspace:packages/platform-sdk-http-got"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-http": "workspace:packages/platform-sdk-http"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -593,6 +596,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-http-node-fetch@workspace:packages/platform-sdk-http-node-fetch"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-http": "workspace:packages/platform-sdk-http"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -621,6 +625,44 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^26.1.3
+    typedoc: ^0.17.8
+    typescript: ^3.9.7
+  languageName: unknown
+  linkType: soft
+
+"@arkecosystem/platform-sdk-http@workspace:packages/platform-sdk-http":
+  version: 0.0.0-use.local
+  resolution: "@arkecosystem/platform-sdk-http@workspace:packages/platform-sdk-http"
+  dependencies:
+    "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@sindresorhus/tsconfig": ^0.7.0
+    "@types/eslint": ^7.2.0
+    "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/fs-extra": 9.0.1
+    "@types/jest": ^26.0.5
+    "@types/node": ^14.0.23
+    "@types/node-fetch": 2.5.7
+    "@types/prettier": ^2.0.2
+    "@types/rimraf": ^3.0.0
+    "@typescript-eslint/eslint-plugin": ^3.6.1
+    "@typescript-eslint/parser": ^3.6.1
+    codecov: ^3.7.1
+    cross-env: ^7.0.2
+    eslint: ^7.5.0
+    eslint-config-prettier: ^6.11.0
+    eslint-plugin-jest: ^23.18.0
+    eslint-plugin-prettier: ^3.1.4
+    eslint-plugin-simple-import-sort: ^5.0.3
+    fs-extra: ^9.0.1
+    jest: ^26.1.0
+    jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.3
+    nock: ^13.0.2
+    npm-check-updates: ^7.0.2
+    prettier: ^2.0.5
+    rimraf: ^3.0.2
+    ts-jest: ^26.1.3
+    type-fest: ^0.16.0
     typedoc: ^0.17.8
     typescript: ^3.9.7
   languageName: unknown
@@ -16417,6 +16459,7 @@ __metadata:
     prettier: ^2.0.5
     rimraf: ^3.0.2
     ts-jest: ^26.1.1
+    type-fest: ^0.16.0
     typescript: ^3.9.5
     typescript-language-server: ^0.4.0
   languageName: unknown

@@ -1,5 +1,5 @@
 {
-	"name": "@arkecosystem/platform-sdk-http-bent",
+	"name": "@arkecosystem/platform-sdk-http",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"version": "0.9.159",
 	"contributors": [],
@@ -21,12 +21,10 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
-		"@arkecosystem/platform-sdk-http": "workspace:packages/platform-sdk-http",
-		"bent": "^7.3.7"
+		"type-fest": "^0.16.0"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
-		"@types/bent": "7.3.0",
 		"@types/eslint": "^7.2.0",
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/fs-extra": "9.0.1",
