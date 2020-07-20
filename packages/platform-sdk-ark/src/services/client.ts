@@ -112,7 +112,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
-		const { data, errors } = (await this.post("transactions", { transactions })).json();
+		const { data, errors } = await this.post("transactions", { transactions });
 
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
@@ -157,9 +157,7 @@ export class ClientService implements Contracts.ClientService {
 		return response.json();
 	}
 
-	private createMetaPagination(response): Contracts.MetaPagination {
-		const body = response.json();
-
+	private createMetaPagination(body): Contracts.MetaPagination {
 		return {
 			prev: body.meta.previous,
 			next: body.meta.next,
