@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
@@ -45,25 +46,10 @@ it("should have a data repository", async () => {
 });
 
 it("should have available networks", async () => {
-	const expected = [
-		{ coin: "ARK", network: "Mainnet", ticker: "ARK", symbol: "Ѧ" },
-		{ coin: "ARK", network: "Devnet", ticker: "DARK", symbol: "DѦ" },
-		{ coin: "BTC", network: "Livenet", ticker: "BTC", symbol: "Ƀ" },
-		{ coin: "BTC", network: "Testnet", ticker: "BTC", symbol: "Ƀ" },
-		{ coin: "ETH", network: "Mainnet", ticker: "ETH", symbol: "Ξ" },
-		{ coin: "ETH", network: "Ropsten", ticker: "ETH", symbol: "Ξ" },
-		{ coin: "ETH", network: "Rinkeby", ticker: "ETH", symbol: "Ξ" },
-		{ coin: "ETH", network: "Goerli", ticker: "ETH", symbol: "Ξ" },
-		{ coin: "ETH", network: "Kovan", ticker: "ETH", symbol: "Ξ" },
-	];
+	const coins: Record<string, Coins.CoinSpec> = { ARK, BTC, ETH };
 
-	const actual = subject.availableNetworks();
-
-	for (let i = 0; i < expected.length; i++) {
-		expect(actual[i].coin()).toEqual(expected[i].coin);
-		expect(actual[i].name()).toEqual(expected[i].network);
-		expect(actual[i].ticker()).toEqual(expected[i].ticker);
-		expect(actual[i].symbol()).toEqual(expected[i].symbol);
+	for (const network of subject.availableNetworks()) {
+		expect(network.toObject()).toEqual(coins[network.coin()].manifest.networks[network.id()]);
 	}
 });
 

@@ -1,14 +1,14 @@
 import { Validator, ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
+import { Coins } from "../../platform-sdk/dist";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
 import { Migrator } from "./migrator";
+import { NetworkData } from "./network";
 import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
 import { StorageFactory } from "./storage/factory";
-import { NetworkData } from "./network";
-import { Coins } from "../../platform-sdk/dist";
 
 export class Environment {
 	public constructor(options: EnvironmentOptions) {
