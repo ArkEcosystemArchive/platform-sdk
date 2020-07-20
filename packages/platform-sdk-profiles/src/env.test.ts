@@ -45,7 +45,7 @@ it("should have a data repository", async () => {
 });
 
 it("should have available networks", async () => {
-	expect(subject.availableNetworks()).toEqual([
+	const expected = [
 		{ coin: "ARK", network: "Mainnet", ticker: "ARK", symbol: "Ѧ" },
 		{ coin: "ARK", network: "Devnet", ticker: "DARK", symbol: "DѦ" },
 		{ coin: "BTC", network: "Livenet", ticker: "BTC", symbol: "Ƀ" },
@@ -55,7 +55,16 @@ it("should have available networks", async () => {
 		{ coin: "ETH", network: "Rinkeby", ticker: "ETH", symbol: "Ξ" },
 		{ coin: "ETH", network: "Goerli", ticker: "ETH", symbol: "Ξ" },
 		{ coin: "ETH", network: "Kovan", ticker: "ETH", symbol: "Ξ" },
-	]);
+	];
+
+	const actual = subject.availableNetworks();
+
+	for (let i = 0; i < expected.length; i++) {
+		expect(actual[i].coin()).toEqual(expected[i].coin);
+		expect(actual[i].name()).toEqual(expected[i].network);
+		expect(actual[i].ticker()).toEqual(expected[i].ticker);
+		expect(actual[i].symbol()).toEqual(expected[i].symbol);
+	}
 });
 
 it("should create a profile with data and persist it when instructed to do so", async () => {

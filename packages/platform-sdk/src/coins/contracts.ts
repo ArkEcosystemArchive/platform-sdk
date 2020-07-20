@@ -48,6 +48,7 @@ export interface CoinServices {
 
 export interface CoinNetwork {
 	id: string;
+	type: string;
 	name: string;
 	explorer: string;
 	currency: {
