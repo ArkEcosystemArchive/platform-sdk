@@ -37,6 +37,7 @@
 		"@arkecosystem/platform-sdk-ark": "workspace:packages/platform-sdk-ark",
 		"@arkecosystem/platform-sdk-btc": "workspace:packages/platform-sdk-btc",
 		"@arkecosystem/platform-sdk-eth": "workspace:packages/platform-sdk-eth",
+		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/async": "3.2.3",
 		"@types/dot-prop": "5.0.1",

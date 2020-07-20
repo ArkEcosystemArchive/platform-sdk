@@ -57,6 +57,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
@@ -100,6 +101,7 @@ __metadata:
     "@arkecosystem/ledger-transport": ^1.1.2
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-transport-mocker": ^5.19.1
     "@sindresorhus/tsconfig": ^0.7.0
@@ -146,6 +148,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-transport-mocker": ^5.19.1
     "@sindresorhus/tsconfig": ^0.7.0
@@ -189,6 +192,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-app-btc": ^5.19.1
     "@ledgerhq/hw-transport-mocker": ^5.19.1
@@ -232,6 +236,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-coincap@workspace:packages/platform-sdk-coincap"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
@@ -269,6 +274,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-coingecko@workspace:packages/platform-sdk-coingecko"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
@@ -353,6 +359,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-cryptocompare@workspace:packages/platform-sdk-cryptocompare"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
@@ -436,6 +443,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-app-eth": ^5.19.1
     "@ledgerhq/hw-transport-mocker": ^5.19.1
@@ -783,6 +791,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-transport-mocker": ^5.19.1
     "@liskhq/lisk-client": ^2.0
@@ -831,6 +840,7 @@ __metadata:
     "@arkecosystem/platform-sdk-coincap": "workspace:packages/platform-sdk-coincap"
     "@arkecosystem/platform-sdk-coingecko": "workspace:packages/platform-sdk-coingecko"
     "@arkecosystem/platform-sdk-cryptocompare": "workspace:packages/platform-sdk-cryptocompare"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -867,6 +877,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@cityofzion/neon-js": ^4.8.0
     "@ledgerhq/hw-transport-mocker": ^5.19.1
@@ -948,6 +959,7 @@ __metadata:
     "@arkecosystem/platform-sdk-btc": "workspace:packages/platform-sdk-btc"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-eth": "workspace:packages/platform-sdk-eth"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
     "@arkecosystem/platform-sdk-markets": "workspace:packages/platform-sdk-markets"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
@@ -1128,6 +1140,7 @@ __metadata:
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.0
