@@ -3,6 +3,7 @@ export const manifest = {
 	networks: {
 		mainnet: {
 			id: "mainnet",
+			type: "live",
 			name: "Mainnet",
 			explorer: "https://moneroblocks.info/",
 			currency: {
@@ -21,6 +22,7 @@ export const manifest = {
 		},
 		testnet: {
 			id: "testnet",
+			type: "test",
 			name: "Testnet",
 			explorer: "https://dexplorer.ark.io/",
 			currency: {

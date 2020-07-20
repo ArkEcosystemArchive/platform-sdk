@@ -3,6 +3,7 @@ export const manifest = {
 	networks: {
 		mainnet: {
 			id: "mainnet",
+			type: "live",
 			name: "Mainnet",
 			explorer: "https://neotracker.io/",
 			currency: {
@@ -42,6 +43,7 @@ export const manifest = {
 		},
 		testnet: {
 			id: "testnet",
+			type: "test",
 			name: "Testnet",
 			explorer: "https://neoscan-testnet.io/",
 			currency: {
