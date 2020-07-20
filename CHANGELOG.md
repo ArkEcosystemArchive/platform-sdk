@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.159 - 2020-07-20
+
+### Added
+
+-   Implement `NetworkData` (c8c1c96c, @faustbrian)
+-   Implement `MemoryStorage` (6e5712a7, @faustbrian)
+
 ## 0.9.157 - 2020-07-20
 
 ### Added
