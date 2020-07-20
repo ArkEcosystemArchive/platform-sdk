@@ -14,7 +14,7 @@ it("should have an id", () => {
 	expect(subject.id()).toBe("devnet");
 });
 
-it("should have an name", () => {
+it("should have a name", () => {
 	expect(subject.name()).toBe("Devnet");
 });
 
@@ -22,19 +22,19 @@ it("should have an explorer", () => {
 	expect(subject.explorer()).toBe("https://dexplorer.ark.io/");
 });
 
-it("should have an ticker", () => {
+it("should have a ticker", () => {
 	expect(subject.ticker()).toBe("DARK");
 });
 
-it("should have an symbol", () => {
+it("should have a symbol", () => {
 	expect(subject.symbol()).toBe("DѦ");
 });
 
-it("should have an isLive", () => {
+it("should determine if the network is a live environment", () => {
 	expect(subject.isLive()).toBeFalse();
 });
 
-it("should have an isTest", () => {
+it("should determine if the network is a test environment", () => {
 	expect(subject.isTest()).toBeTrue();
 });
 
