@@ -6,7 +6,7 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import nock from "nock";
 
 import { Environment, Identifiers, Profile } from "../src";
-import storageData from "../test/fixtures/env-storage";
+import storageData from "../test/fixtures/env-storage.json";
 import { identity } from "../test/fixtures/identity";
 import { HttpClient } from "../test/stubs/client";
 import { StubStorage } from "../test/stubs/storage";
