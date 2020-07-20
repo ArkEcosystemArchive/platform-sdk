@@ -1,5 +1,7 @@
-export interface HttpClient {
-	get(path: string, query?: object): Promise<Record<string, any>>;
+export type HttpClientResponse = Record<string, any>;
 
-	post(path: string, body: object, headers?: object);
+export interface HttpClient {
+	get(path: string, query?: object): Promise<HttpClientResponse>;
+
+	post(path: string, body: object, headers?: object): Promise<HttpClientResponse>;
 }
