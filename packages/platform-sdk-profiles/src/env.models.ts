@@ -17,7 +17,7 @@ export interface EnvironmentOptions {
 }
 
 export interface Storage {
-	all(): Promise<object>;
+	all(): Promise<Record<string, unknown>>;
 
 	get<T>(key: string): Promise<T | undefined>;
 
@@ -32,4 +32,9 @@ export interface Storage {
 	snapshot(): Promise<void>;
 
 	restore(): Promise<void>;
+}
+
+export interface StorageData {
+	data: object;
+	profiles: object;
 }

@@ -6,6 +6,7 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import nock from "nock";
 
 import { Environment, Identifiers, Profile } from "../src";
+import storageData from "../test/fixtures/env-storage";
 import { identity } from "../test/fixtures/identity";
 import { HttpClient } from "../test/stubs/client";
 import { StubStorage } from "../test/stubs/storage";
@@ -98,6 +99,20 @@ it("should create a profile with data and persist it when instructed to do so", 
 	await newEnv.boot();
 
 	const newProfile = newEnv.profiles().findById(profile.id());
+
+	expect(newProfile).toBeInstanceOf(Profile);
+	expect(newProfile.wallets().keys()).toHaveLength(1);
+	expect(newProfile.contacts().keys()).toHaveLength(1);
+	expect(newProfile.notifications().keys()).toHaveLength(1);
+	expect(newProfile.data().all()).toEqual({ key: "value" });
+	expect(newProfile.settings().all()).toEqual({ ADVANCED_MODE: "value" });
+});
+
+it("should boot the environment from fixed data", async () => {
+	const env = new Environment({ coins: { ARK }, httpClient: new HttpClient(), storage: new StubStorage() });
+	await env.bootFromObject(storageData);
+
+	const newProfile = env.profiles().findById("b999d134-7a24-481e-a95d-bc47c543bfc9");
 
 	expect(newProfile).toBeInstanceOf(Profile);
 	expect(newProfile.wallets().keys()).toHaveLength(1);

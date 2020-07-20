@@ -2,7 +2,7 @@ import { Validator, ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
 import { container } from "./container";
 import { Identifiers } from "./container.models";
-import { EnvironmentOptions, Storage, CoinList, CoinType } from "./env.models";
+import { CoinList, CoinType, EnvironmentOptions, Storage, StorageData } from "./env.models";
 import { Migrator } from "./migrator";
 import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
@@ -23,15 +23,27 @@ export class Environment {
 	 * @memberof Environment
 	 */
 	public async boot(): Promise<void> {
-		const { data, profiles } = await this.validateStorage();
+		const { data, profiles } = await container.get<Storage>(Identifiers.Storage).all();
 
-		if (data) {
-			this.data().fill(data);
-		}
+		const validated: StorageData = await this.validateStorage({ data, profiles });
 
-		if (profiles) {
-			await this.profiles().fill(profiles);
-		}
+		await this.restoreData(validated);
+	}
+
+	/**
+	 * Load the data from an object.
+	 *
+	 * This has to be manually called and should be used the same as "bootFromStorage"
+	 * with the exception of it not being used in production. This method should only
+	 * be used in testing environments where you want to use a fixed set of data.
+	 *
+	 * @returns {Promise<void>}
+	 * @memberof Environment
+	 */
+	public async bootFromObject({ data, profiles }: StorageData): Promise<void> {
+		const validated: StorageData = await this.validateStorage({ data, profiles });
+
+		await this.restoreData(validated);
 	}
 
 	/**
@@ -97,7 +109,7 @@ export class Environment {
 		container.set(Identifiers.Coins, options.coins);
 	}
 
-	private async validateStorage(): Promise<{ profiles; data }> {
+	private async validateStorage({ data, profiles }): Promise<StorageData> {
 		const mapRules = (map: object, rule: Function) =>
 			Object.keys(map).reduce((newMap, key) => ({ ...newMap, [key]: rule }), {});
 
@@ -174,9 +186,6 @@ export class Environment {
 			return object({ profiles: object(rules), data: object() });
 		});
 
-		// @ts-ignore
-		let { data, profiles } = await container.get<Storage>(Identifiers.Storage).all();
-
 		if (!data) {
 			data = {};
 		}
@@ -197,5 +206,15 @@ export class Environment {
 		}
 
 		return validated;
+	}
+
+	private async restoreData({ data, profiles }: StorageData): Promise<void> {
+		if (data) {
+			this.data().fill(data);
+		}
+
+		if (profiles) {
+			await this.profiles().fill(profiles);
+		}
 	}
 }
