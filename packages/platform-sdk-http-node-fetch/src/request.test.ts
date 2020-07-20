@@ -1,6 +1,6 @@
 import nock from "nock";
 
-import { HttpClient } from "./index";
+import { HttpClient } from "./request";
 
 let subject: HttpClient;
 
