@@ -1,11 +1,11 @@
 import "jest-extended";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
+import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
 import { ContactRepository, Identifiers, Profile, SettingRepository, WalletRepository } from "../src";
 import { identity } from "../test/fixtures/identity";
-import { HttpClient } from "../test/stubs/client";
 import { container } from "./container";
 import { DataRepository } from "./repositories/data-repository";
 
@@ -21,7 +21,7 @@ beforeAll(() => {
 		.reply(200, require("../test/fixtures/client/wallet.json"))
 		.persist();
 
-	container.set(Identifiers.HttpClient, new HttpClient());
+	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK });
 });
 
@@ -66,7 +66,7 @@ test("#toObject", () => {
 });
 
 test("#balancePerCoin", async () => {
-	container.set(Identifiers.HttpClient, new HttpClient());
+	container.set(Identifiers.HttpClient, new Request());
 
 	await subject.wallets().import(identity.mnemonic, "ARK", "devnet");
 

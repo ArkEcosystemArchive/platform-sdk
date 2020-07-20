@@ -1,6 +1,7 @@
 import "jest-extended";
 
-import { HttpClient } from "../test/stubs/client";
+import { Request } from "@arkecosystem/platform-sdk-http-got";
+
 import { PriceTracker } from "../test/stubs/tracker";
 import { MarketService } from "./index";
 
@@ -20,7 +21,7 @@ describe("MarketService", () => {
 	const currency = "USD";
 
 	describe.each(["cryptocompare", "coingecko", "coincap"])("%s", (adapter) => {
-		beforeEach(() => (subject = MarketService.make(adapter, new HttpClient())));
+		beforeEach(() => (subject = MarketService.make(adapter, new Request())));
 
 		it("should call #verifyToken on the adapter instance", async () => {
 			const spy = createSpyAdapter("verifyToken");

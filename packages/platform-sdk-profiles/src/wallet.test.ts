@@ -2,12 +2,12 @@ import "jest-extended";
 
 import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
+import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../test/fixtures/identity";
-import { HttpClient } from "../test/stubs/client";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Profile } from "./profile";
@@ -29,7 +29,7 @@ beforeEach(async () => {
 		.reply(200, require("../test/fixtures/client/wallet.json"))
 		.persist();
 
-	container.set(Identifiers.HttpClient, new HttpClient());
+	container.set(Identifiers.HttpClient, new Request());
 
 	subject = new Wallet(uuidv4(), new Profile("profile-id", "John Doe"));
 
