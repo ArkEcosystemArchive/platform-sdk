@@ -27,7 +27,7 @@ beforeAll(() => {
 		.reply(200, require("../test/fixtures/client/wallet.json"))
 		.persist();
 
-	container.set(Identifiers.Request, new Request());
+	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK, BTC, ETH });
 });
 
