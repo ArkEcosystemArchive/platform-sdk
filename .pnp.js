@@ -877,7 +877,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/fs-extra", "npm:9.0.1"],
             ["@types/jest", "npm:26.0.5"],
             ["@types/node", "npm:14.0.23"],
-            ["@types/node-fetch", "npm:2.5.7"],
             ["@types/prettier", "npm:2.0.2"],
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:5f8e8d5323d6ace1ffb81eee2c1b199d9e7754d13435f5d74c8b645b71783733c4972f4ab836613f916e841ba9f2b904847a436e099db76f905f549d929cf7bc#npm:3.6.1"],

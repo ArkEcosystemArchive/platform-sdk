@@ -1,20 +1,6 @@
-// import { Contracts } from "@arkecosystem/platform-sdk";
-// import bent from "bent";
-
-// export class HttpClient implements Contracts.HttpClient {
-// 	public async get(path: string, searchParams?: Record<string, any>): Promise<Contracts.HttpClientResponse> {
-// 		return bent("json")(searchParams ? `${path}?${new URLSearchParams(searchParams)}` : path);
-// 	}
-
-// 	public async post(path: string, body: object, headers = {}): Promise<Contracts.HttpClientResponse> {
-// 		// @ts-ignore
-// 		return (await bent("POST")(path, body, headers)).json();
-// 	}
-// }
-
 import { Contracts } from "@arkecosystem/platform-sdk";
 import { Request as BaseRequest, RequestOptions } from "@arkecosystem/platform-sdk-http";
-import got from "got";
+import bent from "bent";
 import { URLSearchParams } from "url";
 
 import { Response } from "./response";
@@ -25,8 +11,14 @@ export class Request extends BaseRequest implements Contracts.HttpClient {
 			...this._options,
 		};
 
+		url = url.replace(/^\/+/g, "");
+
 		if (data && data.query) {
 			options.searchParams = data.query;
+		}
+
+		if (options.searchParams) {
+			url = options.searchParams ? `${url}?${new URLSearchParams(options.searchParams)}` : url;
 		}
 
 		if (data && data.data) {
@@ -52,7 +44,15 @@ export class Request extends BaseRequest implements Contracts.HttpClient {
 		}
 
 		try {
-			return new Response(await got[method.toLowerCase()](url.replace(/^\/+/g, ""), options));
+			let request;
+
+			if (method === "GET") {
+				request = bent(method)(url);
+			} else {
+				request = bent(method)(url, options.json || options.body, options.headers);
+			}
+
+			return new Response(await request.json());
 		} catch (error) {
 			return new Response(error.response, error);
 		}

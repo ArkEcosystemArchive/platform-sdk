@@ -17,7 +17,7 @@
 
 import { Contracts } from "@arkecosystem/platform-sdk";
 import { Request as BaseRequest, RequestOptions } from "@arkecosystem/platform-sdk-http";
-import got from "got";
+import axios from "axios";
 import { URLSearchParams } from "url";
 
 import { Response } from "./response";
@@ -28,8 +28,10 @@ export class Request extends BaseRequest implements Contracts.HttpClient {
 			...this._options,
 		};
 
+		options.method = method;
+
 		if (data && data.query) {
-			options.searchParams = data.query;
+			options.params = data.query;
 		}
 
 		if (data && data.data) {
@@ -55,7 +57,7 @@ export class Request extends BaseRequest implements Contracts.HttpClient {
 		}
 
 		try {
-			return new Response(await got[method.toLowerCase()](url.replace(/^\/+/g, ""), options));
+			return new Response(await axios[method.toLowerCase()](url.replace(/^\/+/g, ""), options));
 		} catch (error) {
 			return new Response(error.response, error);
 		}

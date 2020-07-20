@@ -1,23 +1,6 @@
-// import { Contracts } from "@arkecosystem/platform-sdk";
-// import fetch from "node-fetch";
-
-// export class HttpClient implements Contracts.HttpClient {
-// 	public async get(path: string, searchParams?: Record<string, any>): Promise<Contracts.HttpClientResponse> {
-// 		const response = await fetch(searchParams ? `${path}?${new URLSearchParams(searchParams)}` : path);
-
-// 		return response.json();
-// 	}
-
-// 	public async post(path: string, body: object, headers = {}): Promise<Contracts.HttpClientResponse> {
-// 		const response = await fetch(path, { method: "POST", body: JSON.stringify(body), headers });
-
-// 		return response.json();
-// 	}
-// }
-
 import { Contracts } from "@arkecosystem/platform-sdk";
 import { Request as BaseRequest, RequestOptions } from "@arkecosystem/platform-sdk-http";
-import got from "got";
+import fetch from "node-fetch";
 import { URLSearchParams } from "url";
 
 import { Response } from "./response";
@@ -28,8 +11,14 @@ export class Request extends BaseRequest implements Contracts.HttpClient {
 			...this._options,
 		};
 
+		options.method = method.toUpperCase();
+
 		if (data && data.query) {
 			options.searchParams = data.query;
+		}
+
+		if (options.searchParams) {
+			url = options.searchParams ? `${url}?${new URLSearchParams(options.searchParams)}` : url;
 		}
 
 		if (data && data.data) {
@@ -55,7 +44,7 @@ export class Request extends BaseRequest implements Contracts.HttpClient {
 		}
 
 		try {
-			return new Response(await got[method.toLowerCase()](url.replace(/^\/+/g, ""), options));
+			return new Response(await fetch(url.replace(/^\/+/g, ""), options));
 		} catch (error) {
 			return new Response(error.response, error);
 		}
