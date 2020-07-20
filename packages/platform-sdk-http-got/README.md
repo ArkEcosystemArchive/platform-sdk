@@ -1,4 +1,4 @@
-# ARK Platform SDK - News
+# ARK Platform SDK - HTTP Got
 
 <p align="center">
     <img src="./banner.png" />
@@ -13,12 +13,12 @@ This package is currently still under early development and subject to breaking 
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-news
+yarn add @arkecosystem/platform-sdk-http-got
 ```
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-news.netlify.app/).
+Documentation can be found [here](https://platform-sdk-http-got.netlify.app/).
 
 ## Security
 
