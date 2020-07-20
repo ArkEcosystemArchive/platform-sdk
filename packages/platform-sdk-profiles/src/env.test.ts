@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
@@ -45,17 +46,11 @@ it("should have a data repository", async () => {
 });
 
 it("should have available networks", async () => {
-	expect(subject.availableNetworks()).toEqual([
-		{ coin: "ARK", network: "Mainnet", ticker: "ARK", symbol: "Ѧ" },
-		{ coin: "ARK", network: "Devnet", ticker: "DARK", symbol: "DѦ" },
-		{ coin: "BTC", network: "Livenet", ticker: "BTC", symbol: "Ƀ" },
-		{ coin: "BTC", network: "Testnet", ticker: "BTC", symbol: "Ƀ" },
-		{ coin: "ETH", network: "Mainnet", ticker: "ETH", symbol: "Ξ" },
-		{ coin: "ETH", network: "Ropsten", ticker: "ETH", symbol: "Ξ" },
-		{ coin: "ETH", network: "Rinkeby", ticker: "ETH", symbol: "Ξ" },
-		{ coin: "ETH", network: "Goerli", ticker: "ETH", symbol: "Ξ" },
-		{ coin: "ETH", network: "Kovan", ticker: "ETH", symbol: "Ξ" },
-	]);
+	const coins: Record<string, Coins.CoinSpec> = { ARK, BTC, ETH };
+
+	for (const network of subject.availableNetworks()) {
+		expect(network.toObject()).toEqual(coins[network.coin()].manifest.networks[network.id()]);
+	}
 });
 
 it("should create a profile with data and persist it when instructed to do so", async () => {
