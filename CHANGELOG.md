@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.157 - 2020-07-20
+
+### Added
+
+-   Flag networks as `live` or `test` (3c0e08ba, @faustbrian)
+-   Implement `platform-sdk-http-axios` (0cc5a1e3, @faustbrian)
+-   Implement `platform-sdk-http-got` (17e9c102, @faustbrian)
+-   Implement `platform-sdk-http-node-fetch` (8756f605, @faustbrian)
+-   Implement `platform-sdk-http-bent` (e6d07f50, @faustbrian)
+
 ## 0.9.152 - 2020-07-20
 
 ### Added
