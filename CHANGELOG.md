@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.152 - 2020-07-20
+
+### Added
+
+-   Implement `Environment#bootFromObject` (031c6008, @faustbrian)
+
+### Fixed
+
+-   Validate data in `SettingRepository#fill` (65332ff5, @faustbrian)
+
+### Changed
+
+-   Migrate from `eosjs-ecc` to `elliptic` (6d96fe9b, @faustbrian)
+
 ## 0.9.149 - 2020-07-15
 
 ### Changed
