@@ -3,6 +3,7 @@ export const manifest = {
 	networks: {
 		mainnet: {
 			id: "mainnet",
+			type: "live",
 			name: "Mainnet",
 			explorer: "https://etherscan.io/",
 			currency: {
@@ -22,6 +23,7 @@ export const manifest = {
 		},
 		ropsten: {
 			id: "ropsten",
+			type: "test",
 			name: "Ropsten",
 			explorer: "https://ropsten.etherscan.io/",
 			currency: {
@@ -41,6 +43,7 @@ export const manifest = {
 		},
 		rinkeby: {
 			id: "rinkeby",
+			type: "test",
 			name: "Rinkeby",
 			explorer: "https://rinkeby.etherscan.io/",
 			currency: {
@@ -60,6 +63,7 @@ export const manifest = {
 		},
 		goerli: {
 			id: "goerli",
+			type: "test",
 			name: "Goerli",
 			explorer: "https://goerli.etherscan.io/",
 			currency: {
@@ -79,6 +83,7 @@ export const manifest = {
 		},
 		kovan: {
 			id: "kovan",
+			type: "test",
 			name: "Kovan",
 			explorer: "https://kovan.etherscan.io/",
 			currency: {

@@ -3,6 +3,7 @@ export const manifest = {
 	networks: {
 		"eos.mainnet": {
 			id: "eos.mainnet",
+			type: "live",
 			name: "EOS Mainnet",
 			explorer: "https://eos.bloks.io/",
 			currency: {
@@ -23,6 +24,7 @@ export const manifest = {
 		},
 		"eos.testnet": {
 			id: "eos.testnet",
+			type: "test",
 			name: "EOS Testnet",
 			explorer: "https://eos-test.bloks.io/",
 			currency: {
@@ -43,6 +45,7 @@ export const manifest = {
 		},
 		"telos.mainnet": {
 			id: "telos.mainnet",
+			type: "live",
 			name: "TELOS Mainnet",
 			explorer: "https://telos.bloks.io/",
 			currency: {
@@ -68,6 +71,7 @@ export const manifest = {
 		},
 		"telos.testnet": {
 			id: "telos.testnet",
+			type: "test",
 			name: "TELOS Testnet",
 			explorer: "https://telos-test.bloks.io/",
 			currency: {
@@ -93,6 +97,7 @@ export const manifest = {
 		},
 		"wax.mainnet": {
 			id: "wax.mainnet",
+			type: "live",
 			name: "WAX Mainnet",
 			explorer: "https://wax.bloks.io/",
 			currency: {
@@ -113,6 +118,7 @@ export const manifest = {
 		},
 		"worbli.mainnet": {
 			id: "worbli.mainnet",
+			type: "live",
 			name: "WORBLI Mainnet",
 			explorer: "https://worbli.bloks.io/",
 			currency: {
@@ -133,6 +139,7 @@ export const manifest = {
 		},
 		"worbli.testnet": {
 			id: "worbli.testnet",
+			type: "test",
 			name: "WORBLI Testnet",
 			explorer: "https://worbli-test.bloks.io/",
 			currency: {
@@ -153,6 +160,7 @@ export const manifest = {
 		},
 		"meetone.mainnet": {
 			id: "meetone.mainnet",
+			type: "live",
 			name: "MEETONE Mainnet",
 			explorer: "https://meetone.bloks.io/",
 			currency: {
@@ -173,6 +181,7 @@ export const manifest = {
 		},
 		"bos.mainnet": {
 			id: "bos.mainnet",
+			type: "live",
 			name: "BOS Mainnet",
 			explorer: "https://bos.bloks.io/",
 			currency: {

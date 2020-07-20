@@ -13,13 +13,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   Implement `Environment#bootFromObject` (031c6008, @faustbrian)
 
-### Fixed
-
--   Validate data in `SettingRepository#fill` (65332ff5, @faustbrian)
-
 ### Changed
 
 -   Migrate from `eosjs-ecc` to `elliptic` (6d96fe9b, @faustbrian)
+
+### Fixed
+
+-   Validate data in `SettingRepository#fill` (65332ff5, @faustbrian)
 
 ## 0.9.149 - 2020-07-15
 

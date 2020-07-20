@@ -3,6 +3,7 @@ export const manifest = {
 	networks: {
 		livenet: {
 			id: "livenet",
+			type: "live",
 			name: "Livenet",
 			explorer: "https://blockstream.info/",
 			currency: {
@@ -21,6 +22,7 @@ export const manifest = {
 		},
 		testnet: {
 			id: "testnet",
+			type: "test",
 			name: "Testnet",
 			explorer: "https://blockstream.info/testnet/",
 			currency: {
