@@ -30,11 +30,8 @@ export enum WalletSetting {
 }
 
 export enum WalletData {
-	ExchangeRate = "EXCHANGE_RATE",
-}
-
-export enum WalletAttribute {
 	Balance = "BALANCE",
+	ExchangeRate = "EXCHANGE_RATE",
 	Sequence = "SEQUENCE",
 }
 

@@ -12,7 +12,7 @@ import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Profile } from "./profile";
 import { Wallet } from "./wallet";
-import { WalletData, WalletAttribute } from "./wallet.models";
+import { WalletData } from "./wallet.models";
 
 let subject: Wallet;
 
@@ -82,7 +82,7 @@ test("#balance", () => {
 });
 
 test("#fiat", () => {
-	subject.data().set(WalletAttribute.Balance, 5);
+	subject.data().set(WalletData.Balance, 5);
 	subject.data().set(WalletData.ExchangeRate, 5);
 
 	expect(subject.fiat()).toBeInstanceOf(BigNumber);
