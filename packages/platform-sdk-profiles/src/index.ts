@@ -2,6 +2,7 @@ export * from "./avatar";
 export * from "./contact";
 export * from "./env";
 export * from "./migrator";
+export * from "./network";
 export * from "./profile";
 export * from "./wallet";
 
