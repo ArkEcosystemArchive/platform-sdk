@@ -114,7 +114,10 @@ profile.wallets().keys();
 profile.wallets().values();
 
 // Create a new wallet from a mnemonic, coin implementation and network
-await profile.wallets().import("this is a top secret passphrase", ARK, "devnet");
+await profile.wallets().importByMnemonic("this is a top secret passphrase", ARK, "devnet");
+
+// Create a new wallet from an address, coin implementation and network
+await profile.wallets().importByAddress("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib", ARK, "devnet");
 
 // Find the wallet by the given ID
 profile.wallets().findById("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
