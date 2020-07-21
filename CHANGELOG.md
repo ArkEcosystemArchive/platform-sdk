@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.161 - 2020-07-21
+
+### Added
+
+-   Import wallet by address (7bcc9ea2, @faustbrian)
+
+### Changed
+
+-   Implement fluent interface for HTTP clients (d510108f, @faustbrian)
+
 ## 0.9.159 - 2020-07-20
 
 ### Added
