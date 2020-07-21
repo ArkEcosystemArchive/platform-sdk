@@ -45,6 +45,12 @@ export class Wallet {
 		return this;
 	}
 
+	/**
+	 * @TODO
+	 *
+	 * Think about how to remove this method. We need async methods instead of a
+	 * constructor because of the network requests and different ways to import wallets.
+	 */
 	public async setIdentity(mnemonic: string): Promise<Wallet> {
 		this.#address = await this.#coin.identity().address().fromMnemonic(mnemonic);
 		this.#publicKey = await this.#coin.identity().publicKey().fromMnemonic(mnemonic);
@@ -52,6 +58,12 @@ export class Wallet {
 		return this.setAddress(this.#address);
 	}
 
+	/**
+	 * @TODO
+	 *
+	 * Think about how to remove this method. We need async methods instead of a
+	 * constructor because of the network requests and different ways to import wallets.
+	 */
 	public async setAddress(address: string): Promise<Wallet> {
 		const isValidAddress: boolean = await this.coin().identity().address().validate(address);
 
@@ -61,23 +73,7 @@ export class Wallet {
 
 		this.#address = address;
 
-		try {
-			this.#wallet = await this.#coin.client().wallet(address);
-
-			if (!this.#publicKey) {
-				this.#publicKey = this.#wallet.publicKey();
-			}
-
-			this.data().set(WalletAttribute.Balance, this.#wallet.balance());
-			this.data().set(WalletAttribute.Sequence, this.#wallet.nonce());
-		} catch {
-			/**
-			 * TODO: decide what to do if the wallet couldn't be found
-			 *
-			 * A missing wallet could mean that the wallet is legitimate
-			 * but has no transactions or that the address is wrong.
-			 */
-		}
+		await this.syncIdentity();
 
 		this.setAvatar(Avatar.make(this.address()));
 
@@ -263,6 +259,34 @@ export class Wallet {
 	public transaction(): Contracts.TransactionService {
 		return this.#coin.transaction();
 	}
+
+	/**
+	 * These methods serve as helpers to keep the wallet data updated.
+	 */
+
+	public async syncIdentity(): Promise<void> {
+		try {
+			this.#wallet = await this.#coin.client().wallet(this.address());
+
+			if (!this.#publicKey) {
+				this.#publicKey = this.#wallet.publicKey();
+			}
+
+			this.data().set(WalletAttribute.Balance, this.#wallet.balance());
+			this.data().set(WalletAttribute.Sequence, this.#wallet.nonce());
+		} catch {
+			/**
+			 * TODO: decide what to do if the wallet couldn't be found
+			 *
+			 * A missing wallet could mean that the wallet is legitimate
+			 * but has no transactions or that the address is wrong.
+			 */
+		}
+	}
+
+	/**
+	 * These methods serve as helpers to interact with the underlying coin.
+	 */
 
 	public async transactions(
 		query: Contracts.ClientTransactionsInput,
