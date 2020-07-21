@@ -62,6 +62,20 @@ test("#importByMnemonic", async () => {
 	expect(subject.keys()).toHaveLength(1);
 });
 
+test("#importByAddress", async () => {
+	subject.flush();
+
+	expect(subject.keys()).toHaveLength(0);
+
+	await subject.importByAddress(identity.address, "ARK", "devnet");
+
+	expect(subject.keys()).toHaveLength(1);
+
+	await expect(subject.importByAddress(identity.address, "ARK", "devnet")).rejects.toThrowError("already exists");
+
+	expect(subject.keys()).toHaveLength(1);
+});
+
 test("#generate", async () => {
 	subject.flush();
 
