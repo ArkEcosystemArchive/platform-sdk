@@ -8,8 +8,7 @@ import { Profile } from "./profile";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { createTransactionDataCollection } from "./transaction.helpers";
-import { WalletData, WalletSetting, WalletStruct } from "./wallet.models";
-import { WalletData, WalletFlag } from "./wallet.models";
+import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
