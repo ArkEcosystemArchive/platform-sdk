@@ -130,6 +130,16 @@ export class Wallet {
 		return BigNumber.make(value);
 	}
 
+	public fiat(): BigNumber {
+		const value: string | undefined = this.data().get(WalletData.ExchangeRate);
+
+		if (value === undefined) {
+			return BigNumber.ZERO;
+		}
+
+		return this.balance().times(value);
+	}
+
 	public nonce(): BigNumber {
 		const value: string | undefined = this.data().get(WalletAttribute.Sequence);
 
