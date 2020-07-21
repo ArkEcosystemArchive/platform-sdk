@@ -12,6 +12,7 @@ import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Profile } from "./profile";
 import { Wallet } from "./wallet";
+import { WalletData } from "./wallet.models";
 
 let subject: Wallet;
 
@@ -76,7 +77,16 @@ test("#publicKey", () => {
 });
 
 test("#balance", () => {
-	expect(subject.balance()).toEqual(BigNumber.make("55827093444556"));
+	expect(subject.balance()).toBeInstanceOf(BigNumber);
+	expect(subject.balance().toString()).toBe("55827093444556");
+});
+
+test("#fiat", () => {
+	subject.data().set(WalletData.Balance, 5);
+	subject.data().set(WalletData.ExchangeRate, 5);
+
+	expect(subject.fiat()).toBeInstanceOf(BigNumber);
+	expect(subject.fiat().toString()).toBe("25");
 });
 
 test("#nonce", () => {

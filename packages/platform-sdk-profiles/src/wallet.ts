@@ -8,8 +8,7 @@ import { Profile } from "./profile";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { createTransactionDataCollection } from "./transaction.helpers";
-import { WalletData, WalletSetting, WalletStruct } from "./wallet.models";
-import { WalletAttribute, WalletFlag } from "./wallet.models";
+import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
@@ -121,7 +120,7 @@ export class Wallet {
 	}
 
 	public balance(): BigNumber {
-		const value: string | undefined = this.data().get(WalletAttribute.Balance);
+		const value: string | undefined = this.data().get(WalletData.Balance);
 
 		if (value === undefined) {
 			return BigNumber.ZERO;
@@ -130,8 +129,18 @@ export class Wallet {
 		return BigNumber.make(value);
 	}
 
+	public fiat(): BigNumber {
+		const value: string | undefined = this.data().get(WalletData.ExchangeRate);
+
+		if (value === undefined) {
+			return BigNumber.ZERO;
+		}
+
+		return this.balance().times(value);
+	}
+
 	public nonce(): BigNumber {
-		const value: string | undefined = this.data().get(WalletAttribute.Sequence);
+		const value: string | undefined = this.data().get(WalletData.Sequence);
 
 		if (value === undefined) {
 			return BigNumber.ZERO;
@@ -272,8 +281,8 @@ export class Wallet {
 				this.#publicKey = this.#wallet.publicKey();
 			}
 
-			this.data().set(WalletAttribute.Balance, this.#wallet.balance());
-			this.data().set(WalletAttribute.Sequence, this.#wallet.nonce());
+			this.data().set(WalletData.Balance, this.#wallet.balance());
+			this.data().set(WalletData.Sequence, this.#wallet.nonce());
 		} catch {
 			/**
 			 * TODO: decide what to do if the wallet couldn't be found
