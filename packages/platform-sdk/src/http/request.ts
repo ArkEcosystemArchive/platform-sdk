@@ -53,6 +53,12 @@ export abstract class Request implements HttpClient {
 		return this;
 	}
 
+	public withCacheStore(cache: object): HttpClient {
+		this._options.cache = cache;
+
+		return this;
+	}
+
 	public timeout(seconds: number): HttpClient {
 		this._options.timeout = seconds;
 

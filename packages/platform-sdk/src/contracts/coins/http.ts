@@ -19,6 +19,8 @@ export interface HttpClient {
 
 	withHeaders(headers: object): HttpClient;
 
+	withCacheStore(cache: object): HttpClient;
+
 	timeout(seconds: number): HttpClient;
 
 	retry(times: number, sleep?: number): HttpClient;
