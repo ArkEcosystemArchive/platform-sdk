@@ -64,6 +64,10 @@ export class Wallet {
 		try {
 			this.#wallet = await this.#coin.client().wallet(address);
 
+			if (!this.#publicKey) {
+				this.#publicKey = this.#wallet.publicKey();
+			}
+
 			this.data().set(WalletAttribute.Balance, this.#wallet.balance());
 			this.data().set(WalletAttribute.Sequence, this.#wallet.nonce());
 		} catch {

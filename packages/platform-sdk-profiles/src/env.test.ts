@@ -64,7 +64,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	profile.contacts().create("Jane Doe");
 
 	// Create a Wallet
-	await profile.wallets().import(identity.mnemonic, "ARK", "devnet");
+	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "devnet");
 
 	// Create a Notification
 	profile.notifications().push({

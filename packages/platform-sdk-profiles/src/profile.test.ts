@@ -68,7 +68,7 @@ test("#toObject", () => {
 test("#balancePerCoin", async () => {
 	container.set(Identifiers.HttpClient, new Request());
 
-	await subject.wallets().import(identity.mnemonic, "ARK", "devnet");
+	await subject.wallets().importByMnemonic(identity.mnemonic, "ARK", "devnet");
 
 	expect(subject.balancePerCoin()).toEqual({
 		DARK: {

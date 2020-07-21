@@ -34,7 +34,7 @@ beforeEach(async () => {
 
 	subject = new WalletRepository(new Profile("profile-id", "John Doe"));
 
-	await subject.import(identity.mnemonic, "ARK", "devnet");
+	await subject.importByMnemonic(identity.mnemonic, "ARK", "devnet");
 });
 
 beforeAll(() => nock.disableNetConnect());
@@ -48,16 +48,30 @@ test("#allByCoin", () => {
 	expect(subject.allByCoin().DARK).toBeObject();
 });
 
-test("#import", async () => {
+test("#importByMnemonic", async () => {
 	subject.flush();
 
 	expect(subject.keys()).toHaveLength(0);
 
-	await subject.import(identity.mnemonic, "ARK", "devnet");
+	await subject.importByMnemonic(identity.mnemonic, "ARK", "devnet");
 
 	expect(subject.keys()).toHaveLength(1);
 
-	await expect(subject.import(identity.mnemonic, "ARK", "devnet")).rejects.toThrowError("already exists");
+	await expect(subject.importByMnemonic(identity.mnemonic, "ARK", "devnet")).rejects.toThrowError("already exists");
+
+	expect(subject.keys()).toHaveLength(1);
+});
+
+test("#importByAddress", async () => {
+	subject.flush();
+
+	expect(subject.keys()).toHaveLength(0);
+
+	await subject.importByAddress(identity.address, "ARK", "devnet");
+
+	expect(subject.keys()).toHaveLength(1);
+
+	await expect(subject.importByAddress(identity.address, "ARK", "devnet")).rejects.toThrowError("already exists");
 
 	expect(subject.keys()).toHaveLength(1);
 });
@@ -91,9 +105,9 @@ describe("#sortBy", () => {
 	beforeEach(async () => {
 		subject.flush();
 
-		walletARK = await subject.import("a", "ARK", "devnet");
-		walletBTC = await subject.import("b", "BTC", "testnet");
-		walletETH = await subject.import("c", "ETH", "ropsten");
+		walletARK = await subject.importByMnemonic("a", "ARK", "devnet");
+		walletBTC = await subject.importByMnemonic("b", "BTC", "testnet");
+		walletETH = await subject.importByMnemonic("c", "ETH", "ropsten");
 	});
 
 	it("should sort by coin", async () => {
