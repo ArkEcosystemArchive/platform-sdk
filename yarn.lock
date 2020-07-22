@@ -13,41 +13,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-magistrate-crypto@npm:^2.6.42":
-  version: 2.6.42
-  resolution: "@arkecosystem/core-magistrate-crypto@npm:2.6.42"
+"@arkecosystem/core-magistrate-crypto@npm:^2.6.49":
+  version: 2.6.49
+  resolution: "@arkecosystem/core-magistrate-crypto@npm:2.6.49"
   dependencies:
-    "@arkecosystem/crypto": ^2.6.42
+    "@arkecosystem/crypto": ^2.6.49
     bytebuffer: ^5.0.1
-  checksum: 2/a98234db24dcbc96a4e5991684021399d7184b5d1a4b584046e7688e739a8606d6c798789a873f0b4ccc6aed370d8c639461da1ba58b92335cce8aa0daf4c972
-  languageName: node
-  linkType: hard
-
-"@arkecosystem/crypto@npm:^2.6.42":
-  version: 2.6.42
-  resolution: "@arkecosystem/crypto@npm:2.6.42"
-  dependencies:
-    "@arkecosystem/utils": ^1.1
-    "@types/bytebuffer": ^5.0.40
-    ajv: ^6.10.2
-    ajv-keywords: ^3.4.1
-    bcrypto: ^5.2.0
-    bip32: ^2.0.3
-    bip39: ^3.0.2
-    browserify-aes: ^1.2.0
-    bstring: ^0.3.9
-    buffer-xor: ^2.0.2
-    bytebuffer: ^5.0.1
-    dayjs: ^1.8.15
-    deepmerge: ^4.0.0
-    fast-memoize: ^2.5.1
-    ipaddr.js: ^1.9.0
-    lodash.get: ^4.4.2
-    lodash.set: ^4.3.2
-    lodash.sumby: ^4.6.0
-    tiny-glob: ^0.2.6
-    wif: ^2.0.6
-  checksum: 2/c0eaee29224b81e76dc34a433b2469043acfa10bc327165f2f7145cbab3136bb5ec1454637c38868c756b4d2e1c39a7fea99574bb4fb3e1fe6c3511046ae729a
+  checksum: 2/b36a6a7e45caaa415fb5670f498ac350d2fba6322c58808ab94e8707e3a20b4fb47d6f473a399fd08d409bd4be0e8b2ed2347a100bbb7e3ee6a1e943e9c38cd8
   languageName: node
   linkType: hard
 
@@ -133,7 +105,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-ark@workspace:packages/platform-sdk-ark"
   dependencies:
-    "@arkecosystem/core-magistrate-crypto": ^2.6.42
+    "@arkecosystem/core-magistrate-crypto": ^2.6.49
     "@arkecosystem/crypto": ^2.6.49
     "@arkecosystem/ledger-transport": ^1.1.2
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
