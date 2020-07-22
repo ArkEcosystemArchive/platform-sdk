@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-json-rpc",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.166",
+	"version": "0.9.167",
 	"contributors": [],
 	"license": "MIT",
 	"files": [

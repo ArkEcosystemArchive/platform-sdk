@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.167 - 2020-07-22
+
+### Fixed
+
+-   **[ARK]** Use a random default host for the peer service if none is configured (f3ddb68d, @faustbrian)
+
 ## 0.9.166 - 2020-07-22
 
 ### Changed
