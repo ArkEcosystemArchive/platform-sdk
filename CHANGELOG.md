@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.168 - 2020-07-22
+
+### Added
+
+-   Initial implementation of `platform-sdk-http-ky` (44ce288a, @faustbrian)
+
 ## 0.9.167 - 2020-07-22
 
 ### Fixed
