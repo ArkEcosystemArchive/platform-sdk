@@ -20,7 +20,7 @@ export class PeerService implements Contracts.PeerService {
 		try {
 			peer = config.get<string>("peer");
 		} catch {
-			peer = `${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`;
+			peer = `${Arr.randomElement(network.hosts)}/api`;
 		}
 
 		let seeds: string[] = [];
