@@ -1,4 +1,4 @@
-# ARK Platform SDK - HTTP Got
+# ARK Platform SDK - HTTP Ky
 
 <p align="center">
     <img src="./banner.png" />
@@ -13,12 +13,12 @@ This package is currently still under early development and subject to breaking 
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-http-got
+yarn add @arkecosystem/platform-sdk-http-ky
 ```
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-http-got.netlify.app/).
+Documentation can be found [here](https://platform-sdk-http-ky.netlify.app/).
 
 ## Security
 
