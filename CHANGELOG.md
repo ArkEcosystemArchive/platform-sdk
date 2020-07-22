@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.166 - 2020-07-22
+
+### Changed
+
+-   Update ARK hosts (8f1f7cc5, @faustbrian)
+
 ## 0.9.165 - 2020-07-22
 
 ### Added
