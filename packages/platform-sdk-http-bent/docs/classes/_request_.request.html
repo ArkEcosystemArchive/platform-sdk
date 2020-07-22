@@ -125,6 +125,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_request_.request.html#retry" class="tsd-kind-icon">retry</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="_request_.request.html#send" class="tsd-kind-icon">send</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_request_.request.html#timeout" class="tsd-kind-icon">timeout</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_request_.request.html#withcachestore" class="tsd-kind-icon">with<wbr>Cache<wbr>Store</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_request_.request.html#withheaders" class="tsd-kind-icon">with<wbr>Headers</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_request_.request.html#withoptions" class="tsd-kind-icon">with<wbr>Options</a></li>
 							</ul>
@@ -359,7 +360,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_request_.request.html">Request</a>.<a href="_request_.request.html#delete">delete</a></p>
 								<ul>
-									<li>Defined in platform-sdk/dist/http/request.d.ts:24</li>
+									<li>Defined in platform-sdk/dist/http/request.d.ts:25</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -386,7 +387,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_request_.request.html">Request</a>.<a href="_request_.request.html#get">get</a></p>
 								<ul>
-									<li>Defined in platform-sdk/dist/http/request.d.ts:19</li>
+									<li>Defined in platform-sdk/dist/http/request.d.ts:20</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -413,7 +414,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_request_.request.html">Request</a>.<a href="_request_.request.html#head">head</a></p>
 								<ul>
-									<li>Defined in platform-sdk/dist/http/request.d.ts:20</li>
+									<li>Defined in platform-sdk/dist/http/request.d.ts:21</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -440,7 +441,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_request_.request.html">Request</a>.<a href="_request_.request.html#patch">patch</a></p>
 								<ul>
-									<li>Defined in platform-sdk/dist/http/request.d.ts:22</li>
+									<li>Defined in platform-sdk/dist/http/request.d.ts:23</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -467,7 +468,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_request_.request.html">Request</a>.<a href="_request_.request.html#post">post</a></p>
 								<ul>
-									<li>Defined in platform-sdk/dist/http/request.d.ts:21</li>
+									<li>Defined in platform-sdk/dist/http/request.d.ts:22</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -494,7 +495,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_request_.request.html">Request</a>.<a href="_request_.request.html#put">put</a></p>
 								<ul>
-									<li>Defined in platform-sdk/dist/http/request.d.ts:23</li>
+									<li>Defined in platform-sdk/dist/http/request.d.ts:24</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -521,7 +522,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_request_.request.html">Request</a>.<a href="_request_.request.html#retry">retry</a></p>
 								<ul>
-									<li>Defined in platform-sdk/dist/http/request.d.ts:17</li>
+									<li>Defined in platform-sdk/dist/http/request.d.ts:18</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -548,7 +549,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Request.send</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/65c43d27/packages/platform-sdk-http-bent/src/request.ts#L8">platform-sdk-http-bent/src/request.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/ab2ad991/packages/platform-sdk-http-bent/src/request.ts#L8">platform-sdk-http-bent/src/request.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -578,13 +579,37 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_request_.request.html">Request</a>.<a href="_request_.request.html#timeout">timeout</a></p>
 								<ul>
-									<li>Defined in platform-sdk/dist/http/request.d.ts:16</li>
+									<li>Defined in platform-sdk/dist/http/request.d.ts:17</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>seconds: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HttpClient</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="withcachestore" class="tsd-anchor"></a>
+					<h3>with<wbr>Cache<wbr>Store</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Cache<wbr>Store<span class="tsd-signature-symbol">(</span>cache<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HttpClient</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_request_.request.html">Request</a>.<a href="_request_.request.html#withcachestore">withCacheStore</a></p>
+								<ul>
+									<li>Defined in platform-sdk/dist/http/request.d.ts:16</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>cache: <span class="tsd-signature-type">object</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HttpClient</span></h4>
@@ -626,7 +651,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_request_.request.html">Request</a>.<a href="_request_.request.html#withoptions">withOptions</a></p>
 								<ul>
-									<li>Defined in platform-sdk/dist/http/request.d.ts:18</li>
+									<li>Defined in platform-sdk/dist/http/request.d.ts:19</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -727,6 +752,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_request_.request.html#timeout" class="tsd-kind-icon">timeout</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_request_.request.html#withcachestore" class="tsd-kind-icon">with<wbr>Cache<wbr>Store</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_request_.request.html#withheaders" class="tsd-kind-icon">with<wbr>Headers</a>
