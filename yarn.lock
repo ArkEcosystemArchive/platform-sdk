@@ -51,6 +51,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@arkecosystem/crypto@npm:^2.6.49":
+  version: 2.6.49
+  resolution: "@arkecosystem/crypto@npm:2.6.49"
+  dependencies:
+    "@arkecosystem/utils": ^1.1
+    "@types/bytebuffer": ^5.0.40
+    ajv: ^6.10.2
+    ajv-keywords: ^3.4.1
+    bcrypto: ^5.2.0
+    bip32: ^2.0.3
+    bip39: ^3.0.2
+    browserify-aes: ^1.2.0
+    bstring: ^0.3.9
+    buffer-xor: ^2.0.2
+    bytebuffer: ^5.0.1
+    dayjs: ^1.8.15
+    deepmerge: ^4.0.0
+    fast-memoize: ^2.5.1
+    ipaddr.js: ^1.9.0
+    lodash.get: ^4.4.2
+    lodash.set: ^4.3.2
+    lodash.sumby: ^4.6.0
+    tiny-glob: ^0.2.6
+    wif: ^2.0.6
+  checksum: 2/1b673251e1ff3e5f63a12d7faa3f5e8afdc5d1a26463748eb7185b25c465b1a55dc173d9161875d8eec3a29b5b4bd2ceed68abeb405d5ae11c95ca737b1e5a75
+  languageName: node
+  linkType: hard
+
 "@arkecosystem/ledger-transport@npm:^1.1.2":
   version: 1.1.2
   resolution: "@arkecosystem/ledger-transport@npm:1.1.2"
@@ -106,7 +134,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-ark@workspace:packages/platform-sdk-ark"
   dependencies:
     "@arkecosystem/core-magistrate-crypto": ^2.6.42
-    "@arkecosystem/crypto": ^2.6.42
+    "@arkecosystem/crypto": ^2.6.49
     "@arkecosystem/ledger-transport": ^1.1.2
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"

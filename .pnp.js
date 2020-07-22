@@ -369,6 +369,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["wif", "npm:2.0.6"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:2.6.49", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-2.6.49-95fbf59fe6-2.zip/node_modules/@arkecosystem/crypto/",
+          "packageDependencies": [
+            ["@arkecosystem/crypto", "npm:2.6.49"],
+            ["@arkecosystem/utils", "npm:1.1.8"],
+            ["@types/bytebuffer", "npm:5.0.40"],
+            ["ajv", "npm:6.12.2"],
+            ["ajv-keywords", "virtual:82d93b6bcc7fa2f706975ac718fd33b0406844413675b9a407a8eb4ebfe7d0ab66c7e4359f86f58e17f87287c78a63c17de790919949c903005f8387cae99dba#npm:3.4.1"],
+            ["bcrypto", "npm:5.2.0"],
+            ["bip32", "npm:2.0.5"],
+            ["bip39", "npm:3.0.2"],
+            ["browserify-aes", "npm:1.2.0"],
+            ["bstring", "npm:0.3.9"],
+            ["buffer-xor", "npm:2.0.2"],
+            ["bytebuffer", "npm:5.0.1"],
+            ["dayjs", "npm:1.8.25"],
+            ["deepmerge", "npm:4.2.2"],
+            ["fast-memoize", "npm:2.5.2"],
+            ["ipaddr.js", "npm:1.9.1"],
+            ["lodash.get", "npm:4.4.2"],
+            ["lodash.set", "npm:4.3.2"],
+            ["lodash.sumby", "npm:4.6.0"],
+            ["tiny-glob", "npm:0.2.6"],
+            ["wif", "npm:2.0.6"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@arkecosystem/ledger-transport", [
@@ -480,7 +507,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
             ["@arkecosystem/core-magistrate-crypto", "npm:2.6.42"],
-            ["@arkecosystem/crypto", "npm:2.6.42"],
+            ["@arkecosystem/crypto", "npm:2.6.49"],
             ["@arkecosystem/ledger-transport", "npm:1.1.2"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
