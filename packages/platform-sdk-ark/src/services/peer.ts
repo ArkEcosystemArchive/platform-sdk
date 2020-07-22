@@ -1,4 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import isUrl from "is-url-superb";
 import orderBy from "lodash.orderby";
 import semver from "semver";
@@ -13,7 +14,14 @@ export class PeerService implements Contracts.PeerService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<PeerService> {
-		const { httpClient, network, peer } = config.all();
+		const { httpClient, network } = config.all();
+
+		let peer: string;
+		try {
+			peer = config.get<string>("peer");
+		} catch {
+			peer = `${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`;
+		}
 
 		let seeds: string[] = [];
 
