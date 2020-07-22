@@ -23,7 +23,7 @@ export class DateTime {
 	readonly #instance: dayjs.Dayjs;
 	readonly #locale: string | undefined;
 
-	private constructor(value?: DateTimeLike, locale?: string) {
+	private constructor(value?: DateTimeLike, locale?: any) {
 		this.#instance = this.toUTC(value);
 		this.#locale = locale;
 
