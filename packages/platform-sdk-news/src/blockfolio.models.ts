@@ -11,12 +11,6 @@ export interface BlockfolioSignal {
 
 export interface BlockfolioResponse {
 	data: BlockfolioSignal[];
-	links: {
-		first: string | null;
-		last: string | null;
-		prev: string | null;
-		next: string | null;
-	};
 	meta: {
 		current_page: number;
 		from: number;
