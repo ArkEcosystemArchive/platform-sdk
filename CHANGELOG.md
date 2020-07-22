@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.165 - 2020-07-22
+
+### Added
+
+-   Implement `Request#withCacheStore` (b1e1ea31, @faustbrian)
+-   Implement `Wallet#fiat` for fiat balance (62ed1d11, @faustbrian)
+-   Implement blockfolio signals (1947fd05, @faustbrian)
+
+### Fixed
+
+-   Export `NetworkData` (eed60eec, @luciorubeens)
+
 ## 0.9.161 - 2020-07-21
 
 ### Added
