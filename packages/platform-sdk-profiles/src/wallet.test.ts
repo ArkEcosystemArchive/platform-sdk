@@ -22,6 +22,8 @@ beforeEach(async () => {
 	nock(/.+/)
 		.get("/api/node/configuration")
 		.reply(200, require("../test/fixtures/client/configuration.json"))
+		.get("/api/peers")
+		.reply(200, require("../test/fixtures/client/peers.json"))
 		.get("/api/node/configuration/crypto")
 		.reply(200, require("../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
@@ -49,14 +51,7 @@ test("#network", () => {
 		crypto: { slip44: 111 },
 		currency: { symbol: "DѦ", ticker: "DARK" },
 		explorer: "https://dexplorer.ark.io/",
-		hosts: [
-			"https://dexplorer.ark.io",
-			"http://167.114.29.51:4003",
-			"http://167.114.29.52:4003",
-			"http://167.114.29.53:4003",
-			"http://167.114.29.54:4003",
-			"http://167.114.29.55:4003",
-		],
+		hosts: ["https://dwallets.ark.io"],
 		hostsMultiSignature: [],
 		id: "devnet",
 		name: "Devnet",
@@ -123,14 +118,7 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 					ticker: "DARK",
 				},
 				explorer: "https://dexplorer.ark.io/",
-				hosts: [
-					"https://dexplorer.ark.io",
-					"http://167.114.29.51:4003",
-					"http://167.114.29.52:4003",
-					"http://167.114.29.53:4003",
-					"http://167.114.29.54:4003",
-					"http://167.114.29.55:4003",
-				],
+				hosts: ["https://dwallets.ark.io"],
 				hostsMultiSignature: [],
 				id: "devnet",
 				type: "test",

@@ -23,6 +23,8 @@ beforeEach(async () => {
 	nock(/.+/)
 		.get("/api/node/configuration")
 		.reply(200, require("../../test/fixtures/client/configuration.json"))
+		.get("/api/peers")
+		.reply(200, require("../../test/fixtures/client/peers.json"))
 		.get("/api/node/configuration/crypto")
 		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")

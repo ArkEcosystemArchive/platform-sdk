@@ -1,0 +1,1304 @@
+{
+	"meta": {
+		"count": 100,
+		"pageCount": 2,
+		"totalCount": 115,
+		"next": "/peers?page=2&limit=100",
+		"previous": null,
+		"self": "/peers?page=1&limit=100",
+		"first": "/peers?page=1&limit=100",
+		"last": "/peers?page=2&limit=100"
+	},
+	"data": [
+		{
+			"ip": "51.89.73.41",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 13
+		},
+		{
+			"ip": "51.83.74.13",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-wallet-api": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 13
+		},
+		{
+			"ip": "37.59.70.165",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670252,
+			"latency": 14
+		},
+		{
+			"ip": "51.89.73.38",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 14
+		},
+		{
+			"ip": "51.89.73.45",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 14
+		},
+		{
+			"ip": "51.89.73.33",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 15
+		},
+		{
+			"ip": "51.89.73.39",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 16
+		},
+		{
+			"ip": "51.89.73.44",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 17
+		},
+		{
+			"ip": "82.165.71.28",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 18
+		},
+		{
+			"ip": "51.89.73.42",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 19
+		},
+		{
+			"ip": "51.89.73.36",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 19
+		},
+		{
+			"ip": "85.235.64.248",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 19
+		},
+		{
+			"ip": "142.93.231.13",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 19
+		},
+		{
+			"ip": "51.89.73.37",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 23
+		},
+		{
+			"ip": "51.89.73.46",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 24
+		},
+		{
+			"ip": "51.89.73.49",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 25
+		},
+		{
+			"ip": "51.89.73.40",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 25
+		},
+		{
+			"ip": "51.89.73.48",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 25
+		},
+		{
+			"ip": "51.158.71.253",
+			"port": 4002,
+			"ports": {
+				"@deadlock-delegate/core-stats": -1,
+				"@arkecosystem/core-api": -1,
+				"@arkecosystem/core-wallet-api": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 26
+		},
+		{
+			"ip": "51.89.73.47",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 26
+		},
+		{
+			"ip": "37.97.194.211",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-wallet-api": -1,
+				"@arkecosystem/core-api": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 27
+		},
+		{
+			"ip": "51.89.73.50",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 27
+		},
+		{
+			"ip": "51.89.73.35",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 27
+		},
+		{
+			"ip": "95.179.235.167",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 28
+		},
+		{
+			"ip": "51.89.73.51",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 30
+		},
+		{
+			"ip": "51.89.73.43",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670249,
+			"latency": 30
+		},
+		{
+			"ip": "51.89.73.34",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 31
+		},
+		{
+			"ip": "78.47.147.125",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 32
+		},
+		{
+			"ip": "167.99.92.224",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@alessiodf/universal-delegate-monitor-server": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 32
+		},
+		{
+			"ip": "178.62.254.56",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 33
+		},
+		{
+			"ip": "213.32.9.98",
+			"port": 4002,
+			"ports": {},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 33
+		},
+		{
+			"ip": "51.75.141.160",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 37
+		},
+		{
+			"ip": "130.185.251.34",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 39
+		},
+		{
+			"ip": "51.89.73.32",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 41
+		},
+		{
+			"ip": "145.239.93.176",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 44
+		},
+		{
+			"ip": "88.198.151.84",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 45
+		},
+		{
+			"ip": "78.47.5.128",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 55
+		},
+		{
+			"ip": "116.203.190.17",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 60
+		},
+		{
+			"ip": "95.217.8.214",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 68
+		},
+		{
+			"ip": "78.47.37.116",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670252,
+			"latency": 69
+		},
+		{
+			"ip": "159.69.1.146",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 70
+		},
+		{
+			"ip": "80.211.177.153",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 74
+		},
+		{
+			"ip": "80.211.65.198",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 75
+		},
+		{
+			"ip": "185.187.154.34",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 75
+		},
+		{
+			"ip": "185.16.61.97",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 82
+		},
+		{
+			"ip": "167.114.43.33",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 93
+		},
+		{
+			"ip": "138.197.79.32",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": -1
+			},
+			"version": "2.6.25",
+			"height": 4670253,
+			"latency": 107
+		},
+		{
+			"ip": "209.250.251.125",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 108
+		},
+		{
+			"ip": "167.114.29.34",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 108
+		},
+		{
+			"ip": "142.44.253.192",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 109
+		},
+		{
+			"ip": "167.114.29.59",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 110
+		},
+		{
+			"ip": "167.114.29.44",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670252,
+			"latency": 110
+		},
+		{
+			"ip": "167.114.29.42",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 110
+		},
+		{
+			"ip": "167.114.43.37",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 111
+		},
+		{
+			"ip": "34.69.252.81",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 115
+		},
+		{
+			"ip": "35.225.236.217",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 116
+		},
+		{
+			"ip": "167.114.43.35",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 132
+		},
+		{
+			"ip": "94.177.218.138",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 138
+		},
+		{
+			"ip": "167.114.43.39",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 138
+		},
+		{
+			"ip": "45.77.99.36",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 139
+		},
+		{
+			"ip": "167.114.43.43",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670252,
+			"latency": 139
+		},
+		{
+			"ip": "167.114.29.33",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670250,
+			"latency": 168
+		},
+		{
+			"ip": "167.114.43.38",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670250,
+			"latency": 179
+		},
+		{
+			"ip": "198.23.214.56",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670252,
+			"latency": 179
+		},
+		{
+			"ip": "167.114.43.46",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670252,
+			"latency": 207
+		},
+		{
+			"ip": "167.114.29.41",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670252,
+			"latency": 219
+		},
+		{
+			"ip": "167.114.43.47",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 245
+		},
+		{
+			"ip": "167.114.29.39",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670252,
+			"latency": 281
+		},
+		{
+			"ip": "167.114.29.36",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670252,
+			"latency": 288
+		},
+		{
+			"ip": "167.114.29.55",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670251,
+			"latency": 398
+		},
+		{
+			"ip": "141.155.116.208",
+			"port": 4002,
+			"ports": {},
+			"version": "2.6.0-next.11",
+			"height": 4422859,
+			"latency": 520
+		},
+		{
+			"ip": "167.114.43.34",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1744
+		},
+		{
+			"ip": "173.230.133.235",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.42069",
+			"height": 4670253,
+			"latency": 1745
+		},
+		{
+			"ip": "69.2.60.10",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-webhooks": -1
+			},
+			"version": "2.6.25",
+			"height": 4670253,
+			"latency": 1746
+		},
+		{
+			"ip": "167.114.43.49",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1747
+		},
+		{
+			"ip": "155.138.245.71",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003
+			},
+			"version": "2.6.25",
+			"height": 4670253,
+			"latency": 1747
+		},
+		{
+			"ip": "167.114.29.35",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1747
+		},
+		{
+			"ip": "167.114.29.46",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1747
+		},
+		{
+			"ip": "167.114.29.56",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1747
+		},
+		{
+			"ip": "167.114.29.50",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1747
+		},
+		{
+			"ip": "51.143.21.5",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-api": -1,
+				"@arkecosystem/core-wallet-api": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1748
+		},
+		{
+			"ip": "167.114.43.36",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1748
+		},
+		{
+			"ip": "167.114.29.48",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1748
+		},
+		{
+			"ip": "167.114.43.50",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1748
+		},
+		{
+			"ip": "167.114.29.53",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1748
+		},
+		{
+			"ip": "167.114.29.51",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670252,
+			"latency": 1748
+		},
+		{
+			"ip": "167.114.43.52",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1749
+		},
+		{
+			"ip": "167.114.43.44",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1749
+		},
+		{
+			"ip": "167.114.29.40",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1749
+		},
+		{
+			"ip": "167.114.29.47",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1749
+		},
+		{
+			"ip": "167.114.29.61",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670252,
+			"latency": 1749
+		},
+		{
+			"ip": "167.114.29.49",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1749
+		},
+		{
+			"ip": "167.114.43.45",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1749
+		},
+		{
+			"ip": "51.158.164.99",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1749
+		},
+		{
+			"ip": "209.50.61.104",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1749
+		},
+		{
+			"ip": "167.114.43.54",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1750
+		},
+		{
+			"ip": "165.22.243.63",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-wallet-api": -1,
+				"@arkecosystem/core-api": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1750
+		},
+		{
+			"ip": "167.114.43.42",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-wallet-api": 4040,
+				"@arkecosystem/core-api": 4003
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670252,
+			"latency": 1750
+		},
+		{
+			"ip": "167.114.29.52",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1750
+		},
+		{
+			"ip": "167.114.29.38",
+			"port": 4002,
+			"ports": {
+				"@arkecosystem/core-exchange-json-rpc": -1,
+				"@arkecosystem/core-webhooks": -1,
+				"@arkecosystem/core-api": 4003,
+				"@arkecosystem/core-wallet-api": 4040
+			},
+			"version": "2.6.12-next.15",
+			"height": 4670253,
+			"latency": 1750
+		}
+	]
+}
