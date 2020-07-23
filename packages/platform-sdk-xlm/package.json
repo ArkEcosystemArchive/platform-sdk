@@ -24,7 +24,6 @@
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@ledgerhq/hw-app-str": "^5.19.1",
-		"sodium-native": "^3.2.0",
 		"stellar-hd-wallet": "^0.0.10",
 		"stellar-sdk": "^5.0.4",
 		"yup": "^0.29.1"
@@ -39,7 +38,6 @@
 		"@types/node": "^14.0.24",
 		"@types/prettier": "^2.0.2",
 		"@types/rimraf": "^3.0.0",
-		"@types/sodium-native": "2.3.5",
 		"@typescript-eslint/eslint-plugin": "^3.7.0",
 		"@typescript-eslint/parser": "^3.7.0",
 		"codecov": "^3.7.2",
