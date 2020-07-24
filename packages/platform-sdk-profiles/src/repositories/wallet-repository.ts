@@ -112,7 +112,7 @@ export class WalletRepository {
 	public findByCoinWithNetwork(coin: string, network: string): Wallet[] {
 		return this.values().filter(
 			(wallet: Wallet) =>
-				wallet.coin().manifest().get<string>("name") === coin || wallet.network().id === network,
+				wallet.coin().manifest().get<string>("name") === coin && wallet.network().id === network,
 		);
 	}
 
