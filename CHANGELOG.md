@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.172 - 2020-07-24
+
+### Fixed
+
+-   Modify contact instance instead of object (56cf84be, @faustbrian)
+
 ## 0.9.171 - 2020-07-24
 
 ### Changed
