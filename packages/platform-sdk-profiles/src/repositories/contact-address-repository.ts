@@ -1,17 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { Contact } from "../contact";
 import { ContactAddress } from "../contact-address";
-import { Profile } from "../profile";
-import { Wallet } from "../wallet";
+import { ContactAddressInput } from "../contact-address.models";
 import { DataRepository } from "./data-repository";
-
-interface ContactAddressInput {
-	coin: string;
-	network: string;
-	name: string;
-	address: string;
-}
+import { Profile } from "../profile";
 
 export class ContactAddressRepository {
 	#data: DataRepository;

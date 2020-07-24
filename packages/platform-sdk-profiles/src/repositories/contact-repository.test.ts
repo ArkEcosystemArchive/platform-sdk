@@ -62,12 +62,12 @@ test("ContactRepository#find", () => {
 	expect(subject.findById(contact.id())).toBeObject();
 });
 
-test("ContactRepository#update", () => {
-	expect(() => subject.update("invalid", { name: "Jane Doe" })).toThrowError("Failed to find");
+test("ContactRepository#update", async () => {
+	await expect(subject.update("invalid", { name: "Jane Doe" })).rejects.toThrowError("Failed to find");
 
 	const contact = subject.create(name);
 
-	subject.update(contact.id(), { name: "Jane Doe" });
+	await subject.update(contact.id(), { name: "Jane Doe" });
 
 	expect(subject.findById(contact.id())).not.toEqual(contact);
 });
