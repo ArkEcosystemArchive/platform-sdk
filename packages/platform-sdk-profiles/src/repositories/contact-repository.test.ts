@@ -69,7 +69,7 @@ test("ContactRepository#update", async () => {
 
 	await subject.update(contact.id(), { name: "Jane Doe" });
 
-	expect(subject.findById(contact.id())).not.toEqual(contact);
+	expect(subject.findById(contact.id()).name()).toEqual("Jane Doe");
 });
 
 test("ContactRepository#forget", () => {

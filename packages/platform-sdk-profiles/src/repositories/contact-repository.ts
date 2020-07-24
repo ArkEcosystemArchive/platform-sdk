@@ -2,9 +2,9 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Contact } from "../contact";
 import { ContactAddress } from "../contact-address";
+import { ContactAddressInput } from "../contact-address.models";
 import { Profile } from "../profile";
 import { DataRepository } from "./data-repository";
-import { ContactAddressInput } from "../contact-address.models";
 
 export class ContactRepository {
 	#data: DataRepository;
