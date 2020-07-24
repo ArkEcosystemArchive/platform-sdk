@@ -4,6 +4,7 @@ import { Contact } from "../contact";
 import { ContactAddress } from "../contact-address";
 import { Profile } from "../profile";
 import { DataRepository } from "./data-repository";
+import { ContactAddressInput } from "../contact-address.models";
 
 export class ContactRepository {
 	#data: DataRepository;
@@ -56,7 +57,7 @@ export class ContactRepository {
 		return contact;
 	}
 
-	public async update(id: string, data: Record<string, unknown>): Promise<void> {
+	public async update(id: string, data: { name?: string; addresses?: ContactAddressInput[] }): Promise<void> {
 		const contact = this.findById(id);
 
 		if (data.name) {
@@ -64,7 +65,7 @@ export class ContactRepository {
 		}
 
 		if (data.addresses) {
-			await contact.setAddresses(data.addresses as any);
+			await contact.setAddresses(data.addresses);
 		}
 
 		this.#data.set(id, contact);

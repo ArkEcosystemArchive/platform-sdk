@@ -1,6 +1,6 @@
 export interface ContactAddressInput {
 	coin: string;
 	network: string;
-	name: string;
+	name?: string;
 	address: string;
 }
