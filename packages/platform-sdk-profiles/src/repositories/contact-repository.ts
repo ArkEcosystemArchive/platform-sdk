@@ -56,8 +56,18 @@ export class ContactRepository {
 		return contact;
 	}
 
-	public update(id: string, data: object): void {
-		this.#data.set(id, { ...this.findById(id), ...data });
+	public async update(id: string, data: Record<string, unknown>): Promise<void> {
+		const contact = this.findById(id);
+
+		if (data.name) {
+			contact.setName(name);
+		}
+
+		if (data.addresses) {
+			await contact.setAddresses(data.addresses as any);
+		}
+
+		this.#data.set(id, contact);
 	}
 
 	public forget(id: string): void {
