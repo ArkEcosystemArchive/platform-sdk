@@ -63,7 +63,7 @@ test("ContactRepository#find", () => {
 });
 
 test("ContactRepository#update", async () => {
-	expect(() => subject.update("invalid", { name: "Jane Doe" })).toThrowError("Failed to find");
+	await expect(subject.update("invalid", { name: "Jane Doe" })).rejects.toThrowError("Failed to find");
 
 	const contact = subject.create(name);
 
