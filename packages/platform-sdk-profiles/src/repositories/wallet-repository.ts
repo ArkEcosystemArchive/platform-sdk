@@ -52,7 +52,7 @@ export class WalletRepository {
 		const id: string = uuidv4();
 		const wallet: Wallet = new Wallet(id, this.#profile);
 
-		await wallet.setCoin(container.get<Coins.CoinSpec>(Identifiers.Coins)[coin.toUpperCase()], network);
+		await wallet.setCoin(coin, network);
 		await wallet.setIdentity(mnemonic);
 
 		return this.storeWallet(id, wallet);
@@ -62,7 +62,7 @@ export class WalletRepository {
 		const id: string = uuidv4();
 		const wallet: Wallet = new Wallet(id, this.#profile);
 
-		await wallet.setCoin(container.get<Coins.CoinSpec>(Identifiers.Coins)[coin.toUpperCase()], network);
+		await wallet.setCoin(coin, network);
 		await wallet.setAddress(address);
 
 		return this.storeWallet(id, wallet);
@@ -77,7 +77,7 @@ export class WalletRepository {
 	public async restore({ id, coin, coinConfig, network, address }): Promise<Wallet> {
 		const wallet: Wallet = new Wallet(id, this.#profile);
 
-		await wallet.setCoin(container.get<Coins.CoinSpec>(Identifiers.Coins)[coin], network);
+		await wallet.setCoin(coin, network);
 		await wallet.setAddress(address);
 
 		for (const [key, value] of Object.entries(coinConfig)) {
