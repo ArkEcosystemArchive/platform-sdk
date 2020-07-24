@@ -61,7 +61,7 @@ export class ContactRepository {
 		const contact = this.findById(id);
 
 		if (data.name) {
-			contact.setName(name);
+			contact.setName(data.name);
 		}
 
 		if (data.addresses) {
