@@ -36,10 +36,7 @@ describe("PluginRegistry", () => {
 				.query(true)
 				.reply(200, require("../test/fixtures/show.json"));
 
-			const result = await subject.findById(486);
-
-			expect(result).toBeObject();
-			expect(result.data).toBeArray();
+			await expect(subject.findById(486)).resolves.toBeObject();
 		});
 	});
 });

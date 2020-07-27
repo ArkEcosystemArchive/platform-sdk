@@ -60,8 +60,9 @@ test("#toObject", () => {
 		id: "uuid",
 		name: "John Doe",
 		contacts: {},
-		notifications: {},
 		data: {},
+		notifications: {},
+		plugins: {},
 		settings: {},
 		wallets: {},
 	});
