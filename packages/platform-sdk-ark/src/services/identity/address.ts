@@ -42,7 +42,7 @@ export class Address implements Contracts.Address {
 					throw new Error("This address exists on the NEO Mainnet.");
 				}
 			} catch {
-				return true;
+				//
 			}
 		}
 
