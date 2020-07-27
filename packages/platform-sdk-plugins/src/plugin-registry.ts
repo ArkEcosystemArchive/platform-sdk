@@ -1,8 +1,8 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
-import { RegistryResponse } from "./registry.models";
+import { RegistryResponse } from "./plugin-registry.models";
 
-export class Registry {
+export class PluginRegistry {
 	readonly #httpClient: Contracts.HttpClient;
 
 	public constructor(httpClient: Contracts.HttpClient) {

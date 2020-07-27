@@ -8,16 +8,18 @@ import { ProfileSetting, ProfileStruct } from "./profile.models";
 import { ContactRepository } from "./repositories/contact-repository";
 import { DataRepository } from "./repositories/data-repository";
 import { NotificationRepository } from "./repositories/notification-repository";
+import { PluginRepository } from "./repositories/plugin-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
 import { Wallet } from "./wallet";
 
 export class Profile {
 	#contactRepository!: ContactRepository;
-	#walletRepository!: WalletRepository;
 	#dataRepository!: DataRepository;
 	#notificationRepository!: NotificationRepository;
+	#pluginRepository!: PluginRepository;
 	#settingRepository!: SettingRepository;
+	#walletRepository!: WalletRepository;
 
 	#id!: string;
 	#name!: string;
@@ -26,12 +28,12 @@ export class Profile {
 	public constructor(id: string, name: string) {
 		this.#id = id;
 		this.#name = name;
-		this.#avatar = Avatar.make(name);
-		this.#walletRepository = new WalletRepository(this);
 		this.#contactRepository = new ContactRepository(this);
-		this.#notificationRepository = new NotificationRepository();
 		this.#dataRepository = new DataRepository();
+		this.#notificationRepository = new NotificationRepository();
+		this.#pluginRepository = new PluginRepository();
 		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
+		this.#walletRepository = new WalletRepository(this);
 	}
 
 	public id(): string {
@@ -43,21 +45,19 @@ export class Profile {
 	}
 
 	public avatar(): string {
-		return this.#avatar;
+		const avatarFromSettings: string | undefined = this.settings().get(ProfileSetting.Avatar);
+
+		if (avatarFromSettings) {
+			return avatarFromSettings;
+		}
+
+		return Avatar.make(this.#id);
 	}
 
 	public balance(): BigNumber {
 		return this.wallets()
 			.values()
 			.reduce((total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()), BigNumber.ZERO);
-	}
-
-	public wallets(): WalletRepository {
-		return this.#walletRepository;
-	}
-
-	public notifications(): NotificationRepository {
-		return this.#notificationRepository;
 	}
 
 	public contacts(): ContactRepository {
@@ -68,19 +68,32 @@ export class Profile {
 		return this.#dataRepository;
 	}
 
+	public notifications(): NotificationRepository {
+		return this.#notificationRepository;
+	}
+
+	public plugins(): PluginRepository {
+		return this.#pluginRepository;
+	}
+
 	public settings(): SettingRepository {
 		return this.#settingRepository;
+	}
+
+	public wallets(): WalletRepository {
+		return this.#walletRepository;
 	}
 
 	public toObject(): ProfileStruct {
 		return {
 			id: this.id(),
 			name: this.name(),
-			wallets: this.wallets().toObject(),
 			contacts: this.contacts().toObject(),
-			notifications: this.notifications().all(),
 			data: this.data().all(),
+			notifications: this.notifications().all(),
+			plugins: this.plugins().all(),
 			settings: this.settings().all(),
+			wallets: this.wallets().toObject(),
 		};
 	}
 

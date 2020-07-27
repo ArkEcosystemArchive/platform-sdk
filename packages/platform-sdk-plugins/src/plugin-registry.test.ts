@@ -3,17 +3,17 @@ import "jest-extended";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { Registry } from "./registry";
+import { PluginRegistry } from "./plugin-registry";
 
-let subject: Registry;
+let subject: PluginRegistry;
 
 beforeAll(() => nock.disableNetConnect());
 
-beforeEach(() => (subject = new Registry(new Request())));
+beforeEach(() => (subject = new PluginRegistry(new Request())));
 
 afterEach(() => nock.cleanAll());
 
-describe("Registry", () => {
+describe("PluginRegistry", () => {
 	describe("#all", () => {
 		it("should list all plugins", async () => {
 			nock("https://marketsquare.io")
