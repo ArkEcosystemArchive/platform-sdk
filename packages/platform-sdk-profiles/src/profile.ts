@@ -51,7 +51,7 @@ export class Profile {
 			return avatarFromSettings;
 		}
 
-		return Avatar.make(this.#id);
+		return Avatar.make(this.#name);
 	}
 
 	public balance(): BigNumber {

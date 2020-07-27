@@ -150,11 +150,11 @@ export class Wallet {
 	public avatar(): string {
 		const value: string | undefined = this.data().get(WalletSetting.Avatar);
 
-		if (value === undefined) {
-			return this.#avatar;
+		if (value) {
+			return value;
 		}
 
-		return value;
+		return this.#avatar;
 	}
 
 	public data(): DataRepository {
