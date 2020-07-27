@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Contact } from "../contact";
 import { ContactAddress } from "../contact-address";
+import { ContactAddressInput } from "../contact-address.models";
 import { Profile } from "../profile";
 import { DataRepository } from "./data-repository";
 
@@ -56,8 +57,18 @@ export class ContactRepository {
 		return contact;
 	}
 
-	public update(id: string, data: object): void {
-		this.#data.set(id, { ...this.findById(id), ...data });
+	public async update(id: string, data: { name?: string; addresses?: ContactAddressInput[] }): Promise<void> {
+		const contact = this.findById(id);
+
+		if (data.name) {
+			contact.setName(data.name);
+		}
+
+		if (data.addresses) {
+			await contact.setAddresses(data.addresses);
+		}
+
+		this.#data.set(id, contact);
 	}
 
 	public forget(id: string): void {

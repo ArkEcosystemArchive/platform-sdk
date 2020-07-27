@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.173 - 2020-07-24
+
+### Changed
+
+-   Detach contacts from wallets (e20d67c2, @faustbrian)
+
+## 0.9.172 - 2020-07-24
+
+### Fixed
+
+-   Modify contact instance instead of object (56cf84be, @faustbrian)
+
+## 0.9.171 - 2020-07-24
+
+### Changed
+
+-   Remove `sodium-native` dependency (7900eaf9, @faustbrian)
+
+### Fixed
+
+-   Use `&&` for `findByCoinWithNetwork` filter (435b1210, @faustbrian)
+
 ## 0.9.169 - 2020-07-22
 
 ### Changed

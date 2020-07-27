@@ -33,10 +33,11 @@ beforeEach(async () => {
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
+	container.set(Identifiers.Coins, { ARK });
 
 	subject = new Wallet(uuidv4(), new Profile("profile-id", "John Doe"));
 
-	await subject.setCoin(ARK, "devnet");
+	await subject.setCoin("ARK", "devnet");
 	await subject.setIdentity(identity.mnemonic);
 });
 

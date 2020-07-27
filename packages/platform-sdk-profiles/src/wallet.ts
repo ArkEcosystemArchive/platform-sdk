@@ -3,6 +3,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Avatar } from "./avatar";
 import { container } from "./container";
+import { makeCoin } from "./container.helpers";
 import { Identifiers } from "./container.models";
 import { Profile } from "./profile";
 import { DataRepository } from "./repositories/data-repository";
@@ -35,11 +36,8 @@ export class Wallet {
 	 * These methods allow to switch out the underlying implementation of certain things like the coin.
 	 */
 
-	public async setCoin(coin: Coins.CoinSpec, network: string): Promise<Wallet> {
-		this.#coin = await Coins.CoinFactory.make(coin, {
-			network,
-			httpClient: container.get(Identifiers.HttpClient),
-		});
+	public async setCoin(coin: string, network: string): Promise<Wallet> {
+		this.#coin = await makeCoin(coin, network);
 
 		return this;
 	}

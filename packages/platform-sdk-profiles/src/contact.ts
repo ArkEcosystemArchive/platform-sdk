@@ -1,3 +1,5 @@
+import { ContactAddress } from "./contact-address";
+import { ContactAddressInput } from "./contact-address.models";
 import { ContactStruct } from "./contact.models";
 import { Profile } from "./profile";
 import { ContactAddressRepository } from "./repositories/contact-address-repository";
@@ -42,6 +44,16 @@ export class Contact {
 
 	public toggleStarred(): void {
 		this.#starred = !this.isStarred();
+	}
+
+	public setName(name: string): void {
+		this.#name = name;
+	}
+
+	public async setAddresses(addresses: ContactAddressInput[]): Promise<void> {
+		this.#addresses.flush();
+
+		await Promise.all(addresses.map((address: ContactAddressInput) => this.#addresses.create(address)));
 	}
 
 	public toObject(): ContactStruct {

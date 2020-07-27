@@ -1,16 +1,9 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { Avatar } from "./avatar";
+import { ContactAddressProps } from "./contact-address.models";
+import { makeCoin } from "./container.helpers";
 import { Profile } from "./profile";
-import { Wallet } from "./wallet";
-
-export interface ContactAddressProps {
-	id: string;
-	coin: string;
-	network: string;
-	name: string;
-	address: string;
-}
 
 export class ContactAddress {
 	readonly #data: ContactAddressProps;
@@ -24,13 +17,9 @@ export class ContactAddress {
 	}
 
 	public static async make(data: ContactAddressProps, profile: Profile): Promise<ContactAddress> {
-		const wallet: Wallet = profile.wallets().findByCoinWithNetwork(data.coin, data.network)[0];
+		const coin: Coins.Coin = await makeCoin(data.coin, data.network);
 
-		if (!wallet) {
-			throw new Error(`This profile does not contain any wallets for ${data.coin}/${data.network}.`);
-		}
-
-		return new ContactAddress(data, await wallet.wallet(data.address));
+		return new ContactAddress(data, await coin.client().wallet(data.address));
 	}
 
 	public id(): string {
