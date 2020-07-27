@@ -1440,6 +1440,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@arkecosystem/platform-sdk-markets", "workspace:packages/platform-sdk-markets"],
+            ["@arkecosystem/platform-sdk-plugins", "workspace:packages/platform-sdk-plugins"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@arkecosystem/utils", "npm:1.1.8"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],

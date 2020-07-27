@@ -121,6 +121,29 @@ export class Environment {
 				rules[key] = object({
 					id: string().required(),
 					name: string().required(),
+					contacts: object(
+						mapRules(
+							profiles[key].contacts,
+							object({
+								id: string().required(),
+								name: string().required(),
+								addresses: array().of(
+									object({
+										id: string().required(),
+										coin: string().required(),
+										network: string().required(),
+										name: string().required(),
+										address: string().required(),
+									}).noUnknown(),
+								),
+								starred: boolean().required(),
+							}).noUnknown(),
+						),
+					),
+					data: object().required(),
+					notifications: object().required(),
+					plugins: object().required(),
+					settings: object().required(),
 					wallets: object(
 						mapRules(
 							profiles[key].wallets,
@@ -156,28 +179,6 @@ export class Environment {
 							}).noUnknown(),
 						),
 					),
-					contacts: object(
-						mapRules(
-							profiles[key].contacts,
-							object({
-								id: string().required(),
-								name: string().required(),
-								addresses: array().of(
-									object({
-										id: string().required(),
-										coin: string().required(),
-										network: string().required(),
-										name: string().required(),
-										address: string().required(),
-									}).noUnknown(),
-								),
-								starred: boolean().required(),
-							}).noUnknown(),
-						),
-					),
-					notifications: object().required(),
-					data: object().required(),
-					settings: object().required(),
 				}).noUnknown();
 			}
 

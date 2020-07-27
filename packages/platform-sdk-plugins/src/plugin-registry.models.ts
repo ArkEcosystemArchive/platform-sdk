@@ -53,7 +53,11 @@ export interface RegistryPlugin {
 	updated_at: Date;
 }
 
-export interface RegistryResponse {
+export interface RegistryPluginResponse {
+	data: RegistryPlugin;
+}
+
+export interface RegistryPluginListResponse {
 	data: RegistryPlugin[];
 	meta: {
 		current_page: number;
