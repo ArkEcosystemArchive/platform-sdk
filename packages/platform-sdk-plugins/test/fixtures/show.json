@@ -1,0 +1,67 @@
+{
+	"data": {
+		"id": 486,
+		"type": "plugin",
+		"name": "additional-avatars",
+		"slug": "additional-avatars",
+		"description": "<p>A collection of custom avatars to show in the wallet.</p>\n",
+		"version": "0.0.8",
+		"downloads": 0,
+		"manifest": {
+			"categories": ["utility", "avatar"],
+			"permissions": ["COMPONENTS", "AVATARS"],
+			"urls": [],
+			"minVersion": "2.6"
+		},
+		"aip36": {
+			"sourceControl": [
+				{ "type": "bitbucket", "value": "https://bitbucket.org/" },
+				{
+					"type": "github",
+					"value": "https://github.com/ark-ecosystem-desktop-plugins/additional-avatars"
+				},
+				{ "type": "gitlab", "value": "https://gitlab.com/" },
+				{ "type": "npm", "value": "https://www.npmjs.com/package/@arkecosystem/additional-avatars" }
+			],
+			"socialMedia": [
+				{ "type": "discord", "value": "https://discord.com/" },
+				{ "type": "facebook", "value": "https://facebook.com/" },
+				{ "type": "instagram", "value": "https://instagram.com/" },
+				{ "type": "linkedin", "value": "https://linkedin.com/" },
+				{ "type": "medium", "value": "https://medium.com/" },
+				{ "type": "reddit", "value": "https://reddit.com/" },
+				{ "type": "slack", "value": "https://slack.com/" },
+				{ "type": "telegram", "value": "https://telegram.org/" },
+				{ "type": "twitter", "value": "https://twitter.com/" },
+				{ "type": "wechat", "value": "https://wechat.com/" },
+				{ "type": "youtube", "value": "https://youtube.com/" }
+			],
+			"images": [
+				{
+					"type": "logo",
+					"value": "https://raw.githubusercontent.com/ark-ecosystem-desktop-plugins/additional-avatars/master/images/logo.png"
+				},
+				{
+					"type": "image",
+					"value": "https://raw.githubusercontent.com/ark-ecosystem-desktop-plugins/additional-avatars/master/images/preview-1.jpg"
+				},
+				{
+					"type": "image",
+					"value": "https://raw.githubusercontent.com/ark-ecosystem-desktop-plugins/additional-avatars/master/images/preview-2.jpg"
+				},
+				{
+					"type": "image",
+					"value": "https://raw.githubusercontent.com/ark-ecosystem-desktop-plugins/additional-avatars/master/images/preview-3.jpg"
+				}
+			],
+			"meta": { "displayName": "Additional Avatars", "description": "Avatar plugin for Desktop Wallet" }
+		},
+		"versions": [
+			{ "id": 4, "name": "0.0.5", "released_at": "2019-11-25T20:41:02.000000Z", "is_verified": false },
+			{ "id": 5, "name": "0.0.6", "released_at": "2019-11-26T14:58:23.000000Z", "is_verified": false },
+			{ "id": 6, "name": "0.0.7", "released_at": "2019-11-26T15:22:36.000000Z", "is_verified": false },
+			{ "id": 7, "name": "0.0.8", "released_at": "2020-03-12T11:05:37.000000Z", "is_verified": false }
+		],
+		"updated_at": "2020-05-14T13:11:54.949000Z"
+	}
+}
