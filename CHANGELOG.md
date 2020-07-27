@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.175 - 2020-07-27
+
+### Added
+
+-   Initial implementation of platform-sdk-plugins (1e1cbc91, @faustbrian)
+-   Integrate platform-sdk-plugins into platform-sdk-profiles (a61dba11, @faustbrian)
+
 ## 0.9.173 - 2020-07-24
 
 ### Changed
