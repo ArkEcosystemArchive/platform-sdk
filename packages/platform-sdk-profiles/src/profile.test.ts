@@ -62,7 +62,10 @@ test("#toObject", () => {
 		contacts: {},
 		data: {},
 		notifications: {},
-		plugins: {},
+		plugins: {
+			data: {},
+			blacklist: [],
+		},
 		settings: {},
 		wallets: {},
 	});

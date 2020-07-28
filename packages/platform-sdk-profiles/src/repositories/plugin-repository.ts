@@ -77,7 +77,7 @@ export class PluginRepository {
 	public toObject(): object {
 		return {
 			data: this.all(),
-			blacklist: this.#blacklist.values(),
+			blacklist: [...this.#blacklist.values()],
 		};
 	}
 }
