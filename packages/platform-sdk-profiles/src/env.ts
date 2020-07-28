@@ -144,7 +144,7 @@ export class Environment {
 					notifications: object().required(),
 					plugins: object().required({
 						data: object().required(),
-						blacklist: array().of(number()),
+						blacklist: array().of(number()).required(),
 					}),
 					settings: object().required(),
 					wallets: object(
