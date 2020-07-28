@@ -14,6 +14,7 @@ import { StubStorage } from "../test/stubs/storage";
 import { container } from "./container";
 import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
+import { WalletSetting } from "./wallet.models";
 
 let subject: Environment;
 
@@ -117,4 +118,9 @@ it("should boot the environment from fixed data", async () => {
 	expect(newProfile.notifications().keys()).toHaveLength(1);
 	expect(newProfile.data().all()).toEqual({ key: "value" });
 	expect(newProfile.settings().all()).toEqual({ ADVANCED_MODE: "value" });
+
+	const restoredWallet = newProfile.wallets().findById("ac38fe6d-4b67-4ef1-85be-17c5f6841129");
+	expect(restoredWallet.settings().all()).toEqual({       "ALIAS": "Johnathan Doe",
+       "AVATAR": "..."});
+	expect(restoredWallet.alias()).toBe("Johnathan Doe");
 });

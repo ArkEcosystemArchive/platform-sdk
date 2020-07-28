@@ -74,7 +74,7 @@ export class WalletRepository {
 		return { mnemonic, wallet: await this.importByMnemonic(mnemonic, coin, network) };
 	}
 
-	public async restore({ id, coin, coinConfig, network, address }): Promise<Wallet> {
+	public async restore({ id, coin, coinConfig, network, address, data, settings }): Promise<Wallet> {
 		const wallet: Wallet = new Wallet(id, this.#profile);
 
 		await wallet.setCoin(coin, network);
@@ -83,6 +83,10 @@ export class WalletRepository {
 		for (const [key, value] of Object.entries(coinConfig)) {
 			wallet.coin().config().set(key, value);
 		}
+
+		wallet.data().fill(data);
+
+		wallet.settings().fill(settings);
 
 		return this.storeWallet(wallet.id(), wallet);
 	}
