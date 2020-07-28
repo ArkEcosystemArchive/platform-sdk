@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.180 - 2020-07-28
+
+### Added
+
+-   Implement plugin blacklist (85b2bf06, @faustbrian)
+
 ## 0.9.179 - 2020-07-28
 
 ### Fixed
