@@ -333,6 +333,51 @@ profile.notifications().unread();
 profile.notifications().markAsRead("uuid");
 ```
 
+## Plugins
+
+These methods are accessible through `profile.plugins()` which exposes a `PluginRepository` instance.
+
+```ts
+// Get a list of all plugins
+profile.plugins().all();
+
+// Register a new plugin for the given data
+profile.plugins().push({ id: 123, name: "@hello/world" });
+
+// Find the plugin for the given ID
+profile.plugins().findById(123);
+
+// Forget the plugin for the given ID
+profile.plugins().forget(123);
+
+// Forget all plugins (Use with caution!)
+profile.plugins().flush();
+```
+
+### Blacklist
+
+These methods are accessible through `profile.plugins().blacklist()` which exposes a `Set<number>` instance. The `Set` instance is a native [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) as opposed to a `DataRepository`.
+
+```ts
+// Add a plugin to the blacklist
+profile.plugins().blacklist().add(123);
+
+// Remove a plugin from the blacklist
+profile.plugins().blacklist().delete(123);
+```
+
+### Registry
+
+These methods are accessible through `profile.plugins().registry()` which exposes a `PluginRegistry` instance.
+
+```ts
+// Get a list of plugins from the MarketSquare API
+profile.plugins().registry().all();
+
+// Get aa specific plugin from the MarketSquare API
+profile.plugins().registry().findById(123);
+```
+
 ## Transactions
 
 ### Sign and broadcast a transaction through a wallet
