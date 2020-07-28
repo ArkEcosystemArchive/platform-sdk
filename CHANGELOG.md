@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.179 - 2020-07-28
+
+### Fixed
+
+-   Timeout neoscan.io requests after 1 second (c3381891, @faustbrian)
+-   Restore wallet data and settings on boot (3b2ee58c, @faustbrian)
+
 ## 0.9.177 - 2020-07-27
 
 ### Fixed
