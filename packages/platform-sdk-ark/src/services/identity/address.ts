@@ -33,6 +33,7 @@ export class Address implements Contracts.Address {
 			const response: any = (
 				await this.#config
 					.get<Contracts.HttpClient>("httpClient")
+					.timeout(1000)
 					.get(`https://neoscan.io/api/main_net/v1/get_last_transactions_by_address/${address}/1`)
 			).json();
 
