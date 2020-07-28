@@ -142,7 +142,10 @@ export class Environment {
 					),
 					data: object().required(),
 					notifications: object().required(),
-					plugins: object().required(),
+					plugins: object().required({
+						data: object().required(),
+						blacklist: array().of(number()).required(),
+					}),
 					settings: object().required(),
 					wallets: object(
 						mapRules(

@@ -21,7 +21,6 @@ export enum ProfileSetting {
 	Locale = "LOCALE",
 	MarketProvider = "MARKET_PROVIDER",
 	MultiPeerBroadcast = "MULTI_PEER_BROADCAST",
-	PluginBlacklist = "PLUGIN_BLACKLIST",
 	PluginProvider = "PLUGIN_PROVIDER",
 	ScreenshotProtection = "SCREENSHOT_PROTECTION",
 	Theme = "THEME",

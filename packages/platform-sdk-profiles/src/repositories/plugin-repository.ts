@@ -6,13 +6,14 @@ import { DataRepository } from "./data-repository";
 
 // TODO: this is a placeholder interface
 interface Plugin {
-	id: string;
+	id: number;
 	name: string;
 }
 
 export class PluginRepository {
-	#data: DataRepository;
-	#registry: PluginRegistry;
+	readonly #data: DataRepository;
+	readonly #registry: PluginRegistry;
+	readonly #blacklist: Set<number> = new Set<number>();
 
 	public constructor() {
 		this.#data = new DataRepository();
@@ -31,8 +32,20 @@ export class PluginRepository {
 		return this.#data.values();
 	}
 
-	public findById(id: string): Plugin {
-		const plugin: Plugin | undefined = this.#data.get(id);
+	public push(plugin: Plugin): void {
+		this.#data.set(`${plugin.id}`, plugin);
+	}
+
+	public fill({ data, blacklist }: { data: object; blacklist: number[] }): void {
+		this.#data.fill(data);
+
+		for (const blacklistValue of blacklist) {
+			this.#blacklist.add(blacklistValue);
+		}
+	}
+
+	public findById(id: number): Plugin {
+		const plugin: Plugin | undefined = this.#data.get(`${id}`);
 
 		if (!plugin) {
 			throw new Error(`Failed to find a plugin for [${id}].`);
@@ -41,8 +54,8 @@ export class PluginRepository {
 		return plugin;
 	}
 
-	public forget(id: string): void {
-		this.#data.forget(id);
+	public forget(id: number): void {
+		this.#data.forget(`${id}`);
 	}
 
 	public flush(): void {
@@ -53,11 +66,18 @@ export class PluginRepository {
 		return this.keys().length;
 	}
 
-	/**
-	 * These are proxy methods to access the underlying Plugin SDK.
-	 */
+	public blacklist(): Set<number> {
+		return this.#blacklist;
+	}
 
 	public registry(): PluginRegistry {
 		return this.#registry;
+	}
+
+	public toObject(): object {
+		return {
+			data: this.all(),
+			blacklist: [...this.#blacklist.values()],
+		};
 	}
 }

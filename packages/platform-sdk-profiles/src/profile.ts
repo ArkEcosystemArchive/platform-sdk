@@ -91,7 +91,7 @@ export class Profile {
 			contacts: this.contacts().toObject(),
 			data: this.data().all(),
 			notifications: this.notifications().all(),
-			plugins: this.plugins().all(),
+			plugins: this.plugins().toObject(),
 			settings: this.settings().all(),
 			wallets: this.wallets().toObject(),
 		};

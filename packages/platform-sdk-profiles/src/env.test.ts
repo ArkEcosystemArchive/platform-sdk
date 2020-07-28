@@ -14,7 +14,6 @@ import { StubStorage } from "../test/stubs/storage";
 import { container } from "./container";
 import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
-import { WalletSetting } from "./wallet.models";
 
 let subject: Environment;
 
