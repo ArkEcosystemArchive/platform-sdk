@@ -36,6 +36,14 @@ export class PluginRepository {
 		this.#data.set(`${plugin.id}`, plugin);
 	}
 
+	public fill({ data, blacklist }: { data: object; blacklist: number[] }): void {
+		this.#data.fill(data);
+
+		for (const blacklistValue of blacklist) {
+			this.#blacklist.add(blacklistValue);
+		}
+	}
+
 	public findById(id: number): Plugin {
 		const plugin: Plugin | undefined = this.#data.get(`${id}`);
 
@@ -64,5 +72,12 @@ export class PluginRepository {
 
 	public registry(): PluginRegistry {
 		return this.#registry;
+	}
+
+	public toObject(): object {
+		return {
+			data: this.all(),
+			blacklist: this.#blacklist.values(),
+		};
 	}
 }

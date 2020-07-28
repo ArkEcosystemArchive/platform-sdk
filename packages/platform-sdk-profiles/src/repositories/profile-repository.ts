@@ -24,6 +24,8 @@ export class ProfileRepository {
 
 			result.data().fill(profile.data);
 
+			result.plugins().fill(profile.plugins);
+
 			result.settings().fill(profile.settings);
 
 			this.#data.set(id, result);
