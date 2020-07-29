@@ -21,6 +21,7 @@ export enum ProfileSetting {
 	MarketProvider = "MARKET_PROVIDER",
 	MultiPeerBroadcast = "MULTI_PEER_BROADCAST",
 	Name = "NAME",
+	Password = "PASSWORD",
 	PluginProvider = "PLUGIN_PROVIDER",
 	ScreenshotProtection = "SCREENSHOT_PROTECTION",
 	Theme = "THEME",

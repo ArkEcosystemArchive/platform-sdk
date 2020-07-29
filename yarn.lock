@@ -335,6 +335,7 @@ __metadata:
     "@types/wif": 2.0.1
     "@typescript-eslint/eslint-plugin": ^3.7.0
     "@typescript-eslint/parser": ^3.7.0
+    argon2: ^0.26.2
     bcrypto: ^5.2.0
     bip32: ^2.0.5
     bip38: ^3.1.1
@@ -3434,6 +3435,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@phc/format@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@phc/format@npm:0.5.0"
+  dependencies:
+    safe-buffer: ^5.1.2
+  checksum: 2/87bd89845571babdb6fd64e902def004e746315ace7e751f4e7da6f43f651b9931ae2095f76f5394a60aa4aebafb53dd73b7bcaecda78a43789de6fee93441ce
+  languageName: node
+  linkType: hard
+
 "@protobufjs/aspromise@npm:^1.1.1, @protobufjs/aspromise@npm:^1.1.2":
   version: 1.1.2
   resolution: "@protobufjs/aspromise@npm:1.1.2"
@@ -5007,6 +5017,17 @@ __metadata:
     delegates: ^1.0.0
     readable-stream: ^2.0.6
   checksum: 2/2d6fdb0ddde9b8cb120b6851b42c75f6b6db78b540b579a00d144ad38cb9e1bdf1248e5454049fcf5b47ef61d1a6f2ea433a8e38984158afd441bc1e0db7a625
+  languageName: node
+  linkType: hard
+
+"argon2@npm:^0.26.2":
+  version: 0.26.2
+  resolution: "argon2@npm:0.26.2"
+  dependencies:
+    "@phc/format": ^0.5.0
+    node-addon-api: ^2.0.0
+    node-pre-gyp: ^0.14.0
+  checksum: 2/d386a7131bee1e75064805d4933c5b9680d0f44134043496bab0f78327cad462dbeb12a59f8e0682a2227e745f6fdf9c7db4c87e1a01d664ca80f2d95a241a18
   languageName: node
   linkType: hard
 
@@ -14650,6 +14671,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-pre-gyp@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "node-pre-gyp@npm:0.14.0"
+  dependencies:
+    detect-libc: ^1.0.2
+    mkdirp: ^0.5.1
+    needle: ^2.2.1
+    nopt: ^4.0.1
+    npm-packlist: ^1.1.6
+    npmlog: ^4.0.2
+    rc: ^1.2.7
+    rimraf: ^2.6.1
+    semver: ^5.3.0
+    tar: ^4.4.2
+  bin:
+    node-pre-gyp: ./bin/node-pre-gyp
+  checksum: 2/04dfb46fa5a0ad300ed894fbf293105ff98b190c26c5200b0f87da46e643ff9ebaf7a54c4079370d345f135f2016e164d7a20b09a4e9bd9c48236b350372a01e
+  languageName: node
+  linkType: hard
+
 "node.extend@npm:^2.0.0":
   version: 2.0.2
   resolution: "node.extend@npm:2.0.2"
@@ -18329,7 +18370,7 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"tar@npm:^4, tar@npm:^4.0.2, tar@npm:^4.4.12, tar@npm:^4.4.6":
+"tar@npm:^4, tar@npm:^4.0.2, tar@npm:^4.4.12, tar@npm:^4.4.2, tar@npm:^4.4.6":
   version: 4.4.13
   resolution: "tar@npm:4.4.13"
   dependencies:

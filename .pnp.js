@@ -724,6 +724,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/wif", "npm:2.0.1"],
             ["@typescript-eslint/eslint-plugin", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:3.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.7.0"],
+            ["argon2", "npm:0.26.2"],
             ["bcrypto", "npm:5.2.0"],
             ["bip32", "npm:2.0.5"],
             ["bip38", "npm:3.1.1"],
@@ -3922,6 +3923,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@phc/format", [
+        ["npm:0.5.0", {
+          "packageLocation": "./.yarn/cache/@phc-format-npm-0.5.0-20418f1c17-2.zip/node_modules/@phc/format/",
+          "packageDependencies": [
+            ["@phc/format", "npm:0.5.0"],
+            ["safe-buffer", "npm:5.2.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@protobufjs/aspromise", [
         ["npm:1.1.2", {
           "packageLocation": "./.yarn/cache/@protobufjs-aspromise-npm-1.1.2-71d00b938f-2.zip/node_modules/@protobufjs/aspromise/",
@@ -6324,6 +6335,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["are-we-there-yet", "npm:1.1.5"],
             ["delegates", "npm:1.0.0"],
             ["readable-stream", "npm:2.3.7"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["argon2", [
+        ["npm:0.26.2", {
+          "packageLocation": "./.yarn/unplugged/argon2-npm-0.26.2-1765a5c2f6/node_modules/argon2/",
+          "packageDependencies": [
+            ["argon2", "npm:0.26.2"],
+            ["@phc/format", "npm:0.5.0"],
+            ["node-addon-api", "npm:2.0.1"],
+            ["node-pre-gyp", "npm:0.14.0"]
           ],
           "linkType": "HARD",
         }]
@@ -16929,6 +16952,23 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/unplugged/node-pre-gyp-npm-0.13.0-cc8e2bf16a/node_modules/node-pre-gyp/",
           "packageDependencies": [
             ["node-pre-gyp", "npm:0.13.0"],
+            ["detect-libc", "npm:1.0.3"],
+            ["mkdirp", "npm:0.5.5"],
+            ["needle", "npm:2.5.0"],
+            ["nopt", "npm:4.0.3"],
+            ["npm-packlist", "npm:1.4.8"],
+            ["npmlog", "npm:4.1.2"],
+            ["rc", "npm:1.2.8"],
+            ["rimraf", "npm:2.7.1"],
+            ["semver", "npm:5.7.1"],
+            ["tar", "npm:4.4.13"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:0.14.0", {
+          "packageLocation": "./.yarn/unplugged/node-pre-gyp-npm-0.14.0-1190004aad/node_modules/node-pre-gyp/",
+          "packageDependencies": [
+            ["node-pre-gyp", "npm:0.14.0"],
             ["detect-libc", "npm:1.0.3"],
             ["mkdirp", "npm:0.5.5"],
             ["needle", "npm:2.5.0"],

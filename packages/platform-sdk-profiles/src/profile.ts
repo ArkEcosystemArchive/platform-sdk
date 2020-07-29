@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Argon2 } from "@arkecosystem/platform-sdk-crypto";
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
@@ -147,5 +148,27 @@ export class Profile {
 			this.settings().get(ProfileSetting.ExchangeCurrency) || "BTC",
 			+Date.now(),
 		);
+	}
+
+	/**
+	 * These methods serve as helpers for settings that require additional processing.
+	 */
+
+	public async setPassword(password: string): Promise<void> {
+		this.settings().set(ProfileSetting.Password, await Argon2.hash(password));
+	}
+
+	public async changePassword(oldPassword: string, newPassword: string): Promise<void> {
+		const currentPassword: string | undefined = this.settings().get(ProfileSetting.Password);
+
+		if (!currentPassword) {
+			throw new Error("No password is set. Call [setPassword] instead.");
+		}
+
+		if (!(await Argon2.verify(currentPassword, oldPassword))) {
+			throw new Error("The current password does not match.");
+		}
+
+		await this.setPassword(newPassword);
 	}
 }
