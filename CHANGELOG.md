@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.182 - 2020-07-29
+
+### Added
+
+-   Add support for profile passwords (2dbcc9e6, @faustbrian)
+
 ## 0.9.181 - 2020-07-29
 
 ### Changed
