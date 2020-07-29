@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.183 - 2020-07-29
+
+### Changed
+
+- Use browser-compatible argon2 dependency (92a881c7, @faustbrian)
+
 ## 0.9.182 - 2020-07-29
 
 ### Added
