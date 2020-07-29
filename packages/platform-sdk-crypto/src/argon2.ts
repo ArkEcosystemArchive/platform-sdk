@@ -1,11 +1,17 @@
-import argon2 from "argon2";
+import argon2 from "argon2-browser";
 
 export class Argon2 {
 	public static async hash(value: string): Promise<string> {
-		return argon2.hash(value);
+		return (await argon2.hash({ pass: value, salt: Math.random().toString(10) })).encoded;
 	}
 
 	public static async verify(hash: string, password: string): Promise<boolean> {
-		return argon2.verify(hash, password);
+		try {
+			await argon2.verify({ pass: password, encoded: hash });
+
+			return true;
+		} catch {
+			return false;
+		}
 	}
 }

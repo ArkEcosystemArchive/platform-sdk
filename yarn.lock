@@ -321,6 +321,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-crypto@workspace:packages/platform-sdk-crypto"
   dependencies:
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/argon2-browser": 1.12.0
     "@types/bent": 7.3.0
     "@types/bip38": 2.0.1
     "@types/dot-prop": 5.0.1
@@ -335,7 +336,7 @@ __metadata:
     "@types/wif": 2.0.1
     "@typescript-eslint/eslint-plugin": ^3.7.0
     "@typescript-eslint/parser": ^3.7.0
-    argon2: ^0.26.2
+    argon2-browser: ^1.13.0
     bcrypto: ^5.2.0
     bip32: ^2.0.5
     bip38: ^3.1.1
@@ -3435,15 +3436,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@phc/format@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "@phc/format@npm:0.5.0"
-  dependencies:
-    safe-buffer: ^5.1.2
-  checksum: 2/87bd89845571babdb6fd64e902def004e746315ace7e751f4e7da6f43f651b9931ae2095f76f5394a60aa4aebafb53dd73b7bcaecda78a43789de6fee93441ce
-  languageName: node
-  linkType: hard
-
 "@protobufjs/aspromise@npm:^1.1.1, @protobufjs/aspromise@npm:^1.1.2":
   version: 1.1.2
   resolution: "@protobufjs/aspromise@npm:1.1.2"
@@ -3629,6 +3621,13 @@ __metadata:
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
   checksum: 2/d030f3fb14e0373dbf5005d8f696ff34fda87bf56744bea611fc737449bfc0687ebcb28ee8ba4c6624877f51b18d701c0d417d793f406006a192f4721911d048
+  languageName: node
+  linkType: hard
+
+"@types/argon2-browser@npm:1.12.0":
+  version: 1.12.0
+  resolution: "@types/argon2-browser@npm:1.12.0"
+  checksum: 2/51572dff779da376b7a45605b7cd195a567caee7bf71a0bc99ebcc7317865af8294aa2ddae18b435974d2cfc17a8d74bc77bbcb5e6c88f83ccb7c6a154226bd3
   languageName: node
   linkType: hard
 
@@ -5020,14 +5019,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"argon2@npm:^0.26.2":
-  version: 0.26.2
-  resolution: "argon2@npm:0.26.2"
-  dependencies:
-    "@phc/format": ^0.5.0
-    node-addon-api: ^2.0.0
-    node-pre-gyp: ^0.14.0
-  checksum: 2/d386a7131bee1e75064805d4933c5b9680d0f44134043496bab0f78327cad462dbeb12a59f8e0682a2227e745f6fdf9c7db4c87e1a01d664ca80f2d95a241a18
+"argon2-browser@npm:^1.13.0":
+  version: 1.13.0
+  resolution: "argon2-browser@npm:1.13.0"
+  checksum: 2/927bf153c5cf89cde2a0f24a8fc4f5f28980f752aaaab13a96f674451d20ccda28f6a4f9c7da2f9ce192bf61f17aead84d65eb90b128964c4a6c77782043578f
   languageName: node
   linkType: hard
 
@@ -14671,26 +14666,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-pre-gyp@npm:^0.14.0":
-  version: 0.14.0
-  resolution: "node-pre-gyp@npm:0.14.0"
-  dependencies:
-    detect-libc: ^1.0.2
-    mkdirp: ^0.5.1
-    needle: ^2.2.1
-    nopt: ^4.0.1
-    npm-packlist: ^1.1.6
-    npmlog: ^4.0.2
-    rc: ^1.2.7
-    rimraf: ^2.6.1
-    semver: ^5.3.0
-    tar: ^4.4.2
-  bin:
-    node-pre-gyp: ./bin/node-pre-gyp
-  checksum: 2/04dfb46fa5a0ad300ed894fbf293105ff98b190c26c5200b0f87da46e643ff9ebaf7a54c4079370d345f135f2016e164d7a20b09a4e9bd9c48236b350372a01e
-  languageName: node
-  linkType: hard
-
 "node.extend@npm:^2.0.0":
   version: 2.0.2
   resolution: "node.extend@npm:2.0.2"
@@ -18370,7 +18345,7 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"tar@npm:^4, tar@npm:^4.0.2, tar@npm:^4.4.12, tar@npm:^4.4.2, tar@npm:^4.4.6":
+"tar@npm:^4, tar@npm:^4.0.2, tar@npm:^4.4.12, tar@npm:^4.4.6":
   version: 4.4.13
   resolution: "tar@npm:4.4.13"
   dependencies:
