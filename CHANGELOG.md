@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.181 - 2020-07-29
+
+### Changed
+
+-   Treat the profile name as a setting (3654f77e, @faustbrian)
+
 ## 0.9.180 - 2020-07-28
 
 ### Added
