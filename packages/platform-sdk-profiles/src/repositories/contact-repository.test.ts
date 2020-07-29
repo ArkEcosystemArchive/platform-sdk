@@ -8,6 +8,7 @@ import { identity } from "../../test/fixtures/identity";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
 import { Profile } from "../profile";
+import { ProfileSetting } from "../profile.models";
 import { Wallet } from "../wallet";
 import { ContactRepository } from "./contact-repository";
 
@@ -36,7 +37,9 @@ beforeEach(async () => {
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK });
 
-	const profile = new Profile("profile-id", "John Doe");
+	const profile = new Profile("profile-id");
+	profile.settings().set(ProfileSetting.Name, "John Doe");
+
 	walletARK = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "devnet");
 
 	subject = new ContactRepository(profile);

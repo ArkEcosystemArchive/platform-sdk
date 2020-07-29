@@ -120,7 +120,6 @@ export class Environment {
 			for (const key of Object.keys(profiles)) {
 				rules[key] = object({
 					id: string().required(),
-					name: string().required(),
 					contacts: object(
 						mapRules(
 							profiles[key].contacts,
@@ -140,12 +139,18 @@ export class Environment {
 							}).noUnknown(),
 						),
 					),
+					// TODO: stricter validation to avoid unknown keys or values
 					data: object().required(),
+					// TODO: stricter validation to avoid unknown keys or values
 					notifications: object().required(),
-					plugins: object().required({
-						data: object().required(),
-						blacklist: array().of(number()).required(),
-					}),
+					// TODO: stricter validation to avoid unknown keys or values
+					plugins: object({
+						data: object(),
+						blacklist: array().of(number()),
+					})
+						.default({ data: {}, blacklist: [] })
+						.noUnknown(),
+					// TODO: stricter validation to avoid unknown keys or values
 					settings: object().required(),
 					wallets: object(
 						mapRules(

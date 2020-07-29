@@ -102,7 +102,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	expect(newProfile.contacts().keys()).toHaveLength(1);
 	expect(newProfile.notifications().keys()).toHaveLength(1);
 	expect(newProfile.data().all()).toEqual({ key: "value" });
-	expect(newProfile.settings().all()).toEqual({ ADVANCED_MODE: "value" });
+	expect(newProfile.settings().all()).toEqual({ ADVANCED_MODE: "value", NAME: "John Doe" });
 });
 
 it("should boot the environment from fixed data", async () => {
@@ -116,7 +116,7 @@ it("should boot the environment from fixed data", async () => {
 	expect(newProfile.contacts().keys()).toHaveLength(1);
 	expect(newProfile.notifications().keys()).toHaveLength(1);
 	expect(newProfile.data().all()).toEqual({ key: "value" });
-	expect(newProfile.settings().all()).toEqual({ ADVANCED_MODE: "value" });
+	expect(newProfile.settings().all()).toEqual({ ADVANCED_MODE: "value", NAME: "John Doe" });
 
 	const restoredWallet = newProfile.wallets().findById("ac38fe6d-4b67-4ef1-85be-17c5f6841129");
 	expect(restoredWallet.settings().all()).toEqual({ ALIAS: "Johnathan Doe", AVATAR: "..." });

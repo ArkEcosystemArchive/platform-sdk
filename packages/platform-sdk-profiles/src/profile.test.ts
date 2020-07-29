@@ -7,6 +7,7 @@ import nock from "nock";
 import { ContactRepository, Identifiers, Profile, SettingRepository, WalletRepository } from "../src";
 import { identity } from "../test/fixtures/identity";
 import { container } from "./container";
+import { ProfileSetting } from "./profile.models";
 import { DataRepository } from "./repositories/data-repository";
 
 let subject: Profile;
@@ -28,7 +29,8 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-	subject = new Profile("uuid", "John Doe");
+	subject = new Profile("uuid");
+	subject.settings().set(ProfileSetting.Name, "John Doe");
 });
 
 it("should have an id", () => {
@@ -58,7 +60,6 @@ it("should have a settings repository", () => {
 test("#toObject", () => {
 	expect(subject.toObject()).toEqual({
 		id: "uuid",
-		name: "John Doe",
 		contacts: {},
 		data: {},
 		notifications: {},
@@ -66,7 +67,9 @@ test("#toObject", () => {
 			data: {},
 			blacklist: [],
 		},
-		settings: {},
+		settings: {
+			NAME: "John Doe",
+		},
 		wallets: {},
 	});
 });
