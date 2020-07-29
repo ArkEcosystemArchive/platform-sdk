@@ -1459,7 +1459,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:28bf10013f0dc3f5a648d9c22f70a8dd4890ee90e15e92164892c7edce794c8926350a258d8468ebdf2d34bf06cd3d7052aeb5926b807a64078459f2968d96a2#npm:3.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.7.0"],
             ["@vechain/picasso", "npm:2.0.1"],
-            ["argon2", "npm:0.26.2"],
             ["bcrypto", "npm:5.2.0"],
             ["codecov", "npm:3.7.2"],
             ["cross-env", "npm:7.0.2"],

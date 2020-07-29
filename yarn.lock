@@ -1030,7 +1030,6 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^3.7.0
     "@typescript-eslint/parser": ^3.7.0
     "@vechain/picasso": ^2.0.1
-    argon2: ^0.26.2
     bcrypto: ^5.2.0
     codecov: ^3.7.2
     cross-env: ^7.0.2
