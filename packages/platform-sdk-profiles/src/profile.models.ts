@@ -1,6 +1,5 @@
 export interface ProfileStruct {
 	id: string;
-	name: string;
 	wallets: Record<string, any>;
 	contacts: Record<string, any>;
 	plugins: Record<string, any>;
@@ -15,12 +14,13 @@ export enum ProfileSetting {
 	Bip39Locale = "BIP39_LOCALE",
 	CacheLedgerWallets = "CACHE_LEDGER_WALLETS",
 	CacheTransactions = "CACHE_TRANSACTIONS",
-	ExchangeCurrency = "EXCHANGE_CURRENCY",
 	DateFormat = "DATE_FORMAT",
+	ExchangeCurrency = "EXCHANGE_CURRENCY",
 	LedgerUpdateMethod = "LEDGER_UPDATE_METHOD",
 	Locale = "LOCALE",
 	MarketProvider = "MARKET_PROVIDER",
 	MultiPeerBroadcast = "MULTI_PEER_BROADCAST",
+	Name = "NAME",
 	PluginProvider = "PLUGIN_PROVIDER",
 	ScreenshotProtection = "SCREENSHOT_PROTECTION",
 	Theme = "THEME",

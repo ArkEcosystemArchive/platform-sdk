@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 
 import { Profile } from "../profile";
+import { ProfileSetting } from "../profile.models";
 import { DataRepository } from "./data-repository";
 
 export class ProfileRepository {
@@ -12,7 +13,7 @@ export class ProfileRepository {
 
 	public async fill(profiles: object): Promise<void> {
 		for (const [id, profile] of Object.entries(profiles)) {
-			const result: Profile = new Profile(profile.id, profile.name);
+			const result: Profile = new Profile(profile.id);
 
 			for (const wallet of Object.values(profile.wallets)) {
 				await result.wallets().restore(wallet as any);
@@ -54,7 +55,8 @@ export class ProfileRepository {
 		}
 
 		const id: string = uuidv4();
-		const result: Profile = new Profile(id, name);
+		const result: Profile = new Profile(id);
+		result.settings().set(ProfileSetting.Name, name);
 
 		this.#data.set(id, result);
 

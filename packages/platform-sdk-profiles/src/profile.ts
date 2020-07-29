@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
@@ -22,12 +23,9 @@ export class Profile {
 	#walletRepository!: WalletRepository;
 
 	#id!: string;
-	#name!: string;
-	#avatar!: string;
 
-	public constructor(id: string, name: string) {
+	public constructor(id: string) {
 		this.#id = id;
-		this.#name = name;
 		this.#contactRepository = new ContactRepository(this);
 		this.#dataRepository = new DataRepository();
 		this.#notificationRepository = new NotificationRepository();
@@ -41,7 +39,7 @@ export class Profile {
 	}
 
 	public name(): string {
-		return this.#name;
+		return this.settings().get<string>(ProfileSetting.Name)!;
 	}
 
 	public avatar(): string {
@@ -51,7 +49,7 @@ export class Profile {
 			return avatarFromSettings;
 		}
 
-		return Avatar.make(this.#name);
+		return Avatar.make(this.name());
 	}
 
 	public balance(): BigNumber {
@@ -87,7 +85,6 @@ export class Profile {
 	public toObject(): ProfileStruct {
 		return {
 			id: this.id(),
-			name: this.name(),
 			contacts: this.contacts().toObject(),
 			data: this.data().all(),
 			notifications: this.notifications().all(),
