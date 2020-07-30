@@ -1,8 +1,9 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import Web3 from "web3";
 
 import { TransactionData, WalletData } from "../dto";
+import * as DTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	static readonly MONTH_IN_SECONDS = 8640 * 30;
@@ -44,7 +45,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
-		return new TransactionData(await this.get(`transactions/${id}`));
+		return Helpers.createTransactionDataWithType(await this.get(`transactions/${id}`), DTO);
 	}
 
 	public async transactions(
@@ -70,7 +71,10 @@ export class ClientService implements Contracts.ClientService {
 			}
 		}
 
-		return { meta: { prev: undefined, next: undefined }, data: new Coins.TransactionDataCollection(transactions) };
+		return {
+			meta: { prev: undefined, next: undefined },
+			data: Helpers.createTransactionDataCollectionWithType(transactions, DTO),
+		};
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {

@@ -2,7 +2,7 @@ import { DTO } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "../transaction";
 
-export class HtlcLockData extends TransactionData implements DTO.DelegateRegistrationData {
+export class HtlcLockData extends TransactionData implements DTO.HtlcLockData {
 	public secretHash(): string {
 		return this.data.asset.lock.secretHash;
 	}

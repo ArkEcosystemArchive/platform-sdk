@@ -1,8 +1,8 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import Neon from "@cityofzion/neon-js";
 import { api } from "@cityofzion/neon-js";
 
-import { TransactionData } from "../dto";
+import * as DTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #http: Contracts.HttpClient;
@@ -61,9 +61,7 @@ export class ClientService implements Contracts.ClientService {
 				prev: `${this.#peer}/${basePath}/${prevPage}`,
 				next: `${this.#peer}/${basePath}/${nextPage}`,
 			},
-			data: new Coins.TransactionDataCollection(
-				response.entries.map((transaction) => new TransactionData(transaction)),
-			),
+			data: Helpers.createTransactionDataCollectionWithType(response.entries, DTO),
 		};
 	}
 

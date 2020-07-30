@@ -1,8 +1,9 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
-import { TransactionData, WalletData } from "../dto";
+import { WalletData } from "../dto";
+import * as DTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #connection: TronWeb;
@@ -43,7 +44,7 @@ export class ClientService implements Contracts.ClientService {
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		const result = await this.#connection.trx.getTransaction(id);
 
-		return new TransactionData(result);
+		return Helpers.createTransactionDataWithType(result, DTO);
 	}
 
 	public async transactions(

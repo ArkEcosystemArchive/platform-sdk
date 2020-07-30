@@ -2,7 +2,7 @@ import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../dto";
-import * as DTOs from "../dto";
+import * as DTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #http: Contracts.HttpClient;
@@ -34,7 +34,7 @@ export class ClientService implements Contracts.ClientService {
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		const body = await this.get(`transactions/${id}`);
 
-		return Helpers.createTransactionDataWithType(body.data, DTOs);
+		return Helpers.createTransactionDataWithType(body.data, DTO);
 	}
 
 	public async transactions(
@@ -44,7 +44,7 @@ export class ClientService implements Contracts.ClientService {
 
 		return {
 			meta: this.createMetaPagination(body),
-			data: Helpers.createTransactionDataCollectionWithType(body.data, DTOs),
+			data: Helpers.createTransactionDataCollectionWithType(body.data, DTO),
 		};
 	}
 
@@ -90,7 +90,7 @@ export class ClientService implements Contracts.ClientService {
 
 		return {
 			meta: this.createMetaPagination(body),
-			data: Helpers.createTransactionDataCollectionWithType(body.data, DTOs),
+			data: Helpers.createTransactionDataCollectionWithType(body.data, DTO),
 		};
 	}
 

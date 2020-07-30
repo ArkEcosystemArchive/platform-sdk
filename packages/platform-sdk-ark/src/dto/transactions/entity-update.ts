@@ -2,7 +2,7 @@ import { DTO } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "../transaction";
 
-export class EntityUpdateData extends TransactionData implements DTO.DelegateRegistrationData {
+export class EntityUpdateData extends TransactionData implements DTO.EntityUpdateData {
 	public entityType(): number {
 		return this.data.asset.type;
 	}

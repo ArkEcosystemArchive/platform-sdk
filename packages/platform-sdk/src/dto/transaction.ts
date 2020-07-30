@@ -129,42 +129,126 @@ export abstract class AbstractTransactionData {
 	}
 }
 
-export interface BridgechainRegistrationData {}
+export interface BridgechainRegistrationData {
+	name(): string;
 
-export interface BridgechainResignationData {}
+	seedNodes(): string[];
 
-export interface BridgechainUpdateData {}
+	genesisHash(): string;
 
-export interface BusinessRegistrationData {}
+	bridgechainRepository(): string;
+
+	bridgechainAssetRepository(): string;
+
+	ports(): Record<string, number>;
+}
+
+export interface BridgechainResignationData {
+	bridgechainId(): string;
+}
+
+export interface BridgechainUpdateData {
+	name(): string;
+
+	seedNodes(): string[];
+
+	bridgechainRepository(): string;
+
+	bridgechainAssetRepository(): string;
+
+	ports(): Record<string, number>;
+}
+
+export interface BusinessRegistrationData {
+	name(): string;
+
+	website(): string;
+
+	vatId(): string;
+
+	repository(): string;
+}
 
 export interface BusinessResignationData {}
 
-export interface BusinessUpdateData {}
+export interface BusinessUpdateData {
+	name(): string;
 
-export interface DelegateRegistrationData {}
+	website(): string;
+
+	vatId(): string;
+
+	repository(): string;
+}
+
+export interface DelegateRegistrationData {
+	username(): string;
+}
 
 export interface DelegateResignationData {}
 
-export interface EntityRegistrationData {}
+export interface EntityRegistrationData {
+	entityType(): number;
+
+	entitySubType(): number;
+
+	entityAction(): number;
+
+	name(): string;
+
+	ipfs(): string;
+}
 
 export interface EntityResignationData {}
 
-export interface EntityUpdateData {}
+export interface EntityUpdateData {
+	entityType(): number;
 
-export interface HtlcClaimData {}
+	entitySubType(): number;
 
-export interface HtlcLockData {}
+	entityAction(): number;
 
-export interface HtlcRefundData {}
+	ipfs(): string;
+}
 
-export interface IpfsData {}
+export interface HtlcClaimData {
+	lockTransactionId(): string;
 
-export interface MultiPaymentData {}
+	unlockSecret(): string;
+}
 
-export interface MultiSignatureData {}
+export interface HtlcLockData {
+	secretHash(): string;
 
-export interface SecondSignatureData {}
+	expirationType(): number;
+
+	expirationValue(): number;
+}
+
+export interface HtlcRefundData {
+	lockTransactionId(): string;
+}
+
+export interface IpfsData {
+	hash(): string;
+}
+
+export interface MultiPaymentData {
+	payments(): { recipientId: string; amount: string }[];
+}
+
+export interface MultiSignatureData {
+	publicKeys(): string[];
+	min(): number;
+}
+
+export interface SecondSignatureData {
+	secondPublicKey(): string;
+}
 
 export interface TransferData {}
 
-export interface VoteData {}
+export interface VoteData {
+	votes(): string[];
+	unvotes(): string[];
+}
