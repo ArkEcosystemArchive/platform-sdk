@@ -73,3 +73,14 @@ test("#toObject", () => {
 		wallets: {},
 	});
 });
+
+it.only("should serialize and deserialize", () => {
+	subject.auth().setPassword("strong-password");
+
+	const serialized: any = subject.serialize();
+
+	expect(serialized).toBeObject();
+
+	console.log(serialized);
+	console.log(Profile.deserialize(serialized.data, serialized.password));
+});

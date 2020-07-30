@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Bcrypt } from "@arkecosystem/platform-sdk-crypto";
+import { AES } from "@arkecosystem/platform-sdk-crypto";
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { CountAggregate } from "./aggregates/count-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
+import { Authenticator } from "./authenticator";
 import { Avatar } from "./avatar";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
@@ -16,8 +17,6 @@ import { NotificationRepository } from "./repositories/notification-repository";
 import { PluginRepository } from "./repositories/plugin-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
-import { Wallet } from "./wallet";
-import { Authenticator } from "./authenticator";
 
 export class Profile {
 	#contactRepository!: ContactRepository;
@@ -85,18 +84,6 @@ export class Profile {
 		return this.#walletRepository;
 	}
 
-	public toObject(): ProfileStruct {
-		return {
-			id: this.id(),
-			contacts: this.contacts().toObject(),
-			data: this.data().all(),
-			notifications: this.notifications().all(),
-			plugins: this.plugins().toObject(),
-			settings: this.settings().all(),
-			wallets: this.wallets().toObject(),
-		};
-	}
-
 	/**
 	 * These methods serve as helpers to aggregate commonly used data.
 	 */
@@ -121,6 +108,10 @@ export class Profile {
 		return new Authenticator(this);
 	}
 
+	public usesPassword(): boolean {
+		return this.settings().get(ProfileSetting.Password) !== undefined;
+	}
+
 	/**
 	 * These methods serve as helpers to interact with exchange markets.
 	 */
@@ -138,5 +129,42 @@ export class Profile {
 			this.settings().get(ProfileSetting.ExchangeCurrency) || "BTC",
 			+Date.now(),
 		);
+	}
+
+	/**
+	 * These methods are responsible for serialising and deserialising.
+	 */
+
+	public static deserialize(input: string, password: string) {
+		return AES.decrypt(input, password);
+		// return AES.encrypt(JSON.stringify(struct), this.settings().get<string>(ProfileSetting.Password)!);
+	}
+
+	public serialize(): object | ProfileStruct {
+		const struct: ProfileStruct = this.toObject();
+
+		if (this.usesPassword()) {
+			// TODO: use plain text password to encrypt instead of hash - UI/UX
+			const password = this.settings().get<string>(ProfileSetting.Password)!;
+
+			return {
+				data: AES.encrypt(JSON.stringify(struct), password),
+				password,
+			};
+		}
+
+		return struct;
+	}
+
+	public toObject(): ProfileStruct {
+		return {
+			id: this.id(),
+			contacts: this.contacts().toObject(),
+			data: this.data().all(),
+			notifications: this.notifications().all(),
+			plugins: this.plugins().toObject(),
+			settings: this.settings().all(),
+			wallets: this.wallets().toObject(),
+		};
 	}
 }

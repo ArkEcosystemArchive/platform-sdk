@@ -1,11 +1,11 @@
-import ncrypt from "ncrypt-js";
+import { decrypt, encrypt } from "encrypt-with-password";
 
 export class AES {
-	public static encrypt(input: string, key: string): string {
-		return new ncrypt(key).encrypt(input);
+	public static encrypt(input: string, password: string): string {
+		return encrypt(input, password);
 	}
 
-	public static decrypt(input: string, key: string): string {
-		return new ncrypt(key).decrypt(input);
+	public static decrypt(input: string, password: string): string {
+		return decrypt(input, password);
 	}
 }

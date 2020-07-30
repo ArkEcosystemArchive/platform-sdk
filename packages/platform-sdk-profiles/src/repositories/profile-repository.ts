@@ -71,11 +71,19 @@ export class ProfileRepository {
 		this.#data.forget(id);
 	}
 
+	public serialize(): Record<string, object> {
+		return this.transform("serialize");
+	}
+
 	public toObject(): Record<string, object> {
+		return this.transform("toObject");
+	}
+
+	private transform(method: string): Record<string, object> {
 		const result: Record<string, object> = {};
 
 		for (const [id, profile] of Object.entries(this.#data.all())) {
-			result[id] = profile.toObject();
+			result[id] = profile[method]();
 		}
 
 		return result;
