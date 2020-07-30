@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.190 - 2020-07-30
+
+### Changed
+
+-   Return type-specific transaction DTOs (6bd1227f, @faustbrian)
+
 ## 0.9.189 - 2020-07-30
 
 ### Changed
