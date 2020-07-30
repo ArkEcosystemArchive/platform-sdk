@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.192 - 2020-07-30
+
+### Added
+
+-   Implement profile data aggregates (9dfade3d, @faustbrian)
+-   Sync delegate list and store it locally (5cf11ea9, @faustbrian)
+
 ## 0.9.190 - 2020-07-30
 
 ### Changed
