@@ -31,6 +31,7 @@ export enum WalletSetting {
 
 export enum WalletData {
 	Balance = "BALANCE",
+	Delegates = "DELEGATES",
 	ExchangeRate = "EXCHANGE_RATE",
 	Sequence = "SEQUENCE",
 }
