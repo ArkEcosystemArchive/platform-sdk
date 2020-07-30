@@ -16,7 +16,7 @@ export class Wallet {
 
 	#id!: string;
 	#coin!: Coins.Coin;
-	#wallet!: Contracts.WalletData;
+	#wallet: Contracts.WalletData | undefined;
 
 	#address!: string;
 	#publicKey!: string | undefined;
@@ -85,6 +85,10 @@ export class Wallet {
 	/**
 	 * These methods serve as getters to the underlying data and dependencies.
 	 */
+
+	public hasSyncedWithNetwork(): boolean {
+		return this.#wallet !== undefined;
+	}
 
 	public id(): string {
 		return this.#id;
@@ -183,10 +187,18 @@ export class Wallet {
 	 */
 
 	public isDelegate(): boolean {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
 		return this.#wallet.isDelegate();
 	}
 
 	public isKnown(): boolean {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
 		return this.#wallet.isKnown();
 	}
 
@@ -196,10 +208,18 @@ export class Wallet {
 	}
 
 	public isMultiSignature(): boolean {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
 		return this.#wallet.isMultiSignature();
 	}
 
 	public isSecondSignature(): boolean {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
 		return this.#wallet.isSecondSignature();
 	}
 
