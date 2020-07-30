@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.195 - 2020-07-30
+
+### Changed
+
+-   Throw an exception if the wallet failed to sync with the network (918b126d, @faustbrian)
+
 ## 0.9.194 - 2020-07-30
 
 ### Changed
