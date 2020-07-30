@@ -27,7 +27,7 @@ export class SettingRepository {
 		return this.#storage.get(key, defaultValue);
 	}
 
-	public set(key: string, value: string | object): void {
+	public set(key: string, value: boolean | number | string | object): void {
 		this.assertValidKey(key);
 
 		this.#storage.set(key, value);
