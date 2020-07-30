@@ -1,5 +1,6 @@
 export * from "./avatar";
 export * from "./contact";
+export * from "./contact-address";
 export * from "./env";
 export * from "./migrator";
 export * from "./network";
@@ -8,6 +9,7 @@ export * from "./wallet";
 
 // Models
 export * from "./contact.models";
+export * from "./contact-address.models";
 export * from "./container.models";
 export * from "./env.models";
 export * from "./profile.models";
