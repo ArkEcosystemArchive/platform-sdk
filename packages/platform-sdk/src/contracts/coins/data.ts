@@ -20,6 +20,8 @@ export interface WalletData {
 	votes(): BigNumber | undefined;
 
 	// Flags
+	hasData(): boolean;
+
 	isDelegate(): boolean;
 
 	isKnown(): boolean;

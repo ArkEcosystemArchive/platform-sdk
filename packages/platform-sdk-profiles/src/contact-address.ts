@@ -46,6 +46,10 @@ export class ContactAddress {
 		return this.#avatar;
 	}
 
+	public hasData(): boolean {
+		return this.#wallet.hasData();
+	}
+
 	public isDelegate(): boolean {
 		return this.#wallet.isDelegate();
 	}
