@@ -81,6 +81,14 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.asset;
 	}
 
+	public isSent(): boolean {
+		return [this.getMeta("address"), this.getMeta("publicKey")].includes(this.sender());
+	}
+
+	public isReceived(): boolean {
+		return [this.getMeta("address"), this.getMeta("publicKey")].includes(this.recipient());
+	}
+
 	public isTransfer(): boolean {
 		return this.data.typeGroup === 1 && this.data.type === 0;
 	}

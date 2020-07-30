@@ -1,10 +1,18 @@
 import { BigNumber, Censor } from "@arkecosystem/platform-sdk-support";
 import emoji from "node-emoji";
 
-import { MultiPaymentRecipient } from "../contracts/coins/data";
+import { MultiPaymentRecipient, TransactionDataMeta } from "../contracts/coins/data";
 import { KeyValuePair } from "../contracts/types";
 
 export abstract class AbstractTransactionData {
+	/**
+	 * Various coins need post-processing to determine things like
+	 * "isSent" or "isReceived" with data that comes from outside
+	 * of the transaction or network data itself. This object can
+	 * be used to store the data necessary for those actions.
+	 */
+	readonly #meta: Record<string, TransactionDataMeta> = {};
+
 	public constructor(protected readonly data: KeyValuePair) {}
 
 	abstract id(): string;
@@ -28,6 +36,10 @@ export abstract class AbstractTransactionData {
 	abstract memo(): string | undefined;
 
 	abstract asset(): Record<string, unknown>;
+
+	abstract isSent(): boolean;
+
+	abstract isReceived(): boolean;
 
 	abstract isTransfer(): boolean;
 
@@ -94,6 +106,14 @@ export abstract class AbstractTransactionData {
 		return this.data !== undefined;
 	}
 
+	public getMeta(key: string): TransactionDataMeta {
+		return this.#meta[key];
+	}
+
+	public setMeta(key: string, value: TransactionDataMeta): void {
+		this.#meta[key] = value;
+	}
+
 	protected censorMemo(memo?: string): string | undefined {
 		if (memo) {
 			const processor: Censor = new Censor();
@@ -108,3 +128,43 @@ export abstract class AbstractTransactionData {
 		return memo;
 	}
 }
+
+export interface BridgechainRegistrationData {}
+
+export interface BridgechainResignationData {}
+
+export interface BridgechainUpdateData {}
+
+export interface BusinessRegistrationData {}
+
+export interface BusinessResignationData {}
+
+export interface BusinessUpdateData {}
+
+export interface DelegateRegistrationData {}
+
+export interface DelegateResignationData {}
+
+export interface EntityRegistrationData {}
+
+export interface EntityResignationData {}
+
+export interface EntityUpdateData {}
+
+export interface HtlcClaimData {}
+
+export interface HtlcLockData {}
+
+export interface HtlcRefundData {}
+
+export interface IpfsData {}
+
+export interface MultiPaymentData {}
+
+export interface MultiSignatureData {}
+
+export interface SecondSignatureData {}
+
+export interface TransferData {}
+
+export interface VoteData {}

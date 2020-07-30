@@ -1,14 +1,11 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Avatar } from "./avatar";
-import { container } from "./container";
 import { makeCoin } from "./container.helpers";
-import { Identifiers } from "./container.models";
 import { Profile } from "./profile";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
-import { createTransactionDataCollection } from "./transaction.helpers";
 import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 
 export class Wallet {
@@ -304,28 +301,19 @@ export class Wallet {
 	public async transactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return createTransactionDataCollection(
-			await this.#coin.client().transactions({ address: this.address(), ...query }),
-			this,
-		);
+		return this.fetchTransaction({ address: this.address(), ...query });
 	}
 
 	public async sentTransactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return createTransactionDataCollection(
-			await this.#coin.client().transactions({ senderId: this.address(), ...query }),
-			this,
-		);
+		return this.fetchTransaction({ senderId: this.address(), ...query });
 	}
 
 	public async receivedTransactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return createTransactionDataCollection(
-			await this.#coin.client().transactions({ recipientId: this.address(), ...query }),
-			this,
-		);
+		return this.fetchTransaction({ recipientId: this.address(), ...query });
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -372,5 +360,18 @@ export class Wallet {
 
 	public async updateExchangeRate(): Promise<void> {
 		this.data().set(WalletData.ExchangeRate, this.#profile.getExchangeRate(this.currency()));
+	}
+
+	private async fetchTransaction(
+		query: Contracts.ClientTransactionsInput,
+	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+		const { data, meta } = await this.#coin.client().transactions({ address: this.address(), ...query });
+
+		for (const transaction of data.all()) {
+			transaction.setMeta("address", this.address());
+			transaction.setMeta("publicKey", this.publicKey());
+		}
+
+		return { meta, data };
 	}
 }

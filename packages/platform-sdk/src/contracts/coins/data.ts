@@ -2,6 +2,8 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { KeyValuePair } from "../types";
 
+export type TransactionDataMeta = string | number | boolean | undefined;
+
 export interface TransactionData {
 	id(): string;
 
@@ -24,6 +26,10 @@ export interface TransactionData {
 	memo(): string | undefined;
 
 	asset(): Record<string, unknown>;
+
+	isSent(): boolean;
+
+	isReceived(): boolean;
 
 	isTransfer(): boolean;
 
@@ -68,6 +74,10 @@ export interface TransactionData {
 	isEntityUpdate(): boolean;
 
 	toObject(): KeyValuePair;
+
+	getMeta(key: string): TransactionDataMeta;
+
+	setMeta(key: string, value: TransactionDataMeta): void;
 }
 
 export interface WalletData {
