@@ -57,9 +57,7 @@ export class Profile {
 	}
 
 	public balance(): BigNumber {
-		return this.wallets()
-			.values()
-			.reduce((total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()), BigNumber.ZERO);
+		return this.walletAggregate().balance();
 	}
 
 	public contacts(): ContactRepository {

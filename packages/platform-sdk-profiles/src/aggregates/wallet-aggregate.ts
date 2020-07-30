@@ -10,6 +10,13 @@ export class WalletAggregate {
 		this.#profile = profile;
 	}
 
+	public balance(): BigNumber {
+		return this.#profile
+			.wallets()
+			.values()
+			.reduce((total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()), BigNumber.ZERO);
+	}
+
 	public balancePerCoin(): Record<string, { total: number; percentage: number }> {
 		const result = {};
 
