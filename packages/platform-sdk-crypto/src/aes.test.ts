@@ -3,14 +3,12 @@ import "jest-extended";
 import { AES } from "./aes";
 
 const message = "Hello World";
-const password = "password";
-const salt = "salt";
-const iv = "secretsecretsecretsecret";
+const password = "ZtdDl3Ex7ycFfgdbAC3uTLNk8eLVDcEd";
 
 test("#encrypt", async () => {
-	expect(AES.encrypt(message, password, salt, iv)).toBe("Y8RT6kFrfwll6SXUOti6UQ==");
+	expect(AES.encrypt(message, password)).toBeString();
 });
 
 test("#decrypt", async () => {
-	expect(AES.decrypt("Y8RT6kFrfwll6SXUOti6UQ==", password, salt, iv)).toBe(message);
+	expect(AES.decrypt(AES.encrypt(message, password), password)).toBe(message);
 });

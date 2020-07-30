@@ -331,7 +331,6 @@ __metadata:
     "@types/hapi__joi": 17.1.4
     "@types/jest": ^26.0.5
     "@types/node": ^14.0.24
-    "@types/node-forge": 0.9.4
     "@types/prettier": ^2.0.2
     "@types/rimraf": ^3.0.0
     "@types/wif": 2.0.1
@@ -354,12 +353,11 @@ __metadata:
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.3
     keytar: ^6.0.1
+    ncrypt-js: ^2.0.0
     nock: ^13.0.2
-    node-forge: ^0.9.1
     npm-check-updates: ^7.0.2
     prettier: ^2.0.5
     rimraf: ^3.0.2
-    safe-buffer: ^5.2.1
     ts-jest: ^26.1.3
     typedoc: ^0.17.8
     typescript: ^3.9.7
@@ -4109,15 +4107,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node-forge@npm:0.9.4":
-  version: 0.9.4
-  resolution: "@types/node-forge@npm:0.9.4"
-  dependencies:
-    "@types/node": "*"
-  checksum: 2/95bbe7c98024bb2285807a055522124e9a32ae7f595c67d59907174287ae817ee6ba3769ae35c40e80f43a0e434472ab6baec97cc6a70de58cbc0bc0e7ff64f1
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:*, @types/node@npm:>= 8, @types/node@npm:^13.7.0":
   version: 13.13.4
   resolution: "@types/node@npm:13.13.4"
@@ -6987,6 +6976,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"crypto-js@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "crypto-js@npm:3.3.0"
+  checksum: 2/7cf8de489f9f25084a3b22cc6e944e2e11e03b6374777a7a554739ee27e3b35d5dfdac490e0a66bc191c9ecbbea13ad716f59345657335b39d95f9bc19c40ac5
+  languageName: node
+  linkType: hard
+
 "crypto-js@npm:^4.0.0":
   version: 4.0.0
   resolution: "crypto-js@npm:4.0.0"
@@ -7005,6 +7001,13 @@ __metadata:
   version: 2.0.0
   resolution: "crypto-random-string@npm:2.0.0"
   checksum: 2/7bc19f6cafe3194a434198c9414941cc36d874e1f85b6fcba573b5623f77a440c0a10a94c0d0da26d7d23d85b6fe07354e589ef1a0fe2d7b32e0bab9e70ca4c1
+  languageName: node
+  linkType: hard
+
+"crypto@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "crypto@npm:1.0.1"
+  checksum: 2/e3ecafe330b730e4e7482096b895e1cdab78c189cfe66408de27f4bc1390500346bb02dad2959046a1ac53131c0691e045d03294fa321ce632b1f450d02bd616
   languageName: node
   linkType: hard
 
@@ -7587,6 +7590,13 @@ __metadata:
   dependencies:
     is-obj: ^2.0.0
   checksum: 2/d2f62e0b5ec467edb8e278ab6070955f0a4aec973ec1fa837ff6152f3cdd96cd2a04c7e2626cb3eac4f639b8f6786b5b87d3c01df7ba729693c636cb78b7ae93
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "dotenv@npm:8.2.0"
+  checksum: 2/16cb89cbd7b98b053899b8aba8c5044c8fb61a2db8a81fe70360b75035fce5fed53bd7a34d772be717d0880c0321122a4c09423f518025e1b52d96791521b1a7
   languageName: node
   linkType: hard
 
@@ -9528,7 +9538,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"handlebars@npm:^4.7.6":
+"handlebars@npm:^4.7.3, handlebars@npm:^4.7.6":
   version: 4.7.6
   resolution: "handlebars@npm:4.7.6"
   dependencies:
@@ -14442,6 +14452,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ncrypt-js@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "ncrypt-js@npm:2.0.0"
+  dependencies:
+    crypto: ^1.0.1
+    dotenv: ^8.2.0
+    handlebars: ^4.7.3
+    simple-crypto-js: ^2.2.0
+  checksum: 2/ef0854b3f5a56c5c6ce41037177b2edc570f521e4e8bbbf5b26f09dd613d69c6cc7851b831315eb22b8885ba8facf03588fd1d7a8e1e89df491abef78dd64b18
+  languageName: node
+  linkType: hard
+
 "needle@npm:^2.2.1":
   version: 2.5.0
   resolution: "needle@npm:2.5.0"
@@ -17055,7 +17077,7 @@ resolve@~1.7.1:
   languageName: node
   linkType: hard
 
-"safe-buffer@npm:^5.2.1, safe-buffer@npm:~5.2.0":
+"safe-buffer@npm:~5.2.0":
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
   checksum: 2/0bb57f0d8f9d1fa4fe35ad8a2db1f83a027d48f2822d59ede88fd5cd4ddad83c0b497213feb7a70fbf90597a70c5217f735b0eb1850df40ce9b4ae81dd22b3f9
@@ -17447,6 +17469,15 @@ resolve@~1.7.1:
   version: 1.0.0
   resolution: "simple-concat@npm:1.0.0"
   checksum: 2/475b1612969283bdca590440f5fd87936d8d0d468707cfd2cb8ee455a08ee9eb0ac3458ee8167701eb3e3a7f7d612cce2933c2830ec525a158cd9c132167e621
+  languageName: node
+  linkType: hard
+
+"simple-crypto-js@npm:^2.2.0":
+  version: 2.5.0
+  resolution: "simple-crypto-js@npm:2.5.0"
+  dependencies:
+    crypto-js: ^3.3.0
+  checksum: 2/59d0cdc1bfe89c8f746d39f973894259b0e2b6fd82ecb40703d6d8290487f36e4a520312e2f6c60fcc02b1a00d0cc2baf04d7e8d821fc8c28ef62f08d00db717
   languageName: node
   linkType: hard
 

@@ -715,7 +715,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/hapi__joi", "npm:17.1.4"],
             ["@types/jest", "npm:26.0.5"],
             ["@types/node", "npm:14.0.24"],
-            ["@types/node-forge", "npm:0.9.4"],
             ["@types/prettier", "npm:2.0.2"],
             ["@types/rimraf", "npm:3.0.0"],
             ["@types/wif", "npm:2.0.1"],
@@ -738,12 +737,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.3"],
             ["keytar", "npm:6.0.1"],
+            ["ncrypt-js", "npm:2.0.0"],
             ["nock", "npm:13.0.2"],
-            ["node-forge", "npm:0.9.1"],
             ["npm-check-updates", "npm:7.0.2"],
             ["prettier", "npm:2.0.5"],
             ["rimraf", "npm:3.0.2"],
-            ["safe-buffer", "npm:5.2.1"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.1.3"],
             ["typedoc", "virtual:718d81ccdbea80d009ddf282815e1ddbae06dbd32b8310b5d294f48a2ed35e0698a5a02342ad7ebeaf2437a4d1197a11431303cd29d3daf770c5a7253eeda45f#npm:0.17.8"],
             ["typescript", "patch:typescript@npm%3A3.9.7#builtin<compat/typescript>::version=3.9.7&hash=c79188"],
@@ -4760,16 +4758,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["@types/node-forge", [
-        ["npm:0.9.4", {
-          "packageLocation": "./.yarn/cache/@types-node-forge-npm-0.9.4-929e8c60c9-2.zip/node_modules/@types/node-forge/",
-          "packageDependencies": [
-            ["@types/node-forge", "npm:0.9.4"],
-            ["@types/node", "npm:13.13.4"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["@types/normalize-package-data", [
         ["npm:2.4.0", {
           "packageLocation": "./.yarn/cache/@types-normalize-package-data-npm-2.4.0-ed928aaaa8-2.zip/node_modules/@types/normalize-package-data/",
@@ -8522,6 +8510,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["crypto", [
+        ["npm:1.0.1", {
+          "packageLocation": "./.yarn/cache/crypto-npm-1.0.1-7cb8e3dca6-2.zip/node_modules/crypto/",
+          "packageDependencies": [
+            ["crypto", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["crypto-browserify", [
         ["npm:3.12.0", {
           "packageLocation": "./.yarn/cache/crypto-browserify-npm-3.12.0-bed454fef0-2.zip/node_modules/crypto-browserify/",
@@ -8547,6 +8544,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/crypto-js-npm-3.2.0-b9bcedad3c-2.zip/node_modules/crypto-js/",
           "packageDependencies": [
             ["crypto-js", "npm:3.2.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:3.3.0", {
+          "packageLocation": "./.yarn/cache/crypto-js-npm-3.3.0-5b307000b5-2.zip/node_modules/crypto-js/",
+          "packageDependencies": [
+            ["crypto-js", "npm:3.3.0"]
           ],
           "linkType": "HARD",
         }],
@@ -9255,6 +9259,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["dot-prop", "npm:5.2.0"],
             ["is-obj", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["dotenv", [
+        ["npm:8.2.0", {
+          "packageLocation": "./.yarn/cache/dotenv-npm-8.2.0-6b21df4d37-2.zip/node_modules/dotenv/",
+          "packageDependencies": [
+            ["dotenv", "npm:8.2.0"]
           ],
           "linkType": "HARD",
         }]
@@ -16722,6 +16735,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["ncrypt-js", [
+        ["npm:2.0.0", {
+          "packageLocation": "./.yarn/cache/ncrypt-js-npm-2.0.0-9630b3f39e-2.zip/node_modules/ncrypt-js/",
+          "packageDependencies": [
+            ["ncrypt-js", "npm:2.0.0"],
+            ["crypto", "npm:1.0.1"],
+            ["dotenv", "npm:8.2.0"],
+            ["handlebars", "npm:4.7.6"],
+            ["simple-crypto-js", "npm:2.5.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["needle", [
         ["npm:2.5.0", {
           "packageLocation": "./.yarn/cache/needle-npm-2.5.0-19bdc06f5d-2.zip/node_modules/needle/",
@@ -19989,6 +20015,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/simple-concat-npm-1.0.0-254e9f193d-2.zip/node_modules/simple-concat/",
           "packageDependencies": [
             ["simple-concat", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["simple-crypto-js", [
+        ["npm:2.5.0", {
+          "packageLocation": "./.yarn/cache/simple-crypto-js-npm-2.5.0-b04a534912-2.zip/node_modules/simple-crypto-js/",
+          "packageDependencies": [
+            ["simple-crypto-js", "npm:2.5.0"],
+            ["crypto-js", "npm:3.3.0"]
           ],
           "linkType": "HARD",
         }]
