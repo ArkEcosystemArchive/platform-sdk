@@ -1,5 +1,3 @@
-import { Primitive } from "type-fest";
-
 import { DataRepository } from "./data-repository";
 
 export class SettingRepository {
@@ -29,7 +27,7 @@ export class SettingRepository {
 		return this.#storage.get(key, defaultValue);
 	}
 
-	public set(key: string, value: Primitive | object): void {
+	public set(key: string, value: string | number | boolean | object): void {
 		this.assertValidKey(key);
 
 		this.#storage.set(key, value);
