@@ -12,8 +12,9 @@ export class WalletAggregate {
 		const result = {};
 
 		const totalByProfile: BigNumber = this.#profile.balance();
+		const walletsByCoin: Record<string, Record<string, Wallet>> = this.#profile.wallets().allByCoin();
 
-		for (const [coin, wallets] of Object.entries(this.#profile.wallets().allByCoin())) {
+		for (const [coin, wallets] of Object.entries(walletsByCoin)) {
 			const totalByCoin: BigNumber = Object.values(wallets).reduce(
 				(total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()),
 				BigNumber.ZERO,
