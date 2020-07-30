@@ -17,6 +17,7 @@ import { PluginRepository } from "./repositories/plugin-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
 import { Wallet } from "./wallet";
+import { Authenticator } from "./authenticator";
 
 export class Profile {
 	#contactRepository!: ContactRepository;
@@ -113,6 +114,14 @@ export class Profile {
 	}
 
 	/**
+	 * These methods serve as helpers to handle authenticate / authorisation.
+	 */
+
+	public auth(): Authenticator {
+		return new Authenticator(this);
+	}
+
+	/**
 	 * These methods serve as helpers to interact with exchange markets.
 	 */
 
@@ -129,27 +138,5 @@ export class Profile {
 			this.settings().get(ProfileSetting.ExchangeCurrency) || "BTC",
 			+Date.now(),
 		);
-	}
-
-	/**
-	 * These methods serve as helpers for settings that require additional processing.
-	 */
-
-	public setPassword(password: string): void {
-		this.settings().set(ProfileSetting.Password, Bcrypt.hash(password));
-	}
-
-	public changePassword(oldPassword: string, newPassword: string): void {
-		const currentPassword: string | undefined = this.settings().get(ProfileSetting.Password);
-
-		if (!currentPassword) {
-			throw new Error("No password is set. Call [setPassword] instead.");
-		}
-
-		if (!Bcrypt.verify(currentPassword, oldPassword)) {
-			throw new Error("The current password does not match.");
-		}
-
-		this.setPassword(newPassword);
 	}
 }
