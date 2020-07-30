@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.189 - 2020-07-30
+
+### Changed
+
+-   Allow strings, numbers, booleans and objects for settings (7df67d97, @faustbrian)
+
+### Fixed
+
+-   Restore wallet data and public key on sync error (058806b3, @faustbrian)
+
 ## 0.9.187 - 2020-07-30
 
 ### Added
