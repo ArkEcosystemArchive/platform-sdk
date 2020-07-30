@@ -121,6 +121,10 @@ export class Profile {
 		return new Authenticator(this);
 	}
 
+	public usesPassword(): boolean {
+		return this.settings().get(ProfileSetting.Password) !== undefined;
+	}
+
 	/**
 	 * These methods serve as helpers to interact with exchange markets.
 	 */
