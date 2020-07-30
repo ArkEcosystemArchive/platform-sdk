@@ -7,11 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.187 - 2020-07-30
+
+### Added
+
+-   Add `ProfileSetting.AutomaticLogoffPeriod` (f4500198, @faustbrian)
+-   Implement `bcryptjs` as `argon2` alternative (1e74f309, @faustbrian)
+-   Add `DTO#hasData` method to determine if data is not undefined (4a050ade, @faustbrian)
+
+### Changed
+
+-   Temporarily disable `argon2` (1e74f309, @faustbrian)
+
 ## 0.9.183 - 2020-07-29
 
 ### Changed
 
-- Use browser-compatible argon2 dependency (92a881c7, @faustbrian)
+-   Use browser-compatible argon2 dependency (92a881c7, @faustbrian)
 
 ## 0.9.182 - 2020-07-29
 
