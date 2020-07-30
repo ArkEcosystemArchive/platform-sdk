@@ -2,8 +2,10 @@ import { BigNumber } from "../../../platform-sdk-support/dist";
 import { Wallet } from "../wallet";
 
 export class WalletAggregate {
+	// @TODO: add typehint
 	readonly #profile;
 
+	// @TODO: add typehint
 	public constructor(profile) {
 		this.#profile = profile;
 	}

@@ -1,6 +1,8 @@
 export class CountAggregate {
+	// @TODO: add typehint
 	readonly #profile;
 
+	// @TODO: add typehint
 	public constructor(profile) {
 		this.#profile = profile;
 	}

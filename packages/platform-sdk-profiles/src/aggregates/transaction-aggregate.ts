@@ -1,8 +1,10 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 export class TransactionAggregate {
+	// @TODO: add typehint
 	readonly #profile;
 
+	// @TODO: add typehint
 	public constructor(profile) {
 		this.#profile = profile;
 	}
