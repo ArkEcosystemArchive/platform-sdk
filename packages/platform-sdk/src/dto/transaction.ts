@@ -90,6 +90,10 @@ export abstract class AbstractTransactionData {
 		return this.data;
 	}
 
+	public hasData(): boolean {
+		return this.data !== undefined;
+	}
+
 	protected censorMemo(memo?: string): string | undefined {
 		if (memo) {
 			const processor: Censor = new Censor();
