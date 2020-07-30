@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.198 - 2020-07-30
+
+### Changed
+
+-   Export contact address types (b7676bdb, @dated)
+
 ## 0.9.197 - 2020-07-30
 
 ### Added
