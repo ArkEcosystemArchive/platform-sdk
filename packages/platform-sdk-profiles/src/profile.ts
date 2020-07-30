@@ -83,6 +83,20 @@ export class Profile {
 		return this.#walletRepository;
 	}
 
+	public async aggregateTransactions(page = 1) {
+		const result = [];
+
+		for (const wallet of this.wallets().values()) {
+			const { data } = await wallet.transactions({ page });
+
+			for (const transaction of data) {
+				result.push(transaction);
+			}
+		}
+
+		return result;
+	}
+
 	public toObject(): ProfileStruct {
 		return {
 			id: this.id(),
