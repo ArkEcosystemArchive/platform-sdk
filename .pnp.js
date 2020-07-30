@@ -711,6 +711,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/argon2-browser", "npm:1.12.0"],
+            ["@types/bcryptjs", "npm:2.4.2"],
             ["@types/bent", "npm:7.3.0"],
             ["@types/bip38", "npm:2.0.1"],
             ["@types/dot-prop", "npm:5.0.1"],
@@ -726,6 +727,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:3.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.7.0"],
             ["argon2-browser", "npm:1.13.0"],
+            ["bcryptjs", "npm:2.4.3"],
             ["bcrypto", "npm:5.2.0"],
             ["bip32", "npm:2.0.5"],
             ["bip38", "npm:3.1.1"],
@@ -4207,6 +4209,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/bcryptjs", [
+        ["npm:2.4.2", {
+          "packageLocation": "./.yarn/cache/@types-bcryptjs-npm-2.4.2-3a0c115732-2.zip/node_modules/@types/bcryptjs/",
+          "packageDependencies": [
+            ["@types/bcryptjs", "npm:2.4.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/bent", [
         ["npm:7.3.0", {
           "packageLocation": "./.yarn/cache/@types-bent-npm-7.3.0-9860399f5a-2.zip/node_modules/@types/bent/",
@@ -6886,6 +6897,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["bcrypt-pbkdf", "npm:1.0.2"],
             ["tweetnacl", "npm:0.14.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["bcryptjs", [
+        ["npm:2.4.3", {
+          "packageLocation": "./.yarn/cache/bcryptjs-npm-2.4.3-32de4957eb-2.zip/node_modules/bcryptjs/",
+          "packageDependencies": [
+            ["bcryptjs", "npm:2.4.3"]
           ],
           "linkType": "HARD",
         }]
