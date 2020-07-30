@@ -88,7 +88,7 @@ export class Wallet {
 	 * These methods serve as getters to the underlying data and dependencies.
 	 */
 
-	public hasSyncedwithNetwork(): boolean {
+	public hasSyncedWithNetwork(): boolean {
 		return this.#isSynced;
 	}
 
