@@ -1,8 +1,9 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { RippleAPI } from "ripple-lib";
 
 import { TransactionData, WalletData } from "../dto";
+import * as DTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #connection: RippleAPI;
@@ -154,7 +155,7 @@ export class ClientService implements Contracts.ClientService {
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		const transaction = await this.#connection.getTransaction(id);
 
-		return new TransactionData(transaction);
+		return Helpers.createTransactionDataWithType(transaction, DTO);
 	}
 
 	public async transactions(
@@ -172,11 +173,11 @@ export class ClientService implements Contracts.ClientService {
 				prev: undefined,
 				next: undefined,
 			},
-			data: new Coins.TransactionDataCollection(
+			data: Helpers.createTransactionDataCollectionWithType(
 				transactions
 					// @ts-ignore
-					.filter((transaction) => transaction.specification.source.maxAmount.currency === "XRP")
-					.map((transaction) => new TransactionData(transaction)),
+					.filter((transaction) => transaction.specification.source.maxAmount.currency === "XRP"),
+				DTO,
 			),
 		};
 	}

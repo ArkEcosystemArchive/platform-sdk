@@ -54,6 +54,14 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return {};
 	}
 
+	public isSent(): boolean {
+		return false;
+	}
+
+	public isReceived(): boolean {
+		return false;
+	}
+
 	public isTransfer(): boolean {
 		return this.data.type === 8;
 	}

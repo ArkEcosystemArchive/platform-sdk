@@ -1,7 +1,8 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
-import { TransactionData, WalletData } from "../dto";
+import { WalletData } from "../dto";
+import * as DTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #client;
@@ -32,10 +33,13 @@ export class ClientService implements Contracts.ClientService {
 		const transaction = await this.#client.transactions().transaction(id).call();
 		const operations = await transaction.operations();
 
-		return new TransactionData({
-			...transaction,
-			...{ operation: operations.records[0] },
-		});
+		return Helpers.createTransactionDataWithType(
+			{
+				...transaction,
+				...{ operation: operations.records[0] },
+			},
+			DTO,
+		);
 	}
 
 	public async transactions(
@@ -45,10 +49,9 @@ export class ClientService implements Contracts.ClientService {
 
 		return {
 			meta: { prev, next },
-			data: new Coins.TransactionDataCollection(
-				records
-					.filter((transaction) => transaction.type === "payment")
-					.map((transaction) => new TransactionData(transaction)),
+			data: Helpers.createTransactionDataCollectionWithType(
+				records.filter((transaction) => transaction.type === "payment"),
+				DTO,
 			),
 		};
 	}
