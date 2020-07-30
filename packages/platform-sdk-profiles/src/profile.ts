@@ -85,6 +85,20 @@ export class Profile {
 		return this.#walletRepository;
 	}
 
+	public flush(): void {
+		this.contacts().flush();
+
+		this.data().flush();
+
+		this.notifications().flush();
+
+		this.plugins().flush();
+
+		this.settings().flush();
+
+		this.wallets().flush();
+	}
+
 	public toObject(): ProfileStruct {
 		return {
 			id: this.id(),
