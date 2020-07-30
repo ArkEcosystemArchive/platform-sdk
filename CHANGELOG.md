@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.197 - 2020-07-30
+
+### Added
+
+-   Implement `Profile#usesPassword` (4b0e12c1, @faustbrian)
+-   Implement `Profile#flush` (d80e6ccf, @faustbrian)
+
 ## 0.9.195 - 2020-07-30
 
 ### Changed
