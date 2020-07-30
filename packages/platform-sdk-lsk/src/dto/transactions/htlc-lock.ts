@@ -1,8 +1,8 @@
-import { DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "../transaction";
 
-export class HtlcLockData extends TransactionData implements DTO.HtlcLockData {
+export class HtlcLockData extends TransactionData implements Contracts.HtlcLockData {
 	public secretHash(): string {
 		throw new Exceptions.NotSupported(this.constructor.name, "secretHash");
 	}

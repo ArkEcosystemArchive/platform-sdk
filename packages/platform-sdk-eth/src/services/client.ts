@@ -54,7 +54,7 @@ export class ClientService implements Contracts.ClientService {
 		const endBlock: number = (await this.get("status")).height;
 		const startBlock: number = endBlock - (query?.limit ?? ClientService.MONTH_IN_SECONDS);
 
-		const transactions: TransactionData[] = [];
+		const transactions: Contracts.TransactionDataType[] = [];
 		for (let i = startBlock; i < endBlock; i++) {
 			const block = await this.get(`blocks/${i}`);
 

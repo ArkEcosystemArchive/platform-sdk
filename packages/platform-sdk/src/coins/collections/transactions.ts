@@ -1,41 +1,41 @@
-import { TransactionData } from "../../contracts";
+import { TransactionDataType } from "../../contracts/coins/data";
 
 export class TransactionDataCollection {
-	#transactions: TransactionData[];
+	#transactions: TransactionDataType[];
 
-	public constructor(transactions: TransactionData[]) {
+	public constructor(transactions: TransactionDataType[]) {
 		this.#transactions = transactions;
 	}
 
-	public all(): TransactionData[] {
+	public all(): TransactionDataType[] {
 		return this.#transactions;
 	}
 
-	public first(): TransactionData {
+	public first(): TransactionDataType {
 		return this.#transactions[0];
 	}
 
-	public findById(id: string): TransactionData | undefined {
+	public findById(id: string): TransactionDataType | undefined {
 		return this.find("id", id);
 	}
 
-	public findByType(type: string): TransactionData | undefined {
+	public findByType(type: string): TransactionDataType | undefined {
 		return this.find("type", type);
 	}
 
-	public findByTimestamp(timestamp: string): TransactionData | undefined {
+	public findByTimestamp(timestamp: string): TransactionDataType | undefined {
 		return this.find("timestamp", timestamp);
 	}
 
-	public findBySender(sender: string): TransactionData | undefined {
+	public findBySender(sender: string): TransactionDataType | undefined {
 		return this.find("sender", sender);
 	}
 
-	public findByRecipient(recipient: string): TransactionData | undefined {
+	public findByRecipient(recipient: string): TransactionDataType | undefined {
 		return this.find("recipient", recipient);
 	}
 
-	private find(key: string, value: string): TransactionData | undefined {
-		return this.#transactions.find((transaction: TransactionData) => transaction[key]() === value);
+	private find(key: string, value: string): TransactionDataType | undefined {
+		return this.#transactions.find((transaction: TransactionDataType) => transaction[key]() === value);
 	}
 }

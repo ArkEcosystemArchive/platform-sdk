@@ -1,8 +1,8 @@
 import { TransactionDataCollection } from "./coins";
-import { TransactionData } from "./contracts";
+import { TransactionDataType } from "./contracts/coins/data";
 
-export const createTransactionDataWithType = (transaction: unknown, dtos: Record<string, any>): TransactionData => {
-	const instance: TransactionData = new dtos.TransactionData(transaction);
+export const createTransactionDataWithType = (transaction: unknown, dtos: Record<string, any>): TransactionDataType => {
+	const instance: TransactionDataType = new dtos.TransactionData(transaction);
 
 	if (instance.isBridgechainRegistration()) {
 		return new dtos.BridgechainRegistrationData(transaction);

@@ -1,8 +1,8 @@
-import { DTO } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "../transaction";
 
-export class BusinessRegistrationData extends TransactionData implements DTO.BusinessRegistrationData {
+export class BusinessRegistrationData extends TransactionData implements Contracts.BusinessRegistrationData {
 	public name(): string {
 		return this.data.asset.businessRegistration.name;
 	}

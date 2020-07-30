@@ -1,8 +1,8 @@
-import { DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "../transaction";
 
-export class EntityRegistrationData extends TransactionData implements DTO.EntityRegistrationData {
+export class EntityRegistrationData extends TransactionData implements Contracts.EntityRegistrationData {
 	public entityType(): number {
 		throw new Exceptions.NotSupported(this.constructor.name, "entityType");
 	}

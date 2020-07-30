@@ -1,8 +1,8 @@
-import { DTO } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "../transaction";
 
-export class BridgechainUpdateData extends TransactionData implements DTO.BridgechainUpdateData {
+export class BridgechainUpdateData extends TransactionData implements Contracts.BridgechainUpdateData {
 	public name(): string {
 		return this.data.asset.bridgechainRegistration.name;
 	}

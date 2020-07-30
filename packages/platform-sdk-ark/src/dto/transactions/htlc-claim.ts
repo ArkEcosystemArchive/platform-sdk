@@ -1,8 +1,8 @@
-import { DTO } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "../transaction";
 
-export class HtlcClaimData extends TransactionData implements DTO.HtlcClaimData {
+export class HtlcClaimData extends TransactionData implements Contracts.HtlcClaimData {
 	public lockTransactionId(): string {
 		return this.data.asset.lock.lockTransactionId;
 	}

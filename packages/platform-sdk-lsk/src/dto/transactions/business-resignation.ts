@@ -1,5 +1,5 @@
-import { DTO } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "../transaction";
 
-export class BusinessResignationData extends TransactionData implements DTO.BusinessResignationData {}
+export class BusinessResignationData extends TransactionData implements Contracts.BusinessResignationData {}

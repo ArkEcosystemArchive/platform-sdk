@@ -1,8 +1,8 @@
-import { DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "../transaction";
 
-export class BridgechainRegistrationData extends TransactionData implements DTO.BridgechainRegistrationData {
+export class BridgechainRegistrationData extends TransactionData implements Contracts.BridgechainRegistrationData {
 	public name(): string {
 		throw new Exceptions.NotSupported(this.constructor.name, "name");
 	}

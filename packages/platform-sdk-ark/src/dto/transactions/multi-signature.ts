@@ -1,8 +1,8 @@
-import { DTO } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "../transaction";
 
-export class MultiSignatureData extends TransactionData implements DTO.MultiSignatureData {
+export class MultiSignatureData extends TransactionData implements Contracts.MultiSignatureData {
 	public publicKeys(): string[] {
 		return this.data.asset.multiSignature.publicKeys;
 	}
