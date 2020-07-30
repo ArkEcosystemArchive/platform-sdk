@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.194 - 2020-07-30
+
+### Changed
+
+-   Move authentication behaviours into `Authenticator` (c5e58e0d, @faustbrian)
+
+### Fixed
+
+-   **[ARK]** Remove vote prefix from public keys (8fa0ae41, @faustbrian)
+
 ## 0.9.192 - 2020-07-30
 
 ### Added
