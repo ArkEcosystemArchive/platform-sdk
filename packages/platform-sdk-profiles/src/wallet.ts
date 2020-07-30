@@ -22,8 +22,6 @@ export class Wallet {
 	#publicKey!: string | undefined;
 	#avatar!: string;
 
-	#isSynced = false;
-
 	public constructor(id: string, profile: Profile) {
 		this.#id = id;
 		this.#profile = profile;
@@ -89,7 +87,7 @@ export class Wallet {
 	 */
 
 	public hasSyncedWithNetwork(): boolean {
-		return this.#isSynced;
+		return this.#wallet !== undefined;
 	}
 
 	public id(): string {
@@ -287,8 +285,6 @@ export class Wallet {
 
 			this.data().set(WalletData.Balance, this.#wallet.balance());
 			this.data().set(WalletData.Sequence, this.#wallet.nonce());
-
-			this.#isSynced = true;
 		} catch {
 			/**
 			 * TODO: decide what to do if the wallet couldn't be found
@@ -299,7 +295,6 @@ export class Wallet {
 
 			this.#wallet = currentWallet;
 			this.#publicKey = currentPublicKey;
-			this.#isSynced = false;
 		}
 	}
 
