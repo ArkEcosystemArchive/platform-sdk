@@ -1,4 +1,4 @@
-import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Avatar } from "./avatar";
@@ -291,6 +291,33 @@ export class Wallet {
 
 			this.#wallet = currentWallet;
 			this.#publicKey = currentPublicKey;
+		}
+	}
+
+	public async syncDelegates(): Promise<void> {
+		try {
+			let result: Contracts.WalletData[] = [];
+			let hasMore = true;
+			let page = 1;
+
+			while (hasMore) {
+				const { data, meta } = await this.delegates({ page });
+
+				result = result.concat(data.all());
+
+				hasMore = Boolean(meta.next);
+
+				page++;
+			}
+
+			this.data().set(
+				WalletData.Delegates,
+				result.map((delegate: Contracts.WalletData) => delegate.toObject()),
+			);
+		} catch {
+			if (this.data().has(WalletData.Delegates)) {
+				this.data().forget(WalletData.Delegates);
+			}
 		}
 	}
 

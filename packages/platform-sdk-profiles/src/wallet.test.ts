@@ -31,6 +31,10 @@ beforeEach(async () => {
 		.reply(200, require("../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../test/fixtures/client/wallet.json"))
+		.get("/api/delegates?page=1")
+		.reply(200, require("../test/fixtures/client/delegates-1.json"))
+		.get("/api/delegates?page=2")
+		.reply(200, require("../test/fixtures/client/delegates-2.json"))
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
@@ -141,4 +145,13 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.settings).toBeObject();
 		expect(actual.settings.AVATAR).toBeString();
 	});
+});
+
+test("#syncDelegates", async () => {
+	expect(subject.data().get(WalletData.Delegates)).toBeUndefined();
+
+	await subject.syncDelegates();
+
+	expect(subject.data().get(WalletData.Delegates)).toBeArray();
+	expect(subject.data().get(WalletData.Delegates)).toHaveLength(200);
 });
