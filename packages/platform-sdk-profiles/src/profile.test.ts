@@ -73,31 +73,3 @@ test("#toObject", () => {
 		wallets: {},
 	});
 });
-
-it("should set the password", async () => {
-	expect(subject.settings().get(ProfileSetting.Password)).toBeUndefined();
-
-	expect(subject.setPassword("password")).toBeUndefined();
-
-	expect(subject.settings().get(ProfileSetting.Password)).toBeString();
-});
-
-it("should change the password", () => {
-	subject.setPassword("old-password");
-
-	const oldPassword = subject.settings().get(ProfileSetting.Password);
-
-	expect(subject.changePassword("old-password", "new-password")).toBeUndefined();
-
-	expect(subject.settings().get(ProfileSetting.Password)).not.toBe(oldPassword);
-});
-
-it("should fail to change the password if no password is set", () => {
-	expect(() => subject.changePassword("old-password", "new-password")).toThrow("No password");
-});
-
-it("should fail to change the password if the old password is invalid", () => {
-	subject.setPassword("old-password");
-
-	expect(() => subject.changePassword("invalid-old-password", "new-password")).toThrow("does not match");
-});
