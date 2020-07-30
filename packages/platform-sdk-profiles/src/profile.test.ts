@@ -74,19 +74,6 @@ test("#toObject", () => {
 	});
 });
 
-test("#balancePerCoin", async () => {
-	container.set(Identifiers.HttpClient, new Request());
-
-	await subject.wallets().importByMnemonic(identity.mnemonic, "ARK", "devnet");
-
-	expect(subject.balancePerCoin()).toEqual({
-		DARK: {
-			percentage: "100.00",
-			total: "55827093444556",
-		},
-	});
-});
-
 it("should set the password", async () => {
 	expect(subject.settings().get(ProfileSetting.Password)).toBeUndefined();
 

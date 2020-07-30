@@ -3,6 +3,9 @@ import { Bcrypt } from "@arkecosystem/platform-sdk-crypto";
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { CountAggregate } from "./aggregates/count-aggregate";
+import { TransactionAggregate } from "./aggregates/transaction-aggregate";
+import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Avatar } from "./avatar";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
@@ -54,9 +57,7 @@ export class Profile {
 	}
 
 	public balance(): BigNumber {
-		return this.wallets()
-			.values()
-			.reduce((total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()), BigNumber.ZERO);
+		return this.walletAggregate().balance();
 	}
 
 	public contacts(): ContactRepository {
@@ -96,39 +97,19 @@ export class Profile {
 	}
 
 	/**
-	 * These methods serve as helpers to aggregate certain data for UI consumption.
+	 * These methods serve as helpers to aggregate commonly used data.
 	 */
 
-	public countContacts(): number {
-		return this.contacts().count();
+	public countAggregate(): CountAggregate {
+		return new CountAggregate(this);
 	}
 
-	public countNotifications(): number {
-		return this.notifications().count();
+	public transactionAggregate(): TransactionAggregate {
+		return new TransactionAggregate(this);
 	}
 
-	public countWallets(): number {
-		return this.wallets().count();
-	}
-
-	public balancePerCoin(): Record<string, { total: number; percentage: number }> {
-		const result = {};
-
-		const totalByProfile: BigNumber = this.balance();
-
-		for (const [coin, wallets] of Object.entries(this.wallets().allByCoin())) {
-			const totalByCoin: BigNumber = Object.values(wallets).reduce(
-				(total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()),
-				BigNumber.ZERO,
-			);
-
-			result[coin] = {
-				total: totalByCoin.toFixed(),
-				percentage: totalByCoin.divide(totalByProfile).times(100).toFixed(2),
-			};
-		}
-
-		return result;
+	public walletAggregate(): WalletAggregate {
+		return new WalletAggregate(this);
 	}
 
 	/**
