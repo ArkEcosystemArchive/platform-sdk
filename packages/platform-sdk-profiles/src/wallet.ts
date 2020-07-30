@@ -272,6 +272,9 @@ export class Wallet {
 	 */
 
 	public async syncIdentity(): Promise<void> {
+		const currentWallet = this.#wallet;
+		const currentPublicKey = this.#publicKey;
+
 		try {
 			this.#wallet = await this.#coin.client().wallet(this.address());
 
@@ -288,6 +291,9 @@ export class Wallet {
 			 * A missing wallet could mean that the wallet is legitimate
 			 * but has no transactions or that the address is wrong.
 			 */
+
+			this.#wallet = currentWallet;
+			this.#publicKey = currentPublicKey;
 		}
 	}
 
