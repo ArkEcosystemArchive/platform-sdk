@@ -21,6 +21,7 @@
 	},
 	"dependencies": {
 		"argon2-browser": "^1.13.0",
+		"bcryptjs": "^2.4.3",
 		"bcrypto": "^5.2.0",
 		"bip32": "^2.0.5",
 		"bip38": "^3.1.1",
@@ -32,6 +33,7 @@
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/argon2-browser": "1.12.0",
+		"@types/bcryptjs": "2.4.2",
 		"@types/bent": "7.3.0",
 		"@types/bip38": "2.0.1",
 		"@types/dot-prop": "5.0.1",

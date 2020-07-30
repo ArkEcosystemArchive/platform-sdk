@@ -322,6 +322,7 @@ __metadata:
   dependencies:
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/argon2-browser": 1.12.0
+    "@types/bcryptjs": 2.4.2
     "@types/bent": 7.3.0
     "@types/bip38": 2.0.1
     "@types/dot-prop": 5.0.1
@@ -337,6 +338,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^3.7.0
     "@typescript-eslint/parser": ^3.7.0
     argon2-browser: ^1.13.0
+    bcryptjs: ^2.4.3
     bcrypto: ^5.2.0
     bip32: ^2.0.5
     bip38: ^3.1.1
@@ -3679,6 +3681,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/bcryptjs@npm:2.4.2":
+  version: 2.4.2
+  resolution: "@types/bcryptjs@npm:2.4.2"
+  checksum: 2/91013aa8a5e8185137af1fb011de7f794f5bc71400e0aebba2252985a4d0c5eb4c477617c4aa4c20fdb21f05320ac0095eb8b596c004ff5e3315b656e58a0c72
+  languageName: node
+  linkType: hard
+
 "@types/bent@npm:7.3.0":
   version: 7.3.0
   resolution: "@types/bent@npm:7.3.0"
@@ -5488,6 +5497,13 @@ __metadata:
   dependencies:
     tweetnacl: ^0.14.3
   checksum: 2/3f57eb99bbc02352f68ff31e446997f4d21cc9a5e5286449dc1fe0116ec5dac5a4aa538967d45714fa9320312d2be8d16126f2d357da1dd40a3d546b96e097ed
+  languageName: node
+  linkType: hard
+
+"bcryptjs@npm:^2.4.3":
+  version: 2.4.3
+  resolution: "bcryptjs@npm:2.4.3"
+  checksum: 2/5a320711757b5932da200856a5193cad0123df7c43b46417172eabf2aa436a8f08f64851722052fea6335453f96290005b6694a7dd26d8951810362de343175c
   languageName: node
   linkType: hard
 

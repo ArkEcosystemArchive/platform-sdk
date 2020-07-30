@@ -90,27 +90,27 @@ test("#balancePerCoin", async () => {
 it("should set the password", async () => {
 	expect(subject.settings().get(ProfileSetting.Password)).toBeUndefined();
 
-	await expect(subject.setPassword("password")).resolves.toBeUndefined();
+	expect(subject.setPassword("password")).toBeUndefined();
 
 	expect(subject.settings().get(ProfileSetting.Password)).toBeString();
 });
 
-it("should change the password", async () => {
-	await subject.setPassword("old-password");
+it("should change the password", () => {
+	subject.setPassword("old-password");
 
 	const oldPassword = subject.settings().get(ProfileSetting.Password);
 
-	await expect(subject.changePassword("old-password", "new-password")).resolves.toBeUndefined();
+	expect(subject.changePassword("old-password", "new-password")).toBeUndefined();
 
 	expect(subject.settings().get(ProfileSetting.Password)).not.toBe(oldPassword);
 });
 
-it("should fail to change the password if no password is set", async () => {
-	await expect(subject.changePassword("old-password", "new-password")).rejects.toThrow("No password");
+it("should fail to change the password if no password is set", () => {
+	expect(() => subject.changePassword("old-password", "new-password")).toThrow("No password");
 });
 
-it("should fail to change the password if the old password is invalid", async () => {
-	await subject.setPassword("old-password");
+it("should fail to change the password if the old password is invalid", () => {
+	subject.setPassword("old-password");
 
-	await expect(subject.changePassword("invalid-old-password", "new-password")).rejects.toThrow("does not match");
+	expect(() => subject.changePassword("invalid-old-password", "new-password")).toThrow("does not match");
 });

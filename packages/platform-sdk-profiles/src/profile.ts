@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Argon2 } from "@arkecosystem/platform-sdk-crypto";
+import { Bcrypt } from "@arkecosystem/platform-sdk-crypto";
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
@@ -154,21 +154,21 @@ export class Profile {
 	 * These methods serve as helpers for settings that require additional processing.
 	 */
 
-	public async setPassword(password: string): Promise<void> {
-		this.settings().set(ProfileSetting.Password, await Argon2.hash(password));
+	public setPassword(password: string): void {
+		this.settings().set(ProfileSetting.Password, Bcrypt.hash(password));
 	}
 
-	public async changePassword(oldPassword: string, newPassword: string): Promise<void> {
+	public changePassword(oldPassword: string, newPassword: string): void {
 		const currentPassword: string | undefined = this.settings().get(ProfileSetting.Password);
 
 		if (!currentPassword) {
 			throw new Error("No password is set. Call [setPassword] instead.");
 		}
 
-		if (!(await Argon2.verify(currentPassword, oldPassword))) {
+		if (!Bcrypt.verify(currentPassword, oldPassword)) {
 			throw new Error("The current password does not match.");
 		}
 
-		await this.setPassword(newPassword);
+		this.setPassword(newPassword);
 	}
 }
