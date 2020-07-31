@@ -14,7 +14,6 @@ export class WalletAggregate {
 		return this.#profile
 			.wallets()
 			.values()
-			.filter((wallet: Wallet) => wallet.hasSyncedWithNetwork())
 			.reduce((total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()), BigNumber.ZERO);
 	}
 
@@ -22,11 +21,7 @@ export class WalletAggregate {
 		const result = {};
 
 		const totalByProfile: BigNumber = this.#profile.balance();
-		const walletsByCoin: Record<string, Record<string, Wallet>> = this.#profile
-			.wallets()
-			.values()
-			.filter((wallet: Wallet) => wallet.hasSyncedWithNetwork())
-			.allByCoin();
+		const walletsByCoin: Record<string, Record<string, Wallet>> = this.#profile.wallets().allByCoin();
 
 		for (const [coin, wallets] of Object.entries(walletsByCoin)) {
 			const totalByCoin: BigNumber = Object.values(wallets).reduce(
