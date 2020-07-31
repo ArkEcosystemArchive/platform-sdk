@@ -90,6 +90,7 @@
 						<section class="tsd-index-section tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_dto_transaction_.abstracttransactiondata.html#_meta" class="tsd-kind-icon">#meta</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_dto_transaction_.abstracttransactiondata.html#data" class="tsd-kind-icon">data</a></li>
 							</ul>
 						</section>
@@ -101,6 +102,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_dto_transaction_.abstracttransactiondata.html#censormemo" class="tsd-kind-icon">censor<wbr>Memo</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#confirmations" class="tsd-kind-icon">confirmations</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#fee" class="tsd-kind-icon">fee</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#getmeta" class="tsd-kind-icon">get<wbr>Meta</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#isbridgechainregistration" class="tsd-kind-icon">is<wbr>Bridgechain<wbr>Registration</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#isbridgechainresignation" class="tsd-kind-icon">is<wbr>Bridgechain<wbr>Resignation</a></li>
@@ -119,7 +121,9 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#isipfs" class="tsd-kind-icon">is<wbr>Ipfs</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#ismultipayment" class="tsd-kind-icon">is<wbr>Multi<wbr>Payment</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#ismultisignature" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#isreceived" class="tsd-kind-icon">is<wbr>Received</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#issecondsignature" class="tsd-kind-icon">is<wbr>Second<wbr>Signature</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#issent" class="tsd-kind-icon">is<wbr>Sent</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#istransfer" class="tsd-kind-icon">is<wbr>Transfer</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#isunvote" class="tsd-kind-icon">is<wbr>Unvote</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#isvote" class="tsd-kind-icon">is<wbr>Vote</a></li>
@@ -128,6 +132,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#recipient" class="tsd-kind-icon">recipient</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#recipients" class="tsd-kind-icon">recipients</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#sender" class="tsd-kind-icon">sender</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#setmeta" class="tsd-kind-icon">set<wbr>Meta</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#timestamp" class="tsd-kind-icon">timestamp</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#toobject" class="tsd-kind-icon">to<wbr>Object</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_dto_transaction_.abstracttransactiondata.html#type" class="tsd-kind-icon">type</a></li>
@@ -148,7 +153,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L7">packages/platform-sdk/src/dto/transaction.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L14">packages/platform-sdk/src/dto/transaction.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -164,13 +169,31 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_meta" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #meta</h3>
+					<div class="tsd-signature tsd-kind-icon">#meta<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../modules/_contracts_coins_data_.html#transactiondatameta" class="tsd-signature-type">TransactionDataMeta</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L14">packages/platform-sdk/src/dto/transaction.ts:14</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Various coins need post-processing to determine things like
+								&quot;isSent&quot; or &quot;isReceived&quot; with data that comes from outside
+								of the transaction or network data itself. This object can
+							be used to store the data necessary for those actions.</p>
+						</div>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="data" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> data</h3>
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="../modules/_contracts_types_.html#keyvaluepair" class="tsd-signature-type">KeyValuePair</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L8">packages/platform-sdk/src/dto/transaction.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L16">packages/platform-sdk/src/dto/transaction.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -187,7 +210,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L24">packages/platform-sdk/src/dto/transaction.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L32">packages/platform-sdk/src/dto/transaction.ts:32</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
@@ -204,7 +227,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L30">packages/platform-sdk/src/dto/transaction.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L38">packages/platform-sdk/src/dto/transaction.ts:38</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -221,7 +244,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L93">packages/platform-sdk/src/dto/transaction.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L113">packages/platform-sdk/src/dto/transaction.ts:113</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -244,7 +267,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L16">packages/platform-sdk/src/dto/transaction.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L24">packages/platform-sdk/src/dto/transaction.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
@@ -261,10 +284,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L26">packages/platform-sdk/src/dto/transaction.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L34">packages/platform-sdk/src/dto/transaction.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getmeta" class="tsd-anchor"></a>
+					<h3>get<wbr>Meta</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Meta<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_contracts_coins_data_.html#transactiondatameta" class="tsd-signature-type">TransactionDataMeta</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L105">packages/platform-sdk/src/dto/transaction.ts:105</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../modules/_contracts_coins_data_.html#transactiondatameta" class="tsd-signature-type">TransactionDataMeta</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -278,7 +324,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L10">packages/platform-sdk/src/dto/transaction.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L18">packages/platform-sdk/src/dto/transaction.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -295,7 +341,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L62">packages/platform-sdk/src/dto/transaction.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L74">packages/platform-sdk/src/dto/transaction.ts:74</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -312,7 +358,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L64">packages/platform-sdk/src/dto/transaction.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L76">packages/platform-sdk/src/dto/transaction.ts:76</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -329,7 +375,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L66">packages/platform-sdk/src/dto/transaction.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L78">packages/platform-sdk/src/dto/transaction.ts:78</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -346,7 +392,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L56">packages/platform-sdk/src/dto/transaction.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L68">packages/platform-sdk/src/dto/transaction.ts:68</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -363,7 +409,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L58">packages/platform-sdk/src/dto/transaction.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L70">packages/platform-sdk/src/dto/transaction.ts:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -380,7 +426,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L60">packages/platform-sdk/src/dto/transaction.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L72">packages/platform-sdk/src/dto/transaction.ts:72</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -397,7 +443,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L36">packages/platform-sdk/src/dto/transaction.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L48">packages/platform-sdk/src/dto/transaction.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -414,7 +460,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L48">packages/platform-sdk/src/dto/transaction.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L60">packages/platform-sdk/src/dto/transaction.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -431,7 +477,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L68">packages/platform-sdk/src/dto/transaction.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L80">packages/platform-sdk/src/dto/transaction.ts:80</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -448,7 +494,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L70">packages/platform-sdk/src/dto/transaction.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L82">packages/platform-sdk/src/dto/transaction.ts:82</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -465,7 +511,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L72">packages/platform-sdk/src/dto/transaction.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L84">packages/platform-sdk/src/dto/transaction.ts:84</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -482,7 +528,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L52">packages/platform-sdk/src/dto/transaction.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L64">packages/platform-sdk/src/dto/transaction.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -499,7 +545,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L50">packages/platform-sdk/src/dto/transaction.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L62">packages/platform-sdk/src/dto/transaction.ts:62</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -516,7 +562,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L54">packages/platform-sdk/src/dto/transaction.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L66">packages/platform-sdk/src/dto/transaction.ts:66</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -533,7 +579,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L44">packages/platform-sdk/src/dto/transaction.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L56">packages/platform-sdk/src/dto/transaction.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -550,7 +596,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L46">packages/platform-sdk/src/dto/transaction.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L58">packages/platform-sdk/src/dto/transaction.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -567,7 +613,24 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L42">packages/platform-sdk/src/dto/transaction.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L54">packages/platform-sdk/src/dto/transaction.ts:54</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isreceived" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> is<wbr>Received</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Received<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L42">packages/platform-sdk/src/dto/transaction.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -584,7 +647,24 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L34">packages/platform-sdk/src/dto/transaction.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L46">packages/platform-sdk/src/dto/transaction.ts:46</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="issent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> is<wbr>Sent</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Sent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L40">packages/platform-sdk/src/dto/transaction.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -601,7 +681,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L32">packages/platform-sdk/src/dto/transaction.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L44">packages/platform-sdk/src/dto/transaction.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -618,7 +698,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L40">packages/platform-sdk/src/dto/transaction.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L52">packages/platform-sdk/src/dto/transaction.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -635,7 +715,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L38">packages/platform-sdk/src/dto/transaction.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L50">packages/platform-sdk/src/dto/transaction.ts:50</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -652,7 +732,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L28">packages/platform-sdk/src/dto/transaction.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L36">packages/platform-sdk/src/dto/transaction.ts:36</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
@@ -669,7 +749,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L89">packages/platform-sdk/src/dto/transaction.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L101">packages/platform-sdk/src/dto/transaction.ts:101</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../modules/_contracts_types_.html#keyvaluepair" class="tsd-signature-type">KeyValuePair</a></h4>
@@ -686,7 +766,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L20">packages/platform-sdk/src/dto/transaction.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L28">packages/platform-sdk/src/dto/transaction.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -703,7 +783,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L22">packages/platform-sdk/src/dto/transaction.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L30">packages/platform-sdk/src/dto/transaction.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_contracts_coins_data_.multipaymentrecipient.html" class="tsd-signature-type">MultiPaymentRecipient</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -720,10 +800,36 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L18">packages/platform-sdk/src/dto/transaction.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L26">packages/platform-sdk/src/dto/transaction.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setmeta" class="tsd-anchor"></a>
+					<h3>set<wbr>Meta</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Meta<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><a href="../modules/_contracts_coins_data_.html#transactiondatameta" class="tsd-signature-type">TransactionDataMeta</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L109">packages/platform-sdk/src/dto/transaction.ts:109</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>value: <a href="../modules/_contracts_coins_data_.html#transactiondatameta" class="tsd-signature-type">TransactionDataMeta</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -737,7 +843,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L14">packages/platform-sdk/src/dto/transaction.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L22">packages/platform-sdk/src/dto/transaction.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
@@ -754,7 +860,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L74">packages/platform-sdk/src/dto/transaction.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L86">packages/platform-sdk/src/dto/transaction.ts:86</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../modules/_contracts_types_.html#keyvaluepair" class="tsd-signature-type">KeyValuePair</a></h4>
@@ -771,7 +877,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk/src/dto/transaction.ts#L12">packages/platform-sdk/src/dto/transaction.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk/src/dto/transaction.ts#L20">packages/platform-sdk/src/dto/transaction.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -801,6 +907,9 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="_dto_transaction_.abstracttransactiondata.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_dto_transaction_.abstracttransactiondata.html#_meta" class="tsd-kind-icon">#meta</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="_dto_transaction_.abstracttransactiondata.html#data" class="tsd-kind-icon">data</a>
 							</li>
@@ -818,6 +927,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_dto_transaction_.abstracttransactiondata.html#fee" class="tsd-kind-icon">fee</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_dto_transaction_.abstracttransactiondata.html#getmeta" class="tsd-kind-icon">get<wbr>Meta</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_dto_transaction_.abstracttransactiondata.html#id" class="tsd-kind-icon">id</a>
@@ -874,7 +986,13 @@
 								<a href="_dto_transaction_.abstracttransactiondata.html#ismultisignature" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_dto_transaction_.abstracttransactiondata.html#isreceived" class="tsd-kind-icon">is<wbr>Received</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_dto_transaction_.abstracttransactiondata.html#issecondsignature" class="tsd-kind-icon">is<wbr>Second<wbr>Signature</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_dto_transaction_.abstracttransactiondata.html#issent" class="tsd-kind-icon">is<wbr>Sent</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_dto_transaction_.abstracttransactiondata.html#istransfer" class="tsd-kind-icon">is<wbr>Transfer</a>
@@ -899,6 +1017,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_dto_transaction_.abstracttransactiondata.html#sender" class="tsd-kind-icon">sender</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_dto_transaction_.abstracttransactiondata.html#setmeta" class="tsd-kind-icon">set<wbr>Meta</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_dto_transaction_.abstracttransactiondata.html#timestamp" class="tsd-kind-icon">timestamp</a>
@@ -940,6 +1061,9 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 			</ul>
 		</div>
 	</div>

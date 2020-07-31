@@ -90,11 +90,9 @@
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_profile_.profile.html#_avatar" class="tsd-kind-icon">#avatar</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_profile_.profile.html#_contactrepository" class="tsd-kind-icon">#contact<wbr>Repository</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_profile_.profile.html#_datarepository" class="tsd-kind-icon">#data<wbr>Repository</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_profile_.profile.html#_id" class="tsd-kind-icon">#id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_profile_.profile.html#_name" class="tsd-kind-icon">#name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_profile_.profile.html#_notificationrepository" class="tsd-kind-icon">#notification<wbr>Repository</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_profile_.profile.html#_pluginrepository" class="tsd-kind-icon">#plugin<wbr>Repository</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_profile_.profile.html#_settingrepository" class="tsd-kind-icon">#setting<wbr>Repository</a></li>
@@ -104,14 +102,13 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#auth" class="tsd-kind-icon">auth</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#avatar" class="tsd-kind-icon">avatar</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#balance" class="tsd-kind-icon">balance</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#balancepercoin" class="tsd-kind-icon">balance<wbr>Per<wbr>Coin</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#contacts" class="tsd-kind-icon">contacts</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#countcontacts" class="tsd-kind-icon">count<wbr>Contacts</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#countnotifications" class="tsd-kind-icon">count<wbr>Notifications</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#countwallets" class="tsd-kind-icon">count<wbr>Wallets</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#countaggregate" class="tsd-kind-icon">count<wbr>Aggregate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#flush" class="tsd-kind-icon">flush</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#getexchangerate" class="tsd-kind-icon">get<wbr>Exchange<wbr>Rate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#market" class="tsd-kind-icon">market</a></li>
@@ -120,6 +117,9 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#plugins" class="tsd-kind-icon">plugins</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#settings" class="tsd-kind-icon">settings</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#toobject" class="tsd-kind-icon">to<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#transactionaggregate" class="tsd-kind-icon">transaction<wbr>Aggregate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#usespassword" class="tsd-kind-icon">uses<wbr>Password</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#walletaggregate" class="tsd-kind-icon">wallet<wbr>Aggregate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_profile_.profile.html#wallets" class="tsd-kind-icon">wallets</a></li>
 							</ul>
 						</section>
@@ -132,22 +132,19 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Profile<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_profile_.profile.html" class="tsd-signature-type">Profile</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Profile<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_profile_.profile.html" class="tsd-signature-type">Profile</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L26">src/profile.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L30">src/profile.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_src_profile_.profile.html" class="tsd-signature-type">Profile</a></h4>
@@ -158,22 +155,12 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_avatar" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #avatar</h3>
-					<div class="tsd-signature tsd-kind-icon">#avatar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L26">src/profile.ts:26</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_contactrepository" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #contact<wbr>Repository</h3>
 					<div class="tsd-signature tsd-kind-icon">#contact<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="_src_repositories_contact_repository_.contactrepository.html" class="tsd-signature-type">ContactRepository</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L17">src/profile.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L23">src/profile.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -183,7 +170,7 @@
 					<div class="tsd-signature tsd-kind-icon">#data<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="_src_repositories_data_repository_.datarepository.html" class="tsd-signature-type">DataRepository</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L18">src/profile.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L24">src/profile.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -193,17 +180,7 @@
 					<div class="tsd-signature tsd-kind-icon">#id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L24">src/profile.ts:24</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_name" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #name</h3>
-					<div class="tsd-signature tsd-kind-icon">#name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L25">src/profile.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L30">src/profile.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -213,7 +190,7 @@
 					<div class="tsd-signature tsd-kind-icon">#notification<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="_src_repositories_notification_repository_.notificationrepository.html" class="tsd-signature-type">NotificationRepository</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L19">src/profile.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L25">src/profile.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -223,7 +200,7 @@
 					<div class="tsd-signature tsd-kind-icon">#plugin<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="_src_repositories_plugin_repository_.pluginrepository.html" class="tsd-signature-type">PluginRepository</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L20">src/profile.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L26">src/profile.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -233,7 +210,7 @@
 					<div class="tsd-signature tsd-kind-icon">#setting<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="_src_repositories_setting_repository_.settingrepository.html" class="tsd-signature-type">SettingRepository</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L21">src/profile.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L27">src/profile.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -243,13 +220,35 @@
 					<div class="tsd-signature tsd-kind-icon">#wallet<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="_src_repositories_wallet_repository_.walletrepository.html" class="tsd-signature-type">WalletRepository</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L22">src/profile.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L28">src/profile.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="auth" class="tsd-anchor"></a>
+					<h3>auth</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">auth<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_authenticator_.authenticator.html" class="tsd-signature-type">Authenticator</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L134">src/profile.ts:134</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>These methods serve as helpers to handle authenticate / authorisation.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_src_authenticator_.authenticator.html" class="tsd-signature-type">Authenticator</a></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="avatar" class="tsd-anchor"></a>
 					<h3>avatar</h3>
@@ -260,7 +259,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L47">src/profile.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L50">src/profile.ts:50</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -277,27 +276,10 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L57">src/profile.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L60">src/profile.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="balancepercoin" class="tsd-anchor"></a>
-					<h3>balance<wbr>Per<wbr>Coin</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">balance<wbr>Per<wbr>Coin<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{ </span>percentage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>total<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L116">src/profile.ts:116</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{ </span>percentage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>total<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -311,7 +293,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L63">src/profile.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L64">src/profile.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_src_repositories_contact_repository_.contactrepository.html" class="tsd-signature-type">ContactRepository</a></h4>
@@ -319,58 +301,24 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="countcontacts" class="tsd-anchor"></a>
-					<h3>count<wbr>Contacts</h3>
+					<a name="countaggregate" class="tsd-anchor"></a>
+					<h3>count<wbr>Aggregate</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">count<wbr>Contacts<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">count<wbr>Aggregate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_aggregates_count_aggregate_.countaggregate.html" class="tsd-signature-type">CountAggregate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L104">src/profile.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L118">src/profile.ts:118</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>These methods serve as helpers to aggregate certain data for UI consumption.</p>
+									<p>These methods serve as helpers to aggregate commonly used data.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="countnotifications" class="tsd-anchor"></a>
-					<h3>count<wbr>Notifications</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">count<wbr>Notifications<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L108">src/profile.ts:108</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="countwallets" class="tsd-anchor"></a>
-					<h3>count<wbr>Wallets</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">count<wbr>Wallets<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L112">src/profile.ts:112</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_src_aggregates_count_aggregate_.countaggregate.html" class="tsd-signature-type">CountAggregate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -384,10 +332,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L67">src/profile.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L68">src/profile.ts:68</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_src_repositories_data_repository_.datarepository.html" class="tsd-signature-type">DataRepository</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="flush" class="tsd-anchor"></a>
+					<h3>flush</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">flush<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L88">src/profile.ts:88</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -401,7 +366,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L147">src/profile.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L153">src/profile.ts:153</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -424,7 +389,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L39">src/profile.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L42">src/profile.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -441,7 +406,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L140">src/profile.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L146">src/profile.ts:146</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -463,7 +428,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L43">src/profile.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L46">src/profile.ts:46</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -480,7 +445,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L71">src/profile.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L72">src/profile.ts:72</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_src_repositories_notification_repository_.notificationrepository.html" class="tsd-signature-type">NotificationRepository</a></h4>
@@ -497,7 +462,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L75">src/profile.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L76">src/profile.ts:76</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_src_repositories_plugin_repository_.pluginrepository.html" class="tsd-signature-type">PluginRepository</a></h4>
@@ -514,7 +479,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L79">src/profile.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L80">src/profile.ts:80</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_src_repositories_setting_repository_.settingrepository.html" class="tsd-signature-type">SettingRepository</a></h4>
@@ -531,10 +496,61 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L87">src/profile.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L102">src/profile.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_profile_models_.profilestruct.html" class="tsd-signature-type">ProfileStruct</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="transactionaggregate" class="tsd-anchor"></a>
+					<h3>transaction<wbr>Aggregate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">transaction<wbr>Aggregate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_aggregates_transaction_aggregate_.transactionaggregate.html" class="tsd-signature-type">TransactionAggregate</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L122">src/profile.ts:122</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_src_aggregates_transaction_aggregate_.transactionaggregate.html" class="tsd-signature-type">TransactionAggregate</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="usespassword" class="tsd-anchor"></a>
+					<h3>uses<wbr>Password</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">uses<wbr>Password<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L138">src/profile.ts:138</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="walletaggregate" class="tsd-anchor"></a>
+					<h3>wallet<wbr>Aggregate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">wallet<wbr>Aggregate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_aggregates_wallet_aggregate_.walletaggregate.html" class="tsd-signature-type">WalletAggregate</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L126">src/profile.ts:126</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_src_aggregates_wallet_aggregate_.walletaggregate.html" class="tsd-signature-type">WalletAggregate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -548,7 +564,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/53316a5a/packages/platform-sdk-profiles/src/profile.ts#L83">src/profile.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/9e3bb4d5/packages/platform-sdk-profiles/src/profile.ts#L84">src/profile.ts:84</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_src_repositories_wallet_repository_.walletrepository.html" class="tsd-signature-type">WalletRepository</a></h4>
@@ -579,9 +595,6 @@
 								<a href="_src_profile_.profile.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_src_profile_.profile.html#_avatar" class="tsd-kind-icon">#avatar</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_src_profile_.profile.html#_contactrepository" class="tsd-kind-icon">#contact<wbr>Repository</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
@@ -589,9 +602,6 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_src_profile_.profile.html#_id" class="tsd-kind-icon">#id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_src_profile_.profile.html#_name" class="tsd-kind-icon">#name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_src_profile_.profile.html#_notificationrepository" class="tsd-kind-icon">#notification<wbr>Repository</a>
@@ -606,28 +616,25 @@
 								<a href="_src_profile_.profile.html#_walletrepository" class="tsd-kind-icon">#wallet<wbr>Repository</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_profile_.profile.html#auth" class="tsd-kind-icon">auth</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_profile_.profile.html#avatar" class="tsd-kind-icon">avatar</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_profile_.profile.html#balance" class="tsd-kind-icon">balance</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_src_profile_.profile.html#balancepercoin" class="tsd-kind-icon">balance<wbr>Per<wbr>Coin</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_profile_.profile.html#contacts" class="tsd-kind-icon">contacts</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_src_profile_.profile.html#countcontacts" class="tsd-kind-icon">count<wbr>Contacts</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_src_profile_.profile.html#countnotifications" class="tsd-kind-icon">count<wbr>Notifications</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_src_profile_.profile.html#countwallets" class="tsd-kind-icon">count<wbr>Wallets</a>
+								<a href="_src_profile_.profile.html#countaggregate" class="tsd-kind-icon">count<wbr>Aggregate</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_profile_.profile.html#data" class="tsd-kind-icon">data</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_profile_.profile.html#flush" class="tsd-kind-icon">flush</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_profile_.profile.html#getexchangerate" class="tsd-kind-icon">get<wbr>Exchange<wbr>Rate</a>
@@ -652,6 +659,15 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_profile_.profile.html#toobject" class="tsd-kind-icon">to<wbr>Object</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_profile_.profile.html#transactionaggregate" class="tsd-kind-icon">transaction<wbr>Aggregate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_profile_.profile.html#usespassword" class="tsd-kind-icon">uses<wbr>Password</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_profile_.profile.html#walletaggregate" class="tsd-kind-icon">wallet<wbr>Aggregate</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_profile_.profile.html#wallets" class="tsd-kind-icon">wallets</a>
