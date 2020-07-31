@@ -31,13 +31,13 @@ export interface HttpClient {
 
 	head(url: string, query?: object): Promise<HttpResponse>;
 
-	post(url: string, data?: object): Promise<HttpResponse>;
+	post(url: string, data?: object, query?: object): Promise<HttpResponse>;
 
-	patch(url: string, data?: object): Promise<HttpResponse>;
+	patch(url: string, data?: object, query?: object): Promise<HttpResponse>;
 
-	put(url: string, data?: object): Promise<HttpResponse>;
+	put(url: string, data?: object, query?: object): Promise<HttpResponse>;
 
-	delete(url: string, data?: object): Promise<HttpResponse>;
+	delete(url: string, data?: object, query?: object): Promise<HttpResponse>;
 }
 
 export interface HttpResponse {

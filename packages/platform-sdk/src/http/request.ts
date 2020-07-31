@@ -88,20 +88,20 @@ export abstract class Request implements HttpClient {
 		return this.send("HEAD", url, { query });
 	}
 
-	public async post(url: string, data?: object): Promise<HttpResponse> {
-		return this.send("POST", url, { data });
+	public async post(url: string, data?: object, query?: object): Promise<HttpResponse> {
+		return this.send("POST", url, { data, query });
 	}
 
-	public async patch(url: string, data?: object): Promise<HttpResponse> {
-		return this.send("PATCH", url, { data });
+	public async patch(url: string, data?: object, query?: object): Promise<HttpResponse> {
+		return this.send("PATCH", url, { data, query });
 	}
 
-	public async put(url: string, data?: object): Promise<HttpResponse> {
-		return this.send("PUT", url, { data });
+	public async put(url: string, data?: object, query?: object): Promise<HttpResponse> {
+		return this.send("PUT", url, { data, query });
 	}
 
-	public async delete(url: string, data?: object): Promise<HttpResponse> {
-		return this.send("DELETE", url, { data });
+	public async delete(url: string, data?: object, query?: object): Promise<HttpResponse> {
+		return this.send("DELETE", url, { data, query });
 	}
 
 	protected abstract async send(
