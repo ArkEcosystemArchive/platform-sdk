@@ -40,11 +40,11 @@ export class ClientService implements Contracts.ClientService {
 	public async transactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		const body = await this.post("transactions/search", query);
+		const response = await this.post("transactions/search", this.createSearchParams(query));
 
 		return {
-			meta: this.createMetaPagination(body),
-			data: Helpers.createTransactionDataCollectionWithType(body.data, DTO),
+			meta: this.createMetaPagination(response),
+			data: Helpers.createTransactionDataCollectionWithType(response.data, DTO),
 		};
 	}
 
@@ -57,11 +57,11 @@ export class ClientService implements Contracts.ClientService {
 	public async wallets(
 		query: Contracts.ClientWalletsInput,
 	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
-		const body = await this.post("wallets/search", query);
+		const response = await this.post("wallets/search", this.createSearchParams(query));
 
 		return {
-			meta: this.createMetaPagination(body),
-			data: new Coins.WalletDataCollection(body.data.map((wallet) => new WalletData(wallet))),
+			meta: this.createMetaPagination(response),
+			data: new Coins.WalletDataCollection(response.data.map((wallet) => new WalletData(wallet))),
 		};
 	}
 
@@ -113,7 +113,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
-		const { data, errors } = await this.post("transactions", { transactions });
+		const { data, errors } = await this.post("transactions", { body: { transactions } });
 
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
@@ -152,8 +152,8 @@ export class ClientService implements Contracts.ClientService {
 		return response.json();
 	}
 
-	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.post(`${this.#peer}/${path}`, body);
+	private async post(path: string, { body, searchParams }: { body; searchParams? }): Promise<Contracts.KeyValuePair> {
+		const response = await this.#http.post(`${this.#peer}/${path}`, body, searchParams || undefined);
 
 		return response.json();
 	}
@@ -163,5 +163,19 @@ export class ClientService implements Contracts.ClientService {
 			prev: body.meta.previous,
 			next: body.meta.next,
 		};
+	}
+
+	private createSearchParams(body: Contracts.ClientPagination): { body: object; searchParams: object } {
+		const result = { body, searchParams: {} };
+
+		for (const key of ["page", "perPage", "offset", "limit", "orderBy"]) {
+			if (body[key]) {
+				result.searchParams[key] = body[key];
+
+				delete result.body[key];
+			}
+		}
+
+		return result;
 	}
 }
