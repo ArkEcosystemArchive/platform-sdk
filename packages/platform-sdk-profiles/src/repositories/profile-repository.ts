@@ -79,6 +79,10 @@ export class ProfileRepository {
 		this.#data.forget(id);
 	}
 
+	public count(): number {
+		return this.keys().length;
+	}
+
 	public toObject(): Record<string, object> {
 		const result: Record<string, object> = {};
 
