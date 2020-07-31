@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.201 - 2020-07-30
+
+### Added
+
+-   Implement `ContactAddress#hasSyncedWithNetwork` (690b9108, @faustbrian)
+
+### Changed
+
+-   Streamline profile repository methods (562a78fc, @dated)
+
+### Fixed
+
+-   Use `addresses` parameter for address searches (52045100, @faustbrian)
+
 ## 0.9.198 - 2020-07-30
 
 ### Changed
