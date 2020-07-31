@@ -35,7 +35,7 @@ describe("ClientService", function () {
 				.post("/api/transactions/search")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
-			const result = await subject.transactions({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" });
+			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
 
 			expect(result.data).toBeObject();
 			expect(result.data.first()).toBeInstanceOf(TransactionData);
@@ -60,7 +60,7 @@ describe("ClientService", function () {
 				.post("/api/wallets/search")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets.json`));
 
-			const result = await subject.wallets({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" });
+			const result = await subject.wallets({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
 
 			expect(result.data).toBeObject();
 			expect(result.data.first()).toBeInstanceOf(WalletData);

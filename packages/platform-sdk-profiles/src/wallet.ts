@@ -348,7 +348,7 @@ export class Wallet {
 	public async transactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		return this.fetchTransaction({ address: this.address(), ...query });
+		return this.fetchTransaction({ addresses: [this.address()], ...query });
 	}
 
 	public async sentTransactions(
@@ -412,7 +412,7 @@ export class Wallet {
 	private async fetchTransaction(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		const { data, meta } = await this.#coin.client().transactions({ address: this.address(), ...query });
+		const { data, meta } = await this.#coin.client().transactions(query);
 
 		for (const transaction of data.all()) {
 			transaction.setMeta("address", this.address());
