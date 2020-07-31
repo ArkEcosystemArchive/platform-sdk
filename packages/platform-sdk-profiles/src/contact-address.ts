@@ -81,7 +81,11 @@ export class ContactAddress {
 	}
 
 	public hasSyncedWithNetwork(): boolean {
-		return this.#wallet !== undefined;
+		if (this.#wallet === undefined) {
+			return false;
+		}
+
+		return this.#wallet.hasPassed();
 	}
 
 	public toObject(): ContactAddressProps {

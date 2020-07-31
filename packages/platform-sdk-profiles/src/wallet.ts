@@ -87,7 +87,11 @@ export class Wallet {
 	 */
 
 	public hasSyncedWithNetwork(): boolean {
-		return this.#wallet !== undefined;
+		if (this.#wallet === undefined) {
+			return false;
+		}
+
+		return this.#wallet.hasPassed();
 	}
 
 	public id(): string {

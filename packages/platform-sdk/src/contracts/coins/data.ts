@@ -29,6 +29,10 @@ export interface WalletData {
 	isSecondSignature(): boolean;
 
 	toObject(): KeyValuePair;
+
+	hasPassed(): boolean;
+
+	hasFailed(): boolean;
 }
 
 export interface PeerData {
@@ -43,6 +47,10 @@ export interface PeerData {
 	latency(): number;
 
 	toObject(): KeyValuePair;
+
+	hasPassed(): boolean;
+
+	hasFailed(): boolean;
 }
 
 export interface MultiPaymentRecipient {
@@ -123,6 +131,10 @@ export interface TransactionData {
 	isEntityUpdate(): boolean;
 
 	toObject(): KeyValuePair;
+
+	hasPassed(): boolean;
+
+	hasFailed(): boolean;
 
 	getMeta(key: string): TransactionDataMeta;
 

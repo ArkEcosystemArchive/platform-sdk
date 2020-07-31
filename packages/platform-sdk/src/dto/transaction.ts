@@ -102,6 +102,14 @@ export abstract class AbstractTransactionData {
 		return this.data;
 	}
 
+	public hasPassed(): boolean {
+		return Boolean(this.data);
+	}
+
+	public hasFailed(): boolean {
+		return !this.hasPassed();
+	}
+
 	public getMeta(key: string): TransactionDataMeta {
 		return this.#meta[key];
 	}
