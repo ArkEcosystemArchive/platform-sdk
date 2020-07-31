@@ -7,7 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## 0.9.201 - 2020-07-30
+## 0.9.204 - 2020-07-31
+
+### Added
+
+-   Implement `ProfileRepository#count` (a4c564dd, @dated)
+-   implement `DTO#hasPassed` and `DTO#hasFailed` (871233dd, @dated)
+
+### Fixed
+
+-   Exclude out-of-sync wallets from data aggregation (5d4555dc, @faustbrian)
+
+## 0.9.201 - 2020-07-31
 
 ### Added
 

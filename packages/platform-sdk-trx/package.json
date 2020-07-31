@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-trx",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.201",
+	"version": "0.9.204",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
