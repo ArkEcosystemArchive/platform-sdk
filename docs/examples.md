@@ -12,7 +12,7 @@ import { Environment } from "@arkecosystem/platform-sdk-profiles";
 const env = new Environment({ coins: { ARK }, httpClient: new HttpClient(), storage: "localstorage" });
 ```
 
-### Profiles
+## Profiles
 
 These methods are accessible through `env.profiles()` which exposes a `ProfileRepository` instance.
 
@@ -28,6 +28,24 @@ env.profiles().create("John Doe");
 
 // Forget the profile for the given ID
 env.profiles().forget("uuid");
+```
+
+### Authentication
+
+These methods are accessible through `env.auth()` which exposes a `Authenticator` instance.
+
+```ts
+// Determine if the profile is password protected
+profile.usesPassword();
+
+// Set a password to protect the profile
+profile.auth().setPassword("password");
+
+// Verify the password to ensure it matches the profile
+profile.auth().verifyPassword("password");
+
+// Change the password with a verification process that will throw if it fails
+profile.auth().changePassword("oldPassword", "newPassword");
 ```
 
 ### Data
@@ -255,7 +273,7 @@ await wallet.link().transaction(id);
 await wallet.link().wallet(id);
 ```
 
-## Contacts
+### Contacts
 
 These methods are accessible through `profile.contacts()` which exposes a `ContactRepository` instance.
 
@@ -295,7 +313,7 @@ profile.contacts().forget("uuid");
 profile.contacts().flush();
 ```
 
-## Notifications
+### Notifications
 
 These methods are accessible through `profile.notifications()` which exposes a `NotificationRepository` instance.
 
@@ -333,7 +351,7 @@ profile.notifications().unread();
 profile.notifications().markAsRead("uuid");
 ```
 
-## Plugins
+### Plugins
 
 These methods are accessible through `profile.plugins()` which exposes a `PluginRepository` instance.
 
@@ -354,7 +372,7 @@ profile.plugins().forget(123);
 profile.plugins().flush();
 ```
 
-### Blacklist
+#### Blacklist
 
 These methods are accessible through `profile.plugins().blacklist()` which exposes a `Set<number>` instance. The `Set` instance is a native [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) as opposed to a `DataRepository`.
 
@@ -366,7 +384,7 @@ profile.plugins().blacklist().add(123);
 profile.plugins().blacklist().delete(123);
 ```
 
-### Registry
+#### Registry
 
 These methods are accessible through `profile.plugins().registry()` which exposes a `PluginRegistry` instance.
 
@@ -378,9 +396,9 @@ profile.plugins().registry().all();
 profile.plugins().registry().findById(123);
 ```
 
-## Transactions
+#### Transactions
 
-### Sign and broadcast a transaction through a wallet
+##### Sign and broadcast a transaction through a wallet
 
 ```ts
 const wallet = await profile.wallets().create("this is a top secret passphrase", "ARK", "devnet");
