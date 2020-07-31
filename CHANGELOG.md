@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.205 - 2020-07-31
+
+### Fixed
+
+-   Support `query` for post requests (1f684d59, @faustbrian)
+
 ## 0.9.204 - 2020-07-31
 
 ### Added
