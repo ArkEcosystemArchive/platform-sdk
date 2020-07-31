@@ -33,8 +33,16 @@ export class ProfileRepository {
 		}
 	}
 
-	public all(): Profile[] {
-		return Object.values(this.#data.all());
+	public all(): Record<string, Profile> {
+		return this.#data.all() as Record<string, Profile>;
+	}
+
+	public keys(): string[] {
+		return this.#data.keys();
+	}
+
+	public values(): Profile[] {
+		return this.#data.values();
 	}
 
 	public findById(id: string): Profile {
@@ -46,7 +54,7 @@ export class ProfileRepository {
 	}
 
 	public create(name: string): Profile {
-		const profiles: Profile[] = this.all();
+		const profiles: Profile[] = this.values();
 
 		for (const profile of profiles) {
 			if (profile.name() === name) {
