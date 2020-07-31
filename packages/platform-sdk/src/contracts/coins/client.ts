@@ -52,12 +52,14 @@ export interface ClientPagination {
 
 export interface ClientTransactionsInput extends ClientPagination {
 	address?: string;
+	addresses?: string[];
 	senderId?: string;
 	recipientId?: string;
 }
 
 export interface ClientWalletsInput extends ClientPagination {
 	address?: string;
+	addresses?: string[];
 	publicKey?: string;
 	username?: string;
 }
