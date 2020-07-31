@@ -80,7 +80,7 @@ export class ProfileRepository {
 	}
 
 	public count(): number {
-		return this.keys().length;
+		return this.#data.count();
 	}
 
 	public toObject(): Record<string, object> {
