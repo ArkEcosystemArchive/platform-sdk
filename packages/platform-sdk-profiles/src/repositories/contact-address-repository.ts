@@ -29,7 +29,7 @@ export class ContactAddressRepository {
 	public async create(data: ContactAddressInput): Promise<ContactAddress> {
 		const id: string = uuidv4();
 
-		const address: ContactAddress = await ContactAddress.make({ id, ...data }, this.#profile);
+		const address: ContactAddress = await ContactAddress.make({ id, ...data });
 
 		this.#data.set(id, address);
 
@@ -38,7 +38,7 @@ export class ContactAddressRepository {
 
 	public async fill(addresses: any[]): Promise<void> {
 		for (const address of addresses) {
-			this.#data.set(address.id, await ContactAddress.make(address, this.#profile));
+			this.#data.set(address.id, await ContactAddress.make(address));
 		}
 	}
 

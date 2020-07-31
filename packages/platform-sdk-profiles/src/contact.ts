@@ -1,4 +1,3 @@
-import { ContactAddress } from "./contact-address";
 import { ContactAddressInput } from "./contact-address.models";
 import { ContactStruct } from "./contact.models";
 import { Profile } from "./profile";
