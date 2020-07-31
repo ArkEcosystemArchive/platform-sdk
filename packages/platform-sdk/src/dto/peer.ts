@@ -26,8 +26,4 @@ export abstract class AbstractPeerData {
 	public raw(): KeyValuePair {
 		return this.data;
 	}
-
-	public hasData(): boolean {
-		return this.data !== undefined;
-	}
 }

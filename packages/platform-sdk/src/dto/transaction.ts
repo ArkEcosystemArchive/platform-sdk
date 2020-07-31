@@ -102,10 +102,6 @@ export abstract class AbstractTransactionData {
 		return this.data;
 	}
 
-	public hasData(): boolean {
-		return this.data !== undefined;
-	}
-
 	public getMeta(key: string): TransactionDataMeta {
 		return this.#meta[key];
 	}
