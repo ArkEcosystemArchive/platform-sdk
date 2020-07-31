@@ -1,5 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
+import { Wallet } from "../wallet";
+
 export class TransactionAggregate {
 	// @TODO: add typehint
 	readonly #profile;
@@ -31,7 +33,8 @@ export class TransactionAggregate {
 				this.#profile
 					.wallets()
 					.values()
-					.map((wallet) => wallet[method]({ page })),
+					.filter((wallet: Wallet) => wallet.hasSyncedWithNetwork())
+					.map((wallet: Wallet) => wallet[method]({ page })),
 			),
 		);
 
