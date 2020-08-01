@@ -1,3 +1,4 @@
+import { Avatar } from "./avatar";
 import { ContactAddressInput } from "./contact-address.models";
 import { ContactStruct } from "./contact.models";
 import { Profile } from "./profile";
@@ -11,12 +12,16 @@ export class Contact {
 	#addresses: ContactAddressRepository;
 	#starred: boolean;
 
+	#avatar: string;
+
 	public constructor({ id, name, starred }: ContactStruct, profile: Profile) {
 		this.#profile = profile;
 
 		this.#id = id;
 		this.#name = name;
 		this.#starred = starred;
+
+		this.#avatar = Avatar.make(name);
 
 		this.#addresses = new ContactAddressRepository(this.#profile);
 	}
@@ -45,14 +50,24 @@ export class Contact {
 		this.#starred = !this.isStarred();
 	}
 
+	public setAvatar(value: string) {
+		this.#avatar = value;
+	}
+
 	public setName(name: string): void {
 		this.#name = name;
+
+		this.setAvatar(Avatar.make(name));
 	}
 
 	public async setAddresses(addresses: ContactAddressInput[]): Promise<void> {
 		this.#addresses.flush();
 
 		await Promise.all(addresses.map((address: ContactAddressInput) => this.#addresses.create(address)));
+	}
+
+	public avatar(): string {
+		return this.#avatar;
 	}
 
 	public toObject(): ContactStruct {
