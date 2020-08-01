@@ -28,13 +28,21 @@ export class ContactRepository {
 	}
 
 	public create(name: string): Contact {
+		const contacts: Contact[] = this.values();
+
+		for (const contact of contacts) {
+			if (contact.name().toLowerCase() === name.toLowerCase()) {
+				throw new Error(`The contact [${name}] already exists.`);
+			}
+		}
+
 		const id: string = uuidv4();
 
-		const contact: Contact = new Contact({ id, name, starred: false }, this.#profile);
+		const result: Contact = new Contact({ id, name, starred: false }, this.#profile);
 
-		this.#data.set(id, contact);
+		this.#data.set(id, result);
 
-		return contact;
+		return result;
 	}
 
 	public async fill(contacts: object): Promise<void> {
@@ -58,17 +66,25 @@ export class ContactRepository {
 	}
 
 	public async update(id: string, data: { name?: string; addresses?: ContactAddressInput[] }): Promise<void> {
-		const contact = this.findById(id);
+		const result = this.findById(id);
 
 		if (data.name) {
-			contact.setName(data.name);
+			const contacts: Contact[] = this.values();
+
+			for (const contact of contacts) {
+				if (contact.name().toLowerCase() === data.name.toLowerCase()) {
+					throw new Error(`The contact [${data.name}] already exists.`);
+				}
+			}
+
+			result.setName(data.name);
 		}
 
 		if (data.addresses) {
-			await contact.setAddresses(data.addresses);
+			await result.setAddresses(data.addresses);
 		}
 
-		this.#data.set(id, contact);
+		this.#data.set(id, result);
 	}
 
 	public forget(id: string): void {
