@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.207 - 2020-08-01
+
+### Added
+
+-   Implement `Contact#avatar` (6cce3b5f, @dated)
+
+### Fixed
+
+-   Ensure uniqueness of contact name (ac50eac5, @dated)
+
 ## 0.9.205 - 2020-07-31
 
 ### Fixed
