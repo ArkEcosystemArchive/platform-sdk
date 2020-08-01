@@ -55,6 +55,8 @@ test("ContactRepository#create", () => {
 	subject.create(name);
 
 	expect(subject.keys()).toHaveLength(1);
+
+	expect(() => subject.create(name)).toThrowError(`The contact [${name}] already exists.`);
 });
 
 test("ContactRepository#find", () => {
@@ -73,6 +75,12 @@ test("ContactRepository#update", async () => {
 	await subject.update(contact.id(), { name: "Jane Doe" });
 
 	expect(subject.findById(contact.id()).name()).toEqual("Jane Doe");
+
+	const newContact = subject.create(name);
+
+	await expect(subject.update(newContact.id(), { name: "Jane Doe" })).rejects.toThrowError(
+		"The contact [Jane Doe] already exists.",
+	);
 });
 
 test("ContactRepository#forget", () => {

@@ -6,6 +6,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { CountAggregate } from "./aggregates/count-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
+import { Authenticator } from "./authenticator";
 import { Avatar } from "./avatar";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
@@ -17,7 +18,6 @@ import { PluginRepository } from "./repositories/plugin-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
 import { Wallet } from "./wallet";
-import { Authenticator } from "./authenticator";
 
 export class Profile {
 	#contactRepository!: ContactRepository;
