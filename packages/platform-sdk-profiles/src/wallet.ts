@@ -325,11 +325,11 @@ export class Wallet {
 			let page = 1;
 
 			while (hasMore) {
-				const { data, meta } = await this.delegates({ page });
+				const response = await this.delegates({ page });
 
-				result = result.concat(data.all());
+				result = result.concat(response.items());
 
-				hasMore = Boolean(meta.next);
+				hasMore = response.hasMorePages();
 
 				page++;
 			}
@@ -349,21 +349,17 @@ export class Wallet {
 	 * These methods serve as helpers to interact with the underlying coin.
 	 */
 
-	public async transactions(
-		query: Contracts.ClientTransactionsInput,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		return this.fetchTransaction({ addresses: [this.address()], ...query });
 	}
 
-	public async sentTransactions(
-		query: Contracts.ClientTransactionsInput,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public async sentTransactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		return this.fetchTransaction({ senderId: this.address(), ...query });
 	}
 
 	public async receivedTransactions(
 		query: Contracts.ClientTransactionsInput,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	): Promise<Coins.TransactionDataCollection> {
 		return this.fetchTransaction({ recipientId: this.address(), ...query });
 	}
 
@@ -371,9 +367,7 @@ export class Wallet {
 		return this.#coin.client().wallet(id);
 	}
 
-	public async wallets(
-		query: Contracts.ClientWalletsInput,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
 		return this.#coin.client().wallets(query);
 	}
 
@@ -381,19 +375,15 @@ export class Wallet {
 		return this.#coin.client().delegate(id);
 	}
 
-	public async delegates(
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
 		return this.#coin.client().delegates(query);
 	}
 
-	public votes(
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public votes(query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
 		return this.#coin.client().votes(this.address(), query);
 	}
 
-	public voters(query?: Contracts.KeyValuePair): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public voters(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
 		return this.#coin.client().voters(this.address(), query);
 	}
 
@@ -413,16 +403,14 @@ export class Wallet {
 		this.data().set(WalletData.ExchangeRate, this.#profile.getExchangeRate(this.currency()));
 	}
 
-	private async fetchTransaction(
-		query: Contracts.ClientTransactionsInput,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
-		const { data, meta } = await this.#coin.client().transactions(query);
+	private async fetchTransaction(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+		const response = await this.#coin.client().transactions(query);
 
-		for (const transaction of data.all()) {
+		for (const transaction of response.items()) {
 			transaction.setMeta("address", this.address());
 			transaction.setMeta("publicKey", this.publicKey());
 		}
 
-		return { meta, data };
+		return response;
 	}
 }

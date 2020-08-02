@@ -47,9 +47,7 @@ export class ClientService implements Contracts.ClientService {
 		return Helpers.createTransactionDataWithType(result, DTO);
 	}
 
-	public async transactions(
-		query: Contracts.ClientTransactionsInput,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
 	}
 
@@ -59,9 +57,7 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData(result);
 	}
 
-	public async wallets(
-		query: Contracts.ClientWalletsInput,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
@@ -69,23 +65,15 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
 	}
 
-	public async delegates(
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
-	public async votes(
-		id: string,
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public async votes(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async voters(
-		id: string,
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 

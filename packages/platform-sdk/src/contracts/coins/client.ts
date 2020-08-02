@@ -3,14 +3,12 @@ import { KeyValuePair } from "../types";
 import { TransactionData, WalletData } from "./data";
 import { SignedTransaction } from "./transaction";
 
-export interface MetaPagination {
-	prev: string | undefined;
-	next: string | undefined;
-}
+export type ClientPaginatorCursor = string | number | undefined;
 
-export interface CollectionResponse<T> {
-	meta: MetaPagination;
-	data: T;
+export interface MetaPagination {
+	prev: ClientPaginatorCursor;
+	self: ClientPaginatorCursor;
+	next: ClientPaginatorCursor;
 }
 
 export interface BroadcastResponse {
@@ -23,16 +21,16 @@ export interface ClientService {
 	destruct(): Promise<void>;
 
 	transaction(id: string): Promise<TransactionData>;
-	transactions(query: ClientTransactionsInput): Promise<CollectionResponse<TransactionDataCollection>>;
+	transactions(query: ClientTransactionsInput): Promise<TransactionDataCollection>;
 
 	wallet(id: string): Promise<WalletData>;
-	wallets(query: ClientWalletsInput): Promise<CollectionResponse<WalletDataCollection>>;
+	wallets(query: ClientWalletsInput): Promise<WalletDataCollection>;
 
 	delegate(id: string): Promise<WalletData>;
-	delegates(query?: ClientWalletsInput): Promise<CollectionResponse<WalletDataCollection>>;
+	delegates(query?: ClientWalletsInput): Promise<WalletDataCollection>;
 
-	votes(id: string, query?: KeyValuePair): Promise<CollectionResponse<TransactionDataCollection>>;
-	voters(id: string, query?: KeyValuePair): Promise<CollectionResponse<WalletDataCollection>>;
+	votes(id: string, query?: KeyValuePair): Promise<TransactionDataCollection>;
+	voters(id: string, query?: KeyValuePair): Promise<WalletDataCollection>;
 
 	syncing(): Promise<boolean>;
 
@@ -40,13 +38,8 @@ export interface ClientService {
 }
 
 export interface ClientPagination {
-	// Paging
-	page?: number;
-	perPage?: number;
-	// Offsetting
-	offset?: number;
+	cursor?: string | number;
 	limit?: number;
-	// Sorting
 	orderBy?: string;
 }
 

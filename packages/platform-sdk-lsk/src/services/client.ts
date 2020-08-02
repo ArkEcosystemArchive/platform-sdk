@@ -45,15 +45,18 @@ export class ClientService implements Contracts.ClientService {
 		return Helpers.createTransactionDataWithType(result.data[0], DTO);
 	}
 
-	public async transactions(
-		query: Contracts.ClientTransactionsInput,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const result = await this.get("transactions", query);
 
-		return {
-			meta: result.meta,
-			data: Helpers.createTransactionDataCollectionWithType(result.data, DTO),
-		};
+		return Helpers.createTransactionDataCollectionWithType(
+			result.data,
+			{
+				prev: undefined,
+				self: undefined,
+				next: undefined,
+			},
+			DTO,
+		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -62,15 +65,17 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData(result.data[0]);
 	}
 
-	public async wallets(
-		query: Contracts.ClientWalletsInput,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
 		const result = await this.get("accounts", query);
 
-		return {
-			meta: result.meta,
-			data: new Coins.WalletDataCollection(result.data.map((wallet) => new WalletData(wallet))),
-		};
+		return new Coins.WalletDataCollection(
+			result.data.map((wallet) => new WalletData(wallet)),
+			{
+				prev: undefined,
+				self: undefined,
+				next: undefined,
+			},
+		);
 	}
 
 	public async delegate(id: string): Promise<Contracts.WalletData> {
@@ -79,28 +84,24 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData(result.data[0]);
 	}
 
-	public async delegates(
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
 		const result = await this.get("delegates");
 
-		return {
-			meta: result.meta,
-			data: new Coins.WalletDataCollection(result.data.map((wallet) => new WalletData(wallet))),
-		};
+		return new Coins.WalletDataCollection(
+			result.data.map((wallet) => new WalletData(wallet)),
+			{
+				prev: undefined,
+				self: undefined,
+				next: undefined,
+			},
+		);
 	}
 
-	public async votes(
-		id: string,
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public async votes(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async voters(
-		id: string,
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 

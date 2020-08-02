@@ -52,8 +52,8 @@ describe("ClientService", function () {
 				limit: 1,
 			});
 
-			expect(result.data).toBeObject();
-			expect(result.data.first()).toBeInstanceOf(TransactionData);
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(TransactionData);
 		});
 	});
 

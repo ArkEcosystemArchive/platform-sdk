@@ -52,21 +52,21 @@ describe("ClientService", function () {
 				.query(true)
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
-			const { data } = await subject.transactions({
+			const response = await subject.transactions({
 				address: "GAHXEI3BVFOBDHWLC4TJKCGTLY6VMTKMRRWWPKNPPULUC7E3PD63ENKO",
 			});
 
-			expect(data).toBeObject();
-			expect(data.first()).toBeInstanceOf(TransactionData);
-			expect(data.first().id()).toBe("7cea6abe90654578b42ee696e823187d89d91daa157a1077b542ee7c77413ce3");
-			expect(data.first().type()).toBe("transfer");
-			expect(data.first().timestamp()).toBe(1554505662000);
-			// expect(data.first().confirmations()).toEqual(BigNumber.make(159414));
-			expect(data.first().sender()).toBe("GAGLYFZJMN5HEULSTH5CIGPOPAVUYPG5YSWIYDJMAPIECYEBPM2TA3QR");
-			expect(data.first().recipient()).toBe("GBYUUJHG6F4EPJGNLERINATVQLNDOFRUD7SGJZ26YZLG5PAYLG7XUSGF");
-			expect(data.first().amount()).toEqual(BigNumber.make("100000000000000"));
-			// expect(data.first().fee()).toEqual(BigNumber.make("10000000000"));
-			expect(data.first().memo()).toBeUndefined();
+			expect(response).toBeObject();
+			expect(response.items()[0]).toBeInstanceOf(TransactionData);
+			expect(response.items()[0].id()).toBe("7cea6abe90654578b42ee696e823187d89d91daa157a1077b542ee7c77413ce3");
+			expect(response.items()[0].type()).toBe("transfer");
+			expect(response.items()[0].timestamp()).toBe(1554505662000);
+			// expect(response.items()[0].confirmations()).toEqual(BigNumber.make(159414));
+			expect(response.items()[0].sender()).toBe("GAGLYFZJMN5HEULSTH5CIGPOPAVUYPG5YSWIYDJMAPIECYEBPM2TA3QR");
+			expect(response.items()[0].recipient()).toBe("GBYUUJHG6F4EPJGNLERINATVQLNDOFRUD7SGJZ26YZLG5PAYLG7XUSGF");
+			expect(response.items()[0].amount()).toEqual(BigNumber.make("100000000000000"));
+			// expect(response.items()[0].fee()).toEqual(BigNumber.make("10000000000"));
+			expect(response.items()[0].memo()).toBeUndefined();
 		});
 	});
 
