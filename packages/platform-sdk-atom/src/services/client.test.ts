@@ -47,17 +47,17 @@ describe("ClientService", function () {
 
 			const result = await subject.transactions({ address: "cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0" });
 
-			expect(result.data).toBeObject();
-			expect(result.data.first()).toBeInstanceOf(TransactionData);
-			expect(result.data.first().id()).toBe("B0DB35EADB3655E954A785B1ED0402222EF8C7061B22E52720AB1CE027ADBD11");
-			expect(result.data.first().type()).toBe("transfer");
-			expect(result.data.first().timestamp()).toBe(1576957341000);
-			expect(result.data.first().confirmations()).toEqual(BigNumber.ZERO);
-			expect(result.data.first().sender()).toBe("cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0");
-			expect(result.data.first().recipient()).toBe("cosmos14ddvyl5t0hzmknceuv3zzu5szuum4rkygpq5ln");
-			expect(result.data.first().amount()).toEqual(BigNumber.make(10680));
-			expect(result.data.first().fee()).toEqual(BigNumber.make(36875));
-			expect(result.data.first().memo()).toBe("Hello World");
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(TransactionData);
+			expect(result.items()[0].id()).toBe("B0DB35EADB3655E954A785B1ED0402222EF8C7061B22E52720AB1CE027ADBD11");
+			expect(result.items()[0].type()).toBe("transfer");
+			expect(result.items()[0].timestamp()).toBe(1576957341000);
+			expect(result.items()[0].confirmations()).toEqual(BigNumber.ZERO);
+			expect(result.items()[0].sender()).toBe("cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0");
+			expect(result.items()[0].recipient()).toBe("cosmos14ddvyl5t0hzmknceuv3zzu5szuum4rkygpq5ln");
+			expect(result.items()[0].amount()).toEqual(BigNumber.make(10680));
+			expect(result.items()[0].fee()).toEqual(BigNumber.make(36875));
+			expect(result.items()[0].memo()).toBe("Hello World");
 		});
 	});
 

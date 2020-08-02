@@ -1,5 +1,5 @@
 import { TransactionDataCollection } from "./coins";
-import { TransactionDataType } from "./contracts/coins/data";
+import { MetaPagination, TransactionDataType } from "./contracts";
 
 export const createTransactionDataWithType = (transaction: unknown, dtos: Record<string, any>): TransactionDataType => {
 	const instance: TransactionDataType = new dtos.TransactionData(transaction);
@@ -89,8 +89,10 @@ export const createTransactionDataWithType = (transaction: unknown, dtos: Record
 
 export const createTransactionDataCollectionWithType = (
 	transactions: unknown[],
+	meta: MetaPagination,
 	classes: Record<string, any>,
 ): TransactionDataCollection =>
 	new TransactionDataCollection(
 		transactions.map((transaction) => createTransactionDataWithType(transaction, classes)),
+		meta,
 	);

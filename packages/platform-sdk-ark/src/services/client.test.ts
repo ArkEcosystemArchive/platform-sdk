@@ -37,8 +37,8 @@ describe("ClientService", function () {
 
 			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
 
-			expect(result.data).toBeObject();
-			expect(result.data.first()).toBeInstanceOf(TransactionData);
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(TransactionData);
 		});
 	});
 
@@ -62,8 +62,8 @@ describe("ClientService", function () {
 
 			const result = await subject.wallets({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
 
-			expect(result.data).toBeObject();
-			expect(result.data.first()).toBeInstanceOf(WalletData);
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(WalletData);
 		});
 	});
 
@@ -87,8 +87,8 @@ describe("ClientService", function () {
 
 			const result = await subject.delegates();
 
-			expect(result.data).toBeObject();
-			expect(result.data.first()).toBeInstanceOf(WalletData);
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(WalletData);
 		});
 	});
 
@@ -100,8 +100,8 @@ describe("ClientService", function () {
 
 			const result = await subject.votes("arkx");
 
-			expect(result.data).toBeObject();
-			expect(result.data.first()).toBeInstanceOf(TransactionData);
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(TransactionData);
 		});
 	});
 
@@ -113,8 +113,8 @@ describe("ClientService", function () {
 
 			const result = await subject.voters("arkx");
 
-			expect(result.data).toBeObject();
-			expect(result.data.first()).toBeInstanceOf(WalletData);
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(WalletData);
 		});
 	});
 

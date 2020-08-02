@@ -396,9 +396,19 @@ profile.plugins().registry().all();
 profile.plugins().registry().findById(123);
 ```
 
-#### Transactions
+### Transactions
 
-##### Sign and broadcast a transaction through a wallet
+#### List transactions for a wallet
+
+```ts
+const response = await wallet.transaction().transactions();
+
+if (response.hasMore()) {
+	await wallet.transaction().transactions({ cursor: response.nextPage() });
+}
+```
+
+#### Sign and broadcast a transaction through a wallet
 
 ```ts
 const wallet = await profile.wallets().create("this is a top secret passphrase", "ARK", "devnet");

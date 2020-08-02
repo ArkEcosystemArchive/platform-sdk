@@ -37,15 +37,10 @@ export class ClientService implements Contracts.ClientService {
 		return Helpers.createTransactionDataWithType(body.data, DTO);
 	}
 
-	public async transactions(
-		query: Contracts.ClientTransactionsInput,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const response = await this.post("transactions/search", this.createSearchParams(query));
 
-		return {
-			meta: this.createMetaPagination(response),
-			data: Helpers.createTransactionDataCollectionWithType(response.data, DTO),
-		};
+		return Helpers.createTransactionDataCollectionWithType(response.data, this.createMetaPagination(response), DTO);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -54,15 +49,13 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData(body.data);
 	}
 
-	public async wallets(
-		query: Contracts.ClientWalletsInput,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
 		const response = await this.post("wallets/search", this.createSearchParams(query));
 
-		return {
-			meta: this.createMetaPagination(response),
-			data: new Coins.WalletDataCollection(response.data.map((wallet) => new WalletData(wallet))),
-		};
+		return new Coins.WalletDataCollection(
+			response.data.map((wallet) => new WalletData(wallet)),
+			this.createMetaPagination(response),
+		);
 	}
 
 	public async delegate(id: string): Promise<Contracts.WalletData> {
@@ -71,39 +64,28 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData(body.data);
 	}
 
-	public async delegates(
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
 		const body = await this.get("delegates", query);
 
-		return {
-			meta: this.createMetaPagination(body),
-			data: new Coins.WalletDataCollection(body.data.map((wallet) => new WalletData(wallet))),
-		};
+		return new Coins.WalletDataCollection(
+			body.data.map((wallet) => new WalletData(wallet)),
+			this.createMetaPagination(body),
+		);
 	}
 
-	public async votes(
-		id: string,
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public async votes(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
 		const body = await this.get(`wallets/${id}/votes`, query);
 
-		return {
-			meta: this.createMetaPagination(body),
-			data: Helpers.createTransactionDataCollectionWithType(body.data, DTO),
-		};
+		return Helpers.createTransactionDataCollectionWithType(body.data, this.createMetaPagination(body), DTO);
 	}
 
-	public async voters(
-		id: string,
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
 		const body = await this.get(`delegates/${id}/voters`, query);
 
-		return {
-			meta: this.createMetaPagination(body),
-			data: new Coins.WalletDataCollection(body.data.map((wallet) => new WalletData(wallet))),
-		};
+		return new Coins.WalletDataCollection(
+			body.data.map((wallet) => new WalletData(wallet)),
+			this.createMetaPagination(body),
+		);
 	}
 
 	public async syncing(): Promise<boolean> {
@@ -159,9 +141,16 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private createMetaPagination(body): Contracts.MetaPagination {
+		const getPage = (url: string): string | undefined => {
+			const match: RegExpExecArray | null = RegExp(/page=(\d+)/).exec(url);
+
+			return match ? match[1] || undefined : undefined;
+		};
+
 		return {
-			prev: body.meta.previous,
-			next: body.meta.next,
+			prev: getPage(body.meta.previous) || undefined,
+			self: getPage(body.meta.self) || undefined,
+			next: getPage(body.meta.next) || undefined,
 		};
 	}
 

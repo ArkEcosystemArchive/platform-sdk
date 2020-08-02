@@ -33,8 +33,8 @@ describe("ClientService", function () {
 
 			const result = await subject.transactions({ address: "6566229458323231555L" });
 
-			expect(result.data).toBeObject();
-			expect(result.data.first()).toBeInstanceOf(TransactionData);
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(TransactionData);
 		});
 	});
 
@@ -58,8 +58,8 @@ describe("ClientService", function () {
 
 			const result = await subject.wallets({ address: "6566229458323231555L" });
 
-			expect(result.data).toBeObject();
-			expect(result.data.first()).toBeInstanceOf(WalletData);
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(WalletData);
 		});
 	});
 
@@ -83,8 +83,8 @@ describe("ClientService", function () {
 
 			const result = await subject.delegates();
 
-			expect(result.data).toBeObject();
-			expect(result.data.first()).toBeInstanceOf(WalletData);
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(WalletData);
 		});
 	});
 

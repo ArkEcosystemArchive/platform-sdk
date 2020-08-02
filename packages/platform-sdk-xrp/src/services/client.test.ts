@@ -112,17 +112,17 @@ describe("ClientService", function () {
 				limit: 10,
 			});
 
-			expect(result.data).toBeObject();
-			expect(result.data.first()).toBeInstanceOf(TransactionData);
-			expect(result.data.first().id()).toBe("99404A34E8170319521223A6C604AF48B9F1E3000C377E6141F9A1BF60B0B865");
-			expect(result.data.first().type()).toBe("transfer");
-			expect(result.data.first().timestamp()).toBeUndefined();
-			expect(result.data.first().confirmations()).toEqual(BigNumber.ZERO);
-			expect(result.data.first().sender()).toBe("r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59");
-			expect(result.data.first().recipient()).toBe("rMH4UxPrbuMa1spCBR98hLLyNJp4d8p4tM");
-			expect(result.data.first().amount()).toEqual(BigNumber.make(100000));
-			expect(result.data.first().fee()).toEqual(BigNumber.make(1000));
-			expect(result.data.first().memo()).toBeUndefined();
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(TransactionData);
+			expect(result.items()[0].id()).toBe("99404A34E8170319521223A6C604AF48B9F1E3000C377E6141F9A1BF60B0B865");
+			expect(result.items()[0].type()).toBe("transfer");
+			expect(result.items()[0].timestamp()).toBeUndefined();
+			expect(result.items()[0].confirmations()).toEqual(BigNumber.ZERO);
+			expect(result.items()[0].sender()).toBe("r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59");
+			expect(result.items()[0].recipient()).toBe("rMH4UxPrbuMa1spCBR98hLLyNJp4d8p4tM");
+			expect(result.items()[0].amount()).toEqual(BigNumber.make(100000));
+			expect(result.items()[0].fee()).toEqual(BigNumber.make(1000));
+			expect(result.items()[0].memo()).toBeUndefined();
 		});
 	});
 

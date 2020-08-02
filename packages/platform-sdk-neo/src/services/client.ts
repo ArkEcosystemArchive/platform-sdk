@@ -45,33 +45,31 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
 	}
 
-	public async transactions(
-		query: Contracts.ClientTransactionsInput,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const basePath = `get_address_abstracts/${query.address}`;
-		const basePage = query.page || 1;
+		const basePage = (query.cursor as number) || 1;
 
 		const response = await this.get(`${basePath}/${basePage}`);
 
 		const prevPage = response.page_number > 1 ? basePage - 1 : undefined;
 		const nextPage = response.total_pages > 1 ? basePage + 1 : undefined;
 
-		return {
-			meta: {
+		return Helpers.createTransactionDataCollectionWithType(
+			response.entries,
+			{
 				prev: `${this.#peer}/${basePath}/${prevPage}`,
+				self: undefined,
 				next: `${this.#peer}/${basePath}/${nextPage}`,
 			},
-			data: Helpers.createTransactionDataCollectionWithType(response.entries, DTO),
-		};
+			DTO,
+		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
 	}
 
-	public async wallets(
-		query: Contracts.ClientWalletsInput,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
@@ -79,23 +77,15 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
 	}
 
-	public async delegates(
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
-	public async votes(
-		id: string,
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.TransactionDataCollection>> {
+	public async votes(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public async voters(
-		id: string,
-		query?: Contracts.KeyValuePair,
-	): Promise<Contracts.CollectionResponse<Coins.WalletDataCollection>> {
+	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 

@@ -26,9 +26,7 @@ export class TransactionAggregate {
 	private async aggregate(method: string, page?: number): Promise<Coins.TransactionDataCollection> {
 		const result: Contracts.TransactionDataTypeCollection = [];
 
-		const requests: PromiseSettledResult<
-			Contracts.CollectionResponse<Coins.TransactionDataCollection>
-		>[] = Object.values(
+		const requests: PromiseSettledResult<Coins.TransactionDataCollection>[] = Object.values(
 			await Promise.allSettled(
 				this.#profile
 					.wallets()
@@ -43,11 +41,12 @@ export class TransactionAggregate {
 				continue;
 			}
 
-			for (const transaction of request.value.data.all()) {
+			for (const transaction of request.value.items()) {
 				result.push(transaction);
 			}
 		}
 
-		return new Coins.TransactionDataCollection(result);
+		// TODO: decide how to handle pagination for aggregated data collections
+		return new Coins.TransactionDataCollection(result, { prev: undefined, self: undefined, next: undefined });
 	}
 }

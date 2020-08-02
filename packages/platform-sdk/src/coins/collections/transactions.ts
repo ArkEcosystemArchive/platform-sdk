@@ -1,20 +1,7 @@
 import { TransactionDataType } from "../../contracts/coins/data";
+import { Paginator } from "./paginator";
 
-export class TransactionDataCollection {
-	#transactions: TransactionDataType[];
-
-	public constructor(transactions: TransactionDataType[]) {
-		this.#transactions = transactions;
-	}
-
-	public all(): TransactionDataType[] {
-		return this.#transactions;
-	}
-
-	public first(): TransactionDataType {
-		return this.#transactions[0];
-	}
-
+export class TransactionDataCollection extends Paginator<TransactionDataType> {
 	public findById(id: string): TransactionDataType | undefined {
 		return this.find("id", id);
 	}
@@ -36,6 +23,6 @@ export class TransactionDataCollection {
 	}
 
 	private find(key: string, value: string): TransactionDataType | undefined {
-		return this.#transactions.find((transaction: TransactionDataType) => transaction[key]() === value);
+		return this.items().find((transaction: TransactionDataType) => transaction[key]() === value);
 	}
 }

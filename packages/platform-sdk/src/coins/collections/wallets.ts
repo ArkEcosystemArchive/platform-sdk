@@ -1,20 +1,7 @@
 import { WalletData } from "../../contracts";
+import { Paginator } from "./paginator";
 
-export class WalletDataCollection {
-	readonly #wallets: WalletData[];
-
-	public constructor(wallets: WalletData[]) {
-		this.#wallets = wallets;
-	}
-
-	public all(): WalletData[] {
-		return this.#wallets;
-	}
-
-	public first(): WalletData {
-		return this.#wallets[0];
-	}
-
+export class WalletDataCollection extends Paginator<WalletData> {
 	public findByAddress(address: string): WalletData | undefined {
 		return this.find("address", address);
 	}
@@ -28,6 +15,6 @@ export class WalletDataCollection {
 	}
 
 	private find(key: string, value: string): WalletData | undefined {
-		return this.#wallets.find((wallet: WalletData) => wallet[key]() === value);
+		return this.items().find((wallet: WalletData) => wallet[key]() === value);
 	}
 }
