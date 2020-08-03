@@ -12,7 +12,7 @@ beforeEach(() => {
 	key = uuidv4();
 });
 
-test("LocalStorage#all", async () => {
+it("should get all items", async () => {
 	await expect(subject.all()).resolves.toEqual({});
 
 	await subject.set(key, "value");
@@ -24,17 +24,17 @@ test("LocalStorage#all", async () => {
 	await expect(subject.all()).resolves.toEqual({});
 });
 
-test("LocalStorage#get", async () => {
+it("should should get the value for the given key", async () => {
 	await subject.set(key, "value");
 
 	await expect(subject.get(key)).resolves.toBe("value");
 });
 
-test("LocalStorage#set", async () => {
+it("should should set the value in the storage", async () => {
 	await expect(subject.set(key, "value")).resolves.toBeUndefined();
 });
 
-test("LocalStorage#has", async () => {
+it("should should check if the given key exists", async () => {
 	await expect(subject.has(key)).resolves.toBeFalse();
 
 	await subject.set(key, "value");
@@ -42,7 +42,7 @@ test("LocalStorage#has", async () => {
 	await expect(subject.has(key)).resolves.toBeTrue();
 });
 
-test("LocalStorage#forget", async () => {
+it("should should forget the given key", async () => {
 	await expect(subject.has(key)).resolves.toBeFalse();
 
 	await subject.set(key, "value");
@@ -54,7 +54,7 @@ test("LocalStorage#forget", async () => {
 	await expect(subject.has(key)).resolves.toBeFalse();
 });
 
-test("LocalStorage#flush", async () => {
+it("should flush the storage", async () => {
 	await expect(subject.has(key)).resolves.toBeFalse();
 
 	await subject.set(key, "value");
@@ -66,7 +66,7 @@ test("LocalStorage#flush", async () => {
 	await expect(subject.has(key)).resolves.toBeFalse();
 });
 
-test("LocalStorage#count", async () => {
+it("should count all items", async () => {
 	await expect(subject.count()).resolves.toBe(0);
 
 	await subject.set(key, "value");
@@ -76,4 +76,22 @@ test("LocalStorage#count", async () => {
 	await subject.forget(key);
 
 	await expect(subject.count()).resolves.toBe(0);
+});
+
+it("should create a snapshot and restore it", async () => {
+	await subject.snapshot();
+
+	await expect(subject.count()).resolves.toBe(0);
+
+	await subject.set(key, "value");
+
+	await expect(subject.count()).resolves.toBe(1);
+
+	await subject.restore();
+
+	await expect(subject.count()).resolves.toBe(0);
+});
+
+it("should fail to restore if there is no snapshot", async () => {
+	await expect(subject.restore()).rejects.toThrowError("There is no snapshot to restore.");
 });
