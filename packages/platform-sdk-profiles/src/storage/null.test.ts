@@ -6,30 +6,38 @@ let subject: NullStorage;
 
 beforeEach(() => (subject = new NullStorage()));
 
-test("NullStorage#all", async () => {
+test("#all", async () => {
 	await expect(subject.all()).resolves.toEqual({});
 });
 
-test("NullStorage#get", async () => {
+test("#get", async () => {
 	await expect(subject.get("key")).resolves.toBeUndefined();
 });
 
-test("NullStorage#set", async () => {
+test("#set", async () => {
 	await expect(subject.set("key", "value")).resolves.toBeUndefined();
 });
 
-test("NullStorage#has", async () => {
+test("#has", async () => {
 	await expect(subject.has("key")).resolves.toBeFalse();
 });
 
-test("NullStorage#forget", async () => {
+test("#forget", async () => {
 	await expect(subject.forget("null")).resolves.toBeUndefined();
 });
 
-test("NullStorage#flush", async () => {
+test("#flush", async () => {
 	await expect(subject.flush()).resolves.toBeUndefined();
 });
 
-test("NullStorage#count", async () => {
+test("#count", async () => {
 	await expect(subject.count()).resolves.toBe(0);
+});
+
+test("#snapshot", async () => {
+	await expect(subject.snapshot()).resolves.toBeUndefined();
+});
+
+test("#restore", async () => {
+	await expect(subject.restore()).resolves.toBeUndefined();
 });
