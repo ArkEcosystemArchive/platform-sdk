@@ -5,7 +5,9 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
+import { removeSync } from "fs-extra";
 import nock from "nock";
+import { resolve } from "path";
 
 import { Environment, Identifiers, Profile } from "../src";
 import storageData from "../test/fixtures/env-storage.json";
@@ -34,6 +36,8 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
+	removeSync(resolve(__dirname, "../test/stubs/env.json"));
+
 	subject = new Environment({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
 
 	await subject.boot();
