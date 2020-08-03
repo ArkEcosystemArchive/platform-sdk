@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.209 - 2020-08-03
+
+### Added
+
+-   Support pagination for transaction aggregate (7c32d81f, @faustbrian)
+
 ## 0.9.208 - 2020-08-03
 
 ### Added
