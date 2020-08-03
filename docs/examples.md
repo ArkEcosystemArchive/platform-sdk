@@ -398,6 +398,16 @@ profile.plugins().registry().findById(123);
 
 ### Transactions
 
+#### List transactions for a profile
+
+The `TransactionAggregate` acts like a self-paginating set of data by keeping track of the history. Every time you call the `transactions`, `sentTransactions` or `receivedTransactions` method the last responses will be stored based on the wallet ID and the next time you call those methods again it will retrieve the next page. If you want to reset the history you can call `profile.transactionAggregate().flush()` and start calling the methods again to retrieve fresh data.
+
+```ts
+const firstPage = await profile.transactionAggregate().transactions();
+const secondPage = await profile.transactionAggregate().transactions();
+const thirdPage = await profile.transactionAggregate().transactions();
+```
+
 #### List transactions for a wallet
 
 ```ts
