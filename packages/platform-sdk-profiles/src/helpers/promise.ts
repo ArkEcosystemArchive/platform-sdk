@@ -11,13 +11,8 @@ export type SettledPromises<T> = Record<string, { status: "fulfilled" | "rejecte
 export const promiseAllSettledByKey = async <T>(
 	promisesMap: object = {},
 	{ onlyResolved = false, onlyRejected = false }: { onlyResolved?: boolean; onlyRejected?: boolean } = {},
-): Promise<SettledPromises<T> | void> => {
+): Promise<SettledPromises<T>> => {
 	const totalPromises = Object.keys(promisesMap).length;
-
-	if (!totalPromises) {
-		return Promise.resolve();
-	}
-
 	const settledPromises = {};
 
 	function allPromisesSettled() {
