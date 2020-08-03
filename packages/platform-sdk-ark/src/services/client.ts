@@ -155,13 +155,20 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private createSearchParams(body: Contracts.ClientPagination): { body: object; searchParams: object } {
-		const result = { body, searchParams: {} };
+		const result = {
+			body,
+			searchParams: {},
+		};
 
-		for (const key of ["page", "perPage", "offset", "limit", "orderBy"]) {
-			if (body[key]) {
-				result.searchParams[key] = body[key];
+		for (const [alias, original] of Object.entries({
+			cursor: "page",
+			limit: "perPage",
+			orderBy: "orderBy",
+		})) {
+			if (body[alias]) {
+				result.searchParams[original] = body[alias];
 
-				delete result.body[key];
+				delete result.body[alias];
 			}
 		}
 

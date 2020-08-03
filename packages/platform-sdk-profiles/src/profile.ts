@@ -20,14 +20,18 @@ import { WalletRepository } from "./repositories/wallet-repository";
 import { Wallet } from "./wallet";
 
 export class Profile {
-	#contactRepository!: ContactRepository;
-	#dataRepository!: DataRepository;
-	#notificationRepository!: NotificationRepository;
-	#pluginRepository!: PluginRepository;
-	#settingRepository!: SettingRepository;
-	#walletRepository!: WalletRepository;
+	#id: string;
 
-	#id!: string;
+	#contactRepository: ContactRepository;
+	#dataRepository: DataRepository;
+	#notificationRepository: NotificationRepository;
+	#pluginRepository: PluginRepository;
+	#settingRepository: SettingRepository;
+	#walletRepository: WalletRepository;
+
+	#countAggregate: CountAggregate;
+	#transactionAggregate: TransactionAggregate;
+	#walletAggregate: WalletAggregate;
 
 	public constructor(id: string) {
 		this.#id = id;
@@ -37,6 +41,10 @@ export class Profile {
 		this.#pluginRepository = new PluginRepository();
 		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
 		this.#walletRepository = new WalletRepository(this);
+
+		this.#countAggregate = new CountAggregate(this);
+		this.#transactionAggregate = new TransactionAggregate(this);
+		this.#walletAggregate = new WalletAggregate(this);
 	}
 
 	public id(): string {
@@ -116,15 +124,15 @@ export class Profile {
 	 */
 
 	public countAggregate(): CountAggregate {
-		return new CountAggregate(this);
+		return this.#countAggregate;
 	}
 
 	public transactionAggregate(): TransactionAggregate {
-		return new TransactionAggregate(this);
+		return this.#transactionAggregate;
 	}
 
 	public walletAggregate(): WalletAggregate {
-		return new WalletAggregate(this);
+		return this.#walletAggregate;
 	}
 
 	/**
