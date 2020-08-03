@@ -7,6 +7,8 @@ import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Avatar } from "./avatar";
+import { container } from "./container";
+import { Identifiers } from "./container.models";
 import { ProfileSetting, ProfileStruct } from "./profile.models";
 import { ContactRepository } from "./repositories/contact-repository";
 import { DataRepository } from "./repositories/data-repository";
@@ -14,8 +16,6 @@ import { NotificationRepository } from "./repositories/notification-repository";
 import { PluginRepository } from "./repositories/plugin-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
-import { container } from "./container";
-import { Identifiers } from "./container.models";
 
 export class Profile {
 	#id: string;

@@ -4,10 +4,10 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { Avatar } from "./avatar";
 import { makeCoin } from "./container.helpers";
 import { Profile } from "./profile";
+import { ProfileSetting } from "./profile.models";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
-import { ProfileSetting } from "./profile.models";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
@@ -133,7 +133,7 @@ export class Wallet {
 		return BigNumber.make(value);
 	}
 
-	public balanceConverted(): BigNumber {
+	public convertedBalance(): BigNumber {
 		const value: string | undefined = this.data().get(WalletData.ExchangeRate);
 
 		if (value === undefined) {

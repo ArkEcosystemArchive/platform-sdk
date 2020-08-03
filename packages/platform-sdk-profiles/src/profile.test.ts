@@ -10,13 +10,13 @@ import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { container } from "./container";
+import { Identifiers } from "./container.models";
+import { Profile } from "./profile";
 import { ProfileSetting } from "./profile.models";
+import { ContactRepository } from "./repositories/contact-repository";
 import { DataRepository } from "./repositories/data-repository";
 import { NotificationRepository } from "./repositories/notification-repository";
 import { PluginRepository } from "./repositories/plugin-repository";
-import { Profile } from "./profile";
-import { Identifiers } from "./container.models";
-import { ContactRepository } from "./repositories/contact-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
 
