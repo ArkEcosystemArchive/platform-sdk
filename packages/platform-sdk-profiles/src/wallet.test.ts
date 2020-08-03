@@ -15,6 +15,7 @@ import { ProfileSetting } from "./profile.models";
 import { Wallet } from "./wallet";
 import { WalletData } from "./wallet.models";
 
+let profile: Profile;
 let subject: Wallet;
 
 beforeEach(async () => {
@@ -40,7 +41,7 @@ beforeEach(async () => {
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK });
 
-	const profile = new Profile("profile-id");
+	profile = new Profile("profile-id");
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	subject = new Wallet(uuidv4(), profile);
@@ -85,14 +86,13 @@ it("should have a balance", () => {
 	expect(subject.balance().toString()).toBe("55827093444556");
 });
 
-it("should have a fiat balance", () => {
+it("should have a converted balance", () => {
 	subject.data().set(WalletData.Balance, 5);
 	subject.data().set(WalletData.ExchangeRate, 5);
 
-	expect(subject.fiat()).toBeInstanceOf(BigNumber);
-	expect(subject.fiat().toString()).toBe("25");
+	expect(subject.convertedBalance()).toBeInstanceOf(BigNumber);
+	expect(subject.convertedBalance().toString()).toBe("25");
 });
-
 it("should have a nonce", () => {
 	expect(subject.nonce()).toEqual(BigNumber.make("111932"));
 });
@@ -189,6 +189,20 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.settings).toBeObject();
 		expect(actual.settings.AVATAR).toBeString();
 	});
+});
+
+it("should sync the exchange rate for ARK to BTC", async () => {
+	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+
+	nock(/.+/)
+		.get("/data/dayAvg")
+		.query(true)
+		.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
+		.persist();
+
+	await subject.syncExchangeRate();
+
+	expect(subject.data().get(WalletData.ExchangeRate)).toBe(0.00005048);
 });
 
 it("should sync the delegates", async () => {

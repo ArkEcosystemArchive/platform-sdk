@@ -10,13 +10,13 @@ import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { container } from "./container";
+import { Identifiers } from "./container.models";
+import { Profile } from "./profile";
 import { ProfileSetting } from "./profile.models";
+import { ContactRepository } from "./repositories/contact-repository";
 import { DataRepository } from "./repositories/data-repository";
 import { NotificationRepository } from "./repositories/notification-repository";
 import { PluginRepository } from "./repositories/plugin-repository";
-import { Profile } from "./profile";
-import { Identifiers } from "./container.models";
-import { ContactRepository } from "./repositories/contact-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
 
@@ -119,8 +119,16 @@ it("should determine if the password uses a password", () => {
 	expect(subject.usesPassword()).toBeTrue();
 });
 
-it("should have a market", () => {
-	expect(subject.market()).toBeInstanceOf(MarketService);
+it("should get the exchange rate for ARK to BTC", async () => {
+	subject.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+
+	nock(/.+/)
+		.get("/data/dayAvg")
+		.query(true)
+		.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
+		.persist();
+
+	await expect(subject.getExchangeRate("ARK")).resolves.toBe(0.00005048);
 });
 
 it("should turn into an object", () => {

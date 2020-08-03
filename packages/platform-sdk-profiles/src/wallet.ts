@@ -4,6 +4,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { Avatar } from "./avatar";
 import { makeCoin } from "./container.helpers";
 import { Profile } from "./profile";
+import { ProfileSetting } from "./profile.models";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
@@ -132,7 +133,7 @@ export class Wallet {
 		return BigNumber.make(value);
 	}
 
-	public fiat(): BigNumber {
+	public convertedBalance(): BigNumber {
 		const value: string | undefined = this.data().get(WalletData.ExchangeRate);
 
 		if (value === undefined) {
@@ -395,12 +396,8 @@ export class Wallet {
 		return this.#coin.client().broadcast(transactions);
 	}
 
-	/**
-	 * These methods serve as helpers to interact with exchange markets.
-	 */
-
-	public async updateExchangeRate(): Promise<void> {
-		this.data().set(WalletData.ExchangeRate, this.#profile.getExchangeRate(this.currency()));
+	public async syncExchangeRate(): Promise<void> {
+		this.data().set(WalletData.ExchangeRate, await this.#profile.getExchangeRate(this.currency()));
 	}
 
 	private async fetchTransaction(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
