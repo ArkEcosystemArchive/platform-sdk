@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Bcrypt } from "@arkecosystem/platform-sdk-crypto";
-import { MarketService } from "@arkecosystem/platform-sdk-markets";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { CountAggregate } from "./aggregates/count-aggregate";
@@ -8,8 +6,6 @@ import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Avatar } from "./avatar";
-import { container } from "./container";
-import { Identifiers } from "./container.models";
 import { ProfileSetting, ProfileStruct } from "./profile.models";
 import { ContactRepository } from "./repositories/contact-repository";
 import { DataRepository } from "./repositories/data-repository";
@@ -17,7 +13,6 @@ import { NotificationRepository } from "./repositories/notification-repository";
 import { PluginRepository } from "./repositories/plugin-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletRepository } from "./repositories/wallet-repository";
-import { Wallet } from "./wallet";
 
 export class Profile {
 	#id: string;
@@ -145,24 +140,5 @@ export class Profile {
 
 	public usesPassword(): boolean {
 		return this.settings().get(ProfileSetting.Password) !== undefined;
-	}
-
-	/**
-	 * These methods serve as helpers to interact with exchange markets.
-	 */
-
-	public market(): MarketService {
-		return MarketService.make(
-			this.settings().get(ProfileSetting.MarketProvider) || "coingecko",
-			container.get(Identifiers.HttpClient),
-		);
-	}
-
-	public async getExchangeRate(token: string): Promise<number> {
-		return this.market().dailyAverage(
-			token,
-			this.settings().get(ProfileSetting.ExchangeCurrency) || "BTC",
-			+Date.now(),
-		);
 	}
 }

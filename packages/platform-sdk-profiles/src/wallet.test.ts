@@ -85,14 +85,6 @@ it("should have a balance", () => {
 	expect(subject.balance().toString()).toBe("55827093444556");
 });
 
-it("should have a fiat balance", () => {
-	subject.data().set(WalletData.Balance, 5);
-	subject.data().set(WalletData.ExchangeRate, 5);
-
-	expect(subject.fiat()).toBeInstanceOf(BigNumber);
-	expect(subject.fiat().toString()).toBe("25");
-});
-
 it("should have a nonce", () => {
 	expect(subject.nonce()).toEqual(BigNumber.make("111932"));
 });

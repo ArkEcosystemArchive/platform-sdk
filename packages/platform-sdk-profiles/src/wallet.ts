@@ -132,16 +132,6 @@ export class Wallet {
 		return BigNumber.make(value);
 	}
 
-	public fiat(): BigNumber {
-		const value: string | undefined = this.data().get(WalletData.ExchangeRate);
-
-		if (value === undefined) {
-			return BigNumber.ZERO;
-		}
-
-		return this.balance().times(value);
-	}
-
 	public nonce(): BigNumber {
 		const value: string | undefined = this.data().get(WalletData.Sequence);
 
@@ -393,14 +383,6 @@ export class Wallet {
 
 	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
 		return this.#coin.client().broadcast(transactions);
-	}
-
-	/**
-	 * These methods serve as helpers to interact with exchange markets.
-	 */
-
-	public async updateExchangeRate(): Promise<void> {
-		this.data().set(WalletData.ExchangeRate, this.#profile.getExchangeRate(this.currency()));
 	}
 
 	private async fetchTransaction(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
