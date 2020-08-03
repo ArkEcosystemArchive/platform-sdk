@@ -396,8 +396,8 @@ export class Wallet {
 		return this.#coin.client().broadcast(transactions);
 	}
 
-	public async updateExchangeRate(): Promise<void> {
-		this.data().set(WalletData.ExchangeRate, this.#profile.getExchangeRate(this.currency()));
+	public async syncExchangeRate(): Promise<void> {
+		this.data().set(WalletData.ExchangeRate, await this.#profile.getExchangeRate(this.currency()));
 	}
 
 	private async fetchTransaction(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {

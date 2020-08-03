@@ -15,6 +15,7 @@ import { ProfileSetting } from "./profile.models";
 import { Wallet } from "./wallet";
 import { WalletData } from "./wallet.models";
 
+let profile: Profile;
 let subject: Wallet;
 
 beforeEach(async () => {
@@ -40,7 +41,7 @@ beforeEach(async () => {
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK });
 
-	const profile = new Profile("profile-id");
+	profile = new Profile("profile-id");
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	subject = new Wallet(uuidv4(), profile);
@@ -188,6 +189,20 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.settings).toBeObject();
 		expect(actual.settings.AVATAR).toBeString();
 	});
+});
+
+it("should sync the exchange rate for ARK to BTC", async () => {
+	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+
+	nock(/.+/)
+		.get("/data/dayAvg")
+		.query(true)
+		.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
+		.persist();
+
+	await subject.syncExchangeRate();
+
+	expect(subject.data().get(WalletData.ExchangeRate)).toBe(0.00005048);
 });
 
 it("should sync the delegates", async () => {
