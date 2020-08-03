@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.208 - 2020-08-03
+
+### Added
+
+-   Implement collection paginator (ab973e22, @faustbrian)
+
 ## 0.9.207 - 2020-08-01
 
 ### Added
