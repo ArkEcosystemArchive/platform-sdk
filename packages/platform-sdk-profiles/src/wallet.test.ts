@@ -51,11 +51,11 @@ beforeEach(async () => {
 
 beforeAll(() => nock.disableNetConnect());
 
-test("#coin", () => {
+it("should have a coin", () => {
 	expect(subject.coin()).toBeInstanceOf(Coins.Coin);
 });
 
-test("#network", () => {
+it("should have a network", () => {
 	expect(subject.network()).toEqual({
 		crypto: { slip44: 111 },
 		currency: { symbol: "DѦ", ticker: "DARK" },
@@ -72,20 +72,20 @@ test("#network", () => {
 	});
 });
 
-test("#address", () => {
+it("should have an address", () => {
 	expect(subject.address()).toEqual(identity.address);
 });
 
-test("#publicKey", () => {
+it("should have a publicKey", () => {
 	expect(subject.publicKey()).toEqual(identity.publicKey);
 });
 
-test("#balance", () => {
+it("should have a balance", () => {
 	expect(subject.balance()).toBeInstanceOf(BigNumber);
 	expect(subject.balance().toString()).toBe("55827093444556");
 });
 
-test("#fiat", () => {
+it("should have a fiat balance", () => {
 	subject.data().set(WalletData.Balance, 5);
 	subject.data().set(WalletData.ExchangeRate, 5);
 
@@ -93,12 +93,56 @@ test("#fiat", () => {
 	expect(subject.fiat().toString()).toBe("25");
 });
 
-test("#nonce", () => {
+it("should have a nonce", () => {
 	expect(subject.nonce()).toEqual(BigNumber.make("111932"));
 });
 
+it("should have a manifest service", () => {
+	expect(subject.manifest()).toBeInstanceOf(Coins.Manifest);
+});
+
+it("should have a config service", () => {
+	expect(subject.config()).toBeInstanceOf(Coins.Config);
+});
+
+it("should have a guard service", () => {
+	expect(subject.guard()).toBeInstanceOf(Coins.Guard);
+});
+
+it("should have a client service", () => {
+	expect(subject.client()).toBeObject();
+});
+
+it("should have a fee service", () => {
+	expect(subject.fee()).toBeObject();
+});
+
+it("should have a identity service", () => {
+	expect(subject.identity()).toBeObject();
+});
+
+it("should have a ledger service", () => {
+	expect(subject.ledger()).toBeObject();
+});
+
+it("should have a link service", () => {
+	expect(subject.link()).toBeObject();
+});
+
+it("should have a message service", () => {
+	expect(subject.message()).toBeObject();
+});
+
+it("should have a peer service", () => {
+	expect(subject.peer()).toBeObject();
+});
+
+it("should have a transaction service", () => {
+	expect(subject.transaction()).toBeObject();
+});
+
 describe.each([123, 456, 789])("%s", (slip44) => {
-	test("#toObject", () => {
+	it("should turn into an object", () => {
 		subject.coin().config().set("network.crypto.slip44", slip44);
 		subject.data().set("key", "value");
 
@@ -147,7 +191,7 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 	});
 });
 
-test("#syncDelegates", async () => {
+it("should sync the delegates", async () => {
 	expect(subject.data().get(WalletData.Delegates)).toBeUndefined();
 
 	await subject.syncDelegates();
