@@ -65,6 +65,28 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 		expect(subject.hasMore(method)).toBeFalse();
 	});
 
+	it("should skip error responses for processing", async () => {
+		nock(/.+/).post("/api/transactions/search").reply(404);
+
+		const result = await subject[method]();
+
+		expect(result).toBeInstanceOf(Coins.TransactionDataCollection);
+		expect(result.items()).toHaveLength(0);
+		expect(subject.hasMore(method)).toBeFalse();
+	});
+
+	it("should skip empty responses for processing", async () => {
+		nock(/.+/)
+			.post("/api/transactions/search")
+			.reply(200, require("../../test/fixtures/client/transactions-empty.json"));
+
+		const result = await subject[method]();
+
+		expect(result).toBeInstanceOf(Coins.TransactionDataCollection);
+		expect(result.items()).toHaveLength(0);
+		expect(subject.hasMore(method)).toBeFalse();
+	});
+
 	it("should fetch transactions twice and then stop because no more are available", async () => {
 		nock(/.+/)
 			.post("/api/transactions/search")
@@ -103,4 +125,18 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 
 		expect(subject.hasMore(method)).toBeTrue();
 	});
+});
+
+it("should flush the history", async () => {
+	nock(/.+/).post("/api/transactions/search").reply(200, require("../../test/fixtures/client/transactions.json"));
+
+	expect(subject.hasMore("transactions")).toBeFalse();
+
+	await subject.transactions();
+
+	expect(subject.hasMore("transactions")).toBeTrue();
+
+	subject.flush();
+
+	expect(subject.hasMore("transactions")).toBeFalse();
 });

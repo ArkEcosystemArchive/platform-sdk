@@ -30,7 +30,7 @@ export abstract class Paginator<T> {
 	}
 
 	public isEmpty(): boolean {
-		return this.#data === undefined;
+		return this.#data === undefined || this.#data.length === 0;
 	}
 
 	public isNotEmpty(): boolean {

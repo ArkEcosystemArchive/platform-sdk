@@ -4,7 +4,7 @@ import { promiseAllSettledByKey } from "../helpers/promise";
 import { Wallet } from "../wallet";
 
 type HistoryMethod = string;
-type HistoryWallet = Coins.TransactionDataCollection | undefined;
+type HistoryWallet = Coins.TransactionDataCollection;
 
 export class TransactionAggregate {
 	// @TODO: add typehint
@@ -31,7 +31,7 @@ export class TransactionAggregate {
 
 	public hasMore(method: string): boolean {
 		return Object.values(this.#history[method] || {})
-			.map((response) => response?.hasMorePages())
+			.map((response) => response.hasMorePages())
 			.includes(true);
 	}
 
@@ -67,19 +67,10 @@ export class TransactionAggregate {
 		}
 
 		const responses = await promiseAllSettledByKey<Coins.TransactionDataCollection>(requests);
-
-		if (!responses) {
-			throw new Error("Failed to settle all promises. This looks like a bug.");
-		}
-
 		const result: Contracts.TransactionDataTypeCollection = [];
 
 		for (const [id, request] of Object.entries(responses)) {
-			if (request.status === "rejected") {
-				continue;
-			}
-
-			if (request.value instanceof Error) {
+			if (request.status === "rejected" || request.value instanceof Error) {
 				continue;
 			}
 
