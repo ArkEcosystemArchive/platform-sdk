@@ -26,7 +26,7 @@ export abstract class Paginator<T> {
 	}
 
 	public hasMorePages(): boolean {
-		return this.nextPage() !== undefined;
+		return Boolean(this.nextPage());
 	}
 
 	public isEmpty(): boolean {

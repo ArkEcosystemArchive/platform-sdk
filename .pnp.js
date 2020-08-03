@@ -1474,6 +1474,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["nock", "npm:13.0.2"],
             ["npm-check-updates", "npm:7.0.2"],
             ["prettier", "npm:2.0.5"],
+            ["promise-all-settled-by-key", "npm:1.0.3"],
             ["rimraf", "npm:3.0.2"],
             ["semver", "npm:7.3.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.1.3"],
@@ -18388,6 +18389,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["promise", "npm:7.3.1"],
             ["asap", "npm:2.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["promise-all-settled-by-key", [
+        ["npm:1.0.3", {
+          "packageLocation": "./.yarn/cache/promise-all-settled-by-key-npm-1.0.3-4497d1c6a7-2.zip/node_modules/promise-all-settled-by-key/",
+          "packageDependencies": [
+            ["promise-all-settled-by-key", "npm:1.0.3"]
           ],
           "linkType": "HARD",
         }]

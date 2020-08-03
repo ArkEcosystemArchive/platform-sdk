@@ -1050,6 +1050,7 @@ __metadata:
     nock: ^13.0.2
     npm-check-updates: ^7.0.2
     prettier: ^2.0.5
+    promise-all-settled-by-key: ^1.0.3
     rimraf: ^3.0.2
     semver: ^7.3.2
     ts-jest: ^26.1.3
@@ -15961,6 +15962,13 @@ __metadata:
     gc-stats:
       optional: true
   checksum: 2/e3fb0043e73fe318094b1d3c9e644e2435dbfa2ae957b8ab8059d2c8e0abec6ac36d67c18dab1151ad43adb016139ebd2815e8142abddf97c5dc4303b1f0fdf5
+  languageName: node
+  linkType: hard
+
+"promise-all-settled-by-key@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "promise-all-settled-by-key@npm:1.0.3"
+  checksum: 2/594f46a1bdab27af1b2de231c49071e27ec8df7ed1de740012bc9fab23eaacef223ca449e5cca336804bb5f54abf42ad13ca47cef99c8e04c687cc413c4590b6
   languageName: node
   linkType: hard
 

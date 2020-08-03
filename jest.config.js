@@ -11,7 +11,7 @@ module.exports = {
 	transform: {
 		"^.+\\.tsx?$": "ts-jest",
 	},
-	verbose: false,
+	verbose: true,
 	globals: {
 		"ts-jest": {
 			packageJson: "./package.json",
