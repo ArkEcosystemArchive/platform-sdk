@@ -7,6 +7,7 @@ import { Profile } from "./profile";
 import { DataRepository } from "./repositories/data-repository";
 import { SettingRepository } from "./repositories/setting-repository";
 import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
+import { ProfileSetting } from "./profile.models";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
@@ -130,6 +131,16 @@ export class Wallet {
 		}
 
 		return BigNumber.make(value);
+	}
+
+	public balanceConverted(): BigNumber {
+		const value: string | undefined = this.data().get(WalletData.ExchangeRate);
+
+		if (value === undefined) {
+			return BigNumber.ZERO;
+		}
+
+		return this.balance().times(value);
 	}
 
 	public nonce(): BigNumber {
@@ -383,6 +394,10 @@ export class Wallet {
 
 	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
 		return this.#coin.client().broadcast(transactions);
+	}
+
+	public async updateExchangeRate(): Promise<void> {
+		this.data().set(WalletData.ExchangeRate, this.#profile.getExchangeRate(this.currency()));
 	}
 
 	private async fetchTransaction(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {

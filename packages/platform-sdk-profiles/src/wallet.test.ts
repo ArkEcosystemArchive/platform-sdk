@@ -85,6 +85,13 @@ it("should have a balance", () => {
 	expect(subject.balance().toString()).toBe("55827093444556");
 });
 
+it("should have a converted balance", () => {
+	subject.data().set(WalletData.Balance, 5);
+	subject.data().set(WalletData.ExchangeRate, 5);
+
+	expect(subject.balanceConverted()).toBeInstanceOf(BigNumber);
+	expect(subject.balanceConverted().toString()).toBe("25");
+});
 it("should have a nonce", () => {
 	expect(subject.nonce()).toEqual(BigNumber.make("111932"));
 });
