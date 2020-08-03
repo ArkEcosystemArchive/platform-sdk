@@ -8,12 +8,10 @@ export class ContactAddress {
 	readonly #coin: Coins.Coin;
 	readonly #data: ContactAddressProps;
 	#wallet: Contracts.WalletData | undefined;
-	readonly #avatar: string;
 
 	private constructor(data: ContactAddressProps, coin: Coins.Coin) {
 		this.#data = data;
 		this.#coin = coin;
-		this.#avatar = Avatar.make(data.address);
 	}
 
 	public static async make(data: ContactAddressProps): Promise<ContactAddress> {
@@ -45,7 +43,7 @@ export class ContactAddress {
 	}
 
 	public avatar(): string {
-		return this.#avatar;
+		return Avatar.make(this.address());
 	}
 
 	public isDelegate(): boolean {
@@ -96,6 +94,14 @@ export class ContactAddress {
 			name: this.name(),
 			address: this.address(),
 		};
+	}
+
+	public setName(value: string): void {
+		this.#data.name = value;
+	}
+
+	public setAddress(name: string): void {
+		this.#data.address = name;
 	}
 
 	/**

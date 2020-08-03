@@ -2,17 +2,10 @@ import { v4 as uuidv4 } from "uuid";
 
 import { ContactAddress } from "../contact-address";
 import { ContactAddressInput } from "../contact-address.models";
-import { Profile } from "../profile";
 import { DataRepository } from "./data-repository";
 
 export class ContactAddressRepository {
-	#data: DataRepository;
-	#profile: Profile;
-
-	public constructor(profile: Profile) {
-		this.#data = new DataRepository();
-		this.#profile = profile;
-	}
+	#data: DataRepository = new DataRepository();
 
 	public all(): Record<string, ContactAddress> {
 		return this.#data.all() as Record<string, ContactAddress>;
@@ -64,23 +57,18 @@ export class ContactAddressRepository {
 		return this.findByColumn("network", value);
 	}
 
-	private findByColumn(column: string, value: string): ContactAddress[] {
-		const result: ContactAddress[] = [];
+	public update(id: string, data: Record<string, string>): void {
+		const address = this.findById(id);
 
-		for (const contact of Object.values(this.all())) {
-			const match: ContactAddress | undefined = this.values().find(
-				(address: ContactAddress) => address[column]() === value,
-			);
-
-			if (match) {
-				result.push(match);
-			}
+		if (data.name) {
+			address.setName(data.name);
 		}
 
-		return result;
-	}
-	public update(id: string, data: object): void {
-		this.#data.set(id, { ...this.findById(id), ...data });
+		if (data.address) {
+			address.setAddress(data.address);
+		}
+
+		this.#data.set(id, address);
 	}
 
 	public forget(id: string): void {
@@ -102,6 +90,22 @@ export class ContactAddressRepository {
 
 		for (const address of this.values()) {
 			result.push(address.toObject());
+		}
+
+		return result;
+	}
+
+	private findByColumn(column: string, value: string): ContactAddress[] {
+		const result: ContactAddress[] = [];
+
+		for (const contact of Object.values(this.all())) {
+			const match: ContactAddress | undefined = this.values().find(
+				(address: ContactAddress) => address[column]() === value,
+			);
+
+			if (match) {
+				result.push(match);
+			}
 		}
 
 		return result;
