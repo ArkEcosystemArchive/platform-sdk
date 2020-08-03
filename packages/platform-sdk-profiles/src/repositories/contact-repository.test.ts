@@ -17,7 +17,6 @@ let subject: ContactRepository;
 const name = "John Doe";
 const addr = { name: "JDB", coin: "ARK", network: "devnet", address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib" };
 
-let walletARK: Wallet;
 beforeEach(async () => {
 	nock.cleanAll();
 
@@ -40,7 +39,7 @@ beforeEach(async () => {
 	const profile = new Profile("profile-id");
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	walletARK = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "devnet");
+	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "devnet");
 
 	subject = new ContactRepository(profile);
 
@@ -49,7 +48,7 @@ beforeEach(async () => {
 
 beforeAll(() => nock.disableNetConnect());
 
-test("ContactRepository#create", () => {
+test("#create", () => {
 	expect(subject.keys()).toHaveLength(0);
 
 	subject.create(name);
@@ -59,7 +58,7 @@ test("ContactRepository#create", () => {
 	expect(() => subject.create(name)).toThrowError(`The contact [${name}] already exists.`);
 });
 
-test("ContactRepository#find", () => {
+test("#find", () => {
 	expect(() => subject.findById("invalid")).toThrowError("Failed to find");
 
 	const contact = subject.create(name);
@@ -67,7 +66,7 @@ test("ContactRepository#find", () => {
 	expect(subject.findById(contact.id())).toBeObject();
 });
 
-test("ContactRepository#update", async () => {
+test("#update", async () => {
 	await expect(subject.update("invalid", { name: "Jane Doe" })).rejects.toThrowError("Failed to find");
 
 	const contact = subject.create(name);
@@ -83,7 +82,7 @@ test("ContactRepository#update", async () => {
 	);
 });
 
-test("ContactRepository#forget", () => {
+test("#forget", () => {
 	expect(() => subject.forget("invalid")).toThrowError("Failed to find");
 
 	const contact = subject.create(name);
@@ -93,28 +92,28 @@ test("ContactRepository#forget", () => {
 	expect(() => subject.findById(contact.id())).toThrowError("Failed to find");
 });
 
-test("ContactRepository#findByAddress", async () => {
+test("#findByAddress", async () => {
 	const wallet = await subject.create(name).addresses().create(addr);
 
 	expect(subject.findByAddress(wallet.address())).toHaveLength(1);
 	expect(subject.findByAddress("invalid")).toHaveLength(0);
 });
 
-test("ContactRepository#findByCoin", async () => {
+test("#findByCoin", async () => {
 	const wallet = await subject.create(name).addresses().create(addr);
 
 	expect(subject.findByCoin(wallet.coin())).toHaveLength(1);
 	expect(subject.findByCoin("invalid")).toHaveLength(0);
 });
 
-test("ContactRepository#findByNetwork", async () => {
+test("#findByNetwork", async () => {
 	const wallet = await subject.create(name).addresses().create(addr);
 
 	expect(subject.findByNetwork(wallet.network())).toHaveLength(1);
 	expect(subject.findByNetwork("invalid")).toHaveLength(0);
 });
 
-test("ContactRepository#flush", async () => {
+test("#flush", async () => {
 	const wallet = await subject.create(name).addresses().create(addr);
 
 	expect(subject.keys()).toHaveLength(1);

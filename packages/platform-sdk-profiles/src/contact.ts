@@ -9,7 +9,7 @@ export class Contact {
 
 	#id: string;
 	#name: string;
-	#addresses: ContactAddressRepository;
+	#addresses: ContactAddressRepository = new ContactAddressRepository();
 	#starred: boolean;
 
 	#avatar: string;
@@ -22,8 +22,6 @@ export class Contact {
 		this.#starred = starred;
 
 		this.#avatar = Avatar.make(name);
-
-		this.#addresses = new ContactAddressRepository(this.#profile);
 	}
 
 	public async restore(addresses: object[]): Promise<void> {
