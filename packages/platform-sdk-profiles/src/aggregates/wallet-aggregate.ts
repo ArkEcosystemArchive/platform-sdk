@@ -1,4 +1,5 @@
-import { BigNumber } from "../../../platform-sdk-support/dist";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
+
 import { Wallet } from "../wallet";
 
 export class WalletAggregate {

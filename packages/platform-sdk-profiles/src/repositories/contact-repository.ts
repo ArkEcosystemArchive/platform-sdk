@@ -72,6 +72,10 @@ export class ContactRepository {
 			const contacts: Contact[] = this.values();
 
 			for (const contact of contacts) {
+				if (contact.id() === id) {
+					continue;
+				}
+
 				if (contact.name().toLowerCase() === data.name.toLowerCase()) {
 					throw new Error(`The contact [${data.name}] already exists.`);
 				}
