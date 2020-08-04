@@ -44,6 +44,10 @@ export class DateTime {
 		return new DateTime(value, locale);
 	}
 
+	public static fromUnix(value: number, locale?: string): DateTime {
+		return new DateTime(dayjs.unix(value), locale);
+	}
+
 	public setLocale(locale: string): DateTime {
 		return DateTime.make(this.valueOf(), locale);
 	}
