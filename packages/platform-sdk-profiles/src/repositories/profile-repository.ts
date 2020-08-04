@@ -71,6 +71,10 @@ export class ProfileRepository {
 		return result;
 	}
 
+	public has(id: string): boolean {
+		return this.#data.has(id);
+	}
+
 	public forget(id: string): void {
 		if (this.#data.missing(id)) {
 			throw new Error(`No profile found for [${id}].`);
