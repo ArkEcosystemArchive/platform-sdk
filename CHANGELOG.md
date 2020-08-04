@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.215 - 2020-08-04
+
+### Fixed
+
+-   Bad relative import (69732558, @faustbrian)
+-   Return unix timestamp for transactions (22565231, @faustbrian)
+
 ## 0.9.213 - 2020-08-04
 
 ### Changed
