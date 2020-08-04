@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.217 - 2020-08-04
+
+### Fixed
+
+-   Ignore the name of contact that is being updated (ddad5071, @faustbrian)
+
 ## 0.9.216 - 2020-08-04
 
 ### Added
