@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.213 - 2020-08-04
+
+### Changed
+
+-   Pass query to transaction aggregate methods (1ddd6351, @faustbrian)
+
+### Added
+
+-   Implement `ProfileRepository#has` (e277b4c9, @faustbrian)
+-   Implement `WalletRepository#has` (53d94b68, @faustbrian)
+
 ## 0.9.210 - 2020-08-04
 
 ### Fixed
