@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.217 - 2020-08-04
+
+### Fixed
+
+-   Ignore the name of contact that is being updated (ddad5071, @faustbrian)
+
+## 0.9.216 - 2020-08-04
+
+### Added
+
+-   Implement `DateTime#fromUnix` (a58aead2, @faustbrian)
+
+## 0.9.215 - 2020-08-04
+
+### Fixed
+
+-   Bad relative import (69732558, @faustbrian)
+-   Return unix timestamp for transactions (22565231, @faustbrian)
+
+## 0.9.213 - 2020-08-04
+
+### Changed
+
+-   Pass query to transaction aggregate methods (1ddd6351, @faustbrian)
+
+### Added
+
+-   Implement `ProfileRepository#has` (e277b4c9, @faustbrian)
+-   Implement `WalletRepository#has` (53d94b68, @faustbrian)
+
 ## 0.9.210 - 2020-08-04
 
 ### Fixed

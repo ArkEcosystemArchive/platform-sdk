@@ -5,6 +5,16 @@ import { DateTime } from "./datetime";
 let subject: DateTime;
 beforeEach(() => (subject = DateTime.make("2020-01-01")));
 
+test("#fromUnix", () => {
+	const subject = DateTime.fromUnix(1596534984);
+
+	expect(subject.format("YYYY-MM-DDTHH:mm:ssZ[Z]")).toBe("2020-08-04T09:56:24+00:00Z");
+	expect(subject.format("DD/MM/YYYY")).toBe("04/08/2020");
+	expect(subject.format("L h:mm:ss A")).toBe("08/04/2020 9:56:24 AM");
+	expect(subject.format("L HH:mm:ss")).toBe("08/04/2020 09:56:24");
+	expect(subject.format("L LTS")).toBe("08/04/2020 9:56:24 AM");
+});
+
 test("#isBefore", () => {
 	expect(subject.isBefore(DateTime.make("2020-01-01").addDay())).toBeTrue();
 	expect(subject.isBefore(DateTime.make("2020-01-01").subDay())).toBeFalse();
