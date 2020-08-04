@@ -120,6 +120,10 @@ export class WalletRepository {
 		);
 	}
 
+	public has(id: string): boolean {
+		return this.#data.has(id);
+	}
+
 	public forget(id: string): void {
 		this.#data.forget(id);
 	}
