@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.210 - 2020-08-04
+
+### Fixed
+
+-   Default to empty object if promises haven't been settled (e9bbcede, @faustbrian)
+
 ## 0.9.209 - 2020-08-03
 
 ### Added
