@@ -35,7 +35,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public timestamp(): number | undefined {
-		return this.data.timestamp.epoch;
+		return this.data.timestamp.unix;
 	}
 
 	public confirmations(): BigNumber {
