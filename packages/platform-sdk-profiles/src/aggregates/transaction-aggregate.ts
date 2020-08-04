@@ -17,16 +17,18 @@ export class TransactionAggregate {
 		this.#profile = profile;
 	}
 
-	public async transactions(): Promise<Coins.TransactionDataCollection> {
-		return this.aggregate("transactions");
+	public async transactions(query: Contracts.ClientPagination = {}): Promise<Coins.TransactionDataCollection> {
+		return this.aggregate("transactions", query);
 	}
 
-	public async sentTransactions(): Promise<Coins.TransactionDataCollection> {
-		return this.aggregate("sentTransactions");
+	public async sentTransactions(query: Contracts.ClientPagination = {}): Promise<Coins.TransactionDataCollection> {
+		return this.aggregate("sentTransactions", query);
 	}
 
-	public async receivedTransactions(): Promise<Coins.TransactionDataCollection> {
-		return this.aggregate("receivedTransactions");
+	public async receivedTransactions(
+		query: Contracts.ClientPagination = {},
+	): Promise<Coins.TransactionDataCollection> {
+		return this.aggregate("receivedTransactions", query);
 	}
 
 	public hasMore(method: string): boolean {
@@ -39,7 +41,10 @@ export class TransactionAggregate {
 		this.#history = {};
 	}
 
-	private async aggregate(method: string): Promise<Coins.TransactionDataCollection> {
+	private async aggregate(
+		method: string,
+		query: Contracts.ClientPagination,
+	): Promise<Coins.TransactionDataCollection> {
 		if (!this.#history[method]) {
 			this.#history[method] = {};
 		}
@@ -59,10 +64,10 @@ export class TransactionAggregate {
 				}
 
 				if (lastResponse && lastResponse.hasMorePages()) {
-					return resolve(syncedWallet[method]({ cursor: lastResponse.nextPage() }));
+					return resolve(syncedWallet[method]({ cursor: lastResponse.nextPage(), ...query }));
 				}
 
-				return resolve(syncedWallet[method]());
+				return resolve(syncedWallet[method](query));
 			});
 		}
 
