@@ -69,7 +69,7 @@ export class TransactionAggregate {
 		const responses = await promiseAllSettledByKey<Coins.TransactionDataCollection>(requests);
 		const result: Contracts.TransactionDataTypeCollection = [];
 
-		for (const [id, request] of Object.entries(responses)) {
+		for (const [id, request] of Object.entries(responses || {})) {
 			if (request.status === "rejected" || request.value instanceof Error) {
 				continue;
 			}
