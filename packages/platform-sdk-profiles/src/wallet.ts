@@ -350,16 +350,18 @@ export class Wallet {
 	 * These methods serve as helpers to interact with the underlying coin.
 	 */
 
-	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Contracts.ClientTransactionsInput = {}): Promise<Coins.TransactionDataCollection> {
 		return this.fetchTransaction({ addresses: [this.address()], ...query });
 	}
 
-	public async sentTransactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async sentTransactions(
+		query: Contracts.ClientTransactionsInput = {},
+	): Promise<Coins.TransactionDataCollection> {
 		return this.fetchTransaction({ senderId: this.address(), ...query });
 	}
 
 	public async receivedTransactions(
-		query: Contracts.ClientTransactionsInput,
+		query: Contracts.ClientTransactionsInput = {},
 	): Promise<Coins.TransactionDataCollection> {
 		return this.fetchTransaction({ recipientId: this.address(), ...query });
 	}
