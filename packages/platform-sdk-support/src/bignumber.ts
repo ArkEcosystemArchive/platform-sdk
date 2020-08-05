@@ -92,7 +92,11 @@ export class BigNumber {
 	}
 
 	public toFixed(decimals?: number): string {
-		return decimals ? this.#value.toFixed(decimals) : this.#value.toFixed();
+		if (decimals !== undefined) {
+			return this.#value.toFixed(decimals);
+		}
+
+		return this.#value.toFixed();
 	}
 
 	public toNumber(): number {
