@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.225 - 2020-08-05
+
+### Added
+
+-   Implement `BigNumber#toHuman` (6cfdd26e, @faustbrian)
+
 ## 0.9.224 - 2020-08-05
 
 ### Fixed
