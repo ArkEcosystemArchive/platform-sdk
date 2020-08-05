@@ -47,6 +47,10 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return {};
 	}
 
+	public isConfirmed(): boolean {
+		return false;
+	}
+
 	public isSent(): boolean {
 		return false;
 	}

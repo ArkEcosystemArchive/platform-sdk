@@ -117,7 +117,7 @@ export const manifest = {
 		},
 	},
 	signingMethods: {
-		mnemonic: false,
+		mnemonic: true,
 		privateKey: false,
 		wif: true,
 	},

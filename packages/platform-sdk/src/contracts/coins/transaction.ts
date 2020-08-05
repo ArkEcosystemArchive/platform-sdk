@@ -1,4 +1,4 @@
-// Some return objects, strings and objects so we want to avoid annoying type issues.
+// TODO: some return objects, strings and objects so we want to avoid annoying type issues.
 export type SignedTransaction = any;
 
 export interface TransactionService {

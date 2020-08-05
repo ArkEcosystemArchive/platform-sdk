@@ -9,6 +9,7 @@ import { NetworkData } from "./network";
 import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
 import { StorageFactory } from "./storage/factory";
+import { Validator as DataValidator } from "./validator";
 
 export class Environment {
 	public constructor(options: EnvironmentOptions) {
@@ -71,6 +72,10 @@ export class Environment {
 
 	public data(): DataRepository {
 		return container.get(Identifiers.AppData);
+	}
+
+	public dataValidator(): DataValidator {
+		return new DataValidator();
 	}
 
 	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {

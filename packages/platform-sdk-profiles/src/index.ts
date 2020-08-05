@@ -1,6 +1,6 @@
 export * from "./avatar";
-export * from "./contact";
 export * from "./contact-address";
+export * from "./contact";
 export * from "./env";
 export * from "./migrator";
 export * from "./network";

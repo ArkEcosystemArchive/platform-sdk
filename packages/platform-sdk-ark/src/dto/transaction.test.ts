@@ -19,7 +19,7 @@ describe("TransactionData", function () {
 	});
 
 	test("#timestamp", () => {
-		expect(subject.timestamp()).toBe(0);
+		expect(subject.timestamp()).toBe(1490101200);
 	});
 
 	test("#confirmations", () => {
