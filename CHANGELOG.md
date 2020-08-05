@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.221 - 2020-08-05
+
+### Changed
+
+-   Mark transactions as signed before broadcasting (37649c65, @faustbrian)
+
 ## 0.9.220 - 2020-08-05
 
 ### Added
