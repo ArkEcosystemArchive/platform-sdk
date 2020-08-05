@@ -23,7 +23,7 @@ export class TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().transfer(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().transfer(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -32,7 +32,7 @@ export class TransactionService {
 		input: Contracts.SecondSignatureInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().secondSignature(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().secondSignature(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -41,7 +41,7 @@ export class TransactionService {
 		input: Contracts.DelegateRegistrationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().delegateRegistration(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().delegateRegistration(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -50,7 +50,7 @@ export class TransactionService {
 		input: Contracts.VoteInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().vote(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().vote(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -59,7 +59,7 @@ export class TransactionService {
 		input: Contracts.MultiSignatureInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().multiSignature(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().multiSignature(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -68,7 +68,7 @@ export class TransactionService {
 		input: Contracts.IpfsInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().ipfs(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().ipfs(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -77,7 +77,7 @@ export class TransactionService {
 		input: Contracts.MultiPaymentInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().multiPayment(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().multiPayment(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -86,7 +86,7 @@ export class TransactionService {
 		input: Contracts.DelegateResignationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().delegateResignation(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().delegateResignation(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -95,7 +95,7 @@ export class TransactionService {
 		input: Contracts.HtlcLockInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().htlcLock(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().htlcLock(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -104,7 +104,7 @@ export class TransactionService {
 		input: Contracts.HtlcClaimInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().htlcClaim(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().htlcClaim(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -113,7 +113,7 @@ export class TransactionService {
 		input: Contracts.HtlcRefundInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().htlcRefund(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().htlcRefund(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -122,7 +122,7 @@ export class TransactionService {
 		input: Contracts.BusinessRegistrationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().businessRegistration(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().businessRegistration(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -131,7 +131,7 @@ export class TransactionService {
 		input: Contracts.BusinessResignationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().businessResignation(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().businessResignation(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -140,7 +140,7 @@ export class TransactionService {
 		input: Contracts.BusinessUpdateInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().businessUpdate(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().businessUpdate(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -171,7 +171,7 @@ export class TransactionService {
 		input: Contracts.BridgechainUpdateInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().bridgechainUpdate(input, options);
+		const transaction: Contracts.SignedTransaction = await this.getService().bridgechainUpdate(input, options);
 
 		return this.markAsSigned(transaction);
 	}
@@ -214,5 +214,9 @@ export class TransactionService {
 		this.#signed[transaction.id] = transaction;
 
 		return transaction;
+	}
+
+	private getService(): Contracts.TransactionService {
+		return this.#wallet.coin().transaction();
 	}
 }
