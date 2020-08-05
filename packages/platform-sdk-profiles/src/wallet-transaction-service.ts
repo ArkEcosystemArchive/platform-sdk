@@ -179,9 +179,17 @@ export class TransactionService {
 		return this.#wallet.client().broadcast(transactions);
 	}
 
+	public isAwaitingConfirmation(id: string): boolean {
+		return !!this.#sentTransactions[id];
+	}
+
 	public async confirmTransactions(id: string): Promise<boolean> {
+		if (!this.isAwaitingConfirmation(id)) {
+			throw new Error(`Transaction [${id}] is not awaiting confirmation.`);
+		}
+
 		try {
-			const transaction: Contracts.TransactionData = this.#wallet.client().transaction(id);
+			const transaction: Contracts.TransactionData = await this.#wallet.client().transaction(id);
 
 			if (transaction.isConfirmed()) {
 				delete this.#sentTransactions[id];
