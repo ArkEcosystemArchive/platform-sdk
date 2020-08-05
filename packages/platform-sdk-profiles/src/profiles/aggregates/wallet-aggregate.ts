@@ -1,6 +1,6 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { Wallet } from "../wallet";
+import { Wallet } from "../../wallets/wallet";
 
 export class WalletAggregate {
 	// @TODO: add typehint

@@ -3,8 +3,8 @@ import "jest-extended";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { PluginRegistry } from "@arkecosystem/platform-sdk-plugins";
 
-import { container } from "../container";
-import { Identifiers } from "../container.models";
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
 import { PluginRepository } from "./plugin-repository";
 
 const stubPlugin = { id: 1, name: "@hello/world" };

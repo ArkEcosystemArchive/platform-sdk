@@ -1,14 +1,13 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { Avatar } from "./avatar";
-import { makeCoin } from "./container.helpers";
-import { Profile } from "./profile";
-import { ProfileSetting } from "./profile.models";
-import { DataRepository } from "./repositories/data-repository";
-import { SettingRepository } from "./repositories/setting-repository";
-import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
+import { makeCoin } from "../environment/container.helpers";
+import { Profile } from "../profiles/profile";
+import { DataRepository } from "../repositories/data-repository";
+import { SettingRepository } from "../repositories/setting-repository";
+import { Avatar } from "../services/avatar";
 import { TransactionService } from "./wallet-transaction-service";
+import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 
 export class Wallet {
 	#dataRepository!: DataRepository;

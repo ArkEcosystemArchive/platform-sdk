@@ -9,26 +9,28 @@ import { removeSync } from "fs-extra";
 import nock from "nock";
 import { resolve } from "path";
 
-import { Environment, Identifiers, Profile } from "../src";
-import storageData from "../test/fixtures/env-storage.json";
-import { identity } from "../test/fixtures/identity";
-import { StubStorage } from "../test/stubs/storage";
+import storageData from "../../test/fixtures/env-storage.json";
+import { identity } from "../../test/fixtures/identity";
+import { StubStorage } from "../../test/stubs/storage";
+import { Profile } from "../profiles/profile";
+import { DataRepository } from "../repositories/data-repository";
+import { ProfileRepository } from "../repositories/profile-repository";
 import { container } from "./container";
-import { DataRepository } from "./repositories/data-repository";
-import { ProfileRepository } from "./repositories/profile-repository";
+import { Identifiers } from "./container.models";
+import { Environment } from "./env";
 
 let subject: Environment;
 
 beforeAll(() => {
 	nock(/.+/)
 		.get("/api/node/configuration/crypto")
-		.reply(200, require("../test/fixtures/client/cryptoConfiguration.json"))
+		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/peers")
-		.reply(200, require("../test/fixtures/client/peers.json"))
+		.reply(200, require("../../test/fixtures/client/peers.json"))
 		.get("/api/node/syncing")
-		.reply(200, require("../test/fixtures/client/syncing.json"))
+		.reply(200, require("../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
@@ -36,7 +38,7 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	removeSync(resolve(__dirname, "../test/stubs/env.json"));
+	removeSync(resolve(__dirname, "../../test/stubs/env.json"));
 
 	subject = new Environment({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
 

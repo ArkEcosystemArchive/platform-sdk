@@ -7,11 +7,11 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
-import { identity } from "../test/fixtures/identity";
-import { container } from "./container";
-import { Identifiers } from "./container.models";
-import { Profile } from "./profile";
-import { ProfileSetting } from "./profile.models";
+import { identity } from "../../test/fixtures/identity";
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
+import { Profile } from "../profiles/profile";
+import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "./wallet";
 import { WalletData } from "./wallet.models";
 
@@ -23,19 +23,19 @@ beforeEach(async () => {
 
 	nock(/.+/)
 		.get("/api/node/configuration")
-		.reply(200, require("../test/fixtures/client/configuration.json"))
+		.reply(200, require("../../test/fixtures/client/configuration.json"))
 		.get("/api/peers")
-		.reply(200, require("../test/fixtures/client/peers.json"))
+		.reply(200, require("../../test/fixtures/client/peers.json"))
 		.get("/api/node/configuration/crypto")
-		.reply(200, require("../test/fixtures/client/cryptoConfiguration.json"))
+		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
-		.reply(200, require("../test/fixtures/client/syncing.json"))
+		.reply(200, require("../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.get("/api/delegates?page=1")
-		.reply(200, require("../test/fixtures/client/delegates-1.json"))
+		.reply(200, require("../../test/fixtures/client/delegates-1.json"))
 		.get("/api/delegates?page=2")
-		.reply(200, require("../test/fixtures/client/delegates-2.json"))
+		.reply(200, require("../../test/fixtures/client/delegates-2.json"))
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());

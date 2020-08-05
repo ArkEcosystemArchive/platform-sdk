@@ -1,11 +1,11 @@
 import { get, set } from "dot-prop";
 import semver from "semver";
 
+import { DataRepository } from "../repositories/data-repository";
+import { ProfileRepository } from "../repositories/profile-repository";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Storage } from "./env.models";
-import { DataRepository } from "./repositories/data-repository";
-import { ProfileRepository } from "./repositories/profile-repository";
 
 export class Migrator {
 	readonly #profiles: ProfileRepository;
