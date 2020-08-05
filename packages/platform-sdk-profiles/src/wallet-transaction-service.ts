@@ -1,5 +1,15 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
+/**
+ * @TODO
+ *
+ * We need to validate that the sender of each transaction matches
+ * the wallet address and/or public key we are trying to send from.
+ *
+ * This is quite tricky because every coin has a different method
+ * to sign transactions and compute the identifying property because
+ * some use an address, others a public key and again others a WIF.
+ */
 export class TransactionService {
 	readonly #wallet;
 
@@ -11,8 +21,6 @@ export class TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		// TODO: validate sender
-
 		return this.#wallet.coin().transfer(input, options);
 	}
 
