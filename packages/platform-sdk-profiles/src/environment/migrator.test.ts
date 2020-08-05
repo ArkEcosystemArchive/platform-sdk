@@ -11,7 +11,6 @@ import { LocalStorage } from "./storage/local";
 
 let subject: Migrator;
 let storage: LocalStorage;
-let profiles: ProfileRepository;
 let data: DataRepository;
 
 beforeEach(async () => {
