@@ -9,6 +9,7 @@ import { Avatar } from "../services/avatar";
 import { TransactionService } from "./wallet-transaction-service";
 import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { DelegateMapper } from "./mappers/delegate-mapper";
+import { ReadOnlyWallet } from "./read-only-wallet";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
@@ -290,10 +291,6 @@ export class Wallet {
 		return new TransactionService(this);
 	}
 
-	public delegateMapper(): DelegateMapper {
-		return new DelegateMapper(this);
-	}
-
 	/**
 	 * These methods serve as helpers to interact with the underlying coin.
 	 */
@@ -340,6 +337,15 @@ export class Wallet {
 
 	public async syncing(): Promise<boolean> {
 		return this.#coin.client().syncing();
+	}
+
+	/**
+	 * These methods serve as helpers to map wallet identifiers to various
+	 * wallet instances that expose information like an avatar or balances.
+	 */
+
+	public mapDelegates(publicKeys: string[]): ReadOnlyWallet[] {
+		return new DelegateMapper(this).map(publicKeys);
 	}
 
 	/**
