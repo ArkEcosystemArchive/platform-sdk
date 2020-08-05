@@ -338,58 +338,6 @@ export class Wallet {
 	}
 
 	/**
-	 * These methods serve as helpers to interact with the underlying coin.
-	 */
-
-	public async transactions(query: Contracts.ClientTransactionsInput = {}): Promise<Coins.TransactionDataCollection> {
-		return this.fetchTransaction({ addresses: [this.address()], ...query });
-	}
-
-	public async sentTransactions(
-		query: Contracts.ClientTransactionsInput = {},
-	): Promise<Coins.TransactionDataCollection> {
-		return this.fetchTransaction({ senderId: this.address(), ...query });
-	}
-
-	public async receivedTransactions(
-		query: Contracts.ClientTransactionsInput = {},
-	): Promise<Coins.TransactionDataCollection> {
-		return this.fetchTransaction({ recipientId: this.address(), ...query });
-	}
-
-	public async wallet(id: string): Promise<Contracts.WalletData> {
-		return this.#coin.client().wallet(id);
-	}
-
-	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
-		return this.#coin.client().wallets(query);
-	}
-
-	public async delegate(id: string): Promise<Contracts.WalletData> {
-		return this.#coin.client().delegate(id);
-	}
-
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		return this.#coin.client().delegates(query);
-	}
-
-	public votes(query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
-		return this.#coin.client().votes(this.address(), query);
-	}
-
-	public voters(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		return this.#coin.client().voters(this.address(), query);
-	}
-
-	public async syncing(): Promise<boolean> {
-		return this.#coin.client().syncing();
-	}
-
-	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
-		return this.#coin.client().broadcast(transactions);
-	}
-
-	/**
 	 * These methods serve as helpers to keep the wallet data updated.
 	 */
 
