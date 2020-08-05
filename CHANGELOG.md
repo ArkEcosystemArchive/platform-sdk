@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.223 - 2020-08-05
+
+### Added
+
+-   Implement public key to delegate mapper (477937d1, @faustbrian)
+
 ## 0.9.222 - 2020-08-05
 
 ### Fixed
