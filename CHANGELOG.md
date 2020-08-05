@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.227 - 2020-08-05
+
+### Fixed
+
+-   Call `toFixed` with argument if argument is 0 (5538dc65, @dated)
+-   Access transaction service to sign transactions (e866ba6f, @faustbrian)
+
 ## 0.9.225 - 2020-08-05
 
 ### Added
