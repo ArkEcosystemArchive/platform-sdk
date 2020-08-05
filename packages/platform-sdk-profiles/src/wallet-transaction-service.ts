@@ -12,7 +12,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
  */
 export class TransactionService {
 	readonly #wallet;
-	readonly #transactions: Record<string, Contracts.SignedTransaction> = {};
+	readonly #sentTransactions: Record<string, Contracts.SignedTransaction> = {};
 
 	public constructor(wallet) {
 		this.#wallet = wallet;
@@ -179,8 +179,22 @@ export class TransactionService {
 		return this.#wallet.client().broadcast(transactions);
 	}
 
+	public async confirmTransactions(id: string): Promise<boolean> {
+		try {
+			const transaction: Contracts.TransactionData = this.#wallet.client().transaction(id);
+
+			if (transaction.isConfirmed()) {
+				delete this.#sentTransactions[id];
+			}
+
+			return true;
+		} catch {
+			return false;
+		}
+	}
+
 	private processTransaction(transaction: Contracts.SignedTransaction) {
-		this.#transactions[transaction.id] = transaction;
+		this.#sentTransactions[transaction.id] = transaction;
 
 		return transaction;
 	}
