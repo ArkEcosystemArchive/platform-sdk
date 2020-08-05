@@ -1,24 +1,22 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
-
 import { Avatar } from "../services/avatar";
 
 export class ReadOnlyWallet {
-	#wallet!: Contracts.WalletData;
+	#wallet!: { address: string; publicKey?: string; username?: string };
 
-	public constructor(wallet: Contracts.WalletData) {
+	public constructor(wallet: { address: string; publicKey?: string; username?: string }) {
 		this.#wallet = wallet;
 	}
 
 	public address(): string {
-		return this.#wallet.address();
+		return this.#wallet.address;
 	}
 
 	public publicKey(): string | undefined {
-		return this.#wallet.publicKey();
+		return this.#wallet.publicKey;
 	}
 
 	public username(): string | undefined {
-		return this.#wallet.username();
+		return this.#wallet.username;
 	}
 
 	public avatar(): string {

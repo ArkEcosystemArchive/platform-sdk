@@ -6,11 +6,10 @@ import { ReadOnlyWallet } from "./read-only-wallet";
 let subject: ReadOnlyWallet;
 
 beforeEach(async () => {
-	// @ts-ignore
 	subject = new ReadOnlyWallet({
-		address: () => identity.address,
-		publicKey: () => identity.publicKey,
-		username: () => "arkx",
+		address: identity.address,
+		publicKey: identity.publicKey,
+		username: "arkx",
 	});
 });
 
