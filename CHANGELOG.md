@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.9.220 - 2020-08-05
+
+### Added
+
+-   Expose data validator (7a500d0f, @faustbrian)
+-   Implement `TransactionData#isConfirmed` (a22de965, @faustbrian)
+-   Implement wallet transaction service (bef86086, @faustbrian)
+
 ## 0.9.217 - 2020-08-04
 
 ### Fixed
