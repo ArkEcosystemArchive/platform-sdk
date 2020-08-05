@@ -1,7 +1,7 @@
-import { ReadOnlyWallet } from "./read-only-wallet";
-import { WalletData } from "./wallet.models";
+import { ReadOnlyWallet } from "../read-only-wallet";
+import { WalletData } from "../wallet.models";
 
-export class WalletMapper {
+export class DelegateMapper {
 	readonly #wallet;
 
 	public constructor(wallet) {

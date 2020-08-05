@@ -1,5 +1,3 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
-
 import { Avatar } from "../services/avatar";
 
 export class ReadOnlyWallet {
