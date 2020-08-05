@@ -1,8 +1,8 @@
-import { Avatar } from "./avatar";
+import { Profile } from "../profiles/profile";
+import { ContactAddressRepository } from "../repositories/contact-address-repository";
+import { Avatar } from "../services/avatar";
 import { ContactAddressInput } from "./contact-address.models";
 import { ContactStruct } from "./contact.models";
-import { Profile } from "./profile";
-import { ContactAddressRepository } from "./repositories/contact-address-repository";
 
 export class Contact {
 	#profile: Profile;

@@ -1,6 +1,6 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
-import { Avatar } from "./avatar";
+import { Avatar } from "../services/avatar";
 
 export class ReadOnlyWallet {
 	#wallet!: { address: string; publicKey?: string; username?: string };

@@ -4,8 +4,8 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { container } from "../container";
-import { Identifiers } from "../container.models";
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
 import { ContactAddressRepository } from "./contact-address-repository";
 
 let subject: ContactAddressRepository;

@@ -4,9 +4,9 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
 import { ContactAddress } from "./contact-address";
-import { container } from "./container";
-import { Identifiers } from "./container.models";
 
 let subject: ContactAddress;
 
@@ -15,15 +15,15 @@ beforeEach(async () => {
 
 	nock(/.+/)
 		.get("/api/node/configuration")
-		.reply(200, require("../test/fixtures/client/configuration.json"))
+		.reply(200, require("../../test/fixtures/client/configuration.json"))
 		.get("/api/peers")
-		.reply(200, require("../test/fixtures/client/peers.json"))
+		.reply(200, require("../../test/fixtures/client/peers.json"))
 		.get("/api/node/configuration/crypto")
-		.reply(200, require("../test/fixtures/client/cryptoConfiguration.json"))
+		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
-		.reply(200, require("../test/fixtures/client/syncing.json"))
+		.reply(200, require("../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
