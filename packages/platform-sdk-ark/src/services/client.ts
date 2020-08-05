@@ -162,7 +162,7 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const [alias, original] of Object.entries({
 			cursor: "page",
-			limit: "perPage",
+			limit: "limit",
 			orderBy: "orderBy",
 		})) {
 			if (body[alias]) {

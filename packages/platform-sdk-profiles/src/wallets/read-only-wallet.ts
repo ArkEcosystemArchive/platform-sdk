@@ -1,7 +1,7 @@
 import { Avatar } from "../services/avatar";
 
 export class ReadOnlyWallet {
-	#wallet!: { address: string; publicKey?: string; username?: string };
+	readonly #wallet: { address: string; publicKey?: string; username?: string };
 
 	public constructor(wallet: { address: string; publicKey?: string; username?: string }) {
 		this.#wallet = wallet;
