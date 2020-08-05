@@ -74,7 +74,7 @@ export class Environment {
 		return container.get(Identifiers.AppData);
 	}
 
-	public validator(): DataValidator {
+	public dataValidator(): DataValidator {
 		return new DataValidator();
 	}
 
