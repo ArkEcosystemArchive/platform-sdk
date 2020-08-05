@@ -338,10 +338,6 @@ export class Wallet {
 		return this.#coin.client().syncing();
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
-		return this.#coin.client().broadcast(transactions);
-	}
-
 	/**
 	 * These methods serve as helpers to keep the wallet data updated.
 	 */

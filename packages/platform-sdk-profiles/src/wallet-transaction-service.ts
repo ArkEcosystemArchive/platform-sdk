@@ -12,127 +12,176 @@ import { Contracts } from "@arkecosystem/platform-sdk";
  */
 export class TransactionService {
 	readonly #wallet;
+	readonly #transactions: Record<string, Contracts.SignedTransaction> = {};
 
 	public constructor(wallet) {
 		this.#wallet = wallet;
 	}
 
-	public async transfer(
+	public async signTransfer(
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().transfer(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().transfer(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async secondSignature(
+	public async signSecondSignature(
 		input: Contracts.SecondSignatureInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().secondSignature(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().secondSignature(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async delegateRegistration(
+	public async signDelegateRegistration(
 		input: Contracts.DelegateRegistrationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().delegateRegistration(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().delegateRegistration(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async vote(
+	public async signVote(
 		input: Contracts.VoteInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().vote(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().vote(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async multiSignature(
+	public async signMultiSignature(
 		input: Contracts.MultiSignatureInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().multiSignature(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().multiSignature(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async ipfs(
+	public async signIpfs(
 		input: Contracts.IpfsInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().ipfs(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().ipfs(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async multiPayment(
+	public async signMultiPayment(
 		input: Contracts.MultiPaymentInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().multiPayment(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().multiPayment(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async delegateResignation(
+	public async signDelegateResignation(
 		input: Contracts.DelegateResignationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().delegateResignation(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().delegateResignation(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async htlcLock(
+	public async signHtlcLock(
 		input: Contracts.HtlcLockInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().htlcLock(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().htlcLock(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async htlcClaim(
+	public async signHtlcClaim(
 		input: Contracts.HtlcClaimInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().htlcClaim(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().htlcClaim(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async htlcRefund(
+	public async signHtlcRefund(
 		input: Contracts.HtlcRefundInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().htlcRefund(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().htlcRefund(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async businessRegistration(
+	public async signBusinessRegistration(
 		input: Contracts.BusinessRegistrationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().businessRegistration(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().businessRegistration(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async businessResignation(
+	public async signBusinessResignation(
 		input: Contracts.BusinessResignationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().businessResignation(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().businessResignation(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async businessUpdate(
+	public async signBusinessUpdate(
 		input: Contracts.BusinessUpdateInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().businessUpdate(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().businessUpdate(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async bridgechainRegistration(
+	public async signBridgechainRegistration(
 		input: Contracts.BridgechainRegistrationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().bridgechainRegistration(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet
+			.coin()
+			.bridgechainRegistration(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async bridgechainResignation(
+	public async signBridgechainResignation(
 		input: Contracts.BridgechainResignationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().bridgechainResignation(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet
+			.coin()
+			.bridgechainResignation(input, options);
+
+		return this.processTransaction(transaction);
 	}
 
-	public async bridgechainUpdate(
+	public async signBridgechainUpdate(
 		input: Contracts.BridgechainUpdateInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.#wallet.coin().bridgechainUpdate(input, options);
+		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().bridgechainUpdate(input, options);
+
+		return this.processTransaction(transaction);
+	}
+
+	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+		return this.#wallet.client().broadcast(transactions);
+	}
+
+	private processTransaction(transaction: Contracts.SignedTransaction) {
+		this.#transactions[transaction.id] = transaction;
+
+		return transaction;
 	}
 }
