@@ -204,7 +204,7 @@ export class TransactionService {
 				delete this.#broadcasted[id];
 			}
 
-			return true;
+			return transaction.isConfirmed();
 		} catch {
 			return false;
 		}
