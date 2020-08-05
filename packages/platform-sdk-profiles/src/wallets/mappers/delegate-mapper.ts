@@ -8,7 +8,7 @@ export class DelegateMapper {
 		this.#wallet = wallet;
 	}
 
-	public publicKeysToDelegates(publicKeys: string[]): ReadOnlyWallet[] {
+	public map(publicKeys: string[]): ReadOnlyWallet[] {
 		const delegates: Record<string, string>[] = this.#wallet.data().get(WalletData.Delegates);
 
 		return publicKeys

@@ -8,6 +8,7 @@ import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
 import { TransactionService } from "./wallet-transaction-service";
 import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
+import { DelegateMapper } from "./mappers/delegate-mapper";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
@@ -287,6 +288,10 @@ export class Wallet {
 
 	public transaction(): TransactionService {
 		return new TransactionService(this);
+	}
+
+	public delegateMapper(): DelegateMapper {
+		return new DelegateMapper(this);
 	}
 
 	/**
