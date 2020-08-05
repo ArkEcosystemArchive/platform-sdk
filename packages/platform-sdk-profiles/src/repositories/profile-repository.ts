@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { Profile } from "../profile";
-import { ProfileSetting } from "../profile.models";
+import { Profile } from "../profiles/profile";
+import { ProfileSetting } from "../profiles/profile.models";
 import { DataRepository } from "./data-repository";
 
 export class ProfileRepository {

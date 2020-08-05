@@ -2,11 +2,11 @@ import "jest-extended";
 
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 
+import { DataRepository } from "../repositories/data-repository";
+import { ProfileRepository } from "../repositories/profile-repository";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Migrator } from "./migrator";
-import { DataRepository } from "./repositories/data-repository";
-import { ProfileRepository } from "./repositories/profile-repository";
 import { LocalStorage } from "./storage/local";
 
 let subject: Migrator;

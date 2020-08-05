@@ -1,8 +1,8 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
-import { Avatar } from "./avatar";
+import { makeCoin } from "../environment/container.helpers";
+import { Avatar } from "../services/avatar";
 import { ContactAddressProps } from "./contact-address.models";
-import { makeCoin } from "./container.helpers";
 
 export class ContactAddress {
 	readonly #coin: Coins.Coin;

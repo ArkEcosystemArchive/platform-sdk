@@ -2,36 +2,35 @@ import "jest-extended";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
-import { MarketService } from "@arkecosystem/platform-sdk-markets";
 import nock from "nock";
 
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
+import { ContactRepository } from "../repositories/contact-repository";
+import { DataRepository } from "../repositories/data-repository";
+import { NotificationRepository } from "../repositories/notification-repository";
+import { PluginRepository } from "../repositories/plugin-repository";
+import { SettingRepository } from "../repositories/setting-repository";
+import { WalletRepository } from "../repositories/wallet-repository";
 import { CountAggregate } from "./aggregates/count-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
-import { container } from "./container";
-import { Identifiers } from "./container.models";
 import { Profile } from "./profile";
 import { ProfileSetting } from "./profile.models";
-import { ContactRepository } from "./repositories/contact-repository";
-import { DataRepository } from "./repositories/data-repository";
-import { NotificationRepository } from "./repositories/notification-repository";
-import { PluginRepository } from "./repositories/plugin-repository";
-import { SettingRepository } from "./repositories/setting-repository";
-import { WalletRepository } from "./repositories/wallet-repository";
 
 let subject: Profile;
 
 beforeAll(() => {
 	nock(/.+/)
 		.get("/api/node/configuration/crypto")
-		.reply(200, require("../test/fixtures/client/cryptoConfiguration.json"))
+		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/peers")
-		.reply(200, require("../test/fixtures/client/peers.json"))
+		.reply(200, require("../../test/fixtures/client/peers.json"))
 		.get("/api/node/syncing")
-		.reply(200, require("../test/fixtures/client/syncing.json"))
+		.reply(200, require("../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());

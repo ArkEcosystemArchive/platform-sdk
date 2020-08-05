@@ -1,7 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
-import { promiseAllSettledByKey } from "../helpers/promise";
-import { Wallet } from "../wallet";
+import { promiseAllSettledByKey } from "../../helpers/promise";
+import { Wallet } from "../../wallets/wallet";
 
 type HistoryMethod = string;
 type HistoryWallet = Coins.TransactionDataCollection;

@@ -5,9 +5,9 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { identity } from "../../test/fixtures/identity";
-import { container } from "../container";
-import { Identifiers } from "../container.models";
+import { identity } from "../../../test/fixtures/identity";
+import { container } from "../../environment/container";
+import { Identifiers } from "../../environment/container.models";
 import { Profile } from "../profile";
 import { TransactionAggregate } from "./transaction-aggregate";
 
@@ -18,15 +18,15 @@ beforeAll(() => {
 
 	nock(/.+/)
 		.get("/api/node/configuration/crypto")
-		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
+		.reply(200, require("../../../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/configuration")
-		.reply(200, require("../../test/fixtures/client/configuration.json"))
+		.reply(200, require("../../../test/fixtures/client/configuration.json"))
 		.get("/api/peers")
-		.reply(200, require("../../test/fixtures/client/peers.json"))
+		.reply(200, require("../../../test/fixtures/client/peers.json"))
 		.get("/api/node/syncing")
-		.reply(200, require("../../test/fixtures/client/syncing.json"))
+		.reply(200, require("../../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../../test/fixtures/client/wallet.json"))
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
@@ -45,7 +45,9 @@ afterAll(() => nock.enableNetConnect());
 
 describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s", (method: string) => {
 	it("should have more transactions", async () => {
-		nock(/.+/).post("/api/transactions/search").reply(200, require("../../test/fixtures/client/transactions.json"));
+		nock(/.+/)
+			.post("/api/transactions/search")
+			.reply(200, require("../../../test/fixtures/client/transactions.json"));
 
 		const result = await subject[method]();
 
@@ -56,7 +58,7 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 	it("should not have more transactions", async () => {
 		nock(/.+/)
 			.post("/api/transactions/search")
-			.reply(200, require("../../test/fixtures/client/transactions-no-more.json"));
+			.reply(200, require("../../../test/fixtures/client/transactions-no-more.json"));
 
 		const result = await subject[method]();
 
@@ -78,7 +80,7 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 	it("should skip empty responses for processing", async () => {
 		nock(/.+/)
 			.post("/api/transactions/search")
-			.reply(200, require("../../test/fixtures/client/transactions-empty.json"));
+			.reply(200, require("../../../test/fixtures/client/transactions-empty.json"));
 
 		const result = await subject[method]();
 
@@ -90,9 +92,9 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 	it("should fetch transactions twice and then stop because no more are available", async () => {
 		nock(/.+/)
 			.post("/api/transactions/search")
-			.reply(200, require("../../test/fixtures/client/transactions.json"))
+			.reply(200, require("../../../test/fixtures/client/transactions.json"))
 			.post("/api/transactions/search?page=2")
-			.reply(200, require("../../test/fixtures/client/transactions-no-more.json"));
+			.reply(200, require("../../../test/fixtures/client/transactions-no-more.json"));
 
 		// We receive a response that does contain a "next" cursor
 		const firstRequest = await subject[method]();
@@ -117,7 +119,9 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 	});
 
 	it("should determine if it has more transactions to be requested", async () => {
-		nock(/.+/).post("/api/transactions/search").reply(200, require("../../test/fixtures/client/transactions.json"));
+		nock(/.+/)
+			.post("/api/transactions/search")
+			.reply(200, require("../../../test/fixtures/client/transactions.json"));
 
 		expect(subject.hasMore(method)).toBeFalse();
 
@@ -128,7 +132,7 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 });
 
 it("should flush the history", async () => {
-	nock(/.+/).post("/api/transactions/search").reply(200, require("../../test/fixtures/client/transactions.json"));
+	nock(/.+/).post("/api/transactions/search").reply(200, require("../../../test/fixtures/client/transactions.json"));
 
 	expect(subject.hasMore("transactions")).toBeFalse();
 

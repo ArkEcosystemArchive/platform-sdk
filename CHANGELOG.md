@@ -13,7 +13,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   Call `isConfirmed` to ensure confirmation (7dc07ecd, @faustbrian)
 
-
 ## 0.9.221 - 2020-08-05
 
 ### Changed

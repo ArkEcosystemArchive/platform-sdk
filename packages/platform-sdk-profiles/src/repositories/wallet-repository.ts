@@ -1,12 +1,9 @@
-import { Coins } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { sortBy, sortByDesc } from "@arkecosystem/utils";
 import { v4 as uuidv4 } from "uuid";
 
-import { container } from "../container";
-import { Identifiers } from "../container.models";
-import { Profile } from "../profile";
-import { Wallet } from "../wallet";
+import { Profile } from "../profiles/profile";
+import { Wallet } from "../wallets/wallet";
 import { DataRepository } from "./data-repository";
 
 export class WalletRepository {

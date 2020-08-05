@@ -2,20 +2,20 @@
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
+import { ContactRepository } from "../repositories/contact-repository";
+import { DataRepository } from "../repositories/data-repository";
+import { NotificationRepository } from "../repositories/notification-repository";
+import { PluginRepository } from "../repositories/plugin-repository";
+import { SettingRepository } from "../repositories/setting-repository";
+import { WalletRepository } from "../repositories/wallet-repository";
+import { Avatar } from "../services/avatar";
 import { CountAggregate } from "./aggregates/count-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
-import { Avatar } from "./avatar";
-import { container } from "./container";
-import { Identifiers } from "./container.models";
 import { ProfileSetting, ProfileStruct } from "./profile.models";
-import { ContactRepository } from "./repositories/contact-repository";
-import { DataRepository } from "./repositories/data-repository";
-import { NotificationRepository } from "./repositories/notification-repository";
-import { PluginRepository } from "./repositories/plugin-repository";
-import { SettingRepository } from "./repositories/setting-repository";
-import { WalletRepository } from "./repositories/wallet-repository";
 
 export class Profile {
 	#id: string;

@@ -1,22 +1,23 @@
-export * from "./avatar";
-export * from "./contact-address";
-export * from "./contact";
-export * from "./env";
-export * from "./migrator";
-export * from "./network";
-export * from "./profile";
-export * from "./wallet";
+export * from "./contacts/contact-address.models";
+export * from "./contacts/contact-address";
+export * from "./contacts/contact.models";
+export * from "./contacts/contact";
 
-// Models
-export * from "./contact.models";
-export * from "./contact-address.models";
-export * from "./container.models";
-export * from "./env.models";
-export * from "./profile.models";
-export * from "./wallet.models";
+export * from "./environment/container.models";
+export * from "./environment/env.models";
+export * from "./environment/env";
+export * from "./environment/migrator";
 
-// Repositories
+export * from "./profiles/profile.models";
+export * from "./profiles/profile";
+
 export * from "./repositories/contact-repository";
 export * from "./repositories/profile-repository";
 export * from "./repositories/setting-repository";
 export * from "./repositories/wallet-repository";
+
+export * from "./services/avatar";
+
+export * from "./wallets/network";
+export * from "./wallets/wallet.models";
+export * from "./wallets/wallet";
