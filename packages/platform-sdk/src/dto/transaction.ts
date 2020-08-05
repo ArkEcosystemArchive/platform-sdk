@@ -37,6 +37,8 @@ export abstract class AbstractTransactionData {
 
 	abstract asset(): Record<string, unknown>;
 
+	abstract isConfirmed(): boolean;
+
 	abstract isSent(): boolean;
 
 	abstract isReceived(): boolean;

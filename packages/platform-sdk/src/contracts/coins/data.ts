@@ -84,6 +84,8 @@ export interface TransactionData {
 
 	asset(): Record<string, unknown>;
 
+	isConfirmed(): boolean;
+
 	isSent(): boolean;
 
 	isReceived(): boolean;
