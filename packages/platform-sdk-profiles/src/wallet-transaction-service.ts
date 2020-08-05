@@ -12,7 +12,8 @@ import { Contracts } from "@arkecosystem/platform-sdk";
  */
 export class TransactionService {
 	readonly #wallet;
-	readonly #sentTransactions: Record<string, Contracts.SignedTransaction> = {};
+	readonly #signed: Record<string, Contracts.SignedTransaction> = {};
+	readonly #broadcasted: Record<string, Contracts.SignedTransaction> = {};
 
 	public constructor(wallet) {
 		this.#wallet = wallet;
@@ -24,7 +25,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().transfer(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signSecondSignature(
@@ -33,7 +34,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().secondSignature(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signDelegateRegistration(
@@ -42,7 +43,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().delegateRegistration(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signVote(
@@ -51,7 +52,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().vote(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signMultiSignature(
@@ -60,7 +61,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().multiSignature(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signIpfs(
@@ -69,7 +70,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().ipfs(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signMultiPayment(
@@ -78,7 +79,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().multiPayment(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signDelegateResignation(
@@ -87,7 +88,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().delegateResignation(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signHtlcLock(
@@ -96,7 +97,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().htlcLock(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signHtlcClaim(
@@ -105,7 +106,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().htlcClaim(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signHtlcRefund(
@@ -114,7 +115,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().htlcRefund(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signBusinessRegistration(
@@ -123,7 +124,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().businessRegistration(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signBusinessResignation(
@@ -132,7 +133,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().businessResignation(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signBusinessUpdate(
@@ -141,7 +142,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().businessUpdate(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signBridgechainRegistration(
@@ -152,7 +153,7 @@ export class TransactionService {
 			.coin()
 			.bridgechainRegistration(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signBridgechainResignation(
@@ -163,7 +164,7 @@ export class TransactionService {
 			.coin()
 			.bridgechainResignation(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
 	public async signBridgechainUpdate(
@@ -172,18 +173,26 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().bridgechainUpdate(input, options);
 
-		return this.markAsSent(transaction);
+		return this.markAsSigned(transaction);
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
-		return this.#wallet.client().broadcast(transactions);
+	public async broadcast(ids: string[]): Promise<Contracts.BroadcastResponse> {
+		const broadcasting: Contracts.SignedTransaction = ids.map((id: string) => this.#signed[id]);
+
+		const response: Contracts.BroadcastResponse = await this.#wallet.client().broadcast(broadcasting);
+
+		for (const transactionId of response.accepted) {
+			this.#broadcasted[transactionId] = this.#signed[transactionId];
+		}
+
+		return response;
 	}
 
 	public isAwaitingConfirmation(id: string): boolean {
-		return !!this.#sentTransactions[id];
+		return !!this.#broadcasted[id];
 	}
 
-	public async confirmTransactions(id: string): Promise<boolean> {
+	public async confirmTransaction(id: string): Promise<boolean> {
 		if (!this.isAwaitingConfirmation(id)) {
 			throw new Error(`Transaction [${id}] is not awaiting confirmation.`);
 		}
@@ -192,7 +201,7 @@ export class TransactionService {
 			const transaction: Contracts.TransactionData = await this.#wallet.client().transaction(id);
 
 			if (transaction.isConfirmed()) {
-				delete this.#sentTransactions[id];
+				delete this.#broadcasted[id];
 			}
 
 			return true;
@@ -201,8 +210,8 @@ export class TransactionService {
 		}
 	}
 
-	private markAsSent(transaction: Contracts.SignedTransaction) {
-		this.#sentTransactions[transaction.id] = transaction;
+	private markAsSigned(transaction: Contracts.SignedTransaction) {
+		this.#signed[transaction.id] = transaction;
 
 		return transaction;
 	}

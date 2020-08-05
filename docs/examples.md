@@ -411,20 +411,17 @@ const thirdPage = await profile.transactionAggregate().transactions();
 #### List transactions for a wallet
 
 ```ts
-const response = await wallet.transaction().transactions();
+const response = await wallet.transactionAggregate().transactions({ limit: 15 });
 
 if (response.hasMore()) {
-	await wallet.transaction().transactions({ cursor: response.nextPage() });
+	await wallet.transactionAggregate().transactions({ cursor: response.nextPage(), limit: 15 });
 }
 ```
 
 #### Sign and broadcast a transaction through a wallet
 
 ```ts
-const wallet = await profile.wallets().create("this is a top secret passphrase", "ARK", "devnet");
-
-// 4. Create a new transaction
-const transaction = await wallet.transaction().transfer({
+const transaction = await wallet.transaction().signTransfer({
     sign: {
         mnemonic: "this is a top secret passphrase",
     },
@@ -434,6 +431,5 @@ const transaction = await wallet.transaction().transfer({
     },
 });
 
-// 5. Broadcast the transaction
-console.log(await wallet.client().broadcast([transaction]));
+await wallet.transaction().broadcast([transaction]);
 ```
