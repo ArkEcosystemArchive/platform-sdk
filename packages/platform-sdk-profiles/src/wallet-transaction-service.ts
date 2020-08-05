@@ -24,7 +24,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().transfer(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signSecondSignature(
@@ -33,7 +33,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().secondSignature(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signDelegateRegistration(
@@ -42,7 +42,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().delegateRegistration(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signVote(
@@ -51,7 +51,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().vote(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signMultiSignature(
@@ -60,7 +60,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().multiSignature(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signIpfs(
@@ -69,7 +69,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().ipfs(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signMultiPayment(
@@ -78,7 +78,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().multiPayment(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signDelegateResignation(
@@ -87,7 +87,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().delegateResignation(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signHtlcLock(
@@ -96,7 +96,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().htlcLock(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signHtlcClaim(
@@ -105,7 +105,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().htlcClaim(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signHtlcRefund(
@@ -114,7 +114,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().htlcRefund(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signBusinessRegistration(
@@ -123,7 +123,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().businessRegistration(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signBusinessResignation(
@@ -132,7 +132,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().businessResignation(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signBusinessUpdate(
@@ -141,7 +141,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().businessUpdate(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signBridgechainRegistration(
@@ -152,7 +152,7 @@ export class TransactionService {
 			.coin()
 			.bridgechainRegistration(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signBridgechainResignation(
@@ -163,7 +163,7 @@ export class TransactionService {
 			.coin()
 			.bridgechainResignation(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async signBridgechainUpdate(
@@ -172,7 +172,7 @@ export class TransactionService {
 	): Promise<Contracts.SignedTransaction> {
 		const transaction: Contracts.SignedTransaction = await this.#wallet.coin().bridgechainUpdate(input, options);
 
-		return this.processTransaction(transaction);
+		return this.markAsSent(transaction);
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
@@ -193,7 +193,7 @@ export class TransactionService {
 		}
 	}
 
-	private processTransaction(transaction: Contracts.SignedTransaction) {
+	private markAsSent(transaction: Contracts.SignedTransaction) {
 		this.#sentTransactions[transaction.id] = transaction;
 
 		return transaction;
