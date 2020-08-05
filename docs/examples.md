@@ -421,7 +421,8 @@ if (response.hasMore()) {
 #### Sign and broadcast a transaction through a wallet
 
 ```ts
-const transaction = await wallet.transaction().signTransfer({
+// 1. Sign and store the ID
+const transactionId = await wallet.transaction().signTransfer({
     sign: {
         mnemonic: "this is a top secret passphrase",
     },
@@ -431,5 +432,9 @@ const transaction = await wallet.transaction().signTransfer({
     },
 });
 
-await wallet.transaction().broadcast([transaction]);
+// 2. Broadcast with the ID from signing
+await wallet.transaction().broadcast([transactionId]);
+
+// 3. Periodically check if the transaction has been confirmed
+await wallet.transactions().confirm(transactionId);
 ```

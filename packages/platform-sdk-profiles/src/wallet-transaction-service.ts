@@ -192,7 +192,7 @@ export class TransactionService {
 		return !!this.#broadcasted[id];
 	}
 
-	public async confirmTransaction(id: string): Promise<boolean> {
+	public async confirm(id: string): Promise<boolean> {
 		if (!this.isAwaitingConfirmation(id)) {
 			throw new Error(`Transaction [${id}] is not awaiting confirmation.`);
 		}
