@@ -201,6 +201,7 @@ export class TransactionService {
 			const transaction: Contracts.TransactionData = await this.#wallet.client().transaction(id);
 
 			if (transaction.isConfirmed()) {
+				delete this.#signed[id];
 				delete this.#broadcasted[id];
 			}
 
