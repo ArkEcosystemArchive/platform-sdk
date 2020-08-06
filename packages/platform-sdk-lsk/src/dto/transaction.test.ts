@@ -34,6 +34,11 @@ describe("TransactionData", function () {
 		expect(subject.recipient()).toBe("18218254863282357638L");
 	});
 
+	test("#recipients", () => {
+		expect(subject.recipients()).toHaveLength(1);
+		expect(subject.recipients()[0].address).toBe("18218254863282357638L");
+	});
+
 	test("#amount", () => {
 		expect(subject.amount()).toEqual(BigNumber.make("1"));
 	});
