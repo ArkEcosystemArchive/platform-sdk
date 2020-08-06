@@ -5,11 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.238 - 2020-08-06
+
+### Added
+
+-   Implement AIP36 (a5fa5503, @faustbrian)
+
+### Changed
+
+-   Return empty array from `TransactionData#recipients` (5245c5dc, @faustbrian)
+-   Default decimals to 8 for `toHuman` (8e1939ec, @faustbrian)
+
 ## 0.9.235 - 2020-08-06
 
 ### Fixed
 
-- **[LSK]** Handle main and beta transaction types (b20f4445, @faustbrian)
+-   **[LSK]** Handle main and beta transaction types (b20f4445, @faustbrian)
 
 ## 0.9.234 - 2020-08-06
 
