@@ -139,45 +139,24 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
 	}
 
-	public async businessRegistration(
-		input: Contracts.BusinessRegistrationInput,
+	public async entityRegistration(
+		input: Contracts.EntityRegistrationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "businessRegistration");
+		throw new Exceptions.NotImplemented(this.constructor.name, "entityRegistration");
 	}
 
-	public async businessResignation(
-		input: Contracts.BusinessResignationInput,
+	public async entityResignation(
+		input: Contracts.EntityResignationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "businessResignation");
+		throw new Exceptions.NotImplemented(this.constructor.name, "entityResignation");
 	}
 
-	public async businessUpdate(
-		input: Contracts.BusinessUpdateInput,
+	public async entityUpdate(
+		input: Contracts.EntityUpdateInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "businessUpdate");
-	}
-
-	public async bridgechainRegistration(
-		input: Contracts.BridgechainRegistrationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainRegistration");
-	}
-
-	public async bridgechainResignation(
-		input: Contracts.BridgechainResignationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainResignation");
-	}
-
-	public async bridgechainUpdate(
-		input: Contracts.BridgechainUpdateInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "bridgechainUpdate");
+		throw new Exceptions.NotImplemented(this.constructor.name, "entityUpdate");
 	}
 }

@@ -214,7 +214,15 @@ export interface EntityRegistrationData extends TransactionData {
 	ipfs(): string;
 }
 
-export interface EntityResignationData extends TransactionData {}
+export interface EntityResignationData extends TransactionData {
+	entityType(): number;
+
+	entitySubType(): number;
+
+	entityAction(): number;
+
+	registrationId(): string;
+}
 
 export interface EntityUpdateData extends TransactionData {
 	entityType(): number;
@@ -223,7 +231,9 @@ export interface EntityUpdateData extends TransactionData {
 
 	entityAction(): number;
 
-	ipfs(): string;
+	name(): string | undefined;
+
+	ipfs(): string | undefined;
 }
 
 export interface HtlcClaimData extends TransactionData {

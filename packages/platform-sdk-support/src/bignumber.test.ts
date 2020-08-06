@@ -80,10 +80,10 @@ test("#isLessThanOrEqualTo", () => {
 });
 
 test("#toHuman", () => {
-	expect(BigNumber.make(100 * 1e8).toHuman()).toBe("100");
-	expect(BigNumber.make(123.456 * 1e8).toHuman()).toBe("123.456");
-	expect(BigNumber.make(123.456789 * 1e8).toHuman()).toBe("123.456789");
-	expect(BigNumber.make(1e8).times(1e8).toHuman()).toBe(`${1e8}`);
+	expect(BigNumber.make(100 * 1e8).toHuman()).toBe("100.00000000");
+	expect(BigNumber.make(123.456 * 1e8).toHuman()).toBe("123.45600000");
+	expect(BigNumber.make(123.456789 * 1e8).toHuman()).toBe("123.45678900");
+	expect(BigNumber.make(1e8).times(1e8).toHuman()).toBe(`${1e8}.00000000`);
 });
 
 test("#toSatoshi", () => {

@@ -23,7 +23,7 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("TransactionService", () => {
+describe("Core", () => {
 	describe("#transfer", () => {
 		it("should verify", async () => {
 			const result: any = await subject.transfer({
@@ -211,6 +211,61 @@ describe("TransactionService", () => {
 				},
 				data: {
 					lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
+				},
+			});
+
+			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+		});
+	});
+});
+
+describe("Magistrate", () => {
+	describe("#entityRegistration", () => {
+		it("should verify", async () => {
+			const result: any = await subject.entityRegistration({
+				nonce: "1",
+				sign: {
+					mnemonic: "this is a top secret passphrase",
+				},
+				data: {
+					type: "business",
+					name: "my_business",
+					ipfs: "QmRoWaqjkdGv1fqz5hrFUNHwz9CxVRq7MxoAevWDJPXLEp",
+				},
+			});
+
+			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+		});
+	});
+
+	describe("#entityResignation", () => {
+		it("should verify", async () => {
+			const result: any = await subject.entityResignation({
+				nonce: "1",
+				sign: {
+					mnemonic: "this is a top secret passphrase",
+				},
+				data: {
+					type: "business",
+					registrationId: "84300b236d0a868cee50dda1347e3089f4df1c13e90162abedb812acd242e81b",
+				},
+			});
+
+			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+		});
+	});
+
+	describe("#entityUpdate", () => {
+		it("should verify", async () => {
+			const result: any = await subject.entityUpdate({
+				nonce: "1",
+				sign: {
+					mnemonic: "this is a top secret passphrase",
+				},
+				data: {
+					type: "business",
+					registrationId: "84300b236d0a868cee50dda1347e3089f4df1c13e90162abedb812acd242e81b",
+					ipfs: "QmRoWaqjkdGv1fqz5hrFUNHwz9CxVRq7MxoAevWDJPXLEp",
 				},
 			});
 

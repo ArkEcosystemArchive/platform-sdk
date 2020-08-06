@@ -48,13 +48,25 @@ export class FeeService implements Contracts.FeeService {
 			htlcLock: this.transform("htlcLock", 1, staticFees, dynamicFees),
 			htlcClaim: this.transform("htlcClaim", 1, staticFees, dynamicFees),
 			htlcRefund: this.transform("htlcRefund", 1, staticFees, dynamicFees),
-			// Magistrate
-			businessRegistration: this.transform("businessRegistration", 2, staticFees, dynamicFees),
-			businessResignation: this.transform("businessResignation", 2, staticFees, dynamicFees),
-			businessUpdate: this.transform("businessUpdate", 2, staticFees, dynamicFees),
-			bridgechainRegistration: this.transform("bridgechainRegistration", 2, staticFees, dynamicFees),
-			bridgechainResignation: this.transform("bridgechainResignation", 2, staticFees, dynamicFees),
-			bridgechainUpdate: this.transform("bridgechainUpdate", 2, staticFees, dynamicFees),
+			// TODO: Magistrate fees once available via API
+			entityRegistration: {
+				static: "0",
+				max: "0",
+				min: "0",
+				avg: "0",
+			},
+			entityResignation: {
+				static: "0",
+				max: "0",
+				min: "0",
+				avg: "0",
+			},
+			entityUpdate: {
+				static: "0",
+				max: "0",
+				min: "0",
+				avg: "0",
+			},
 		};
 	}
 

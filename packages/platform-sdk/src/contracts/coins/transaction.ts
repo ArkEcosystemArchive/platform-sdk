@@ -18,18 +18,9 @@ export interface TransactionService {
 	htlcRefund(input: HtlcRefundInput, options?: TransactionOptions): Promise<SignedTransaction>;
 
 	// Magistrate
-	businessRegistration(input: BusinessRegistrationInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	businessResignation(input: BusinessResignationInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	businessUpdate(input: BusinessUpdateInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	bridgechainRegistration(
-		input: BridgechainRegistrationInput,
-		options?: TransactionOptions,
-	): Promise<SignedTransaction>;
-	bridgechainResignation(
-		input: BridgechainResignationInput,
-		options?: TransactionOptions,
-	): Promise<SignedTransaction>;
-	bridgechainUpdate(input: BridgechainUpdateInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	entityRegistration(input: EntityRegistrationInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	entityResignation(input: EntityResignationInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	entityUpdate(input: EntityUpdateInput, options?: TransactionOptions): Promise<SignedTransaction>;
 }
 
 // Transaction Signing
@@ -120,56 +111,29 @@ export interface HtlcRefundInput extends TransactionInput {
 	data: { lockTransactionId: string };
 }
 
-// TODO: get rid of this once AIP36 is implemented
-export interface BusinessRegistrationInput extends TransactionInput {
+export interface EntityRegistrationInput extends TransactionInput {
 	data: {
-		name: string;
-		website: string;
-		vat?: string;
-		repository?: string;
-	};
-}
-
-export interface BusinessResignationInput extends TransactionInput {
-	data: {};
-}
-
-export interface BusinessUpdateInput extends TransactionInput {
-	data: {
+		type: "business" | "bridgechain" | "developer" | "plugin" | "delegate";
+		subType?: "pluginCore" | "pluginDesktop";
 		name?: string;
-		website?: string;
-		vat?: string;
-		repository?: string;
+		ipfs?: string;
 	};
 }
 
-export interface BridgechainRegistrationInput extends TransactionInput {
+export interface EntityResignationInput extends TransactionInput {
 	data: {
-		name: string;
-		seedNodes: string[];
-		genesisHash: string;
-		bridgechainRepository: string;
-		bridgechainAssetRepository?: string;
-		ports: {
-			[name: string]: number;
-		};
+		type: "business" | "bridgechain" | "developer" | "plugin" | "delegate";
+		subType?: "pluginCore" | "pluginDesktop";
+		registrationId: string;
 	};
 }
 
-export interface BridgechainResignationInput extends TransactionInput {
+export interface EntityUpdateInput extends TransactionInput {
 	data: {
-		bridgechainId: string;
-	};
-}
-
-export interface BridgechainUpdateInput extends TransactionInput {
-	data: {
-		bridgechainId: string;
-		seedNodes?: string[];
-		ports?: {
-			[name: string]: number;
-		};
-		bridgechainRepository?: string;
-		bridgechainAssetRepository?: string;
+		type: "business" | "bridgechain" | "developer" | "plugin" | "delegate";
+		subType?: "pluginCore" | "pluginDesktop";
+		registrationId: string;
+		name?: string;
+		ipfs?: string;
 	};
 }

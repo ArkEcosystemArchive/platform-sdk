@@ -2,6 +2,7 @@ import {
 	Builders as MagistrateBuilders,
 	Transactions as MagistrateTransactions,
 } from "@arkecosystem/core-magistrate-crypto";
+import { EntityAction, EntitySubType, EntityType } from "@arkecosystem/core-magistrate-crypto/dist/enums";
 import { Managers, Transactions } from "@arkecosystem/crypto";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
@@ -9,13 +10,9 @@ import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { IdentityService } from "./identity";
 
-// TODO: get rid of this once AIP36 is implemented
-Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BusinessRegistrationTransaction);
-Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BusinessResignationTransaction);
-Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BusinessUpdateTransaction);
-Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BridgechainRegistrationTransaction);
-Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BridgechainResignationTransaction);
-Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.BridgechainUpdateTransaction);
+Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.EntityTransaction);
+
+const ucfirst = (value: string): string => value?.charAt(0).toUpperCase() + value?.slice(1);
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #http: Contracts.HttpClient;
@@ -23,12 +20,9 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #peer: string;
 
 	readonly #magistrateBuilders = {
-		businessRegistration: MagistrateBuilders.BusinessRegistrationBuilder,
-		businessResignation: MagistrateBuilders.BusinessResignationBuilder,
-		businessUpdate: MagistrateBuilders.BusinessUpdateBuilder,
-		bridgechainRegistration: MagistrateBuilders.BridgechainRegistrationBuilder,
-		bridgechainResignation: MagistrateBuilders.BridgechainResignationBuilder,
-		bridgechainUpdate: MagistrateBuilders.BridgechainUpdateBuilder,
+		entityRegistration: MagistrateBuilders.EntityBuilder,
+		entityResignation: MagistrateBuilders.EntityBuilder,
+		entityUpdate: MagistrateBuilders.EntityBuilder,
 	};
 
 	private constructor({ http, identity, peer }) {
@@ -182,58 +176,47 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 	}
 
-	// TODO: rework this once AIP36 is implemented
-	public async businessRegistration(
-		input: Contracts.BusinessRegistrationInput,
+	public async entityRegistration(
+		input: Contracts.EntityRegistrationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("businessRegistration", input, options, ({ transaction, data }) =>
-			transaction.businessRegistrationAsset({
-				lockTransactionId: data.lockTransactionId,
+		return this.createFromData("entityRegistration", input, options, ({ transaction, data }) =>
+			transaction.asset({
+				type: EntityType[ucfirst(data.type)],
+				subType: EntitySubType[ucfirst(data.subType)] || EntitySubType.None,
+				action: EntityAction.Register,
+				data: { name: data.name, ipfsData: data.ipfs },
 			}),
 		);
 	}
 
-	public async businessResignation(
-		input: Contracts.BusinessResignationInput,
+	public async entityResignation(
+		input: Contracts.EntityResignationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("businessResignation", input, options);
+		return this.createFromData("entityResignation", input, options, ({ transaction, data }) => {
+			transaction.asset({
+				type: EntityType[ucfirst(data.type)],
+				subType: EntitySubType[ucfirst(data.subType)] || EntitySubType.None,
+				action: EntityAction.Resign,
+				registrationId: data.registrationId,
+				data: {},
+			});
+		});
 	}
 
-	public async businessUpdate(
-		input: Contracts.BusinessUpdateInput,
+	public async entityUpdate(
+		input: Contracts.EntityUpdateInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("businessUpdate", input, options, ({ transaction, data }) =>
-			transaction.businessUpdateAsset(data),
-		);
-	}
-
-	public async bridgechainRegistration(
-		input: Contracts.BridgechainRegistrationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("bridgechainRegistration", input, options, ({ transaction, data }) =>
-			transaction.bridgechainRegistrationAsset(data),
-		);
-	}
-
-	public async bridgechainResignation(
-		input: Contracts.BridgechainResignationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("bridgechainResignation", input, options, ({ transaction, data }) =>
-			transaction.bridgechainResignationAsset(data),
-		);
-	}
-
-	public async bridgechainUpdate(
-		input: Contracts.BridgechainUpdateInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		return this.createFromData("bridgechainUpdate", input, options, ({ transaction, data }) =>
-			transaction.bridgechainUpdateAsset(data),
+		return this.createFromData("entityUpdate", input, options, ({ transaction, data }) =>
+			transaction.asset({
+				type: EntityType[ucfirst(data.type)],
+				subType: EntitySubType[ucfirst(data.subType)] || EntitySubType.None,
+				action: EntityAction.Update,
+				registrationId: data.registrationId,
+				data: { name: data.name, ipfsData: data.ipfs },
+			}),
 		);
 	}
 

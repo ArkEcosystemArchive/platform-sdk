@@ -24,12 +24,9 @@ describe("FeeService", function () {
 				"htlcLock",
 				"htlcClaim",
 				"htlcRefund",
-				"businessRegistration",
-				"businessResignation",
-				"businessUpdate",
-				"bridgechainRegistration",
-				"bridgechainResignation",
-				"bridgechainUpdate",
+				"entityRegistration",
+				"entityResignation",
+				"entityUpdate",
 			]);
 
 			expect(result.transfer).toEqual({ avg: "10000000", max: "10000000", min: "10000000", static: "10000000" });

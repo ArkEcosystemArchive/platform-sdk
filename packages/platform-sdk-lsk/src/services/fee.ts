@@ -34,12 +34,9 @@ export class FeeService implements Contracts.FeeService {
 			htlcClaim: this.transform(0),
 			htlcRefund: this.transform(0),
 			// Magistrate
-			businessRegistration: this.transform(0),
-			businessResignation: this.transform(0),
-			businessUpdate: this.transform(0),
-			bridgechainRegistration: this.transform(0),
-			bridgechainResignation: this.transform(0),
-			bridgechainUpdate: this.transform(0),
+			entityRegistration: this.transform(0),
+			entityResignation: this.transform(0),
+			entityUpdate: this.transform(0),
 		};
 	}
 

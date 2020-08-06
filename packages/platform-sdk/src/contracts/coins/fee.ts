@@ -19,12 +19,9 @@ export interface TransactionFees {
 	htlcClaim: TransactionFee;
 	htlcRefund: TransactionFee;
 	// Magistrate
-	businessRegistration: TransactionFee;
-	businessResignation: TransactionFee;
-	businessUpdate: TransactionFee;
-	bridgechainRegistration: TransactionFee;
-	bridgechainResignation: TransactionFee;
-	bridgechainUpdate: TransactionFee;
+	entityRegistration: TransactionFee;
+	entityResignation: TransactionFee;
+	entityUpdate: TransactionFee;
 }
 
 export interface FeeService {

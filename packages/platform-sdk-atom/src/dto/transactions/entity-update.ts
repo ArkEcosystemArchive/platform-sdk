@@ -15,7 +15,11 @@ export class EntityUpdateData extends TransactionData implements Contracts.Entit
 		throw new Exceptions.NotSupported(this.constructor.name, "entityAction");
 	}
 
-	public ipfs(): string {
+	public name(): string | undefined {
+		throw new Exceptions.NotSupported(this.constructor.name, "name");
+	}
+
+	public ipfs(): string | undefined {
 		throw new Exceptions.NotSupported(this.constructor.name, "ipfs");
 	}
 }
