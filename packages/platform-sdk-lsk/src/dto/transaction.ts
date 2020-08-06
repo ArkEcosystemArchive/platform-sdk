@@ -46,7 +46,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
-		return [{ address: this.recipient(), amount: this.amount() }];
+		return [];
 	}
 
 	public amount(): BigNumber {
