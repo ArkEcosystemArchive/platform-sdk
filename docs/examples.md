@@ -414,7 +414,8 @@ const thirdPage = await profile.transactionAggregate().transactions();
 const response = await wallet.transactionAggregate().transactions({ limit: 15 });
 
 if (response.hasMore()) {
-	await wallet.transactionAggregate().transactions({ cursor: response.nextPage(), limit: 15 });
+    // This will automatically advanced to the next page of every wallet with a limit of 15.
+	await wallet.transactionAggregate().transactions({ limit: 15 });
 }
 ```
 
