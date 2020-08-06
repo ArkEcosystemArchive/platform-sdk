@@ -337,25 +337,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@arkecosystem/core-magistrate-crypto", [
-        ["npm:2.6.49", {
-          "packageLocation": "./.yarn/cache/@arkecosystem-core-magistrate-crypto-npm-2.6.49-021f242f83-2.zip/node_modules/@arkecosystem/core-magistrate-crypto/",
+        ["npm:2.7.0-next.1", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-core-magistrate-crypto-npm-2.7.0-next.1-4720e2c312-2.zip/node_modules/@arkecosystem/core-magistrate-crypto/",
           "packageDependencies": [
-            ["@arkecosystem/core-magistrate-crypto", "npm:2.6.49"],
-            ["@arkecosystem/crypto", "npm:2.6.49"],
+            ["@arkecosystem/core-magistrate-crypto", "npm:2.7.0-next.1"],
+            ["@arkecosystem/crypto", "npm:2.7.0-next.1"],
             ["bytebuffer", "npm:5.0.1"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@arkecosystem/crypto", [
-        ["npm:2.6.49", {
-          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-2.6.49-95fbf59fe6-2.zip/node_modules/@arkecosystem/crypto/",
+        ["npm:2.7.0-next.1", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-2.7.0-next.1-a8385311bc-2.zip/node_modules/@arkecosystem/crypto/",
           "packageDependencies": [
-            ["@arkecosystem/crypto", "npm:2.6.49"],
+            ["@arkecosystem/crypto", "npm:2.7.0-next.1"],
             ["@arkecosystem/utils", "npm:1.1.8"],
             ["@types/bytebuffer", "npm:5.0.40"],
             ["ajv", "npm:6.12.2"],
-            ["ajv-keywords", "virtual:95fbf59fe6586bf45299a1b6d0811064086cbd64a5673e9f923799481f6fde96cddca2f5df61440e4fc9beffe97a5b231fb08d54c2018591638db3133b55fef8#npm:3.4.1"],
+            ["ajv-keywords", "virtual:a8385311bc99ceaaf99bacd2e0ffe413cd89bc6e1bf4eab04756f7acbc7aedba80c8bbfc79ed77223f0d5380b8d13a53b591cd2005079ac9ce80000a5c65de51#npm:3.4.1"],
             ["bcrypto", "npm:5.2.0"],
             ["bip32", "npm:2.0.5"],
             ["bip39", "npm:3.0.2"],
@@ -486,8 +486,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/platform-sdk-ark/",
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
-            ["@arkecosystem/core-magistrate-crypto", "npm:2.6.49"],
-            ["@arkecosystem/crypto", "npm:2.6.49"],
+            ["@arkecosystem/core-magistrate-crypto", "npm:2.7.0-next.1"],
+            ["@arkecosystem/crypto", "npm:2.7.0-next.1"],
             ["@arkecosystem/ledger-transport", "npm:1.1.3"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
@@ -6251,10 +6251,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ajv-keywords", [
-        ["virtual:95fbf59fe6586bf45299a1b6d0811064086cbd64a5673e9f923799481f6fde96cddca2f5df61440e4fc9beffe97a5b231fb08d54c2018591638db3133b55fef8#npm:3.4.1", {
-          "packageLocation": "./.yarn/$$virtual/ajv-keywords-virtual-d152de2339/0/cache/ajv-keywords-npm-3.4.1-851fd088de-2.zip/node_modules/ajv-keywords/",
+        ["virtual:a8385311bc99ceaaf99bacd2e0ffe413cd89bc6e1bf4eab04756f7acbc7aedba80c8bbfc79ed77223f0d5380b8d13a53b591cd2005079ac9ce80000a5c65de51#npm:3.4.1", {
+          "packageLocation": "./.yarn/$$virtual/ajv-keywords-virtual-c4194f50e3/0/cache/ajv-keywords-npm-3.4.1-851fd088de-2.zip/node_modules/ajv-keywords/",
           "packageDependencies": [
-            ["ajv-keywords", "virtual:95fbf59fe6586bf45299a1b6d0811064086cbd64a5673e9f923799481f6fde96cddca2f5df61440e4fc9beffe97a5b231fb08d54c2018591638db3133b55fef8#npm:3.4.1"],
+            ["ajv-keywords", "virtual:a8385311bc99ceaaf99bacd2e0ffe413cd89bc6e1bf4eab04756f7acbc7aedba80c8bbfc79ed77223f0d5380b8d13a53b591cd2005079ac9ce80000a5c65de51#npm:3.4.1"],
             ["ajv", "npm:6.12.2"]
           ],
           "packagePeers": [

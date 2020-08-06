@@ -15,7 +15,11 @@ export class EntityUpdateData extends TransactionData implements Contracts.Entit
 		return this.data.asset.action;
 	}
 
-	public ipfs(): string {
+	public name(): string | undefined {
+		return this.data.asset.data.name;
+	}
+
+	public ipfs(): string | undefined {
 		return this.data.asset.data.ipfsData;
 	}
 }

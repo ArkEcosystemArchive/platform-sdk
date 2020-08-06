@@ -13,19 +13,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-magistrate-crypto@npm:^2.6.49":
-  version: 2.6.49
-  resolution: "@arkecosystem/core-magistrate-crypto@npm:2.6.49"
+"@arkecosystem/core-magistrate-crypto@npm:^2.7.0-next.0":
+  version: 2.7.0-next.1
+  resolution: "@arkecosystem/core-magistrate-crypto@npm:2.7.0-next.1"
   dependencies:
-    "@arkecosystem/crypto": ^2.6.49
+    "@arkecosystem/crypto": ^2.7.0-next.1
     bytebuffer: ^5.0.1
-  checksum: 2/b36a6a7e45caaa415fb5670f498ac350d2fba6322c58808ab94e8707e3a20b4fb47d6f473a399fd08d409bd4be0e8b2ed2347a100bbb7e3ee6a1e943e9c38cd8
+  checksum: 2/e9670d2ba793a3e267fb97745b557da06cd9e54831c1eb91b8a609709389148c03af475f451699a8aacee1f30651ecc46c0a789ccf3a53ca6543c9dfcf4068ed
   languageName: node
   linkType: hard
 
-"@arkecosystem/crypto@npm:^2.6.49":
-  version: 2.6.49
-  resolution: "@arkecosystem/crypto@npm:2.6.49"
+"@arkecosystem/crypto@npm:^2.7.0-next.0, @arkecosystem/crypto@npm:^2.7.0-next.1":
+  version: 2.7.0-next.1
+  resolution: "@arkecosystem/crypto@npm:2.7.0-next.1"
   dependencies:
     "@arkecosystem/utils": ^1.1
     "@types/bytebuffer": ^5.0.40
@@ -47,7 +47,7 @@ __metadata:
     lodash.sumby: ^4.6.0
     tiny-glob: ^0.2.6
     wif: ^2.0.6
-  checksum: 2/1b673251e1ff3e5f63a12d7faa3f5e8afdc5d1a26463748eb7185b25c465b1a55dc173d9161875d8eec3a29b5b4bd2ceed68abeb405d5ae11c95ca737b1e5a75
+  checksum: 2/ae2e235a35becc94d6087e4094e32ca772ef981e2a79db47fd332ceb7158415e5b22b1214c486319bbc3a994653b383e4b695cad1230968c7add8d7b0a200655
   languageName: node
   linkType: hard
 
@@ -106,8 +106,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-ark@workspace:packages/platform-sdk-ark"
   dependencies:
-    "@arkecosystem/core-magistrate-crypto": ^2.6.49
-    "@arkecosystem/crypto": ^2.6.49
+    "@arkecosystem/core-magistrate-crypto": ^2.7.0-next.0
+    "@arkecosystem/crypto": ^2.7.0-next.0
     "@arkecosystem/ledger-transport": ^1.1.3
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
