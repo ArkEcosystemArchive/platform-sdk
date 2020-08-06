@@ -1,4 +1,5 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
@@ -34,8 +35,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.#types[this.data.typeGroup][this.data.type];
 	}
 
-	public timestamp(): number | undefined {
-		return this.data.timestamp.unix;
+	public timestamp(): DateTime | undefined {
+		return DateTime.fromUnix(this.data.timestamp.unix);
 	}
 
 	public confirmations(): BigNumber {

@@ -1,3 +1,4 @@
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber, Censor } from "@arkecosystem/platform-sdk-support";
 import emoji from "node-emoji";
 
@@ -19,7 +20,7 @@ export abstract class AbstractTransactionData {
 
 	abstract type(): string;
 
-	abstract timestamp(): number | undefined;
+	abstract timestamp(): DateTime | undefined;
 
 	abstract confirmations(): BigNumber;
 

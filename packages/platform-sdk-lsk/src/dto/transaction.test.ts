@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
@@ -19,7 +20,9 @@ describe("TransactionData", function () {
 	});
 
 	test("#timestamp", () => {
-		expect(subject.timestamp()).toBe(121185994);
+		expect(subject.timestamp()).toBeInstanceOf(DateTime);
+		expect(subject.timestamp()?.toUNIX()).toBe(1585295194);
+		expect(subject.timestamp()?.toISOString()).toBe("2020-03-27T07:46:34.000Z");
 	});
 
 	test("#confirmations", () => {

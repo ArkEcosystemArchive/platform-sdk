@@ -1,4 +1,5 @@
-import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
@@ -18,8 +19,9 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.#types[this.data.type];
 	}
 
-	public timestamp(): number | undefined {
-		return this.data.timestamp;
+	public timestamp(): DateTime | undefined {
+		// TODO: use a genesis timestamp that matches the network
+		return DateTime.make("2016-05-24T17:00:00.000Z").addSeconds(this.data.timestamp);
 	}
 
 	public confirmations(): BigNumber {

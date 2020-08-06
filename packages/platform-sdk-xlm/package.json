@@ -22,6 +22,7 @@
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
+		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@ledgerhq/hw-app-str": "^5.21.0",
 		"stellar-hd-wallet": "^0.0.10",

@@ -1,4 +1,5 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
@@ -10,7 +11,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return "transfer";
 	}
 
-	public timestamp(): number | undefined {
+	public timestamp(): DateTime | undefined {
 		return undefined;
 	}
 

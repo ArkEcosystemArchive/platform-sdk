@@ -51,5 +51,8 @@
 	},
 	"workspaces": [
 		"packages/*"
-	]
+	],
+	"dependencies": {
+		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
+	}
 }

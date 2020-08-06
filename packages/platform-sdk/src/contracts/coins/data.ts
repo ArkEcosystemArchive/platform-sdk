@@ -1,3 +1,4 @@
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { KeyValuePair } from "../types";
@@ -66,7 +67,7 @@ export interface TransactionData {
 
 	type(): string;
 
-	timestamp(): number | undefined;
+	timestamp(): DateTime | undefined;
 
 	confirmations(): BigNumber;
 
