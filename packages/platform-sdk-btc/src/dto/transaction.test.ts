@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
@@ -12,7 +13,7 @@ describe("TransactionData", function () {
 		expect(result).toBeInstanceOf(TransactionData);
 		expect(result.id()).toBe("68ad0264053ab94fa7749e78d2f728911d166ca9af8dbb68e6ee264958ca7f32");
 		expect(result.type()).toBe("transfer");
-		expect(result.timestamp()).toBe(1561095453000);
+		expect(result.timestamp()).toBeInstanceOf(DateTime);
 		expect(result.confirmations()).toEqual(BigNumber.make(159414));
 		// expect(result.sender()).toBe("...");
 		// expect(result.recipient()).toBe("...");

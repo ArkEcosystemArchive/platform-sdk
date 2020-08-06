@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { TransactionData } from "./transaction";
@@ -19,7 +20,7 @@ describe("TransactionData", function () {
 		expect(result).toBeInstanceOf(TransactionData);
 		expect(result.id()).toBe("718bc4cfc50c361a8afe032e2c170dfebadce16ea72228a57634413b62b7cf24");
 		expect(result.type()).toBe("transfer");
-		expect(result.timestamp()).toBe(1588930966);
+		expect(result.timestamp()).toBeInstanceOf(DateTime);
 		expect(result.confirmations()).toEqual(BigNumber.ZERO);
 		expect(result.sender()).toBe("AStJyBXGGBK6bwrRfRUHSjp993PB5C9QgF");
 		expect(result.recipient()).toBe("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");

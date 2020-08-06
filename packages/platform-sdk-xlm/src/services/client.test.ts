@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
@@ -35,7 +36,7 @@ describe("ClientService", function () {
 			expect(result).toBeInstanceOf(TransactionData);
 			expect(result.id()).toBe("264226cb06af3b86299031884175155e67a02e0a8ad0b3ab3a88b409a8c09d5c");
 			expect(result.type()).toBe("transfer");
-			expect(result.timestamp()).toBe(1554840865000);
+			expect(result.timestamp()).toBeInstanceOf(DateTime);
 			// expect(result.confirmations()).toEqual(BigNumber.make(159414));
 			expect(result.sender()).toBe("GAHXEI3BVFOBDHWLC4TJKCGTLY6VMTKMRRWWPKNPPULUC7E3PD63ENKO");
 			expect(result.recipient()).toBe("GB2V4J7WTTKLIN5O3QPUAQCOLLIIULJM3FHHAQ7GEQ5EH53BXXQ47HU3");
@@ -60,7 +61,7 @@ describe("ClientService", function () {
 			expect(response.items()[0]).toBeInstanceOf(TransactionData);
 			expect(response.items()[0].id()).toBe("7cea6abe90654578b42ee696e823187d89d91daa157a1077b542ee7c77413ce3");
 			expect(response.items()[0].type()).toBe("transfer");
-			expect(response.items()[0].timestamp()).toBe(1554505662000);
+			expect(response.items()[0].timestamp()).toBeInstanceOf(DateTime);
 			// expect(response.items()[0].confirmations()).toEqual(BigNumber.make(159414));
 			expect(response.items()[0].sender()).toBe("GAGLYFZJMN5HEULSTH5CIGPOPAVUYPG5YSWIYDJMAPIECYEBPM2TA3QR");
 			expect(response.items()[0].recipient()).toBe("GBYUUJHG6F4EPJGNLERINATVQLNDOFRUD7SGJZ26YZLG5PAYLG7XUSGF");
