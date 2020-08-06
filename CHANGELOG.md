@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## 0.9.229 - 2020-08-05
+
+### Fixed
+
+-   Remove signed transactions once they have been confirmed (e8197833, @faustbrian)
+-   Temporarily use `.getStruct()` to avoid serialiser corruption (64867d21, @faustbrian)
 
 ## 0.9.227 - 2020-08-05
 
@@ -1185,5 +1190,3 @@ Republish of 0.9.175
 ## 0.0.1 - 2020-03-06
 
 -   initial release
-
-[unreleased]: https://github.com/ARKEcosystem/core/compare/master...develop
