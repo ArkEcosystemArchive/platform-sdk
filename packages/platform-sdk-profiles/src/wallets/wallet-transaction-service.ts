@@ -84,46 +84,25 @@ export class TransactionService {
 		return this.signTransaction("htlcRefund", input, options);
 	}
 
-	public async signBusinessRegistration(
-		input: Contracts.BusinessRegistrationInput,
+	public async signEntityRegistration(
+		input: Contracts.EntityRegistrationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<string> {
-		return this.signTransaction("businessRegistration", input, options);
+		return this.signTransaction("entityRegistration", input, options);
 	}
 
-	public async signBusinessResignation(
-		input: Contracts.BusinessResignationInput,
+	public async signEntityResignation(
+		input: Contracts.EntityResignationInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<string> {
-		return this.signTransaction("businessResignation", input, options);
+		return this.signTransaction("entityResignation", input, options);
 	}
 
-	public async signBusinessUpdate(
-		input: Contracts.BusinessUpdateInput,
+	public async signEntityUpdate(
+		input: Contracts.EntityUpdateInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<string> {
-		return this.signTransaction("businessUpdate", input, options);
-	}
-
-	public async signBridgechainRegistration(
-		input: Contracts.BridgechainRegistrationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<string> {
-		return this.signTransaction("bridgechainRegistration", input, options);
-	}
-
-	public async signBridgechainResignation(
-		input: Contracts.BridgechainResignationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<string> {
-		return this.signTransaction("bridgechainResignation", input, options);
-	}
-
-	public async signBridgechainUpdate(
-		input: Contracts.BridgechainUpdateInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<string> {
-		return this.signTransaction("bridgechainUpdate", input, options);
+		return this.signTransaction("entityUpdate", input, options);
 	}
 
 	public async broadcast(ids: string[]): Promise<Contracts.BroadcastResponse> {

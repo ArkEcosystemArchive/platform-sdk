@@ -215,6 +215,12 @@ export interface EntityRegistrationData extends TransactionData {
 }
 
 export interface EntityResignationData extends TransactionData {
+	entityType(): number;
+
+	entitySubType(): number;
+
+	entityAction(): number;
+
 	registrationId(): string;
 }
 
