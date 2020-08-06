@@ -85,7 +85,7 @@ export class BigNumber {
 		return BigNumber.make(this.#value.multipliedBy(1e8));
 	}
 
-	public toHuman(decimals?: number): string {
+	public toHuman(decimals = 8): string {
 		return BigNumber.make(this.#value)
 			.divide(1e8)
 			.toFixed(decimals);
