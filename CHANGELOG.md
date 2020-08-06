@@ -5,13 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 0.9.230 - 2020-08-05
+## 0.9.234 - 2020-08-06
+
+### Added
+
+-   **[LSK]** Implement `TransactionData#recipients` (084dfc73, @faustbrian)
+
+### Fixed
+
+-   **[ARK]** Normalise `TransactionData#recipients` return value (ffb9b520, @faustbrian)
+-   **[LSK]** Use `senderIdOrRecipientId` in place of `address` (ca267638, @faustbrian)
+
+### Changed
+
+-   Return timestamp as `DateTime` instance (bfef4a9b, @faustbrian)
+
+## 0.9.230 - 2020-08-06
 
 ### Changed
 
 -   Only return the ID of a signed transaction (c95fe7db, @faustbrian)
 
-## 0.9.229 - 2020-08-05
+## 0.9.229 - 2020-08-06
 
 ### Fixed
 
