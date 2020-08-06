@@ -28,7 +28,7 @@ describe("ClientService", function () {
 	describe("#transactions", () => {
 		it("should succeed", async () => {
 			nock(/.+/)
-				.get("/api/transactions?address=6566229458323231555L")
+				.get("/api/transactions?senderIdOrRecipientId=6566229458323231555L")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({ address: "6566229458323231555L" });

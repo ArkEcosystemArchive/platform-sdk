@@ -46,7 +46,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const result = await this.get("transactions", query);
+		const result = await this.get("transactions", this.createSearchParams(query));
 
 		return Helpers.createTransactionDataCollectionWithType(
 			result.data,
@@ -151,5 +151,23 @@ export class ClientService implements Contracts.ClientService {
 		const response = await this.#http.post(`${this.#peer}/${path}`, body);
 
 		return response.json();
+	}
+
+	private createSearchParams(searchParams: Contracts.ClientTransactionsInput): object {
+		// What is used as "address" with ARK is "senderIdOrRecipientId" with LSK.
+		if (searchParams.address) {
+			// @ts-ignore - This field doesn't exist on the interface but are needed.
+			searchParams.senderIdOrRecipientId = searchParams.address;
+			delete searchParams.address;
+		}
+
+		// LSK doesn't support bulk lookups so we will simply use the first address.
+		if (searchParams.addresses) {
+			// @ts-ignore - This field doesn't exist on the interface but are needed.
+			searchParams.senderIdOrRecipientId = searchParams.addresses[0];
+			delete searchParams.addresses;
+		}
+
+		return searchParams;
 	}
 }
