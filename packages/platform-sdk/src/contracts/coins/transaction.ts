@@ -33,7 +33,7 @@ export interface TransactionService {
 }
 
 // Transaction Signing
-interface TransactionInput {
+export interface TransactionInput {
 	fee?: string;
 	feeLimit?: string;
 	nonce?: string;

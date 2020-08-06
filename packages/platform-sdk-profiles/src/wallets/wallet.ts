@@ -6,14 +6,15 @@ import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
-import { TransactionService } from "./wallet-transaction-service";
-import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { DelegateMapper } from "./mappers/delegate-mapper";
 import { ReadOnlyWallet } from "./read-only-wallet";
+import { TransactionService } from "./wallet-transaction-service";
+import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
 	#settingRepository!: SettingRepository;
+	#transactionService!: TransactionService;
 
 	#profile!: Profile;
 
@@ -30,6 +31,7 @@ export class Wallet {
 		this.#profile = profile;
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
+		this.#transactionService = new TransactionService(this);
 	}
 
 	/**
@@ -288,7 +290,7 @@ export class Wallet {
 	}
 
 	public transaction(): TransactionService {
-		return new TransactionService(this);
+		return this.#transactionService;
 	}
 
 	/**

@@ -19,161 +19,111 @@ export class TransactionService {
 		this.#wallet = wallet;
 	}
 
-	public async signTransfer(
-		input: Contracts.TransferInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().transfer(input, options);
-
-		return this.markAsSigned(transaction);
+	public async signTransfer(input: Contracts.TransferInput, options?: Contracts.TransactionOptions): Promise<string> {
+		return this.signTransaction("transfer", input, options);
 	}
 
 	public async signSecondSignature(
 		input: Contracts.SecondSignatureInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().secondSignature(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("secondSignature", input, options);
 	}
 
 	public async signDelegateRegistration(
 		input: Contracts.DelegateRegistrationInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().delegateRegistration(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("delegateRegistration", input, options);
 	}
 
-	public async signVote(
-		input: Contracts.VoteInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().vote(input, options);
-
-		return this.markAsSigned(transaction);
+	public async signVote(input: Contracts.VoteInput, options?: Contracts.TransactionOptions): Promise<string> {
+		return this.signTransaction("vote", input, options);
 	}
 
 	public async signMultiSignature(
 		input: Contracts.MultiSignatureInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().multiSignature(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("multiSignature", input, options);
 	}
 
-	public async signIpfs(
-		input: Contracts.IpfsInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().ipfs(input, options);
-
-		return this.markAsSigned(transaction);
+	public async signIpfs(input: Contracts.IpfsInput, options?: Contracts.TransactionOptions): Promise<string> {
+		return this.signTransaction("ipfs", input, options);
 	}
 
 	public async signMultiPayment(
 		input: Contracts.MultiPaymentInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().multiPayment(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("multiPayment", input, options);
 	}
 
 	public async signDelegateResignation(
 		input: Contracts.DelegateResignationInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().delegateResignation(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("delegateResignation", input, options);
 	}
 
-	public async signHtlcLock(
-		input: Contracts.HtlcLockInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().htlcLock(input, options);
-
-		return this.markAsSigned(transaction);
+	public async signHtlcLock(input: Contracts.HtlcLockInput, options?: Contracts.TransactionOptions): Promise<string> {
+		return this.signTransaction("htlcLock", input, options);
 	}
 
 	public async signHtlcClaim(
 		input: Contracts.HtlcClaimInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().htlcClaim(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("htlcClaim", input, options);
 	}
 
 	public async signHtlcRefund(
 		input: Contracts.HtlcRefundInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().htlcRefund(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("htlcRefund", input, options);
 	}
 
 	public async signBusinessRegistration(
 		input: Contracts.BusinessRegistrationInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().businessRegistration(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("businessRegistration", input, options);
 	}
 
 	public async signBusinessResignation(
 		input: Contracts.BusinessResignationInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().businessResignation(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("businessResignation", input, options);
 	}
 
 	public async signBusinessUpdate(
 		input: Contracts.BusinessUpdateInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().businessUpdate(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("businessUpdate", input, options);
 	}
 
 	public async signBridgechainRegistration(
 		input: Contracts.BridgechainRegistrationInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet
-			.coin()
-			.bridgechainRegistration(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("bridgechainRegistration", input, options);
 	}
 
 	public async signBridgechainResignation(
 		input: Contracts.BridgechainResignationInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.#wallet
-			.coin()
-			.bridgechainResignation(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("bridgechainResignation", input, options);
 	}
 
 	public async signBridgechainUpdate(
 		input: Contracts.BridgechainUpdateInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
-		const transaction: Contracts.SignedTransaction = await this.getService().bridgechainUpdate(input, options);
-
-		return this.markAsSigned(transaction);
+	): Promise<string> {
+		return this.signTransaction("bridgechainUpdate", input, options);
 	}
 
 	public async broadcast(ids: string[]): Promise<Contracts.BroadcastResponse> {
@@ -211,10 +161,12 @@ export class TransactionService {
 		}
 	}
 
-	private markAsSigned(transaction: Contracts.SignedTransaction) {
+	private async signTransaction(type: string, input: any, options?: Contracts.TransactionOptions): Promise<string> {
+		const transaction: Contracts.SignedTransaction = await this.getService()[type](input, options);
+
 		this.#signed[transaction.id] = transaction;
 
-		return transaction;
+		return transaction.id;
 	}
 
 	private getService(): Contracts.TransactionService {
