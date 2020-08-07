@@ -11,7 +11,9 @@ export class Blockfolio {
 
 	public async findByCoin(coin: string, page = 1): Promise<BlockfolioResponse> {
 		const { data, meta }: any = (
-			await this.#httpClient.get(`https://platform.ark.io/coins/${coin}/signals`, { page })
+			await this.#httpClient.get(`https://platform.ark.io/api/coins/${coin}/signals`, {
+				page,
+			})
 		).json();
 
 		return { data, meta };
