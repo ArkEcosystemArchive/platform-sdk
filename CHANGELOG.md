@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.240 - 2020-08-07
+
+### Added
+
+-   Implement `SignedTransactionData` (abc51e67, @faustbrian)
+
 ## 0.9.239 - 2020-08-06
 
 ### Changed
