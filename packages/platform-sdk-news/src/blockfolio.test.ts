@@ -17,7 +17,7 @@ describe("Blockfolio", () => {
 	describe("#findByCoin", () => {
 		it("should retrieve the feed and findByCoin it", async () => {
 			nock("https://platform.ark.io")
-				.get("/coins/ark/signals")
+				.get("/api/coins/ark/signals")
 				.query(true)
 				.reply(200, require("../test/fixtures/blockfolio.json"));
 
