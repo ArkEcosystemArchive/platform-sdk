@@ -160,9 +160,9 @@ describe("ClientService", function () {
 
 			expect(result).toEqual({
 				accepted: [],
-				rejected: [transactionPayload],
+				rejected: [transactionPayload.id()],
 				errors: {
-					id: ["ERR_BAD_FEE"],
+					[transactionPayload.id()]: ["ERR_BAD_FEE"],
 				},
 			});
 		});
