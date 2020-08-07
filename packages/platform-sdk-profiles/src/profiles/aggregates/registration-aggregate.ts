@@ -36,6 +36,15 @@ export class RegistrationAggregate {
 		});
 	}
 
+	public async plugins(query: Contracts.ClientPagination = {}): Promise<Coins.TransactionDataCollection> {
+		return this.#wallet.client().transactions({
+			...query,
+			entityType: "plugin",
+			entityAction: "register",
+			senderPublicKey: this.#wallet.publicKey(),
+		});
+	}
+
 	public async corePlugins(query: Contracts.ClientPagination = {}): Promise<Coins.TransactionDataCollection> {
 		return this.#wallet.client().transactions({
 			...query,

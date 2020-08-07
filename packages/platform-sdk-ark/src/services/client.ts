@@ -191,15 +191,21 @@ export class ClientService implements Contracts.ClientService {
 						corePlugin: 3,
 						delegate: 4,
 						desktopWalletPlugin: 3,
+						plugin: 3,
 					}[result.body.entityType],
-					subType: {
+					action: { register: 0, update: 1, resign: 2 }[result.body.entityAction],
+				};
+
+				// If the type is "plugin" we will skip the "subType" filter to list everything.
+				if (result.body.entityType !== "plugin") {
+					result.body.asset.subType = {
 						business: 0,
 						corePlugin: 1,
 						delegate: 0,
 						desktopWalletPlugin: 2,
-					}[result.body.entityType],
-					action: { register: 0, update: 1, resign: 2 }[result.body.entityAction],
-				};
+						plugin: 0,
+					}[result.body.entityType];
+				}
 			}
 
 			delete result.body.entityType;
