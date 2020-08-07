@@ -10,6 +10,7 @@ import { DelegateMapper } from "./mappers/delegate-mapper";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
+import { RegistrationAggregate } from "../profiles/aggregates/registration-aggregate";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
@@ -339,6 +340,14 @@ export class Wallet {
 
 	public async syncing(): Promise<boolean> {
 		return this.#coin.client().syncing();
+	}
+
+	/**
+	 * These methods serve as helpers to aggregate commonly used data.
+	 */
+
+	public registrationAggregate(): RegistrationAggregate {
+		return new RegistrationAggregate(this);
 	}
 
 	/**

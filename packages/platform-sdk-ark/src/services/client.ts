@@ -163,7 +163,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private createSearchParams(body: Contracts.ClientPagination): { body: object; searchParams: object } {
-		const result = {
+		const result: any = {
 			body,
 			searchParams: {},
 		};
@@ -178,6 +178,28 @@ export class ClientService implements Contracts.ClientService {
 
 				delete result.body[alias];
 			}
+		}
+
+		if (result.body.entityType) {
+			result.body.type = 6;
+			result.body.typeGroup = 2;
+
+			result.body.asset = {
+				type: {
+					business: 0,
+					corePlugin: 3,
+					delegate: 4,
+					desktopWalletPlugin: 3,
+				}[result.body.entityType],
+				subType: {
+					business: 0,
+					corePlugin: 1,
+					delegate: 0,
+					desktopWalletPlugin: 2,
+				}[result.body.entityType],
+			};
+
+			delete result.body.entityType;
 		}
 
 		return result;
