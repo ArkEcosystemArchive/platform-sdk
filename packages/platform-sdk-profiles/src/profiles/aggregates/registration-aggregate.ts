@@ -9,10 +9,20 @@ export class RegistrationAggregate {
 		this.#wallet = wallet;
 	}
 
+	public async all(query: Contracts.ClientPagination = {}): Promise<Coins.TransactionDataCollection> {
+		return this.#wallet.client().transactions({
+			...query,
+			entityType: "all",
+			entityAction: "register",
+			senderPublicKey: this.#wallet.publicKey(),
+		});
+	}
+
 	public async businesses(query: Contracts.ClientPagination = {}): Promise<Coins.TransactionDataCollection> {
 		return this.#wallet.client().transactions({
 			...query,
 			entityType: "business",
+			entityAction: "register",
 			senderPublicKey: this.#wallet.publicKey(),
 		});
 	}
@@ -21,6 +31,7 @@ export class RegistrationAggregate {
 		return this.#wallet.client().transactions({
 			...query,
 			entityType: "delegate",
+			entityAction: "register",
 			senderPublicKey: this.#wallet.publicKey(),
 		});
 	}
@@ -29,6 +40,7 @@ export class RegistrationAggregate {
 		return this.#wallet.client().transactions({
 			...query,
 			entityType: "corePlugin",
+			entityAction: "register",
 			senderPublicKey: this.#wallet.publicKey(),
 		});
 	}
@@ -39,6 +51,7 @@ export class RegistrationAggregate {
 		return this.#wallet.client().transactions({
 			...query,
 			entityType: "desktopWalletPlugin",
+			entityAction: "register",
 			senderPublicKey: this.#wallet.publicKey(),
 		});
 	}

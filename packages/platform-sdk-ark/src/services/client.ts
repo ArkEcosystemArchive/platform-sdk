@@ -180,24 +180,27 @@ export class ClientService implements Contracts.ClientService {
 			}
 		}
 
-		if (result.body.entityType) {
+		if (result.body.entityType && result.body.entityAction) {
 			result.body.type = 6;
 			result.body.typeGroup = 2;
 
-			result.body.asset = {
-				type: {
-					business: 0,
-					corePlugin: 3,
-					delegate: 4,
-					desktopWalletPlugin: 3,
-				}[result.body.entityType],
-				subType: {
-					business: 0,
-					corePlugin: 1,
-					delegate: 0,
-					desktopWalletPlugin: 2,
-				}[result.body.entityType],
-			};
+			if (result.body.entityType !== "all") {
+				result.body.asset = {
+					type: {
+						business: 0,
+						corePlugin: 3,
+						delegate: 4,
+						desktopWalletPlugin: 3,
+					}[result.body.entityType],
+					subType: {
+						business: 0,
+						corePlugin: 1,
+						delegate: 0,
+						desktopWalletPlugin: 2,
+					}[result.body.entityType],
+					action: { register: 0, update: 1, resign: 2 }[result.body.entityAction],
+				};
+			}
 
 			delete result.body.entityType;
 		}
