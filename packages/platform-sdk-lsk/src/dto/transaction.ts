@@ -3,29 +3,25 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	readonly #types = {
-		0: "transfer",
-		1: "secondSignature",
-		2: "delegateRegistration",
-		3: "vote",
-		4: "multiSignature",
-	};
+	// readonly #types = {
+	// 	0: "transfer",
+	// 	1: "secondSignature",
+	// 	2: "delegateRegistration",
+	// 	3: "vote",
+	// 	4: "multiSignature",
+	// };
 
-	// TODO: remove these once live/beta handling is properly implemented
-	readonly #betanetTypes = {
-		8: "transfer",
-		9: "secondSignature",
-		10: "delegateRegistration",
-		11: "vote",
-		12: "multiSignature",
-	};
+	// // TODO: remove these once live/beta handling is properly implemented
+	// readonly #betanetTypes = {
+	// 	8: "transfer",
+	// 	9: "secondSignature",
+	// 	10: "delegateRegistration",
+	// 	11: "vote",
+	// 	12: "multiSignature",
+	// };
 
 	public id(): string {
 		return this.data.id;
-	}
-
-	public type(): string {
-		return this.#types[this.data.type] || this.#betanetTypes[this.data.type];
 	}
 
 	public timestamp(): DateTime | undefined {

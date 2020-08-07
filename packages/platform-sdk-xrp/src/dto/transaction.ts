@@ -8,10 +8,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.id;
 	}
 
-	public type(): string {
-		return "transfer";
-	}
-
 	public timestamp(): DateTime | undefined {
 		if (!this.data.outcome.timestamp) {
 			return undefined;

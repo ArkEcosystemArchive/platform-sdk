@@ -14,11 +14,43 @@ export abstract class AbstractTransactionData {
 	 */
 	readonly #meta: Record<string, TransactionDataMeta> = {};
 
+	readonly #types = {
+		transfer: "isTransfer",
+		secondSignature: "isSecondSignature",
+		delegateRegistration: "isDelegateRegistration",
+		vote: "isVote",
+		unvote: "isUnvote",
+		multiSignature: "isMultiSignature",
+		ipfs: "isIpfs",
+		multiPayment: "isMultiPayment",
+		delegateResignation: "isDelegateResignation",
+		htlcLock: "isHtlcLock",
+		htlcClaim: "isHtlcClaim",
+		htlcRefund: "isHtlcRefund",
+		businessRegistration: "isBusinessRegistration",
+		businessResignation: "isBusinessResignation",
+		businessUpdate: "isBusinessUpdate",
+		bridgechainRegistration: "isBridgechainRegistration",
+		bridgechainResignation: "isBridgechainResignation",
+		bridgechainUpdate: "isBridgechainUpdate",
+		entityRegistration: "isEntityRegistration",
+		entityResignation: "isEntityResignation",
+		entityUpdate: "isEntityUpdate",
+	};
+
 	public constructor(protected readonly data: KeyValuePair) {}
 
 	abstract id(): string;
 
-	abstract type(): string;
+	public type(): string {
+		for (const [type, method] of Object.entries(this.#types)) {
+			if (this[method]()) {
+				return type;
+			}
+		}
+
+		return "transfer";
+	}
 
 	abstract timestamp(): DateTime | undefined;
 
