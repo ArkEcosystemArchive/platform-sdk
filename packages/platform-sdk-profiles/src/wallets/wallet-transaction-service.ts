@@ -1,4 +1,6 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+
+type SignedTransactionDataDictionary = Record<string, DTO.SignedTransactionData>;
 
 /**
  * @TODO
@@ -12,8 +14,8 @@ import { Contracts } from "@arkecosystem/platform-sdk";
  */
 export class TransactionService {
 	readonly #wallet;
-	readonly #signed: Record<string, Contracts.SignedTransaction> = {};
-	readonly #broadcasted: Record<string, Contracts.SignedTransaction> = {};
+	readonly #signed: SignedTransactionDataDictionary = {};
+	readonly #broadcasted: SignedTransactionDataDictionary = {};
 
 	public constructor(wallet) {
 		this.#wallet = wallet;
@@ -105,8 +107,24 @@ export class TransactionService {
 		return this.signTransaction("entityUpdate", input, options);
 	}
 
+	public signed(): SignedTransactionDataDictionary {
+		return this.#signed;
+	}
+
+	public hasBeenSigned(id: string): boolean {
+		return this.#signed[id] !== undefined;
+	}
+
+	public broadcasted(): SignedTransactionDataDictionary {
+		return this.#broadcasted;
+	}
+
+	public hasBeenBroadcasted(id: string): boolean {
+		return this.#broadcasted[id] !== undefined;
+	}
+
 	public async broadcast(ids: string[]): Promise<Contracts.BroadcastResponse> {
-		const broadcasting: Contracts.SignedTransaction = ids.map((id: string) => this.#signed[id]);
+		const broadcasting: DTO.SignedTransactionData[] = ids.map((id: string) => this.#signed[id]);
 
 		const response: Contracts.BroadcastResponse = await this.#wallet.client().broadcast(broadcasting);
 
@@ -141,11 +159,11 @@ export class TransactionService {
 	}
 
 	private async signTransaction(type: string, input: any, options?: Contracts.TransactionOptions): Promise<string> {
-		const transaction: Contracts.SignedTransaction = await this.getService()[type](input, options);
+		const transaction: DTO.SignedTransactionData = await this.getService()[type](input, options);
 
-		this.#signed[transaction.id] = transaction;
+		this.#signed[transaction.id()] = transaction;
 
-		return transaction.id;
+		return transaction.id();
 	}
 
 	private getService(): Contracts.TransactionService {

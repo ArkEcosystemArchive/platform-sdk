@@ -1,8 +1,8 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, DTO, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../dto";
-import * as DTO from "../dto";
+import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #http: Contracts.HttpClient;
@@ -64,7 +64,7 @@ export class ClientService implements Contracts.ClientService {
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		const response = await this.get(`txs/${id}`);
 
-		return Helpers.createTransactionDataWithType(response, DTO);
+		return Helpers.createTransactionDataWithType(response, TransactionDTO);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
@@ -82,7 +82,7 @@ export class ClientService implements Contracts.ClientService {
 				self: undefined, // @TODO: build from URL and page_number
 				next: undefined, // @TODO: build from URL and page_number
 			},
-			DTO,
+			TransactionDTO,
 		);
 	}
 
@@ -118,7 +118,7 @@ export class ClientService implements Contracts.ClientService {
 		return syncing;
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: DTO.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

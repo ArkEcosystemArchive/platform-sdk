@@ -4,7 +4,7 @@ import {
 } from "@arkecosystem/core-magistrate-crypto";
 import { EntityAction, EntitySubType, EntityType } from "@arkecosystem/core-magistrate-crypto/dist/enums";
 import { Managers, Transactions } from "@arkecosystem/crypto";
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
 
@@ -61,7 +61,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public async transfer(
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("transfer", input, options, ({ transaction, data }) => {
 			transaction.recipientId(data.to);
 
@@ -74,7 +74,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public async secondSignature(
 		input: Contracts.SecondSignatureInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("secondSignature", input, options, ({ transaction, data }) =>
 			transaction.signatureAsset(BIP39.normalize(data.mnemonic)),
 		);
@@ -83,7 +83,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public async delegateRegistration(
 		input: Contracts.DelegateRegistrationInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("delegateRegistration", input, options, ({ transaction, data }) =>
 			transaction.usernameAsset(data.username),
 		);
@@ -92,7 +92,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public async vote(
 		input: Contracts.VoteInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("vote", input, options, ({ transaction, data }) =>
 			transaction.votesAsset([data.vote]),
 		);
@@ -101,7 +101,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public async multiSignature(
 		input: Contracts.MultiSignatureInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("multiSignature", input, options, ({ transaction, data }) => {
 			transaction.multiSignatureAsset({
 				publicKeys: data.publicKeys,
@@ -115,14 +115,14 @@ export class TransactionService implements Contracts.TransactionService {
 	public async ipfs(
 		input: Contracts.IpfsInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("ipfs", input, options, ({ transaction, data }) => transaction.ipfsAsset(data.hash));
 	}
 
 	public async multiPayment(
 		input: Contracts.MultiPaymentInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("multiPayment", input, options, ({ transaction, data }) => {
 			for (const payment of data.payments) {
 				transaction.addPayment(payment.to, payment.amount);
@@ -133,14 +133,14 @@ export class TransactionService implements Contracts.TransactionService {
 	public async delegateResignation(
 		input: Contracts.DelegateResignationInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("delegateResignation", input, options);
 	}
 
 	public async htlcLock(
 		input: Contracts.HtlcLockInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("htlcLock", input, options, ({ transaction, data }) => {
 			transaction.amount(data.amount);
 
@@ -156,7 +156,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public async htlcClaim(
 		input: Contracts.HtlcClaimInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("htlcClaim", input, options, ({ transaction, data }) =>
 			transaction.htlcClaimAsset({
 				lockTransactionId: data.lockTransactionId,
@@ -168,7 +168,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public async htlcRefund(
 		input: Contracts.HtlcRefundInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("htlcRefund", input, options, ({ transaction, data }) =>
 			transaction.htlcRefundAsset({
 				lockTransactionId: data.lockTransactionId,
@@ -179,7 +179,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public async entityRegistration(
 		input: Contracts.EntityRegistrationInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("entityRegistration", input, options, ({ transaction, data }) =>
 			transaction.asset({
 				type: EntityType[ucfirst(data.type)],
@@ -193,7 +193,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public async entityResignation(
 		input: Contracts.EntityResignationInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("entityResignation", input, options, ({ transaction, data }) => {
 			transaction.asset({
 				type: EntityType[ucfirst(data.type)],
@@ -208,7 +208,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public async entityUpdate(
 		input: Contracts.EntityUpdateInput,
 		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("entityUpdate", input, options, ({ transaction, data }) =>
 			transaction.asset({
 				type: EntityType[ucfirst(data.type)],
@@ -225,7 +225,7 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.KeyValuePair,
 		options?: Contracts.TransactionOptions,
 		callback?: Function,
-	): Promise<Contracts.SignedTransaction> {
+	): Promise<DTO.SignedTransactionData> {
 		let transaction;
 
 		if (this.#magistrateBuilders[type]) {
@@ -275,10 +275,13 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 
 		if (options && options.unsignedBytes === true) {
-			return Transactions.Serializer.getBytes(transaction, {
-				excludeSignature: true,
-				excludeSecondSignature: true,
-			}).toString("hex");
+			return new DTO.SignedTransactionData(
+				"dummy-id",
+				Transactions.Serializer.getBytes(transaction, {
+					excludeSignature: true,
+					excludeSecondSignature: true,
+				}).toString("hex"),
+			);
 		}
 
 		if (Array.isArray(input.sign.mnemonics)) {
@@ -303,7 +306,9 @@ export class TransactionService implements Contracts.TransactionService {
 			transaction.secondSignWithWif(input.sign.secondWif);
 		}
 
-		return JSON.parse(JSON.stringify(transaction.getStruct()));
+		const struct = transaction.getStruct();
+
+		return new DTO.SignedTransactionData(struct.id, JSON.parse(JSON.stringify(struct)));
 
 		// TODO: the serialiser/deserialiser calls from `.build()` cause issues
 		// in the desktop wallet because an ArrayBuffer is used that creates

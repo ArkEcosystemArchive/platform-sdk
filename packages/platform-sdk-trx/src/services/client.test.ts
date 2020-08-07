@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { DTO } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
@@ -46,7 +47,10 @@ describe("ClientService", function () {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([
-				require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
+				new DTO.SignedTransactionData(
+					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`).txID,
+					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
+				),
 			]);
 
 			expect(result).toEqual({
@@ -62,7 +66,10 @@ describe("ClientService", function () {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const result = await subject.broadcast([
-				require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
+				new DTO.SignedTransactionData(
+					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`).txID,
+					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
+				),
 			]);
 
 			expect(result).toEqual({

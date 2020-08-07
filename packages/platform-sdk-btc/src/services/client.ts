@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { TransactionData, WalletData } from "../dto";
@@ -74,7 +74,7 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: DTO.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
@@ -82,13 +82,13 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			const transactionId: string = transaction; // todo: get the transaction ID
+			const transactionId: string = transaction.id(); // todo: get the transaction ID
 
 			if (!transactionId) {
 				throw new Error("Failed to compute the transaction ID.");
 			}
 
-			const response = await this.post("transactions", { transactions: [transaction] });
+			const response = await this.post("transactions", { transactions: [transaction.data()] });
 
 			if (response.result) {
 				result.accepted.push(transactionId);

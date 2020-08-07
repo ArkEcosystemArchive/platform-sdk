@@ -1,8 +1,8 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, DTO, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../dto";
-import * as DTO from "../dto";
+import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #http: Contracts.HttpClient;
@@ -42,7 +42,7 @@ export class ClientService implements Contracts.ClientService {
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		const result = await this.get("transactions", { id });
 
-		return Helpers.createTransactionDataWithType(result.data[0], DTO);
+		return Helpers.createTransactionDataWithType(result.data[0], TransactionDTO);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
@@ -55,7 +55,7 @@ export class ClientService implements Contracts.ClientService {
 				self: undefined,
 				next: undefined,
 			},
-			DTO,
+			TransactionDTO,
 		);
 	}
 
@@ -109,7 +109,7 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: DTO.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
@@ -117,22 +117,22 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			const { data, errors } = await this.post("transactions", transaction);
+			const { data, errors } = await this.post("transactions", transaction.data());
 
 			if (data) {
-				result.accepted.push(transaction.id);
+				result.accepted.push(transaction.id());
 			}
 
 			if (errors) {
-				result.rejected.push(transaction.id);
+				result.rejected.push(transaction.id());
 
-				if (!Array.isArray(result.errors[transaction.id])) {
-					result.errors[transaction.id] = [];
+				if (!Array.isArray(result.errors[transaction.id()])) {
+					result.errors[transaction.id()] = [];
 				}
 
 				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
 					if (errors[0].message.includes(key)) {
-						result.errors[transaction.id].push(value);
+						result.errors[transaction.id()].push(value);
 					}
 				}
 			}

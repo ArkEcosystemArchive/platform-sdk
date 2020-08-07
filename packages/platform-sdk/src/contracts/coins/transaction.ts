@@ -1,26 +1,28 @@
-// TODO: some return objects, strings and objects so we want to avoid annoying type issues.
-export type SignedTransaction = any;
+import { SignedTransactionData } from "../../dto";
 
 export interface TransactionService {
 	destruct(): Promise<void>;
 
 	// Core
-	transfer(input: TransferInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	secondSignature(input: SecondSignatureInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	delegateRegistration(input: DelegateRegistrationInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	vote(input: VoteInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	multiSignature(input: MultiSignatureInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	ipfs(input: IpfsInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	multiPayment(input: MultiPaymentInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	delegateResignation(input: DelegateResignationInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	htlcLock(input: HtlcLockInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	htlcClaim(input: HtlcClaimInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	htlcRefund(input: HtlcRefundInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	transfer(input: TransferInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+	secondSignature(input: SecondSignatureInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+	delegateRegistration(
+		input: DelegateRegistrationInput,
+		options?: TransactionOptions,
+	): Promise<SignedTransactionData>;
+	vote(input: VoteInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+	multiSignature(input: MultiSignatureInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+	ipfs(input: IpfsInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+	multiPayment(input: MultiPaymentInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+	delegateResignation(input: DelegateResignationInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+	htlcLock(input: HtlcLockInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+	htlcClaim(input: HtlcClaimInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+	htlcRefund(input: HtlcRefundInput, options?: TransactionOptions): Promise<SignedTransactionData>;
 
 	// Magistrate
-	entityRegistration(input: EntityRegistrationInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	entityResignation(input: EntityResignationInput, options?: TransactionOptions): Promise<SignedTransaction>;
-	entityUpdate(input: EntityUpdateInput, options?: TransactionOptions): Promise<SignedTransaction>;
+	entityRegistration(input: EntityRegistrationInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+	entityResignation(input: EntityResignationInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+	entityUpdate(input: EntityUpdateInput, options?: TransactionOptions): Promise<SignedTransactionData>;
 }
 
 // Transaction Signing
