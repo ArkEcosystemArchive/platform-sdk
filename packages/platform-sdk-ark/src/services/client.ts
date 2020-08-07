@@ -203,6 +203,7 @@ export class ClientService implements Contracts.ClientService {
 			}
 
 			delete result.body.entityType;
+			delete result.body.entityAction;
 		}
 
 		return result;
