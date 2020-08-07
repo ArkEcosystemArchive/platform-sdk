@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
@@ -91,7 +92,7 @@ describe("ClientService", function () {
 				.post("/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
-			const result = await subject.broadcast(["transactionPayload"]);
+			const result = await subject.broadcast([new DTO.SignedTransactionData("id", "transactionPayload")]);
 
 			expect(result).toEqual({
 				accepted: ["0x227cff6fc8990fecd43cc9c7768f2c98cc5ee8e7c98c67c11161e008cce2b172"],
@@ -105,7 +106,7 @@ describe("ClientService", function () {
 				.post("/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
-			const result = await subject.broadcast(["transactionPayload"]);
+			const result = await subject.broadcast([new DTO.SignedTransactionData("id", "transactionPayload")]);
 
 			expect(result).toEqual({
 				accepted: [],

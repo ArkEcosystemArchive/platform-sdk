@@ -1,8 +1,8 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, DTO, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
 import { WalletData } from "../dto";
-import * as DTO from "../dto";
+import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #client;
@@ -38,7 +38,7 @@ export class ClientService implements Contracts.ClientService {
 				...transaction,
 				...{ operation: operations.records[0] },
 			},
-			DTO,
+			TransactionDTO,
 		);
 	}
 
@@ -52,7 +52,7 @@ export class ClientService implements Contracts.ClientService {
 				self: undefined,
 				next,
 			},
-			DTO,
+			TransactionDTO,
 		);
 	}
 
@@ -84,7 +84,7 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: DTO.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

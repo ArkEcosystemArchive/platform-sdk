@@ -1,9 +1,9 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, DTO, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 import { WalletData } from "../dto";
-import * as DTO from "../dto";
+import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #connection: TronWeb;
@@ -44,7 +44,7 @@ export class ClientService implements Contracts.ClientService {
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		const result = await this.#connection.trx.getTransaction(id);
 
-		return Helpers.createTransactionDataWithType(result, DTO);
+		return Helpers.createTransactionDataWithType(result, TransactionDTO);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
@@ -81,7 +81,7 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: DTO.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
@@ -89,22 +89,22 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			const response = await this.#connection.trx.sendRawTransaction(transaction);
+			const response = await this.#connection.trx.sendRawTransaction(transaction.data());
 
 			if (response.result) {
-				result.accepted.push(transaction.txID);
+				result.accepted.push(transaction.id());
 			}
 
 			if (response.code) {
-				result.rejected.push(transaction.txID);
+				result.rejected.push(transaction.id());
 
-				if (!Array.isArray(result.errors[transaction.txID])) {
-					result.errors[transaction.txID] = [];
+				if (!Array.isArray(result.errors[transaction.id()])) {
+					result.errors[transaction.id()] = [];
 				}
 
 				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
 					if (response.code.includes(key)) {
-						result.errors[transaction.txID].push(value);
+						result.errors[transaction.id()].push(value);
 					}
 				}
 			}

@@ -1,8 +1,8 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, DTO, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import Neon from "@cityofzion/neon-js";
 import { api } from "@cityofzion/neon-js";
 
-import * as DTO from "../dto";
+import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #http: Contracts.HttpClient;
@@ -61,7 +61,7 @@ export class ClientService implements Contracts.ClientService {
 				self: undefined,
 				next: `${this.#peer}/${basePath}/${nextPage}`,
 			},
-			DTO,
+			TransactionDTO,
 		);
 	}
 
@@ -93,7 +93,7 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: DTO.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
@@ -103,24 +103,24 @@ export class ClientService implements Contracts.ClientService {
 		for (const transaction of transactions) {
 			const { response } = await Neon.sendAsset({
 				api: this.#apiProvider,
-				account: transaction["account"],
-				intents: transaction["intents"],
+				account: transaction.get("account"),
+				intents: transaction.get("intents"),
 			});
 
 			if (response.txid) {
-				result.accepted.push(transaction.id);
+				result.accepted.push(transaction.id());
 			}
 
 			if (response.error) {
-				result.rejected.push(transaction.id);
+				result.rejected.push(transaction.id());
 
-				if (!Array.isArray(result.errors[transaction.id])) {
-					result.errors[transaction.id] = [];
+				if (!Array.isArray(result.errors[transaction.id()])) {
+					result.errors[transaction.id()] = [];
 				}
 
 				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
 					if (response.error.message.includes(key)) {
-						result.errors[transaction.id].push(value);
+						result.errors[transaction.id()].push(value);
 					}
 				}
 			}

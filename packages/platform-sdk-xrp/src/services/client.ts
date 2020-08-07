@@ -1,9 +1,9 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, DTO, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { RippleAPI } from "ripple-lib";
 
-import { TransactionData, WalletData } from "../dto";
-import * as DTO from "../dto";
+import { WalletData } from "../dto";
+import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #connection: RippleAPI;
@@ -155,7 +155,7 @@ export class ClientService implements Contracts.ClientService {
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		const transaction = await this.#connection.getTransaction(id);
 
-		return Helpers.createTransactionDataWithType(transaction, DTO);
+		return Helpers.createTransactionDataWithType(transaction, TransactionDTO);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
@@ -175,7 +175,7 @@ export class ClientService implements Contracts.ClientService {
 				self: undefined,
 				next: undefined,
 			},
-			DTO,
+			TransactionDTO,
 		);
 	}
 
@@ -209,7 +209,7 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: DTO.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
@@ -219,7 +219,7 @@ export class ClientService implements Contracts.ClientService {
 		for (const transaction of transactions) {
 			try {
 				// @ts-ignore
-				const { engine_result, tx_json } = await this.#connection.submit(transaction);
+				const { engine_result, tx_json } = await this.#connection.submit(transaction.data());
 
 				const transactionId: string = tx_json.hash;
 
@@ -227,7 +227,7 @@ export class ClientService implements Contracts.ClientService {
 					result.accepted.push(transactionId);
 				}
 			} catch (error) {
-				const transactionId: string = transaction; // todo: get the transaction ID
+				const transactionId: string = transaction.id(); // todo: get the transaction ID
 
 				const { engine_result } = error.data;
 

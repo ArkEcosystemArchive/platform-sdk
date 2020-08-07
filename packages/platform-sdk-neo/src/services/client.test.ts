@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
@@ -47,7 +48,7 @@ describe("ClientService", function () {
 				.post("/api/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
-			const result = await subject.broadcast(["transactionPayload"]);
+			const result = await subject.broadcast([new DTO.SignedTransactionData("id", "transactionPayload")]);
 
 			expect(result).toEqual({
 				accepted: ["0cb2e1fc8caa83cfb204e5cd2f66a58f3954a3b7bcc8958aaba38b582376e652"],
@@ -61,7 +62,7 @@ describe("ClientService", function () {
 				.post("/api/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
-			const result = await subject.broadcast(["transactionPayload"]);
+			const result = await subject.broadcast([new DTO.SignedTransactionData("id", "transactionPayload")]);
 
 			expect(result).toEqual({
 				accepted: [],

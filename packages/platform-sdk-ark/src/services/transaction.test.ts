@@ -26,7 +26,7 @@ beforeAll(() => nock.disableNetConnect());
 describe("Core", () => {
 	describe("#transfer", () => {
 		it("should verify", async () => {
-			const result: any = await subject.transfer({
+			const result = await subject.transfer({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
@@ -37,13 +37,13 @@ describe("Core", () => {
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 
 	describe("#secondSignature", () => {
 		it("should verify", async () => {
-			const result: any = await subject.secondSignature({
+			const result = await subject.secondSignature({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
@@ -53,13 +53,13 @@ describe("Core", () => {
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 
 	describe("#delegateRegistration", () => {
 		it("should verify", async () => {
-			const result: any = await subject.delegateRegistration({
+			const result = await subject.delegateRegistration({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
@@ -69,13 +69,13 @@ describe("Core", () => {
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 
 	describe("#vote", () => {
 		it("should verify", async () => {
-			const result: any = await subject.vote({
+			const result = await subject.vote({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
@@ -85,13 +85,13 @@ describe("Core", () => {
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 
 	describe("#multiSignature", () => {
 		it("should verify", async () => {
-			const result: any = await subject.multiSignature({
+			const result = await subject.multiSignature({
 				nonce: "1",
 				data: {
 					publicKeys: [
@@ -112,13 +112,13 @@ describe("Core", () => {
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 
 	describe("#ipfs", () => {
 		it("should verify", async () => {
-			const result: any = await subject.ipfs({
+			const result = await subject.ipfs({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
@@ -126,13 +126,13 @@ describe("Core", () => {
 				data: { hash: "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9w" },
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 
 	describe("#multiPayment", () => {
 		it("should verify", async () => {
-			const result: any = await subject.multiPayment({
+			const result = await subject.multiPayment({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
@@ -146,26 +146,26 @@ describe("Core", () => {
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 
 	describe("#delegateResignation", () => {
 		it("should verify", async () => {
-			const result: any = await subject.delegateResignation({
+			const result = await subject.delegateResignation({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 
 	describe("#htlcLock", () => {
 		it("should verify", async () => {
-			const result: any = await subject.htlcLock({
+			const result = await subject.htlcLock({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
@@ -181,13 +181,13 @@ describe("Core", () => {
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 
 	describe("#htlcClaim", () => {
 		it("should verify", async () => {
-			const result: any = await subject.htlcClaim({
+			const result = await subject.htlcClaim({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
@@ -198,13 +198,13 @@ describe("Core", () => {
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 
 	describe("#htlcRefund", () => {
 		it("should verify", async () => {
-			const result: any = await subject.htlcRefund({
+			const result = await subject.htlcRefund({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
@@ -214,7 +214,7 @@ describe("Core", () => {
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 });
@@ -222,7 +222,7 @@ describe("Core", () => {
 describe("Magistrate", () => {
 	describe("#entityRegistration", () => {
 		it("should verify", async () => {
-			const result: any = await subject.entityRegistration({
+			const result = await subject.entityRegistration({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
@@ -234,13 +234,13 @@ describe("Magistrate", () => {
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 
 	describe("#entityResignation", () => {
 		it("should verify", async () => {
-			const result: any = await subject.entityResignation({
+			const result = await subject.entityResignation({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
@@ -251,13 +251,13 @@ describe("Magistrate", () => {
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 
 	describe("#entityUpdate", () => {
 		it("should verify", async () => {
-			const result: any = await subject.entityUpdate({
+			const result = await subject.entityUpdate({
 				nonce: "1",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
@@ -269,7 +269,7 @@ describe("Magistrate", () => {
 				},
 			});
 
-			expect(Transactions.TransactionFactory.fromJson(result).verify()).toBeTrue();
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
 });

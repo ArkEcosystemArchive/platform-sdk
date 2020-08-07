@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
@@ -91,7 +92,7 @@ describe("ClientService", function () {
 	});
 
 	describe("#broadcast", () => {
-		const transactionPayload = {
+		const transactionPayload = new DTO.SignedTransactionData("id", {
 			msg: [
 				{
 					type: "cosmos-sdk/MsgSend",
@@ -116,7 +117,7 @@ describe("ClientService", function () {
 				},
 			],
 			memo: "",
-		};
+		});
 
 		it("should pass", async () => {
 			nock("https://stargate.cosmos.network")

@@ -1,9 +1,9 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, DTO, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import Web3 from "web3";
 
 import { TransactionData, WalletData } from "../dto";
-import * as DTO from "../dto";
+import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	static readonly MONTH_IN_SECONDS = 8640 * 30;
@@ -45,7 +45,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
-		return Helpers.createTransactionDataWithType(await this.get(`transactions/${id}`), DTO);
+		return Helpers.createTransactionDataWithType(await this.get(`transactions/${id}`), TransactionDTO);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
@@ -76,7 +76,7 @@ export class ClientService implements Contracts.ClientService {
 				self: undefined,
 				next: undefined,
 			},
-			DTO,
+			TransactionDTO,
 		);
 	}
 
@@ -108,7 +108,7 @@ export class ClientService implements Contracts.ClientService {
 		return (await this.get("status")).syncing === false;
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: DTO.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
@@ -116,7 +116,7 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			const transactionId: string | null = Web3.utils.sha3(transaction);
+			const transactionId: string | null = Web3.utils.sha3(transaction.data());
 
 			if (!transactionId) {
 				throw new Error("Failed to compute the transaction ID.");

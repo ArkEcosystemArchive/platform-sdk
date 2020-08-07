@@ -25,7 +25,7 @@ const sortObject = (obj) => {
 	return result;
 };
 
-export const createSignedTransaction = (stdSignMsg, keyPair) => {
+export const createSignedTransactionData = (stdSignMsg, keyPair) => {
 	const privateKey: Buffer = Buffoon.fromHex(keyPair.privateKey);
 
 	return {

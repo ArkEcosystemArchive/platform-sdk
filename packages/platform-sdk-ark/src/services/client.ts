@@ -1,8 +1,8 @@
-import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, DTO, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../dto";
-import * as DTO from "../dto";
+import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #http: Contracts.HttpClient;
@@ -34,13 +34,17 @@ export class ClientService implements Contracts.ClientService {
 	public async transaction(id: string): Promise<Contracts.TransactionData> {
 		const body = await this.get(`transactions/${id}`);
 
-		return Helpers.createTransactionDataWithType(body.data, DTO);
+		return Helpers.createTransactionDataWithType(body.data, TransactionDTO);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const response = await this.post("transactions/search", this.createSearchParams(query));
 
-		return Helpers.createTransactionDataCollectionWithType(response.data, this.createMetaPagination(response), DTO);
+		return Helpers.createTransactionDataCollectionWithType(
+			response.data,
+			this.createMetaPagination(response),
+			TransactionDTO,
+		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -76,7 +80,11 @@ export class ClientService implements Contracts.ClientService {
 	public async votes(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
 		const body = await this.get(`wallets/${id}/votes`, query);
 
-		return Helpers.createTransactionDataCollectionWithType(body.data, this.createMetaPagination(body), DTO);
+		return Helpers.createTransactionDataCollectionWithType(
+			body.data,
+			this.createMetaPagination(body),
+			TransactionDTO,
+		);
 	}
 
 	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
@@ -94,7 +102,7 @@ export class ClientService implements Contracts.ClientService {
 		return body.data.syncing;
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransaction[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: DTO.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const { data, errors } = await this.post("transactions", { body: { transactions } });
 
 		const result: Contracts.BroadcastResponse = {
