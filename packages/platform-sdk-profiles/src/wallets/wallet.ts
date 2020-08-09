@@ -2,6 +2,7 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { makeCoin } from "../environment/container.helpers";
+import { RegistrationAggregate } from "../profiles/aggregates/registration-aggregate";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
@@ -10,7 +11,6 @@ import { DelegateMapper } from "./mappers/delegate-mapper";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
-import { RegistrationAggregate } from "../profiles/aggregates/registration-aggregate";
 
 export class Wallet {
 	#dataRepository!: DataRepository;
@@ -179,6 +179,8 @@ export class Wallet {
 	public toObject(): WalletStruct {
 		const coinConfig: any = { ...this.coin().config().all() };
 		delete coinConfig.httpClient;
+
+		this.#transactionService.dump();
 
 		return {
 			id: this.id(),
