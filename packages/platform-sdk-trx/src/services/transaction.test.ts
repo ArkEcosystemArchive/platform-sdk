@@ -20,6 +20,7 @@ describe("TransactionService", function () {
 				.reply(200, require(`${__dirname}/../../test/fixtures/crypto/transfer.json`));
 
 			const result = await subject.transfer({
+				from: "TEre3kN6JdPzqCNpiZT8JWM4kt8iGrg1Rm",
 				sign: {
 					mnemonic: testWallet.privateKey,
 				},
