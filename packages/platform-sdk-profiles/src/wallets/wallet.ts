@@ -192,11 +192,11 @@ export class Wallet {
 			address: this.address(),
 			publicKey: this.publicKey(),
 			data: {
-				[WalletData.Balance]: (this.data().get<BigNumber>(WalletData.Balance) || BigNumber.ZERO).toFixed(),
+				[WalletData.Balance]: this.balance().toFixed(),
 				[WalletData.BroadcastedTransactions]: this.data().get(WalletData.BroadcastedTransactions, []),
 				[WalletData.Delegates]: this.data().get(WalletData.Delegates, []),
 				[WalletData.ExchangeRate]: this.data().get(WalletData.ExchangeRate, 0),
-				[WalletData.Sequence]: (this.data().get<BigNumber>(WalletData.Sequence) || BigNumber.ZERO).toFixed(),
+				[WalletData.Sequence]: this.nonce().toFixed(),
 				[WalletData.SignedTransactions]: this.data().get(WalletData.SignedTransactions, []),
 			},
 			settings: this.settings().all(),
