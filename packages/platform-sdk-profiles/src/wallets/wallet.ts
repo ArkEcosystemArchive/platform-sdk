@@ -192,11 +192,11 @@ export class Wallet {
 			address: this.address(),
 			publicKey: this.publicKey(),
 			data: {
-				[WalletData.Balance]: this.data().get(WalletData.Balance, BigNumber.ZERO)?.toFixed(),
+				[WalletData.Balance]: (this.data().get<BigNumber>(WalletData.Balance) || BigNumber.ZERO).toFixed(),
 				[WalletData.BroadcastedTransactions]: this.data().get(WalletData.BroadcastedTransactions, []),
 				[WalletData.Delegates]: this.data().get(WalletData.Delegates, []),
 				[WalletData.ExchangeRate]: this.data().get(WalletData.ExchangeRate, 0),
-				[WalletData.Sequence]: this.data().get(WalletData.Sequence, BigNumber.ZERO)?.toFixed(),
+				[WalletData.Sequence]: (this.data().get<BigNumber>(WalletData.Sequence) || BigNumber.ZERO).toFixed(),
 				[WalletData.SignedTransactions]: this.data().get(WalletData.SignedTransactions, []),
 			},
 			settings: this.settings().all(),
@@ -443,12 +443,14 @@ export class Wallet {
 	}
 
 	private restore(): void {
-		if (this.data().has(WalletData.Balance)) {
-			this.data().set(WalletData.Balance, BigNumber.make(this.data().get<string>(WalletData.Balance)!));
-		}
+		this.data().set(
+			WalletData.Balance,
+			BigNumber.make(this.data().get<string>(WalletData.Balance) || BigNumber.ZERO),
+		);
 
-		if (this.data().has(WalletData.Sequence)) {
-			this.data().set(WalletData.Sequence, BigNumber.make(this.data().get<string>(WalletData.Sequence)!));
-		}
+		this.data().set(
+			WalletData.Sequence,
+			BigNumber.make(this.data().get<string>(WalletData.Sequence) || BigNumber.ZERO),
+		);
 	}
 }
