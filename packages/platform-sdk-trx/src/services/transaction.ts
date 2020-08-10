@@ -31,7 +31,7 @@ export class TransactionService implements Contracts.TransactionService {
 		const transaction = await this.#connection.transactionBuilder.sendTrx(
 			input.data.to,
 			input.data.amount,
-			input.data.from,
+			input.from,
 			1,
 		);
 

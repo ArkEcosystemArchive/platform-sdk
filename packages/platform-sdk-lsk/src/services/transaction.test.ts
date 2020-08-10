@@ -14,6 +14,7 @@ describe("TransactionService", () => {
 			const service = await TransactionService.construct(createConfig({ network }));
 
 			const result: any = await service.transfer({
+				from: "15957226662510576840L",
 				sign: {
 					mnemonic: identity.mnemonic,
 				},
@@ -30,6 +31,7 @@ describe("TransactionService", () => {
 	describe("#secondSignature", () => {
 		it("should verify", async () => {
 			const result: any = await subject.secondSignature({
+				from: "15957226662510576840L",
 				sign: {
 					mnemonic: identity.mnemonic,
 					secondMnemonic: identity.mnemonic,
@@ -46,6 +48,7 @@ describe("TransactionService", () => {
 	describe("#delegateRegistration", () => {
 		it("should verify", async () => {
 			const result: any = await subject.delegateRegistration({
+				from: "15957226662510576840L",
 				sign: {
 					mnemonic: identity.mnemonic,
 				},
@@ -61,6 +64,7 @@ describe("TransactionService", () => {
 	describe("#vote", () => {
 		it("should verify", async () => {
 			const result: any = await subject.vote({
+				from: "15957226662510576840L",
 				sign: {
 					mnemonic: identity.mnemonic,
 				},
@@ -76,6 +80,7 @@ describe("TransactionService", () => {
 	describe("#multiSignature", () => {
 		it("should verify", async () => {
 			const result: any = await subject.multiSignature({
+				from: "15957226662510576840L",
 				sign: { mnemonic: identity.mnemonic },
 				data: {
 					publicKeys: [

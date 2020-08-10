@@ -23,6 +23,7 @@ describe("TransactionService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result: any = await subject.transfer({
+				from: identity.address,
 				sign: {
 					mnemonic: identity.mnemonic,
 				},

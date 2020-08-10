@@ -30,6 +30,7 @@ export interface TransactionInput {
 	fee?: string;
 	feeLimit?: string;
 	nonce?: string;
+	from: string;
 	sign: {
 		mnemonic: string;
 		mnemonics?: string[];
@@ -44,14 +45,13 @@ export interface TransactionInput {
 }
 
 export interface TransactionOptions {
-	unsignedJson: boolean;
 	unsignedBytes: boolean;
+	unsignedJson: boolean;
 }
 
 export interface TransferInput extends TransactionInput {
 	data: {
 		amount: string;
-		from?: string;
 		to: string;
 		memo?: string;
 	};

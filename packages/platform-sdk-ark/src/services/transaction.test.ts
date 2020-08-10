@@ -28,6 +28,7 @@ describe("Core", () => {
 		it("should verify", async () => {
 			const result = await subject.transfer({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
@@ -45,6 +46,7 @@ describe("Core", () => {
 		it("should verify", async () => {
 			const result = await subject.secondSignature({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
@@ -61,6 +63,7 @@ describe("Core", () => {
 		it("should verify", async () => {
 			const result = await subject.delegateRegistration({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
@@ -77,6 +80,7 @@ describe("Core", () => {
 		it("should verify", async () => {
 			const result = await subject.vote({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
@@ -93,6 +97,7 @@ describe("Core", () => {
 		it("should verify", async () => {
 			const result = await subject.multiSignature({
 				nonce: "1",
+				from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
 				data: {
 					publicKeys: [
 						"039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
@@ -120,6 +125,7 @@ describe("Core", () => {
 		it("should verify", async () => {
 			const result = await subject.ipfs({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
@@ -134,6 +140,7 @@ describe("Core", () => {
 		it("should verify", async () => {
 			const result = await subject.multiPayment({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
@@ -154,6 +161,7 @@ describe("Core", () => {
 		it("should verify", async () => {
 			const result = await subject.delegateResignation({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
@@ -167,6 +175,7 @@ describe("Core", () => {
 		it("should verify", async () => {
 			const result = await subject.htlcLock({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
@@ -189,6 +198,7 @@ describe("Core", () => {
 		it("should verify", async () => {
 			const result = await subject.htlcClaim({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
@@ -206,6 +216,7 @@ describe("Core", () => {
 		it("should verify", async () => {
 			const result = await subject.htlcRefund({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
@@ -224,6 +235,7 @@ describe("Magistrate", () => {
 		it("should verify", async () => {
 			const result = await subject.entityRegistration({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
@@ -242,6 +254,7 @@ describe("Magistrate", () => {
 		it("should verify", async () => {
 			const result = await subject.entityResignation({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
@@ -259,6 +272,7 @@ describe("Magistrate", () => {
 		it("should verify", async () => {
 			const result = await subject.entityUpdate({
 				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 				sign: {
 					mnemonic: "this is a top secret passphrase",
 				},
