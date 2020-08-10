@@ -306,13 +306,8 @@ export class TransactionService implements Contracts.TransactionService {
 			transaction.secondSignWithWif(input.sign.secondWif);
 		}
 
-		const struct = transaction.getStruct();
+		const signedTransaction = transaction.build().toJson();
 
-		return new DTO.SignedTransactionData(struct.id, JSON.parse(JSON.stringify(struct)));
-
-		// TODO: the serialiser/deserialiser calls from `.build()` cause issues
-		// in the desktop wallet because an ArrayBuffer is used that creates
-		// malformed serialised data which then results in other issues later on.
-		// return transaction.build().toJson();
+		return new DTO.SignedTransactionData(signedTransaction.id, signedTransaction);
 	}
 }
