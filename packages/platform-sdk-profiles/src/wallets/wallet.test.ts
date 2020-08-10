@@ -184,8 +184,14 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		});
 		expect(actual.network).toBe("devnet");
 		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
-		expect(actual.data).toBeObject();
-		expect(actual.data.key).toBe("value");
+		expect(actual.data).toEqual({
+			BALANCE: "55827093444556",
+			BROADCASTED_TRANSACTIONS: {},
+			DELEGATES: [],
+			EXCHANGE_RATE: 0,
+			SEQUENCE: "111932",
+			SIGNED_TRANSACTIONS: {},
+		});
 		expect(actual.settings).toBeObject();
 		expect(actual.settings.AVATAR).toBeString();
 	});

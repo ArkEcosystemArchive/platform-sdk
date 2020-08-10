@@ -33,6 +33,8 @@ export class Wallet {
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
+
+		this.restore();
 	}
 
 	/**
@@ -189,7 +191,14 @@ export class Wallet {
 			network: this.network().id,
 			address: this.address(),
 			publicKey: this.publicKey(),
-			data: this.data().all(),
+			data: {
+				[WalletData.Balance]: this.data().get(WalletData.Balance, BigNumber.ZERO)?.toFixed(),
+				[WalletData.BroadcastedTransactions]: this.data().get(WalletData.BroadcastedTransactions, []),
+				[WalletData.Delegates]: this.data().get(WalletData.Delegates, []),
+				[WalletData.ExchangeRate]: this.data().get(WalletData.ExchangeRate, 0),
+				[WalletData.Sequence]: this.data().get(WalletData.Sequence, BigNumber.ZERO)?.toFixed(),
+				[WalletData.SignedTransactions]: this.data().get(WalletData.SignedTransactions, []),
+			},
 			settings: this.settings().all(),
 		};
 	}
@@ -431,5 +440,15 @@ export class Wallet {
 		}
 
 		return response;
+	}
+
+	private restore(): void {
+		if (this.data().has(WalletData.Balance)) {
+			this.data().set(WalletData.Balance, BigNumber.make(this.data().get<string>(WalletData.Balance)!));
+		}
+
+		if (this.data().has(WalletData.Sequence)) {
+			this.data().set(WalletData.Sequence, BigNumber.make(this.data().get<string>(WalletData.Sequence)!));
+		}
 	}
 }
