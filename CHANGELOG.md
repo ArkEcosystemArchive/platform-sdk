@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.248 - 2020-08-10
+
+### Added
+
+-   Persist signed and broadcasted transactions (72591998, @faustbrian)
+
+### Changed
+
+-   **[ARK]** Serialise and deserialise transaction after signing (d0c61d11, @faustbrian)
+
 ## 0.9.246 - 2020-08-07
 
 ### Fixed
