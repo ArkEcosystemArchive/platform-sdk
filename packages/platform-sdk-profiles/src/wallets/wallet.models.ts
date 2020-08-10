@@ -31,9 +31,11 @@ export enum WalletSetting {
 
 export enum WalletData {
 	Balance = "BALANCE",
+	BroadcastedTransactions = "BROADCASTED_TRANSACTIONS",
 	Delegates = "DELEGATES",
 	ExchangeRate = "EXCHANGE_RATE",
 	Sequence = "SEQUENCE",
+	SignedTransactions = "SIGNED_TRANSACTIONS",
 }
 
 export enum WalletFlag {

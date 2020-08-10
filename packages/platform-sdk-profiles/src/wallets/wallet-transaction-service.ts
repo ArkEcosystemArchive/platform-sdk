@@ -1,5 +1,7 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 
+import { WalletData } from "./wallet.models";
+
 type SignedTransactionDataDictionary = Record<string, DTO.SignedTransactionData>;
 
 /**
@@ -19,6 +21,8 @@ export class TransactionService {
 
 	public constructor(wallet) {
 		this.#wallet = wallet;
+
+		this.restore();
 	}
 
 	public async signTransfer(input: Contracts.TransferInput, options?: Contracts.TransactionOptions): Promise<string> {
@@ -156,6 +160,46 @@ export class TransactionService {
 		} catch {
 			return false;
 		}
+	}
+
+	/**
+	 * Dump the transactions as JSON strings.
+	 *
+	 * @memberof TransactionService
+	 */
+	public dump(): void {
+		const dumpStorage = (storage: object, storageKey: string) => {
+			const result: Record<string, object> = {};
+
+			for (const [id, transaction] of Object.entries(storage)) {
+				result[id] = transaction;
+			}
+
+			this.#wallet.data().set(storageKey, result);
+		};
+
+		dumpStorage(this.#signed, WalletData.SignedTransactions);
+
+		dumpStorage(this.#broadcasted, WalletData.BroadcastedTransactions);
+	}
+
+	/**
+	 * Restore the transactions as DTO instances.
+	 *
+	 * @memberof TransactionService
+	 */
+	public restore(): void {
+		const restoreStorage = (storage: object, storageKey: string) => {
+			const transactions = this.#wallet.data().get(storageKey, {});
+
+			for (const [id, transaction] of Object.entries(transactions)) {
+				storage[id] = new DTO.SignedTransactionData(id, transaction);
+			}
+		};
+
+		restoreStorage(this.#signed, WalletData.SignedTransactions);
+
+		restoreStorage(this.#broadcasted, WalletData.BroadcastedTransactions);
 	}
 
 	private async signTransaction(type: string, input: any, options?: Contracts.TransactionOptions): Promise<string> {
