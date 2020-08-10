@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.251 - 2020-08-10
+
+### Added
+
+-   **[NEO]** Implement `ClientService#wallet` (5fedc5d5, @faustbrian)
+-   Verify that expected and actual sender of transactions are a match (837b68c4, @faustbrian)
+
 ## 0.9.249 - 2020-08-10
 
 ### Fixed
