@@ -103,7 +103,11 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: DTO.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		const { data, errors } = await this.post("transactions", { body: { transactions } });
+		const { data, errors } = await this.post("transactions", {
+			body: {
+				transactions: transactions.map((transaction: DTO.SignedTransactionData) => transaction.data()),
+			},
+		});
 
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
