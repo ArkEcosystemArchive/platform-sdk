@@ -3,6 +3,7 @@ import Neon from "@cityofzion/neon-js";
 import { api } from "@cityofzion/neon-js";
 
 import * as TransactionDTO from "../dto";
+import { WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #http: Contracts.HttpClient;
@@ -66,7 +67,12 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
+		const response = await this.get(`get_balance/${id}`);
+
+		return new WalletData({
+			address: id,
+			balance: response.balance.find((balance) => balance.asset === "NEO").amount,
+		});
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {

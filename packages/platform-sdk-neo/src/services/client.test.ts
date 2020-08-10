@@ -40,6 +40,20 @@ describe("ClientService", function () {
 		});
 	});
 
+	describe("#wallet", () => {
+		it("should succeed", async () => {
+			nock("https://neoscan-testnet.io/api/test_net/v1/")
+				.get("/get_balance/Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF")
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
+
+			const result = await subject.wallet("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");
+
+			expect(result).toBeObject();
+			expect(result.address()).toBe("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");
+			expect(result.balance()).toEqual(BigNumber.make(9).times(BigNumber.SATOSHI));
+		});
+	});
+
 	describe.skip("#broadcast", () => {
 		it("should pass", async () => {
 			nock("https://neoscan-testnet.io/api/test_net/v1/")

@@ -3,7 +3,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
 	public address(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "address");
+		return this.data.address;
 	}
 
 	public publicKey(): string {
@@ -11,7 +11,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public balance(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "balance");
+		return BigNumber.make(this.data.balance).times(BigNumber.SATOSHI);
 	}
 
 	public nonce(): BigNumber {

@@ -1,0 +1,33 @@
+{
+	"balance": [
+		{
+			"unspent": [
+				{
+					"value": 9.99899998,
+					"txid": "7616d7f01af2f6bf1cb149bb1da8aa7b34e81e6d07fcb177c2ea566e450b2977",
+					"n": 3
+				},
+				{
+					"value": 0.00000001,
+					"txid": "7616d7f01af2f6bf1cb149bb1da8aa7b34e81e6d07fcb177c2ea566e450b2977",
+					"n": 1
+				}
+			],
+			"asset_symbol": "GAS",
+			"asset_hash": "602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7",
+			"asset": "GAS",
+			"amount": 9.99899999
+		},
+		{
+			"unspent": [
+				{ "value": 8.0, "txid": "7616d7f01af2f6bf1cb149bb1da8aa7b34e81e6d07fcb177c2ea566e450b2977", "n": 2 },
+				{ "value": 1.0, "txid": "7616d7f01af2f6bf1cb149bb1da8aa7b34e81e6d07fcb177c2ea566e450b2977", "n": 0 }
+			],
+			"asset_symbol": "NEO",
+			"asset_hash": "c56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b",
+			"asset": "NEO",
+			"amount": 9.0
+		}
+	],
+	"address": "AStJyBXGGBK6bwrRfRUHSjp993PB5C9QgF"
+}
