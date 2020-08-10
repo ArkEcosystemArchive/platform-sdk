@@ -104,6 +104,7 @@ describe("ClientService", function () {
 
 			const result = await subject.broadcast([
 				await transactionService.transfer({
+					from: identity.address,
 					sign: {
 						mnemonic: identity.mnemonic,
 					},
@@ -136,6 +137,7 @@ describe("ClientService", function () {
 
 			const result = await subject.broadcast([
 				await transactionService.transfer({
+					from: identity.address,
 					sign: {
 						mnemonic: identity.mnemonic,
 					},
