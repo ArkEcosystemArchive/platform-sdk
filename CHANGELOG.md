@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.255 - 2020-08-10
+
+### Changed
+
+-   Use helper methods for wallet balance and sequence (50e7221f, @faustbrian)
+
 ## 0.9.254 - 2020-08-10
 
 ### Fixed
@@ -15,13 +21,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Only persist and restore known wallet data (198083d1, @faustbrian)
+-   Only persist and restore known wallet data (198083d1, @faustbrian)
 
 ## 0.9.252 - 2020-08-10
 
 ### Fixed
 
-- **[ADA]** Add index.ts where needed (d5509434, @faustbrian)
+-   **[ADA]** Add index.ts where needed (d5509434, @faustbrian)
 
 ## 0.9.251 - 2020-08-10
 
