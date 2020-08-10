@@ -226,6 +226,28 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 		callback?: Function,
 	): Promise<DTO.SignedTransactionData> {
+		let address: string | undefined;
+
+		if (input.sign.mnemonic) {
+			address = await this.#identity.address().fromMnemonic(BIP39.normalize(input.sign.mnemonic));
+		}
+
+		if (input.sign.wif) {
+			address = await this.#identity.address().fromWIF(input.sign.wif);
+		}
+
+		if (!address) {
+			throw new Error(
+				`Failed to retrieve the nonce for the signatory wallet. Please provide one through the [input] parameter.`,
+			);
+		}
+
+		if (input.from !== address) {
+			throw new Error(
+				`Signatory should be [${input.from}] but is [${address}]. Please ensure that the expected and actual signatory match.`,
+			);
+		}
+
 		let transaction;
 
 		if (this.#magistrateBuilders[type]) {
@@ -237,22 +259,6 @@ export class TransactionService implements Contracts.TransactionService {
 		if (input.nonce) {
 			transaction.nonce(input.nonce);
 		} else {
-			let address: string | undefined;
-
-			if (input.sign.mnemonic) {
-				address = await this.#identity.address().fromMnemonic(BIP39.normalize(input.sign.mnemonic));
-			}
-
-			if (input.sign.wif) {
-				address = await this.#identity.address().fromWIF(input.sign.wif);
-			}
-
-			if (!address) {
-				throw new Error(
-					`Failed to retrieve the nonce for the signatory wallet. Please provide one through the [input] parameter.`,
-				);
-			}
-
 			const body: any = (await this.#http.get(`${this.#peer}/wallets/${address}`)).json();
 
 			transaction.nonce(BigNumber.make(body.data.nonce).plus(1).toFixed());

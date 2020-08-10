@@ -47,12 +47,12 @@ export class TransactionService implements Contracts.TransactionService {
 						name: "transfer",
 						authorization: [
 							{
-								actor: input.data.from,
+								actor: input.from,
 								permission: "active",
 							},
 						],
 						data: {
-							from: input.data.from,
+							from: input.from,
 							to: input.data.to,
 							quantity: "0.0001 TNT", // todo: use network specific token
 							memo: input.data.memo,
