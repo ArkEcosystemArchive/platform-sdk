@@ -3,9 +3,9 @@ import { Validator, ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
 import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../repositories/profile-repository";
-import { Validator as DataValidator } from "../services/validator";
 import { NetworkData } from "../wallets/network";
 import { container } from "./container";
+import { makeCoin } from "./container.helpers";
 import { Identifiers } from "./container.models";
 import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
 import { Migrator } from "./migrator";
@@ -74,12 +74,25 @@ export class Environment {
 		return container.get(Identifiers.AppData);
 	}
 
-	public dataValidator(): DataValidator {
-		return new DataValidator();
-	}
-
 	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
 		await container.get<Migrator>(Identifiers.Migrator).migrate(migrations, versionToMigrate);
+	}
+
+	/**
+	 * Creates an instance of a concrete coin implementation like ARK or BTC.
+	 *
+	 * The only times it should be used is when identity data has to be validated!
+	 *
+	 * It should never be used for anything else within ArkEcosystem products because
+	 * this package is responsible for abstracting all of the coin-specific interactions.
+	 *
+	 * @param {string} coin
+	 * @param {string} network
+	 * @returns {Promise<Coins.Coin>}
+	 * @memberof Environment
+	 */
+	public async coin(coin: string, network: string): Promise<Coins.Coin> {
+		return makeCoin(coin, network);
 	}
 
 	public availableNetworks(): NetworkData[] {
