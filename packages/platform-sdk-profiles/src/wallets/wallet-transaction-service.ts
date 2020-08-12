@@ -205,6 +205,12 @@ export class TransactionService {
 	private async signTransaction(type: string, input: any, options?: Contracts.TransactionOptions): Promise<string> {
 		const transaction: DTO.SignedTransactionData = await this.getService()[type](input, options);
 
+		if (this.#signed[transaction.id()] !== undefined) {
+			throw new Error(
+				`A transaction with the id [${transaction.id()}] already exists. Please ensure that you increase your nonce, and if applicable, set an explicit expiration.`,
+			);
+		}
+
 		this.#signed[transaction.id()] = transaction;
 
 		return transaction.id();
