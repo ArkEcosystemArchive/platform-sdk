@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.257 - 2020-08-10
+
+### Added
+
+-   Allow creation of coin instances (06a9c109, @faustbrian)
+
+### Fixed
+
+-   Throw an exception if the ID of a newly signed transaction is a duplicate (0f587089, @faustbrian)
+
 ## 0.9.255 - 2020-08-10
 
 ### Changed
