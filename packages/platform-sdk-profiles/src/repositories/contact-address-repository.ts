@@ -11,6 +11,14 @@ export class ContactAddressRepository {
 		return this.#data.all() as Record<string, ContactAddress>;
 	}
 
+	public first(): ContactAddress {
+		return this.#data.first();
+	}
+
+	public last(): ContactAddress {
+		return this.#data.last();
+	}
+
 	public keys(): string[] {
 		return this.#data.keys();
 	}

@@ -15,22 +15,30 @@ interface NotificationWithId extends Notification {
 }
 
 export class NotificationRepository {
-	#storage: DataRepository = new DataRepository();
+	#data: DataRepository = new DataRepository();
 
-	public all(): object {
-		return this.#storage.all();
+	public all(): Record<string, Notification> {
+		return this.#data.all() as Record<string, Notification>;
+	}
+
+	public first(): Notification {
+		return this.#data.first();
+	}
+
+	public last(): Notification {
+		return this.#data.last();
 	}
 
 	public keys(): string[] {
-		return this.#storage.keys();
+		return this.#data.keys();
 	}
 
 	public values(): Notification[] {
-		return this.#storage.values();
+		return this.#data.values();
 	}
 
 	public get(key: string): NotificationWithId {
-		const notification: NotificationWithId | undefined = this.#storage.get(key);
+		const notification: NotificationWithId | undefined = this.#data.get(key);
 
 		if (!notification) {
 			throw new Error(`Failed to find a notification that matches [${key}].`);
@@ -42,27 +50,27 @@ export class NotificationRepository {
 	public push(value: Notification): NotificationWithId {
 		const id: string = uuidv4();
 
-		this.#storage.set(id, { id, ...value });
+		this.#data.set(id, { id, ...value });
 
 		return this.get(id);
 	}
 
 	public fill(entries: object): void {
-		this.#storage.fill(entries);
+		this.#data.fill(entries);
 	}
 
 	public has(key: string): boolean {
-		return this.#storage.has(key);
+		return this.#data.has(key);
 	}
 
 	public forget(key: string): void {
 		this.get(key);
 
-		this.#storage.forget(key);
+		this.#data.forget(key);
 	}
 
 	public flush(): void {
-		this.#storage.flush();
+		this.#data.flush();
 	}
 
 	public count(): number {

@@ -19,6 +19,14 @@ export class WalletRepository {
 		return this.#data.all() as Record<string, Wallet>;
 	}
 
+	public first(): Wallet {
+		return this.#data.first();
+	}
+
+	public last(): Wallet {
+		return this.#data.last();
+	}
+
 	public allByCoin(): Record<string, Record<string, Wallet>> {
 		const result = {};
 
