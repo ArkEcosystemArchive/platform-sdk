@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.259 - 2020-08-14
+
+### Added
+
+-   Implement `Environment#registerCoin` (a09c7162, @faustbrian)
+-   Implement `DataRepository#first` and `DataRepository#last` (323b92cb, @faustbrian)
+
 ## 0.9.257 - 2020-08-10
 
 ### Added
