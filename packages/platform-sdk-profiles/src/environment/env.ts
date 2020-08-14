@@ -95,6 +95,21 @@ export class Environment {
 		return makeCoin(coin, network);
 	}
 
+	/**
+	 * Register a new coin implementation by its ticker, for example ARK or BTC.
+	 *
+	 * @param {string} coin
+	 * @param {Coins.CoinSpec} spec
+	 * @memberof Environment
+	 */
+	public registerCoin(coin: string, spec: Coins.CoinSpec): void {
+		if (container.get<CoinList>(Identifiers.Coins)[coin]) {
+			throw new Error(`The coin [${coin}] is already registered.`);
+		}
+
+		container.get<CoinList>(Identifiers.Coins)[coin] = spec;
+	}
+
 	public availableNetworks(): NetworkData[] {
 		const coins: CoinList = container.get<CoinList>(Identifiers.Coins);
 
