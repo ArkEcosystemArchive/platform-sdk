@@ -8,6 +8,14 @@ export class DataRepository {
 		return this.#storage;
 	}
 
+	public first<T>(): T {
+		return this.values()[0] as T;
+	}
+
+	public last<T>(): T {
+		return this.values()[this.count() - 1] as T;
+	}
+
 	public keys(): string[] {
 		return Object.keys(this.#storage);
 	}

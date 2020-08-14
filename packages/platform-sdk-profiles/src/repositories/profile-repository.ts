@@ -37,6 +37,14 @@ export class ProfileRepository {
 		return this.#data.all() as Record<string, Profile>;
 	}
 
+	public first(): Profile {
+		return this.#data.first();
+	}
+
+	public last(): Profile {
+		return this.#data.last();
+	}
+
 	public keys(): string[] {
 		return this.#data.keys();
 	}

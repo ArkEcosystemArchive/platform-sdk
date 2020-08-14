@@ -1,36 +1,36 @@
 import { DataRepository } from "./data-repository";
 
 export class SettingRepository {
-	#storage: DataRepository;
+	#data: DataRepository;
 	#allowedKeys: string[];
 
 	public constructor(allowedKeys: string[]) {
-		this.#storage = new DataRepository();
+		this.#data = new DataRepository();
 		this.#allowedKeys = allowedKeys;
 	}
 
 	public all(): object {
-		return this.#storage.all();
+		return this.#data.all();
 	}
 
 	public keys(): object {
-		return this.#storage.keys();
+		return this.#data.keys();
 	}
 
 	public values(): object {
-		return this.#storage.values();
+		return this.#data.values();
 	}
 
 	public get<T>(key: string, defaultValue?: T): T | undefined {
 		this.assertValidKey(key);
 
-		return this.#storage.get(key, defaultValue);
+		return this.#data.get(key, defaultValue);
 	}
 
 	public set(key: string, value: string | number | boolean | object): void {
 		this.assertValidKey(key);
 
-		this.#storage.set(key, value);
+		this.#data.set(key, value);
 	}
 
 	public fill(entries: object): void {
@@ -42,17 +42,17 @@ export class SettingRepository {
 	public has(key: string): boolean {
 		this.assertValidKey(key);
 
-		return this.#storage.has(key);
+		return this.#data.has(key);
 	}
 
 	public forget(key: string): void {
 		this.assertValidKey(key);
 
-		this.#storage.forget(key);
+		this.#data.forget(key);
 	}
 
 	public flush(): void {
-		this.#storage.flush();
+		this.#data.flush();
 	}
 
 	private assertValidKey(key: string): void {

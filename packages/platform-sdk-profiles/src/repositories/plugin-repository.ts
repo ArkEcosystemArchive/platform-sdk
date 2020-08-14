@@ -24,6 +24,14 @@ export class PluginRepository {
 		return this.#data.all() as Record<string, Plugin>;
 	}
 
+	public first(): Plugin {
+		return this.#data.first();
+	}
+
+	public last(): Plugin {
+		return this.#data.last();
+	}
+
 	public keys(): string[] {
 		return this.#data.keys();
 	}
