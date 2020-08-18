@@ -111,6 +111,18 @@ export class TransactionService {
 		return this.signTransaction("entityUpdate", input, options);
 	}
 
+	public transaction(id: string): DTO.SignedTransactionData {
+		if (this.hasBeenSigned(id)) {
+			return this.#signed[id];
+		}
+
+		if (this.hasBeenBroadcasted(id)) {
+			return this.#broadcasted[id];
+		}
+
+		throw new Error(`Transaction [{$id}] has not been signed or broadcasted.`);
+	}
+
 	public signed(): SignedTransactionDataDictionary {
 		return this.#signed;
 	}
