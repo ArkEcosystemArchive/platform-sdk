@@ -7,6 +7,10 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		throw new Exceptions.NotImplemented(this.constructor.name, "id");
 	}
 
+	public blockId(): string | undefined {
+		return undefined;
+	}
+
 	public timestamp(): DateTime | undefined {
 		throw new Exceptions.NotImplemented(this.constructor.name, "timestamp");
 	}

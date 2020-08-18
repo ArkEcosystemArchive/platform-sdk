@@ -42,6 +42,8 @@ export abstract class AbstractTransactionData {
 
 	abstract id(): string;
 
+	public abstract blockId(): string | undefined;
+
 	public type(): string {
 		for (const [type, method] of Object.entries(this.#types)) {
 			if (this[method]()) {

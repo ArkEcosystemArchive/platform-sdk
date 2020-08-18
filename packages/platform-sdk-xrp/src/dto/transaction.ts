@@ -8,6 +8,10 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.id;
 	}
 
+	public blockId(): string | undefined {
+		return undefined;
+	}
+
 	public timestamp(): DateTime | undefined {
 		if (!this.data.outcome.timestamp) {
 			return undefined;

@@ -24,6 +24,10 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.id;
 	}
 
+	public blockId(): string | undefined {
+		return this.data.blockId;
+	}
+
 	public timestamp(): DateTime | undefined {
 		// TODO: use a genesis timestamp that matches the network
 		return DateTime.make("2016-05-24T17:00:00.000Z").addSeconds(this.data.timestamp);

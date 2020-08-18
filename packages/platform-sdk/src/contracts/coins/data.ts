@@ -65,6 +65,8 @@ export type TransactionDataMeta = string | number | boolean | undefined;
 export interface TransactionData {
 	id(): string;
 
+	blockId(): string | undefined;
+
 	type(): string;
 
 	timestamp(): DateTime | undefined;
