@@ -84,6 +84,10 @@ export const createTransactionDataWithType = (transaction: unknown, dtos: Record
 		return new dtos.VoteData(transaction);
 	}
 
+	if (instance.isUnvote()) {
+		return new dtos.VoteData(transaction);
+	}
+
 	return instance;
 };
 
