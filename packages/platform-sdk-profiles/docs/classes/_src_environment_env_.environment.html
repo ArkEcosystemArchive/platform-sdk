@@ -93,12 +93,13 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_environment_env_.environment.html#availablenetworks" class="tsd-kind-icon">available<wbr>Networks</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_environment_env_.environment.html#boot" class="tsd-kind-icon">boot</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_environment_env_.environment.html#bootfromobject" class="tsd-kind-icon">boot<wbr>From<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_environment_env_.environment.html#coin" class="tsd-kind-icon">coin</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_environment_env_.environment.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_environment_env_.environment.html#datavalidator" class="tsd-kind-icon">data<wbr>Validator</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_environment_env_.environment.html#migrate" class="tsd-kind-icon">migrate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_environment_env_.environment.html#persist" class="tsd-kind-icon">persist</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_environment_env_.environment.html#profiles" class="tsd-kind-icon">profiles</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_src_environment_env_.environment.html#registerbindings" class="tsd-kind-icon">register<wbr>Bindings</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_environment_env_.environment.html#registercoin" class="tsd-kind-icon">register<wbr>Coin</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_src_environment_env_.environment.html#restoredata" class="tsd-kind-icon">restore<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_src_environment_env_.environment.html#validatestorage" class="tsd-kind-icon">validate<wbr>Storage</a></li>
 							</ul>
@@ -118,7 +119,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/85c349f1/packages/platform-sdk-profiles/src/environment/env.ts#L14">src/environment/env.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L14">src/environment/env.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -144,7 +145,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/85c349f1/packages/platform-sdk-profiles/src/environment/env.ts#L85">src/environment/env.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L113">src/environment/env.ts:113</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_src_wallets_network_.networkdata.html" class="tsd-signature-type">NetworkData</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -161,7 +162,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/85c349f1/packages/platform-sdk-profiles/src/environment/env.ts#L28">src/environment/env.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L28">src/environment/env.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -190,7 +191,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/85c349f1/packages/platform-sdk-profiles/src/environment/env.ts#L46">src/environment/env.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L46">src/environment/env.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -225,6 +226,45 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="coin" class="tsd-anchor"></a>
+					<h3>coin</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">coin<span class="tsd-signature-symbol">(</span>coin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, network<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Coin</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L94">src/environment/env.ts:94</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an instance of a concrete coin implementation like ARK or BTC.</p>
+								</div>
+								<p>The only times it should be used is when identity data has to be validated!</p>
+								<p>It should never be used for anything else within ArkEcosystem products because
+								this package is responsible for abstracting all of the coin-specific interactions.</p>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>Environment</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>coin: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>network: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Coin</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="data" class="tsd-anchor"></a>
 					<h3>data</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -234,27 +274,10 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/85c349f1/packages/platform-sdk-profiles/src/environment/env.ts#L73">src/environment/env.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L73">src/environment/env.ts:73</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_src_repositories_data_repository_.datarepository.html" class="tsd-signature-type">DataRepository</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="datavalidator" class="tsd-anchor"></a>
-					<h3>data<wbr>Validator</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">data<wbr>Validator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">DataValidator</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/85c349f1/packages/platform-sdk-profiles/src/environment/env.ts#L77">src/environment/env.ts:77</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">DataValidator</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -268,7 +291,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/85c349f1/packages/platform-sdk-profiles/src/environment/env.ts#L81">src/environment/env.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L77">src/environment/env.ts:77</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -294,7 +317,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/85c349f1/packages/platform-sdk-profiles/src/environment/env.ts#L61">src/environment/env.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L61">src/environment/env.ts:61</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -323,7 +346,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/85c349f1/packages/platform-sdk-profiles/src/environment/env.ts#L69">src/environment/env.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L69">src/environment/env.ts:69</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_src_repositories_profile_repository_.profilerepository.html" class="tsd-signature-type">ProfileRepository</a></h4>
@@ -340,13 +363,49 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/85c349f1/packages/platform-sdk-profiles/src/environment/env.ts#L101">src/environment/env.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L129">src/environment/env.ts:129</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>options: <a href="../interfaces/_src_environment_env_models_.environmentoptions.html" class="tsd-signature-type">EnvironmentOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="registercoin" class="tsd-anchor"></a>
+					<h3>register<wbr>Coin</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">register<wbr>Coin<span class="tsd-signature-symbol">(</span>coin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, spec<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CoinSpec</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L105">src/environment/env.ts:105</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Register a new coin implementation by its ticker, for example ARK or BTC.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>Environment</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>coin: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>spec: <span class="tsd-signature-type">CoinSpec</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -363,7 +422,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/85c349f1/packages/platform-sdk-profiles/src/environment/env.ts#L223">src/environment/env.ts:223</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L251">src/environment/env.ts:251</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -394,7 +453,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/85c349f1/packages/platform-sdk-profiles/src/environment/env.ts#L114">src/environment/env.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/d5d984f2/packages/platform-sdk-profiles/src/environment/env.ts#L142">src/environment/env.ts:142</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -448,10 +507,10 @@
 								<a href="_src_environment_env_.environment.html#bootfromobject" class="tsd-kind-icon">boot<wbr>From<wbr>Object</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_src_environment_env_.environment.html#data" class="tsd-kind-icon">data</a>
+								<a href="_src_environment_env_.environment.html#coin" class="tsd-kind-icon">coin</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_src_environment_env_.environment.html#datavalidator" class="tsd-kind-icon">data<wbr>Validator</a>
+								<a href="_src_environment_env_.environment.html#data" class="tsd-kind-icon">data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_environment_env_.environment.html#migrate" class="tsd-kind-icon">migrate</a>
@@ -464,6 +523,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_src_environment_env_.environment.html#registerbindings" class="tsd-kind-icon">register<wbr>Bindings</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_environment_env_.environment.html#registercoin" class="tsd-kind-icon">register<wbr>Coin</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_src_environment_env_.environment.html#restoredata" class="tsd-kind-icon">restore<wbr>Data</a>
