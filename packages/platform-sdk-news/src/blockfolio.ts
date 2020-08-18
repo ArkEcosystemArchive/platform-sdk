@@ -9,11 +9,12 @@ export class Blockfolio {
 		this.#httpClient = httpClient;
 	}
 
-	public async findByCoin(coin: string, page = 1): Promise<BlockfolioResponse> {
+	public async findByCoin(
+		coin: string,
+		query: { page?: number; query?: string; category?: string } = {},
+	): Promise<BlockfolioResponse> {
 		const { data, meta }: any = (
-			await this.#httpClient.get(`https://platform.ark.io/api/coins/${coin}/signals`, {
-				page,
-			})
+			await this.#httpClient.get(`https://platform.ark.io/api/coins/${coin}/signals`, query)
 		).json();
 
 		return { data, meta };
