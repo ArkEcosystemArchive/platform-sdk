@@ -15,6 +15,7 @@ export abstract class AbstractTransactionData {
 	readonly #meta: Record<string, TransactionDataMeta> = {};
 
 	readonly #types = {
+		// Core
 		transfer: "isTransfer",
 		secondSignature: "isSecondSignature",
 		delegateRegistration: "isDelegateRegistration",
@@ -27,15 +28,31 @@ export abstract class AbstractTransactionData {
 		htlcLock: "isHtlcLock",
 		htlcClaim: "isHtlcClaim",
 		htlcRefund: "isHtlcRefund",
-		businessRegistration: "isBusinessRegistration",
-		businessResignation: "isBusinessResignation",
-		businessUpdate: "isBusinessUpdate",
-		bridgechainRegistration: "isBridgechainRegistration",
-		bridgechainResignation: "isBridgechainResignation",
-		bridgechainUpdate: "isBridgechainUpdate",
+		// Magistrate
 		entityRegistration: "isEntityRegistration",
 		entityResignation: "isEntityResignation",
 		entityUpdate: "isEntityUpdate",
+		businessEntityRegistration: "isBusinessEntityRegistration",
+		businessEntityResignation: "isBusinessEntityResignation",
+		businessEntityUpdate: "isBusinessEntityUpdate",
+		developerEntityRegistration: "isDeveloperEntityRegistration",
+		developerEntityResignation: "isDeveloperEntityResignation",
+		developerEntityUpdate: "isDeveloperEntityUpdate",
+		corePluginEntityRegistration: "isCorePluginEntityRegistration",
+		corePluginEntityResignation: "isCorePluginEntityResignation",
+		corePluginEntityUpdate: "isCorePluginEntityUpdate",
+		desktopPluginEntityRegistration: "isDesktopPluginEntityRegistration",
+		desktopPluginEntityResignation: "isDesktopPluginEntityResignation",
+		desktopPluginEntityUpdate: "isDesktopPluginEntityUpdate",
+		delegateEntityRegistration: "isDelegateEntityRegistration",
+		delegateEntityResignation: "isDelegateEntityResignation",
+		delegateEntityUpdate: "isDelegateEntityUpdate",
+		legacyBusinessRegistration: "isLegacyBusinessRegistration",
+		legacyBusinessResignation: "isLegacyBusinessResignation",
+		legacyBusinessUpdate: "isLegacyBusinessUpdate",
+		legacyBridgechainRegistration: "isLegacyBridgechainRegistration",
+		legacyBridgechainResignation: "isLegacyBridgechainResignation",
+		legacyBridgechainUpdate: "isLegacyBridgechainUpdate",
 	};
 
 	public constructor(protected readonly data: KeyValuePair) {}
@@ -102,23 +119,53 @@ export abstract class AbstractTransactionData {
 
 	abstract isHtlcRefund(): boolean;
 
-	abstract isBusinessRegistration(): boolean;
-
-	abstract isBusinessResignation(): boolean;
-
-	abstract isBusinessUpdate(): boolean;
-
-	abstract isBridgechainRegistration(): boolean;
-
-	abstract isBridgechainResignation(): boolean;
-
-	abstract isBridgechainUpdate(): boolean;
-
 	abstract isEntityRegistration(): boolean;
 
 	abstract isEntityResignation(): boolean;
 
 	abstract isEntityUpdate(): boolean;
+
+	abstract isBusinessEntityRegistration(): boolean;
+
+	abstract isBusinessEntityResignation(): boolean;
+
+	abstract isBusinessEntityUpdate(): boolean;
+
+	abstract isDeveloperEntityRegistration(): boolean;
+
+	abstract isDeveloperEntityResignation(): boolean;
+
+	abstract isDeveloperEntityUpdate(): boolean;
+
+	abstract isCorePluginEntityRegistration(): boolean;
+
+	abstract isCorePluginEntityResignation(): boolean;
+
+	abstract isCorePluginEntityUpdate(): boolean;
+
+	abstract isDesktopPluginEntityRegistration(): boolean;
+
+	abstract isDesktopPluginEntityResignation(): boolean;
+
+	abstract isDesktopPluginEntityUpdate(): boolean;
+
+	abstract isDelegateEntityRegistration(): boolean;
+
+	abstract isDelegateEntityResignation(): boolean;
+
+	abstract isDelegateEntityUpdate(): boolean;
+
+	abstract isLegacyBusinessRegistration(): boolean;
+
+	abstract isLegacyBusinessResignation(): boolean;
+
+	abstract isLegacyBusinessUpdate(): boolean;
+
+	abstract isLegacyBridgechainRegistration(): boolean;
+
+	abstract isLegacyBridgechainResignation(): boolean;
+
+	abstract isLegacyBridgechainUpdate(): boolean;
 
 	public toObject(): KeyValuePair {
 		return {

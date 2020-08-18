@@ -2,7 +2,7 @@ import {
 	Builders as MagistrateBuilders,
 	Transactions as MagistrateTransactions,
 } from "@arkecosystem/core-magistrate-crypto";
-import { EntityAction, EntitySubType, EntityType } from "@arkecosystem/core-magistrate-crypto/dist/enums";
+import { Enums } from "@arkecosystem/core-magistrate-crypto";
 import { Managers, Transactions } from "@arkecosystem/crypto";
 import { Coins, Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
@@ -182,9 +182,9 @@ export class TransactionService implements Contracts.TransactionService {
 	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("entityRegistration", input, options, ({ transaction, data }) =>
 			transaction.asset({
-				type: EntityType[ucfirst(data.type)],
-				subType: EntitySubType[ucfirst(data.subType)] || EntitySubType.None,
-				action: EntityAction.Register,
+				type: Enums.EntityType[ucfirst(data.type)],
+				subType: Enums.EntitySubType[ucfirst(data.subType)] || Enums.EntitySubType.None,
+				action: Enums.EntityAction.Register,
 				data: { name: data.name, ipfsData: data.ipfs },
 			}),
 		);
@@ -196,9 +196,9 @@ export class TransactionService implements Contracts.TransactionService {
 	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("entityResignation", input, options, ({ transaction, data }) => {
 			transaction.asset({
-				type: EntityType[ucfirst(data.type)],
-				subType: EntitySubType[ucfirst(data.subType)] || EntitySubType.None,
-				action: EntityAction.Resign,
+				type: Enums.EntityType[ucfirst(data.type)],
+				subType: Enums.EntitySubType[ucfirst(data.subType)] || Enums.EntitySubType.None,
+				action: Enums.EntityAction.Resign,
 				registrationId: data.registrationId,
 				data: {},
 			});
@@ -211,9 +211,9 @@ export class TransactionService implements Contracts.TransactionService {
 	): Promise<DTO.SignedTransactionData> {
 		return this.createFromData("entityUpdate", input, options, ({ transaction, data }) =>
 			transaction.asset({
-				type: EntityType[ucfirst(data.type)],
-				subType: EntitySubType[ucfirst(data.subType)] || EntitySubType.None,
-				action: EntityAction.Update,
+				type: Enums.EntityType[ucfirst(data.type)],
+				subType: Enums.EntitySubType[ucfirst(data.subType)] || Enums.EntitySubType.None,
+				action: Enums.EntityAction.Update,
 				registrationId: data.registrationId,
 				data: { name: data.name, ipfsData: data.ipfs },
 			}),

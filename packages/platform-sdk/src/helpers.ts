@@ -4,27 +4,27 @@ import { MetaPagination, TransactionDataType } from "./contracts";
 export const createTransactionDataWithType = (transaction: unknown, dtos: Record<string, any>): TransactionDataType => {
 	const instance: TransactionDataType = new dtos.TransactionData(transaction);
 
-	if (instance.isBridgechainRegistration()) {
+	if (instance.isLegacyBridgechainRegistration()) {
 		return new dtos.BridgechainRegistrationData(transaction);
 	}
 
-	if (instance.isBridgechainResignation()) {
+	if (instance.isLegacyBridgechainResignation()) {
 		return new dtos.BridgechainResignationData(transaction);
 	}
 
-	if (instance.isBridgechainUpdate()) {
+	if (instance.isLegacyBridgechainUpdate()) {
 		return new dtos.BridgechainUpdateData(transaction);
 	}
 
-	if (instance.isBusinessRegistration()) {
+	if (instance.isLegacyBusinessRegistration()) {
 		return new dtos.BusinessRegistrationData(transaction);
 	}
 
-	if (instance.isBusinessResignation()) {
+	if (instance.isLegacyBusinessResignation()) {
 		return new dtos.BusinessResignationData(transaction);
 	}
 
-	if (instance.isBusinessUpdate()) {
+	if (instance.isLegacyBusinessUpdate()) {
 		return new dtos.BusinessUpdateData(transaction);
 	}
 

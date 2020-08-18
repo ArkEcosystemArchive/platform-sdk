@@ -117,23 +117,53 @@ export interface TransactionData {
 
 	isHtlcRefund(): boolean;
 
-	isBusinessRegistration(): boolean;
-
-	isBusinessResignation(): boolean;
-
-	isBusinessUpdate(): boolean;
-
-	isBridgechainRegistration(): boolean;
-
-	isBridgechainResignation(): boolean;
-
-	isBridgechainUpdate(): boolean;
-
 	isEntityRegistration(): boolean;
 
 	isEntityResignation(): boolean;
 
 	isEntityUpdate(): boolean;
+
+	isBusinessEntityRegistration(): boolean;
+
+	isBusinessEntityResignation(): boolean;
+
+	isBusinessEntityUpdate(): boolean;
+
+	isDeveloperEntityRegistration(): boolean;
+
+	isDeveloperEntityResignation(): boolean;
+
+	isDeveloperEntityUpdate(): boolean;
+
+	isCorePluginEntityRegistration(): boolean;
+
+	isCorePluginEntityResignation(): boolean;
+
+	isCorePluginEntityUpdate(): boolean;
+
+	isDesktopPluginEntityRegistration(): boolean;
+
+	isDesktopPluginEntityResignation(): boolean;
+
+	isDesktopPluginEntityUpdate(): boolean;
+
+	isDelegateEntityRegistration(): boolean;
+
+	isDelegateEntityResignation(): boolean;
+
+	isDelegateEntityUpdate(): boolean;
+
+	isLegacyBusinessRegistration(): boolean;
+
+	isLegacyBusinessResignation(): boolean;
+
+	isLegacyBusinessUpdate(): boolean;
+
+	isLegacyBridgechainRegistration(): boolean;
+
+	isLegacyBridgechainResignation(): boolean;
+
+	isLegacyBridgechainUpdate(): boolean;
 
 	toObject(): KeyValuePair;
 

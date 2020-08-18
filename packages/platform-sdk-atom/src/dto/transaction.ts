@@ -117,30 +117,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return false;
 	}
 
-	public isBusinessRegistration(): boolean {
-		return false;
-	}
-
-	public isBusinessResignation(): boolean {
-		return false;
-	}
-
-	public isBusinessUpdate(): boolean {
-		return false;
-	}
-
-	public isBridgechainRegistration(): boolean {
-		return false;
-	}
-
-	public isBridgechainResignation(): boolean {
-		return false;
-	}
-
-	public isBridgechainUpdate(): boolean {
-		return false;
-	}
-
 	public isEntityRegistration(): boolean {
 		return false;
 	}
@@ -150,6 +126,90 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isEntityUpdate(): boolean {
+		return false;
+	}
+
+	public isBusinessEntityRegistration(): boolean {
+		return false;
+	}
+
+	public isBusinessEntityResignation(): boolean {
+		return false;
+	}
+
+	public isBusinessEntityUpdate(): boolean {
+		return false;
+	}
+
+	public isDeveloperEntityRegistration(): boolean {
+		return false;
+	}
+
+	public isDeveloperEntityResignation(): boolean {
+		return false;
+	}
+
+	public isDeveloperEntityUpdate(): boolean {
+		return false;
+	}
+
+	public isCorePluginEntityRegistration(): boolean {
+		return false;
+	}
+
+	public isCorePluginEntityResignation(): boolean {
+		return false;
+	}
+
+	public isCorePluginEntityUpdate(): boolean {
+		return false;
+	}
+
+	public isDesktopPluginEntityRegistration(): boolean {
+		return false;
+	}
+
+	public isDesktopPluginEntityResignation(): boolean {
+		return false;
+	}
+
+	public isDesktopPluginEntityUpdate(): boolean {
+		return false;
+	}
+
+	public isDelegateEntityRegistration(): boolean {
+		return false;
+	}
+
+	public isDelegateEntityResignation(): boolean {
+		return false;
+	}
+
+	public isDelegateEntityUpdate(): boolean {
+		return false;
+	}
+
+	public isLegacyBusinessRegistration(): boolean {
+		return false;
+	}
+
+	public isLegacyBusinessResignation(): boolean {
+		return false;
+	}
+
+	public isLegacyBusinessUpdate(): boolean {
+		return false;
+	}
+
+	public isLegacyBridgechainRegistration(): boolean {
+		return false;
+	}
+
+	public isLegacyBridgechainResignation(): boolean {
+		return false;
+	}
+
+	public isLegacyBridgechainUpdate(): boolean {
 		return false;
 	}
 }
