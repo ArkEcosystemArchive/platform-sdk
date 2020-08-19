@@ -108,7 +108,7 @@ export class ClientService implements Contracts.ClientService {
 		return (await this.get("status")).syncing === false;
 	}
 
-	public async broadcast(transactions: DTO.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

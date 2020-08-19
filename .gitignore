@@ -47,6 +47,7 @@ dist
 
 # Microsoft Visual Studio settings
 .vs
+.vscode
 
 # Databases
 *.sqlite
@@ -54,3 +55,6 @@ dist
 # Environment
 .env
 env.json
+
+# Yarn
+.yarn/sdks/**

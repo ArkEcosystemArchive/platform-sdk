@@ -1,7 +1,6 @@
 import { TransactionDataCollection, WalletDataCollection } from "../../coins";
-import { SignedTransactionData } from "../../dto";
 import { KeyValuePair } from "../types";
-import { TransactionData, WalletData } from "./data";
+import { SignedTransactionData, TransactionData, WalletData } from "./data";
 
 export type ClientPaginatorCursor = string | number | undefined;
 

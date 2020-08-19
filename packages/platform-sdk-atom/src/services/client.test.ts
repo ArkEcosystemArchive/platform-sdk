@@ -1,12 +1,11 @@
 import "jest-extended";
 
-import { DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
-import { TransactionData, WalletData } from "../dto";
+import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 
 let subject: ClientService;
@@ -92,7 +91,7 @@ describe("ClientService", function () {
 	});
 
 	describe("#broadcast", () => {
-		const transactionPayload = new DTO.SignedTransactionData("id", {
+		const transactionPayload = new SignedTransactionData("id", {
 			msg: [
 				{
 					type: "cosmos-sdk/MsgSend",

@@ -333,3 +333,18 @@ export type TransactionDataType =
 	| VoteData;
 
 export type TransactionDataTypeCollection = TransactionDataType[];
+
+export interface SignedTransactionData {
+	id(): string;
+	data(): any;
+
+	sender(): string;
+	recipient(): string;
+	amount(): BigNumber;
+	fee(): BigNumber;
+
+	get<T = string>(key: string): T;
+
+	toString(): string;
+	toObject(): { id: string; sender: string; recipient: string; amount: string; data: any };
+}

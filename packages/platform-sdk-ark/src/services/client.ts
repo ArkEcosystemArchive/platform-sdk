@@ -102,10 +102,10 @@ export class ClientService implements Contracts.ClientService {
 		return body.data.syncing;
 	}
 
-	public async broadcast(transactions: DTO.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const { data, errors } = await this.post("transactions", {
 			body: {
-				transactions: transactions.map((transaction: DTO.SignedTransactionData) => transaction.data()),
+				transactions: transactions.map((transaction: Contracts.SignedTransactionData) => transaction.data()),
 			},
 		});
 
