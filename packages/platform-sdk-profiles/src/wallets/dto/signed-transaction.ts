@@ -1,4 +1,3 @@
-import { Identities } from "@arkecosystem/crypto";
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
