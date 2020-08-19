@@ -7,7 +7,7 @@ import WebSocket from "ws";
 
 import fixtures from "../../test/fixtures/services/rippled";
 import { createConfig } from "../../test/helpers";
-import { TransactionData, WalletData } from "../dto";
+import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 
 let subject: ClientService;
@@ -140,7 +140,7 @@ describe("ClientService", function () {
 	});
 
 	describe("#broadcast", () => {
-		const transactionPayload = new DTO.SignedTransactionData(
+		const transactionPayload = new SignedTransactionData(
 			"id",
 			"12000322000000002400000017201B0086955468400000000000000C732102F89EAEC7667B30F33D0687BBA86C3FE2A08CCA40A9186C5BDE2DAA6FA97A37D87446304402207660BDEF67105CE1EBA9AD35DC7156BAB43FF1D47633199EE257D70B6B9AAFBF02207F5517BC8AEF2ADC1325897ECDBA8C673838048BCA62F4E98B252F19BE88796D770A726970706C652E636F6D81144FBFF73DA4ECF9B701940F27341FA8020C313443",
 		);

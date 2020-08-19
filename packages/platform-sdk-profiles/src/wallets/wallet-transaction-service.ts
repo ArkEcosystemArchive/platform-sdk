@@ -1,8 +1,9 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 
+import { SignedTransactionData } from "./dto/signed-transaction";
 import { WalletData } from "./wallet.models";
 
-type SignedTransactionDataDictionary = Record<string, DTO.SignedTransactionData>;
+type SignedTransactionDataDictionary = Record<string, Contracts.SignedTransactionData>;
 
 /**
  * @TODO
@@ -111,7 +112,7 @@ export class TransactionService {
 		return this.signTransaction("entityUpdate", input, options);
 	}
 
-	public transaction(id: string): DTO.SignedTransactionData {
+	public transaction(id: string): Contracts.SignedTransactionData {
 		if (this.hasBeenSigned(id)) {
 			return this.#signed[id];
 		}
@@ -140,7 +141,7 @@ export class TransactionService {
 	}
 
 	public async broadcast(ids: string[]): Promise<Contracts.BroadcastResponse> {
-		const broadcasting: DTO.SignedTransactionData[] = ids.map((id: string) => this.#signed[id]);
+		const broadcasting: Contracts.SignedTransactionData[] = ids.map((id: string) => this.#signed[id]);
 
 		const response: Contracts.BroadcastResponse = await this.#wallet.client().broadcast(broadcasting);
 
@@ -205,7 +206,15 @@ export class TransactionService {
 			const transactions = this.#wallet.data().get(storageKey, {});
 
 			for (const [id, transaction] of Object.entries(transactions)) {
-				storage[id] = new DTO.SignedTransactionData(id, transaction);
+				/**
+				 * @TODO
+				 *
+				 * Implement a SignedTransactionFactory which will allow us to restore
+				 * the transactions into their original coin-specific format.
+				 *
+				 * Not super urgent because the way it is consumed it's not an issue yet.
+				 */
+				storage[id] = new SignedTransactionData(id, transaction);
 			}
 		};
 
@@ -215,7 +224,7 @@ export class TransactionService {
 	}
 
 	private async signTransaction(type: string, input: any, options?: Contracts.TransactionOptions): Promise<string> {
-		const transaction: DTO.SignedTransactionData = await this.getService()[type](input, options);
+		const transaction: Contracts.SignedTransactionData = await this.getService()[type](input, options);
 
 		if (this.#signed[transaction.id()] !== undefined) {
 			throw new Error(

@@ -6,7 +6,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
-import { TransactionData, WalletData } from "../dto";
+import { TransactionData, WalletData, SignedTransactionData } from "../dto";
 import { ClientService } from "./client";
 
 let subject: ClientService;
@@ -62,7 +62,7 @@ describe("ClientService", function () {
 				.post("/api/btc/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
-			const result = await subject.broadcast([new DTO.SignedTransactionData("id", "transactionPayload")]);
+			const result = await subject.broadcast([new SignedTransactionData("id", "transactionPayload")]);
 
 			expect(result).toEqual({
 				accepted: ["id"],
@@ -76,7 +76,7 @@ describe("ClientService", function () {
 				.post("/api/btc/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
-			const result = await subject.broadcast([new DTO.SignedTransactionData("id", "transactionPayload")]);
+			const result = await subject.broadcast([new SignedTransactionData("id", "transactionPayload")]);
 
 			expect(result).toEqual({
 				accepted: [],

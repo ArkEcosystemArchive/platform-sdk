@@ -24,6 +24,8 @@ describe("TransactionService", () => {
 				},
 			});
 
+			console.log(result);
+
 			expect(result).toBeObject();
 		});
 	});

@@ -4,7 +4,7 @@ import { DTO } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
-import { TransactionData, WalletData } from "../dto";
+import { TransactionData, WalletData, SignedTransactionData } from "../dto";
 import { ClientService } from "./client";
 
 let subject: ClientService;
@@ -47,7 +47,7 @@ describe("ClientService", function () {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([
-				new DTO.SignedTransactionData(
+				new SignedTransactionData(
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`).txID,
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
 				),
@@ -66,7 +66,7 @@ describe("ClientService", function () {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const result = await subject.broadcast([
-				new DTO.SignedTransactionData(
+				new SignedTransactionData(
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`).txID,
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
 				),

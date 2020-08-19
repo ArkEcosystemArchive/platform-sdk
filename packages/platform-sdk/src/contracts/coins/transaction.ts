@@ -1,4 +1,4 @@
-import { SignedTransactionData } from "../../dto";
+import { SignedTransactionData } from "./data";
 
 export interface TransactionService {
 	destruct(): Promise<void>;

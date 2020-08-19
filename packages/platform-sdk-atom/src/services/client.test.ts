@@ -92,7 +92,7 @@ describe("ClientService", function () {
 	});
 
 	describe("#broadcast", () => {
-		const transactionPayload = new DTO.SignedTransactionData("id", {
+		const transactionPayload = new SignedTransactionData("id", {
 			msg: [
 				{
 					type: "cosmos-sdk/MsgSend",

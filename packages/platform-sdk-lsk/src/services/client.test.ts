@@ -4,7 +4,7 @@ import { DTO } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
-import { TransactionData, WalletData } from "../dto";
+import { TransactionData, WalletData, SignedTransactionData } from "../dto";
 import { ClientService } from "./client";
 
 let subject: ClientService;
@@ -90,7 +90,7 @@ describe("ClientService", function () {
 	});
 
 	describe("#broadcast", () => {
-		const transactionPayload = new DTO.SignedTransactionData("5961193224963457718", {
+		const transactionPayload = new SignedTransactionData("5961193224963457718", {
 			id: "5961193224963457718",
 			amount: "1",
 			type: 0,
