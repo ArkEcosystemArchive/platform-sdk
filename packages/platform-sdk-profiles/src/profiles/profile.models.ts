@@ -10,7 +10,7 @@ export interface ProfileStruct {
 
 export enum ProfileSetting {
 	AdvancedMode = "ADVANCED_MODE",
-	AutomaticLogoffPeriod = "AUTOMATIC_LOGOFF_PERIOD",
+	AutomaticSignOutPeriod = "AUTOMATIC_SIGN_OUT_PERIOD",
 	Avatar = "AVATAR",
 	Bip39Locale = "BIP39_LOCALE",
 	CacheLedgerWallets = "CACHE_LEDGER_WALLETS",
