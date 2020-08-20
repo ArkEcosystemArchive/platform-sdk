@@ -9,8 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
--   implement `RegistrationAggregate` for profile (7a273851, @faustbrian)
--
+-   Implement `RegistrationAggregate` for profile (7a273851, @faustbrian)
 
 ## 0.9.267 - 2020-08-19
 
