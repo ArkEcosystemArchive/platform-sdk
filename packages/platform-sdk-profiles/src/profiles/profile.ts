@@ -12,6 +12,7 @@ import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
 import { Avatar } from "../services/avatar";
 import { CountAggregate } from "./aggregates/count-aggregate";
+import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
@@ -28,6 +29,7 @@ export class Profile {
 	#walletRepository: WalletRepository;
 
 	#countAggregate: CountAggregate;
+	#registrationAggregate: RegistrationAggregate;
 	#transactionAggregate: TransactionAggregate;
 	#walletAggregate: WalletAggregate;
 
@@ -41,6 +43,7 @@ export class Profile {
 		this.#walletRepository = new WalletRepository(this);
 
 		this.#countAggregate = new CountAggregate(this);
+		this.#registrationAggregate = new RegistrationAggregate(this);
 		this.#transactionAggregate = new TransactionAggregate(this);
 		this.#walletAggregate = new WalletAggregate(this);
 	}
@@ -123,6 +126,10 @@ export class Profile {
 
 	public countAggregate(): CountAggregate {
 		return this.#countAggregate;
+	}
+
+	public registrationAggregate(): RegistrationAggregate {
+		return this.#registrationAggregate;
 	}
 
 	public transactionAggregate(): TransactionAggregate {

@@ -2,11 +2,11 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { makeCoin } from "../environment/container.helpers";
-import { RegistrationAggregate } from "../profiles/aggregates/registration-aggregate";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
+import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { DelegateMapper } from "./mappers/delegate-mapper";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
