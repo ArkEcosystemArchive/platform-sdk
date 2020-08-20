@@ -87,10 +87,10 @@ export class RegistrationAggregate {
 				};
 
 				if (lastResponse && lastResponse.hasMorePages()) {
-					return resolve(syncedWallet.transactions({ cursor: lastResponse.nextPage(), ...query }));
+					return resolve(syncedWallet.client().transactions({ cursor: lastResponse.nextPage(), ...query }));
 				}
 
-				return resolve(syncedWallet.transactions(query));
+				return resolve(syncedWallet.client().transactions(query));
 			});
 		}
 
