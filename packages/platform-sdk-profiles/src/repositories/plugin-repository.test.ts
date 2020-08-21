@@ -13,7 +13,7 @@ const stubPlugin = {
 	version: "1.0.0",
 	isEnabled: true,
 	permissions: ["something"],
-	urls: "https://google.com",
+	urls: ["https://google.com"],
 };
 
 let subject: PluginRepository;
