@@ -7,7 +7,14 @@ import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { PluginRepository } from "./plugin-repository";
 
-const stubPlugin = { id: 1, name: "@hello/world" };
+const stubPlugin = {
+	id: 1,
+	name: "@hello/world",
+	version: "1.0.0",
+	isEnabled: true,
+	permissions: ["something"],
+	urls: "https://google.com",
+};
 
 let subject: PluginRepository;
 

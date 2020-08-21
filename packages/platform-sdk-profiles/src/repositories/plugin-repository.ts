@@ -4,10 +4,13 @@ import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { DataRepository } from "./data-repository";
 
-// TODO: this is a placeholder interface
 interface Plugin {
 	id: number;
 	name: string;
+	version: string;
+	isEnabled: boolean;
+	permissions: string[];
+	urls: string[];
 }
 
 export class PluginRepository {
@@ -76,6 +79,10 @@ export class PluginRepository {
 
 	public blacklist(): Set<number> {
 		return this.#blacklist;
+	}
+
+	public isBlacklisted(id: number): boolean {
+		return this.#blacklist.has(id);
 	}
 
 	public registry(): PluginRegistry {
