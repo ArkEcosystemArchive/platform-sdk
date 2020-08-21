@@ -6,20 +6,26 @@ import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
-import { RegistrationAggregate } from "./aggregates/registration-aggregate";
+import { EntityRegistrationAggregate } from "./aggregates/entity-registration-aggregate";
+import { EntityResignationAggregate } from "./aggregates/entity-resignation-aggregate";
+import { EntityUpdateAggregate } from "./aggregates/entity-update-aggregate";
 import { DelegateMapper } from "./mappers/delegate-mapper";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 
 export class Wallet {
-	#dataRepository!: DataRepository;
-	#settingRepository!: SettingRepository;
-	#transactionService!: TransactionService;
+	readonly #entityRegistrationAggregate: EntityRegistrationAggregate;
+	readonly #entityResignationAggregate: EntityResignationAggregate;
+	readonly #entityUpdateAggregate: EntityUpdateAggregate;
 
-	#profile!: Profile;
+	readonly #dataRepository: DataRepository;
+	readonly #settingRepository: SettingRepository;
+	readonly #transactionService: TransactionService;
 
-	#id!: string;
+	readonly #profile: Profile;
+
+	readonly #id: string;
 	#coin!: Coins.Coin;
 	#wallet: Contracts.WalletData | undefined;
 
@@ -33,6 +39,10 @@ export class Wallet {
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
+
+		this.#entityRegistrationAggregate = new EntityRegistrationAggregate(this);
+		this.#entityResignationAggregate = new EntityResignationAggregate(this);
+		this.#entityUpdateAggregate = new EntityUpdateAggregate(this);
 
 		this.restore();
 	}
@@ -357,8 +367,16 @@ export class Wallet {
 	 * These methods serve as helpers to aggregate commonly used data.
 	 */
 
-	public registrationAggregate(): RegistrationAggregate {
-		return new RegistrationAggregate(this);
+	public entityRegistrationAggregate(): EntityRegistrationAggregate {
+		return this.#entityRegistrationAggregate;
+	}
+
+	public entityResignationAggregate(): EntityResignationAggregate {
+		return this.#entityResignationAggregate;
+	}
+
+	public entityUpdateAggregate(): EntityUpdateAggregate {
+		return this.#entityUpdateAggregate;
 	}
 
 	/**

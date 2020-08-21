@@ -9,7 +9,7 @@ export * from "./environment/env";
 export * from "./environment/migrator";
 
 export * from "./profiles/aggregates/count-aggregate";
-export * from "./profiles/aggregates/registration-aggregate";
+export * from "./profiles/aggregates/entity-aggregate";
 export * from "./profiles/aggregates/transaction-aggregate";
 export * from "./profiles/aggregates/wallet-aggregate";
 export * from "./profiles/authenticator";
