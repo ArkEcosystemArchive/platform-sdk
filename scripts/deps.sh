@@ -3,6 +3,6 @@
 for dir in `find packages -mindepth 1 -maxdepth 1 -type d | sort -nr`; do
     cd $dir
     echo $PWD
-    npm-check-updates -u
+    yarn dlx npm-check-updates -u
     cd ../..
 done
