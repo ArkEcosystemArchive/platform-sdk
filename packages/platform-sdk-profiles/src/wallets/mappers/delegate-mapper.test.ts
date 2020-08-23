@@ -12,6 +12,7 @@ import { Profile } from "../../profiles/profile";
 import { ProfileSetting } from "../../profiles/profile.models";
 import { Wallet } from "../wallet";
 import { DelegateMapper } from "./delegate-mapper";
+import { CoinRepository } from "../../environment/coin-repository";
 
 let wallet: Wallet;
 
@@ -52,7 +53,8 @@ it("should map the public keys to read-only wallets", async () => {
 	const publicKeys = delegates.map((delegate) => delegate.publicKey);
 	const usernames = delegates.map((delegate) => delegate.usernames);
 
-	await wallet.syncDelegates();
+	const coins = new CoinRepository();
+	await coins.syncDelegates(wallet.coinId(), wallet.networkId());
 
 	const mappedDelegates = new DelegateMapper(wallet).map(publicKeys);
 

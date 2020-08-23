@@ -187,7 +187,6 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.data).toEqual({
 			BALANCE: "55827093444556",
 			BROADCASTED_TRANSACTIONS: {},
-			DELEGATES: [],
 			EXCHANGE_RATE: 0,
 			SEQUENCE: "111932",
 			SIGNED_TRANSACTIONS: {},
