@@ -187,7 +187,6 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.data).toEqual({
 			BALANCE: "55827093444556",
 			BROADCASTED_TRANSACTIONS: {},
-			DELEGATES: [],
 			EXCHANGE_RATE: 0,
 			SEQUENCE: "111932",
 			SIGNED_TRANSACTIONS: {},
@@ -209,13 +208,4 @@ it("should sync the exchange rate for ARK to BTC", async () => {
 	await subject.syncExchangeRate();
 
 	expect(subject.data().get(WalletData.ExchangeRate)).toBe(0.00005048);
-});
-
-it("should sync the delegates", async () => {
-	expect(subject.data().get(WalletData.Delegates)).toBeUndefined();
-
-	await subject.syncDelegates();
-
-	expect(subject.data().get(WalletData.Delegates)).toBeArray();
-	expect(subject.data().get(WalletData.Delegates)).toHaveLength(200);
 });

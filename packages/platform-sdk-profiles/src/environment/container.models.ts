@@ -1,6 +1,7 @@
 export const Identifiers = {
 	AppData: "Data<App>",
 	Coins: "Coins",
+	CoinRepository: "CoinRepository",
 	ContactRepository: "ContactRepository",
 	DataRepository: "DataRepository",
 	HttpClient: "HttpClient",

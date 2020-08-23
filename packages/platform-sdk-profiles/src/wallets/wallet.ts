@@ -205,7 +205,6 @@ export class Wallet implements ReadWriteWallet {
 			data: {
 				[WalletData.Balance]: this.balance().toFixed(),
 				[WalletData.BroadcastedTransactions]: this.data().get(WalletData.BroadcastedTransactions, []),
-				[WalletData.Delegates]: this.data().get(WalletData.Delegates, []),
 				[WalletData.ExchangeRate]: this.data().get(WalletData.ExchangeRate, 0),
 				[WalletData.Sequence]: this.nonce().toFixed(),
 				[WalletData.SignedTransactions]: this.data().get(WalletData.SignedTransactions, []),
@@ -271,6 +270,15 @@ export class Wallet implements ReadWriteWallet {
 	 *
 	 * Any changes in how things need to be handled by consumers should be made in this package!
 	 */
+
+	public coinId(): string {
+		// TODO: make this non-nullable
+		return this.manifest().get<string>("name")!;
+	}
+
+	public networkId(): string {
+		return this.network().id;
+	}
 
 	public manifest(): Coins.Manifest {
 		return this.#coin.manifest();
@@ -422,33 +430,6 @@ export class Wallet implements ReadWriteWallet {
 
 			this.#wallet = currentWallet;
 			this.#publicKey = currentPublicKey;
-		}
-	}
-
-	public async syncDelegates(): Promise<void> {
-		try {
-			let result: Contracts.WalletData[] = [];
-			let hasMore = true;
-			let page = 1;
-
-			while (hasMore) {
-				const response = await this.delegates({ page });
-
-				result = result.concat(response.items());
-
-				hasMore = response.hasMorePages();
-
-				page++;
-			}
-
-			this.data().set(
-				WalletData.Delegates,
-				result.map((delegate: Contracts.WalletData) => delegate.toObject()),
-			);
-		} catch {
-			if (this.data().has(WalletData.Delegates)) {
-				this.data().forget(WalletData.Delegates);
-			}
 		}
 	}
 

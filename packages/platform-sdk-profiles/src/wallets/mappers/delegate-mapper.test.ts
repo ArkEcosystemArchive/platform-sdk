@@ -12,6 +12,7 @@ import { Profile } from "../../profiles/profile";
 import { ProfileSetting } from "../../profiles/profile.models";
 import { Wallet } from "../wallet";
 import { DelegateMapper } from "./delegate-mapper";
+import { CoinRepository } from "../../environment/coin-repository";
 
 let wallet: Wallet;
 
@@ -37,6 +38,7 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
+	container.set(Identifiers.CoinRepository, new CoinRepository());
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK });
 
@@ -52,7 +54,7 @@ it("should map the public keys to read-only wallets", async () => {
 	const publicKeys = delegates.map((delegate) => delegate.publicKey);
 	const usernames = delegates.map((delegate) => delegate.usernames);
 
-	await wallet.syncDelegates();
+	await container.get<CoinRepository>(Identifiers.CoinRepository).syncDelegates(wallet.coinId(), wallet.networkId());
 
 	const mappedDelegates = new DelegateMapper(wallet).map(publicKeys);
 

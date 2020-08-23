@@ -1,15 +1,20 @@
+import { CoinRepository } from "../../environment/coin-repository";
+import { container } from "../../environment/container";
+import { Identifiers } from "../../environment/container.models";
 import { ReadOnlyWallet } from "../read-only-wallet";
-import { WalletData } from "../wallet.models";
+import { ReadWriteWallet } from "../wallet.models";
 
 export class DelegateMapper {
-	readonly #wallet;
+	readonly #wallet: ReadWriteWallet;
 
-	public constructor(wallet) {
+	public constructor(wallet: ReadWriteWallet) {
 		this.#wallet = wallet;
 	}
 
 	public map(publicKeys: string[]): ReadOnlyWallet[] {
-		const delegates: Record<string, string>[] = this.#wallet.data().get(WalletData.Delegates);
+		const delegates: Record<string, string>[] = container
+			.get<CoinRepository>(Identifiers.CoinRepository)
+			.delegates(this.#wallet.coinId(), this.#wallet.networkId());
 
 		return publicKeys
 			.map((publicKey: string) => {

@@ -4,6 +4,7 @@ import { Validator, ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { NetworkData } from "../wallets/network";
+import { CoinRepository } from "./coin-repository";
 import { container } from "./container";
 import { makeCoin } from "./container.helpers";
 import { Identifiers } from "./container.models";
@@ -64,6 +65,10 @@ export class Environment {
 		await storage.set("profiles", this.profiles().toObject());
 
 		await storage.set("data", this.data().all());
+	}
+
+	public coins(): CoinRepository {
+		return container.get(Identifiers.CoinRepository);
 	}
 
 	public profiles(): ProfileRepository {
@@ -135,6 +140,7 @@ export class Environment {
 		container.set(Identifiers.AppData, new DataRepository());
 		container.set(Identifiers.HttpClient, options.httpClient);
 		container.set(Identifiers.ProfileRepository, new ProfileRepository());
+		container.set(Identifiers.CoinRepository, new CoinRepository());
 
 		container.set(Identifiers.Coins, options.coins);
 	}
