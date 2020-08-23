@@ -89,6 +89,22 @@ describe("ClientService", function () {
 		});
 	});
 
+	describe("#votes", () => {
+		it("should succeed", async () => {
+			nock(/.+/)
+				.get("/api/votes")
+				.query(true)
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/votes.json`));
+
+			const result = await subject.votes("6566229458323231555L");
+
+			expect(result).toBeObject();
+			expect(result.used).toBe(101);
+			expect(result.available).toBe(0);
+			expect(result.publicKeys).toHaveLength(101);
+		});
+	});
+
 	describe("#broadcast", () => {
 		const transactionPayload = new SignedTransactionData("5961193224963457718", {
 			id: "5961193224963457718",

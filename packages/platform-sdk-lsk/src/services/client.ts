@@ -97,8 +97,14 @@ export class ClientService implements Contracts.ClientService {
 		);
 	}
 
-	public async votes(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
+	public async votes(id: string): Promise<Contracts.VoteReport> {
+		const { data } = await this.get("votes", { address: id, limit: 101 });
+
+		return {
+			used: data.votesUsed,
+			available: data.votesAvailable,
+			publicKeys: data.votes.map((vote: { publicKey: string }) => vote.publicKey),
+		};
 	}
 
 	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {

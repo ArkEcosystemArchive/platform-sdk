@@ -28,7 +28,8 @@ export interface ClientService {
 	delegate(id: string): Promise<WalletData>;
 	delegates(query?: ClientWalletsInput): Promise<WalletDataCollection>;
 
-	votes(id: string, query?: KeyValuePair): Promise<TransactionDataCollection>;
+	votes(id: string): Promise<VoteReport>;
+	// TODO: return struct like VoteReport
 	voters(id: string, query?: KeyValuePair): Promise<WalletDataCollection>;
 
 	syncing(): Promise<boolean>;
@@ -54,4 +55,11 @@ export interface ClientWalletsInput extends ClientPagination {
 	addresses?: string[];
 	publicKey?: string;
 	username?: string;
+}
+
+// TODO: move
+export interface VoteReport {
+	used: number;
+	available: number;
+	publicKeys: string[];
 }

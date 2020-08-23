@@ -208,6 +208,9 @@ export class Wallet implements ReadWriteWallet {
 				[WalletData.ExchangeRate]: this.data().get(WalletData.ExchangeRate, 0),
 				[WalletData.Sequence]: this.nonce().toFixed(),
 				[WalletData.SignedTransactions]: this.data().get(WalletData.SignedTransactions, []),
+				[WalletData.Votes]: this.data().get(WalletData.Votes, []),
+				[WalletData.VotesAvailable]: this.data().get(WalletData.VotesAvailable, 0),
+				[WalletData.VotesUsed]: this.data().get(WalletData.VotesUsed, 0),
 			},
 			settings: this.settings().all(),
 		};
@@ -364,10 +367,30 @@ export class Wallet implements ReadWriteWallet {
 		const votes: string[] | undefined = this.data().get<string[]>(WalletData.Votes);
 
 		if (votes === undefined) {
-			throw new Error("There are no votes. Please call [syncVotes] before accessing votes.");
+			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
 		}
 
 		return this.mapDelegates(votes);
+	}
+
+	public votesAvailable(): number {
+		const result: number | undefined = this.data().get<number>(WalletData.VotesAvailable);
+
+		if (result === undefined) {
+			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+		}
+
+		return result;
+	}
+
+	public votesUsed(): number {
+		const result: number | undefined = this.data().get<number>(WalletData.VotesUsed);
+
+		if (result === undefined) {
+			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+		}
+
+		return result;
 	}
 
 	public voters(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
@@ -435,15 +458,11 @@ export class Wallet implements ReadWriteWallet {
 
 	public async syncVotes(): Promise<void> {
 		try {
-			const response: Coins.TransactionDataCollection = await this.client().votes(this.address());
+			const { available, publicKeys, used } = await this.client().votes(this.address());
 
-			// @TODO
-			// This is currently ARK specific with a single vote.
-			// Check other coins for how they return their votes, especially multi ones like LSK.
-			// This data needs to be normalised on a per-coin basis.
-			// https://explorer.ark.io/api/wallets/AZLhZGvbqnv7FTgU1sQYbxC2gAv7GoP9Sr/votes
-			// https://testnet.lisk.io/api/votes?address=6365926013346518016L&limit=101
-			this.data().set(WalletData.Votes, (response.first() as Contracts.VoteData).votes());
+			this.data().set(WalletData.VotesAvailable, available);
+			this.data().set(WalletData.Votes, publicKeys);
+			this.data().set(WalletData.VotesUsed, used);
 		} catch {
 			if (this.data().has(WalletData.Votes)) {
 				this.data().forget(WalletData.Votes);

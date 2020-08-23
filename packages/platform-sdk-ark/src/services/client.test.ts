@@ -95,13 +95,15 @@ describe("ClientService", function () {
 	describe("#votes", () => {
 		it("should succeed", async () => {
 			nock(/.+/)
-				.get("/api/wallets/arkx/votes")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/votes.json`));
+				.get("/api/wallets/arkx")
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result = await subject.votes("arkx");
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(TransactionData);
+			expect(result.used).toBe(1);
+			expect(result.available).toBe(0);
+			expect(result.publicKeys).toHaveLength(1);
 		});
 	});
 
