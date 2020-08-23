@@ -1,13 +1,12 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Wallet } from "../../wallets/wallet";
+import { ProfileContract } from "../profile.models";
 
 export class WalletAggregate {
-	// @TODO: add typehint
-	readonly #profile;
+	readonly #profile: ProfileContract;
 
-	// @TODO: add typehint
-	public constructor(profile) {
+	public constructor(profile: ProfileContract) {
 		this.#profile = profile;
 	}
 

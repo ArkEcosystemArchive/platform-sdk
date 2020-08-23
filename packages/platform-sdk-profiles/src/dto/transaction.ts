@@ -2,14 +2,14 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { Wallet } from "../wallets/wallet";
+import { ReadWriteWallet } from "../wallets/wallet.models";
 
 export class TransactionData implements Contracts.TransactionData {
-	readonly #wallet: Wallet;
+	readonly #wallet: ReadWriteWallet;
 	readonly #coin: Coins.Coin;
 	readonly #data: Contracts.TransactionDataType;
 
-	public constructor(wallet: Wallet, data: Contracts.TransactionDataType) {
+	public constructor(wallet: ReadWriteWallet, data: Contracts.TransactionDataType) {
 		this.#wallet = wallet;
 		this.#coin = wallet.coin();
 		this.#data = data;
@@ -251,7 +251,7 @@ export class TransactionData implements Contracts.TransactionData {
 	 * in the Desktop and Mobile Wallet. Use them at your own risk in your own applications.
 	 */
 
-	public wallet(): Wallet {
+	public wallet(): ReadWriteWallet {
 		return this.#wallet;
 	}
 
