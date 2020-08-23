@@ -5,13 +5,13 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
-import { identity } from "../../../test/fixtures/identity";
-import { CoinRepository } from "../../environment/coin-repository";
-import { container } from "../../environment/container";
-import { Identifiers } from "../../environment/container.models";
-import { Profile } from "../../profiles/profile";
-import { ProfileSetting } from "../../profiles/profile.models";
-import { Wallet } from "../wallet";
+import { identity } from "../../test/fixtures/identity";
+import { CoinRepository } from "../environment/coin-repository";
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
+import { Profile } from "../profiles/profile";
+import { ProfileSetting } from "../profiles/profile.models";
+import { Wallet } from "../wallets/wallet";
 import { DelegateMapper } from "./delegate-mapper";
 
 let wallet: Wallet;

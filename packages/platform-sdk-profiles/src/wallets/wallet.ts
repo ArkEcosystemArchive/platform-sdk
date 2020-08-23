@@ -10,7 +10,7 @@ import { Avatar } from "../services/avatar";
 import { EntityRegistrationAggregate } from "./aggregates/entity-registration-aggregate";
 import { EntityResignationAggregate } from "./aggregates/entity-resignation-aggregate";
 import { EntityUpdateAggregate } from "./aggregates/entity-update-aggregate";
-import { DelegateMapper } from "./mappers/delegate-mapper";
+import { DelegateMapper } from "../mappers/delegate-mapper";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";

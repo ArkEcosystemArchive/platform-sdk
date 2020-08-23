@@ -1,7 +1,7 @@
-import { CoinRepository } from "../../environment/coin-repository";
-import { container } from "../../environment/container";
-import { Identifiers } from "../../environment/container.models";
-import { ReadOnlyWallet } from "../read-only-wallet";
+import { CoinRepository } from "../environment/coin-repository";
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
+import { ReadOnlyWallet } from "../wallets/read-only-wallet";
 
 export class DelegateMapper {
 	public static execute(coin: string, network: string, publicKeys: string[]): ReadOnlyWallet[] {

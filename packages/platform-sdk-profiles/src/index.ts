@@ -3,10 +3,13 @@ export * from "./contacts/contact-address";
 export * from "./contacts/contact.models";
 export * from "./contacts/contact";
 
+export * from "./environment/coin-repository";
 export * from "./environment/container.models";
 export * from "./environment/env.models";
 export * from "./environment/env";
 export * from "./environment/migrator";
+
+export * from "./mappers/delegate-mapper";
 
 export * from "./profiles/aggregates/count-aggregate";
 export * from "./profiles/aggregates/entity-aggregate";
