@@ -2,12 +2,16 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { Wallet } from "../wallets/wallet";
+
 export class TransactionData implements Contracts.TransactionData {
+	readonly #wallet: Wallet;
 	readonly #coin: Coins.Coin;
 	readonly #data: Contracts.TransactionDataType;
 
-	public constructor(coin: Coins.Coin, data: Contracts.TransactionDataType) {
-		this.#coin = coin;
+	public constructor(wallet: Wallet, data: Contracts.TransactionDataType) {
+		this.#wallet = wallet;
+		this.#coin = wallet.coin();
 		this.#data = data;
 	}
 
@@ -240,7 +244,18 @@ export class TransactionData implements Contracts.TransactionData {
 		return this.#data.setMeta(key, value);
 	}
 
-	protected coin(): Coins.Coin {
+	/**
+	 * These methods serve as helpers to quickly access entities related to the transaction.
+	 *
+	 * These are subject to be removed at any time due to them primarily existing for usage
+	 * in the Desktop and Mobile Wallet. Use them at your own risk in your own applications.
+	 */
+
+	public wallet(): Wallet {
+		return this.#wallet;
+	}
+
+	public coin(): Coins.Coin {
 		return this.#coin;
 	}
 

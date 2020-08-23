@@ -458,7 +458,7 @@ export class Wallet {
 			transaction.setMeta("publicKey", this.publicKey());
 		}
 
-		result.transform((transaction) => transformTransactionData(this.#coin, transaction));
+		result.transform((transaction) => transformTransactionData(this, transaction));
 
 		return result;
 	}

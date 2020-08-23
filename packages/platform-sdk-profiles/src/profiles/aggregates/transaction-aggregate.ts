@@ -85,7 +85,7 @@ export class TransactionAggregate {
 			}
 
 			for (const transaction of request.value.items()) {
-				result.push(transformTransactionData(this.getWallet(id).coin(), transaction));
+				result.push(transformTransactionData(this.getWallet(id), transaction));
 			}
 
 			this.#history[method][id] = request.value;

@@ -28,7 +28,7 @@ export class EntityAggregate {
 			senderPublicKey: this.#wallet.publicKey(),
 		});
 
-		result.transform((transaction) => transformTransactionData(this.#wallet.coin(), transaction));
+		result.transform((transaction) => transformTransactionData(this.#wallet, transaction));
 
 		return result;
 	}

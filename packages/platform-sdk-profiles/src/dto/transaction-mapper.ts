@@ -1,8 +1,9 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
 
+import { Wallet } from "../wallets/wallet";
 import { TransactionData } from "./transaction";
 
 export const transformTransactionData = (
-	coin: Coins.Coin,
+	wallet: Wallet,
 	transaction: Contracts.TransactionDataType,
-): Contracts.TransactionDataType => new TransactionData(coin, transaction);
+): Contracts.TransactionDataType => new TransactionData(wallet, transaction);
