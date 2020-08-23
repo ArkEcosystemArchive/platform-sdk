@@ -347,22 +347,6 @@ export class Wallet implements ReadWriteWallet {
 		return this.fetchTransaction({ recipientId: this.address(), ...query });
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
-		return this.#coin.client().wallet(id);
-	}
-
-	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
-		return this.#coin.client().wallets(query);
-	}
-
-	public async delegate(id: string): Promise<Contracts.WalletData> {
-		return this.#coin.client().delegate(id);
-	}
-
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		return this.#coin.client().delegates(query);
-	}
-
 	public votes(): ReadOnlyWallet[] {
 		const votes: string[] | undefined = this.data().get<string[]>(WalletData.Votes);
 
@@ -391,14 +375,6 @@ export class Wallet implements ReadWriteWallet {
 		}
 
 		return result;
-	}
-
-	public voters(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		return this.#coin.client().voters(this.address(), query);
-	}
-
-	public async syncing(): Promise<boolean> {
-		return this.#coin.client().syncing();
 	}
 
 	/**

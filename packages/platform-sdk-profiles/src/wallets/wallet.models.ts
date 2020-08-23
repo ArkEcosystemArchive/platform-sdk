@@ -100,13 +100,7 @@ export interface ReadWriteWallet {
 	transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection>;
 	sentTransactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection>;
 	receivedTransactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection>;
-	wallet(id: string): Promise<Contracts.WalletData>;
-	wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection>;
-	delegate(id: string): Promise<Contracts.WalletData>;
-	delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection>;
 	votes(): ReadOnlyWallet[];
-	voters(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection>;
-	syncing(): Promise<boolean>;
 	entityRegistrationAggregate(): EntityRegistrationAggregate;
 	entityResignationAggregate(): EntityResignationAggregate;
 	entityUpdateAggregate(): EntityUpdateAggregate;
