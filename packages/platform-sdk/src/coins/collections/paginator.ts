@@ -13,6 +13,14 @@ export abstract class Paginator<T> {
 		return this.#data;
 	}
 
+	public first(): T {
+		return this.#data[0];
+	}
+
+	public last(): T {
+		return this.#data.reverse()[0];
+	}
+
 	public previousPage(): ClientPaginatorCursor {
 		return this.#pagination.prev;
 	}

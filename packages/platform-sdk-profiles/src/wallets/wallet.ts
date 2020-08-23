@@ -352,8 +352,14 @@ export class Wallet implements ReadWriteWallet {
 		return this.#coin.client().delegates(query);
 	}
 
-	public votes(query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
-		return this.#coin.client().votes(this.address(), query);
+	public votes(): ReadOnlyWallet[] {
+		const votes: string[] | undefined = this.data().get<string[]>(WalletData.Votes);
+
+		if (votes === undefined) {
+			throw new Error("There are no votes. Please call [syncVotes] before accessing votes.");
+		}
+
+		return this.mapDelegates(votes);
 	}
 
 	public voters(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
@@ -442,6 +448,24 @@ export class Wallet implements ReadWriteWallet {
 		} catch {
 			if (this.data().has(WalletData.Delegates)) {
 				this.data().forget(WalletData.Delegates);
+			}
+		}
+	}
+
+	public async syncVotes(): Promise<void> {
+		try {
+			const response: Coins.TransactionDataCollection = await this.client().votes(this.address());
+
+			// @TODO
+			// This is currently ARK specific with a single vote.
+			// Check other coins for how they return their votes, especially multi ones like LSK.
+			// This data needs to be normalised on a per-coin basis.
+			// https://explorer.ark.io/api/wallets/AZLhZGvbqnv7FTgU1sQYbxC2gAv7GoP9Sr/votes
+			// https://testnet.lisk.io/api/votes?address=6365926013346518016L&limit=101
+			this.data().set(WalletData.Votes, (response.first() as Contracts.VoteData).votes());
+		} catch {
+			if (this.data().has(WalletData.Votes)) {
+				this.data().forget(WalletData.Votes);
 			}
 		}
 	}

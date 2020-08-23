@@ -47,6 +47,7 @@ export enum WalletData {
 	ExchangeRate = "EXCHANGE_RATE",
 	Sequence = "SEQUENCE",
 	SignedTransactions = "SIGNED_TRANSACTIONS",
+	Votes = "VOTES",
 }
 
 export enum WalletFlag {
@@ -99,7 +100,7 @@ export interface ReadWriteWallet {
 	wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection>;
 	delegate(id: string): Promise<Contracts.WalletData>;
 	delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection>;
-	votes(query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection>;
+	votes(): ReadOnlyWallet[];
 	voters(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection>;
 	syncing(): Promise<boolean>;
 	entityRegistrationAggregate(): EntityRegistrationAggregate;
@@ -108,5 +109,6 @@ export interface ReadWriteWallet {
 	mapDelegates(publicKeys: string[]): ReadOnlyWallet[];
 	syncIdentity(): Promise<void>;
 	syncDelegates(): Promise<void>;
+	syncVotes(): Promise<void>;
 	syncExchangeRate(): Promise<void>;
 }
