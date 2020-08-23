@@ -21,7 +21,12 @@ export class DelegateMapper {
 					return undefined;
 				}
 
-				return new ReadOnlyWallet({ address: delegate.address, publicKey, username: delegate.username });
+				return new ReadOnlyWallet({
+					address: delegate.address,
+					publicKey,
+					username: delegate.username,
+					rank: (delegate.rank as unknown) as number,
+				});
 			})
 			.filter(Boolean) as ReadOnlyWallet[];
 	}
