@@ -10,6 +10,7 @@ beforeEach(async () => {
 		address: identity.address,
 		publicKey: identity.publicKey,
 		username: "arkx",
+		rank: 1,
 	});
 });
 

@@ -25,7 +25,7 @@ export class DelegateMapper {
 					address: delegate.address,
 					publicKey,
 					username: delegate.username,
-					rank: delegate.rank,
+					rank: (delegate.rank as unknown) as number,
 				});
 			})
 			.filter(Boolean) as ReadOnlyWallet[];
