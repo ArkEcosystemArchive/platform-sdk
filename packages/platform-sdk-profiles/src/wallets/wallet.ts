@@ -352,8 +352,20 @@ export class Wallet implements ReadWriteWallet {
 		return this.#coin.client().delegates(query);
 	}
 
-	public votes(query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
-		return this.#coin.client().votes(this.address(), query);
+	public votes(): ReadOnlyWallet[] {
+		const votes = this.data().get<Contracts.VoteData[]>(WalletData.Votes);
+
+		if (votes === undefined) {
+			throw new Error("There are no votes. Please call [syncVotes] before accessing votes.");
+		}
+
+		let publicKeys: string[] = [];
+
+		for (const vote of votes) {
+			publicKeys = publicKeys.concat(vote.votes());
+		}
+
+		return this.mapDelegates(publicKeys);
 	}
 
 	public voters(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
@@ -442,6 +454,34 @@ export class Wallet implements ReadWriteWallet {
 		} catch {
 			if (this.data().has(WalletData.Delegates)) {
 				this.data().forget(WalletData.Delegates);
+			}
+		}
+	}
+
+	public async syncVotes(): Promise<void> {
+		try {
+			let result: Contracts.TransactionData[] = [];
+			let hasMore = true;
+			let page = 1;
+
+			while (hasMore) {
+				// TODO: limit this to active votes, currently maps all votes
+				const response = await this.client().votes(this.address(), { page });
+
+				result = result.concat(response.items());
+
+				hasMore = response.hasMorePages();
+
+				page++;
+			}
+
+			this.data().set(
+				WalletData.Votes,
+				result.map((vote: Contracts.TransactionData) => vote.toObject()),
+			);
+		} catch {
+			if (this.data().has(WalletData.Votes)) {
+				this.data().forget(WalletData.Votes);
 			}
 		}
 	}
