@@ -39,7 +39,7 @@ export class TransactionData implements Contracts.TransactionData {
 		return this.#data.recipient();
 	}
 
-	public recipients(): MultiPaymentRecipient[] {
+	public recipients(): Contracts.MultiPaymentRecipient[] {
 		return this.#data.recipients();
 	}
 
@@ -245,7 +245,7 @@ export class TransactionData implements Contracts.TransactionData {
 	}
 
 	protected data<T>(): T {
-		return this.#data as T;
+		return (this.#data as unknown) as T;
 	}
 }
 
