@@ -454,25 +454,10 @@ export class Wallet implements ReadWriteWallet {
 
 	public async syncVotes(): Promise<void> {
 		try {
-			let result: Contracts.VoteData[] = [];
-			let hasMore = true;
-			let page = 1;
+			const response: Coins.TransactionDataCollection = await this.client().votes(this.address());
 
-			while (hasMore) {
-				// TODO: limit this to active votes, currently maps all votes
-				const response = await this.client().votes(this.address(), { page });
-
-				result = result.concat(response.items() as Contracts.VoteData[]);
-
-				hasMore = response.hasMorePages();
-
-				page++;
-			}
-
-			this.data().set(
-				WalletData.Votes,
-				result.map((vote: Contracts.VoteData) => vote.votes()),
-			);
+			// TODO: This is currently ARK specific with a single vote. Check other coins for how they return their votes, especially multi ones like LSK.
+			this.data().set(WalletData.Votes, response.first().votes());
 		} catch {
 			if (this.data().has(WalletData.Votes)) {
 				this.data().forget(WalletData.Votes);
