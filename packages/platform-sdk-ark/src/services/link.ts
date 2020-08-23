@@ -16,14 +16,14 @@ export class LinkService implements Contracts.LinkService {
 	}
 
 	public block(id: string): string {
-		return `${this.#baseUrl}/blocks/${id}`;
+		return `${this.#baseUrl}blocks/${id}`;
 	}
 
 	public transaction(id: string): string {
-		return `${this.#baseUrl}/transactions/${id}`;
+		return `${this.#baseUrl}transactions/${id}`;
 	}
 
 	public wallet(id: string): string {
-		return `${this.#baseUrl}/wallets/${id}`;
+		return `${this.#baseUrl}wallets/${id}`;
 	}
 }
