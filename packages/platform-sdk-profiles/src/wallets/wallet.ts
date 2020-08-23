@@ -364,10 +364,30 @@ export class Wallet implements ReadWriteWallet {
 		const votes: string[] | undefined = this.data().get<string[]>(WalletData.Votes);
 
 		if (votes === undefined) {
-			throw new Error("There are no votes. Please call [syncVotes] before accessing votes.");
+			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
 		}
 
 		return this.mapDelegates(votes);
+	}
+
+	public votesAvailable(): number {
+		const result: number | undefined = this.data().get<number>(WalletData.VotesAvailable);
+
+		if (result === undefined) {
+			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+		}
+
+		return result;
+	}
+
+	public votesUsed(): number {
+		const result: number | undefined = this.data().get<number>(WalletData.VotesUsed);
+
+		if (result === undefined) {
+			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+		}
+
+		return result;
 	}
 
 	public voters(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
@@ -435,9 +455,11 @@ export class Wallet implements ReadWriteWallet {
 
 	public async syncVotes(): Promise<void> {
 		try {
-			const { publicKeys } = await this.client().votes(this.address());
+			const { available, publicKeys, used } = await this.client().votes(this.address());
 
+			this.data().set(WalletData.VotesAvailable, available);
 			this.data().set(WalletData.Votes, publicKeys);
+			this.data().set(WalletData.VotesUsed, used);
 		} catch {
 			if (this.data().has(WalletData.Votes)) {
 				this.data().forget(WalletData.Votes);
