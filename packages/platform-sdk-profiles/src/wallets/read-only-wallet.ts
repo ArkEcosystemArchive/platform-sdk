@@ -1,9 +1,16 @@
 import { Avatar } from "../services/avatar";
 
-export class ReadOnlyWallet {
-	readonly #wallet: { address: string; publicKey?: string; username?: string };
+interface ROWallet {
+	address: string;
+	publicKey?: string;
+	username?: string;
+	rank?: number;
+}
 
-	public constructor(wallet: { address: string; publicKey?: string; username?: string }) {
+export class ReadOnlyWallet {
+	readonly #wallet: ROWallet;
+
+	public constructor(wallet: ROWallet) {
 		this.#wallet = wallet;
 	}
 
@@ -17,6 +24,10 @@ export class ReadOnlyWallet {
 
 	public username(): string | undefined {
 		return this.#wallet.username;
+	}
+
+	public rank(): number | undefined {
+		return this.#wallet.rank;
 	}
 
 	public avatar(): string {
