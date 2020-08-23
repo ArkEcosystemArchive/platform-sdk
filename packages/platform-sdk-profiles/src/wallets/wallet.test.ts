@@ -190,6 +190,9 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 			EXCHANGE_RATE: 0,
 			SEQUENCE: "111932",
 			SIGNED_TRANSACTIONS: {},
+			VOTES: [],
+			VOTES_USED: 0,
+			VOTES_AVAILABLE: 0,
 		});
 		expect(actual.settings).toBeObject();
 		expect(actual.settings.AVATAR).toBeString();
