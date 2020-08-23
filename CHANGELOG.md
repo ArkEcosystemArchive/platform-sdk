@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.279 - 2020-08-23
+
+### Added
+
+-   Implement `CoinRepository` for direct coin interactions (7e5bac88, @faustbrian)
+-   Expose more voting information (3def136b, @faustbrian)
+
 ## 0.9.277 - 2020-08-23
 
 ### Changed
