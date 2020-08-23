@@ -1,5 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { transformTransactionData } from "../dto/transaction-mapper";
 
 import { makeCoin } from "../environment/container.helpers";
 import { Profile } from "../profiles/profile";
@@ -450,14 +451,16 @@ export class Wallet {
 	}
 
 	private async fetchTransaction(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const response = await this.#coin.client().transactions(query);
+		const result = await this.#coin.client().transactions(query);
 
-		for (const transaction of response.items()) {
+		for (const transaction of result.items()) {
 			transaction.setMeta("address", this.address());
 			transaction.setMeta("publicKey", this.publicKey());
 		}
 
-		return response;
+		result.transform((transaction) => transformTransactionData(this.#coin, transaction));
+
+		return result;
 	}
 
 	private restore(): void {
