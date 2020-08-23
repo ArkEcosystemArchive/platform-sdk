@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-ada",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.280",
+	"version": "0.9.285",
 	"contributors": [],
 	"license": "MIT",
 	"files": [

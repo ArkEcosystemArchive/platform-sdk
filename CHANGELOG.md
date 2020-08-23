@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.285 - 2020-08-23
+
+### Fixed
+
+-   Remove double slash from explorer links (b211d3f6, @faustbrian)
+
+### Added
+
+-   Implement `Wallet#canVote` (0ee97aa5, @faustbrian)
+-   Implement `TransactionData#total/convertedTotal` (628a664e, @faustbrian)
+
+### Changed
+
+-   Decouple `DelegateMapper` from `Wallet` (11620f26, @faustbrian)
+-   Remove extraneous `Wallet` methods (ae11ed1d, @faustbrian)
+
 ## 0.9.280 - 2020-08-23
 
 ### Fixed
