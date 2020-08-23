@@ -1,4 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { transformTransactionData } from "../../dto/transaction-mapper";
 
 import { promiseAllSettledByKey } from "../../helpers/promise";
 import { Wallet } from "../../wallets/wallet";
@@ -20,11 +21,15 @@ export class EntityAggregate {
 		entityAction: string,
 		query: Contracts.ClientPagination,
 	): Promise<Coins.TransactionDataCollection> {
-		return this.#wallet.client().transactions({
+		const result = this.#wallet.client().transactions({
 			...query,
 			entityType,
 			entityAction,
 			senderPublicKey: this.#wallet.publicKey(),
 		});
+
+		result.transform((transaction) => transformTransactionData(this.#wallet, transaction));
+
+		return result;
 	}
 }

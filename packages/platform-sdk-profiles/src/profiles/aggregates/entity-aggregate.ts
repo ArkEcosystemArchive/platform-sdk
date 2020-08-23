@@ -1,4 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { transformTransactionData } from "../../dto/transaction-mapper";
 
 import { promiseAllSettledByKey } from "../../helpers/promise";
 import { Wallet } from "../../wallets/wallet";
@@ -81,7 +82,7 @@ export class EntityAggregate {
 			}
 
 			for (const transaction of request.value.items()) {
-				result.push(transaction);
+				result.push(transformTransactionData(this.getWallet(id), transaction));
 			}
 
 			this.#history[historyKey][id] = request.value;
@@ -92,6 +93,10 @@ export class EntityAggregate {
 			self: undefined,
 			next: Number(this.hasMore(historyKey)),
 		});
+	}
+
+	private getWallet(id: string): Wallet {
+		return this.#profile.wallets().findById(id);
 	}
 
 	private getWallets(): Wallet[] {

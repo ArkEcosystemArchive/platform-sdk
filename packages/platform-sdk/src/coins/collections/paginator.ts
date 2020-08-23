@@ -36,4 +36,10 @@ export abstract class Paginator<T> {
 	public isNotEmpty(): boolean {
 		return !this.isEmpty();
 	}
+
+	public transform(callback: CallableFunction): void {
+		for (let i = 0; i < this.#data.length; i++) {
+			this.#data[i] = callback(this.#data[i]);
+		}
+	}
 }
