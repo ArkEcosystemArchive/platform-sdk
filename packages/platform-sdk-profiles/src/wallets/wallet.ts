@@ -370,7 +370,7 @@ export class Wallet implements ReadWriteWallet {
 			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
 		}
 
-		return this.mapDelegates(votes);
+		return DelegateMapper.execute(this.coinId(), this.networkId(), votes);
 	}
 
 	public votesAvailable(): number {
@@ -415,15 +415,6 @@ export class Wallet implements ReadWriteWallet {
 
 	public entityUpdateAggregate(): EntityUpdateAggregate {
 		return this.#entityUpdateAggregate;
-	}
-
-	/**
-	 * These methods serve as helpers to map wallet identifiers to various
-	 * wallet instances that expose information like an avatar or balances.
-	 */
-
-	public mapDelegates(publicKeys: string[]): ReadOnlyWallet[] {
-		return new DelegateMapper(this).map(publicKeys);
 	}
 
 	/**
@@ -482,7 +473,7 @@ export class Wallet implements ReadWriteWallet {
 			transaction.setMeta("publicKey", this.publicKey());
 		}
 
-		result.transform((transaction) => transformTransactionData(this, transaction));
+		result.transform((transaction: Contracts.TransactionDataType) => transformTransactionData(this, transaction));
 
 		return result;
 	}
