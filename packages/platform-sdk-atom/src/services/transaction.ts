@@ -1,9 +1,9 @@
 import { Coins, Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 
+import { SignedTransactionData } from "../dto";
 import { createSignedTransactionData } from "../utils/crypto";
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";
-import { SignedTransactionData } from "../dto";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #client;
@@ -39,7 +39,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 		return new SignedTransactionData(
 			// TODO: compute the ID
-			'dummy',
+			"dummy",
 			createSignedTransactionData(
 				{
 					msgs: [

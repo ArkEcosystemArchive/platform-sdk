@@ -3,8 +3,8 @@ import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { RippleAPI } from "ripple-lib";
 
-import { IdentityService } from "./identity";
 import { SignedTransactionData } from "../dto";
+import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #connection: RippleAPI;

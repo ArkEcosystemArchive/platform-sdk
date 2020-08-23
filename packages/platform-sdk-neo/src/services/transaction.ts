@@ -1,5 +1,6 @@
 import { Coins, Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { api, wallet } from "@cityofzion/neon-js";
+
 import { SignedTransactionData } from "../dto";
 
 export class TransactionService implements Contracts.TransactionService {

@@ -5,6 +5,7 @@ import { Api, JsonRpc } from "eosjs";
 import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
 import fetch from "node-fetch";
 import { TextDecoder, TextEncoder } from "util";
+
 import { SignedTransactionData } from "../dto";
 
 export class TransactionService implements Contracts.TransactionService {

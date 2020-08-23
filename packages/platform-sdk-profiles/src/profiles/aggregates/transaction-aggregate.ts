@@ -1,6 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { transformTransactionData } from "../../dto/transaction-mapper";
 
+import { transformTransactionData } from "../../dto/transaction-mapper";
 import { promiseAllSettledByKey } from "../../helpers/promise";
 import { Wallet } from "../../wallets/wallet";
 import { ProfileContract } from "../profile.models";

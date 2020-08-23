@@ -1,7 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { transformTransactionData } from "../dto/transaction-mapper";
 
+import { transformTransactionData } from "../dto/transaction-mapper";
 import { makeCoin } from "../environment/container.helpers";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";

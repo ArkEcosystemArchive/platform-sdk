@@ -10,7 +10,8 @@
 		"first": "/wallets/arkx/votes?transform=true&page=1&limit=100",
 		"last": "/wallets/arkx/votes?transform=true&page=1&limit=100"
 	},
-	"data": [{
+	"data": [
+		{
 			"id": "111a299df536b6abfd27f7615f971fb92d1e2171ca1a97f66fa688a00f69372c",
 			"blockId": "2701894269979940537",
 			"version": 1,

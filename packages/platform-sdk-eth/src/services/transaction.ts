@@ -3,8 +3,8 @@ import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import { Transaction } from "ethereumjs-tx";
 import Web3 from "web3";
 
-import { IdentityService } from "./identity";
 import { SignedTransactionData } from "../dto";
+import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #http: Contracts.HttpClient;
