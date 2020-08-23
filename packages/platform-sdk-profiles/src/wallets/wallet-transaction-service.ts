@@ -124,6 +124,10 @@ export class TransactionService {
 		throw new Error(`Transaction [{$id}] has not been signed or broadcasted.`);
 	}
 
+	public pending(): SignedTransactionDataDictionary {
+		return { ...this.signed(), ...this.broadcasted() };
+	}
+
 	public signed(): SignedTransactionDataDictionary {
 		return this.#signed;
 	}
@@ -141,7 +145,11 @@ export class TransactionService {
 	}
 
 	public async broadcast(ids: string[]): Promise<Contracts.BroadcastResponse> {
-		const broadcasting: Contracts.SignedTransactionData[] = ids.map((id: string) => this.#signed[id]);
+		const broadcasting: Contracts.SignedTransactionData[] = ids.map((id: string) => {
+			this.assertHasValidIdentifier(id);
+
+			return this.#signed[id];
+		});
 
 		const response: Contracts.BroadcastResponse = await this.#wallet.client().broadcast(broadcasting);
 
@@ -157,6 +165,8 @@ export class TransactionService {
 	}
 
 	public async confirm(id: string): Promise<boolean> {
+		this.assertHasValidIdentifier(id);
+
 		if (!this.isAwaitingConfirmation(id)) {
 			throw new Error(`Transaction [${id}] is not awaiting confirmation.`);
 		}
@@ -185,6 +195,8 @@ export class TransactionService {
 			const result: Record<string, object> = {};
 
 			for (const [id, transaction] of Object.entries(storage)) {
+				this.assertHasValidIdentifier(id);
+
 				result[id] = transaction;
 			}
 
@@ -206,6 +218,8 @@ export class TransactionService {
 			const transactions = this.#wallet.data().get(storageKey, {});
 
 			for (const [id, transaction] of Object.entries(transactions)) {
+				this.assertHasValidIdentifier(id);
+
 				/**
 				 * @TODO
 				 *
@@ -239,5 +253,11 @@ export class TransactionService {
 
 	private getService(): Contracts.TransactionService {
 		return this.#wallet.coin().transaction();
+	}
+
+	private assertHasValidIdentifier(id: string): void {
+		if (id === undefined) {
+			throw new Error("Encountered a malformed ID. This looks like a bug.");
+		}
 	}
 }
