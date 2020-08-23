@@ -7,7 +7,15 @@ export class CoinRepository {
 	readonly #dataRepository: DataRepository = new DataRepository();
 
 	public delegates(coin: string, network: string): any {
-		return this.#dataRepository.get(`${coin}.${network}.delegates`);
+		const delegates = this.#dataRepository.get(`${coin}.${network}.delegates`);
+
+		if (delegates === undefined) {
+			throw new Error(
+				`The delegates for [${coin}.${network}] have not been synchronized yet. Please call [syncDelegates] before using this method.`,
+			);
+		}
+
+		return delegates;
 	}
 
 	public async syncDelegates(coin: string, network: string): Promise<void> {

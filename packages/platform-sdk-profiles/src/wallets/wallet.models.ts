@@ -110,7 +110,6 @@ export interface ReadWriteWallet {
 	entityRegistrationAggregate(): EntityRegistrationAggregate;
 	entityResignationAggregate(): EntityResignationAggregate;
 	entityUpdateAggregate(): EntityUpdateAggregate;
-	mapDelegates(publicKeys: string[]): ReadOnlyWallet[];
 	syncIdentity(): Promise<void>;
 	syncVotes(): Promise<void>;
 	syncExchangeRate(): Promise<void>;

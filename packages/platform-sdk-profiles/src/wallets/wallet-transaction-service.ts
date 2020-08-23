@@ -1,7 +1,7 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 
 import { SignedTransactionData } from "./dto/signed-transaction";
-import { WalletData } from "./wallet.models";
+import { ReadWriteWallet, WalletData } from "./wallet.models";
 
 type SignedTransactionDataDictionary = Record<string, Contracts.SignedTransactionData>;
 
@@ -16,11 +16,11 @@ type SignedTransactionDataDictionary = Record<string, Contracts.SignedTransactio
  * some use an address, others a public key and again others a WIF.
  */
 export class TransactionService {
-	readonly #wallet;
+	readonly #wallet: ReadWriteWallet;
 	readonly #signed: SignedTransactionDataDictionary = {};
 	readonly #broadcasted: SignedTransactionDataDictionary = {};
 
-	public constructor(wallet) {
+	public constructor(wallet: ReadWriteWallet) {
 		this.#wallet = wallet;
 
 		this.restore();

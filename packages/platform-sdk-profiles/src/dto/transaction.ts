@@ -1,6 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { ReadOnlyWallet } from "../wallets/read-only-wallet";
 
 import { ReadWriteWallet } from "../wallets/wallet.models";
 
@@ -489,12 +490,10 @@ export class SecondSignatureData extends TransactionData implements Contracts.Se
 export class TransferData extends TransactionData implements Contracts.TransferData {}
 
 export class VoteData extends TransactionData implements Contracts.VoteData {
-	// TODO: map those to delegate wallets
 	public votes(): string[] {
 		return this.data<Contracts.VoteData>().votes();
 	}
 
-	// TODO: map those to delegate wallets
 	public unvotes(): string[] {
 		return this.data<Contracts.VoteData>().unvotes();
 	}

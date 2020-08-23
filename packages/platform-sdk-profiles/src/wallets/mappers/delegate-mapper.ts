@@ -2,19 +2,12 @@ import { CoinRepository } from "../../environment/coin-repository";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { ReadOnlyWallet } from "../read-only-wallet";
-import { ReadWriteWallet } from "../wallet.models";
 
 export class DelegateMapper {
-	readonly #wallet: ReadWriteWallet;
-
-	public constructor(wallet: ReadWriteWallet) {
-		this.#wallet = wallet;
-	}
-
-	public map(publicKeys: string[]): ReadOnlyWallet[] {
+	public static execute(coin: string, network: string, publicKeys: string[]): ReadOnlyWallet[] {
 		const delegates: Record<string, string>[] = container
 			.get<CoinRepository>(Identifiers.CoinRepository)
-			.delegates(this.#wallet.coinId(), this.#wallet.networkId());
+			.delegates(coin, network);
 
 		return publicKeys
 			.map((publicKey: string) => {
