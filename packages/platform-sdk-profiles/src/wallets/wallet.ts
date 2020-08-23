@@ -353,19 +353,13 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public votes(): ReadOnlyWallet[] {
-		const votes = this.data().get<Contracts.VoteData[]>(WalletData.Votes);
+		const votes: string[] | undefined = this.data().get<string[]>(WalletData.Votes);
 
 		if (votes === undefined) {
 			throw new Error("There are no votes. Please call [syncVotes] before accessing votes.");
 		}
 
-		let publicKeys: string[] = [];
-
-		for (const vote of votes) {
-			publicKeys = publicKeys.concat(vote.votes());
-		}
-
-		return this.mapDelegates(publicKeys);
+		return this.mapDelegates(votes);
 	}
 
 	public voters(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
@@ -460,7 +454,7 @@ export class Wallet implements ReadWriteWallet {
 
 	public async syncVotes(): Promise<void> {
 		try {
-			let result: Contracts.TransactionData[] = [];
+			let result: Contracts.VoteData[] = [];
 			let hasMore = true;
 			let page = 1;
 
@@ -468,7 +462,7 @@ export class Wallet implements ReadWriteWallet {
 				// TODO: limit this to active votes, currently maps all votes
 				const response = await this.client().votes(this.address(), { page });
 
-				result = result.concat(response.items());
+				result = result.concat(response.items() as Contracts.VoteData[]);
 
 				hasMore = response.hasMorePages();
 
@@ -477,7 +471,7 @@ export class Wallet implements ReadWriteWallet {
 
 			this.data().set(
 				WalletData.Votes,
-				result.map((vote: Contracts.TransactionData) => vote.toObject()),
+				result.map((vote: Contracts.VoteData) => vote.votes()),
 			);
 		} catch {
 			if (this.data().has(WalletData.Votes)) {
