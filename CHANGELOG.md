@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.277 - 2020-08-23
+
+### Changed
+
+-   Implement Profile and Wallet contracts (09aa999f, @faustbrian)
+
+### Added
+
+-   Add method to return all pending transactions (30cbaae3, @faustbrian)
+-   Implement TransactionData wrapper DTO (44529290, @faustbrian)
+-   Include rank in `ReadOnlyWallet` (acb5b030, @faustbrian)
+-   Implement vote syncing for wallets (b26f3d61, @faustbrian)
+
 ## 0.9.272 - 2020-08-21
 
 ### Added

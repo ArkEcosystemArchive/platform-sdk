@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-neo",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.272",
+	"version": "0.9.277",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
