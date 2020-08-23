@@ -456,8 +456,13 @@ export class Wallet implements ReadWriteWallet {
 		try {
 			const response: Coins.TransactionDataCollection = await this.client().votes(this.address());
 
-			// TODO: This is currently ARK specific with a single vote. Check other coins for how they return their votes, especially multi ones like LSK.
-			this.data().set(WalletData.Votes, response.first().votes());
+			// @TODO
+			// This is currently ARK specific with a single vote.
+			// Check other coins for how they return their votes, especially multi ones like LSK.
+			// This data needs to be normalised on a per-coin basis.
+			// https://explorer.ark.io/api/wallets/AZLhZGvbqnv7FTgU1sQYbxC2gAv7GoP9Sr/votes
+			// https://testnet.lisk.io/api/votes?address=6365926013346518016L&limit=101
+			this.data().set(WalletData.Votes, (response.first() as Contracts.VoteData).votes());
 		} catch {
 			if (this.data().has(WalletData.Votes)) {
 				this.data().forget(WalletData.Votes);
