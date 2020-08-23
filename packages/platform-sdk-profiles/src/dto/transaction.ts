@@ -1,11 +1,10 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { ReadOnlyWallet } from "../wallets/read-only-wallet";
 
-import { ReadWriteWallet } from "../wallets/wallet.models";
+import { ReadWriteWallet, WalletData } from "../wallets/wallet.models";
 
-export class TransactionData implements Contracts.TransactionData {
+export class TransactionData {
 	readonly #wallet: ReadWriteWallet;
 	readonly #coin: Coins.Coin;
 	readonly #data: Contracts.TransactionDataType;
@@ -220,8 +219,7 @@ export class TransactionData implements Contracts.TransactionData {
 		return this.#data.isLegacyBridgechainUpdate();
 	}
 
-	// This is a link for the explorer of the respective coin and network.
-	public link(): string {
+	public explorerLink(): string {
 		return this.#coin.link().transaction(this.id());
 	}
 
@@ -246,6 +244,24 @@ export class TransactionData implements Contracts.TransactionData {
 	}
 
 	/**
+	 * These methods serve as helpers to aggregate commonly used values.
+	 */
+
+	public total(): BigNumber {
+		return this.isSent() ? this.amount().plus(this.fee()) : this.amount();
+	}
+
+	public convertedTotal(): BigNumber {
+		const value: string | undefined = this.wallet().data().get(WalletData.ExchangeRate);
+
+		if (value === undefined) {
+			return BigNumber.ZERO;
+		}
+
+		return this.total().times(value);
+	}
+
+	/**
 	 * These methods serve as helpers to quickly access entities related to the transaction.
 	 *
 	 * These are subject to be removed at any time due to them primarily existing for usage
@@ -265,7 +281,7 @@ export class TransactionData implements Contracts.TransactionData {
 	}
 }
 
-export class BridgechainRegistrationData extends TransactionData implements Contracts.BridgechainRegistrationData {
+export class BridgechainRegistrationData extends TransactionData {
 	public name(): string {
 		return this.data<Contracts.BridgechainRegistrationData>().name();
 	}
@@ -291,13 +307,13 @@ export class BridgechainRegistrationData extends TransactionData implements Cont
 	}
 }
 
-export class BridgechainResignationData extends TransactionData implements Contracts.BridgechainResignationData {
+export class BridgechainResignationData extends TransactionData {
 	public bridgechainId(): string {
 		return this.data<Contracts.BridgechainResignationData>().bridgechainId();
 	}
 }
 
-export class BridgechainUpdateData extends TransactionData implements Contracts.BridgechainUpdateData {
+export class BridgechainUpdateData extends TransactionData {
 	public name(): string {
 		return this.data<Contracts.BridgechainUpdateData>().name();
 	}
@@ -319,7 +335,7 @@ export class BridgechainUpdateData extends TransactionData implements Contracts.
 	}
 }
 
-export class BusinessRegistrationData extends TransactionData implements Contracts.BusinessRegistrationData {
+export class BusinessRegistrationData extends TransactionData {
 	public name(): string {
 		return this.data<Contracts.BusinessRegistrationData>().name();
 	}
@@ -337,9 +353,9 @@ export class BusinessRegistrationData extends TransactionData implements Contrac
 	}
 }
 
-export class BusinessResignationData extends TransactionData implements Contracts.BusinessResignationData {}
+export class BusinessResignationData extends TransactionData {}
 
-export class BusinessUpdateData extends TransactionData implements Contracts.BusinessUpdateData {
+export class BusinessUpdateData extends TransactionData {
 	public name(): string {
 		return this.data<Contracts.BusinessUpdateData>().name();
 	}
@@ -357,15 +373,15 @@ export class BusinessUpdateData extends TransactionData implements Contracts.Bus
 	}
 }
 
-export class DelegateRegistrationData extends TransactionData implements Contracts.DelegateRegistrationData {
+export class DelegateRegistrationData extends TransactionData {
 	public username(): string {
 		return this.data<Contracts.DelegateRegistrationData>().username();
 	}
 }
 
-export class DelegateResignationData extends TransactionData implements Contracts.DelegateResignationData {}
+export class DelegateResignationData extends TransactionData {}
 
-export class EntityRegistrationData extends TransactionData implements Contracts.EntityRegistrationData {
+export class EntityRegistrationData extends TransactionData {
 	public entityType(): number {
 		return this.data<Contracts.EntityRegistrationData>().entityType();
 	}
@@ -387,7 +403,7 @@ export class EntityRegistrationData extends TransactionData implements Contracts
 	}
 }
 
-export class EntityResignationData extends TransactionData implements Contracts.EntityResignationData {
+export class EntityResignationData extends TransactionData {
 	public entityType(): number {
 		return this.data<Contracts.EntityResignationData>().entityType();
 	}
@@ -405,7 +421,7 @@ export class EntityResignationData extends TransactionData implements Contracts.
 	}
 }
 
-export class EntityUpdateData extends TransactionData implements Contracts.EntityUpdateData {
+export class EntityUpdateData extends TransactionData {
 	public entityType(): number {
 		return this.data<Contracts.EntityUpdateData>().entityType();
 	}
@@ -427,7 +443,7 @@ export class EntityUpdateData extends TransactionData implements Contracts.Entit
 	}
 }
 
-export class HtlcClaimData extends TransactionData implements Contracts.HtlcClaimData {
+export class HtlcClaimData extends TransactionData {
 	public lockTransactionId(): string {
 		return this.data<Contracts.HtlcClaimData>().lockTransactionId();
 	}
@@ -437,7 +453,7 @@ export class HtlcClaimData extends TransactionData implements Contracts.HtlcClai
 	}
 }
 
-export class HtlcLockData extends TransactionData implements Contracts.HtlcLockData {
+export class HtlcLockData extends TransactionData {
 	public secretHash(): string {
 		return this.data<Contracts.HtlcLockData>().secretHash();
 	}
@@ -451,26 +467,26 @@ export class HtlcLockData extends TransactionData implements Contracts.HtlcLockD
 	}
 }
 
-export class HtlcRefundData extends TransactionData implements Contracts.HtlcRefundData {
+export class HtlcRefundData extends TransactionData {
 	public lockTransactionId(): string {
 		return this.data<Contracts.HtlcRefundData>().lockTransactionId();
 	}
 }
 
-export class IpfsData extends TransactionData implements Contracts.IpfsData {
+export class IpfsData extends TransactionData {
 	public hash(): string {
 		return this.data<Contracts.IpfsData>().hash();
 	}
 }
 
-export class MultiPaymentData extends TransactionData implements Contracts.MultiPaymentData {
+export class MultiPaymentData extends TransactionData {
 	// TODO: expose read-only wallet instances
 	public payments(): { recipientId: string; amount: string }[] {
 		return this.data<Contracts.MultiPaymentData>().payments();
 	}
 }
 
-export class MultiSignatureData extends TransactionData implements Contracts.MultiSignatureData {
+export class MultiSignatureData extends TransactionData {
 	// TODO: expose read-only wallet instances
 	public publicKeys(): string[] {
 		return this.data<Contracts.MultiSignatureData>().publicKeys();
@@ -481,15 +497,15 @@ export class MultiSignatureData extends TransactionData implements Contracts.Mul
 	}
 }
 
-export class SecondSignatureData extends TransactionData implements Contracts.SecondSignatureData {
+export class SecondSignatureData extends TransactionData {
 	public secondPublicKey(): string {
 		return this.data<Contracts.SecondSignatureData>().secondPublicKey();
 	}
 }
 
-export class TransferData extends TransactionData implements Contracts.TransferData {}
+export class TransferData extends TransactionData {}
 
-export class VoteData extends TransactionData implements Contracts.VoteData {
+export class VoteData extends TransactionData {
 	public votes(): string[] {
 		return this.data<Contracts.VoteData>().votes();
 	}
