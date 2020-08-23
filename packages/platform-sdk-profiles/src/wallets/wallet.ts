@@ -402,6 +402,14 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	/**
+	 * These methods serve as helpers to determine if an action can be performed.
+	 */
+
+	public canVote(): boolean {
+		return this.votesAvailable() > 0;
+	}
+
+	/**
 	 * These methods serve as helpers to aggregate commonly used data.
 	 */
 
