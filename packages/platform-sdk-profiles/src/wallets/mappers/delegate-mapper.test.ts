@@ -38,6 +38,7 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
+	container.set(Identifiers.CoinRepository, new CoinRepository());
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK });
 
@@ -53,8 +54,7 @@ it("should map the public keys to read-only wallets", async () => {
 	const publicKeys = delegates.map((delegate) => delegate.publicKey);
 	const usernames = delegates.map((delegate) => delegate.usernames);
 
-	const coins = new CoinRepository();
-	await coins.syncDelegates(wallet.coinId(), wallet.networkId());
+	await container.get<CoinRepository>(Identifiers.CoinRepository).syncDelegates(wallet.coinId(), wallet.networkId());
 
 	const mappedDelegates = new DelegateMapper(wallet).map(publicKeys);
 
