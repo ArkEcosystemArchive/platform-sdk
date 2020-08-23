@@ -35,7 +35,7 @@ beforeAll(() => {
 beforeEach(() => (subject = new CoinRepository()));
 
 it("should sync the delegates", async () => {
-	expect(subject.delegates("ARK", "devnet")).toBeUndefined();
+	expect(() => subject.delegates("ARK", "devnet")).toThrowError("have not been synchronized yet");
 
 	await subject.syncDelegates("ARK", "devnet");
 
