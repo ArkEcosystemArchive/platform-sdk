@@ -62,7 +62,7 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
-	public async votes(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
+	public async votes(id: string): Promise<Contracts.VoteReport> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 

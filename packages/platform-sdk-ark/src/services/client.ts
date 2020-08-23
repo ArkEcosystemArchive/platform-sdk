@@ -77,14 +77,16 @@ export class ClientService implements Contracts.ClientService {
 		);
 	}
 
-	public async votes(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
-		const body = await this.get(`wallets/${id}/votes`, this.createSearchParams(query || {}));
+	public async votes(id: string): Promise<Contracts.VoteReport> {
+		const { data } = await this.get(`wallets/${id}`);
 
-		return Helpers.createTransactionDataCollectionWithType(
-			body.data,
-			this.createMetaPagination(body),
-			TransactionDTO,
-		);
+		const hasVoted = data.vote !== undefined;
+
+		return {
+			used: hasVoted ? 1 : 0,
+			available: hasVoted ? 0 : 1,
+			publicKeys: hasVoted ? [data.vote] : [],
+		};
 	}
 
 	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
