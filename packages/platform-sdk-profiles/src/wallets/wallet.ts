@@ -208,6 +208,9 @@ export class Wallet implements ReadWriteWallet {
 				[WalletData.ExchangeRate]: this.data().get(WalletData.ExchangeRate, 0),
 				[WalletData.Sequence]: this.nonce().toFixed(),
 				[WalletData.SignedTransactions]: this.data().get(WalletData.SignedTransactions, []),
+				[WalletData.Votes]: this.data().get(WalletData.Votes, []),
+				[WalletData.VotesAvailable]: this.data().get(WalletData.VotesAvailable, 0),
+				[WalletData.VotesUsed]: this.data().get(WalletData.VotesUsed, 0),
 			},
 			settings: this.settings().all(),
 		};
