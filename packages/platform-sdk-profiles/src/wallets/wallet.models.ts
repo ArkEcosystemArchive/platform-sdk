@@ -82,6 +82,8 @@ export interface ReadWriteWallet {
 	isSecondSignature(): boolean;
 	isStarred(): boolean;
 	toggleStarred(): void;
+	coinId(): string;
+	networkId(): string;
 	manifest(): Coins.Manifest;
 	config(): Coins.Config;
 	guard(): Coins.Guard;
@@ -108,7 +110,6 @@ export interface ReadWriteWallet {
 	entityUpdateAggregate(): EntityUpdateAggregate;
 	mapDelegates(publicKeys: string[]): ReadOnlyWallet[];
 	syncIdentity(): Promise<void>;
-	syncDelegates(): Promise<void>;
 	syncVotes(): Promise<void>;
 	syncExchangeRate(): Promise<void>;
 }

@@ -210,12 +210,3 @@ it("should sync the exchange rate for ARK to BTC", async () => {
 
 	expect(subject.data().get(WalletData.ExchangeRate)).toBe(0.00005048);
 });
-
-it("should sync the delegates", async () => {
-	expect(subject.data().get(WalletData.Delegates)).toBeUndefined();
-
-	await subject.syncDelegates();
-
-	expect(subject.data().get(WalletData.Delegates)).toBeArray();
-	expect(subject.data().get(WalletData.Delegates)).toHaveLength(200);
-});

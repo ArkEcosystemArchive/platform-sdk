@@ -69,7 +69,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		const body = await this.get("delegates", query);
+		const body = await this.get("delegates", this.createSearchParams(query || {}));
 
 		return new Coins.WalletDataCollection(
 			body.data.map((wallet) => new WalletData(wallet)),
@@ -78,7 +78,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async votes(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
-		const body = await this.get(`wallets/${id}/votes`, query);
+		const body = await this.get(`wallets/${id}/votes`, this.createSearchParams(query || {}));
 
 		return Helpers.createTransactionDataCollectionWithType(
 			body.data,
@@ -88,7 +88,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		const body = await this.get(`delegates/${id}/voters`, query);
+		const body = await this.get(`delegates/${id}/voters`, this.createSearchParams(query || {}));
 
 		return new Coins.WalletDataCollection(
 			body.data.map((wallet) => new WalletData(wallet)),
@@ -141,7 +141,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.get(`${this.#peer}/${path}`, query);
+		const response = await this.#http.get(`${this.#peer}/${path}`, query?.searchParams);
 
 		return response.json();
 	}
@@ -166,7 +166,11 @@ export class ClientService implements Contracts.ClientService {
 		};
 	}
 
-	private createSearchParams(body: Contracts.ClientPagination): { body: object; searchParams: object } {
+	private createSearchParams(body: Contracts.ClientPagination): { body: object | null; searchParams: object | null } {
+		if (Object.keys(body).length <= 0) {
+			return { body: null, searchParams: null };
+		}
+
 		const result: any = {
 			body,
 			searchParams: {},
