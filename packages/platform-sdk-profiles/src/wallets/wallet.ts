@@ -13,9 +13,9 @@ import { EntityUpdateAggregate } from "./aggregates/entity-update-aggregate";
 import { DelegateMapper } from "./mappers/delegate-mapper";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
-import { WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
+import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 
-export class Wallet {
+export class Wallet implements ReadWriteWallet {
 	readonly #entityRegistrationAggregate: EntityRegistrationAggregate;
 	readonly #entityResignationAggregate: EntityResignationAggregate;
 	readonly #entityUpdateAggregate: EntityUpdateAggregate;

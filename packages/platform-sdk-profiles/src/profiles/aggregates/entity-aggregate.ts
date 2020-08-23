@@ -3,18 +3,17 @@ import { transformTransactionData } from "../../dto/transaction-mapper";
 
 import { promiseAllSettledByKey } from "../../helpers/promise";
 import { Wallet } from "../../wallets/wallet";
+import { ProfileContract } from "../profile.models";
 
 type HistoryMethod = string;
 type HistoryWallet = Coins.TransactionDataCollection;
 
 export class EntityAggregate {
-	// @TODO: add typehint
-	readonly #profile;
+	readonly #profile: ProfileContract;
 
 	#history: Record<HistoryMethod, Record<string, HistoryWallet>> = {};
 
-	// @TODO: add typehint
-	public constructor(profile) {
+	public constructor(profile: ProfileContract) {
 		this.#profile = profile;
 	}
 

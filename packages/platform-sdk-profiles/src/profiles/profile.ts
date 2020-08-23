@@ -19,9 +19,9 @@ import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
-import { ProfileSetting, ProfileStruct } from "./profile.models";
+import { ProfileContract, ProfileSetting, ProfileStruct } from "./profile.models";
 
-export class Profile {
+export class Profile implements ProfileContract {
 	#id: string;
 
 	#contactRepository: ContactRepository;

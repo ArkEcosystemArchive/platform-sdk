@@ -1,9 +1,9 @@
-export class CountAggregate {
-	// @TODO: add typehint
-	readonly #profile;
+import { ProfileContract } from "../profile.models";
 
-	// @TODO: add typehint
-	public constructor(profile) {
+export class CountAggregate {
+	readonly #profile: ProfileContract;
+
+	public constructor(profile: ProfileContract) {
 		this.#profile = profile;
 	}
 

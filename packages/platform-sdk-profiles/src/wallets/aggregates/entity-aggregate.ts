@@ -1,18 +1,12 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+
 import { transformTransactionData } from "../../dto/transaction-mapper";
-
-import { promiseAllSettledByKey } from "../../helpers/promise";
-import { Wallet } from "../../wallets/wallet";
-
-type HistoryMethod = string;
-type HistoryWallet = Coins.TransactionDataCollection;
+import { ReadWriteWallet } from "../wallet.models";
 
 export class EntityAggregate {
-	// @TODO: add typehint
-	readonly #wallet;
+	readonly #wallet: ReadWriteWallet;
 
-	// @TODO: add typehint
-	public constructor(wallet) {
+	public constructor(wallet: ReadWriteWallet) {
 		this.#wallet = wallet;
 	}
 
@@ -21,8 +15,9 @@ export class EntityAggregate {
 		entityAction: string,
 		query: Contracts.ClientPagination,
 	): Promise<Coins.TransactionDataCollection> {
-		const result = this.#wallet.client().transactions({
+		const result = await this.#wallet.client().transactions({
 			...query,
+			// @ts-ignore - TODO: We need to expand the properties that are allowed to be passed to be transaction search methods.
 			entityType,
 			entityAction,
 			senderPublicKey: this.#wallet.publicKey(),
