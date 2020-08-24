@@ -35,6 +35,6 @@ export interface Storage {
 }
 
 export interface StorageData {
-	data: object;
-	profiles: object;
+	data: Record<string, unknown>;
+	profiles: Record<string, unknown>;
 }
