@@ -514,3 +514,25 @@ export class VoteData extends TransactionData {
 		return this.data<Contracts.VoteData>().unvotes();
 	}
 }
+
+export type ExtendedTransactionData =
+	| BridgechainRegistrationData
+	| BridgechainResignationData
+	| BridgechainUpdateData
+	| BusinessRegistrationData
+	| BusinessResignationData
+	| BusinessUpdateData
+	| DelegateRegistrationData
+	| DelegateResignationData
+	| EntityRegistrationData
+	| EntityResignationData
+	| EntityUpdateData
+	| HtlcClaimData
+	| HtlcLockData
+	| HtlcRefundData
+	| IpfsData
+	| MultiPaymentData
+	| MultiSignatureData
+	| SecondSignatureData
+	| TransferData
+	| VoteData;

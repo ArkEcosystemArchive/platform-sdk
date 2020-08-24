@@ -1,12 +1,14 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
-import { transformTransactionData } from "../../dto/transaction-mapper";
+import { ExtendedTransactionData } from "../../dto/transaction";
+import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
+import { transformTransactionData, transformTransactionDataCollection } from "../../dto/transaction-mapper";
 import { promiseAllSettledByKey } from "../../helpers/promise";
-import { Wallet } from "../../wallets/wallet";
+import { ReadWriteWallet } from "../../wallets/wallet.models";
 import { ProfileContract } from "../profile.models";
 
 type HistoryMethod = string;
-type HistoryWallet = Coins.TransactionDataCollection;
+type HistoryWallet = ExtendedTransactionDataCollection;
 
 export class EntityAggregate {
 	readonly #profile: ProfileContract;
@@ -31,14 +33,14 @@ export class EntityAggregate {
 		entityType: string,
 		entityAction: string,
 		query: Contracts.ClientPagination,
-	): Promise<Coins.TransactionDataCollection> {
+	): Promise<ExtendedTransactionDataCollection> {
 		const historyKey = `${entityType}.${entityAction}`;
 
 		if (!this.#history[historyKey]) {
 			this.#history[historyKey] = {};
 		}
 
-		const syncedWallets: Wallet[] = this.getWallets();
+		const syncedWallets: ReadWriteWallet[] = this.getWallets();
 
 		const requests: Record<string, Promise<Coins.TransactionDataCollection>> = {};
 
@@ -60,6 +62,7 @@ export class EntityAggregate {
 					senderPublicKey: syncedWallet.publicKey(),
 				};
 
+				let transactions;
 				if (lastResponse && lastResponse.hasMorePages()) {
 					return resolve(syncedWallet.client().transactions({ cursor: lastResponse.nextPage(), ...query }));
 				}
@@ -68,8 +71,8 @@ export class EntityAggregate {
 			});
 		}
 
-		const responses = await promiseAllSettledByKey<Coins.TransactionDataCollection>(requests);
-		const result: Contracts.TransactionDataTypeCollection = [];
+		const responses = await promiseAllSettledByKey<ExtendedTransactionDataCollection>(requests);
+		const result: ExtendedTransactionData[] = [];
 
 		for (const [id, request] of Object.entries(responses || {})) {
 			if (request.status === "rejected" || request.value instanceof Error) {
@@ -87,21 +90,21 @@ export class EntityAggregate {
 			this.#history[historyKey][id] = request.value;
 		}
 
-		return new Coins.TransactionDataCollection(result, {
+		return new ExtendedTransactionDataCollection(result, {
 			prev: undefined,
 			self: undefined,
 			next: Number(this.hasMore(historyKey)),
 		});
 	}
 
-	private getWallet(id: string): Wallet {
+	private getWallet(id: string): ReadWriteWallet {
 		return this.#profile.wallets().findById(id);
 	}
 
-	private getWallets(): Wallet[] {
+	private getWallets(): ReadWriteWallet[] {
 		return this.#profile
 			.wallets()
 			.values()
-			.filter((wallet: Wallet) => wallet.hasSyncedWithNetwork());
+			.filter((wallet: ReadWriteWallet) => wallet.hasSyncedWithNetwork());
 	}
 }

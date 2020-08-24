@@ -50,4 +50,12 @@ export abstract class Paginator<T> {
 			this.#data[i] = callback(this.#data[i]);
 		}
 	}
+
+	public getData(): T[] {
+		return this.#data;
+	}
+
+	public getPagination(): MetaPagination {
+		return this.#pagination;
+	}
 }

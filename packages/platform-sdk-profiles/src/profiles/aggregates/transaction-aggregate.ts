@@ -1,12 +1,14 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
+import { ExtendedTransactionData } from "../../dto/transaction";
+import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
 import { transformTransactionData } from "../../dto/transaction-mapper";
 import { promiseAllSettledByKey } from "../../helpers/promise";
-import { Wallet } from "../../wallets/wallet";
+import { ReadWriteWallet } from "../../wallets/wallet.models";
 import { ProfileContract } from "../profile.models";
 
 type HistoryMethod = string;
-type HistoryWallet = Coins.TransactionDataCollection;
+type HistoryWallet = ExtendedTransactionDataCollection;
 
 export class TransactionAggregate {
 	readonly #profile: ProfileContract;
@@ -17,17 +19,17 @@ export class TransactionAggregate {
 		this.#profile = profile;
 	}
 
-	public async transactions(query: Contracts.ClientPagination = {}): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Contracts.ClientPagination = {}): Promise<ExtendedTransactionDataCollection> {
 		return this.aggregate("transactions", query);
 	}
 
-	public async sentTransactions(query: Contracts.ClientPagination = {}): Promise<Coins.TransactionDataCollection> {
+	public async sentTransactions(query: Contracts.ClientPagination = {}): Promise<ExtendedTransactionDataCollection> {
 		return this.aggregate("sentTransactions", query);
 	}
 
 	public async receivedTransactions(
 		query: Contracts.ClientPagination = {},
-	): Promise<Coins.TransactionDataCollection> {
+	): Promise<ExtendedTransactionDataCollection> {
 		return this.aggregate("receivedTransactions", query);
 	}
 
@@ -44,12 +46,12 @@ export class TransactionAggregate {
 	private async aggregate(
 		method: string,
 		query: Contracts.ClientPagination,
-	): Promise<Coins.TransactionDataCollection> {
+	): Promise<ExtendedTransactionDataCollection> {
 		if (!this.#history[method]) {
 			this.#history[method] = {};
 		}
 
-		const syncedWallets: Wallet[] = this.getWallets();
+		const syncedWallets: ReadWriteWallet[] = this.getWallets();
 
 		const requests: Record<string, Promise<Coins.TransactionDataCollection>> = {};
 
@@ -71,8 +73,8 @@ export class TransactionAggregate {
 			});
 		}
 
-		const responses = await promiseAllSettledByKey<Coins.TransactionDataCollection>(requests);
-		const result: Contracts.TransactionDataTypeCollection = [];
+		const responses = await promiseAllSettledByKey<ExtendedTransactionDataCollection>(requests);
+		const result: ExtendedTransactionData[] = [];
 
 		for (const [id, request] of Object.entries(responses || {})) {
 			if (request.status === "rejected" || request.value instanceof Error) {
@@ -90,21 +92,21 @@ export class TransactionAggregate {
 			this.#history[method][id] = request.value;
 		}
 
-		return new Coins.TransactionDataCollection(result, {
+		return new ExtendedTransactionDataCollection(result, {
 			prev: undefined,
 			self: undefined,
 			next: Number(this.hasMore(method)),
 		});
 	}
 
-	private getWallet(id: string): Wallet {
+	private getWallet(id: string): ReadWriteWallet {
 		return this.#profile.wallets().findById(id);
 	}
 
-	private getWallets(): Wallet[] {
+	private getWallets(): ReadWriteWallet[] {
 		return this.#profile
 			.wallets()
 			.values()
-			.filter((wallet: Wallet) => wallet.hasSyncedWithNetwork());
+			.filter((wallet: ReadWriteWallet) => wallet.hasSyncedWithNetwork());
 	}
 }
