@@ -52,5 +52,5 @@ it("should have an explorer link", async () => {
 		id: () => "transactionId",
 	});
 
-	expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/transactions/transactionId");
+	expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/transaction/transactionId");
 });

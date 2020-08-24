@@ -16,11 +16,11 @@ export class LinkService implements Contracts.LinkService {
 	}
 
 	public block(id: string): string {
-		return `${this.#baseUrl}blocks/${id}`;
+		return `${this.#baseUrl}block/${id}`;
 	}
 
 	public transaction(id: string): string {
-		return `${this.#baseUrl}transactions/${id}`;
+		return `${this.#baseUrl}transaction/${id}`;
 	}
 
 	public wallet(id: string): string {
