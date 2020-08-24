@@ -1,7 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { transformTransactionData } from "../dto/transaction-mapper";
+import { transformTransactionDataCollection } from "../dto/transaction-mapper";
 import { makeCoin } from "../environment/container.helpers";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
@@ -14,6 +14,7 @@ import { DelegateMapper } from "../mappers/delegate-mapper";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
+import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 
 export class Wallet implements ReadWriteWallet {
 	readonly #entityRegistrationAggregate: EntityRegistrationAggregate;
@@ -331,19 +332,21 @@ export class Wallet implements ReadWriteWallet {
 	 * These methods serve as helpers to interact with the underlying coin.
 	 */
 
-	public async transactions(query: Contracts.ClientTransactionsInput = {}): Promise<Coins.TransactionDataCollection> {
+	public async transactions(
+		query: Contracts.ClientTransactionsInput = {},
+	): Promise<ExtendedTransactionDataCollection> {
 		return this.fetchTransaction({ addresses: [this.address()], ...query });
 	}
 
 	public async sentTransactions(
 		query: Contracts.ClientTransactionsInput = {},
-	): Promise<Coins.TransactionDataCollection> {
+	): Promise<ExtendedTransactionDataCollection> {
 		return this.fetchTransaction({ senderId: this.address(), ...query });
 	}
 
 	public async receivedTransactions(
 		query: Contracts.ClientTransactionsInput = {},
-	): Promise<Coins.TransactionDataCollection> {
+	): Promise<ExtendedTransactionDataCollection> {
 		return this.fetchTransaction({ recipientId: this.address(), ...query });
 	}
 
@@ -447,7 +450,9 @@ export class Wallet implements ReadWriteWallet {
 		this.data().set(WalletData.ExchangeRate, await this.#profile.getExchangeRate(this.currency()));
 	}
 
-	private async fetchTransaction(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	private async fetchTransaction(
+		query: Contracts.ClientTransactionsInput,
+	): Promise<ExtendedTransactionDataCollection> {
 		const result = await this.#coin.client().transactions(query);
 
 		for (const transaction of result.items()) {
@@ -455,9 +460,7 @@ export class Wallet implements ReadWriteWallet {
 			transaction.setMeta("publicKey", this.publicKey());
 		}
 
-		result.transform((transaction: Contracts.TransactionDataType) => transformTransactionData(this, transaction));
-
-		return result;
+		return transformTransactionDataCollection(this, result);
 	}
 
 	private restore(): void {

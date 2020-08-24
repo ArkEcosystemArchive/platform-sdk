@@ -1,4 +1,4 @@
-import { Wallet } from "../../wallets/wallet";
+import { ReadWriteWallet } from "../../wallets/wallet.models";
 import { ProfileContract } from "../profile.models";
 
 export class RegistrationAggregate {
@@ -8,10 +8,10 @@ export class RegistrationAggregate {
 		this.#profile = profile;
 	}
 
-	public delegates(): Wallet[] {
+	public delegates(): ReadWriteWallet[] {
 		return this.#profile
 			.wallets()
 			.values()
-			.filter((wallet: Wallet) => wallet.isDelegate());
+			.filter((wallet: ReadWriteWallet) => wallet.isDelegate());
 	}
 }

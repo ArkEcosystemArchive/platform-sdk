@@ -1,6 +1,7 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Wallet } from "../../wallets/wallet";
+import { ReadWriteWallet } from "../../wallets/wallet.models";
 import { ProfileContract } from "../profile.models";
 
 export class WalletAggregate {
@@ -14,18 +15,18 @@ export class WalletAggregate {
 		return this.#profile
 			.wallets()
 			.values()
-			.reduce((total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()), BigNumber.ZERO);
+			.reduce((total: BigNumber, wallet: ReadWriteWallet) => total.plus(wallet.balance()), BigNumber.ZERO);
 	}
 
 	public balancePerCoin(): Record<string, { total: number; percentage: number }> {
 		const result = {};
 
 		const totalByProfile: BigNumber = this.#profile.balance();
-		const walletsByCoin: Record<string, Record<string, Wallet>> = this.#profile.wallets().allByCoin();
+		const walletsByCoin: Record<string, Record<string, ReadWriteWallet>> = this.#profile.wallets().allByCoin();
 
 		for (const [coin, wallets] of Object.entries(walletsByCoin)) {
 			const totalByCoin: BigNumber = Object.values(wallets).reduce(
-				(total: BigNumber, wallet: Wallet) => total.plus(wallet.balance()),
+				(total: BigNumber, wallet: ReadWriteWallet) => total.plus(wallet.balance()),
 				BigNumber.ZERO,
 			);
 

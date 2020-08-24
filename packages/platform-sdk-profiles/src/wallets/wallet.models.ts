@@ -1,6 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { DataRepository } from "../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { EntityRegistrationAggregate } from "./aggregates/entity-registration-aggregate";
@@ -97,9 +98,9 @@ export interface ReadWriteWallet {
 	message(): Contracts.MessageService;
 	peer(): Contracts.PeerService;
 	transaction(): TransactionService;
-	transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection>;
-	sentTransactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection>;
-	receivedTransactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection>;
+	transactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
+	sentTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
+	receivedTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	votes(): ReadOnlyWallet[];
 	votesAvailable(): number;
 	votesUsed(): number;

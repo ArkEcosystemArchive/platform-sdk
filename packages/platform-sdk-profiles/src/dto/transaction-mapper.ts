@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { ReadWriteWallet } from "../wallets/wallet.models";
 import {
@@ -13,6 +13,7 @@ import {
 	EntityRegistrationData,
 	EntityResignationData,
 	EntityUpdateData,
+	ExtendedTransactionData,
 	HtlcClaimData,
 	HtlcLockData,
 	HtlcRefundData,
@@ -24,12 +25,13 @@ import {
 	TransferData,
 	VoteData,
 } from "./transaction";
+import { ExtendedTransactionDataCollection } from "./transaction-collection";
 
 export const transformTransactionData = (
 	wallet: ReadWriteWallet,
 	transaction: Contracts.TransactionDataType,
-): Contracts.TransactionDataType => {
-	const instance: Contracts.TransactionDataType = new TransactionData(wallet, transaction);
+): ExtendedTransactionData => {
+	const instance: ExtendedTransactionData = new TransactionData(wallet, transaction);
 
 	if (instance.isLegacyBridgechainRegistration()) {
 		return new BridgechainRegistrationData(wallet, transaction);
@@ -117,3 +119,14 @@ export const transformTransactionData = (
 
 	return instance;
 };
+
+export const transformTransactionDataCollection = (
+	wallet: ReadWriteWallet,
+	transactions: Coins.TransactionDataCollection,
+): ExtendedTransactionDataCollection =>
+	new ExtendedTransactionDataCollection(
+		transactions
+			.getData()
+			.map((transaction: Contracts.TransactionData) => transformTransactionData(wallet, transaction)),
+		transactions.getPagination(),
+	);

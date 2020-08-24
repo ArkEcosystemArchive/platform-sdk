@@ -13,6 +13,7 @@ import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
 import { WalletRepository } from "./wallet-repository";
+import { ReadWriteWallet } from "../wallets/wallet.models";
 
 let subject: WalletRepository;
 
@@ -104,9 +105,9 @@ test("#findByCoin", () => {
 });
 
 describe("#sortBy", () => {
-	let walletARK: Wallet;
-	let walletBTC: Wallet;
-	let walletETH: Wallet;
+	let walletARK: ReadWriteWallet;
+	let walletBTC: ReadWriteWallet;
+	let walletETH: ReadWriteWallet;
 
 	beforeEach(async () => {
 		subject.flush();
