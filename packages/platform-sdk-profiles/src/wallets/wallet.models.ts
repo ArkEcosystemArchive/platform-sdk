@@ -101,6 +101,9 @@ export interface ReadWriteWallet {
 	sentTransactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection>;
 	receivedTransactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection>;
 	votes(): ReadOnlyWallet[];
+	votesAvailable(): number;
+	votesUsed(): number;
+	explorerLink(): string;
 	entityRegistrationAggregate(): EntityRegistrationAggregate;
 	entityResignationAggregate(): EntityResignationAggregate;
 	entityUpdateAggregate(): EntityUpdateAggregate;

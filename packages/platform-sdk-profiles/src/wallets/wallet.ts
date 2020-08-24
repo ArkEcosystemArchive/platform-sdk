@@ -377,6 +377,10 @@ export class Wallet implements ReadWriteWallet {
 		return result;
 	}
 
+	public explorerLink(): string {
+		return this.link().wallet(this.address());
+	}
+
 	/**
 	 * These methods serve as helpers to determine if an action can be performed.
 	 */
