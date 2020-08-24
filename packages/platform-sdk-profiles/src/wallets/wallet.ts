@@ -432,17 +432,11 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public async syncVotes(): Promise<void> {
-		try {
-			const { available, publicKeys, used } = await this.client().votes(this.address());
+		const { available, publicKeys, used } = await this.client().votes(this.address());
 
-			this.data().set(WalletData.VotesAvailable, available);
-			this.data().set(WalletData.Votes, publicKeys);
-			this.data().set(WalletData.VotesUsed, used);
-		} catch {
-			if (this.data().has(WalletData.Votes)) {
-				this.data().forget(WalletData.Votes);
-			}
-		}
+		this.data().set(WalletData.VotesAvailable, available);
+		this.data().set(WalletData.Votes, publicKeys);
+		this.data().set(WalletData.VotesUsed, used);
 	}
 
 	public async syncExchangeRate(): Promise<void> {

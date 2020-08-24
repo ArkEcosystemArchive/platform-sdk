@@ -5,6 +5,10 @@ import { ReadOnlyWallet } from "../wallets/read-only-wallet";
 
 export class DelegateMapper {
 	public static execute(coin: string, network: string, publicKeys: string[]): ReadOnlyWallet[] {
+		if (publicKeys.length === 0) {
+			return [];
+		}
+
 		const delegates: Record<string, string>[] = container
 			.get<CoinRepository>(Identifiers.CoinRepository)
 			.delegates(coin, network);
