@@ -41,7 +41,7 @@ beforeEach(async () => {
 	removeSync(resolve(__dirname, "../../test/stubs/env.json"));
 
 	subject = new Environment({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
-
+	await subject.verify();
 	await subject.boot();
 });
 
@@ -99,6 +99,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	 */
 
 	const newEnv = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
+	await newEnv.verify();
 	await newEnv.boot();
 
 	const newProfile = newEnv.profiles().findById(profile.id());
@@ -113,7 +114,8 @@ it("should create a profile with data and persist it when instructed to do so", 
 
 it("should boot the environment from fixed data", async () => {
 	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
-	await env.bootFromObject(storageData);
+	await env.verify(storageData);
+	await env.boot();
 
 	const newProfile = env.profiles().findById("b999d134-7a24-481e-a95d-bc47c543bfc9");
 
@@ -127,4 +129,12 @@ it("should boot the environment from fixed data", async () => {
 	const restoredWallet = newProfile.wallets().findById("ac38fe6d-4b67-4ef1-85be-17c5f6841129");
 	expect(restoredWallet.settings().all()).toEqual({ ALIAS: "Johnathan Doe", AVATAR: "..." });
 	expect(restoredWallet.alias()).toBe("Johnathan Doe");
+});
+
+it("should get a list of used coins and networks", async () => {
+	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
+	await env.verify(storageData);
+	await env.boot();
+
+	expect(env.usedCoinsWithNetworks()).toEqual({ ARK: ["devnet"] });
 });
