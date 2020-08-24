@@ -316,6 +316,6 @@ export class TransactionService implements Contracts.TransactionService {
 
 		const signedTransaction = transaction.build().toJson();
 
-		return new SignedTransactionData(signedTransaction.Id, signedTransaction);
+		return new SignedTransactionData(signedTransaction.id, signedTransaction);
 	}
 }
