@@ -1,11 +1,11 @@
 import "jest-extended";
 
-import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
 import { identity } from "../../../test/fixtures/identity";
+import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { Profile } from "../profile";
@@ -51,7 +51,7 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 
 		const result = await subject[method]();
 
-		expect(result).toBeInstanceOf(Coins.TransactionDataCollection);
+		expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
 		expect(result.items()).toHaveLength(100);
 	});
 
@@ -62,7 +62,7 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 
 		const result = await subject[method]();
 
-		expect(result).toBeInstanceOf(Coins.TransactionDataCollection);
+		expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
 		expect(result.items()).toHaveLength(100);
 		expect(subject.hasMore(method)).toBeFalse();
 	});
@@ -72,7 +72,7 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 
 		const result = await subject[method]();
 
-		expect(result).toBeInstanceOf(Coins.TransactionDataCollection);
+		expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
 		expect(result.items()).toHaveLength(0);
 		expect(subject.hasMore(method)).toBeFalse();
 	});
@@ -84,7 +84,7 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 
 		const result = await subject[method]();
 
-		expect(result).toBeInstanceOf(Coins.TransactionDataCollection);
+		expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
 		expect(result.items()).toHaveLength(0);
 		expect(subject.hasMore(method)).toBeFalse();
 	});
@@ -99,21 +99,21 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 		// We receive a response that does contain a "next" cursor
 		const firstRequest = await subject[method]();
 
-		expect(firstRequest).toBeInstanceOf(Coins.TransactionDataCollection);
+		expect(firstRequest).toBeInstanceOf(ExtendedTransactionDataCollection);
 		expect(firstRequest.items()).toHaveLength(100);
 		expect(subject.hasMore(method)).toBeTrue();
 
 		// We receive a response that does not contain a "next" cursor
 		const secondRequest = await subject[method]();
 
-		expect(secondRequest).toBeInstanceOf(Coins.TransactionDataCollection);
+		expect(secondRequest).toBeInstanceOf(ExtendedTransactionDataCollection);
 		expect(secondRequest.items()).toHaveLength(100);
 		expect(subject.hasMore(method)).toBeFalse();
 
 		// We do not send any requests because no more data is available
 		const thirdRequest = await subject[method]();
 
-		expect(thirdRequest).toBeInstanceOf(Coins.TransactionDataCollection);
+		expect(thirdRequest).toBeInstanceOf(ExtendedTransactionDataCollection);
 		expect(thirdRequest.items()).toHaveLength(0);
 		expect(subject.hasMore(method)).toBeFalse();
 	});
