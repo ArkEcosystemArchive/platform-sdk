@@ -55,7 +55,7 @@ it("should map the public keys to read-only wallets", async () => {
 
 	await container.get<CoinRepository>(Identifiers.CoinRepository).syncDelegates(wallet.coinId(), wallet.networkId());
 
-	const mappedDelegates = DelegateMapper.execute("ARK", "devnet", publicKeys);
+	const mappedDelegates = DelegateMapper.execute(wallet, publicKeys);
 
 	expect(mappedDelegates).toBeArray();
 	expect(mappedDelegates).toHaveLength(100);

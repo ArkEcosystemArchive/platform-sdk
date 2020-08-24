@@ -354,7 +354,7 @@ export class Wallet implements ReadWriteWallet {
 			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
 		}
 
-		return DelegateMapper.execute(this.coinId(), this.networkId(), votes);
+		return DelegateMapper.execute(this, votes);
 	}
 
 	public votesAvailable(): number {

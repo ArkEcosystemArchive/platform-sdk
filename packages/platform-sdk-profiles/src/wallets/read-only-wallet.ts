@@ -5,6 +5,7 @@ interface ROWallet {
 	publicKey?: string;
 	username?: string;
 	rank?: number;
+	explorerLink: string;
 }
 
 export class ReadOnlyWallet {
@@ -32,5 +33,9 @@ export class ReadOnlyWallet {
 
 	public avatar(): string {
 		return Avatar.make(this.address());
+	}
+
+	public explorerLink(): string {
+		return this.#wallet.explorerLink;
 	}
 }
