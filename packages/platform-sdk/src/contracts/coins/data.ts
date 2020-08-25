@@ -334,17 +334,30 @@ export type TransactionDataType =
 
 export type TransactionDataTypeCollection = TransactionDataType[];
 
-export interface SignedTransactionData {
-	id(): string;
-	data(): any;
+export type RawTransactionData = any;
 
+export interface SignedTransactionData {
+	// All
+	id(): string;
+	data(): RawTransactionData;
 	sender(): string;
 	recipient(): string;
 	amount(): BigNumber;
 	fee(): BigNumber;
 
-	get<T = string>(key: string): T;
+	// MultiSignature
+	isMultiSignature(): boolean;
+	isMultiSignatureRegistration(): boolean;
+	isMultiSignatureReady(excludeFinal?: boolean): boolean;
+	needsSignatures(): boolean;
+	needsAllSignatures(): boolean;
+	needsWalletSignature(publicKey: string): boolean;
+	needsFinalSignature(): boolean;
+	getValidMultiSignatures(): string[];
+	remainingSignatureCount(): number;
 
+	// Helpers
+	get<T = string>(key: string): T;
 	toString(): string;
 	toObject(): { id: string; sender: string; recipient: string; amount: string; data: any };
 }

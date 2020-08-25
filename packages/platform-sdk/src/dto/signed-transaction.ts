@@ -1,13 +1,15 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { RawTransactionData } from "../contracts";
+
 export abstract class AbstractSignedTransactionData {
-	public constructor(protected readonly identifier: string, protected readonly signedData: any) {}
+	public constructor(protected readonly identifier: string, protected readonly signedData: RawTransactionData) {}
 
 	public id(): string {
 		return this.identifier;
 	}
 
-	public data(): any {
+	public data(): RawTransactionData {
 		return this.signedData;
 	}
 
@@ -37,7 +39,7 @@ export abstract class AbstractSignedTransactionData {
 		recipient: string;
 		amount: string;
 		fee: string;
-		data: any;
+		data: RawTransactionData;
 	} {
 		return {
 			id: this.id(),
@@ -45,7 +47,7 @@ export abstract class AbstractSignedTransactionData {
 			recipient: this.recipient(),
 			amount: this.amount().toFixed(),
 			fee: this.fee().toFixed(),
-			data: this.signedData,
+			data: this.data(),
 		};
 	}
 }

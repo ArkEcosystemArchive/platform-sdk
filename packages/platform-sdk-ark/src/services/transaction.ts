@@ -221,9 +221,83 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 	}
 
+	/**
+	 * Signs a transaction using the multi-signature method.
+	 * @param transaction
+	 * @param input
+	 */
+	public async multiSign(transaction: Contracts.SignedTransactionData, input: Contracts.TransactionInputs) {
+		// transaction = CryptoUtils.transactionFromData(transaction);
+		let keys: Contracts.KeyPair | undefined;
+
+		if (input.sign.mnemonic) {
+			keys = await this.#identity.keys().fromMnemonic(BIP39.normalize(input.sign.mnemonic));
+		}
+
+		if (input.sign.wif) {
+			keys = await this.#identity.keys().fromWIF(input.sign.wif);
+		}
+
+		if (!keys) {
+			throw new Error(`Failed to retrieve the keys for the signatory wallet.`);
+		}
+
+		const multiSignature = input.sign.multiSignature!;
+
+		const isReady = transaction.isMultiSignatureReady();
+		// {
+		// 	...transaction,
+		// 	multiSignature,
+		// 	signatures: [...transaction.signatures],
+		// },
+		// true,
+
+		if (!isReady) {
+			const index = multiSignature.publicKeys.indexOf(keys.publicKey);
+			if (index >= 0) {
+				Transactions.Signer.multiSign(
+					transaction.data(),
+					{ publicKey: keys.publicKey, privateKey: keys.privateKey!, compressed: true },
+					index,
+				);
+
+				transaction.data().signatures = transaction
+					.data()
+					.signatures.filter((value, index, self) => self.indexOf(value) === index);
+			} else {
+				throw new Error("passphrase/wif is not used to sign this transaction");
+			}
+		} else if (transaction.needsWalletSignature(keys.publicKey)) {
+			Transactions.Signer.sign(transaction.data(), {
+				publicKey: keys.publicKey,
+				privateKey: keys.privateKey!,
+				compressed: true,
+			});
+
+			if (input.sign.secondMnemonic) {
+				const secondaryKeys = await this.#identity
+					.keys()
+					.fromMnemonic(BIP39.normalize(input.sign.secondMnemonic));
+
+				Transactions.Signer.secondSign(transaction.data(), {
+					publicKey: secondaryKeys.publicKey,
+					privateKey: secondaryKeys.privateKey!,
+					compressed: true,
+				});
+			}
+
+			transaction.data().id = Transactions.Utils.getId(transaction.data());
+		}
+
+		return {
+			...transaction,
+			multiSignature,
+		};
+	}
+
 	private async createFromData(
 		type: string,
-		input: Contracts.KeyValuePair,
+		input: Contracts.TransactionInputs,
 		options?: Contracts.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransactionData> {
@@ -292,6 +366,10 @@ export class TransactionService implements Contracts.TransactionService {
 			);
 		}
 
+		if (input.sign.multiSignature) {
+			return this.handleMultiSignature(transaction, input);
+		}
+
 		if (Array.isArray(input.sign.mnemonics)) {
 			for (let i = 0; i < input.sign.mnemonics.length; i++) {
 				transaction.multiSign(BIP39.normalize(input.sign.mnemonics[i]), i);
@@ -317,5 +395,56 @@ export class TransactionService implements Contracts.TransactionService {
 		const signedTransaction = transaction.build().toJson();
 
 		return new SignedTransactionData(signedTransaction.id, signedTransaction);
+	}
+
+	private async handleMultiSignature(transaction: Contracts.RawTransactionData, input: Contracts.TransactionInputs) {
+		const multiSignature = input.sign.multiSignature!;
+
+		let senderPublicKey: string | undefined = undefined;
+
+		if (input.sign.mnemonic) {
+			senderPublicKey = await this.#identity.publicKey().fromMnemonic(BIP39.normalize(input.sign.mnemonic));
+		}
+
+		if (input.sign.wif) {
+			senderPublicKey = await this.#identity.publicKey().fromWIF(input.sign.wif);
+		}
+
+		if (!senderPublicKey) {
+			throw new Error("Failed to derive sender public key.");
+		}
+
+		const publicKeyIndex: number = multiSignature.publicKeys.indexOf(senderPublicKey);
+
+		transaction.senderPublicKey(senderPublicKey);
+
+		if (publicKeyIndex > -1) {
+			if (input.sign.mnemonic) {
+				transaction.multiSign(input.sign.mnemonic, publicKeyIndex);
+			}
+
+			// TODO: implement support for multiSignWithWif
+			// if (input.sign.wif) {
+			// 	transaction.multiSignWithWif(publicKeyIndex, input.sign.wif, networkWif);
+			// }
+		} else if (transaction.data.type === 4 && !transaction.data.signatures) {
+			transaction.data.signatures = [];
+		}
+
+		if (!transaction.data.senderPublicKey) {
+			transaction.senderPublicKey(
+				await this.#identity.publicKey().fromMultiSignature(multiSignature.min, multiSignature.publicKeys),
+			);
+		}
+
+		const transactionJSON = transaction.build().toJson();
+
+		transactionJSON.multiSignature = multiSignature;
+
+		if (!transactionJSON.signatures) {
+			transactionJSON.signatures = [];
+		}
+
+		return transactionJSON;
 	}
 }
