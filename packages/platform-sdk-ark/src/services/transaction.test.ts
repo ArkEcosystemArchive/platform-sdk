@@ -5,6 +5,7 @@ import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
 import { TransactionService } from "./transaction";
+import { MultiSignatureService } from "./multi-signature";
 
 let subject: TransactionService;
 
@@ -23,6 +24,8 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
+jest.setTimeout(10000);
+
 describe("Core", () => {
 	describe("#transfer", () => {
 		it("should verify", async () => {
@@ -39,6 +42,50 @@ describe("Core", () => {
 			});
 
 			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
+		});
+
+		it.only("should verify with a multi-signature", async () => {
+			const musig = await MultiSignatureService.construct(createConfig());
+
+			const result = await subject.transfer({
+				nonce: "5",
+				from: "DRsenyd36jRmuMqqrFJy6wNbUwYvoEt51y",
+				sign: {
+					multiSignature: {
+						min: 2,
+						publicKeys: [
+							"03bc27e99693eba0831ae4f163e8d1ca33e7f4cfc7748e0e651101cccde1815e1a",
+							"02a7824e683de4bd5ce885f39bad8c352a1077ac41e1bbbbf72b78695e78221e8d",
+						],
+					},
+				},
+				data: {
+					amount: "1",
+					to: "DRsenyd36jRmuMqqrFJy6wNbUwYvoEt51y",
+					memo: "Sent from SDK",
+				},
+			});
+
+			await musig.flush();
+
+			const transactionID = await musig.broadcast(result);
+			const initialTransaction = await musig.findById(transactionID);
+
+			const firstSignatory = await subject.multiSign(initialTransaction, {
+				sign: { mnemonic: "FIRST_PASSPHRASE" },
+			});
+			await musig.broadcast(firstSignatory);
+			const firstSignatoryTransaction = await musig.findById(transactionID);
+
+			const secondSignatory = await subject.multiSign(firstSignatoryTransaction, {
+				sign: { mnemonic: "SECOND_PASSPHRASE" },
+			});
+			await musig.broadcast(secondSignatory);
+			const secondSignatoryTransaction = await musig.findById(transactionID);
+
+			console.log(JSON.stringify({ transactions: [secondSignatoryTransaction.data] }));
+
+			expect(Transactions.TransactionFactory.fromJson(secondSignatoryTransaction.data).verify()).toBeTrue();
 		});
 	});
 

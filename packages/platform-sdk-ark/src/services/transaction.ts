@@ -10,6 +10,7 @@ import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { IdentityService } from "./identity";
+import { TransactionMultiSignature } from "./transaction-musig";
 
 Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.EntityTransaction);
 
@@ -226,7 +227,7 @@ export class TransactionService implements Contracts.TransactionService {
 	 * @param transaction
 	 * @param input
 	 */
-	public async multiSign(transaction: Contracts.SignedTransactionData, input: Contracts.TransactionInputs) {
+	public async multiSign(transaction, input: Contracts.TransactionInputs) {
 		// transaction = CryptoUtils.transactionFromData(transaction);
 		let keys: Contracts.KeyPair | undefined;
 
@@ -239,36 +240,45 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 
 		if (!keys) {
-			throw new Error(`Failed to retrieve the keys for the signatory wallet.`);
+			throw new Error("Failed to retrieve the keys for the signatory wallet.");
 		}
 
-		const multiSignature = input.sign.multiSignature!;
+		const multiSignature = transaction.multisigAsset;
 
-		const isReady = transaction.isMultiSignatureReady();
-		// {
-		// 	...transaction,
-		// 	multiSignature,
-		// 	signatures: [...transaction.signatures],
-		// },
-		// true,
+		transaction = transaction.data;
+		transaction.multiSignature = undefined;
+		transaction.timestamp = undefined;
+
+		const tx = new TransactionMultiSignature({
+			...transaction,
+			multiSignature,
+			signatures: [...transaction.signatures],
+		});
+
+		const isReady = tx.isMultiSignatureReady(true);
 
 		if (!isReady) {
-			const index = multiSignature.publicKeys.indexOf(keys.publicKey);
-			if (index >= 0) {
-				Transactions.Signer.multiSign(
-					transaction.data(),
-					{ publicKey: keys.publicKey, privateKey: keys.privateKey!, compressed: true },
-					index,
-				);
+			const index: number = multiSignature.publicKeys.indexOf(keys.publicKey);
 
-				transaction.data().signatures = transaction
-					.data()
-					.signatures.filter((value, index, self) => self.indexOf(value) === index);
-			} else {
+			if (index === -1) {
 				throw new Error("passphrase/wif is not used to sign this transaction");
 			}
-		} else if (transaction.needsWalletSignature(keys.publicKey)) {
-			Transactions.Signer.sign(transaction.data(), {
+
+			Transactions.Signer.multiSign(
+				transaction,
+				{ publicKey: keys.publicKey, privateKey: keys.privateKey!, compressed: true },
+				index,
+			);
+
+			transaction.signatures = transaction.signatures.filter(
+				(value, index, self) => self.indexOf(value) === index,
+			);
+
+			// transaction.senderPublicKey = await this.#identity
+			// 	.publicKey()
+			// 	.fromMultiSignature(multiSignature.min, multiSignature.publicKeys);
+		} else if (tx.needsWalletSignature(keys.publicKey)) {
+			Transactions.Signer.sign(transaction, {
 				publicKey: keys.publicKey,
 				privateKey: keys.privateKey!,
 				compressed: true,
@@ -279,14 +289,14 @@ export class TransactionService implements Contracts.TransactionService {
 					.keys()
 					.fromMnemonic(BIP39.normalize(input.sign.secondMnemonic));
 
-				Transactions.Signer.secondSign(transaction.data(), {
+				Transactions.Signer.secondSign(transaction, {
 					publicKey: secondaryKeys.publicKey,
 					privateKey: secondaryKeys.privateKey!,
 					compressed: true,
 				});
 			}
 
-			transaction.data().id = Transactions.Utils.getId(transaction.data());
+			transaction.id = Transactions.Utils.getId(transaction);
 		}
 
 		return {
@@ -309,18 +319,6 @@ export class TransactionService implements Contracts.TransactionService {
 
 		if (input.sign.wif) {
 			address = await this.#identity.address().fromWIF(input.sign.wif);
-		}
-
-		if (!address) {
-			throw new Error(
-				`Failed to retrieve the nonce for the signatory wallet. Please provide one through the [input] parameter.`,
-			);
-		}
-
-		if (input.from !== address) {
-			throw new Error(
-				`Signatory should be [${input.from}] but is [${address}]. Please ensure that the expected and actual signatory match.`,
-			);
 		}
 
 		let transaction;
@@ -371,25 +369,45 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 
 		if (Array.isArray(input.sign.mnemonics)) {
+			const senderPublicKeys: string[] = await Promise.all(
+				input.sign.mnemonics.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
+			);
+
+			transaction.senderPublicKey(
+				await this.#identity.publicKey().fromMultiSignature(input.sign.mnemonics.length, senderPublicKeys),
+			);
+
 			for (let i = 0; i < input.sign.mnemonics.length; i++) {
 				transaction.multiSign(BIP39.normalize(input.sign.mnemonics[i]), i);
 			}
-		}
+		} else {
+			if (!address) {
+				throw new Error(
+					`Failed to retrieve the nonce for the signatory wallet. Please provide one through the [input] parameter.`,
+				);
+			}
 
-		if (input.sign.mnemonic) {
-			transaction.sign(BIP39.normalize(input.sign.mnemonic));
-		}
+			if (input.from !== address) {
+				throw new Error(
+					`Signatory should be [${input.from}] but is [${address}]. Please ensure that the expected and actual signatory match.`,
+				);
+			}
 
-		if (input.sign.secondMnemonic) {
-			transaction.secondSign(BIP39.normalize(input.sign.secondMnemonic));
-		}
+			if (input.sign.mnemonic) {
+				transaction.sign(BIP39.normalize(input.sign.mnemonic));
+			}
 
-		if (input.sign.wif) {
-			transaction.signWithWif(input.sign.wif);
-		}
+			if (input.sign.secondMnemonic) {
+				transaction.secondSign(BIP39.normalize(input.sign.secondMnemonic));
+			}
 
-		if (input.sign.secondWif) {
-			transaction.secondSignWithWif(input.sign.secondWif);
+			if (input.sign.wif) {
+				transaction.signWithWif(input.sign.wif);
+			}
+
+			if (input.sign.secondWif) {
+				transaction.secondSignWithWif(input.sign.secondWif);
+			}
 		}
 
 		const signedTransaction = transaction.build().toJson();
@@ -398,35 +416,31 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private async handleMultiSignature(transaction: Contracts.RawTransactionData, input: Contracts.TransactionInputs) {
-		const multiSignature = input.sign.multiSignature!;
+		// @ts-ignore
+		const { multiSignature } = input.sign;
 
 		let senderPublicKey: string | undefined = undefined;
 
-		if (input.sign.mnemonic) {
-			senderPublicKey = await this.#identity.publicKey().fromMnemonic(BIP39.normalize(input.sign.mnemonic));
+		if (multiSignature.mnemonic) {
+			senderPublicKey = await this.#identity.publicKey().fromMnemonic(BIP39.normalize(multiSignature.mnemonic));
 		}
 
-		if (input.sign.wif) {
-			senderPublicKey = await this.#identity.publicKey().fromWIF(input.sign.wif);
+		if (multiSignature.wif) {
+			senderPublicKey = await this.#identity.publicKey().fromWIF(multiSignature.wif);
 		}
 
-		if (!senderPublicKey) {
-			throw new Error("Failed to derive sender public key.");
-		}
+		// if (!senderPublicKey) {
+		// 	throw new Error("Failed to derive sender public key.");
+		// }
 
 		const publicKeyIndex: number = multiSignature.publicKeys.indexOf(senderPublicKey);
 
 		transaction.senderPublicKey(senderPublicKey);
 
 		if (publicKeyIndex > -1) {
-			if (input.sign.mnemonic) {
-				transaction.multiSign(input.sign.mnemonic, publicKeyIndex);
+			if (multiSignature.mnemonic) {
+				transaction.multiSign(multiSignature.mnemonic, publicKeyIndex);
 			}
-
-			// TODO: implement support for multiSignWithWif
-			// if (input.sign.wif) {
-			// 	transaction.multiSignWithWif(publicKeyIndex, input.sign.wif, networkWif);
-			// }
 		} else if (transaction.data.type === 4 && !transaction.data.signatures) {
 			transaction.data.signatures = [];
 		}
@@ -438,6 +452,8 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 
 		const transactionJSON = transaction.build().toJson();
+
+		delete multiSignature.mnemonic;
 
 		transactionJSON.multiSignature = multiSignature;
 

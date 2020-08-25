@@ -39,6 +39,10 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
+		if (!input.sign.mnemonic) {
+			throw new Error("No mnemonic provided.");
+		}
+
 		const { client, signatureProvider } = this.getClient(input.sign.mnemonic);
 
 		const transfer = await client.transact(

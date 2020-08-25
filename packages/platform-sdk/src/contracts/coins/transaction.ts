@@ -32,7 +32,7 @@ export interface TransactionInput {
 	nonce?: string;
 	from: string;
 	sign: {
-		mnemonic: string;
+		mnemonic?: string;
 		mnemonics?: string[];
 		secondMnemonic?: string;
 		wif?: string;
