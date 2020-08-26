@@ -1,4 +1,4 @@
-import { Identities } from "@arkecosystem/crypto";
+import { Crypto, Identities, Transactions } from "@arkecosystem/crypto";
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
@@ -18,5 +18,13 @@ export class SignedTransactionData extends DTO.AbstractSignedTransactionData
 
 	public fee(): BigNumber {
 		return BigNumber.make(this.signedData.fee);
+	}
+
+	public isMultiSignature(): boolean {
+		return !!this.signedData.multiSignature;
+	}
+
+	public isMultiSignatureRegistration(): boolean {
+		return this.signedData.type === 4;
 	}
 }

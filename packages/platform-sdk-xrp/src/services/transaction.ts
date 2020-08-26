@@ -36,6 +36,10 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
+		if (!input.sign.mnemonic) {
+			throw new Error("No mnemonic provided.");
+		}
+
 		const sender: string = await new IdentityService().address().fromMnemonic(input.sign.mnemonic);
 
 		const prepared = await this.#connection.preparePayment(

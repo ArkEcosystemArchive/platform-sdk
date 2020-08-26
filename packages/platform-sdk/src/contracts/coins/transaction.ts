@@ -32,12 +32,16 @@ export interface TransactionInput {
 	nonce?: string;
 	from: string;
 	sign: {
-		mnemonic: string;
+		mnemonic?: string;
 		mnemonics?: string[];
 		secondMnemonic?: string;
 		wif?: string;
 		secondWif?: string;
 		privateKey?: string;
+		multiSignature?: {
+			min: number;
+			publicKeys: string[];
+		};
 	};
 	contract?: {
 		address: string;
@@ -139,3 +143,5 @@ export interface EntityUpdateInput extends TransactionInput {
 		ipfs?: string;
 	};
 }
+
+export type TransactionInputs = Record<string, any>;

@@ -1,4 +1,4 @@
-import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class SignedTransactionData extends DTO.AbstractSignedTransactionData
@@ -17,5 +17,13 @@ export class SignedTransactionData extends DTO.AbstractSignedTransactionData
 
 	public fee(): BigNumber {
 		return BigNumber.make(this.signedData.fee);
+	}
+
+	public isMultiSignature(): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignature");
+	}
+
+	public isMultiSignatureRegistration(): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignatureRegistration");
 	}
 }

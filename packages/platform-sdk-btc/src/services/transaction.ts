@@ -45,6 +45,10 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
+		if (!input.sign.mnemonic) {
+			throw new Error("No mnemonic provided.");
+		}
+
 		// NOTE: this is a WIF/PrivateKey - should probably be passed in as wif instead of mnemonic
 		const mnemonic: string = BIP39.normalize(input.sign.mnemonic);
 

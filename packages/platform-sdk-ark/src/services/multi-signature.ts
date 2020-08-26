@@ -52,8 +52,18 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 		return id;
 	}
 
+	public async flush(): Promise<Contracts.MultiSignatureTransaction> {
+		return this.delete("transactions");
+	}
+
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.get(`${this.getPeer()}/${path}`, query);
+
+		return response.json();
+	}
+
+	private async delete(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		const response = await this.#http.delete(`${this.getPeer()}/${path}`, query);
 
 		return response.json();
 	}
@@ -69,6 +79,6 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 			return this.#config.get<string>("peerMultiSignature");
 		}
 
-		return Arr.randomElement(this.#config.get<Coins.CoinNetwork>("network").hosts);
+		return Arr.randomElement(this.#config.get<Coins.CoinNetwork>("network").hostsMultiSignature);
 	}
 }

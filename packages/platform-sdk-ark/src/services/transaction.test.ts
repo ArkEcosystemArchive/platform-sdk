@@ -23,6 +23,8 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
+jest.setTimeout(10000);
+
 describe("Core", () => {
 	describe("#transfer", () => {
 		it("should verify", async () => {
@@ -93,7 +95,7 @@ describe("Core", () => {
 		});
 	});
 
-	describe("#multiSignature", () => {
+	describe.skip("#multiSignature", () => {
 		it("should verify", async () => {
 			const result = await subject.multiSignature({
 				nonce: "1",

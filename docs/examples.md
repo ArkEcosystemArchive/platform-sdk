@@ -424,11 +424,11 @@ if (response.hasMore()) {
 ```ts
 // 1. Sign and store the ID
 const transactionId = await wallet.transaction().signTransfer({
-    sign: {
-        mnemonic: "this is a top secret passphrase",
+	sign: {
+		mnemonic: "this is a top secret passphrase",
     },
     data: {
-        amount: "1",
+		amount: "1",
         to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
     },
 });
@@ -438,4 +438,48 @@ await wallet.transaction().broadcast([transactionId]);
 
 // 3. Periodically check if the transaction has been confirmed
 await wallet.transactions().confirm(transactionId);
+```
+
+#### Sign and broadcast a transaction with multi-signature with 2 participants
+
+```ts
+const musig = await MultiSignatureService.construct(createConfig());
+
+const result = await subject.transfer({
+	nonce: "6",
+	from: "DRsenyd36jRmuMqqrFJy6wNbUwYvoEt51y",
+	sign: {
+		multiSignature: {
+			min: 2,
+			publicKeys: [
+				"03bc27e99693eba0831ae4f163e8d1ca33e7f4cfc7748e0e651101cccde1815e1a",
+				"02a7824e683de4bd5ce885f39bad8c352a1077ac41e1bbbbf72b78695e78221e8d",
+			],
+		},
+	},
+	data: {
+		amount: "1",
+		to: "DRsenyd36jRmuMqqrFJy6wNbUwYvoEt51y",
+		memo: "Sent from SDK",
+	},
+});
+
+await musig.flush();
+
+const transactionID = await musig.broadcast(result.data());
+const initialTransaction = await musig.findById(transactionID);
+
+const firstSignatory = await subject.multiSign(initialTransaction, {
+	sign: { mnemonic: "PASSPHRASE" },
+});
+await musig.broadcast(firstSignatory.data());
+const firstSignatoryTransaction = await musig.findById(transactionID);
+
+const secondSignatory = await subject.multiSign(firstSignatoryTransaction, {
+	sign: { mnemonic: "PASSPHRASE" },
+});
+await musig.broadcast(secondSignatory.data());
+const secondSignatoryTransaction = await musig.findById(transactionID);
+
+console.log(JSON.stringify({ transactions: [secondSignatoryTransaction.data] }));
 ```

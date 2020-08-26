@@ -18,4 +18,12 @@ export class SignedTransactionData extends DTO.AbstractSignedTransactionData
 	public fee(): BigNumber {
 		throw new Exceptions.NotImplemented(this.constructor.name, "fee");
 	}
+
+	public isMultiSignature(): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignature");
+	}
+
+	public isMultiSignatureRegistration(): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignatureRegistration");
+	}
 }
