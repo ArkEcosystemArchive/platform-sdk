@@ -5,19 +5,16 @@ export class PendingMultiSignature {
 	readonly #transaction: Contracts.RawTransactionData;
 
 	public constructor(transaction: Contracts.RawTransactionData) {
-		const rawTransaction: Contracts.RawTransactionData = transaction.data;
-		rawTransaction.multiSignature = undefined;
-		rawTransaction.timestamp = undefined;
+		transaction.timestamp = undefined;
 
 		this.#transaction = {
-			...rawTransaction,
-			multiSignature: rawTransaction.multisigAsset,
-			signatures: [...rawTransaction.signatures],
+			...transaction,
+			signatures: [...transaction.signatures],
 		};
 	}
 
 	public isMultiSignature(): boolean {
-		return !!this.#transaction.multiSignature;
+		return "multiSignature" in this.#transaction;
 	}
 
 	public isMultiSignatureRegistration(): boolean {

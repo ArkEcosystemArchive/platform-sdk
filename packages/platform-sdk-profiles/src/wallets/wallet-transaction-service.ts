@@ -321,7 +321,7 @@ export class TransactionService {
 		for (const id of ids) {
 			this.assertHasValidIdentifier(id);
 
-			const transaction: Contracts.SignedTransactionData = this.#signed[id];
+			const transaction: Contracts.SignedTransactionData = this.transaction(id);
 
 			// If the transaction is ready to be broadcasted we will include it.
 			if (this.canBeBroadcasted(transaction.id())) {
@@ -476,7 +476,7 @@ export class TransactionService {
 	public isAwaitingConfirmation(id: string): boolean {
 		this.assertHasValidIdentifier(id);
 
-		return !!this.#broadcasted[id];
+		return this.#broadcasted[id] !== undefined;
 	}
 
 	/**
@@ -489,7 +489,7 @@ export class TransactionService {
 	public isAwaitingOurSignature(id: string): boolean {
 		this.assertHasValidIdentifier(id);
 
-		return !!this.#waitingForOurSignature[id];
+		return this.#waitingForOurSignature[id] !== undefined;
 	}
 
 	/**
@@ -502,7 +502,7 @@ export class TransactionService {
 	public isAwaitingOtherSignatures(id: string): boolean {
 		this.assertHasValidIdentifier(id);
 
-		return !!this.#waitingForOtherSignatures[id];
+		return this.#waitingForOtherSignatures[id] !== undefined;
 	}
 
 	/**

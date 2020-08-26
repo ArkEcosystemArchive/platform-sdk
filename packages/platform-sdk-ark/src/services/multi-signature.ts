@@ -36,7 +36,13 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	}
 
 	public async findById(id: string): Promise<Contracts.MultiSignatureTransaction> {
-		return this.get(`transaction/${id}`);
+		const transaction = await this.get(`transaction/${id}`);
+
+		return {
+			...transaction.data,
+			multiSignature: transaction.multisigAsset,
+			timestamp: transaction.timestamp,
+		};
 	}
 
 	public async broadcast(transaction: Contracts.MultiSignatureTransaction): Promise<string> {

@@ -448,20 +448,20 @@ await wallet.transactions().confirm(transactionId);
 // This is the initial transaction without any signatures.
 // This will be broadcasted to the Multi-Signature Server of ARK without any signatures.
 const transactionWithoutSignatures = await wallet.transaction().signTransfer({
-	nonce: "1",
-	from: "DRsenyd36jRmuMqqrFJy6wNbUwYvoEt51y",
-	sign: {
-		multiSignature: wallet.multiSignature(),
-	},
-	data: {
-		amount: "1",
-		to: "DRsenyd36jRmuMqqrFJy6wNbUwYvoEt51y",
-		memo: "Sent from SDK",
-	},
+    nonce: "1",
+    from: "DRsenyd36jRmuMqqrFJy6wNbUwYvoEt51y",
+    sign: {
+        multiSignature: wallet.multiSignature(),
+    },
+    data: {
+        amount: "1",
+        to: "DRsenyd36jRmuMqqrFJy6wNbUwYvoEt51y",
+        memo: "Sent from SDK",
+    },
 });
 
 // Broadcast the transaction without any signatures.
-const transactionID = await wallet.transaction().broadcast(transactionWithoutSignatures);
+const transactionID = await wallet.transaction().broadcast([transactionWithoutSignatures]);
 
 // Add the first signature and re-broadcast the transaction.
 await wallet.transaction().addSignature(transactionID, "FIRST_PASSPHRASE");
@@ -473,5 +473,5 @@ await wallet.transaction().addSignature(transactionID, "SECOND_PASSPHRASE");
 await wallet.transaction().sync();
 
 // Broadcast the multi signature.
-await wallet.transaction().broadcast(transactionID);
+await wallet.transaction().broadcast([transactionID]);
 ```
