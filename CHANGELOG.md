@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.305 - 2020-08-26
+
+### Changed
+
+-   Sync pending/ready multi-signatures from the remote server (3d736444, @faustbrian)
+
+### Fixed
+
+-   Broadcast raw transaction data (133e99f5, @faustbrian)
+
 ## 0.9.303 - 2020-08-26
 
 ### Fixed
