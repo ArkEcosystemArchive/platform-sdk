@@ -49,8 +49,10 @@ export enum WalletData {
 	Sequence = "SEQUENCE",
 	SignedTransactions = "SIGNED_TRANSACTIONS",
 	Votes = "VOTES",
-	VotesUsed = "VOTES_USED",
 	VotesAvailable = "VOTES_AVAILABLE",
+	VotesUsed = "VOTES_USED",
+	WaitingForOtherSignatures = "WAITING_FOR_OTHER_SIGNATURES",
+	WaitingForYourSignature = "WAITING_FOR_YOUR_SIGNATURE",
 }
 
 export enum WalletFlag {

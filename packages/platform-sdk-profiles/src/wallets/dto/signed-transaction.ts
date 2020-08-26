@@ -20,10 +20,10 @@ export class SignedTransactionData extends DTO.AbstractSignedTransactionData
 	}
 
 	public isMultiSignature(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignature");
+		return this.signedData.isMultiSignature;
 	}
 
 	public isMultiSignatureRegistration(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignatureRegistration");
+		return this.signedData.isMultiSignatureRegistration;
 	}
 }
