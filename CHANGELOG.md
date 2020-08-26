@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.302 - 2020-08-26
+
+### Fixed
+
+-   Normalise `MultiSignatureService#findById` output (b6bab551, @faustbrian)
+
 ## 0.9.301 - 2020-08-26
 
 ### Added
