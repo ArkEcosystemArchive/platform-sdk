@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.303 - 2020-08-26
+
+### Fixed
+
+-   Remove usage of `multisigAsset` (0919910d, @faustbrian)
+
 ## 0.9.302 - 2020-08-26
 
 ### Fixed
