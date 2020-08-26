@@ -26,8 +26,4 @@ export class SignedTransactionData extends DTO.AbstractSignedTransactionData
 	public isMultiSignatureRegistration(): boolean {
 		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignatureRegistration");
 	}
-
-	public isMultiSignatureReady(excludeFinal = false): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignatureReady");
-	}
 }
