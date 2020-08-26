@@ -358,7 +358,7 @@ export class TransactionService {
 			return this.#waitingForOtherSignatures[id];
 		}
 
-		throw new Error(`Transaction [{$id}] could not be found.`);
+		throw new Error(`Transaction [${id}] could not be found.`);
 	}
 
 	/**
@@ -666,7 +666,7 @@ export class TransactionService {
 	}
 
 	private async syncPendingMultiSignatures(): Promise<void> {
-		const transactions = await this.#wallet.coin().multiSignature().allWithReadyState(this.getPublicKey());
+		const transactions = await this.#wallet.coin().multiSignature().allWithPendingState(this.getPublicKey());
 
 		this.#waitingForOurSignature = {};
 		this.#waitingForOtherSignatures = {};
@@ -675,11 +675,12 @@ export class TransactionService {
 			const transactionId: string = transaction.id;
 			const signedTransaction = new SignedTransactionData(transaction.id, transaction);
 
+			this.#waitingForOurSignature[transactionId] = signedTransaction;
+			this.#waitingForOtherSignatures[transactionId] = signedTransaction;
+
 			if (this.canBeSigned(transactionId)) {
-				this.#waitingForOurSignature[transactionId] = signedTransaction;
 				delete this.#waitingForOtherSignatures[transactionId];
 			} else {
-				this.#waitingForOtherSignatures[transactionId] = signedTransaction;
 				delete this.#waitingForOurSignature[transactionId];
 			}
 		}
