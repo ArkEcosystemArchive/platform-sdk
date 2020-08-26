@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.307 - 2020-08-26
+
+### Fixed
+
+-   Add pending MuSig transactions before checking state (f2bd8394, @faustbrian)
+-   Delete pending transactions that are already signed (2eb3c591, @faustbrian)
+
 ## 0.9.305 - 2020-08-26
 
 ### Changed
