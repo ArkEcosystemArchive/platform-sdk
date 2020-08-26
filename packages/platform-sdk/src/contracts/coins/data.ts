@@ -31,6 +31,8 @@ export interface WalletData {
 	// Flags
 	isDelegate(): boolean;
 
+	isResignedDelegate(): boolean;
+
 	isKnown(): boolean;
 
 	isMultiSignature(): boolean;

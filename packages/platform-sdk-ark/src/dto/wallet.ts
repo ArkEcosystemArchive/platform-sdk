@@ -42,6 +42,10 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return !!this.data.username;
 	}
 
+	public isResignedDelegate(): boolean {
+		return this.data.isResigned;
+	}
+
 	public isKnown(): boolean {
 		return false;
 	}
