@@ -81,6 +81,7 @@ export interface ReadWriteWallet {
 	settings(): SettingRepository;
 	toObject(): WalletStruct;
 	isDelegate(): boolean;
+	isResignedDelegate(): boolean;
 	isKnown(): boolean;
 	isLedger(): boolean;
 	isMultiSignature(): boolean;
@@ -103,6 +104,7 @@ export interface ReadWriteWallet {
 	transactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	sentTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	receivedTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
+	multiSignature(): Contracts.WalletMultiSignature;
 	votes(): ReadOnlyWallet[];
 	votesAvailable(): number;
 	votesUsed(): number;

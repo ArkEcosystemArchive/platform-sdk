@@ -229,6 +229,14 @@ export class Wallet implements ReadWriteWallet {
 		return this.#wallet.isDelegate();
 	}
 
+	public isResignedDelegate(): boolean {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
+		return this.#wallet.isResignedDelegate();
+	}
+
 	public isKnown(): boolean {
 		if (!this.#wallet) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
@@ -348,6 +356,14 @@ export class Wallet implements ReadWriteWallet {
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
 		return this.fetchTransaction({ recipientId: this.address(), ...query });
+	}
+
+	public multiSignature(): Contracts.WalletMultiSignature {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
+		return this.#wallet.multiSignature();
 	}
 
 	public votes(): ReadOnlyWallet[] {
