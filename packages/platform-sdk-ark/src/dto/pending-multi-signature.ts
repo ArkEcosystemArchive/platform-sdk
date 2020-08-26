@@ -5,7 +5,15 @@ export class PendingMultiSignature {
 	readonly #transaction: Contracts.RawTransactionData;
 
 	public constructor(transaction: Contracts.RawTransactionData) {
-		this.#transaction = transaction;
+		const rawTransaction: Contracts.RawTransactionData = transaction.data;
+		rawTransaction.multiSignature = undefined;
+		rawTransaction.timestamp = undefined;
+
+		this.#transaction = {
+			...rawTransaction,
+			multiSignature: rawTransaction.multisigAsset,
+			signatures: [...rawTransaction.signatures],
+		};
 	}
 
 	public isMultiSignature(): boolean {
@@ -58,6 +66,7 @@ export class PendingMultiSignature {
 		}
 
 		const index: number = transaction.multiSignature.publicKeys.indexOf(publicKey);
+
 		if (index === -1) {
 			return false;
 		}
@@ -69,6 +78,7 @@ export class PendingMultiSignature {
 		const signature: string | undefined = transaction.signatures.find(
 			(signature) => parseInt(signature.substring(0, 2), 16) === index,
 		);
+
 		if (!signature) {
 			return true;
 		}

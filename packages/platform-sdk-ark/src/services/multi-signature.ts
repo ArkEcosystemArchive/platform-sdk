@@ -1,6 +1,8 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
+import { PendingMultiSignature } from "../dto/pending-multi-signature";
+
 export class MultiSignatureService implements Contracts.MultiSignatureService {
 	readonly #config: Coins.Config;
 	readonly #http: Contracts.HttpClient;
@@ -54,6 +56,43 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 
 	public async flush(): Promise<Contracts.MultiSignatureTransaction> {
 		return this.delete("transactions");
+	}
+
+	/**
+	 * All of the below methods serve as helpers to identify the different states
+	 * a Multi-Signature transaction can be. These need to be determined for each
+	 * coin because of how different their work. Some will return static results
+	 * due to the fact that certain behaviours need to be stubbed to make it work.
+	 *
+	 * These methods do not interact with the network.
+	 */
+
+	public isMultiSignatureReady(transaction: Contracts.SignedTransactionData, excludeFinal?: boolean): boolean {
+		return new PendingMultiSignature(transaction.data()).isMultiSignatureReady(excludeFinal);
+	}
+
+	public needsSignatures(transaction: Contracts.SignedTransactionData): boolean {
+		return new PendingMultiSignature(transaction.data()).needsSignatures();
+	}
+
+	public needsAllSignatures(transaction: Contracts.SignedTransactionData): boolean {
+		return new PendingMultiSignature(transaction.data()).needsAllSignatures();
+	}
+
+	public needsWalletSignature(transaction: Contracts.SignedTransactionData, publicKey: string): boolean {
+		return new PendingMultiSignature(transaction.data()).needsWalletSignature(publicKey);
+	}
+
+	public needsFinalSignature(transaction: Contracts.SignedTransactionData): boolean {
+		return new PendingMultiSignature(transaction.data()).needsFinalSignature();
+	}
+
+	public getValidMultiSignatures(transaction: Contracts.SignedTransactionData): string[] {
+		return new PendingMultiSignature(transaction.data()).getValidMultiSignatures();
+	}
+
+	public remainingSignatureCount(transaction: Contracts.SignedTransactionData): number {
+		return new PendingMultiSignature(transaction.data()).remainingSignatureCount();
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {

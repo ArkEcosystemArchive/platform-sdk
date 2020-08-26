@@ -28,4 +28,32 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	public async broadcast(transaction: Contracts.MultiSignatureTransaction): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
 	}
+
+	public isMultiSignatureReady(transaction: Contracts.SignedTransactionData, excludeFinal?: boolean): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignatureReady");
+	}
+
+	public needsSignatures(transaction: Contracts.SignedTransactionData): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "needsSignatures");
+	}
+
+	public needsAllSignatures(transaction: Contracts.SignedTransactionData): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "needsAllSignatures");
+	}
+
+	public needsWalletSignature(transaction: Contracts.SignedTransactionData, publicKey: string): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "needsWalletSignature");
+	}
+
+	public needsFinalSignature(transaction: Contracts.SignedTransactionData): boolean {
+		throw new Exceptions.NotImplemented(this.constructor.name, "needsFinalSignature");
+	}
+
+	public getValidMultiSignatures(transaction: Contracts.SignedTransactionData): string[] {
+		throw new Exceptions.NotImplemented(this.constructor.name, "getValidMultiSignatures");
+	}
+
+	public remainingSignatureCount(transaction: Contracts.SignedTransactionData): number {
+		throw new Exceptions.NotImplemented(this.constructor.name, "remainingSignatureCount");
+	}
 }

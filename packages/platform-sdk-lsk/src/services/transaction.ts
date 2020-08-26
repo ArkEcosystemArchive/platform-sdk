@@ -143,6 +143,13 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "entityUpdate");
 	}
 
+	public multiSign(
+		transaction: Contracts.RawTransactionData,
+		input: Contracts.TransactionInputs,
+	): Promise<Contracts.SignedTransactionData> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "multiSign");
+	}
+
 	private async createFromData(
 		type: string,
 		input: Contracts.KeyValuePair,

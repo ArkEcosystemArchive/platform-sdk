@@ -246,22 +246,12 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Error("Failed to retrieve the keys for the signatory wallet.");
 		}
 
-		const multiSignature = transaction.multisigAsset;
-
-		transaction = transaction.data;
-		transaction.multiSignature = undefined;
-		transaction.timestamp = undefined;
-
-		const pendingMultiSignature = new PendingMultiSignature({
-			...transaction,
-			multiSignature,
-			signatures: [...transaction.signatures],
-		});
+		const pendingMultiSignature = new PendingMultiSignature(transaction);
 
 		const isReady = pendingMultiSignature.isMultiSignatureReady(true);
 
 		if (!isReady) {
-			const index: number = multiSignature.publicKeys.indexOf(keys.publicKey);
+			const index: number = transaction.multisigAsset.publicKeys.indexOf(keys.publicKey);
 
 			if (index === -1) {
 				throw new Error("passphrase/wif is not used to sign this transaction");
@@ -301,7 +291,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 		return new SignedTransactionData(transaction.id, {
 			...transaction,
-			multiSignature,
+			multiSignature: transaction.multisigAsset,
 		});
 	}
 

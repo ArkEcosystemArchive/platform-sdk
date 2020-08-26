@@ -1,5 +1,6 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 
+import { promiseAllSettledByKey } from "../helpers/promise";
 import { SignedTransactionData } from "./dto/signed-transaction";
 import { ReadWriteWallet, WalletData } from "./wallet.models";
 
@@ -28,18 +29,18 @@ export class TransactionService {
 	readonly #broadcasted: SignedTransactionDataDictionary = {};
 
 	/**
+	 * The transactions that are waiting for the signatures of the wallet.
+	 *
+	 * @memberof TransactionService
+	 */
+	readonly #waitingForOurSignature: SignedTransactionDataDictionary = {};
+
+	/**
 	 * The transactions that are waiting for the signatures of other participants.
 	 *
 	 * @memberof TransactionService
 	 */
 	readonly #waitingForOtherSignatures: SignedTransactionDataDictionary = {};
-
-	/**
-	 * The transactions that are waiting for the signatures of the wallet.
-	 *
-	 * @memberof TransactionService
-	 */
-	readonly #waitingForYourSignature: SignedTransactionDataDictionary = {};
 
 	/**
 	 * Creates an instance of TransactionService.
@@ -51,6 +52,62 @@ export class TransactionService {
 		this.#wallet = wallet;
 
 		this.restore();
+	}
+
+	/**
+	 * Sign a Transfer transaction.
+	 *
+	 * @param {Contracts.TransferInput} input
+	 * @param {Contracts.TransactionOptions} [options]
+	 * @returns {Promise<string>}
+	 * @memberof TransactionService
+	 */
+	public async sync(): Promise<void> {
+		const transactions = await this.#wallet.coin().multiSignature().all(this.getPublicKey());
+
+		for (const transaction of transactions) {
+			const id: string = transaction.id;
+			const signedTransaction = new SignedTransactionData(transaction.id, transaction);
+
+			// If the transaction is ready to be broadcasted we can remove it from all Multi-Signature states.
+			if (this.canBeBroadcasted(id)) {
+				this.#signed[id] = signedTransaction;
+				delete this.#waitingForOurSignature[id];
+				delete this.#waitingForOtherSignatures[id];
+
+				continue;
+			}
+
+			// If the transaction is ready to be signed by us.
+			if (this.canBeSigned(id)) {
+				this.#waitingForOurSignature[id] = signedTransaction;
+			}
+
+			// If the transaction is waiting for the signatures of other participants.
+			if (this.isAwaitingOtherSignatures(id)) {
+				this.#waitingForOtherSignatures[id] = signedTransaction;
+			}
+		}
+	}
+
+	/**
+	 * Sign the transaction for the given ID with the given mnemonic.
+	 *
+	 * @param {string} id
+	 * @param {string} mnemonic
+	 * @returns {Promise<void>}
+	 * @memberof TransactionService
+	 */
+	public async addSignature(id: string, mnemonic: string): Promise<void> {
+		this.assertHasValidIdentifier(id);
+
+		const transaction = await this.#wallet.coin().multiSignature().findById(id);
+
+		const transactionWithSignature = await this.#wallet.coin().transaction().multiSign(transaction, {
+			sign: { mnemonic },
+		});
+
+		await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature.data());
 	}
 
 	/**
@@ -255,25 +312,48 @@ export class TransactionService {
 	 * Broadcast the given IDs.
 	 *
 	 * @param {string[]} ids
-	 * @returns {Promise<Contracts.BroadcastResponse>}
+	 * @returns {Promise<void>}
 	 * @memberof TransactionService
 	 */
-	public async broadcast(ids: string[]): Promise<Contracts.BroadcastResponse> {
-		// @TODO: handle multisignature broadcasting
+	public async broadcast(ids: string[]): Promise<void> {
+		const broadcastRequests: Record<string, Promise<Contracts.BroadcastResponse | string>> = {};
 
-		const broadcasting: Contracts.SignedTransactionData[] = ids.map((id: string) => {
+		for (const id of ids) {
 			this.assertHasValidIdentifier(id);
 
-			return this.#signed[id];
-		});
+			const transaction: Contracts.SignedTransactionData = this.#signed[id];
 
-		const response: Contracts.BroadcastResponse = await this.#wallet.client().broadcast(broadcasting);
+			// If the transaction is ready to be broadcasted we will include it.
+			if (this.canBeBroadcasted(transaction.id())) {
+				broadcastRequests[id] = this.#wallet.client().broadcast([transaction]);
 
-		for (const transactionId of response.accepted) {
-			this.#broadcasted[transactionId] = this.#signed[transactionId];
+				continue;
+			}
+
+			// If the transactions is not ready to be broadcasted to the network we will have to
+			// broadcast it to the Multi-Signature Server of the respective coin and network.
+			if (transaction.isMultiSignature() || transaction.isMultiSignatureRegistration()) {
+				broadcastRequests[id] = this.#wallet.coin().multiSignature().broadcast(transaction);
+			}
 		}
 
-		return response;
+		const responses = await promiseAllSettledByKey(broadcastRequests);
+
+		// TODO: better error handling and reporting
+		for (const [id, request] of Object.entries(responses || {})) {
+			if (request.status === "rejected" || request.value instanceof Error) {
+				continue;
+			}
+
+			if (typeof request.value === "string") {
+				this.#broadcasted[id] = this.#signed[id];
+			} else {
+				// @ts-ignore
+				for (const transactionId of request.value.accepted) {
+					this.#broadcasted[transactionId] = this.#signed[transactionId];
+				}
+			}
+		}
 	}
 
 	/**
@@ -284,6 +364,8 @@ export class TransactionService {
 	 * @memberof TransactionService
 	 */
 	public transaction(id: string): Contracts.SignedTransactionData {
+		this.assertHasValidIdentifier(id);
+
 		if (this.hasBeenSigned(id)) {
 			return this.#signed[id];
 		}
@@ -292,8 +374,8 @@ export class TransactionService {
 			return this.#broadcasted[id];
 		}
 
-		if (this.isAwaitingYourSignature(id)) {
-			return this.#waitingForYourSignature[id];
+		if (this.isAwaitingOurSignature(id)) {
+			return this.#waitingForOurSignature[id];
 		}
 
 		if (this.isAwaitingOtherSignatures(id)) {
@@ -314,7 +396,7 @@ export class TransactionService {
 			...this.signed(),
 			...this.broadcasted(),
 			...this.waitingForOtherSignatures(),
-			...this.waitingForYourSignature(),
+			...this.waitingForOurSignature(),
 		};
 	}
 
@@ -339,6 +421,16 @@ export class TransactionService {
 	}
 
 	/**
+	 * Get all transactions that are waiting for your signature.
+	 *
+	 * @returns {SignedTransactionDataDictionary}
+	 * @memberof TransactionService
+	 */
+	public waitingForOurSignature(): SignedTransactionDataDictionary {
+		return this.#waitingForOurSignature;
+	}
+
+	/**
 	 * Get all transactions that are waiting for the signatures of other participants.
 	 *
 	 * @returns {SignedTransactionDataDictionary}
@@ -349,16 +441,6 @@ export class TransactionService {
 	}
 
 	/**
-	 * Get all transactions that are waiting for your signature.
-	 *
-	 * @returns {SignedTransactionDataDictionary}
-	 * @memberof TransactionService
-	 */
-	public waitingForYourSignature(): SignedTransactionDataDictionary {
-		return this.#waitingForYourSignature;
-	}
-
-	/**
 	 * Check if the given ID has been signed.
 	 *
 	 * @param {string} id
@@ -366,6 +448,8 @@ export class TransactionService {
 	 * @memberof TransactionService
 	 */
 	public hasBeenSigned(id: string): boolean {
+		this.assertHasValidIdentifier(id);
+
 		return this.#signed[id] !== undefined;
 	}
 
@@ -377,6 +461,8 @@ export class TransactionService {
 	 * @memberof TransactionService
 	 */
 	public hasBeenBroadcasted(id: string): boolean {
+		this.assertHasValidIdentifier(id);
+
 		return this.#broadcasted[id] !== undefined;
 	}
 
@@ -388,6 +474,8 @@ export class TransactionService {
 	 * @memberof TransactionService
 	 */
 	public isAwaitingConfirmation(id: string): boolean {
+		this.assertHasValidIdentifier(id);
+
 		return !!this.#broadcasted[id];
 	}
 
@@ -398,8 +486,10 @@ export class TransactionService {
 	 * @returns {boolean}
 	 * @memberof TransactionService
 	 */
-	public isAwaitingYourSignature(id: string): boolean {
-		return !!this.#waitingForYourSignature[id];
+	public isAwaitingOurSignature(id: string): boolean {
+		this.assertHasValidIdentifier(id);
+
+		return !!this.#waitingForOurSignature[id];
 	}
 
 	/**
@@ -410,7 +500,43 @@ export class TransactionService {
 	 * @memberof TransactionService
 	 */
 	public isAwaitingOtherSignatures(id: string): boolean {
+		this.assertHasValidIdentifier(id);
+
 		return !!this.#waitingForOtherSignatures[id];
+	}
+
+	/**
+	 * Check if the given transaction for the given ID can be signed.
+	 *
+	 * This only affects Multi-Signature (Registration) transactions!
+	 *
+	 * @param {string} id
+	 * @returns {boolean}
+	 * @memberof TransactionService
+	 */
+	public canBeSigned(id: string): boolean {
+		this.assertHasValidIdentifier(id);
+
+		return this.#wallet.coin().multiSignature().needsWalletSignature(this.transaction(id), this.getPublicKey());
+	}
+
+	/**
+	 * Check if the given transaction for the given ID can be broadcasted.
+	 *
+	 * This only affects Multi-Signature (Registration) transactions!
+	 *
+	 * @param {string} id
+	 * @returns {boolean}
+	 * @memberof TransactionService
+	 */
+	public canBeBroadcasted(id: string): boolean {
+		this.assertHasValidIdentifier(id);
+
+		if (this.#signed[id] && !this.#broadcasted[id]) {
+			return true;
+		}
+
+		return this.#wallet.coin().multiSignature().isMultiSignatureReady(this.transaction(id));
 	}
 
 	/**
@@ -434,7 +560,7 @@ export class TransactionService {
 				delete this.#signed[id];
 				delete this.#broadcasted[id];
 				delete this.#waitingForOtherSignatures[id];
-				delete this.#waitingForYourSignature[id];
+				delete this.#waitingForOurSignature[id];
 			}
 
 			return transaction.isConfirmed();
@@ -463,8 +589,8 @@ export class TransactionService {
 
 		dumpStorage(this.#signed, WalletData.SignedTransactions);
 		dumpStorage(this.#broadcasted, WalletData.BroadcastedTransactions);
+		dumpStorage(this.#waitingForOurSignature, WalletData.WaitingForOurSignature);
 		dumpStorage(this.#waitingForOtherSignatures, WalletData.WaitingForOtherSignatures);
-		dumpStorage(this.#waitingForYourSignature, WalletData.WaitingForYourSignature);
 	}
 
 	/**
@@ -497,8 +623,8 @@ export class TransactionService {
 
 		restoreStorage(this.#signed, WalletData.SignedTransactions);
 		restoreStorage(this.#broadcasted, WalletData.BroadcastedTransactions);
+		restoreStorage(this.#waitingForOurSignature, WalletData.WaitingForOurSignature);
 		restoreStorage(this.#waitingForOtherSignatures, WalletData.WaitingForOtherSignatures);
-		restoreStorage(this.#waitingForYourSignature, WalletData.WaitingForYourSignature);
 	}
 
 	/**
@@ -523,7 +649,14 @@ export class TransactionService {
 			);
 		}
 
-		this.#signed[transaction.id()] = transaction;
+		// When we are working with Multi-Signatures we need to sign them in split through
+		// broadcasting and fetching them multiple times until all participants have signed
+		// the transaction. Once the transaction is fully signed we can mark it as finished.
+		if (transaction.isMultiSignature() || transaction.isMultiSignatureRegistration()) {
+			this.#waitingForOtherSignatures[transaction.id()] = transaction;
+		} else {
+			this.#signed[transaction.id()] = transaction;
+		}
 
 		return transaction.id();
 	}
@@ -539,5 +672,24 @@ export class TransactionService {
 		if (id === undefined) {
 			throw new Error("Encountered a malformed ID. This looks like a bug.");
 		}
+	}
+
+	/**
+	 * Get the public key of the current wallet.
+	 *
+	 * @private
+	 * @param {string} id
+	 * @memberof TransactionService
+	 */
+	private getPublicKey(): string {
+		const publicKey: string | undefined = this.#wallet.publicKey();
+
+		if (publicKey === undefined) {
+			throw new Error(
+				"This wallet is lacking a public key. Please sync the wallet before interacting with transactions.",
+			);
+		}
+
+		return publicKey;
 	}
 }

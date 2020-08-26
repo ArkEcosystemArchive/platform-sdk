@@ -1,4 +1,4 @@
-import { SignedTransactionData } from "./data";
+import { RawTransactionData, SignedTransactionData } from "./data";
 
 export interface TransactionService {
 	destruct(): Promise<void>;
@@ -23,6 +23,9 @@ export interface TransactionService {
 	entityRegistration(input: EntityRegistrationInput, options?: TransactionOptions): Promise<SignedTransactionData>;
 	entityResignation(input: EntityResignationInput, options?: TransactionOptions): Promise<SignedTransactionData>;
 	entityUpdate(input: EntityUpdateInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+
+	// Multi-Signature
+	multiSign(transaction: RawTransactionData, input: TransactionInputs): Promise<SignedTransactionData>;
 }
 
 // Transaction Signing

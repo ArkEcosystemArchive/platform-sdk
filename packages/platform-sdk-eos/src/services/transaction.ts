@@ -182,6 +182,13 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "entityUpdate");
 	}
 
+	public multiSign(
+		transaction: Contracts.RawTransactionData,
+		input: Contracts.TransactionInputs,
+	): Promise<Contracts.SignedTransactionData> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "multiSign");
+	}
+
 	private getClient(privateKey: string) {
 		const signatureProvider: JsSignatureProvider = new JsSignatureProvider([privateKey]);
 

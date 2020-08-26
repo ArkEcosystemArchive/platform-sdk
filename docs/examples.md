@@ -442,20 +442,16 @@ await wallet.transactions().confirm(transactionId);
 
 #### Sign and broadcast a transaction with multi-signature with 2 participants
 
-```ts
-const musig = await MultiSignatureService.construct(createConfig());
+> You should always ensure to call `wallet.syncIdentity()` before trying to sign transactions.
 
-const result = await subject.transfer({
-	nonce: "6",
+```ts
+// This is the initial transaction without any signatures.
+// This will be broadcasted to the Multi-Signature Server of ARK without any signatures.
+const transactionWithoutSignatures = await wallet.transaction().signTransfer({
+	nonce: "1",
 	from: "DRsenyd36jRmuMqqrFJy6wNbUwYvoEt51y",
 	sign: {
-		multiSignature: {
-			min: 2,
-			publicKeys: [
-				"03bc27e99693eba0831ae4f163e8d1ca33e7f4cfc7748e0e651101cccde1815e1a",
-				"02a7824e683de4bd5ce885f39bad8c352a1077ac41e1bbbbf72b78695e78221e8d",
-			],
-		},
+		multiSignature: wallet.multiSignature(),
 	},
 	data: {
 		amount: "1",
@@ -464,22 +460,18 @@ const result = await subject.transfer({
 	},
 });
 
-await musig.flush();
+// Broadcast the transaction without any signatures.
+const transactionID = await wallet.transaction().broadcast(transactionWithoutSignatures);
 
-const transactionID = await musig.broadcast(result.data());
-const initialTransaction = await musig.findById(transactionID);
+// Add the first signature and re-broadcast the transaction.
+await wallet.transaction().addSignature(transactionID, "FIRST_PASSPHRASE");
 
-const firstSignatory = await subject.multiSign(initialTransaction, {
-	sign: { mnemonic: "PASSPHRASE" },
-});
-await musig.broadcast(firstSignatory.data());
-const firstSignatoryTransaction = await musig.findById(transactionID);
+// Add the second signature and re-broadcast the transaction.
+await wallet.transaction().addSignature(transactionID, "SECOND_PASSPHRASE");
 
-const secondSignatory = await subject.multiSign(firstSignatoryTransaction, {
-	sign: { mnemonic: "PASSPHRASE" },
-});
-await musig.broadcast(secondSignatory.data());
-const secondSignatoryTransaction = await musig.findById(transactionID);
+// Sync all of the transactions from the Multi-Signature Server and check the state of each.
+await wallet.transaction().sync();
 
-console.log(JSON.stringify({ transactions: [secondSignatoryTransaction.data] }));
+// Broadcast the multi signature.
+await wallet.transaction().broadcast(transactionID);
 ```
