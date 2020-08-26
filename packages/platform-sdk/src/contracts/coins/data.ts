@@ -3,6 +3,12 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { KeyValuePair } from "../types";
 
+export interface WalletMultiSignature {
+	min: number;
+	publicKeys: string[];
+	limit?: number;
+}
+
 export interface WalletData {
 	// Wallet
 	address(): string;
@@ -19,6 +25,8 @@ export interface WalletData {
 	rank(): number | undefined;
 
 	votes(): BigNumber | undefined;
+
+	multiSignature(): WalletMultiSignature;
 
 	// Flags
 	isDelegate(): boolean;
