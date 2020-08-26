@@ -301,7 +301,7 @@ export class TransactionService {
 
 			// If the transaction is ready to be broadcasted we will include it.
 			if (this.canBeBroadcasted(transaction.id())) {
-				broadcastRequests[id] = this.#wallet.client().broadcast([transaction.data()]);
+				broadcastRequests[id] = this.#wallet.client().broadcast([transaction]);
 
 				continue;
 			}
