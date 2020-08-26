@@ -325,7 +325,7 @@ export class TransactionService {
 
 			// If the transaction is ready to be broadcasted we will include it.
 			if (this.canBeBroadcasted(transaction.id())) {
-				broadcastRequests[id] = this.#wallet.client().broadcast([transaction]);
+				broadcastRequests[id] = this.#wallet.client().broadcast([transaction.data()]);
 
 				continue;
 			}
@@ -333,7 +333,7 @@ export class TransactionService {
 			// If the transactions is not ready to be broadcasted to the network we will have to
 			// broadcast it to the Multi-Signature Server of the respective coin and network.
 			if (transaction.isMultiSignature() || transaction.isMultiSignatureRegistration()) {
-				broadcastRequests[id] = this.#wallet.coin().multiSignature().broadcast(transaction);
+				broadcastRequests[id] = this.#wallet.coin().multiSignature().broadcast(transaction.data());
 			}
 		}
 
