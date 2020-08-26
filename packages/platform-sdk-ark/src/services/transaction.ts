@@ -251,7 +251,7 @@ export class TransactionService implements Contracts.TransactionService {
 		const isReady = pendingMultiSignature.isMultiSignatureReady(true);
 
 		if (!isReady) {
-			const index: number = transaction.multisigAsset.publicKeys.indexOf(keys.publicKey);
+			const index: number = transaction.multiSignature.publicKeys.indexOf(keys.publicKey);
 
 			if (index === -1) {
 				throw new Error("passphrase/wif is not used to sign this transaction");
@@ -289,10 +289,7 @@ export class TransactionService implements Contracts.TransactionService {
 			transaction.id = Transactions.Utils.getId(transaction);
 		}
 
-		return new SignedTransactionData(transaction.id, {
-			...transaction,
-			multiSignature: transaction.multisigAsset,
-		});
+		return new SignedTransactionData(transaction.id, transaction);
 	}
 
 	private async createFromData(
