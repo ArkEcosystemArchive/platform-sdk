@@ -10,7 +10,7 @@ import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { IdentityService } from "./identity";
-import { TransactionMultiSignature } from "./transaction-musig";
+import { PendingMultiSignature } from "./pending-multi-signature";
 
 Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.EntityTransaction);
 
@@ -222,12 +222,10 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 	}
 
-	/**
-	 * Signs a transaction using the multi-signature method.
-	 * @param transaction
-	 * @param input
-	 */
-	public async multiSign(transaction, input: Contracts.TransactionInputs) {
+	public async multiSign(
+		transaction: Contracts.RawTransactionData,
+		input: Contracts.TransactionInputs,
+	): Promise<Contracts.SignedTransactionData> {
 		// transaction = CryptoUtils.transactionFromData(transaction);
 		let keys: Contracts.KeyPair | undefined;
 
@@ -249,7 +247,7 @@ export class TransactionService implements Contracts.TransactionService {
 		transaction.multiSignature = undefined;
 		transaction.timestamp = undefined;
 
-		const tx = new TransactionMultiSignature({
+		const tx = new PendingMultiSignature({
 			...transaction,
 			multiSignature,
 			signatures: [...transaction.signatures],
@@ -273,11 +271,8 @@ export class TransactionService implements Contracts.TransactionService {
 			transaction.signatures = transaction.signatures.filter(
 				(value, index, self) => self.indexOf(value) === index,
 			);
-
-			// transaction.senderPublicKey = await this.#identity
-			// 	.publicKey()
-			// 	.fromMultiSignature(multiSignature.min, multiSignature.publicKeys);
 		} else if (tx.needsWalletSignature(keys.publicKey)) {
+			// TODO: clean up this part in a follow up PR
 			Transactions.Signer.sign(transaction, {
 				publicKey: keys.publicKey,
 				privateKey: keys.privateKey!,
@@ -299,10 +294,10 @@ export class TransactionService implements Contracts.TransactionService {
 			transaction.id = Transactions.Utils.getId(transaction);
 		}
 
-		return {
+		return new SignedTransactionData(transaction.id, {
 			...transaction,
 			multiSignature,
-		};
+		});
 	}
 
 	private async createFromData(
@@ -429,10 +424,6 @@ export class TransactionService implements Contracts.TransactionService {
 			senderPublicKey = await this.#identity.publicKey().fromWIF(multiSignature.wif);
 		}
 
-		// if (!senderPublicKey) {
-		// 	throw new Error("Failed to derive sender public key.");
-		// }
-
 		const publicKeyIndex: number = multiSignature.publicKeys.indexOf(senderPublicKey);
 
 		transaction.senderPublicKey(senderPublicKey);
@@ -452,8 +443,6 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 
 		const transactionJSON = transaction.build().toJson();
-
-		delete multiSignature.mnemonic;
 
 		transactionJSON.multiSignature = multiSignature;
 

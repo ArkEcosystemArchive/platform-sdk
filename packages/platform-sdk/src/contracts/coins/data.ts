@@ -348,13 +348,6 @@ export interface SignedTransactionData {
 	// MultiSignature
 	isMultiSignature(): boolean;
 	isMultiSignatureRegistration(): boolean;
-	isMultiSignatureReady(excludeFinal?: boolean): boolean;
-	needsSignatures(): boolean;
-	needsAllSignatures(): boolean;
-	needsWalletSignature(publicKey: string): boolean;
-	needsFinalSignature(): boolean;
-	getValidMultiSignatures(): string[];
-	remainingSignatureCount(): number;
 
 	// Helpers
 	get<T = string>(key: string): T;

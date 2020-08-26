@@ -1,10 +1,10 @@
 import { Crypto, Transactions } from "@arkecosystem/crypto";
 import { Contracts } from "@arkecosystem/platform-sdk";
 
-export class TransactionMultiSignature {
-	readonly #transaction;
+export class PendingMultiSignature {
+	readonly #transaction: Contracts.RawTransactionData;
 
-	public constructor(transaction) {
+	public constructor(transaction: Contracts.RawTransactionData) {
 		this.#transaction = transaction;
 	}
 
