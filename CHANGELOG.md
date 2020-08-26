@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.301 - 2020-08-26
+
+### Added
+
+-   Implement `WalletData#multiSignature` (e5c9d642, @faustbrian)
+-   Implement `WalletData#isResignedDelegate` (03b96e34, @faustbrian)
+-   Implement Multi-Signature signing and broadcasting (760679f7, @faustbrian)
+-   Implement `WalletAggregate#convertedBalance` (49fd1561, @faustbrian)
+-   Implement multi-signature helpers in `TransactionService` (fa608290, @faustbrian)
+-   Implement `Wallet#isResignedDelegate` and `Wallet#multiSignature` (543897e8, @faustbrian)
+-   Implement Multi-Signature for `TransactionService` (b171775c, @faustbrian)
+
+### Fixed
+
+-   Ark explorer links (8881f50f, @dated)
+
 ## 0.9.293 - 2020-08-24
 
 ### Fixed
@@ -50,10 +66,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 0.9.285 - 2020-08-23
 
-### Fixed
-
--   Remove double slash from explorer links (b211d3f6, @faustbrian)
-
 ### Added
 
 -   Implement `Wallet#canVote` (0ee97aa5, @faustbrian)
@@ -63,6 +75,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   Decouple `DelegateMapper` from `Wallet` (11620f26, @faustbrian)
 -   Remove extraneous `Wallet` methods (ae11ed1d, @faustbrian)
+
+### Fixed
+
+-   Remove double slash from explorer links (b211d3f6, @faustbrian)
 
 ## 0.9.280 - 2020-08-23
 
