@@ -8,9 +8,9 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { PendingMultiSignature } from "../dto/pending-multi-signature";
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { IdentityService } from "./identity";
-import { PendingMultiSignature } from "./pending-multi-signature";
 
 Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.EntityTransaction);
 
@@ -222,11 +222,16 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 	}
 
+	/**
+	 * This method should be used to split-sign transactions in combination with the MuSig Server.
+	 *
+	 * @param transaction A transaction that was previously signed with a multi-signature.
+	 * @param input
+	 */
 	public async multiSign(
 		transaction: Contracts.RawTransactionData,
 		input: Contracts.TransactionInputs,
 	): Promise<Contracts.SignedTransactionData> {
-		// transaction = CryptoUtils.transactionFromData(transaction);
 		let keys: Contracts.KeyPair | undefined;
 
 		if (input.sign.mnemonic) {
@@ -247,13 +252,13 @@ export class TransactionService implements Contracts.TransactionService {
 		transaction.multiSignature = undefined;
 		transaction.timestamp = undefined;
 
-		const tx = new PendingMultiSignature({
+		const pendingMultiSignature = new PendingMultiSignature({
 			...transaction,
 			multiSignature,
 			signatures: [...transaction.signatures],
 		});
 
-		const isReady = tx.isMultiSignatureReady(true);
+		const isReady = pendingMultiSignature.isMultiSignatureReady(true);
 
 		if (!isReady) {
 			const index: number = multiSignature.publicKeys.indexOf(keys.publicKey);
@@ -271,7 +276,7 @@ export class TransactionService implements Contracts.TransactionService {
 			transaction.signatures = transaction.signatures.filter(
 				(value, index, self) => self.indexOf(value) === index,
 			);
-		} else if (tx.needsWalletSignature(keys.publicKey)) {
+		} else if (pendingMultiSignature.needsWalletSignature(keys.publicKey)) {
 			// TODO: clean up this part in a follow up PR
 			Transactions.Signer.sign(transaction, {
 				publicKey: keys.publicKey,
@@ -450,6 +455,6 @@ export class TransactionService implements Contracts.TransactionService {
 			transactionJSON.signatures = [];
 		}
 
-		return transactionJSON;
+		return new SignedTransactionData(transactionJSON.id, transactionJSON);
 	}
 }
