@@ -678,9 +678,7 @@ export class TransactionService {
 			this.#waitingForOurSignature[transactionId] = signedTransaction;
 			this.#waitingForOtherSignatures[transactionId] = signedTransaction;
 
-			if (this.canBeSigned(transactionId)) {
-				delete this.#waitingForOtherSignatures[transactionId];
-			} else {
+			if (!this.canBeSigned(transactionId)) {
 				delete this.#waitingForOurSignature[transactionId];
 			}
 		}
