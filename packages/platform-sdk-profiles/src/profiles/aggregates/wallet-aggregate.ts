@@ -18,6 +18,16 @@ export class WalletAggregate {
 			.reduce((total: BigNumber, wallet: ReadWriteWallet) => total.plus(wallet.balance()), BigNumber.ZERO);
 	}
 
+	public convertedBalance(): BigNumber {
+		return this.#profile
+			.wallets()
+			.values()
+			.reduce(
+				(total: BigNumber, wallet: ReadWriteWallet) => total.plus(wallet.convertedBalance()),
+				BigNumber.ZERO,
+			);
+	}
+
 	public balancePerCoin(): Record<string, { total: number; percentage: number }> {
 		const result = {};
 
