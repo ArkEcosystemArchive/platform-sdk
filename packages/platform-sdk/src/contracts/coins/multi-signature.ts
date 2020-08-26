@@ -5,7 +5,9 @@ export type MultiSignatureTransaction = Record<string, any>;
 export interface MultiSignatureService {
 	destruct(): Promise<void>;
 
-	all(publicKey: string, state?: string): Promise<any[]>;
+	allWithPendingState(publicKey: string): Promise<MultiSignatureTransaction[]>;
+
+	allWithReadyState(publicKey: string): Promise<MultiSignatureTransaction[]>;
 
 	findById(id: string): Promise<MultiSignatureTransaction>;
 

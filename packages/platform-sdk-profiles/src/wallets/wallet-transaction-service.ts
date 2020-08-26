@@ -19,28 +19,28 @@ export class TransactionService {
 	 *
 	 * @memberof TransactionService
 	 */
-	readonly #signed: SignedTransactionDataDictionary = {};
+	#signed: SignedTransactionDataDictionary = {};
 
 	/**
 	 * The transactions that have been signed and broadcasted.
 	 *
 	 * @memberof TransactionService
 	 */
-	readonly #broadcasted: SignedTransactionDataDictionary = {};
+	#broadcasted: SignedTransactionDataDictionary = {};
 
 	/**
 	 * The transactions that are waiting for the signatures of the wallet.
 	 *
 	 * @memberof TransactionService
 	 */
-	readonly #waitingForOurSignature: SignedTransactionDataDictionary = {};
+	#waitingForOurSignature: SignedTransactionDataDictionary = {};
 
 	/**
 	 * The transactions that are waiting for the signatures of other participants.
 	 *
 	 * @memberof TransactionService
 	 */
-	readonly #waitingForOtherSignatures: SignedTransactionDataDictionary = {};
+	#waitingForOtherSignatures: SignedTransactionDataDictionary = {};
 
 	/**
 	 * Creates an instance of TransactionService.
@@ -63,31 +63,7 @@ export class TransactionService {
 	 * @memberof TransactionService
 	 */
 	public async sync(): Promise<void> {
-		const transactions = await this.#wallet.coin().multiSignature().all(this.getPublicKey());
-
-		for (const transaction of transactions) {
-			const id: string = transaction.id;
-			const signedTransaction = new SignedTransactionData(transaction.id, transaction);
-
-			// If the transaction is ready to be broadcasted we can remove it from all Multi-Signature states.
-			if (this.canBeBroadcasted(id)) {
-				this.#signed[id] = signedTransaction;
-				delete this.#waitingForOurSignature[id];
-				delete this.#waitingForOtherSignatures[id];
-
-				continue;
-			}
-
-			// If the transaction is ready to be signed by us.
-			if (this.canBeSigned(id)) {
-				this.#waitingForOurSignature[id] = signedTransaction;
-			}
-
-			// If the transaction is waiting for the signatures of other participants.
-			if (this.isAwaitingOtherSignatures(id)) {
-				this.#waitingForOtherSignatures[id] = signedTransaction;
-			}
-		}
+		await Promise.allSettled([this.syncPendingMultiSignatures(), this.syncReadyMultiSignatures()]);
 	}
 
 	/**
@@ -532,11 +508,7 @@ export class TransactionService {
 	public canBeBroadcasted(id: string): boolean {
 		this.assertHasValidIdentifier(id);
 
-		if (this.#signed[id] && !this.#broadcasted[id]) {
-			return true;
-		}
-
-		return this.#wallet.coin().multiSignature().isMultiSignatureReady(this.transaction(id));
+		return this.#signed[id] !== undefined;
 	}
 
 	/**
@@ -691,5 +663,33 @@ export class TransactionService {
 		}
 
 		return publicKey;
+	}
+
+	private async syncPendingMultiSignatures(): Promise<void> {
+		const transactions = await this.#wallet.coin().multiSignature().allWithReadyState(this.getPublicKey());
+
+		this.#waitingForOurSignature = {};
+		this.#waitingForOtherSignatures = {};
+
+		for (const transaction of transactions) {
+			const transactionId: string = transaction.id;
+			const signedTransaction = new SignedTransactionData(transaction.id, transaction);
+
+			if (this.canBeSigned(transactionId)) {
+				this.#waitingForOurSignature[transactionId] = signedTransaction;
+				delete this.#waitingForOtherSignatures[transactionId];
+			} else {
+				this.#waitingForOtherSignatures[transactionId] = signedTransaction;
+				delete this.#waitingForOurSignature[transactionId];
+			}
+		}
+	}
+
+	private async syncReadyMultiSignatures(): Promise<void> {
+		const transactions = await this.#wallet.coin().multiSignature().allWithReadyState(this.getPublicKey());
+
+		for (const transaction of transactions) {
+			this.#signed[transaction.id] = new SignedTransactionData(transaction.id, transaction);
+		}
 	}
 }

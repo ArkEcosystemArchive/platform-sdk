@@ -20,29 +20,18 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 		//
 	}
 
-	public async all(publicKey: string, state?: string): Promise<any[]> {
-		const response = await this.get("transactions", {
-			publicKey,
-			state,
-		});
+	public async allWithPendingState(publicKey: string): Promise<Contracts.MultiSignatureTransaction[]> {
+		return this.fetchAll(publicKey, "pending");
+	}
 
-		return response.map((transaction) => {
-			return {
-				...transaction.data,
-				multiSignature: transaction.multisigAsset,
-				timestamp: transaction.timestamp,
-			};
-		});
+	public async allWithReadyState(publicKey: string): Promise<Contracts.MultiSignatureTransaction[]> {
+		return this.fetchAll(publicKey, "ready");
 	}
 
 	public async findById(id: string): Promise<Contracts.MultiSignatureTransaction> {
 		const transaction = await this.get(`transaction/${id}`);
 
-		return {
-			...transaction.data,
-			multiSignature: transaction.multisigAsset,
-			timestamp: transaction.timestamp,
-		};
+		return this.normalizeTransaction(transaction);
 	}
 
 	public async broadcast(transaction: Contracts.MultiSignatureTransaction): Promise<string> {
@@ -125,5 +114,22 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 		}
 
 		return Arr.randomElement(this.#config.get<Coins.CoinNetwork>("network").hostsMultiSignature);
+	}
+
+	private normalizeTransaction(transaction): Record<string, any> {
+		return {
+			...transaction.data,
+			multiSignature: transaction.multisigAsset,
+			timestamp: transaction.timestamp,
+		};
+	}
+
+	private async fetchAll(publicKey: string, state: string): Promise<any[]> {
+		const response = await this.get("transactions", {
+			publicKey,
+			state,
+		});
+
+		return response.map((transaction) => this.normalizeTransaction(transaction));
 	}
 }

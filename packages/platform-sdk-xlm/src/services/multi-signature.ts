@@ -17,16 +17,20 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 		//
 	}
 
-	public async all(publicKey: string, state?: string): Promise<any[]> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
+	public async allWithPendingState(publicKey: string): Promise<Contracts.MultiSignatureTransaction[]> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "allWithPendingState");
+	}
+
+	public async allWithReadyState(publicKey: string): Promise<Contracts.MultiSignatureTransaction[]> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "allWithReadyState");
 	}
 
 	public async findById(id: string): Promise<Contracts.MultiSignatureTransaction> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
+		throw new Exceptions.NotImplemented(this.constructor.name, "findById");
 	}
 
 	public async broadcast(transaction: Contracts.MultiSignatureTransaction): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
+		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
 	}
 
 	public isMultiSignatureReady(transaction: Contracts.SignedTransactionData, excludeFinal?: boolean): boolean {
