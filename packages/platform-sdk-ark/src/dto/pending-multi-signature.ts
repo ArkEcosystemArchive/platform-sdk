@@ -5,8 +5,6 @@ export class PendingMultiSignature {
 	readonly #transaction: Contracts.RawTransactionData;
 
 	public constructor(transaction: Contracts.RawTransactionData) {
-		transaction.timestamp = undefined;
-
 		this.#transaction = {
 			...transaction,
 			signatures: [...transaction.signatures],
