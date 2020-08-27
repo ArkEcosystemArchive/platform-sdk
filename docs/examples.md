@@ -446,7 +446,6 @@ await wallet.transactions().confirm(transactionId);
 
 ```ts
 // This is the initial transaction without any signatures.
-// This will be broadcasted to the Multi-Signature Server of ARK without any signatures.
 const transactionWithoutSignatures = await wallet.transaction().signTransfer({
     nonce: "1",
     from: "DRsenyd36jRmuMqqrFJy6wNbUwYvoEt51y",
@@ -474,4 +473,56 @@ await wallet.transaction().sync();
 
 // Broadcast the multi signature.
 await wallet.transaction().broadcast([transactionID]);
+```
+
+#### Sign and broadcast a multi-signature registration with 3 participants
+
+> You should always ensure to call `wallet.syncIdentity()` before trying to sign transactions.
+
+```ts
+// This is the initial transaction without any signatures.
+const transactionId = await wallet.transaction().signMultiSignature({
+	nonce: "2",
+	from: wallet1Address,
+	sign: {
+		multiSignature: {
+			publicKeys:[wallet1PublicKey, wallet2PublicKey, wallet3PublicKey],
+			min: 3,
+		}
+	},
+	data: {
+		publicKeys:[wallet1PublicKey, wallet2PublicKey, wallet3PublicKey],
+		min: 3,
+		senderPublicKey: wallet1PublicKey,
+	},
+});
+
+await activeWallet.transaction().broadcast([transactionId]);
+
+// Add the first signature and re-broadcast the transaction.
+await activeWallet.transaction().addSignature(transactionId, "FIRST_PASSPHRASE");
+
+// Sync all of the transactions from the Multi-Signature Server and check the state of each.
+await activeWallet.transaction().sync();
+
+// Add the second signature and re-broadcast the transaction.
+await activeWallet.transaction().addSignature(transactionId, "SECOND_PASSPHRASE");
+
+// Sync all of the transactions from the Multi-Signature Server and check the state of each.
+await activeWallet.transaction().sync();
+
+// Add the third signature and re-broadcast the transaction.
+await activeWallet.transaction().addSignature(transactionId, "THIRD_PASSPHRASE");
+
+// Sync all of the transactions from the Multi-Signature Server and check the state of each.
+await activeWallet.transaction().sync();
+
+// Add the final signature by signing the whole transaction with the signatures of all participants.
+await activeWallet.transaction().addSignature(transactionId, "FIRST_PASSPHRASE");
+
+// Sync all of the transactions from the Multi-Signature Server and check the state of each.
+await activeWallet.transaction().sync();
+
+// Broadcast the multi signature.
+await activeWallet.transaction().broadcast([transactionId]);
 ```
