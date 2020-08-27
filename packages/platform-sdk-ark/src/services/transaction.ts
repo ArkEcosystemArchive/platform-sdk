@@ -4,6 +4,7 @@ import {
 } from "@arkecosystem/core-magistrate-crypto";
 import { Enums } from "@arkecosystem/core-magistrate-crypto";
 import { Managers, Transactions } from "@arkecosystem/crypto";
+import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
@@ -246,50 +247,13 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Error("Failed to retrieve the keys for the signatory wallet.");
 		}
 
-		const pendingMultiSignature = new PendingMultiSignature(transaction);
+		const transactionWithSignature = MultiSignatureSigner.addSignature(transaction, {
+			publicKey: keys.publicKey,
+			privateKey: keys.privateKey!,
+			compressed: true,
+		});
 
-		const isReady = pendingMultiSignature.isMultiSignatureReady(true);
-
-		if (!isReady) {
-			const index: number = transaction.multiSignature.publicKeys.indexOf(keys.publicKey);
-
-			if (index === -1) {
-				throw new Error("passphrase/wif is not used to sign this transaction");
-			}
-
-			Transactions.Signer.multiSign(
-				transaction,
-				{ publicKey: keys.publicKey, privateKey: keys.privateKey!, compressed: true },
-				index,
-			);
-
-			transaction.signatures = transaction.signatures.filter(
-				(value, index, self) => self.indexOf(value) === index,
-			);
-		} else if (pendingMultiSignature.needsWalletSignature(keys.publicKey)) {
-			// TODO: clean up this part in a follow up PR
-			Transactions.Signer.sign(transaction, {
-				publicKey: keys.publicKey,
-				privateKey: keys.privateKey!,
-				compressed: true,
-			});
-
-			if (input.sign.secondMnemonic) {
-				const secondaryKeys = await this.#identity
-					.keys()
-					.fromMnemonic(BIP39.normalize(input.sign.secondMnemonic));
-
-				Transactions.Signer.secondSign(transaction, {
-					publicKey: secondaryKeys.publicKey,
-					privateKey: secondaryKeys.privateKey!,
-					compressed: true,
-				});
-			}
-
-			transaction.id = Transactions.Utils.getId(transaction);
-		}
-
-		return new SignedTransactionData(transaction.id, transaction);
+		return new SignedTransactionData(transactionWithSignature.id!, transactionWithSignature);
 	}
 
 	private async createFromData(
@@ -403,46 +367,8 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private async handleMultiSignature(transaction: Contracts.RawTransactionData, input: Contracts.TransactionInputs) {
-		// @ts-ignore
-		const { multiSignature } = input.sign;
+		const transactionWithSignature = MultiSignatureSigner.sign(transaction, input.sign.multiSignature);
 
-		let senderPublicKey: string | undefined = undefined;
-
-		if (multiSignature.mnemonic) {
-			senderPublicKey = await this.#identity.publicKey().fromMnemonic(BIP39.normalize(multiSignature.mnemonic));
-		}
-
-		if (multiSignature.wif) {
-			senderPublicKey = await this.#identity.publicKey().fromWIF(multiSignature.wif);
-		}
-
-		const publicKeyIndex: number = multiSignature.publicKeys.indexOf(senderPublicKey);
-
-		transaction.senderPublicKey(senderPublicKey);
-
-		if (publicKeyIndex > -1) {
-			if (multiSignature.mnemonic) {
-				transaction.multiSign(multiSignature.mnemonic, publicKeyIndex);
-			}
-		} else if (transaction.data.type === 4 && !transaction.data.signatures) {
-			transaction.data.signatures = [];
-		}
-
-		if (!transaction.data.senderPublicKey) {
-			transaction.senderPublicKey(
-				await this.#identity.publicKey().fromMultiSignature(multiSignature.min, multiSignature.publicKeys),
-			);
-		}
-
-		const transactionJSON = transaction.data.type === 4 ? transaction.getStruct() : transaction.build().toJson();
-		transactionJSON.multiSignature = multiSignature;
-
-		if (!transactionJSON.signatures) {
-			transactionJSON.signatures = [];
-		}
-
-		delete transactionJSON.multiSignature.mnemonic;
-
-		return new SignedTransactionData(transactionJSON.id, transactionJSON);
+		return new SignedTransactionData(transactionWithSignature.id!, transactionWithSignature);
 	}
 }

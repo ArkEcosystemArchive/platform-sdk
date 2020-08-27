@@ -348,6 +348,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@arkecosystem/crypto", [
+        ["npm:2.6.52", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-2.6.52-3b3d16f48b-2.zip/node_modules/@arkecosystem/crypto/",
+          "packageDependencies": [
+            ["@arkecosystem/crypto", "npm:2.6.52"],
+            ["@arkecosystem/utils", "npm:1.1.8"],
+            ["@types/bytebuffer", "npm:5.0.40"],
+            ["ajv", "npm:6.12.2"],
+            ["ajv-keywords", "virtual:00ff01f9195cdde7fe4a0d80e7785f053dcfe3652b79b3b9116d0adf829805d5cf5d199fe394b94aa84a0ea24097e49be8ec81a754eaf70d1bf2d480f63ba62c#npm:3.4.1"],
+            ["bcrypto", "npm:5.2.0"],
+            ["bip32", "npm:2.0.5"],
+            ["bip39", "npm:3.0.2"],
+            ["browserify-aes", "npm:1.2.0"],
+            ["bstring", "npm:0.3.9"],
+            ["buffer-xor", "npm:2.0.2"],
+            ["bytebuffer", "npm:5.0.1"],
+            ["dayjs", "npm:1.8.25"],
+            ["deepmerge", "npm:4.2.2"],
+            ["fast-memoize", "npm:2.5.2"],
+            ["ipaddr.js", "npm:1.9.1"],
+            ["lodash.get", "npm:4.4.2"],
+            ["lodash.set", "npm:4.3.2"],
+            ["lodash.sumby", "npm:4.6.0"],
+            ["tiny-glob", "npm:0.2.6"],
+            ["wif", "npm:2.0.6"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:2.7.0-next.2", {
           "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-2.7.0-next.2-00ff01f919-2.zip/node_modules/@arkecosystem/crypto/",
           "packageDependencies": [
@@ -383,6 +410,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/ledger-transport", "npm:1.1.3"],
             ["@ledgerhq/errors", "npm:5.19.1"],
             ["@ledgerhq/hw-transport", "npm:5.19.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@arkecosystem/multi-signature", [
+        ["npm:0.1.1", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-multi-signature-npm-0.1.1-7e9663a3ad-2.zip/node_modules/@arkecosystem/multi-signature/",
+          "packageDependencies": [
+            ["@arkecosystem/multi-signature", "npm:0.1.1"],
+            ["@arkecosystem/crypto", "npm:2.6.52"]
           ],
           "linkType": "HARD",
         }]
@@ -489,6 +526,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/core-magistrate-crypto", "npm:2.7.0-next.2"],
             ["@arkecosystem/crypto", "npm:2.7.0-next.2"],
             ["@arkecosystem/ledger-transport", "npm:1.1.3"],
+            ["@arkecosystem/multi-signature", "npm:0.1.1"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
