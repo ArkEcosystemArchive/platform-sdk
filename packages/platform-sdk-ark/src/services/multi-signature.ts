@@ -1,7 +1,6 @@
+import { PendingMultiSignatureTransaction } from "@arkecosystem/multi-signature";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-
-import { PendingMultiSignature } from "../dto/pending-multi-signature";
 
 export class MultiSignatureService implements Contracts.MultiSignatureService {
 	readonly #config: Coins.Config;
@@ -63,31 +62,31 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	 */
 
 	public isMultiSignatureReady(transaction: Contracts.SignedTransactionData, excludeFinal?: boolean): boolean {
-		return new PendingMultiSignature(transaction.data()).isMultiSignatureReady(excludeFinal);
+		return new PendingMultiSignatureTransaction(transaction.data()).isMultiSignatureReady({ excludeFinal });
 	}
 
 	public needsSignatures(transaction: Contracts.SignedTransactionData): boolean {
-		return new PendingMultiSignature(transaction.data()).needsSignatures();
+		return new PendingMultiSignatureTransaction(transaction.data()).needsSignatures();
 	}
 
 	public needsAllSignatures(transaction: Contracts.SignedTransactionData): boolean {
-		return new PendingMultiSignature(transaction.data()).needsAllSignatures();
+		return new PendingMultiSignatureTransaction(transaction.data()).needsAllSignatures();
 	}
 
 	public needsWalletSignature(transaction: Contracts.SignedTransactionData, publicKey: string): boolean {
-		return new PendingMultiSignature(transaction.data()).needsWalletSignature(publicKey);
+		return new PendingMultiSignatureTransaction(transaction.data()).needsWalletSignature(publicKey);
 	}
 
 	public needsFinalSignature(transaction: Contracts.SignedTransactionData): boolean {
-		return new PendingMultiSignature(transaction.data()).needsFinalSignature();
+		return new PendingMultiSignatureTransaction(transaction.data()).needsFinalSignature();
 	}
 
 	public getValidMultiSignatures(transaction: Contracts.SignedTransactionData): string[] {
-		return new PendingMultiSignature(transaction.data()).getValidMultiSignatures();
+		return new PendingMultiSignatureTransaction(transaction.data()).getValidMultiSignatures();
 	}
 
 	public remainingSignatureCount(transaction: Contracts.SignedTransactionData): number {
-		return new PendingMultiSignature(transaction.data()).remainingSignatureCount();
+		return new PendingMultiSignatureTransaction(transaction.data()).remainingSignatureCount();
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
