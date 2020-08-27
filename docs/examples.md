@@ -446,7 +446,7 @@ await wallet.transactions().confirm(transactionId);
 
 ```ts
 // This is the initial transaction without any signatures.
-const transactionWithoutSignatures = await wallet.transaction().signTransfer({
+const transactionId = await wallet.transaction().signTransfer({
     nonce: "1",
     from: "DRsenyd36jRmuMqqrFJy6wNbUwYvoEt51y",
     sign: {
@@ -460,19 +460,19 @@ const transactionWithoutSignatures = await wallet.transaction().signTransfer({
 });
 
 // Broadcast the transaction without any signatures.
-const transactionID = await wallet.transaction().broadcast([transactionWithoutSignatures]);
+await wallet.transaction().broadcast([transactionId]);
 
 // Add the first signature and re-broadcast the transaction.
-await wallet.transaction().addSignature(transactionID, "FIRST_PASSPHRASE");
+await wallet.transaction().addSignature(transactionId, "FIRST_PASSPHRASE");
 
 // Add the second signature and re-broadcast the transaction.
-await wallet.transaction().addSignature(transactionID, "SECOND_PASSPHRASE");
+await wallet.transaction().addSignature(transactionId, "SECOND_PASSPHRASE");
 
 // Sync all of the transactions from the Multi-Signature Server and check the state of each.
 await wallet.transaction().sync();
 
 // Broadcast the multi signature.
-await wallet.transaction().broadcast([transactionID]);
+await wallet.transaction().broadcast([transactionId]);
 ```
 
 #### Sign and broadcast a multi-signature registration with 3 participants
