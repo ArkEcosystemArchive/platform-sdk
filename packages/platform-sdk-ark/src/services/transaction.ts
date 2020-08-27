@@ -434,13 +434,14 @@ export class TransactionService implements Contracts.TransactionService {
 			);
 		}
 
-		const transactionJSON = transaction.build().toJson();
-
+		const transactionJSON = transaction.data.type === 4 ? transaction.getStruct() : transaction.build().toJson();
 		transactionJSON.multiSignature = multiSignature;
 
 		if (!transactionJSON.signatures) {
 			transactionJSON.signatures = [];
 		}
+
+		delete transactionJSON.multiSignature.mnemonic;
 
 		return new SignedTransactionData(transactionJSON.id, transactionJSON);
 	}
