@@ -387,6 +387,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@arkecosystem/multi-signature", [
+        ["npm:0.1.3", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-multi-signature-npm-0.1.3-4f8d2eca29-2.zip/node_modules/@arkecosystem/multi-signature/",
+          "packageDependencies": [
+            ["@arkecosystem/multi-signature", "npm:0.1.3"],
+            ["@arkecosystem/crypto", "npm:2.7.0-next.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@arkecosystem/platform-sdk", [
         ["workspace:packages/platform-sdk", {
           "packageLocation": "./packages/platform-sdk/",
@@ -489,6 +499,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/core-magistrate-crypto", "npm:2.7.0-next.2"],
             ["@arkecosystem/crypto", "npm:2.7.0-next.2"],
             ["@arkecosystem/ledger-transport", "npm:1.1.3"],
+            ["@arkecosystem/multi-signature", "npm:0.1.3"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],

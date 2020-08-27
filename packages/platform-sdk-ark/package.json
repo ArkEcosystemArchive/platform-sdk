@@ -23,6 +23,7 @@
 		"@arkecosystem/core-magistrate-crypto": "^2.7.0-next.2",
 		"@arkecosystem/crypto": "^2.7.0-next.2",
 		"@arkecosystem/ledger-transport": "^1.1.3",
+		"@arkecosystem/multi-signature": "^0.1.3",
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
