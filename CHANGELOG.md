@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.311 - 2020-08-27
+
+### Changed
+
+-   Integrate `@arkecosystem/multi-signature` (963860e7, @faustbrian)
+
+### Fixed
+
+-   Use `getStruct()` if the transaction is a multi-signature registration (80e83420, @faustbrian)
+-   Remove timestamp from MuSig Server (b35656d3, @faustbrian)
+
 ## 0.9.308 - 2020-08-26
 
 ### Fixed
