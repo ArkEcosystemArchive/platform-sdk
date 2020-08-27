@@ -61,12 +61,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/multi-signature@npm:^0.1.3":
-  version: 0.1.3
-  resolution: "@arkecosystem/multi-signature@npm:0.1.3"
+"@arkecosystem/multi-signature@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "@arkecosystem/multi-signature@npm:0.1.5"
   dependencies:
     "@arkecosystem/crypto": ^2.7.0-next.2
-  checksum: 2/a54fede8063fbeee766d755b1bbff52b62e530f7c4099adb7dc6f2bad12637b715174b81b482466b107554f7c87258037e43f2ef6ec6eb81b448c72e33441ad8
+  checksum: 2/8874e342915e2ff7396ae6687f12ccef775cf9fc38127a93b667526f0c8a231bed6a1ee09e75e06dc73790a43dab4733d3476e0ee557b95d5bd92dcd5e8394b0
   languageName: node
   linkType: hard
 
@@ -118,7 +118,7 @@ __metadata:
     "@arkecosystem/core-magistrate-crypto": ^2.7.0-next.2
     "@arkecosystem/crypto": ^2.7.0-next.2
     "@arkecosystem/ledger-transport": ^1.1.3
-    "@arkecosystem/multi-signature": ^0.1.3
+    "@arkecosystem/multi-signature": ^0.1.5
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"

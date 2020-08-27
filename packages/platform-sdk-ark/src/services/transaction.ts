@@ -20,6 +20,7 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #http: Contracts.HttpClient;
 	readonly #identity: IdentityService;
 	readonly #peer: string;
+	readonly #multiSignatureSigner: MultiSignatureSigner;
 
 	readonly #magistrateBuilders = {
 		entityRegistration: MagistrateBuilders.EntityBuilder,
@@ -27,10 +28,11 @@ export class TransactionService implements Contracts.TransactionService {
 		entityUpdate: MagistrateBuilders.EntityBuilder,
 	};
 
-	private constructor({ http, identity, peer }) {
+	private constructor({ http, identity, peer, multiSignatureSigner }) {
 		this.#http = http;
 		this.#identity = identity;
 		this.#peer = peer;
+		this.#multiSignatureSigner = multiSignatureSigner;
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
@@ -53,6 +55,7 @@ export class TransactionService implements Contracts.TransactionService {
 			http,
 			peer,
 			identity: await IdentityService.construct(config),
+			multiSignatureSigner: new MultiSignatureSigner(crypto.data, status.data.height),
 		});
 	}
 
@@ -246,7 +249,7 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Error("Failed to retrieve the keys for the signatory wallet.");
 		}
 
-		const transactionWithSignature = MultiSignatureSigner.addSignature(transaction, {
+		const transactionWithSignature = this.#multiSignatureSigner.addSignature(transaction, {
 			publicKey: keys.publicKey,
 			privateKey: keys.privateKey!,
 			compressed: true,
@@ -366,7 +369,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private async handleMultiSignature(transaction: Contracts.RawTransactionData, input: Contracts.TransactionInputs) {
-		const transactionWithSignature = MultiSignatureSigner.sign(transaction, input.sign.multiSignature);
+		const transactionWithSignature = this.#multiSignatureSigner.sign(transaction, input.sign.multiSignature);
 
 		return new SignedTransactionData(transactionWithSignature.id!, transactionWithSignature);
 	}
