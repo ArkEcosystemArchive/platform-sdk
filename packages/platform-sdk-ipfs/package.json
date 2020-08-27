@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-ipfs",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.311",
+	"version": "0.9.312",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
