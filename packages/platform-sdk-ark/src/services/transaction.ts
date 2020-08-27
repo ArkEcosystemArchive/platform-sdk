@@ -9,7 +9,6 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { PendingMultiSignature } from "../dto/pending-multi-signature";
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { IdentityService } from "./identity";
 
