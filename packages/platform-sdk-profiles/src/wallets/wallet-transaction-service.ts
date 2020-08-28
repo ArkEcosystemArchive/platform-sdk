@@ -1,6 +1,5 @@
-import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
 
-import { promiseAllSettledByKey } from "../helpers/promise";
 import { SignedTransactionData } from "./dto/signed-transaction";
 import { ReadWriteWallet, WalletData } from "./wallet.models";
 
@@ -285,51 +284,28 @@ export class TransactionService {
 	}
 
 	/**
-	 * Broadcast the given IDs.
+	 * Broadcast the given ID.
 	 *
-	 * @param {string[]} ids
+	 * @param {string} id
 	 * @returns {Promise<void>}
 	 * @memberof TransactionService
 	 */
-	public async broadcast(ids: string[]): Promise<void> {
-		const broadcastRequests: Record<string, Promise<Contracts.BroadcastResponse | string>> = {};
+	public async broadcast(id: string): Promise<void> {
+		this.assertHasValidIdentifier(id);
 
-		for (const id of ids) {
-			this.assertHasValidIdentifier(id);
+		const transaction: Contracts.SignedTransactionData = this.transaction(id);
 
-			const transaction: Contracts.SignedTransactionData = this.transaction(id);
+		if (this.canBeBroadcasted(id)) {
+			const { accepted } = await this.#wallet.client().broadcast([transaction]);
 
-			// If the transaction is ready to be broadcasted we will include it.
-			if (this.canBeBroadcasted(transaction.id())) {
-				broadcastRequests[id] = this.#wallet.client().broadcast([transaction]);
-
-				continue;
+			if (!accepted || !accepted.length || !accepted.includes(id)) {
+				return;
 			}
-
-			// If the transactions is not ready to be broadcasted to the network we will have to
-			// broadcast it to the Multi-Signature Server of the respective coin and network.
-			if (transaction.isMultiSignature() || transaction.isMultiSignatureRegistration()) {
-				broadcastRequests[id] = this.#wallet.coin().multiSignature().broadcast(transaction.data());
-			}
+		} else if (transaction.isMultiSignature() || transaction.isMultiSignatureRegistration()) {
+			await this.#wallet.coin().multiSignature().broadcast(transaction.data());
 		}
 
-		const responses = await promiseAllSettledByKey(broadcastRequests);
-
-		// TODO: better error handling and reporting
-		for (const [id, request] of Object.entries(responses || {})) {
-			if (request.status === "rejected" || request.value instanceof Error) {
-				continue;
-			}
-
-			if (typeof request.value === "string") {
-				this.#broadcasted[id] = this.#signed[id];
-			} else {
-				// @ts-ignore
-				for (const transactionId of request.value.accepted) {
-					this.#broadcasted[transactionId] = this.#signed[transactionId];
-				}
-			}
-		}
+		this.#broadcasted[id] = this.#signed[id];
 	}
 
 	/**
