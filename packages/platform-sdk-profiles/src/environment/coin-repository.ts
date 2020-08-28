@@ -7,15 +7,27 @@ export class CoinRepository {
 	readonly #dataRepository: DataRepository = new DataRepository();
 
 	public delegates(coin: string, network: string): any {
-		const delegates = this.#dataRepository.get(`${coin}.${network}.delegates`);
+		const result = this.#dataRepository.get(`${coin}.${network}.delegates`);
 
-		if (delegates === undefined) {
+		if (result === undefined) {
 			throw new Error(
 				`The delegates for [${coin}.${network}] have not been synchronized yet. Please call [syncDelegates] before using this method.`,
 			);
 		}
 
-		return delegates;
+		return result;
+	}
+
+	public fees(coin: string, network: string, days = 7): any {
+		const result = this.#dataRepository.get(`${coin}.${network}.fees.${days}`);
+
+		if (result === undefined) {
+			throw new Error(
+				`The delegates for [${coin}.${network}.fees.${days}] have not been synchronized yet. Please call [syncFees] before using this method.`,
+			);
+		}
+
+		return result;
 	}
 
 	public async syncDelegates(coin: string, network: string): Promise<void> {
@@ -41,5 +53,11 @@ export class CoinRepository {
 			instanceKey,
 			result.map((delegate: Contracts.WalletData) => delegate.toObject()),
 		);
+	}
+
+	public async syncFees(coin: string, network: string, days = 7): Promise<void> {
+		const instance: Coins.Coin = await makeCoin(coin, network);
+
+		this.#dataRepository.set(`${coin}.${network}.fees.${days}`, await instance.fee().all(days));
 	}
 }
