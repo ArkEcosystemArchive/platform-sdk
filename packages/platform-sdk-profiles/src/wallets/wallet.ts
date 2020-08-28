@@ -367,6 +367,18 @@ export class Wallet implements ReadWriteWallet {
 		return this.#wallet.multiSignature();
 	}
 
+	public multiSignatureParticipants(): ReadOnlyWallet[] {
+		const participants: Record<string, any> | undefined = this.data().get(WalletData.MultiSignatureParticipants);
+
+		if (!participants) {
+			throw new Error(
+				"This Multi-Signature has not been synchronized yet. Please call [syncMultiSignature] before using it.",
+			);
+		}
+
+		return this.multiSignature().publicKeys.map((publicKey: string) => new ReadOnlyWallet(participants[publicKey]));
+	}
+
 	public votes(): ReadOnlyWallet[] {
 		const votes: string[] | undefined = this.data().get<string[]>(WalletData.Votes);
 
@@ -453,6 +465,20 @@ export class Wallet implements ReadWriteWallet {
 			this.#wallet = currentWallet;
 			this.#publicKey = currentPublicKey;
 		}
+	}
+
+	public async syncMultiSignature(): Promise<void> {
+		if (!this.isMultiSignature()) {
+			return;
+		}
+
+		const participants: Record<string, any> = {};
+
+		for (const publicKey of this.multiSignature().publicKeys) {
+			participants[publicKey] = (await this.client().wallet(publicKey)).toObject();
+		}
+
+		this.data().set(WalletData.MultiSignatureParticipants, participants);
 	}
 
 	public async syncVotes(): Promise<void> {

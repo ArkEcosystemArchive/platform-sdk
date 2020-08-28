@@ -47,13 +47,14 @@ export enum WalletData {
 	BroadcastedTransactions = "BROADCASTED_TRANSACTIONS",
 	Delegates = "DELEGATES",
 	ExchangeRate = "EXCHANGE_RATE",
+	MultiSignatureParticipants = "MULTI_SIGNATURE_PARTICIPANTS",
 	Sequence = "SEQUENCE",
 	SignedTransactions = "SIGNED_TRANSACTIONS",
 	Votes = "VOTES",
 	VotesAvailable = "VOTES_AVAILABLE",
 	VotesUsed = "VOTES_USED",
-	WaitingForOurSignature = "WAITING_FOR_OUR_SIGNATURE",
 	WaitingForOtherSignatures = "WAITING_FOR_OTHER_SIGNATURES",
+	WaitingForOurSignature = "WAITING_FOR_OUR_SIGNATURE",
 }
 
 export enum WalletFlag {
@@ -106,6 +107,7 @@ export interface ReadWriteWallet {
 	sentTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	receivedTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	multiSignature(): Contracts.WalletMultiSignature;
+	multiSignatureParticipants(): ReadOnlyWallet[];
 	votes(): ReadOnlyWallet[];
 	votesAvailable(): number;
 	votesUsed(): number;
@@ -114,6 +116,7 @@ export interface ReadWriteWallet {
 	entityResignationAggregate(): EntityResignationAggregate;
 	entityUpdateAggregate(): EntityUpdateAggregate;
 	syncIdentity(): Promise<void>;
+	syncMultiSignature(): Promise<void>;
 	syncVotes(): Promise<void>;
 	syncExchangeRate(): Promise<void>;
 }
