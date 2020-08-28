@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.316 - 2020-08-28
+
+### Added
+
+-   Expose detailed voting information for networks (534cda5b, @faustbrian)
+-   Expose multi-signature participants as wallet instances (fe68cc30, @faustbrian)
+
+### Changed
+
+-   Broadcast one transaction at a time (d89b92c4, @faustbrian)
+-   Expose wallet network as `NetworkData` instance (1e7f41d2, @faustbrian)
+
 ## 0.9.312 - 2020-08-27
 
 ### Changed
