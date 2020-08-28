@@ -7,6 +7,7 @@ import { SettingRepository } from "../repositories/setting-repository";
 import { EntityRegistrationAggregate } from "./aggregates/entity-registration-aggregate";
 import { EntityResignationAggregate } from "./aggregates/entity-resignation-aggregate";
 import { EntityUpdateAggregate } from "./aggregates/entity-update-aggregate";
+import { NetworkData } from "./network";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 
@@ -68,7 +69,7 @@ export interface ReadWriteWallet {
 	hasSyncedWithNetwork(): boolean;
 	id(): string;
 	coin(): Coins.Coin;
-	network(): Coins.CoinNetwork;
+	network(): NetworkData;
 	currency(): string;
 	alias(): string | undefined;
 	address(): string;

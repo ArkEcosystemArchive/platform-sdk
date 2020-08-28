@@ -121,8 +121,7 @@ export class WalletRepository {
 
 	public findByCoinWithNetwork(coin: string, network: string): ReadWriteWallet[] {
 		return this.values().filter(
-			(wallet: ReadWriteWallet) =>
-				wallet.coin().manifest().get<string>("name") === coin && wallet.network().id === network,
+			(wallet: ReadWriteWallet) => wallet.coinId() === coin && wallet.networkId() === network,
 		);
 	}
 
