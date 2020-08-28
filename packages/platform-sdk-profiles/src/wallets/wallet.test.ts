@@ -57,7 +57,7 @@ it("should have a coin", () => {
 });
 
 it("should have a network", () => {
-	expect(subject.network()).toEqual({
+	expect(subject.network().toObject()).toEqual({
 		crypto: { slip44: 111 },
 		currency: { symbol: "DѦ", ticker: "DARK" },
 		explorer: "https://dexplorer.ark.io/",
@@ -68,7 +68,8 @@ it("should have a network", () => {
 		type: "test",
 		voting: {
 			enabled: true,
-			singular: true,
+			maximum: 1,
+			maximumPerTransaction: 1,
 		},
 	});
 });
@@ -178,7 +179,8 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 				name: "Devnet",
 				voting: {
 					enabled: true,
-					singular: true,
+					maximum: 1,
+					maximumPerTransaction: 1,
 				},
 			},
 		});

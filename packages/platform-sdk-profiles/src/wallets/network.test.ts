@@ -55,7 +55,8 @@ it("should have an toObject", () => {
 		type: "test",
 		voting: {
 			enabled: true,
-			singular: true,
+			maximum: 1,
+			maximumPerTransaction: 1,
 		},
 	});
 });
