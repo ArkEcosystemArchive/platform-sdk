@@ -18,7 +18,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		kovan: {
@@ -38,7 +39,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		ropsten: {
@@ -58,7 +60,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		rinkeby: {
@@ -78,7 +81,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		goerli: {
@@ -98,7 +102,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 	},

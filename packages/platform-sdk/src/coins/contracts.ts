@@ -62,4 +62,9 @@ export interface CoinNetwork {
 	};
 	hosts: string[];
 	hostsMultiSignature: string[];
+	voting: {
+		enabled: boolean;
+		maximum: number;
+		maximumPerTransaction: number;
+	};
 }

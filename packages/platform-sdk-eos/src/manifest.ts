@@ -19,7 +19,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		"eos.testnet": {
@@ -40,7 +41,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		"telos.mainnet": {
@@ -66,7 +68,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		"telos.testnet": {
@@ -92,7 +95,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		"wax.mainnet": {
@@ -113,7 +117,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		"worbli.mainnet": {
@@ -134,7 +139,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		"worbli.testnet": {
@@ -155,7 +161,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		"meetone.mainnet": {
@@ -176,7 +183,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		"bos.mainnet": {
@@ -197,7 +205,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 	},

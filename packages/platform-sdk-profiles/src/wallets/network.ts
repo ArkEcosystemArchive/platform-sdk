@@ -41,6 +41,18 @@ export class NetworkData {
 		return this.#network.type === "test";
 	}
 
+	public allowsVoting(): boolean {
+		return this.#network.voting.enabled;
+	}
+
+	public maximumVotes(): number {
+		return this.#network.voting.maximum;
+	}
+
+	public maximumVotesPerTransaction(): number {
+		return this.#network.voting.maximumPerTransaction;
+	}
+
 	public toObject(): Coins.CoinNetwork {
 		return this.#network;
 	}

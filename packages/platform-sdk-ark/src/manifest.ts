@@ -17,7 +17,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: true,
-				singular: true,
+				maximum: 1,
+				maximumPerTransaction: 1,
 			},
 		},
 		devnet: {
@@ -36,7 +37,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: true,
-				singular: true,
+				maximum: 1,
+				maximumPerTransaction: 1,
 			},
 		},
 	},

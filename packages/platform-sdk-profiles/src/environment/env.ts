@@ -111,7 +111,8 @@ export class Environment {
 										hostsMultiSignature: array().of(string()),
 										voting: object({
 											enabled: boolean().required(),
-											singular: boolean().required(),
+											maximum: number().required(),
+											maximumPerTransaction: number().required(),
 										}).required(),
 									}).noUnknown(),
 								}).noUnknown(),

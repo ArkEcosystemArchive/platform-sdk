@@ -19,7 +19,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		"cosmos.testnet": {
@@ -40,7 +41,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		"terra.mainnet": {
@@ -61,7 +63,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 		"terra.testnet": {
@@ -82,7 +85,8 @@ export const manifest = {
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
-				singular: false,
+				maximum: 0,
+				maximumPerTransaction: 0,
 			},
 		},
 	},
