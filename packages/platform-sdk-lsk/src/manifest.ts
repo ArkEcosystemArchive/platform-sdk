@@ -60,27 +60,27 @@ export const manifest = {
 				maximumPerTransaction: 33,
 			},
 		},
-		betanet: {
-			id: "betanet",
-			type: "test",
-			name: "Betanet",
-			explorer: "https://betanet-explorer.lisk.io/",
-			currency: {
-				ticker: "LSK",
-				symbol: "LSK",
-			},
-			crypto: {
-				networkId: "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
-				slip44: 134,
-			},
-			hosts: ["https://betanet.lisk.io"],
-			hostsMultiSignature: [],
-			voting: {
-				enabled: true,
-				maximum: 101,
-				maximumPerTransaction: 33,
-			},
-		},
+		// betanet: {
+		// 	id: "betanet",
+		// 	type: "test",
+		// 	name: "Betanet",
+		// 	explorer: "https://betanet-explorer.lisk.io/",
+		// 	currency: {
+		// 		ticker: "LSK",
+		// 		symbol: "LSK",
+		// 	},
+		// 	crypto: {
+		// 		networkId: "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
+		// 		slip44: 134,
+		// 	},
+		// 	hosts: ["https://betanet.lisk.io"],
+		// 	hostsMultiSignature: [],
+		// 	voting: {
+		// 		enabled: true,
+		// 		maximum: 101,
+		// 		maximumPerTransaction: 33,
+		// 	},
+		// },
 	},
 	abilities: {
 		Client: {

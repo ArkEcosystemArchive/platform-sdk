@@ -10,7 +10,7 @@ beforeEach(async () => (subject = await TransactionService.construct(createConfi
 
 describe("TransactionService", () => {
 	describe("#transfer", () => {
-		it.each(["mainnet", "testnet", "betanet"])("should create for %s", async (network) => {
+		it.each(["mainnet", "testnet"])("should create for %s", async (network) => {
 			const service = await TransactionService.construct(createConfig({ network }));
 
 			const result: any = await service.transfer({
