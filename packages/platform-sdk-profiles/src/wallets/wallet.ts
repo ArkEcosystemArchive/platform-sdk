@@ -309,10 +309,6 @@ export class Wallet implements ReadWriteWallet {
 		return this.#coin.client();
 	}
 
-	public fee(): Contracts.FeeService {
-		return this.#coin.fee();
-	}
-
 	public identity(): Contracts.IdentityService {
 		return this.#coin.identity();
 	}
