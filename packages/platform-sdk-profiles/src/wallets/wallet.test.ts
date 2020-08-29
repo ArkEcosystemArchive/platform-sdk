@@ -114,10 +114,6 @@ it("should have a client service", () => {
 	expect(subject.client()).toBeObject();
 });
 
-it("should have a fee service", () => {
-	expect(subject.fee()).toBeObject();
-});
-
 it("should have a identity service", () => {
 	expect(subject.identity()).toBeObject();
 });
