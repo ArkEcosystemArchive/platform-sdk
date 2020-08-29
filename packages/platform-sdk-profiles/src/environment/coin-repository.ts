@@ -18,12 +18,12 @@ export class CoinRepository {
 		return result;
 	}
 
-	public fees(coin: string, network: string, days = 7): any {
-		const result = this.#dataRepository.get(`${coin}.${network}.fees.${days}`);
+	public fees(coin: string, network: string): Contracts.TransactionFees {
+		const result: Contracts.TransactionFees | undefined = this.#dataRepository.get(`${coin}.${network}.fees`);
 
 		if (result === undefined) {
 			throw new Error(
-				`The delegates for [${coin}.${network}.fees.${days}] have not been synchronized yet. Please call [syncFees] before using this method.`,
+				`The delegates for [${coin}.${network}.fees] have not been synchronized yet. Please call [syncFees] before using this method.`,
 			);
 		}
 
@@ -55,9 +55,29 @@ export class CoinRepository {
 		);
 	}
 
-	public async syncFees(coin: string, network: string, days = 7): Promise<void> {
+	public async syncAllDelegates(coins: Record<string, string[]>): Promise<void> {
+		await this.bulkSync("syncDelegates", coins);
+	}
+
+	public async syncFees(coin: string, network: string): Promise<void> {
 		const instance: Coins.Coin = await makeCoin(coin, network);
 
-		this.#dataRepository.set(`${coin}.${network}.fees.${days}`, await instance.fee().all(days));
+		this.#dataRepository.set(`${coin}.${network}.fees`, await instance.fee().all(7));
+	}
+
+	public async syncAllFees(coins: Record<string, string[]>): Promise<void> {
+		await this.bulkSync("syncFees", coins);
+	}
+
+	private async bulkSync(method: string, coins: Record<string, string[]>): Promise<void> {
+		const promises: Promise<void>[] = [];
+
+		for (const [coin, networks] of Object.entries(coins)) {
+			for (const network of networks) {
+				promises.push(this[method](coin, network));
+			}
+		}
+
+		await Promise.allSettled(promises);
 	}
 }
