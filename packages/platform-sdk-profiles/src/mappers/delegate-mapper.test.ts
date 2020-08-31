@@ -6,9 +6,9 @@ import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../test/fixtures/identity";
-import { CoinRepository } from "../environment/coin-repository";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
+import { DelegateService } from "../environment/services/delegate-service";
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { DelegateMapper } from "./delegate-mapper";
@@ -37,7 +37,7 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	container.set(Identifiers.CoinRepository, new CoinRepository());
+	container.set(Identifiers.DelegateService, new DelegateService());
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK });
 
@@ -53,7 +53,7 @@ it("should map the public keys to read-only wallets", async () => {
 	const publicKeys = delegates.map((delegate) => delegate.publicKey);
 	const usernames = delegates.map((delegate) => delegate.usernames);
 
-	await container.get<CoinRepository>(Identifiers.CoinRepository).syncDelegates(wallet.coinId(), wallet.networkId());
+	await container.get<DelegateService>(Identifiers.DelegateService).sync(wallet.coinId(), wallet.networkId());
 
 	const mappedDelegates = DelegateMapper.execute(wallet, publicKeys);
 

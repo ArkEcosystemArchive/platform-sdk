@@ -6,11 +6,12 @@ export * from "./contacts/contact";
 export * from "./dto/transaction";
 export * from "./dto/transaction-collection";
 
-export * from "./environment/coin-repository";
 export * from "./environment/container.models";
 export * from "./environment/env.models";
 export * from "./environment/env";
 export * from "./environment/migrator";
+export * from "./environment/services/delegate-service";
+export * from "./environment/services/fee-service";
 
 export * from "./mappers/delegate-mapper";
 
