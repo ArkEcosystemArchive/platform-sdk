@@ -1,4 +1,3 @@
-import { CoinRepository } from "../environment/coin-repository";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { DelegateService } from "../environment/services/delegate-service";
