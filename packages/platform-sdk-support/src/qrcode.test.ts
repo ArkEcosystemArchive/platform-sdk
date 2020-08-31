@@ -17,6 +17,13 @@ test("#toDataURL", async () => {
 	expect(actual).toMatchSnapshot();
 });
 
+test("#toDataURL with options", async () => {
+	const actual: string = await QRCode.fromString("https://google.com").toDataURL({ width: 250, margin: 0 });
+
+	expect(actual).toStartWith("data:image/png;base64,");
+	expect(actual).toMatchSnapshot();
+});
+
 describe.each(["utf8", "svg", "terminal"])("%s", (type) => {
 	it("should turn into a string", async () => {
 		await expect(QRCode.fromString("https://google.com").toString(type as any)).resolves.toMatchSnapshot();

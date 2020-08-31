@@ -1,4 +1,4 @@
-import BaseCode from "qrcode";
+import BaseCode, { QRCodeToDataURLOptions } from "qrcode";
 
 type StringType = "utf8" | "svg" | "terminal" | undefined;
 
@@ -17,8 +17,8 @@ export class QRCode {
 		return new QRCode(JSON.stringify(value));
 	}
 
-	public async toDataURL(): Promise<string> {
-		return BaseCode.toDataURL(this.#value);
+	public async toDataURL(options: QRCodeToDataURLOptions = {}): Promise<string> {
+		return BaseCode.toDataURL(this.#value, options);
 	}
 
 	public async toString(type: StringType = "utf8"): Promise<string> {
