@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.320 - 2020-08-31
+
+### Changed
+
+-   Support options in toDataUrl (032d6488, @dated)
+
 ## 0.9.319 - 2020-08-29
 
 ### Added
