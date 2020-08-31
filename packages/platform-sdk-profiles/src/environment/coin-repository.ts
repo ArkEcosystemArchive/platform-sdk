@@ -18,6 +18,20 @@ export class CoinRepository {
 		return result;
 	}
 
+	public findDelegateByAddress(coin: string, network: string, address: string): any {
+		return this.delegates(coin, network).find((delegate: { address: string }) => (delegate.address = address));
+	}
+
+	public findDelegateByPublicKey(coin: string, network: string, publicKey: string): any {
+		return this.delegates(coin, network).find(
+			(delegate: { publicKey: string }) => (delegate.publicKey = publicKey),
+		);
+	}
+
+	public findDelegateByUsername(coin: string, network: string, username: string): any {
+		return this.delegates(coin, network).find((delegate: { username: string }) => (delegate.username = username));
+	}
+
 	public fees(coin: string, network: string): Contracts.TransactionFees {
 		const result: Contracts.TransactionFees | undefined = this.#dataRepository.get(`${coin}.${network}.fees`);
 
