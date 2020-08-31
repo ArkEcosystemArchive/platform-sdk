@@ -12,8 +12,8 @@ import { Identifiers } from "../environment/container.models";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
-import { WalletRepository } from "./wallet-repository";
 import { ReadWriteWallet } from "../wallets/wallet.models";
+import { WalletRepository } from "./wallet-repository";
 
 let subject: WalletRepository;
 

@@ -221,7 +221,7 @@ export class Environment {
 	 * @returns {Promise<Coins.Coin>}
 	 * @memberof Environment
 	 */
-	public async coin(coin: string, network: string): Promise<Coins.Coin> {
+	public async coin(coin: string, network: string | Coins.CoinNetwork): Promise<Coins.Coin> {
 		return makeCoin(coin, network);
 	}
 

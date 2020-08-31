@@ -1,8 +1,10 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { transformTransactionDataCollection } from "../dto/transaction-mapper";
 import { makeCoin } from "../environment/container.helpers";
+import { DelegateMapper } from "../mappers/delegate-mapper";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
@@ -10,12 +12,10 @@ import { Avatar } from "../services/avatar";
 import { EntityRegistrationAggregate } from "./aggregates/entity-registration-aggregate";
 import { EntityResignationAggregate } from "./aggregates/entity-resignation-aggregate";
 import { EntityUpdateAggregate } from "./aggregates/entity-update-aggregate";
-import { DelegateMapper } from "../mappers/delegate-mapper";
+import { NetworkData } from "./network";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
-import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
-import { NetworkData } from "./network";
 
 export class Wallet implements ReadWriteWallet {
 	readonly #entityRegistrationAggregate: EntityRegistrationAggregate;
@@ -54,7 +54,7 @@ export class Wallet implements ReadWriteWallet {
 	 * These methods allow to switch out the underlying implementation of certain things like the coin.
 	 */
 
-	public async setCoin(coin: string, network: string): Promise<Wallet> {
+	public async setCoin(coin: string, network: string | Coins.CoinNetwork): Promise<Wallet> {
 		this.#coin = await makeCoin(coin, network);
 
 		return this;

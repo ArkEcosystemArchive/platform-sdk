@@ -30,7 +30,7 @@ export class CoinRepository {
 		return result;
 	}
 
-	public async syncDelegates(coin: string, network: string): Promise<void> {
+	public async syncDelegates(coin: string, network: string | Coins.CoinNetwork): Promise<void> {
 		const instance: Coins.Coin = await makeCoin(coin, network);
 		const instanceKey = `${coin}.${network}.delegates`;
 
@@ -59,7 +59,7 @@ export class CoinRepository {
 		await this.bulkSync("syncDelegates", coins);
 	}
 
-	public async syncFees(coin: string, network: string): Promise<void> {
+	public async syncFees(coin: string, network: string | Coins.CoinNetwork): Promise<void> {
 		const instance: Coins.Coin = await makeCoin(coin, network);
 
 		this.#dataRepository.set(`${coin}.${network}.fees`, await instance.fee().all(7));

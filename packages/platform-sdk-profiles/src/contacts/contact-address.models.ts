@@ -1,3 +1,5 @@
+import { Coins } from "@arkecosystem/platform-sdk";
+
 export interface ContactAddressInput {
 	coin: string;
 	network: string;
@@ -8,7 +10,7 @@ export interface ContactAddressInput {
 export interface ContactAddressProps {
 	id: string;
 	coin: string;
-	network: string;
+	network: string | Coins.CoinNetwork;
 	name: string;
 	address: string;
 }

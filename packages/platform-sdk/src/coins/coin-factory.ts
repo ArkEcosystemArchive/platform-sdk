@@ -10,6 +10,15 @@ export class CoinFactory {
 
 		const networks: NetworkRepository = new NetworkRepository(manifest.networks);
 
+		/**
+		 * This block is responsible for adding a custom network with a unique name
+		 * before the coin is initialised. This allows us to use coins that are not
+		 * part of the default network list that can be found in the manifest file.
+		 */
+		if (typeof options.network === "object") {
+			networks.push(options.network.id, options.network);
+		}
+
 		const config: Config = new Config(options, coin.schema);
 		config.set("network", networks.get(config.get<string>("network")));
 

@@ -30,7 +30,7 @@ export class ContactAddress {
 		return this.#data.coin;
 	}
 
-	public network(): string {
+	public network(): string | Coins.CoinNetwork {
 		return this.#data.network;
 	}
 

@@ -22,6 +22,10 @@ export class NetworkRepository {
 	}
 
 	public push(name: string, data: CoinNetwork): void {
+		if (this.#networks[name] !== undefined) {
+			throw new Error(`The [${name}] network already exists.`);
+		}
+
 		this.#networks[name] = data;
 	}
 
