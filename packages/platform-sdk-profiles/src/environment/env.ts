@@ -10,6 +10,7 @@ import { Identifiers } from "./container.models";
 import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
 import { Migrator } from "./migrator";
 import { DelegateService } from "./services/delegate-service";
+import { ExchangeRateService } from "./services/exchange-rate-service";
 import { FeeService } from "./services/fee-service";
 import { StorageFactory } from "./storage/factory";
 
@@ -26,6 +27,7 @@ export class Environment {
 		container.set(Identifiers.HttpClient, options.httpClient);
 		container.set(Identifiers.ProfileRepository, new ProfileRepository());
 		container.set(Identifiers.DelegateService, new DelegateService());
+		container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
 		container.set(Identifiers.FeeService, new FeeService());
 
 		container.set(Identifiers.Coins, options.coins);
@@ -196,6 +198,10 @@ export class Environment {
 
 	public delegates(): DelegateService {
 		return container.get(Identifiers.DelegateService);
+	}
+
+	public exchangeRates(): ExchangeRateService {
+		return container.get(Identifiers.ExchangeRateService);
 	}
 
 	public fees(): FeeService {
