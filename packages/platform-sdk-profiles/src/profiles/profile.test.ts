@@ -118,18 +118,6 @@ it("should determine if the password uses a password", () => {
 	expect(subject.usesPassword()).toBeTrue();
 });
 
-it("should get the exchange rate for ARK to BTC", async () => {
-	subject.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-
-	nock(/.+/)
-		.get("/data/dayAvg")
-		.query(true)
-		.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
-		.persist();
-
-	await expect(subject.getExchangeRate("ARK")).resolves.toBe(0.00005048);
-});
-
 it("should turn into an object", () => {
 	expect(subject.toObject()).toEqual({
 		id: "uuid",
