@@ -10,26 +10,22 @@ export class DelegateMapper {
 			return [];
 		}
 
-		const delegates: Record<string, string>[] = container
-			.get<CoinRepository>(Identifiers.CoinRepository)
-			.delegates(wallet.coinId(), wallet.networkId());
-
 		return publicKeys
 			.map((publicKey: string) => {
-				const delegate = Object.values(delegates).find(
-					(delegate: Record<string, string>) => delegate.publicKey === publicKey,
-				);
+				const delegate = container
+					.get<CoinRepository>(Identifiers.CoinRepository)
+					.findDelegateByPublicKey(wallet.coinId(), wallet.networkId(), publicKey);
 
 				if (!delegate) {
 					return undefined;
 				}
 
 				return new ReadOnlyWallet({
-					address: delegate.address,
-					publicKey,
-					username: delegate.username,
-					rank: (delegate.rank as unknown) as number,
-					explorerLink: wallet.link().wallet(delegate.address),
+					address: delegate.address(),
+					publicKey: delegate.publicKey(),
+					username: delegate.username(),
+					rank: delegate.rank(),
+					explorerLink: wallet.link().wallet(delegate.address()),
 				});
 			})
 			.filter(Boolean) as ReadOnlyWallet[];

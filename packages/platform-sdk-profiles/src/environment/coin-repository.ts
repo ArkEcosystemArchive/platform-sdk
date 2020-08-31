@@ -1,13 +1,14 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { DataRepository } from "../repositories/data-repository";
+import { ReadOnlyWallet } from "../wallets/read-only-wallet";
 import { makeCoin } from "./container.helpers";
 
 export class CoinRepository {
 	readonly #dataRepository: DataRepository = new DataRepository();
 
-	public delegates(coin: string, network: string): any {
-		const result = this.#dataRepository.get(`${coin}.${network}.delegates`);
+	public delegates(coin: string, network: string): ReadOnlyWallet[] {
+		const result: any[] | undefined = this.#dataRepository.get(`${coin}.${network}.delegates`);
 
 		if (result === undefined) {
 			throw new Error(
@@ -15,21 +16,19 @@ export class CoinRepository {
 			);
 		}
 
-		return result;
+		return result.map((delegate) => this.mapDelegate(delegate));
 	}
 
-	public findDelegateByAddress(coin: string, network: string, address: string): any {
-		return this.delegates(coin, network).find((delegate: { address: string }) => (delegate.address = address));
+	public findDelegateByAddress(coin: string, network: string, address: string): ReadOnlyWallet {
+		return this.findDelegateByAttribute(coin, network, "address", address);
 	}
 
-	public findDelegateByPublicKey(coin: string, network: string, publicKey: string): any {
-		return this.delegates(coin, network).find(
-			(delegate: { publicKey: string }) => (delegate.publicKey = publicKey),
-		);
+	public findDelegateByPublicKey(coin: string, network: string, publicKey: string): ReadOnlyWallet {
+		return this.findDelegateByAttribute(coin, network, "publicKey", publicKey);
 	}
 
-	public findDelegateByUsername(coin: string, network: string, username: string): any {
-		return this.delegates(coin, network).find((delegate: { username: string }) => (delegate.username = username));
+	public findDelegateByUsername(coin: string, network: string, username: string): ReadOnlyWallet {
+		return this.findDelegateByAttribute(coin, network, "username", username);
 	}
 
 	public fees(coin: string, network: string): Contracts.TransactionFees {
@@ -93,5 +92,25 @@ export class CoinRepository {
 		}
 
 		await Promise.allSettled(promises);
+	}
+
+	private findDelegateByAttribute(coin: string, network: string, key: string, value: string): ReadOnlyWallet {
+		const result: any = this.delegates(coin, network).find((delegate) => (delegate[key] = value));
+
+		if (result === undefined) {
+			throw new Error(`No delegate for ${key} with ${value} could be found.`);
+		}
+
+		return this.mapDelegate(result);
+	}
+
+	private mapDelegate(delegate: Record<string, string>): ReadOnlyWallet {
+		return new ReadOnlyWallet({
+			address: delegate.address,
+			publicKey: delegate.publicKey,
+			username: delegate.username,
+			rank: (delegate.rank as unknown) as number,
+			explorerLink: "",
+		});
 	}
 }
