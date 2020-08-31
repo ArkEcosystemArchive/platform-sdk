@@ -196,17 +196,3 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.settings.AVATAR).toBeString();
 	});
 });
-
-it("should sync the exchange rate for ARK to BTC", async () => {
-	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-
-	nock(/.+/)
-		.get("/data/dayAvg")
-		.query(true)
-		.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
-		.persist();
-
-	await subject.syncExchangeRate();
-
-	expect(subject.data().get(WalletData.ExchangeRate)).toBe(0.00005048);
-});

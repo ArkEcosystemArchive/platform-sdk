@@ -172,15 +172,4 @@ export class Profile implements ProfileContract {
 	public usesPassword(): boolean {
 		return this.settings().get(ProfileSetting.Password) !== undefined;
 	}
-
-	/**
-	 * These methods serve as helpers to interact with exchanges and markets.
-	 */
-
-	public async getExchangeRate(token: string): Promise<number> {
-		return MarketService.make(
-			this.settings().get(ProfileSetting.MarketProvider) || "coingecko",
-			container.get(Identifiers.HttpClient),
-		).dailyAverage(token, this.settings().get(ProfileSetting.ExchangeCurrency) || "BTC", +Date.now());
-	}
 }

@@ -37,7 +37,6 @@ export interface ProfileContract {
 	walletAggregate(): WalletAggregate;
 	auth(): Authenticator;
 	usesPassword(): boolean;
-	getExchangeRate(token: string): Promise<number>;
 }
 
 export interface ProfileStruct {

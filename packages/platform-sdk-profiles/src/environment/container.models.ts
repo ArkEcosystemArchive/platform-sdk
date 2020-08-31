@@ -4,6 +4,7 @@ export const Identifiers = {
 	ContactRepository: "ContactRepository",
 	DataRepository: "DataRepository",
 	DelegateService: "DelegateService",
+	ExchangeRateService: "ExchangeRateService",
 	FeeService: "FeeService",
 	HttpClient: "HttpClient",
 	Migrator: "Migrator",
