@@ -1,6 +1,7 @@
 import { CoinRepository } from "../environment/coin-repository";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
+import { DelegateService } from "../environment/services/delegate-service";
 import { ReadOnlyWallet } from "../wallets/read-only-wallet";
 import { ReadWriteWallet } from "../wallets/wallet.models";
 
@@ -13,8 +14,8 @@ export class DelegateMapper {
 		return publicKeys
 			.map((publicKey: string) => {
 				const delegate = container
-					.get<CoinRepository>(Identifiers.CoinRepository)
-					.findDelegateByPublicKey(wallet.coinId(), wallet.networkId(), publicKey);
+					.get<DelegateService>(Identifiers.DelegateService)
+					.findByPublicKey(wallet.coinId(), wallet.networkId(), publicKey);
 
 				if (!delegate) {
 					return undefined;
