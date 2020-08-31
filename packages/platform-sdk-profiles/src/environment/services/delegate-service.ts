@@ -69,13 +69,13 @@ export class DelegateService {
 	}
 
 	private findDelegateByAttribute(coin: string, network: string, key: string, value: string): ReadOnlyWallet {
-		const result: any = this.all(coin, network).find((delegate) => (delegate[key] = value));
+		const result: any = this.all(coin, network).find((delegate) => delegate[key]() === value);
 
 		if (result === undefined) {
 			throw new Error(`No delegate for ${key} with ${value} could be found.`);
 		}
 
-		return this.mapDelegate(result);
+		return result;
 	}
 
 	private mapDelegate(delegate: Record<string, string>): ReadOnlyWallet {
