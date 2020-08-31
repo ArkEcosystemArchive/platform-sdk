@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.325 - 2020-08-31
+
+### Added
+
+-   Sync exchanges rates globally instead of per wallet (c186612f, @faustbrian)
+
+### Changed
+
+-   Split `CoinRepository` into `DelegateService` and `FeeService` (17752b5a, @faustbrian)
+
+### Fixed
+
+-   Return result without mapping when using `findDelegateByAttribute` (0eba2b88, @faustbrian)
+
 ## 0.9.322 - 2020-08-31
 
 ### Changed
