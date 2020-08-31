@@ -117,5 +117,4 @@ export interface ReadWriteWallet {
 	syncIdentity(): Promise<void>;
 	syncMultiSignature(): Promise<void>;
 	syncVotes(): Promise<void>;
-	syncExchangeRate(): Promise<void>;
 }

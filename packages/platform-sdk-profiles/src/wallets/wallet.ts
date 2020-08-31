@@ -485,10 +485,6 @@ export class Wallet implements ReadWriteWallet {
 		this.data().set(WalletData.VotesUsed, used);
 	}
 
-	public async syncExchangeRate(): Promise<void> {
-		this.data().set(WalletData.ExchangeRate, await this.#profile.getExchangeRate(this.currency()));
-	}
-
 	private async fetchTransaction(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<ExtendedTransactionDataCollection> {
