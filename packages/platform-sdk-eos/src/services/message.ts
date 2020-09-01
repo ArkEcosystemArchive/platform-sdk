@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
 import { privateToPublic, sign, verify } from "../crypto";
@@ -13,16 +13,24 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const mnemonic: string = BIP39.normalize(input.mnemonic);
+		try {
+			const mnemonic: string = BIP39.normalize(input.mnemonic);
 
-		return {
-			message: input.message,
-			signatory: privateToPublic(mnemonic),
-			signature: sign(input.message, mnemonic),
-		};
+			return {
+				message: input.message,
+				signatory: privateToPublic(mnemonic),
+				signature: sign(input.message, mnemonic),
+			};
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return verify(input.signature, input.message, input.signatory);
+		try {
+			return verify(input.signature, input.message, input.signatory);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 }

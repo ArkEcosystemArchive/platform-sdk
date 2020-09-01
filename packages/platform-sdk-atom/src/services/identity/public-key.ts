@@ -10,14 +10,18 @@ export class PublicKey implements Contracts.PublicKey {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		const keys = new Keys(this.#config);
-		const { publicKey } = await keys.fromMnemonic(mnemonic);
+		try {
+			const keys = new Keys(this.#config);
+			const { publicKey } = await keys.fromMnemonic(mnemonic);
 
-		if (!publicKey) {
-			throw new Error("Failed to derive the public key.");
+			if (!publicKey) {
+				throw new Error("Failed to derive the public key.");
+			}
+
+			return publicKey;
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
 		}
-
-		return publicKey;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

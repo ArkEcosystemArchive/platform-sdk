@@ -12,10 +12,14 @@ export class PublicKey implements Contracts.PublicKey {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		const privateKey = new PrivateKey(this.#config);
-		const keyPair = Wallet.fromPrivateKey(Buffoon.fromHex(await privateKey.fromMnemonic(mnemonic)));
+		try {
+			const privateKey = new PrivateKey(this.#config);
+			const keyPair = Wallet.fromPrivateKey(Buffoon.fromHex(await privateKey.fromMnemonic(mnemonic)));
 
-		return keyPair.getPublicKey().toString("hex");
+			return keyPair.getPublicKey().toString("hex");
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

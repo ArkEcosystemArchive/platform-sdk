@@ -16,11 +16,15 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		// TODO: compute the ID
-		return new SignedTransactionData("dummy", {
-			account: new wallet.Account(input.sign.privateKey),
-			intents: api.makeIntent({ NEO: input.data.amount, GAS: input.fee }, input.data.to),
-		});
+		try {
+			// TODO: compute the ID
+			return new SignedTransactionData("dummy", {
+				account: new wallet.Account(input.sign.privateKey),
+				intents: api.makeIntent({ NEO: input.data.amount, GAS: input.fee }, input.data.to),
+			});
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async secondSignature(

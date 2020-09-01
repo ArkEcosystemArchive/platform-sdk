@@ -28,9 +28,7 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	}
 
 	public async findById(id: string): Promise<Contracts.MultiSignatureTransaction> {
-		const transaction = await this.get(`transaction/${id}`);
-
-		return this.normalizeTransaction(transaction);
+		return this.normalizeTransaction(await this.get(`transaction/${id}`));
 	}
 
 	public async broadcast(transaction: Contracts.MultiSignatureTransaction): Promise<string> {
@@ -90,21 +88,15 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.get(`${this.getPeer()}/${path}`, query);
-
-		return response.json();
+		return (await this.#http.get(`${this.getPeer()}/${path}`, query)).json();
 	}
 
 	private async delete(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.delete(`${this.getPeer()}/${path}`, query);
-
-		return response.json();
+		return (await this.#http.delete(`${this.getPeer()}/${path}`, query)).json();
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.post(`${this.getPeer()}/${path}`, body);
-
-		return response.json();
+		return (await this.#http.post(`${this.getPeer()}/${path}`, body)).json();
 	}
 
 	private getPeer(): string {
@@ -124,11 +116,11 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	}
 
 	private async fetchAll(publicKey: string, state: string): Promise<any[]> {
-		const response = await this.get("transactions", {
-			publicKey,
-			state,
-		});
-
-		return response.map((transaction) => this.normalizeTransaction(transaction));
+		return (
+			await this.get("transactions", {
+				publicKey,
+				state,
+			})
+		).map((transaction) => this.normalizeTransaction(transaction));
 	}
 }

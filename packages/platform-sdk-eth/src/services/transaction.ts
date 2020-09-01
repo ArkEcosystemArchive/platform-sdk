@@ -36,44 +36,48 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		const senderAddress: string = await this.#identity.address().fromMnemonic(input.sign.mnemonic);
-		const privateKey: string =
-			input.sign.privateKey || (await this.#identity.privateKey().fromMnemonic(input.sign.mnemonic));
+		try {
+			const senderAddress: string = await this.#identity.address().fromMnemonic(input.sign.mnemonic);
+			const privateKey: string =
+				input.sign.privateKey || (await this.#identity.privateKey().fromMnemonic(input.sign.mnemonic));
 
-		const { nonce } = await this.get(`wallets/${senderAddress}`);
+			const { nonce } = await this.get(`wallets/${senderAddress}`);
 
-		let data: object;
+			let data: object;
 
-		if (input.contract && input.contract.address) {
-			data = {
-				nonce: Web3.utils.toHex(Web3.utils.toBN(nonce).add(Web3.utils.toBN("1"))),
-				gasPrice: Web3.utils.toHex(4 * 1e9),
-				gasLimit: Web3.utils.toHex(4000000),
-				to: input.contract.address,
-				value: "0x0",
-				data: this.createContract(input.contract.address)
-					.methods.transfer(input.data.to, input.data.amount)
-					.encodeABI(),
-			};
-		} else {
-			data = {
-				nonce: Web3.utils.toHex(Web3.utils.toBN(nonce).add(Web3.utils.toBN("1"))),
-				gasLimit: Web3.utils.toHex(input.feeLimit),
-				gasPrice: Web3.utils.toHex(input.fee),
-				to: input.data.to,
-				value: Web3.utils.toHex(Web3.utils.toWei(`${input.data.amount}`, "wei")),
-				// data: Buffoon.fromUTF8(input.to.memo),
-			};
+			if (input.contract && input.contract.address) {
+				data = {
+					nonce: Web3.utils.toHex(Web3.utils.toBN(nonce).add(Web3.utils.toBN("1"))),
+					gasPrice: Web3.utils.toHex(4 * 1e9),
+					gasLimit: Web3.utils.toHex(4000000),
+					to: input.contract.address,
+					value: "0x0",
+					data: this.createContract(input.contract.address)
+						.methods.transfer(input.data.to, input.data.amount)
+						.encodeABI(),
+				};
+			} else {
+				data = {
+					nonce: Web3.utils.toHex(Web3.utils.toBN(nonce).add(Web3.utils.toBN("1"))),
+					gasLimit: Web3.utils.toHex(input.feeLimit),
+					gasPrice: Web3.utils.toHex(input.fee),
+					to: input.data.to,
+					value: Web3.utils.toHex(Web3.utils.toWei(`${input.data.amount}`, "wei")),
+					// data: Buffoon.fromUTF8(input.to.memo),
+				};
+			}
+
+			const transaction: Transaction = new Transaction(data, { chain: this.#chain });
+
+			transaction.sign(Buffoon.fromHex(privateKey));
+
+			return new SignedTransactionData(
+				transaction.hash().toString("hex"),
+				"0x" + transaction.serialize().toString("hex"),
+			);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
 		}
-
-		const transaction: Transaction = new Transaction(data, { chain: this.#chain });
-
-		transaction.sign(Buffoon.fromHex(privateKey));
-
-		return new SignedTransactionData(
-			transaction.hash().toString("hex"),
-			"0x" + transaction.serialize().toString("hex"),
-		);
 	}
 
 	public async secondSignature(

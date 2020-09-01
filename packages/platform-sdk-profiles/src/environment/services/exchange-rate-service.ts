@@ -7,6 +7,8 @@ import { ReadWriteWallet, WalletData } from "../../wallets/wallet.models";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
 
+// TODO: remove duplicate syncing of exchange rates.
+// A profile could have 100 ARK Wallets and we would send 100 requests at the moment.
 export class ExchangeRateService {
 	public async syncAll(): Promise<void> {
 		const profiles: Profile[] = container.get<ProfileRepository>(Identifiers.ProfileRepository).values();

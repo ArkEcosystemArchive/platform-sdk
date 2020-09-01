@@ -30,20 +30,24 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (!input.sign.mnemonic) {
-			throw new Error("No mnemonic provided.");
+		try {
+			if (!input.sign.mnemonic) {
+				throw new Error("No mnemonic provided.");
+			}
+
+			const transaction = await this.#connection.transactionBuilder.sendTrx(
+				input.data.to,
+				input.data.amount,
+				input.from,
+				1,
+			);
+
+			const response = await this.#connection.trx.sign(transaction, BIP39.normalize(input.sign.mnemonic));
+
+			return new SignedTransactionData(response.txId, response);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
 		}
-
-		const transaction = await this.#connection.transactionBuilder.sendTrx(
-			input.data.to,
-			input.data.amount,
-			input.from,
-			1,
-		);
-
-		const response = await this.#connection.trx.sign(transaction, BIP39.normalize(input.sign.mnemonic));
-
-		return new SignedTransactionData(response.txId, response);
 	}
 
 	public async secondSignature(

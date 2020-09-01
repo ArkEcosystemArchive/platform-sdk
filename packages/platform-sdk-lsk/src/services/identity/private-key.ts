@@ -3,7 +3,11 @@ import * as cryptography from "@liskhq/lisk-cryptography";
 
 export class PrivateKey implements Contracts.PrivateKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return cryptography.getPrivateAndPublicKeyFromPassphrase(mnemonic).privateKey;
+		try {
+			return cryptography.getPrivateAndPublicKeyFromPassphrase(mnemonic).privateKey;
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

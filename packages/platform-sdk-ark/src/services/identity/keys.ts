@@ -3,9 +3,13 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
-		const { publicKey, privateKey } = Identities.Keys.fromPassphrase(mnemonic, true);
+		try {
+			const { publicKey, privateKey } = Identities.Keys.fromPassphrase(mnemonic, true);
 
-		return { publicKey, privateKey };
+			return { publicKey, privateKey };
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {
@@ -13,8 +17,12 @@ export class Keys implements Contracts.Keys {
 	}
 
 	public async fromWIF(wif: string): Promise<Contracts.KeyPair> {
-		const { publicKey, privateKey } = Identities.Keys.fromWIF(wif);
+		try {
+			const { publicKey, privateKey } = Identities.Keys.fromWIF(wif);
 
-		return { publicKey, privateKey };
+			return { publicKey, privateKey };
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 }

@@ -10,13 +10,17 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		const child = BIP44.deriveChild(mnemonic, {
-			coinType: this.#config.get("network.crypto.slip44"),
-			index: 0,
-		});
-		const words = bech32.toWords(child.identifier);
+		try {
+			const child = BIP44.deriveChild(mnemonic, {
+				coinType: this.#config.get("network.crypto.slip44"),
+				index: 0,
+			});
+			const words = bech32.toWords(child.identifier);
 
-		return bech32.encode(this.#config.get("network.crypto.bech32"), words);
+			return bech32.encode(this.#config.get("network.crypto.bech32"), words);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

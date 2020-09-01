@@ -32,52 +32,56 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (!input.sign.mnemonic) {
-			throw new Error("No mnemonic provided.");
-		}
+		try {
+			if (!input.sign.mnemonic) {
+				throw new Error("No mnemonic provided.");
+			}
 
-		const senderAddress: string = await this.#identity.address().fromMnemonic(input.sign.mnemonic);
-		const keyPair = await this.#identity.keys().fromMnemonic(input.sign.mnemonic);
+			const senderAddress: string = await this.#identity.address().fromMnemonic(input.sign.mnemonic);
+			const keyPair = await this.#identity.keys().fromMnemonic(input.sign.mnemonic);
 
-		const { account_number, sequence } = (await this.#client.wallet(senderAddress)).raw();
+			const { account_number, sequence } = (await this.#client.wallet(senderAddress)).raw();
 
-		return new SignedTransactionData(
-			// TODO: compute the ID
-			"dummy",
-			createSignedTransactionData(
-				{
-					msgs: [
-						{
-							type: "cosmos-sdk/MsgSend",
-							value: {
-								amount: [
-									{
-										amount: `${input.data.amount}`,
-										denom: "umuon", // todo: make this configurable
-									},
-								],
-								from_address: senderAddress,
-								to_address: input.data.to,
-							},
-						},
-					],
-					chain_id: this.#networkId,
-					fee: {
-						amount: [
+			return new SignedTransactionData(
+				// TODO: compute the ID
+				"dummy",
+				createSignedTransactionData(
+					{
+						msgs: [
 							{
-								amount: String(5000), // todo: make this configurable or estimate it
-								denom: "umuon", // todo: make this configurable
+								type: "cosmos-sdk/MsgSend",
+								value: {
+									amount: [
+										{
+											amount: `${input.data.amount}`,
+											denom: "umuon", // todo: make this configurable
+										},
+									],
+									from_address: senderAddress,
+									to_address: input.data.to,
+								},
 							},
 						],
-						gas: String(200000), // todo: make this configurable or estimate it
+						chain_id: this.#networkId,
+						fee: {
+							amount: [
+								{
+									amount: String(5000), // todo: make this configurable or estimate it
+									denom: "umuon", // todo: make this configurable
+								},
+							],
+							gas: String(200000), // todo: make this configurable or estimate it
+						},
+						memo: "",
+						account_number: String(account_number),
+						sequence: String(sequence),
 					},
-					memo: "",
-					account_number: String(account_number),
-					sequence: String(sequence),
-				},
-				keyPair,
-			),
-		);
+					keyPair,
+				),
+			);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async secondSignature(

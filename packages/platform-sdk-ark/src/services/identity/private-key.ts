@@ -1,12 +1,20 @@
 import { Identities } from "@arkecosystem/crypto";
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class PrivateKey implements Contracts.PrivateKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return Identities.PrivateKey.fromPassphrase(mnemonic);
+		try {
+			return Identities.PrivateKey.fromPassphrase(mnemonic);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async fromWIF(wif: string): Promise<string> {
-		return Identities.PrivateKey.fromWIF(wif);
+		try {
+			return Identities.PrivateKey.fromWIF(wif);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 }

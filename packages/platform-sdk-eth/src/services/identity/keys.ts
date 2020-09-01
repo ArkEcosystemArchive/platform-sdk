@@ -12,21 +12,29 @@ export class Keys implements Contracts.Keys {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
-		const wallet: Wallet = createWallet(mnemonic, this.#config.get("network.crypto.slip44"));
+		try {
+			const wallet: Wallet = createWallet(mnemonic, this.#config.get("network.crypto.slip44"));
 
-		return {
-			publicKey: wallet.getPublicKey().toString("hex"),
-			privateKey: wallet.getPrivateKey().toString("hex"),
-		};
+			return {
+				publicKey: wallet.getPublicKey().toString("hex"),
+				privateKey: wallet.getPrivateKey().toString("hex"),
+			};
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {
-		const wallet: Wallet = Wallet.fromPrivateKey(Buffoon.fromHex(privateKey));
+		try {
+			const wallet: Wallet = Wallet.fromPrivateKey(Buffoon.fromHex(privateKey));
 
-		return {
-			publicKey: wallet.getPublicKey().toString("hex"),
-			privateKey: wallet.getPrivateKey().toString("hex"),
-		};
+			return {
+				publicKey: wallet.getPublicKey().toString("hex"),
+				privateKey: wallet.getPrivateKey().toString("hex"),
+			};
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async fromWIF(wif: string): Promise<Contracts.KeyPair> {

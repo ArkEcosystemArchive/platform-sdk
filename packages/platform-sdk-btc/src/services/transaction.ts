@@ -45,32 +45,36 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (!input.sign.mnemonic) {
-			throw new Error("No mnemonic provided.");
+		try {
+			if (!input.sign.mnemonic) {
+				throw new Error("No mnemonic provided.");
+			}
+
+			// NOTE: this is a WIF/PrivateKey - should probably be passed in as wif instead of mnemonic
+			const mnemonic: string = BIP39.normalize(input.sign.mnemonic);
+
+			// 1. Derive the sender address
+			const senderAddress: string = await this.#identity.address().fromWIF(mnemonic);
+			// ({ wif: input.sign.mnemonic });
+
+			// 2. Aggregate the unspent transactions
+			const unspent: UnspentTransaction[] = await this.#unspent.aggregate(senderAddress);
+
+			// 3. Compute the amount to be transfered
+			const amount: number = new BigNumber(input.data.amount).toNumber();
+
+			// 4. Build and sign the transaction
+			let transaction = new Transaction().from(unspent).to(input.data.to, amount).change(senderAddress);
+
+			// 5. Set a fee if configured. If none is set the fee will be estimated by bitcore-lib.
+			if (input.fee) {
+				transaction = transaction.fee(input.fee);
+			}
+
+			return transaction.sign(mnemonic).toString();
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
 		}
-
-		// NOTE: this is a WIF/PrivateKey - should probably be passed in as wif instead of mnemonic
-		const mnemonic: string = BIP39.normalize(input.sign.mnemonic);
-
-		// 1. Derive the sender address
-		const senderAddress: string = await this.#identity.address().fromWIF(mnemonic);
-		// ({ wif: input.sign.mnemonic });
-
-		// 2. Aggregate the unspent transactions
-		const unspent: UnspentTransaction[] = await this.#unspent.aggregate(senderAddress);
-
-		// 3. Compute the amount to be transfered
-		const amount: number = new BigNumber(input.data.amount).toNumber();
-
-		// 4. Build and sign the transaction
-		let transaction = new Transaction().from(unspent).to(input.data.to, amount).change(senderAddress);
-
-		// 5. Set a fee if configured. If none is set the fee will be estimated by bitcore-lib.
-		if (input.fee) {
-			transaction = transaction.fee(input.fee);
-		}
-
-		return transaction.sign(mnemonic).toString();
 	}
 
 	public async secondSignature(

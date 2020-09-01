@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { deriveWallet } from "./utils";
 
@@ -10,6 +10,10 @@ export class WIF implements Contracts.WIF {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return deriveWallet(mnemonic, this.#config.get<number>("network.crypto.slip44")).WIF;
+		try {
+			return deriveWallet(mnemonic, this.#config.get<number>("network.crypto.slip44")).WIF;
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 }

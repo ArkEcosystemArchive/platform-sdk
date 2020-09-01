@@ -1,5 +1,5 @@
 import { Crypto } from "@arkecosystem/crypto";
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
 export class MessageService implements Contracts.MessageService {
@@ -12,16 +12,27 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const { message, publicKey, signature } = Crypto.Message.sign(input.message, BIP39.normalize(input.mnemonic));
+		try {
+			const { message, publicKey, signature } = Crypto.Message.sign(
+				input.message,
+				BIP39.normalize(input.mnemonic),
+			);
 
-		return { message, signatory: publicKey, signature };
+			return { message, signatory: publicKey, signature };
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return Crypto.Message.verify({
-			message: input.message,
-			publicKey: input.signatory,
-			signature: input.signature,
-		});
+		try {
+			return Crypto.Message.verify({
+				message: input.message,
+				publicKey: input.signatory,
+				signature: input.signature,
+			});
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 }
