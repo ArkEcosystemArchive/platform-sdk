@@ -6,7 +6,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 		try {
 			return Identities.PrivateKey.fromPassphrase(mnemonic);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -14,7 +14,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 		try {
 			return Identities.PrivateKey.fromWIF(wif);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

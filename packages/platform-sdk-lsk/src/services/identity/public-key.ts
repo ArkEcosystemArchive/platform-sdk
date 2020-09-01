@@ -6,7 +6,7 @@ export class PublicKey implements Contracts.PublicKey {
 		try {
 			return cryptography.getPrivateAndPublicKeyFromPassphrase(mnemonic).publicKey;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

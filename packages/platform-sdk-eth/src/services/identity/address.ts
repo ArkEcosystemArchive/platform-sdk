@@ -15,7 +15,7 @@ export class Address implements Contracts.Address {
 		try {
 			return getAddress(createWallet(mnemonic, this.#config.get("network.crypto.slip44")));
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -27,7 +27,7 @@ export class Address implements Contracts.Address {
 		try {
 			return getAddress(Wallet.fromPublicKey(Buffoon.fromHex(publicKey)));
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -35,7 +35,7 @@ export class Address implements Contracts.Address {
 		try {
 			return getAddress(Wallet.fromPrivateKey(Buffoon.fromHex(privateKey)));
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

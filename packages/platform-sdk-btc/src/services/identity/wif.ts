@@ -6,7 +6,7 @@ export class WIF implements Contracts.WIF {
 		try {
 			return BIP44.deriveMasterKey(mnemonic).toWIF();
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

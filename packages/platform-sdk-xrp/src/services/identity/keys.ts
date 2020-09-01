@@ -6,7 +6,7 @@ export class Keys implements Contracts.Keys {
 		try {
 			return deriveKeypair(mnemonic);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

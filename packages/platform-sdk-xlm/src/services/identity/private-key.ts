@@ -6,7 +6,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 		try {
 			return StellarHDWallet.fromMnemonic(mnemonic).getSecret(0);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

@@ -23,7 +23,7 @@ export class MessageService implements Contracts.MessageService {
 				signature: source.sign(Buffoon.fromUTF8(input.message)).toString("hex"),
 			};
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -34,7 +34,7 @@ export class MessageService implements Contracts.MessageService {
 				Buffoon.fromHex(input.signature),
 			);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

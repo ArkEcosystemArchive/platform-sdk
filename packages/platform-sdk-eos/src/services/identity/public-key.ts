@@ -7,7 +7,7 @@ export class PublicKey implements Contracts.PublicKey {
 		try {
 			return privateToPublic(mnemonic);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

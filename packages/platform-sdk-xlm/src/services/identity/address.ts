@@ -7,7 +7,7 @@ export class Address implements Contracts.Address {
 		try {
 			return StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(0);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -23,7 +23,7 @@ export class Address implements Contracts.Address {
 		try {
 			return Stellar.Keypair.fromSecret(privateKey).publicKey();
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

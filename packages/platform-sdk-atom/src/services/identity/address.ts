@@ -19,7 +19,7 @@ export class Address implements Contracts.Address {
 
 			return bech32.encode(this.#config.get("network.crypto.bech32"), words);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

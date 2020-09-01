@@ -13,7 +13,7 @@ export class Address implements Contracts.Address {
 		try {
 			return deriveWallet(mnemonic, this.#config.get<number>("network.crypto.slip44")).address;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -25,7 +25,7 @@ export class Address implements Contracts.Address {
 		try {
 			return createWallet(publicKey).address;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -33,7 +33,7 @@ export class Address implements Contracts.Address {
 		try {
 			return createWallet(privateKey).address;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -41,7 +41,7 @@ export class Address implements Contracts.Address {
 		try {
 			return createWallet(wif).address;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -68,7 +68,7 @@ export class Address implements Contracts.Address {
 			// TODO: implement actual validation of NEO addresses
 			return address.length === 34;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

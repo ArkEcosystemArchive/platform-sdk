@@ -32,7 +32,7 @@ export class MessageService implements Contracts.MessageService {
 					.toString("hex"),
 			};
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -44,7 +44,7 @@ export class MessageService implements Contracts.MessageService {
 				Buffoon.fromHex(input.signatory),
 			);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

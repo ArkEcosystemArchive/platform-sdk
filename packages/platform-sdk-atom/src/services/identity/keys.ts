@@ -25,7 +25,7 @@ export class Keys implements Contracts.Keys {
 				privateKey: privateKey.toString("hex"),
 			};
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

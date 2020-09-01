@@ -7,7 +7,7 @@ export class Keys implements Contracts.Keys {
 		try {
 			return this.normalize(new PrivateKey(BIP44.deriveMasterKey(mnemonic).privateKey!.toString("hex")));
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -15,7 +15,7 @@ export class Keys implements Contracts.Keys {
 		try {
 			return this.normalize(new PrivateKey(privateKey));
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -23,7 +23,7 @@ export class Keys implements Contracts.Keys {
 		try {
 			return this.normalize(PrivateKey.fromWIF(wif));
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -34,7 +34,7 @@ export class Keys implements Contracts.Keys {
 				privateKey: privateKey.toString("hex"),
 			};
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

@@ -7,7 +7,7 @@ export class PublicKey implements Contracts.PublicKey {
 		try {
 			return BIP44.deriveMasterKey(mnemonic).publicKey.toString("hex");
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -19,7 +19,7 @@ export class PublicKey implements Contracts.PublicKey {
 		try {
 			return Bitcoin.PrivateKey.fromWIF(wif).toPublicKey().toString();
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

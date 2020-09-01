@@ -20,7 +20,7 @@ export class PublicKey implements Contracts.PublicKey {
 
 			return publicKey;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

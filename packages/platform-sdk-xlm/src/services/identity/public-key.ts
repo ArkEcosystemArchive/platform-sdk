@@ -6,7 +6,7 @@ export class PublicKey implements Contracts.PublicKey {
 		try {
 			return StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(0);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

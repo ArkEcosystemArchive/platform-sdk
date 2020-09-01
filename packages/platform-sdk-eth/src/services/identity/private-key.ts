@@ -15,7 +15,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 				.getPrivateKey()
 				.toString("hex");
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

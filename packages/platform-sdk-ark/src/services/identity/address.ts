@@ -12,7 +12,7 @@ export class Address implements Contracts.Address {
 		try {
 			return Identities.Address.fromPassphrase(mnemonic);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -20,7 +20,7 @@ export class Address implements Contracts.Address {
 		try {
 			return Identities.Address.fromMultiSignatureAsset({ min, publicKeys });
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -28,7 +28,7 @@ export class Address implements Contracts.Address {
 		try {
 			return Identities.Address.fromPublicKey(publicKey);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -40,7 +40,7 @@ export class Address implements Contracts.Address {
 		try {
 			return Identities.Address.fromWIF(wif);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -61,7 +61,7 @@ export class Address implements Contracts.Address {
 
 			return Identities.Address.validate(address);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

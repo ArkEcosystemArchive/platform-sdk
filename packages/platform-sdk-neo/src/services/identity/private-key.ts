@@ -13,7 +13,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 		try {
 			return deriveWallet(mnemonic, this.#config.get<number>("network.crypto.slip44")).privateKey;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -21,7 +21,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 		try {
 			return createWallet(wif).privateKey;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

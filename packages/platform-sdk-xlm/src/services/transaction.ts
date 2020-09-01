@@ -71,7 +71,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			return transaction;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

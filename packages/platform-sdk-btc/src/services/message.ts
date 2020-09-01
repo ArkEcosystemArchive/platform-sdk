@@ -33,7 +33,7 @@ export class MessageService implements Contracts.MessageService {
 				signature: message.sign(privateKey),
 			};
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -41,7 +41,7 @@ export class MessageService implements Contracts.MessageService {
 		try {
 			return new Message(input.message).verify(input.signatory, input.signature);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

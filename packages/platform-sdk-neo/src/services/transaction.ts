@@ -23,7 +23,7 @@ export class TransactionService implements Contracts.TransactionService {
 				intents: api.makeIntent({ NEO: input.data.amount, GAS: input.fee }, input.data.to),
 			});
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

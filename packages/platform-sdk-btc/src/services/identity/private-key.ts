@@ -7,7 +7,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 		try {
 			return BIP44.deriveMasterKey(mnemonic).privateKey!.toString("hex");
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -21,7 +21,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 
 			return privateKey.toString("hex");
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

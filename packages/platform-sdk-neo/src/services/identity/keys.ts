@@ -15,7 +15,7 @@ export class Keys implements Contracts.Keys {
 
 			return { publicKey, privateKey };
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -23,7 +23,7 @@ export class Keys implements Contracts.Keys {
 		try {
 			return deriveKeyPair(privateKey);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -31,7 +31,7 @@ export class Keys implements Contracts.Keys {
 		try {
 			return deriveKeyPair(wif);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

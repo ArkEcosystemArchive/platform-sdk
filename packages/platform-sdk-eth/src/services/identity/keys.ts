@@ -20,7 +20,7 @@ export class Keys implements Contracts.Keys {
 				privateKey: wallet.getPrivateKey().toString("hex"),
 			};
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -33,7 +33,7 @@ export class Keys implements Contracts.Keys {
 				privateKey: wallet.getPrivateKey().toString("hex"),
 			};
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

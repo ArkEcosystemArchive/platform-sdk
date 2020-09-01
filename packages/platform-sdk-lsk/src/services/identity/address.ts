@@ -7,7 +7,7 @@ export class Address implements Contracts.Address {
 		try {
 			return cryptography.getAddressFromPassphrase(mnemonic);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -19,7 +19,7 @@ export class Address implements Contracts.Address {
 		try {
 			return cryptography.getAddressFromPublicKey(publicKey);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

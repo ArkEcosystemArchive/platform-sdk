@@ -13,7 +13,7 @@ export class Keys implements Contracts.Keys {
 				privateKey: source.getSecret(0),
 			};
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -26,7 +26,7 @@ export class Keys implements Contracts.Keys {
 				privateKey: source.secret(),
 			};
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

@@ -14,7 +14,7 @@ export class Address implements Contracts.Address {
 		try {
 			return (await p2pkh(mnemonic, this.#network.name)).address!;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -28,7 +28,7 @@ export class Address implements Contracts.Address {
 
 			return address.toString();
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -42,7 +42,7 @@ export class Address implements Contracts.Address {
 
 			return address.toString();
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -56,7 +56,7 @@ export class Address implements Contracts.Address {
 
 			return address.toString();
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -70,7 +70,7 @@ export class Address implements Contracts.Address {
 
 			return address.toString();
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

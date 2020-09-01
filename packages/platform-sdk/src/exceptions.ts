@@ -35,7 +35,7 @@ export class InvalidArguments extends Exception {
 }
 
 export class CryptoException extends Exception {
-	public constructor(message: string) {
-		super(message);
+	public constructor(error: Error) {
+		super(error.message);
 	}
 }

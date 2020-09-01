@@ -7,7 +7,7 @@ export class Address implements Contracts.Address {
 		try {
 			return deriveAddress(deriveKeypair(BIP39.normalize(mnemonic)).publicKey);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -19,7 +19,7 @@ export class Address implements Contracts.Address {
 		try {
 			return deriveAddress(publicKey);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

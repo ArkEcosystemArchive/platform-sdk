@@ -13,7 +13,7 @@ export class PublicKey implements Contracts.PublicKey {
 		try {
 			return deriveWallet(mnemonic, this.#config.get<number>("network.crypto.slip44")).publicKey;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -25,7 +25,7 @@ export class PublicKey implements Contracts.PublicKey {
 		try {
 			return createWallet(wif).publicKey;
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

@@ -80,7 +80,7 @@ export class TransactionService implements Contracts.TransactionService {
 				),
 			);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

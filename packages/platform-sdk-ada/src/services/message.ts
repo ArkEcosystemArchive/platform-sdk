@@ -21,7 +21,7 @@ export class MessageService implements Contracts.MessageService {
 				signature: sign(new Buffer(input.message), walletSecret).toString("hex"),
 			};
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -33,7 +33,7 @@ export class MessageService implements Contracts.MessageService {
 				Buffer.from(input.signature, "hex"),
 			);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

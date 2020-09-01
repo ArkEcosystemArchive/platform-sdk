@@ -73,7 +73,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			return transaction.sign(mnemonic).toString();
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

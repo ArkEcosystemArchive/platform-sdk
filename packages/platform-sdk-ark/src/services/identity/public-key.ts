@@ -6,7 +6,7 @@ export class PublicKey implements Contracts.PublicKey {
 		try {
 			return Identities.PublicKey.fromPassphrase(mnemonic);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -14,7 +14,7 @@ export class PublicKey implements Contracts.PublicKey {
 		try {
 			return Identities.PublicKey.fromMultiSignatureAsset({ min, publicKeys });
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -22,7 +22,7 @@ export class PublicKey implements Contracts.PublicKey {
 		try {
 			return Identities.PublicKey.fromWIF(wif);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

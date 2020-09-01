@@ -21,7 +21,7 @@ export class MessageService implements Contracts.MessageService {
 				signature: sign(Buffoon.toHex(input.message), privateKey),
 			};
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -29,7 +29,7 @@ export class MessageService implements Contracts.MessageService {
 		try {
 			return verify(Buffoon.toHex(input.message), input.signature, input.signatory);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

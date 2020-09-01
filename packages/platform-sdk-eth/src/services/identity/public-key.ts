@@ -18,7 +18,7 @@ export class PublicKey implements Contracts.PublicKey {
 
 			return keyPair.getPublicKey().toString("hex");
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

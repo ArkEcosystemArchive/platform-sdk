@@ -76,7 +76,7 @@ export class TransactionService implements Contracts.TransactionService {
 				"0x" + transaction.serialize().toString("hex"),
 			);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 

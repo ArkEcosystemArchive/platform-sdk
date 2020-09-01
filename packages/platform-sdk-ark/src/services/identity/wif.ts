@@ -6,7 +6,7 @@ export class WIF implements Contracts.WIF {
 		try {
 			return Identities.WIF.fromPassphrase(mnemonic);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

@@ -22,7 +22,7 @@ export class MessageService implements Contracts.MessageService {
 				signature: sign(input.message, mnemonic),
 			};
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -30,7 +30,7 @@ export class MessageService implements Contracts.MessageService {
 		try {
 			return verify(input.signature, input.message, input.signatory);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

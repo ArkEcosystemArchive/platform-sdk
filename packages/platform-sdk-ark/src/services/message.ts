@@ -20,7 +20,7 @@ export class MessageService implements Contracts.MessageService {
 
 			return { message, signatory: publicKey, signature };
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -32,7 +32,7 @@ export class MessageService implements Contracts.MessageService {
 				signature: input.signature,
 			});
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }

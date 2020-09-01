@@ -19,7 +19,7 @@ export class MessageService implements Contracts.MessageService {
 
 			return { message: input.message, signatory: new wallet.Account(mnemonic).publicKey, signature };
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 
@@ -27,7 +27,7 @@ export class MessageService implements Contracts.MessageService {
 		try {
 			return Neon.verify.message(input.message, input.signature, input.signatory);
 		} catch (error) {
-			throw new Exceptions.CryptoException(error.message);
+			throw new Exceptions.CryptoException(error);
 		}
 	}
 }
