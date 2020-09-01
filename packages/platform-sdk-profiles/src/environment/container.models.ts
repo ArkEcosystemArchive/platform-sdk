@@ -13,4 +13,5 @@ export const Identifiers = {
 	SettingRepository: "SettingRepository",
 	Storage: "Storage",
 	WalletRepository: "WalletRepository",
+	WalletService: "WalletService",
 };
