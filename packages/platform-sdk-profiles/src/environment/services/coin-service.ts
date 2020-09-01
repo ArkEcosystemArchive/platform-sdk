@@ -19,13 +19,7 @@ export class CoinService {
 		const result: Record<string, string[]> = {};
 
 		for (const [coin, networks] of Object.entries(this.all())) {
-			if (!Array.isArray(result[coin])) {
-				result[coin] = [];
-			}
-
-			for (const network of Object.keys(networks)) {
-				result[coin].push(network);
-			}
+			result[coin] = Object.keys(networks);
 		}
 
 		return Object.entries(result);
