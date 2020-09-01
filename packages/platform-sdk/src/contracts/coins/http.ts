@@ -62,6 +62,4 @@ export interface HttpResponse {
 	clientError(): boolean;
 
 	serverError(): boolean;
-
-	throw(): HttpResponse;
 }
