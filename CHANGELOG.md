@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.327 - 2020-08-32
+
+### Added
+
+-   Introduce `CoinService` to manage coin instances (2e864ec8, @faustbrian)
+
+### Changed
+
+-   Throw `CryptoException` if any crypro-related errors occur (b1e8a149, @faustbrian)
+
 ## 0.9.325 - 2020-08-31
 
 ### Added
