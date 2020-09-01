@@ -131,6 +131,10 @@ export class Wallet implements ReadWriteWallet {
 		return this.network().ticker();
 	}
 
+	public exchangeCurrency(): string {
+		return this.data().get(WalletData.ExchangeCurrency) as string;
+	}
+
 	public alias(): string | undefined {
 		return this.settings().get(WalletSetting.Alias);
 	}
@@ -207,6 +211,7 @@ export class Wallet implements ReadWriteWallet {
 			data: {
 				[WalletData.Balance]: this.balance().toFixed(),
 				[WalletData.BroadcastedTransactions]: this.data().get(WalletData.BroadcastedTransactions, []),
+				[WalletData.ExchangeCurrency]: this.data().get(WalletData.ExchangeCurrency, ""),
 				[WalletData.ExchangeRate]: this.data().get(WalletData.ExchangeRate, 0),
 				[WalletData.Sequence]: this.nonce().toFixed(),
 				[WalletData.SignedTransactions]: this.data().get(WalletData.SignedTransactions, []),

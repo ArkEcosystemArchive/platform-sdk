@@ -29,15 +29,19 @@ export class ExchangeRateService {
 			container.get(Identifiers.HttpClient),
 		);
 
+		const exchangeCurrency: string = profile.settings().get(ProfileSetting.ExchangeCurrency) || "BTC";
+
 		wallet
 			.data()
 			.set(
 				WalletData.ExchangeRate,
 				await marketService.dailyAverage(
 					wallet.currency(),
-					profile.settings().get(ProfileSetting.ExchangeCurrency) || "BTC",
+					exchangeCurrency,
 					+Date.now(),
 				),
 			);
+
+		wallet.data().set(WalletData.ExchangeCurrency, exchangeCurrency);
 	}
 }
