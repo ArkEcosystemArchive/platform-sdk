@@ -42,33 +42,37 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (!input.sign.mnemonic) {
-			throw new Error("No mnemonic provided.");
+		try {
+			if (!input.sign.mnemonic) {
+				throw new Error("No mnemonic provided.");
+			}
+
+			const { publicKey, privateKey } = input.sign.privateKey
+				? await this.#identity.keys().fromPrivateKey(input.sign.privateKey)
+				: await this.#identity.keys().fromMnemonic(input.sign.mnemonic);
+
+			const account = await this.#client.loadAccount(publicKey);
+
+			const transaction = new Stellar.TransactionBuilder(account, {
+				fee: input.fee || Stellar.BASE_FEE,
+				networkPassphrase: this.#networkPassphrase,
+			})
+				.addOperation(
+					Stellar.Operation.payment({
+						destination: input.data.to,
+						asset: Stellar.Asset.native(),
+						amount: `${input.data.amount}`,
+					}),
+				)
+				.setTimeout(30) // todo: support expiration
+				.build();
+
+			transaction.sign(Stellar.Keypair.fromSecret(privateKey));
+
+			return transaction;
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
 		}
-
-		const { publicKey, privateKey } = input.sign.privateKey
-			? await this.#identity.keys().fromPrivateKey(input.sign.privateKey)
-			: await this.#identity.keys().fromMnemonic(input.sign.mnemonic);
-
-		const account = await this.#client.loadAccount(publicKey);
-
-		const transaction = new Stellar.TransactionBuilder(account, {
-			fee: input.fee || Stellar.BASE_FEE,
-			networkPassphrase: this.#networkPassphrase,
-		})
-			.addOperation(
-				Stellar.Operation.payment({
-					destination: input.data.to,
-					asset: Stellar.Asset.native(),
-					amount: `${input.data.amount}`,
-				}),
-			)
-			.setTimeout(30) // todo: support expiration
-			.build();
-
-		transaction.sign(Stellar.Keypair.fromSecret(privateKey));
-
-		return transaction;
 	}
 
 	public async secondSignature(

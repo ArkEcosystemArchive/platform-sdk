@@ -36,36 +36,43 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (!input.sign.mnemonic) {
-			throw new Error("No mnemonic provided.");
+		try {
+			if (!input.sign.mnemonic) {
+				throw new Error("No mnemonic provided.");
+			}
+
+			const sender: string = await new IdentityService().address().fromMnemonic(input.sign.mnemonic);
+
+			const prepared = await this.#connection.preparePayment(
+				sender,
+				{
+					source: {
+						address: sender,
+						maxAmount: {
+							value: `${input.data.amount}`,
+							currency: "XRP",
+						},
+					},
+					destination: {
+						address: input.data.to,
+						amount: {
+							value: `${input.data.amount}`,
+							currency: "XRP",
+						},
+					},
+				},
+				{ maxLedgerVersionOffset: 5 },
+			);
+
+			const { id, signedTransaction } = this.#connection.sign(
+				prepared.txJSON,
+				BIP39.normalize(input.sign.mnemonic),
+			);
+
+			return new SignedTransactionData(id, signedTransaction);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
 		}
-
-		const sender: string = await new IdentityService().address().fromMnemonic(input.sign.mnemonic);
-
-		const prepared = await this.#connection.preparePayment(
-			sender,
-			{
-				source: {
-					address: sender,
-					maxAmount: {
-						value: `${input.data.amount}`,
-						currency: "XRP",
-					},
-				},
-				destination: {
-					address: input.data.to,
-					amount: {
-						value: `${input.data.amount}`,
-						currency: "XRP",
-					},
-				},
-			},
-			{ maxLedgerVersionOffset: 5 },
-		);
-
-		const { id, signedTransaction } = this.#connection.sign(prepared.txJSON, BIP39.normalize(input.sign.mnemonic));
-
-		return new SignedTransactionData(id, signedTransaction);
 	}
 
 	public async secondSignature(

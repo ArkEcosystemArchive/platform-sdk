@@ -39,56 +39,60 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (!input.sign.mnemonic) {
-			throw new Error("No mnemonic provided.");
-		}
+		try {
+			if (!input.sign.mnemonic) {
+				throw new Error("No mnemonic provided.");
+			}
 
-		const { client, signatureProvider } = this.getClient(input.sign.mnemonic);
+			const { client, signatureProvider } = this.getClient(input.sign.mnemonic);
 
-		const transfer = await client.transact(
-			{
-				actions: [
-					{
-						account: "eosio.token",
-						name: "transfer",
-						authorization: [
-							{
-								actor: input.from,
-								permission: "active",
+			const transfer = await client.transact(
+				{
+					actions: [
+						{
+							account: "eosio.token",
+							name: "transfer",
+							authorization: [
+								{
+									actor: input.from,
+									permission: "active",
+								},
+							],
+							data: {
+								from: input.from,
+								to: input.data.to,
+								quantity: "0.0001 TNT", // todo: use network specific token
+								memo: input.data.memo,
 							},
-						],
-						data: {
-							from: input.from,
-							to: input.data.to,
-							quantity: "0.0001 TNT", // todo: use network specific token
-							memo: input.data.memo,
 						},
-					},
-				],
-			},
-			{
-				blocksBehind: 3,
-				expireSeconds: 30,
-				broadcast: false,
-				sign: false,
-			},
-		);
+					],
+				},
+				{
+					blocksBehind: 3,
+					expireSeconds: 30,
+					broadcast: false,
+					sign: false,
+				},
+			);
 
-		const keys: string[] = await signatureProvider.getAvailableKeys();
-		transfer.requiredKeys = keys;
-		transfer.chainId = this.#networkId;
+			const keys: string[] = await signatureProvider.getAvailableKeys();
+			transfer.requiredKeys = keys;
+			transfer.chainId = this.#networkId;
 
-		const signatures = transfer.signatures || null;
-		const transaction = await signatureProvider.sign(transfer);
+			const signatures = transfer.signatures || null;
+			const transaction = await signatureProvider.sign(transfer);
 
-		if (signatures) {
-			transaction.signatures = transaction.signatures.concat(signatures);
+			if (signatures) {
+				transaction.signatures = transaction.signatures.concat(signatures);
+			}
+
+			return new SignedTransactionData(
+				createHash("sha256").update(transaction.serializedTransaction).digest("hex"),
+				transaction,
+			);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
 		}
-
-		return new SignedTransactionData(
-			createHash("sha256").update(transaction.serializedTransaction).digest("hex"),
-			transaction,
-		);
 	}
 
 	public async secondSignature(

@@ -156,28 +156,32 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransactionData> {
-		const struct: Contracts.KeyValuePair = { ...input.data };
+		try {
+			const struct: Contracts.KeyValuePair = { ...input.data };
 
-		struct.networkIdentifier = this.#network;
+			struct.networkIdentifier = this.#network;
 
-		if (callback) {
-			callback({ struct });
+			if (callback) {
+				callback({ struct });
+			}
+
+			// todo: support multisignature
+
+			if (input.sign.mnemonic) {
+				struct.passphrase = BIP39.normalize(input.sign.mnemonic);
+			}
+
+			if (input.sign.secondMnemonic) {
+				struct.secondPassphrase = BIP39.normalize(input.sign.secondMnemonic);
+			}
+
+			// if (this.#network === manifest.networks.betanet.crypto.networkId) {
+			// 	return transactionsBeta[type](struct);
+			// }
+
+			return transactions[type](struct);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
 		}
-
-		// todo: support multisignature
-
-		if (input.sign.mnemonic) {
-			struct.passphrase = BIP39.normalize(input.sign.mnemonic);
-		}
-
-		if (input.sign.secondMnemonic) {
-			struct.secondPassphrase = BIP39.normalize(input.sign.secondMnemonic);
-		}
-
-		// if (this.#network === manifest.networks.betanet.crypto.networkId) {
-		// 	return transactionsBeta[type](struct);
-		// }
-
-		return transactions[type](struct);
 	}
 }
