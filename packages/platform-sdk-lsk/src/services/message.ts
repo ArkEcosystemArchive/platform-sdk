@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import * as cryptography from "@liskhq/lisk-cryptography";
 
 export class MessageService implements Contracts.MessageService {
@@ -11,16 +11,27 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const { message, publicKey, signature } = cryptography.signMessageWithPassphrase(input.message, input.mnemonic);
+		try {
+			const { message, publicKey, signature } = cryptography.signMessageWithPassphrase(
+				input.message,
+				input.mnemonic,
+			);
 
-		return { message, signatory: publicKey, signature };
+			return { message, signatory: publicKey, signature };
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return cryptography.verifyMessageWithPublicKey({
-			message: input.message,
-			publicKey: input.signatory,
-			signature: input.signature,
-		});
+		try {
+			return cryptography.verifyMessageWithPublicKey({
+				message: input.message,
+				publicKey: input.signatory,
+				signature: input.signature,
+			});
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 }

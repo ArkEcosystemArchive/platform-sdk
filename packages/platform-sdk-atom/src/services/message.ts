@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import { secp256k1 } from "bcrypto";
 
@@ -21,22 +21,30 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		const { publicKey, privateKey } = await this.#identityService.keys().fromMnemonic(input.mnemonic);
+		try {
+			const { publicKey, privateKey } = await this.#identityService.keys().fromMnemonic(input.mnemonic);
 
-		return {
-			message: input.message,
-			signatory: publicKey,
-			signature: secp256k1
-				.sign(HashAlgorithms.sha256(input.message), Buffoon.fromHex(privateKey))
-				.toString("hex"),
-		};
+			return {
+				message: input.message,
+				signatory: publicKey,
+				signature: secp256k1
+					.sign(HashAlgorithms.sha256(input.message), Buffoon.fromHex(privateKey))
+					.toString("hex"),
+			};
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		return secp256k1.verify(
-			HashAlgorithms.sha256(input.message),
-			Buffoon.fromHex(input.signature),
-			Buffoon.fromHex(input.signatory),
-		);
+		try {
+			return secp256k1.verify(
+				HashAlgorithms.sha256(input.message),
+				Buffoon.fromHex(input.signature),
+				Buffoon.fromHex(input.signatory),
+			);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 }
