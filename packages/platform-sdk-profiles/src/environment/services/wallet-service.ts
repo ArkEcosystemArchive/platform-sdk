@@ -9,8 +9,8 @@ export class WalletService {
 
 		for (const profile of container.get<ProfileRepository>(Identifiers.ProfileRepository).values()) {
 			for (const wallet of profile.wallets().values()) {
-				promises.push(wallet?.syncVotes());
 				promises.push(wallet?.syncIdentity());
+				promises.push(wallet?.syncVotes());
 			}
 		}
 
@@ -21,8 +21,8 @@ export class WalletService {
 		const promises: Promise<void>[] = [];
 
 		for (const wallet of profile.wallets().values()) {
-			promises.push(wallet?.syncVotes());
 			promises.push(wallet?.syncIdentity());
+			promises.push(wallet?.syncVotes());
 		}
 
 		await Promise.allSettled(promises);
