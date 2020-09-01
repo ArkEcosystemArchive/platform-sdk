@@ -2,7 +2,10 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { DataRepository } from "../../repositories/data-repository";
 import { ReadOnlyWallet } from "../../wallets/read-only-wallet";
+import { container } from "../container";
 import { makeCoin } from "../container.helpers";
+import { Identifiers } from "../container.models";
+import { CoinService } from "./coin-service";
 
 export class DelegateService {
 	readonly #dataRepository: DataRepository = new DataRepository();
@@ -56,10 +59,10 @@ export class DelegateService {
 		);
 	}
 
-	public async syncAll(coins: Record<string, string[]>): Promise<void> {
+	public async syncAll(): Promise<void> {
 		const promises: Promise<void>[] = [];
 
-		for (const [coin, networks] of Object.entries(coins)) {
+		for (const [coin, networks] of container.get<CoinService>(Identifiers.CoinService).entries()) {
 			for (const network of networks) {
 				promises.push(this.sync(coin, network));
 			}

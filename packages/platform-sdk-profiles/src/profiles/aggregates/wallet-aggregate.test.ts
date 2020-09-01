@@ -9,6 +9,7 @@ import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { Profile } from "../profile";
 import { WalletAggregate } from "./wallet-aggregate";
+import { CoinService } from "../../environment/services/coin-service";
 
 let subject: WalletAggregate;
 
@@ -25,6 +26,7 @@ beforeAll(() => {
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
+	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 });
 

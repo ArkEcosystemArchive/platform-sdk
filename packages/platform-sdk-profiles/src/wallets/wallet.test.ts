@@ -14,6 +14,7 @@ import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "./wallet";
 import { WalletData } from "./wallet.models";
+import { CoinService } from "../environment/services/coin-service";
 
 let profile: Profile;
 let subject: Wallet;
@@ -39,6 +40,7 @@ beforeEach(async () => {
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
+	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 
 	profile = new Profile("profile-id");

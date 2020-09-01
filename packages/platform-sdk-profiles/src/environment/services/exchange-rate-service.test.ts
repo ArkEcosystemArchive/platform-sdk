@@ -12,6 +12,7 @@ import { ProfileSetting } from "../../profiles/profile.models";
 import { ProfileRepository } from "../../repositories/profile-repository";
 import { ReadWriteWallet, WalletData } from "../../wallets/wallet.models";
 import { ExchangeRateService } from "./exchange-rate-service";
+import { CoinService } from "./coin-service";
 
 let profile: Profile;
 let wallet: ReadWriteWallet;
@@ -40,6 +41,7 @@ beforeEach(async () => {
 	const profileRepository = new ProfileRepository();
 
 	container.set(Identifiers.HttpClient, new Request());
+	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 	container.set(Identifiers.ProfileRepository, profileRepository);
 

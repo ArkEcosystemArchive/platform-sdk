@@ -7,6 +7,7 @@ import nock from "nock";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { Profile } from "../profile";
+import { CoinService } from "../../environment/services/coin-service";
 
 let profile: Profile;
 
@@ -27,6 +28,7 @@ beforeEach(async () => {
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
+	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 	profile = new Profile("uuid");
 	const address = "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb";

@@ -7,6 +7,7 @@ import nock from "nock";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { ContactAddressRepository } from "./contact-address-repository";
+import { CoinService } from "../environment/services/coin-service";
 
 let subject: ContactAddressRepository;
 
@@ -34,6 +35,7 @@ beforeEach(async () => {
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
+	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 
 	subject = new ContactAddressRepository();
