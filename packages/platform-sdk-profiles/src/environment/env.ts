@@ -1,6 +1,5 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import { Validator, ValidatorSchema } from "@arkecosystem/platform-sdk-support";
-import { CoinServices } from "../../../platform-sdk/dist/coins";
 
 import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../repositories/profile-repository";
