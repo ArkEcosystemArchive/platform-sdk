@@ -4,7 +4,11 @@ import Stellar from "stellar-sdk";
 
 export class Address implements Contracts.Address {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(0);
+		try {
+			return StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(0);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -16,7 +20,11 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<string> {
-		return Stellar.Keypair.fromSecret(privateKey).publicKey();
+		try {
+			return Stellar.Keypair.fromSecret(privateKey).publicKey();
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

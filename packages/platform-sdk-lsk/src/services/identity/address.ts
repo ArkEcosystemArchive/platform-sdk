@@ -4,7 +4,11 @@ import * as transactions from "@liskhq/lisk-transactions";
 
 export class Address implements Contracts.Address {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return cryptography.getAddressFromPassphrase(mnemonic);
+		try {
+			return cryptography.getAddressFromPassphrase(mnemonic);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -12,7 +16,11 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPublicKey(publicKey: string): Promise<string> {
-		return cryptography.getAddressFromPublicKey(publicKey);
+		try {
+			return cryptography.getAddressFromPublicKey(publicKey);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<string> {

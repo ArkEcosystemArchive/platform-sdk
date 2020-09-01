@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { deriveKeyPair, deriveWallet } from "./utils";
 
@@ -10,16 +10,28 @@ export class Keys implements Contracts.Keys {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
-		const { publicKey, privateKey } = deriveWallet(mnemonic, this.#config.get<number>("network.crypto.slip44"));
+		try {
+			const { publicKey, privateKey } = deriveWallet(mnemonic, this.#config.get<number>("network.crypto.slip44"));
 
-		return { publicKey, privateKey };
+			return { publicKey, privateKey };
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {
-		return deriveKeyPair(privateKey);
+		try {
+			return deriveKeyPair(privateKey);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromWIF(wif: string): Promise<Contracts.KeyPair> {
-		return deriveKeyPair(wif);
+		try {
+			return deriveKeyPair(wif);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 }

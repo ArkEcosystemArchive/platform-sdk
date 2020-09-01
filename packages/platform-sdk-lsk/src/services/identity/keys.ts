@@ -3,9 +3,13 @@ import * as cryptography from "@liskhq/lisk-cryptography";
 
 export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
-		const { publicKey, privateKey } = cryptography.getPrivateAndPublicKeyFromPassphrase(mnemonic);
+		try {
+			const { publicKey, privateKey } = cryptography.getPrivateAndPublicKeyFromPassphrase(mnemonic);
 
-		return { publicKey, privateKey };
+			return { publicKey, privateKey };
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {

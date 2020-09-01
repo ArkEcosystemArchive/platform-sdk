@@ -12,7 +12,11 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return getAddress(createWallet(mnemonic, this.#config.get("network.crypto.slip44")));
+		try {
+			return getAddress(createWallet(mnemonic, this.#config.get("network.crypto.slip44")));
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -20,11 +24,19 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPublicKey(publicKey: string): Promise<string> {
-		return getAddress(Wallet.fromPublicKey(Buffoon.fromHex(publicKey)));
+		try {
+			return getAddress(Wallet.fromPublicKey(Buffoon.fromHex(publicKey)));
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<string> {
-		return getAddress(Wallet.fromPrivateKey(Buffoon.fromHex(privateKey)));
+		try {
+			return getAddress(Wallet.fromPrivateKey(Buffoon.fromHex(privateKey)));
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

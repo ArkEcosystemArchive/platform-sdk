@@ -4,7 +4,11 @@ import { deriveAddress, deriveKeypair } from "ripple-keypairs";
 
 export class Address implements Contracts.Address {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return deriveAddress(deriveKeypair(BIP39.normalize(mnemonic)).publicKey);
+		try {
+			return deriveAddress(deriveKeypair(BIP39.normalize(mnemonic)).publicKey);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -12,7 +16,11 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPublicKey(publicKey: string): Promise<string> {
-		return deriveAddress(publicKey);
+		try {
+			return deriveAddress(publicKey);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<string> {

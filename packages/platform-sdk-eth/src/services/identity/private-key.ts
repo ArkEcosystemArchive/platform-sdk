@@ -10,9 +10,13 @@ export class PrivateKey implements Contracts.PrivateKey {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return createWallet(mnemonic, this.#config.get("network.crypto.slip44"))
-			.getPrivateKey()
-			.toString("hex");
+		try {
+			return createWallet(mnemonic, this.#config.get("network.crypto.slip44"))
+				.getPrivateKey()
+				.toString("hex");
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

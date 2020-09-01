@@ -4,7 +4,11 @@ import Bitcoin from "bitcore-lib";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return BIP44.deriveMasterKey(mnemonic).publicKey.toString("hex");
+		try {
+			return BIP44.deriveMasterKey(mnemonic).publicKey.toString("hex");
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -12,6 +16,10 @@ export class PublicKey implements Contracts.PublicKey {
 	}
 
 	public async fromWIF(wif: string): Promise<string> {
-		return Bitcoin.PrivateKey.fromWIF(wif).toPublicKey().toString();
+		try {
+			return Bitcoin.PrivateKey.fromWIF(wif).toPublicKey().toString();
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 }

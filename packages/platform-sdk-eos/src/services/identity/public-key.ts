@@ -4,7 +4,11 @@ import { privateToPublic } from "../../crypto";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return privateToPublic(mnemonic);
+		try {
+			return privateToPublic(mnemonic);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

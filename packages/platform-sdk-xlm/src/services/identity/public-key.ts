@@ -3,7 +3,11 @@ import StellarHDWallet from "stellar-hd-wallet";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(0);
+		try {
+			return StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(0);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

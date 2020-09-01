@@ -10,7 +10,11 @@ export class PublicKey implements Contracts.PublicKey {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return deriveWallet(mnemonic, this.#config.get<number>("network.crypto.slip44")).publicKey;
+		try {
+			return deriveWallet(mnemonic, this.#config.get<number>("network.crypto.slip44")).publicKey;
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -18,6 +22,10 @@ export class PublicKey implements Contracts.PublicKey {
 	}
 
 	public async fromWIF(wif: string): Promise<string> {
-		return createWallet(wif).publicKey;
+		try {
+			return createWallet(wif).publicKey;
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 }
