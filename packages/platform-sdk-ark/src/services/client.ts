@@ -145,11 +145,15 @@ export class ClientService implements Contracts.ClientService {
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.get(`${this.#peer}/${path}`, query?.searchParams);
 
+		response.throw();
+
 		return response.json();
 	}
 
 	private async post(path: string, { body, searchParams }: { body; searchParams? }): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.post(`${this.#peer}/${path}`, body, searchParams || undefined);
+
+		response.throw();
 
 		return response.json();
 	}

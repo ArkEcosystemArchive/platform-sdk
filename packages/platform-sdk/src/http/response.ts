@@ -1,3 +1,4 @@
+import { Primitive } from "type-fest";
 import { HttpResponse } from "../contracts";
 import { RequestException } from "./exceptions";
 
@@ -8,7 +9,10 @@ export class Response implements HttpResponse {
 
 	protected _body: string;
 
-	public constructor(response, error?: Error | undefined) {
+	public constructor(
+		response: { body: string | undefined; headers: Record<string, Primitive>; statusCode: number },
+		error?: Error | undefined,
+	) {
 		this._response = response;
 		this._body = response.body || "";
 		this._error = error;
@@ -18,15 +22,15 @@ export class Response implements HttpResponse {
 		return this._body;
 	}
 
-	public json(): Record<string, any> {
+	public json(): Record<string, Primitive> {
 		return JSON.parse(this._body);
 	}
 
-	public header(header: string): any {
+	public header(header: string): Primitive {
 		return this.headers()[header];
 	}
 
-	public headers(): Record<string, any> {
+	public headers(): Record<string, Primitive> {
 		return this._response.headers;
 	}
 
