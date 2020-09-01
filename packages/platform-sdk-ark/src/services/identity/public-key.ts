@@ -1,16 +1,28 @@
 import { Identities } from "@arkecosystem/crypto";
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return Identities.PublicKey.fromPassphrase(mnemonic);
+		try {
+			return Identities.PublicKey.fromPassphrase(mnemonic);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
-		return Identities.PublicKey.fromMultiSignatureAsset({ min, publicKeys });
+		try {
+			return Identities.PublicKey.fromMultiSignatureAsset({ min, publicKeys });
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromWIF(wif: string): Promise<string> {
-		return Identities.PublicKey.fromWIF(wif);
+		try {
+			return Identities.PublicKey.fromWIF(wif);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 }

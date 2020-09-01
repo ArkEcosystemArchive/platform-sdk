@@ -9,15 +9,27 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return Identities.Address.fromPassphrase(mnemonic);
+		try {
+			return Identities.Address.fromPassphrase(mnemonic);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
-		return Identities.Address.fromMultiSignatureAsset({ min, publicKeys });
+		try {
+			return Identities.Address.fromMultiSignatureAsset({ min, publicKeys });
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromPublicKey(publicKey: string): Promise<string> {
-		return Identities.Address.fromPublicKey(publicKey);
+		try {
+			return Identities.Address.fromPublicKey(publicKey);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<string> {
@@ -25,23 +37,31 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromWIF(wif: string): Promise<string> {
-		return Identities.Address.fromWIF(wif);
+		try {
+			return Identities.Address.fromWIF(wif);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 
 	public async validate(address: string): Promise<boolean> {
-		if (this.#config.get("network.id") === "mainnet") {
-			const response: any = (
-				await this.#config
-					.get<Contracts.HttpClient>("httpClient")
-					.timeout(1000)
-					.get(`https://neoscan.io/api/main_net/v1/get_last_transactions_by_address/${address}/1`)
-			).json();
+		try {
+			if (this.#config.get("network.id") === "mainnet") {
+				const response: any = (
+					await this.#config
+						.get<Contracts.HttpClient>("httpClient")
+						.timeout(1000)
+						.get(`https://neoscan.io/api/main_net/v1/get_last_transactions_by_address/${address}/1`)
+				).json();
 
-			if (response && response.length > 0) {
-				throw new Error("This address exists on the NEO Mainnet.");
+				if (response && response.length > 0) {
+					throw new Error("This address exists on the NEO Mainnet.");
+				}
 			}
-		}
 
-		return Identities.Address.validate(address);
+			return Identities.Address.validate(address);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
+		}
 	}
 }

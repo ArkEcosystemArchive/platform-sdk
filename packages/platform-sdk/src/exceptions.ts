@@ -33,3 +33,9 @@ export class InvalidArguments extends Exception {
 		super(`Method ${klass}#${method} does not accept the given arguments.`);
 	}
 }
+
+export class CryptoException extends Exception {
+	public constructor(message: string) {
+		super(message);
+	}
+}

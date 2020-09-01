@@ -5,7 +5,7 @@ import {
 import { Enums } from "@arkecosystem/core-magistrate-crypto";
 import { Managers, Transactions } from "@arkecosystem/crypto";
 import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
 
@@ -264,108 +264,112 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransactionData> {
-		let address: string | undefined;
-
-		if (input.sign.mnemonic) {
-			address = await this.#identity.address().fromMnemonic(BIP39.normalize(input.sign.mnemonic));
-		}
-
-		if (input.sign.wif) {
-			address = await this.#identity.address().fromWIF(input.sign.wif);
-		}
-
-		let transaction;
-
-		if (this.#magistrateBuilders[type]) {
-			transaction = new this.#magistrateBuilders[type]();
-		} else {
-			transaction = Transactions.BuilderFactory[type]().version(2);
-		}
-
-		if (input.nonce) {
-			transaction.nonce(input.nonce);
-		} else {
-			const body: any = (await this.#http.get(`${this.#peer}/wallets/${address}`)).json();
-
-			transaction.nonce(BigNumber.make(body.data.nonce).plus(1).toFixed());
-		}
-
-		if (input.data && input.data.amount) {
-			transaction.amount(input.data.amount);
-		}
-
-		if (input.fee) {
-			transaction.fee(input.fee);
-		}
-
-		if (callback) {
-			callback({ transaction, data: input.data });
-		}
-
-		if (options && options.unsignedJson === true) {
-			return transaction.toJson();
-		}
-
-		if (options && options.unsignedBytes === true) {
-			return new SignedTransactionData(
-				// TODO: compute ID
-				"dummy",
-				Transactions.Serializer.getBytes(transaction, {
-					excludeSignature: true,
-					excludeSecondSignature: true,
-				}).toString("hex"),
-			);
-		}
-
-		if (input.sign.multiSignature) {
-			return this.handleMultiSignature(transaction, input);
-		}
-
-		if (Array.isArray(input.sign.mnemonics)) {
-			const senderPublicKeys: string[] = await Promise.all(
-				input.sign.mnemonics.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
-			);
-
-			transaction.senderPublicKey(
-				await this.#identity.publicKey().fromMultiSignature(input.sign.mnemonics.length, senderPublicKeys),
-			);
-
-			for (let i = 0; i < input.sign.mnemonics.length; i++) {
-				transaction.multiSign(BIP39.normalize(input.sign.mnemonics[i]), i);
-			}
-		} else {
-			if (!address) {
-				throw new Error(
-					`Failed to retrieve the nonce for the signatory wallet. Please provide one through the [input] parameter.`,
-				);
-			}
-
-			if (input.from !== address) {
-				throw new Error(
-					`Signatory should be [${input.from}] but is [${address}]. Please ensure that the expected and actual signatory match.`,
-				);
-			}
+		try {
+			let address: string | undefined;
 
 			if (input.sign.mnemonic) {
-				transaction.sign(BIP39.normalize(input.sign.mnemonic));
-			}
-
-			if (input.sign.secondMnemonic) {
-				transaction.secondSign(BIP39.normalize(input.sign.secondMnemonic));
+				address = await this.#identity.address().fromMnemonic(BIP39.normalize(input.sign.mnemonic));
 			}
 
 			if (input.sign.wif) {
-				transaction.signWithWif(input.sign.wif);
+				address = await this.#identity.address().fromWIF(input.sign.wif);
 			}
 
-			if (input.sign.secondWif) {
-				transaction.secondSignWithWif(input.sign.secondWif);
+			let transaction;
+
+			if (this.#magistrateBuilders[type]) {
+				transaction = new this.#magistrateBuilders[type]();
+			} else {
+				transaction = Transactions.BuilderFactory[type]().version(2);
 			}
+
+			if (input.nonce) {
+				transaction.nonce(input.nonce);
+			} else {
+				const body: any = (await this.#http.get(`${this.#peer}/wallets/${address}`)).json();
+
+				transaction.nonce(BigNumber.make(body.data.nonce).plus(1).toFixed());
+			}
+
+			if (input.data && input.data.amount) {
+				transaction.amount(input.data.amount);
+			}
+
+			if (input.fee) {
+				transaction.fee(input.fee);
+			}
+
+			if (callback) {
+				callback({ transaction, data: input.data });
+			}
+
+			if (options && options.unsignedJson === true) {
+				return transaction.toJson();
+			}
+
+			if (options && options.unsignedBytes === true) {
+				return new SignedTransactionData(
+					// TODO: compute ID
+					"dummy",
+					Transactions.Serializer.getBytes(transaction, {
+						excludeSignature: true,
+						excludeSecondSignature: true,
+					}).toString("hex"),
+				);
+			}
+
+			if (input.sign.multiSignature) {
+				return this.handleMultiSignature(transaction, input);
+			}
+
+			if (Array.isArray(input.sign.mnemonics)) {
+				const senderPublicKeys: string[] = await Promise.all(
+					input.sign.mnemonics.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
+				);
+
+				transaction.senderPublicKey(
+					await this.#identity.publicKey().fromMultiSignature(input.sign.mnemonics.length, senderPublicKeys),
+				);
+
+				for (let i = 0; i < input.sign.mnemonics.length; i++) {
+					transaction.multiSign(BIP39.normalize(input.sign.mnemonics[i]), i);
+				}
+			} else {
+				if (!address) {
+					throw new Error(
+						`Failed to retrieve the nonce for the signatory wallet. Please provide one through the [input] parameter.`,
+					);
+				}
+
+				if (input.from !== address) {
+					throw new Error(
+						`Signatory should be [${input.from}] but is [${address}]. Please ensure that the expected and actual signatory match.`,
+					);
+				}
+
+				if (input.sign.mnemonic) {
+					transaction.sign(BIP39.normalize(input.sign.mnemonic));
+				}
+
+				if (input.sign.secondMnemonic) {
+					transaction.secondSign(BIP39.normalize(input.sign.secondMnemonic));
+				}
+
+				if (input.sign.wif) {
+					transaction.signWithWif(input.sign.wif);
+				}
+
+				if (input.sign.secondWif) {
+					transaction.secondSignWithWif(input.sign.secondWif);
+				}
+			}
+
+			const signedTransaction = transaction.build().toJson();
+
+			return new SignedTransactionData(signedTransaction.id, signedTransaction);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error.message);
 		}
-
-		const signedTransaction = transaction.build().toJson();
-
-		return new SignedTransactionData(signedTransaction.id, signedTransaction);
 	}
 
 	private async handleMultiSignature(transaction: Contracts.RawTransactionData, input: Contracts.TransactionInputs) {
