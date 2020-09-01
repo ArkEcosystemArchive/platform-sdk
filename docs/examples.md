@@ -526,3 +526,15 @@ await activeWallet.transaction().sync();
 // Broadcast the multi signature.
 await activeWallet.transaction().broadcast(transactionId);
 ```
+
+#### Check what signatures a Multi-Signature Transaction or Registration is awaiting
+
+> If both of the below examples are true the transaction is ready to be broacasted.
+
+```ts
+// Needs the signature of the currently active wallet.
+wallet.transaction().isAwaitingOurSignature(transactionId);
+
+// Needs the signatures of other wallets.
+wallet.transaction().isAwaitingOtherSignatures(transactionId);
+```
