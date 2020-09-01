@@ -14,6 +14,7 @@ import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
 import { WalletRepository } from "./wallet-repository";
 import { ReadWriteWallet } from "../wallets/wallet.models";
+import { CoinService } from "../environment/services/coin-service";
 
 let subject: WalletRepository;
 
@@ -34,6 +35,7 @@ beforeEach(async () => {
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
+	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK, BTC, ETH });
 
 	const profile = new Profile("profile-id");

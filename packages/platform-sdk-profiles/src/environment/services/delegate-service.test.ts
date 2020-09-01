@@ -7,6 +7,7 @@ import nock from "nock";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
 import { DelegateService } from "./delegate-service";
+import { CoinService } from "./coin-service";
 
 let subject: DelegateService;
 
@@ -29,6 +30,7 @@ beforeAll(() => {
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
+	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 });
 
@@ -38,6 +40,15 @@ it("should sync the delegates", async () => {
 	expect(() => subject.all("ARK", "devnet")).toThrowError("have not been synchronized yet");
 
 	await subject.sync("ARK", "devnet");
+
+	expect(subject.all("ARK", "devnet")).toBeArray();
+	expect(subject.all("ARK", "devnet")).toHaveLength(200);
+});
+
+it("should sync the delegates of all coins", async () => {
+	expect(() => subject.all("ARK", "devnet")).toThrowError("have not been synchronized yet");
+
+	await subject.syncAll();
 
 	expect(subject.all("ARK", "devnet")).toBeArray();
 	expect(subject.all("ARK", "devnet")).toHaveLength(200);

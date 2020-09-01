@@ -10,6 +10,7 @@ import { Identifiers } from "../environment/container.models";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { ContactRepository } from "./contact-repository";
+import { CoinService } from "../environment/services/coin-service";
 
 let subject: ContactRepository;
 
@@ -33,6 +34,7 @@ beforeEach(async () => {
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
+	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 
 	const profile = new Profile("profile-id");

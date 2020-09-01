@@ -12,6 +12,7 @@ import { DelegateService } from "../environment/services/delegate-service";
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { DelegateMapper } from "./delegate-mapper";
+import { CoinService } from "../environment/services/coin-service";
 
 let wallet: Wallet;
 
@@ -39,6 +40,7 @@ beforeAll(() => {
 beforeEach(async () => {
 	container.set(Identifiers.DelegateService, new DelegateService());
 	container.set(Identifiers.HttpClient, new Request());
+	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 
 	wallet = new Wallet(uuidv4(), new Profile("profile-id"));

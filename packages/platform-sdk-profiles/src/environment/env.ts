@@ -1,5 +1,6 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import { Validator, ValidatorSchema } from "@arkecosystem/platform-sdk-support";
+import { CoinServices } from "../../../platform-sdk/dist/coins";
 
 import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../repositories/profile-repository";
@@ -9,6 +10,7 @@ import { makeCoin } from "./container.helpers";
 import { Identifiers } from "./container.models";
 import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
 import { Migrator } from "./migrator";
+import { CoinService } from "./services/coin-service";
 import { DelegateService } from "./services/delegate-service";
 import { ExchangeRateService } from "./services/exchange-rate-service";
 import { FeeService } from "./services/fee-service";
@@ -26,6 +28,7 @@ export class Environment {
 		container.set(Identifiers.AppData, new DataRepository());
 		container.set(Identifiers.HttpClient, options.httpClient);
 		container.set(Identifiers.ProfileRepository, new ProfileRepository());
+		container.set(Identifiers.CoinService, new CoinService());
 		container.set(Identifiers.DelegateService, new DelegateService());
 		container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
 		container.set(Identifiers.FeeService, new FeeService());
@@ -194,6 +197,10 @@ export class Environment {
 		await storage.set("profiles", this.profiles().toObject());
 
 		await storage.set("data", this.data().all());
+	}
+
+	public coins(): CoinService {
+		return container.get(Identifiers.CoinService);
 	}
 
 	public delegates(): DelegateService {
