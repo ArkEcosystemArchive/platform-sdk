@@ -66,3 +66,33 @@ it("should sync the exchange rate for ARK to BTC", async () => {
 
 	expect(wallet.data().get(WalletData.ExchangeRate)).toBe(0.00005048);
 });
+
+describe("#syncCoinByProfile", () => {
+	it("should sync a coin for specific profile with wallets argument", async () => {
+		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+
+		nock(/.+/)
+			.get("/data/dayAvg")
+			.query(true)
+			.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
+			.persist();
+
+		await subject.syncCoinByProfile(profile, "DARK", profile.wallets().values().filter((wallet: ReadWriteWallet) => wallet.currency() === "DARK"));
+
+		expect(wallet.data().get(WalletData.ExchangeRate)).toBe(0.00005048);
+	});
+
+	it("should sync a coin for specific profile without wallets argument", async () => {
+		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+
+		nock(/.+/)
+			.get("/data/dayAvg")
+			.query(true)
+			.reply(200, { BTC: 0.00002134, ConversionType: { type: "direct", conversionSymbol: "" } })
+			.persist();
+
+		await subject.syncCoinByProfile(profile, "DARK");
+
+		expect(wallet.data().get(WalletData.ExchangeRate)).toBe(0.00002134);
+	});
+});
