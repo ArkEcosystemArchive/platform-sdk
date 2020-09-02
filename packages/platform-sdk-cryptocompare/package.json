@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-cryptocompare",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.329",
+	"version": "0.9.331",
 	"contributors": [],
 	"license": "MIT",
 	"files": [

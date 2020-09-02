@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.331 - 2020-09-02
+
+### Added
+
+-   Store exchange currency in wallet data (3d9f3d5f, @dated)
+
+### Changed
+
+-   Sync identity before votes (0132ff5a, @faustbrian)
+
 ## 0.9.329 - 2020-09-01
 
 ### Added

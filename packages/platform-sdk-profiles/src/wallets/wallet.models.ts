@@ -46,6 +46,7 @@ export enum WalletData {
 	Balance = "BALANCE",
 	BroadcastedTransactions = "BROADCASTED_TRANSACTIONS",
 	Delegates = "DELEGATES",
+	ExchangeCurrency = "EXCHANGE_CURRENCY",
 	ExchangeRate = "EXCHANGE_RATE",
 	MultiSignatureParticipants = "MULTI_SIGNATURE_PARTICIPANTS",
 	Sequence = "SEQUENCE",
@@ -72,6 +73,7 @@ export interface ReadWriteWallet {
 	coin(): Coins.Coin;
 	network(): NetworkData;
 	currency(): string;
+	exchangeCurrency(): string;
 	alias(): string | undefined;
 	address(): string;
 	publicKey(): string | undefined;
