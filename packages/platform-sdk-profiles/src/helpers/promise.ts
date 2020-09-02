@@ -15,6 +15,10 @@ export const promiseAllSettledByKey = async <T>(
 	const totalPromises = Object.keys(promisesMap).length;
 	const settledPromises = {};
 
+	if (!totalPromises) {
+		return settledPromises;
+	}
+
 	function allPromisesSettled() {
 		return Object.keys(settledPromises).length === totalPromises;
 	}
