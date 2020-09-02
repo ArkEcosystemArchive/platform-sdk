@@ -133,10 +133,10 @@ describe("ClientService", function () {
 	});
 
 	describe("#broadcast", () => {
-		it("should succeed", async () => {
+		it("should accept 1 transaction and reject 1 transaction", async () => {
 			nock(/.+/)
 				.post("/api/transactions")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
+				.reply(422, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([]);
 

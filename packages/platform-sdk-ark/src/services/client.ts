@@ -105,11 +105,20 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		const { data, errors } = await this.post("transactions", {
-			body: {
-				transactions: transactions.map((transaction: Contracts.SignedTransactionData) => transaction.data()),
-			},
-		});
+		let response: Contracts.KeyValuePair;
+		try {
+			response = await this.post("transactions", {
+				body: {
+					transactions: transactions.map((transaction: Contracts.SignedTransactionData) =>
+						transaction.data(),
+					),
+				},
+			});
+		} catch (error) {
+			response = error.response.json();
+		}
+
+		const { data, errors } = response;
 
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
@@ -143,15 +152,11 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.get(`${this.#peer}/${path}`, query?.searchParams);
-
-		return response.json();
+		return (await this.#http.get(`${this.#peer}/${path}`, query?.searchParams)).json();
 	}
 
 	private async post(path: string, { body, searchParams }: { body; searchParams? }): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.post(`${this.#peer}/${path}`, body, searchParams || undefined);
-
-		return response.json();
+		return (await this.#http.post(`${this.#peer}/${path}`, body, searchParams || undefined)).json();
 	}
 
 	private createMetaPagination(body): Contracts.MetaPagination {
