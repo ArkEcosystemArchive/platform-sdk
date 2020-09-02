@@ -211,7 +211,7 @@ export class Wallet implements ReadWriteWallet {
 			data: {
 				[WalletData.Balance]: this.balance().toFixed(),
 				[WalletData.BroadcastedTransactions]: this.data().get(WalletData.BroadcastedTransactions, []),
-				[WalletData.ExchangeCurrency]: this.data().get(WalletData.ExchangeCurrency, ""),
+				[WalletData.ExchangeCurrency]: this.data().get(WalletData.ExchangeCurrency, "BTC"),
 				[WalletData.ExchangeRate]: this.data().get(WalletData.ExchangeRate, 0),
 				[WalletData.Sequence]: this.nonce().toFixed(),
 				[WalletData.SignedTransactions]: this.data().get(WalletData.SignedTransactions, []),
