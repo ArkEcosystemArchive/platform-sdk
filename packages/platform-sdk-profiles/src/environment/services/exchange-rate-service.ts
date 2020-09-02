@@ -22,6 +22,10 @@ export class ExchangeRateService {
 	}
 
 	public async syncCoinByProfile(profile: Profile, currency: string, wallets?: ReadWriteWallet[]): Promise<void> {
+		if (wallets === undefined) {
+			wallets = profile.wallets().values().filter((wallet: ReadWriteWallet) => wallet.currency() === currency);
+		}
+
 		const marketService = MarketService.make(
 			profile.settings().get(ProfileSetting.MarketProvider) || "coingecko",
 			container.get(Identifiers.HttpClient),
@@ -34,7 +38,7 @@ export class ExchangeRateService {
 			+Date.now(),
 		);
 
-		for (const wallet of wallets || profile.wallets().values().filter((wallet: ReadWriteWallet) => wallet.currency() === currency)) {
+		for (const wallet of wallets) {
 			wallet.data().set(WalletData.ExchangeCurrency, exchangeCurrency);
 			wallet.data().set(WalletData.ExchangeRate, exchangeRate);
 		}
