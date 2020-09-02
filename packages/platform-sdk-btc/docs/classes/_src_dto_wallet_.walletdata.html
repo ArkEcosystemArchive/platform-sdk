@@ -114,7 +114,9 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_src_dto_wallet_.walletdata.html#isdelegate" class="tsd-kind-icon">is<wbr>Delegate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_src_dto_wallet_.walletdata.html#isknown" class="tsd-kind-icon">is<wbr>Known</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_src_dto_wallet_.walletdata.html#ismultisignature" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_dto_wallet_.walletdata.html#isresigneddelegate" class="tsd-kind-icon">is<wbr>Resigned<wbr>Delegate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_src_dto_wallet_.walletdata.html#issecondsignature" class="tsd-kind-icon">is<wbr>Second<wbr>Signature</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_dto_wallet_.walletdata.html#multisignature" class="tsd-kind-icon">multi<wbr>Signature</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_src_dto_wallet_.walletdata.html#nonce" class="tsd-kind-icon">nonce</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_src_dto_wallet_.walletdata.html#publickey" class="tsd-kind-icon">public<wbr>Key</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_src_dto_wallet_.walletdata.html#rank" class="tsd-kind-icon">rank</a></li>
@@ -181,7 +183,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.address</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-btc/src/dto/wallet.ts#L5">platform-sdk-btc/src/dto/wallet.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L5">platform-sdk-btc/src/dto/wallet.ts:5</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -199,7 +201,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.balance</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-btc/src/dto/wallet.ts#L13">platform-sdk-btc/src/dto/wallet.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L13">platform-sdk-btc/src/dto/wallet.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
@@ -253,7 +255,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.isDelegate</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-btc/src/dto/wallet.ts#L33">platform-sdk-btc/src/dto/wallet.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L37">platform-sdk-btc/src/dto/wallet.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -271,7 +273,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.isKnown</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-btc/src/dto/wallet.ts#L37">platform-sdk-btc/src/dto/wallet.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L45">platform-sdk-btc/src/dto/wallet.ts:45</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -289,7 +291,24 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.isMultiSignature</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-btc/src/dto/wallet.ts#L41">platform-sdk-btc/src/dto/wallet.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L49">platform-sdk-btc/src/dto/wallet.ts:49</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isresigneddelegate" class="tsd-anchor"></a>
+					<h3>is<wbr>Resigned<wbr>Delegate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Resigned<wbr>Delegate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L41">platform-sdk-btc/src/dto/wallet.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -307,10 +326,27 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.isSecondSignature</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-btc/src/dto/wallet.ts#L45">platform-sdk-btc/src/dto/wallet.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L53">platform-sdk-btc/src/dto/wallet.ts:53</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="multisignature" class="tsd-anchor"></a>
+					<h3>multi<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">multi<wbr>Signature<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">WalletMultiSignature</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L33">platform-sdk-btc/src/dto/wallet.ts:33</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">WalletMultiSignature</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -325,7 +361,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.nonce</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-btc/src/dto/wallet.ts#L17">platform-sdk-btc/src/dto/wallet.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L17">platform-sdk-btc/src/dto/wallet.ts:17</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
@@ -343,7 +379,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.publicKey</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-btc/src/dto/wallet.ts#L9">platform-sdk-btc/src/dto/wallet.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L9">platform-sdk-btc/src/dto/wallet.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
@@ -361,7 +397,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.rank</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-btc/src/dto/wallet.ts#L25">platform-sdk-btc/src/dto/wallet.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L25">platform-sdk-btc/src/dto/wallet.ts:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
@@ -415,7 +451,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.username</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-btc/src/dto/wallet.ts#L21">platform-sdk-btc/src/dto/wallet.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L21">platform-sdk-btc/src/dto/wallet.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
@@ -433,7 +469,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides AbstractWalletData.votes</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-btc/src/dto/wallet.ts#L29">platform-sdk-btc/src/dto/wallet.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-btc/src/dto/wallet.ts#L29">platform-sdk-btc/src/dto/wallet.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
@@ -487,8 +523,14 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_src_dto_wallet_.walletdata.html#ismultisignature" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_dto_wallet_.walletdata.html#isresigneddelegate" class="tsd-kind-icon">is<wbr>Resigned<wbr>Delegate</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_src_dto_wallet_.walletdata.html#issecondsignature" class="tsd-kind-icon">is<wbr>Second<wbr>Signature</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_dto_wallet_.walletdata.html#multisignature" class="tsd-kind-icon">multi<wbr>Signature</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_src_dto_wallet_.walletdata.html#nonce" class="tsd-kind-icon">nonce</a>

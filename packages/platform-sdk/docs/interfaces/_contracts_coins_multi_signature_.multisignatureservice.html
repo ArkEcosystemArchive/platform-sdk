@@ -84,10 +84,18 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#all" class="tsd-kind-icon">all</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#allwithpendingstate" class="tsd-kind-icon">all<wbr>With<wbr>Pending<wbr>State</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#allwithreadystate" class="tsd-kind-icon">all<wbr>With<wbr>Ready<wbr>State</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#broadcast" class="tsd-kind-icon">broadcast</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#destruct" class="tsd-kind-icon">destruct</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#findbyid" class="tsd-kind-icon">find<wbr>ById</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#getvalidmultisignatures" class="tsd-kind-icon">get<wbr>Valid<wbr>Multi<wbr>Signatures</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#ismultisignatureready" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature<wbr>Ready</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#needsallsignatures" class="tsd-kind-icon">needs<wbr>All<wbr>Signatures</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#needsfinalsignature" class="tsd-kind-icon">needs<wbr>Final<wbr>Signature</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#needssignatures" class="tsd-kind-icon">needs<wbr>Signatures</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#needswalletsignature" class="tsd-kind-icon">needs<wbr>Wallet<wbr>Signature</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_multi_signature_.multisignatureservice.html#remainingsignaturecount" class="tsd-kind-icon">remaining<wbr>Signature<wbr>Count</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,16 +104,16 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="all" class="tsd-anchor"></a>
-					<h3>all</h3>
+					<a name="allwithpendingstate" class="tsd-anchor"></a>
+					<h3>all<wbr>With<wbr>Pending<wbr>State</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">all<span class="tsd-signature-symbol">(</span>publicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, state<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">all<wbr>With<wbr>Pending<wbr>State<span class="tsd-signature-symbol">(</span>publicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_contracts_coins_multi_signature_.html#multisignaturetransaction" class="tsd-signature-type">MultiSignatureTransaction</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L6">packages/platform-sdk/src/contracts/coins/multi-signature.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L8">packages/platform-sdk/src/contracts/coins/multi-signature.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -113,11 +121,31 @@
 								<li>
 									<h5>publicKey: <span class="tsd-signature-type">string</span></h5>
 								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_contracts_coins_multi_signature_.html#multisignaturetransaction" class="tsd-signature-type">MultiSignatureTransaction</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="allwithreadystate" class="tsd-anchor"></a>
+					<h3>all<wbr>With<wbr>Ready<wbr>State</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">all<wbr>With<wbr>Ready<wbr>State<span class="tsd-signature-symbol">(</span>publicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_contracts_coins_multi_signature_.html#multisignaturetransaction" class="tsd-signature-type">MultiSignatureTransaction</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L10">packages/platform-sdk/src/contracts/coins/multi-signature.ts:10</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> state: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+									<h5>publicKey: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_contracts_coins_multi_signature_.html#multisignaturetransaction" class="tsd-signature-type">MultiSignatureTransaction</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -131,7 +159,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L10">packages/platform-sdk/src/contracts/coins/multi-signature.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L14">packages/platform-sdk/src/contracts/coins/multi-signature.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -154,7 +182,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L4">packages/platform-sdk/src/contracts/coins/multi-signature.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L6">packages/platform-sdk/src/contracts/coins/multi-signature.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -171,7 +199,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L8">packages/platform-sdk/src/contracts/coins/multi-signature.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L12">packages/platform-sdk/src/contracts/coins/multi-signature.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -181,6 +209,173 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_contracts_coins_multi_signature_.html#multisignaturetransaction" class="tsd-signature-type">MultiSignatureTransaction</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getvalidmultisignatures" class="tsd-anchor"></a>
+					<h3>get<wbr>Valid<wbr>Multi<wbr>Signatures</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Valid<wbr>Multi<wbr>Signatures<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L28">packages/platform-sdk/src/contracts/coins/multi-signature.ts:28</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="ismultisignatureready" class="tsd-anchor"></a>
+					<h3>is<wbr>Multi<wbr>Signature<wbr>Ready</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Multi<wbr>Signature<wbr>Ready<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a>, excludeFinal<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L18">packages/platform-sdk/src/contracts/coins/multi-signature.ts:18</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> excludeFinal: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="needsallsignatures" class="tsd-anchor"></a>
+					<h3>needs<wbr>All<wbr>Signatures</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">needs<wbr>All<wbr>Signatures<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L22">packages/platform-sdk/src/contracts/coins/multi-signature.ts:22</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="needsfinalsignature" class="tsd-anchor"></a>
+					<h3>needs<wbr>Final<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">needs<wbr>Final<wbr>Signature<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L26">packages/platform-sdk/src/contracts/coins/multi-signature.ts:26</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="needssignatures" class="tsd-anchor"></a>
+					<h3>needs<wbr>Signatures</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">needs<wbr>Signatures<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L20">packages/platform-sdk/src/contracts/coins/multi-signature.ts:20</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="needswalletsignature" class="tsd-anchor"></a>
+					<h3>needs<wbr>Wallet<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">needs<wbr>Wallet<wbr>Signature<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a>, publicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L24">packages/platform-sdk/src/contracts/coins/multi-signature.ts:24</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a></h5>
+								</li>
+								<li>
+									<h5>publicKey: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="remainingsignaturecount" class="tsd-anchor"></a>
+					<h3>remaining<wbr>Signature<wbr>Count</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">remaining<wbr>Signature<wbr>Count<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/multi-signature.ts#L30">packages/platform-sdk/src/contracts/coins/multi-signature.ts:30</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <a href="_contracts_coins_data_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -205,7 +400,10 @@
 						<a href="_contracts_coins_multi_signature_.multisignatureservice.html" class="tsd-kind-icon">Multi<wbr>Signature<wbr>Service</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_contracts_coins_multi_signature_.multisignatureservice.html#all" class="tsd-kind-icon">all</a>
+								<a href="_contracts_coins_multi_signature_.multisignatureservice.html#allwithpendingstate" class="tsd-kind-icon">all<wbr>With<wbr>Pending<wbr>State</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_contracts_coins_multi_signature_.multisignatureservice.html#allwithreadystate" class="tsd-kind-icon">all<wbr>With<wbr>Ready<wbr>State</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_contracts_coins_multi_signature_.multisignatureservice.html#broadcast" class="tsd-kind-icon">broadcast</a>
@@ -215,6 +413,27 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_contracts_coins_multi_signature_.multisignatureservice.html#findbyid" class="tsd-kind-icon">find<wbr>ById</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_contracts_coins_multi_signature_.multisignatureservice.html#getvalidmultisignatures" class="tsd-kind-icon">get<wbr>Valid<wbr>Multi<wbr>Signatures</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_contracts_coins_multi_signature_.multisignatureservice.html#ismultisignatureready" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature<wbr>Ready</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_contracts_coins_multi_signature_.multisignatureservice.html#needsallsignatures" class="tsd-kind-icon">needs<wbr>All<wbr>Signatures</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_contracts_coins_multi_signature_.multisignatureservice.html#needsfinalsignature" class="tsd-kind-icon">needs<wbr>Final<wbr>Signature</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_contracts_coins_multi_signature_.multisignatureservice.html#needssignatures" class="tsd-kind-icon">needs<wbr>Signatures</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_contracts_coins_multi_signature_.multisignatureservice.html#needswalletsignature" class="tsd-kind-icon">needs<wbr>Wallet<wbr>Signature</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_contracts_coins_multi_signature_.multisignatureservice.html#remainingsignaturecount" class="tsd-kind-icon">remaining<wbr>Signature<wbr>Count</a>
 							</li>
 						</ul>
 					</li>

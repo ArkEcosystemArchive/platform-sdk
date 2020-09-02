@@ -89,6 +89,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_data_.signedtransactiondata.html#fee" class="tsd-kind-icon">fee</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_contracts_coins_data_.signedtransactiondata.html#get" class="tsd-kind-icon">get</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_data_.signedtransactiondata.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_data_.signedtransactiondata.html#ismultisignature" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_data_.signedtransactiondata.html#ismultisignatureregistration" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature<wbr>Registration</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_data_.signedtransactiondata.html#recipient" class="tsd-kind-icon">recipient</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_data_.signedtransactiondata.html#sender" class="tsd-kind-icon">sender</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_contracts_coins_data_.signedtransactiondata.html#toobject" class="tsd-kind-icon">to<wbr>Object</a></li>
@@ -110,7 +112,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/data.ts#L343">packages/platform-sdk/src/contracts/coins/data.ts:343</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/data.ts#L355">packages/platform-sdk/src/contracts/coins/data.ts:355</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
@@ -121,16 +123,16 @@
 					<a name="data" class="tsd-anchor"></a>
 					<h3>data</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_contracts_coins_data_.html#rawtransactiondata" class="tsd-signature-type">RawTransactionData</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/data.ts#L339">packages/platform-sdk/src/contracts/coins/data.ts:339</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/data.ts#L352">packages/platform-sdk/src/contracts/coins/data.ts:352</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../modules/_contracts_coins_data_.html#rawtransactiondata" class="tsd-signature-type">RawTransactionData</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -144,7 +146,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/data.ts#L344">packages/platform-sdk/src/contracts/coins/data.ts:344</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/data.ts#L356">packages/platform-sdk/src/contracts/coins/data.ts:356</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">BigNumber</span></h4>
@@ -161,13 +163,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/data.ts#L346">packages/platform-sdk/src/contracts/coins/data.ts:346</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/data.ts#L363">packages/platform-sdk/src/contracts/coins/data.ts:363</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>T</h4>
+									<h4>T = <span class="tsd-signature-type">string</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -190,10 +192,44 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/data.ts#L338">packages/platform-sdk/src/contracts/coins/data.ts:338</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/data.ts#L351">packages/platform-sdk/src/contracts/coins/data.ts:351</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="ismultisignature" class="tsd-anchor"></a>
+					<h3>is<wbr>Multi<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Multi<wbr>Signature<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/data.ts#L359">packages/platform-sdk/src/contracts/coins/data.ts:359</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="ismultisignatureregistration" class="tsd-anchor"></a>
+					<h3>is<wbr>Multi<wbr>Signature<wbr>Registration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Multi<wbr>Signature<wbr>Registration<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/data.ts#L360">packages/platform-sdk/src/contracts/coins/data.ts:360</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -207,7 +243,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/data.ts#L342">packages/platform-sdk/src/contracts/coins/data.ts:342</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/data.ts#L354">packages/platform-sdk/src/contracts/coins/data.ts:354</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -224,7 +260,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/data.ts#L341">packages/platform-sdk/src/contracts/coins/data.ts:341</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/data.ts#L353">packages/platform-sdk/src/contracts/coins/data.ts:353</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -241,7 +277,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/data.ts#L349">packages/platform-sdk/src/contracts/coins/data.ts:349</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/data.ts#L365">packages/platform-sdk/src/contracts/coins/data.ts:365</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>recipient<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>sender<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h4>
@@ -275,7 +311,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk/src/contracts/coins/data.ts#L348">packages/platform-sdk/src/contracts/coins/data.ts:348</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk/src/contracts/coins/data.ts#L364">packages/platform-sdk/src/contracts/coins/data.ts:364</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -378,6 +414,12 @@
 								<a href="_contracts_coins_data_.signedtransactiondata.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_contracts_coins_data_.signedtransactiondata.html#ismultisignature" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_contracts_coins_data_.signedtransactiondata.html#ismultisignatureregistration" class="tsd-kind-icon">is<wbr>Multi<wbr>Signature<wbr>Registration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_contracts_coins_data_.signedtransactiondata.html#recipient" class="tsd-kind-icon">recipient</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
@@ -404,6 +446,12 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_contracts_coins_data_.walletdata.html" class="tsd-kind-icon">Wallet<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_contracts_coins_data_.walletmultisignature.html" class="tsd-kind-icon">Wallet<wbr>Multi<wbr>Signature</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_contracts_coins_data_.html#rawtransactiondata" class="tsd-kind-icon">Raw<wbr>Transaction<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="../modules/_contracts_coins_data_.html#transactiondatameta" class="tsd-kind-icon">Transaction<wbr>Data<wbr>Meta</a>

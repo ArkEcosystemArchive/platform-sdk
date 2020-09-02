@@ -98,6 +98,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_services_transaction_.transactionservice.html#_http" class="tsd-kind-icon">#http</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_services_transaction_.transactionservice.html#_identity" class="tsd-kind-icon">#identity</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_services_transaction_.transactionservice.html#_multisignaturesigner" class="tsd-kind-icon">#multi<wbr>Signature<wbr>Signer</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_services_transaction_.transactionservice.html#_peer" class="tsd-kind-icon">#peer</a></li>
 							</ul>
 						</section>
@@ -111,11 +112,13 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_services_transaction_.transactionservice.html#entityregistration" class="tsd-kind-icon">entity<wbr>Registration</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_services_transaction_.transactionservice.html#entityresignation" class="tsd-kind-icon">entity<wbr>Resignation</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_services_transaction_.transactionservice.html#entityupdate" class="tsd-kind-icon">entity<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_src_services_transaction_.transactionservice.html#handlemultisignature" class="tsd-kind-icon">handle<wbr>Multi<wbr>Signature</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_services_transaction_.transactionservice.html#htlcclaim" class="tsd-kind-icon">htlc<wbr>Claim</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_services_transaction_.transactionservice.html#htlclock" class="tsd-kind-icon">htlc<wbr>Lock</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_services_transaction_.transactionservice.html#htlcrefund" class="tsd-kind-icon">htlc<wbr>Refund</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_services_transaction_.transactionservice.html#ipfs" class="tsd-kind-icon">ipfs</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_services_transaction_.transactionservice.html#multipayment" class="tsd-kind-icon">multi<wbr>Payment</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_services_transaction_.transactionservice.html#multisign" class="tsd-kind-icon">multi<wbr>Sign</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_services_transaction_.transactionservice.html#multisignature" class="tsd-kind-icon">multi<wbr>Signature</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_services_transaction_.transactionservice.html#secondsignature" class="tsd-kind-icon">second<wbr>Signature</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_services_transaction_.transactionservice.html#transfer" class="tsd-kind-icon">transfer</a></li>
@@ -138,25 +141,28 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Transaction<wbr>Service<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>http<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>identity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>peer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_services_transaction_.transactionservice.html" class="tsd-signature-type">TransactionService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Transaction<wbr>Service<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>http<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>identity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>multiSignatureSigner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>peer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_services_transaction_.transactionservice.html" class="tsd-signature-type">TransactionService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L27">platform-sdk-ark/src/services/transaction.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L29">platform-sdk-ark/src/services/transaction.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>http<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>identity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>peer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h5>
+									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>http<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>identity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>multiSignatureSigner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>peer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
 											<h5>http<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
 										</li>
 										<li class="tsd-parameter">
 											<h5>identity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>multi<wbr>Signature<wbr>Signer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
 										</li>
 										<li class="tsd-parameter">
 											<h5>peer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
@@ -177,7 +183,7 @@
 					<div class="tsd-signature tsd-kind-icon">#http<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HttpClient</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L19">platform-sdk-ark/src/services/transaction.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L20">platform-sdk-ark/src/services/transaction.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -187,7 +193,17 @@
 					<div class="tsd-signature tsd-kind-icon">#identity<span class="tsd-signature-symbol">:</span> <a href="_src_services_identity_index_.identityservice.html" class="tsd-signature-type">IdentityService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L20">platform-sdk-ark/src/services/transaction.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L21">platform-sdk-ark/src/services/transaction.ts:21</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_multisignaturesigner" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #multi<wbr>Signature<wbr>Signer</h3>
+					<div class="tsd-signature tsd-kind-icon">#multi<wbr>Signature<wbr>Signer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">MultiSignatureSigner</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L23">platform-sdk-ark/src/services/transaction.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -197,7 +213,7 @@
 					<div class="tsd-signature tsd-kind-icon">#peer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L21">platform-sdk-ark/src/services/transaction.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L22">platform-sdk-ark/src/services/transaction.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -208,13 +224,13 @@
 					<a name="createfromdata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>From<wbr>Data</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>From<wbr>Data<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Contracts.KeyValuePair</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Contracts.TransactionOptions</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SignedTransactionData</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>From<wbr>Data<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Contracts.TransactionInputs</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Contracts.TransactionOptions</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SignedTransactionData</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L224">platform-sdk-ark/src/services/transaction.ts:224</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L261">platform-sdk-ark/src/services/transaction.ts:261</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -223,7 +239,7 @@
 									<h5>type: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>input: <span class="tsd-signature-type">Contracts.KeyValuePair</span></h5>
+									<h5>input: <span class="tsd-signature-type">Contracts.TransactionInputs</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">Contracts.TransactionOptions</span></h5>
@@ -246,7 +262,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L84">platform-sdk-ark/src/services/transaction.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L88">platform-sdk-ark/src/services/transaction.ts:88</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -272,7 +288,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L134">platform-sdk-ark/src/services/transaction.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L138">platform-sdk-ark/src/services/transaction.ts:138</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -298,7 +314,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L58">platform-sdk-ark/src/services/transaction.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L62">platform-sdk-ark/src/services/transaction.ts:62</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -315,7 +331,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L180">platform-sdk-ark/src/services/transaction.ts:180</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L184">platform-sdk-ark/src/services/transaction.ts:184</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -341,7 +357,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L194">platform-sdk-ark/src/services/transaction.ts:194</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L198">platform-sdk-ark/src/services/transaction.ts:198</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -367,7 +383,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L209">platform-sdk-ark/src/services/transaction.ts:209</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L213">platform-sdk-ark/src/services/transaction.ts:213</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -383,6 +399,32 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="handlemultisignature" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> handle<wbr>Multi<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Multi<wbr>Signature<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Contracts.RawTransactionData</span>, input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Contracts.TransactionInputs</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_dto_signed_transaction_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L375">platform-sdk-ark/src/services/transaction.ts:375</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <span class="tsd-signature-type">Contracts.RawTransactionData</span></h5>
+								</li>
+								<li>
+									<h5>input: <span class="tsd-signature-type">Contracts.TransactionInputs</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_dto_signed_transaction_.signedtransactiondata.html" class="tsd-signature-type">SignedTransactionData</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="htlcclaim" class="tsd-anchor"></a>
 					<h3>htlc<wbr>Claim</h3>
@@ -393,7 +435,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L157">platform-sdk-ark/src/services/transaction.ts:157</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L161">platform-sdk-ark/src/services/transaction.ts:161</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -419,7 +461,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L141">platform-sdk-ark/src/services/transaction.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L145">platform-sdk-ark/src/services/transaction.ts:145</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -445,7 +487,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L169">platform-sdk-ark/src/services/transaction.ts:169</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L173">platform-sdk-ark/src/services/transaction.ts:173</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -471,7 +513,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L116">platform-sdk-ark/src/services/transaction.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L120">platform-sdk-ark/src/services/transaction.ts:120</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -497,7 +539,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L123">platform-sdk-ark/src/services/transaction.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L127">platform-sdk-ark/src/services/transaction.ts:127</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -514,6 +556,42 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="multisign" class="tsd-anchor"></a>
+					<h3>multi<wbr>Sign</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">multi<wbr>Sign<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Contracts.RawTransactionData</span>, input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Contracts.TransactionInputs</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SignedTransactionData</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L234">platform-sdk-ark/src/services/transaction.ts:234</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This method should be used to split-sign transactions in combination with the MuSig Server.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <span class="tsd-signature-type">Contracts.RawTransactionData</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A transaction that was previously signed with a multi-signature.</p>
+									</div>
+								</li>
+								<li>
+									<h5>input: <span class="tsd-signature-type">Contracts.TransactionInputs</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SignedTransactionData</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="multisignature" class="tsd-anchor"></a>
 					<h3>multi<wbr>Signature</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -523,7 +601,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L102">platform-sdk-ark/src/services/transaction.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L106">platform-sdk-ark/src/services/transaction.ts:106</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -549,7 +627,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L75">platform-sdk-ark/src/services/transaction.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L79">platform-sdk-ark/src/services/transaction.ts:79</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -575,7 +653,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L62">platform-sdk-ark/src/services/transaction.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L66">platform-sdk-ark/src/services/transaction.ts:66</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -601,7 +679,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L93">platform-sdk-ark/src/services/transaction.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L97">platform-sdk-ark/src/services/transaction.ts:97</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -627,7 +705,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L35">platform-sdk-ark/src/services/transaction.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L38">platform-sdk-ark/src/services/transaction.ts:38</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -649,7 +727,7 @@
 					<div class="tsd-signature tsd-kind-icon">#magistrate<wbr>Builders<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L23">platform-sdk-ark/src/services/transaction.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L25">platform-sdk-ark/src/services/transaction.ts:25</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -658,7 +736,7 @@
 						<div class="tsd-signature tsd-kind-icon">entity<wbr>Registration<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EntityBuilder</span><span class="tsd-signature-symbol"> = MagistrateBuilders.EntityBuilder</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L24">platform-sdk-ark/src/services/transaction.ts:24</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L26">platform-sdk-ark/src/services/transaction.ts:26</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -668,7 +746,7 @@
 						<div class="tsd-signature tsd-kind-icon">entity<wbr>Resignation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EntityBuilder</span><span class="tsd-signature-symbol"> = MagistrateBuilders.EntityBuilder</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L25">platform-sdk-ark/src/services/transaction.ts:25</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L27">platform-sdk-ark/src/services/transaction.ts:27</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -678,7 +756,7 @@
 						<div class="tsd-signature tsd-kind-icon">entity<wbr>Update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EntityBuilder</span><span class="tsd-signature-symbol"> = MagistrateBuilders.EntityBuilder</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/cdf963d3/packages/platform-sdk-ark/src/services/transaction.ts#L26">platform-sdk-ark/src/services/transaction.ts:26</a></li>
+								<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-ark/src/services/transaction.ts#L28">platform-sdk-ark/src/services/transaction.ts:28</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -713,6 +791,9 @@
 								<a href="_src_services_transaction_.transactionservice.html#_identity" class="tsd-kind-icon">#identity</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_src_services_transaction_.transactionservice.html#_multisignaturesigner" class="tsd-kind-icon">#multi<wbr>Signature<wbr>Signer</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_src_services_transaction_.transactionservice.html#_peer" class="tsd-kind-icon">#peer</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -736,6 +817,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_services_transaction_.transactionservice.html#entityupdate" class="tsd-kind-icon">entity<wbr>Update</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_src_services_transaction_.transactionservice.html#handlemultisignature" class="tsd-kind-icon">handle<wbr>Multi<wbr>Signature</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_services_transaction_.transactionservice.html#htlcclaim" class="tsd-kind-icon">htlc<wbr>Claim</a>
 							</li>
@@ -750,6 +834,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_services_transaction_.transactionservice.html#multipayment" class="tsd-kind-icon">multi<wbr>Payment</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_services_transaction_.transactionservice.html#multisign" class="tsd-kind-icon">multi<wbr>Sign</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_services_transaction_.transactionservice.html#multisignature" class="tsd-kind-icon">multi<wbr>Signature</a>
