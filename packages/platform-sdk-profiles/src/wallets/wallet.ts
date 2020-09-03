@@ -105,6 +105,8 @@ export class Wallet implements ReadWriteWallet {
 
 	public setAlias(alias: string): Wallet {
 		this.settings().set(WalletSetting.Alias, alias)
+
+		return this;
 	}
 
 	/**
