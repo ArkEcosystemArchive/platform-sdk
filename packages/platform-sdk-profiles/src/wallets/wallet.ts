@@ -103,6 +103,12 @@ export class Wallet implements ReadWriteWallet {
 		return this;
 	}
 
+	public setAlias(alias: string): Wallet {
+		this.settings().set(WalletSetting.Alias, alias)
+
+		return this;
+	}
+
 	/**
 	 * These methods serve as getters to the underlying data and dependencies.
 	 */
