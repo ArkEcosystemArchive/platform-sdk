@@ -84,8 +84,8 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_src_environment_services_exchange_rate_service_.exchangerateservice.html#getexchangerate" class="tsd-kind-icon">get<wbr>Exchange<wbr>Rate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_environment_services_exchange_rate_service_.exchangerateservice.html#syncall" class="tsd-kind-icon">sync<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_environment_services_exchange_rate_service_.exchangerateservice.html#synccoinbyprofile" class="tsd-kind-icon">sync<wbr>Coin<wbr>ByProfile</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,17 +93,34 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getexchangerate" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Exchange<wbr>Rate</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Exchange<wbr>Rate<span class="tsd-signature-symbol">(</span>profile<span class="tsd-signature-symbol">: </span><a href="_src_profiles_profile_.profile.html" class="tsd-signature-type">Profile</a>, currency<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, wallets<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_wallets_wallet_models_.readwritewallet.html" class="tsd-signature-type">ReadWriteWallet</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="syncall" class="tsd-anchor"></a>
+					<h3>sync<wbr>All</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">sync<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-profiles/src/environment/services/exchange-rate-service.ts#L24">platform-sdk-profiles/src/environment/services/exchange-rate-service.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c52f45ba/packages/platform-sdk-profiles/src/environment/services/exchange-rate-service.ts#L11">platform-sdk-profiles/src/environment/services/exchange-rate-service.ts:11</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="synccoinbyprofile" class="tsd-anchor"></a>
+					<h3>sync<wbr>Coin<wbr>ByProfile</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">sync<wbr>Coin<wbr>ByProfile<span class="tsd-signature-symbol">(</span>profile<span class="tsd-signature-symbol">: </span><a href="_src_profiles_profile_.profile.html" class="tsd-signature-type">Profile</a>, currency<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, wallets<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_wallets_wallet_models_.readwritewallet.html" class="tsd-signature-type">ReadWriteWallet</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/c52f45ba/packages/platform-sdk-profiles/src/environment/services/exchange-rate-service.ts#L24">platform-sdk-profiles/src/environment/services/exchange-rate-service.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -115,26 +132,9 @@
 									<h5>currency: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>wallets: <a href="../interfaces/_src_wallets_wallet_models_.readwritewallet.html" class="tsd-signature-type">ReadWriteWallet</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> wallets: <a href="../interfaces/_src_wallets_wallet_models_.readwritewallet.html" class="tsd-signature-type">ReadWriteWallet</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="syncall" class="tsd-anchor"></a>
-					<h3>sync<wbr>All</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">sync<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ArkEcosystem/platform-sdk/blob/729d7104/packages/platform-sdk-profiles/src/environment/services/exchange-rate-service.ts#L11">platform-sdk-profiles/src/environment/services/exchange-rate-service.ts:11</a></li>
-								</ul>
-							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -159,11 +159,11 @@
 					<li class="current tsd-kind-class tsd-parent-kind-module">
 						<a href="_src_environment_services_exchange_rate_service_.exchangerateservice.html" class="tsd-kind-icon">Exchange<wbr>Rate<wbr>Service</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_src_environment_services_exchange_rate_service_.exchangerateservice.html#getexchangerate" class="tsd-kind-icon">get<wbr>Exchange<wbr>Rate</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_environment_services_exchange_rate_service_.exchangerateservice.html#syncall" class="tsd-kind-icon">sync<wbr>All</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_environment_services_exchange_rate_service_.exchangerateservice.html#synccoinbyprofile" class="tsd-kind-icon">sync<wbr>Coin<wbr>ByProfile</a>
 							</li>
 						</ul>
 					</li>
@@ -195,9 +195,6 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 		</div>
 	</div>
