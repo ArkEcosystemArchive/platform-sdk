@@ -67,6 +67,7 @@ export interface ReadWriteWallet {
 	setCoin(coin: string, network: string): Promise<ReadWriteWallet>;
 	setIdentity(mnemonic: string): Promise<ReadWriteWallet>;
 	setAddress(address: string): Promise<ReadWriteWallet>;
+	setAlias(alias: string): ReadWriteWallet;
 	setAvatar(value: string): ReadWriteWallet;
 	hasSyncedWithNetwork(): boolean;
 	id(): string;
