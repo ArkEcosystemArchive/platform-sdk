@@ -43,11 +43,11 @@ export interface HttpClient {
 export interface HttpResponse {
 	body(): string;
 
-	json(): Record<string, Primitive>;
+	json(): Record<string, any>;
 
-	header(header: string): Primitive;
+	header(header: string): string | undefined;
 
-	headers(): Record<string, Primitive>;
+	headers(): Record<string, any>;
 
 	status(): number;
 

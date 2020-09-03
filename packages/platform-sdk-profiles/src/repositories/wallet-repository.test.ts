@@ -106,6 +106,22 @@ test("#findByCoin", () => {
 	expect(subject.findByCoin("ARK")).toHaveLength(1);
 });
 
+test("#update", async () => {
+	expect(() => subject.update("invalid", { alias: "My Wallet" })).toThrowError("Failed to find");
+
+	const wallet = (await subject.generate("ARK", "devnet")).wallet;
+
+	await subject.update(wallet.id(), { alias: "My New Wallet" });
+
+	expect(subject.findById(wallet.id()).alias()).toEqual("My New Wallet");
+
+	const newWallet = (await subject.generate("ARK", "devnet")).wallet;
+
+	expect(() => subject.update(newWallet.id(), { alias: "My New Wallet" })).toThrowError(
+		"The wallet with alias [My New Wallet] already exists.",
+	);
+});
+
 describe("#sortBy", () => {
 	let walletARK: ReadWriteWallet;
 	let walletBTC: ReadWriteWallet;

@@ -14,14 +14,18 @@ export class ExchangeRateService {
 		const promises: Promise<void>[] = [];
 		for (const profile of profiles) {
 			for (const [currency, wallets] of Object.entries(profile.wallets().allByCoin())) {
-				promises.push(this.getExchangeRate(profile, currency, Object.values(wallets)));
+				promises.push(this.syncCoinByProfile(profile, currency, Object.values(wallets)));
 			}
 		}
 
 		await Promise.allSettled(promises);
 	}
 
-	private async getExchangeRate(profile: Profile, currency: string, wallets: ReadWriteWallet[]): Promise<void> {
+	public async syncCoinByProfile(profile: Profile, currency: string, wallets?: ReadWriteWallet[]): Promise<void> {
+		if (wallets === undefined) {
+			wallets = profile.wallets().values().filter((wallet: ReadWriteWallet) => wallet.currency() === currency);
+		}
+
 		const marketService = MarketService.make(
 			profile.settings().get(ProfileSetting.MarketProvider) || "coingecko",
 			container.get(Identifiers.HttpClient),

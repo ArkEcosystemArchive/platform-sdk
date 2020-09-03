@@ -52,8 +52,8 @@ export enum WalletData {
 	Votes = "VOTES",
 	VotesAvailable = "VOTES_AVAILABLE",
 	VotesUsed = "VOTES_USED",
-	WaitingForOtherSignatures = "WAITING_FOR_OTHER_SIGNATURES",
-	WaitingForOurSignature = "WAITING_FOR_OUR_SIGNATURE",
+	WaitingForOtherSignaturesTransactions = "WAITING_FOR_OTHER_SIGNATURES_TRANSACTIONS",
+	WaitingForOurSignatureTransactions = "WAITING_FOR_OUR_SIGNATURE_TRANSACTIONS",
 }
 
 export enum WalletFlag {
@@ -65,6 +65,7 @@ export interface ReadWriteWallet {
 	setCoin(coin: string, network: string): Promise<ReadWriteWallet>;
 	setIdentity(mnemonic: string): Promise<ReadWriteWallet>;
 	setAddress(address: string): Promise<ReadWriteWallet>;
+	setAlias(alias: string): ReadWriteWallet;
 	setAvatar(value: string): ReadWriteWallet;
 	hasSyncedWithNetwork(): boolean;
 	id(): string;

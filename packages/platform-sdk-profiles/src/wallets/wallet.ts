@@ -97,6 +97,12 @@ export class Wallet implements ReadWriteWallet {
 		return this;
 	}
 
+	public setAlias(alias: string): Wallet {
+		this.settings().set(WalletSetting.Alias, alias)
+
+		return this;
+	}
+
 	/**
 	 * These methods serve as getters to the underlying data and dependencies.
 	 */
@@ -212,6 +218,14 @@ export class Wallet implements ReadWriteWallet {
 				[WalletData.Votes]: this.data().get(WalletData.Votes, []),
 				[WalletData.VotesAvailable]: this.data().get(WalletData.VotesAvailable, 0),
 				[WalletData.VotesUsed]: this.data().get(WalletData.VotesUsed, 0),
+				[WalletData.WaitingForOurSignatureTransactions]: this.data().get(
+					WalletData.WaitingForOurSignatureTransactions,
+					[],
+				),
+				[WalletData.WaitingForOtherSignaturesTransactions]: this.data().get(
+					WalletData.WaitingForOtherSignaturesTransactions,
+					[],
+				),
 			},
 			settings: this.settings().all(),
 		};

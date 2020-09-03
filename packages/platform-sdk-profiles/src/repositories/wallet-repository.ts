@@ -125,6 +125,28 @@ export class WalletRepository {
 		);
 	}
 
+	public update(id: string, data: { alias?: string; }): void {
+		const result = this.findById(id);
+
+		if (data.alias) {
+			const wallets: ReadWriteWallet[] = this.values();
+
+			for (const wallet of wallets) {
+				if (wallet.id() === id || !wallet.alias()) {
+					continue;
+				}
+
+				if (wallet.alias()!.toLowerCase() === data.alias.toLowerCase()) {
+					throw new Error(`The wallet with alias [${data.alias}] already exists.`);
+				}
+			}
+
+			result.setAlias(data.alias);
+		}
+
+		this.#data.set(id, result);
+	}
+
 	public has(id: string): boolean {
 		return this.#data.has(id);
 	}

@@ -537,8 +537,8 @@ export class TransactionService {
 
 		dumpStorage(this.#signed, WalletData.SignedTransactions);
 		dumpStorage(this.#broadcasted, WalletData.BroadcastedTransactions);
-		dumpStorage(this.#waitingForOurSignature, WalletData.WaitingForOurSignature);
-		dumpStorage(this.#waitingForOtherSignatures, WalletData.WaitingForOtherSignatures);
+		dumpStorage(this.#waitingForOurSignature, WalletData.WaitingForOurSignatureTransactions);
+		dumpStorage(this.#waitingForOtherSignatures, WalletData.WaitingForOtherSignaturesTransactions);
 	}
 
 	/**
@@ -571,8 +571,8 @@ export class TransactionService {
 
 		restoreStorage(this.#signed, WalletData.SignedTransactions);
 		restoreStorage(this.#broadcasted, WalletData.BroadcastedTransactions);
-		restoreStorage(this.#waitingForOurSignature, WalletData.WaitingForOurSignature);
-		restoreStorage(this.#waitingForOtherSignatures, WalletData.WaitingForOtherSignatures);
+		restoreStorage(this.#waitingForOurSignature, WalletData.WaitingForOurSignatureTransactions);
+		restoreStorage(this.#waitingForOtherSignatures, WalletData.WaitingForOtherSignaturesTransactions);
 	}
 
 	/**
