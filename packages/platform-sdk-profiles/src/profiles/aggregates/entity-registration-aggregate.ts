@@ -24,6 +24,10 @@ export class EntityRegistrationAggregate extends EntityAggregate {
 		return this.aggregate("corePlugin", "register", query);
 	}
 
+	public async developers(query: Contracts.ClientPagination = {}): Promise<ExtendedTransactionDataCollection> {
+		return this.aggregate("developer", "register", query);
+	}
+
 	public async desktopWalletPlugins(
 		query: Contracts.ClientPagination = {},
 	): Promise<ExtendedTransactionDataCollection> {
