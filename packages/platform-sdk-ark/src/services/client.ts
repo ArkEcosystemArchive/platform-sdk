@@ -196,19 +196,21 @@ export class ClientService implements Contracts.ClientService {
 		}
 
 		const hasEntityType: boolean = result.body.entityType !== undefined;
-		const hasEntitySubType: boolean = result.body.entitySubType !== undefined;
 		const hasEntityAction: boolean = result.body.entityAction !== undefined;
 
-		if (hasEntityType && hasEntitySubType && hasEntityAction) {
+		if (hasEntityType && hasEntityAction) {
 			result.body.type = 6;
 			result.body.typeGroup = 2;
 
 			if (result.body.entityType !== "all") {
 				result.body.asset = {
 					type: result.body.entityType,
-					subType: result.body.entitySubType,
 					action: { register: 0, update: 1, resign: 2 }[result.body.entityAction],
 				};
+
+				if (result.body.entitySubType !== undefined) {
+					result.body.asset.subType = result.body.entitySubType;
+				}
 			}
 
 			delete result.body.entityType;

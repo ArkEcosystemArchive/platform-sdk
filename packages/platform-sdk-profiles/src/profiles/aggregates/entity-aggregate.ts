@@ -19,15 +19,15 @@ export class EntityAggregate {
 		this.#profile = profile;
 	}
 
-	public registrations(type: number, subType: number, query: Contracts.ClientPagination = {}) {
+	public registrations(type: number, subType?: number | undefined, query: Contracts.ClientPagination = {}) {
 		return this.aggregate(type, subType, "register", query);
 	}
 
-	public resignations(type: number, subType: number, query: Contracts.ClientPagination = {}) {
+	public resignations(type: number, subType?: number | undefined, query: Contracts.ClientPagination = {}) {
 		return this.aggregate(type, subType, "resign", query);
 	}
 
-	public updates(type: number, subType: number, query: Contracts.ClientPagination = {}) {
+	public updates(type: number, subType?: number | undefined, query: Contracts.ClientPagination = {}) {
 		return this.aggregate(type, subType, "update", query);
 	}
 
@@ -43,8 +43,8 @@ export class EntityAggregate {
 
 	protected async aggregate(
 		entityType: number,
-		entitySubType: number,
-		entityAction: string,
+		entitySubType: number | undefined,
+		entityAction: string | undefined,
 		query: Contracts.ClientPagination,
 	): Promise<ExtendedTransactionDataCollection> {
 		const historyKey = `${entityType}.${entitySubType}.${entityAction}`;
