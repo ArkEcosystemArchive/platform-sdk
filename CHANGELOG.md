@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.340 - 2020-09-03
+
+### Fixed
+
+-   Respect sub-type in cache key (38acf97d, @faustbrian)
+-   Allow type and sub-type of 0 (7225d2c4, @faustbrian)
+
 ## 0.9.338 - 2020-09-03
 
 ### Added
