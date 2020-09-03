@@ -25,6 +25,8 @@ beforeEach(async () => {
 		.reply(200, require("../../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb")
 		.reply(200, require("../../../test/fixtures/wallets/D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb.json"))
+		.get("/api/wallets/DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9")
+		.reply(200, require("../../../test/fixtures/wallets/DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9.json"))
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
@@ -34,6 +36,9 @@ beforeEach(async () => {
 	const address = "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb";
 
 	await profile.wallets().importByAddress(address, "ARK", "devnet");
+
+	const developerWalletAddress = "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9";
+	await profile.wallets().importByAddress(developerWalletAddress, "ARK", "devnet");
 });
 
 afterAll(() => nock.enableNetConnect());
@@ -86,3 +91,17 @@ it("should aggregate desktop wallet plugin registrations", async () => {
 	expect(registrations.items()).toHaveLength(1);
 	expect(registrations.findById("03e44853b26f450d5aba78e3fad390faa8ae9aa6995b1fa80b8d191516b52f1e")).toBeTruthy();
 });
+
+it("should aggregate developer registrations", async () => {
+	nock.cleanAll();
+	nock(/.+/)
+		.post("/api/transactions/search")
+		.reply(200, require("../../../test/fixtures/client/registrations/developer.json"));
+
+	const developerRegistrations = await profile.entityRegistrationAggregate().developers();
+	expect(developerRegistrations.items()).toHaveLength(1);
+	expect(
+		developerRegistrations.findById("48a46f555c10ed8a3ad93ef1ced362916883efaaf93c8fc0cd79991b8160b417"),
+	).toBeTruthy();
+});
+
