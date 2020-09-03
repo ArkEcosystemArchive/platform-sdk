@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.336 - 2020-09-02
+
+### Fixed
+
+-   Persist pending signature transactions (fa468248, @faustbrian)
+
+### Added
+
+-   Implement `ExchangeRateService#syncCoinByProfile` (f9b8b311, @dated)
+-   Implement IPFS upload through SDK Server (e2dc6c30, @faustbrian)
+
 ## 0.9.333 - 2020-09-02
 
 ### Fixed
