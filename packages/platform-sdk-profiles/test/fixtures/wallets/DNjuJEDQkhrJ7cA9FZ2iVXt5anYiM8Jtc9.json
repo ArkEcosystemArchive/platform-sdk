@@ -1,0 +1,71 @@
+{
+	"data": {
+		"address": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+		"publicKey": "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
+		"nonce": "112345",
+		"balance": "53697366478189",
+		"attributes": {
+			"delegate": {
+				"username": "arkx",
+				"voteBalance": "54907399962777",
+				"forgedFees": "124364463486",
+				"forgedRewards": "16899000000000",
+				"producedBlocks": 84709,
+				"lastBlock": {
+					"id": "682a1c53eb9e6fcf285d1b6819de08f88bd15b083a612c3fe32aa870001dbf22",
+					"height": 4269235,
+					"timestamp": 91907944,
+					"generatorPublicKey": "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec"
+				},
+				"resigned": true
+			},
+			"vote": "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
+			"entities": {
+				"24a318cabe78237dde44ff797d6fd618ab2af6af9c265afca375b43a303b7b4e": {
+					"type": 0,
+					"subType": 0,
+					"data": {
+						"name": "ark-ecosystem",
+						"ipfsData": "QmdfUyJkj2VjxRsUrDPYAFVAvVQMSf9vxhFVipPqPK7YFR"
+					}
+				},
+				"445aa4062398da2a47b4ebfd3cfff6ed326602dfc2776eed0679d19dfc842fc8": {
+					"type": 1,
+					"subType": 0,
+					"data": {
+						"name": "ark-ecosystem",
+						"ipfsData": "QmdfUyJkj2VjxRsUrDPYAFVAvVQMSf9vxhFVipPqPK7YFR"
+					}
+				},
+				"48a46f555c10ed8a3ad93ef1ced362916883efaaf93c8fc0cd79991b8160b417": {
+					"type": 2,
+					"subType": 0,
+					"data": {
+						"name": "ark-ecosystem",
+						"ipfsData": "QmdfUyJkj2VjxRsUrDPYAFVAvVQMSf9vxhFVipPqPK7YFR"
+					}
+				},
+				"b5729a1b8057f84ce82be7ba3ad79baeb1a8cacee350c0bc7ae4faf9e8d25d0d": {
+					"type": 3,
+					"subType": 1,
+					"data": {
+						"name": "ark-ecosystem",
+						"ipfsData": "QmdfUyJkj2VjxRsUrDPYAFVAvVQMSf9vxhFVipPqPK7YFR"
+					}
+				},
+				"bf733eb2202fb46592a6972eea81f6ce7bf8d6391932bcd50d600ad942356b7b": {
+					"type": 3,
+					"subType": 2,
+					"data": {
+						"name": "ark-ecosystem",
+						"ipfsData": "QmdfUyJkj2VjxRsUrDPYAFVAvVQMSf9vxhFVipPqPK7YFR"
+					}
+				}
+			}
+		},
+		"isDelegate": true,
+		"isResigned": true,
+		"vote": "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
+		"username": "arkx"
+	}
+}
