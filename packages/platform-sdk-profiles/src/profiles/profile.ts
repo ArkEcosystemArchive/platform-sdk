@@ -12,9 +12,7 @@ import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
 import { Avatar } from "../services/avatar";
 import { CountAggregate } from "./aggregates/count-aggregate";
-import { EntityRegistrationAggregate } from "./aggregates/entity-registration-aggregate";
-import { EntityResignationAggregate } from "./aggregates/entity-resignation-aggregate";
-import { EntityUpdateAggregate } from "./aggregates/entity-update-aggregate";
+import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
@@ -32,9 +30,7 @@ export class Profile implements ProfileContract {
 	#walletRepository: WalletRepository;
 
 	#countAggregate: CountAggregate;
-	#entityRegistrationAggregate: EntityRegistrationAggregate;
-	#entityResignationAggregate: EntityResignationAggregate;
-	#entityUpdateAggregate: EntityUpdateAggregate;
+	#entityAggregate: EntityAggregate;
 	#registrationAggregate: RegistrationAggregate;
 	#transactionAggregate: TransactionAggregate;
 	#walletAggregate: WalletAggregate;
@@ -49,9 +45,7 @@ export class Profile implements ProfileContract {
 		this.#walletRepository = new WalletRepository(this);
 
 		this.#countAggregate = new CountAggregate(this);
-		this.#entityRegistrationAggregate = new EntityRegistrationAggregate(this);
-		this.#entityResignationAggregate = new EntityResignationAggregate(this);
-		this.#entityUpdateAggregate = new EntityUpdateAggregate(this);
+		this.#entityAggregate = new EntityAggregate(this);
 		this.#registrationAggregate = new RegistrationAggregate(this);
 		this.#transactionAggregate = new TransactionAggregate(this);
 		this.#walletAggregate = new WalletAggregate(this);
@@ -137,16 +131,8 @@ export class Profile implements ProfileContract {
 		return this.#countAggregate;
 	}
 
-	public entityRegistrationAggregate(): EntityRegistrationAggregate {
-		return this.#entityRegistrationAggregate;
-	}
-
-	public entityResignationAggregate(): EntityResignationAggregate {
-		return this.#entityResignationAggregate;
-	}
-
-	public entityUpdateAggregate(): EntityUpdateAggregate {
-		return this.#entityUpdateAggregate;
+	public entityAggregate(): EntityAggregate {
+		return this.#entityAggregate;
 	}
 
 	public registrationAggregate(): RegistrationAggregate {

@@ -11,8 +11,21 @@ export class EntityAggregate {
 		this.#wallet = wallet;
 	}
 
+	public registrations(type: number, subType: number, query: Contracts.ClientPagination = {}) {
+		return this.aggregate(type, subType, "register", query);
+	}
+
+	public resignations(type: number, subType: number, query: Contracts.ClientPagination = {}) {
+		return this.aggregate(type, subType, "resign", query);
+	}
+
+	public updates(type: number, subType: number, query: Contracts.ClientPagination = {}) {
+		return this.aggregate(type, subType, "update", query);
+	}
+
 	protected async aggregate(
-		entityType: string,
+		entityType: number,
+		entitySubType: number,
 		entityAction: string,
 		query: Contracts.ClientPagination,
 	): Promise<ExtendedTransactionDataCollection> {
@@ -22,6 +35,7 @@ export class EntityAggregate {
 				...query,
 				// @ts-ignore - TODO: We need to expand the properties that are allowed to be passed to be transaction search methods.
 				entityType,
+				entitySubType,
 				entityAction,
 				senderPublicKey: this.#wallet.publicKey(),
 			}),
