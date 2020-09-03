@@ -205,6 +205,7 @@ export class ClientService implements Contracts.ClientService {
 						business: 0,
 						corePlugin: 3,
 						delegate: 4,
+						developer: 2,
 						desktopWalletPlugin: 3,
 						plugin: 3,
 					}[result.body.entityType],
@@ -215,6 +216,7 @@ export class ClientService implements Contracts.ClientService {
 				if (result.body.entityType !== "plugin") {
 					result.body.asset.subType = {
 						business: 0,
+						developer: 0,
 						corePlugin: 1,
 						delegate: 0,
 						desktopWalletPlugin: 2,
