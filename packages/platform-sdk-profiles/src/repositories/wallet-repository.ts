@@ -136,8 +136,8 @@ export class WalletRepository {
 					continue;
 				}
 
-				if (wallet.alias().toLowerCase() === data.alias.toLowerCase()) {
-					throw new Error(`The wallet with alias [${data.name}] already exists.`);
+				if (wallet.alias()!.toLowerCase() === data.alias.toLowerCase()) {
+					throw new Error(`The wallet with alias [${data.alias}] already exists.`);
 				}
 			}
 
