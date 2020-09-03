@@ -1,10 +1,9 @@
-import { Primitive } from "type-fest";
 import { HttpResponse } from "../contracts";
 import { RequestException } from "./exceptions";
 
 interface ResponseInput {
 	body: string | undefined;
-	headers: Record<string, Primitive>;
+	headers: Record<string, any>;
 	statusCode: number;
 }
 
@@ -31,15 +30,15 @@ export class Response implements HttpResponse {
 		return this._body;
 	}
 
-	public json(): Record<string, Primitive> {
+	public json(): Record<string, any> {
 		return JSON.parse(this.body());
 	}
 
-	public header(header: string): Primitive {
+	public header(header: string): string | undefined {
 		return this.headers()[header];
 	}
 
-	public headers(): Record<string, Primitive> {
+	public headers(): Record<string, any> {
 		return this._response.headers;
 	}
 
