@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.341 - 2020-09-03
+
+### Changed
+
+-   Make sub-type optional (b5cd90dd, @faustbrian)
+
 ## 0.9.340 - 2020-09-03
 
 ### Fixed
