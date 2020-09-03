@@ -19,11 +19,9 @@ export const promiseAllSettledByKey = async <T>(
 		return settledPromises;
 	}
 
-	function allPromisesSettled() {
-		return Object.keys(settledPromises).length === totalPromises;
-	}
+	const allPromisesSettled = () => Object.keys(settledPromises).length === totalPromises;
 
-	function applyFilters(settledPromises) {
+	const applyFilters = (settledPromises) => {
 		const filteredPromises = {
 			...settledPromises,
 		};
@@ -39,7 +37,7 @@ export const promiseAllSettledByKey = async <T>(
 		}
 
 		return Object.keys(filteredPromises).length ? filteredPromises : undefined;
-	}
+	};
 
 	return new Promise((resolve) => {
 		for (const promiseKey of Object.keys(promisesMap)) {

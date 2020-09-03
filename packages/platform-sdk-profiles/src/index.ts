@@ -39,3 +39,5 @@ export * from "./wallets/read-only-wallet";
 export * from "./wallets/wallet-transaction-service";
 export * from "./wallets/wallet.models";
 export * from "./wallets/wallet";
+
+export * as Enums from "./enums";

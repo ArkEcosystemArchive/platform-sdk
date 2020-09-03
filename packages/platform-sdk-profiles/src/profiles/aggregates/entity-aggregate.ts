@@ -19,6 +19,18 @@ export class EntityAggregate {
 		this.#profile = profile;
 	}
 
+	public registrations(type: number, subType: number, query: Contracts.ClientPagination = {}) {
+		return this.aggregate(type, subType, "register", query);
+	}
+
+	public resignations(type: number, subType: number, query: Contracts.ClientPagination = {}) {
+		return this.aggregate(type, subType, "resign", query);
+	}
+
+	public updates(type: number, subType: number, query: Contracts.ClientPagination = {}) {
+		return this.aggregate(type, subType, "update", query);
+	}
+
 	public hasMore(method: string): boolean {
 		return Object.values(this.#history[method] || {})
 			.map((response) => response.hasMorePages())
@@ -30,7 +42,8 @@ export class EntityAggregate {
 	}
 
 	protected async aggregate(
-		entityType: string,
+		entityType: number,
+		entitySubType: number,
 		entityAction: string,
 		query: Contracts.ClientPagination,
 	): Promise<ExtendedTransactionDataCollection> {
@@ -58,6 +71,7 @@ export class EntityAggregate {
 					...query,
 					// @ts-ignore
 					entityType,
+					entitySubType,
 					entityAction,
 					senderPublicKey: syncedWallet.publicKey(),
 				};

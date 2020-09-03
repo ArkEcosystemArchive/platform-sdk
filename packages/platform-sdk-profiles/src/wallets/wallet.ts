@@ -7,9 +7,7 @@ import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
-import { EntityRegistrationAggregate } from "./aggregates/entity-registration-aggregate";
-import { EntityResignationAggregate } from "./aggregates/entity-resignation-aggregate";
-import { EntityUpdateAggregate } from "./aggregates/entity-update-aggregate";
+import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { DelegateMapper } from "../mappers/delegate-mapper";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
@@ -18,9 +16,7 @@ import { ExtendedTransactionDataCollection } from "../dto/transaction-collection
 import { NetworkData } from "./network";
 
 export class Wallet implements ReadWriteWallet {
-	readonly #entityRegistrationAggregate: EntityRegistrationAggregate;
-	readonly #entityResignationAggregate: EntityResignationAggregate;
-	readonly #entityUpdateAggregate: EntityUpdateAggregate;
+	readonly #entityAggregate: EntityAggregate;
 
 	readonly #dataRepository: DataRepository;
 	readonly #settingRepository: SettingRepository;
@@ -43,9 +39,7 @@ export class Wallet implements ReadWriteWallet {
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
 
-		this.#entityRegistrationAggregate = new EntityRegistrationAggregate(this);
-		this.#entityResignationAggregate = new EntityResignationAggregate(this);
-		this.#entityUpdateAggregate = new EntityUpdateAggregate(this);
+		this.#entityAggregate = new EntityAggregate(this);
 
 		this.restore();
 	}
@@ -440,16 +434,8 @@ export class Wallet implements ReadWriteWallet {
 	 * These methods serve as helpers to aggregate commonly used data.
 	 */
 
-	public entityRegistrationAggregate(): EntityRegistrationAggregate {
-		return this.#entityRegistrationAggregate;
-	}
-
-	public entityResignationAggregate(): EntityResignationAggregate {
-		return this.#entityResignationAggregate;
-	}
-
-	public entityUpdateAggregate(): EntityUpdateAggregate {
-		return this.#entityUpdateAggregate;
+	public entityAggregate(): EntityAggregate {
+		return this.#entityAggregate;
 	}
 
 	/**
