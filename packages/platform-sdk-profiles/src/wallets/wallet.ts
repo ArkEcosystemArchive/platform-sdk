@@ -218,6 +218,14 @@ export class Wallet implements ReadWriteWallet {
 				[WalletData.Votes]: this.data().get(WalletData.Votes, []),
 				[WalletData.VotesAvailable]: this.data().get(WalletData.VotesAvailable, 0),
 				[WalletData.VotesUsed]: this.data().get(WalletData.VotesUsed, 0),
+				[WalletData.WaitingForOurSignatureTransactions]: this.data().get(
+					WalletData.WaitingForOurSignatureTransactions,
+					[],
+				),
+				[WalletData.WaitingForOtherSignaturesTransactions]: this.data().get(
+					WalletData.WaitingForOtherSignaturesTransactions,
+					[],
+				),
 			},
 			settings: this.settings().all(),
 		};

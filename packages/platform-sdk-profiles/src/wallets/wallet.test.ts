@@ -194,6 +194,8 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 			VOTES: [],
 			VOTES_USED: 0,
 			VOTES_AVAILABLE: 0,
+			WAITING_FOR_OTHER_SIGNATURES_TRANSACTIONS: {},
+			WAITING_FOR_OUR_SIGNATURE_TRANSACTIONS: {},
 		});
 		expect(actual.settings).toBeObject();
 		expect(actual.settings.AVATAR).toBeString();
