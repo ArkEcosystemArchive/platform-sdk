@@ -47,7 +47,7 @@ export class EntityAggregate {
 		entityAction: string,
 		query: Contracts.ClientPagination,
 	): Promise<ExtendedTransactionDataCollection> {
-		const historyKey = `${entityType}.${entityAction}`;
+		const historyKey = `${entityType}.${entitySubType}.${entityAction}`;
 
 		if (!this.#history[historyKey]) {
 			this.#history[historyKey] = {};
