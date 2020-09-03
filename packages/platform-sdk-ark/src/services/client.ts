@@ -195,7 +195,7 @@ export class ClientService implements Contracts.ClientService {
 			}
 		}
 
-		if (result.body.entityType && result.body.entitySubType && result.body.entityAction) {
+		if (result.body.entityType !== undefined && result.body.entitySubType !== undefined && result.body.entityAction !== undefined) {
 			result.body.type = 6;
 			result.body.typeGroup = 2;
 
