@@ -8,10 +8,10 @@ export class File {
 	}
 
 	public async upload(data: Record<string, unknown>): Promise<string> {
-		return (await this.#client.post("https://platform.ark.io/api/ipfs", { data })).json().data.hash;
+		return (await this.#client.post("https://platform.ark.io/api/ipfs", { data })).json().data.hash as string;
 	}
 
 	public async get(hash: string): Promise<string> {
-		return (await this.#client.get(`https://platform.ark.io/api/ipfs/${hash}`)).json().data;
+		return (await this.#client.get(`https://platform.ark.io/api/ipfs/${hash}`)).json().data as string;
 	}
 }
