@@ -122,25 +122,25 @@ export interface HtlcRefundInput extends TransactionInput {
 
 export interface EntityRegistrationInput extends TransactionInput {
 	data: {
-		type: "business" | "bridgechain" | "developer" | "plugin" | "delegate";
-		subType?: "pluginCore" | "pluginDesktop";
-		name?: string;
-		ipfs?: string;
+		type: number;
+		subType: number;
+		name: string;
+		ipfs: string;
 	};
 }
 
 export interface EntityResignationInput extends TransactionInput {
 	data: {
-		type: "business" | "bridgechain" | "developer" | "plugin" | "delegate";
-		subType?: "pluginCore" | "pluginDesktop";
+		type: number;
+		subType: number;
 		registrationId: string;
 	};
 }
 
 export interface EntityUpdateInput extends TransactionInput {
 	data: {
-		type: "business" | "bridgechain" | "developer" | "plugin" | "delegate";
-		subType?: "pluginCore" | "pluginDesktop";
+		type: number;
+		subType: number;
 		registrationId: string;
 		name?: string;
 		ipfs?: string;
