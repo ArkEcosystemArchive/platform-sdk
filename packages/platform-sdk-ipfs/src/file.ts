@@ -10,4 +10,8 @@ export class File {
 	public async upload(data: string): Promise<string> {
 		return (await this.#client.post("https://platform.ark.io/api/ipfs", { data })).json().data.hash;
 	}
+
+	public async get(hash: string): Promise<string> {
+		return (await this.#client.get(`https://platform.ark.io/api/ipfs/${hash}`)).json().data;
+	}
 }
