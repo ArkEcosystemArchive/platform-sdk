@@ -7,7 +7,7 @@ export class File {
 		this.#client = client;
 	}
 
-	public async upload(data: string): Promise<string> {
+	public async upload(data: Record<string, unknown>): Promise<string> {
 		return (await this.#client.post("https://platform.ark.io/api/ipfs", { data })).json().data.hash;
 	}
 
