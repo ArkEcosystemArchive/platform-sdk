@@ -52,16 +52,20 @@ export enum ProfileSetting {
 	Bip39Locale = "BIP39_LOCALE",
 	CacheLedgerWallets = "CACHE_LEDGER_WALLETS",
 	CacheTransactions = "CACHE_TRANSACTIONS",
-	DateFormat = "DATE_FORMAT",
 	ExchangeCurrency = "EXCHANGE_CURRENCY",
 	LedgerUpdateMethod = "LEDGER_UPDATE_METHOD",
-	Locale = "LOCALE",
 	MarketProvider = "MARKET_PROVIDER",
 	MultiPeerBroadcast = "MULTI_PEER_BROADCAST",
 	Name = "NAME",
 	Password = "PASSWORD",
 	PluginProvider = "PLUGIN_PROVIDER",
 	ScreenshotProtection = "SCREENSHOT_PROTECTION",
+
+	// UI
+	DashboardConfiguration = "DASHBOARD_CONFIGURATION",
+	DateFormat = "DATE_FORMAT",
+	Locale = "LOCALE",
+	NewsFilters = "NEWS_FILTERS",
 	Theme = "THEME",
 	TimeFormat = "TIME_FORMAT",
 }
