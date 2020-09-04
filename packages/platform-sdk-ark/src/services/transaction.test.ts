@@ -242,7 +242,8 @@ describe("Magistrate", () => {
 					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
-					type: "business",
+					type: 0,
+					subType: 0,
 					name: "my_business",
 					ipfs: "QmRoWaqjkdGv1fqz5hrFUNHwz9CxVRq7MxoAevWDJPXLEp",
 				},
@@ -261,7 +262,8 @@ describe("Magistrate", () => {
 					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
-					type: "business",
+					type: 0,
+					subType: 0,
 					registrationId: "84300b236d0a868cee50dda1347e3089f4df1c13e90162abedb812acd242e81b",
 				},
 			});
@@ -279,7 +281,8 @@ describe("Magistrate", () => {
 					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
-					type: "business",
+					type: 0,
+					subType: 0,
 					registrationId: "84300b236d0a868cee50dda1347e3089f4df1c13e90162abedb812acd242e81b",
 					ipfs: "QmRoWaqjkdGv1fqz5hrFUNHwz9CxVRq7MxoAevWDJPXLEp",
 				},
