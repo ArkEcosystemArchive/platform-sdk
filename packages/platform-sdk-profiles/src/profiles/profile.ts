@@ -37,6 +37,7 @@ export class Profile implements ProfileContract {
 
 	public constructor(id: string) {
 		this.#id = id;
+
 		this.#contactRepository = new ContactRepository(this);
 		this.#dataRepository = new DataRepository();
 		this.#notificationRepository = new NotificationRepository();
@@ -167,10 +168,9 @@ export class Profile implements ProfileContract {
 		return this.settings().get(ProfileSetting.Password) !== undefined;
 	}
 
-	private restoreDefaultSettings(name: string): void {
-		this.settings().set(ProfileSetting.Name, name);
-		this.settings().set(ProfileSetting.Avatar, Avatar.make(this.name()));
+	public setDefaultSettings(): void {
 		this.settings().set(ProfileSetting.AdvancedMode, false);
+		this.settings().set(ProfileSetting.Avatar, Avatar.make(this.name()));
 		this.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
 		this.settings().set(ProfileSetting.Bip39Locale, "english");
 		this.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
@@ -180,5 +180,10 @@ export class Profile implements ProfileContract {
 		this.settings().set(ProfileSetting.ScreenshotProtection, true);
 		this.settings().set(ProfileSetting.Theme, "light");
 		this.settings().set(ProfileSetting.TimeFormat, "h:mm A");
+	}
+
+	private restoreDefaultSettings(name: string): void {
+		this.settings().set(ProfileSetting.Name, name);	
+		this.setDefaultSettings();
 	}
 }

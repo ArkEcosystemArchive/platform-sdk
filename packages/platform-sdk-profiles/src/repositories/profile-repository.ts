@@ -72,7 +72,9 @@ export class ProfileRepository {
 
 		const id: string = uuidv4();
 		const result: Profile = new Profile(id);
+
 		result.settings().set(ProfileSetting.Name, name);
+		result.setDefaultSettings();
 
 		this.#data.set(id, result);
 
