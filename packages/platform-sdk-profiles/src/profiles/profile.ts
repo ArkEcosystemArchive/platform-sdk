@@ -98,6 +98,12 @@ export class Profile implements ProfileContract {
 	}
 
 	public flush(): void {
+		const name: string | undefined = this.settings().get(ProfileSetting.Name);
+
+		if (name === undefined) {
+			throw new Error("The name of the profile could not be found. This looks like a bug.");
+		}
+
 		this.contacts().flush();
 
 		this.data().flush();
@@ -109,6 +115,8 @@ export class Profile implements ProfileContract {
 		this.settings().flush();
 
 		this.wallets().flush();
+
+		this.restoreDefaultSettings(name);
 	}
 
 	public toObject(): ProfileStruct {
@@ -157,5 +165,20 @@ export class Profile implements ProfileContract {
 
 	public usesPassword(): boolean {
 		return this.settings().get(ProfileSetting.Password) !== undefined;
+	}
+
+	private restoreDefaultSettings(name: string): void {
+		this.settings().set(ProfileSetting.Name, name);
+		this.settings().set(ProfileSetting.Avatar, Avatar.make(this.name()));
+		this.settings().set(ProfileSetting.AdvancedMode, false);
+		this.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
+		this.settings().set(ProfileSetting.Bip39Locale, "english");
+		this.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
+		this.settings().set(ProfileSetting.LedgerUpdateMethod, false);
+		this.settings().set(ProfileSetting.Locale, "en-US");
+		this.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+		this.settings().set(ProfileSetting.ScreenshotProtection, true);
+		this.settings().set(ProfileSetting.Theme, "light");
+		this.settings().set(ProfileSetting.TimeFormat, "h:mm A");
 	}
 }

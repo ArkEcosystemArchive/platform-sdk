@@ -91,7 +91,15 @@ it("should flush all data", () => {
 
 	subject.flush();
 
+	expect(subject.settings().keys()).toHaveLength(12);
+});
+
+it("should fail to flush all data if the name is missing", () => {
+	subject.settings().forget(ProfileSetting.Name);
+
 	expect(subject.settings().keys()).toHaveLength(0);
+
+	expect(() => subject.flush()).toThrowError("The name of the profile could not be found. This looks like a bug.");
 });
 
 it("should have a count aggregate", () => {
