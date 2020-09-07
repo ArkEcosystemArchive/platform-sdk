@@ -72,8 +72,6 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.get(`${this.#peer}/${path}`, query);
-
-		return response.json();
+		return (await this.#http.get(`${this.#peer}/${path}`, query)).json();
 	}
 }

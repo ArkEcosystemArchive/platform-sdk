@@ -22,7 +22,7 @@ describe("FeeService", function () {
 				.get("/api/transactions/fees")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/feesByType.json`));
 
-			const result = await subject.all(7);
+			const result = await subject.all(30);
 
 			expect(result).toContainAllKeys([
 				"transfer",

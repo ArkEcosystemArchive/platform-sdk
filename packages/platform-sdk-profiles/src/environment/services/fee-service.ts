@@ -28,7 +28,7 @@ export class FeeService {
 	public async sync(coin: string, network: string): Promise<void> {
 		const instance: Coins.Coin = await makeCoin(coin, network);
 
-		this.#dataRepository.set(`${coin}.${network}.fees`, await instance.fee().all(7));
+		this.#dataRepository.set(`${coin}.${network}.fees`, await instance.fee().all(30));
 	}
 
 	public async syncAll(): Promise<void> {

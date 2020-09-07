@@ -10,7 +10,7 @@ beforeEach(async () => (subject = await FeeService.construct(createConfig())));
 describe("FeeService", function () {
 	describe("#all", () => {
 		it("should succeed", async () => {
-			const result = await subject.all(7);
+			const result = await subject.all(30);
 
 			expect(result).toContainAllKeys([
 				"transfer",
