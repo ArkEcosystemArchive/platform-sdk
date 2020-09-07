@@ -168,7 +168,7 @@ export class Profile implements ProfileContract {
 		return this.settings().get(ProfileSetting.Password) !== undefined;
 	}
 
-	public setDefaultSettings(): void {
+	public initializeSettings(): void {
 		this.settings().set(ProfileSetting.AdvancedMode, false);
 		this.settings().set(ProfileSetting.Avatar, Avatar.make(this.name()));
 		this.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
@@ -184,6 +184,6 @@ export class Profile implements ProfileContract {
 
 	private restoreDefaultSettings(name: string): void {
 		this.settings().set(ProfileSetting.Name, name);	
-		this.setDefaultSettings();
+		this.initializeSettings();
 	}
 }

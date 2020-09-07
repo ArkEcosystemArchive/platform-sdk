@@ -74,7 +74,7 @@ export class ProfileRepository {
 		const result: Profile = new Profile(id);
 
 		result.settings().set(ProfileSetting.Name, name);
-		result.setDefaultSettings();
+		result.initializeSettings();
 
 		this.#data.set(id, result);
 
