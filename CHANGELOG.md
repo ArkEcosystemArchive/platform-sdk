@@ -5,11 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.346 - 2020-09-07
+
+### Changed
+
+-   Restore default profile settings after flushing (3c7d5ab3, @faustbrian)
+-   Fetch fees for 30 days (31e0b7a9, @faustbrian)
+
 ## 0.9.344 - 2020-09-04
 
 ### Changed
 
-- Adds some ui profile settings (c2a1a7b1, @dated)
+-   Adds some ui profile settings (c2a1a7b1, @dated)
 
 ## 0.9.343 - 2020-09-03
 
