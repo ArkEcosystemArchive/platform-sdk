@@ -170,7 +170,6 @@ export class Profile implements ProfileContract {
 
 	public initializeSettings(): void {
 		this.settings().set(ProfileSetting.AdvancedMode, false);
-		this.settings().set(ProfileSetting.Avatar, Avatar.make(this.name()));
 		this.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
 		this.settings().set(ProfileSetting.Bip39Locale, "english");
 		this.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
