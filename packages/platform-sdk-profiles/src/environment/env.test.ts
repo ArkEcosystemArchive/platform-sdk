@@ -112,7 +112,6 @@ it("should create a profile with data and persist it when instructed to do so", 
 	expect(newProfile.settings().all()).toEqual({
 		ADVANCED_MODE: "value",
 		AUTOMATIC_SIGN_OUT_PERIOD: 15,
-		AVATAR: "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><style>circle{mix-blend-mode:soft-light;}</style><rect fill=\"rgb(233, 30, 99)\" width=\"100\" height=\"100\"/><circle r=\"45\" cx=\"80\" cy=\"30\" fill=\"rgb(76, 175, 80)\"/><circle r=\"55\" cx=\"0\" cy=\"60\" fill=\"rgb(255, 152, 0)\"/><circle r=\"40\" cx=\"50\" cy=\"50\" fill=\"rgb(3, 169, 244)\"/></svg>",
 		BIP39_LOCALE: "english",
 		EXCHANGE_CURRENCY: "BTC",
 		LEDGER_UPDATE_METHOD: false,

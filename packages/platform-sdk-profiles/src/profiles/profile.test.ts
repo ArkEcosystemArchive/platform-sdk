@@ -91,7 +91,7 @@ it("should flush all data", () => {
 
 	subject.flush();
 
-	expect(subject.settings().keys()).toHaveLength(12);
+	expect(subject.settings().keys()).toHaveLength(11);
 });
 
 it("should fail to flush all data if the name is missing", () => {
