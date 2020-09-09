@@ -336,9 +336,7 @@ export class TransactionService implements Contracts.TransactionService {
 				}
 			} else {
 				if (!address) {
-					throw new Error(
-						`Failed to retrieve the nonce for the signatory wallet. Please provide one through the [input] parameter.`,
-					);
+					throw new Error("Failed to retrieve the address for the signatory wallet.");
 				}
 
 				if (input.from !== address) {
