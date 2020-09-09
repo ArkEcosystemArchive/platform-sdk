@@ -51,6 +51,16 @@ export class TransactionData {
 		return this.#data.amount();
 	}
 
+	public convertedAmount(): BigNumber {
+		const value: string | undefined = this.wallet().data().get(WalletData.ExchangeRate);
+
+		if (value === undefined) {
+			return BigNumber.ZERO;
+		}
+
+		return this.amount().times(value);
+	}
+
 	public fee(): BigNumber {
 		return this.#data.fee();
 	}
