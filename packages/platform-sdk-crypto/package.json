@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-crypto",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.347",
+	"version": "0.9.349",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
