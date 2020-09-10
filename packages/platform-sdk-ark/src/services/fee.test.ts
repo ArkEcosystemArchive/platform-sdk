@@ -17,7 +17,7 @@ describe("FeeService", function () {
 	describe("#all", () => {
 		it("should succeed", async () => {
 			nock(/.+/)
-				.get("/api/node/fees?days=7")
+				.get("/api/node/fees?days=30")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/feesByNode.json`))
 				.get("/api/transactions/fees")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/feesByType.json`));
