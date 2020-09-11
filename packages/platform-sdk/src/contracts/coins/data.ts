@@ -1,6 +1,7 @@
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { Entity } from "./entity";
 import { KeyValuePair } from "../types";
 
 export interface WalletMultiSignature {
@@ -27,6 +28,9 @@ export interface WalletData {
 	votes(): BigNumber | undefined;
 
 	multiSignature(): WalletMultiSignature;
+
+	// Entities
+	entities(): KeyValuePair[];
 
 	// Flags
 	isDelegate(): boolean;

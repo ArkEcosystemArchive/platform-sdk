@@ -1,5 +1,6 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { Entity } from "../contracts/coins";
 import { KeyValuePair } from "../contracts/types";
 
 export abstract class AbstractWalletData {
@@ -20,6 +21,9 @@ export abstract class AbstractWalletData {
 	abstract rank(): number | undefined;
 
 	abstract votes(): BigNumber | undefined;
+
+	// Entities
+	abstract entities(): Entity[];
 
 	// Flags
 	abstract isDelegate(): boolean;
