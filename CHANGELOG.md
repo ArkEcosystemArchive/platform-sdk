@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.352 - 2020-09-11
+
+### Added
+
+-   Implement TransactionData#convertedAmount (310b4bb9, @dated)
+-   Implement `WalletData#entities` (b107ff5d, @dated)
+
+### Fixed
+
+-   Update fees url and fixture (8267e7e1, @dated)
+
 ## 0.9.349 - 2020-09-08
 
 ### Fixed
