@@ -30,7 +30,7 @@ export interface WalletData {
 	multiSignature(): WalletMultiSignature;
 
 	// Entities
-	entities(): KeyValuePair[];
+	entities(): Entity[];
 
 	// Flags
 	isDelegate(): boolean;

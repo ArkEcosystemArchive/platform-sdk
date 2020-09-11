@@ -235,6 +235,14 @@ export class Wallet implements ReadWriteWallet {
 	 * These methods serve as identifiers for special types of wallets.
 	 */
 
+	public username(): string | undefined {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
+		return this.#wallet.username();
+	}
+
 	public isDelegate(): boolean {
 		if (!this.#wallet) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
