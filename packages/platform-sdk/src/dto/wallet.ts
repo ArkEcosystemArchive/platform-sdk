@@ -21,6 +21,9 @@ export abstract class AbstractWalletData {
 
 	abstract votes(): BigNumber | undefined;
 
+	// Entities
+	abstract entities(): KeyValuePair[] | undefined;
+
 	// Flags
 	abstract isDelegate(): boolean;
 

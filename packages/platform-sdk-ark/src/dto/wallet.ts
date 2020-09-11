@@ -30,6 +30,10 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return BigNumber.make(this.data.votes);
 	}
 
+	public entities(): Contracts.KeyValuePair[] | undefined {
+		return this.data.attributes?.entities;
+	}
+
 	public multiSignature(): Contracts.WalletMultiSignature {
 		if (!this.isMultiSignature()) {
 			throw new Error("This wallet does not have a multi-signature registered.");
