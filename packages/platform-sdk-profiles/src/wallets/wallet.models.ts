@@ -109,6 +109,7 @@ export interface ReadWriteWallet {
 	receivedTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	multiSignature(): Contracts.WalletMultiSignature;
 	multiSignatureParticipants(): ReadOnlyWallet[];
+	entities(): Contracts.Entity[];
 	votes(): ReadOnlyWallet[];
 	votesAvailable(): number;
 	votesUsed(): number;
