@@ -30,7 +30,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
 	}
 
-	public entities(): Contracts.KeyValuePair[] | undefined {
+	public entities(): Contracts.Entity[] {
 		return [];
 	}
 

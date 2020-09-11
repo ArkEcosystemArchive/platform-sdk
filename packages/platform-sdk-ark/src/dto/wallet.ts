@@ -30,8 +30,16 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return BigNumber.make(this.data.votes);
 	}
 
-	public entities(): Contracts.KeyValuePair[] | undefined {
-		return this.data.attributes?.entities;
+	public entities(): Contracts.Entity[] {
+		return Object.entries(this.data.attributes?.entities || {})
+			.map(([id, entity]: [string, any]) => ({
+				id,
+				type: entity.type,
+				subType: entity.subType,
+				name: entity.data.name,
+				hash: entity.data.ipfsData,
+			})
+		);
 	}
 
 	public multiSignature(): Contracts.WalletMultiSignature {

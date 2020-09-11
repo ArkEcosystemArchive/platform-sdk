@@ -30,7 +30,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return BigNumber.make(this.data.votes);
 	}
 
-	public entities(): Contracts.KeyValuePair[] | undefined {
+	public entities(): Contracts.Entity[] {
 		return [];
 	}
 
