@@ -83,6 +83,7 @@ export interface ReadWriteWallet {
 	data(): DataRepository;
 	settings(): SettingRepository;
 	toObject(): WalletStruct;
+	username(): string | undefined;
 	isDelegate(): boolean;
 	isResignedDelegate(): boolean;
 	isKnown(): boolean;
