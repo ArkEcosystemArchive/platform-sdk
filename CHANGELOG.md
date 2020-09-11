@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.353 - 2020-09-11
+
+### Added
+
+-   Implement `ReadWriteWallet#username` (eb39ae94, @dated)
+
 ## 0.9.352 - 2020-09-11
 
 ### Added
