@@ -396,6 +396,14 @@ export class Wallet implements ReadWriteWallet {
 		return this.multiSignature().publicKeys.map((publicKey: string) => new ReadOnlyWallet(participants[publicKey]));
 	}
 
+	public entities(): Contracts.Entity[] {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
+		return this.#wallet.entities();
+	}
+
 	public votes(): ReadOnlyWallet[] {
 		const votes: string[] | undefined = this.data().get<string[]>(WalletData.Votes);
 
