@@ -65,9 +65,9 @@ export class TransactionService implements Contracts.TransactionService {
 					value: Web3.utils.toHex(Web3.utils.toWei(`${input.data.amount}`, "wei")),
 				};
 
-				if (input.to.memo) {
+				if (input.data.memo) {
 					// @ts-ignore
-					data.data = Buffoon.fromUTF8(input.to.memo);
+					data.data = Buffoon.fromUTF8(input.data.memo);
 				}
 			}
 
