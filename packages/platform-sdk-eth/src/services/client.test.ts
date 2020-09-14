@@ -33,8 +33,8 @@ describe("ClientService", function () {
 			expect(result.confirmations()).toEqual(BigNumber.ZERO);
 			expect(result.sender()).toBe("0xac1a0f50604c430c25a9fa52078f7f7ec9523519");
 			expect(result.recipient()).toBe("0xb5663d3a23706eb4537ffea78f56948a53ac2ebe");
-			expect(result.amount().toString()).toEqual("10000000000000000000");
-			expect(result.fee().toString()).toEqual("28000");
+			expect(result.amount().toString()).toBe("10000000000000000000");
+			expect(result.fee().toString()).toBe("28000");
 			expect(result.memo()).toBeUndefined();
 		});
 	});

@@ -11,7 +11,7 @@ beforeEach(() => (subject = new TransactionData(Fixture)));
 
 describe("TransactionData", function () {
 	test("#id", () => {
-		expect(subject.id()).toBe("0x35a28a5b1785d3729afc809851466fcc9971d09922196a1ca6d155756c222435");
+		expect(subject.id()).toBe("0xf6ad7f16653a2070f36c5f9c243acb30109da76658b54712745136d8e8236eae");
 	});
 
 	test("#type", () => {
@@ -27,19 +27,19 @@ describe("TransactionData", function () {
 	});
 
 	test("#sender", () => {
-		expect(subject.sender()).toBe("0x4581A610f96878266008993475F1476cA9997081");
+		expect(subject.sender()).toBe("0xac1a0f50604c430c25a9fa52078f7f7ec9523519");
 	});
 
 	test("#recipient", () => {
-		expect(subject.recipient()).toBe("0x230b2A8C0CcE28fd6eFF491c47aeBa244b10A12c");
+		expect(subject.recipient()).toBe("0xb5663d3a23706eb4537ffea78f56948a53ac2ebe");
 	});
 
 	test("#amount", () => {
-		expect(subject.amount()).toEqual(BigNumber.make("79000000000000"));
+		expect(subject.amount().toString()).toBe("10000000000000000000");
 	});
 
 	test("#fee", () => {
-		expect(subject.fee()).toEqual(BigNumber.make("21000"));
+		expect(subject.fee().toString()).toBe("28000");
 	});
 
 	test("#memo", () => {
