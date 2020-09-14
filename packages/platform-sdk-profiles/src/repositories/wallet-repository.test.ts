@@ -132,7 +132,7 @@ describe("#sortBy", () => {
 
 		walletARK = await subject.importByMnemonic("a", "ARK", "devnet");
 		walletBTC = await subject.importByMnemonic("b", "BTC", "testnet");
-		walletETH = await subject.importByMnemonic("c", "ETH", "ropsten");
+		walletETH = await subject.importByMnemonic("c", "ETH", "mainnet");
 	});
 
 	it("should sort by coin", async () => {
