@@ -1,6 +1,7 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import Web3 from "web3";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
@@ -32,11 +33,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.data.value);
+		return BigNumber.make(Web3.utils.toBN(this.data.value).toString());
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.gas);
+		return BigNumber.make(Web3.utils.toBN(this.data.gas).toString());
 	}
 
 	public memo(): string | undefined {

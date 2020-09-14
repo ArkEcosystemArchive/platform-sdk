@@ -14,7 +14,7 @@ export const manifest = {
 				networkId: "1",
 				slip44: 60,
 			},
-			hosts: ["https://coins.com/api/eth"],
+			hosts: ["https://platform.ark.io/api/eth"],
 			hostsMultiSignature: [],
 			voting: {
 				enabled: false,
@@ -22,90 +22,90 @@ export const manifest = {
 				maximumPerTransaction: 0,
 			},
 		},
-		kovan: {
-			id: "kovan",
-			type: "test",
-			name: "Kovan",
-			explorer: "https://kovan.etherscan.io/",
-			currency: {
-				ticker: "ETH",
-				symbol: "Ξ",
-			},
-			crypto: {
-				networkId: "2",
-				slip44: 60,
-			},
-			hosts: ["https://coins.com/api/eth"],
-			hostsMultiSignature: [],
-			voting: {
-				enabled: false,
-				maximum: 0,
-				maximumPerTransaction: 0,
-			},
-		},
-		ropsten: {
-			id: "ropsten",
-			type: "test",
-			name: "Ropsten",
-			explorer: "https://ropsten.etherscan.io/",
-			currency: {
-				ticker: "ETH",
-				symbol: "Ξ",
-			},
-			crypto: {
-				networkId: "3",
-				slip44: 60,
-			},
-			hosts: ["https://coins.com/api/eth"],
-			hostsMultiSignature: [],
-			voting: {
-				enabled: false,
-				maximum: 0,
-				maximumPerTransaction: 0,
-			},
-		},
-		rinkeby: {
-			id: "rinkeby",
-			type: "test",
-			name: "Rinkeby",
-			explorer: "https://rinkeby.etherscan.io/",
-			currency: {
-				ticker: "ETH",
-				symbol: "Ξ",
-			},
-			crypto: {
-				networkId: "4",
-				slip44: 60,
-			},
-			hosts: ["https://coins.com/api/eth"],
-			hostsMultiSignature: [],
-			voting: {
-				enabled: false,
-				maximum: 0,
-				maximumPerTransaction: 0,
-			},
-		},
-		goerli: {
-			id: "goerli",
-			type: "test",
-			name: "Goerli",
-			explorer: "https://goerli.etherscan.io/",
-			currency: {
-				ticker: "ETH",
-				symbol: "Ξ",
-			},
-			crypto: {
-				networkId: "5",
-				slip44: 60,
-			},
-			hosts: ["https://coins.com/api/eth"],
-			hostsMultiSignature: [],
-			voting: {
-				enabled: false,
-				maximum: 0,
-				maximumPerTransaction: 0,
-			},
-		},
+		// kovan: {
+		// 	id: "kovan",
+		// 	type: "test",
+		// 	name: "Kovan",
+		// 	explorer: "https://kovan.etherscan.io/",
+		// 	currency: {
+		// 		ticker: "ETH",
+		// 		symbol: "Ξ",
+		// 	},
+		// 	crypto: {
+		// 		networkId: "2",
+		// 		slip44: 60,
+		// 	},
+		// 	hosts: ["https://coins.com/api/eth"],
+		// 	hostsMultiSignature: [],
+		// 	voting: {
+		// 		enabled: false,
+		// 		maximum: 0,
+		// 		maximumPerTransaction: 0,
+		// 	},
+		// },
+		// ropsten: {
+		// 	id: "ropsten",
+		// 	type: "test",
+		// 	name: "Ropsten",
+		// 	explorer: "https://ropsten.etherscan.io/",
+		// 	currency: {
+		// 		ticker: "ETH",
+		// 		symbol: "Ξ",
+		// 	},
+		// 	crypto: {
+		// 		networkId: "3",
+		// 		slip44: 60,
+		// 	},
+		// 	hosts: ["https://coins.com/api/eth"],
+		// 	hostsMultiSignature: [],
+		// 	voting: {
+		// 		enabled: false,
+		// 		maximum: 0,
+		// 		maximumPerTransaction: 0,
+		// 	},
+		// },
+		// rinkeby: {
+		// 	id: "rinkeby",
+		// 	type: "test",
+		// 	name: "Rinkeby",
+		// 	explorer: "https://rinkeby.etherscan.io/",
+		// 	currency: {
+		// 		ticker: "ETH",
+		// 		symbol: "Ξ",
+		// 	},
+		// 	crypto: {
+		// 		networkId: "4",
+		// 		slip44: 60,
+		// 	},
+		// 	hosts: ["https://coins.com/api/eth"],
+		// 	hostsMultiSignature: [],
+		// 	voting: {
+		// 		enabled: false,
+		// 		maximum: 0,
+		// 		maximumPerTransaction: 0,
+		// 	},
+		// },
+		// goerli: {
+		// 	id: "goerli",
+		// 	type: "test",
+		// 	name: "Goerli",
+		// 	explorer: "https://goerli.etherscan.io/",
+		// 	currency: {
+		// 		ticker: "ETH",
+		// 		symbol: "Ξ",
+		// 	},
+		// 	crypto: {
+		// 		networkId: "5",
+		// 		slip44: 60,
+		// 	},
+		// 	hosts: ["https://coins.com/api/eth"],
+		// 	hostsMultiSignature: [],
+		// 	voting: {
+		// 		enabled: false,
+		// 		maximum: 0,
+		// 		maximumPerTransaction: 0,
+		// 	},
+		// },
 	},
 	abilities: {
 		Client: {

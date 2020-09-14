@@ -2,7 +2,7 @@ import { Coins, Contracts, DTO, Exceptions, Helpers } from "@arkecosystem/platfo
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import Web3 from "web3";
 
-import { TransactionData, WalletData } from "../dto";
+import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
@@ -49,28 +49,11 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const endBlock: number = (await this.get("status")).height;
-		const startBlock: number = endBlock - (query?.limit ?? ClientService.MONTH_IN_SECONDS);
-
-		const transactions: Contracts.TransactionDataType[] = [];
-		for (let i = startBlock; i < endBlock; i++) {
-			const block = await this.get(`blocks/${i}`);
-
-			if (block && block.transactions) {
-				for (const transaction of block.transactions) {
-					if (
-						query?.address === "*" ||
-						query?.address === transaction.from ||
-						query?.address === transaction.to
-					) {
-						transactions.push(new TransactionData(transaction));
-					}
-				}
-			}
-		}
+		const transactions: unknown[] = (await this.get(`wallets/${query.address}/transactions`)) as any;
 
 		return Helpers.createTransactionDataCollectionWithType(
 			transactions,
+			// TODO: implement pagination on server
 			{
 				prev: undefined,
 				self: undefined,
@@ -147,14 +130,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.get(`${this.#peer}/${path}`, query);
-
-		return response.json();
+		return (await this.#http.get(`${this.#peer}/${path}`, query)).json();
 	}
 
 	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.post(`${this.#peer}/${path}`, body);
-
-		return response.json();
+		return (await this.#http.post(`${this.#peer}/${path}`, body)).json();
 	}
 }

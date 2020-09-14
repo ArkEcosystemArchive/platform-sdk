@@ -1,5 +1,6 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import Web3 from "web3";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
 	public address(): string {
@@ -11,11 +12,11 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public balance(): BigNumber {
-		return BigNumber.make(this.data.balance);
+		return BigNumber.make(Web3.utils.toBN(this.data.balance).toString());
 	}
 
 	public nonce(): BigNumber {
-		return BigNumber.make(parseInt(this.data.nonce, 16));
+		return BigNumber.make(Web3.utils.toBN(this.data.nonce).toString());
 	}
 
 	public username(): string | undefined {
