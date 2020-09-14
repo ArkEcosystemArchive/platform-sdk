@@ -1,10 +1,4 @@
 {
-	"height": 7858730,
-	"syncing": {
-		"currentBlock": "0x77ea2a",
-		"highestBlock": "0x77ea2b",
-		"knownStates": "0xd52a5ec",
-		"pulledStates": "0xd52a5ec",
-		"startingBlock": "0x77ea2a"
-	}
+	"height": 7858729,
+	"syncing": false
 }
