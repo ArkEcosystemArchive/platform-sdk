@@ -63,8 +63,12 @@ export class TransactionService implements Contracts.TransactionService {
 					gasPrice: Web3.utils.toHex(input.fee),
 					to: input.data.to,
 					value: Web3.utils.toHex(Web3.utils.toWei(`${input.data.amount}`, "wei")),
-					// data: Buffoon.fromUTF8(input.to.memo),
 				};
+
+				if (input.to.memo) {
+					// @ts-ignore
+					data.data = Buffoon.fromUTF8(input.to.memo);
+				}
 			}
 
 			const transaction: Transaction = new Transaction(data, { chain: this.#chain });
