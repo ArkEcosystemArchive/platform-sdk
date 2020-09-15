@@ -61,6 +61,26 @@ export const manifest = {
 				maximumPerTransaction: 1,
 			},
 		},
+		"compendia.devnet": {
+			id: "devnet",
+			type: "test",
+			name: "Compendia - Devnet",
+			explorer: "https://testnet.bindscan.io/",
+			currency: {
+				ticker: "TBIND",
+				symbol: "Tß",
+			},
+			crypto: {
+				slip44: 543,
+			},
+			hosts: ["https://apis-testnet.compendia.org"],
+			hostsMultiSignature: [],
+			voting: {
+				enabled: true,
+				maximum: 1,
+				maximumPerTransaction: 1,
+			},
+		},
 	},
 	abilities: {
 		Client: {
