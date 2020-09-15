@@ -41,6 +41,26 @@ export const manifest = {
 				maximumPerTransaction: 1,
 			},
 		},
+		"compendia.mainnet": {
+			id: "mainnet",
+			type: "test",
+			name: "Compendia - Mainnet",
+			explorer: "https://bindscan.io/",
+			currency: {
+				ticker: "BIND",
+				symbol: "ß",
+			},
+			crypto: {
+				slip44: 543,
+			},
+			hosts: ["https://apis.compendia.org"],
+			hostsMultiSignature: [],
+			voting: {
+				enabled: true,
+				maximum: 1,
+				maximumPerTransaction: 1,
+			},
+		},
 	},
 	abilities: {
 		Client: {
