@@ -1,10 +1,10 @@
 export const manifest = {
 	name: "ARK",
 	networks: {
-		mainnet: {
+		"ark.mainnet": {
 			id: "mainnet",
 			type: "live",
-			name: "Mainnet",
+			name: "ARK Mainnet",
 			explorer: "https://explorer.ark.io/",
 			currency: {
 				ticker: "ARK",
@@ -21,10 +21,10 @@ export const manifest = {
 				maximumPerTransaction: 1,
 			},
 		},
-		devnet: {
+		"ark.devnet": {
 			id: "devnet",
 			type: "test",
-			name: "Devnet",
+			name: "ARK Devnet",
 			explorer: "https://dexplorer.ark.io/",
 			currency: {
 				ticker: "DARK",
