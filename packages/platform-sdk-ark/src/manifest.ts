@@ -43,7 +43,7 @@ export const manifest = {
 		},
 		"compendia.mainnet": {
 			id: "compendia.mainnet",
-			type: "test",
+			type: "live",
 			name: "Compendia - Mainnet",
 			explorer: "https://bindscan.io/",
 			currency: {
