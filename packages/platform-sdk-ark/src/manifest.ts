@@ -43,7 +43,7 @@ export const manifest = {
 		},
 		"compendia.mainnet": {
 			id: "compendia.mainnet",
-			type: "test",
+			type: "live",
 			name: "Compendia - Mainnet",
 			explorer: "https://bindscan.io/",
 			currency: {
@@ -54,6 +54,26 @@ export const manifest = {
 				slip44: 543,
 			},
 			hosts: ["https://apis.compendia.org"],
+			hostsMultiSignature: [],
+			voting: {
+				enabled: true,
+				maximum: 1,
+				maximumPerTransaction: 1,
+			},
+		},
+		"compendia.testnet": {
+			id: "testnet",
+			type: "test",
+			name: "Compendia - Testnet",
+			explorer: "https://testnet.bindscan.io/",
+			currency: {
+				ticker: "TBIND",
+				symbol: "Tß",
+			},
+			crypto: {
+				slip44: 543,
+			},
+			hosts: ["https://apis-testnet.compendia.org"],
 			hostsMultiSignature: [],
 			voting: {
 				enabled: true,
