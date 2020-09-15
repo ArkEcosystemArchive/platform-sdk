@@ -46,7 +46,7 @@ export class Address implements Contracts.Address {
 
 	public async validate(address: string): Promise<boolean> {
 		try {
-			if (this.#config.get("network.id") === "mainnet") {
+			if (this.#config.get("network.id") === "ark.mainnet") {
 				const response: any = (
 					await this.#config
 						.get<Contracts.HttpClient>("httpClient")
