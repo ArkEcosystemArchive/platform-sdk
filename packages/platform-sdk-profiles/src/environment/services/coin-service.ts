@@ -32,8 +32,6 @@ export class CoinService {
 			}
 		}
 
-		console.log(result);
-
 		return Object.entries(result);
 	}
 
