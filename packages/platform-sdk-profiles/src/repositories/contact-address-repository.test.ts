@@ -13,7 +13,7 @@ let subject: ContactAddressRepository;
 
 const stubData = {
 	coin: "ARK",
-	network: "devnet",
+	network: "ark.devnet",
 	name: "John Doe",
 	address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 };

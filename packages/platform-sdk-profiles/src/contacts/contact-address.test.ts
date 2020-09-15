@@ -34,7 +34,7 @@ beforeEach(async () => {
 	subject = await ContactAddress.make({
 		id: "uuid",
 		coin: "ARK",
-		network: "devnet",
+		network: "ark.devnet",
 		name: "John Doe",
 		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 	});
@@ -51,7 +51,7 @@ it("should have a coin", () => {
 });
 
 it("should have a network", () => {
-	expect(subject.network()).toBe("devnet");
+	expect(subject.network()).toBe("ark.devnet");
 });
 
 it("should have a name", () => {
@@ -94,6 +94,6 @@ it("should turn into an object", () => {
 		coin: "ARK",
 		id: "uuid",
 		name: "John Doe",
-		network: "devnet",
+		network: "ark.devnet",
 	});
 });

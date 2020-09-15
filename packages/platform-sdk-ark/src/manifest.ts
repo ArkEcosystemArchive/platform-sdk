@@ -2,7 +2,7 @@ export const manifest = {
 	name: "ARK",
 	networks: {
 		"ark.mainnet": {
-			id: "mainnet",
+			id: "ark.mainnet",
 			type: "live",
 			name: "ARK Mainnet",
 			explorer: "https://explorer.ark.io/",
@@ -22,7 +22,7 @@ export const manifest = {
 			},
 		},
 		"ark.devnet": {
-			id: "devnet",
+			id: "ark.devnet",
 			type: "test",
 			name: "ARK Devnet",
 			explorer: "https://dexplorer.ark.io/",
@@ -42,7 +42,7 @@ export const manifest = {
 			},
 		},
 		"compendia.mainnet": {
-			id: "mainnet",
+			id: "compendia.mainnet",
 			type: "test",
 			name: "Compendia - Mainnet",
 			explorer: "https://bindscan.io/",

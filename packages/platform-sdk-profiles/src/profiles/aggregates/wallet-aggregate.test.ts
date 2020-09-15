@@ -33,7 +33,7 @@ beforeAll(() => {
 beforeEach(async () => {
 	const profile = new Profile("uuid");
 
-	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "devnet");
+	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
 	subject = new WalletAggregate(profile);
 });

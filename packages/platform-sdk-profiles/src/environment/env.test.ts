@@ -72,7 +72,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	profile.contacts().create("Jane Doe");
 
 	// Create a Wallet
-	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "devnet");
+	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
 	// Create a Notification
 	profile.notifications().push({
@@ -148,5 +148,5 @@ it("should get a list of used coins and networks", async () => {
 	await env.verify(storageData);
 	await env.boot();
 
-	expect(env.usedCoinsWithNetworks()).toEqual({ ARK: ["devnet"] });
+	expect(env.usedCoinsWithNetworks()).toEqual({ ARK: ["ark.devnet"] });
 });

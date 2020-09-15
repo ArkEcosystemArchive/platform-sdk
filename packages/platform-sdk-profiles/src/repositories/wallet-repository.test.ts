@@ -43,7 +43,7 @@ beforeEach(async () => {
 
 	subject = new WalletRepository(profile);
 
-	await subject.importByMnemonic(identity.mnemonic, "ARK", "devnet");
+	await subject.importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 });
 
 beforeAll(() => nock.disableNetConnect());
@@ -62,11 +62,11 @@ test("#importByMnemonic", async () => {
 
 	expect(subject.keys()).toHaveLength(0);
 
-	await subject.importByMnemonic(identity.mnemonic, "ARK", "devnet");
+	await subject.importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
 	expect(subject.keys()).toHaveLength(1);
 
-	await expect(subject.importByMnemonic(identity.mnemonic, "ARK", "devnet")).rejects.toThrowError("already exists");
+	await expect(subject.importByMnemonic(identity.mnemonic, "ARK", "ark.devnet")).rejects.toThrowError("already exists");
 
 	expect(subject.keys()).toHaveLength(1);
 });
@@ -76,11 +76,11 @@ test("#importByAddress", async () => {
 
 	expect(subject.keys()).toHaveLength(0);
 
-	await subject.importByAddress(identity.address, "ARK", "devnet");
+	await subject.importByAddress(identity.address, "ARK", "ark.devnet");
 
 	expect(subject.keys()).toHaveLength(1);
 
-	await expect(subject.importByAddress(identity.address, "ARK", "devnet")).rejects.toThrowError("already exists");
+	await expect(subject.importByAddress(identity.address, "ARK", "ark.devnet")).rejects.toThrowError("already exists");
 
 	expect(subject.keys()).toHaveLength(1);
 });
@@ -88,7 +88,7 @@ test("#importByAddress", async () => {
 test("#generate", async () => {
 	subject.flush();
 
-	const wallet = await subject.generate("ARK", "devnet");
+	const wallet = await subject.generate("ARK", "ark.devnet");
 
 	expect(wallet.mnemonic).toBeString();
 	expect(wallet.wallet).toBeInstanceOf(Wallet);
@@ -109,13 +109,13 @@ test("#findByCoin", () => {
 test("#update", async () => {
 	expect(() => subject.update("invalid", { alias: "My Wallet" })).toThrowError("Failed to find");
 
-	const wallet = (await subject.generate("ARK", "devnet")).wallet;
+	const wallet = (await subject.generate("ARK", "ark.devnet")).wallet;
 
 	await subject.update(wallet.id(), { alias: "My New Wallet" });
 
 	expect(subject.findById(wallet.id()).alias()).toEqual("My New Wallet");
 
-	const newWallet = (await subject.generate("ARK", "devnet")).wallet;
+	const newWallet = (await subject.generate("ARK", "ark.devnet")).wallet;
 
 	expect(() => subject.update(newWallet.id(), { alias: "My New Wallet" })).toThrowError(
 		"The wallet with alias [My New Wallet] already exists.",
@@ -130,7 +130,7 @@ describe("#sortBy", () => {
 	beforeEach(async () => {
 		subject.flush();
 
-		walletARK = await subject.importByMnemonic("a", "ARK", "devnet");
+		walletARK = await subject.importByMnemonic("a", "ARK", "ark.devnet");
 		walletBTC = await subject.importByMnemonic("b", "BTC", "testnet");
 		walletETH = await subject.importByMnemonic("c", "ETH", "mainnet");
 	});

@@ -15,7 +15,7 @@ import { CoinService } from "../environment/services/coin-service";
 let subject: ContactRepository;
 
 const name = "John Doe";
-const addr = { name: "JDB", coin: "ARK", network: "devnet", address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib" };
+const addr = { name: "JDB", coin: "ARK", network: "ark.devnet", address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib" };
 
 beforeEach(async () => {
 	nock.cleanAll();
@@ -40,7 +40,7 @@ beforeEach(async () => {
 	const profile = new Profile("profile-id");
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "devnet");
+	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
 	subject = new ContactRepository(profile);
 

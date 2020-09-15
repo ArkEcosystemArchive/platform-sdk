@@ -37,19 +37,19 @@ beforeAll(() => {
 beforeEach(() => (subject = new DelegateService()));
 
 it("should sync the delegates", async () => {
-	expect(() => subject.all("ARK", "devnet")).toThrowError("have not been synchronized yet");
+	expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
-	await subject.sync("ARK", "devnet");
+	await subject.sync("ARK", "ark.devnet");
 
-	expect(subject.all("ARK", "devnet")).toBeArray();
-	expect(subject.all("ARK", "devnet")).toHaveLength(200);
+	expect(subject.all("ARK", "ark.devnet")).toBeArray();
+	expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
 });
 
 it("should sync the delegates of all coins", async () => {
-	expect(() => subject.all("ARK", "devnet")).toThrowError("have not been synchronized yet");
+	expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
 	await subject.syncAll();
 
-	expect(subject.all("ARK", "devnet")).toBeArray();
-	expect(subject.all("ARK", "devnet")).toHaveLength(200);
+	expect(subject.all("ARK", "ark.devnet")).toBeArray();
+	expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
 });

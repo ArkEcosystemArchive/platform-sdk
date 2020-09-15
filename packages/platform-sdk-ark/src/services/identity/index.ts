@@ -15,7 +15,9 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<IdentityService> {
-		Managers.configManager.setFromPreset(config.get<Coins.CoinNetwork>("network").id as any);
+		const network: string = config.get<Coins.CoinNetwork>("network").id.split(".")[1];
+
+		Managers.configManager.setFromPreset(network as any);
 
 		return new IdentityService(config);
 	}
