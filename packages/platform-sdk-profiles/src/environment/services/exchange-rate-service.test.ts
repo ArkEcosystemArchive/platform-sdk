@@ -46,7 +46,7 @@ beforeEach(async () => {
 	container.set(Identifiers.ProfileRepository, profileRepository);
 
 	profile = profileRepository.create("John Doe");
-	wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "devnet");
+	wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
 	subject = new ExchangeRateService();
 });
@@ -77,7 +77,14 @@ describe("#syncCoinByProfile", () => {
 			.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
 			.persist();
 
-		await subject.syncCoinByProfile(profile, "DARK", profile.wallets().values().filter((wallet: ReadWriteWallet) => wallet.currency() === "DARK"));
+		await subject.syncCoinByProfile(
+			profile,
+			"DARK",
+			profile
+				.wallets()
+				.values()
+				.filter((wallet: ReadWriteWallet) => wallet.currency() === "DARK"),
+		);
 
 		expect(wallet.data().get(WalletData.ExchangeRate)).toBe(0.00005048);
 	});

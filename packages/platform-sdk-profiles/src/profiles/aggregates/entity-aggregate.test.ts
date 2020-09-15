@@ -34,7 +34,7 @@ beforeEach(async () => {
 	profile = new Profile("uuid");
 	const address = "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb";
 
-	await profile.wallets().importByAddress(address, "ARK", "devnet");
+	await profile.wallets().importByAddress(address, "ARK", "ark.devnet");
 });
 
 afterAll(() => nock.enableNetConnect());

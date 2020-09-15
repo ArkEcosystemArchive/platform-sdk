@@ -36,9 +36,9 @@
 					"coin": "ARK",
 					"coinConfig": {
 						"network": {
-							"id": "devnet",
+							"id": "ark.devnet",
 							"type": "test",
-							"name": "Devnet",
+							"name": "ARK Devnet",
 							"explorer": "https://dexplorer.ark.io/",
 							"currency": {
 								"ticker": "DARK",
@@ -63,7 +63,7 @@
 							}
 						}
 					},
-					"network": "devnet",
+					"network": "ark.devnet",
 					"address": "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 					"publicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
 					"data": {

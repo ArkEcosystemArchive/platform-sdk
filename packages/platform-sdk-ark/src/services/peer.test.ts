@@ -20,7 +20,7 @@ describe("PeerService", () => {
 				await expect(
 					PeerService.construct(
 						createConfig({
-							network: "mainnet",
+							network: "ark.mainnet",
 							peer: "http://127.0.0.1/api",
 						}),
 					),

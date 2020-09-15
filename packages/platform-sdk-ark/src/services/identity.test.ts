@@ -48,7 +48,7 @@ describe("IdentityService", () => {
 				.thrice()
 				.reply(200, require(`${__dirname}/../../test/fixtures/identity/neo-duplicate.json`));
 
-			subject = await IdentityService.construct(createConfig({ network: "mainnet" }));
+			subject = await IdentityService.construct(createConfig({ network: "ark.mainnet" }));
 
 			await expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).rejects.toThrow(
 				"This address exists on the NEO Mainnet.",

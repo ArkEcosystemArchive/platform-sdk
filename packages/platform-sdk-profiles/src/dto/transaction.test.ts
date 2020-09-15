@@ -44,7 +44,7 @@ beforeAll(async () => {
 
 	wallet = new Wallet(uuidv4(), profile);
 
-	await wallet.setCoin("ARK", "devnet");
+	await wallet.setCoin("ARK", "ark.devnet");
 	await wallet.setIdentity(identity.mnemonic);
 });
 

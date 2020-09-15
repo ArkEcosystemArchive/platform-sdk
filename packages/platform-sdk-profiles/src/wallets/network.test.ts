@@ -7,15 +7,15 @@ import { NetworkData } from "./network";
 let subject: NetworkData;
 
 beforeEach(() => {
-	subject = new NetworkData("ARK", ARK.manifest.networks.devnet);
+	subject = new NetworkData("ARK", ARK.manifest.networks["ark.devnet"]);
 });
 
 it("should have an id", () => {
-	expect(subject.id()).toBe("devnet");
+	expect(subject.id()).toBe("ark.devnet");
 });
 
 it("should have a name", () => {
-	expect(subject.name()).toBe("Devnet");
+	expect(subject.name()).toBe("ARK Devnet");
 });
 
 it("should have an explorer", () => {
@@ -50,8 +50,8 @@ it("should have an toObject", () => {
 		explorer: "https://dexplorer.ark.io/",
 		hosts: ["https://dwallets.ark.io"],
 		hostsMultiSignature: [],
-		id: "devnet",
-		name: "Devnet",
+		id: "ark.devnet",
+		name: "ARK Devnet",
 		type: "test",
 		voting: {
 			enabled: true,

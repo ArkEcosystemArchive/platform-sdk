@@ -1,10 +1,10 @@
 export const manifest = {
 	name: "ARK",
 	networks: {
-		mainnet: {
-			id: "mainnet",
+		"ark.mainnet": {
+			id: "ark.mainnet",
 			type: "live",
-			name: "Mainnet",
+			name: "ARK Mainnet",
 			explorer: "https://explorer.ark.io/",
 			currency: {
 				ticker: "ARK",
@@ -21,10 +21,10 @@ export const manifest = {
 				maximumPerTransaction: 1,
 			},
 		},
-		devnet: {
-			id: "devnet",
+		"ark.devnet": {
+			id: "ark.devnet",
 			type: "test",
-			name: "Devnet",
+			name: "ARK Devnet",
 			explorer: "https://dexplorer.ark.io/",
 			currency: {
 				ticker: "DARK",
@@ -34,6 +34,26 @@ export const manifest = {
 				slip44: 111,
 			},
 			hosts: ["https://dwallets.ark.io"],
+			hostsMultiSignature: [],
+			voting: {
+				enabled: true,
+				maximum: 1,
+				maximumPerTransaction: 1,
+			},
+		},
+		"compendia.mainnet": {
+			id: "compendia.mainnet",
+			type: "test",
+			name: "Compendia - Mainnet",
+			explorer: "https://bindscan.io/",
+			currency: {
+				ticker: "BIND",
+				symbol: "ß",
+			},
+			crypto: {
+				slip44: 543,
+			},
+			hosts: ["https://apis.compendia.org"],
 			hostsMultiSignature: [],
 			voting: {
 				enabled: true,

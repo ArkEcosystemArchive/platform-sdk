@@ -48,7 +48,7 @@ beforeEach(async () => {
 
 	subject = new Wallet(uuidv4(), profile);
 
-	await subject.setCoin("ARK", "devnet");
+	await subject.setCoin("ARK", "ark.devnet");
 	await subject.setIdentity(identity.mnemonic);
 });
 
@@ -65,8 +65,8 @@ it("should have a network", () => {
 		explorer: "https://dexplorer.ark.io/",
 		hosts: ["https://dwallets.ark.io"],
 		hostsMultiSignature: [],
-		id: "devnet",
-		name: "Devnet",
+		id: "ark.devnet",
+		name: "ARK Devnet",
 		type: "test",
 		voting: {
 			enabled: true,
@@ -172,9 +172,9 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 				explorer: "https://dexplorer.ark.io/",
 				hosts: ["https://dwallets.ark.io"],
 				hostsMultiSignature: [],
-				id: "devnet",
+				id: "ark.devnet",
 				type: "test",
-				name: "Devnet",
+				name: "ARK Devnet",
 				voting: {
 					enabled: true,
 					maximum: 1,
@@ -182,7 +182,7 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 				},
 			},
 		});
-		expect(actual.network).toBe("devnet");
+		expect(actual.network).toBe("ark.devnet");
 		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 		expect(actual.data).toEqual({
 			BALANCE: "55827093444556",

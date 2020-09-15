@@ -1,6 +1,6 @@
 import { Coins } from "@arkecosystem/platform-sdk";
-import { DataRepository } from "../../repositories/data-repository";
 
+import { DataRepository } from "../../repositories/data-repository";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
 
@@ -19,7 +19,17 @@ export class CoinService {
 		const result: Record<string, string[]> = {};
 
 		for (const [coin, networks] of Object.entries(this.all())) {
-			result[coin] = Object.keys(networks);
+			result[coin] = [];
+
+			for (const [network, children] of Object.entries(networks)) {
+				if (children !== undefined) {
+					for (const child of Object.keys(children)) {
+						result[coin].push(`${network}.${child}`);
+					}
+				} else {
+					result[coin].push(network);
+				}
+			}
 		}
 
 		return Object.entries(result);
