@@ -61,10 +61,10 @@ export const manifest = {
 				maximumPerTransaction: 1,
 			},
 		},
-		"compendia.devnet": {
-			id: "devnet",
+		"compendia.testnet": {
+			id: "testnet",
 			type: "test",
-			name: "Compendia - Devnet",
+			name: "Compendia - Testnet",
 			explorer: "https://testnet.bindscan.io/",
 			currency: {
 				ticker: "TBIND",
