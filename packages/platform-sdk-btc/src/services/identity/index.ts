@@ -10,7 +10,7 @@ export class IdentityService implements Contracts.IdentityService {
 	readonly #network: string;
 
 	private constructor(network: Coins.CoinNetwork) {
-		this.#network = network.id;
+		this.#network = network.id.split(".")[1];
 	}
 
 	public static async construct(config: Coins.Config): Promise<IdentityService> {
