@@ -5,7 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 0.9.359 - 2020-09-15
+## 0.9.361 - 2020-09-16
+
+### Changed
+
+-   Configure identity service through network (8cced2fe, @faustbrian)
+-   Prefix networks with the token name for unique IDs (2941d474, @faustbrian)
+
+## 0.9.359 - 2020-09-16
 
 ### Changed
 
