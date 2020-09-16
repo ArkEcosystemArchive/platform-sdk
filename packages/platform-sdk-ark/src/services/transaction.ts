@@ -10,6 +10,7 @@ import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { SignedTransactionData } from "../dto/signed-transaction";
+import { retrieveCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
 
 Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.EntityTransaction);
@@ -36,23 +37,10 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
-		const http: Contracts.HttpClient = config.get<Contracts.HttpClient>("httpClient");
-
-		let peer: string;
-		try {
-			peer = config.get<string>("peer");
-		} catch {
-			peer = `${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`;
-		}
-
-		const crypto: any = (await http.get(`${peer}/node/configuration/crypto`)).json();
-		Managers.configManager.setConfig(crypto.data);
-
-		const status: any = (await http.get(`${peer}/node/syncing`)).json();
-		Managers.configManager.setHeight(status.data.height);
+		const { crypto, peer, status } = await retrieveCryptoConfiguration(config);
 
 		return new TransactionService({
-			http,
+			http: config.get<Contracts.HttpClient>("httpClient"),
 			peer,
 			identity: await IdentityService.construct(config),
 			multiSignatureSigner: new MultiSignatureSigner(crypto.data, status.data.height),
