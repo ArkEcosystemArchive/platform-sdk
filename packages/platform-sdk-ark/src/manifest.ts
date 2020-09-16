@@ -62,7 +62,7 @@ export const manifest = {
 			},
 		},
 		"compendia.testnet": {
-			id: "testnet",
+			id: "compendia.testnet",
 			type: "test",
 			name: "Compendia - Testnet",
 			explorer: "https://testnet.bindscan.io/",
