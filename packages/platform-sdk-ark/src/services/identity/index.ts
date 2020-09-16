@@ -1,5 +1,6 @@
 import { Managers } from "@arkecosystem/crypto";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { retrieveCryptoConfiguration } from "../helpers";
 
 import { Address } from "./address";
 import { Keys } from "./keys";
@@ -15,9 +16,7 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<IdentityService> {
-		const network: string = config.get<Coins.CoinNetwork>("network").id.split(".")[1];
-
-		Managers.configManager.setFromPreset(network as any);
+		await retrieveCryptoConfiguration(config);
 
 		return new IdentityService(config);
 	}
