@@ -1,8 +1,8 @@
 export const manifest = {
 	name: "LSK",
 	networks: {
-		mainnet: {
-			id: "mainnet",
+		"lsk.mainnet": {
+			id: "lsk.mainnet",
 			type: "live",
 			name: "Mainnet",
 			explorer: "https://explorer.lisk.io/",
@@ -39,8 +39,8 @@ export const manifest = {
 				maximumPerTransaction: 33,
 			},
 		},
-		testnet: {
-			id: "testnet",
+		"lsk.testnet": {
+			id: "lsk.testnet",
 			type: "test",
 			name: "Testnet",
 			explorer: "https://testnet-explorer.lisk.io/",
@@ -60,8 +60,8 @@ export const manifest = {
 				maximumPerTransaction: 33,
 			},
 		},
-		// betanet: {
-		// 	id: "betanet",
+		// 'lsk.betanet': {
+		// 	id: "lsk.betanet",
 		// 	type: "test",
 		// 	name: "Betanet",
 		// 	explorer: "https://betanet-explorer.lisk.io/",

@@ -6,11 +6,11 @@ import { schema } from "../src/schema";
 
 export const createConfig = (options?: object) => {
 	const config = new Coins.Config(
-		{ ...(options || { network: "livenet" }), ...{ httpClient: new Request() } },
+		{ ...(options || { network: "btc.livenet" }), ...{ httpClient: new Request() } },
 		schema,
 	);
 
-	config.set("network", manifest.networks.livenet);
+	config.set("network", manifest.networks["btc.livenet"]);
 
 	return config;
 };

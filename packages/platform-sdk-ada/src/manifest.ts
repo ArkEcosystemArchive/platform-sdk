@@ -1,8 +1,8 @@
 export const manifest = {
 	name: "Cardano",
 	networks: {
-		mainnet: {
-			id: "mainnet",
+		"ada.mainnet": {
+			id: "ada.mainnet",
 			type: "live",
 			name: "Mainnet",
 			explorer: "https://explorer.cardano.org/",
@@ -21,8 +21,8 @@ export const manifest = {
 				maximumPerTransaction: 0,
 			},
 		},
-		testnet: {
-			id: "testnet",
+		"ada.testnet": {
+			id: "ada.testnet",
 			type: "test",
 			name: "Testnet",
 			explorer: "https://shelleyexplorer.cardano.org/",

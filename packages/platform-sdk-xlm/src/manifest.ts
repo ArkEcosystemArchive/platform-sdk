@@ -1,8 +1,8 @@
 export const manifest = {
 	name: "XLM",
 	networks: {
-		mainnet: {
-			id: "mainnet",
+		"xlm.mainnet": {
+			id: "xlm.mainnet",
 			type: "live",
 			name: "Mainnet",
 			explorer: "https://steexp.com/",
@@ -21,8 +21,8 @@ export const manifest = {
 				maximumPerTransaction: 0,
 			},
 		},
-		testnet: {
-			id: "testnet",
+		"xlm.testnet": {
+			id: "xlm.testnet",
 			type: "test",
 			name: "Testnet",
 			explorer: "https://testnet.steexp.com/",

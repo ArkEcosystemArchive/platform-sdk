@@ -1,8 +1,8 @@
 export const manifest = {
 	name: "NEO",
 	networks: {
-		mainnet: {
-			id: "mainnet",
+		"neo.mainnet": {
+			id: "neo.mainnet",
 			type: "live",
 			name: "Mainnet",
 			explorer: "https://neotracker.io/",
@@ -42,8 +42,8 @@ export const manifest = {
 				maximumPerTransaction: 0,
 			},
 		},
-		testnet: {
-			id: "testnet",
+		"neo.testnet": {
+			id: "neo.testnet",
 			type: "test",
 			name: "Testnet",
 			explorer: "https://neoscan-testnet.io/",

@@ -1,8 +1,8 @@
 export const manifest = {
 	name: "TRX",
 	networks: {
-		mainnet: {
-			id: "mainnet",
+		"trx.mainnet": {
+			id: "trx.mainnet",
 			type: "live",
 			name: "Mainnet",
 			explorer: "https://tronscan.org/#/",
@@ -21,8 +21,8 @@ export const manifest = {
 				maximumPerTransaction: 0,
 			},
 		},
-		testnet: {
-			id: "testnet",
+		"trx.testnet": {
+			id: "trx.testnet",
 			type: "test",
 			name: "Testnet",
 			explorer: "https://shasta.tronscan.org/#/",

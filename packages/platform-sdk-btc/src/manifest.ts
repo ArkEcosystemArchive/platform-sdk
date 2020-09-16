@@ -1,8 +1,8 @@
 export const manifest = {
 	name: "BTC",
 	networks: {
-		livenet: {
-			id: "livenet",
+		"btc.livenet": {
+			id: "btc.livenet",
 			type: "live",
 			name: "Livenet",
 			explorer: "https://blockstream.info/",
@@ -21,8 +21,8 @@ export const manifest = {
 				maximumPerTransaction: 0,
 			},
 		},
-		testnet: {
-			id: "testnet",
+		"btc.testnet": {
+			id: "btc.testnet",
 			type: "test",
 			name: "Testnet",
 			explorer: "https://blockstream.info/testnet/",

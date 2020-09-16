@@ -1,8 +1,8 @@
 export const manifest = {
 	name: "XRP",
 	networks: {
-		mainnet: {
-			id: "mainnet",
+		"xrp.mainnet": {
+			id: "xrp.mainnet",
 			type: "live",
 			name: "Mainnet",
 			explorer: "https://livenet.xrpl.org/",
@@ -21,8 +21,8 @@ export const manifest = {
 				maximumPerTransaction: 0,
 			},
 		},
-		testnet: {
-			id: "testnet",
+		"xrp.testnet": {
+			id: "xrp.testnet",
 			type: "test",
 			name: "Testnet",
 			explorer: "https://testnet.xrpl.org/",

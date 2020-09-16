@@ -6,12 +6,12 @@ import { schema } from "../src/schema";
 
 export const createConfig = (options?: object) => {
 	const config = new Coins.Config(
-		{ ...(options || { network: "testnet" }), ...{ httpClient: new Request() } },
+		{ ...(options || { network: "neo.testnet" }), ...{ httpClient: new Request() } },
 		schema,
 	);
 
 	// @ts-ignore
-	config.set("network", manifest.networks[options?.network || "testnet"]);
+	config.set("network", manifest.networks[options?.network || "neo.testnet"]);
 
 	return config;
 };

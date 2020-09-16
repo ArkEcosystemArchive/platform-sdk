@@ -6,11 +6,11 @@ import { schema } from "../src/schema";
 
 export const createConfig = (options?: object) => {
 	const config = new Coins.Config(
-		{ ...(options || { network: "mainnet" }), ...{ httpClient: new Request() } },
+		{ ...(options || { network: "eth.mainnet" }), ...{ httpClient: new Request() } },
 		schema,
 	);
 
-	config.set("network", manifest.networks.mainnet);
+	config.set("network", manifest.networks["eth.mainnet"]);
 
 	return config;
 };
