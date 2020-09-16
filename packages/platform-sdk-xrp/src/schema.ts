@@ -1,7 +1,7 @@
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
 export const schema = ValidatorSchema.object().shape({
-	network: ValidatorSchema.string().oneOf(["mainnet", "testnet"]),
+	network: ValidatorSchema.string().oneOf(["xrp.mainnet", "xrp.testnet"]),
 	peer: ValidatorSchema.string().notRequired(),
 	httpClient: ValidatorSchema.object(),
 	services: ValidatorSchema.object()

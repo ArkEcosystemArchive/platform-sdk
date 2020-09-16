@@ -66,7 +66,9 @@ test("#importByMnemonic", async () => {
 
 	expect(subject.keys()).toHaveLength(1);
 
-	await expect(subject.importByMnemonic(identity.mnemonic, "ARK", "ark.devnet")).rejects.toThrowError("already exists");
+	await expect(subject.importByMnemonic(identity.mnemonic, "ARK", "ark.devnet")).rejects.toThrowError(
+		"already exists",
+	);
 
 	expect(subject.keys()).toHaveLength(1);
 });
@@ -131,8 +133,8 @@ describe("#sortBy", () => {
 		subject.flush();
 
 		walletARK = await subject.importByMnemonic("a", "ARK", "ark.devnet");
-		walletBTC = await subject.importByMnemonic("b", "BTC", "testnet");
-		walletETH = await subject.importByMnemonic("c", "ETH", "mainnet");
+		walletBTC = await subject.importByMnemonic("b", "BTC", "btc.testnet");
+		walletETH = await subject.importByMnemonic("c", "ETH", "eth.mainnet");
 	});
 
 	it("should sort by coin", async () => {

@@ -1,8 +1,8 @@
 export const manifest = {
 	name: "ETH",
 	networks: {
-		mainnet: {
-			id: "mainnet",
+		"eth.mainnet": {
+			id: "eth.mainnet",
 			type: "live",
 			name: "Mainnet",
 			explorer: "https://etherscan.io/",
@@ -22,8 +22,8 @@ export const manifest = {
 				maximumPerTransaction: 0,
 			},
 		},
-		// kovan: {
-		// 	id: "kovan",
+		// 'eth.kovan': {
+		// 	id: "eth.kovan",
 		// 	type: "test",
 		// 	name: "Kovan",
 		// 	explorer: "https://kovan.etherscan.io/",
@@ -43,8 +43,8 @@ export const manifest = {
 		// 		maximumPerTransaction: 0,
 		// 	},
 		// },
-		// ropsten: {
-		// 	id: "ropsten",
+		// 'eth.ropsten': {
+		// 	id: "eth.ropsten",
 		// 	type: "test",
 		// 	name: "Ropsten",
 		// 	explorer: "https://ropsten.etherscan.io/",
@@ -64,8 +64,8 @@ export const manifest = {
 		// 		maximumPerTransaction: 0,
 		// 	},
 		// },
-		// rinkeby: {
-		// 	id: "rinkeby",
+		// 'eth.rinkeby': {
+		// 	id: "eth.rinkeby",
 		// 	type: "test",
 		// 	name: "Rinkeby",
 		// 	explorer: "https://rinkeby.etherscan.io/",
@@ -85,8 +85,8 @@ export const manifest = {
 		// 		maximumPerTransaction: 0,
 		// 	},
 		// },
-		// goerli: {
-		// 	id: "goerli",
+		// 'eth.goerli': {
+		// 	id: "eth.goerli",
 		// 	type: "test",
 		// 	name: "Goerli",
 		// 	explorer: "https://goerli.etherscan.io/",

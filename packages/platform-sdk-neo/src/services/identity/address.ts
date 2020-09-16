@@ -47,7 +47,7 @@ export class Address implements Contracts.Address {
 
 	public async validate(address: string): Promise<boolean> {
 		try {
-			if (this.#config.get("network.id") === "mainnet") {
+			if (this.#config.get("network.id") === "neo.mainnet") {
 				let response;
 
 				try {

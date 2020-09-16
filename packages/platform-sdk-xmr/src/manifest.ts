@@ -1,8 +1,8 @@
 export const manifest = {
 	name: "XMR",
 	networks: {
-		mainnet: {
-			id: "mainnet",
+		"xmr.mainnet": {
+			id: "xmr.mainnet",
 			type: "live",
 			name: "Mainnet",
 			explorer: "https://moneroblocks.info/",
@@ -21,8 +21,8 @@ export const manifest = {
 				maximumPerTransaction: 0,
 			},
 		},
-		testnet: {
-			id: "testnet",
+		"xmr.testnet": {
+			id: "xmr.testnet",
 			type: "test",
 			name: "Testnet",
 			explorer: "https://dexplorer.ark.io/",

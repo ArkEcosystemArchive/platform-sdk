@@ -20,7 +20,7 @@ export class TransactionService implements Contracts.TransactionService {
 	};
 
 	private constructor(options) {
-		const network = this.#networks[options.network.id];
+		const network = this.#networks[options.network.id.split(".")[1]];
 
 		this.#client = new Stellar.Server(network.host);
 		this.#networkPassphrase = network.networkPassphrase;
