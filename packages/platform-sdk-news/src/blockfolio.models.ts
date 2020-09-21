@@ -1,8 +1,15 @@
+export enum BlockfolioSignalCategory {
+	Technical = "Technical",
+	Marketing = "Marketing",
+	Community = "Community",
+	Emergency = "Emergency",
+}
+
 export interface BlockfolioSignal {
 	id: number;
 	text: string;
 	links: string[];
-	category: string;
+	category: BlockfolioSignalCategory;
 	author: { title: string; name: string; team: string };
 	is_featured: boolean;
 	created_at: string;
