@@ -284,31 +284,6 @@ export class TransactionService {
 	}
 
 	/**
-	 * Broadcast the given ID.
-	 *
-	 * @param {string} id
-	 * @returns {Promise<void>}
-	 * @memberof TransactionService
-	 */
-	public async broadcast(id: string): Promise<void> {
-		this.assertHasValidIdentifier(id);
-
-		const transaction: Contracts.SignedTransactionData = this.transaction(id);
-
-		if (this.canBeBroadcasted(id)) {
-			const { accepted } = await this.#wallet.client().broadcast([transaction]);
-
-			if (!accepted || !accepted.length || !accepted.includes(id)) {
-				return;
-			}
-		} else if (transaction.isMultiSignature() || transaction.isMultiSignatureRegistration()) {
-			await this.#wallet.coin().multiSignature().broadcast(transaction.data());
-		}
-
-		this.#broadcasted[id] = this.#signed[id];
-	}
-
-	/**
 	 * Get the transaction for the given ID if it is exists with any valid state.
 	 *
 	 * @param {string} id
@@ -485,6 +460,37 @@ export class TransactionService {
 		this.assertHasValidIdentifier(id);
 
 		return this.#signed[id] !== undefined;
+	}
+
+	/**
+	 * Broadcast the given ID.
+	 *
+	 * @param {string} id
+	 * @returns {Promise<Contracts.BroadcastResponse>}
+	 * @memberof TransactionService
+	 */
+	public async broadcast(id: string): Promise<Contracts.BroadcastResponse> {
+		let result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
+		this.assertHasValidIdentifier(id);
+
+		const transaction: Contracts.SignedTransactionData = this.transaction(id);
+
+		if (this.canBeBroadcasted(id)) {
+			result = await this.#wallet.client().broadcast([transaction]);
+		} else if (transaction.isMultiSignature() || transaction.isMultiSignatureRegistration()) {
+			result.accepted.push(await this.#wallet.coin().multiSignature().broadcast(transaction.data()));
+		}
+
+		if (result.accepted.includes(id)) {
+			this.#broadcasted[id] = this.#signed[id];
+		}
+
+		return result;
 	}
 
 	/**
