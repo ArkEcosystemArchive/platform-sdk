@@ -208,7 +208,7 @@ export class TransactionService implements Contracts.TransactionService {
 				subType: data.subType,
 				action: Enums.EntityAction.Update,
 				registrationId: data.registrationId,
-				data: { name: data.name, ipfsData: data.ipfs },
+				data: { ipfsData: data.ipfs },
 			}),
 		);
 	}

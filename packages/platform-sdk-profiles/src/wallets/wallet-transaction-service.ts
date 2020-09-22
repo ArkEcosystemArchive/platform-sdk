@@ -470,15 +470,15 @@ export class TransactionService {
 	 * @memberof TransactionService
 	 */
 	public async broadcast(id: string): Promise<Contracts.BroadcastResponse> {
+		this.assertHasValidIdentifier(id);
+
+		const transaction: Contracts.SignedTransactionData = this.transaction(id);
+
 		let result: Contracts.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
 			errors: {},
 		};
-
-		this.assertHasValidIdentifier(id);
-
-		const transaction: Contracts.SignedTransactionData = this.transaction(id);
 
 		if (this.canBeBroadcasted(id)) {
 			result = await this.#wallet.client().broadcast([transaction]);
