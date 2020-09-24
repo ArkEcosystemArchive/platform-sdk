@@ -4,14 +4,75 @@ import { NotificationRepository } from "./notification-repository";
 
 let subject: NotificationRepository;
 
-const stubNotification = {
-	icon: "warning",
-	name: "Ledger Update Available",
-	body: "...",
-	action: "Read Changelog",
-};
+const stubNotifications = [
+	{
+		icon: "warning",
+		name: "Ledger Update Available",
+		body: "...",
+		action: "Read Changelog",
+	},
+	{
+		icon: "warning",
+		name: "Ledger Update Available",
+		body: "...",
+		action: "Read Changelog",
+	},
+];
+
+const stubNotification = stubNotifications[0];
 
 beforeEach(() => (subject = new NotificationRepository()));
+
+test("#all", () => {
+	expect(subject.keys()).toHaveLength(0);
+
+	stubNotifications.forEach((n) => subject.push(n));
+	expect(Object.keys(subject.all())).toHaveLength(2);
+});
+
+test("#first", () => {
+	expect(subject.keys()).toHaveLength(0);
+
+	stubNotifications.forEach((n) => subject.push(n));
+
+	expect(subject.keys()).toHaveLength(2);
+	expect(subject.first().name).toEqual(stubNotification.name);
+});
+
+test("#last", () => {
+	expect(subject.keys()).toHaveLength(0);
+
+	stubNotifications.forEach((n) => subject.push(n));
+
+	expect(subject.keys()).toHaveLength(2);
+	expect(subject.last().name).toEqual(stubNotifications[1].name);
+});
+
+test("#keys", () => {
+	expect(subject.keys()).toHaveLength(0);
+
+	stubNotifications.forEach((n) => subject.push(n));
+	const keys = Object.keys(subject.all());
+
+	expect(subject.keys()).toEqual(keys);
+});
+
+test("#values", () => {
+	expect(subject.keys()).toHaveLength(0);
+
+	stubNotifications.forEach((n) => subject.push(n));
+	const values = Object.keys(subject.all()).map((id) => subject.get(id));
+
+	expect(subject.values()).toEqual(values);
+});
+
+test("#get", () => {
+	expect(() => subject.get("invalid")).toThrowError("Failed to find");
+
+	const notification = subject.push(stubNotification);
+
+	expect(subject.get(notification.id)).toBeObject();
+});
 
 test("#push", () => {
 	expect(subject.keys()).toHaveLength(0);
@@ -25,12 +86,14 @@ test("#push", () => {
 	expect(subject.keys()).toHaveLength(2);
 });
 
-test("#get", () => {
-	expect(() => subject.get("invalid")).toThrowError("Failed to find");
+test("#fill", () => {
+	expect(subject.keys()).toHaveLength(0);
 
-	const notification = subject.push(stubNotification);
+	stubNotifications.forEach((n) => subject.push(n));
+	const first = subject.first();
+	subject.fill(Object.assign(first, { name: "updated name" }));
 
-	expect(subject.get(notification.id)).toBeObject();
+	expect(subject.first().name).toEqual("updated name");
 });
 
 test("#has", () => {
@@ -64,10 +127,40 @@ test("#flush", () => {
 	expect(subject.keys()).toHaveLength(0);
 });
 
+test("#count", () => {
+	expect(subject.keys()).toHaveLength(0);
+
+	stubNotifications.forEach((n) => subject.push(n));
+
+	expect(subject.count()).toEqual(stubNotifications.length);
+});
+
 test("marks notifications as read and filters them", () => {
 	subject.push(stubNotification);
 	subject.markAsRead(subject.push(stubNotification).id);
 
 	expect(subject.read()).toHaveLength(1);
 	expect(subject.unread()).toHaveLength(1);
+});
+
+test("#read", () => {
+	expect(subject.keys()).toHaveLength(0);
+
+	stubNotifications.forEach((n) => subject.push(n));
+	subject.markAsRead(subject.first().id);
+
+	expect(subject.unread()).toHaveLength(1);
+	expect(subject.first().read_at).toBeTruthy();
+});
+
+test("#unread", () => {
+	expect(subject.keys()).toHaveLength(0);
+
+	stubNotifications.forEach((n) => subject.push(n));
+	subject.markAsRead(subject.first().id);
+
+	expect(subject.unread()).toHaveLength(1);
+	expect(subject.first().read_at).toBeTruthy();
+
+	expect(subject.last().read_at).toBeUndefined();
 });

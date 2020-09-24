@@ -1,17 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
+import { Except } from "type-fest";
 
 import { DataRepository } from "./data-repository";
 
 interface Notification {
+	id: string;
 	icon: string;
 	name: string;
 	body: string;
 	action: string;
 	read_at?: number;
-}
-
-interface NotificationWithId extends Notification {
-	id: string;
 }
 
 export class NotificationRepository {
@@ -37,8 +35,8 @@ export class NotificationRepository {
 		return this.#data.values();
 	}
 
-	public get(key: string): NotificationWithId {
-		const notification: NotificationWithId | undefined = this.#data.get(key);
+	public get(key: string): Notification {
+		const notification: Notification | undefined = this.#data.get(key);
 
 		if (!notification) {
 			throw new Error(`Failed to find a notification that matches [${key}].`);
@@ -47,7 +45,7 @@ export class NotificationRepository {
 		return notification;
 	}
 
-	public push(value: Notification): NotificationWithId {
+	public push(value: Except<Notification, "id">): Notification {
 		const id: string = uuidv4();
 
 		this.#data.set(id, { id, ...value });
@@ -81,11 +79,11 @@ export class NotificationRepository {
 	 * Convenience methods to interact with notifications states.
 	 */
 
-	public read(): object {
+	public read(): Notification[] {
 		return this.values().filter((notification: Notification) => notification.read_at !== undefined);
 	}
 
-	public unread(): object {
+	public unread(): Notification[] {
 		return this.values().filter((notification: Notification) => notification.read_at === undefined);
 	}
 
