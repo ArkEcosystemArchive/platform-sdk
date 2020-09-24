@@ -81,11 +81,11 @@ export class NotificationRepository {
 	 * Convenience methods to interact with notifications states.
 	 */
 
-	public read(): object {
+	public read(): NotificationWithId[] {
 		return this.values().filter((notification: Notification) => notification.read_at !== undefined);
 	}
 
-	public unread(): object {
+	public unread(): NotificationWithId[] {
 		return this.values().filter((notification: Notification) => notification.read_at === undefined);
 	}
 
