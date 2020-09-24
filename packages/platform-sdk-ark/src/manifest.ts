@@ -14,7 +14,7 @@ export const manifest = {
 				slip44: 111,
 			},
 			hosts: ["https://wallets.ark.io"],
-			hostsMultiSignature: [],
+			hostsMultiSignature: ["https://musig1.ark.io"],
 			voting: {
 				enabled: true,
 				maximum: 1,
@@ -34,7 +34,7 @@ export const manifest = {
 				slip44: 111,
 			},
 			hosts: ["https://dwallets.ark.io"],
-			hostsMultiSignature: [],
+			hostsMultiSignature: ["https://dmusig1.ark.io"],
 			voting: {
 				enabled: true,
 				maximum: 1,
