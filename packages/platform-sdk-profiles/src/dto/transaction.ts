@@ -233,6 +233,10 @@ export class TransactionData {
 		return this.#coin.link().transaction(this.id());
 	}
 
+	public explorerBlockLink(): string | undefined {
+		return this.blockId() ? this.#coin.link().block(this.blockId()!) : undefined;
+	}
+
 	public toObject(): Contracts.KeyValuePair {
 		return this.#data.toObject();
 	}
