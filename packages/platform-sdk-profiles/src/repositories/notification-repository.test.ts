@@ -26,13 +26,8 @@ beforeEach(() => (subject = new NotificationRepository()));
 test("#all", () => {
 	expect(subject.keys()).toHaveLength(0);
 
-	subject.push(stubNotification);
-
-	expect(subject.keys()).toHaveLength(1);
-
-	subject.push(stubNotification);
-
-	expect(subject.keys()).toHaveLength(2);
+	stubNotifications.forEach((n) => subject.push(n));
+	expect(Object.keys(subject.all())).toHaveLength(2);
 });
 
 test("#first", () => {
