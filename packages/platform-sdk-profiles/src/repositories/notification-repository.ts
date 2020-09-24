@@ -17,15 +17,15 @@ interface NotificationWithId extends Notification {
 export class NotificationRepository {
 	#data: DataRepository = new DataRepository();
 
-	public all(): Record<string, Notification> {
-		return this.#data.all() as Record<string, Notification>;
+	public all(): Record<string, NotificationWithId> {
+		return this.#data.all() as Record<string, NotificationWithId>;
 	}
 
-	public first(): Notification {
+	public first(): NotificationWithId {
 		return this.#data.first();
 	}
 
-	public last(): Notification {
+	public last(): NotificationWithId {
 		return this.#data.last();
 	}
 
@@ -33,7 +33,7 @@ export class NotificationRepository {
 		return this.#data.keys();
 	}
 
-	public values(): Notification[] {
+	public values(): NotificationWithId[] {
 		return this.#data.values();
 	}
 
