@@ -47,9 +47,9 @@ test("#isLessThanOrEqual", () => {
 });
 
 test("#isGreaterThan", () => {
-	expect(subject.isGreaterThanOrEqual(Money.make(1000, "EUR"))).toBeTrue();
-	expect(subject.isGreaterThanOrEqual(Money.make(1000, "EUR"))).toBeTrue();
-	expect(subject.isGreaterThanOrEqual(Money.make(6000, "EUR"))).toBeFalse();
+	expect(subject.isGreaterThan(Money.make(1000, "EUR"))).toBeTrue();
+	expect(subject.isGreaterThan(Money.make(1000, "EUR"))).toBeTrue();
+	expect(subject.isGreaterThan(Money.make(6000, "EUR"))).toBeFalse();
 });
 
 test("#isGreaterThanOrEqual", () => {
