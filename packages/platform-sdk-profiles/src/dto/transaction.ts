@@ -233,7 +233,7 @@ export class TransactionData {
 		return this.#coin.link().transaction(this.id());
 	}
 
-	public explorerBlockLink(): string | undefined {
+	public explorerLinkForBlock(): string | undefined {
 		return this.blockId() ? this.#coin.link().block(this.blockId()!) : undefined;
 	}
 
