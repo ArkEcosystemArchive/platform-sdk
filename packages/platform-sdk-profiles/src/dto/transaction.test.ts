@@ -12,6 +12,8 @@ import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
 import { TransactionData } from "./transaction";
 
+let subject: TransactionData;
+
 let profile: Profile;
 let wallet: Wallet;
 
@@ -48,11 +50,18 @@ beforeAll(async () => {
 	await wallet.setIdentity(identity.mnemonic);
 });
 
-it("should have an explorer link", async () => {
+beforeEach(() => {
 	// @ts-ignore
-	const subject = new TransactionData(wallet, {
+	subject = new TransactionData(wallet, {
 		id: () => "transactionId",
+		blockId: () => "transactionBlockId",
 	});
+})
 
+it("should have an explorer link", async () => {
 	expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/transaction/transactionId");
+});
+
+it("should have an explorer block link", async () => {
+	expect(subject.explorerLinkForBlock()).toBe("https://dexplorer.ark.io/block/transactionBlockId");
 });
