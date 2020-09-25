@@ -49,7 +49,7 @@ it("should have an toObject", () => {
 		},
 		explorer: "https://dexplorer.ark.io/",
 		hosts: ["https://dwallets.ark.io"],
-		hostsMultiSignature: [],
+		hostsMultiSignature: ["https://dmusig1.ark.io"],
 		id: "ark.devnet",
 		name: "ARK Devnet",
 		type: "test",
