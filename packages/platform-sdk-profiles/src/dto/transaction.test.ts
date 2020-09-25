@@ -63,5 +63,5 @@ it("should have an explorer link", async () => {
 });
 
 it("should have an explorer block link", async () => {
-	expect(subject.explorerBlockLink()).toBe("https://dexplorer.ark.io/block/transactionBlockId");
+	expect(subject.explorerLinkForBlock()).toBe("https://dexplorer.ark.io/block/transactionBlockId");
 });
