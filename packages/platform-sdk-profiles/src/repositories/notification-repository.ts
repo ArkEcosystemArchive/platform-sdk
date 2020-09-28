@@ -8,8 +8,10 @@ interface Notification {
 	icon: string;
 	name: string;
 	body: string;
+	type: string;
 	action: string;
 	read_at?: number;
+	meta?: any;
 }
 
 export class NotificationRepository {
