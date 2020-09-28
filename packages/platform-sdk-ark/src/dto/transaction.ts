@@ -147,123 +147,63 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isBusinessEntityRegistration(): boolean {
-		return (
-			this.isEntityRegistration() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.None
-		);
+		return this.isEntityRegistration() && this.data.asset.type === Enums.EntityType.Business;
 	}
 
 	public isBusinessEntityResignation(): boolean {
-		return (
-			this.isEntityResignation() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.None
-		);
+		return this.isEntityResignation() && this.data.asset.type === Enums.EntityType.Business;
 	}
 
 	public isBusinessEntityUpdate(): boolean {
-		return (
-			this.isEntityUpdate() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.None
-		);
+		return this.isEntityUpdate() && this.data.asset.type === Enums.EntityType.Business;
 	}
 
-	public isDeveloperEntityRegistration(): boolean {
-		return (
-			this.isEntityRegistration() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.None
-		);
+	public isProductEntityRegistration(): boolean {
+		return this.isEntityRegistration() && this.data.asset.type === Enums.EntityType.Product;
 	}
 
-	public isDeveloperEntityResignation(): boolean {
-		return (
-			this.isEntityResignation() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.None
-		);
+	public isProductEntityResignation(): boolean {
+		return this.isEntityResignation() && this.data.asset.type === Enums.EntityType.Product;
 	}
 
-	public isDeveloperEntityUpdate(): boolean {
-		return (
-			this.isEntityUpdate() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.None
-		);
+	public isProductEntityUpdate(): boolean {
+		return this.isEntityUpdate() && this.data.asset.type === Enums.EntityType.Product;
 	}
 
-	public isCorePluginEntityRegistration(): boolean {
-		return (
-			this.isEntityRegistration() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.PluginCore
-		);
+	public isPluginEntityRegistration(): boolean {
+		return this.isEntityRegistration() && this.data.asset.type === Enums.EntityType.Plugin;
 	}
 
-	public isCorePluginEntityResignation(): boolean {
-		return (
-			this.isEntityResignation() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.PluginCore
-		);
+	public isPluginEntityResignation(): boolean {
+		return this.isEntityResignation() && this.data.asset.type === Enums.EntityType.Plugin;
 	}
 
-	public isCorePluginEntityUpdate(): boolean {
-		return (
-			this.isEntityUpdate() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.PluginCore
-		);
+	public isPluginEntityUpdate(): boolean {
+		return this.isEntityUpdate() && this.data.asset.type === Enums.EntityType.Plugin;
 	}
 
-	public isDesktopPluginEntityRegistration(): boolean {
-		return (
-			this.isEntityRegistration() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.PluginDesktop
-		);
+	public isModulePluginEntityRegistration(): boolean {
+		return this.isEntityRegistration() && this.data.asset.type === Enums.EntityType.Module;
 	}
 
-	public isDesktopPluginEntityResignation(): boolean {
-		return (
-			this.isEntityResignation() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.PluginDesktop
-		);
+	public isModulePluginEntityResignation(): boolean {
+		return this.isEntityResignation() && this.data.asset.type === Enums.EntityType.Module;
 	}
 
-	public isDesktopPluginEntityUpdate(): boolean {
-		return (
-			this.isEntityUpdate() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.PluginDesktop
-		);
+	public isModulePluginEntityUpdate(): boolean {
+		return this.isEntityUpdate() && this.data.asset.type === Enums.EntityType.Module;
 	}
 
 	public isDelegateEntityRegistration(): boolean {
-		return (
-			this.isEntityRegistration() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.None
-		);
+		return this.isEntityRegistration() && this.data.asset.type === Enums.EntityType.Delegate;
 	}
 
 	public isDelegateEntityResignation(): boolean {
-		return (
-			this.isEntityResignation() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.None
-		);
+		return this.isEntityResignation() && this.data.asset.type === Enums.EntityType.Delegate;
 	}
 
 	public isDelegateEntityUpdate(): boolean {
-		return (
-			this.isEntityUpdate() &&
-			this.data.asset.type === Enums.EntityType.Business &&
-			this.data.asset.subType === Enums.EntitySubType.None
-		);
+		return this.isEntityUpdate() && this.data.asset.type === Enums.EntityType.Delegate;
 	}
 
 	public isLegacyBusinessRegistration(): boolean {
