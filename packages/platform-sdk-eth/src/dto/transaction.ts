@@ -132,39 +132,39 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return false;
 	}
 
-	public isDeveloperEntityRegistration(): boolean {
+	public isProductEntityRegistration(): boolean {
 		return false;
 	}
 
-	public isDeveloperEntityResignation(): boolean {
+	public isProductEntityResignation(): boolean {
 		return false;
 	}
 
-	public isDeveloperEntityUpdate(): boolean {
+	public isProductEntityUpdate(): boolean {
 		return false;
 	}
 
-	public isCorePluginEntityRegistration(): boolean {
+	public isPluginEntityRegistration(): boolean {
 		return false;
 	}
 
-	public isCorePluginEntityResignation(): boolean {
+	public isPluginEntityResignation(): boolean {
 		return false;
 	}
 
-	public isCorePluginEntityUpdate(): boolean {
+	public isPluginEntityUpdate(): boolean {
 		return false;
 	}
 
-	public isDesktopPluginEntityRegistration(): boolean {
+	public isModuleEntityRegistration(): boolean {
 		return false;
 	}
 
-	public isDesktopPluginEntityResignation(): boolean {
+	public isModuleEntityResignation(): boolean {
 		return false;
 	}
 
-	public isDesktopPluginEntityUpdate(): boolean {
+	public isModuleEntityUpdate(): boolean {
 		return false;
 	}
 

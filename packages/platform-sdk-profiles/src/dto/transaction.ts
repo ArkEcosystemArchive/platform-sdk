@@ -157,40 +157,40 @@ export class TransactionData {
 		return this.#data.isBusinessEntityUpdate();
 	}
 
-	public isDeveloperEntityRegistration(): boolean {
-		return this.#data.isDeveloperEntityRegistration();
+	public isProductEntityRegistration(): boolean {
+		return this.#data.isProductEntityRegistration();
 	}
 
-	public isDeveloperEntityResignation(): boolean {
-		return this.#data.isDeveloperEntityResignation();
+	public isProductEntityResignation(): boolean {
+		return this.#data.isProductEntityResignation();
 	}
 
-	public isDeveloperEntityUpdate(): boolean {
-		return this.#data.isDeveloperEntityUpdate();
+	public isProductEntityUpdate(): boolean {
+		return this.#data.isProductEntityUpdate();
 	}
 
-	public isCorePluginEntityRegistration(): boolean {
-		return this.#data.isCorePluginEntityRegistration();
+	public isPluginEntityRegistration(): boolean {
+		return this.#data.isPluginEntityRegistration();
 	}
 
-	public isCorePluginEntityResignation(): boolean {
-		return this.#data.isCorePluginEntityResignation();
+	public isPluginEntityResignation(): boolean {
+		return this.#data.isPluginEntityResignation();
 	}
 
-	public isCorePluginEntityUpdate(): boolean {
-		return this.#data.isCorePluginEntityUpdate();
+	public isPluginEntityUpdate(): boolean {
+		return this.#data.isPluginEntityUpdate();
 	}
 
-	public isDesktopPluginEntityRegistration(): boolean {
-		return this.#data.isDesktopPluginEntityRegistration();
+	public isModuleEntityRegistration(): boolean {
+		return this.#data.isModuleEntityRegistration();
 	}
 
-	public isDesktopPluginEntityResignation(): boolean {
-		return this.#data.isDesktopPluginEntityResignation();
+	public isModuleEntityResignation(): boolean {
+		return this.#data.isModuleEntityResignation();
 	}
 
-	public isDesktopPluginEntityUpdate(): boolean {
-		return this.#data.isDesktopPluginEntityUpdate();
+	public isModuleEntityUpdate(): boolean {
+		return this.#data.isModuleEntityUpdate();
 	}
 
 	public isDelegateEntityRegistration(): boolean {
