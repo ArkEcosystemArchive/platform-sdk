@@ -8,14 +8,26 @@ const stubNotifications = [
 	{
 		icon: "warning",
 		name: "Ledger Update Available",
+		type: "ledger",
 		body: "...",
 		action: "Read Changelog",
 	},
 	{
 		icon: "warning",
 		name: "Ledger Update Available",
+		type: "plugin",
 		body: "...",
 		action: "Read Changelog",
+	},
+	{
+		icon: "info",
+		name: "Transaction Created",
+		body: "...",
+		type: "transaction",
+		action: "open",
+		meta: {
+			txId: "1",
+		},
 	},
 ];
 
@@ -27,7 +39,7 @@ test("#all", () => {
 	expect(subject.keys()).toHaveLength(0);
 
 	stubNotifications.forEach((n) => subject.push(n));
-	expect(Object.keys(subject.all())).toHaveLength(2);
+	expect(Object.keys(subject.all())).toHaveLength(stubNotifications.length);
 });
 
 test("#first", () => {
@@ -35,7 +47,7 @@ test("#first", () => {
 
 	stubNotifications.forEach((n) => subject.push(n));
 
-	expect(subject.keys()).toHaveLength(2);
+	expect(subject.keys()).toHaveLength(stubNotifications.length);
 	expect(subject.first().name).toEqual(stubNotification.name);
 });
 
@@ -44,8 +56,8 @@ test("#last", () => {
 
 	stubNotifications.forEach((n) => subject.push(n));
 
-	expect(subject.keys()).toHaveLength(2);
-	expect(subject.last().name).toEqual(stubNotifications[1].name);
+	expect(subject.keys()).toHaveLength(stubNotifications.length);
+	expect(subject.last().name).toEqual(stubNotifications[stubNotifications.length - 1].name);
 });
 
 test("#keys", () => {
@@ -149,7 +161,7 @@ test("#read", () => {
 	stubNotifications.forEach((n) => subject.push(n));
 	subject.markAsRead(subject.first().id);
 
-	expect(subject.unread()).toHaveLength(1);
+	expect(subject.unread()).toHaveLength(2);
 	expect(subject.first().read_at).toBeTruthy();
 });
 
@@ -159,8 +171,27 @@ test("#unread", () => {
 	stubNotifications.forEach((n) => subject.push(n));
 	subject.markAsRead(subject.first().id);
 
-	expect(subject.unread()).toHaveLength(1);
+	expect(subject.unread()).toHaveLength(2);
 	expect(subject.first().read_at).toBeTruthy();
 
 	expect(subject.last().read_at).toBeUndefined();
+});
+
+test("should have meta info", () => {
+	expect(subject.keys()).toHaveLength(0);
+
+	stubNotifications.forEach((n) => subject.push(n));
+
+	const last = stubNotifications[stubNotifications.length - 1];
+	expect(subject.last().meta).toBeObject();
+	expect(subject.last().meta).toEqual(last.meta);
+});
+
+test("should have type", () => {
+	expect(subject.keys()).toHaveLength(0);
+
+	stubNotifications.forEach((n) => subject.push(n));
+
+	const last = stubNotifications[stubNotifications.length - 1];
+	expect(subject.last().type).toEqual(last.type);
 });
