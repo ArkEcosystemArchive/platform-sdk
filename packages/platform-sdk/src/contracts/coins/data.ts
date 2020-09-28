@@ -143,23 +143,23 @@ export interface TransactionData {
 
 	isBusinessEntityUpdate(): boolean;
 
-	isDeveloperEntityRegistration(): boolean;
+	isProductEntityRegistration(): boolean;
 
-	isDeveloperEntityResignation(): boolean;
+	isProductEntityResignation(): boolean;
 
-	isDeveloperEntityUpdate(): boolean;
+	isProductEntityUpdate(): boolean;
 
-	isCorePluginEntityRegistration(): boolean;
+	isPluginEntityRegistration(): boolean;
 
-	isCorePluginEntityResignation(): boolean;
+	isPluginEntityResignation(): boolean;
 
-	isCorePluginEntityUpdate(): boolean;
+	isPluginEntityUpdate(): boolean;
 
-	isDesktopPluginEntityRegistration(): boolean;
+	isModuleEntityRegistration(): boolean;
 
-	isDesktopPluginEntityResignation(): boolean;
+	isModuleEntityResignation(): boolean;
 
-	isDesktopPluginEntityUpdate(): boolean;
+	isModuleEntityUpdate(): boolean;
 
 	isDelegateEntityRegistration(): boolean;
 
