@@ -11,7 +11,7 @@ interface Notification {
 	type: string;
 	action: string;
 	read_at?: number;
-	meta?: any;
+	meta?: Record<string, any>;
 }
 
 export class NotificationRepository {
