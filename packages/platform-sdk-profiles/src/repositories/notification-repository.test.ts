@@ -177,7 +177,7 @@ test("#unread", () => {
 	expect(subject.last().read_at).toBeUndefined();
 });
 
-test("should have meta info", () => {
+it("should have meta info", () => {
 	expect(subject.keys()).toHaveLength(0);
 
 	stubNotifications.forEach((n) => subject.push(n));
@@ -187,7 +187,7 @@ test("should have meta info", () => {
 	expect(subject.last().meta).toEqual(last.meta);
 });
 
-test("should have type", () => {
+it("should have a type", () => {
 	expect(subject.keys()).toHaveLength(0);
 
 	stubNotifications.forEach((n) => subject.push(n));
