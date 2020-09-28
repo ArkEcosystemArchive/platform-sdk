@@ -79,6 +79,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 		icon: "warning",
 		name: "Ledger Update Available",
 		body: "...",
+		type: "ledger",
 		action: "Read Changelog",
 	});
 
