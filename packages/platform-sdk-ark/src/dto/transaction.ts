@@ -182,15 +182,15 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.isEntityUpdate() && this.data.asset.type === Enums.EntityType.Plugin;
 	}
 
-	public isModulePluginEntityRegistration(): boolean {
+	public isModuleEntityRegistration(): boolean {
 		return this.isEntityRegistration() && this.data.asset.type === Enums.EntityType.Module;
 	}
 
-	public isModulePluginEntityResignation(): boolean {
+	public isModuleEntityResignation(): boolean {
 		return this.isEntityResignation() && this.data.asset.type === Enums.EntityType.Module;
 	}
 
-	public isModulePluginEntityUpdate(): boolean {
+	public isModuleEntityUpdate(): boolean {
 		return this.isEntityUpdate() && this.data.asset.type === Enums.EntityType.Module;
 	}
 
