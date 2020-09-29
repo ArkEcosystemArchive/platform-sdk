@@ -1,10 +1,16 @@
+import * as EthMainnet from "./networks/eth/mainnet.json";
+import * as EthKovan from "./networks/eth/kovan.json";
+import * as EthRopsten from "./networks/eth/ropsten.json";
+import * as EthRinkeby from "./networks/eth/rinkeby.json";
+import * as EthGoerli from "./networks/eth/goerli.json";
+
 export const manifest = {
 	name: "ETH",
 	networks: {
-		"eth.mainnet": require("./networks/eth/mainnet.json"),
-		"eth.kovan": require("./networks/eth/kovan.json"),
-		"eth.ropsten": require("./networks/eth/ropsten.json"),
-		"eth.rinkeby": require("./networks/eth/rinkeby.json"),
-		"eth.goerli": require("./networks/eth/goerli.json"),
+		"eth.mainnet": EthMainnet,
+		"eth.kovan": EthKovan,
+		"eth.ropsten": EthRopsten,
+		"eth.rinkeby": EthRinkeby,
+		"eth.goerli": EthGoerli,
 	},
 };

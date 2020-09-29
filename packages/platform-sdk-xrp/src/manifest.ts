@@ -1,7 +1,10 @@
+import * as XrpMainnet from "./networks/xrp/mainnet.json";
+import * as XrpTestnet from "./networks/xrp/testnet.json";
+
 export const manifest = {
 	name: "XRP",
 	networks: {
-		"xrp.mainnet": require("./networks/xrp/mainnet.json"),
-		"xrp.testnet": require("./networks/xrp/testnet.json"),
+		"xrp.mainnet": XrpMainnet,
+		"xrp.testnet": XrpTestnet,
 	},
 };

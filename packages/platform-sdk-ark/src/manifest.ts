@@ -1,9 +1,14 @@
+import * as ArkMainnet from "./networks/ark/mainnet.json";
+import * as ArkDevnet from "./networks/ark/devnet.json";
+import * as CompendiaMainnet from "./networks/compendia/mainnet.json";
+import * as CompendiaTestnet from "./networks/compendia/testnet.json";
+
 export const manifest = {
 	name: "ARK",
 	networks: {
-		"ark.mainnet": require("./networks/ark/mainnet.json"),
-		"ark.devnet": require("./networks/ark/devnet.json"),
-		"compendia.mainnet": require("./networks/compendia/mainnet.json"),
-		"compendia.testnet": require("./networks/compendia/testnet.json"),
+		"ark.mainnet": ArkMainnet,
+		"ark.devnet": ArkDevnet,
+		"compendia.mainnet": CompendiaMainnet,
+		"compendia.testnet": CompendiaTestnet,
 	},
 };

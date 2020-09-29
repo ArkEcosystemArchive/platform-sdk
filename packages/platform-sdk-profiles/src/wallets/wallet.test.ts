@@ -108,10 +108,6 @@ it("should have a config service", () => {
 	expect(subject.config()).toBeInstanceOf(Coins.Config);
 });
 
-it("should have a guard service", () => {
-	expect(subject.guard()).toBeInstanceOf(Coins.Guard);
-});
-
 it("should have a client service", () => {
 	expect(subject.client()).toBeObject();
 });

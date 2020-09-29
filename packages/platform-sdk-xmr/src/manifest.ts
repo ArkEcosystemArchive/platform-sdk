@@ -1,7 +1,10 @@
+import * as XmrMainnet from "./networks/xmr/mainnet.json";
+import * as XmrTestnet from "./networks/xmr/testnet.json";
+
 export const manifest = {
 	name: "XMR",
 	networks: {
-		"xmr.mainnet": require("./networks/xmr/mainnet.json"),
-		"xmr.testnet": require("./networks/xmr/testnet.json"),
+		"xmr.mainnet": XmrMainnet,
+		"xmr.testnet": XmrTestnet,
 	},
 };
