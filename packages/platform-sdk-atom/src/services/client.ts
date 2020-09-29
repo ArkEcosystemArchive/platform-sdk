@@ -52,7 +52,7 @@ export class ClientService implements Contracts.ClientService {
 		} catch {
 			return new ClientService({
 				http: config.get<Contracts.HttpClient>("httpClient"),
-				peer: Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts),
+				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
 			});
 		}
 	}

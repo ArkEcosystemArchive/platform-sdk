@@ -26,7 +26,7 @@ export class TransactionService implements Contracts.TransactionService {
 		} catch {
 			return new TransactionService({
 				networkId: config.get<string>("network.crypto.networkId"),
-				peer: Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts),
+				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
 			});
 		}
 	}

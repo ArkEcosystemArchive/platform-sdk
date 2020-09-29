@@ -10,18 +10,27 @@
 	"crypto": {
 		"networkId": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
 		"slip44": 194,
-		"bech32": "EOS"
+		"bech32": "EOS",
+		"signingMethods": {
+			"mnemonic": false,
+			"privateKey": true,
+			"wif": false
+		}
 	},
-	"hosts": [
-		"https://eos.greymass.com",
-		"https://api.eosn.io",
-		"https://mainnet.genereos.io"
-	],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": [
+			"https://eos.greymass.com",
+			"https://api.eosn.io",
+			"https://mainnet.genereos.io"
+		],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -98,10 +107,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": false,
-		"privateKey": true,
-		"wif": false
 	}
 }

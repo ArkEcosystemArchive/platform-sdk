@@ -59,21 +59,7 @@ it("should have a coin", () => {
 });
 
 it("should have a network", () => {
-	expect(subject.network().toObject()).toEqual({
-		crypto: { slip44: 111 },
-		currency: { symbol: "DѦ", ticker: "DARK" },
-		explorer: "https://dexplorer.ark.io/",
-		hosts: ["https://dwallets.ark.io"],
-		hostsMultiSignature: ["https://dmusig1.ark.io"],
-		id: "ark.devnet",
-		name: "ARK Devnet",
-		type: "test",
-		voting: {
-			enabled: true,
-			maximum: 1,
-			maximumPerTransaction: 1,
-		},
-	});
+	expect(subject.network().toObject()).toEqual(require("../../test/fixtures/network.json").default);
 });
 
 it("should have an address", () => {
@@ -147,8 +133,8 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 			"id",
 			"address",
 			"coin",
-			"coinConfig",
 			"network",
+			"networkConfig",
 			"publicKey",
 			"data",
 			"settings",
@@ -156,29 +142,8 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.id).toBeString();
 		expect(actual.address).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 		expect(actual.coin).toBe("ARK");
-		expect(actual.coinConfig).toEqual({
-			network: {
-				crypto: {
-					slip44,
-				},
-				currency: {
-					symbol: "DѦ",
-					ticker: "DARK",
-				},
-				explorer: "https://dexplorer.ark.io/",
-				hosts: ["https://dwallets.ark.io"],
-				hostsMultiSignature: ["https://dmusig1.ark.io"],
-				id: "ark.devnet",
-				type: "test",
-				name: "ARK Devnet",
-				voting: {
-					enabled: true,
-					maximum: 1,
-					maximumPerTransaction: 1,
-				},
-			},
-		});
 		expect(actual.network).toBe("ark.devnet");
+		expect(actual.networkConfig.crypto.slip44).toBe(slip44);
 		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 		expect(actual.data).toEqual({
 			BALANCE: "55827093444556",

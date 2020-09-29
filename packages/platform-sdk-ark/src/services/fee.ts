@@ -19,7 +19,7 @@ export class FeeService implements Contracts.FeeService {
 		} catch {
 			return new FeeService({
 				http: config.get<Contracts.HttpClient>("httpClient"),
-				peer: `${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`,
+				peer: `${Arr.randomElement(config.get<string[]>("network.networking.hosts"))}/api`,
 			});
 		}
 	}

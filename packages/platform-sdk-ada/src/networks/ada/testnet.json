@@ -8,14 +8,23 @@
 		"symbol": "ADA"
 	},
 	"crypto": {
-		"slip44": 1815
+		"slip44": 1815,
+		"signingMethods": {
+			"mnemonic": false,
+			"privateKey": false,
+			"wif": false
+		}
 	},
-	"hosts": [],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": [],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -92,10 +101,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": false,
-		"privateKey": false,
-		"wif": false
 	}
 }

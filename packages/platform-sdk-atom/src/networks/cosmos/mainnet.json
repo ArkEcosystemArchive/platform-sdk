@@ -10,14 +10,23 @@
 	"crypto": {
 		"networkId": "cosmoshub-3",
 		"slip44": 118,
-		"bech32": "cosmos"
+		"bech32": "cosmos",
+		"signingMethods": {
+			"mnemonic": true,
+			"privateKey": false,
+			"wif": false
+		}
 	},
-	"hosts": ["https://api.cosmos.network"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": ["https://api.cosmos.network"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -94,10 +103,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": true,
-		"privateKey": false,
-		"wif": false
 	}
 }

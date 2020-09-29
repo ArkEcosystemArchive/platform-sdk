@@ -9,7 +9,7 @@ export const retrieveCryptoConfiguration = async (config: Coins.Config): Promise
 	try {
 		peer = config.get<string>("peer");
 	} catch {
-		peer = `${Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts)}/api`;
+		peer = `${Arr.randomElement(config.get<string[]>("network.networking.hosts"))}/api`;
 	}
 
 	const crypto: any = (await http.get(`${peer}/node/configuration/crypto`)).json();

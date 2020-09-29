@@ -104,7 +104,7 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 			return this.#config.get<string>("peerMultiSignature");
 		}
 
-		return Arr.randomElement(this.#config.get<Coins.CoinNetwork>("network").hostsMultiSignature);
+		return Arr.randomElement(this.#config.get<Coins.CoinNetwork>("network").networking.hostsMultiSignature);
 	}
 
 	private normalizeTransaction(transaction): Record<string, any> {

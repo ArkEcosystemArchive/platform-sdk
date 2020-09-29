@@ -9,14 +9,23 @@
 	},
 	"crypto": {
 		"networkId": "7158c297294a540bc9ac6e474529c3da38d03ece056e3fa2d98141e6ec54132d",
-		"slip44": 134
+		"slip44": 134,
+		"signingMethods": {
+			"mnemonic": true,
+			"privateKey": false,
+			"wif": false
+		}
 	},
-	"hosts": ["https://betanet.lisk.io"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": true,
-		"maximum": 101,
-		"maximumPerTransaction": 33
+	"networking": {
+		"hosts": ["https://betanet.lisk.io"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": true,
+			"maximum": 101,
+			"maximumPerTransaction": 33
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -93,10 +102,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": true,
-		"privateKey": false,
-		"wif": false
 	}
 }

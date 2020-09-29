@@ -80,14 +80,17 @@ export class WalletRepository {
 		return { mnemonic, wallet: await this.importByMnemonic(mnemonic, coin, network) };
 	}
 
-	public async restore({ id, coin, coinConfig, network, address, data, settings }): Promise<ReadWriteWallet> {
+	public async restore({ id, coin, network, networkConfig, address, data, settings }): Promise<ReadWriteWallet> {
 		const wallet = new Wallet(id, this.#profile);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(address);
 
-		for (const [key, value] of Object.entries(coinConfig)) {
-			wallet.coin().config().set(key, value);
+		// @TODO: support coin configs besides network?
+		if (networkConfig) {
+			for (const [key, value] of Object.entries(networkConfig)) {
+				wallet.coin().config().set(`network.${key}`, value);
+			}
 		}
 
 		wallet.data().fill(data);
@@ -125,7 +128,7 @@ export class WalletRepository {
 		);
 	}
 
-	public update(id: string, data: { alias?: string; }): void {
+	public update(id: string, data: { alias?: string }): void {
 		const result = this.findById(id);
 
 		if (data.alias) {

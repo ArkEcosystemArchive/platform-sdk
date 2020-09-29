@@ -42,15 +42,15 @@ export class NetworkData {
 	}
 
 	public allowsVoting(): boolean {
-		return this.#network.voting.enabled;
+		return this.#network.governance.voting.enabled;
 	}
 
 	public maximumVotes(): number {
-		return this.#network.voting.maximum;
+		return this.#network.governance.voting.maximum;
 	}
 
 	public maximumVotesPerTransaction(): number {
-		return this.#network.voting.maximumPerTransaction;
+		return this.#network.governance.voting.maximumPerTransaction;
 	}
 
 	public toObject(): Coins.CoinNetwork {
