@@ -1,9 +1,14 @@
+import * as CosmosMainnet from "./networks/cosmos/mainnet.json";
+import * as CosmosTestnet from "./networks/cosmos/testnet.json";
+import * as TerraMainnet from "./networks/terra/mainnet.json";
+import * as TerraTestnet from "./networks/terra/testnet.json";
+
 export const manifest = {
 	name: "ATOM",
 	networks: {
-		"cosmos.mainnet": require("./networks/cosmos/mainnet.json"),
-		"cosmos.testnet": require("./networks/cosmos/testnet.json"),
-		"terra.mainnet": require("./networks/terra/mainnet.json"),
-		"terra.testnet": require("./networks/terra/testnet.json"),
+		"cosmos.mainnet": CosmosMainnet,
+		"cosmos.testnet": CosmosTestnet,
+		"terra.mainnet": TerraMainnet,
+		"terra.testnet": TerraTestnet,
 	},
 };
