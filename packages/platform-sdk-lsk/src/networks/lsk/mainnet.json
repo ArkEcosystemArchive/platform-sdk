@@ -1,0 +1,119 @@
+{
+	"id": "lsk.mainnet",
+	"type": "live",
+	"name": "Mainnet",
+	"explorer": "https://explorer.lisk.io/",
+	"currency": {
+		"ticker": "LSK",
+		"symbol": "LSK"
+	},
+	"crypto": {
+		"networkId": "ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511",
+		"slip44": 134
+	},
+	"hosts": [
+		"https://hub21.lisk.io",
+		"https://hub22.lisk.io",
+		"https://hub23.lisk.io",
+		"https://hub24.lisk.io",
+		"https://hub25.lisk.io",
+		"https://hub26.lisk.io",
+		"https://hub27.lisk.io",
+		"https://hub28.lisk.io",
+		"https://hub31.lisk.io",
+		"https://hub32.lisk.io",
+		"https://hub33.lisk.io",
+		"https://hub34.lisk.io",
+		"https://hub35.lisk.io",
+		"https://hub36.lisk.io",
+		"https://hub37.lisk.io",
+		"https://hub38.lisk.io"
+	],
+	"hostsMultiSignature": [],
+	"voting": {
+		"enabled": true,
+		"maximum": 101,
+		"maximumPerTransaction": 33
+	},
+	"featureFlags": {
+		"Client": {
+			"transaction": true,
+			"transactions": true,
+			"wallet": true,
+			"wallets": true,
+			"delegate": true,
+			"delegates": true,
+			"votes": false,
+			"voters": false,
+			"configuration": false,
+			"fees": false,
+			"syncing": false,
+			"broadcast": true
+		},
+		"Fee": {
+			"all": false
+		},
+		"Identity": {
+			"address": {
+				"mnemonic": true,
+				"multiSignature": false,
+				"publicKey": true,
+				"privateKey": false,
+				"wif": false
+			},
+			"publicKey": {
+				"mnemonic": true,
+				"multiSignature": false,
+				"wif": false
+			},
+			"privateKey": {
+				"mnemonic": true,
+				"wif": false
+			},
+			"wif": {
+				"mnemonic": false
+			},
+			"keyPair": {
+				"mnemonic": true,
+				"privateKey": false,
+				"wif": false
+			}
+		},
+		"Ledger": {
+			"getVersion": false,
+			"getPublicKey": false,
+			"signTransaction": false,
+			"signMessage": false
+		},
+		"Link": {
+			"block": true,
+			"transaction": true,
+			"wallet": true
+		},
+		"Message": {
+			"sign": true,
+			"verify": true
+		},
+		"Peer": {
+			"search": false
+		},
+		"Transaction": {
+			"transfer": true,
+			"secondSignature": true,
+			"delegateRegistration": true,
+			"vote": true,
+			"multiSignature": true,
+			"ipfs": false,
+			"multiPayment": false,
+			"delegateResignation": false,
+			"htlcLock": false,
+			"htlcClaim": false,
+			"htlcRefund": false
+		}
+	},
+	"signingMethods": {
+		"mnemonic": true,
+		"privateKey": false,
+		"wif": false
+	}
+}

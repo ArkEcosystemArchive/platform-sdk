@@ -98,7 +98,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public setAlias(alias: string): Wallet {
-		this.settings().set(WalletSetting.Alias, alias)
+		this.settings().set(WalletSetting.Alias, alias);
 
 		return this;
 	}
@@ -124,7 +124,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public network(): NetworkData {
-		return new NetworkData(this.coinId(), this.coin().network());
+		return new NetworkData(this.coinId(), this.coin().network().all());
 	}
 
 	public currency(): string {
@@ -320,10 +320,6 @@ export class Wallet implements ReadWriteWallet {
 
 	public config(): Coins.Config {
 		return this.#coin.config();
-	}
-
-	public guard(): Coins.Guard {
-		return this.#coin.guard();
 	}
 
 	public client(): Contracts.ClientService {

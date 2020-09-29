@@ -45,26 +45,3 @@ export interface CoinServices {
 	peer: PeerService;
 	transaction: TransactionService;
 }
-
-export interface CoinNetwork {
-	id: string;
-	type: string;
-	name: string;
-	explorer: string;
-	currency: {
-		ticker: string;
-		symbol: string;
-	};
-	crypto: {
-		networkId?: string;
-		slip44: number;
-		bech32?: string;
-	};
-	hosts: string[];
-	hostsMultiSignature: string[];
-	voting: {
-		enabled: boolean;
-		maximum: number;
-		maximumPerTransaction: number;
-	};
-}

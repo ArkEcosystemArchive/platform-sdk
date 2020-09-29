@@ -1,0 +1,108 @@
+{
+	"id": "telos.mainnet",
+	"type": "live",
+	"name": "TELOS Mainnet",
+	"explorer": "https://telos.bloks.io/",
+	"currency": {
+		"ticker": "TLOS",
+		"symbol": "TLOS"
+	},
+	"crypto": {
+		"networkId": "4667b205c6838ef70ff7988f6e8257e8be0e1284a2f59699054a018f743b1d11",
+		"slip44": 194,
+		"bech32": "TLOS"
+	},
+	"hosts": [
+		"https://apinode.telosgermany.io",
+		"https://api.telosfoundation.io",
+		"https://telos-mainnet.eosblocksmith.io",
+		"https://telos.caleos.io"
+	],
+	"hostsMultiSignature": [],
+	"voting": {
+		"enabled": false,
+		"maximum": 0,
+		"maximumPerTransaction": 0
+	},
+	"featureFlags": {
+		"Client": {
+			"transaction": false,
+			"transactions": false,
+			"wallet": true,
+			"wallets": false,
+			"delegate": false,
+			"delegates": false,
+			"votes": false,
+			"voters": false,
+			"configuration": false,
+			"fees": false,
+			"syncing": false,
+			"broadcast": true
+		},
+		"Fee": {
+			"all": false
+		},
+		"Identity": {
+			"address": {
+				"mnemonic": false,
+				"multiSignature": false,
+				"publicKey": false,
+				"privateKey": false,
+				"wif": false
+			},
+			"publicKey": {
+				"mnemonic": true,
+				"multiSignature": false,
+				"wif": false
+			},
+			"privateKey": {
+				"mnemonic": false,
+				"wif": false
+			},
+			"wif": {
+				"mnemonic": false
+			},
+			"keyPair": {
+				"mnemonic": false,
+				"privateKey": false,
+				"wif": false
+			}
+		},
+		"Ledger": {
+			"getVersion": false,
+			"getPublicKey": false,
+			"signTransaction": false,
+			"signMessage": false
+		},
+		"Link": {
+			"block": true,
+			"transaction": true,
+			"wallet": true
+		},
+		"Message": {
+			"sign": true,
+			"verify": true
+		},
+		"Peer": {
+			"search": false
+		},
+		"Transaction": {
+			"transfer": false,
+			"secondSignature": false,
+			"delegateRegistration": false,
+			"vote": false,
+			"multiSignature": false,
+			"ipfs": false,
+			"multiPayment": false,
+			"delegateResignation": false,
+			"htlcLock": false,
+			"htlcClaim": false,
+			"htlcRefund": false
+		}
+	},
+	"signingMethods": {
+		"mnemonic": false,
+		"privateKey": true,
+		"wif": false
+	}
+}
