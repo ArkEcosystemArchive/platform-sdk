@@ -1,0 +1,102 @@
+{
+	"id": "lsk.testnet",
+	"type": "test",
+	"name": "Testnet",
+	"explorer": "https://testnet-explorer.lisk.io/",
+	"currency": {
+		"ticker": "LSK",
+		"symbol": "LSK"
+	},
+	"crypto": {
+		"networkId": "da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba",
+		"slip44": 134
+	},
+	"hosts": ["https://testnet.lisk.io"],
+	"hostsMultiSignature": [],
+	"voting": {
+		"enabled": true,
+		"maximum": 101,
+		"maximumPerTransaction": 33
+	},
+	"abilities": {
+		"Client": {
+			"transaction": true,
+			"transactions": true,
+			"wallet": true,
+			"wallets": true,
+			"delegate": true,
+			"delegates": true,
+			"votes": false,
+			"voters": false,
+			"configuration": false,
+			"fees": false,
+			"syncing": false,
+			"broadcast": true
+		},
+		"Fee": {
+			"all": false
+		},
+		"Identity": {
+			"address": {
+				"mnemonic": true,
+				"multiSignature": false,
+				"publicKey": true,
+				"privateKey": false,
+				"wif": false
+			},
+			"publicKey": {
+				"mnemonic": true,
+				"multiSignature": false,
+				"wif": false
+			},
+			"privateKey": {
+				"mnemonic": true,
+				"wif": false
+			},
+			"wif": {
+				"mnemonic": false
+			},
+			"keyPair": {
+				"mnemonic": true,
+				"privateKey": false,
+				"wif": false
+			}
+		},
+		"Ledger": {
+			"getVersion": false,
+			"getPublicKey": false,
+			"signTransaction": false,
+			"signMessage": false
+		},
+		"Link": {
+			"block": true,
+			"transaction": true,
+			"wallet": true
+		},
+		"Message": {
+			"sign": true,
+			"verify": true
+		},
+		"Peer": {
+			"search": false
+		},
+		"Transaction": {
+			"transfer": true,
+			"secondSignature": true,
+			"delegateRegistration": true,
+			"vote": true,
+			"multiSignature": true,
+			"ipfs": false,
+			"multiPayment": false,
+			"delegateResignation": false,
+			"htlcLock": false,
+			"htlcClaim": false,
+			"htlcRefund": false
+		}
+	},
+	"signingMethods": {
+		"mnemonic": true,
+		"privateKey": false,
+		"wif": false
+	}
+}

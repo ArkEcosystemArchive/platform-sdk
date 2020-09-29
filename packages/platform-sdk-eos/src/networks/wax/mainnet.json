@@ -1,0 +1,103 @@
+{
+	"id": "wax.mainnet",
+	"type": "live",
+	"name": "WAX Mainnet",
+	"explorer": "https://wax.bloks.io/",
+	"currency": {
+		"ticker": "WAX",
+		"symbol": "WAX"
+	},
+	"crypto": {
+		"networkId": "1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4",
+		"slip44": 194,
+		"bech32": "WAX"
+	},
+	"hosts": ["https://wax.eosphere.io"],
+	"hostsMultiSignature": [],
+	"voting": {
+		"enabled": false,
+		"maximum": 0,
+		"maximumPerTransaction": 0
+	},
+	"abilities": {
+		"Client": {
+			"transaction": false,
+			"transactions": false,
+			"wallet": true,
+			"wallets": false,
+			"delegate": false,
+			"delegates": false,
+			"votes": false,
+			"voters": false,
+			"configuration": false,
+			"fees": false,
+			"syncing": false,
+			"broadcast": true
+		},
+		"Fee": {
+			"all": false
+		},
+		"Identity": {
+			"address": {
+				"mnemonic": false,
+				"multiSignature": false,
+				"publicKey": false,
+				"privateKey": false,
+				"wif": false
+			},
+			"publicKey": {
+				"mnemonic": true,
+				"multiSignature": false,
+				"wif": false
+			},
+			"privateKey": {
+				"mnemonic": false,
+				"wif": false
+			},
+			"wif": {
+				"mnemonic": false
+			},
+			"keyPair": {
+				"mnemonic": false,
+				"privateKey": false,
+				"wif": false
+			}
+		},
+		"Ledger": {
+			"getVersion": false,
+			"getPublicKey": false,
+			"signTransaction": false,
+			"signMessage": false
+		},
+		"Link": {
+			"block": true,
+			"transaction": true,
+			"wallet": true
+		},
+		"Message": {
+			"sign": true,
+			"verify": true
+		},
+		"Peer": {
+			"search": false
+		},
+		"Transaction": {
+			"transfer": false,
+			"secondSignature": false,
+			"delegateRegistration": false,
+			"vote": false,
+			"multiSignature": false,
+			"ipfs": false,
+			"multiPayment": false,
+			"delegateResignation": false,
+			"htlcLock": false,
+			"htlcClaim": false,
+			"htlcRefund": false
+		}
+	},
+	"signingMethods": {
+		"mnemonic": false,
+		"privateKey": true,
+		"wif": false
+	}
+}

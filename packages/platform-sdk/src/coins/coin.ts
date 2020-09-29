@@ -10,9 +10,9 @@ import {
 	TransactionService,
 } from "../contracts/coins";
 import { Config } from "./config";
-import { CoinNetwork, CoinServices } from "./contracts";
-import { Guard } from "./guard";
+import { CoinServices } from "./contracts";
 import { Manifest } from "./manifest";
+import { Network } from "./network";
 import { NetworkRepository } from "./network-repository";
 
 export class Coin {
@@ -20,7 +20,7 @@ export class Coin {
 	readonly #manifest: Manifest;
 	readonly #config: Config;
 	readonly #services: CoinServices;
-	readonly #guard: Guard;
+	readonly #network: Network;
 
 	public constructor({
 		networks,
@@ -37,7 +37,7 @@ export class Coin {
 		this.#manifest = manifest;
 		this.#config = config;
 		this.#services = services;
-		this.#guard = new Guard(manifest.get<object>("abilities")!);
+		this.#network = new Network(config, manifest);
 	}
 
 	public async destruct(): Promise<void> {
@@ -51,8 +51,8 @@ export class Coin {
 		await this.#services.transaction.destruct();
 	}
 
-	public network(): CoinNetwork {
-		return this.#config.get("network");
+	public network(): Network {
+		return this.#network;
 	}
 
 	public networks(): NetworkRepository {
@@ -65,10 +65,6 @@ export class Coin {
 
 	public config(): Config {
 		return this.#config;
-	}
-
-	public guard(): Guard {
-		return this.#guard;
 	}
 
 	public client(): ClientService {

@@ -1,0 +1,107 @@
+{
+	"id": "eos.mainnet",
+	"type": "live",
+	"name": "EOS Mainnet",
+	"explorer": "https://eos.bloks.io/",
+	"currency": {
+		"ticker": "EOS",
+		"symbol": "EOS"
+	},
+	"crypto": {
+		"networkId": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
+		"slip44": 194,
+		"bech32": "EOS"
+	},
+	"hosts": [
+		"https://eos.greymass.com",
+		"https://api.eosn.io",
+		"https://mainnet.genereos.io"
+	],
+	"hostsMultiSignature": [],
+	"voting": {
+		"enabled": false,
+		"maximum": 0,
+		"maximumPerTransaction": 0
+	},
+	"abilities": {
+		"Client": {
+			"transaction": false,
+			"transactions": false,
+			"wallet": true,
+			"wallets": false,
+			"delegate": false,
+			"delegates": false,
+			"votes": false,
+			"voters": false,
+			"configuration": false,
+			"fees": false,
+			"syncing": false,
+			"broadcast": true
+		},
+		"Fee": {
+			"all": false
+		},
+		"Identity": {
+			"address": {
+				"mnemonic": false,
+				"multiSignature": false,
+				"publicKey": false,
+				"privateKey": false,
+				"wif": false
+			},
+			"publicKey": {
+				"mnemonic": true,
+				"multiSignature": false,
+				"wif": false
+			},
+			"privateKey": {
+				"mnemonic": false,
+				"wif": false
+			},
+			"wif": {
+				"mnemonic": false
+			},
+			"keyPair": {
+				"mnemonic": false,
+				"privateKey": false,
+				"wif": false
+			}
+		},
+		"Ledger": {
+			"getVersion": false,
+			"getPublicKey": false,
+			"signTransaction": false,
+			"signMessage": false
+		},
+		"Link": {
+			"block": true,
+			"transaction": true,
+			"wallet": true
+		},
+		"Message": {
+			"sign": true,
+			"verify": true
+		},
+		"Peer": {
+			"search": false
+		},
+		"Transaction": {
+			"transfer": false,
+			"secondSignature": false,
+			"delegateRegistration": false,
+			"vote": false,
+			"multiSignature": false,
+			"ipfs": false,
+			"multiPayment": false,
+			"delegateResignation": false,
+			"htlcLock": false,
+			"htlcClaim": false,
+			"htlcRefund": false
+		}
+	},
+	"signingMethods": {
+		"mnemonic": false,
+		"privateKey": true,
+		"wif": false
+	}
+}
