@@ -10,14 +10,23 @@
 	"crypto": {
 		"networkId": "1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4",
 		"slip44": 194,
-		"bech32": "WAX"
+		"bech32": "WAX",
+		"signingMethods": {
+			"mnemonic": false,
+			"privateKey": true,
+			"wif": false
+		}
 	},
-	"hosts": ["https://wax.eosphere.io"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": ["https://wax.eosphere.io"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -94,10 +103,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": false,
-		"privateKey": true,
-		"wif": false
 	}
 }

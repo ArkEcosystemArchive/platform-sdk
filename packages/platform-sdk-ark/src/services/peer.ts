@@ -58,7 +58,7 @@ export class PeerService implements Contracts.PeerService {
 					seeds.push(`http://${seed.ip}:${port}`);
 				}
 			} else {
-				seeds = config.get<Coins.CoinNetwork>("network").hosts;
+				seeds = config.get<string[]>("network.networking.hosts");
 			}
 		} catch {
 			throw new Error("Failed to discovery any peers.");

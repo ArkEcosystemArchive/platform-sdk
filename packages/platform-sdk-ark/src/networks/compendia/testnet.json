@@ -8,14 +8,23 @@
 		"symbol": "Tß"
 	},
 	"crypto": {
-		"slip44": 543
+		"slip44": 543,
+		"signingMethods": {
+			"mnemonic": true,
+			"privateKey": false,
+			"wif": true
+		}
 	},
-	"hosts": ["https://apis-testnet.compendia.org"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": true,
-		"maximum": 1,
-		"maximumPerTransaction": 1
+	"networking": {
+		"hosts": ["https://apis-testnet.compendia.org"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": true,
+			"maximum": 1,
+			"maximumPerTransaction": 1
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -95,10 +104,5 @@
 			"entityResignation": false,
 			"entityUpdate": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": true,
-		"privateKey": false,
-		"wif": true
 	}
 }

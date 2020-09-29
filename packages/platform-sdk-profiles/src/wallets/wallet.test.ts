@@ -63,15 +63,16 @@ it("should have a network", () => {
 		crypto: { slip44: 111 },
 		currency: { symbol: "DѦ", ticker: "DARK" },
 		explorer: "https://dexplorer.ark.io/",
-		hosts: ["https://dwallets.ark.io"],
-		hostsMultiSignature: ["https://dmusig1.ark.io"],
+		networking: { hosts: ["https://dwallets.ark.io"], hostsMultiSignature: ["https://dmusig1.ark.io"] },
 		id: "ark.devnet",
 		name: "ARK Devnet",
 		type: "test",
-		voting: {
-			enabled: true,
-			maximum: 1,
-			maximumPerTransaction: 1,
+		governance: {
+			voting: {
+				enabled: true,
+				maximum: 1,
+				maximumPerTransaction: 1,
+			},
 		},
 	});
 });
@@ -166,15 +167,19 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 					ticker: "DARK",
 				},
 				explorer: "https://dexplorer.ark.io/",
-				hosts: ["https://dwallets.ark.io"],
-				hostsMultiSignature: ["https://dmusig1.ark.io"],
+				networking: {
+					hosts: ["https://dwallets.ark.io"],
+					hostsMultiSignature: ["https://dmusig1.ark.io"],
+				},
 				id: "ark.devnet",
 				type: "test",
 				name: "ARK Devnet",
-				voting: {
-					enabled: true,
-					maximum: 1,
-					maximumPerTransaction: 1,
+				governance: {
+					voting: {
+						enabled: true,
+						maximum: 1,
+						maximumPerTransaction: 1,
+					},
 				},
 			},
 		});

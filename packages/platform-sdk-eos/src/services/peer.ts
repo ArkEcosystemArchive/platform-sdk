@@ -4,7 +4,7 @@ export class PeerService implements Contracts.PeerService {
 	readonly #seeds: string[];
 
 	private constructor(network: Coins.CoinNetwork) {
-		this.#seeds = network.hosts;
+		this.#seeds = network.networking.hosts;
 	}
 
 	public static async construct(config: Coins.Config): Promise<PeerService> {

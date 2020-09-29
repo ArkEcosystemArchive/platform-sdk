@@ -48,15 +48,16 @@ it("should have an toObject", () => {
 			ticker: "DARK",
 		},
 		explorer: "https://dexplorer.ark.io/",
-		hosts: ["https://dwallets.ark.io"],
-		hostsMultiSignature: ["https://dmusig1.ark.io"],
+		networking: { hosts: ["https://dwallets.ark.io"], hostsMultiSignature: ["https://dmusig1.ark.io"] },
 		id: "ark.devnet",
 		name: "ARK Devnet",
 		type: "test",
-		voting: {
-			enabled: true,
-			maximum: 1,
-			maximumPerTransaction: 1,
+		governance: {
+			voting: {
+				enabled: true,
+				maximum: 1,
+				maximumPerTransaction: 1,
+			},
 		},
 	});
 });

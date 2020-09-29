@@ -115,12 +115,16 @@ export class Environment {
 										crypto: object({
 											slip44: number().integer().required(),
 										}).required(),
-										hosts: array().of(string()).required(),
-										hostsMultiSignature: array().of(string()),
-										voting: object({
-											enabled: boolean().required(),
-											maximum: number().required(),
-											maximumPerTransaction: number().required(),
+										networking: object({
+											hosts: array().of(string()).required(),
+											hostsMultiSignature: array().of(string()),
+										}).required(),
+										governance: object({
+											voting: object({
+												enabled: boolean().required(),
+												maximum: number().required(),
+												maximumPerTransaction: number().required(),
+											}).required(),
 										}).required(),
 									}).noUnknown(),
 								}).noUnknown(),

@@ -27,7 +27,7 @@ export class TransactionService implements Contracts.TransactionService {
 		} catch {
 			unspent = new UnspentAggregator({
 				http: config.get<Contracts.HttpClient>("httpClient"),
-				peer: Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts),
+				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
 			});
 		}
 

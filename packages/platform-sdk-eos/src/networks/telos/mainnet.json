@@ -10,19 +10,28 @@
 	"crypto": {
 		"networkId": "4667b205c6838ef70ff7988f6e8257e8be0e1284a2f59699054a018f743b1d11",
 		"slip44": 194,
-		"bech32": "TLOS"
+		"bech32": "TLOS",
+		"signingMethods": {
+			"mnemonic": false,
+			"privateKey": true,
+			"wif": false
+		}
 	},
-	"hosts": [
-		"https://apinode.telosgermany.io",
-		"https://api.telosfoundation.io",
-		"https://telos-mainnet.eosblocksmith.io",
-		"https://telos.caleos.io"
-	],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": [
+			"https://apinode.telosgermany.io",
+			"https://api.telosfoundation.io",
+			"https://telos-mainnet.eosblocksmith.io",
+			"https://telos.caleos.io"
+		],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -99,10 +108,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": false,
-		"privateKey": true,
-		"wif": false
 	}
 }

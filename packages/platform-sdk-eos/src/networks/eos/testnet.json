@@ -10,14 +10,23 @@
 	"crypto": {
 		"networkId": "e70aaab8997e1dfce58fbfac80cbbb8fecec7b99cf982a9444273cbc64c41473",
 		"slip44": 194,
-		"bech32": "EOS"
+		"bech32": "EOS",
+		"signingMethods": {
+			"mnemonic": false,
+			"privateKey": true,
+			"wif": false
+		}
 	},
-	"hosts": ["https://api.testnet.eos.io"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": ["https://api.testnet.eos.io"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -94,10 +103,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": false,
-		"privateKey": true,
-		"wif": false
 	}
 }

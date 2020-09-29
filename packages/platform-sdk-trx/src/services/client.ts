@@ -33,7 +33,7 @@ export class ClientService implements Contracts.ClientService {
 		try {
 			return new ClientService(config.get<string>("peer"));
 		} catch {
-			return new ClientService(Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts));
+			return new ClientService(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
 		}
 	}
 

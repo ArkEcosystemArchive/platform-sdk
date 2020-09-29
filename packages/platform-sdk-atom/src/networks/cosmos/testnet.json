@@ -12,12 +12,21 @@
 		"slip44": 118,
 		"bech32": "cosmos"
 	},
-	"hosts": ["https://stargate.cosmos.network"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": ["https://stargate.cosmos.network"],
+		"hostsMultiSignature": [],
+		"signingMethods": {
+			"mnemonic": true,
+			"privateKey": false,
+			"wif": false
+		}
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -94,10 +103,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": true,
-		"privateKey": false,
-		"wif": false
 	}
 }
