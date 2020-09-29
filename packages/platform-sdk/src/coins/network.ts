@@ -6,11 +6,11 @@ import { Manifest } from "./manifest";
 
 export class Network {
 	readonly #network: CoinNetwork;
-	readonly #abilities: object;
+	readonly #featureFlags: object;
 
 	public constructor(config: Config, manifest: Manifest) {
 		this.#network = config.get("network");
-		this.#abilities = manifest.get<object>("abilities")!;
+		this.#featureFlags = manifest.get<object>("featureFlags")!;
 	}
 
 	public all(): CoinNetwork {
@@ -18,7 +18,7 @@ export class Network {
 	}
 
 	public can(ability: string): boolean {
-		return get(this.#abilities, ability) === true;
+		return get(this.#featureFlags, ability) === true;
 	}
 
 	public cannot(ability: string): boolean {

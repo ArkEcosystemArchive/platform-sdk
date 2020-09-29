@@ -110,7 +110,7 @@ interface Transaction {
 	entityUpdate: boolean;
 }
 
-interface Abilities {
+interface FeatureFlags {
 	Client: Client;
 	Fee: Fee;
 	Identity: Identity;
@@ -137,6 +137,6 @@ export interface CoinNetwork {
 	hosts: string[];
 	hostsMultiSignature: string[];
 	voting: Voting;
-	abilities: Abilities;
+	featureFlags: FeatureFlags;
 	signingMethods: SigningMethods;
 }

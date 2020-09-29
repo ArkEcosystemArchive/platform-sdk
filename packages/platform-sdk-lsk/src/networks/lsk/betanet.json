@@ -18,7 +18,7 @@
 		"maximum": 101,
 		"maximumPerTransaction": 33
 	},
-	"abilities": {
+	"featureFlags": {
 		"Client": {
 			"transaction": true,
 			"transactions": true,
