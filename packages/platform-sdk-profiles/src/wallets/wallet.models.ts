@@ -96,7 +96,6 @@ export interface ReadWriteWallet {
 	networkId(): string;
 	manifest(): Coins.Manifest;
 	config(): Coins.Config;
-	guard(): Coins.Guard;
 	client(): Contracts.ClientService;
 	identity(): Contracts.IdentityService;
 	ledger(): Contracts.LedgerService;

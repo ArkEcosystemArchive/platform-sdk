@@ -1,4 +1,4 @@
-import { CoinNetwork } from "./contracts";
+import { CoinNetwork } from "./network.models";
 
 export class NetworkRepository {
 	readonly #networks: Record<string, CoinNetwork>;
