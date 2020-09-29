@@ -12,22 +12,16 @@ import { TransactionService } from "./wallet-transaction-service";
 export interface WalletStruct {
 	id: string;
 	coin: string | undefined;
-	coinConfig: {
-		network: {
-			crypto: {
-				slip44: number;
-			};
-			currency: {
-				symbol: string;
-				ticker: string;
-			};
-			explorer: string;
+	network: string;
+	networkConfig: {
+		crypto: {
+			slip44: number;
+		};
+		networking: {
 			hosts: string[];
-			id: string;
-			name: string;
+			hostsMultiSignature: string[];
 		};
 	};
-	network: string;
 	address: string;
 	publicKey: string | undefined;
 	data: Record<string, any>;

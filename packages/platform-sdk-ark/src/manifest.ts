@@ -1,7 +1,7 @@
-import * as ArkMainnet from "./networks/ark/mainnet.json";
-import * as ArkDevnet from "./networks/ark/devnet.json";
-import * as CompendiaMainnet from "./networks/compendia/mainnet.json";
-import * as CompendiaTestnet from "./networks/compendia/testnet.json";
+import ArkMainnet from "./networks/ark/mainnet.json";
+import ArkDevnet from "./networks/ark/devnet.json";
+import CompendiaMainnet from "./networks/compendia/mainnet.json";
+import CompendiaTestnet from "./networks/compendia/testnet.json";
 
 export const manifest = {
 	name: "ARK",

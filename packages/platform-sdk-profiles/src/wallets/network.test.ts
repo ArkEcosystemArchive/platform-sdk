@@ -39,25 +39,5 @@ it("should determine if the network is a test environment", () => {
 });
 
 it("should have an toObject", () => {
-	expect(subject.toObject()).toEqual({
-		crypto: {
-			slip44: 111,
-		},
-		currency: {
-			symbol: "DѦ",
-			ticker: "DARK",
-		},
-		explorer: "https://dexplorer.ark.io/",
-		networking: { hosts: ["https://dwallets.ark.io"], hostsMultiSignature: ["https://dmusig1.ark.io"] },
-		id: "ark.devnet",
-		name: "ARK Devnet",
-		type: "test",
-		governance: {
-			voting: {
-				enabled: true,
-				maximum: 1,
-				maximumPerTransaction: 1,
-			},
-		},
-	});
+	expect(subject.toObject()).toEqual(require("../../test/fixtures/network.json").default);
 });
