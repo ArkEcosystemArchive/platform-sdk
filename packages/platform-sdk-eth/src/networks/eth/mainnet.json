@@ -9,14 +9,23 @@
 	},
 	"crypto": {
 		"networkId": "1",
-		"slip44": 60
+		"slip44": 60,
+		"signingMethods": {
+			"mnemonic": true,
+			"privateKey": true,
+			"wif": false
+		}
 	},
-	"hosts": ["https://platform.ark.io/api/eth"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": ["https://platform.ark.io/api/eth"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -93,10 +102,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": true,
-		"privateKey": true,
-		"wif": false
 	}
 }

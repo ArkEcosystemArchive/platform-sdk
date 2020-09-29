@@ -10,14 +10,23 @@
 	"crypto": {
 		"networkId": "d5a3d18fbb3c084e3b1f3fa98c21014b5f3db536cc15d08f9f6479517c6a3d86",
 		"slip44": 194,
-		"bech32": "BOS"
+		"bech32": "BOS",
+		"signingMethods": {
+			"mnemonic": false,
+			"privateKey": true,
+			"wif": false
+		}
 	},
-	"hosts": ["https://api.boscore.io"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": ["https://api.boscore.io"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -94,10 +103,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": false,
-		"privateKey": true,
-		"wif": false
 	}
 }

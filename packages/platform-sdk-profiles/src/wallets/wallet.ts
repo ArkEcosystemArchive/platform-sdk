@@ -196,16 +196,24 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public toObject(): WalletStruct {
-		const coinConfig: any = { ...this.coin().config().all() };
-		delete coinConfig.httpClient;
-
 		this.#transactionService.dump();
+
+		const network: Coins.CoinNetwork = this.coin().network().all();
 
 		return {
 			id: this.id(),
 			coin: this.coin().manifest().get<string>("name"),
-			coinConfig,
-			network: this.network().id(),
+			network: this.networkId(),
+			// We only persist a few settings to prefer defaults from the SDK.
+			networkConfig: {
+				crypto: {
+					slip44: network.crypto.slip44,
+				},
+				networking: {
+					hosts: network.networking.hosts,
+					hostsMultiSignature: network.networking.hostsMultiSignature,
+				},
+			},
 			address: this.address(),
 			publicKey: this.publicKey(),
 			data: {

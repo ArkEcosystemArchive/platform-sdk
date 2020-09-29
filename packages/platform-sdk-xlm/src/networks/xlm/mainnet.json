@@ -8,14 +8,23 @@
 		"symbol": "XLM"
 	},
 	"crypto": {
-		"slip44": 148
+		"slip44": 148,
+		"signingMethods": {
+			"mnemonic": true,
+			"privateKey": false,
+			"wif": false
+		}
 	},
-	"hosts": ["https://horizon.stellar.org"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": ["https://horizon.stellar.org"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -92,10 +101,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": true,
-		"privateKey": false,
-		"wif": false
 	}
 }

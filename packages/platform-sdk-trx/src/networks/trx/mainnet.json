@@ -8,14 +8,23 @@
 		"symbol": "TRX"
 	},
 	"crypto": {
-		"slip44": 195
+		"slip44": 195,
+		"signingMethods": {
+			"mnemonic": true,
+			"privateKey": true,
+			"wif": false
+		}
 	},
-	"hosts": ["https://api.trongrid.io"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": ["https://api.trongrid.io"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -92,10 +101,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": true,
-		"privateKey": true,
-		"wif": false
 	}
 }

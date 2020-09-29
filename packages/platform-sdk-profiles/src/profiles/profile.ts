@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { MarketService } from "@arkecosystem/platform-sdk-markets";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { container } from "../environment/container";
-import { Identifiers } from "../environment/container.models";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../repositories/data-repository";
 import { NotificationRepository } from "../repositories/notification-repository";
@@ -182,7 +179,7 @@ export class Profile implements ProfileContract {
 	}
 
 	private restoreDefaultSettings(name: string): void {
-		this.settings().set(ProfileSetting.Name, name);	
+		this.settings().set(ProfileSetting.Name, name);
 		this.initializeSettings();
 	}
 }

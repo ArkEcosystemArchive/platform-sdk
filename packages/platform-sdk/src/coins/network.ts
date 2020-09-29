@@ -30,4 +30,8 @@ export class Network {
 			throw new Error(`The [${ability}] ability is not supported.`);
 		}
 	}
+
+	public toJson(): string {
+		return JSON.stringify(this.#network);
+	}
 }

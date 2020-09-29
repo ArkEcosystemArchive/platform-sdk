@@ -139,7 +139,7 @@ export class ClientService implements Contracts.ClientService {
 			connection = new RippleAPI({ server: config.get<string>("peer") });
 		} catch {
 			connection = new RippleAPI({
-				server: Arr.randomElement(config.get<Coins.CoinNetwork>("network").hosts),
+				server: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
 			});
 		}
 

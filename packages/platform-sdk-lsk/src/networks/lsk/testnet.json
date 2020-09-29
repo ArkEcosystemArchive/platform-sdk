@@ -9,14 +9,23 @@
 	},
 	"crypto": {
 		"networkId": "da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba",
-		"slip44": 134
+		"slip44": 134,
+		"signingMethods": {
+			"mnemonic": true,
+			"privateKey": false,
+			"wif": false
+		}
 	},
-	"hosts": ["https://testnet.lisk.io"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": true,
-		"maximum": 101,
-		"maximumPerTransaction": 33
+	"networking": {
+		"hosts": ["https://testnet.lisk.io"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": true,
+			"maximum": 101,
+			"maximumPerTransaction": 33
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -93,10 +102,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": true,
-		"privateKey": false,
-		"wif": false
 	}
 }

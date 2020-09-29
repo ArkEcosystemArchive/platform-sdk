@@ -1,5 +1,5 @@
-import * as BtcLivenet from "./networks/btc/livenet.json";
-import * as BtcTestnet from "./networks/btc/testnet.json";
+import BtcLivenet from "./networks/btc/livenet.json";
+import BtcTestnet from "./networks/btc/testnet.json";
 
 export const manifest = {
 	name: "BTC",

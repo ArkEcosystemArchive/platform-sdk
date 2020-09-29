@@ -8,14 +8,23 @@
 		"symbol": "Ƀ"
 	},
 	"crypto": {
-		"slip44": 0
+		"slip44": 0,
+		"signingMethods": {
+			"mnemonic": true,
+			"privateKey": false,
+			"wif": true
+		}
 	},
-	"hosts": ["https://coins.com/api/btc"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": ["https://coins.com/api/btc"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -92,10 +101,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": true,
-		"privateKey": false,
-		"wif": true
 	}
 }

@@ -10,14 +10,23 @@
 	"crypto": {
 		"networkId": "soju-0014",
 		"slip44": 330,
-		"bech32": "terra"
+		"bech32": "terra",
+		"signingMethods": {
+			"mnemonic": true,
+			"privateKey": false,
+			"wif": false
+		}
 	},
-	"hosts": [],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": [],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -94,10 +103,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": true,
-		"privateKey": false,
-		"wif": false
 	}
 }

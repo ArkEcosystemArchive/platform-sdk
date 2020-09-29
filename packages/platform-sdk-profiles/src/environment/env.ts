@@ -102,29 +102,16 @@ export class Environment {
 							object({
 								id: string().required(),
 								coin: string().required(),
-								coinConfig: object({
-									network: object({
-										id: string().required(),
-										type: string().required(),
-										name: string().required(),
-										explorer: string().required(),
-										currency: object({
-											ticker: string().required(),
-											symbol: string().required(),
-										}).required(),
-										crypto: object({
-											slip44: number().integer().required(),
-										}).required(),
+								network: string().required(),
+								networkConfig: object({
+									crypto: object({
+										slip44: number().integer().required(),
+									}).required(),
+									networking: object({
 										hosts: array().of(string()).required(),
 										hostsMultiSignature: array().of(string()),
-										voting: object({
-											enabled: boolean().required(),
-											maximum: number().required(),
-											maximumPerTransaction: number().required(),
-										}).required(),
-									}).noUnknown(),
+									}).required(),
 								}).noUnknown(),
-								network: string().required(),
 								address: string().required(),
 								publicKey: string().required(),
 								data: object().required(),

@@ -1,8 +1,8 @@
-import * as EthMainnet from "./networks/eth/mainnet.json";
-import * as EthKovan from "./networks/eth/kovan.json";
-import * as EthRopsten from "./networks/eth/ropsten.json";
-import * as EthRinkeby from "./networks/eth/rinkeby.json";
-import * as EthGoerli from "./networks/eth/goerli.json";
+import EthMainnet from "./networks/eth/mainnet.json";
+import EthKovan from "./networks/eth/kovan.json";
+import EthRopsten from "./networks/eth/ropsten.json";
+import EthRinkeby from "./networks/eth/rinkeby.json";
+import EthGoerli from "./networks/eth/goerli.json";
 
 export const manifest = {
 	name: "ETH",

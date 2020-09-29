@@ -8,14 +8,23 @@
 		"symbol": "XRP"
 	},
 	"crypto": {
-		"slip44": 144
+		"slip44": 144,
+		"signingMethods": {
+			"mnemonic": true,
+			"privateKey": true,
+			"wif": false
+		}
 	},
-	"hosts": ["wss://s.altnet.rippletest.net/"],
-	"hostsMultiSignature": [],
-	"voting": {
-		"enabled": false,
-		"maximum": 0,
-		"maximumPerTransaction": 0
+	"networking": {
+		"hosts": ["wss://s.altnet.rippletest.net/"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"maximum": 0,
+			"maximumPerTransaction": 0
+		}
 	},
 	"featureFlags": {
 		"Client": {
@@ -92,10 +101,5 @@
 			"htlcClaim": false,
 			"htlcRefund": false
 		}
-	},
-	"signingMethods": {
-		"mnemonic": true,
-		"privateKey": true,
-		"wif": false
 	}
 }
