@@ -35,15 +35,15 @@ export abstract class AbstractTransactionData {
 		businessEntityRegistration: "isBusinessEntityRegistration",
 		businessEntityResignation: "isBusinessEntityResignation",
 		businessEntityUpdate: "isBusinessEntityUpdate",
-		developerEntityRegistration: "isDeveloperEntityRegistration",
-		developerEntityResignation: "isDeveloperEntityResignation",
-		developerEntityUpdate: "isDeveloperEntityUpdate",
-		corePluginEntityRegistration: "isCorePluginEntityRegistration",
-		corePluginEntityResignation: "isCorePluginEntityResignation",
-		corePluginEntityUpdate: "isCorePluginEntityUpdate",
-		desktopPluginEntityRegistration: "isDesktopPluginEntityRegistration",
-		desktopPluginEntityResignation: "isDesktopPluginEntityResignation",
-		desktopPluginEntityUpdate: "isDesktopPluginEntityUpdate",
+		productEntityRegistration: "isProductEntityRegistration",
+		productEntityResignation: "isProductEntityResignation",
+		productEntityUpdate: "isProductEntityUpdate",
+		pluginEntityRegistration: "isPluginEntityRegistration",
+		pluginEntityResignation: "isPluginEntityResignation",
+		pluginEntityUpdate: "isPluginEntityUpdate",
+		moduleEntityRegistration: "isModuleEntityRegistration",
+		moduleEntityResignation: "isModuleEntityResignation",
+		moduleEntityUpdate: "isModuleEntityUpdate",
 		delegateEntityRegistration: "isDelegateEntityRegistration",
 		delegateEntityResignation: "isDelegateEntityResignation",
 		delegateEntityUpdate: "isDelegateEntityUpdate",
@@ -131,23 +131,23 @@ export abstract class AbstractTransactionData {
 
 	abstract isBusinessEntityUpdate(): boolean;
 
-	abstract isDeveloperEntityRegistration(): boolean;
+	abstract isProductEntityRegistration(): boolean;
 
-	abstract isDeveloperEntityResignation(): boolean;
+	abstract isProductEntityResignation(): boolean;
 
-	abstract isDeveloperEntityUpdate(): boolean;
+	abstract isProductEntityUpdate(): boolean;
 
-	abstract isCorePluginEntityRegistration(): boolean;
+	abstract isPluginEntityRegistration(): boolean;
 
-	abstract isCorePluginEntityResignation(): boolean;
+	abstract isPluginEntityResignation(): boolean;
 
-	abstract isCorePluginEntityUpdate(): boolean;
+	abstract isPluginEntityUpdate(): boolean;
 
-	abstract isDesktopPluginEntityRegistration(): boolean;
+	abstract isModuleEntityRegistration(): boolean;
 
-	abstract isDesktopPluginEntityResignation(): boolean;
+	abstract isModuleEntityResignation(): boolean;
 
-	abstract isDesktopPluginEntityUpdate(): boolean;
+	abstract isModuleEntityUpdate(): boolean;
 
 	abstract isDelegateEntityRegistration(): boolean;
 
