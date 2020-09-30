@@ -10,7 +10,7 @@ import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { SignedTransactionData } from "../dto/signed-transaction";
-import { retrieveCryptoConfiguration } from "./helpers";
+import { applyCryptoConfiguration, retrieveCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
 
 Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.EntityTransaction);
@@ -22,6 +22,7 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #identity: IdentityService;
 	readonly #peer: string;
 	readonly #multiSignatureSigner: MultiSignatureSigner;
+	readonly #configCrypto: any;
 
 	readonly #magistrateBuilders = {
 		entityRegistration: MagistrateBuilders.EntityBuilder,
@@ -29,21 +30,23 @@ export class TransactionService implements Contracts.TransactionService {
 		entityUpdate: MagistrateBuilders.EntityBuilder,
 	};
 
-	private constructor({ http, identity, peer, multiSignatureSigner }) {
+	private constructor({ http, identity, peer, multiSignatureSigner, configCrypto }) {
 		this.#http = http;
 		this.#identity = identity;
 		this.#peer = peer;
 		this.#multiSignatureSigner = multiSignatureSigner;
+		this.#configCrypto = configCrypto;
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
-		const { crypto, peer, status } = await retrieveCryptoConfiguration(config);
+		const configCrypto: any = await retrieveCryptoConfiguration(config);
 
 		return new TransactionService({
 			http: config.get<Contracts.HttpClient>("httpClient"),
-			peer,
+			peer: configCrypto.peer,
 			identity: await IdentityService.construct(config),
-			multiSignatureSigner: new MultiSignatureSigner(crypto.data, status.data.height),
+			multiSignatureSigner: new MultiSignatureSigner(configCrypto.crypto.data, configCrypto.status.data.height),
+			configCrypto,
 		});
 	}
 
@@ -223,6 +226,8 @@ export class TransactionService implements Contracts.TransactionService {
 		transaction: Contracts.RawTransactionData,
 		input: Contracts.TransactionInputs,
 	): Promise<Contracts.SignedTransactionData> {
+		applyCryptoConfiguration(this.#configCrypto);
+
 		let keys: Contracts.KeyPair | undefined;
 
 		if (input.sign.mnemonic) {
@@ -252,6 +257,8 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransactionData> {
+		applyCryptoConfiguration(this.#configCrypto);
+
 		try {
 			let address: string | undefined;
 

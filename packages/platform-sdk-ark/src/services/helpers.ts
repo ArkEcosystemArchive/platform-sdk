@@ -20,3 +20,8 @@ export const retrieveCryptoConfiguration = async (config: Coins.Config): Promise
 
 	return { crypto, peer, status };
 };
+
+export const applyCryptoConfiguration = ({ crypto, status }): void => {
+	Managers.configManager.setConfig(crypto.data);
+	Managers.configManager.setHeight(status.data.height);
+};
