@@ -1,7 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { transformTransactionDataCollection } from "../dto/transaction-mapper";
+import { transformTransactionData, transformTransactionDataCollection } from "../dto/transaction-mapper";
 import { makeCoin } from "../environment/container.helpers";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
@@ -13,6 +13,7 @@ import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
+import { ExtendedTransactionData } from "../dto/transaction";
 
 export class Wallet implements ReadWriteWallet {
 	readonly #entityAggregate: EntityAggregate;
@@ -364,19 +365,19 @@ export class Wallet implements ReadWriteWallet {
 	public async transactions(
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransaction({ addresses: [this.address()], ...query });
+		return this.fetchTransactions({ addresses: [this.address()], ...query });
 	}
 
 	public async sentTransactions(
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransaction({ senderId: this.address(), ...query });
+		return this.fetchTransactions({ senderId: this.address(), ...query });
 	}
 
 	public async receivedTransactions(
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransaction({ recipientId: this.address(), ...query });
+		return this.fetchTransactions({ recipientId: this.address(), ...query });
 	}
 
 	public multiSignature(): Contracts.WalletMultiSignature {
@@ -517,7 +518,11 @@ export class Wallet implements ReadWriteWallet {
 		this.data().set(WalletData.VotesUsed, used);
 	}
 
-	private async fetchTransaction(
+	public async findTransactionById(id: string): Promise<ExtendedTransactionData> {
+		return transformTransactionData(this, await this.#coin.client().transaction(id));
+	}
+
+	private async fetchTransactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<ExtendedTransactionDataCollection> {
 		const result = await this.#coin.client().transactions(query);
