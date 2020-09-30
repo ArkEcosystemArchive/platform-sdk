@@ -10,16 +10,16 @@
 	"crypto": {
 		"networkId": "columbus-3",
 		"slip44": 330,
-		"bech32": "terra"
-	},
-	"networking": {
-		"hosts": [],
-		"hostsMultiSignature": [],
+		"bech32": "terra",
 		"signingMethods": {
 			"mnemonic": true,
 			"privateKey": false,
 			"wif": false
 		}
+	},
+	"networking": {
+		"hosts": [],
+		"hostsMultiSignature": []
 	},
 	"governance": {
 		"voting": {

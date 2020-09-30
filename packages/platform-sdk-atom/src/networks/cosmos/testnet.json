@@ -10,16 +10,16 @@
 	"crypto": {
 		"networkId": "gaia-13007",
 		"slip44": 118,
-		"bech32": "cosmos"
-	},
-	"networking": {
-		"hosts": ["https://stargate.cosmos.network"],
-		"hostsMultiSignature": [],
+		"bech32": "cosmos",
 		"signingMethods": {
 			"mnemonic": true,
 			"privateKey": false,
 			"wif": false
 		}
+	},
+	"networking": {
+		"hosts": ["https://stargate.cosmos.network"],
+		"hostsMultiSignature": []
 	},
 	"governance": {
 		"voting": {
