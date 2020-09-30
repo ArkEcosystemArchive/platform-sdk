@@ -522,6 +522,19 @@ export class Wallet implements ReadWriteWallet {
 		return transformTransactionData(this, await this.#coin.client().transaction(id));
 	}
 
+	/**
+	 * Get multiple transactions by their IDs.
+	 *
+	 * Uses "Promise.all" instead of "Promise.allSettled" to throw when an invalid ID is used.
+	 *
+	 * @param {string[]} ids
+	 * @returns {Promise<ExtendedTransactionData[]>}
+	 * @memberof Wallet
+	 */
+	public async findTransactionsByIds(ids: string[]): Promise<ExtendedTransactionData[]> {
+		return Promise.all(ids.map((id: string) => this.findTransactionById(id)));
+	}
+
 	private async fetchTransactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<ExtendedTransactionDataCollection> {
