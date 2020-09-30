@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.373 - 2020-09-30
+
+### Added
+
+-   Implement `Wallet#can` and `Wallet#cannot` (5cbac4f6, @faustbrian)
+
+### Changed
+
+-   Extend `Notification` type (3d9cec8b, @goga-m)
+-   Determine abilities and signing methods per network (caf21252, @faustbrian)
+-   Reorganise manifests by type (e80cc1a2, @faustbrian)
+-   Update types according to AIP36 changes (120154ce, @brenopolanski)
+
+### Fixed
+
+-   Export `FeatureFlag` enum (df5454d6, @faustbrian)
+
 ## 0.9.367 - 2020-09-25
 
 ### Added
