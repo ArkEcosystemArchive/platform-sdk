@@ -3,7 +3,6 @@ import { Validator, ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
 import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../repositories/profile-repository";
-import { NetworkData } from "../wallets/network";
 import { container } from "./container";
 import { makeCoin } from "./container.helpers";
 import { Identifiers } from "./container.models";
@@ -250,16 +249,16 @@ export class Environment {
 		container.get<CoinList>(Identifiers.Coins)[coin] = spec;
 	}
 
-	public availableNetworks(): NetworkData[] {
+	public availableNetworks(): Coins.Network[] {
 		const coins: CoinList = container.get<CoinList>(Identifiers.Coins);
 
-		const result: NetworkData[] = [];
+		const result: Coins.Network[] = [];
 
 		for (const [coin, data] of Object.entries(coins)) {
 			const networks: Coins.CoinNetwork[] = Object.values(data.manifest.networks);
 
 			for (const network of networks) {
-				result.push(new NetworkData(coin, network));
+				result.push(new Coins.Network(coin, network));
 			}
 		}
 

@@ -424,6 +424,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/platform-sdk/",
           "packageDependencies": [
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -463,7 +464,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
             ["type-fest", "npm:0.16.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["yup", "npm:0.29.3"]
           ],
@@ -506,7 +507,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["yup", "npm:0.29.3"]
           ],
@@ -560,7 +561,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rimraf", "npm:3.0.2"],
             ["semver", "npm:7.3.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["yup", "npm:0.29.3"]
           ],
@@ -607,7 +608,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["yup", "npm:0.29.3"]
           ],
@@ -655,7 +656,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["yup", "npm:0.29.3"]
           ],
@@ -696,7 +697,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -736,7 +737,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -788,7 +789,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rimraf", "npm:3.0.2"],
             ["safe-buffer", "npm:5.2.1"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["wif", "npm:2.0.6"]
           ],
@@ -829,7 +830,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -876,7 +877,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["yup", "npm:0.29.3"]
           ],
@@ -924,7 +925,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["web3", "npm:1.2.11"],
             ["yup", "npm:0.29.3"]
@@ -965,7 +966,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -1005,7 +1006,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -1045,7 +1046,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -1086,7 +1087,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -1126,7 +1127,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -1164,7 +1165,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -1201,7 +1202,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -1240,7 +1241,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -1287,7 +1288,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["yup", "npm:0.29.3"]
           ],
@@ -1329,7 +1330,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -1373,7 +1374,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["yup", "npm:0.29.3"]
           ],
@@ -1414,7 +1415,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rimraf", "npm:3.0.2"],
             ["rss-parser", "npm:3.9.0"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -1457,7 +1458,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
           ],
           "linkType": "SOFT",
@@ -1517,7 +1518,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["semver", "npm:7.3.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
             ["type-fest", "npm:0.16.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["uuid", "npm:8.3.0"]
           ],
@@ -1563,7 +1564,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["remarkable", "npm:2.0.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["yup", "npm:0.29.3"]
           ],
@@ -1607,7 +1608,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rimraf", "npm:3.0.2"],
             ["tronweb", "npm:3.0.0"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["yup", "npm:0.29.3"]
           ],
@@ -1652,7 +1653,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["stellar-hd-wallet", "npm:0.0.10"],
             ["stellar-sdk", "npm:5.0.4"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["yup", "npm:0.29.3"]
           ],
@@ -1695,7 +1696,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["yup", "npm:0.29.3"]
           ],
@@ -1745,7 +1746,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ripple-keypairs", "npm:1.0.1"],
             ["ripple-lib", "npm:1.8.0"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"],
             ["ws", "virtual:58dc3fa0fd03d8a53e7311f303a84021b8334e7f5f1b6fe3274957c89a6a73f563ceb5631e7345beb6dc35e79a56de8a3f39f9afe9a9422d0873bd2b90c8367a#npm:7.3.1"],
             ["yup", "npm:0.29.3"]
@@ -17586,10 +17587,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["typedoc", [
-        ["virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0", {
-          "packageLocation": "./.yarn/$$virtual/typedoc-virtual-1aa64d61be/0/cache/typedoc-npm-0.19.0-59050bc937-2.zip/node_modules/typedoc/",
+        ["virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0", {
+          "packageLocation": "./.yarn/$$virtual/typedoc-virtual-dbf2030da6/0/cache/typedoc-npm-0.19.0-59050bc937-2.zip/node_modules/typedoc/",
           "packageDependencies": [
-            ["typedoc", "virtual:24ce9d7278d5e2b4ce24277b81e9315f11b61691689928c24daa10f924bb16f5c7a76259ea4df255fca0a42eff825aac84a8beb91bcc59cd214fbdea4b77af20#npm:0.19.0"],
+            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
             ["fs-extra", "npm:9.0.1"],
             ["handlebars", "npm:4.7.6"],
             ["highlight.js", "npm:10.0.3"],

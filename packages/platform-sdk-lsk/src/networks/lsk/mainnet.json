@@ -40,7 +40,7 @@
 	"governance": {
 		"voting": {
 			"enabled": true,
-			"maximum": 101,
+			"maximumPerWallet": 101,
 			"maximumPerTransaction": 33
 		}
 	},

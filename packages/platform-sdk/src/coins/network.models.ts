@@ -24,7 +24,7 @@ export interface CoinNetwork {
 	governance: {
 		voting: {
 			enabled: boolean;
-			maximum: number;
+			maximumPerWallet: number;
 			maximumPerTransaction: number;
 		};
 	};
