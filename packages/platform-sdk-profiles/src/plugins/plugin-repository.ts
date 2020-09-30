@@ -1,8 +1,7 @@
-import { PluginRegistry } from "@arkecosystem/platform-sdk-plugins";
-
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { DataRepository } from "./data-repository";
+import { DataRepository } from "../repositories/data-repository";
+import { PluginRegistry } from "./plugin-registry";
 
 interface Plugin {
 	id: number;

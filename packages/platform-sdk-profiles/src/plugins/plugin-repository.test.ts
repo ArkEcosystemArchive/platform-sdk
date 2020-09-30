@@ -1,11 +1,11 @@
 import "jest-extended";
 
 import { Request } from "@arkecosystem/platform-sdk-http-got";
-import { PluginRegistry } from "@arkecosystem/platform-sdk-plugins";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { PluginRepository } from "./plugin-repository";
+import { PluginRegistry } from "./plugin-registry";
 
 const stubPlugin = {
 	id: 1,

@@ -19,7 +19,7 @@ describe("PluginRegistry", () => {
 			nock("https://marketsquare.io")
 				.get("/api/plugins")
 				.query(true)
-				.reply(200, require("../test/fixtures/index.json"));
+				.reply(200, require("../../test/fixtures/plugins/index.json"));
 
 			const result = await subject.all();
 
@@ -34,7 +34,7 @@ describe("PluginRegistry", () => {
 			nock("https://marketsquare.io")
 				.get("/api/plugins/486")
 				.query(true)
-				.reply(200, require("../test/fixtures/show.json"));
+				.reply(200, require("../../test/fixtures/plugins/show.json"));
 
 			await expect(subject.findById(486)).resolves.toBeObject();
 		});

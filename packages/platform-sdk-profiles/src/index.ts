@@ -23,6 +23,10 @@ export * from "./profiles/authenticator";
 export * from "./profiles/profile.models";
 export * from "./profiles/profile";
 
+export * from "./plugins/plugin-registry.models";
+export * from "./plugins/plugin-registry";
+export * from "./plugins/plugin-repository";
+
 export * from "./repositories/contact-address-repository";
 export * from "./repositories/contact-repository";
 export * from "./repositories/data-repository";
