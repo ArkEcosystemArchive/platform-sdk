@@ -99,7 +99,10 @@
 			"delegateResignation": false,
 			"htlcLock": false,
 			"htlcClaim": false,
-			"htlcRefund": false
+			"htlcRefund": false,
+			"entityRegistration": false,
+			"entityResignation": false,
+			"entityUpdate": false
 		}
 	}
 }

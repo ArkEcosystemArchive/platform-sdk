@@ -102,6 +102,9 @@
 			"htlcRefund": false,
 			"entityRegistration": false,
 			"entityResignation": false,
+			"entityUpdate": false,
+			"entityRegistration": false,
+			"entityResignation": false,
 			"entityUpdate": false
 		}
 	}
