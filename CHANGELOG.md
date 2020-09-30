@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.378 - 2020-09-30
+
+### Added
+
+-   Implement `Wallet#findTransactionById` (714150c9, @faustbrian)
+
+### Changed
+
+-   Merge plugins and profiles packages (b15f63b7, @faustbrian)
+
 ## 0.9.376 - 2020-09-30
 
 ### Changed
