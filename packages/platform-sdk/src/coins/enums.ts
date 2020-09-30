@@ -1,4 +1,4 @@
-export enum CoinPermission {
+export enum FeatureFlag {
 	ClientTransaction = "Client.transaction",
 	ClientTransactions = "Client.transactions",
 	ClientWallet = "Client.wallet",
