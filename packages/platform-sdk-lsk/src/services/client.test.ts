@@ -29,7 +29,8 @@ describe("ClientService", function () {
 	describe("#transactions", () => {
 		it("should succeed", async () => {
 			nock(/.+/)
-				.get("/api/transactions?senderIdOrRecipientId=6566229458323231555L")
+				.get("/api/transactions")
+				.query(true)
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({ address: "6566229458323231555L" });
@@ -80,6 +81,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/delegates")
+				.query(true)
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/delegates.json`));
 
 			const result = await subject.delegates();
