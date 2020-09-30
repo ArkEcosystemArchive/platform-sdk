@@ -450,6 +450,14 @@ export class Wallet implements ReadWriteWallet {
 		return this.votesAvailable() > 0;
 	}
 
+	public can(feature: string): boolean {
+		return this.#coin.network().can(feature);
+	}
+
+	public cannot(feature: string): boolean {
+		return this.#coin.network().can(feature);
+	}
+
 	/**
 	 * These methods serve as helpers to aggregate commonly used data.
 	 */

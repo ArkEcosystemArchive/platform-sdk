@@ -17,17 +17,17 @@ export class Network {
 		return this.#network;
 	}
 
-	public can(ability: string): boolean {
-		return get(this.#featureFlags, ability) === true;
+	public can(feature: string): boolean {
+		return get(this.#featureFlags, feature) === true;
 	}
 
-	public cannot(ability: string): boolean {
-		return !this.can(ability);
+	public cannot(feature: string): boolean {
+		return !this.can(feature);
 	}
 
-	public check(ability: string): void {
-		if (this.cannot(ability)) {
-			throw new Error(`The [${ability}] ability is not supported.`);
+	public check(feature: string): void {
+		if (this.cannot(feature)) {
+			throw new Error(`The [${feature}] feature flag is not accessible.`);
 		}
 	}
 
