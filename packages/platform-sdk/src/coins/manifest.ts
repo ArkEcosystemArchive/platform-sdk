@@ -11,7 +11,13 @@ export class Manifest {
 		return this.#manifest;
 	}
 
-	public get<T>(name: string): T | undefined {
-		return get(this.#manifest, name);
+	public get<T>(name: string): T {
+		const result: T | undefined = get(this.#manifest, name);
+
+		if (result === undefined) {
+			throw new Error(`The [${name}] key does not exist in the manifest.`);
+		}
+
+		return result;
 	}
 }

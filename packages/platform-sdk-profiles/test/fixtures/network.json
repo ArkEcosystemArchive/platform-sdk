@@ -22,7 +22,7 @@
 	"governance": {
 		"voting": {
 			"enabled": true,
-			"maximum": 1,
+			"maximumPerWallet": 1,
 			"maximumPerTransaction": 1
 		}
 	},
@@ -129,7 +129,7 @@
 		"governance": {
 			"voting": {
 				"enabled": true,
-				"maximum": 1,
+				"maximumPerWallet": 1,
 				"maximumPerTransaction": 1
 			}
 		},

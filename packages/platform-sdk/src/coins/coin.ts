@@ -37,7 +37,7 @@ export class Coin {
 		this.#manifest = manifest;
 		this.#config = config;
 		this.#services = services;
-		this.#network = new Network(config, manifest);
+		this.#network = new Network(manifest.get("name"), config.get("network"));
 	}
 
 	public async destruct(): Promise<void> {

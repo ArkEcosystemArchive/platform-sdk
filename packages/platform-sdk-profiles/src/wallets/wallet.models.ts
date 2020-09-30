@@ -5,7 +5,6 @@ import { ExtendedTransactionDataCollection } from "../dto/transaction-collection
 import { DataRepository } from "../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
-import { NetworkData } from "./network";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 
@@ -64,7 +63,7 @@ export interface ReadWriteWallet {
 	hasSyncedWithNetwork(): boolean;
 	id(): string;
 	coin(): Coins.Coin;
-	network(): NetworkData;
+	network(): Coins.Network;
 	currency(): string;
 	exchangeCurrency(): string;
 	alias(): string | undefined;

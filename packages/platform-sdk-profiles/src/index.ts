@@ -34,7 +34,6 @@ export * from "./repositories/wallet-repository";
 export * from "./services/avatar";
 export * from "./services/cache";
 
-export * from "./wallets/network";
 export * from "./wallets/read-only-wallet";
 export * from "./wallets/wallet-transaction-service";
 export * from "./wallets/wallet.models";

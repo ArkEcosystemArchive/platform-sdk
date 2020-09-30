@@ -13,7 +13,6 @@ import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
-import { NetworkData } from "./network";
 
 export class Wallet implements ReadWriteWallet {
 	readonly #entityAggregate: EntityAggregate;
@@ -123,8 +122,8 @@ export class Wallet implements ReadWriteWallet {
 		return this.#coin;
 	}
 
-	public network(): NetworkData {
-		return new NetworkData(this.coinId(), this.coin().network().all());
+	public network(): Coins.Network {
+		return this.coin().network();
 	}
 
 	public currency(): string {
@@ -198,7 +197,7 @@ export class Wallet implements ReadWriteWallet {
 	public toObject(): WalletStruct {
 		this.#transactionService.dump();
 
-		const network: Coins.CoinNetwork = this.coin().network().all();
+		const network: Coins.CoinNetwork = this.coin().network().toObject();
 
 		return {
 			id: this.id(),

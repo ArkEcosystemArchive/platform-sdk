@@ -36,7 +36,7 @@
 	"governance": {
 		"voting": {
 			"enabled": false,
-			"maximum": 0,
+			"maximumPerWallet": 0,
 			"maximumPerTransaction": 0
 		}
 	},

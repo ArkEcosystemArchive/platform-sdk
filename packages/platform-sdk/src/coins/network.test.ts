@@ -2,12 +2,12 @@ import "jest-extended";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 
-import { NetworkData } from "./network";
+import { Network } from "./network";
 
-let subject: NetworkData;
+let subject: Network;
 
 beforeEach(() => {
-	subject = new NetworkData("ARK", ARK.manifest.networks["ark.devnet"]);
+	subject = new Network("ARK", ARK.manifest.networks["ark.devnet"]);
 });
 
 it("should have an id", () => {
@@ -38,6 +38,22 @@ it("should determine if the network is a test environment", () => {
 	expect(subject.isTest()).toBeTrue();
 });
 
-it("should have an toObject", () => {
-	expect(subject.toObject()).toEqual(require("../../test/fixtures/network.json").default);
+it("should allows voting", () => {
+	expect(subject.allowsVoting()).toBeTrue();
+});
+
+it("should maximum votes per wallet", () => {
+	expect(subject.maximumVotesPerWallet()).toBe(1);
+});
+
+it("should maximum votes per transaction", () => {
+	expect(subject.maximumVotesPerTransaction()).toBe(1);
+});
+
+it("should have an object representation", () => {
+	expect(subject.toObject()).toBeObject();
+});
+
+it("should have an string representation", () => {
+	expect(subject.toJson()).toBeString();
 });
