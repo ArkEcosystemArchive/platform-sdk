@@ -115,10 +115,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/platform-sdk-news"
       },
       {
-        "name": "@arkecosystem/platform-sdk-plugins",
-        "reference": "workspace:packages/platform-sdk-plugins"
-      },
-      {
         "name": "@arkecosystem/platform-sdk-profiles",
         "reference": "workspace:packages/platform-sdk-profiles"
       },
@@ -169,7 +165,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@arkecosystem/platform-sdk-markets", ["workspace:packages/platform-sdk-markets"]],
       ["@arkecosystem/platform-sdk-neo", ["workspace:packages/platform-sdk-neo"]],
       ["@arkecosystem/platform-sdk-news", ["workspace:packages/platform-sdk-news"]],
-      ["@arkecosystem/platform-sdk-plugins", ["workspace:packages/platform-sdk-plugins"]],
       ["@arkecosystem/platform-sdk-profiles", ["workspace:packages/platform-sdk-profiles"]],
       ["@arkecosystem/platform-sdk-support", ["workspace:packages/platform-sdk-support"]],
       ["@arkecosystem/platform-sdk-trx", ["workspace:packages/platform-sdk-trx"]],
@@ -1421,49 +1416,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT",
         }]
       ]],
-      ["@arkecosystem/platform-sdk-plugins", [
-        ["workspace:packages/platform-sdk-plugins", {
-          "packageLocation": "./packages/platform-sdk-plugins/",
-          "packageDependencies": [
-            ["@arkecosystem/platform-sdk-plugins", "workspace:packages/platform-sdk-plugins"],
-            ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
-            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
-            ["@sindresorhus/tsconfig", "npm:0.7.0"],
-            ["@types/async", "npm:3.2.3"],
-            ["@types/dot-prop", "npm:5.0.1"],
-            ["@types/eslint", "npm:7.2.2"],
-            ["@types/eslint-plugin-prettier", "npm:3.1.0"],
-            ["@types/jest", "npm:26.0.12"],
-            ["@types/mersenne-twister", "npm:1.1.2"],
-            ["@types/node", "npm:14.6.2"],
-            ["@types/prettier", "npm:2.1.0"],
-            ["@types/rimraf", "npm:3.0.0"],
-            ["@types/semver", "npm:7.3.3"],
-            ["@types/uuid", "npm:8.3.0"],
-            ["@typescript-eslint/eslint-plugin", "virtual:05e5dbaaeaf96e9720ade986acbc036098d0a754f8f61b0590493b4ba7048a2561200777ffd9ab2baa55487215ea6a28b9755d32c7513b8b05da5d33573ed210#npm:4.0.1"],
-            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.0.1"],
-            ["codecov", "npm:3.7.2"],
-            ["cross-env", "npm:7.0.2"],
-            ["eslint", "npm:7.8.0"],
-            ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.11.0"],
-            ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:23.20.0"],
-            ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.4"],
-            ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:5.0.3"],
-            ["got", "npm:11.5.2"],
-            ["jest", "npm:26.4.2"],
-            ["jest-extended", "npm:0.11.5"],
-            ["jest-localstorage-mock", "npm:2.4.3"],
-            ["nock", "npm:13.0.4"],
-            ["npm-check-updates", "npm:8.0.2"],
-            ["prettier", "npm:2.1.1"],
-            ["rimraf", "npm:3.0.2"],
-            ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.3.0"],
-            ["typedoc", "virtual:3f3a7bf2b7173cc19040f216f962c48a30b942553e66bd34f869334116d6e6dab1b12600c3b12e5bb38f1e6dcf6197c5277b5cdf9872d3edcc27f9bf823df5e5#npm:0.19.0"],
-            ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
-          ],
-          "linkType": "SOFT",
-        }]
-      ]],
       ["@arkecosystem/platform-sdk-profiles", [
         ["workspace:packages/platform-sdk-profiles", {
           "packageLocation": "./packages/platform-sdk-profiles/",
@@ -1477,7 +1429,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@arkecosystem/platform-sdk-markets", "workspace:packages/platform-sdk-markets"],
-            ["@arkecosystem/platform-sdk-plugins", "workspace:packages/platform-sdk-plugins"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@arkecosystem/utils", "npm:1.2.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -4626,28 +4577,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-c1fa8a5f4d/0/cache/@typescript-eslint-eslint-plugin-npm-4.0.1-a7b474732f-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
           "packageDependencies": [
             ["@typescript-eslint/eslint-plugin", "virtual:0448afc3afa11b4f499383a7d787cf1a8a369b1f648ccb08c43d3dc69d2284966227da49d2791cf8689bd59da573474c7a9718fd10e7245e4366af8ab810edfd#npm:4.0.1"],
-            ["@typescript-eslint/experimental-utils", "virtual:c8a4c7fb4ddc9f24ef476aeecf35757c9436bb24c6a1705878a43222777b48f1b70201f092d6efa63a90efdfca4c229b6fb09f31a9fb9c3d9cbedbd735b47d93#npm:4.0.1"],
-            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.0.1"],
-            ["@typescript-eslint/scope-manager", "npm:4.0.1"],
-            ["debug", "virtual:3a4dedf3f7af41df4edd570c93c4126de67c5e458a3b579d255b1e8423f52c355b4621ca7129f7769a7e7f91c1e0abff031564e672c722042a1e843d1951cc0f#npm:4.1.1"],
-            ["eslint", "npm:7.8.0"],
-            ["functional-red-black-tree", "npm:1.0.1"],
-            ["regexpp", "npm:3.1.0"],
-            ["semver", "npm:7.3.2"],
-            ["tsutils", "virtual:c8a4c7fb4ddc9f24ef476aeecf35757c9436bb24c6a1705878a43222777b48f1b70201f092d6efa63a90efdfca4c229b6fb09f31a9fb9c3d9cbedbd735b47d93#npm:3.17.1"],
-            ["typescript", "patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=c79188"]
-          ],
-          "packagePeers": [
-            "eslint",
-            "@typescript-eslint/parser",
-            "typescript"
-          ],
-          "linkType": "HARD",
-        }],
-        ["virtual:05e5dbaaeaf96e9720ade986acbc036098d0a754f8f61b0590493b4ba7048a2561200777ffd9ab2baa55487215ea6a28b9755d32c7513b8b05da5d33573ed210#npm:4.0.1", {
-          "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-44ab41b480/0/cache/@typescript-eslint-eslint-plugin-npm-4.0.1-a7b474732f-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
-          "packageDependencies": [
-            ["@typescript-eslint/eslint-plugin", "virtual:05e5dbaaeaf96e9720ade986acbc036098d0a754f8f61b0590493b4ba7048a2561200777ffd9ab2baa55487215ea6a28b9755d32c7513b8b05da5d33573ed210#npm:4.0.1"],
             ["@typescript-eslint/experimental-utils", "virtual:c8a4c7fb4ddc9f24ef476aeecf35757c9436bb24c6a1705878a43222777b48f1b70201f092d6efa63a90efdfca4c229b6fb09f31a9fb9c3d9cbedbd735b47d93#npm:4.0.1"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.0.1"],
             ["@typescript-eslint/scope-manager", "npm:4.0.1"],
