@@ -76,7 +76,6 @@ export class EntityAggregate {
 					senderPublicKey: syncedWallet.publicKey(),
 				};
 
-				let transactions;
 				if (lastResponse && lastResponse.hasMorePages()) {
 					return resolve(syncedWallet.client().transactions({ cursor: lastResponse.nextPage(), ...query }));
 				}
