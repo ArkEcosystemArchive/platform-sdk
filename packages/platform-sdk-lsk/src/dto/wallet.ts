@@ -3,11 +3,11 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
 	public address(): string {
-		return this.data.address;
+		return this.data.address || this.data.account?.address;
 	}
 
 	public publicKey(): string {
-		return this.data.publicKey;
+		return this.data.publicKey || this.data.account?.publicKey;
 	}
 
 	public balance(): BigNumber {
@@ -19,15 +19,15 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public username(): string | undefined {
-		return this.data.username;
+		return this.data.username || this.data.delegate?.username;
 	}
 
 	public rank(): number | undefined {
-		return this.data.rank;
+		return this.data.rank || this.data.delegate?.rank;
 	}
 
 	public votes(): BigNumber | undefined {
-		return BigNumber.make(this.data.votes);
+		return BigNumber.make(this.data.vote || this.data.delegate?.vote);
 	}
 
 	public entities(): Contracts.Entity[] {
