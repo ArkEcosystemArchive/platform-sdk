@@ -1,8 +1,8 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import * as transactions from "@liskhq/lisk-transactions";
-// import * as transactionsBeta from "@liskhq/lisk-transactions-new";
+import * as transactionsBeta from "@liskhq/lisk-transactions-new";
 
-// import { manifest } from "../manifest";
+import { manifest } from "../manifest";
 
 export class FeeService implements Contracts.FeeService {
 	readonly #network;
@@ -43,9 +43,9 @@ export class FeeService implements Contracts.FeeService {
 	private transform(type: string | number): Contracts.TransactionFee {
 		const fee: number = type === 0 ? 0 : transactions.constants[type];
 
-		// if (this.#network === manifest.networks.betanet.crypto.networkId) {
-		// 	fee = transactionsBeta.constants[type];
-		// }
+		if (this.#network === manifest.networks.betanet.crypto.networkId) {
+			fee = transactionsBeta.constants[type];
+		}
 
 		return {
 			static: `${fee}`,

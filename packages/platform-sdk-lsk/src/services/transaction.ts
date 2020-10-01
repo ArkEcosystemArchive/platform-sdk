@@ -1,9 +1,9 @@
 import { Coins, Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import * as transactions from "@liskhq/lisk-transactions";
-// import * as transactionsBeta from "@liskhq/lisk-transactions-new";
+import * as transactionsBeta from "@liskhq/lisk-transactions-new";
 
-// import { manifest } from "../manifest";
+import { manifest } from "../manifest";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #network;
@@ -175,9 +175,9 @@ export class TransactionService implements Contracts.TransactionService {
 				struct.secondPassphrase = BIP39.normalize(input.sign.secondMnemonic);
 			}
 
-			// if (this.#network === manifest.networks.betanet.crypto.networkId) {
-			// 	return transactionsBeta[type](struct);
-			// }
+			if (this.#network === manifest.networks["lsk.betanet"].crypto.networkId) {
+				return transactionsBeta[type](struct);
+			}
 
 			return transactions[type](struct);
 		} catch (error) {

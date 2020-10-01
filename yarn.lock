@@ -862,8 +862,10 @@ __metadata:
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-transport-mocker": ^5.22.0
     "@liskhq/lisk-client": ^2.0
+    "@liskhq/lisk-client-new": "npm:@liskhq/lisk-client@=3.0.0"
     "@liskhq/lisk-cryptography": ^2.4
     "@liskhq/lisk-transactions": ^2.0
+    "@liskhq/lisk-transactions-new": "npm:@liskhq/lisk-transactions@=3.0.0"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.2
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -2998,6 +3000,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@liskhq/lisk-api-client@npm:3.0.0":
+  version: 3.0.0
+  resolution: "@liskhq/lisk-api-client@npm:3.0.0"
+  dependencies:
+    "@types/node": 12.12.11
+    axios: 0.19.0
+  checksum: 2/facb34ead34512ec927a9cedeb39ea22eed9fdf5eaf48d828b9feee517bb9aad29a5b756709f96c0c7af9d795858a500f4d5f947aa3592931c2beb9f8fd70a01
+  languageName: node
+  linkType: hard
+
+"@liskhq/lisk-client-new@npm:@liskhq/lisk-client@=3.0.0":
+  version: 3.0.0
+  resolution: "@liskhq/lisk-client@npm:3.0.0"
+  dependencies:
+    "@liskhq/lisk-api-client": 3.0.0
+    "@liskhq/lisk-constants": 1.3.0
+    "@liskhq/lisk-cryptography": 2.4.0
+    "@liskhq/lisk-passphrase": 3.0.0
+    "@liskhq/lisk-transactions": 3.0.0
+    "@types/node": 12.12.11
+  checksum: 2/98e5314634c004d3aab11f8f499d85c35a0556051b8e5b3ecbe5cd287d78c256a76beb74c1b12ae0ed49e1d66885592a53a293071eaad200e6a3a7282e632e22
+  languageName: node
+  linkType: hard
+
 "@liskhq/lisk-client@npm:^2.0":
   version: 2.3.1
   resolution: "@liskhq/lisk-client@npm:2.3.1"
@@ -3021,6 +3047,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@liskhq/lisk-constants@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@liskhq/lisk-constants@npm:1.3.0"
+  dependencies:
+    "@types/node": 12.12.11
+  checksum: 2/5122c45a7998fc85d29ef1e6875ade0c2eb028e116955eafc25b48f8a1565d24db3003b853897547b439a9943eba15a78303cda31e500c46be3a2236db058558
+  languageName: node
+  linkType: hard
+
 "@liskhq/lisk-cryptography@npm:2.3.0":
   version: 2.3.0
   resolution: "@liskhq/lisk-cryptography@npm:2.3.0"
@@ -3037,6 +3072,25 @@ __metadata:
     sodium-native:
       optional: true
   checksum: 2/68c37beff4a098ad29a8baafec7cb4e2a58cdddc8d2657f4127f8c4daac59f64dc97fe533f97629f930abe7d5af1902495399aadc259f6d0268bb6e54ff32d32
+  languageName: node
+  linkType: hard
+
+"@liskhq/lisk-cryptography@npm:2.4.0":
+  version: 2.4.0
+  resolution: "@liskhq/lisk-cryptography@npm:2.4.0"
+  dependencies:
+    "@liskhq/bignum": 1.3.1
+    "@types/ed2curve": 0.2.2
+    "@types/node": 12.12.11
+    buffer-reverse: 1.0.1
+    ed2curve: 0.2.1
+    sodium-native: 2.4.6
+    tweetnacl: 1.0.1
+    varuint-bitcoin: 1.1.0
+  dependenciesMeta:
+    sodium-native:
+      optional: true
+  checksum: 2/9e68398ada095576fe0615b2e7b0e847ef6651ee633b4df1ae28beae6371305da523ead4c35c4fd0dcb91fe6fb5c95fc7e3b4033a9e9cf8917dd72a7524904ce
   languageName: node
   linkType: hard
 
@@ -3070,6 +3124,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@liskhq/lisk-passphrase@npm:3.0.0":
+  version: 3.0.0
+  resolution: "@liskhq/lisk-passphrase@npm:3.0.0"
+  dependencies:
+    "@types/bip39": 2.4.1
+    "@types/node": 12.12.11
+    bip39: 2.5.0
+  checksum: 2/d59e14ff6d0db80f93454c776d8012e2b8b29f2f2e53b4b4acde78f2b3a1dc92c00411d433194cf765ac81279f0bad60f7d9cc50bbfe090b4dc0227ba13e3d91
+  languageName: node
+  linkType: hard
+
+"@liskhq/lisk-transactions-new@npm:@liskhq/lisk-transactions@=3.0.0, @liskhq/lisk-transactions@npm:3.0.0":
+  version: 3.0.0
+  resolution: "@liskhq/lisk-transactions@npm:3.0.0"
+  dependencies:
+    "@liskhq/bignum": 1.3.1
+    "@liskhq/lisk-cryptography": 2.4.0
+    "@liskhq/lisk-validator": 0.3.0
+    ajv: 6.8.1
+    ajv-merge-patch: 4.1.0
+  checksum: 2/d5f5879bd7515cce91f0bab9d1447006c269ef273ce887fb57b790e0a6f0213c0050fbbc91c751898a6912c66d1d3411e91db130c8941435453b12aba18fae71
+  languageName: node
+  linkType: hard
+
 "@liskhq/lisk-transactions@npm:2.3.1, @liskhq/lisk-transactions@npm:^2.0":
   version: 2.3.1
   resolution: "@liskhq/lisk-transactions@npm:2.3.1"
@@ -3080,6 +3158,22 @@ __metadata:
     ajv: 6.8.1
     ajv-merge-patch: 4.1.0
   checksum: 2/f9e30659bf95cbe328ac8ae5c2e311fdcb5c142179019f4224526afb3e515d847de9c16455116d42f16cde6a6b1512b300de26b121caf79837ea2cbd48592407
+  languageName: node
+  linkType: hard
+
+"@liskhq/lisk-validator@npm:0.3.0":
+  version: 0.3.0
+  resolution: "@liskhq/lisk-validator@npm:0.3.0"
+  dependencies:
+    "@liskhq/bignum": 1.3.1
+    "@liskhq/lisk-cryptography": 2.4.0
+    "@types/node": 12.12.11
+    "@types/semver": 5.5.0
+    "@types/validator": 10.9.0
+    ajv: 6.9.2
+    semver: 5.6.0
+    validator: 10.11.0
+  checksum: 2/2c651d545405592d40aec4bb403d01a120679e69419904b2478f5410bd41cd436eb64a05fe2fa9d5dbc606305292c138b9c33b7bd9d629f927db532d08349eee
   languageName: node
   linkType: hard
 
@@ -3890,6 +3984,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/semver@npm:5.5.0":
+  version: 5.5.0
+  resolution: "@types/semver@npm:5.5.0"
+  checksum: 2/df74589466e171c36dd868b760609e518830f212134c238674ddd6eb83653368c59f4510aa6523b7692ec99c5d8ab40b818e30f9d65e0df97c56bdbacef06661
+  languageName: node
+  linkType: hard
+
 "@types/semver@npm:7.3.3":
   version: 7.3.3
   resolution: "@types/semver@npm:7.3.3"
@@ -3924,6 +4025,13 @@ __metadata:
   version: 8.3.0
   resolution: "@types/uuid@npm:8.3.0"
   checksum: 2/620985aed8fdb4aed153daca5235f4303457a67a4d181efac0021712eabd9edd7e88895f79730c0e651effde7633b1b61e49a81519ac8d4e75019d2ac9b6412f
+  languageName: node
+  linkType: hard
+
+"@types/validator@npm:10.9.0":
+  version: 10.9.0
+  resolution: "@types/validator@npm:10.9.0"
+  checksum: 2/d2f176fdac47a22f13ed68194900f9b600b69bab73251d7db495c0f0423236e4d20c6067f7befb891ea7bc05f3ce4f871a90cdaa2d30d04fa0c36fe26b2c3e50
   languageName: node
   linkType: hard
 
@@ -4434,6 +4542,18 @@ __metadata:
     json-schema-traverse: ^0.4.1
     uri-js: ^4.2.2
   checksum: 2/e8faffc5d2cb430fb11985cdd7db5cf16fe6e40f3a2f9763a7d0fcdf09806a13e70b2d882ba6a2b6f122aa706b3f7a6b86fb6c9c358619ecb99b035d782caa72
+  languageName: node
+  linkType: hard
+
+"ajv@npm:6.9.2":
+  version: 6.9.2
+  resolution: "ajv@npm:6.9.2"
+  dependencies:
+    fast-deep-equal: ^2.0.1
+    fast-json-stable-stringify: ^2.0.0
+    json-schema-traverse: ^0.4.1
+    uri-js: ^4.2.2
+  checksum: 2/2a0a7096bd21197185b6543cd97c7a2d2ffe900013e0ab968e1bb659f488fc4065e0e2f377b7b0a15132d8906060a9dd7a5e153d889b51b03e6005724223c0af
   languageName: node
   linkType: hard
 
@@ -13712,6 +13832,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"semver@npm:5.6.0":
+  version: 5.6.0
+  resolution: "semver@npm:5.6.0"
+  bin:
+    semver: ./bin/semver
+  checksum: 2/7e7b2f9a72b5ad7e123c28ba44398cad73e55b2ecb8634cf7ef9d4bb3d93ffab5315a0cb505f2f735edebc381fc689bd2bf3e952f8318cdfc88947e99898bf69
+  languageName: node
+  linkType: hard
+
 "semver@npm:7.x, semver@npm:^7.0.0, semver@npm:^7.1.1, semver@npm:^7.1.2, semver@npm:^7.2.1, semver@npm:^7.3.2":
   version: 7.3.2
   resolution: "semver@npm:7.3.2"
@@ -15521,7 +15650,7 @@ typescript@^4.0.2:
   languageName: node
   linkType: hard
 
-"validator@npm:^10.7.1":
+"validator@npm:10.11.0, validator@npm:^10.7.1":
   version: 10.11.0
   resolution: "validator@npm:10.11.0"
   checksum: 2/07a37cd1469001b121696c2aa5494e9a4e416feabad31d849c02dfa414ae39c7885acb08d81d50d45e0ec63a1269bd8169937acf76202a79dc1ae53e909186b5
