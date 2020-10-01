@@ -23,18 +23,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/crypto-identities@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@arkecosystem/crypto-identities@npm:1.0.0"
+"@arkecosystem/crypto-identities@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@arkecosystem/crypto-identities@npm:1.1.0"
   dependencies:
-    "@arkecosystem/utils": ^1.2.0
     bcrypto: ^5.3.0
-    browserify-aes: ^1.2.0
     bstring: ^0.3.9
-    builtin-modules: ^3.1.0
     fast-memoize: ^2.5.1
     wif: ^2.0.6
-  checksum: 2/563f182dd9e65cbf9d2a4aabadd5a02b5a52c6a32e9bbf3c2a90176b92ca2ee494deb088f7a9cbc183ca85465cb6e9036eb6c3a2bd7b417a96b4c835887fd193
+  checksum: 2/a07b53d96f74093932d1f3d83ece44598bce4ff68e1e93de6ca2cf48b8a943b52fedbdc4308d67e9e65e695d2b96ee952d6e1df046dd6208638311ac286d35e3
   languageName: node
   linkType: hard
 
@@ -160,7 +157,7 @@ __metadata:
   dependencies:
     "@arkecosystem/core-magistrate-crypto": ^2.7
     "@arkecosystem/crypto": ^2.7
-    "@arkecosystem/crypto-identities": ^1.0.0
+    "@arkecosystem/crypto-identities": ^1.1.0
     "@arkecosystem/ledger-transport": ^1.1.3
     "@arkecosystem/multi-signature": ^0.1.5
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
@@ -5583,13 +5580,6 @@ __metadata:
   version: 1.0.7
   resolution: "bufio@npm:1.0.7"
   checksum: 2/7a8eadfffafd7e36e5694bbaad0c31c8c821815ed6b834e1680ed03342506e4766e29574fc90c7e090e0e32ba258dd69f9c9a9635655ff55fb79ac9b39856d10
-  languageName: node
-  linkType: hard
-
-"builtin-modules@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "builtin-modules@npm:3.1.0"
-  checksum: 2/54f062393cd48ff6c7293d885a106faa0988cbffb8b5f7790bfd0148e56cedf21b13bd4c1e544911ec7b4b022c52fd4c606e8697469b342e8b3e529ce48d8831
   languageName: node
   linkType: hard
 
