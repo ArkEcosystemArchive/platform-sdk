@@ -46,7 +46,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const result = await this.get("transactions", this.createSearchParams(query));
+		const result = await this.get("transactions", this.createSearchParams({ sort: "timestamp:desc", ...query }));
 
 		return Helpers.createTransactionDataCollectionWithType(
 			result.data,
@@ -77,7 +77,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async delegates(query?: any): Promise<Coins.WalletDataCollection> {
-		const result = await this.get("delegates", this.createSearchParams(query));
+		const result = await this.get("delegates", this.createSearchParams({ limit: 101, ...query }));
 
 		return new Coins.WalletDataCollection(
 			result.data.map((wallet) => new WalletData(wallet)),
@@ -152,8 +152,6 @@ export class ClientService implements Contracts.ClientService {
 			searchParams = {};
 		}
 
-		searchParams.limit = 101; // Enforce 101 for consistent pagination.
-
 		if (searchParams.cursor) {
 			// @ts-ignore
 			searchParams.offset = searchParams.cursor;
@@ -178,13 +176,13 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private createPagination(data, meta): Contracts.MetaPagination {
-		const hasPreviousPage: boolean = data && data.length === 101 && meta.offset !== 0;
-		const hasNextPage: boolean = data && data.length === 101;
+		const hasPreviousPage: boolean = data && data.length === meta.limit && meta.offset !== 0;
+		const hasNextPage: boolean = data && data.length === meta.limit;
 
 		return {
-			prev: hasPreviousPage ? Number(meta.offset) - 101 : undefined,
+			prev: hasPreviousPage ? Number(meta.offset) - Number(meta.limit) : undefined,
 			self: meta.offset,
-			next: hasNextPage ? Number(meta.offset) + 101 : undefined,
+			next: hasNextPage ? Number(meta.offset) + Number(meta.limit) : undefined,
 		};
 	}
 }
