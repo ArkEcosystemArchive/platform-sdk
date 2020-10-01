@@ -46,6 +46,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+		// @ts-ignore
 		const result = await this.get("transactions", this.createSearchParams({ sort: "timestamp:desc", ...query }));
 
 		return Helpers.createTransactionDataCollectionWithType(
