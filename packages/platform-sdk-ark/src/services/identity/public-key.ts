@@ -1,10 +1,18 @@
-import { Identities } from "@arkecosystem/crypto";
+import { PublicKey as BasePublicKey } from "@arkecosystem/crypto-identities";
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
+import { CryptoConfig } from "../../contracts";
+
 export class PublicKey implements Contracts.PublicKey {
+	readonly #configCrypto: CryptoConfig;
+
+	public constructor(configCrypto: CryptoConfig) {
+		this.#configCrypto = configCrypto;
+	}
+
 	public async fromMnemonic(mnemonic: string): Promise<string> {
 		try {
-			return Identities.PublicKey.fromPassphrase(mnemonic);
+			return BasePublicKey.fromPassphrase(mnemonic);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -12,7 +20,7 @@ export class PublicKey implements Contracts.PublicKey {
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
 		try {
-			return Identities.PublicKey.fromMultiSignatureAsset({ min, publicKeys });
+			return BasePublicKey.fromMultiSignatureAsset({ min, publicKeys });
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -20,7 +28,7 @@ export class PublicKey implements Contracts.PublicKey {
 
 	public async fromWIF(wif: string): Promise<string> {
 		try {
-			return Identities.PublicKey.fromWIF(wif);
+			return BasePublicKey.fromWIF(wif, this.#configCrypto);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

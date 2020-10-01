@@ -45,7 +45,7 @@ export class TransactionService implements Contracts.TransactionService {
 			http: config.get<Contracts.HttpClient>("httpClient"),
 			peer: configCrypto.peer,
 			identity: await IdentityService.construct(config),
-			multiSignatureSigner: new MultiSignatureSigner(configCrypto.crypto.data, configCrypto.status.data.height),
+			multiSignatureSigner: new MultiSignatureSigner(configCrypto.crypto, configCrypto.status.height),
 			configCrypto,
 		});
 	}
