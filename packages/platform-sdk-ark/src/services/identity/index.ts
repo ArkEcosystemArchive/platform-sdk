@@ -1,6 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { CryptoConfig } from "../../contracts";
-import { applyCryptoConfiguration, retrieveCryptoConfiguration } from "../helpers";
+import { retrieveCryptoConfiguration } from "../helpers";
 
 import { Address } from "./address";
 import { Keys } from "./keys";
