@@ -38,9 +38,19 @@ test("#isPositive", () => {
 	expect(subject.minus(10).isPositive()).toBeFalse();
 });
 
+test("#isNegative", () => {
+	expect(subject.isNegative()).toBeFalse();
+	expect(subject.minus(10).isNegative()).toBeTrue();
+});
+
 test("#isFinite", () => {
 	expect(subject.isFinite()).toBeTrue();
 	expect(BigNumber.make(Infinity).isFinite()).toBeFalse();
+});
+
+test("#isZero", () => {
+	expect(subject.isZero()).toBeFalse();
+	expect(BigNumber.make(0).isZero()).toBeTrue();
 });
 
 test("#comparedTo", () => {
