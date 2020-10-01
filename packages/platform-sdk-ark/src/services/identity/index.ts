@@ -1,5 +1,5 @@
-import { Managers } from "@arkecosystem/crypto";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { CryptoConfig } from "../../contracts";
 import { applyCryptoConfiguration, retrieveCryptoConfiguration } from "../helpers";
 
 import { Address } from "./address";
@@ -10,15 +10,18 @@ import { WIF } from "./wif";
 
 export class IdentityService implements Contracts.IdentityService {
 	readonly #config: Coins.Config;
-	readonly #configCrypto: any;
+	readonly #configCrypto: CryptoConfig;
 
 	private constructor(config: Coins.Config, configCrypto: any) {
 		this.#config = config;
-		this.#configCrypto = configCrypto;
+		this.#configCrypto = {
+			pubKeyHash: configCrypto.network.pubKeyHash,
+			wif: configCrypto.network.wif,
+		};
 	}
 
 	public static async construct(config: Coins.Config): Promise<IdentityService> {
-		return new IdentityService(config, await retrieveCryptoConfiguration(config));
+		return new IdentityService(config, (await retrieveCryptoConfiguration(config)).crypto);
 	}
 
 	public async destruct(): Promise<void> {
@@ -26,32 +29,22 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public address(): Address {
-		applyCryptoConfiguration(this.#configCrypto);
-
-		return new Address(this.#config);
+		return new Address(this.#config, this.#configCrypto);
 	}
 
 	public publicKey(): PublicKey {
-		applyCryptoConfiguration(this.#configCrypto);
-
-		return new PublicKey();
+		return new PublicKey(this.#configCrypto);
 	}
 
 	public privateKey(): PrivateKey {
-		applyCryptoConfiguration(this.#configCrypto);
-
-		return new PrivateKey();
+		return new PrivateKey(this.#configCrypto);
 	}
 
 	public wif(): WIF {
-		applyCryptoConfiguration(this.#configCrypto);
-
-		return new WIF();
+		return new WIF(this.#configCrypto);
 	}
 
 	public keys(): Keys {
-		applyCryptoConfiguration(this.#configCrypto);
-
-		return new Keys();
+		return new Keys(this.#configCrypto);
 	}
 }

@@ -393,6 +393,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@arkecosystem/crypto-identities", [
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-identities-npm-1.0.0-d43b7b9da4-2.zip/node_modules/@arkecosystem/crypto-identities/",
+          "packageDependencies": [
+            ["@arkecosystem/crypto-identities", "npm:1.0.0"],
+            ["@arkecosystem/utils", "npm:1.2.0"],
+            ["bcrypto", "npm:5.3.0"],
+            ["browserify-aes", "npm:1.2.0"],
+            ["bstring", "npm:0.3.9"],
+            ["builtin-modules", "npm:3.1.0"],
+            ["fast-memoize", "npm:2.5.2"],
+            ["wif", "npm:2.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@arkecosystem/ledger-transport", [
         ["npm:1.1.3", {
           "packageLocation": "./.yarn/cache/@arkecosystem-ledger-transport-npm-1.1.3-3cd458ed90-2.zip/node_modules/@arkecosystem/ledger-transport/",
@@ -516,6 +532,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
             ["@arkecosystem/core-magistrate-crypto", "npm:2.7.1"],
             ["@arkecosystem/crypto", "npm:2.7.1"],
+            ["@arkecosystem/crypto-identities", "npm:1.0.0"],
             ["@arkecosystem/ledger-transport", "npm:1.1.3"],
             ["@arkecosystem/multi-signature", "npm:0.1.5"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
@@ -7002,6 +7019,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/bufio-npm-1.0.7-f7ef1d1822-2.zip/node_modules/bufio/",
           "packageDependencies": [
             ["bufio", "npm:1.0.7"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["builtin-modules", [
+        ["npm:3.1.0", {
+          "packageLocation": "./.yarn/cache/builtin-modules-npm-3.1.0-fb00ef3f7a-2.zip/node_modules/builtin-modules/",
+          "packageDependencies": [
+            ["builtin-modules", "npm:3.1.0"]
           ],
           "linkType": "HARD",
         }]

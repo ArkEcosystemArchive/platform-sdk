@@ -1,16 +1,20 @@
-import { Identities } from "@arkecosystem/crypto";
+import { Address as BaseAddress } from "@arkecosystem/crypto-identities";
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+
+import { CryptoConfig } from "../../contracts";
 
 export class Address implements Contracts.Address {
 	readonly #config: Coins.Config;
+	readonly #configCrypto: CryptoConfig;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.Config, configCrypto: CryptoConfig) {
 		this.#config = config;
+		this.#configCrypto = configCrypto;
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
 		try {
-			return Identities.Address.fromPassphrase(mnemonic);
+			return BaseAddress.fromPassphrase(mnemonic, this.#configCrypto);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -18,7 +22,7 @@ export class Address implements Contracts.Address {
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
 		try {
-			return Identities.Address.fromMultiSignatureAsset({ min, publicKeys });
+			return BaseAddress.fromMultiSignatureAsset({ min, publicKeys }, this.#configCrypto);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -26,7 +30,7 @@ export class Address implements Contracts.Address {
 
 	public async fromPublicKey(publicKey: string): Promise<string> {
 		try {
-			return Identities.Address.fromPublicKey(publicKey);
+			return BaseAddress.fromPublicKey(publicKey, this.#configCrypto);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -38,7 +42,7 @@ export class Address implements Contracts.Address {
 
 	public async fromWIF(wif: string): Promise<string> {
 		try {
-			return Identities.Address.fromWIF(wif);
+			return BaseAddress.fromWIF(wif, this.#configCrypto);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -59,7 +63,7 @@ export class Address implements Contracts.Address {
 				}
 			}
 
-			return Identities.Address.validate(address);
+			return BaseAddress.validate(address, this.#configCrypto);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
