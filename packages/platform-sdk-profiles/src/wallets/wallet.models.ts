@@ -2,6 +2,7 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
+import { ExtendedTransactionData } from "../dto/transaction";
 import { DataRepository } from "../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
@@ -99,6 +100,8 @@ export interface ReadWriteWallet {
 	transactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	sentTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	receivedTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
+	findTransactionById(id: string): Promise<ExtendedTransactionData>;
+	findTransactionsByIds(ids: string[]): Promise<ExtendedTransactionData[]>;
 	multiSignature(): Contracts.WalletMultiSignature;
 	multiSignatureParticipants(): ReadOnlyWallet[];
 	entities(): Contracts.Entity[];
