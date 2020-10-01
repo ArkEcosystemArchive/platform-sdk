@@ -18,5 +18,10 @@ export const retrieveCryptoConfiguration = async (config: Coins.Config): Promise
 	const status: any = (await http.get(`${peer}/node/syncing`)).json();
 	Managers.configManager.setHeight(status.data.height);
 
-	return { crypto, peer, status };
+	return { crypto: crypto.data, peer, status: status.data };
+};
+
+export const applyCryptoConfiguration = ({ crypto, status }): void => {
+	Managers.configManager.setConfig(crypto);
+	Managers.configManager.setHeight(status.height);
 };

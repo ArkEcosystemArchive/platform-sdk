@@ -31,7 +31,7 @@ beforeAll(async () => {
 		.reply(200, require("../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
-		.get("/api/delegates?page=1")
+		.get("/api/delegates")
 		.reply(200, require("../../test/fixtures/client/delegates-1.json"))
 		.get("/api/delegates?page=2")
 		.reply(200, require("../../test/fixtures/client/delegates-2.json"))
@@ -56,7 +56,7 @@ beforeEach(() => {
 		id: () => "transactionId",
 		blockId: () => "transactionBlockId",
 	});
-})
+});
 
 it("should have an explorer link", async () => {
 	expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/transaction/transactionId");

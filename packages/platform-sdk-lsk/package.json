@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-lsk",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.379",
+	"version": "0.9.387",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -25,8 +25,10 @@
 		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@liskhq/lisk-client": "^2.0",
+		"@liskhq/lisk-client-new": "npm:@liskhq/lisk-client@=3.0.0",
 		"@liskhq/lisk-cryptography": "^2.4",
 		"@liskhq/lisk-transactions": "^2.0",
+		"@liskhq/lisk-transactions-new": "npm:@liskhq/lisk-transactions@=3.0.0",
 		"dpos-ledger-api": "^3.0.1",
 		"yup": "^0.29.3"
 	},

@@ -46,15 +46,12 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const result = await this.get("transactions", this.createSearchParams(query));
+		// @ts-ignore
+		const result = await this.get("transactions", this.createSearchParams({ sort: "timestamp:desc", ...query }));
 
 		return Helpers.createTransactionDataCollectionWithType(
 			result.data,
-			{
-				prev: undefined,
-				self: undefined,
-				next: undefined,
-			},
+			this.createPagination(result.data, result.meta),
 			TransactionDTO,
 		);
 	}
@@ -70,11 +67,7 @@ export class ClientService implements Contracts.ClientService {
 
 		return new Coins.WalletDataCollection(
 			result.data.map((wallet) => new WalletData(wallet)),
-			{
-				prev: undefined,
-				self: undefined,
-				next: undefined,
-			},
+			this.createPagination(result.data, result.meta),
 		);
 	}
 
@@ -84,16 +77,12 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData(result.data[0]);
 	}
 
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		const result = await this.get("delegates");
+	public async delegates(query?: any): Promise<Coins.WalletDataCollection> {
+		const result = await this.get("delegates", this.createSearchParams({ limit: 101, ...query }));
 
 		return new Coins.WalletDataCollection(
 			result.data.map((wallet) => new WalletData(wallet)),
-			{
-				prev: undefined,
-				self: undefined,
-				next: undefined,
-			},
+			this.createPagination(result.data, result.meta),
 		);
 	}
 
@@ -160,6 +149,16 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private createSearchParams(searchParams: Contracts.ClientTransactionsInput): object {
+		if (!searchParams) {
+			searchParams = {};
+		}
+
+		if (searchParams.cursor) {
+			// @ts-ignore
+			searchParams.offset = searchParams.cursor;
+			delete searchParams.cursor;
+		}
+
 		// What is used as "address" with ARK is "senderIdOrRecipientId" with LSK.
 		if (searchParams.address) {
 			// @ts-ignore - This field doesn't exist on the interface but are needed.
@@ -175,5 +174,16 @@ export class ClientService implements Contracts.ClientService {
 		}
 
 		return searchParams;
+	}
+
+	private createPagination(data, meta): Contracts.MetaPagination {
+		const hasPreviousPage: boolean = data && data.length === meta.limit && meta.offset !== 0;
+		const hasNextPage: boolean = data && data.length === meta.limit;
+
+		return {
+			prev: hasPreviousPage ? Number(meta.offset) - Number(meta.limit) : undefined,
+			self: meta.offset,
+			next: hasNextPage ? Number(meta.offset) + Number(meta.limit) : undefined,
+		};
 	}
 }

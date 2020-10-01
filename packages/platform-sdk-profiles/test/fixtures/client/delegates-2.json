@@ -1,16 +1,15 @@
 {
 	"meta": {
 		"count": 100,
-		"pageCount": 5,
-		"totalCount": 447,
+		"pageCount": 2,
+		"totalCount": 200,
 		"next": null,
-		"previous": null,
+		"prev": "/delegates?page=1&limit=100",
 		"self": "/delegates?page=1&limit=100",
 		"first": "/delegates?page=1&limit=100",
-		"last": "/delegates?page=5&limit=100"
+		"last": "/delegates?page=2&limit=100"
 	},
-	"data": [
-		{
+	"data": [{
 			"username": "alessio",
 			"address": "DSyG9hK9CE8eyfddUoEvsga4kNVQLdw2ve",
 			"publicKey": "033a5474f68f92f254691e93c06a2f22efaf7d66b543a53efcece021819653a200",
@@ -22,11 +21,21 @@
 				"last": {
 					"id": "758ff0d904f362b209fd210ae5ebdc61d6c053c4d6fa700d1cf3f6226dd43c85",
 					"height": 4638358,
-					"timestamp": { "epoch": 94936640, "unix": 1585037840, "human": "2020-03-24T08:17:20.000Z" }
+					"timestamp": {
+						"epoch": 94936640,
+						"unix": 1585037840,
+						"human": "2020-03-24T08:17:20.000Z"
+					}
 				}
 			},
-			"production": { "approval": 14.9 },
-			"forged": { "fees": "468407250508", "rewards": "16113200000000", "total": "16581607250508" }
+			"production": {
+				"approval": 14.9
+			},
+			"forged": {
+				"fees": "468407250508",
+				"rewards": "16113200000000",
+				"total": "16581607250508"
+			}
 		},
 		{
 			"username": "alexxio",
@@ -40,11 +49,21 @@
 				"last": {
 					"id": "31604c70715a3a33e7d3f2701abf13875c0400e19168539be8f26b294849dba4",
 					"height": 4638359,
-					"timestamp": { "epoch": 94936648, "unix": 1585037848, "human": "2020-03-24T08:17:28.000Z" }
+					"timestamp": {
+						"epoch": 94936648,
+						"unix": 1585037848,
+						"human": "2020-03-24T08:17:28.000Z"
+					}
 				}
 			},
-			"production": { "approval": 1.16 },
-			"forged": { "fees": "44348677107", "rewards": "7967000000000", "total": "8011348677107" }
+			"production": {
+				"approval": 1.16
+			},
+			"forged": {
+				"fees": "44348677107",
+				"rewards": "7967000000000",
+				"total": "8011348677107"
+			}
 		},
 		{
 			"username": "genesis_15",
@@ -58,11 +77,21 @@
 				"last": {
 					"id": "ab38e8ee085c9c01c10b24f207b979f8eda00da6c9f96e93faa045c936adf192",
 					"height": 4638337,
-					"timestamp": { "epoch": 94936472, "unix": 1585037672, "human": "2020-03-24T08:14:32.000Z" }
+					"timestamp": {
+						"epoch": 94936472,
+						"unix": 1585037672,
+						"human": "2020-03-24T08:14:32.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.37 },
-			"forged": { "fees": "58784721565", "rewards": "1616400000000", "total": "1675184721565" }
+			"production": {
+				"approval": 0.37
+			},
+			"forged": {
+				"fees": "58784721565",
+				"rewards": "1616400000000",
+				"total": "1675184721565"
+			}
 		},
 		{
 			"username": "geops",
@@ -76,11 +105,21 @@
 				"last": {
 					"id": "3710f238ba9f281778098544a9dae173b0a8db7a36a5805a984bcca40d652de0",
 					"height": 4638351,
-					"timestamp": { "epoch": 94936584, "unix": 1585037784, "human": "2020-03-24T08:16:24.000Z" }
+					"timestamp": {
+						"epoch": 94936584,
+						"unix": 1585037784,
+						"human": "2020-03-24T08:16:24.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.36 },
-			"forged": { "fees": "229122095493", "rewards": "18847800000000", "total": "19076922095493" }
+			"production": {
+				"approval": 0.36
+			},
+			"forged": {
+				"fees": "229122095493",
+				"rewards": "18847800000000",
+				"total": "19076922095493"
+			}
 		},
 		{
 			"username": "genesis_42",
@@ -94,11 +133,21 @@
 				"last": {
 					"id": "b3034cac1fb4326930fe85bd2a1f81c9d24f5b14e9727320e00c46690f559f25",
 					"height": 4638370,
-					"timestamp": { "epoch": 94936736, "unix": 1585037936, "human": "2020-03-24T08:18:56.000Z" }
+					"timestamp": {
+						"epoch": 94936736,
+						"unix": 1585037936,
+						"human": "2020-03-24T08:18:56.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.36 },
-			"forged": { "fees": "140914818763", "rewards": "11809200000000", "total": "11950114818763" }
+			"production": {
+				"approval": 0.36
+			},
+			"forged": {
+				"fees": "140914818763",
+				"rewards": "11809200000000",
+				"total": "11950114818763"
+			}
 		},
 		{
 			"username": "genesis_39",
@@ -112,11 +161,21 @@
 				"last": {
 					"id": "126c60cd06d4c2f93856786032c233c69e00b9cbfea7b1770bc749a7340749a8",
 					"height": 4638375,
-					"timestamp": { "epoch": 94936776, "unix": 1585037976, "human": "2020-03-24T08:19:36.000Z" }
+					"timestamp": {
+						"epoch": 94936776,
+						"unix": 1585037976,
+						"human": "2020-03-24T08:19:36.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.35 },
-			"forged": { "fees": "125845318151", "rewards": "5851400000000", "total": "5977245318151" }
+			"production": {
+				"approval": 0.35
+			},
+			"forged": {
+				"fees": "125845318151",
+				"rewards": "5851400000000",
+				"total": "5977245318151"
+			}
 		},
 		{
 			"username": "genesis_45",
@@ -130,11 +189,21 @@
 				"last": {
 					"id": "dafe0cd2b5efc2bb4b16443c275f53563e87ab1bca6ac55f518bbae295c8551b",
 					"height": 4638365,
-					"timestamp": { "epoch": 94936696, "unix": 1585037896, "human": "2020-03-24T08:18:16.000Z" }
+					"timestamp": {
+						"epoch": 94936696,
+						"unix": 1585037896,
+						"human": "2020-03-24T08:18:16.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.32 },
-			"forged": { "fees": "83327238230", "rewards": "4845200000000", "total": "4928527238230" }
+			"production": {
+				"approval": 0.32
+			},
+			"forged": {
+				"fees": "83327238230",
+				"rewards": "4845200000000",
+				"total": "4928527238230"
+			}
 		},
 		{
 			"username": "genesis_40",
@@ -148,11 +217,21 @@
 				"last": {
 					"id": "385d4e5b90bac3f5228f7e0d569d302ce0d7e6ac2fe7af00ef56544cde929390",
 					"height": 4638360,
-					"timestamp": { "epoch": 94936656, "unix": 1585037856, "human": "2020-03-24T08:17:36.000Z" }
+					"timestamp": {
+						"epoch": 94936656,
+						"unix": 1585037856,
+						"human": "2020-03-24T08:17:36.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.32 },
-			"forged": { "fees": "78873746893", "rewards": "5020800000000", "total": "5099673746893" }
+			"production": {
+				"approval": 0.32
+			},
+			"forged": {
+				"fees": "78873746893",
+				"rewards": "5020800000000",
+				"total": "5099673746893"
+			}
 		},
 		{
 			"username": "cam",
@@ -166,11 +245,21 @@
 				"last": {
 					"id": "7b32b2a0013191b4271b9fded2c4f0a8348ee092b076df2a2ca6ee8844358f27",
 					"height": 4638372,
-					"timestamp": { "epoch": 94936752, "unix": 1585037952, "human": "2020-03-24T08:19:12.000Z" }
+					"timestamp": {
+						"epoch": 94936752,
+						"unix": 1585037952,
+						"human": "2020-03-24T08:19:12.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.32 },
-			"forged": { "fees": "54006777668", "rewards": "15131800000000", "total": "15185806777668" }
+			"production": {
+				"approval": 0.32
+			},
+			"forged": {
+				"fees": "54006777668",
+				"rewards": "15131800000000",
+				"total": "15185806777668"
+			}
 		},
 		{
 			"username": "genesis_50",
@@ -184,11 +273,21 @@
 				"last": {
 					"id": "2aff03de08a86761ba36a03d65fc09dedabf03699d2c891926a80b2bcb387e45",
 					"height": 4638378,
-					"timestamp": { "epoch": 94936800, "unix": 1585038000, "human": "2020-03-24T08:20:00.000Z" }
+					"timestamp": {
+						"epoch": 94936800,
+						"unix": 1585038000,
+						"human": "2020-03-24T08:20:00.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.32 },
-			"forged": { "fees": "118282291858", "rewards": "4794400000000", "total": "4912682291858" }
+			"production": {
+				"approval": 0.32
+			},
+			"forged": {
+				"fees": "118282291858",
+				"rewards": "4794400000000",
+				"total": "4912682291858"
+			}
 		},
 		{
 			"username": "itsanametoo",
@@ -202,11 +301,21 @@
 				"last": {
 					"id": "243b1ccf5385e3cdf30bbafc853052a0e2650611389d245fbd53ed9ba7a2bd3a",
 					"height": 4638318,
-					"timestamp": { "epoch": 94936320, "unix": 1585037520, "human": "2020-03-24T08:12:00.000Z" }
+					"timestamp": {
+						"epoch": 94936320,
+						"unix": 1585037520,
+						"human": "2020-03-24T08:12:00.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.31 },
-			"forged": { "fees": "88391467302", "rewards": "18812800000000", "total": "18901191467302" }
+			"production": {
+				"approval": 0.31
+			},
+			"forged": {
+				"fees": "88391467302",
+				"rewards": "18812800000000",
+				"total": "18901191467302"
+			}
 		},
 		{
 			"username": "deadlock",
@@ -220,11 +329,21 @@
 				"last": {
 					"id": "07a21a3d5041df02415a66097f27793e7e008dc9603951c388e7f1b702d45cbc",
 					"height": 4638368,
-					"timestamp": { "epoch": 94936720, "unix": 1585037920, "human": "2020-03-24T08:18:40.000Z" }
+					"timestamp": {
+						"epoch": 94936720,
+						"unix": 1585037920,
+						"human": "2020-03-24T08:18:40.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.31 },
-			"forged": { "fees": "128860895134", "rewards": "17798200000000", "total": "17927060895134" }
+			"production": {
+				"approval": 0.31
+			},
+			"forged": {
+				"fees": "128860895134",
+				"rewards": "17798200000000",
+				"total": "17927060895134"
+			}
 		},
 		{
 			"username": "benchdark",
@@ -238,11 +357,21 @@
 				"last": {
 					"id": "baf09f98542dec51493532a4ea01af40b425827584cdcecdb6abdf8512b4aa92",
 					"height": 4638377,
-					"timestamp": { "epoch": 94936792, "unix": 1585037992, "human": "2020-03-24T08:19:52.000Z" }
+					"timestamp": {
+						"epoch": 94936792,
+						"unix": 1585037992,
+						"human": "2020-03-24T08:19:52.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.31 },
-			"forged": { "fees": "2005506110", "rewards": "4720000000000", "total": "4722005506110" }
+			"production": {
+				"approval": 0.31
+			},
+			"forged": {
+				"fees": "2005506110",
+				"rewards": "4720000000000",
+				"total": "4722005506110"
+			}
 		},
 		{
 			"username": "genesis_14",
@@ -256,11 +385,21 @@
 				"last": {
 					"id": "aca38e22dda350454e019d077436948ae07b2ffe63d2ca5fe8fb3cefdb59d991",
 					"height": 4638363,
-					"timestamp": { "epoch": 94936680, "unix": 1585037880, "human": "2020-03-24T08:18:00.000Z" }
+					"timestamp": {
+						"epoch": 94936680,
+						"unix": 1585037880,
+						"human": "2020-03-24T08:18:00.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.31 },
-			"forged": { "fees": "117194333209", "rewards": "4857000000000", "total": "4974194333209" }
+			"production": {
+				"approval": 0.31
+			},
+			"forged": {
+				"fees": "117194333209",
+				"rewards": "4857000000000",
+				"total": "4974194333209"
+			}
 		},
 		{
 			"username": "genesis_48",
@@ -274,11 +413,21 @@
 				"last": {
 					"id": "b5a6a230cb8e8bae742756ca6c36608aacd0fb25473997ee991a87a7828dfbc6",
 					"height": 4638304,
-					"timestamp": { "epoch": 94936208, "unix": 1585037408, "human": "2020-03-24T08:10:08.000Z" }
+					"timestamp": {
+						"epoch": 94936208,
+						"unix": 1585037408,
+						"human": "2020-03-24T08:10:08.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.31 },
-			"forged": { "fees": "96645183676", "rewards": "5014400000000", "total": "5111045183676" }
+			"production": {
+				"approval": 0.31
+			},
+			"forged": {
+				"fees": "96645183676",
+				"rewards": "5014400000000",
+				"total": "5111045183676"
+			}
 		},
 		{
 			"username": "yo",
@@ -292,11 +441,21 @@
 				"last": {
 					"id": "b9364dd18ac38b0d8318da484e8185daa6fed09906ff9d61b5df342e84d9b3b5",
 					"height": 4638338,
-					"timestamp": { "epoch": 94936480, "unix": 1585037680, "human": "2020-03-24T08:14:40.000Z" }
+					"timestamp": {
+						"epoch": 94936480,
+						"unix": 1585037680,
+						"human": "2020-03-24T08:14:40.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.31 },
-			"forged": { "fees": "122745247262", "rewards": "13610400000000", "total": "13733145247262" }
+			"production": {
+				"approval": 0.31
+			},
+			"forged": {
+				"fees": "122745247262",
+				"rewards": "13610400000000",
+				"total": "13733145247262"
+			}
 		},
 		{
 			"username": "dark_jamie",
@@ -310,11 +469,21 @@
 				"last": {
 					"id": "a070e35fdcc895984646d02c247bc19586e31afbaa70d93bcd3fa7097aca889b",
 					"height": 4638379,
-					"timestamp": { "epoch": 94936808, "unix": 1585038008, "human": "2020-03-24T08:20:08.000Z" }
+					"timestamp": {
+						"epoch": 94936808,
+						"unix": 1585038008,
+						"human": "2020-03-24T08:20:08.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.31 },
-			"forged": { "fees": "87568917351", "rewards": "13777200000000", "total": "13864768917351" }
+			"production": {
+				"approval": 0.31
+			},
+			"forged": {
+				"fees": "87568917351",
+				"rewards": "13777200000000",
+				"total": "13864768917351"
+			}
 		},
 		{
 			"username": "shamrock",
@@ -328,11 +497,21 @@
 				"last": {
 					"id": "de22c42571bda263826bd9900e744baa330b3db2084b6ebeb518c0ca745632dd",
 					"height": 4638335,
-					"timestamp": { "epoch": 94936456, "unix": 1585037656, "human": "2020-03-24T08:14:16.000Z" }
+					"timestamp": {
+						"epoch": 94936456,
+						"unix": 1585037656,
+						"human": "2020-03-24T08:14:16.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.31 },
-			"forged": { "fees": "78168483754", "rewards": "4955600000000", "total": "5033768483754" }
+			"production": {
+				"approval": 0.31
+			},
+			"forged": {
+				"fees": "78168483754",
+				"rewards": "4955600000000",
+				"total": "5033768483754"
+			}
 		},
 		{
 			"username": "boldninja",
@@ -346,11 +525,21 @@
 				"last": {
 					"id": "e8f8e17ab4f92e736fd7b2646bcece2eafd6598f3a8abe224263e023fc6846b6",
 					"height": 4638317,
-					"timestamp": { "epoch": 94936312, "unix": 1585037512, "human": "2020-03-24T08:11:52.000Z" }
+					"timestamp": {
+						"epoch": 94936312,
+						"unix": 1585037512,
+						"human": "2020-03-24T08:11:52.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.31 },
-			"forged": { "fees": "198078154489", "rewards": "18689600000000", "total": "18887678154489" }
+			"production": {
+				"approval": 0.31
+			},
+			"forged": {
+				"fees": "198078154489",
+				"rewards": "18689600000000",
+				"total": "18887678154489"
+			}
 		},
 		{
 			"username": "stevenhop",
@@ -364,11 +553,21 @@
 				"last": {
 					"id": "8869bdd9a58c7c0be8a02f4e91727db465bacde0cfe29b3fc50eef6eb0f2b219",
 					"height": 4638352,
-					"timestamp": { "epoch": 94936592, "unix": 1585037792, "human": "2020-03-24T08:16:32.000Z" }
+					"timestamp": {
+						"epoch": 94936592,
+						"unix": 1585037792,
+						"human": "2020-03-24T08:16:32.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.31 },
-			"forged": { "fees": "128035687243", "rewards": "17019400000000", "total": "17147435687243" }
+			"production": {
+				"approval": 0.31
+			},
+			"forged": {
+				"fees": "128035687243",
+				"rewards": "17019400000000",
+				"total": "17147435687243"
+			}
 		},
 		{
 			"username": "theforgery",
@@ -382,11 +581,21 @@
 				"last": {
 					"id": "7a0ddbe736bd020c474989c4ba4a286e3641d8d7a9f0bc10fa2e260ac754606b",
 					"height": 4638355,
-					"timestamp": { "epoch": 94936616, "unix": 1585037816, "human": "2020-03-24T08:16:56.000Z" }
+					"timestamp": {
+						"epoch": 94936616,
+						"unix": 1585037816,
+						"human": "2020-03-24T08:16:56.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "95195778690", "rewards": "16533600000000", "total": "16628795778690" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "95195778690",
+				"rewards": "16533600000000",
+				"total": "16628795778690"
+			}
 		},
 		{
 			"username": "dated_test_del",
@@ -400,11 +609,21 @@
 				"last": {
 					"id": "c2fac0ba0b06a2fa604c778c41a2ec70c80d3ca2d27e5afb7809e30e81b12cbb",
 					"height": 4638333,
-					"timestamp": { "epoch": 94936440, "unix": 1585037640, "human": "2020-03-24T08:14:00.000Z" }
+					"timestamp": {
+						"epoch": 94936440,
+						"unix": 1585037640,
+						"human": "2020-03-24T08:14:00.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "218358174935", "rewards": "13104000000000", "total": "13322358174935" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "218358174935",
+				"rewards": "13104000000000",
+				"total": "13322358174935"
+			}
 		},
 		{
 			"username": "bill.ding",
@@ -418,11 +637,21 @@
 				"last": {
 					"id": "7f20a126928d7a11f55aff233dadae411425ecbc8985ad290f9023156f07e6f9",
 					"height": 4638374,
-					"timestamp": { "epoch": 94936768, "unix": 1585037968, "human": "2020-03-24T08:19:28.000Z" }
+					"timestamp": {
+						"epoch": 94936768,
+						"unix": 1585037968,
+						"human": "2020-03-24T08:19:28.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "21654951809", "rewards": "7739800000000", "total": "7761454951809" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "21654951809",
+				"rewards": "7739800000000",
+				"total": "7761454951809"
+			}
 		},
 		{
 			"username": "nice",
@@ -436,11 +665,21 @@
 				"last": {
 					"id": "bad97999daebc1bb2d330675a01736f4ed062ac22272a1a815958f039e66b5e1",
 					"height": 4638328,
-					"timestamp": { "epoch": 94936400, "unix": 1585037600, "human": "2020-03-24T08:13:20.000Z" }
+					"timestamp": {
+						"epoch": 94936400,
+						"unix": 1585037600,
+						"human": "2020-03-24T08:13:20.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "27776494824", "rewards": "7711400000000", "total": "7739176494824" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "27776494824",
+				"rewards": "7711400000000",
+				"total": "7739176494824"
+			}
 		},
 		{
 			"username": "bioly",
@@ -454,11 +693,21 @@
 				"last": {
 					"id": "10a7ebb960c6c67c090c4813df298380de5579a14b8d2b1d807dcd229f042073",
 					"height": 4638299,
-					"timestamp": { "epoch": 94936168, "unix": 1585037368, "human": "2020-03-24T08:09:28.000Z" }
+					"timestamp": {
+						"epoch": 94936168,
+						"unix": 1585037368,
+						"human": "2020-03-24T08:09:28.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "115315058503", "rewards": "15534600000000", "total": "15649915058503" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "115315058503",
+				"rewards": "15534600000000",
+				"total": "15649915058503"
+			}
 		},
 		{
 			"username": "techbytes",
@@ -472,11 +721,21 @@
 				"last": {
 					"id": "6e1d5f750533bee561f3b700ae4391b8425597328c4f41a76cb032a78aacd61e",
 					"height": 4638362,
-					"timestamp": { "epoch": 94936672, "unix": 1585037872, "human": "2020-03-24T08:17:52.000Z" }
+					"timestamp": {
+						"epoch": 94936672,
+						"unix": 1585037872,
+						"human": "2020-03-24T08:17:52.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "1511456202456", "rewards": "17927200000000", "total": "19438656202456" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "1511456202456",
+				"rewards": "17927200000000",
+				"total": "19438656202456"
+			}
 		},
 		{
 			"username": "cactus1549",
@@ -490,11 +749,21 @@
 				"last": {
 					"id": "40c619ce3879b6b967fcc209fbfe05919715e253f5c0044d2187658db2f49f66",
 					"height": 4638334,
-					"timestamp": { "epoch": 94936448, "unix": 1585037648, "human": "2020-03-24T08:14:08.000Z" }
+					"timestamp": {
+						"epoch": 94936448,
+						"unix": 1585037648,
+						"human": "2020-03-24T08:14:08.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "38385857471", "rewards": "7803400000000", "total": "7841785857471" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "38385857471",
+				"rewards": "7803400000000",
+				"total": "7841785857471"
+			}
 		},
 		{
 			"username": "crna_zmija",
@@ -508,11 +777,21 @@
 				"last": {
 					"id": "02d8923ccde9e01e614e831da8d663e885330c27656eb53b02325ab31d196be1",
 					"height": 4638344,
-					"timestamp": { "epoch": 94936528, "unix": 1585037728, "human": "2020-03-24T08:15:28.000Z" }
+					"timestamp": {
+						"epoch": 94936528,
+						"unix": 1585037728,
+						"human": "2020-03-24T08:15:28.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "29240342951", "rewards": "7704400000000", "total": "7733640342951" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "29240342951",
+				"rewards": "7704400000000",
+				"total": "7733640342951"
+			}
 		},
 		{
 			"username": "darkcrow",
@@ -526,11 +805,21 @@
 				"last": {
 					"id": "edbbd99bbb3e968ba6545a491a2f397e00c009d73be0ae2b9e45099f689535cf",
 					"height": 4638371,
-					"timestamp": { "epoch": 94936744, "unix": 1585037944, "human": "2020-03-24T08:19:04.000Z" }
+					"timestamp": {
+						"epoch": 94936744,
+						"unix": 1585037944,
+						"human": "2020-03-24T08:19:04.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "107014725663", "rewards": "15296000000000", "total": "15403014725663" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "107014725663",
+				"rewards": "15296000000000",
+				"total": "15403014725663"
+			}
 		},
 		{
 			"username": "cryptology",
@@ -544,11 +833,21 @@
 				"last": {
 					"id": "ce789a8db16d3d46a68fe572feca83aeb5e0e534b4bb00818be089d6739ef652",
 					"height": 4638342,
-					"timestamp": { "epoch": 94936512, "unix": 1585037712, "human": "2020-03-24T08:15:12.000Z" }
+					"timestamp": {
+						"epoch": 94936512,
+						"unix": 1585037712,
+						"human": "2020-03-24T08:15:12.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "248733793904", "rewards": "17703600000000", "total": "17952333793904" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "248733793904",
+				"rewards": "17703600000000",
+				"total": "17952333793904"
+			}
 		},
 		{
 			"username": "kaos",
@@ -562,11 +861,21 @@
 				"last": {
 					"id": "157d23c79cbab2088beae38d5b2179cd78aa603d749b5fd778b704ca4f18de90",
 					"height": 4638350,
-					"timestamp": { "epoch": 94936576, "unix": 1585037776, "human": "2020-03-24T08:16:16.000Z" }
+					"timestamp": {
+						"epoch": 94936576,
+						"unix": 1585037776,
+						"human": "2020-03-24T08:16:16.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "38048381453", "rewards": "7787200000000", "total": "7825248381453" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "38048381453",
+				"rewards": "7787200000000",
+				"total": "7825248381453"
+			}
 		},
 		{
 			"username": "zillion",
@@ -580,11 +889,21 @@
 				"last": {
 					"id": "b290d87ac9d9a3b676064ea9a37a1c25181967c1904d683525a55223456d058b",
 					"height": 4638326,
-					"timestamp": { "epoch": 94936384, "unix": 1585037584, "human": "2020-03-24T08:13:04.000Z" }
+					"timestamp": {
+						"epoch": 94936384,
+						"unix": 1585037584,
+						"human": "2020-03-24T08:13:04.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "234795692092", "rewards": "18462400000000", "total": "18697195692092" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "234795692092",
+				"rewards": "18462400000000",
+				"total": "18697195692092"
+			}
 		},
 		{
 			"username": "alexius",
@@ -598,11 +917,21 @@
 				"last": {
 					"id": "1b621f4098d545a40512cb99ecc328948280a37313935be8d54f774c834c592d",
 					"height": 4638369,
-					"timestamp": { "epoch": 94936728, "unix": 1585037928, "human": "2020-03-24T08:18:48.000Z" }
+					"timestamp": {
+						"epoch": 94936728,
+						"unix": 1585037928,
+						"human": "2020-03-24T08:18:48.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "26155370630", "rewards": "3690200000000", "total": "3716355370630" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "26155370630",
+				"rewards": "3690200000000",
+				"total": "3716355370630"
+			}
 		},
 		{
 			"username": "echo",
@@ -616,11 +945,21 @@
 				"last": {
 					"id": "b031ee22b220ad3c9083b2ded1a666af8fc12577f98521a81561cc8da78dc259",
 					"height": 4638357,
-					"timestamp": { "epoch": 94936632, "unix": 1585037832, "human": "2020-03-24T08:17:12.000Z" }
+					"timestamp": {
+						"epoch": 94936632,
+						"unix": 1585037832,
+						"human": "2020-03-24T08:17:12.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "34041302247", "rewards": "2522800000000", "total": "2556841302247" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "34041302247",
+				"rewards": "2522800000000",
+				"total": "2556841302247"
+			}
 		},
 		{
 			"username": "mililiter",
@@ -634,11 +973,21 @@
 				"last": {
 					"id": "3ce5b4a4546660f2d2529a69cdc479ec2ced0316edca68985ffed8b529a53976",
 					"height": 4638361,
-					"timestamp": { "epoch": 94936664, "unix": 1585037864, "human": "2020-03-24T08:17:44.000Z" }
+					"timestamp": {
+						"epoch": 94936664,
+						"unix": 1585037864,
+						"human": "2020-03-24T08:17:44.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "30786395857", "rewards": "7843000000000", "total": "7873786395857" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "30786395857",
+				"rewards": "7843000000000",
+				"total": "7873786395857"
+			}
 		},
 		{
 			"username": "darkgalp",
@@ -652,11 +1001,21 @@
 				"last": {
 					"id": "32477ae0e748c9ec252a5623552e4b7246ef6ae88c58d5ca37fa021c5ede5029",
 					"height": 4638376,
-					"timestamp": { "epoch": 94936784, "unix": 1585037984, "human": "2020-03-24T08:19:44.000Z" }
+					"timestamp": {
+						"epoch": 94936784,
+						"unix": 1585037984,
+						"human": "2020-03-24T08:19:44.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "287018499204", "rewards": "17590600000000", "total": "17877618499204" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "287018499204",
+				"rewards": "17590600000000",
+				"total": "17877618499204"
+			}
 		},
 		{
 			"username": "arkifier.net",
@@ -670,11 +1029,21 @@
 				"last": {
 					"id": "2d2af7ea14ddf7f98cd6bba26caf97942871e2bc7072e2c32459465f7f8d8f2f",
 					"height": 4638366,
-					"timestamp": { "epoch": 94936704, "unix": 1585037904, "human": "2020-03-24T08:18:24.000Z" }
+					"timestamp": {
+						"epoch": 94936704,
+						"unix": 1585037904,
+						"human": "2020-03-24T08:18:24.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "25691432050", "rewards": "7716800000000", "total": "7742491432050" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "25691432050",
+				"rewards": "7716800000000",
+				"total": "7742491432050"
+			}
 		},
 		{
 			"username": "generaliroh",
@@ -688,11 +1057,21 @@
 				"last": {
 					"id": "ddfb896f28a668a8a30f497079695ef6fde2809e73b683aa70331a9d40cc3c43",
 					"height": 4638356,
-					"timestamp": { "epoch": 94936624, "unix": 1585037824, "human": "2020-03-24T08:17:04.000Z" }
+					"timestamp": {
+						"epoch": 94936624,
+						"unix": 1585037824,
+						"human": "2020-03-24T08:17:04.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "105456538412", "rewards": "8929000000000", "total": "9034456538412" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "105456538412",
+				"rewards": "8929000000000",
+				"total": "9034456538412"
+			}
 		},
 		{
 			"username": "napisala",
@@ -706,11 +1085,21 @@
 				"last": {
 					"id": "b618c163c7ecc3a1f5bc98491a0276b8f5ca3c094fe1f05b41359dc0d017d51a",
 					"height": 4638329,
-					"timestamp": { "epoch": 94936408, "unix": 1585037608, "human": "2020-03-24T08:13:28.000Z" }
+					"timestamp": {
+						"epoch": 94936408,
+						"unix": 1585037608,
+						"human": "2020-03-24T08:13:28.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "30642981920", "rewards": "2715000000000", "total": "2745642981920" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "30642981920",
+				"rewards": "2715000000000",
+				"total": "2745642981920"
+			}
 		},
 		{
 			"username": "darklounge",
@@ -724,11 +1113,21 @@
 				"last": {
 					"id": "53317f880221600b6b1fbc94d5720ffbb807f7e288db513a5b8e734781f1ade0",
 					"height": 4638354,
-					"timestamp": { "epoch": 94936608, "unix": 1585037808, "human": "2020-03-24T08:16:48.000Z" }
+					"timestamp": {
+						"epoch": 94936608,
+						"unix": 1585037808,
+						"human": "2020-03-24T08:16:48.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.3 },
-			"forged": { "fees": "18966167525", "rewards": "7823200000000", "total": "7842166167525" }
+			"production": {
+				"approval": 0.3
+			},
+			"forged": {
+				"fees": "18966167525",
+				"rewards": "7823200000000",
+				"total": "7842166167525"
+			}
 		},
 		{
 			"username": "pittface",
@@ -742,11 +1141,21 @@
 				"last": {
 					"id": "ce6dd22f93ead95f8d61bb55dfc997510b926349f049df3ffb142b5261c47bcb",
 					"height": 4638316,
-					"timestamp": { "epoch": 94936304, "unix": 1585037504, "human": "2020-03-24T08:11:44.000Z" }
+					"timestamp": {
+						"epoch": 94936304,
+						"unix": 1585037504,
+						"human": "2020-03-24T08:11:44.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.29 },
-			"forged": { "fees": "20155524714", "rewards": "2802800000000", "total": "2822955524714" }
+			"production": {
+				"approval": 0.29
+			},
+			"forged": {
+				"fees": "20155524714",
+				"rewards": "2802800000000",
+				"total": "2822955524714"
+			}
 		},
 		{
 			"username": "thamar",
@@ -760,11 +1169,21 @@
 				"last": {
 					"id": "74a9d5ff53b21c304b5c5ede66776e04bd5e50a004ae374a673db7f4252855fb",
 					"height": 4638325,
-					"timestamp": { "epoch": 94936376, "unix": 1585037576, "human": "2020-03-24T08:12:56.000Z" }
+					"timestamp": {
+						"epoch": 94936376,
+						"unix": 1585037576,
+						"human": "2020-03-24T08:12:56.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.29 },
-			"forged": { "fees": "25972291304", "rewards": "7711000000000", "total": "7736972291304" }
+			"production": {
+				"approval": 0.29
+			},
+			"forged": {
+				"fees": "25972291304",
+				"rewards": "7711000000000",
+				"total": "7736972291304"
+			}
 		},
 		{
 			"username": "splitice",
@@ -778,11 +1197,21 @@
 				"last": {
 					"id": "86e229239c5baaf248032c1784860eca71f95e40fce496b323186ca00615b3cc",
 					"height": 4638336,
-					"timestamp": { "epoch": 94936464, "unix": 1585037664, "human": "2020-03-24T08:14:24.000Z" }
+					"timestamp": {
+						"epoch": 94936464,
+						"unix": 1585037664,
+						"human": "2020-03-24T08:14:24.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.29 },
-			"forged": { "fees": "18135607977", "rewards": "7490600000000", "total": "7508735607977" }
+			"production": {
+				"approval": 0.29
+			},
+			"forged": {
+				"fees": "18135607977",
+				"rewards": "7490600000000",
+				"total": "7508735607977"
+			}
 		},
 		{
 			"username": "espresso",
@@ -796,11 +1225,21 @@
 				"last": {
 					"id": "46f8dce76b71f6cc10ef50d9281e5039303718edf1de318aac432720f51b11bb",
 					"height": 4638353,
-					"timestamp": { "epoch": 94936600, "unix": 1585037800, "human": "2020-03-24T08:16:40.000Z" }
+					"timestamp": {
+						"epoch": 94936600,
+						"unix": 1585037800,
+						"human": "2020-03-24T08:16:40.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.29 },
-			"forged": { "fees": "23241903312", "rewards": "7316000000000", "total": "7339241903312" }
+			"production": {
+				"approval": 0.29
+			},
+			"forged": {
+				"fees": "23241903312",
+				"rewards": "7316000000000",
+				"total": "7339241903312"
+			}
 		},
 		{
 			"username": "kippers",
@@ -814,11 +1253,21 @@
 				"last": {
 					"id": "4a3c74579d6aa1cd6d32e31ee3094774ae8884ee81833922bb9c7f89a99f9f7f",
 					"height": 4638373,
-					"timestamp": { "epoch": 94936760, "unix": 1585037960, "human": "2020-03-24T08:19:20.000Z" }
+					"timestamp": {
+						"epoch": 94936760,
+						"unix": 1585037960,
+						"human": "2020-03-24T08:19:20.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.29 },
-			"forged": { "fees": "14548188772", "rewards": "7701400000000", "total": "7715948188772" }
+			"production": {
+				"approval": 0.29
+			},
+			"forged": {
+				"fees": "14548188772",
+				"rewards": "7701400000000",
+				"total": "7715948188772"
+			}
 		},
 		{
 			"username": "kolap",
@@ -832,11 +1281,21 @@
 				"last": {
 					"id": "9ff407c0076075ec7dee68cc1b790e32e84dbb0cdc786ded675436aa9f4b58ba",
 					"height": 4638367,
-					"timestamp": { "epoch": 94936712, "unix": 1585037912, "human": "2020-03-24T08:18:32.000Z" }
+					"timestamp": {
+						"epoch": 94936712,
+						"unix": 1585037912,
+						"human": "2020-03-24T08:18:32.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.28 },
-			"forged": { "fees": "43880010800", "rewards": "3038200000000", "total": "3082080010800" }
+			"production": {
+				"approval": 0.28
+			},
+			"forged": {
+				"fees": "43880010800",
+				"rewards": "3038200000000",
+				"total": "3082080010800"
+			}
 		},
 		{
 			"username": "subscribe_to_tseries",
@@ -850,11 +1309,21 @@
 				"last": {
 					"id": "6bcf98fcc421e4086089e32fc1fffc559470e1afb1e25b60b01fcb73186945cb",
 					"height": 4638349,
-					"timestamp": { "epoch": 94936568, "unix": 1585037768, "human": "2020-03-24T08:16:08.000Z" }
+					"timestamp": {
+						"epoch": 94936568,
+						"unix": 1585037768,
+						"human": "2020-03-24T08:16:08.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.28 },
-			"forged": { "fees": "9105897730", "rewards": "3923000000000", "total": "3932105897730" }
+			"production": {
+				"approval": 0.28
+			},
+			"forged": {
+				"fees": "9105897730",
+				"rewards": "3923000000000",
+				"total": "3932105897730"
+			}
 		},
 		{
 			"username": "mika",
@@ -868,11 +1337,21 @@
 				"last": {
 					"id": "16595499f194637881f1a9d65e4382b8a4fc93a4a52eab9262beae5f6a327134",
 					"height": 4638332,
-					"timestamp": { "epoch": 94936432, "unix": 1585037632, "human": "2020-03-24T08:13:52.000Z" }
+					"timestamp": {
+						"epoch": 94936432,
+						"unix": 1585037632,
+						"human": "2020-03-24T08:13:52.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.28 },
-			"forged": { "fees": "30524191686", "rewards": "7663000000000", "total": "7693524191686" }
+			"production": {
+				"approval": 0.28
+			},
+			"forged": {
+				"fees": "30524191686",
+				"rewards": "7663000000000",
+				"total": "7693524191686"
+			}
 		},
 		{
 			"username": "arktoshi",
@@ -886,11 +1365,21 @@
 				"last": {
 					"id": "3a4f89ac8ee0722784191f15afb16fa58c85fb8f752bd88dcb111c69fcdc3884",
 					"height": 4638348,
-					"timestamp": { "epoch": 94936560, "unix": 1585037760, "human": "2020-03-24T08:16:00.000Z" }
+					"timestamp": {
+						"epoch": 94936560,
+						"unix": 1585037760,
+						"human": "2020-03-24T08:16:00.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.28 },
-			"forged": { "fees": "30750528958", "rewards": "9690800000000", "total": "9721550528958" }
+			"production": {
+				"approval": 0.28
+			},
+			"forged": {
+				"fees": "30750528958",
+				"rewards": "9690800000000",
+				"total": "9721550528958"
+			}
 		},
 		{
 			"username": "darkdrakeler",
@@ -904,11 +1393,21 @@
 				"last": {
 					"id": "3bee6f0e0db5a6eadc57cf7050b2aefbf2b9c7adf86fa717aa443f9204493a5e",
 					"height": 4638364,
-					"timestamp": { "epoch": 94936688, "unix": 1585037888, "human": "2020-03-24T08:18:08.000Z" }
+					"timestamp": {
+						"epoch": 94936688,
+						"unix": 1585037888,
+						"human": "2020-03-24T08:18:08.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.28 },
-			"forged": { "fees": "19487105016", "rewards": "7703200000000", "total": "7722687105016" }
+			"production": {
+				"approval": 0.28
+			},
+			"forged": {
+				"fees": "19487105016",
+				"rewards": "7703200000000",
+				"total": "7722687105016"
+			}
 		},
 		{
 			"username": "genesis_34",
@@ -922,11 +1421,21 @@
 				"last": {
 					"id": "de7be49a6716e4f8b7af9546c3a5f9c82c96c1d2b335671759cc28b9b7befb6b",
 					"height": 4638309,
-					"timestamp": { "epoch": 94936248, "unix": 1585037448, "human": "2020-03-24T08:10:48.000Z" }
+					"timestamp": {
+						"epoch": 94936248,
+						"unix": 1585037448,
+						"human": "2020-03-24T08:10:48.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.26 },
-			"forged": { "fees": "187623466130", "rewards": "11533000000000", "total": "11720623466130" }
+			"production": {
+				"approval": 0.26
+			},
+			"forged": {
+				"fees": "187623466130",
+				"rewards": "11533000000000",
+				"total": "11720623466130"
+			}
 		},
 		{
 			"username": "munich",
@@ -940,11 +1449,21 @@
 				"last": {
 					"id": "2100cb3386364a84769901efa3eaded424261fc33d6b198e0e517b8fded6ba03",
 					"height": 4004969,
-					"timestamp": { "epoch": 81622456, "unix": 1571723656, "human": "2019-10-22T05:54:16.000Z" }
+					"timestamp": {
+						"epoch": 81622456,
+						"unix": 1571723656,
+						"human": "2019-10-22T05:54:16.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.26 },
-			"forged": { "fees": "10125683917", "rewards": "12130600000000", "total": "12140725683917" }
+			"production": {
+				"approval": 0.26
+			},
+			"forged": {
+				"fees": "10125683917",
+				"rewards": "12130600000000",
+				"total": "12140725683917"
+			}
 		},
 		{
 			"username": "proxima_centauri_b",
@@ -958,11 +1477,21 @@
 				"last": {
 					"id": "51fd2635bb66664af16a5da0b5eb712cfa4b4ee3a9f8c804993614d7c93f12c2",
 					"height": 4004968,
-					"timestamp": { "epoch": 81622448, "unix": 1571723648, "human": "2019-10-22T05:54:08.000Z" }
+					"timestamp": {
+						"epoch": 81622448,
+						"unix": 1571723648,
+						"human": "2019-10-22T05:54:08.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.2 },
-			"forged": { "fees": "175176315646", "rewards": "6841200000000", "total": "7016376315646" }
+			"production": {
+				"approval": 0.2
+			},
+			"forged": {
+				"fees": "175176315646",
+				"rewards": "6841200000000",
+				"total": "7016376315646"
+			}
 		},
 		{
 			"username": "lemii",
@@ -976,11 +1505,21 @@
 				"last": {
 					"id": "932443318380633d93cbed51cb90dfc7f84638a34c765af56d98ab35cc6b0917",
 					"height": 4600203,
-					"timestamp": { "epoch": 94630128, "unix": 1584731328, "human": "2020-03-20T19:08:48.000Z" }
+					"timestamp": {
+						"epoch": 94630128,
+						"unix": 1584731328,
+						"human": "2020-03-20T19:08:48.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.19 },
-			"forged": { "fees": "105422326453", "rewards": "7573800000000", "total": "7679222326453" }
+			"production": {
+				"approval": 0.19
+			},
+			"forged": {
+				"fees": "105422326453",
+				"rewards": "7573800000000",
+				"total": "7679222326453"
+			}
 		},
 		{
 			"username": "darkdirectory",
@@ -994,11 +1533,21 @@
 				"last": {
 					"id": "ce18794f147d04f5d6b2b819bca3e5b226ab73194e515c1b143ce043424eba36",
 					"height": 3942432,
-					"timestamp": { "epoch": 81060984, "unix": 1571162184, "human": "2019-10-15T17:56:24.000Z" }
+					"timestamp": {
+						"epoch": 81060984,
+						"unix": 1571162184,
+						"human": "2019-10-15T17:56:24.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.08 },
-			"forged": { "fees": "6803219080", "rewards": "4894600000000", "total": "4901403219080" }
+			"production": {
+				"approval": 0.08
+			},
+			"forged": {
+				"fees": "6803219080",
+				"rewards": "4894600000000",
+				"total": "4901403219080"
+			}
 		},
 		{
 			"username": "dafty_",
@@ -1012,11 +1561,21 @@
 				"last": {
 					"id": "179ac35149f56259cfe4af1703ea8d6aed97f7e15b214a2467ca00bac5999ba8",
 					"height": 2422942,
-					"timestamp": { "epoch": 67930792, "unix": 1558031992, "human": "2019-05-16T18:39:52.000Z" }
+					"timestamp": {
+						"epoch": 67930792,
+						"unix": 1558031992,
+						"human": "2019-05-16T18:39:52.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.06 },
-			"forged": { "fees": "411590850", "rewards": "2531400000000", "total": "2531811590850" }
+			"production": {
+				"approval": 0.06
+			},
+			"forged": {
+				"fees": "411590850",
+				"rewards": "2531400000000",
+				"total": "2531811590850"
+			}
 		},
 		{
 			"username": "arklabs",
@@ -1030,11 +1589,21 @@
 				"last": {
 					"id": "ae17a396dfef51fa71b8a8454938a4ef4620928b637e94e1c20d92cdb857bbec",
 					"height": 3510932,
-					"timestamp": { "epoch": 77570296, "unix": 1567671496, "human": "2019-09-05T08:18:16.000Z" }
+					"timestamp": {
+						"epoch": 77570296,
+						"unix": 1567671496,
+						"human": "2019-09-05T08:18:16.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.06 },
-			"forged": { "fees": "70468869659", "rewards": "12980600000000", "total": "13051068869659" }
+			"production": {
+				"approval": 0.06
+			},
+			"forged": {
+				"fees": "70468869659",
+				"rewards": "12980600000000",
+				"total": "13051068869659"
+			}
 		},
 		{
 			"username": "darktoons",
@@ -1048,11 +1617,21 @@
 				"last": {
 					"id": "6c619c9def575a1ff45dbec63a9da37553450b2f66a039ac7a38623b9afd2326",
 					"height": 2730067,
-					"timestamp": { "epoch": 71167752, "unix": 1561268952, "human": "2019-06-23T05:49:12.000Z" }
+					"timestamp": {
+						"epoch": 71167752,
+						"unix": 1561268952,
+						"human": "2019-06-23T05:49:12.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.05 },
-			"forged": { "fees": "15892313790", "rewards": "7127800000000", "total": "7143692313790" }
+			"production": {
+				"approval": 0.05
+			},
+			"forged": {
+				"fees": "15892313790",
+				"rewards": "7127800000000",
+				"total": "7143692313790"
+			}
 		},
 		{
 			"username": "kid",
@@ -1066,11 +1645,21 @@
 				"last": {
 					"id": "0a1a7b0e9d72de0832d207896f4a5c61c754e9217bb162af2d8280461910f93b",
 					"height": 4004980,
-					"timestamp": { "epoch": 81622544, "unix": 1571723744, "human": "2019-10-22T05:55:44.000Z" }
+					"timestamp": {
+						"epoch": 81622544,
+						"unix": 1571723744,
+						"human": "2019-10-22T05:55:44.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.04 },
-			"forged": { "fees": "16422481801", "rewards": "5772400000000", "total": "5788822481801" }
+			"production": {
+				"approval": 0.04
+			},
+			"forged": {
+				"fees": "16422481801",
+				"rewards": "5772400000000",
+				"total": "5788822481801"
+			}
 		},
 		{
 			"username": "forreal",
@@ -1084,11 +1673,21 @@
 				"last": {
 					"id": "e53aeef7ef65954fa2900cec4465cb9f9926b4cb6c747acff0af6e5a206fa322",
 					"height": 3942449,
-					"timestamp": { "epoch": 81061144, "unix": 1571162344, "human": "2019-10-15T17:59:04.000Z" }
+					"timestamp": {
+						"epoch": 81061144,
+						"unix": 1571162344,
+						"human": "2019-10-15T17:59:04.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.04 },
-			"forged": { "fees": "3926460874", "rewards": "4948800000000", "total": "4952726460874" }
+			"production": {
+				"approval": 0.04
+			},
+			"forged": {
+				"fees": "3926460874",
+				"rewards": "4948800000000",
+				"total": "4952726460874"
+			}
 		},
 		{
 			"username": "darkworld",
@@ -1102,11 +1701,21 @@
 				"last": {
 					"id": "1f8e2277e807f72cd8c52143c1f9184aee8b78149db3b31bcc153ad430de89a2",
 					"height": 4600155,
-					"timestamp": { "epoch": 94629736, "unix": 1584730936, "human": "2020-03-20T19:02:16.000Z" }
+					"timestamp": {
+						"epoch": 94629736,
+						"unix": 1584730936,
+						"human": "2020-03-20T19:02:16.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.04 },
-			"forged": { "fees": "16846822771", "rewards": "4726200000000", "total": "4743046822771" }
+			"production": {
+				"approval": 0.04
+			},
+			"forged": {
+				"fees": "16846822771",
+				"rewards": "4726200000000",
+				"total": "4743046822771"
+			}
 		},
 		{
 			"username": "notsupercool",
@@ -1120,11 +1729,21 @@
 				"last": {
 					"id": "7e5ab6cc31901145a66cae942f2fc04543480848932189d7643e6431dba76b37",
 					"height": 4631289,
-					"timestamp": { "epoch": 94879824, "unix": 1584981024, "human": "2020-03-23T16:30:24.000Z" }
+					"timestamp": {
+						"epoch": 94879824,
+						"unix": 1584981024,
+						"human": "2020-03-23T16:30:24.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.03 },
-			"forged": { "fees": "18792585106", "rewards": "4591200000000", "total": "4609992585106" }
+			"production": {
+				"approval": 0.03
+			},
+			"forged": {
+				"fees": "18792585106",
+				"rewards": "4591200000000",
+				"total": "4609992585106"
+			}
 		},
 		{
 			"username": "dafty",
@@ -1138,11 +1757,21 @@
 				"last": {
 					"id": "13612404833899558133",
 					"height": 1577900,
-					"timestamp": { "epoch": 60575304, "unix": 1550676504, "human": "2019-02-20T15:28:24.000Z" }
+					"timestamp": {
+						"epoch": 60575304,
+						"unix": 1550676504,
+						"human": "2019-02-20T15:28:24.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.03 },
-			"forged": { "fees": "2560647277", "rewards": "3029400000000", "total": "3031960647277" }
+			"production": {
+				"approval": 0.03
+			},
+			"forged": {
+				"fees": "2560647277",
+				"rewards": "3029400000000",
+				"total": "3031960647277"
+			}
 		},
 		{
 			"username": "darkfuturesmartnode",
@@ -1156,11 +1785,21 @@
 				"last": {
 					"id": "17385277244399382944",
 					"height": 1577882,
-					"timestamp": { "epoch": 60574786, "unix": 1550675986, "human": "2019-02-20T15:19:46.000Z" }
+					"timestamp": {
+						"epoch": 60574786,
+						"unix": 1550675986,
+						"human": "2019-02-20T15:19:46.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.03 },
-			"forged": { "fees": "1235453883", "rewards": "2429000000000", "total": "2430235453883" }
+			"production": {
+				"approval": 0.03
+			},
+			"forged": {
+				"fees": "1235453883",
+				"rewards": "2429000000000",
+				"total": "2430235453883"
+			}
 		},
 		{
 			"username": "arkmoon",
@@ -1174,11 +1813,21 @@
 				"last": {
 					"id": "4864814746122453925",
 					"height": 1572051,
-					"timestamp": { "epoch": 60473794, "unix": 1550574994, "human": "2019-02-19T11:16:34.000Z" }
+					"timestamp": {
+						"epoch": 60473794,
+						"unix": 1550574994,
+						"human": "2019-02-19T11:16:34.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.03 },
-			"forged": { "fees": "48478959090", "rewards": "4660600000000", "total": "4709078959090" }
+			"production": {
+				"approval": 0.03
+			},
+			"forged": {
+				"fees": "48478959090",
+				"rewards": "4660600000000",
+				"total": "4709078959090"
+			}
 		},
 		{
 			"username": "dmak",
@@ -1192,11 +1841,21 @@
 				"last": {
 					"id": "9c6df86acee956c516ff3a758b943b351a09c1a1cc77a9f03d10f8452184e1a3",
 					"height": 4004961,
-					"timestamp": { "epoch": 81622392, "unix": 1571723592, "human": "2019-10-22T05:53:12.000Z" }
+					"timestamp": {
+						"epoch": 81622392,
+						"unix": 1571723592,
+						"human": "2019-10-22T05:53:12.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.02 },
-			"forged": { "fees": "17607850231", "rewards": "12611200000000", "total": "12628807850231" }
+			"production": {
+				"approval": 0.02
+			},
+			"forged": {
+				"fees": "17607850231",
+				"rewards": "12611200000000",
+				"total": "12628807850231"
+			}
 		},
 		{
 			"username": "arkworld",
@@ -1210,11 +1869,21 @@
 				"last": {
 					"id": "12309996980322788798",
 					"height": 544374,
-					"timestamp": { "epoch": 49853400, "unix": 1539954600, "human": "2018-10-19T13:10:00.000Z" }
+					"timestamp": {
+						"epoch": 49853400,
+						"unix": 1539954600,
+						"human": "2018-10-19T13:10:00.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.01 },
-			"forged": { "fees": "1640000000", "rewards": "595000000000", "total": "596640000000" }
+			"production": {
+				"approval": 0.01
+			},
+			"forged": {
+				"fees": "1640000000",
+				"rewards": "595000000000",
+				"total": "596640000000"
+			}
 		},
 		{
 			"username": "starshot",
@@ -1228,11 +1897,21 @@
 				"last": {
 					"id": "20e67c00c613fcbfe22a7c7b8a5df29d13b6cb8b27573c1b724ab26b5d250e64",
 					"height": 2712138,
-					"timestamp": { "epoch": 71002320, "unix": 1561103520, "human": "2019-06-21T07:52:00.000Z" }
+					"timestamp": {
+						"epoch": 71002320,
+						"unix": 1561103520,
+						"human": "2019-06-21T07:52:00.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.01 },
-			"forged": { "fees": "152847481425", "rewards": "7011200000000", "total": "7164047481425" }
+			"production": {
+				"approval": 0.01
+			},
+			"forged": {
+				"fees": "152847481425",
+				"rewards": "7011200000000",
+				"total": "7164047481425"
+			}
 		},
 		{
 			"username": "jeremig",
@@ -1246,11 +1925,21 @@
 				"last": {
 					"id": "8011350216817587006",
 					"height": 773862,
-					"timestamp": { "epoch": 52402640, "unix": 1542503840, "human": "2018-11-18T01:17:20.000Z" }
+					"timestamp": {
+						"epoch": 52402640,
+						"unix": 1542503840,
+						"human": "2018-11-18T01:17:20.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.01 },
-			"forged": { "fees": "3000000000", "rewards": "530000000000", "total": "533000000000" }
+			"production": {
+				"approval": 0.01
+			},
+			"forged": {
+				"fees": "3000000000",
+				"rewards": "530000000000",
+				"total": "533000000000"
+			}
 		},
 		{
 			"username": "darkegeron",
@@ -1264,11 +1953,21 @@
 				"last": {
 					"id": "3455951884765603799",
 					"height": 536862,
-					"timestamp": { "epoch": 49785986, "unix": 1539887186, "human": "2018-10-18T18:26:26.000Z" }
+					"timestamp": {
+						"epoch": 49785986,
+						"unix": 1539887186,
+						"human": "2018-10-18T18:26:26.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.01 },
-			"forged": { "fees": "9690000000", "rewards": "1377400000000", "total": "1387090000000" }
+			"production": {
+				"approval": 0.01
+			},
+			"forged": {
+				"fees": "9690000000",
+				"rewards": "1377400000000",
+				"total": "1387090000000"
+			}
 		},
 		{
 			"username": "arkship",
@@ -1282,11 +1981,21 @@
 				"last": {
 					"id": "15309375930026312687",
 					"height": 292698,
-					"timestamp": { "epoch": 47495200, "unix": 1537596400, "human": "2018-09-22T06:06:40.000Z" }
+					"timestamp": {
+						"epoch": 47495200,
+						"unix": 1537596400,
+						"human": "2018-09-22T06:06:40.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0.01 },
-			"forged": { "fees": "62410000000", "rewards": "1150200000000", "total": "1212610000000" }
+			"production": {
+				"approval": 0.01
+			},
+			"forged": {
+				"fees": "62410000000",
+				"rewards": "1150200000000",
+				"total": "1212610000000"
+			}
 		},
 		{
 			"username": "walderfrey",
@@ -1300,11 +2009,21 @@
 				"last": {
 					"id": "4650074991911079214",
 					"height": 784344,
-					"timestamp": { "epoch": 52544282, "unix": 1542645482, "human": "2018-11-19T16:38:02.000Z" }
+					"timestamp": {
+						"epoch": 52544282,
+						"unix": 1542645482,
+						"human": "2018-11-19T16:38:02.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0 },
-			"forged": { "fees": "1135790000000", "rewards": "1593200000000", "total": "2728990000000" }
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "1135790000000",
+				"rewards": "1593200000000",
+				"total": "2728990000000"
+			}
 		},
 		{
 			"username": "delegate.02664fe58c",
@@ -1313,9 +2032,17 @@
 			"votes": "245469999959",
 			"rank": 73,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "bongoninja",
@@ -1329,11 +2056,21 @@
 				"last": {
 					"id": "ce7445bb9f7e5ff41b66827f3d873186c2773fb9786c2e751af06ed886d88c58",
 					"height": 2700578,
-					"timestamp": { "epoch": 70908992, "unix": 1561010192, "human": "2019-06-20T05:56:32.000Z" }
+					"timestamp": {
+						"epoch": 70908992,
+						"unix": 1561010192,
+						"human": "2019-06-20T05:56:32.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0 },
-			"forged": { "fees": "115006364745", "rewards": "8774000000000", "total": "8889006364745" }
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "115006364745",
+				"rewards": "8774000000000",
+				"total": "8889006364745"
+			}
 		},
 		{
 			"username": "coolersoup",
@@ -1347,11 +2084,21 @@
 				"last": {
 					"id": "8790338005115105079",
 					"height": 1356653,
-					"timestamp": { "epoch": 58689514, "unix": 1548790714, "human": "2019-01-29T19:38:34.000Z" }
+					"timestamp": {
+						"epoch": 58689514,
+						"unix": 1548790714,
+						"human": "2019-01-29T19:38:34.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0 },
-			"forged": { "fees": "35459535078", "rewards": "1635200000000", "total": "1670659535078" }
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "35459535078",
+				"rewards": "1635200000000",
+				"total": "1670659535078"
+			}
 		},
 		{
 			"username": "splahgetti",
@@ -1360,9 +2107,17 @@
 			"votes": "140260005348",
 			"rank": 76,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "middleearth",
@@ -1376,11 +2131,21 @@
 				"last": {
 					"id": "b8736077fdba77606a9378b3b717b44e7dd7da1a3bbd4ae05c30b5a44f86e186",
 					"height": 3215984,
-					"timestamp": { "epoch": 75175480, "unix": 1565276680, "human": "2019-08-08T15:04:40.000Z" }
+					"timestamp": {
+						"epoch": 75175480,
+						"unix": 1565276680,
+						"human": "2019-08-08T15:04:40.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0 },
-			"forged": { "fees": "1658635334", "rewards": "1955400000000", "total": "1957058635334" }
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "1658635334",
+				"rewards": "1955400000000",
+				"total": "1957058635334"
+			}
 		},
 		{
 			"username": "joanofark",
@@ -1389,9 +2154,17 @@
 			"votes": "98290352534",
 			"rank": 78,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "arkvader",
@@ -1405,11 +2178,21 @@
 				"last": {
 					"id": "13300010715047914662",
 					"height": 709790,
-					"timestamp": { "epoch": 51776394, "unix": 1541877594, "human": "2018-11-10T19:19:54.000Z" }
+					"timestamp": {
+						"epoch": 51776394,
+						"unix": 1541877594,
+						"human": "2018-11-10T19:19:54.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0 },
-			"forged": { "fees": "51130000000", "rewards": "2744600000000", "total": "2795730000000" }
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "51130000000",
+				"rewards": "2744600000000",
+				"total": "2795730000000"
+			}
 		},
 		{
 			"username": "alfonsoh",
@@ -1418,9 +2201,17 @@
 			"votes": "19398744881",
 			"rank": 80,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "darkland",
@@ -1434,11 +2225,21 @@
 				"last": {
 					"id": "8afba82584131add45b406030d7bde76b7476e0d82f6e810e3ef9e6ce72e30c0",
 					"height": 2695827,
-					"timestamp": { "epoch": 70870952, "unix": 1560972152, "human": "2019-06-19T19:22:32.000Z" }
+					"timestamp": {
+						"epoch": 70870952,
+						"unix": 1560972152,
+						"human": "2019-06-19T19:22:32.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0 },
-			"forged": { "fees": "53621804641", "rewards": "8219200000000", "total": "8272821804641" }
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "53621804641",
+				"rewards": "8219200000000",
+				"total": "8272821804641"
+			}
 		},
 		{
 			"username": "pierox",
@@ -1447,9 +2248,17 @@
 			"votes": "10973204000",
 			"rank": 82,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "jarunik",
@@ -1463,11 +2272,21 @@
 				"last": {
 					"id": "a3d861e0529593c41dc8a3941bc05f0de06e7513d99a8fb2cba4d8a6fa720a8b",
 					"height": 2365143,
-					"timestamp": { "epoch": 67362264, "unix": 1557463464, "human": "2019-05-10T04:44:24.000Z" }
+					"timestamp": {
+						"epoch": 67362264,
+						"unix": 1557463464,
+						"human": "2019-05-10T04:44:24.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0 },
-			"forged": { "fees": "158319810819", "rewards": "9162600000000", "total": "9320919810819" }
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "158319810819",
+				"rewards": "9162600000000",
+				"total": "9320919810819"
+			}
 		},
 		{
 			"username": "heyheyhey",
@@ -1476,9 +2295,17 @@
 			"votes": "7308504022",
 			"rank": 84,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "pieros",
@@ -1487,9 +2314,17 @@
 			"votes": "3162008001",
 			"rank": 85,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "paroxysm",
@@ -1498,9 +2333,17 @@
 			"votes": "3000000000",
 			"rank": 86,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "nirvana",
@@ -1509,9 +2352,17 @@
 			"votes": "1322585994",
 			"rank": 87,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "genesis_31",
@@ -1525,11 +2376,21 @@
 				"last": {
 					"id": "1edf8f785d5518a7f8232d58f90476b2c46b26917757f7ce2ae010e23ff19cce",
 					"height": 2690669,
-					"timestamp": { "epoch": 70826744, "unix": 1560927944, "human": "2019-06-19T07:05:44.000Z" }
+					"timestamp": {
+						"epoch": 70826744,
+						"unix": 1560927944,
+						"human": "2019-06-19T07:05:44.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0 },
-			"forged": { "fees": "97117404891", "rewards": "11102600000000", "total": "11199717404891" }
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "97117404891",
+				"rewards": "11102600000000",
+				"total": "11199717404891"
+			}
 		},
 		{
 			"username": "boris",
@@ -1538,9 +2399,17 @@
 			"votes": "245833333",
 			"rank": 89,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "hobogoblin",
@@ -1549,9 +2418,17 @@
 			"votes": "100000000",
 			"rank": 90,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "genesis_10",
@@ -1565,11 +2442,21 @@
 				"last": {
 					"id": "17195921736898145285",
 					"height": 484,
-					"timestamp": { "epoch": 45024826, "unix": 1535126026, "human": "2018-08-24T15:53:46.000Z" }
+					"timestamp": {
+						"epoch": 45024826,
+						"unix": 1535126026,
+						"human": "2018-08-24T15:53:46.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0 },
-			"forged": { "fees": "10000000", "rewards": "0", "total": "10000000" }
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "10000000",
+				"rewards": "0",
+				"total": "10000000"
+			}
 		},
 		{
 			"username": "yolo",
@@ -1578,9 +2465,17 @@
 			"votes": "0",
 			"rank": 92,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "delegate__78",
@@ -1589,9 +2484,17 @@
 			"votes": "0",
 			"rank": 93,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "genesis_17",
@@ -1605,11 +2508,21 @@
 				"last": {
 					"id": "16369196929873771046",
 					"height": 826,
-					"timestamp": { "epoch": 45027578, "unix": 1535128778, "human": "2018-08-24T16:39:38.000Z" }
+					"timestamp": {
+						"epoch": 45027578,
+						"unix": 1535128778,
+						"human": "2018-08-24T16:39:38.000Z"
+					}
 				}
 			},
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "delegate__4",
@@ -1618,9 +2531,17 @@
 			"votes": "0",
 			"rank": 95,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "delegate__73",
@@ -1629,9 +2550,17 @@
 			"votes": "0",
 			"rank": 96,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "delegate__140",
@@ -1640,9 +2569,17 @@
 			"votes": "0",
 			"rank": 97,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "delegate.020c2f9c12",
@@ -1651,9 +2588,17 @@
 			"votes": "0",
 			"rank": 98,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "oohlala",
@@ -1662,9 +2607,17 @@
 			"votes": "0",
 			"rank": 99,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		},
 		{
 			"username": "delegate__35",
@@ -1673,9 +2626,17 @@
 			"votes": "0",
 			"rank": 100,
 			"isResigned": false,
-			"blocks": { "produced": 0 },
-			"production": { "approval": 0 },
-			"forged": { "fees": "0", "rewards": "0", "total": "0" }
+			"blocks": {
+				"produced": 0
+			},
+			"production": {
+				"approval": 0
+			},
+			"forged": {
+				"fees": "0",
+				"rewards": "0",
+				"total": "0"
+			}
 		}
 	]
 }

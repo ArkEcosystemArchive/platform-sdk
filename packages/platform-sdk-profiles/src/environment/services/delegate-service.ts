@@ -1,4 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { WalletDataCollection } from "../../../../platform-sdk/dist/coins";
 
 import { DataRepository } from "../../repositories/data-repository";
 import { ReadOnlyWallet } from "../../wallets/read-only-wallet";
@@ -39,18 +40,21 @@ export class DelegateService {
 		const instanceKey = `${coin}.${network}.delegates`;
 
 		let result: Contracts.WalletData[] = [];
-		let hasMore = true;
-		// TODO: use the nextPage() method as cursor like aggregates
-		let cursor = 1;
+		let hasMore: boolean = true;
+		let lastResponse: WalletDataCollection | undefined = undefined;
 
 		while (hasMore) {
-			const response = await instance.client().delegates({ cursor });
+			if (lastResponse && lastResponse.hasMorePages()) {
+				lastResponse = await instance.client().delegates({ cursor: lastResponse.nextPage() });
+			} else {
+				lastResponse = await instance.client().delegates();
+			}
 
-			result = result.concat(response.items());
+			hasMore = lastResponse.hasMorePages();
 
-			hasMore = response.hasMorePages();
-
-			cursor++;
+			for (const item of lastResponse.items()) {
+				result.push(item);
+			}
 		}
 
 		this.#dataRepository.set(
