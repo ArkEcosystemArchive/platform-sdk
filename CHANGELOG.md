@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.387 - 2020-10-01
+
+### Fixed
+
+-   **[ARK]** Use `@arkecosystem/crypto-identities` for stateless identity generation (cbe4aab7, @faustbrian)
+
+### Changed
+
+-   **[LSK]** Enable `betanet` support (f2830986, @faustbrian)
+
 ## 0.9.385 - 2020-10-01
 
 ### Added
@@ -13,10 +23,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
--   **[ARK]** Remove compendia testnet (#724) (1ef72ebb, @faustbrian)
--   **[ARK]** Re-apply ARK configurations before every crypto method call (#725) (ee26ad7f, @faustbrian)
--   **[LSK]** Don't enforce api limit and sort transactions by timestamp (#727) (09dba752, @dated)
--   **[LSK]** Handle delegate format in WalletData (#726) (7cb9a923, @dated)
+-   **[ARK]** Remove compendia testnet (1ef72ebb, @faustbrian)
+-   **[ARK]** Re-apply ARK configurations before every crypto method call (ee26ad7f, @faustbrian)
+-   **[LSK]** Don't enforce api limit and sort transactions by timestamp (09dba752, @dated)
+-   **[LSK]** Handle delegate format in WalletData (7cb9a923, @dated)
 
 ### Fixed
 
