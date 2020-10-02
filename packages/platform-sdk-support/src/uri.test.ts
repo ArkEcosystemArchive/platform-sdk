@@ -1,12 +1,12 @@
 import "jest-extended";
 
-import { URIService } from "./uri";
+import { URI } from "./uri";
 
-let subject: URIService;
+let subject: URI;
 
-beforeEach(async () => (subject = new URIService()));
+beforeEach(async () => (subject = new URI()));
 
-describe("URIService", () => {
+describe("URI", () => {
 	it("should serialize", () => {
 		const result = subject.serialize({
 			method: "transfer",
