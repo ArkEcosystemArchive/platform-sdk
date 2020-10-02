@@ -37,6 +37,18 @@ beforeEach(async () => {
 		.reply(200, require("../../test/fixtures/client/delegates-1.json"))
 		.get("/api/delegates?page=2")
 		.reply(200, require("../../test/fixtures/client/delegates-2.json"))
+		.get("/api/transactions/3e0b2e5ed00b34975abd6dee0ca5bd5560b5bd619b26cf6d8f70030408ec5be3")
+		.query(true)
+		.reply(200, () => {
+			const response = require("../../test/fixtures/client/transactions.json");
+			return { data: response.data[0] };
+		})
+		.get("/api/transactions/bb9004fa874b534905f9eff201150f7f982622015f33e076c52f1e945ef184ed")
+		.query(true)
+		.reply(200, () => {
+			const response = require("../../test/fixtures/client/transactions.json");
+			return { data: response.data[1] };
+		})
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
@@ -120,6 +132,24 @@ it("should have a peer service", () => {
 
 it("should have a transaction service", () => {
 	expect(subject.transaction()).toBeObject();
+});
+
+it("should fetch transaction by id", async () => {
+	const transactionId = "3e0b2e5ed00b34975abd6dee0ca5bd5560b5bd619b26cf6d8f70030408ec5be3";
+	const transaction = await subject.findTransactionById(transactionId);
+	expect(transaction.id()).toEqual(transactionId);
+});
+
+it("should fetch transactions by id", async () => {
+	const transactionId = "3e0b2e5ed00b34975abd6dee0ca5bd5560b5bd619b26cf6d8f70030408ec5be3";
+	const secondaryTransactionId = "bb9004fa874b534905f9eff201150f7f982622015f33e076c52f1e945ef184ed";
+	const transactions = await subject.findTransactionsByIds([transactionId, secondaryTransactionId]);
+
+	expect(transactions.length).toEqual(2);
+
+	const fetchedIds = transactions.map((transaction) => transaction.id());
+	expect(fetchedIds.includes(transactionId));
+	expect(fetchedIds.includes(secondaryTransactionId));
 });
 
 describe.each([123, 456, 789])("%s", (slip44) => {
