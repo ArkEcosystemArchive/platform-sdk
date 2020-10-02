@@ -53,8 +53,16 @@ export class BigNumber {
 		return this.#value.isPositive();
 	}
 
+	public isNegative(): boolean {
+		return this.#value.isNegative();
+	}
+
 	public isFinite(): boolean {
 		return this.#value.isFinite();
+	}
+
+	public isZero(): boolean {
+		return this.#value.isZero();
 	}
 
 	public comparedTo(value: NumberLike): number {
