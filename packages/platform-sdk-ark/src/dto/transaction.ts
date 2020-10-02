@@ -135,15 +135,21 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isEntityRegistration(): boolean {
-		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === 0;
+		return (
+			this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === Enums.EntityAction.Register
+		);
 	}
 
 	public isEntityResignation(): boolean {
-		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === 1;
+		return (
+			this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === Enums.EntityAction.Resign
+		);
 	}
 
 	public isEntityUpdate(): boolean {
-		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === 2;
+		return (
+			this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === Enums.EntityAction.Update
+		);
 	}
 
 	public isBusinessEntityRegistration(): boolean {
