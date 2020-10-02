@@ -1,9 +1,7 @@
 import querystring from "querystring";
 import { number, object, string } from "yup";
 
-import { URIService as Contract } from "../../contracts/coins/uri";
-
-export class URIService implements Contract {
+export class URI {
 	readonly #pattern: RegExp = new RegExp(/^(?:ark:)([-0-9a-zA-Z]{1,34})([-a-zA-Z0-9+&@#/%=~_|$?!:,.]*)$/);
 
 	public serialize(input: Record<string, string>): string {

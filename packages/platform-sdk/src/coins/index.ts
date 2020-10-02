@@ -9,4 +9,3 @@ export * from "./manifest";
 export * from "./network-repository";
 export * from "./network.models";
 export * from "./network";
-export * from "./services";

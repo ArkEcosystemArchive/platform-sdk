@@ -10,4 +10,3 @@ export * from "./message";
 export * from "./multi-signature";
 export * from "./peer";
 export * from "./transaction";
-export * from "./uri";
