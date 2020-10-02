@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.391 - 2020-10-02
+
+### Added
+
+-   Implement `BigNumber#isNegative` and `BigNumber#isZero` (40f4d130, @dated)
+
+### Changed
+
+-   Move `URIService` to `@arkecosystem/platform-sdk-support` package (4b0b35ce, @faustbrian)
+
+### Fixed
+
+-   Entity action check (341f2ebd, @brenopolanski)
+-   Include transaction methods in `ReadWriteWallet` contract (1326387a, @goga-m)
+
 ## 0.9.387 - 2020-10-01
 
 ### Fixed
