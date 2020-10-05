@@ -71,6 +71,10 @@ export class Profile implements ProfileContract {
 		return this.walletAggregate().balance();
 	}
 
+	public convertedBalance(): BigNumber {
+		return this.walletAggregate().convertedBalance();
+	}
+
 	public contacts(): ContactRepository {
 		return this.#contactRepository;
 	}
