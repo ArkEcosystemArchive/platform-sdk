@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-cryptocompare
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-cryptocompare.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/markets/cryptocompare).
 
 ## Security
 

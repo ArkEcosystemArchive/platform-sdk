@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-coincap
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-coincap.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/markets/coincap).
 
 ## Security
 

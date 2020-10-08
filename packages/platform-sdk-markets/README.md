@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-markets
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-markets.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/markets).
 
 ## Security
 

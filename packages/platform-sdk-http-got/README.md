@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-http-got
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-http-got.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/http/got).
 
 ## Security
 

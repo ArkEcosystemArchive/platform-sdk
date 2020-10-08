@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-ada
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-ada.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/ada).
 
 ## Security
 

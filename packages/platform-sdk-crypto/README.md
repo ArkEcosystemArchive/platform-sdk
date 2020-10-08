@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-crypto
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-crypto.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/crypto).
 
 ## Security
 

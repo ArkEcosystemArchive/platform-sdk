@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-neo
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-neo.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/neo).
 
 ## Security
 

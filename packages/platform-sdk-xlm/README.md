@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-xlm
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-xlm.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/xlm).
 
 ## Security
 

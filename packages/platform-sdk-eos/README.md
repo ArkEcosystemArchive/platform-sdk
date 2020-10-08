@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-eos
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-eos.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/eos).
 
 ## Security
 

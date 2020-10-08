@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-http-bent
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-http-bent.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/http/bent).
 
 ## Security
 

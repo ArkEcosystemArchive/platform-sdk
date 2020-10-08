@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-ipfs
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-ipfs.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/utility/ipfs).
 
 ## Security
 

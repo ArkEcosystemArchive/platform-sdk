@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-monero
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-xmr.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/xmr).
 
 ## Security
 

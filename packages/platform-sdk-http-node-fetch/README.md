@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-http-node-fetch
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-http-node-fetch.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/http/node-fetch).
 
 ## Security
 

@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-eth
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-eth.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/eth).
 
 ## Security
 

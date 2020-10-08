@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-http-axios
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-http-axios.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/http/axios).
 
 ## Security
 

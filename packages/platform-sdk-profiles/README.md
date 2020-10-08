@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-profiles
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-profiles.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/profiles).
 
 ## Security
 

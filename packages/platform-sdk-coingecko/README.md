@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-coingecko
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-coingecko.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/markets/coingecko).
 
 ## Security
 

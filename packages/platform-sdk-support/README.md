@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-support
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-support.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/utility/support).
 
 ## Security
 

@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-lsk
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-lsk.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/lsk).
 
 ## Security
 

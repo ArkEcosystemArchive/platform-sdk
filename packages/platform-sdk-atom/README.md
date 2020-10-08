@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-atom
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-atom.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/atom).
 
 ## Security
 

@@ -18,7 +18,7 @@ yarn add @arkecosystem/platform-sdk-news
 
 ## Usage
 
-Documentation can be found [here](https://platform-sdk-news.netlify.app/).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/utility/news).
 
 ## Security
 
