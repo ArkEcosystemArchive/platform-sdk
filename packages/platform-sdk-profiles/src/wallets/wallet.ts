@@ -276,8 +276,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public isLedger(): boolean {
-		// TODO: automatically determine this
-		return this.data().has(WalletFlag.Ledger);
+		return this.data().has(WalletFlag.LedgerIndex);
 	}
 
 	public isMultiSignature(): boolean {

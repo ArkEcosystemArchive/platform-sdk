@@ -51,7 +51,7 @@ export enum WalletData {
 }
 
 export enum WalletFlag {
-	Ledger = "LEDGER",
+	LedgerIndex = "LEDGER_INDEX",
 	Starred = "STARRED",
 }
 
