@@ -42,7 +42,7 @@ export class WalletAggregate {
 
 			result[coin] = {
 				total: totalByCoin.toFixed(),
-				percentage: totalByCoin.divide(totalByProfile).times(100).toFixed(2),
+				percentage: totalByProfile.isZero() ? "0.00" : totalByCoin.divide(totalByProfile).times(100).toFixed(2),
 			};
 		}
 
