@@ -1449,7 +1449,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["bcrypto", "npm:5.3.0"],
             ["codecov", "npm:3.8.0"],
             ["cross-env", "npm:7.0.2"],
-            ["dot-prop", "npm:6.0.0"],
+            ["dot-prop", "npm:5.3.0"],
             ["eslint", "npm:7.11.0"],
             ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.12.0"],
             ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:24.1.0"],
@@ -8989,6 +8989,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/dot-prop-npm-5.2.0-195360fa83-2.zip/node_modules/dot-prop/",
           "packageDependencies": [
             ["dot-prop", "npm:5.2.0"],
+            ["is-obj", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.3.0", {
+          "packageLocation": "./.yarn/cache/dot-prop-npm-5.3.0-7bf6ee1eb8-2.zip/node_modules/dot-prop/",
+          "packageDependencies": [
+            ["dot-prop", "npm:5.3.0"],
             ["is-obj", "npm:2.0.0"]
           ],
           "linkType": "HARD",
