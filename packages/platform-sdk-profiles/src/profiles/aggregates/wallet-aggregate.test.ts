@@ -2,14 +2,15 @@ import "jest-extended";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../../../test/fixtures/identity";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
+import { CoinService } from "../../environment/services/coin-service";
 import { Profile } from "../profile";
 import { WalletAggregate } from "./wallet-aggregate";
-import { CoinService } from "../../environment/services/coin-service";
 
 let subject: WalletAggregate;
 
@@ -38,8 +39,23 @@ beforeEach(async () => {
 	subject = new WalletAggregate(profile);
 });
 
+test("#balance", async () => {
+	expect(subject.balance("live").toString()).toEqual("0");
+
+	expect(subject.balance("test").toString()).toEqual("55827093444556");
+});
+
+test("#balancesByNetworkType", async () => {
+	expect(subject.balancesByNetworkType()).toEqual({
+		live: BigNumber.ZERO,
+		test: BigNumber.make("55827093444556"),
+	});
+});
+
 test("#balancePerCoin", async () => {
-	expect(subject.balancePerCoin()).toEqual({
+	expect(subject.balancePerCoin("live")).toEqual({});
+
+	expect(subject.balancePerCoin("test")).toEqual({
 		DARK: {
 			percentage: "100.00",
 			total: "55827093444556",
