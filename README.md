@@ -10,15 +10,9 @@
 
 **This package is only intended to be used by ARK Ecosystem to provide cross-platform utilities for ARK Applications. No support is provided in any way.**
 
-## Installation
-
-```bash
-yarn add @arkecosystem/platform-sdk
-```
-
 ## Usage
 
-Documentation can be found [here](/docs/index.md).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk).
 
 ## Security
 
