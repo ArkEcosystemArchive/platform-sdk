@@ -23,7 +23,10 @@ export class ExchangeRateService {
 
 	public async syncCoinByProfile(profile: Profile, currency: string, wallets?: ReadWriteWallet[]): Promise<void> {
 		if (wallets === undefined) {
-			wallets = profile.wallets().values().filter((wallet: ReadWriteWallet) => wallet.currency() === currency);
+			wallets = profile
+				.wallets()
+				.values()
+				.filter((wallet: ReadWriteWallet) => wallet.currency() === currency);
 		}
 
 		const marketService = MarketService.make(
@@ -32,11 +35,7 @@ export class ExchangeRateService {
 		);
 
 		const exchangeCurrency: string = profile.settings().get(ProfileSetting.ExchangeCurrency) || "BTC";
-		const exchangeRate = await marketService.dailyAverage(
-			currency,
-			exchangeCurrency,
-			+Date.now(),
-		);
+		const exchangeRate = await marketService.dailyAverage(currency, exchangeCurrency, +Date.now());
 
 		for (const wallet of wallets) {
 			wallet.data().set(WalletData.ExchangeCurrency, exchangeCurrency);

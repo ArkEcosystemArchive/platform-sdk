@@ -1,5 +1,5 @@
-import ArkMainnet from "./networks/ark/mainnet.json";
 import ArkDevnet from "./networks/ark/devnet.json";
+import ArkMainnet from "./networks/ark/mainnet.json";
 import CompendiaMainnet from "./networks/compendia/mainnet.json";
 
 export const manifest = {

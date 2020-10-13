@@ -1,6 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { WalletDataCollection } from "../../../../platform-sdk/dist/coins";
 
+import { WalletDataCollection } from "../../../../platform-sdk/dist/coins";
 import { DataRepository } from "../../repositories/data-repository";
 import { ReadOnlyWallet } from "../../wallets/read-only-wallet";
 import { container } from "../container";
@@ -39,8 +39,8 @@ export class DelegateService {
 		const instance: Coins.Coin = await makeCoin(coin, network);
 		const instanceKey = `${coin}.${network}.delegates`;
 
-		let result: Contracts.WalletData[] = [];
-		let hasMore: boolean = true;
+		const result: Contracts.WalletData[] = [];
+		let hasMore = true;
 		let lastResponse: WalletDataCollection | undefined = undefined;
 
 		while (hasMore) {

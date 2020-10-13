@@ -1,9 +1,9 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../repositories/data-repository";
 import { NotificationRepository } from "../repositories/notification-repository";
-import { PluginRepository } from "../plugins/plugin-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
 import { CountAggregate } from "./aggregates/count-aggregate";

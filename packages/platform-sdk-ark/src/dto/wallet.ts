@@ -31,15 +31,13 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public entities(): Contracts.Entity[] {
-		return Object.entries(this.data.attributes?.entities || {})
-			.map(([id, entity]: [string, any]) => ({
-				id,
-				type: entity.type,
-				subType: entity.subType,
-				name: entity.data.name,
-				hash: entity.data.ipfsData,
-			})
-		);
+		return Object.entries(this.data.attributes?.entities || {}).map(([id, entity]: [string, any]) => ({
+			id,
+			type: entity.type,
+			subType: entity.subType,
+			name: entity.data.name,
+			hash: entity.data.ipfsData,
+		}));
 	}
 
 	public multiSignature(): Contracts.WalletMultiSignature {

@@ -6,8 +6,8 @@ import nock from "nock";
 
 import { container } from "../container";
 import { Identifiers } from "../container.models";
-import { DelegateService } from "./delegate-service";
 import { CoinService } from "./coin-service";
+import { DelegateService } from "./delegate-service";
 
 let subject: DelegateService;
 
