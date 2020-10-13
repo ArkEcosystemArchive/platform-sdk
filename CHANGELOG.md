@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.396 - 2020-10-13
+
+### Added
+
+-   Implement `TransactionService#isAwaitingSignatureByPublicKey` (24e01896, @faustbrian)
+
 ## 0.9.395 - 2020-10-12
 
 ### Added
