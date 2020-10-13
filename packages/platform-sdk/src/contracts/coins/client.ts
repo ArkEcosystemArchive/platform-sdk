@@ -44,10 +44,18 @@ export interface ClientPagination {
 }
 
 export interface ClientTransactionsInput extends ClientPagination {
+	// Addresses
 	address?: string;
 	addresses?: string[];
 	senderId?: string;
 	recipientId?: string;
+	// Public Keys
+	senderPublicKey?: string;
+	recipientPublicKey?: string;
+	// AIP36
+	entityType?: string;
+	entitySubType?: string;
+	entityAction?: string;
 }
 
 export interface ClientWalletsInput extends ClientPagination {

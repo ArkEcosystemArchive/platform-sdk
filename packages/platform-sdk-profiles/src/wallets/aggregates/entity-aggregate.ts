@@ -33,7 +33,6 @@ export class EntityAggregate {
 			this.#wallet,
 			await this.#wallet.client().transactions({
 				...query,
-				// @ts-ignore - TODO: We need to expand the properties that are allowed to be passed to be transaction search methods.
 				entityType,
 				entitySubType,
 				entityAction,

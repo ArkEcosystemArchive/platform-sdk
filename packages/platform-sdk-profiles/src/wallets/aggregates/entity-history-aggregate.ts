@@ -34,7 +34,6 @@ export class EntityHistoryAggregate {
 		return transformTransactionDataCollection(
 			this.#wallet,
 			await this.#wallet.client().transactions({
-				// @ts-ignore - TODO: We need to expand the properties that are allowed to be passed to be transaction search methods.
 				entityAction,
 				asset: { registrationId },
 			}),
