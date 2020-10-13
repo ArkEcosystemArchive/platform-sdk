@@ -9,7 +9,8 @@
 		"first": "/delegates?page=1&limit=100",
 		"last": "/delegates?page=2&limit=100"
 	},
-	"data": [{
+	"data": [
+		{
 			"username": "alessio",
 			"address": "DSyG9hK9CE8eyfddUoEvsga4kNVQLdw2ve",
 			"publicKey": "033a5474f68f92f254691e93c06a2f22efaf7d66b543a53efcece021819653a200",

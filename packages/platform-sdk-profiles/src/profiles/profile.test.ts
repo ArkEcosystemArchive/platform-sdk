@@ -6,6 +6,7 @@ import nock from "nock";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
+import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../repositories/data-repository";
 import { NotificationRepository } from "../repositories/notification-repository";
@@ -14,7 +15,6 @@ import { WalletRepository } from "../repositories/wallet-repository";
 import { CountAggregate } from "./aggregates/count-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
-import { PluginRepository } from "../plugins/plugin-repository";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 import { ProfileSetting } from "./profile.models";

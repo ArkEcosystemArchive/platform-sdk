@@ -52,7 +52,7 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	private transform(type: string, staticFees: object): Contracts.TransactionFee {
-		const fee: string = `${staticFees[type] || 0}`;
+		const fee = `${staticFees[type] || 0}`;
 
 		return {
 			static: fee,

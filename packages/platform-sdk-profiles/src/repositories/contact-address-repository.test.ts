@@ -6,8 +6,8 @@ import nock from "nock";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { ContactAddressRepository } from "./contact-address-repository";
 import { CoinService } from "../environment/services/coin-service";
+import { ContactAddressRepository } from "./contact-address-repository";
 
 let subject: ContactAddressRepository;
 

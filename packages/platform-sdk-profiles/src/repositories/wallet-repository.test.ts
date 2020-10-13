@@ -9,12 +9,12 @@ import nock from "nock";
 import { identity } from "../../test/fixtures/identity";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
+import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
-import { WalletRepository } from "./wallet-repository";
 import { ReadWriteWallet } from "../wallets/wallet.models";
-import { CoinService } from "../environment/services/coin-service";
+import { WalletRepository } from "./wallet-repository";
 
 let subject: WalletRepository;
 
@@ -113,7 +113,7 @@ test("#update", async () => {
 
 	const wallet = (await subject.generate("ARK", "ark.devnet")).wallet;
 
-	await subject.update(wallet.id(), { alias: "My New Wallet" });
+	subject.update(wallet.id(), { alias: "My New Wallet" });
 
 	expect(subject.findById(wallet.id()).alias()).toEqual("My New Wallet");
 

@@ -10,11 +10,11 @@ import { v4 as uuidv4 } from "uuid";
 import { identity } from "../../test/fixtures/identity";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
+import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "./wallet";
 import { WalletData } from "./wallet.models";
-import { CoinService } from "../environment/services/coin-service";
 
 let profile: Profile;
 let subject: Wallet;
@@ -148,8 +148,8 @@ it("should fetch transactions by id", async () => {
 	expect(transactions.length).toEqual(2);
 
 	const fetchedIds = transactions.map((transaction) => transaction.id());
-	expect(fetchedIds.includes(transactionId));
-	expect(fetchedIds.includes(secondaryTransactionId));
+	expect(fetchedIds.includes(transactionId)).toBeTrue();
+	expect(fetchedIds.includes(secondaryTransactionId)).toBeTrue();
 });
 
 describe.each([123, 456, 789])("%s", (slip44) => {

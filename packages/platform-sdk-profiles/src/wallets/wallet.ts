@@ -1,22 +1,24 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { ExtendedTransactionData } from "../dto/transaction";
+import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { transformTransactionData, transformTransactionDataCollection } from "../dto/transaction-mapper";
 import { makeCoin } from "../environment/container.helpers";
+import { DelegateMapper } from "../mappers/delegate-mapper";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
-import { DelegateMapper } from "../mappers/delegate-mapper";
+import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
-import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
-import { ExtendedTransactionData } from "../dto/transaction";
 
 export class Wallet implements ReadWriteWallet {
 	readonly #entityAggregate: EntityAggregate;
+	readonly #entityHistoryAggregate: EntityHistoryAggregate;
 
 	readonly #dataRepository: DataRepository;
 	readonly #settingRepository: SettingRepository;
@@ -40,6 +42,7 @@ export class Wallet implements ReadWriteWallet {
 		this.#transactionService = new TransactionService(this);
 
 		this.#entityAggregate = new EntityAggregate(this);
+		this.#entityHistoryAggregate = new EntityHistoryAggregate(this);
 
 		this.restore();
 	}
@@ -463,6 +466,10 @@ export class Wallet implements ReadWriteWallet {
 
 	public entityAggregate(): EntityAggregate {
 		return this.#entityAggregate;
+	}
+
+	public entityHistoryAggregate(): EntityHistoryAggregate {
+		return this.#entityHistoryAggregate;
 	}
 
 	/**

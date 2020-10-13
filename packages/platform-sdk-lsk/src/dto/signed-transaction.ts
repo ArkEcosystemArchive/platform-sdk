@@ -1,7 +1,8 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-export class SignedTransactionData extends DTO.AbstractSignedTransactionData
+export class SignedTransactionData
+	extends DTO.AbstractSignedTransactionData
 	implements Contracts.SignedTransactionData {
 	public sender(): string {
 		return this.signedData.senderId;

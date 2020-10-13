@@ -1,8 +1,8 @@
 import { get } from "dot-prop";
 
-import { CoinNetwork } from "./network.models";
 import { Config } from "./config";
 import { Manifest } from "./manifest";
+import { CoinNetwork } from "./network.models";
 
 export class Network {
 	/**

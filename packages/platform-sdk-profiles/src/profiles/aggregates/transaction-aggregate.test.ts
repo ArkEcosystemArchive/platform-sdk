@@ -8,9 +8,9 @@ import { identity } from "../../../test/fixtures/identity";
 import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
+import { CoinService } from "../../environment/services/coin-service";
 import { Profile } from "../profile";
 import { TransactionAggregate } from "./transaction-aggregate";
-import { CoinService } from "../../environment/services/coin-service";
 
 let subject: TransactionAggregate;
 

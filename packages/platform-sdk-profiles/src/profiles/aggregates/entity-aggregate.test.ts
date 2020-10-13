@@ -4,11 +4,11 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { EntityType, EntitySubType } from "../../enums";
+import { EntitySubType, EntityType } from "../../enums";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
-import { Profile } from "../profile";
 import { CoinService } from "../../environment/services/coin-service";
+import { Profile } from "../profile";
 
 let profile: Profile;
 
