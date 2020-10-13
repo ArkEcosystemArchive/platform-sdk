@@ -9,6 +9,16 @@ export class EntityHistoryAggregate {
 		this.#wallet = wallet;
 	}
 
+	/**
+	 * @TODO
+	 *
+	 * This is currently limited to pull 100 transactions.
+	 * This should be sufficient for some time but should eventually aggregate all transactions.
+	 *
+	 * @param {string} registrationId
+	 * @returns
+	 * @memberof EntityHistoryAggregate
+	 */
 	public async all(registrationId: string) {
 		const registrations = [transformTransactionData(this.#wallet, await this.#wallet.client().transaction(registrationId))]
 		const updates = await this.aggregate(registrationId, "resign")
@@ -21,7 +31,7 @@ export class EntityHistoryAggregate {
 		];
 	}
 
-	protected async aggregate(
+	private async aggregate(
 		registrationId: string,
 		entityAction: string
 	): Promise<ExtendedTransactionDataCollection> {
