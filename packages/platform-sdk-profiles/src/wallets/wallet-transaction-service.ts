@@ -433,6 +433,34 @@ export class TransactionService {
 	}
 
 	/**
+	 * Check if the given ID is waiting for a signature from the given public key.
+	 *
+	 * @param {string} id
+	 * @param {string} publicKey
+	 * @returns {boolean}
+	 * @memberof TransactionService
+	 */
+	public isAwaitingSignatureByPublicKey(id: string, publicKey: string): boolean {
+		this.assertHasValidIdentifier(id);
+
+		let transaction: Contracts.SignedTransactionData | undefined;
+
+		if (this.#waitingForOurSignature[id]) {
+			transaction = this.#waitingForOurSignature[id];
+		}
+
+		if (this.#waitingForOtherSignatures[id]) {
+			transaction = this.#waitingForOtherSignatures[id];
+		}
+
+		if (transaction === undefined) {
+			throw new Error(`Transaction [${id}] is not awaiting any signatures.`);
+		}
+
+		return this.#wallet.coin().multiSignature().needsWalletSignature(transaction, publicKey);
+	}
+
+	/**
 	 * Check if the given transaction for the given ID can be signed.
 	 *
 	 * This only affects Multi-Signature (Registration) transactions!
