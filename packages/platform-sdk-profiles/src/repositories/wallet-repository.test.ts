@@ -113,7 +113,7 @@ test("#update", async () => {
 
 	const wallet = (await subject.generate("ARK", "ark.devnet")).wallet;
 
-	await subject.update(wallet.id(), { alias: "My New Wallet" });
+	subject.update(wallet.id(), { alias: "My New Wallet" });
 
 	expect(subject.findById(wallet.id()).alias()).toEqual("My New Wallet");
 
