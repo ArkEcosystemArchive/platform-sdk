@@ -53,9 +53,11 @@ export interface ClientTransactionsInput extends ClientPagination {
 	senderPublicKey?: string;
 	recipientPublicKey?: string;
 	// AIP36
-	entityType?: string;
-	entitySubType?: string;
+	entityType?: number;
+	entitySubType?: number;
 	entityAction?: string;
+	// Meta
+	asset?: Record<string, any>,
 }
 
 export interface ClientWalletsInput extends ClientPagination {
