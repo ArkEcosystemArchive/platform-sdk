@@ -433,7 +433,7 @@ export class TransactionService {
 	}
 
 	/**
-	 * Check if the given ID is waiting for signatures of other participants.
+	 * Check if the given ID is waiting for a signature from the given public key.
 	 *
 	 * @param {string} id
 	 * @param {string} publicKey
