@@ -1,72 +1,72 @@
 {
-	"name": "@arkecosystem/platform-sdk-xrp",
-	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "0.9.396",
-	"contributors": [],
-	"license": "MIT",
-	"files": [
-		"/dist"
-	],
-	"main": "dist/index",
-	"types": "dist/index",
-	"scripts": {
-		"build": "yarn clean && tsc",
-		"build:watch": "yarn build -w",
-		"clean": "rimraf .coverage dist tmp",
-		"test": "jest",
-		"test:watch": "jest --watchAll",
-		"coverage:report": "codecov",
-		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
-	},
-	"dependencies": {
-		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
-		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
-		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
-		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"@ledgerhq/hw-app-xrp": "^5.26.0",
-		"bignumber.js": "^9.0.1",
-		"ripple-keypairs": "^1.0.2",
-		"ripple-lib": "^1.8.1",
-		"yup": "^0.29.3"
-	},
-	"devDependencies": {
-		"@ledgerhq/hw-transport-mocker": "^5.26.0",
-		"@sindresorhus/tsconfig": "^0.7.0",
-		"@types/eslint": "^7.2.4",
-		"@types/eslint-plugin-prettier": "^3.1.0",
-		"@types/hapi__joi": "17.1.6",
-		"@types/jest": "^26.0.14",
-		"@types/lodash": "4.14.162",
-		"@types/node": "^14.11.8",
-		"@types/prettier": "^2.1.2",
-		"@types/rimraf": "^3.0.0",
-		"@types/ws": "7.2.7",
-		"@typescript-eslint/eslint-plugin": "^4.4.0",
-		"@typescript-eslint/parser": "^4.4.0",
-		"codecov": "^3.8.0",
-		"cross-env": "^7.0.2",
-		"eslint": "^7.11.0",
-		"eslint-config-prettier": "^6.12.0",
-		"eslint-plugin-jest": "^24.1.0",
-		"eslint-plugin-prettier": "^3.1.4",
-		"eslint-plugin-simple-import-sort": "^5.0.3",
-		"jest": "^26.5.3",
-		"jest-extended": "^0.11.5",
-		"jest-localstorage-mock": "^2.4.3",
-		"lodash": "^4.17.20",
-		"nock": "^13.0.4",
-		"npm-check-updates": "^9.0.4",
-		"prettier": "^2.1.2",
-		"rimraf": "^3.0.2",
-		"ripple-binary-codec": "^1.0.2",
-		"ts-jest": "^26.4.1",
-		"typescript": "^4.0.3",
-		"ws": "^7.3.1"
-	},
-	"engines": {
-		"node": ">=12.x"
-	},
-	"jest": {
-		"preset": "../../jest.config.js"
-	}
+    "name": "@arkecosystem/platform-sdk-xrp",
+    "description": "Cross-Platform Utilities for ARK Applications",
+    "version": "0.9.397",
+    "contributors": [],
+    "license": "MIT",
+    "files": [
+        "/dist"
+    ],
+    "main": "dist/index",
+    "types": "dist/index",
+    "scripts": {
+        "build": "yarn clean && tsc",
+        "build:watch": "yarn build -w",
+        "clean": "rimraf .coverage dist tmp",
+        "test": "jest",
+        "test:watch": "jest --watchAll",
+        "coverage:report": "codecov",
+        "publish": "yarn build && yarn npm publish --access public --tolerate-republish"
+    },
+    "dependencies": {
+        "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
+        "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
+        "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
+        "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
+        "@ledgerhq/hw-app-xrp": "^5.26.0",
+        "bignumber.js": "^9.0.1",
+        "ripple-keypairs": "^1.0.2",
+        "ripple-lib": "^1.8.1",
+        "yup": "^0.29.3"
+    },
+    "devDependencies": {
+        "@ledgerhq/hw-transport-mocker": "^5.26.0",
+        "@sindresorhus/tsconfig": "^0.7.0",
+        "@types/eslint": "^7.2.4",
+        "@types/eslint-plugin-prettier": "^3.1.0",
+        "@types/hapi__joi": "17.1.6",
+        "@types/jest": "^26.0.14",
+        "@types/lodash": "4.14.162",
+        "@types/node": "^14.11.8",
+        "@types/prettier": "^2.1.2",
+        "@types/rimraf": "^3.0.0",
+        "@types/ws": "7.2.7",
+        "@typescript-eslint/eslint-plugin": "^4.4.0",
+        "@typescript-eslint/parser": "^4.4.0",
+        "codecov": "^3.8.0",
+        "cross-env": "^7.0.2",
+        "eslint": "^7.11.0",
+        "eslint-config-prettier": "^6.12.0",
+        "eslint-plugin-jest": "^24.1.0",
+        "eslint-plugin-prettier": "^3.1.4",
+        "eslint-plugin-simple-import-sort": "^5.0.3",
+        "jest": "^26.5.3",
+        "jest-extended": "^0.11.5",
+        "jest-localstorage-mock": "^2.4.3",
+        "lodash": "^4.17.20",
+        "nock": "^13.0.4",
+        "npm-check-updates": "^9.0.4",
+        "prettier": "^2.1.2",
+        "rimraf": "^3.0.2",
+        "ripple-binary-codec": "^1.0.2",
+        "ts-jest": "^26.4.1",
+        "typescript": "^4.0.3",
+        "ws": "^7.3.1"
+    },
+    "engines": {
+        "node": ">=12.x"
+    },
+    "jest": {
+        "preset": "../../jest.config.js"
+    }
 }
