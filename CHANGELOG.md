@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.400 - 2020-10-14
+
+### Changed
+
+-   Expand supported properties for `ClientTransactionsInput` (222d90d3, @faustbrian)
+
+### Fixed
+
+-   Update slip44 version of devnet (98011bbd, @luciorubeens)
+-   Support Core 2.0 and 3.0 (764fd392, @faustbrian)
+
 ## 0.9.397 - 2020-10-13
 
 ### Added
