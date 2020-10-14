@@ -563,6 +563,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-localstorage-mock", "npm:2.4.3"],
             ["lodash.orderby", "npm:4.6.0"],
             ["nock", "npm:13.0.4"],
+            ["node-dotify", "npm:1.0.2"],
             ["npm-check-updates", "npm:9.0.4"],
             ["prettier", "npm:2.1.2"],
             ["rimraf", "npm:3.0.2"],
@@ -7483,6 +7484,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["bson-objectid", [
+        ["npm:1.3.1", {
+          "packageLocation": "./.yarn/cache/bson-objectid-npm-1.3.1-15c11421e3-2.zip/node_modules/bson-objectid/",
+          "packageDependencies": [
+            ["bson-objectid", "npm:1.3.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["bstring", [
         ["npm:0.3.9", {
           "packageLocation": "./.yarn/unplugged/bstring-npm-0.3.9-91054b6d6c/node_modules/bstring/",
@@ -14176,6 +14186,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["node-addon-api", "npm:3.0.0"],
             ["node-gyp", "npm:6.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["node-dotify", [
+        ["npm:1.0.2", {
+          "packageLocation": "./.yarn/cache/node-dotify-npm-1.0.2-d6ba9e9273-2.zip/node_modules/node-dotify/",
+          "packageDependencies": [
+            ["node-dotify", "npm:1.0.2"],
+            ["bson-objectid", "npm:1.3.1"]
           ],
           "linkType": "HARD",
         }]
