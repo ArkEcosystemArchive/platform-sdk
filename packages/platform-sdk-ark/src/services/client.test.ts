@@ -30,9 +30,25 @@ describe("ClientService", function () {
 	});
 
 	describe("#transactions", () => {
-		it("should succeed", async () => {
+		it("should work with Core 2.0", async () => {
+			subject = await ClientService.construct(createConfig({ network: "ark.mainnet" }));
+
 			nock(/.+/)
 				.post("/api/transactions/search")
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
+
+			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
+
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(TransactionData);
+		});
+
+		it("should work with Core 3.0", async () => {
+			subject = await ClientService.construct(createConfig({ network: "ark.devnet" }));
+
+			nock(/.+/)
+				.get("/api/transactions")
+				.query({ addresses: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" })
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
@@ -55,9 +71,25 @@ describe("ClientService", function () {
 	});
 
 	describe("#wallets", () => {
-		it("should succeed", async () => {
+		it("should work with Core 2.0", async () => {
+			subject = await ClientService.construct(createConfig({ network: "ark.mainnet" }));
+
 			nock(/.+/)
 				.post("/api/wallets/search")
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets.json`));
+
+			const result = await subject.wallets({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
+
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(WalletData);
+		});
+
+		it("should work with Core 3.0", async () => {
+			subject = await ClientService.construct(createConfig({ network: "ark.devnet" }));
+
+			nock(/.+/)
+				.get("/api/wallets")
+				.query({ addresses: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" })
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets.json`));
 
 			const result = await subject.wallets({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });

@@ -192,6 +192,7 @@ __metadata:
     jest-localstorage-mock: ^2.4.3
     lodash.orderby: ^4.6.0
     nock: ^13.0.4
+    node-dotify: ^1.0.2
     npm-check-updates: ^9.0.4
     prettier: ^2.1.2
     rimraf: ^3.0.2
@@ -6055,6 +6056,13 @@ __metadata:
   version: 0.0.10
   resolution: "bsert@npm:0.0.10"
   checksum: 2/2bb85d40002e5ee884a11ff4960a0dac51a8673a78edf9998e46ac08dd3b424dba2843a95122381509d40f32edc62f21d5fbd83a41dfbd256ebf1385d319b1e0
+  languageName: node
+  linkType: hard
+
+"bson-objectid@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "bson-objectid@npm:1.3.1"
+  checksum: 2/4fa4198c901989ee3cf6603fb43615f3bfe46256dc0bfb1080f5fcdfbed14aa8390d144f33fe64e9235cfe231f32ac81ef04681441ccb20936e47e8bf5fb0498
   languageName: node
   linkType: hard
 
@@ -12115,6 +12123,15 @@ __metadata:
   dependencies:
     node-gyp: latest
   checksum: 2/c38b1f757d092d4874eae5b525bab0dc00bc58f6a78950598a1f1539dbdf3fda79755009c3b98f8ff110011561327d5854a3567b0c834440b73afdbe5163c450
+  languageName: node
+  linkType: hard
+
+"node-dotify@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "node-dotify@npm:1.0.2"
+  dependencies:
+    bson-objectid: ^1.3.1
+  checksum: 2/53126d2588b77b7564f3ba4aca1a8f90f0a229fb1258deca15a340eaf3402ef30465c92bb7980ea2ea37d528219e90db4e63a62aac14da4df50c262df3c13a54
   languageName: node
   linkType: hard
 

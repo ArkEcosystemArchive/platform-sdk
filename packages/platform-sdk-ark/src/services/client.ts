@@ -1,15 +1,18 @@
-import { Coins, Contracts, DTO, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
+import dotify from "node-dotify";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #http: Contracts.HttpClient;
+	readonly #network: string;
 	readonly #peer: string;
 
-	private constructor({ http, peer }) {
+	private constructor({ http, network, peer }) {
 		this.#http = http;
+		this.#network = network;
 		this.#peer = peer;
 	}
 
@@ -18,11 +21,13 @@ export class ClientService implements Contracts.ClientService {
 			return new ClientService({
 				http: config.get<Contracts.HttpClient>("httpClient"),
 				peer: config.get<string>("peer"),
+				network: config.get<string>("network.id"),
 			});
 		} catch {
 			return new ClientService({
 				http: config.get<Contracts.HttpClient>("httpClient"),
 				peer: `${Arr.randomElement(config.get<string[]>("network.networking.hosts"))}/api`,
+				network: config.get<string>("network.id"),
 			});
 		}
 	}
@@ -38,7 +43,9 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const response = await this.post("transactions/search", this.createSearchParams(query));
+		const response = this.isUpcoming()
+			? await this.get("transactions", this.createSearchParams(query))
+			: await this.post("transactions/search", this.createSearchParams(query));
 
 		return Helpers.createTransactionDataCollectionWithType(
 			response.data,
@@ -54,7 +61,9 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
-		const response = await this.post("wallets/search", this.createSearchParams(query));
+		const response = this.isUpcoming()
+			? await this.get("wallets", this.createSearchParams(query))
+			: await this.post("wallets/search", this.createSearchParams(query));
 
 		return new Coins.WalletDataCollection(
 			response.data.map((wallet) => new WalletData(wallet)),
@@ -184,9 +193,13 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const [alias, original] of Object.entries({
+			address: "address",
 			cursor: "page",
 			limit: "limit",
 			orderBy: "orderBy",
+			recipientId: "recipientId",
+			senderId: "senderId",
+			senderPublicKey: "senderPublicKey",
 		})) {
 			if (body[alias]) {
 				result.searchParams[original] = body[alias];
@@ -218,6 +231,24 @@ export class ClientService implements Contracts.ClientService {
 			delete result.body.entityAction;
 		}
 
+		if (this.isUpcoming()) {
+			// @ts-ignore
+			const addresses: string[] | undefined = body.addresses as string[];
+
+			if (Array.isArray(addresses)) {
+				result.searchParams.addresses = addresses.join(",");
+
+				// @ts-ignore
+				delete body.addresses;
+			}
+
+			result.searchParams = dotify(result.searchParams);
+		}
+
 		return result;
+	}
+
+	private isUpcoming(): boolean {
+		return this.#network === "ark.devnet";
 	}
 }
