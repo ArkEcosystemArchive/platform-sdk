@@ -8,7 +8,7 @@
 		"symbol": "DѦ"
 	},
 	"crypto": {
-		"slip44": 111,
+		"slip44": 1,
 		"signingMethods": {
 			"mnemonic": true,
 			"privateKey": false,
@@ -115,7 +115,7 @@
 			"symbol": "DѦ"
 		},
 		"crypto": {
-			"slip44": 111,
+			"slip44": 1,
 			"signingMethods": {
 				"mnemonic": true,
 				"privateKey": false,
