@@ -38,7 +38,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const response = await this.post("transactions/search", this.createSearchParams(query));
+		const response = await this.get("transactions/search", this.createSearchParams(query));
 
 		return Helpers.createTransactionDataCollectionWithType(
 			response.data,
@@ -54,7 +54,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
-		const response = await this.post("wallets/search", this.createSearchParams(query));
+		const response = await this.get("wallets/search", this.createSearchParams(query));
 
 		return new Coins.WalletDataCollection(
 			response.data.map((wallet) => new WalletData(wallet)),
