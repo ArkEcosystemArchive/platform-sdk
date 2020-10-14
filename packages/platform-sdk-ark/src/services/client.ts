@@ -182,7 +182,7 @@ export class ClientService implements Contracts.ClientService {
 		};
 	}
 
-	private createSearchParams(body: any): { body: object | null; searchParams: object | null } {
+	private createSearchParams(body: Contracts.ClientPagination): { body: object | null; searchParams: object | null } {
 		if (Object.keys(body).length <= 0) {
 			return { body: null, searchParams: null };
 		}
@@ -228,11 +228,13 @@ export class ClientService implements Contracts.ClientService {
 		}
 
 		if (this.isUpcoming()) {
+			// @ts-ignore
 			const addresses: string[] | undefined = body.addresses as string[];
 
 			if (Array.isArray(addresses)) {
 				result.searchParams.addresses = addresses.join(",");
 
+				// @ts-ignore
 				delete body.addresses;
 			}
 

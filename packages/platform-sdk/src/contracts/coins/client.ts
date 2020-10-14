@@ -57,7 +57,7 @@ export interface ClientTransactionsInput extends ClientPagination {
 	entitySubType?: number;
 	entityAction?: string;
 	// Meta
-	asset?: Record<string, any>,
+	asset?: Record<string, any>;
 }
 
 export interface ClientWalletsInput extends ClientPagination {

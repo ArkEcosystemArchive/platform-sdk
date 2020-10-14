@@ -47,9 +47,7 @@ afterAll(() => nock.enableNetConnect());
 
 describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s", (method: string) => {
 	it("should have more transactions", async () => {
-		nock(/.+/)
-			.post("/api/transactions/search")
-			.reply(200, require("../../../test/fixtures/client/transactions.json"));
+		nock(/.+/).get("/api/transactions").reply(200, require("../../../test/fixtures/client/transactions.json"));
 
 		const result = await subject[method]();
 
@@ -59,7 +57,7 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 
 	it("should not have more transactions", async () => {
 		nock(/.+/)
-			.post("/api/transactions/search")
+			.get("/api/transactions")
 			.reply(200, require("../../../test/fixtures/client/transactions-no-more.json"));
 
 		const result = await subject[method]();
@@ -70,7 +68,7 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 	});
 
 	it("should skip error responses for processing", async () => {
-		nock(/.+/).post("/api/transactions/search").reply(404);
+		nock(/.+/).get("/api/transactions").reply(404);
 
 		const result = await subject[method]();
 
@@ -81,7 +79,7 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 
 	it("should skip empty responses for processing", async () => {
 		nock(/.+/)
-			.post("/api/transactions/search")
+			.get("/api/transactions")
 			.reply(200, require("../../../test/fixtures/client/transactions-empty.json"));
 
 		const result = await subject[method]();
@@ -93,9 +91,9 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 
 	it("should fetch transactions twice and then stop because no more are available", async () => {
 		nock(/.+/)
-			.post("/api/transactions/search")
+			.get("/api/transactions")
 			.reply(200, require("../../../test/fixtures/client/transactions.json"))
-			.post("/api/transactions/search?page=2")
+			.post("/api/transactions?page=2")
 			.reply(200, require("../../../test/fixtures/client/transactions-no-more.json"));
 
 		// We receive a response that does contain a "next" cursor
@@ -121,9 +119,7 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 	});
 
 	it("should determine if it has more transactions to be requested", async () => {
-		nock(/.+/)
-			.post("/api/transactions/search")
-			.reply(200, require("../../../test/fixtures/client/transactions.json"));
+		nock(/.+/).get("/api/transactions").reply(200, require("../../../test/fixtures/client/transactions.json"));
 
 		expect(subject.hasMore(method)).toBeFalse();
 
@@ -134,7 +130,7 @@ describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s"
 });
 
 it("should flush the history", async () => {
-	nock(/.+/).post("/api/transactions/search").reply(200, require("../../../test/fixtures/client/transactions.json"));
+	nock(/.+/).get("/api/transactions").reply(200, require("../../../test/fixtures/client/transactions.json"));
 
 	expect(subject.hasMore("transactions")).toBeFalse();
 
