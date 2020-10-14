@@ -193,9 +193,13 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const [alias, original] of Object.entries({
+			address: "address",
 			cursor: "page",
 			limit: "limit",
 			orderBy: "orderBy",
+			recipientId: "recipientId",
+			senderId: "senderId",
+			senderPublicKey: "senderPublicKey",
 		})) {
 			if (body[alias]) {
 				result.searchParams[original] = body[alias];
