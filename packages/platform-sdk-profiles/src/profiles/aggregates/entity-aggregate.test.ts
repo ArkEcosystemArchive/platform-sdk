@@ -56,6 +56,7 @@ it("should aggregate registrations for the given type and sub-type", async () =>
 	nock.cleanAll();
 	nock(/.+/)
 		.get("/api/transactions")
+		.query(true)
 		.reply(200, require("../../../test/fixtures/client/registrations/business.json"));
 
 	const registrations = await profile.entityAggregate().registrations(EntityType.Business, EntitySubType.None);
