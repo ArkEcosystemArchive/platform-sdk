@@ -48,7 +48,7 @@ describe("ClientService", function () {
 
 			nock(/.+/)
 				.get("/api/transactions")
-				.query({ addresses: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" })
+				.query({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" })
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
@@ -89,7 +89,7 @@ describe("ClientService", function () {
 
 			nock(/.+/)
 				.get("/api/wallets")
-				.query({ addresses: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" })
+				.query({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" })
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets.json`));
 
 			const result = await subject.wallets({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });

@@ -236,7 +236,7 @@ export class ClientService implements Contracts.ClientService {
 			const addresses: string[] | undefined = body.addresses as string[];
 
 			if (Array.isArray(addresses)) {
-				result.searchParams.addresses = addresses.join(",");
+				result.searchParams.address = addresses.join(",");
 
 				// @ts-ignore
 				delete body.addresses;
