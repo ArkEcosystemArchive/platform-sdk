@@ -242,7 +242,8 @@ export class ClientService implements Contracts.ClientService {
 				delete body.addresses;
 			}
 
-			result.searchParams = dotify(result.searchParams);
+			result.searchParams = dotify({ ...result.searchParams, ...result.body });
+			result.body = null;
 		}
 
 		return result;

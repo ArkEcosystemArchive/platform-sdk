@@ -56,6 +56,20 @@ describe("ClientService", function () {
 			expect(result).toBeObject();
 			expect(result.items()[0]).toBeInstanceOf(TransactionData);
 		});
+
+		it("should work with Core 3.0 for advanced search", async () => {
+			subject = await ClientService.construct(createConfig({ network: "ark.devnet" }));
+
+			nock(/.+/)
+				.get("/api/transactions")
+				.query({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8", "asset.type": "4", "asset.action": "0", "type": "6", "typeGroup": 2 })
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
+
+			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"], asset: { type: 4, action: 0 }, type: 6, typeGroup: 2 });
+
+			expect(result).toBeObject();
+			expect(result.items()[0]).toBeInstanceOf(TransactionData);
+		});
 	});
 
 	describe("#wallet", () => {
