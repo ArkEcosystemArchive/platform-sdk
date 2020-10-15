@@ -382,7 +382,7 @@ export class Wallet implements ReadWriteWallet {
 		return this.fetchTransactions({ recipientId: this.address(), ...query });
 	}
 
-	public multiSignature(): Contracts.WalletMultiSignature {
+	public multiSignature(): Contracts.WalletMultiSignature | undefined {
 		if (!this.#wallet) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 		}

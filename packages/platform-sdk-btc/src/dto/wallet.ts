@@ -34,7 +34,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return [];
 	}
 
-	public multiSignature(): Contracts.WalletMultiSignature {
+	public multiSignature(): Contracts.WalletMultiSignature | undefined {
 		throw new Exceptions.NotImplemented(this.constructor.name, "multiSignature");
 	}
 
