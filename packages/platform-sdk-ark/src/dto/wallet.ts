@@ -1,5 +1,6 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { get, has } from "dot-prop";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
 	public address(): string {
@@ -19,15 +20,21 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public username(): string | undefined {
-		return this.data.username;
+		return this.getProperty(['username', 'attributes.delegate.username']);
 	}
 
 	public rank(): number | undefined {
-		return this.data.rank;
+		return this.getProperty(['rank', 'attributes.delegate.rank']);
 	}
 
 	public votes(): BigNumber | undefined {
-		return BigNumber.make(this.data.votes);
+		const balance: string | undefined = this.getProperty(['votes', 'attributes.delegate.voteBalance']);
+
+		if (balance === undefined) {
+			return undefined;
+		}
+
+		return BigNumber.make(balance);
 	}
 
 	public entities(): Contracts.Entity[] {
@@ -45,15 +52,15 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 			throw new Error("This wallet does not have a multi-signature registered.");
 		}
 
-		return this.data.multiSignature;
+		return this.getProperty(['multiSignature','attributes.multiSignature']) as Contracts.WalletMultiSignature;
 	}
 
 	public isDelegate(): boolean {
-		return !!this.data.username;
+		return !!this.getProperty(['username', 'attributes.delegate.username']);
 	}
 
 	public isResignedDelegate(): boolean {
-		return this.data.isResigned;
+		return !!this.getProperty(['isResigned', 'attributes.delegate.resigned']);
 	}
 
 	public isKnown(): boolean {
@@ -61,10 +68,20 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public isMultiSignature(): boolean {
-		return !!this.data.multiSignature;
+		return !!this.getProperty(['multiSignature','attributes.multiSignature']);
 	}
 
 	public isSecondSignature(): boolean {
-		return !!this.data.secondPublicKey;
+		return !!this.getProperty(['secondPublicKey','attributes.secondPublicKey']);
+	}
+
+	private getProperty<T>(keys: string[]): T | undefined {
+		for(const key of keys) {
+			if (has(this.data, key)) {
+				return get(this.data, key);
+			}
+		}
+
+		return undefined;
 	}
 }
