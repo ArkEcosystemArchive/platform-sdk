@@ -5,11 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.403 - 2020-10-15
+
+### Fixed
+
+-   **[ARK]** Use searchParams instead of body for Core 3.0 (83efcfa6, @luciorubeens)
+-   **[LSK]** Use `senderId` instead of `senderPublicKey` (c146d58e, @brenopolanski)
+
 ## 0.9.401 - 2020-10-14
 
 ### Fixed
 
--   Use `address` instead of `addresses` (44902c9b, @faustbrian)
+-   **[ARK]** Use `address` instead of `addresses` (44902c9b, @faustbrian)
 
 ## 0.9.400 - 2020-10-14
 
@@ -19,8 +26,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
--   Update slip44 version of devnet (98011bbd, @luciorubeens)
--   Support Core 2.0 and 3.0 (764fd392, @faustbrian)
+-   **[ARK]** Update slip44 version of devnet (98011bbd, @luciorubeens)
+-   **[ARK]** Support Core 2.0 and 3.0 (764fd392, @faustbrian)
 
 ## 0.9.397 - 2020-10-13
 
