@@ -31,7 +31,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		const balance: string | undefined = this.getProperty(['votes', 'attributes.delegate.voteBalance']);
 
 		if (balance === undefined) {
-			return BigNumber.ZERO;
+			return undefined;
 		}
 
 		return BigNumber.make(balance);
@@ -47,12 +47,12 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		}));
 	}
 
-	public multiSignature(): Contracts.WalletMultiSignature | undefined {
+	public multiSignature(): Contracts.WalletMultiSignature {
 		if (!this.isMultiSignature()) {
 			throw new Error("This wallet does not have a multi-signature registered.");
 		}
 
-		return this.getProperty(['multiSignature','attributes.multiSignature']);
+		return this.getProperty(['multiSignature','attributes.multiSignature']) as Contracts.WalletMultiSignature;
 	}
 
 	public isDelegate(): boolean {

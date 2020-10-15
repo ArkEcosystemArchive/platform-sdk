@@ -27,7 +27,7 @@ export interface WalletData {
 
 	votes(): BigNumber | undefined;
 
-	multiSignature(): WalletMultiSignature | undefined;
+	multiSignature(): WalletMultiSignature;
 
 	// Entities
 	entities(): Entity[];
