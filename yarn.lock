@@ -166,6 +166,7 @@ __metadata:
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-transport-mocker": ^5.26.0
     "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dot-prop": 5.0.1
     "@types/eslint": ^7.2.4
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/hapi__joi": 17.1.6
@@ -180,6 +181,7 @@ __metadata:
     "@typescript-eslint/parser": ^4.4.0
     codecov: ^3.8.0
     cross-env: ^7.0.2
+    dot-prop: ^6.0.0
     eslint: ^7.11.0
     eslint-config-prettier: ^6.12.0
     eslint-plugin-jest: ^24.1.0
@@ -7405,6 +7407,15 @@ __metadata:
   dependencies:
     is-obj: ^2.0.0
   checksum: 2/76e6693d8803eeff9cb920988446bf223cf1f6e5b1c0c2fe07a66906392134931a481b11e3c0bd852c5cfc97fad65258bcb4359169ad1d8d624cb3f56932be98
+  languageName: node
+  linkType: hard
+
+"dot-prop@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "dot-prop@npm:6.0.0"
+  dependencies:
+    is-obj: ^2.0.0
+  checksum: 2/015f2effc94c0440c88ca83dc30a706d00b53f132d753bf3f1ffac8ac6da22372164428d61d96c894fcdb0aac309cb020afd5f96c7c4e3d7b1388417855d4864
   languageName: node
   linkType: hard
 
