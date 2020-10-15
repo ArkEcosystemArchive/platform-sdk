@@ -38,7 +38,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		return this.data.senderPublicKey;
+		return this.data.senderId;
 	}
 
 	public recipient(): string {

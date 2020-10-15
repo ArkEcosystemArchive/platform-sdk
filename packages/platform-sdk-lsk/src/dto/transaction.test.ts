@@ -30,7 +30,7 @@ describe("TransactionData", function () {
 	});
 
 	test("#sender", () => {
-		expect(subject.sender()).toBe("1a3aec07d0ff815c910d4c707a66b58a692dacb3de9d7d95a085bcee93738a07");
+		expect(subject.sender()).toBe("18218254863282357638L");
 	});
 
 	test("#recipient", () => {
