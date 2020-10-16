@@ -50,7 +50,9 @@ export class Address implements Contracts.Address {
 
 	public async validate(address: string): Promise<boolean> {
 		try {
-			if (this.#config.get("network.id") === "ark.mainnet") {
+			const isValid = BaseAddress.validate(address, this.#configCrypto);
+
+			if (isValid && this.#config.get("network.id") === "ark.mainnet") {
 				const response: any = (
 					await this.#config
 						.get<Contracts.HttpClient>("httpClient")
@@ -63,7 +65,7 @@ export class Address implements Contracts.Address {
 				}
 			}
 
-			return BaseAddress.validate(address, this.#configCrypto);
+			return isValid;
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
