@@ -89,12 +89,12 @@ export class ClientService implements Contracts.ClientService {
 	public async votes(id: string): Promise<Contracts.VoteReport> {
 		const { data } = await this.get(`wallets/${id}`);
 
-		const hasVoted = data.vote !== undefined;
+		const hasVoted = data.attributes?.vote !== undefined;
 
 		return {
 			used: hasVoted ? 1 : 0,
 			available: hasVoted ? 0 : 1,
-			publicKeys: hasVoted ? [data.vote] : [],
+			publicKeys: hasVoted ? [data.attributes?.vote] : [],
 		};
 	}
 
