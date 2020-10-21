@@ -89,18 +89,16 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.type === 10;
 	}
 
+	public isVoteCombination(): boolean {
+		return this.isVote() && this.isUnvote();
+	}
+
 	public isVote(): boolean {
 		if (this.data.type !== 11) {
 			return false;
 		}
 
-		for (const vote of this.asset().votes as string[]) {
-			if (vote.startsWith("+")) {
-				return true;
-			}
-		}
-
-		return false;
+		return (this.asset().votes as string[]).some((vote) => vote.startsWith("+"));
 	}
 
 	public isUnvote(): boolean {
@@ -108,13 +106,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			return false;
 		}
 
-		for (const vote of this.asset().votes as string[]) {
-			if (vote.startsWith("-")) {
-				return true;
-			}
-		}
-
-		return false;
+		return (this.asset().votes as string[]).some((vote) => vote.startsWith("-"));
 	}
 
 	public isMultiSignature(): boolean {

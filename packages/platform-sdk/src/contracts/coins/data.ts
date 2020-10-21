@@ -113,6 +113,8 @@ export interface TransactionData {
 
 	isDelegateRegistration(): boolean;
 
+	isVoteCombination(): boolean;
+
 	isVote(): boolean;
 
 	isUnvote(): boolean;

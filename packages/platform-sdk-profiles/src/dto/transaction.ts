@@ -97,6 +97,10 @@ export class TransactionData {
 		return this.#data.isDelegateRegistration();
 	}
 
+	public isVoteCombination(): boolean {
+		return this.#data.isVoteCombination();
+	}
+
 	public isVote(): boolean {
 		return this.#data.isVote();
 	}
