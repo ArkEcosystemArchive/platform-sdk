@@ -1,7 +1,7 @@
 {
     "name": "@arkecosystem/platform-sdk-http-axios",
     "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "0.9.404",
+    "version": "0.9.406",
     "contributors": [],
     "license": "MIT",
     "files": [
