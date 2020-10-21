@@ -19,6 +19,7 @@ export abstract class AbstractTransactionData {
 		transfer: "isTransfer",
 		secondSignature: "isSecondSignature",
 		delegateRegistration: "isDelegateRegistration",
+		voteCombination: "isVoteCombination",
 		vote: "isVote",
 		unvote: "isUnvote",
 		multiSignature: "isMultiSignature",
@@ -100,6 +101,8 @@ export abstract class AbstractTransactionData {
 	abstract isSecondSignature(): boolean;
 
 	abstract isDelegateRegistration(): boolean;
+
+	abstract isVoteCombination(): boolean;
 
 	abstract isVote(): boolean;
 

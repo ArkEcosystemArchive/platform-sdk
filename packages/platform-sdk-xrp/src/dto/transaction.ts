@@ -80,6 +80,10 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return false;
 	}
 
+	public isVoteCombination(): boolean {
+		return false;
+	}
+
 	public isVote(): boolean {
 		return false;
 	}
