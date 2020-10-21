@@ -1,7 +1,7 @@
 {
     "name": "@arkecosystem/platform-sdk-support",
     "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "0.9.407",
+    "version": "0.9.408",
     "contributors": [],
     "license": "MIT",
     "files": [
