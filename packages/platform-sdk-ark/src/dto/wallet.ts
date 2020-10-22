@@ -19,6 +19,10 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return BigNumber.make(this.data.nonce);
 	}
 
+	public secondPublicKey(): string | undefined {
+		return this.getProperty(['secondPublicKey', 'attributes.secondPublicKey']);
+	}
+
 	public username(): string | undefined {
 		return this.getProperty(['username', 'attributes.delegate.username']);
 	}

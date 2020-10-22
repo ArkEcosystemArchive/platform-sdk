@@ -18,6 +18,10 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return BigNumber.ZERO;
 	}
 
+	public secondPublicKey(): string | undefined {
+		return this.data.secondPublicKey;
+	}
+
 	public username(): string | undefined {
 		return this.data.username || this.data.delegate?.username;
 	}
