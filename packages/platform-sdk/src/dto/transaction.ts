@@ -30,9 +30,6 @@ export abstract class AbstractTransactionData {
 		htlcClaim: "isHtlcClaim",
 		htlcRefund: "isHtlcRefund",
 		// Magistrate
-		entityRegistration: "isEntityRegistration",
-		entityResignation: "isEntityResignation",
-		entityUpdate: "isEntityUpdate",
 		businessEntityRegistration: "isBusinessEntityRegistration",
 		businessEntityResignation: "isBusinessEntityResignation",
 		businessEntityUpdate: "isBusinessEntityUpdate",
@@ -48,6 +45,10 @@ export abstract class AbstractTransactionData {
 		delegateEntityRegistration: "isDelegateEntityRegistration",
 		delegateEntityResignation: "isDelegateEntityResignation",
 		delegateEntityUpdate: "isDelegateEntityUpdate",
+		entityRegistration: "isEntityRegistration",
+		entityResignation: "isEntityResignation",
+		entityUpdate: "isEntityUpdate",
+		// Legacy Magistrate
 		legacyBusinessRegistration: "isLegacyBusinessRegistration",
 		legacyBusinessResignation: "isLegacyBusinessResignation",
 		legacyBusinessUpdate: "isLegacyBusinessUpdate",
