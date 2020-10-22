@@ -128,6 +128,12 @@ export class WalletRepository {
 		);
 	}
 
+	public findByAlias(alias: string): ReadWriteWallet | undefined {
+		return this.values().find(
+			(wallet: ReadWriteWallet) => (wallet.alias() || "").toLowerCase() === alias.toLowerCase(),
+		);
+	}
+
 	public update(id: string, data: { alias?: string }): void {
 		const result = this.findById(id);
 
