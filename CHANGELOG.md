@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.410 - 2020-10-22
+
+### Added
+
+-   Implement `WalletData#secondPublicKey` (ec9c3caf, @luciorubeens)
+
 ## 0.9.409 - 2020-10-22
 
 ### Fixed

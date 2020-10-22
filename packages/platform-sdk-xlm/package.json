@@ -1,7 +1,7 @@
 {
     "name": "@arkecosystem/platform-sdk-xlm",
     "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "0.9.409",
+    "version": "0.9.410",
     "contributors": [],
     "license": "MIT",
     "files": [
