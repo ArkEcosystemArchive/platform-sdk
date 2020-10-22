@@ -20,6 +20,10 @@ export interface WalletData {
 
 	nonce(): BigNumber;
 
+	// Second Signature
+
+	secondPublicKey(): string | undefined;
+
 	// Delegate
 	username(): string | undefined;
 

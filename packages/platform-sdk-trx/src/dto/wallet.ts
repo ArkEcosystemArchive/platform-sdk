@@ -18,6 +18,10 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return BigNumber.ZERO;
 	}
 
+	public secondPublicKey(): string | undefined {
+		throw new Exceptions.NotImplemented(this.constructor.name, "secondPublicKey");
+	}
+
 	public username(): string | undefined {
 		throw new Exceptions.NotImplemented(this.constructor.name, "username");
 	}
