@@ -1,7 +1,7 @@
 {
     "name": "@arkecosystem/platform-sdk-coincap",
     "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "0.9.408",
+    "version": "0.9.409",
     "contributors": [],
     "license": "MIT",
     "files": [
