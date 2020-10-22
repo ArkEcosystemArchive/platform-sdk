@@ -19,7 +19,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public secondPublicKey(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "secondPublicKey");
+		return this.data.secondPublicKey;
 	}
 
 	public username(): string | undefined {
