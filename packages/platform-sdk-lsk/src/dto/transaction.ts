@@ -66,7 +66,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isConfirmed(): boolean {
-		return false;
+		return this.confirmations().isGreaterThanOrEqualTo(101);
 	}
 
 	public isSent(): boolean {
