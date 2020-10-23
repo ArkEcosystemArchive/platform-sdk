@@ -43,7 +43,8 @@ beforeEach(async () => {
 
 	subject = new WalletRepository(profile);
 
-	await subject.importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	const wallet = await subject.importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	subject.update(wallet.id(), { alias: "Alias" });
 });
 
 beforeAll(() => nock.disableNetConnect());
@@ -106,6 +107,10 @@ test("#findByPublicKey", () => {
 
 test("#findByCoin", () => {
 	expect(subject.findByCoin("ARK")).toHaveLength(1);
+});
+
+test("#findByAlias", () => {
+	expect(subject.findByAlias("Alias")).toBeInstanceOf(Wallet);
 });
 
 test("#update", async () => {
