@@ -12,6 +12,6 @@ export class RegistrationAggregate {
 		return this.#profile
 			.wallets()
 			.values()
-			.filter((wallet: ReadWriteWallet) => wallet.isDelegate());
+			.filter((wallet: ReadWriteWallet) => wallet.hasSyncedWithNetwork() && wallet.isDelegate());
 	}
 }
