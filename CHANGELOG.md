@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.414 - 2020-10-27
+
+### Fixed
+
+-   Check wallet is synced and delegate in aggregation (529412ac, @goga-m)
+
 ## 0.9.413 - 2020-10-27
 
 ### Added
@@ -15,7 +21,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   Confirm lisk transactions greater than or equal to 101 confirmations (6fed8443, @brenopolanski)
 -   Off by one error in api pagination offset (ba9b4685, @dated)
-
 
 ## 0.9.410 - 2020-10-22
 
