@@ -155,7 +155,7 @@ export class ClientService implements Contracts.ClientService {
 
 		if (searchParams.cursor) {
 			// @ts-ignore
-			searchParams.offset = searchParams.cursor;
+			searchParams.offset = searchParams.cursor - 1;
 			delete searchParams.cursor;
 		}
 
