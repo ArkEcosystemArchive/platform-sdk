@@ -278,6 +278,10 @@ export class TransactionService implements Contracts.TransactionService {
 				transaction = Transactions.BuilderFactory[type]().version(2);
 			}
 
+			if (input.senderPublicKey) {
+				transaction.senderPublicKey(input.senderPublicKey);
+			}
+
 			if (input.nonce) {
 				transaction.nonce(input.nonce);
 			} else {

@@ -49,6 +49,7 @@ export interface TransactionInput {
 	contract?: {
 		address: string;
 	};
+	senderPublicKey?: string;
 }
 
 export interface TransactionOptions {
