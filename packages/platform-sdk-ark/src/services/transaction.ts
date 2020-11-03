@@ -279,6 +279,7 @@ export class TransactionService implements Contracts.TransactionService {
 			}
 
 			if (input.senderPublicKey) {
+				address = await this.#identity.address().fromPublicKey(input.senderPublicKey);
 				transaction.senderPublicKey(input.senderPublicKey);
 			}
 
