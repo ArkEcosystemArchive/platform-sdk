@@ -310,7 +310,7 @@ export class TransactionService implements Contracts.TransactionService {
 				return new SignedTransactionData(
 					// TODO: compute ID
 					"dummy",
-					Transactions.Serializer.getBytes(transaction, {
+					Transactions.Serializer.getBytes(transaction.data, {
 						excludeSignature: true,
 						excludeSecondSignature: true,
 					}).toString("hex"),
