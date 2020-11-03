@@ -333,6 +333,8 @@ export class TransactionService implements Contracts.TransactionService {
 				for (let i = 0; i < input.sign.mnemonics.length; i++) {
 					transaction.multiSign(BIP39.normalize(input.sign.mnemonics[i]), i);
 				}
+			} else if (input.sign.signature) {
+				transaction.data.signature = input.sign.signature;
 			} else {
 				if (!address) {
 					throw new Error("Failed to retrieve the address for the signatory wallet.");

@@ -45,6 +45,7 @@ export interface TransactionInput {
 			min: number;
 			publicKeys: string[];
 		};
+		signature?: string;
 	};
 	contract?: {
 		address: string;
