@@ -278,9 +278,9 @@ export class TransactionService implements Contracts.TransactionService {
 				transaction = Transactions.BuilderFactory[type]().version(2);
 			}
 
-			if (input.senderPublicKey) {
-				address = await this.#identity.address().fromPublicKey(input.senderPublicKey);
-				transaction.senderPublicKey(input.senderPublicKey);
+			if (input.sign.senderPublicKey) {
+				address = await this.#identity.address().fromPublicKey(input.sign.senderPublicKey);
+				transaction.senderPublicKey(input.sign.senderPublicKey);
 			}
 
 			if (input.nonce) {
