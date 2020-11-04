@@ -278,6 +278,11 @@ export class TransactionService implements Contracts.TransactionService {
 				transaction = Transactions.BuilderFactory[type]().version(2);
 			}
 
+			if (input.sign.senderPublicKey) {
+				address = await this.#identity.address().fromPublicKey(input.sign.senderPublicKey);
+				transaction.senderPublicKey(input.sign.senderPublicKey);
+			}
+
 			if (input.nonce) {
 				transaction.nonce(input.nonce);
 			} else {
@@ -306,7 +311,7 @@ export class TransactionService implements Contracts.TransactionService {
 				return new SignedTransactionData(
 					// TODO: compute ID
 					"dummy",
-					Transactions.Serializer.getBytes(transaction, {
+					Transactions.Serializer.getBytes(transaction.data, {
 						excludeSignature: true,
 						excludeSecondSignature: true,
 					}).toString("hex"),
@@ -329,6 +334,8 @@ export class TransactionService implements Contracts.TransactionService {
 				for (let i = 0; i < input.sign.mnemonics.length; i++) {
 					transaction.multiSign(BIP39.normalize(input.sign.mnemonics[i]), i);
 				}
+			} else if (input.sign.signature) {
+				transaction.data.signature = input.sign.signature;
 			} else {
 				if (!address) {
 					throw new Error("Failed to retrieve the address for the signatory wallet.");

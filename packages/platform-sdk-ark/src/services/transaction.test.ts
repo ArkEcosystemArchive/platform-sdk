@@ -42,6 +42,39 @@ describe("Core", () => {
 
 			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
+
+		it("should compute the id with a custom signature", async () => {
+			const result = await subject.transfer({
+				nonce: "1",
+				from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+				sign: {
+					senderPublicKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
+					signature: "678f44d24bf1bd08198467102c835bc6973fcfee064fef9ab578b350e8656acabf91d20c83d8745c2d76e3c898ebbabed84aba8786386e13d35e507f991239d6"
+				},
+				data: {
+					amount: "1",
+					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9"
+				}
+			});
+
+			expect(result.id()).toBe("0ad7808a51b49b7c1686f0ce113afad280b789ac2fb338923d7e93095fda7486");
+		});
+
+		it("should get the transaction bytes", async () => {
+			const result = await subject.transfer({
+				nonce: "1",
+				from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+				data: {
+					amount: "1",
+					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9"
+				},
+				sign: {
+					senderPublicKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22"
+				}
+			}, { unsignedBytes: true, unsignedJson: false });
+
+			expect(result.toString()).toBe("ff021e0100000000000100000000000000039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f228096980000000000000100000000000000000000001ec10f500ee29157df2248e26cbe7fae0da06042b4");
+		});
 	});
 
 	describe("#secondSignature", () => {
