@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.417 - 2020-11-05
+
+### Changed
+
+-   Use UUID as unsigned transaction identifier (82dfc2e7, @luciorubeens)
+
 ## 0.9.416 - 2020-11-04
 
 ### Added
