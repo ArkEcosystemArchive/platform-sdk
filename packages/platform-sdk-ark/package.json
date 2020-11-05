@@ -33,6 +33,7 @@
         "lodash.orderby": "^4.6.0",
         "node-dotify": "^1.0.2",
         "semver": "^7.3.2",
+        "uuid": "^8.3.1",
         "yup": "^0.29.3"
     },
     "devDependencies": {
@@ -50,6 +51,7 @@
         "@types/prettier": "^2.1.2",
         "@types/rimraf": "^3.0.0",
         "@types/semver": "7.3.4",
+        "@types/uuid": "^8.3.0",
         "@typescript-eslint/eslint-plugin": "^4.4.0",
         "@typescript-eslint/parser": "^4.4.0",
         "codecov": "^3.8.0",

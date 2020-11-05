@@ -177,6 +177,7 @@ __metadata:
     "@types/prettier": ^2.1.2
     "@types/rimraf": ^3.0.0
     "@types/semver": 7.3.4
+    "@types/uuid": ^8.3.0
     "@typescript-eslint/eslint-plugin": ^4.4.0
     "@typescript-eslint/parser": ^4.4.0
     codecov: ^3.8.0
@@ -201,6 +202,7 @@ __metadata:
     semver: ^7.3.2
     ts-jest: ^26.4.1
     typescript: ^4.0.3
+    uuid: ^8.3.1
     yup: ^0.29.3
   languageName: unknown
   linkType: soft
@@ -4419,7 +4421,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/uuid@npm:8.3.0":
+"@types/uuid@npm:8.3.0, @types/uuid@npm:^8.3.0":
   version: 8.3.0
   resolution: "@types/uuid@npm:8.3.0"
   checksum: 2/620985aed8fdb4aed153daca5235f4303457a67a4d181efac0021712eabd9edd7e88895f79730c0e651effde7633b1b61e49a81519ac8d4e75019d2ac9b6412f

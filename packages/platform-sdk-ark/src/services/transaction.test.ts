@@ -73,6 +73,7 @@ describe("Core", () => {
 				}
 			}, { unsignedBytes: true, unsignedJson: false });
 
+			expect(result.id()).not.toBe("dummy");
 			expect(result.toString()).toBe("ff021e0100000000000100000000000000039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f228096980000000000000100000000000000000000001ec10f500ee29157df2248e26cbe7fae0da06042b4");
 		});
 	});
