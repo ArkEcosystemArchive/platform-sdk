@@ -6,30 +6,18 @@ import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
+	readonly #config: Coins.Config;
 	readonly #http: Contracts.HttpClient;
 	readonly #network: string;
-	readonly #peer: string;
 
-	private constructor({ http, network, peer }) {
-		this.#http = http;
-		this.#network = network;
-		this.#peer = peer;
+	private constructor(config: Coins.Config) {
+		this.#config = config;
+		this.#http = config.get<Contracts.HttpClient>("httpClient");
+		this.#network = config.get<string>("network.id");
 	}
 
 	public static async construct(config: Coins.Config): Promise<ClientService> {
-		try {
-			return new ClientService({
-				http: config.get<Contracts.HttpClient>("httpClient"),
-				peer: config.get<string>("peer"),
-				network: config.get<string>("network.id"),
-			});
-		} catch {
-			return new ClientService({
-				http: config.get<Contracts.HttpClient>("httpClient"),
-				peer: `${Arr.randomElement(config.get<string[]>("network.networking.hosts"))}/api`,
-				network: config.get<string>("network.id"),
-			});
-		}
+		return new ClientService(config);
 	}
 
 	public async destruct(): Promise<void> {
@@ -161,11 +149,11 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.#peer}/${path}`, query?.searchParams)).json();
+		return (await this.#http.get(`${this.host()}/${path}`, query?.searchParams)).json();
 	}
 
 	private async post(path: string, { body, searchParams }: { body; searchParams? }): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.post(`${this.#peer}/${path}`, body, searchParams || undefined)).json();
+		return (await this.#http.post(`${this.host()}/${path}`, body, searchParams || undefined)).json();
 	}
 
 	private createMetaPagination(body): Contracts.MetaPagination {
@@ -251,5 +239,13 @@ export class ClientService implements Contracts.ClientService {
 
 	private isUpcoming(): boolean {
 		return this.#network === "ark.devnet";
+	}
+
+	private host(): string {
+		try {
+			return this.#config.get<string>("network.id");
+		} catch {
+			return `${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`;
+		}
 	}
 }
