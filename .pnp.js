@@ -1357,6 +1357,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:14.11.8"],
             ["@types/prettier", "npm:2.1.2"],
             ["@types/rimraf", "npm:3.0.0"],
+            ["@types/uuid", "npm:8.3.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:e110ffe2d4ba82cacde75f50f798fa4b226964c0f149a5523cea6cb9669043fab1b8d2698571c6e3d5534e21c6829edb359a4e30de82f2177a84188df2fe9d90#npm:4.4.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.4.0"],
             ["codecov", "npm:3.8.0"],
@@ -1376,6 +1377,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.1"],
             ["typescript", "patch:typescript@npm%3A4.0.3#builtin<compat/typescript>::version=4.0.3&hash=c79188"],
+            ["uuid", "npm:8.3.1"],
             ["yup", "npm:0.29.3"]
           ],
           "linkType": "SOFT",

@@ -1,5 +1,6 @@
 import { Coins, Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { api, wallet } from "@cityofzion/neon-js";
+import { v4 as uuidv4 } from "uuid";
 
 import { SignedTransactionData } from "../dto";
 
@@ -18,7 +19,7 @@ export class TransactionService implements Contracts.TransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		try {
 			// TODO: compute the ID
-			return new SignedTransactionData("dummy", {
+			return new SignedTransactionData(uuidv4(), {
 				account: new wallet.Account(input.sign.privateKey),
 				intents: api.makeIntent({ NEO: input.data.amount, GAS: input.fee }, input.data.to),
 			});
