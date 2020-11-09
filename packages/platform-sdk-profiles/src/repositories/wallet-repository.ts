@@ -75,6 +75,8 @@ export class WalletRepository {
 	}
 
 	public async importByAddressWithLedgerIndex(address: string, coin: string, network: string, index: string): Promise<ReadWriteWallet> {
+		// @TODO: eventually handle the whole process from slip44 path to public key to address
+
 		const wallet: ReadWriteWallet = await this.importByAddress(address, coin, network);
 
 		wallet.data().set(WalletFlag.LedgerIndex, index);
