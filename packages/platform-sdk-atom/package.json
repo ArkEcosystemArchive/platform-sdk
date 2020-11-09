@@ -1,7 +1,7 @@
 {
     "name": "@arkecosystem/platform-sdk-atom",
     "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "0.9.417",
+    "version": "0.9.421",
     "contributors": [],
     "license": "MIT",
     "files": [

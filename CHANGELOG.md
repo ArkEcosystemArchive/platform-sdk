@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.9.421 - 2020-11-09
+
+### Fixed
+
+-   Normalise wallet balance before converting it (b3075db3, @faustbrian)
+
+### Added
+
+-   Support for custom peers (9fdee040, @faustbrian)
+-   Implement custom peer settings (38d6eba9, @faustbrian)
+-   Import wallet with ledger index (e2891519, @faustbrian)
+
 ## 0.9.417 - 2020-11-05
 
 ### Changed
