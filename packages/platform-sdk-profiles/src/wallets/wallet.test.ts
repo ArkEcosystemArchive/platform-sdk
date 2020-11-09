@@ -89,7 +89,7 @@ it("should have a balance", () => {
 });
 
 it("should have a converted balance", () => {
-	subject.data().set(WalletData.Balance, 5);
+	subject.data().set(WalletData.Balance, 5e8);
 	subject.data().set(WalletData.ExchangeRate, 5);
 
 	expect(subject.convertedBalance()).toBeInstanceOf(BigNumber);

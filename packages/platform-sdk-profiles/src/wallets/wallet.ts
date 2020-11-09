@@ -172,7 +172,7 @@ export class Wallet implements ReadWriteWallet {
 			return BigNumber.ZERO;
 		}
 
-		return this.balance().times(value);
+		return this.balance().divide(1e8).times(value);
 	}
 
 	public nonce(): BigNumber {
