@@ -8,6 +8,7 @@ import { makeCoin } from "../environment/container.helpers";
 import { DelegateMapper } from "../mappers/delegate-mapper";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
+import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
@@ -20,11 +21,10 @@ export class Wallet implements ReadWriteWallet {
 	readonly #entityAggregate: EntityAggregate;
 	readonly #entityHistoryAggregate: EntityHistoryAggregate;
 
+	readonly #peerRepository: PeerRepository;
 	readonly #dataRepository: DataRepository;
 	readonly #settingRepository: SettingRepository;
 	readonly #transactionService: TransactionService;
-
-	readonly #profile: Profile;
 
 	readonly #id: string;
 	#coin!: Coins.Coin;
@@ -34,9 +34,9 @@ export class Wallet implements ReadWriteWallet {
 	#publicKey!: string | undefined;
 	#avatar!: string;
 
-	public constructor(id: string, profile: Profile) {
+	public constructor(id: string, peers: PeerRepository) {
 		this.#id = id;
-		this.#profile = profile;
+		this.#peerRepository = peers;
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
@@ -52,7 +52,11 @@ export class Wallet implements ReadWriteWallet {
 	 */
 
 	public async setCoin(coin: string, network: string): Promise<Wallet> {
-		this.#coin = await makeCoin(coin, network);
+		if (this.#peerRepository.has(coin, network)) {
+			this.#coin = await makeCoin(coin, network, { peer: this.#peerRepository.get(coin,network) });
+		} else {
+			this.#coin = await makeCoin(coin, network);
+		}
 
 		return this;
 	}

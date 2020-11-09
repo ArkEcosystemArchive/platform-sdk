@@ -45,7 +45,7 @@ export class CoinService {
 		return instance;
 	}
 
-	public async push(coin: string, network: string): Promise<Coins.Coin> {
+	public async push(coin: string, network: string, options: object = {}): Promise<Coins.Coin> {
 		if (this.has(coin, network)) {
 			return this.get(coin, network);
 		}
@@ -55,6 +55,7 @@ export class CoinService {
 			await Coins.CoinFactory.make(container.get<Coins.CoinSpec>(Identifiers.Coins)[coin.toUpperCase()], {
 				network,
 				httpClient: container.get(Identifiers.HttpClient),
+				...options,
 			}),
 		);
 

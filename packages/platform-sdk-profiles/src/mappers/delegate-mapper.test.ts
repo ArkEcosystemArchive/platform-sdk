@@ -13,6 +13,7 @@ import { DelegateService } from "../environment/services/delegate-service";
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { DelegateMapper } from "./delegate-mapper";
+import { PeerRepository } from "../repositories/peer-repository";
 
 let wallet: Wallet;
 
@@ -43,7 +44,7 @@ beforeEach(async () => {
 	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 
-	wallet = new Wallet(uuidv4(), new Profile("profile-id"));
+	wallet = new Wallet(uuidv4(), new PeerRepository());
 
 	await wallet.setCoin("ARK", "ark.devnet");
 	await wallet.setIdentity(identity.mnemonic);

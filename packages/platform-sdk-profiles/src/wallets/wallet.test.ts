@@ -15,6 +15,7 @@ import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "./wallet";
 import { WalletData } from "./wallet.models";
+import { PeerRepository } from "../repositories/peer-repository";
 
 let profile: Profile;
 let subject: Wallet;
@@ -58,7 +59,7 @@ beforeEach(async () => {
 	profile = new Profile("profile-id");
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	subject = new Wallet(uuidv4(), profile);
+	subject = new Wallet(uuidv4(), new PeerRepository());
 
 	await subject.setCoin("ARK", "ark.devnet");
 	await subject.setIdentity(identity.mnemonic);

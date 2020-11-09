@@ -132,6 +132,7 @@ it("should turn into an object", () => {
 		contacts: {},
 		data: {},
 		notifications: {},
+		peers: {},
 		plugins: {
 			data: {},
 			blacklist: [],

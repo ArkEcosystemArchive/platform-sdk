@@ -87,6 +87,8 @@ export class Environment {
 					// TODO: stricter validation to avoid unknown keys or values
 					notifications: object().required(),
 					// TODO: stricter validation to avoid unknown keys or values
+					peers: object().required(),
+					// TODO: stricter validation to avoid unknown keys or values
 					plugins: object({
 						data: object(),
 						blacklist: array().of(number()),

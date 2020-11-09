@@ -56,7 +56,7 @@ export class WalletRepository {
 
 	public async importByMnemonic(mnemonic: string, coin: string, network: string): Promise<ReadWriteWallet> {
 		const id: string = uuidv4();
-		const wallet = new Wallet(id, this.#profile);
+		const wallet = new Wallet(id, this.#profile.peers());
 
 		await wallet.setCoin(coin, network);
 		await wallet.setIdentity(mnemonic);
@@ -66,7 +66,7 @@ export class WalletRepository {
 
 	public async importByAddress(address: string, coin: string, network: string): Promise<ReadWriteWallet> {
 		const id: string = uuidv4();
-		const wallet = new Wallet(id, this.#profile);
+		const wallet = new Wallet(id, this.#profile.peers());
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(address);
@@ -81,7 +81,7 @@ export class WalletRepository {
 	}
 
 	public async restore({ id, coin, network, networkConfig, address, data, settings }): Promise<ReadWriteWallet> {
-		const wallet = new Wallet(id, this.#profile);
+		const wallet = new Wallet(id, this.#profile.peers());
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(address);

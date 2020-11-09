@@ -39,6 +39,7 @@ export interface ProfileStruct {
 	id: string;
 	wallets: Record<string, any>;
 	contacts: Record<string, any>;
+	peers: Record<string, any>;
 	plugins: Record<string, any>;
 	notifications: Record<string, any>;
 	data: Record<string, any>;

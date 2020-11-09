@@ -6,6 +6,7 @@ import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../repositories/data-repository";
 import { NotificationRepository } from "../repositories/notification-repository";
 import { SettingRepository } from "../repositories/setting-repository";
+import { PeerRepository } from "../repositories/peer-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
 import { Avatar } from "../services/avatar";
 import { CountAggregate } from "./aggregates/count-aggregate";
@@ -22,6 +23,7 @@ export class Profile implements ProfileContract {
 	#contactRepository: ContactRepository;
 	#dataRepository: DataRepository;
 	#notificationRepository: NotificationRepository;
+	#peerRepository: PeerRepository;
 	#pluginRepository: PluginRepository;
 	#settingRepository: SettingRepository;
 	#walletRepository: WalletRepository;
@@ -38,6 +40,7 @@ export class Profile implements ProfileContract {
 		this.#contactRepository = new ContactRepository(this);
 		this.#dataRepository = new DataRepository();
 		this.#notificationRepository = new NotificationRepository();
+		this.#peerRepository = new PeerRepository();
 		this.#pluginRepository = new PluginRepository();
 		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
 		this.#walletRepository = new WalletRepository(this);
@@ -87,6 +90,10 @@ export class Profile implements ProfileContract {
 		return this.#notificationRepository;
 	}
 
+	public peers(): PeerRepository {
+		return this.#peerRepository;
+	}
+
 	public plugins(): PluginRepository {
 		return this.#pluginRepository;
 	}
@@ -127,6 +134,7 @@ export class Profile implements ProfileContract {
 			contacts: this.contacts().toObject(),
 			data: this.data().all(),
 			notifications: this.notifications().all(),
+			peers: this.peers().toObject(),
 			plugins: this.plugins().toObject(),
 			settings: this.settings().all(),
 			wallets: this.wallets().toObject(),
