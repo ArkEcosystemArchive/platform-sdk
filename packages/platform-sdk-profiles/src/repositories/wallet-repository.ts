@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
-import { ReadWriteWallet } from "../wallets/wallet.models";
+import { ReadWriteWallet, WalletFlag, WalletSetting } from "../wallets/wallet.models";
 import { DataRepository } from "./data-repository";
 
 export class WalletRepository {
@@ -72,6 +72,14 @@ export class WalletRepository {
 		await wallet.setAddress(address);
 
 		return this.storeWallet(id, wallet);
+	}
+
+	public async importByAddressWithLedgerIndex(address: string, coin: string, network: string, index: string): Promise<ReadWriteWallet> {
+		const wallet: ReadWriteWallet = await this.importByAddress(address, coin, network);
+
+		wallet.data().set(WalletFlag.LedgerIndex, index);
+
+		return wallet;
 	}
 
 	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: ReadWriteWallet }> {
