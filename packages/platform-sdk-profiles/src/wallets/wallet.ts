@@ -52,6 +52,7 @@ export class Wallet implements ReadWriteWallet {
 	 */
 
 	public async setCoin(coin: string, network: string): Promise<Wallet> {
+		// @TODO: consider making this part of the `makeCoin` function
 		if (this.#peerRepository.has(coin, network)) {
 			this.#coin = await makeCoin(coin, network, { peer: this.#peerRepository.get(coin,network) });
 		} else {
