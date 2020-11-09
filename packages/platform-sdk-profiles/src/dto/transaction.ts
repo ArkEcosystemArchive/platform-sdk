@@ -276,7 +276,7 @@ export class TransactionData {
 			return BigNumber.ZERO;
 		}
 
-		return this.total().times(value);
+		return this.total().divide(1e8).times(value);
 	}
 
 	/**
