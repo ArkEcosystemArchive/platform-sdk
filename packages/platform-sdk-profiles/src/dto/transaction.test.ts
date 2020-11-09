@@ -9,6 +9,7 @@ import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
+import { PeerRepository } from "../repositories/peer-repository";
 import { Wallet } from "../wallets/wallet";
 import { TransactionData } from "./transaction";
 
@@ -44,7 +45,7 @@ beforeAll(async () => {
 	profile = new Profile("profile-id");
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	wallet = new Wallet(uuidv4(), profile);
+	wallet = new Wallet(uuidv4(), new PeerRepository());
 
 	await wallet.setCoin("ARK", "ark.devnet");
 	await wallet.setIdentity(identity.mnemonic);
