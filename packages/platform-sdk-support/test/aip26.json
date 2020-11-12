@@ -1,25 +1,25 @@
 [
-	{
-		"input": "ark:transfer?coin=ark&network=ark.mainnet&recipient=AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ",
-		"output": {
+	[
+		"ark:transfer?coin=ark&network=ark.mainnet&recipient=AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ",
+		{
 			"method": "transfer",
 			"coin": "ark",
 			"network": "ark.mainnet",
 			"recipient": "AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ"
 		}
-	},
-	{
-		"input": "ark:transfer?coin=lisk&network=lisk.mainnet&recipient=8290259686148623987L",
-		"output": {
+	],
+	[
+		"ark:transfer?coin=lisk&network=lisk.mainnet&recipient=8290259686148623987L",
+		{
 			"method": "transfer",
 			"coin": "lisk",
 			"network": "lisk.mainnet",
 			"recipient": "8290259686148623987L"
 		}
-	},
-	{
-		"input": "ark:transfer?coin=ark&network=ark.mainnet&recipient=AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ&amount=10&vendorField=999&fee=0.1&relay=1.1.1.1",
-		"output": {
+	],
+	[
+		"ark:transfer?coin=ark&network=ark.mainnet&recipient=AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ&amount=10&vendorField=999&fee=0.1&relay=1.1.1.1",
+		{
 			"method": "transfer",
 			"coin": "ark",
 			"network": "ark.mainnet",
@@ -29,32 +29,32 @@
 			"fee": "0.1",
 			"relay": "1.1.1.1"
 		}
-	},
-	{
-		"input": "ark:vote?coin=ark&network=ark.mainnet&delegate=genesis_10&fee=0.1",
-		"output": {
+	],
+	[
+		"ark:vote?coin=ark&network=ark.mainnet&delegate=genesis_10&fee=0.1",
+		{
 			"method": "vote",
 			"coin": "ark",
 			"network": "ark.mainnet",
 			"delegate": "genesis_10",
 			"fee": "0.1"
 		}
-	},
-	{
-		"input": "ark:sign-message?message=This%20is%20my%20message",
-		"output": {
+	],
+	[
+		"ark:sign-message?message=This%20is%20my%20message",
+		{
 			"method": "sign-message",
 			"message": "This is my message"
 		}
-	},
-	{
-		"input": "ark:register-delegate?coin=ark&network=ark.mainnet&delegate=mydelegatename&fee=0.0001",
-		"output": {
+	],
+	[
+		"ark:register-delegate?coin=ark&network=ark.mainnet&delegate=mydelegatename&fee=0.0001",
+		{
 			"method": "register-delegate",
 			"coin": "ark",
 			"network": "ark.mainnet",
 			"delegate": "mydelegatename",
 			"fee": "0.0001"
 		}
-	}
+	]
 ]

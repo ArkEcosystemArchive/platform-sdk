@@ -1,26 +1,26 @@
 [
-	{
-		"input": "ark:AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ",
-		"output": {
+	[
+		"ark:AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ",
+		{
 			"method": "transfer",
 			"coin": "ark",
 			"network": "ark.mainnet",
 			"recipient": "AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ"
 		}
-	},
-	{
-		"input": "ark:AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ?amount=20.3",
-		"output": {
+	],
+	[
+		"ark:AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ?amount=20.3",
+		{
 			"method": "transfer",
 			"coin": "ark",
 			"network": "ark.mainnet",
 			"recipient": "AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ",
 			"amount": "20.3"
 		}
-	},
-	{
-		"input": "ark:AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ?label=John-Doe&amount=20.3",
-		"output": {
+	],
+	[
+		"ark:AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ?label=John-Doe&amount=20.3",
+		{
 			"method": "transfer",
 			"coin": "ark",
 			"network": "ark.mainnet",
@@ -28,10 +28,10 @@
 			"label": "John-Doe",
 			"amount": "20.3"
 		}
-	},
-	{
-		"input": "ark:AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ?label=John-Doe&amount=20.3&vendorField=999",
-		"output": {
+	],
+	[
+		"ark:AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ?label=John-Doe&amount=20.3&vendorField=999",
+		{
 			"method": "transfer",
 			"coin": "ark",
 			"network": "ark.mainnet",
@@ -40,5 +40,5 @@
 			"amount": "20.3",
 			"vendorField": "999"
 		}
-	}
+	]
 ]
