@@ -1,0 +1,44 @@
+[
+	{
+		"input": "ark:AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ",
+		"output": {
+			"method": "transfer",
+			"coin": "ark",
+			"network": "ark.mainnet",
+			"recipient": "AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ"
+		}
+	},
+	{
+		"input": "ark:AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ?amount=20.3",
+		"output": {
+			"method": "transfer",
+			"coin": "ark",
+			"network": "ark.mainnet",
+			"recipient": "AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ",
+			"amount": "20.3"
+		}
+	},
+	{
+		"input": "ark:AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ?label=John-Doe&amount=20.3",
+		"output": {
+			"method": "transfer",
+			"coin": "ark",
+			"network": "ark.mainnet",
+			"recipient": "AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ",
+			"label": "John-Doe",
+			"amount": "20.3"
+		}
+	},
+	{
+		"input": "ark:AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ?label=John-Doe&amount=20.3&vendorField=999",
+		"output": {
+			"method": "transfer",
+			"coin": "ark",
+			"network": "ark.mainnet",
+			"recipient": "AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ",
+			"label": "John-Doe",
+			"amount": "20.3",
+			"vendorField": "999"
+		}
+	}
+]
