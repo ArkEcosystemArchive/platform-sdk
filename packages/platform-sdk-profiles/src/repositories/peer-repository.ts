@@ -1,6 +1,8 @@
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "./data-repository";
 
+interface Peer { name: string, peer: string, isMultiSignature: boolean }
+
 export class PeerRepository {
 	readonly #data: DataRepository;
 
@@ -14,8 +16,8 @@ export class PeerRepository {
 		}
 	}
 
-	public all(): Record<string, any> {
-		return this.#data.all() as Record<string, any>;
+	public all(): Record<string, Peer> {
+		return this.#data.all() as Record<string, Peer>;
 	}
 
 	public keys(): string[] {
@@ -26,17 +28,17 @@ export class PeerRepository {
 		return this.#data.values();
 	}
 
-	public get(coin: string, network:string): Profile {
+	public get(coin: string, network: string): Peer {
 		const id: string = `${coin}.${network}`;
 
 		if (this.#data.missing(id)) {
 			throw new Error(`No peer found for [${id}].`);
 		}
 
-		return this.#data.get(id) as Profile;
+		return this.#data.get(id) as Peer;
 	}
 
-	public set(coin: string, network: string, peer: string): void {
+	public set(coin: string, network: string, peer: Peer): void {
 		this.#data.set(`${coin}.${network}`, peer);
 	}
 
@@ -54,13 +56,7 @@ export class PeerRepository {
 		this.#data.forget(id);
 	}
 
-	public toObject(): Record<string, object> {
-		const result: Record<string, object> = {};
-
-		for (const [id, peer] of Object.entries(this.#data.all())) {
-			result[id] = peer.toObject();
-		}
-
-		return result;
+	public toObject(): Record<string, Peer> {
+		return this.all();
 	}
 }
