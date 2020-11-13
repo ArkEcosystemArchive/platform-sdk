@@ -1,7 +1,11 @@
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "./data-repository";
 
-interface Peer { name: string, host: string, isMultiSignature: boolean }
+interface Peer {
+	name: string;
+	host: string;
+	isMultiSignature: boolean;
+}
 
 export class PeerRepository {
 	readonly #data: DataRepository;
@@ -10,7 +14,7 @@ export class PeerRepository {
 		this.#data = new DataRepository();
 	}
 
-	public async fill(peers: object): Promise<void> {
+	public fill(peers: object): void {
 		for (const [id, peer] of Object.entries(peers)) {
 			this.#data.set(id, peer);
 		}
@@ -29,7 +33,7 @@ export class PeerRepository {
 	}
 
 	public get(coin: string, network: string): Peer {
-		const id: string = `${coin}.${network}`;
+		const id = `${coin}.${network}`;
 
 		if (this.#data.missing(id)) {
 			throw new Error(`No peer found for [${id}].`);
@@ -47,7 +51,7 @@ export class PeerRepository {
 	}
 
 	public forget(coin: string, network: string): void {
-		const id: string = `${coin}.${network}`;
+		const id = `${coin}.${network}`;
 
 		if (this.#data.missing(id)) {
 			throw new Error(`No peer found for [${id}].`);

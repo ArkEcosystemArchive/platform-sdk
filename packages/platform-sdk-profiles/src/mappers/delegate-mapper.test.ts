@@ -11,9 +11,9 @@ import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
 import { DelegateService } from "../environment/services/delegate-service";
 import { Profile } from "../profiles/profile";
+import { PeerRepository } from "../repositories/peer-repository";
 import { Wallet } from "../wallets/wallet";
 import { DelegateMapper } from "./delegate-mapper";
-import { PeerRepository } from "../repositories/peer-repository";
 
 let wallet: Wallet;
 

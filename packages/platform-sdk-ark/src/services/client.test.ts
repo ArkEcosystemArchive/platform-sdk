@@ -62,10 +62,21 @@ describe("ClientService", function () {
 
 			nock(/.+/)
 				.get("/api/transactions")
-				.query({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8", "asset.type": "4", "asset.action": "0", "type": "6", "typeGroup": 2 })
+				.query({
+					address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8",
+					"asset.type": "4",
+					"asset.action": "0",
+					type: "6",
+					typeGroup: 2,
+				})
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
-			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"], asset: { type: 4, action: 0 }, type: 6, typeGroup: 2 });
+			const result = await subject.transactions({
+				addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"],
+				asset: { type: 4, action: 0 },
+				type: 6,
+				typeGroup: 2,
+			});
 
 			expect(result).toBeObject();
 			expect(result.items()[0]).toBeInstanceOf(TransactionData);

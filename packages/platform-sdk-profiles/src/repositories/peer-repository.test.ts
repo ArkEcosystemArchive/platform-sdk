@@ -9,42 +9,42 @@ beforeEach(() => (subject = new PeerRepository()));
 
 describe("PeerRepository", () => {
 	it("should push, get, list and forget any given peers", async () => {
-		subject.set('ARK', 'mainnet', {
+		subject.set("ARK", "mainnet", {
 			name: "Private",
 			host: "https://ip:port/api",
-			isMultiSignature: false
+			isMultiSignature: false,
 		});
 
-		expect(subject.has('ARK', 'mainnet')).toBeTrue();
+		expect(subject.has("ARK", "mainnet")).toBeTrue();
 
-		subject.set('ARK', 'devnet', {
+		subject.set("ARK", "devnet", {
 			name: "Private",
 			host: "https://ip:port/api",
-			isMultiSignature: false
+			isMultiSignature: false,
 		});
 
-		expect(subject.has('ARK', 'devnet')).toBeTrue();
+		expect(subject.has("ARK", "devnet")).toBeTrue();
 
-		subject.forget('ARK', 'devnet');
+		subject.forget("ARK", "devnet");
 
-		expect(() => subject.get('ARK', 'devnet')).toThrow("No peer found for");
+		expect(() => subject.get("ARK", "devnet")).toThrow("No peer found for");
 	});
 
 	it("should turn all peers into an object", async () => {
-		subject.set('ARK', 'mainnet', {
+		subject.set("ARK", "mainnet", {
 			name: "Private",
 			host: "https://ip:port/api",
-			isMultiSignature: false
+			isMultiSignature: false,
 		});
 
 		expect(subject.toObject()).toEqual({
-			   "ARK":  {
-				     "mainnet":  {
-				       "host": "https://ip:port/api",
-				       "isMultiSignature": false,
-				       "name": "Private",
-				     },
-				   },
+			ARK: {
+				mainnet: {
+					host: "https://ip:port/api",
+					isMultiSignature: false,
+					name: "Private",
+				},
+			},
 		});
 	});
 });

@@ -74,7 +74,12 @@ export class WalletRepository {
 		return this.storeWallet(id, wallet);
 	}
 
-	public async importByAddressWithLedgerIndex(address: string, coin: string, network: string, index: string): Promise<ReadWriteWallet> {
+	public async importByAddressWithLedgerIndex(
+		address: string,
+		coin: string,
+		network: string,
+		index: string,
+	): Promise<ReadWriteWallet> {
 		// @TODO: eventually handle the whole process from slip44 path to public key to address
 
 		const wallet: ReadWriteWallet = await this.importByAddress(address, coin, network);
@@ -138,7 +143,7 @@ export class WalletRepository {
 		);
 	}
 
-	public findByAlias(alias: string): ReadWriteWallet | undefined {
+	public findByAlias(alias: string): ReadWriteWallet | undefined {
 		return this.values().find(
 			(wallet: ReadWriteWallet) => (wallet.alias() || "").toLowerCase() === alias.toLowerCase(),
 		);

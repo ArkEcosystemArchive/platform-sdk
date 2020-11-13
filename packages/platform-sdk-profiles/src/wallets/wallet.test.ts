@@ -13,9 +13,9 @@ import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
+import { PeerRepository } from "../repositories/peer-repository";
 import { Wallet } from "./wallet";
 import { WalletData } from "./wallet.models";
-import { PeerRepository } from "../repositories/peer-repository";
 
 let profile: Profile;
 let subject: Wallet;
