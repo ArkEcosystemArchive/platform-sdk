@@ -46,14 +46,14 @@ describe("URI", () => {
 
 describe("AIP13", () => {
 	// @ts-ignore
-	it.each(require('../test/aip13.json'))('should deserialize (%s)', (input, output) => {
+	it.each(require("../test/aip13.json"))("should deserialize (%s)", (input, output) => {
 		expect(subject.deserialize(input)).toEqual(output);
 	});
 });
 
 describe("AIP26", () => {
 	// @ts-ignore
-	it.each(require('../test/aip26.json'))('should deserialize (%s)', (input, output) => {
+	it.each(require("../test/aip26.json"))("should deserialize (%s)", (input, output) => {
 		expect(subject.deserialize(input)).toEqual(output);
 	});
 });

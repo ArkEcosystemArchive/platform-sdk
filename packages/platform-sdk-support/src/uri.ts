@@ -3,7 +3,7 @@ import { number, object, string } from "yup";
 
 export class URI {
 	readonly #pattern: RegExp = new RegExp(/^(?:ark:)([-0-9a-zA-Z]{1,34})([-a-zA-Z0-9+&@#/%=~_|$?!:,.]*)$/);
-	readonly #methods: string[] = ['transfer', 'vote', 'sign-message', 'register-delegate'];
+	readonly #methods: string[] = ["transfer", "vote", "sign-message", "register-delegate"];
 
 	public serialize(input: Record<string, string>): string {
 		const method: string = input.method;
@@ -27,9 +27,9 @@ export class URI {
 			// When this is false we just have to assume that we are handling AIP13
 			// unless we integrate the parsing more tightly to specific coins which
 			// would enable us to validate against specific address validation rules.
-			if (! this.#methods.includes(method)) {
+			if (!this.#methods.includes(method)) {
 				params.recipient = method;
-				method = 'transfer';
+				method = "transfer";
 			}
 
 			const result = object()
@@ -57,12 +57,12 @@ export class URI {
 	private getSchema(method: string): object {
 		const baseSchema = {
 			method: string().matches(/(transfer|vote|sign-message|register-delegate)/),
-			coin: string().default('ark'),
-			network: string().default('ark.mainnet'),
+			coin: string().default("ark"),
+			network: string().default("ark.mainnet"),
 			fee: number(),
 		};
 
-		if (method === 'transfer') {
+		if (method === "transfer") {
 			return {
 				...baseSchema,
 				recipient: string().required(),
@@ -72,26 +72,26 @@ export class URI {
 			};
 		}
 
-		if (method === 'vote') {
+		if (method === "vote") {
 			return {
 				...baseSchema,
 				delegate: string().required(),
 			};
 		}
 
-		if (method === 'sign-message') {
+		if (method === "sign-message") {
 			return {
 				message: string().required(),
 			};
 		}
 
-		if (method === 'register-delegate') {
+		if (method === "register-delegate") {
 			return {
 				...baseSchema,
 				delegate: string().required(),
 			};
 		}
 
-		throw new Error('Invalid method used in URI');
+		throw new Error("Invalid method used in URI");
 	}
 }
