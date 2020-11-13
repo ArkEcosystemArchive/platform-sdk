@@ -166,6 +166,10 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public convertedBalance(): BigNumber {
+		if (this.network().isTest()) {
+			return BigNumber.ZERO;
+		}
+
 		const value: string | undefined = this.data().get(WalletData.ExchangeRate);
 
 		if (value === undefined) {
