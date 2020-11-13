@@ -29,4 +29,22 @@ describe("PeerRepository", () => {
 
 		expect(() => subject.get('ARK', 'devnet')).toThrow("No peer found for");
 	});
+
+	it("should turn all peers into an object", async () => {
+		subject.set('ARK', 'mainnet', {
+			name: "Private",
+			host: "https://ip:port/api",
+			isMultiSignature: false
+		});
+
+		expect(subject.toObject()).toEqual({
+			   "ARK":  {
+				     "mainnet":  {
+				       "host": "https://ip:port/api",
+				       "isMultiSignature": false,
+				       "name": "Private",
+				     },
+				   },
+		});
+	});
 });
