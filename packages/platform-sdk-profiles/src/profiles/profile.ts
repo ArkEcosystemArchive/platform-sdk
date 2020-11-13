@@ -188,6 +188,8 @@ export class Profile implements ProfileContract {
 		this.settings().set(ProfileSetting.ScreenshotProtection, true);
 		this.settings().set(ProfileSetting.Theme, "light");
 		this.settings().set(ProfileSetting.TimeFormat, "h:mm A");
+		this.settings().set(ProfileSetting.UseCustomPeer, false);
+		this.settings().set(ProfileSetting.UseMultiPeerBroadcast, false);
 	}
 
 	private restoreDefaultSettings(name: string): void {

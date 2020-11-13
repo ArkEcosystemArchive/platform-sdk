@@ -56,11 +56,12 @@ export enum ProfileSetting {
 	ExchangeCurrency = "EXCHANGE_CURRENCY",
 	LedgerUpdateMethod = "LEDGER_UPDATE_METHOD",
 	MarketProvider = "MARKET_PROVIDER",
-	MultiPeerBroadcast = "MULTI_PEER_BROADCAST",
 	Name = "NAME",
 	Password = "PASSWORD",
 	PluginProvider = "PLUGIN_PROVIDER",
 	ScreenshotProtection = "SCREENSHOT_PROTECTION",
+	UseCustomPeer = "USE_CUSTOM_PEER",
+	UseMultiPeerBroadcast = "USE_MULTI_PEER_BROADCAST",
 
 	// UI
 	DashboardConfiguration = "DASHBOARD_CONFIGURATION",
