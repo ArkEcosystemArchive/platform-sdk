@@ -9,7 +9,7 @@ beforeEach(() => (subject = new PeerRepository()));
 
 describe("PeerRepository", () => {
 	it("should push, get, list and forget any given peers", async () => {
-		subject.set("ARK", "mainnet", {
+		subject.create("ARK", "mainnet", {
 			name: "Private",
 			host: "https://ip:port/api",
 			isMultiSignature: false,
@@ -17,21 +17,53 @@ describe("PeerRepository", () => {
 
 		expect(subject.has("ARK", "mainnet")).toBeTrue();
 
-		subject.set("ARK", "devnet", {
+		subject.create("ARK", "devnet", {
 			name: "Private",
-			host: "https://ip:port/api",
+			host: "https://devip:devport/api",
 			isMultiSignature: false,
 		});
 
 		expect(subject.has("ARK", "devnet")).toBeTrue();
 
-		subject.forget("ARK", "devnet");
+		subject.forget("ARK", "devnet", {
+			name: "Private",
+			host: "https://devip:devport/api",
+			isMultiSignature: false,
+		});
 
 		expect(() => subject.get("ARK", "devnet")).toThrow("No peer found for");
 	});
 
+	it("should store multiple peers with different types for the same network", async () => {
+		subject.create("ARK", "mainnet", {
+			name: "Private",
+			host: "https://ip:port/api",
+			isMultiSignature: false,
+		});
+
+		subject.create("ARK", "mainnet", {
+			name: "MuSig",
+			host: "https://muip:muport/api",
+			isMultiSignature: true,
+		});
+
+		expect(subject.toObject()).toEqual({
+			ARK: {
+				mainnet: [{
+					host: "https://ip:port/api",
+					isMultiSignature: false,
+					name: "Private",
+				},{
+					host: "https://muip:muport/api",
+					isMultiSignature: true,
+					name: "MuSig",
+				}],
+			},
+		});
+	});
+
 	it("should turn all peers into an object", async () => {
-		subject.set("ARK", "mainnet", {
+		subject.create("ARK", "mainnet", {
 			name: "Private",
 			host: "https://ip:port/api",
 			isMultiSignature: false,
@@ -39,11 +71,11 @@ describe("PeerRepository", () => {
 
 		expect(subject.toObject()).toEqual({
 			ARK: {
-				mainnet: {
+				mainnet: [{
 					host: "https://ip:port/api",
 					isMultiSignature: false,
 					name: "Private",
-				},
+				}],
 			},
 		});
 	});
