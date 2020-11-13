@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.1.3 - 2020-11-13
+
+### Added
+
+-   Add custom peer usage setting (93a32ac1, @faustbrian)
+
+### Changed
+
+-   Store name and type for peers (91b6d3ca, @faustbrian)
+
+### Fixed
+
+-   Return 0 for test network balances (58b1fdc4, @faustbrian)
+
 ## 1.1.0 - 2020-11-12
 
 ### Added
