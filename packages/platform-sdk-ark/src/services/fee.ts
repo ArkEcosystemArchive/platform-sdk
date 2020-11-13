@@ -11,7 +11,7 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<FeeService> {
-			return new FeeService(config);
+		return new FeeService(config);
 	}
 
 	public async destruct(): Promise<void> {

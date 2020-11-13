@@ -26,8 +26,8 @@ export class PeerRepository {
 		return this.#data.values();
 	}
 
-	public get(coin: string, network:string): Profile {
-		const id: string = `${coin}.${network}`;
+	public get(coin: string, network: string): Profile {
+		const id = `${coin}.${network}`;
 
 		if (this.#data.missing(id)) {
 			throw new Error(`No peer found for [${id}].`);
@@ -45,7 +45,7 @@ export class PeerRepository {
 	}
 
 	public forget(coin: string, network: string): void {
-		const id: string = `${coin}.${network}`;
+		const id = `${coin}.${network}`;
 
 		if (this.#data.missing(id)) {
 			throw new Error(`No peer found for [${id}].`);
