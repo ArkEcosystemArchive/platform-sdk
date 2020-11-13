@@ -1,7 +1,7 @@
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "./data-repository";
 
-interface Peer { name: string, peer: string, isMultiSignature: boolean }
+interface Peer { name: string, host: string, isMultiSignature: boolean }
 
 export class PeerRepository {
 	readonly #data: DataRepository;

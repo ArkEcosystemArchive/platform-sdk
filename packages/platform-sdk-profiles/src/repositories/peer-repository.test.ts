@@ -9,11 +9,19 @@ beforeEach(() => (subject = new PeerRepository()));
 
 describe("PeerRepository", () => {
 	it("should push, get, list and forget any given peers", async () => {
-		subject.set('ARK', 'mainnet', 'https://ip:port/api');
+		subject.set('ARK', 'mainnet', {
+			name: "Private",
+			host: "https://ip:port/api",
+			isMultiSignature: false
+		});
 
 		expect(subject.has('ARK', 'mainnet')).toBeTrue();
 
-		subject.set('ARK', 'devnet', 'https://ip:port/api');
+		subject.set('ARK', 'devnet', {
+			name: "Private",
+			host: "https://ip:port/api",
+			isMultiSignature: false
+		});
 
 		expect(subject.has('ARK', 'devnet')).toBeTrue();
 
