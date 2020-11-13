@@ -1,6 +1,12 @@
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "./data-repository";
 
+interface Peer {
+	name: string;
+	host: string;
+	isMultiSignature: boolean;
+}
+
 export class PeerRepository {
 	readonly #data: DataRepository;
 
@@ -8,14 +14,14 @@ export class PeerRepository {
 		this.#data = new DataRepository();
 	}
 
-	public async fill(peers: object): Promise<void> {
+	public fill(peers: object): void {
 		for (const [id, peer] of Object.entries(peers)) {
 			this.#data.set(id, peer);
 		}
 	}
 
-	public all(): Record<string, any> {
-		return this.#data.all() as Record<string, any>;
+	public all(): Record<string, Peer> {
+		return this.#data.all() as Record<string, Peer>;
 	}
 
 	public keys(): string[] {
@@ -26,41 +32,56 @@ export class PeerRepository {
 		return this.#data.values();
 	}
 
-	public get(coin: string, network: string): Profile {
+	public get(coin: string, network: string): Peer[] {
 		const id = `${coin}.${network}`;
 
 		if (this.#data.missing(id)) {
 			throw new Error(`No peer found for [${id}].`);
 		}
 
-		return this.#data.get(id) as Profile;
+		return this.#data.get(id) as Peer[];
 	}
 
-	public set(coin: string, network: string, peer: string): void {
-		this.#data.set(`${coin}.${network}`, peer);
+	public create(coin: string, network: string, peer: Peer): void {
+		const key: string = `${coin}.${network}`;
+		const value: Peer[] = this.#data.get<Peer[]>(key) || [];
+
+		value.push(peer)
+
+		this.#data.set(key, value);
 	}
 
 	public has(coin: string, network: string): boolean {
 		return this.#data.has(`${coin}.${network}`);
 	}
 
-	public forget(coin: string, network: string): void {
-		const id = `${coin}.${network}`;
+	public forget(coin: string, network: string, peer: Peer): void {
+		const index: number = this.get(coin, network).findIndex((item: Peer) => item.host === peer.host);
+		const id: string = `${coin}.${network}.${index}`;
 
 		if (this.#data.missing(id)) {
 			throw new Error(`No peer found for [${id}].`);
 		}
 
 		this.#data.forget(id);
+
+		// If the list is empty we want to completely remove it.
+		if ((this.#data.get<Peer[]>(`${coin}.${network}`) || []).filter(Boolean).length <= 0) {
+			this.#data.forget(`${coin}.${network}`)
+		}
 	}
 
-	public toObject(): Record<string, object> {
-		const result: Record<string, object> = {};
+	public toObject(): Record<string, Peer> {
+		return this.all();
+	}
 
-		for (const [id, peer] of Object.entries(this.#data.all())) {
-			result[id] = peer.toObject();
-		}
+	// Helpers to get peers of specific types for a coin and network.
 
-		return result;
+	public getRelay(coin: string, network: string): Peer | undefined {
+		return this.get(coin, network).find((peer: Peer) => peer.isMultiSignature === false);
+	}
+
+	public getMultiSignature(coin: string, network: string): Peer | undefined {
+		return this.get(coin, network).find((peer: Peer) => peer.isMultiSignature === true);
 	}
 }
