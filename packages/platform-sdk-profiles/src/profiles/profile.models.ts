@@ -64,6 +64,7 @@ export enum ProfileSetting {
 	UseMultiPeerBroadcast = "USE_MULTI_PEER_BROADCAST",
 
 	// UI
+	UseTestNetworks = "USE_TEST_NETWORKS",
 	DashboardConfiguration = "DASHBOARD_CONFIGURATION",
 	DateFormat = "DATE_FORMAT",
 	Locale = "LOCALE",
