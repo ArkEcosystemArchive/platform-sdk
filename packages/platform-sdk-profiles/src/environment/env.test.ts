@@ -124,6 +124,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 		TIME_FORMAT: "h:mm A",
 		USE_CUSTOM_PEER: false,
 		USE_MULTI_PEER_BROADCAST: false,
+		USE_TEST_NETWORKS: false,
 	});
 });
 
