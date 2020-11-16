@@ -29,6 +29,10 @@ export class ExchangeRateService {
 				.filter((wallet: ReadWriteWallet) => wallet.currency() === currency);
 		}
 
+		if (!wallets.length || !wallets[0].network().isLive()) {
+			return;
+		}
+
 		const marketService = MarketService.make(
 			profile.settings().get(ProfileSetting.MarketProvider) || "coingecko",
 			container.get(Identifiers.HttpClient),
