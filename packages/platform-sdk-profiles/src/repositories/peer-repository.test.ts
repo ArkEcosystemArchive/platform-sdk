@@ -49,15 +49,18 @@ describe("PeerRepository", () => {
 
 		expect(subject.toObject()).toEqual({
 			ARK: {
-				mainnet: [{
-					host: "https://ip:port/api",
-					isMultiSignature: false,
-					name: "Private",
-				},{
-					host: "https://muip:muport/api",
-					isMultiSignature: true,
-					name: "MuSig",
-				}],
+				mainnet: [
+					{
+						host: "https://ip:port/api",
+						isMultiSignature: false,
+						name: "Private",
+					},
+					{
+						host: "https://muip:muport/api",
+						isMultiSignature: true,
+						name: "MuSig",
+					},
+				],
 			},
 		});
 	});
@@ -71,11 +74,13 @@ describe("PeerRepository", () => {
 
 		expect(subject.toObject()).toEqual({
 			ARK: {
-				mainnet: [{
-					host: "https://ip:port/api",
-					isMultiSignature: false,
-					name: "Private",
-				}],
+				mainnet: [
+					{
+						host: "https://ip:port/api",
+						isMultiSignature: false,
+						name: "Private",
+					},
+				],
 			},
 		});
 	});

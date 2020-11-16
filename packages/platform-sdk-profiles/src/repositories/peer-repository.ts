@@ -43,10 +43,10 @@ export class PeerRepository {
 	}
 
 	public create(coin: string, network: string, peer: Peer): void {
-		const key: string = `${coin}.${network}`;
+		const key = `${coin}.${network}`;
 		const value: Peer[] = this.#data.get<Peer[]>(key) || [];
 
-		value.push(peer)
+		value.push(peer);
 
 		this.#data.set(key, value);
 	}
@@ -57,7 +57,7 @@ export class PeerRepository {
 
 	public forget(coin: string, network: string, peer: Peer): void {
 		const index: number = this.get(coin, network).findIndex((item: Peer) => item.host === peer.host);
-		const id: string = `${coin}.${network}.${index}`;
+		const id = `${coin}.${network}.${index}`;
 
 		if (this.#data.missing(id)) {
 			throw new Error(`No peer found for [${id}].`);
@@ -67,7 +67,7 @@ export class PeerRepository {
 
 		// If the list is empty we want to completely remove it.
 		if ((this.#data.get<Peer[]>(`${coin}.${network}`) || []).filter(Boolean).length <= 0) {
-			this.#data.forget(`${coin}.${network}`)
+			this.#data.forget(`${coin}.${network}`);
 		}
 	}
 
