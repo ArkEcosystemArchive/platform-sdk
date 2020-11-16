@@ -14,8 +14,8 @@ import { Avatar } from "../services/avatar";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
-import { TransactionService } from "./wallet-transaction-service";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
+import { TransactionService } from "./wallet-transaction-service";
 
 export class Wallet implements ReadWriteWallet {
 	readonly #entityAggregate: EntityAggregate;
