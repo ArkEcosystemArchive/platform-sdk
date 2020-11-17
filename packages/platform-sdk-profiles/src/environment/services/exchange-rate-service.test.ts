@@ -90,6 +90,8 @@ describe("#syncCoinByProfile", () => {
 	});
 
 	it("should sync a coin for specific profile without wallets argument", async () => {
+		const networkSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);
+
 		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 
 		nock(/.+/)
@@ -101,5 +103,7 @@ describe("#syncCoinByProfile", () => {
 		await subject.syncCoinByProfile(profile, "DARK");
 
 		expect(wallet.data().get(WalletData.ExchangeRate)).toBe(0.00002134);
+
+		networkSpy.mockRestore();
 	});
 });
