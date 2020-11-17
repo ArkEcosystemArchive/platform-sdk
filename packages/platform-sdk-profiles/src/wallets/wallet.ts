@@ -169,7 +169,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public convertedBalance(): BigNumber {
-		if (!this.network().isLive()) {
+		if (this.network().isTest()) {
 			return BigNumber.ZERO;
 		}
 

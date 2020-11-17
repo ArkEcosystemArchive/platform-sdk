@@ -18,6 +18,8 @@ let profile: Profile;
 let wallet: ReadWriteWallet;
 let subject: ExchangeRateService;
 
+let networkSpy: jest.SpyInstance;
+
 beforeEach(async () => {
 	nock.cleanAll();
 
@@ -48,8 +50,12 @@ beforeEach(async () => {
 	profile = profileRepository.create("John Doe");
 	wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
+	networkSpy = jest.spyOn(wallet.network(), "isTest").mockReturnValue(false);
+
 	subject = new ExchangeRateService();
 });
+
+afterEach(() => networkSpy.mockRestore());
 
 beforeAll(() => nock.disableNetConnect());
 
@@ -90,8 +96,6 @@ describe("#syncCoinByProfile", () => {
 	});
 
 	it("should sync a coin for specific profile without wallets argument", async () => {
-		const networkSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);
-
 		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 
 		nock(/.+/)
@@ -103,7 +107,5 @@ describe("#syncCoinByProfile", () => {
 		await subject.syncCoinByProfile(profile, "DARK");
 
 		expect(wallet.data().get(WalletData.ExchangeRate)).toBe(0.00002134);
-
-		networkSpy.mockRestore();
 	});
 });
