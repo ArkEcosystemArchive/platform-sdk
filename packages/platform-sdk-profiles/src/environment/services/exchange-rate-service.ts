@@ -26,9 +26,9 @@ export class ExchangeRateService {
 			wallets = profile
 				.wallets()
 				.values()
-				.filter((wallet: ReadWriteWallet) => wallet.currency() === currency && !wallet.network().isTest());
+				.filter((wallet: ReadWriteWallet) => wallet.currency() === currency && wallet.network().isLive());
 		} else {
-			wallets = wallets.filter((wallet: ReadWriteWallet) => !wallet.network().isTest());
+			wallets = wallets.filter((wallet: ReadWriteWallet) => wallet.network().isLive());
 		}
 
 		if (!wallets.length) {
