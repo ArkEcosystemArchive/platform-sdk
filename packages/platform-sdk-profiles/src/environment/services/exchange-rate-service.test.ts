@@ -18,6 +18,9 @@ let profile: Profile;
 let wallet: ReadWriteWallet;
 let subject: ExchangeRateService;
 
+let liveSpy: jest.SpyInstance;
+let testSpy: jest.SpyInstance;
+
 beforeEach(async () => {
 	nock.cleanAll();
 
@@ -48,7 +51,15 @@ beforeEach(async () => {
 	profile = profileRepository.create("John Doe");
 	wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
+	liveSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);
+	testSpy = jest.spyOn(wallet.network(), "isTest").mockReturnValue(false);
+
 	subject = new ExchangeRateService();
+});
+
+afterEach(() => {
+	liveSpy.mockRestore();
+	testSpy.mockRestore();
 });
 
 beforeAll(() => nock.disableNetConnect());

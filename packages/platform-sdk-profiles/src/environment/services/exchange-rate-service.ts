@@ -26,7 +26,13 @@ export class ExchangeRateService {
 			wallets = profile
 				.wallets()
 				.values()
-				.filter((wallet: ReadWriteWallet) => wallet.currency() === currency);
+				.filter((wallet: ReadWriteWallet) => wallet.currency() === currency && wallet.network().isLive());
+		} else {
+			wallets = wallets.filter((wallet: ReadWriteWallet) => wallet.network().isLive());
+		}
+
+		if (!wallets.length) {
+			return;
 		}
 
 		const marketService = MarketService.make(
