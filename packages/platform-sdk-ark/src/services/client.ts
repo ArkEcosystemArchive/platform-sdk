@@ -119,17 +119,22 @@ export class ClientService implements Contracts.ClientService {
 		return this.handleBroadcastResponse(response);
 	}
 
-	public async broadcastSpread(transactions: Contracts.SignedTransactionData[], hosts: string[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcastSpread(
+		transactions: Contracts.SignedTransactionData[],
+		hosts: string[],
+	): Promise<Contracts.BroadcastResponse> {
 		const promises: any[] = [];
 
-		for(const host of hosts) {
+		for (const host of hosts) {
 			promises.push(async () => {
 				try {
-					return (await this.#http.post(`${host}/transactions`, {
-						transactions: transactions.map((transaction: Contracts.SignedTransactionData) =>
-							transaction.data(),
-						),
-					})).json();
+					return (
+						await this.#http.post(`${host}/transactions`, {
+							transactions: transactions.map((transaction: Contracts.SignedTransactionData) =>
+								transaction.data(),
+							),
+						})
+					).json();
 				} catch (error) {
 					return error.response.json();
 				}
@@ -139,8 +144,8 @@ export class ClientService implements Contracts.ClientService {
 		let response: Contracts.KeyValuePair = {};
 
 		const results: any = await Promise.allSettled(promises);
-		for(const result of results) {
-			if (result.status === 'fulfilled') {
+		for (const result of results) {
+			if (result.status === "fulfilled") {
 				response = result.value;
 
 				break;
