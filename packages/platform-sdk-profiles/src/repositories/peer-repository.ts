@@ -81,6 +81,10 @@ export class PeerRepository {
 		return this.get(coin, network).find((peer: Peer) => peer.isMultiSignature === false);
 	}
 
+	public getRelays(coin: string, network: string): Peer[] | undefined {
+		return this.get(coin, network).filter((peer: Peer) => peer.isMultiSignature === false);
+	}
+
 	public getMultiSignature(coin: string, network: string): Peer | undefined {
 		return this.get(coin, network).find((peer: Peer) => peer.isMultiSignature === true);
 	}

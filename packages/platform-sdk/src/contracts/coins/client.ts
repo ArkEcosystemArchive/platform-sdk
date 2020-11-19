@@ -35,6 +35,7 @@ export interface ClientService {
 	syncing(): Promise<boolean>;
 
 	broadcast(transactions: SignedTransactionData[]): Promise<BroadcastResponse>;
+	broadcastSpread(transactions: SignedTransactionData[], hosts: string[]): Promise<BroadcastResponse>;
 }
 
 export interface ClientPagination {

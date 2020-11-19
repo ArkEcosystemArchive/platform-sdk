@@ -177,6 +177,17 @@ export class Profile implements ProfileContract {
 		return this.settings().get(ProfileSetting.Password) !== undefined;
 	}
 
+	/**
+	 * These methods serve as helpers to handle broadcasting.
+	 */
+
+	public usesMultiPeerBroadcasting(): boolean {
+		const usesCustomPeer: boolean = this.settings().get(ProfileSetting.UseCustomPeer) === true;
+		const usesMultiPeerBroadcasting: boolean = this.settings().get(ProfileSetting.UseMultiPeerBroadcast) === true;
+
+		return usesCustomPeer && usesMultiPeerBroadcasting;
+	}
+
 	public initializeSettings(): void {
 		this.settings().set(ProfileSetting.AdvancedMode, false);
 		this.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);

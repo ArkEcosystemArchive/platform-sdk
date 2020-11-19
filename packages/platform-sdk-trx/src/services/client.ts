@@ -112,4 +112,11 @@ export class ClientService implements Contracts.ClientService {
 
 		return result;
 	}
+
+	public async broadcastSpread(
+		transactions: Contracts.SignedTransactionData[],
+		hosts: string[],
+	): Promise<Contracts.BroadcastResponse> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
+	}
 }
