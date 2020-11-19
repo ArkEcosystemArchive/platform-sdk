@@ -1,7 +1,7 @@
 {
     "name": "@arkecosystem/platform-sdk-xmr",
     "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "1.1.7",
+    "version": "1.1.8",
     "contributors": [],
     "license": "MIT",
     "files": [
