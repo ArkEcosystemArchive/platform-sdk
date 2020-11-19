@@ -516,6 +516,12 @@ export class Wallet implements ReadWriteWallet {
 	 * These methods serve as helpers to keep the wallet data updated.
 	 */
 
+	public async sync(): Promise<void> {
+		await this.setCoin(this.coinId(), this.networkId());
+
+		// @TODO: consider others things to sync
+	}
+
 	public async syncIdentity(): Promise<void> {
 		const currentWallet = this.#wallet;
 		const currentPublicKey = this.#publicKey;

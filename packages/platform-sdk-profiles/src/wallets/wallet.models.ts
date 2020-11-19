@@ -132,6 +132,7 @@ export interface ReadWriteWallet {
 
 	entityAggregate(): EntityAggregate;
 
+	sync(): Promise<void>;
 	syncIdentity(): Promise<void>;
 	syncMultiSignature(): Promise<void>;
 	syncVotes(): Promise<void>;
