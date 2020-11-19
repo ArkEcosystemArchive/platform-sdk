@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.1.6 - 2020-11-19
+
+### Added
+
+-   Implement multi-peer broadcasting (8f397040, @faustbrian)
+
+### Changed
+
+-   Fetch exchange rates only for live coins (74b87fd7, @dated)
+
 ## 1.1.4 - 2020-11-14
 
 ### Added
