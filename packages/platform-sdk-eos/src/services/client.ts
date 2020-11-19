@@ -102,8 +102,11 @@ export class ClientService implements Contracts.ClientService {
 				expireSeconds: 30,
 			},
 		);
-		console.dir(result);
 
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+	}
+
+	public async broadcastSpread(transactions: Contracts.SignedTransactionData[], hosts: string[]): Promise<Contracts.BroadcastResponse> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
 	}
 }

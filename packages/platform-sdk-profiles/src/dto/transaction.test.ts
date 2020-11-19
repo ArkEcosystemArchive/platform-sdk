@@ -45,7 +45,7 @@ beforeAll(async () => {
 	profile = new Profile("profile-id");
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	wallet = new Wallet(uuidv4(), new PeerRepository());
+	wallet = new Wallet(uuidv4(), profile);
 
 	await wallet.setCoin("ARK", "ark.devnet");
 	await wallet.setIdentity(identity.mnemonic);

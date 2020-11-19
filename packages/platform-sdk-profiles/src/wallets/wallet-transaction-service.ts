@@ -509,7 +509,11 @@ export class TransactionService {
 		};
 
 		if (this.canBeBroadcasted(id)) {
-			result = await this.#wallet.client().broadcast([transaction]);
+			if (this.#wallet.usesMultiPeerBroadcasting()) {
+				result = await this.#wallet.client().broadcastSpread([transaction], this.#wallet.getRelays());
+			} else {
+				result = await this.#wallet.client().broadcast([transaction]);
+			}
 		} else if (transaction.isMultiSignature() || transaction.isMultiSignatureRegistration()) {
 			result.accepted.push(await this.#wallet.coin().multiSignature().broadcast(transaction.data()));
 		}

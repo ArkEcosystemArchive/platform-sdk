@@ -33,6 +33,7 @@ export interface ProfileContract {
 	walletAggregate(): WalletAggregate;
 	auth(): Authenticator;
 	usesPassword(): boolean;
+	usesMultiPeerBroadcasting(): boolean;
 }
 
 export interface ProfileStruct {
@@ -61,6 +62,7 @@ export enum ProfileSetting {
 	PluginProvider = "PLUGIN_PROVIDER",
 	ScreenshotProtection = "SCREENSHOT_PROTECTION",
 	UseCustomPeer = "USE_CUSTOM_PEER",
+	// @TODO: rename to UseMultiPeerBroadcasting
 	UseMultiPeerBroadcast = "USE_MULTI_PEER_BROADCAST",
 
 	// UI

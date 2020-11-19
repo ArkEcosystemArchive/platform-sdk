@@ -21,22 +21,22 @@ export class Wallet implements ReadWriteWallet {
 	readonly #entityAggregate: EntityAggregate;
 	readonly #entityHistoryAggregate: EntityHistoryAggregate;
 
-	readonly #peerRepository: PeerRepository;
 	readonly #dataRepository: DataRepository;
 	readonly #settingRepository: SettingRepository;
 	readonly #transactionService: TransactionService;
 
 	readonly #id: string;
 	#coin!: Coins.Coin;
+	#profile!: Profile;
 	#wallet: Contracts.WalletData | undefined;
 
 	#address!: string;
 	#publicKey!: string | undefined;
 	#avatar!: string;
 
-	public constructor(id: string, peers: PeerRepository) {
+	public constructor(id: string, profile: Profile) {
 		this.#id = id;
-		this.#peerRepository = peers;
+		this.#profile = profile;
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
@@ -48,15 +48,31 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	/**
+	 * These methods serve as helpers to proxy certain method calls to the parent profile.
+	 */
+
+	public usesMultiPeerBroadcasting(): boolean {
+		return this.#profile.usesMultiPeerBroadcasting();
+	}
+
+	public peers(): PeerRepository {
+		return this.#profile.peers();
+	}
+
+	public getRelays(): string[] {
+		return this.peers().getRelays(this.coinId(), this.networkId())?.map((peer) => peer.host) || [];
+	}
+
+	/**
 	 * These methods allow to switch out the underlying implementation of certain things like the coin.
 	 */
 
 	public async setCoin(coin: string, network: string): Promise<Wallet> {
 		// @TODO: consider making this part of the `makeCoin` function
-		if (this.#peerRepository.has(coin, network)) {
+		if (this.peers().has(coin, network)) {
 			this.#coin = await makeCoin(coin, network, {
-				peer: this.#peerRepository.getRelay(coin, network)?.host,
-				peerMultiSignature: this.#peerRepository.getMultiSignature(coin, network)?.host,
+				peer: this.peers().getRelay(coin, network)?.host,
+				peerMultiSignature: this.peers().getMultiSignature(coin, network)?.host,
 			});
 		} else {
 			this.#coin = await makeCoin(coin, network);

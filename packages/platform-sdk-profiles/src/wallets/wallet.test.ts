@@ -59,7 +59,7 @@ beforeEach(async () => {
 	profile = new Profile("profile-id");
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	subject = new Wallet(uuidv4(), new PeerRepository());
+	subject = new Wallet(uuidv4(), profile);
 
 	await subject.setCoin("ARK", "ark.devnet");
 	await subject.setIdentity(identity.mnemonic);

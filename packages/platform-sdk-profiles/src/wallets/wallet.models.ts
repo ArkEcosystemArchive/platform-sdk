@@ -4,6 +4,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { ExtendedTransactionData } from "../dto/transaction";
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { DataRepository } from "../repositories/data-repository";
+import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
@@ -56,12 +57,18 @@ export enum WalletFlag {
 }
 
 export interface ReadWriteWallet {
+	usesMultiPeerBroadcasting(): boolean;
+	peers(): PeerRepository;
+	getRelays(): string[];
+
 	setCoin(coin: string, network: string): Promise<ReadWriteWallet>;
 	setIdentity(mnemonic: string): Promise<ReadWriteWallet>;
 	setAddress(address: string): Promise<ReadWriteWallet>;
 	setAlias(alias: string): ReadWriteWallet;
 	setAvatar(value: string): ReadWriteWallet;
+
 	hasSyncedWithNetwork(): boolean;
+
 	id(): string;
 	coin(): Coins.Coin;
 	network(): Coins.Network;
@@ -77,8 +84,10 @@ export interface ReadWriteWallet {
 	data(): DataRepository;
 	settings(): SettingRepository;
 	toObject(): WalletStruct;
+
 	secondPublicKey(): string | undefined;
 	username(): string | undefined;
+
 	isDelegate(): boolean;
 	isResignedDelegate(): boolean;
 	isKnown(): boolean;
@@ -87,6 +96,7 @@ export interface ReadWriteWallet {
 	isSecondSignature(): boolean;
 	isStarred(): boolean;
 	toggleStarred(): void;
+
 	coinId(): string;
 	networkId(): string;
 	manifest(): Coins.Manifest;
@@ -98,19 +108,30 @@ export interface ReadWriteWallet {
 	message(): Contracts.MessageService;
 	peer(): Contracts.PeerService;
 	transaction(): TransactionService;
+
 	transactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	sentTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	receivedTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	findTransactionById(id: string): Promise<ExtendedTransactionData>;
 	findTransactionsByIds(ids: string[]): Promise<ExtendedTransactionData[]>;
+
 	multiSignature(): Contracts.WalletMultiSignature;
 	multiSignatureParticipants(): ReadOnlyWallet[];
+
 	entities(): Contracts.Entity[];
+
 	votes(): ReadOnlyWallet[];
 	votesAvailable(): number;
 	votesUsed(): number;
+
 	explorerLink(): string;
+
+	canVote(): boolean;
+	can(feature: string): boolean;
+	cannot(feature: string): boolean;
+
 	entityAggregate(): EntityAggregate;
+
 	syncIdentity(): Promise<void>;
 	syncMultiSignature(): Promise<void>;
 	syncVotes(): Promise<void>;

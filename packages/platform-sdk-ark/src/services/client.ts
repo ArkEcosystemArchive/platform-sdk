@@ -103,6 +103,7 @@ export class ClientService implements Contracts.ClientService {
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		let response: Contracts.KeyValuePair;
+
 		try {
 			response = await this.post("transactions", {
 				body: {
@@ -115,37 +116,38 @@ export class ClientService implements Contracts.ClientService {
 			response = error.response.json();
 		}
 
-		const { data, errors } = response;
+		return this.handleBroadcastResponse(response);
+	}
 
-		const result: Contracts.BroadcastResponse = {
-			accepted: [],
-			rejected: [],
-			errors: {},
-		};
+	public async broadcastSpread(transactions: Contracts.SignedTransactionData[], hosts: string[]): Promise<Contracts.BroadcastResponse> {
+		const promises: any[] = [];
 
-		if (Array.isArray(data.accept)) {
-			result.accepted = data.accept;
+		for(const host of hosts) {
+			promises.push(async () => {
+				try {
+					return (await this.#http.post(`${host}/transactions`, {
+						transactions: transactions.map((transaction: Contracts.SignedTransactionData) =>
+							transaction.data(),
+						),
+					})).json();
+				} catch (error) {
+					return error.response.json();
+				}
+			});
 		}
 
-		if (Array.isArray(data.invalid)) {
-			result.rejected = data.invalid;
-		}
+		let response: Contracts.KeyValuePair = {};
 
-		if (errors) {
-			for (const [key, value] of Object.entries(errors)) {
-				if (!Array.isArray(result.errors[key])) {
-					result.errors[key] = [];
-				}
+		const results: any = await Promise.allSettled(promises);
+		for(const result of results) {
+			if (result.status === 'fulfilled') {
+				response = result.value;
 
-				// @ts-ignore
-				for (const error of value) {
-					// @ts-ignore
-					result.errors[key].push(error.type);
-				}
+				break;
 			}
 		}
 
-		return result;
+		return this.handleBroadcastResponse(response);
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
@@ -232,6 +234,40 @@ export class ClientService implements Contracts.ClientService {
 
 			result.searchParams = dotify({ ...result.searchParams, ...result.body });
 			result.body = null;
+		}
+
+		return result;
+	}
+
+	private handleBroadcastResponse(response): Contracts.BroadcastResponse {
+		const { data, errors } = response;
+
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
+		if (Array.isArray(data.accept)) {
+			result.accepted = data.accept;
+		}
+
+		if (Array.isArray(data.invalid)) {
+			result.rejected = data.invalid;
+		}
+
+		if (errors) {
+			for (const [key, value] of Object.entries(errors)) {
+				if (!Array.isArray(result.errors[key])) {
+					result.errors[key] = [];
+				}
+
+				// @ts-ignore
+				for (const error of value) {
+					// @ts-ignore
+					result.errors[key].push(error.type);
+				}
+			}
 		}
 
 		return result;

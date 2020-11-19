@@ -44,7 +44,7 @@ beforeEach(async () => {
 	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 
-	wallet = new Wallet(uuidv4(), new PeerRepository());
+	wallet = new Wallet(uuidv4(), new Profile("profile-id"));
 
 	await wallet.setCoin("ARK", "ark.devnet");
 	await wallet.setIdentity(identity.mnemonic);
