@@ -125,20 +125,6 @@ export class ClientService implements Contracts.ClientService {
 	): Promise<Contracts.BroadcastResponse> {
 		const promises: any[] = [];
 
-		const broadcast = async (host: string) => {
-			try {
-				return (
-					await this.#http.post(`${host}/transactions`, {
-						transactions: transactions.map((transaction: Contracts.SignedTransactionData) =>
-							transaction.data(),
-						),
-					})
-				).json();
-			} catch (error) {
-				return error.response.json();
-			}
-		}
-
 		for (const host of hosts) {
 			promises.push(new Promise(async (resolve, reject) => {
 				try {
