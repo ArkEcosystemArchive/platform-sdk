@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.1.9 - 2020-11-23
+
+### Added
+
+-   Implement `ReadWriteWallet#canAny` and `ReadWriteWallet#canAll` (684bca7f, @faustbrian)
+
+## 1.1.8 - 2020-11-19
+
+### Added
+
+-   Implement `Wallet#sync` method (d29b4d7e, @faustbrian)
+
+## 1.1.7 - 2020-11-19
+
+### Added
+
+-   Added `ClientService#broadcastSpread` tests (d60e17e0, @faustbrian)
+
 ## 1.1.6 - 2020-11-19
 
 ### Added
