@@ -496,6 +496,26 @@ export class Wallet implements ReadWriteWallet {
 		return this.#coin.network().can(feature);
 	}
 
+	public canAny(features: string[]): boolean {
+		for(const feature of features) {
+			if (this.can(feature)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public canAll(features: string[]): boolean {
+		for(const feature of features) {
+			if (!this.can(feature)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	public cannot(feature: string): boolean {
 		return this.#coin.network().can(feature);
 	}

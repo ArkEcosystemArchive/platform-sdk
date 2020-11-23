@@ -128,6 +128,8 @@ export interface ReadWriteWallet {
 
 	canVote(): boolean;
 	can(feature: string): boolean;
+	canAny(features: string[]): boolean;
+	canAll(features: string[]): boolean;
 	cannot(feature: string): boolean;
 
 	entityAggregate(): EntityAggregate;
