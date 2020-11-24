@@ -17,11 +17,11 @@ describe("Blockfolio", () => {
 	describe("#findByCoin", () => {
 		it("should retrieve the feed and findByCoin it", async () => {
 			nock("https://platform.ark.io")
-				.get("/api/coins/ark/signals")
+				.get("/api/coins/signals")
 				.query(true)
 				.reply(200, require("../test/fixtures/blockfolio.json"));
 
-			const result = await subject.findByCoin("ark");
+			const result = await subject.findByCoin({ coins: ["ARK"] });
 
 			expect(result).toBeObject();
 			expect(result.data).toBeArray();

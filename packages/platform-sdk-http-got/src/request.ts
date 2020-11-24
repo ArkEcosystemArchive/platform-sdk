@@ -13,7 +13,8 @@ export class Request extends Http.Request {
 		};
 
 		if (data && data.query) {
-			options.searchParams = data.query;
+			// @ts-ignore
+			options.searchParams = new URLSearchParams(data.query);
 		}
 
 		if (data && data.data) {
