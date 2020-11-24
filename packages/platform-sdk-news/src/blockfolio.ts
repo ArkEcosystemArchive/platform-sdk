@@ -10,11 +10,10 @@ export class Blockfolio {
 	}
 
 	public async findByCoin(
-		coin: string,
-		query: { page?: number; query?: string; categories?: string[] } = {},
+		query: { page?: number; query?: string; coins?: string[],categories?: string[] } = {},
 	): Promise<BlockfolioResponse> {
 		const { data, meta }: any = (
-			await this.#httpClient.get(`https://platform.ark.io/api/coins/${coin}/signals`, query)
+			await this.#httpClient.get(`https://platform.ark.io/api/coins/signals`, query)
 		).json();
 
 		return { data, meta };
