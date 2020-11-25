@@ -1,5 +1,4 @@
 import dot from "dot-prop";
-import unset from "unset-value";
 
 export class DataRepository {
 	#storage: object = {};
