@@ -497,7 +497,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public canAny(features: string[]): boolean {
-		for(const feature of features) {
+		for (const feature of features) {
 			if (this.can(feature)) {
 				return true;
 			}
@@ -507,8 +507,8 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public canAll(features: string[]): boolean {
-		for(const feature of features) {
-			if (!this.can(feature)) {
+		for (const feature of features) {
+			if (this.cannot(feature)) {
 				return false;
 			}
 		}
@@ -517,7 +517,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public cannot(feature: string): boolean {
-		return this.#coin.network().can(feature);
+		return this.#coin.network().cannot(feature);
 	}
 
 	/**
