@@ -45,6 +45,11 @@ beforeEach(() => {
 		.get("/coins/ark/market_chart")
 		.query(true)
 		.reply(200, require("../test/fixtures/historical.json"));
+
+	nock(BASE_URL_COINGECKO)
+		.get("/coins/ark/history")
+		.query(true)
+		.reply(200, require("../test/fixtures/daily-average.json"));
 });
 
 describe("PriceTracker", () => {
@@ -76,5 +81,14 @@ describe("PriceTracker", () => {
 		});
 		expect(response).toBeObject();
 		expect(response).toContainKeys(["labels", "datasets"]);
+	});
+
+	it("should return daily average", async () => {
+		const response = await subject.dailyAverage({
+			token,
+			currency,
+			timestamp: Date.now(),
+		});
+		expect(response).toBe(10.2219);
 	});
 });
