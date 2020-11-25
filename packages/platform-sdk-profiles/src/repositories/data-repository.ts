@@ -1,4 +1,5 @@
 import dot from "dot-prop";
+import unset from "unset-value";
 
 export class DataRepository {
 	#storage: object = {};
@@ -48,6 +49,14 @@ export class DataRepository {
 
 	public forget(key: string): void {
 		dot.delete(this.#storage, key);
+	}
+
+	public forgetIndex(key: string, index: number): void {
+		const value: any[] | undefined = this.get(key);
+
+		if (value !== undefined) {
+			this.set(key, value.filter((_, i) => i !== index))
+		}
 	}
 
 	public flush(): void {

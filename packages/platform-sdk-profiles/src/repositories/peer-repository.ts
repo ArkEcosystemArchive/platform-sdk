@@ -74,7 +74,7 @@ export class PeerRepository {
 			throw new Error(`No peer found for [${id}].`);
 		}
 
-		this.#data.forget(id);
+		this.#data.forgetIndex(`${coin}.${network}`, index);
 
 		// If the list is empty we want to completely remove it.
 		if ((this.#data.get<Peer[]>(`${coin}.${network}`) || []).filter(Boolean).length <= 0) {

@@ -18,16 +18,30 @@ describe("PeerRepository", () => {
 		expect(subject.has("ARK", "mainnet")).toBeTrue();
 
 		subject.create("ARK", "devnet", {
-			name: "Private",
-			host: "https://devip:devport/api",
+			name: "Private 1",
+			host: "https://devip:devport/api/1",
+			isMultiSignature: false,
+		});
+
+		expect(subject.has("ARK", "devnet")).toBeTrue();
+
+		subject.create("ARK", "devnet", {
+			name: "Private 2",
+			host: "https://devip:devport/api/2",
 			isMultiSignature: false,
 		});
 
 		expect(subject.has("ARK", "devnet")).toBeTrue();
 
 		subject.forget("ARK", "devnet", {
-			name: "Private",
-			host: "https://devip:devport/api",
+			name: "Private 1",
+			host: "https://devip:devport/api/1",
+			isMultiSignature: false,
+		});
+
+		subject.forget("ARK", "devnet", {
+			name: "Private 2",
+			host: "https://devip:devport/api/2",
 			isMultiSignature: false,
 		});
 
