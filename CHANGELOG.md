@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.1.13 - 2020-11-25
+
+### Added
+
+-   Implement PriceTracker#dailyAverage (bdfd0d27, @dated)
+-   Implement PriceTracker#dailyAverage (fe499327, @dated)
+-   Edit custom peer (ec0a43b7, @brenopolanski)
+
 ## 1.1.10 - 2020-11-23
 
 ### Changed
