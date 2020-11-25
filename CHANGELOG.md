@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.1.14 - 2020-11-25
+
+### Fixed
+
+-   Reset array indices when forgetting a value (9419e81e, @faustbrian)
+
 ## 1.1.13 - 2020-11-25
 
 ### Added
