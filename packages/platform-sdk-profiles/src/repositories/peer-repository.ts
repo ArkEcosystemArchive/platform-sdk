@@ -55,6 +55,17 @@ export class PeerRepository {
 		return this.#data.has(`${coin}.${network}`);
 	}
 
+	public update(coin: string, network: string, host: string, peer: Peer): void {
+		const index: number = this.get(coin, network).findIndex((item: Peer) => item.host === host);
+		const id = `${coin}.${network}.${index}`;
+
+		if (this.#data.missing(id)) {
+			throw new Error(`No peer found for [${id}].`);
+		}
+
+		this.#data.set(id, peer);
+	}
+
 	public forget(coin: string, network: string, peer: Peer): void {
 		const index: number = this.get(coin, network).findIndex((item: Peer) => item.host === peer.host);
 		const id = `${coin}.${network}.${index}`;

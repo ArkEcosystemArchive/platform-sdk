@@ -34,6 +34,45 @@ describe("PeerRepository", () => {
 		expect(() => subject.get("ARK", "devnet")).toThrow("No peer found for");
 	});
 
+	it("should update a peer", async () => {
+		subject.create("ARK", "mainnet", {
+			name: "Private",
+			host: "https://ip:port/api",
+			isMultiSignature: false,
+		});
+
+		subject.create("ARK", "mainnet", {
+			name: "MuSig",
+			host: "https://muip:muport/api",
+			isMultiSignature: true,
+		});
+
+		expect(subject.has("ARK", "mainnet")).toBeTrue();
+
+		subject.update("ARK", "mainnet", "https://muip:muport/api", {
+			name: "MuSig Updated",
+			host: "https://muip:muport/api",
+			isMultiSignature: true,
+		});
+
+		expect(subject.toObject()).toEqual({
+			ARK: {
+				mainnet: [
+					{
+						host: "https://ip:port/api",
+						isMultiSignature: false,
+						name: "Private",
+					},
+					{
+						host: "https://muip:muport/api",
+						isMultiSignature: true,
+						name: "MuSig Updated",
+					},
+				],
+			},
+		});
+	});
+
 	it("should store multiple peers with different types for the same network", async () => {
 		subject.create("ARK", "mainnet", {
 			name: "Private",
