@@ -42,6 +42,11 @@ beforeEach(() => {
 		.get("/assets/ark/history")
 		.query(true)
 		.reply(200, require("../test/fixtures/historical.json"));
+
+	nock(BASE_URL_COINCAP)
+		.get("/assets/ark/history")
+		.query((queryObject: any) => queryObject.interval === "h1")
+		.reply(200, require("../test/fixtures/daily-average.json"));
 });
 
 describe("PriceTracker", () => {
@@ -74,5 +79,14 @@ describe("PriceTracker", () => {
 		});
 		expect(response).toBeObject();
 		expect(response).toContainKeys(["labels", "datasets"]);
+	});
+
+	it("should return daily average", async () => {
+		const response = await subject.dailyAverage({
+			token,
+			currency,
+			timestamp: Date.now(),
+		});
+		expect(response).toBe(0.38803514004956435);
 	});
 });
