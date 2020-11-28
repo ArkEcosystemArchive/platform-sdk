@@ -193,3 +193,54 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.settings.AVATAR).toBeString();
 	});
 });
+
+describe('#setCoin', () => {
+	it("should use the default peer if no custom one is available", async () => {
+		await subject.setCoin("ARK", "ark.devnet");
+
+		expect(() => subject.coin().config().get("peer")).toThrow("unknown");
+	});
+
+	it("should use the custom relay peer if is available", async () => {
+		subject.peers().create("ARK", "ark.devnet", {
+			name: "Relay",
+			host: "https://relay.com/api",
+			isMultiSignature: false,
+		});
+
+		await subject.setCoin("ARK", "ark.devnet");
+
+		expect(subject.coin().config().get("peer")).toBe("https://relay.com/api");
+	});
+
+	it("should use the custom musig peer if is available", async () => {
+		subject.peers().create("ARK", "ark.devnet", {
+			name: "MuSig",
+			host: "https://musig.com/api",
+			isMultiSignature: true,
+		});
+
+		await subject.setCoin("ARK", "ark.devnet");
+
+		expect(subject.coin().config().get("peerMultiSignature")).toBe("https://musig.com/api");
+	});
+
+	it("should use the custom relay and musig peers if they are available", async () => {
+		subject.peers().create("ARK", "ark.devnet", {
+			name: "Relay",
+			host: "https://relay.com/api",
+			isMultiSignature: false,
+		});
+
+		subject.peers().create("ARK", "ark.devnet", {
+			name: "MuSig",
+			host: "https://musig.com/api",
+			isMultiSignature: true,
+		});
+
+		await subject.setCoin("ARK", "ark.devnet");
+
+		expect(subject.coin().config().get("peer")).toBe("https://relay.com/api");
+		expect(subject.coin().config().get("peerMultiSignature")).toBe("https://musig.com/api");
+	});
+});

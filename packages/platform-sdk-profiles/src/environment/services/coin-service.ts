@@ -45,8 +45,8 @@ export class CoinService {
 		return instance;
 	}
 
-	public async push(coin: string, network: string, options: object = {}): Promise<Coins.Coin> {
-		if (this.has(coin, network)) {
+	public async push(coin: string, network: string, options: object = {}, useForce: boolean = false): Promise<Coins.Coin> {
+		if (!useForce && this.has(coin, network)) {
 			return this.get(coin, network);
 		}
 
