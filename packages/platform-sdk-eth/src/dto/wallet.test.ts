@@ -4,18 +4,46 @@ import { WalletData } from "./wallet";
 
 let subject: WalletData;
 
-beforeEach(() => (subject = new WalletData({ address: "0x4581a610f96878266008993475f1476ca9997081", balance: 10 })));
+beforeEach(
+	() =>
+		(subject = new WalletData({
+			address: "0x4581a610f96878266008993475f1476ca9997081",
+			balance: 10,
+			nonce: 0,
+		})),
+);
 
 describe("WalletData", function () {
-	test("#address", () => {
-		expect(subject.address()).toBe("0x4581a610f96878266008993475f1476ca9997081");
+	const implementedMethods = {
+		address: "0x4581a610f96878266008993475f1476ca9997081",
+		publicKey: undefined,
+		balance: BigNumber.make("10"),
+		entities: [],
+		nonce: expect.anything(),
+	};
+
+	describe("Implemented", function () {
+		it.each(Object.keys(implementedMethods))("#%s", async (method: string) => {
+			expect(subject[method]()).toEqual(implementedMethods[method]);
+		});
 	});
 
-	test("#publicKey", () => {
-		expect(subject.publicKey()).toBeUndefined();
-	});
+	describe("Not implemented", function () {
+		const nonImplementedMethods = [
+			"secondPublicKey",
+			"username",
+			"rank",
+			"votes",
+			"multiSignature",
+			"isDelegate",
+			"isKnown",
+			"isMultiSignature",
+			"isSecondSignature",
+			"isResignedDelegate",
+		];
 
-	test("#balance", () => {
-		expect(subject.balance()).toEqual(BigNumber.make("10"));
+		it.each(nonImplementedMethods)("#%s", async (method: string) => {
+			expect(() => subject[method]()).toThrow(/not implemented/);
+		});
 	});
 });
