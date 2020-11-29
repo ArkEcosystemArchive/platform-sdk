@@ -5,18 +5,42 @@ import { WalletData } from "./wallet";
 
 let subject: WalletData;
 
-beforeEach(() => (subject = new WalletData(Fixture)));
-
 describe("WalletData", function () {
-	test("#address", () => {
-		expect(subject.address()).toBe("41bf97a54f4b829c4e9253b26024b1829e1a3b1120");
+	const subject = new WalletData(Fixture);
+	const implementedMethods = {
+		address: "41bf97a54f4b829c4e9253b26024b1829e1a3b1120",
+		balance: BigNumber.make("17491629"),
+		publicKey: undefined,
+		entities: [],
+		nonce: BigNumber.make(24242),
+	};
+
+	it("should be instance of WalletData", async () => {
+		expect(subject).toBeInstanceOf(WalletData);
 	});
 
-	test("#publicKey", () => {
-		expect(subject.publicKey()).toBeUndefined();
+	describe("Implemented", function () {
+		it.each(Object.keys(implementedMethods))("#%s", async (method: string) => {
+			expect(subject[method]()).toEqual(implementedMethods[method]);
+		});
 	});
 
-	test("#balance", () => {
-		expect(subject.balance()).toEqual(BigNumber.make("17491629"));
+	describe("Not implemented", function () {
+		const nonImplementedMethods = [
+			"secondPublicKey",
+			"username",
+			"rank",
+			"votes",
+			"multiSignature",
+			"isDelegate",
+			"isKnown",
+			"isMultiSignature",
+			"isSecondSignature",
+			"isResignedDelegate",
+		];
+
+		it.each(nonImplementedMethods)("#%s", async (method: string) => {
+			expect(() => subject[method]()).toThrow(/not implemented/);
+		});
 	});
 });
