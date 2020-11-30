@@ -9,11 +9,18 @@ export interface CoinType {
 	symbol: string;
 }
 
+export interface KnownWallet {
+	type: string;
+	name: string;
+	address: string;
+}
+
 export interface EnvironmentOptions {
 	coins: CoinList;
 	storage: string | Storage;
 	httpClient: Contracts.HttpClient;
 	migrations?: Record<string, any>;
+	knownWallets?: KnownWallet[];
 }
 
 export interface Storage {
