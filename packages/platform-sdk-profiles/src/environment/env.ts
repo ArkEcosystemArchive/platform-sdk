@@ -114,7 +114,7 @@ export class Environment {
 									}).required(),
 								}).noUnknown(),
 								address: string().required(),
-								publicKey: string().required(),
+								publicKey: string(),
 								data: object().required(),
 								settings: object().required(),
 							}).noUnknown(),
