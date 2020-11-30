@@ -27,9 +27,7 @@ export class ProfileRepository {
 
 			await result.contacts().fill(profile.contacts);
 
-			for (const wallet of Object.values(profile.wallets)) {
-				await result.wallets().restore(wallet as any);
-			}
+			await Promise.allSettled([...Object.values(profile.wallets)].map(wallet => result.wallets().restore(wallet as any)))
 
 			this.#data.set(id, result);
 		}
