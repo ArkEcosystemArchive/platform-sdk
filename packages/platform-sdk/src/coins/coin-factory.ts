@@ -27,6 +27,7 @@ export class CoinFactory {
 				multiSignature: await services.MultiSignatureService.construct(config),
 				peer: await services.PeerService.construct(config),
 				transaction: await services.TransactionService.construct(config),
+				knownWallets: await services.KnownWalletsService.construct(config),
 			},
 		});
 	}

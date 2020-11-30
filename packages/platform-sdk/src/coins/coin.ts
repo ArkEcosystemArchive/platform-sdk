@@ -2,6 +2,7 @@ import {
 	ClientService,
 	FeeService,
 	IdentityService,
+	KnownWalletsService,
 	LedgerService,
 	LinkService,
 	MessageService,
@@ -49,6 +50,7 @@ export class Coin {
 		await this.#services.message.destruct();
 		await this.#services.peer.destruct();
 		await this.#services.transaction.destruct();
+		await this.#services.knownWallets.destruct();
 	}
 
 	public network(): Network {
@@ -101,5 +103,9 @@ export class Coin {
 
 	public transaction(): TransactionService {
 		return this.#services.transaction;
+	}
+
+	public knownWallets(): KnownWalletsService {
+		return this.#services.knownWallets;
 	}
 }

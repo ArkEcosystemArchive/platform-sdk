@@ -3,6 +3,7 @@ import {
 	FeeService,
 	HttpClient,
 	IdentityService,
+	KnownWalletsService,
 	LedgerService,
 	LinkService,
 	MessageService,
@@ -24,6 +25,7 @@ export interface CoinSpec {
 		MultiSignatureService: any;
 		PeerService: any;
 		TransactionService: any;
+		KnownWalletsService: any;
 	};
 }
 
@@ -44,4 +46,5 @@ export interface CoinServices {
 	multiSignature: MultiSignatureService;
 	peer: PeerService;
 	transaction: TransactionService;
+	knownWallets: KnownWalletsService;
 }
