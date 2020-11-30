@@ -14,10 +14,12 @@ import { identity } from "../../test/fixtures/identity";
 import { StubStorage } from "../../test/stubs/storage";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
+import { KnownWalletsService } from "./services/known-wallets-service";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Environment } from "./env";
+import KnownWalletsFixture from "../../test/fixtures/wallets/known-wallets.json";
 
 let subject: Environment;
 
@@ -40,7 +42,13 @@ beforeAll(() => {
 beforeEach(async () => {
 	removeSync(resolve(__dirname, "../../test/stubs/env.json"));
 
-	subject = new Environment({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
+	subject = new Environment({
+		coins: { ARK, BTC, ETH },
+		httpClient: new Request(),
+		storage: new StubStorage(),
+		knownWallets: KnownWalletsFixture,
+	});
+
 	await subject.verify();
 	await subject.boot();
 });
@@ -59,6 +67,10 @@ it("should have available networks", async () => {
 	for (const network of subject.availableNetworks()) {
 		expect(network.toObject()).toEqual(coins[network.coin()].manifest.networks[network.id()]);
 	}
+});
+
+it("should have known addresses service", async () => {
+	expect(subject.knownWallets()).toBeInstanceOf(KnownWalletsService);
 });
 
 it("should create a profile with data and persist it when instructed to do so", async () => {
@@ -154,3 +166,4 @@ it("should get a list of used coins and networks", async () => {
 
 	expect(env.usedCoinsWithNetworks()).toEqual({ ARK: ["ark.devnet"] });
 });
+

@@ -13,6 +13,7 @@ import { DelegateService } from "./services/delegate-service";
 import { ExchangeRateService } from "./services/exchange-rate-service";
 import { FeeService } from "./services/fee-service";
 import { WalletService } from "./services/wallet-service";
+import { KnownWalletsService } from "./services/known-wallets-service";
 import { StorageFactory } from "./storage/factory";
 
 export class Environment {
@@ -32,8 +33,10 @@ export class Environment {
 		container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
 		container.set(Identifiers.FeeService, new FeeService());
 		container.set(Identifiers.WalletService, new WalletService());
+		container.set(Identifiers.KnownWalletsService, new KnownWalletsService(options.knownWallets));
 
 		container.set(Identifiers.Coins, options.coins);
+
 	}
 
 	/**
@@ -213,6 +216,10 @@ export class Environment {
 
 	public wallets(): WalletService {
 		return container.get(Identifiers.WalletService);
+	}
+
+	public knownWallets(): KnownWalletsService {
+		return container.get(Identifiers.KnownWalletsService);
 	}
 
 	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
