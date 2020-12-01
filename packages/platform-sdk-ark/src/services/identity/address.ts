@@ -50,19 +50,6 @@ export class Address implements Contracts.Address {
 
 	public async validate(address: string): Promise<boolean> {
 		try {
-			if (this.#config.get("network.id") === "ark.mainnet") {
-				const response: any = (
-					await this.#config
-						.get<Contracts.HttpClient>("httpClient")
-						.timeout(1000)
-						.get(`https://neoscan.io/api/main_net/v1/get_last_transactions_by_address/${address}/1`)
-				).json();
-
-				if (response && response.length > 0) {
-					throw new Error("This address exists on the NEO Mainnet.");
-				}
-			}
-
 			return BaseAddress.validate(address, this.#configCrypto);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
