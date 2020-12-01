@@ -23,7 +23,7 @@ export class CoinFactory {
 			services.MultiSignatureService.construct(config),
 			services.PeerService.construct(config),
 			services.TransactionService.construct(config),
-		])
+		]);
 
 		return new Coin({
 			networks,
