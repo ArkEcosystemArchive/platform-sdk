@@ -45,12 +45,12 @@ export class Coin {
 		await this.#services.client.destruct();
 		await this.#services.fee.destruct();
 		await this.#services.identity.destruct();
+		await this.#services.knownWallets.destruct();
 		await this.#services.ledger.destruct();
 		await this.#services.link.destruct();
 		await this.#services.message.destruct();
 		await this.#services.peer.destruct();
 		await this.#services.transaction.destruct();
-		await this.#services.knownWallets.destruct();
 	}
 
 	public network(): Network {
@@ -81,6 +81,10 @@ export class Coin {
 		return this.#services.identity;
 	}
 
+	public knownWallets(): KnownWalletsService {
+		return this.#services.knownWallets;
+	}
+
 	public ledger(): LedgerService {
 		return this.#services.ledger;
 	}
@@ -103,9 +107,5 @@ export class Coin {
 
 	public transaction(): TransactionService {
 		return this.#services.transaction;
-	}
-
-	public knownWallets(): KnownWalletsService {
-		return this.#services.knownWallets;
 	}
 }
