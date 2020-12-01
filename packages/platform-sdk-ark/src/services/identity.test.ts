@@ -51,18 +51,6 @@ describe("IdentityService", () => {
 			expect(result).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 		});
 
-		it.skip("should detect NEO duplicates on mainnet", async () => {
-			nock("https://neoscan.io/api/main_net/v1/")
-				.get("/get_last_transactions_by_address/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX/1")
-				.reply(200, require(`${__dirname}/../../test/fixtures/identity/neo-duplicate.json`));
-
-			subject = await IdentityService.construct(createConfig({ network: "ark.mainnet" }));
-
-			await expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).rejects.toThrow(
-				"This address exists on the NEO Mainnet.",
-			);
-		});
-
 		it("should validate an address", async () => {
 			await expect(subject.address().validate(identity.address)).resolves.toBeTrue();
 			await expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).resolves.toBeFalse();
