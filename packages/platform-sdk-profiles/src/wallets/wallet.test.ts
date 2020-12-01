@@ -194,7 +194,7 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 	});
 });
 
-describe('#setCoin', () => {
+describe("#setCoin", () => {
 	it("should use the default peer if no custom one is available", async () => {
 		await subject.setCoin("ARK", "ark.devnet");
 
