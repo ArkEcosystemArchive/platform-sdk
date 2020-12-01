@@ -1470,6 +1470,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.3"],
             ["localforage", "npm:1.9.0"],
+            ["mem", "npm:8.0.0"],
             ["nock", "npm:13.0.5"],
             ["npm-check-updates", "npm:10.1.1"],
             ["prettier", "npm:2.1.2"],
@@ -13636,6 +13637,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["map-age-cleaner", [
+        ["npm:0.1.3", {
+          "packageLocation": "./.yarn/cache/map-age-cleaner-npm-0.1.3-fd9e4b4aff-2.zip/node_modules/map-age-cleaner/",
+          "packageDependencies": [
+            ["map-age-cleaner", "npm:0.1.3"],
+            ["p-defer", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["map-cache", [
         ["npm:0.2.2", {
           "packageLocation": "./.yarn/cache/map-cache-npm-0.2.2-1620199b05-2.zip/node_modules/map-cache/",
@@ -13681,6 +13692,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/media-typer-npm-0.3.0-8674f8f0f5-2.zip/node_modules/media-typer/",
           "packageDependencies": [
             ["media-typer", "npm:0.3.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["mem", [
+        ["npm:8.0.0", {
+          "packageLocation": "./.yarn/cache/mem-npm-8.0.0-df546d58f0-2.zip/node_modules/mem/",
+          "packageDependencies": [
+            ["mem", "npm:8.0.0"],
+            ["map-age-cleaner", "npm:0.1.3"],
+            ["mimic-fn", "npm:3.1.0"]
           ],
           "linkType": "HARD",
         }]
@@ -13814,6 +13836,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/mimic-fn-npm-2.1.0-4fbeb3abb4-2.zip/node_modules/mimic-fn/",
           "packageDependencies": [
             ["mimic-fn", "npm:2.1.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:3.1.0", {
+          "packageLocation": "./.yarn/cache/mimic-fn-npm-3.1.0-12d126ec66-2.zip/node_modules/mimic-fn/",
+          "packageDependencies": [
+            ["mimic-fn", "npm:3.1.0"]
           ],
           "linkType": "HARD",
         }]
@@ -14935,6 +14964,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/p-debounce-npm-1.0.0-eca8d89a70-2.zip/node_modules/p-debounce/",
           "packageDependencies": [
             ["p-debounce", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["p-defer", [
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/p-defer-npm-1.0.0-4dfd0013f5-2.zip/node_modules/p-defer/",
+          "packageDependencies": [
+            ["p-defer", "npm:1.0.0"]
           ],
           "linkType": "HARD",
         }]
