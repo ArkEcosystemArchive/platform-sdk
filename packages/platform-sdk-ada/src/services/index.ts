@@ -1,6 +1,6 @@
 // export * from "./client";
 // export * from "./fee";
-// export * from "./identity";
+export * from "./identity";
 // export * from "./known-wallets";
 // export * from "./ledger";
 export * from "./link";
