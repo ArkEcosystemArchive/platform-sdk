@@ -42,15 +42,17 @@ export class Coin {
 	}
 
 	public async destruct(): Promise<void> {
-		await this.#services.client.destruct();
-		await this.#services.fee.destruct();
-		await this.#services.identity.destruct();
-		await this.#services.knownWallets.destruct();
-		await this.#services.ledger.destruct();
-		await this.#services.link.destruct();
-		await this.#services.message.destruct();
-		await this.#services.peer.destruct();
-		await this.#services.transaction.destruct();
+		await Promise.all([
+			this.#services.client.destruct(),
+			this.#services.fee.destruct(),
+			this.#services.identity.destruct(),
+			this.#services.knownWallets.destruct(),
+			this.#services.ledger.destruct(),
+			this.#services.link.destruct(),
+			this.#services.message.destruct(),
+			this.#services.peer.destruct(),
+			this.#services.transaction.destruct(),
+		]);
 	}
 
 	public network(): Network {
