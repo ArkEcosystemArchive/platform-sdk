@@ -26,10 +26,12 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
+              with:
+                ref: ${{ github.head_ref }}
 
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -45,7 +47,6 @@ jobs:
             - uses: stefanzweifel/git-auto-commit-action@v4
               with:
                   commit_message: "style: resolve style guide violations"
-                  branch: ${{ github.head_ref }}
 
     sdk:
         needs: [conflicts, format]
@@ -54,7 +55,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -88,7 +89,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -121,7 +122,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -154,7 +155,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -187,7 +188,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -220,7 +221,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -253,7 +254,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -286,7 +287,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -319,7 +320,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -352,7 +353,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -385,7 +386,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -418,7 +419,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -451,7 +452,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -484,7 +485,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -517,7 +518,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -550,7 +551,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -583,7 +584,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -616,7 +617,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -649,7 +650,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -682,7 +683,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -715,7 +716,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -748,7 +749,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -781,7 +782,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -814,7 +815,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -847,7 +848,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -880,7 +881,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [12.x]
 
         steps:
             - uses: actions/checkout@v2
