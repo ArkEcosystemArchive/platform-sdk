@@ -22,7 +22,7 @@ jobs:
               uses: olivernybroe/action-conflict-finder@v1.1
 
     sdk:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -56,7 +56,7 @@ jobs:
                   fail_ci_if_error: true
 
     ada:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -89,7 +89,7 @@ jobs:
                   fail_ci_if_error: true
 
     ark:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -122,7 +122,7 @@ jobs:
                   fail_ci_if_error: true
 
     atom:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -155,7 +155,7 @@ jobs:
                   fail_ci_if_error: true
 
     btc:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -188,7 +188,7 @@ jobs:
                   fail_ci_if_error: true
 
     coincap:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -221,7 +221,7 @@ jobs:
                   fail_ci_if_error: true
 
     coingecko:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -254,7 +254,7 @@ jobs:
                   fail_ci_if_error: true
 
     crypto:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -287,7 +287,7 @@ jobs:
                   fail_ci_if_error: true
 
     cryptocompare:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -320,7 +320,7 @@ jobs:
                   fail_ci_if_error: true
 
     eos:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -353,7 +353,7 @@ jobs:
                   fail_ci_if_error: true
 
     eth:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -386,7 +386,7 @@ jobs:
                   fail_ci_if_error: true
 
     http-axios:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -419,7 +419,7 @@ jobs:
                   fail_ci_if_error: true
 
     http-bent:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -452,7 +452,7 @@ jobs:
                   fail_ci_if_error: true
 
     http-got:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -485,7 +485,7 @@ jobs:
                   fail_ci_if_error: true
 
     http-ky:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -518,7 +518,7 @@ jobs:
                   fail_ci_if_error: true
 
     http-node-fetch:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -551,7 +551,7 @@ jobs:
                   fail_ci_if_error: true
 
     intl:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -584,7 +584,7 @@ jobs:
                   fail_ci_if_error: true
 
     lsk:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -617,7 +617,7 @@ jobs:
                   fail_ci_if_error: true
 
     markets:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -650,7 +650,7 @@ jobs:
                   fail_ci_if_error: true
 
     neo:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -683,7 +683,7 @@ jobs:
                   fail_ci_if_error: true
 
     news:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -716,7 +716,7 @@ jobs:
                   fail_ci_if_error: true
 
     profiles:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -749,7 +749,7 @@ jobs:
                   fail_ci_if_error: true
 
     support:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -782,7 +782,7 @@ jobs:
                   fail_ci_if_error: true
 
     trx:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -815,7 +815,7 @@ jobs:
                   fail_ci_if_error: true
 
     xlm:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
@@ -848,7 +848,7 @@ jobs:
                   fail_ci_if_error: true
 
     xrp:
-        needs: [format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
