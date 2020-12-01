@@ -1,4 +1,4 @@
-name: Test
+name: CI
 
 on:
     push:
@@ -21,41 +21,14 @@ jobs:
             - name: Merge Conflict finder
               uses: olivernybroe/action-conflict-finder@v1.1
 
-    format:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [12.x]
-
-        steps:
-            - uses: actions/checkout@v2
-              with:
-                ref: ${{ github.head_ref }}
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
-            - name: Apply Formatting
-              run: yarn format
-
-            - uses: stefanzweifel/git-auto-commit-action@v4
-              with:
-                  commit_message: "style: resolve style guide violations"
-
     sdk:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -83,13 +56,13 @@ jobs:
                   fail_ci_if_error: true
 
     ada:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -116,13 +89,13 @@ jobs:
                   fail_ci_if_error: true
 
     ark:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -149,13 +122,13 @@ jobs:
                   fail_ci_if_error: true
 
     atom:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -182,13 +155,13 @@ jobs:
                   fail_ci_if_error: true
 
     btc:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -215,13 +188,13 @@ jobs:
                   fail_ci_if_error: true
 
     coincap:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -248,13 +221,13 @@ jobs:
                   fail_ci_if_error: true
 
     coingecko:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -281,13 +254,13 @@ jobs:
                   fail_ci_if_error: true
 
     crypto:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -314,13 +287,13 @@ jobs:
                   fail_ci_if_error: true
 
     cryptocompare:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -347,13 +320,13 @@ jobs:
                   fail_ci_if_error: true
 
     eos:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -380,13 +353,13 @@ jobs:
                   fail_ci_if_error: true
 
     eth:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -413,13 +386,13 @@ jobs:
                   fail_ci_if_error: true
 
     http-axios:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -446,13 +419,13 @@ jobs:
                   fail_ci_if_error: true
 
     http-bent:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -479,13 +452,13 @@ jobs:
                   fail_ci_if_error: true
 
     http-got:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -512,13 +485,13 @@ jobs:
                   fail_ci_if_error: true
 
     http-ky:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -545,13 +518,13 @@ jobs:
                   fail_ci_if_error: true
 
     http-node-fetch:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -578,13 +551,13 @@ jobs:
                   fail_ci_if_error: true
 
     intl:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -611,13 +584,13 @@ jobs:
                   fail_ci_if_error: true
 
     lsk:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -644,13 +617,13 @@ jobs:
                   fail_ci_if_error: true
 
     markets:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -677,13 +650,13 @@ jobs:
                   fail_ci_if_error: true
 
     neo:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -710,13 +683,13 @@ jobs:
                   fail_ci_if_error: true
 
     news:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -743,13 +716,13 @@ jobs:
                   fail_ci_if_error: true
 
     profiles:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -776,13 +749,13 @@ jobs:
                   fail_ci_if_error: true
 
     support:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -809,13 +782,13 @@ jobs:
                   fail_ci_if_error: true
 
     trx:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -842,13 +815,13 @@ jobs:
                   fail_ci_if_error: true
 
     xlm:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -875,13 +848,13 @@ jobs:
                   fail_ci_if_error: true
 
     xrp:
-        needs: [conflicts, format]
+        needs: [conflicts]
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
