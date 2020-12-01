@@ -12,12 +12,9 @@ const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: nu
 	return lib.bech32.encode("addr", addrBuffer);
 };
 
-const ShelleyAddressGenerator = (seed: Buffer, accountIdx: number, isChange: boolean, networkId: number) => async (
-	addressIdx: number,
-) => {
+const generateAddress = async (seed: Buffer, accountIdx: number, isChange: boolean, networkId: number, addressIdx: number) => {
 	const spendPath = shelleyPath(accountIdx, isChange, addressIdx);
 	const spendXpub = deriveNode(spendPath, seed).slice(64, 128);
-	console.log(`spendXpub ${accountIdx}: ${spendXpub.toString("hex")}\n`);
 
 	const stakePath = shelleyStakeAccountPath(accountIdx);
 	const stakeXpub = deriveNode(stakePath, seed).slice(64, 128);
@@ -28,7 +25,7 @@ const ShelleyAddressGenerator = (seed: Buffer, accountIdx: number, isChange: boo
 	};
 };
 
-export const ShelleyAddressFromMnemonic = async (
+export const addressFromMnemonic = async (
 	mnemonic: string,
 	accountIdx: number,
 	isChange: boolean,
@@ -36,8 +33,7 @@ export const ShelleyAddressFromMnemonic = async (
 	networkId: number,
 ): Promise<string> => {
 	const seed = await lib.mnemonicToRootKeypair(mnemonic, SHELLEY_DERIVATION_SCHEME);
-	const addGen = ShelleyAddressGenerator(seed, accountIdx, isChange, networkId);
-	const { address } = await addGen(addressIdx);
+	const { address } = await generateAddress(seed, accountIdx, isChange, networkId, addressIdx);
 
 	return address;
 };
