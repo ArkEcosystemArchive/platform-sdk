@@ -17,8 +17,11 @@ jobs:
                   node-version: 12
                   registry-url: https://registry.npmjs.org/
 
-            - name: Install & Build
-              run: yarn setup
+            - name: Install
+              run: yarn install --immutable --immutable-cache
+
+            - name: Build
+              run: yarn build
 
             - name: Publish to NPM
               run: yarn publish
