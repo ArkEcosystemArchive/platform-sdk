@@ -1,11 +1,15 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { addressFromMnemonic } from "../../crypto/shelley/address";
 
 export class Address implements Contracts.Address {
-	public async fromMnemonic(mnemonic: string): Promise<string> {
-		const networkId = 0; // 0: testnet, 1: mainnet
+	readonly #config: Coins.Config;
 
-		return addressFromMnemonic(mnemonic, 0, false, 0, networkId);
+	public constructor(config: Coins.Config) {
+		this.#config = config;
+	}
+
+	public async fromMnemonic(mnemonic: string): Promise<string> {
+		return addressFromMnemonic(mnemonic, 0, false, 0, this.#config.get("network.crypto.networkId"));
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
