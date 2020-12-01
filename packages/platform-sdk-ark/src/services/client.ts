@@ -126,19 +126,23 @@ export class ClientService implements Contracts.ClientService {
 		const promises: any[] = [];
 
 		for (const host of hosts) {
-			promises.push(new Promise(async (resolve, reject) => {
-				try {
-					return resolve((
-						await this.#http.post(`${host}/transactions`, {
-							transactions: transactions.map((transaction: Contracts.SignedTransactionData) =>
-								transaction.data(),
-							),
-						})
-					).json());
-				} catch (error) {
-					return reject(error.response.json());
-				}
-			}));
+			promises.push(
+				new Promise(async (resolve, reject) => {
+					try {
+						return resolve(
+							(
+								await this.#http.post(`${host}/transactions`, {
+									transactions: transactions.map((transaction: Contracts.SignedTransactionData) =>
+										transaction.data(),
+									),
+								})
+							).json(),
+						);
+					} catch (error) {
+						return reject(error.response.json());
+					}
+				}),
+			);
 		}
 
 		let response: Contracts.KeyValuePair = {};

@@ -54,7 +54,10 @@ export class DataRepository {
 		const value: any[] | undefined = this.get(key);
 
 		if (value !== undefined) {
-			this.set(key, value.filter((_, i) => i !== index))
+			this.set(
+				key,
+				value.filter((_, i) => i !== index),
+			);
 		}
 	}
 
