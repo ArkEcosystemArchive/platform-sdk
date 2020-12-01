@@ -8,6 +8,7 @@
 		"symbol": "ADA"
 	},
 	"crypto": {
+		"networkId": 0,
 		"slip44": 1815,
 		"signingMethods": {
 			"mnemonic": false,
