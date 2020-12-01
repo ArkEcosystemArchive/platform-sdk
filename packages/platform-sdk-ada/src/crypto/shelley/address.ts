@@ -12,7 +12,13 @@ const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: nu
 	return lib.bech32.encode("addr", addrBuffer);
 };
 
-const generateAddress = async (seed: Buffer, accountIdx: number, isChange: boolean, networkId: number, addressIdx: number) => {
+const generateAddress = async (
+	seed: Buffer,
+	accountIdx: number,
+	isChange: boolean,
+	networkId: number,
+	addressIdx: number,
+) => {
 	const spendPath = shelleyPath(accountIdx, isChange, addressIdx);
 	const spendXpub = deriveNode(spendPath, seed).slice(64, 128);
 
