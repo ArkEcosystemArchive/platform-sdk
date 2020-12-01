@@ -20,6 +20,9 @@ jobs:
             - name: Install
               run: yarn install --immutable --immutable-cache
 
+            - name: Build
+              run: yarn build
+
             - name: Publish to NPM
               run: yarn publish
               env:

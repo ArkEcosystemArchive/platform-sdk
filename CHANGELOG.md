@@ -5,12 +5,257 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.1.18 - 2020-11-30
+
+### Fixed
+
+-   Allow wallets without public keys (8f8f797e, @faustbrian)
+
+## 1.1.17 - 2020-11-30
+
+### Changed
+
+-   Use `Promise.all` to restore wallets (f1887852, @faustbrian)
+
+## 1.1.16 - 2020-11-28
+
+### Fixed
+
+-   Ensure that custom custom peers circumvent object caching (ca750408, @faustbrian)
+
+## 1.1.15 - 2020-11-25
+
+### Fixed
+
+-   Call correct method in `Wallet#cannot` (f7d39c80, @dated)
+
+## 1.1.14 - 2020-11-25
+
+### Fixed
+
+-   Reset array indices when forgetting a value (9419e81e, @faustbrian)
+
+## 1.1.13 - 2020-11-25
+
+### Added
+
+-   Implement PriceTracker#dailyAverage (bdfd0d27, @dated)
+-   Implement PriceTracker#dailyAverage (fe499327, @dated)
+-   Edit custom peer (ec0a43b7, @brenopolanski)
+
+## 1.1.10 - 2020-11-23
+
+### Changed
+
+-   Support multi-coin news retrieval (dc5e881d, @faustbrian)
+
+## 1.1.9 - 2020-11-23
+
+### Added
+
+-   Implement `ReadWriteWallet#canAny` and `ReadWriteWallet#canAll` (684bca7f, @faustbrian)
+
+## 1.1.8 - 2020-11-19
+
+### Added
+
+-   Implement `Wallet#sync` method (d29b4d7e, @faustbrian)
+
+## 1.1.7 - 2020-11-19
+
+### Added
+
+-   Added `ClientService#broadcastSpread` tests (d60e17e0, @faustbrian)
+
+## 1.1.6 - 2020-11-19
+
+### Added
+
+-   Implement multi-peer broadcasting (8f397040, @faustbrian)
+
+### Changed
+
+-   Fetch exchange rates only for live coins (74b87fd7, @dated)
+
+## 1.1.4 - 2020-11-14
+
+### Added
+
+-   Add development network setting (3afe258d, @goga-m)
+
+## 1.1.3 - 2020-11-13
+
+### Added
+
+-   Add custom peer usage setting (93a32ac1, @faustbrian)
+
+### Changed
+
+-   Store name and type for peers (91b6d3ca, @faustbrian)
+
+### Fixed
+
+-   Return 0 for test network balances (58b1fdc4, @faustbrian)
+
+## 1.1.0 - 2020-11-12
+
+### Added
+
+-   AIP13 & AIP26 compatibility (72587c70, @faustbrian)
+
+## 1.0.1 - 2020-11-09
+
+### Fixed
+
+-   Divide transaction total before converting it (a0bf4826, @faustbrian)
+
+## 1.0.0 - 2020-11-09
+
+**This is the first stable release.** Please note that not all coins are fully implemented as of now. All packages are tagged as `1.0.0` to indicate their compliance with the APIs exposed by the `@arkecosystem/platform-sdk` package. If major changes to the internals are required to make certain functionality work we will tag a new major release to make it clear that breaking changes to the architecture were introduced.
+
+## 0.9.422 - 2020-11-09
+
+### Changed
+
+-   Use UUID as transaction ID for ATOM and NEO (dc92422b, @faustbrian)
+
+## 0.9.421 - 2020-11-09
+
+### Fixed
+
+-   Normalise wallet balance before converting it (b3075db3, @faustbrian)
+
+### Added
+
+-   Support for custom peers (9fdee040, @faustbrian)
+-   Implement custom peer settings (38d6eba9, @faustbrian)
+-   Import wallet with ledger index (e2891519, @faustbrian)
+
+## 0.9.417 - 2020-11-05
+
+### Changed
+
+-   Use UUID as unsigned transaction identifier (82dfc2e7, @luciorubeens)
+
+## 0.9.416 - 2020-11-04
+
+### Added
+
+-   Compute transaction id with custom signature (506a2fa7, @luciorubeens)
+
+## 0.9.415 - 2020-10-29
+
+### Fixed
+
+-   Add `ReadWriteWallet#secondPublicKey` (a36ef3ad, @luciorubeens)
+
+## 0.9.414 - 2020-10-27
+
+### Fixed
+
+-   Check wallet is synced and delegate in aggregation (529412ac, @goga-m)
+
+## 0.9.413 - 2020-10-27
+
+### Added
+
+-   Implement `WalletRepository#findByAlias` (067ec6ce, @dated)
+
+### Fixed
+
+-   Confirm lisk transactions greater than or equal to 101 confirmations (6fed8443, @brenopolanski)
+-   Off by one error in api pagination offset (ba9b4685, @dated)
+
+## 0.9.410 - 2020-10-22
+
+### Added
+
+-   Implement `WalletData#secondPublicKey` (ec9c3caf, @luciorubeens)
+
+## 0.9.409 - 2020-10-22
+
+### Fixed
+
+-   Return specialized entity types with over general type (bca1c237, @dated)
+
+## 0.9.408 - 2020-10-21
+
+### Fixed
+
+-   Update entity type enums to reflect AIP36 (ac4d6500, @goga-m)
+
+## 0.9.407 - 2020-10-21
+
+### Added
+
+-   Implement `TransactionData#isVoteCombination` (4eaeaae7, @dated)
+
+## 0.9.406 - 2020-10-21
+
+### Fixed
+
+-   Validate address before checking neo network (de90bdc0, @dated)
+-   Get votes from attributes object (a585870e, @dated)
+
+## 0.9.404 - 2020-10-15
+
+### Fixed
+
+-   **[ARK]** Support 2.0 and 3.0 wallet structures (4216160b, @faustbrian)
+
+## 0.9.403 - 2020-10-15
+
+### Fixed
+
+-   **[ARK]** Use searchParams instead of body for Core 3.0 (83efcfa6, @luciorubeens)
+-   **[LSK]** Use `senderId` instead of `senderPublicKey` (c146d58e, @brenopolanski)
+
+## 0.9.401 - 2020-10-14
+
+### Fixed
+
+-   **[ARK]** Use `address` instead of `addresses` (44902c9b, @faustbrian)
+
+## 0.9.400 - 2020-10-14
+
+### Changed
+
+-   Expand supported properties for `ClientTransactionsInput` (222d90d3, @faustbrian)
+
+### Fixed
+
+-   **[ARK]** Update slip44 version of devnet (98011bbd, @luciorubeens)
+-   **[ARK]** Support Core 2.0 and 3.0 (764fd392, @faustbrian)
+
+## 0.9.397 - 2020-10-13
+
+### Added
+
+-   Implement `EntityHistoryAggregate` (10914973, @faustbrian)
+
+## 0.9.396 - 2020-10-13
+
+### Added
+
+-   Implement `TransactionService#isAwaitingSignatureByPublicKey` (24e01896, @faustbrian)
+
+## 0.9.395 - 2020-10-12
+
+### Added
+
+-   Implement `WalletAggregate#balancesByNetworkType` (a70c2503, @dated)
+
+## 0.9.394 - 2020-10-09
+
+### Changed
+
+-   Stop division by zero in balance calculation (657d553a, @dated)
+
 ## 0.9.393 - 2020-10-08
 
 ### Changed
 
 -   Rename `WalletFlag.Ledger` to `WalletFlag.LedgerIndex` (21c27dc1, @faustbrian)
-
 
 ## 0.9.392 - 2020-10-05
 

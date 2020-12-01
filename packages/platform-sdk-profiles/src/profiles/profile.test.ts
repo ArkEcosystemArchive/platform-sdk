@@ -6,6 +6,7 @@ import nock from "nock";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
+import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../repositories/data-repository";
 import { NotificationRepository } from "../repositories/notification-repository";
@@ -14,7 +15,6 @@ import { WalletRepository } from "../repositories/wallet-repository";
 import { CountAggregate } from "./aggregates/count-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
-import { PluginRepository } from "../plugins/plugin-repository";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 import { ProfileSetting } from "./profile.models";
@@ -52,7 +52,7 @@ it("should have a name", () => {
 
 it("should have a default avatar", () => {
 	expect(subject.avatar()).toMatchInlineSnapshot(
-		`"<svg version=\\"1.1\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"100\\" height=\\"100\\" viewBox=\\"0 0 100 100\\"><style>circle{mix-blend-mode:soft-light;}</style><rect fill=\\"rgb(233, 30, 99)\\" width=\\"100\\" height=\\"100\\"/><circle r=\\"45\\" cx=\\"80\\" cy=\\"30\\" fill=\\"rgb(76, 175, 80)\\"/><circle r=\\"55\\" cx=\\"0\\" cy=\\"60\\" fill=\\"rgb(255, 152, 0)\\"/><circle r=\\"40\\" cx=\\"50\\" cy=\\"50\\" fill=\\"rgb(3, 169, 244)\\"/></svg>"`,
+		`"<svg version=\\"1.1\\" xmlns=\\"http://www.w3.org/2000/svg\\" class=\\"picasso\\" width=\\"100\\" height=\\"100\\" viewBox=\\"0 0 100 100\\"><style>.picasso circle{mix-blend-mode:soft-light;}</style><rect fill=\\"rgb(233, 30, 99)\\" width=\\"100\\" height=\\"100\\"/><circle r=\\"45\\" cx=\\"80\\" cy=\\"30\\" fill=\\"rgb(76, 175, 80)\\"/><circle r=\\"55\\" cx=\\"0\\" cy=\\"60\\" fill=\\"rgb(255, 152, 0)\\"/><circle r=\\"40\\" cx=\\"50\\" cy=\\"50\\" fill=\\"rgb(3, 169, 244)\\"/></svg>"`,
 	);
 });
 
@@ -91,7 +91,7 @@ it("should flush all data", () => {
 
 	subject.flush();
 
-	expect(subject.settings().keys()).toHaveLength(11);
+	expect(subject.settings().keys()).toHaveLength(14);
 });
 
 it("should fail to flush all data if the name is missing", () => {
@@ -132,6 +132,7 @@ it("should turn into an object", () => {
 		contacts: {},
 		data: {},
 		notifications: {},
+		peers: {},
 		plugins: {
 			data: {},
 			blacklist: [],

@@ -2,7 +2,8 @@ import { Crypto, Identities, Transactions } from "@arkecosystem/crypto";
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-export class SignedTransactionData extends DTO.AbstractSignedTransactionData
+export class SignedTransactionData
+	extends DTO.AbstractSignedTransactionData
 	implements Contracts.SignedTransactionData {
 	public sender(): string {
 		return Identities.Address.fromPublicKey(this.signedData.senderPublicKey);

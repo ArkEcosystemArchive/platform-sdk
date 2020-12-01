@@ -19,6 +19,7 @@ export abstract class AbstractTransactionData {
 		transfer: "isTransfer",
 		secondSignature: "isSecondSignature",
 		delegateRegistration: "isDelegateRegistration",
+		voteCombination: "isVoteCombination",
 		vote: "isVote",
 		unvote: "isUnvote",
 		multiSignature: "isMultiSignature",
@@ -29,9 +30,6 @@ export abstract class AbstractTransactionData {
 		htlcClaim: "isHtlcClaim",
 		htlcRefund: "isHtlcRefund",
 		// Magistrate
-		entityRegistration: "isEntityRegistration",
-		entityResignation: "isEntityResignation",
-		entityUpdate: "isEntityUpdate",
 		businessEntityRegistration: "isBusinessEntityRegistration",
 		businessEntityResignation: "isBusinessEntityResignation",
 		businessEntityUpdate: "isBusinessEntityUpdate",
@@ -47,6 +45,10 @@ export abstract class AbstractTransactionData {
 		delegateEntityRegistration: "isDelegateEntityRegistration",
 		delegateEntityResignation: "isDelegateEntityResignation",
 		delegateEntityUpdate: "isDelegateEntityUpdate",
+		entityRegistration: "isEntityRegistration",
+		entityResignation: "isEntityResignation",
+		entityUpdate: "isEntityUpdate",
+		// Legacy Magistrate
 		legacyBusinessRegistration: "isLegacyBusinessRegistration",
 		legacyBusinessResignation: "isLegacyBusinessResignation",
 		legacyBusinessUpdate: "isLegacyBusinessUpdate",
@@ -100,6 +102,8 @@ export abstract class AbstractTransactionData {
 	abstract isSecondSignature(): boolean;
 
 	abstract isDelegateRegistration(): boolean;
+
+	abstract isVoteCombination(): boolean;
 
 	abstract isVote(): boolean;
 

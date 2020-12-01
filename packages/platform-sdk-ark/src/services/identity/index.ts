@@ -1,7 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+
 import { CryptoConfig } from "../../contracts";
 import { retrieveCryptoConfiguration } from "../helpers";
-
 import { Address } from "./address";
 import { Keys } from "./keys";
 import { PrivateKey } from "./private-key";

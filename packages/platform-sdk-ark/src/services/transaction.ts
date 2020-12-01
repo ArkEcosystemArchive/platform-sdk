@@ -8,6 +8,7 @@ import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
+import { v4 as uuidv4 } from "uuid";
 
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { applyCryptoConfiguration, retrieveCryptoConfiguration } from "./helpers";
@@ -278,6 +279,11 @@ export class TransactionService implements Contracts.TransactionService {
 				transaction = Transactions.BuilderFactory[type]().version(2);
 			}
 
+			if (input.sign.senderPublicKey) {
+				address = await this.#identity.address().fromPublicKey(input.sign.senderPublicKey);
+				transaction.senderPublicKey(input.sign.senderPublicKey);
+			}
+
 			if (input.nonce) {
 				transaction.nonce(input.nonce);
 			} else {
@@ -305,8 +311,8 @@ export class TransactionService implements Contracts.TransactionService {
 			if (options && options.unsignedBytes === true) {
 				return new SignedTransactionData(
 					// TODO: compute ID
-					"dummy",
-					Transactions.Serializer.getBytes(transaction, {
+					uuidv4(),
+					Transactions.Serializer.getBytes(transaction.data, {
 						excludeSignature: true,
 						excludeSecondSignature: true,
 					}).toString("hex"),
@@ -329,6 +335,8 @@ export class TransactionService implements Contracts.TransactionService {
 				for (let i = 0; i < input.sign.mnemonics.length; i++) {
 					transaction.multiSign(BIP39.normalize(input.sign.mnemonics[i]), i);
 				}
+			} else if (input.sign.signature) {
+				transaction.data.signature = input.sign.signature;
 			} else {
 				if (!address) {
 					throw new Error("Failed to retrieve the address for the signatory wallet.");

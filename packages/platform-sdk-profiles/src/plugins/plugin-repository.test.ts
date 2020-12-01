@@ -4,8 +4,8 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { PluginRepository } from "./plugin-repository";
 import { PluginRegistry } from "./plugin-registry";
+import { PluginRepository } from "./plugin-repository";
 
 const stubPlugin = {
 	id: 1,

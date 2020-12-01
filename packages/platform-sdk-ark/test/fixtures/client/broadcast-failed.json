@@ -1,0 +1,16 @@
+{
+	"data": {
+		"accept": [],
+		"broadcast": [],
+		"excess": [],
+		"invalid": ["d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216"]
+	},
+	"errors": {
+		"d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216": [
+			{
+				"type": "ERR_FORGED",
+				"message": "Already forged."
+			}
+		]
+	}
+}

@@ -50,6 +50,17 @@ export class DataRepository {
 		dot.delete(this.#storage, key);
 	}
 
+	public forgetIndex(key: string, index: number): void {
+		const value: any[] | undefined = this.get(key);
+
+		if (value !== undefined) {
+			this.set(
+				key,
+				value.filter((_, i) => i !== index),
+			);
+		}
+	}
+
 	public flush(): void {
 		this.#storage = {};
 	}

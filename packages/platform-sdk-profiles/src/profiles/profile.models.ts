@@ -1,9 +1,9 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../repositories/data-repository";
 import { NotificationRepository } from "../repositories/notification-repository";
-import { PluginRepository } from "../plugins/plugin-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
 import { CountAggregate } from "./aggregates/count-aggregate";
@@ -33,12 +33,14 @@ export interface ProfileContract {
 	walletAggregate(): WalletAggregate;
 	auth(): Authenticator;
 	usesPassword(): boolean;
+	usesMultiPeerBroadcasting(): boolean;
 }
 
 export interface ProfileStruct {
 	id: string;
 	wallets: Record<string, any>;
 	contacts: Record<string, any>;
+	peers: Record<string, any>;
 	plugins: Record<string, any>;
 	notifications: Record<string, any>;
 	data: Record<string, any>;
@@ -55,13 +57,16 @@ export enum ProfileSetting {
 	ExchangeCurrency = "EXCHANGE_CURRENCY",
 	LedgerUpdateMethod = "LEDGER_UPDATE_METHOD",
 	MarketProvider = "MARKET_PROVIDER",
-	MultiPeerBroadcast = "MULTI_PEER_BROADCAST",
 	Name = "NAME",
 	Password = "PASSWORD",
 	PluginProvider = "PLUGIN_PROVIDER",
 	ScreenshotProtection = "SCREENSHOT_PROTECTION",
+	UseCustomPeer = "USE_CUSTOM_PEER",
+	// @TODO: rename to UseMultiPeerBroadcasting
+	UseMultiPeerBroadcast = "USE_MULTI_PEER_BROADCAST",
 
 	// UI
+	UseTestNetworks = "USE_TEST_NETWORKS",
 	DashboardConfiguration = "DASHBOARD_CONFIGURATION",
 	DateFormat = "DATE_FORMAT",
 	Locale = "LOCALE",

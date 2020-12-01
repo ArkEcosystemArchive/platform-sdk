@@ -97,6 +97,10 @@ export class TransactionData {
 		return this.#data.isDelegateRegistration();
 	}
 
+	public isVoteCombination(): boolean {
+		return this.#data.isVoteCombination();
+	}
+
 	public isVote(): boolean {
 		return this.#data.isVote();
 	}
@@ -272,7 +276,7 @@ export class TransactionData {
 			return BigNumber.ZERO;
 		}
 
-		return this.total().times(value);
+		return this.total().divide(1e8).times(value);
 	}
 
 	/**

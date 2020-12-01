@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../repositories/data-repository";
 import { NotificationRepository } from "../repositories/notification-repository";
-import { PluginRepository } from "../plugins/plugin-repository";
+import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
 import { Avatar } from "../services/avatar";
@@ -22,6 +23,7 @@ export class Profile implements ProfileContract {
 	#contactRepository: ContactRepository;
 	#dataRepository: DataRepository;
 	#notificationRepository: NotificationRepository;
+	#peerRepository: PeerRepository;
 	#pluginRepository: PluginRepository;
 	#settingRepository: SettingRepository;
 	#walletRepository: WalletRepository;
@@ -38,6 +40,7 @@ export class Profile implements ProfileContract {
 		this.#contactRepository = new ContactRepository(this);
 		this.#dataRepository = new DataRepository();
 		this.#notificationRepository = new NotificationRepository();
+		this.#peerRepository = new PeerRepository();
 		this.#pluginRepository = new PluginRepository();
 		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
 		this.#walletRepository = new WalletRepository(this);
@@ -87,6 +90,10 @@ export class Profile implements ProfileContract {
 		return this.#notificationRepository;
 	}
 
+	public peers(): PeerRepository {
+		return this.#peerRepository;
+	}
+
 	public plugins(): PluginRepository {
 		return this.#pluginRepository;
 	}
@@ -127,6 +134,7 @@ export class Profile implements ProfileContract {
 			contacts: this.contacts().toObject(),
 			data: this.data().all(),
 			notifications: this.notifications().all(),
+			peers: this.peers().toObject(),
 			plugins: this.plugins().toObject(),
 			settings: this.settings().all(),
 			wallets: this.wallets().toObject(),
@@ -169,6 +177,17 @@ export class Profile implements ProfileContract {
 		return this.settings().get(ProfileSetting.Password) !== undefined;
 	}
 
+	/**
+	 * These methods serve as helpers to handle broadcasting.
+	 */
+
+	public usesMultiPeerBroadcasting(): boolean {
+		const usesCustomPeer: boolean = this.settings().get(ProfileSetting.UseCustomPeer) === true;
+		const usesMultiPeerBroadcasting: boolean = this.settings().get(ProfileSetting.UseMultiPeerBroadcast) === true;
+
+		return usesCustomPeer && usesMultiPeerBroadcasting;
+	}
+
 	public initializeSettings(): void {
 		this.settings().set(ProfileSetting.AdvancedMode, false);
 		this.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
@@ -180,6 +199,9 @@ export class Profile implements ProfileContract {
 		this.settings().set(ProfileSetting.ScreenshotProtection, true);
 		this.settings().set(ProfileSetting.Theme, "light");
 		this.settings().set(ProfileSetting.TimeFormat, "h:mm A");
+		this.settings().set(ProfileSetting.UseCustomPeer, false);
+		this.settings().set(ProfileSetting.UseMultiPeerBroadcast, false);
+		this.settings().set(ProfileSetting.UseTestNetworks, false);
 	}
 
 	private restoreDefaultSettings(name: string): void {

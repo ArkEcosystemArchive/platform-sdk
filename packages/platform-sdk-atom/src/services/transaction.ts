@@ -1,4 +1,5 @@
 import { Coins, Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { v4 as uuidv4 } from "uuid";
 
 import { SignedTransactionData } from "../dto";
 import { createSignedTransactionData } from "../utils/crypto";
@@ -44,7 +45,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			return new SignedTransactionData(
 				// TODO: compute the ID
-				"dummy",
+				uuidv4(),
 				createSignedTransactionData(
 					{
 						msgs: [

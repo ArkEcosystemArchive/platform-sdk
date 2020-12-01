@@ -1,31 +1,33 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { ExtendedTransactionData } from "../dto/transaction";
+import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { transformTransactionData, transformTransactionDataCollection } from "../dto/transaction-mapper";
 import { makeCoin } from "../environment/container.helpers";
+import { DelegateMapper } from "../mappers/delegate-mapper";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
+import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
-import { DelegateMapper } from "../mappers/delegate-mapper";
+import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
-import { TransactionService } from "./wallet-transaction-service";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
-import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
-import { ExtendedTransactionData } from "../dto/transaction";
+import { TransactionService } from "./wallet-transaction-service";
 
 export class Wallet implements ReadWriteWallet {
 	readonly #entityAggregate: EntityAggregate;
+	readonly #entityHistoryAggregate: EntityHistoryAggregate;
 
 	readonly #dataRepository: DataRepository;
 	readonly #settingRepository: SettingRepository;
 	readonly #transactionService: TransactionService;
 
-	readonly #profile: Profile;
-
 	readonly #id: string;
 	#coin!: Coins.Coin;
+	#profile!: Profile;
 	#wallet: Contracts.WalletData | undefined;
 
 	#address!: string;
@@ -40,8 +42,29 @@ export class Wallet implements ReadWriteWallet {
 		this.#transactionService = new TransactionService(this);
 
 		this.#entityAggregate = new EntityAggregate(this);
+		this.#entityHistoryAggregate = new EntityHistoryAggregate(this);
 
 		this.restore();
+	}
+
+	/**
+	 * These methods serve as helpers to proxy certain method calls to the parent profile.
+	 */
+
+	public usesMultiPeerBroadcasting(): boolean {
+		return this.#profile.usesMultiPeerBroadcasting();
+	}
+
+	public peers(): PeerRepository {
+		return this.#profile.peers();
+	}
+
+	public getRelays(): string[] {
+		return (
+			this.peers()
+				.getRelays(this.coinId(), this.networkId())
+				?.map((peer) => peer.host) || []
+		);
 	}
 
 	/**
@@ -49,7 +72,19 @@ export class Wallet implements ReadWriteWallet {
 	 */
 
 	public async setCoin(coin: string, network: string): Promise<Wallet> {
-		this.#coin = await makeCoin(coin, network);
+		if (this.peers().has(coin, network)) {
+			this.#coin = await makeCoin(
+				coin,
+				network,
+				{
+					peer: this.peers().getRelay(coin, network)?.host,
+					peerMultiSignature: this.peers().getMultiSignature(coin, network)?.host,
+				},
+				true,
+			);
+		} else {
+			this.#coin = await makeCoin(coin, network);
+		}
 
 		return this;
 	}
@@ -158,13 +193,17 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public convertedBalance(): BigNumber {
+		if (this.network().isTest()) {
+			return BigNumber.ZERO;
+		}
+
 		const value: string | undefined = this.data().get(WalletData.ExchangeRate);
 
 		if (value === undefined) {
 			return BigNumber.ZERO;
 		}
 
-		return this.balance().times(value);
+		return this.balance().divide(1e8).times(value);
 	}
 
 	public nonce(): BigNumber {
@@ -242,6 +281,14 @@ export class Wallet implements ReadWriteWallet {
 	/**
 	 * These methods serve as identifiers for special types of wallets.
 	 */
+
+	public secondPublicKey(): string | undefined {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
+		return this.#wallet.secondPublicKey();
+	}
 
 	public username(): string | undefined {
 		if (!this.#wallet) {
@@ -453,8 +500,28 @@ export class Wallet implements ReadWriteWallet {
 		return this.#coin.network().can(feature);
 	}
 
+	public canAny(features: string[]): boolean {
+		for (const feature of features) {
+			if (this.can(feature)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public canAll(features: string[]): boolean {
+		for (const feature of features) {
+			if (this.cannot(feature)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	public cannot(feature: string): boolean {
-		return this.#coin.network().can(feature);
+		return this.#coin.network().cannot(feature);
 	}
 
 	/**
@@ -465,9 +532,19 @@ export class Wallet implements ReadWriteWallet {
 		return this.#entityAggregate;
 	}
 
+	public entityHistoryAggregate(): EntityHistoryAggregate {
+		return this.#entityHistoryAggregate;
+	}
+
 	/**
 	 * These methods serve as helpers to keep the wallet data updated.
 	 */
+
+	public async sync(): Promise<void> {
+		await this.setCoin(this.coinId(), this.networkId());
+
+		// @TODO: consider others things to sync
+	}
 
 	public async syncIdentity(): Promise<void> {
 		const currentWallet = this.#wallet;

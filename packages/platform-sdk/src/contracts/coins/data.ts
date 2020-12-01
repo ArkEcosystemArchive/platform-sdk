@@ -1,8 +1,8 @@
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { Entity } from "./entity";
 import { KeyValuePair } from "../types";
+import { Entity } from "./entity";
 
 export interface WalletMultiSignature {
 	min: number;
@@ -19,6 +19,9 @@ export interface WalletData {
 	balance(): BigNumber;
 
 	nonce(): BigNumber;
+
+	// Second Signature
+	secondPublicKey(): string | undefined;
 
 	// Delegate
 	username(): string | undefined;
@@ -112,6 +115,8 @@ export interface TransactionData {
 	isSecondSignature(): boolean;
 
 	isDelegateRegistration(): boolean;
+
+	isVoteCombination(): boolean;
 
 	isVote(): boolean;
 

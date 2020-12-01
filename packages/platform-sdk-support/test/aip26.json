@@ -1,0 +1,60 @@
+[
+	[
+		"ark:transfer?coin=ark&network=ark.mainnet&recipient=AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ",
+		{
+			"method": "transfer",
+			"coin": "ark",
+			"network": "ark.mainnet",
+			"recipient": "AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ"
+		}
+	],
+	[
+		"ark:transfer?coin=lisk&network=lisk.mainnet&recipient=8290259686148623987L",
+		{
+			"method": "transfer",
+			"coin": "lisk",
+			"network": "lisk.mainnet",
+			"recipient": "8290259686148623987L"
+		}
+	],
+	[
+		"ark:transfer?coin=ark&network=ark.mainnet&recipient=AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ&amount=10&vendorField=999&fee=0.1&relay=1.1.1.1",
+		{
+			"method": "transfer",
+			"coin": "ark",
+			"network": "ark.mainnet",
+			"recipient": "AePNZAAtWhLsGFLXtztGLAPnKm98VVC8tJ",
+			"amount": "10",
+			"vendorField": "999",
+			"fee": "0.1",
+			"relay": "1.1.1.1"
+		}
+	],
+	[
+		"ark:vote?coin=ark&network=ark.mainnet&delegate=genesis_10&fee=0.1",
+		{
+			"method": "vote",
+			"coin": "ark",
+			"network": "ark.mainnet",
+			"delegate": "genesis_10",
+			"fee": "0.1"
+		}
+	],
+	[
+		"ark:sign-message?message=This%20is%20my%20message",
+		{
+			"method": "sign-message",
+			"message": "This is my message"
+		}
+	],
+	[
+		"ark:register-delegate?coin=ark&network=ark.mainnet&delegate=mydelegatename&fee=0.0001",
+		{
+			"method": "register-delegate",
+			"coin": "ark",
+			"network": "ark.mainnet",
+			"delegate": "mydelegatename",
+			"fee": "0.0001"
+		}
+	]
+]

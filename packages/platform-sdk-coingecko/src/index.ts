@@ -1,4 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
@@ -63,7 +63,13 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	public async dailyAverage(options: Contracts.DailyAverageOptions): Promise<number> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "dailyAverage");
+		const tokenId = await this.getTokenId(options.token);
+
+		const response = await this.get(`coins/${tokenId}/history`, {
+			date: DateTime.make(options.timestamp).format("DD-MM-YYYY"),
+		});
+
+		return response.market_data?.current_price[options.currency.toLowerCase()];
 	}
 
 	private async getTokenId(token): Promise<string> {

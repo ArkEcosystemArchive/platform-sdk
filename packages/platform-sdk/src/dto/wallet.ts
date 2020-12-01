@@ -15,6 +15,9 @@ export abstract class AbstractWalletData {
 
 	abstract nonce(): BigNumber;
 
+	// Second Signature
+	abstract secondPublicKey(): string | undefined;
+
 	// Delegate
 	abstract username(): string | undefined;
 

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
-import { ReadWriteWallet } from "../wallets/wallet.models";
+import { ReadWriteWallet, WalletFlag, WalletSetting } from "../wallets/wallet.models";
 import { DataRepository } from "./data-repository";
 
 export class WalletRepository {
@@ -74,6 +74,21 @@ export class WalletRepository {
 		return this.storeWallet(id, wallet);
 	}
 
+	public async importByAddressWithLedgerIndex(
+		address: string,
+		coin: string,
+		network: string,
+		index: string,
+	): Promise<ReadWriteWallet> {
+		// @TODO: eventually handle the whole process from slip44 path to public key to address
+
+		const wallet: ReadWriteWallet = await this.importByAddress(address, coin, network);
+
+		wallet.data().set(WalletFlag.LedgerIndex, index);
+
+		return wallet;
+	}
+
 	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: ReadWriteWallet }> {
 		const mnemonic: string = BIP39.generate();
 
@@ -125,6 +140,12 @@ export class WalletRepository {
 	public findByCoinWithNetwork(coin: string, network: string): ReadWriteWallet[] {
 		return this.values().filter(
 			(wallet: ReadWriteWallet) => wallet.coinId() === coin && wallet.networkId() === network,
+		);
+	}
+
+	public findByAlias(alias: string): ReadWriteWallet | undefined {
+		return this.values().find(
+			(wallet: ReadWriteWallet) => (wallet.alias() || "").toLowerCase() === alias.toLowerCase(),
 		);
 	}
 

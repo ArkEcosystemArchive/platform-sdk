@@ -9,12 +9,12 @@ import nock from "nock";
 import { identity } from "../../test/fixtures/identity";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
+import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
-import { WalletRepository } from "./wallet-repository";
 import { ReadWriteWallet } from "../wallets/wallet.models";
-import { CoinService } from "../environment/services/coin-service";
+import { WalletRepository } from "./wallet-repository";
 
 let subject: WalletRepository;
 
@@ -43,7 +43,8 @@ beforeEach(async () => {
 
 	subject = new WalletRepository(profile);
 
-	await subject.importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	const wallet = await subject.importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	subject.update(wallet.id(), { alias: "Alias" });
 });
 
 beforeAll(() => nock.disableNetConnect());
@@ -108,12 +109,16 @@ test("#findByCoin", () => {
 	expect(subject.findByCoin("ARK")).toHaveLength(1);
 });
 
+test("#findByAlias", () => {
+	expect(subject.findByAlias("Alias")).toBeInstanceOf(Wallet);
+});
+
 test("#update", async () => {
 	expect(() => subject.update("invalid", { alias: "My Wallet" })).toThrowError("Failed to find");
 
 	const wallet = (await subject.generate("ARK", "ark.devnet")).wallet;
 
-	await subject.update(wallet.id(), { alias: "My New Wallet" });
+	subject.update(wallet.id(), { alias: "My New Wallet" });
 
 	expect(subject.findById(wallet.id()).alias()).toEqual("My New Wallet");
 

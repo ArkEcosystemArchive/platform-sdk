@@ -15,11 +15,7 @@ export class ProfileRepository {
 		for (const [id, profile] of Object.entries(profiles)) {
 			const result: Profile = new Profile(profile.id);
 
-			for (const wallet of Object.values(profile.wallets)) {
-				await result.wallets().restore(wallet as any);
-			}
-
-			await result.contacts().fill(profile.contacts);
+			result.peers().fill(profile.peers);
 
 			result.notifications().fill(profile.notifications);
 
@@ -28,6 +24,12 @@ export class ProfileRepository {
 			result.plugins().fill(profile.plugins);
 
 			result.settings().fill(profile.settings);
+
+			await result.contacts().fill(profile.contacts);
+
+			await Promise.all(
+				[...Object.values(profile.wallets)].map((wallet) => result.wallets().restore(wallet as any)),
+			);
 
 			this.#data.set(id, result);
 		}

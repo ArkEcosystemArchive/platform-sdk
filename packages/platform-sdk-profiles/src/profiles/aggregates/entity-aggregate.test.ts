@@ -4,11 +4,11 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { EntityType, EntitySubType } from "../../enums";
+import { EntitySubType, EntityType } from "../../enums";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
-import { Profile } from "../profile";
 import { CoinService } from "../../environment/services/coin-service";
+import { Profile } from "../profile";
 
 let profile: Profile;
 
@@ -41,7 +41,7 @@ afterAll(() => nock.enableNetConnect());
 
 // it("should aggregate all registrations", async () => {
 // 	nock(/.+/)
-// 		.post("/api/transactions/search")
+// 		.get("/api/transactions")
 // 		.reply(200, require("../../../test/fixtures/client/registrations/all.json"));
 
 // 	const allRegistrations = await profile.entityAggregate().all();
@@ -55,7 +55,8 @@ afterAll(() => nock.enableNetConnect());
 it("should aggregate registrations for the given type and sub-type", async () => {
 	nock.cleanAll();
 	nock(/.+/)
-		.post("/api/transactions/search")
+		.get("/api/transactions")
+		.query(true)
 		.reply(200, require("../../../test/fixtures/client/registrations/business.json"));
 
 	const registrations = await profile.entityAggregate().registrations(EntityType.Business, EntitySubType.None);
