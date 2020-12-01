@@ -13,7 +13,18 @@ export class CoinFactory {
 		const config: Config = new Config(options, coin.schema);
 		config.set("network", networks.get(config.get<string>("network")));
 
-		const [client, fee, identity, knownWallets, ledger, link, message, multiSignature, peer, transaction] = await Promise.all([
+		const [
+			client,
+			fee,
+			identity,
+			knownWallets,
+			ledger,
+			link,
+			message,
+			multiSignature,
+			peer,
+			transaction,
+		] = await Promise.all([
 			services.ClientService.construct(config),
 			services.FeeService.construct(config),
 			services.IdentityService.construct(config),

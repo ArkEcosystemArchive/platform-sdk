@@ -1,7 +1,6 @@
 import "jest-extended";
 
 import { createConfig } from "../../test/helpers";
-
 import { KnownWalletsService } from "./known-wallets";
 
 let subject: KnownWalletsService;
