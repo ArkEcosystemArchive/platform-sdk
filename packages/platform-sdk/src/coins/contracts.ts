@@ -19,13 +19,13 @@ export interface CoinSpec {
 		ClientService: any;
 		FeeService: any;
 		IdentityService: any;
+		KnownWalletsService: any;
 		LedgerService: any;
 		LinkService: any;
 		MessageService: any;
 		MultiSignatureService: any;
 		PeerService: any;
 		TransactionService: any;
-		KnownWalletsService: any;
 	};
 }
 
@@ -40,11 +40,11 @@ export interface CoinServices {
 	client: ClientService;
 	fee: FeeService;
 	identity: IdentityService;
+	knownWallets: KnownWalletsService;
 	ledger: LedgerService;
 	link: LinkService;
 	message: MessageService;
 	multiSignature: MultiSignatureService;
 	peer: PeerService;
 	transaction: TransactionService;
-	knownWallets: KnownWalletsService;
 }
