@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+
 import { addressFromMnemonic } from "../../crypto/shelley/address";
 
 export class Address implements Contracts.Address {
