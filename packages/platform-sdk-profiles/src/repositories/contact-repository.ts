@@ -54,13 +54,17 @@ export class ContactRepository {
 	}
 
 	public async fill(contacts: object): Promise<void> {
+		let promises: Promise<void>[] = [];
+
 		for (const [id, contact] of Object.entries(contacts)) {
 			const instance: Contact = new Contact(contact, this.#profile);
 
-			await instance.restore(contact.addresses);
+			promises.push(instance.restore(contact.addresses));
 
 			this.#data.set(id, instance);
 		}
+
+		await Promise.all(promises)
 	}
 
 	public findById(id: string): Contact {
