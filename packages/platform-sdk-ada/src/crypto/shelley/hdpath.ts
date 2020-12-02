@@ -2,9 +2,10 @@ import lib from "cardano-crypto.js";
 
 import { HARDENED_THRESHOLD, SHELLEY_COIN_PURPOSE, SHELLEY_COIN_TYPE, SHELLEY_DERIVATION_SCHEME } from "./constants";
 
-const deriveChild = (seed: Buffer, idx: number) => lib.derivePrivate(seed, idx, SHELLEY_DERIVATION_SCHEME);
+const derivePrivateChild = (seed: Buffer, idx: number) => lib.derivePrivate(seed, idx, SHELLEY_DERIVATION_SCHEME);
+const derivePublicChild = (seed: Buffer, idx: number) => lib.derivePublic(seed, idx, SHELLEY_DERIVATION_SCHEME);
 
-export const shelleyPath = (account: number, isChange: boolean, addrIdx: number) => [
+export const shelleyPath = (account: number, isChange: boolean, addrIdx: number): number[] => [
 	HARDENED_THRESHOLD + SHELLEY_COIN_PURPOSE,
 	HARDENED_THRESHOLD + SHELLEY_COIN_TYPE,
 	HARDENED_THRESHOLD + account,
@@ -12,7 +13,7 @@ export const shelleyPath = (account: number, isChange: boolean, addrIdx: number)
 	addrIdx,
 ];
 
-export const shelleyStakeAccountPath = (account: number) => [
+export const shelleyStakeAccountPath = (account: number): number[] => [
 	HARDENED_THRESHOLD + SHELLEY_COIN_PURPOSE,
 	HARDENED_THRESHOLD + SHELLEY_COIN_TYPE,
 	HARDENED_THRESHOLD + account,
@@ -20,4 +21,5 @@ export const shelleyStakeAccountPath = (account: number) => [
 	0,
 ];
 
-export const deriveNode = (path: number[], seed: Buffer) => path.reduce(deriveChild, seed);
+export const derivePrivateNode = (path: number[], seed: Buffer): Buffer => path.reduce(derivePrivateChild, seed);
+export const derivePublicNode = (path: number[], seed: Buffer): Buffer => path.reduce(derivePublicChild, seed);
