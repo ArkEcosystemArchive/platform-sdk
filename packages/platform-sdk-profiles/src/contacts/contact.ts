@@ -3,6 +3,7 @@ import { ContactAddressRepository } from "../repositories/contact-address-reposi
 import { Avatar } from "../services/avatar";
 import { ContactStruct } from "./contact.models";
 import { ContactAddressInput } from "./contact-address.models";
+import { pqueue } from "../helpers/queue";
 
 export class Contact {
 	#profile: Profile;
@@ -61,7 +62,7 @@ export class Contact {
 	public async setAddresses(addresses: ContactAddressInput[]): Promise<void> {
 		this.#addresses.flush();
 
-		await Promise.all(addresses.map((address: ContactAddressInput) => this.#addresses.create(address)));
+		await pqueue(addresses.map((address: ContactAddressInput) => () => this.#addresses.create(address)));
 	}
 
 	public avatar(): string {

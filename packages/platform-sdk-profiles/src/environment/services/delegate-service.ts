@@ -1,6 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { WalletDataCollection } from "../../../../platform-sdk/dist/coins";
+import { pqueue } from "../../helpers/queue";
 import { DataRepository } from "../../repositories/data-repository";
 import { ReadOnlyWallet } from "../../wallets/read-only-wallet";
 import { container } from "../container";
@@ -64,15 +65,15 @@ export class DelegateService {
 	}
 
 	public async syncAll(): Promise<void> {
-		const promises: Promise<void>[] = [];
+		const promises: (() => Promise<void>)[] = [];
 
 		for (const [coin, networks] of container.get<CoinService>(Identifiers.CoinService).entries()) {
 			for (const network of networks) {
-				promises.push(this.sync(coin, network));
+				promises.push(() => this.sync(coin, network));
 			}
 		}
 
-		await Promise.allSettled(promises);
+		await pqueue(promises);
 	}
 
 	private findDelegateByAttribute(coin: string, network: string, key: string, value: string): ReadOnlyWallet {
