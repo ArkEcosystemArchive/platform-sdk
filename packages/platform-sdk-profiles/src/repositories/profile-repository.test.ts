@@ -6,17 +6,16 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { CoinService } from "../environment/services/coin-service";
+import { identity } from "../../test/fixtures/identity";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { identity } from "../../test/fixtures/identity";
+import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
-import { ProfileRepository } from "./profile-repository";
 import { ProfileSetting } from "../profiles/profile.models";
-import { ReadWriteWallet } from "../wallets/wallet.models";
 import { Wallet } from "../wallets/wallet";
+import { ReadWriteWallet } from "../wallets/wallet.models";
+import { ProfileRepository } from "./profile-repository";
 import { WalletRepository } from "./wallet-repository";
-
 
 let subject: ProfileRepository;
 
@@ -49,69 +48,69 @@ describe("ProfileRepository", () => {
 	it("should restore the given profiles", async () => {
 		const profiles = {
 			"b999d134-7a24-481e-a95d-bc47c543bfc9": {
-				"id": "b999d134-7a24-481e-a95d-bc47c543bfc9",
-				"contacts": {
+				id: "b999d134-7a24-481e-a95d-bc47c543bfc9",
+				contacts: {
 					"0e147f96-049f-4d89-bad4-ad3341109907": {
-						"id": "0e147f96-049f-4d89-bad4-ad3341109907",
-						"name": "Jane Doe",
-						"starred": false,
-						"addresses": []
-					}
+						id: "0e147f96-049f-4d89-bad4-ad3341109907",
+						name: "Jane Doe",
+						starred: false,
+						addresses: [],
+					},
 				},
-				"data": {
-					"key": "value"
+				data: {
+					key: "value",
 				},
-				"notifications": {
+				notifications: {
 					"b183aef3-2dba-471a-a588-0fcf8f01b645": {
-						"id": "b183aef3-2dba-471a-a588-0fcf8f01b645",
-						"icon": "warning",
-						"name": "Ledger Update Available",
-						"body": "...",
-						"action": "Read Changelog"
-					}
+						id: "b183aef3-2dba-471a-a588-0fcf8f01b645",
+						icon: "warning",
+						name: "Ledger Update Available",
+						body: "...",
+						action: "Read Changelog",
+					},
 				},
-				"peers": {},
-				"plugins": {
-					"data": {},
-					"blacklist": []
+				peers: {},
+				plugins: {
+					data: {},
+					blacklist: [],
 				},
-				"settings": {
-					"ADVANCED_MODE": "value",
-					"NAME": "John Doe"
+				settings: {
+					ADVANCED_MODE: "value",
+					NAME: "John Doe",
 				},
-				"wallets": {
+				wallets: {
 					"ac38fe6d-4b67-4ef1-85be-17c5f6841129": {
-						"id": "ac38fe6d-4b67-4ef1-85be-17c5f6841129",
-						"coin": "ARK",
-						"network": "ark.devnet",
-						"address": "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-						"publicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-						"data": {
-							"BALANCE": {},
-							"SEQUENCE": {}
+						id: "ac38fe6d-4b67-4ef1-85be-17c5f6841129",
+						coin: "ARK",
+						network: "ark.devnet",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+						data: {
+							BALANCE: {},
+							SEQUENCE: {},
 						},
-						"settings": {
-							"ALIAS": "Johnathan Doe",
-							"AVATAR": "..."
-						}
+						settings: {
+							ALIAS: "Johnathan Doe",
+							AVATAR: "...",
+						},
 					},
 					"0e147f96-049f-4d89-bad4-ad3341109907": {
-						"id": "0e147f96-049f-4d89-bad4-ad3341109907",
-						"coin": "ARK",
-						"network": "ark.devnet",
-						"address": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
-						"publicKey": "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
-						"data": {
-							"BALANCE": {},
-							"SEQUENCE": {}
+						id: "0e147f96-049f-4d89-bad4-ad3341109907",
+						coin: "ARK",
+						network: "ark.devnet",
+						address: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+						publicKey: "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
+						data: {
+							BALANCE: {},
+							SEQUENCE: {},
 						},
-						"settings": {
-							"ALIAS": "Jane Doe",
-							"AVATAR": "..."
-						}
-					}
-				}
-			}
+						settings: {
+							ALIAS: "Jane Doe",
+							AVATAR: "...",
+						},
+					},
+				},
+			},
 		};
 
 		expect(subject.count()).toBe(0);
