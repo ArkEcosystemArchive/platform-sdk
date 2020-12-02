@@ -7,12 +7,14 @@ import { IdentityService } from "./identity";
 let subject: IdentityService;
 
 beforeEach(async () => {
-	subject = await IdentityService.construct(createConfig(undefined, {
-		networkConfiguration: {
-			crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
-			status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
-		}
-	}));
+	subject = await IdentityService.construct(
+		createConfig(undefined, {
+			networkConfiguration: {
+				crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
+				status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
+			},
+		}),
+	);
 });
 
 describe("IdentityService", () => {
