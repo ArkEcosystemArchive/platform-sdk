@@ -1,6 +1,6 @@
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
 
-import { pqueue } from "../../helpers/queue";
+import { pqueueSettled } from "../../helpers/queue";
 import { Profile } from "../../profiles/profile";
 import { ProfileSetting } from "../../profiles/profile.models";
 import { ProfileRepository } from "../../repositories/profile-repository";
@@ -19,7 +19,7 @@ export class ExchangeRateService {
 			}
 		}
 
-		await pqueue(promises);
+		await pqueueSettled(promises);
 	}
 
 	public async syncCoinByProfile(profile: Profile, currency: string, wallets?: ReadWriteWallet[]): Promise<void> {
