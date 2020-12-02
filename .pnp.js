@@ -1473,6 +1473,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mem", "npm:8.0.0"],
             ["nock", "npm:13.0.5"],
             ["npm-check-updates", "npm:10.1.1"],
+            ["p-queue", "npm:6.6.2"],
             ["prettier", "npm:2.1.2"],
             ["rimraf", "npm:3.0.2"],
             ["semver", "npm:7.3.2"],
@@ -9950,6 +9951,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eventemitter3", "npm:4.0.4"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:4.0.7", {
+          "packageLocation": "./.yarn/cache/eventemitter3-npm-4.0.7-7afcdd74ae-2.zip/node_modules/eventemitter3/",
+          "packageDependencies": [
+            ["eventemitter3", "npm:4.0.7"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["events", [
@@ -15049,11 +15057,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["p-queue", [
+        ["npm:6.6.2", {
+          "packageLocation": "./.yarn/cache/p-queue-npm-6.6.2-b173c5bfa8-2.zip/node_modules/p-queue/",
+          "packageDependencies": [
+            ["p-queue", "npm:6.6.2"],
+            ["eventemitter3", "npm:4.0.7"],
+            ["p-timeout", "npm:3.2.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["p-timeout", [
         ["npm:1.2.1", {
           "packageLocation": "./.yarn/cache/p-timeout-npm-1.2.1-2b480cb517-2.zip/node_modules/p-timeout/",
           "packageDependencies": [
             ["p-timeout", "npm:1.2.1"],
+            ["p-finally", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:3.2.0", {
+          "packageLocation": "./.yarn/cache/p-timeout-npm-3.2.0-7fdb33f733-2.zip/node_modules/p-timeout/",
+          "packageDependencies": [
+            ["p-timeout", "npm:3.2.0"],
             ["p-finally", "npm:1.0.0"]
           ],
           "linkType": "HARD",

@@ -1,3 +1,4 @@
+import { pqueue } from "../helpers/queue";
 import { Profile } from "../profiles/profile";
 import { ContactAddressRepository } from "../repositories/contact-address-repository";
 import { Avatar } from "../services/avatar";
@@ -61,7 +62,7 @@ export class Contact {
 	public async setAddresses(addresses: ContactAddressInput[]): Promise<void> {
 		this.#addresses.flush();
 
-		await Promise.all(addresses.map((address: ContactAddressInput) => this.#addresses.create(address)));
+		await pqueue(addresses.map((address: ContactAddressInput) => () => this.#addresses.create(address)));
 	}
 
 	public avatar(): string {

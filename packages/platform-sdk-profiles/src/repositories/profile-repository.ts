@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
+import { pqueue } from "../helpers/queue";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { ReadWriteWallet } from "../wallets/wallet.models";
@@ -110,7 +111,7 @@ export class ProfileRepository {
 
 	private async restoreWallets(profile: Profile, wallets: object): Promise<void> {
 		const syncWallets = (wallets: object): Promise<ReadWriteWallet[]> =>
-			Promise.all([...Object.values(wallets)].map((wallet) => profile.wallets().restore(wallet)));
+			pqueue([...Object.values(wallets)].map((wallet) => () => profile.wallets().restore(wallet)));
 
 		const earlyWallets: Record<string, object> = {};
 		const laterWallets: Record<string, object> = {};
