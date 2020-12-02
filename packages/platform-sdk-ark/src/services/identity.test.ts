@@ -1,7 +1,5 @@
 import "jest-extended";
 
-import nock from "nock";
-
 import { identity } from "../../test/fixtures/identity";
 import { createConfig } from "../../test/helpers";
 import { IdentityService } from "./identity";
@@ -9,19 +7,15 @@ import { IdentityService } from "./identity";
 let subject: IdentityService;
 
 beforeEach(async () => {
-	nock(/.+/)
-		.get("/api/node/configuration/crypto")
-		.reply(200, require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`))
-		.get("/api/node/syncing")
-		.reply(200, require(`${__dirname}/../../test/fixtures/client/syncing.json`))
-		.persist();
-
-	subject = await IdentityService.construct(createConfig());
+	subject = await IdentityService.construct(
+		createConfig(undefined, {
+			networkConfiguration: {
+				crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
+				status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
+			},
+		}),
+	);
 });
-
-afterEach(() => nock.cleanAll());
-
-beforeAll(() => nock.disableNetConnect());
 
 describe("IdentityService", () => {
 	describe("#address", () => {
