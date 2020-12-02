@@ -10,8 +10,8 @@ export class Keys implements Contracts.Keys {
 
 			return {
 				publicKey: rootKeyPair.slice(64, 128).toString("hex"),
-				privateKey: rootKeyPair.slice(0, 64).toString("hex")
-			}
+				privateKey: rootKeyPair.slice(0, 64).toString("hex"),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -19,7 +19,6 @@ export class Keys implements Contracts.Keys {
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
-
 	}
 
 	public async fromWIF(wif: string): Promise<Contracts.KeyPair> {

@@ -8,7 +8,7 @@ export class PublicKey implements Contracts.PublicKey {
 			// root extended publicKey
 			const { publicKey } = await new Keys().fromMnemonic(mnemonic);
 
-			return publicKey!;
+			return publicKey;
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

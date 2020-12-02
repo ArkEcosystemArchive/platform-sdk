@@ -19,9 +19,8 @@ describe("IdentityService", () => {
 		});
 
 		it("should fail to generate an output from a multiSignature", async () => {
-			await expect(subject
-				.address()
-				.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys)
+			await expect(
+				subject.address().fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys),
 			).rejects.toThrow(/is not supported/);
 		});
 
@@ -96,9 +95,8 @@ describe("IdentityService", () => {
 		});
 
 		it("should fail to generate an output from a multiSignature", async () => {
-			await expect(subject
-				.publicKey()
-				.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys)
+			await expect(
+				subject.publicKey().fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys),
 			).rejects.toThrow(/is not supported/);
 		});
 

@@ -1,12 +1,7 @@
 import lib from "cardano-crypto.js";
 
 import { SHELLEY_DERIVATION_SCHEME } from "./constants";
-import {
-	derivePrivateNode,
-	derivePublicNode,
-	shelleyPath,
-	shelleyStakeAccountPath
-} from "./hdpath";
+import { derivePrivateNode, derivePublicNode, shelleyPath, shelleyStakeAccountPath } from "./hdpath";
 
 const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: number): string => {
 	const addrBuffer = lib.packBaseAddress(
@@ -53,7 +48,7 @@ export const addressFromAccountExtPublicKey = async (
 	extPubKey: Buffer,
 	isChange: boolean,
 	addressIdx: number,
-	networkId: number
+	networkId: number,
 ): Promise<string> => {
 	const spendPath = shelleyPath(0, isChange, addressIdx).slice(3);
 	const spendXpub = derivePublicNode(spendPath, extPubKey);
@@ -62,8 +57,8 @@ export const addressFromAccountExtPublicKey = async (
 	const stakeXpub = derivePublicNode(stakePath, extPubKey);
 
 	return baseAddressFromXpub(spendXpub, stakeXpub, networkId);
-}
+};
 
 export const isValidShelleyAddress = (address: string): boolean => {
 	return lib.isValidShelleyAddress(address);
-}
+};

@@ -1,9 +1,9 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import {
-	addressFromMnemonic,
 	addressFromAccountExtPublicKey,
-	isValidShelleyAddress
+	addressFromMnemonic,
+	isValidShelleyAddress,
 } from "../../crypto/shelley/address";
 
 export class Address implements Contracts.Address {
@@ -26,7 +26,7 @@ export class Address implements Contracts.Address {
 			Buffer.from(publicKey, "hex"),
 			false,
 			0,
-			this.#config.get("network.crypto.networkId")
+			this.#config.get("network.crypto.networkId"),
 		);
 	}
 

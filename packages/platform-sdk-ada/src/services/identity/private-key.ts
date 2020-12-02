@@ -8,7 +8,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 		try {
 			const { privateKey } = await new Keys().fromMnemonic(mnemonic);
 
-			return privateKey!;
+			return privateKey;
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
