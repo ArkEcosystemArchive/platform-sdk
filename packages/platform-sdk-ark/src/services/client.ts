@@ -160,6 +160,10 @@ export class ClientService implements Contracts.ClientService {
 		return this.handleBroadcastResponse(response);
 	}
 
+	public async entityHistory(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
+		return this.transactions({ ...query, 'asset.registrationId': id })
+	}
+
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (await this.#http.get(`${this.host()}/${path}`, query?.searchParams)).json();
 	}
