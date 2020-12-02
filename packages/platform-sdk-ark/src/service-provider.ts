@@ -58,9 +58,12 @@ export class ServiceProvider {
 			http.get(`${peer}/node/syncing`),
 		]);
 
-		Managers.configManager.setConfig(crypto.json().data);
-		Managers.configManager.setHeight(status.json().data.height);
+		const dataCrypto = crypto.json().data;
+		const dataStatus = status.json().data;
 
-		return { crypto: crypto.data, peer, status: status.data };
+		Managers.configManager.setConfig(dataCrypto);
+		Managers.configManager.setHeight(dataStatus.height);
+
+		return { crypto: dataCrypto, peer, status: dataStatus };
 	}
 }

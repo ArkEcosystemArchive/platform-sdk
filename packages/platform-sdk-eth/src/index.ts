@@ -6,5 +6,6 @@ import * as services from "./services";
 export const ETH = {
 	manifest,
 	services,
+	ServiceProvider,
 	schema,
 };
