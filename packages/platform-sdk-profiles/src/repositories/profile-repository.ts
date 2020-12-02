@@ -26,9 +26,9 @@ export class ProfileRepository {
 
 			result.settings().fill(profile.settings);
 
-			await result.contacts().fill(profile.contacts);
-
 			await this.restoreWallets(result, profile.wallets);
+
+			await result.contacts().fill(profile.contacts);
 
 			this.#data.set(id, result);
 		}
