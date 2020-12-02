@@ -19,14 +19,14 @@ describe("IdentityService", () => {
 		});
 
 		it("should fail to generate an output from a multiSignature", async () => {
-			expect(subject
+			await expect(subject
 				.address()
 				.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys)
 			).rejects.toThrow(/is not supported/);
 		});
 
 		it("should fail to generate an output from a privateKey", async () => {
-			expect(subject.address().fromPrivateKey(identity.privateKey)).rejects.toThrow(/is not supported/);
+			await expect(subject.address().fromPrivateKey(identity.privateKey)).rejects.toThrow(/is not supported/);
 		});
 
 		it("should generate an output from a publicKey", async () => {
@@ -36,12 +36,12 @@ describe("IdentityService", () => {
 		});
 
 		it("should fail to generate an output from a wif", async () => {
-			expect(subject.address().fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
+			await expect(subject.address().fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
 		});
 
 		it("should validate an address", async () => {
-			expect(subject.address().validate(identity.address)).resolves.toBeTrue();
-			expect(subject.address().validate(identity.address.slice(0, 10))).resolves.toBeFalse();
+			await expect(subject.address().validate(identity.address)).resolves.toBeTrue();
+			await expect(subject.address().validate(identity.address.slice(0, 10))).resolves.toBeFalse();
 		});
 	});
 
@@ -56,15 +56,15 @@ describe("IdentityService", () => {
 		});
 
 		it("should fail from an invalid mnemonic", async () => {
-			expect(subject.keys().fromMnemonic(identity.mnemonic.slice(0, 10))).rejects.toThrowError();
+			await expect(subject.keys().fromMnemonic(identity.mnemonic.slice(0, 10))).rejects.toThrowError();
 		});
 
 		it("should generate an output from a privateKey", async () => {
-			expect(subject.keys().fromPrivateKey(identity.privateKey)).rejects.toThrow(/is not supported/);
+			await expect(subject.keys().fromPrivateKey(identity.privateKey)).rejects.toThrow(/is not supported/);
 		});
 
 		it("should generate an output from a wif", async () => {
-			expect(subject.keys().fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
+			await expect(subject.keys().fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
 		});
 	});
 
@@ -76,11 +76,11 @@ describe("IdentityService", () => {
 		});
 
 		it("should fail to generate an output from an invalid mnemonic", async () => {
-			expect(subject.privateKey().fromMnemonic(identity.mnemonic.slice(0, 10))).rejects.toThrowError();
+			await expect(subject.privateKey().fromMnemonic(identity.mnemonic.slice(0, 10))).rejects.toThrowError();
 		});
 
 		it("should fail to generate an output from a wif", async () => {
-			expect(subject.privateKey().fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
+			await expect(subject.privateKey().fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
 		});
 	});
 
@@ -92,28 +92,28 @@ describe("IdentityService", () => {
 		});
 
 		it("should fail to generate an output from an invalid mnemonic", async () => {
-			expect(subject.publicKey().fromMnemonic(identity.mnemonic.slice(0, 10))).rejects.toThrowError();
+			await expect(subject.publicKey().fromMnemonic(identity.mnemonic.slice(0, 10))).rejects.toThrowError();
 		});
 
 		it("should fail to generate an output from a multiSignature", async () => {
-			expect(subject
+			await expect(subject
 				.publicKey()
 				.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys)
 			).rejects.toThrow(/is not supported/);
 		});
 
 		it("should fail to generate an output from a wif", async () => {
-			expect(subject.publicKey().fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
+			await expect(subject.publicKey().fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
 		});
 	});
 
 	describe("#wif", () => {
 		it("should fail to generate an output from a mnemonic", async () => {
-			expect(subject.wif().fromMnemonic(identity.mnemonic)).rejects.toThrow(/is not supported/);
+			await expect(subject.wif().fromMnemonic(identity.mnemonic)).rejects.toThrow(/is not supported/);
 		});
 	});
 
 	it("should do nothing on destruct", async () => {
-		expect(subject.destruct()).resolves.toHaveBeenCalled();
+		await expect(subject.destruct()).resolves.toHaveBeenCalled();
 	});
 });
