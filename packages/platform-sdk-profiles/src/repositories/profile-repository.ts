@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
+import { ReadWriteWallet } from "../wallets/wallet.models";
 import { DataRepository } from "./data-repository";
 
 export class ProfileRepository {
@@ -27,9 +28,7 @@ export class ProfileRepository {
 
 			await result.contacts().fill(profile.contacts);
 
-			await Promise.all(
-				[...Object.values(profile.wallets)].map((wallet) => result.wallets().restore(wallet as any)),
-			);
+			await this.restoreWallets(result, profile.wallets);
 
 			this.#data.set(id, result);
 		}
@@ -107,5 +106,31 @@ export class ProfileRepository {
 		}
 
 		return result;
+	}
+
+	private async restoreWallets(profile: Profile, wallets: object): Promise<void> {
+		const syncWallets = (wallets: object): Promise<ReadWriteWallet[]> =>
+			Promise.all([...Object.values(wallets)].map((wallet) => profile.wallets().restore(wallet)));
+
+		const earlyWallets: Record<string, object> = {};
+		const laterWallets: Record<string, object> = {};
+
+		for (const [id, wallet] of Object.entries(wallets) as any) {
+			const nid: string = wallet.network;
+
+			if (earlyWallets[nid] === undefined) {
+				earlyWallets[nid] = wallet;
+			} else {
+				laterWallets[id] = wallet;
+			}
+		}
+
+		// These wallets will be synced first so that we have cached coin instances for consecutive sync operations.
+		// This will help with coins like ARK to prevent multiple requests for configuration and syncing operations.
+		await syncWallets(earlyWallets);
+
+		// These wallets will be synced last because they can reuse already existing coin instances from the warmup wallets
+		// to avoid duplicate requests which elongate the waiting time for a user before the wallet is accessible and ready.
+		await syncWallets(laterWallets);
 	}
 }
