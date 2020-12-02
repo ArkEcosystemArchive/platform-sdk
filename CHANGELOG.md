@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.2.0 - 2020-12-02
+
+### Changed
+
+-   Move responsibility of service bootstrapping to coins (90fb66ba, @faustbrian)
+-   Import contacts and then sync them with `Promise.all` (42558c64, @faustbrian)
+
 ## 1.1.23 - 2020-12-01
 
 ### Added
