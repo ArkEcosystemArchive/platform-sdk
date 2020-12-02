@@ -109,10 +109,11 @@ export class ProfileRepository {
 	}
 
 	private async restoreWallets(profile: Profile, wallets: object): Promise<void> {
-		const syncWallets = (wallets: object): Promise<ReadWriteWallet[]> => Promise.all([...Object.values(wallets)].map((wallet) => profile.wallets().restore(wallet as any)));
+		const syncWallets = (wallets: object): Promise<ReadWriteWallet[]> =>
+			Promise.all([...Object.values(wallets)].map((wallet) => profile.wallets().restore(wallet)));
 
-		const earlyWallets: Record<string, object> = {}
-		const laterWallets: Record<string, object> = {}
+		const earlyWallets: Record<string, object> = {};
+		const laterWallets: Record<string, object> = {};
 
 		for (const [id, wallet] of Object.entries(wallets) as any) {
 			const nid: string = wallet.network;
