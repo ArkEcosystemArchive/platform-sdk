@@ -61,6 +61,10 @@ export class ServiceProvider {
 		const dataCrypto = crypto.json().data;
 		const dataStatus = status.json().data;
 
+		if (dataCrypto.network.client.token !== config.get("network.currency.ticker")) {
+			throw new Error(`Failed to connect to ${peer} because it is on another network.`);
+		}
+
 		Managers.configManager.setConfig(dataCrypto);
 		Managers.configManager.setHeight(dataStatus.height);
 
