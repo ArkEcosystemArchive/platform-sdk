@@ -13,21 +13,8 @@ import {
 
 export interface CoinSpec {
 	manifest: any;
-	ServiceProvider: any;
 	schema: any;
-	// @TODO: we can probably remove this because the coin instance should be created through the provider.
-	// This was only added to make it possible to use the CoinFactory.
-	services: {
-		ClientService: any;
-		FeeService: any;
-		IdentityService: any;
-		LedgerService: any;
-		LinkService: any;
-		MessageService: any;
-		MultiSignatureService: any;
-		PeerService: any;
-		TransactionService: any;
-	};
+	ServiceProvider: any;
 }
 
 export interface CoinOptions {
