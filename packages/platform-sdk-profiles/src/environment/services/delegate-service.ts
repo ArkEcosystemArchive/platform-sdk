@@ -1,7 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { WalletDataCollection } from "../../../../platform-sdk/dist/coins";
-import { pqueue } from "../../helpers/queue";
+import { pqueueSettled } from "../../helpers/queue";
 import { DataRepository } from "../../repositories/data-repository";
 import { ReadOnlyWallet } from "../../wallets/read-only-wallet";
 import { container } from "../container";
@@ -73,7 +73,7 @@ export class DelegateService {
 			}
 		}
 
-		await pqueue(promises);
+		await pqueueSettled(promises);
 	}
 
 	private findDelegateByAttribute(coin: string, network: string, key: string, value: string): ReadOnlyWallet {

@@ -1,6 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
-import { pqueue } from "../../helpers/queue";
+import { pqueueSettled } from "../../helpers/queue";
 import { DataRepository } from "../../repositories/data-repository";
 import { container } from "../container";
 import { makeCoin } from "../container.helpers";
@@ -41,6 +41,6 @@ export class FeeService {
 			}
 		}
 
-		await pqueue(promises);
+		await pqueueSettled(promises);
 	}
 }

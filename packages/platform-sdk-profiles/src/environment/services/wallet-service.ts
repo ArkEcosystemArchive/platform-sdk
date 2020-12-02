@@ -1,4 +1,4 @@
-import { pqueue } from "../../helpers/queue";
+import { pqueueSettled } from "../../helpers/queue";
 import { Profile } from "../../profiles/profile";
 import { ProfileRepository } from "../../repositories/profile-repository";
 import { container } from "../container";
@@ -15,7 +15,7 @@ export class WalletService {
 			}
 		}
 
-		await pqueue(promises);
+		await pqueueSettled(promises);
 	}
 
 	public async syncByProfile(profile: Profile): Promise<void> {
@@ -26,6 +26,6 @@ export class WalletService {
 			promises.push(() => wallet?.syncVotes());
 		}
 
-		await pqueue(promises);
+		await pqueueSettled(promises);
 	}
 }
