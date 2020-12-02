@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-lsk",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "1.2.0",
+	"version": "1.2.2",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
