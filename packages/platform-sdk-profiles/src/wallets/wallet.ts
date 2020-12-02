@@ -71,7 +71,7 @@ export class Wallet implements ReadWriteWallet {
 	 * These methods allow to switch out the underlying implementation of certain things like the coin.
 	 */
 
-	public async setCoin(coin: string, network: string): Promise<Wallet> {
+	public async setCoin(coin: string, network: string, useForce: boolean = false): Promise<Wallet> {
 		if (this.peers().has(coin, network)) {
 			this.#coin = await makeCoin(
 				coin,
@@ -80,7 +80,7 @@ export class Wallet implements ReadWriteWallet {
 					peer: this.peers().getRelay(coin, network)?.host,
 					peerMultiSignature: this.peers().getMultiSignature(coin, network)?.host,
 				},
-				true,
+				useForce,
 			);
 		} else {
 			this.#coin = await makeCoin(coin, network);
@@ -541,7 +541,7 @@ export class Wallet implements ReadWriteWallet {
 	 */
 
 	public async sync(): Promise<void> {
-		await this.setCoin(this.coinId(), this.networkId());
+		await this.setCoin(this.coinId(), this.networkId(), true);
 
 		// @TODO: consider others things to sync
 	}
