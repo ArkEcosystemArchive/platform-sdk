@@ -9,7 +9,6 @@
 	},
 	"crypto": {
 		"networkId": 1,
-		"slip44": 1815,
 		"signingMethods": {
 			"mnemonic": false,
 			"privateKey": false,
@@ -47,27 +46,27 @@
 		},
 		"Identity": {
 			"address": {
-				"mnemonic": false,
+				"mnemonic": true,
 				"multiSignature": false,
-				"publicKey": false,
+				"publicKey": true,
 				"privateKey": false,
 				"wif": false
 			},
 			"publicKey": {
-				"mnemonic": false,
+				"mnemonic": true,
 				"multiSignature": false,
 				"wif": false
 			},
 			"privateKey": {
-				"mnemonic": false,
+				"mnemonic": true,
 				"wif": false
 			},
 			"wif": {
 				"mnemonic": false
 			},
 			"keyPair": {
-				"mnemonic": false,
-				"privateKey": false,
+				"mnemonic": true,
+				"privateKey": true,
 				"wif": false
 			}
 		},
