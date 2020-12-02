@@ -1,6 +1,4 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
-import isUrl from "is-url-superb";
 import orderBy from "lodash.orderby";
 import semver from "semver";
 
@@ -8,67 +6,13 @@ export class PeerService implements Contracts.PeerService {
 	readonly #http: Contracts.HttpClient;
 	readonly #seeds: string[];
 
-	private constructor({ http, seeds }) {
-		this.#http = http;
-		this.#seeds = seeds;
+	private constructor(config: Coins.Config) {
+		this.#http = config.get("httpClient");
+		this.#seeds = config.get("sseds");
 	}
 
 	public static async construct(config: Coins.Config): Promise<PeerService> {
-		const { httpClient, network } = config.all();
-
-		let peer: string;
-		try {
-			peer = config.get<string>("peer");
-		} catch {
-			peer = `${Arr.randomElement(network.networking.hosts)}/api`;
-		}
-
-		let seeds: string[] = [];
-
-		// Validation
-		let response;
-		try {
-			response = (await httpClient.get(`${peer}/node/configuration`)).json();
-		} catch {
-			// We don't know what went wrong so we continue.
-		}
-
-		if (response) {
-			if (response.data.token !== network.currency.ticker) {
-				throw new Error(`Failed to connect to ${peer} because it is on another network.`);
-			}
-		}
-
-		// Seeds
-		try {
-			if (peer && isUrl(peer)) {
-				const response = (await httpClient.get(`${peer}/peers`)).json();
-
-				for (const seed of response.data) {
-					let port = 4003;
-
-					if (seed.ports) {
-						const apiPort: number | undefined = seed.ports["@arkecosystem/core-api"];
-
-						if (apiPort && apiPort >= 1 && apiPort <= 65535) {
-							port = apiPort;
-						}
-					}
-
-					seeds.push(`http://${seed.ip}:${port}`);
-				}
-			} else {
-				seeds = config.get<string[]>("network.networking.hosts");
-			}
-		} catch {
-			throw new Error("Failed to discovery any peers.");
-		}
-
-		if (!seeds.length) {
-			throw new Error("No seeds found");
-		}
-
-		return new PeerService({ http: httpClient, seeds });
+		return new PeerService(config);
 	}
 
 	public async destruct(): Promise<void> {
