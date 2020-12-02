@@ -54,7 +54,7 @@ export class ContactRepository {
 	}
 
 	public async fill(contacts: object): Promise<void> {
-		let promises: Promise<void>[] = [];
+		const promises: Promise<void>[] = [];
 
 		for (const [id, contact] of Object.entries(contacts)) {
 			const instance: Contact = new Contact(contact, this.#profile);
@@ -64,7 +64,7 @@ export class ContactRepository {
 			this.#data.set(id, instance);
 		}
 
-		await Promise.all(promises)
+		await Promise.all(promises);
 	}
 
 	public findById(id: string): Contact {
