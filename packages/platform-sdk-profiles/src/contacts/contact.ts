@@ -1,9 +1,9 @@
+import { pqueue } from "../helpers/queue";
 import { Profile } from "../profiles/profile";
 import { ContactAddressRepository } from "../repositories/contact-address-repository";
 import { Avatar } from "../services/avatar";
 import { ContactStruct } from "./contact.models";
 import { ContactAddressInput } from "./contact-address.models";
-import { pqueue } from "../helpers/queue";
 
 export class Contact {
 	#profile: Profile;

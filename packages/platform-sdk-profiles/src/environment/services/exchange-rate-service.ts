@@ -1,6 +1,6 @@
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
-import { pqueue } from "../../helpers/queue";
 
+import { pqueue } from "../../helpers/queue";
 import { Profile } from "../../profiles/profile";
 import { ProfileSetting } from "../../profiles/profile.models";
 import { ProfileRepository } from "../../repositories/profile-repository";

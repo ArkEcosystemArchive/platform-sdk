@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-import { pqueue } from "../helpers/queue";
 
+import { pqueue } from "../helpers/queue";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { ReadWriteWallet } from "../wallets/wallet.models";
