@@ -112,6 +112,6 @@ describe("IdentityService", () => {
 	});
 
 	it("should do nothing on destruct", async () => {
-		await expect(subject.destruct()).resolves.toHaveBeenCalled();
+		await expect(subject.destruct()).resolves.toBeUndefined();
 	});
 });
