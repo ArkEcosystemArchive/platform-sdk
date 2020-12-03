@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { pqueue } from "../helpers/queue";
 
+import { pqueue } from "../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../repositories/data-repository";
