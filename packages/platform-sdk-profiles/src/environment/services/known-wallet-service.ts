@@ -13,14 +13,16 @@ export class KnownWalletService {
 	public async syncAll(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
-		for (const coin of container.get<CoinService>(Identifiers.CoinService).values()) {
-			promises.push(async () => {
-				try {
-					this.registry[coin.network().id()] = await coin.knownWallets().all();
-				} catch (error) {
-					// Do nothing if it fails. It's not critical functionality.
-				}
-			});
+		for (const [coin, networks] of container.get<CoinService>(Identifiers.CoinService).entries()) {
+			for (const network of networks) {
+				promises.push(async () => {
+					try {
+						this.registry[network] = await container.get<CoinService>(Identifiers.CoinService).get(coin, network).knownWallets().all();
+					} catch (error) {
+						// Do nothing if it fails. It's not critical functionality.
+					}
+				});
+			}
 		}
 
 		await pqueue(promises);
@@ -30,20 +32,26 @@ export class KnownWalletService {
 		return this.findByAddress(network, address)?.name;
 	}
 
-	public isKnown(network: string, address: string): boolean {
+	public is(network: string, address: string): boolean {
 		return this.findByAddress(network, address) !== undefined;
 	}
 
-	public isOwnedByExchange(network: string, address: string): boolean {
+	public isExchange(network: string, address: string): boolean {
 		return this.hasType(network, address, "exchange");
 	}
 
-	public isOwnedByTeam(network: string, address: string): boolean {
+	public isTeam(network: string, address: string): boolean {
 		return this.hasType(network, address, "team");
 	}
 
 	private findByAddress(network: string, address: string): Contracts.KnownWallet | undefined {
-		return this.registry[network].find((wallet: Contracts.KnownWallet) => wallet.address === address);
+		const registry: Contracts.KnownWallet[] = this.registry[network];
+
+		if (registry === undefined) {
+			return undefined;
+		}
+
+		return registry.find((wallet: Contracts.KnownWallet) => wallet.address === address);
 	}
 
 	private hasType(network: string, address: string, type: string): boolean {
