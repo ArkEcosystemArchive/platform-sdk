@@ -1,10 +1,10 @@
 import "jest-extended";
 
 import { createConfig } from "../../test/helpers";
-import { KnownWalletsService } from "./known-wallets";
+import { KnownWalletService } from "./known-wallets";
 
-let subject: KnownWalletsService;
-let subjectEmpty: KnownWalletsService;
+let subject: KnownWalletService;
+let subjectEmpty: KnownWalletService;
 
 beforeEach(async () => {
 	const config = createConfig();
@@ -20,11 +20,11 @@ beforeEach(async () => {
 			address: "ANvR7ny44GrLy4NTfuVqjGYr4EAwK7vnkW",
 		},
 	]);
-	subject = await KnownWalletsService.construct(config);
-	subjectEmpty = await KnownWalletsService.construct(createConfig());
+	subject = await KnownWalletService.construct(config);
+	subjectEmpty = await KnownWalletService.construct(createConfig());
 });
 
-describe("KnownWalletsService", () => {
+describe("KnownWalletService", () => {
 	test("should start empty", async () => {
 		expect(subject.findByAddress("AagJoLEnpXYkxYdYkmdDSNMLjjBkLJ6T67s")).toBeUndefined();
 	});
