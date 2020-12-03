@@ -45,7 +45,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk && yarn run test --coverage
+              run: cd packages/platform-sdk/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -78,7 +78,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-ada && yarn run test --coverage
+              run: cd packages/platform-sdk-ada/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -110,7 +110,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-ark && yarn run test --coverage
+              run: cd packages/platform-sdk-ark/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -142,7 +142,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-atom && yarn run test --coverage
+              run: cd packages/platform-sdk-atom/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -174,7 +174,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-btc && yarn run test --coverage
+              run: cd packages/platform-sdk-btc/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -206,7 +206,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-coincap && yarn run test --coverage
+              run: cd packages/platform-sdk-coincap/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -238,7 +238,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-coingecko && yarn run test --coverage
+              run: cd packages/platform-sdk-coingecko/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -270,7 +270,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-crypto && yarn run test --coverage
+              run: cd packages/platform-sdk-crypto/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -302,7 +302,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-cryptocompare && yarn run test --coverage
+              run: cd packages/platform-sdk-cryptocompare/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -334,7 +334,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-eos && yarn run test --coverage
+              run: cd packages/platform-sdk-eos/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -366,7 +366,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-eth && yarn run test --coverage
+              run: cd packages/platform-sdk-eth/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -398,7 +398,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-http-axios && yarn run test --coverage
+              run: cd packages/platform-sdk-http-axios/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -430,7 +430,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-http-bent && yarn run test --coverage
+              run: cd packages/platform-sdk-http-bent/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -462,7 +462,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-http-got && yarn run test --coverage
+              run: cd packages/platform-sdk-http-got/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -494,7 +494,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-http-ky && yarn run test --coverage
+              run: cd packages/platform-sdk-http-ky/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -526,7 +526,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-http-node-fetch && yarn run test --coverage
+              run: cd packages/platform-sdk-http-node-fetch/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -558,7 +558,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-intl && yarn run test --coverage
+              run: cd packages/platform-sdk-intl/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -590,7 +590,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-lsk && yarn run test --coverage
+              run: cd packages/platform-sdk-lsk/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -622,7 +622,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-markets && yarn run test --coverage
+              run: cd packages/platform-sdk-markets/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -654,7 +654,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-marketsquare && yarn run test --coverage
+              run: cd packages/platform-sdk-marketsquare/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -686,7 +686,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-neo && yarn run test --coverage
+              run: cd packages/platform-sdk-neo/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -718,7 +718,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-news && yarn run test --coverage
+              run: cd packages/platform-sdk-news/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -750,7 +750,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-profiles && yarn run test --coverage
+              run: cd packages/platform-sdk-profiles/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -782,7 +782,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-support && yarn run test --coverage
+              run: cd packages/platform-sdk-support/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -814,7 +814,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-trx && yarn run test --coverage
+              run: cd packages/platform-sdk-trx/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -846,7 +846,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-xlm && yarn run test --coverage
+              run: cd packages/platform-sdk-xlm/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1
@@ -878,7 +878,7 @@ jobs:
               run: yarn run build
 
             - name: Test
-              run: cd packages/platform-sdk-xrp && yarn run test --coverage
+              run: cd packages/platform-sdk-xrp/ && yarn run test --coverage
 
             - name: Codecov
               uses: codecov/codecov-action@v1

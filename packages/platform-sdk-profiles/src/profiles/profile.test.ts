@@ -38,7 +38,7 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-	subject = new Profile("uuid");
+	subject = new Profile({ id: "uuid" });
 	subject.settings().set(ProfileSetting.Name, "John Doe");
 });
 

@@ -46,7 +46,9 @@ beforeEach(() => {
 
 describe("ProfileRepository", () => {
 	it("should restore the given profiles", async () => {
-		const profiles = {
+		expect(subject.count()).toBe(0);
+
+		subject.fill({
 			"b999d134-7a24-481e-a95d-bc47c543bfc9": {
 				id: "b999d134-7a24-481e-a95d-bc47c543bfc9",
 				contacts: {
@@ -111,15 +113,9 @@ describe("ProfileRepository", () => {
 					},
 				},
 			},
-		};
-
-		expect(subject.count()).toBe(0);
-
-		await subject.fill(profiles);
+		});
 
 		expect(subject.count()).toBe(1);
-
-		expect(subject.findById("b999d134-7a24-481e-a95d-bc47c543bfc9").wallets().count()).toBe(2);
 	});
 
 	it("should push, get, list and forget any given profiles", async () => {

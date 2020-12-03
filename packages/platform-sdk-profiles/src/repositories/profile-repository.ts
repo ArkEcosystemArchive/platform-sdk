@@ -13,25 +13,9 @@ export class ProfileRepository {
 		this.#data = new DataRepository();
 	}
 
-	public async fill(profiles: object): Promise<void> {
+	public fill(profiles: object): void {
 		for (const [id, profile] of Object.entries(profiles)) {
-			const result: Profile = new Profile(profile.id);
-
-			result.peers().fill(profile.peers);
-
-			result.notifications().fill(profile.notifications);
-
-			result.data().fill(profile.data);
-
-			result.plugins().fill(profile.plugins);
-
-			result.settings().fill(profile.settings);
-
-			await this.restoreWallets(result, profile.wallets);
-
-			await result.contacts().fill(profile.contacts);
-
-			this.#data.set(id, result);
+			this.#data.set(id, new Profile(profile));
 		}
 	}
 
@@ -73,7 +57,7 @@ export class ProfileRepository {
 		}
 
 		const id: string = uuidv4();
-		const result: Profile = new Profile(id);
+		const result: Profile = new Profile({ id });
 
 		result.settings().set(ProfileSetting.Name, name);
 		result.initializeSettings();
@@ -107,31 +91,5 @@ export class ProfileRepository {
 		}
 
 		return result;
-	}
-
-	private async restoreWallets(profile: Profile, wallets: object): Promise<void> {
-		const syncWallets = (wallets: object): Promise<ReadWriteWallet[]> =>
-			pqueue([...Object.values(wallets)].map((wallet) => () => profile.wallets().restore(wallet)));
-
-		const earlyWallets: Record<string, object> = {};
-		const laterWallets: Record<string, object> = {};
-
-		for (const [id, wallet] of Object.entries(wallets) as any) {
-			const nid: string = wallet.network;
-
-			if (earlyWallets[nid] === undefined) {
-				earlyWallets[nid] = wallet;
-			} else {
-				laterWallets[id] = wallet;
-			}
-		}
-
-		// These wallets will be synced first so that we have cached coin instances for consecutive sync operations.
-		// This will help with coins like ARK to prevent multiple requests for configuration and syncing operations.
-		await syncWallets(earlyWallets);
-
-		// These wallets will be synced last because they can reuse already existing coin instances from the warmup wallets
-		// to avoid duplicate requests which elongate the waiting time for a user before the wallet is accessible and ready.
-		await syncWallets(laterWallets);
 	}
 }
