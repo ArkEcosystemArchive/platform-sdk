@@ -6,7 +6,7 @@ import { ReadWriteWallet, WalletFlag } from "../wallets/wallet.models";
 
 export class WalletFactory {
 	public static async fromMnemonic(profile: Profile, mnemonic: string, coin: string, network: string): Promise<ReadWriteWallet> {
-		const wallet = new Wallet(uuidv4(), profile);
+		const wallet: ReadWriteWallet = new Wallet(uuidv4(), profile);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setIdentity(mnemonic);
@@ -15,7 +15,7 @@ export class WalletFactory {
 	}
 
 	public static async fromAddress(profile: Profile, address: string, coin: string, network: string): Promise<ReadWriteWallet> {
-		const wallet = new Wallet(uuidv4(), profile);
+		const wallet: ReadWriteWallet = new Wallet(uuidv4(), profile);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(address);
