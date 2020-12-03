@@ -20,7 +20,7 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<IdentityService> {
-		return new IdentityService(config, config.get("networkConfiguration.crypto.network"));
+		return new IdentityService(config, config.get(`${Coins.ConfigKey.NetworkConfiguration}.crypto.network`));
 	}
 
 	public async destruct(): Promise<void> {

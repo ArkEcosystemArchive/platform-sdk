@@ -9,7 +9,7 @@ import {
 	PeerService,
 	TransactionService,
 } from "../contracts/coins";
-import { Config } from "./config";
+import { Config, ConfigKey } from "./config";
 import { CoinServices } from "./contracts";
 import { Manifest } from "./manifest";
 import { Network } from "./network";
@@ -37,7 +37,7 @@ export class Coin {
 		this.#manifest = manifest;
 		this.#config = config;
 		this.#services = services;
-		this.#network = new Network(manifest.get("name"), config.get("network"));
+		this.#network = new Network(manifest.get("name"), config.get(ConfigKey.Network));
 	}
 
 	public async destruct(): Promise<void> {

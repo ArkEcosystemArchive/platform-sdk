@@ -14,7 +14,7 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return addressFromMnemonic(mnemonic, 0, false, 0, this.#config.get("network.crypto.networkId"));
+		return addressFromMnemonic(mnemonic, 0, false, 0, this.#config.get(Coins.ConfigKey.CryptoNetworkId));
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -26,7 +26,7 @@ export class Address implements Contracts.Address {
 			Buffer.from(publicKey, "hex"),
 			false,
 			0,
-			this.#config.get("network.crypto.networkId"),
+			this.#config.get(Coins.ConfigKey.CryptoNetworkId),
 		);
 	}
 

@@ -15,7 +15,7 @@ import { TransactionService } from "./services/transaction";
 
 export class ServiceProvider {
 	public static async make(coin: Coins.CoinSpec, config: Coins.Config): Promise<Coins.CoinServices> {
-		config.set("networkConfiguration", await ServiceProvider.retrieveNetworkConfiguration(config));
+		config.set(Coins.ConfigKey.NetworkConfiguration, await ServiceProvider.retrieveNetworkConfiguration(config));
 
 		const multiSignature = await MultiSignatureService.construct(config);
 
@@ -61,7 +61,7 @@ export class ServiceProvider {
 		const dataCrypto = crypto.json().data;
 		const dataStatus = status.json().data;
 
-		if (dataCrypto.network.client.token !== config.get("network.currency.ticker")) {
+		if (dataCrypto.network.client.token !== config.get(Coins.ConfigKey.CurrencyTicker)) {
 			throw new Error(`Failed to connect to ${peer} because it is on another network.`);
 		}
 

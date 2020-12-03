@@ -14,7 +14,7 @@ export const createConfig = (options?: object, meta = {}) => {
 	);
 
 	// @ts-ignore
-	config.set("network", manifest.networks[options?.network || "ark.devnet"]);
+	config.set(Coins.ConfigKey.Network, manifest.networks[options?.network || "ark.devnet"]);
 
 	for (const [key, value] of Object.entries(meta)) {
 		config.set(key, value);

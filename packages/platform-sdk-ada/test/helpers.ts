@@ -13,7 +13,7 @@ export const createConfig = (options?: object) => {
 		schema,
 	);
 
-	config.set("network", manifest.networks["ada.testnet"]);
+	config.set(Coins.ConfigKey.Network, manifest.networks["ada.testnet"]);
 
 	return config;
 };

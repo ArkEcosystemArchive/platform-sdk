@@ -11,7 +11,7 @@ export const createConfig = (options?: object) => {
 	);
 
 	// @ts-ignore
-	config.set("network", manifest.networks[options?.network || "neo.testnet"]);
+	config.set(Coins.ConfigKey.Network, manifest.networks[options?.network || "neo.testnet"]);
 
 	return config;
 };
