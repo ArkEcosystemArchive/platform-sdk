@@ -16,7 +16,7 @@ export class Response implements HttpResponse {
 
 	public constructor(response: ResponseInput, error?: Error | undefined) {
 		this._response = response;
-		this._body = response.body;
+		this._body = response?.body;
 		this._error = error;
 
 		this.throw();
@@ -30,7 +30,7 @@ export class Response implements HttpResponse {
 		return this._body;
 	}
 
-	public json(): Record<string, any> {
+	public json<T = Record<string, any>>(): T {
 		return JSON.parse(this.body());
 	}
 
