@@ -1,11 +1,10 @@
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { sortBy, sortByDesc } from "@arkecosystem/utils";
-import { v4 as uuidv4 } from "uuid";
 
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { WalletFactory } from "../wallets/wallet.factory";
-import { ReadWriteWallet, WalletFlag, WalletSetting } from "../wallets/wallet.models";
+import { ReadWriteWallet } from "../wallets/wallet.models";
 import { DataRepository } from "./data-repository";
 
 export class WalletRepository {
@@ -56,15 +55,11 @@ export class WalletRepository {
 	}
 
 	public async importByMnemonic(mnemonic: string, coin: string, network: string): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = await WalletFactory.fromMnemonic(this.#profile, mnemonic, coin, network);
-
-		return this.storeWallet(wallet.id(), wallet);
+		return this.storeWallet(await WalletFactory.fromMnemonic(this.#profile, mnemonic, coin, network));
 	}
 
 	public async importByAddress(address: string, coin: string, network: string): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = await WalletFactory.fromAddress(this.#profile, address, coin, network);
-
-		return this.storeWallet(wallet.id(), wallet);
+		return this.storeWallet(await WalletFactory.fromAddress(this.#profile, address, coin, network));
 	}
 
 	public async importByAddressWithLedgerIndex(
@@ -73,9 +68,7 @@ export class WalletRepository {
 		network: string,
 		index: string,
 	): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = await WalletFactory.fromAddressWithLedgerIndex(this.#profile, address, coin, network, index);
-
-		return this.storeWallet(wallet.id(), wallet);
+		return this.storeWallet(await WalletFactory.fromAddressWithLedgerIndex(this.#profile, address, coin, network, index));
 	}
 
 	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: ReadWriteWallet }> {
@@ -212,12 +205,12 @@ export class WalletRepository {
 		return sortByDesc(this.values(), sortFunction);
 	}
 
-	private storeWallet(id: string, wallet: ReadWriteWallet): ReadWriteWallet {
+	private storeWallet(wallet: ReadWriteWallet): ReadWriteWallet {
 		if (this.findByAddress(wallet.address())) {
 			throw new Error(`The wallet [${wallet.address()}] already exists.`);
 		}
 
-		this.#data.set(id, wallet);
+		this.#data.set(wallet.id(), wallet);
 
 		return wallet;
 	}
