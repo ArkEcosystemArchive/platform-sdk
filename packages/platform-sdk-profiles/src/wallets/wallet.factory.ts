@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 
 import { Profile } from "../profiles/profile";
-import { Wallet } from "../wallets/wallet";
-import { ReadWriteWallet, WalletFlag } from "../wallets/wallet.models";
+import { Wallet } from "./wallet";
+import { ReadWriteWallet, WalletFlag } from "./wallet.models";
 
 export class WalletFactory {
 	public static async fromMnemonic(profile: Profile, mnemonic: string, coin: string, network: string): Promise<ReadWriteWallet> {
