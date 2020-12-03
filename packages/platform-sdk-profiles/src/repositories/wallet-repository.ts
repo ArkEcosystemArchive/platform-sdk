@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
+import { WalletFactory } from "../wallets/wallet.factory";
 import { ReadWriteWallet, WalletFlag, WalletSetting } from "../wallets/wallet.models";
 import { DataRepository } from "./data-repository";
 
@@ -55,23 +56,15 @@ export class WalletRepository {
 	}
 
 	public async importByMnemonic(mnemonic: string, coin: string, network: string): Promise<ReadWriteWallet> {
-		const id: string = uuidv4();
-		const wallet = new Wallet(id, this.#profile);
+		const wallet: ReadWriteWallet = await WalletFactory.fromMnemonic(this.#profile, mnemonic, coin, network);
 
-		await wallet.setCoin(coin, network);
-		await wallet.setIdentity(mnemonic);
-
-		return this.storeWallet(id, wallet);
+		return this.storeWallet(wallet.id(), wallet);
 	}
 
 	public async importByAddress(address: string, coin: string, network: string): Promise<ReadWriteWallet> {
-		const id: string = uuidv4();
-		const wallet = new Wallet(id, this.#profile);
+		const wallet: ReadWriteWallet = await WalletFactory.fromAddress(this.#profile, address, coin, network);
 
-		await wallet.setCoin(coin, network);
-		await wallet.setAddress(address);
-
-		return this.storeWallet(id, wallet);
+		return this.storeWallet(wallet.id(), wallet);
 	}
 
 	public async importByAddressWithLedgerIndex(
@@ -80,13 +73,9 @@ export class WalletRepository {
 		network: string,
 		index: string,
 	): Promise<ReadWriteWallet> {
-		// @TODO: eventually handle the whole process from slip44 path to public key to address
+		const wallet: ReadWriteWallet = await WalletFactory.fromAddressWithLedgerIndex(this.#profile, address, coin, network, index);
 
-		const wallet: ReadWriteWallet = await this.importByAddress(address, coin, network);
-
-		wallet.data().set(WalletFlag.LedgerIndex, index);
-
-		return wallet;
+		return this.storeWallet(wallet.id(), wallet);
 	}
 
 	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: ReadWriteWallet }> {
