@@ -3,7 +3,7 @@ import { Resource } from "./resource";
 
 export class Module extends Resource {
 	public async all(query?: object): Promise<Models.PaginatedResponse<Models.Module>> {
-		return this.get('modules', query);
+		return this.get("modules", query);
 	}
 
 	public async show(id: number): Promise<Models.Response<Models.Module>> {

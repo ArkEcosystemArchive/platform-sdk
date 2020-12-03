@@ -5,9 +5,9 @@
 			"name": "8c3a800a-e3a2-36fb-b7a0-ef965ceba0f8",
 			"display_name": "8c3a800a-e3a2-36fb-b7a0-ef965ceba0f8",
 			"slug": "8c3a800a-e3a2-36fb-b7a0-ef965ceba0f8",
-			"description": "<p>Quam autem impedit voluptas et. Sint veritatis aspernatur nulla reprehenderit cupiditate id. Laborum voluptatem ut omnis veniam maxime ullam delectus. Magni facilis explicabo omnis. Voluptas excepturi enim minima tenetur ad.<\/p>",
+			"description": "<p>Quam autem impedit voluptas et. Sint veritatis aspernatur nulla reprehenderit cupiditate id. Laborum voluptatem ut omnis veniam maxime ullam delectus. Magni facilis explicabo omnis. Voluptas excepturi enim minima tenetur ad.</p>",
 			"excerpt": "Non debitis vel eum.",
-			"avatar": "https:\/\/avatars3.githubusercontent.com\/u\/22457396?v=4",
+			"avatar": "https://avatars3.githubusercontent.com/u/22457396?v=4",
 			"is_claimed": false,
 			"is_featured": false,
 			"is_grant": false,
@@ -35,123 +35,117 @@
 					"sourceControl": [
 						{
 							"type": "bitbucket",
-							"value": "https:\/\/bitbucket.org\/arkecosystem"
+							"value": "https://bitbucket.org/arkecosystem"
 						},
 						{
 							"type": "github",
-							"value": "https:\/\/github.com\/arkecosystem"
+							"value": "https://github.com/arkecosystem"
 						},
 						{
 							"type": "gitlab",
-							"value": "https:\/\/gitlab.com\/arkecosystem"
+							"value": "https://gitlab.com/arkecosystem"
 						},
 						{
 							"type": "npm",
-							"value": "https:\/\/npmjs.com\/arkecosystem"
+							"value": "https://npmjs.com/arkecosystem"
 						}
 					],
 					"socialMedia": [
 						{
 							"type": "discord",
-							"value": "https:\/\/discord.com\/arkecosystem"
+							"value": "https://discord.com/arkecosystem"
 						},
 						{
 							"type": "facebook",
-							"value": "https:\/\/facebook.com\/arkecosystem"
+							"value": "https://facebook.com/arkecosystem"
 						},
 						{
 							"type": "instagram",
-							"value": "https:\/\/instagram.com\/arkecosystem"
+							"value": "https://instagram.com/arkecosystem"
 						},
 						{
 							"type": "linkedin",
-							"value": "https:\/\/linkedin.com\/arkecosystem"
+							"value": "https://linkedin.com/arkecosystem"
 						},
 						{
 							"type": "medium",
-							"value": "https:\/\/medium.com\/arkecosystem"
+							"value": "https://medium.com/arkecosystem"
 						},
 						{
 							"type": "reddit",
-							"value": "https:\/\/reddit.com\/arkecosystem"
+							"value": "https://reddit.com/arkecosystem"
 						},
 						{
 							"type": "slack",
-							"value": "https:\/\/slack.com\/arkecosystem"
+							"value": "https://slack.com/arkecosystem"
 						},
 						{
 							"type": "telegram",
-							"value": "https:\/\/telegram.org\/arkecosystem"
+							"value": "https://telegram.org/arkecosystem"
 						},
 						{
 							"type": "twitter",
-							"value": "https:\/\/twitter.com\/arkecosystem"
+							"value": "https://twitter.com/arkecosystem"
 						},
 						{
 							"type": "wechat",
-							"value": "https:\/\/wechat.com\/arkecosystem"
+							"value": "https://wechat.com/arkecosystem"
 						},
 						{
 							"type": "youtube",
-							"value": "https:\/\/youtube.com\/arkecosystem"
+							"value": "https://youtube.com/arkecosystem"
 						}
 					],
 					"images": [
 						{
 							"type": "logo",
-							"value": "https:\/\/avatars3.githubusercontent.com\/u\/22457396?v=4"
+							"value": "https://avatars3.githubusercontent.com/u/22457396?v=4"
 						},
 						{
 							"type": "image",
-							"value": "https:\/\/cdn-images-1.medium.com\/max\/1024\/1*GRNf-dxVMn1dYXNpLBCbwA.png"
+							"value": "https://cdn-images-1.medium.com/max/1024/1*GRNf-dxVMn1dYXNpLBCbwA.png"
 						},
 						{
 							"type": "image",
-							"value": "https:\/\/cdn-images-1.medium.com\/max\/1024\/1*GRNf-dxVMn1dYXNpLBCbwA.png"
+							"value": "https://cdn-images-1.medium.com/max/1024/1*GRNf-dxVMn1dYXNpLBCbwA.png"
 						},
 						{
 							"type": "image",
-							"value": "https:\/\/cdn-images-1.medium.com\/max\/1024\/1*GRNf-dxVMn1dYXNpLBCbwA.png"
+							"value": "https://cdn-images-1.medium.com/max/1024/1*GRNf-dxVMn1dYXNpLBCbwA.png"
 						},
 						{
 							"type": "image",
-							"value": "https:\/\/cdn-images-1.medium.com\/max\/1024\/1*GRNf-dxVMn1dYXNpLBCbwA.png"
+							"value": "https://cdn-images-1.medium.com/max/1024/1*GRNf-dxVMn1dYXNpLBCbwA.png"
 						}
 					],
 					"videos": [
 						{
 							"type": "video",
-							"value": "https:\/\/www.youtube.com\/watch?v=GvesyESp9UE"
+							"value": "https://www.youtube.com/watch?v=GvesyESp9UE"
 						},
 						{
 							"type": "video",
-							"value": "https:\/\/www.youtube.com\/watch?v=GvesyESp9UE"
+							"value": "https://www.youtube.com/watch?v=GvesyESp9UE"
 						},
 						{
 							"type": "video",
-							"value": "https:\/\/www.youtube.com\/watch?v=GvesyESp9UE"
+							"value": "https://www.youtube.com/watch?v=GvesyESp9UE"
 						},
 						{
 							"type": "video",
-							"value": "https:\/\/www.youtube.com\/watch?v=GvesyESp9UE"
+							"value": "https://www.youtube.com/watch?v=GvesyESp9UE"
 						},
 						{
 							"type": "video",
-							"value": "https:\/\/www.youtube.com\/watch?v=GvesyESp9UE"
+							"value": "https://www.youtube.com/watch?v=GvesyESp9UE"
 						}
 					],
 					"meta": {
 						"displayName": "ARK Ecosystem",
 						"description": "Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit\u200b\u200b, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.",
 						"excerpt": "Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro.",
-						"website": "https:\/\/ark.io",
-						"seeds": [
-							"167.114.29.51",
-							"167.114.29.52",
-							"167.114.29.53",
-							"167.114.29.54",
-							"167.114.29.55"
-						],
+						"website": "https://ark.io",
+						"seeds": ["167.114.29.51", "167.114.29.52", "167.114.29.53", "167.114.29.54", "167.114.29.55"],
 						"delegate": {
 							"type": "public",
 							"percentage": {
@@ -171,7 +165,7 @@
 				}
 			},
 			"npm": {
-				"version": "n\/a",
+				"version": "n/a",
 				"downloads": 0,
 				"last_updated_at": null
 			},
@@ -184,10 +178,10 @@
 		}
 	],
 	"links": {
-		"first": "https:\/\/marketsquare.io\/api\/plugins?page=1",
-		"last": "https:\/\/marketsquare.io\/api\/plugins?page=99",
+		"first": "https://marketsquare.io/api/plugins?page=1",
+		"last": "https://marketsquare.io/api/plugins?page=99",
 		"prev": null,
-		"next": "https:\/\/marketsquare.io\/api\/plugins?page=2"
+		"next": "https://marketsquare.io/api/plugins?page=2"
 	},
 	"meta": {
 		"current_page": 1,
@@ -200,52 +194,52 @@
 				"active": false
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=1",
+				"url": "https://marketsquare.io/api/plugins?page=1",
 				"label": 1,
 				"active": true
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=2",
+				"url": "https://marketsquare.io/api/plugins?page=2",
 				"label": 2,
 				"active": false
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=3",
+				"url": "https://marketsquare.io/api/plugins?page=3",
 				"label": 3,
 				"active": false
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=4",
+				"url": "https://marketsquare.io/api/plugins?page=4",
 				"label": 4,
 				"active": false
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=5",
+				"url": "https://marketsquare.io/api/plugins?page=5",
 				"label": 5,
 				"active": false
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=6",
+				"url": "https://marketsquare.io/api/plugins?page=6",
 				"label": 6,
 				"active": false
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=7",
+				"url": "https://marketsquare.io/api/plugins?page=7",
 				"label": 7,
 				"active": false
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=8",
+				"url": "https://marketsquare.io/api/plugins?page=8",
 				"label": 8,
 				"active": false
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=9",
+				"url": "https://marketsquare.io/api/plugins?page=9",
 				"label": 9,
 				"active": false
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=10",
+				"url": "https://marketsquare.io/api/plugins?page=10",
 				"label": 10,
 				"active": false
 			},
@@ -255,22 +249,22 @@
 				"active": false
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=98",
+				"url": "https://marketsquare.io/api/plugins?page=98",
 				"label": 98,
 				"active": false
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=99",
+				"url": "https://marketsquare.io/api/plugins?page=99",
 				"label": 99,
 				"active": false
 			},
 			{
-				"url": "https:\/\/marketsquare.io\/api\/plugins?page=2",
+				"url": "https://marketsquare.io/api/plugins?page=2",
 				"label": "Next &raquo;",
 				"active": false
 			}
 		],
-		"path": "https:\/\/marketsquare.io\/api\/plugins",
+		"path": "https://marketsquare.io/api/plugins",
 		"per_page": 15,
 		"to": 15,
 		"total": 1474
