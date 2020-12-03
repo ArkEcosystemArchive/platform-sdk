@@ -4,7 +4,10 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { ExtendedTransactionData } from "../dto/transaction";
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { transformTransactionData, transformTransactionDataCollection } from "../dto/transaction-mapper";
+import { container } from "../environment/container";
 import { makeCoin } from "../environment/container.helpers";
+import { Identifiers } from "../environment/container.models";
+import { KnownWalletService } from "../environment/services/known-wallet-service";
 import { DelegateMapper } from "../mappers/delegate-mapper";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
@@ -16,9 +19,6 @@ import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
-import { container } from "../environment/container";
-import { Identifiers } from "../environment/container.models";
-import { KnownWalletService } from "../environment/services/known-wallet-service";
 
 export class Wallet implements ReadWriteWallet {
 	readonly #entityAggregate: EntityAggregate;
@@ -318,15 +318,21 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public isKnown(): boolean {
-		return container.get<KnownWalletService>(Identifiers.KnownWalletService).isKnown(this.networkId(), this.address());
+		return container
+			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.isKnown(this.networkId(), this.address());
 	}
 
 	public isOwnedByExchange(): boolean {
-		return container.get<KnownWalletService>(Identifiers.KnownWalletService).isOwnedByExchange(this.networkId(), this.address());
+		return container
+			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.isOwnedByExchange(this.networkId(), this.address());
 	}
 
 	public isOwnedByTeam(): boolean {
-		return container.get<KnownWalletService>(Identifiers.KnownWalletService).isOwnedByTeam(this.networkId(), this.address());
+		return container
+			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.isOwnedByTeam(this.networkId(), this.address());
 	}
 
 	public isLedger(): boolean {

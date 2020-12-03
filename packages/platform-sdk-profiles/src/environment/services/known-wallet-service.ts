@@ -1,4 +1,5 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
+
 import { pqueue } from "../../helpers/queue";
 import { container } from "../container";
 import { Identifiers } from "../container.models";

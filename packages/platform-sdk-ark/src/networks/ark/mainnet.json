@@ -16,12 +16,8 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://wallets.ark.io"
-		],
-		"hostsMultiSignature": [
-			"https://musig1.ark.io"
-		]
+		"hosts": ["https://wallets.ark.io"],
+		"hostsMultiSignature": ["https://musig1.ark.io"]
 	},
 	"governance": {
 		"voting": {

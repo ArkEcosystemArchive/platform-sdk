@@ -1,6 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { container } from "../environment/container";
 
+import { container } from "../environment/container";
 import { makeCoin } from "../environment/container.helpers";
 import { Identifiers } from "../environment/container.models";
 import { KnownWalletService } from "../environment/services/known-wallet-service";
@@ -58,15 +58,21 @@ export class ContactAddress {
 	}
 
 	public isKnown(): boolean {
-		return container.get<KnownWalletService>(Identifiers.KnownWalletService).isKnown(this.#coin.network().id(), this.address());
+		return container
+			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.isKnown(this.#coin.network().id(), this.address());
 	}
 
 	public isOwnedByExchange(): boolean {
-		return container.get<KnownWalletService>(Identifiers.KnownWalletService).isOwnedByExchange(this.#coin.network().id(), this.address());
+		return container
+			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.isOwnedByExchange(this.#coin.network().id(), this.address());
 	}
 
 	public isOwnedByTeam(): boolean {
-		return container.get<KnownWalletService>(Identifiers.KnownWalletService).isOwnedByTeam(this.#coin.network().id(), this.address());
+		return container
+			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.isOwnedByTeam(this.#coin.network().id(), this.address());
 	}
 
 	public isMultiSignature(): boolean {
