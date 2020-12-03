@@ -17,7 +17,11 @@ export class KnownWalletService {
 			for (const network of networks) {
 				promises.push(async () => {
 					try {
-						this.registry[network] = await container.get<CoinService>(Identifiers.CoinService).get(coin, network).knownWallets().all();
+						this.registry[network] = await container
+							.get<CoinService>(Identifiers.CoinService)
+							.get(coin, network)
+							.knownWallets()
+							.all();
 					} catch (error) {
 						// Do nothing if it fails. It's not critical functionality.
 					}

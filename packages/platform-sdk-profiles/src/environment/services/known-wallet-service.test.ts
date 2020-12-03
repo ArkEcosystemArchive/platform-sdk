@@ -4,11 +4,10 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { KnownWalletService } from "./known-wallet-service";
-
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { CoinService } from "./coin-service";
+import { KnownWalletService } from "./known-wallet-service";
 
 let subject: KnownWalletService;
 
@@ -32,20 +31,24 @@ beforeEach(async () => {
 		.reply(200, require("../../../test/fixtures/client/delegates-1.json"))
 		.get("/api/delegates?page=2")
 		.reply(200, require("../../../test/fixtures/client/delegates-2.json"))
-		.get('/ArkEcosystem/common/master/devnet/known-wallets-extended.json')
-		.reply(200, [{
-			"type": "team",
-			"name": "ACF Hot Wallet",
-			"address": "AagJoLEnpXYkxYdYkmdDSNMLjjBkLJ6T67"
-		}, {
-			"type": "team",
-			"name": "ACF Hot Wallet (old)",
-			"address": "AWkBFnqvCF4jhqPSdE2HBPJiwaf67tgfGR"
-		}, {
-			"type": "exchange",
-			"name": "Binance",
-			"address": "AFrPtEmzu6wdVpa2CnRDEKGQQMWgq8nE9V"
-		}])
+		.get("/ArkEcosystem/common/master/devnet/known-wallets-extended.json")
+		.reply(200, [
+			{
+				type: "team",
+				name: "ACF Hot Wallet",
+				address: "AagJoLEnpXYkxYdYkmdDSNMLjjBkLJ6T67",
+			},
+			{
+				type: "team",
+				name: "ACF Hot Wallet (old)",
+				address: "AWkBFnqvCF4jhqPSdE2HBPJiwaf67tgfGR",
+			},
+			{
+				type: "exchange",
+				name: "Binance",
+				address: "AFrPtEmzu6wdVpa2CnRDEKGQQMWgq8nE9V",
+			},
+		])
 		.persist();
 
 	const coinService = new CoinService();
@@ -54,7 +57,7 @@ beforeEach(async () => {
 	container.set(Identifiers.CoinService, coinService);
 	container.set(Identifiers.Coins, { ARK });
 
-	await coinService.push('ARK', 'ark.devnet');
+	await coinService.push("ARK", "ark.devnet");
 
 	subject = new KnownWalletService();
 

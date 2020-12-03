@@ -40,7 +40,7 @@ export class Request extends Http.Request {
 		}
 
 		// try {
-			return new Http.Response(await got[method.toLowerCase()](url.replace(/^\/+/g, ""), options));
+		return new Http.Response(await got[method.toLowerCase()](url.replace(/^\/+/g, ""), options));
 		// } catch (error) {
 		// 	return new Http.Response(error.response, error);
 		// }
