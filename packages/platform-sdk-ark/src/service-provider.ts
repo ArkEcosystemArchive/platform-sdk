@@ -1,7 +1,6 @@
 import { Managers } from "@arkecosystem/crypto";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import isUrl from "is-url-superb";
 
 import { ClientService } from "./services/client";
 import { FeeService } from "./services/fee";

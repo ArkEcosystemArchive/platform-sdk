@@ -3,6 +3,8 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { File } from "@arkecosystem/platform-sdk-ipfs";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import slugify from "@sindresorhus/slugify";
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
 
 import { ReadWriteWallet, WalletData } from "../wallets/wallet.models";
 
@@ -434,7 +436,7 @@ export class EntityRegistrationData extends TransactionData {
 			return undefined;
 		}
 
-		return File.get(this.ipfs());
+		return (new File(container.get(Identifiers.HttpClient))).get(this.ipfs());
 	}
 
 	public marketSquareLink(): string {
@@ -497,7 +499,7 @@ export class EntityUpdateData extends TransactionData {
 			return undefined;
 		}
 
-		return File.get(this.ipfs());
+		return (new File(container.get(Identifiers.HttpClient))).get(this.ipfs());
 	}
 }
 
