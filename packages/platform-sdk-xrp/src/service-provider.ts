@@ -13,7 +13,7 @@ import { TransactionService } from "./services/transaction";
 
 export class ServiceProvider {
 	public static async make(coin: Coins.CoinSpec, config: Coins.Config): Promise<Coins.CoinServices> {
-		const [client, fee, identity, ledger, link, message, multiSignature, peer, transaction] = await Promise.all([
+		const [client, fee, identity, knownWallets, ledger, link, message, multiSignature, peer, transaction] = await Promise.all([
 			ClientService.construct(config),
 			FeeService.construct(config),
 			IdentityService.construct(config),
@@ -30,6 +30,7 @@ export class ServiceProvider {
 			client,
 			fee,
 			identity,
+			knownWallets,
 			ledger,
 			link,
 			message,

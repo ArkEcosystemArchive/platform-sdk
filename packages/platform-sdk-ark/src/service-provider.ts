@@ -19,7 +19,7 @@ export class ServiceProvider {
 
 		const multiSignature = await MultiSignatureService.construct(config);
 
-		const [client, fee, identity, ledger, link, message, peer, transaction] = await Promise.all([
+		const [client, fee, identity, knownWallets, ledger, link, message, peer, transaction] = await Promise.all([
 			ClientService.construct(config),
 			FeeService.construct(config),
 			IdentityService.construct(config),
@@ -35,6 +35,7 @@ export class ServiceProvider {
 			client,
 			fee,
 			identity,
+			knownWallets,
 			ledger,
 			link,
 			message,
