@@ -224,6 +224,7 @@ export class Profile implements ProfileContract {
 
 	private restoreDefaultSettings(name: string): void {
 		this.settings().set(ProfileSetting.Name, name);
+
 		this.initializeSettings();
 	}
 
