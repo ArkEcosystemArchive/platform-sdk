@@ -50,10 +50,6 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		throw new Exceptions.NotImplemented(this.constructor.name, "isResignedDelegate");
 	}
 
-	public isKnown(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isKnown");
-	}
-
 	public isMultiSignature(): boolean {
 		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignature");
 	}

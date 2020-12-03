@@ -31,8 +31,6 @@ export abstract class AbstractWalletData {
 	// Flags
 	abstract isDelegate(): boolean;
 
-	abstract isKnown(): boolean;
-
 	abstract isMultiSignature(): boolean;
 
 	abstract isSecondSignature(): boolean;

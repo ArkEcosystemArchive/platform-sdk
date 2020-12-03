@@ -3,6 +3,7 @@ import { Coins } from "@arkecosystem/platform-sdk";
 import { ClientService } from "./services/client";
 import { FeeService } from "./services/fee";
 import { IdentityService } from "./services/identity";
+import { KnownWalletService } from "./services/known-wallets";
 import { LedgerService } from "./services/ledger";
 import { LinkService } from "./services/link";
 import { MessageService } from "./services/message";
@@ -16,6 +17,7 @@ export class ServiceProvider {
 			ClientService.construct(config),
 			FeeService.construct(config),
 			IdentityService.construct(config),
+			KnownWalletService.construct(config),
 			LedgerService.construct(config),
 			LinkService.construct(config),
 			MessageService.construct(config),

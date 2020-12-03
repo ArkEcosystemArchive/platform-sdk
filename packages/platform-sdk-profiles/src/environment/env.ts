@@ -12,6 +12,7 @@ import { CoinService } from "./services/coin-service";
 import { DelegateService } from "./services/delegate-service";
 import { ExchangeRateService } from "./services/exchange-rate-service";
 import { FeeService } from "./services/fee-service";
+import { KnownWalletService } from "./services/known-wallet-service";
 import { WalletService } from "./services/wallet-service";
 import { StorageFactory } from "./storage/factory";
 
@@ -31,6 +32,7 @@ export class Environment {
 		container.set(Identifiers.DelegateService, new DelegateService());
 		container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
 		container.set(Identifiers.FeeService, new FeeService());
+		container.set(Identifiers.KnownWalletService, new KnownWalletService());
 		container.set(Identifiers.WalletService, new WalletService());
 
 		container.set(Identifiers.Coins, options.coins);
@@ -207,6 +209,11 @@ export class Environment {
 	public fees(): FeeService {
 		return container.get(Identifiers.FeeService);
 	}
+
+	public knownWallets(): FeeService {
+		return container.get(Identifiers.KnownWalletService);
+	}
+
 	public profiles(): ProfileRepository {
 		return container.get(Identifiers.ProfileRepository);
 	}

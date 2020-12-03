@@ -16,6 +16,9 @@ import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
+import { KnownWalletService } from "../environment/services/known-wallet-service";
 
 export class Wallet implements ReadWriteWallet {
 	readonly #entityAggregate: EntityAggregate;
@@ -315,11 +318,15 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public isKnown(): boolean {
-		if (!this.#wallet) {
-			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
-		}
+		return container.get<KnownWalletService>(Identifiers.KnownWalletService).isKnown(this.networkId(), this.address());
+	}
 
-		return this.#wallet.isKnown();
+	public isOwnedByExchange(): boolean {
+		return container.get<KnownWalletService>(Identifiers.KnownWalletService).isOwnedByExchange(this.networkId(), this.address());
+	}
+
+	public isOwnedByTeam(): boolean {
+		return container.get<KnownWalletService>(Identifiers.KnownWalletService).isOwnedByTeam(this.networkId(), this.address());
 	}
 
 	public isLedger(): boolean {

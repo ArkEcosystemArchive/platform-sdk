@@ -1,46 +1,25 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
-export class KnownWalletsService implements Contracts.KnownWalletsService {
-	readonly #knownWallets: Record<string, Contracts.KnownWallet>;
+export class KnownWalletService implements Contracts.KnownWalletService {
+	readonly #httpClient: Contracts.HttpClient;
+	readonly #source: string;
 
 	private constructor(config: Coins.Config) {
-		const knownWallets = [...config.get<Contracts.KnownWallet[]>("network.knownWallets")];
-		this.#knownWallets = {};
-
-		for (const knownWallet of knownWallets) {
-			this.#knownWallets[knownWallet.address] = knownWallet;
-		}
+		this.#httpClient = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#source = config.get<string>(Coins.ConfigKey.KnownWallets);
 	}
 
-	public static async construct(config: Coins.Config): Promise<KnownWalletsService> {
-		return new KnownWalletsService(config);
+	public static async construct(config: Coins.Config): Promise<KnownWalletService> {
+		return new KnownWalletService(config);
 	}
 
 	public async destruct(): Promise<void> {}
 
-	public findByAddress(address: string): Contracts.KnownWallet | undefined {
-		return this.#knownWallets[address];
-	}
-
-	public isKnown(address: string): boolean {
-		return !!this.findByAddress(address);
-	}
-
-	public hasType(address: string, type: string): boolean {
-		const addressData = this.findByAddress(address);
-		return addressData?.type === type;
-	}
-
-	public isOwnedByExchange(address: string): boolean {
-		return this.hasType(address, "exchange");
-	}
-
-	public isOwnedByTeam(address: string): boolean {
-		return this.hasType(address, "team");
-	}
-
-	public displayName(address: string): string | undefined {
-		const addressData = this.findByAddress(address);
-		return addressData?.name;
+	public async all(): Promise<Contracts.KnownWallet[]> {
+		try {
+			return (await this.#httpClient.get(this.#source)).json();
+		} catch (error) {
+			return [];
+		}
 	}
 }

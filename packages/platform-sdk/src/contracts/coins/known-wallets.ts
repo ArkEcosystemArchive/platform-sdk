@@ -4,12 +4,8 @@ export interface KnownWallet {
 	address: string;
 }
 
-export interface KnownWalletsService {
+export interface KnownWalletService {
 	destruct(): Promise<void>;
-	findByAddress(address: string): KnownWallet | undefined;
-	isKnown(address: string): boolean;
-	hasType(address: string, type: string): boolean;
-	isOwnedByExchange(address: string): boolean;
-	isOwnedByTeam(address: string): boolean;
-	displayName(address: string): string | undefined;
+
+	all(): Promise<KnownWallet[]>;
 }

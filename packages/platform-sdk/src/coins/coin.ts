@@ -2,7 +2,7 @@ import {
 	ClientService,
 	FeeService,
 	IdentityService,
-	KnownWalletsService,
+	KnownWalletService,
 	LedgerService,
 	LinkService,
 	MessageService,
@@ -83,7 +83,7 @@ export class Coin {
 		return this.#services.identity;
 	}
 
-	public knownWallets(): KnownWalletsService {
+	public knownWallets(): KnownWalletService {
 		return this.#services.knownWallets;
 	}
 
