@@ -318,9 +318,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public isKnown(): boolean {
-		return container
-			.get<KnownWalletService>(Identifiers.KnownWalletService)
-			.is(this.networkId(), this.address());
+		return container.get<KnownWalletService>(Identifiers.KnownWalletService).is(this.networkId(), this.address());
 	}
 
 	public isOwnedByExchange(): boolean {
