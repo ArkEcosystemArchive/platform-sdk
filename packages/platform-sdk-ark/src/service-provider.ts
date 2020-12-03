@@ -1,7 +1,6 @@
 import { Managers } from "@arkecosystem/crypto";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import isUrl from "is-url-superb";
 
 import { ClientService } from "./services/client";
 import { FeeService } from "./services/fee";
@@ -15,7 +14,7 @@ import { TransactionService } from "./services/transaction";
 
 export class ServiceProvider {
 	public static async make(coin: Coins.CoinSpec, config: Coins.Config): Promise<Coins.CoinServices> {
-		config.set("networkConfiguration", await ServiceProvider.retrieveNetworkConfiguration(config));
+		config.set(Coins.ConfigKey.NetworkConfiguration, await ServiceProvider.retrieveNetworkConfiguration(config));
 
 		const multiSignature = await MultiSignatureService.construct(config);
 
@@ -61,7 +60,7 @@ export class ServiceProvider {
 		const dataCrypto = crypto.json().data;
 		const dataStatus = status.json().data;
 
-		if (dataCrypto.network.client.token !== config.get("network.currency.ticker")) {
+		if (dataCrypto.network.client.token !== config.get(Coins.ConfigKey.CurrencyTicker)) {
 			throw new Error(`Failed to connect to ${peer} because it is on another network.`);
 		}
 

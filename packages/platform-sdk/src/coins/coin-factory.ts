@@ -1,5 +1,5 @@
 import { Coin } from "./coin";
-import { Config } from "./config";
+import { Config, ConfigKey } from "./config";
 import { CoinOptions, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
 import { NetworkRepository } from "./network-repository";
@@ -9,7 +9,7 @@ export class CoinFactory {
 		const networks: NetworkRepository = new NetworkRepository(coin.manifest.networks);
 
 		const config: Config = new Config(options, coin.schema);
-		config.set("network", networks.get(config.get<string>("network")));
+		config.set(ConfigKey.Network, networks.get(config.get<string>("network")));
 
 		return new Coin({
 			networks,

@@ -13,7 +13,7 @@ export class Keys implements Contracts.Keys {
 
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
 		try {
-			const wallet: Wallet = createWallet(mnemonic, this.#config.get("network.crypto.slip44"));
+			const wallet: Wallet = createWallet(mnemonic, this.#config.get(Coins.ConfigKey.Slip44));
 
 			return {
 				publicKey: wallet.getPublicKey().toString("hex"),

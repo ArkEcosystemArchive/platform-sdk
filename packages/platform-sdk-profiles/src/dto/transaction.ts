@@ -4,6 +4,8 @@ import { File } from "@arkecosystem/platform-sdk-ipfs";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import slugify from "@sindresorhus/slugify";
 
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
 import { ReadWriteWallet, WalletData } from "../wallets/wallet.models";
 
 export class TransactionData {
@@ -430,11 +432,13 @@ export class EntityRegistrationData extends TransactionData {
 	}
 
 	public async ipfsContent(): Promise<object | undefined> {
-		if (this.ipfs() === undefined) {
+		const hash: string | undefined = this.ipfs();
+
+		if (hash === undefined) {
 			return undefined;
 		}
 
-		return File.get(this.ipfs());
+		return new File(container.get(Identifiers.HttpClient)).get(hash) as any;
 	}
 
 	public marketSquareLink(): string {
@@ -493,11 +497,13 @@ export class EntityUpdateData extends TransactionData {
 	}
 
 	public async ipfsContent(): Promise<object | undefined> {
-		if (this.ipfs() === undefined) {
+		const hash: string | undefined = this.ipfs();
+
+		if (hash === undefined) {
 			return undefined;
 		}
 
-		return File.get(this.ipfs());
+		return new File(container.get(Identifiers.HttpClient)).get(hash) as any;
 	}
 }
 

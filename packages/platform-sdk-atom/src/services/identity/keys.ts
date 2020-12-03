@@ -12,7 +12,7 @@ export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
 		try {
 			const privateKey: Buffer | undefined = BIP44.deriveChild(mnemonic, {
-				coinType: this.#config.get("network.crypto.slip44"),
+				coinType: this.#config.get(Coins.ConfigKey.Slip44),
 				index: 0,
 			}).privateKey;
 

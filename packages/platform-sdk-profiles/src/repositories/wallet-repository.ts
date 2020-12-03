@@ -96,7 +96,7 @@ export class WalletRepository {
 
 		wallet.settings().fill(settings);
 
-		return this.storeWallet(wallet.id(), wallet as ReadWriteWallet);
+		return this.storeWallet(wallet as ReadWriteWallet);
 	}
 
 	public findById(id: string): ReadWriteWallet {
