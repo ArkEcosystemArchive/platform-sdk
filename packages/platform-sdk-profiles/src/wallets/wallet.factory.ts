@@ -5,7 +5,12 @@ import { Wallet } from "./wallet";
 import { ReadWriteWallet, WalletFlag } from "./wallet.models";
 
 export class WalletFactory {
-	public static async fromMnemonic(profile: Profile, mnemonic: string, coin: string, network: string): Promise<ReadWriteWallet> {
+	public static async fromMnemonic(
+		profile: Profile,
+		mnemonic: string,
+		coin: string,
+		network: string,
+	): Promise<ReadWriteWallet> {
 		const wallet: ReadWriteWallet = new Wallet(uuidv4(), profile);
 
 		await wallet.setCoin(coin, network);
@@ -14,7 +19,12 @@ export class WalletFactory {
 		return wallet;
 	}
 
-	public static async fromAddress(profile: Profile, address: string, coin: string, network: string): Promise<ReadWriteWallet> {
+	public static async fromAddress(
+		profile: Profile,
+		address: string,
+		coin: string,
+		network: string,
+	): Promise<ReadWriteWallet> {
 		const wallet: ReadWriteWallet = new Wallet(uuidv4(), profile);
 
 		await wallet.setCoin(coin, network);
