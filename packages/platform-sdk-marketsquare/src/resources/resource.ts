@@ -8,15 +8,15 @@ export abstract class Resource {
 	}
 
 	public async get<T>(path: string, query?: object): Promise<T> {
-		return (await this.#client.post(path, { query })).json() as T;
+		return (await this.#client.get(path, query)).json() as T;
 	}
 
 	public async post<T>(path: string, body: object): Promise<T> {
-		return (await this.#client.post(path, { body })).json() as T;
+		return (await this.#client.post(path, body)).json() as T;
 	}
 
 	public async put<T>(path: string, body: object): Promise<T> {
-		return (await this.#client.put(path, { body })).json() as T;
+		return (await this.#client.put(path, body)).json() as T;
 	}
 
 	protected getClient(): Contracts.HttpClient {

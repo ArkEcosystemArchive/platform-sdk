@@ -6,7 +6,7 @@ export class Delegate extends Resource {
 		return this.get('delegates', query);
 	}
 
-	public async show(id: string): Promise<Models.Response<Models.Delegate>> {
+	public async show(id: number): Promise<Models.Response<Models.Delegate>> {
 		return this.get(`delegates/${id}`);
 	}
 }

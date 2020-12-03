@@ -6,7 +6,7 @@ export class Product extends Resource {
 		return this.get('products', query);
 	}
 
-	public async show(id: string): Promise<Models.Response<Models.Product>> {
+	public async show(id: number): Promise<Models.Response<Models.Product>> {
 		return this.get(`products/${id}`);
 	}
 }

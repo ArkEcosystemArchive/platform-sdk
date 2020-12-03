@@ -22,6 +22,7 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
 	},
 	"devDependencies": {
+		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/dinero.js": "1.6.5",
 		"@types/eslint": "^7.2.4",

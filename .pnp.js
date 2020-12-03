@@ -1350,6 +1350,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-marketsquare", "workspace:packages/platform-sdk-marketsquare"],
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/dinero.js", "npm:1.6.5"],
             ["@types/eslint", "npm:7.2.4"],

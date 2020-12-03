@@ -6,11 +6,11 @@ export class Module extends Resource {
 		return this.get('modules', query);
 	}
 
-	public async show(id: string): Promise<Models.Response<Models.Module>> {
+	public async show(id: number): Promise<Models.Response<Models.Module>> {
 		return this.get(`modules/${id}`);
 	}
 
-	public async versions(id: string, query?: object): Promise<Models.PaginatedResponse<Models.PackageVersion>> {
+	public async versions(id: number, query?: object): Promise<Models.PaginatedResponse<Models.PackageVersion>> {
 		return this.get(`modules/${id}/versions`, query);
 	}
 }

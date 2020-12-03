@@ -14,6 +14,7 @@ export class Client {
 
 	public constructor(client: Contracts.HttpClient) {
 		this.#client = client;
+		this.#client.withBaseUrl('https://marketsquare.io');
 	}
 
 	public withBaseUrl(baseUrl: string): Client {
