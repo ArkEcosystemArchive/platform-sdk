@@ -1478,9 +1478,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-eth", "workspace:packages/platform-sdk-eth"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
+            ["@arkecosystem/platform-sdk-ipfs", "workspace:packages/platform-sdk-ipfs"],
             ["@arkecosystem/platform-sdk-markets", "workspace:packages/platform-sdk-markets"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@arkecosystem/utils", "npm:1.2.0"],
+            ["@sindresorhus/slugify", "npm:1.1.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/async", "npm:3.2.4"],
             ["@types/dot-prop", "npm:5.0.1"],
@@ -1493,6 +1495,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/prettier", "npm:2.1.5"],
             ["@types/rimraf", "npm:3.0.0"],
             ["@types/semver", "npm:7.3.4"],
+            ["@types/sindresorhus__slugify", "npm:0.9.3"],
             ["@types/uuid", "npm:8.3.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:28bf10013f0dc3f5a648d9c22f70a8dd4890ee90e15e92164892c7edce794c8926350a258d8468ebdf2d34bf06cd3d7052aeb5926b807a64078459f2968d96a2#npm:4.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
@@ -4270,6 +4273,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@sindresorhus/slugify", [
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/@sindresorhus-slugify-npm-1.1.0-aa4da00201-2.zip/node_modules/@sindresorhus/slugify/",
+          "packageDependencies": [
+            ["@sindresorhus/slugify", "npm:1.1.0"],
+            ["@sindresorhus/transliterate", "npm:0.1.1"],
+            ["escape-string-regexp", "npm:4.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@sindresorhus/transliterate", [
+        ["npm:0.1.1", {
+          "packageLocation": "./.yarn/cache/@sindresorhus-transliterate-npm-0.1.1-b26a532d7b-2.zip/node_modules/@sindresorhus/transliterate/",
+          "packageDependencies": [
+            ["@sindresorhus/transliterate", "npm:0.1.1"],
+            ["escape-string-regexp", "npm:2.0.0"],
+            ["lodash.deburr", "npm:4.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@sindresorhus/tsconfig", [
         ["npm:0.7.0", {
           "packageLocation": "./.yarn/cache/@sindresorhus-tsconfig-npm-0.7.0-42b9b75aea-2.zip/node_modules/@sindresorhus/tsconfig/",
@@ -5074,6 +5099,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-semver-npm-7.3.4-96fde085ea-2.zip/node_modules/@types/semver/",
           "packageDependencies": [
             ["@types/semver", "npm:7.3.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/sindresorhus__slugify", [
+        ["npm:0.9.3", {
+          "packageLocation": "./.yarn/cache/@types-sindresorhus__slugify-npm-0.9.3-606a5b8fb7-2.zip/node_modules/@types/sindresorhus__slugify/",
+          "packageDependencies": [
+            ["@types/sindresorhus__slugify", "npm:0.9.3"],
+            ["@sindresorhus/slugify", "npm:1.1.0"]
           ],
           "linkType": "HARD",
         }]
@@ -9524,6 +9559,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["escape-string-regexp", "npm:2.0.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:4.0.0", {
+          "packageLocation": "./.yarn/cache/escape-string-regexp-npm-4.0.0-4b531d8d59-2.zip/node_modules/escape-string-regexp/",
+          "packageDependencies": [
+            ["escape-string-regexp", "npm:4.0.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["escodegen", [
@@ -13482,6 +13524,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lodash-es-npm-4.17.15-ad31f98cc6-2.zip/node_modules/lodash-es/",
           "packageDependencies": [
             ["lodash-es", "npm:4.17.15"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["lodash.deburr", [
+        ["npm:4.1.0", {
+          "packageLocation": "./.yarn/cache/lodash.deburr-npm-4.1.0-ccda5a50b5-2.zip/node_modules/lodash.deburr/",
+          "packageDependencies": [
+            ["lodash.deburr", "npm:4.1.0"]
           ],
           "linkType": "HARD",
         }]

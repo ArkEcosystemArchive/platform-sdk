@@ -1,6 +1,8 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
+import { File } from "@arkecosystem/platform-sdk-ipfs";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import slugify from "@sindresorhus/slugify";
 
 import { ReadWriteWallet, WalletData } from "../wallets/wallet.models";
 
@@ -395,10 +397,17 @@ export class DelegateRegistrationData extends TransactionData {
 	public username(): string {
 		return this.data<Contracts.DelegateRegistrationData>().username();
 	}
+
+	public marketSquareLink(): string {
+		const slug: string = slugify(this.username());
+
+		return `https://marketsquare.io/delegates/${slug}`;
+	}
 }
 
 export class DelegateResignationData extends TransactionData {}
 
+// This type is currently only supported by ARK.
 export class EntityRegistrationData extends TransactionData {
 	public entityType(): number {
 		return this.data<Contracts.EntityRegistrationData>().entityType();
@@ -416,11 +425,33 @@ export class EntityRegistrationData extends TransactionData {
 		return this.data<Contracts.EntityRegistrationData>().name();
 	}
 
-	public ipfs(): string {
-		return this.data<Contracts.EntityRegistrationData>().ipfs();
+	public ipfs(): string | undefined {
+		return this.data<Contracts.EntityUpdateData>().ipfs();
+	}
+
+	public async ipfsContent(): Promise<object | undefined> {
+		if (this.ipfs() === undefined) {
+			return undefined;
+		}
+
+		return File.get(this.ipfs());
+	}
+
+	public marketSquareLink(): string {
+		const slug: string = slugify(this.name());
+		const type: string = {
+			0: "businesses",
+			1: "products",
+			2: "plugins",
+			3: "modules",
+			4: "delegates",
+		}[this.entityType()];
+
+		return `https://marketsquare.io/${type}/${slug}`;
 	}
 }
 
+// This type is currently only supported by ARK. We are more lenient with its strictness in data formatting and usage
 export class EntityResignationData extends TransactionData {
 	public entityType(): number {
 		return this.data<Contracts.EntityResignationData>().entityType();
@@ -439,6 +470,7 @@ export class EntityResignationData extends TransactionData {
 	}
 }
 
+// This type is currently only supported by ARK.
 export class EntityUpdateData extends TransactionData {
 	public entityType(): number {
 		return this.data<Contracts.EntityUpdateData>().entityType();
@@ -458,6 +490,14 @@ export class EntityUpdateData extends TransactionData {
 
 	public ipfs(): string | undefined {
 		return this.data<Contracts.EntityUpdateData>().ipfs();
+	}
+
+	public async ipfsContent(): Promise<object | undefined> {
+		if (this.ipfs() === undefined) {
+			return undefined;
+		}
+
+		return File.get(this.ipfs());
 	}
 }
 
