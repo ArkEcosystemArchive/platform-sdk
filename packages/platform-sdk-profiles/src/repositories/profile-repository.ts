@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { pqueue } from "../helpers/queue";
 import { Profile } from "../profiles/profile";
+import { ProfileFactory } from "../profiles/profile.factory";
 import { ProfileSetting } from "../profiles/profile.models";
 import { ReadWriteWallet } from "../wallets/wallet.models";
 import { DataRepository } from "./data-repository";
@@ -56,13 +57,9 @@ export class ProfileRepository {
 			}
 		}
 
-		const id: string = uuidv4();
-		const result: Profile = new Profile({ id });
+		const result: Profile = ProfileFactory.fromName(name);
 
-		result.settings().set(ProfileSetting.Name, name);
-		result.initializeSettings();
-
-		this.#data.set(id, result);
+		this.#data.set(result.id(), result);
 
 		return result;
 	}
