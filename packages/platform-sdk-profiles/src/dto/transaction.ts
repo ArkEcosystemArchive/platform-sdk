@@ -432,11 +432,13 @@ export class EntityRegistrationData extends TransactionData {
 	}
 
 	public async ipfsContent(): Promise<object | undefined> {
-		if (this.ipfs() === undefined) {
+		const hash: string | undefined = this.ipfs();
+
+		if (hash === undefined) {
 			return undefined;
 		}
 
-		return (new File(container.get(Identifiers.HttpClient))).get(this.ipfs());
+		return (new File(container.get(Identifiers.HttpClient))).get(hash) as any;
 	}
 
 	public marketSquareLink(): string {
@@ -495,11 +497,13 @@ export class EntityUpdateData extends TransactionData {
 	}
 
 	public async ipfsContent(): Promise<object | undefined> {
-		if (this.ipfs() === undefined) {
+		const hash: string | undefined = this.ipfs();
+
+		if (hash === undefined) {
 			return undefined;
 		}
 
-		return (new File(container.get(Identifiers.HttpClient))).get(this.ipfs());
+		return (new File(container.get(Identifiers.HttpClient))).get(hash) as any;
 	}
 }
 
