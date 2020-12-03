@@ -320,19 +320,19 @@ export class Wallet implements ReadWriteWallet {
 	public isKnown(): boolean {
 		return container
 			.get<KnownWalletService>(Identifiers.KnownWalletService)
-			.isKnown(this.networkId(), this.address());
+			.is(this.networkId(), this.address());
 	}
 
 	public isOwnedByExchange(): boolean {
 		return container
 			.get<KnownWalletService>(Identifiers.KnownWalletService)
-			.isOwnedByExchange(this.networkId(), this.address());
+			.isExchange(this.networkId(), this.address());
 	}
 
 	public isOwnedByTeam(): boolean {
 		return container
 			.get<KnownWalletService>(Identifiers.KnownWalletService)
-			.isOwnedByTeam(this.networkId(), this.address());
+			.isTeam(this.networkId(), this.address());
 	}
 
 	public isLedger(): boolean {

@@ -60,19 +60,19 @@ export class ContactAddress {
 	public isKnown(): boolean {
 		return container
 			.get<KnownWalletService>(Identifiers.KnownWalletService)
-			.isKnown(this.#coin.network().id(), this.address());
+			.is(this.#coin.network().id(), this.address());
 	}
 
 	public isOwnedByExchange(): boolean {
 		return container
 			.get<KnownWalletService>(Identifiers.KnownWalletService)
-			.isOwnedByExchange(this.#coin.network().id(), this.address());
+			.isExchange(this.#coin.network().id(), this.address());
 	}
 
 	public isOwnedByTeam(): boolean {
 		return container
 			.get<KnownWalletService>(Identifiers.KnownWalletService)
-			.isOwnedByTeam(this.#coin.network().id(), this.address());
+			.isTeam(this.#coin.network().id(), this.address());
 	}
 
 	public isMultiSignature(): boolean {
