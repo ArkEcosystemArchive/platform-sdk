@@ -397,6 +397,12 @@ export class DelegateRegistrationData extends TransactionData {
 	public username(): string {
 		return this.data<Contracts.DelegateRegistrationData>().username();
 	}
+
+	public marketSquareLink(): string {
+		const slug: string = slugify(this.username());
+
+		return `https://marketsquare.io/delegates/${slug}`;
+	}
 }
 
 export class DelegateResignationData extends TransactionData {}
@@ -434,18 +440,18 @@ export class EntityRegistrationData extends TransactionData {
 	public marketSquareLink(): string {
 		const slug: string = slugify(this.name());
 		const type: string = {
-			0: 'businesses',
-			1: 'products',
-			2: 'plugins',
-			3: 'modules',
-			4: 'delegates',
+			0: "businesses",
+			1: "products",
+			2: "plugins",
+			3: "modules",
+			4: "delegates",
 		}[this.entityType()];
 
 		return `https://marketsquare.io/${type}/${slug}`;
 	}
 }
 
-// This type is currently only supported by ARK.
+// This type is currently only supported by ARK. We are more lenient with its strictness in data formatting and usage
 export class EntityResignationData extends TransactionData {
 	public entityType(): number {
 		return this.data<Contracts.EntityResignationData>().entityType();
