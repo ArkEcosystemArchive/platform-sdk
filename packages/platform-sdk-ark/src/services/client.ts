@@ -161,7 +161,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async entityHistory(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
-		return this.transactions({ ...query, "asset.registrationId": id });
+		return this.transactions({ ...query, asset: { registrationId: id } });
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
