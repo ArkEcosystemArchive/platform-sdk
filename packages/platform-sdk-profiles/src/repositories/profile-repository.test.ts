@@ -48,7 +48,7 @@ describe("ProfileRepository", () => {
 	it("should restore the given profiles", async () => {
 		expect(subject.count()).toBe(0);
 
-		await subject.fill({
+		subject.fill({
 			"b999d134-7a24-481e-a95d-bc47c543bfc9": {
 				id: "b999d134-7a24-481e-a95d-bc47c543bfc9",
 				contacts: {
