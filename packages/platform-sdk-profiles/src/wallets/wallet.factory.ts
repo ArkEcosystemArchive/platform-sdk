@@ -7,9 +7,9 @@ import { ReadWriteWallet, WalletFlag } from "./wallet.models";
 export class WalletFactory {
 	public static async fromMnemonic(
 		profile: Profile,
-		mnemonic: string,
 		coin: string,
 		network: string,
+		mnemonic: string,
 	): Promise<ReadWriteWallet> {
 		const wallet: ReadWriteWallet = new Wallet(uuidv4(), profile);
 
@@ -21,9 +21,9 @@ export class WalletFactory {
 
 	public static async fromAddress(
 		profile: Profile,
-		address: string,
 		coin: string,
 		network: string,
+		address: string,
 	): Promise<ReadWriteWallet> {
 		const wallet: ReadWriteWallet = new Wallet(uuidv4(), profile);
 
@@ -35,9 +35,9 @@ export class WalletFactory {
 
 	public static async fromAddressWithLedgerIndex(
 		profile: Profile,
-		address: string,
 		coin: string,
 		network: string,
+		address: string,
 		index: string,
 	): Promise<ReadWriteWallet> {
 		// @TODO: eventually handle the whole process from slip44 path to public key to address

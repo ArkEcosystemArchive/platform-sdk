@@ -55,11 +55,11 @@ export class WalletRepository {
 	}
 
 	public async importByMnemonic(mnemonic: string, coin: string, network: string): Promise<ReadWriteWallet> {
-		return this.storeWallet(await WalletFactory.fromMnemonic(this.#profile, mnemonic, coin, network));
+		return this.storeWallet(await WalletFactory.fromMnemonic(this.#profile, coin, network, mnemonic));
 	}
 
 	public async importByAddress(address: string, coin: string, network: string): Promise<ReadWriteWallet> {
-		return this.storeWallet(await WalletFactory.fromAddress(this.#profile, address, coin, network));
+		return this.storeWallet(await WalletFactory.fromAddress(this.#profile, coin, network, address));
 	}
 
 	public async importByAddressWithLedgerIndex(
@@ -69,7 +69,7 @@ export class WalletRepository {
 		index: string,
 	): Promise<ReadWriteWallet> {
 		return this.storeWallet(
-			await WalletFactory.fromAddressWithLedgerIndex(this.#profile, address, coin, network, index),
+			await WalletFactory.fromAddressWithLedgerIndex(this.#profile, coin, network, address, index),
 		);
 	}
 
