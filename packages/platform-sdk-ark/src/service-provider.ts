@@ -5,6 +5,7 @@ import { Arr } from "@arkecosystem/platform-sdk-support";
 import { ClientService } from "./services/client";
 import { FeeService } from "./services/fee";
 import { IdentityService } from "./services/identity";
+import { KnownWalletService } from "./services/known-wallets";
 import { LedgerService } from "./services/ledger";
 import { LinkService } from "./services/link";
 import { MessageService } from "./services/message";
@@ -18,10 +19,11 @@ export class ServiceProvider {
 
 		const multiSignature = await MultiSignatureService.construct(config);
 
-		const [client, fee, identity, ledger, link, message, peer, transaction] = await Promise.all([
+		const [client, fee, identity, knownWallets, ledger, link, message, peer, transaction] = await Promise.all([
 			ClientService.construct(config),
 			FeeService.construct(config),
 			IdentityService.construct(config),
+			KnownWalletService.construct(config),
 			LedgerService.construct(config),
 			LinkService.construct(config),
 			MessageService.construct(config),
@@ -33,6 +35,7 @@ export class ServiceProvider {
 			client,
 			fee,
 			identity,
+			knownWallets,
 			ledger,
 			link,
 			message,

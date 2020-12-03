@@ -72,10 +72,6 @@ it("should determine if the wallet is a delegate", () => {
 	expect(subject.isDelegate()).toBeTrue();
 });
 
-it("should determine if the wallet is known", () => {
-	expect(subject.isKnown()).toBeFalse();
-});
-
 it("should determine if the wallet has a multi signature", () => {
 	expect(subject.isMultiSignature()).toBeFalse();
 });

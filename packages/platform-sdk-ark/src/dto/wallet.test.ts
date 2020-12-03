@@ -69,10 +69,6 @@ describe("WalletData", function () {
 			expect(subject.isResignedDelegate()).toBeTrue();
 		});
 
-		test("#isKnown", () => {
-			expect(subject.isKnown()).toBeFalse();
-		});
-
 		test("#isMultiSignature", () => {
 			expect(subject.isMultiSignature()).toBeFalse();
 		});

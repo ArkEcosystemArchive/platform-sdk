@@ -8,6 +8,7 @@ export const Identifiers = {
 	ExchangeRateService: "ExchangeRateService",
 	FeeService: "FeeService",
 	HttpClient: "HttpClient",
+	KnownWalletService: "KnownWalletService",
 	Migrator: "Migrator",
 	ProfileRepository: "ProfileRepository",
 	SettingRepository: "SettingRepository",

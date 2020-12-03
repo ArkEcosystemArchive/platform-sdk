@@ -104,5 +104,6 @@
 			"entityResignation": true,
 			"entityUpdate": true
 		}
-	}
+	},
+	"knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/mainnet/known-wallets-extended.json"
 }

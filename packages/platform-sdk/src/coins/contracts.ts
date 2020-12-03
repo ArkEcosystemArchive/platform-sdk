@@ -3,6 +3,7 @@ import {
 	FeeService,
 	HttpClient,
 	IdentityService,
+	KnownWalletService,
 	LedgerService,
 	LinkService,
 	MessageService,
@@ -28,6 +29,7 @@ export interface CoinServices {
 	client: ClientService;
 	fee: FeeService;
 	identity: IdentityService;
+	knownWallets: KnownWalletService;
 	ledger: LedgerService;
 	link: LinkService;
 	message: MessageService;

@@ -1,6 +1,9 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
+import { container } from "../environment/container";
 import { makeCoin } from "../environment/container.helpers";
+import { Identifiers } from "../environment/container.models";
+import { KnownWalletService } from "../environment/services/known-wallet-service";
 import { Avatar } from "../services/avatar";
 import { ContactAddressProps } from "./contact-address.models";
 
@@ -55,11 +58,21 @@ export class ContactAddress {
 	}
 
 	public isKnown(): boolean {
-		if (!this.#wallet) {
-			throw new Error("This contact has not been synchronized yet. Please call [syncIdentity] before using it.");
-		}
+		return container
+			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.is(this.#coin.network().id(), this.address());
+	}
 
-		return this.#wallet.isKnown();
+	public isOwnedByExchange(): boolean {
+		return container
+			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.isExchange(this.#coin.network().id(), this.address());
+	}
+
+	public isOwnedByTeam(): boolean {
+		return container
+			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.isTeam(this.#coin.network().id(), this.address());
 	}
 
 	public isMultiSignature(): boolean {

@@ -67,10 +67,6 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return !!this.getProperty(["isResigned", "attributes.delegate.resigned"]);
 	}
 
-	public isKnown(): boolean {
-		return false;
-	}
-
 	public isMultiSignature(): boolean {
 		return !!this.getProperty(["multiSignature", "attributes.multiSignature"]);
 	}

@@ -2,6 +2,7 @@ import {
 	ClientService,
 	FeeService,
 	IdentityService,
+	KnownWalletService,
 	LedgerService,
 	LinkService,
 	MessageService,
@@ -45,6 +46,7 @@ export class Coin {
 			this.#services.client.destruct(),
 			this.#services.fee.destruct(),
 			this.#services.identity.destruct(),
+			this.#services.knownWallets.destruct(),
 			this.#services.ledger.destruct(),
 			this.#services.link.destruct(),
 			this.#services.message.destruct(),
@@ -79,6 +81,10 @@ export class Coin {
 
 	public identity(): IdentityService {
 		return this.#services.identity;
+	}
+
+	public knownWallets(): KnownWalletService {
+		return this.#services.knownWallets;
 	}
 
 	public ledger(): LedgerService {

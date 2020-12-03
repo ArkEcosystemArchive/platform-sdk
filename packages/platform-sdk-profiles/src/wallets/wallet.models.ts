@@ -90,7 +90,6 @@ export interface ReadWriteWallet {
 
 	isDelegate(): boolean;
 	isResignedDelegate(): boolean;
-	isKnown(): boolean;
 	isLedger(): boolean;
 	isMultiSignature(): boolean;
 	isSecondSignature(): boolean;
