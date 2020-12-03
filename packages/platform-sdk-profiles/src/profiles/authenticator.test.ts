@@ -8,7 +8,7 @@ let subject: Authenticator;
 let profile: Profile;
 
 beforeEach(() => {
-	profile = new Profile("uuid");
+	profile = new Profile({ id: "uuid" });
 	subject = new Authenticator(profile);
 });
 

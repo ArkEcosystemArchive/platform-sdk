@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { pqueue } from "../helpers/queue";
 
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
@@ -9,6 +10,7 @@ import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
 import { Avatar } from "../services/avatar";
+import { ReadWriteWallet } from "../wallets/wallet.models";
 import { CountAggregate } from "./aggregates/count-aggregate";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { RegistrationAggregate } from "./aggregates/registration-aggregate";
@@ -18,7 +20,7 @@ import { Authenticator } from "./authenticator";
 import { ProfileContract, ProfileSetting, ProfileStruct } from "./profile.models";
 
 export class Profile implements ProfileContract {
-	#id: string;
+	#data: Record<string, any>;
 
 	#contactRepository: ContactRepository;
 	#dataRepository: DataRepository;
@@ -34,8 +36,8 @@ export class Profile implements ProfileContract {
 	#transactionAggregate: TransactionAggregate;
 	#walletAggregate: WalletAggregate;
 
-	public constructor(id: string) {
-		this.#id = id;
+	public constructor(data: Record<string, unknown>) {
+		this.#data = data;
 
 		this.#contactRepository = new ContactRepository(this);
 		this.#dataRepository = new DataRepository();
@@ -53,7 +55,7 @@ export class Profile implements ProfileContract {
 	}
 
 	public id(): string {
-		return this.#id;
+		return this.#data.id as string;
 	}
 
 	public name(): string {
@@ -204,8 +206,50 @@ export class Profile implements ProfileContract {
 		this.settings().set(ProfileSetting.UseTestNetworks, false);
 	}
 
+	public async restore(): Promise<void> {
+		this.peers().fill(this.#data.peers);
+
+		this.notifications().fill(this.#data.notifications);
+
+		this.data().fill(this.#data.data);
+
+		this.plugins().fill(this.#data.plugins);
+
+		this.settings().fill(this.#data.settings);
+
+		await this.restoreWallets(this, this.#data.wallets);
+
+		await this.contacts().fill(this.#data.contacts);
+	}
+
 	private restoreDefaultSettings(name: string): void {
 		this.settings().set(ProfileSetting.Name, name);
 		this.initializeSettings();
+	}
+
+	private async restoreWallets(profile: Profile, wallets: object): Promise<void> {
+		const syncWallets = (wallets: object): Promise<ReadWriteWallet[]> =>
+			pqueue([...Object.values(wallets)].map((wallet) => () => profile.wallets().restore(wallet)));
+
+		const earlyWallets: Record<string, object> = {};
+		const laterWallets: Record<string, object> = {};
+
+		for (const [id, wallet] of Object.entries(wallets) as any) {
+			const nid: string = wallet.network;
+
+			if (earlyWallets[nid] === undefined) {
+				earlyWallets[nid] = wallet;
+			} else {
+				laterWallets[id] = wallet;
+			}
+		}
+
+		// These wallets will be synced first so that we have cached coin instances for consecutive sync operations.
+		// This will help with coins like ARK to prevent multiple requests for configuration and syncing operations.
+		await syncWallets(earlyWallets);
+
+		// These wallets will be synced last because they can reuse already existing coin instances from the warmup wallets
+		// to avoid duplicate requests which elongate the waiting time for a user before the wallet is accessible and ready.
+		await syncWallets(laterWallets);
 	}
 }
