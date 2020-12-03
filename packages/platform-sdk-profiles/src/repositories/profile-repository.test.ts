@@ -130,6 +130,7 @@ describe("ProfileRepository", () => {
 
 		expect(subject.count()).toBe(2);
 		expect(subject.findById(jane.id())).toBeInstanceOf(Profile);
+		expect(subject.findByName(jane.name())).toBeInstanceOf(Profile);
 
 		subject.forget(jane.id());
 

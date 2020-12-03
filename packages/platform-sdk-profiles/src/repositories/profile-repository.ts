@@ -48,13 +48,13 @@ export class ProfileRepository {
 		return this.#data.get(id) as Profile;
 	}
 
-	public create(name: string): Profile {
-		const profiles: Profile[] = this.values();
+	public findByName(name: string): Profile | undefined {
+		return this.values().find((profile: Profile) => profile.name().toLowerCase() === name.toLowerCase());
+	}
 
-		for (const profile of profiles) {
-			if (profile.name() === name) {
-				throw new Error(`The profile [${name}] already exists.`);
-			}
+	public create(name: string): Profile {
+		if (this.findByName(name)) {
+			throw new Error(`The profile [${name}] already exists.`);
 		}
 
 		const result: Profile = ProfileFactory.fromName(name);
