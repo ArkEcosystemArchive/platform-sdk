@@ -1,10 +1,10 @@
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { sortBy, sortByDesc } from "@arkecosystem/utils";
-import { v4 as uuidv4 } from "uuid";
 
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
-import { ReadWriteWallet, WalletFlag, WalletSetting } from "../wallets/wallet.models";
+import { WalletFactory } from "../wallets/wallet.factory";
+import { ReadWriteWallet } from "../wallets/wallet.models";
 import { DataRepository } from "./data-repository";
 
 export class WalletRepository {
@@ -55,23 +55,11 @@ export class WalletRepository {
 	}
 
 	public async importByMnemonic(mnemonic: string, coin: string, network: string): Promise<ReadWriteWallet> {
-		const id: string = uuidv4();
-		const wallet = new Wallet(id, this.#profile);
-
-		await wallet.setCoin(coin, network);
-		await wallet.setIdentity(mnemonic);
-
-		return this.storeWallet(id, wallet);
+		return this.storeWallet(await WalletFactory.fromMnemonic(this.#profile, coin, network, mnemonic));
 	}
 
 	public async importByAddress(address: string, coin: string, network: string): Promise<ReadWriteWallet> {
-		const id: string = uuidv4();
-		const wallet = new Wallet(id, this.#profile);
-
-		await wallet.setCoin(coin, network);
-		await wallet.setAddress(address);
-
-		return this.storeWallet(id, wallet);
+		return this.storeWallet(await WalletFactory.fromAddress(this.#profile, coin, network, address));
 	}
 
 	public async importByAddressWithLedgerIndex(
@@ -80,13 +68,9 @@ export class WalletRepository {
 		network: string,
 		index: string,
 	): Promise<ReadWriteWallet> {
-		// @TODO: eventually handle the whole process from slip44 path to public key to address
-
-		const wallet: ReadWriteWallet = await this.importByAddress(address, coin, network);
-
-		wallet.data().set(WalletFlag.LedgerIndex, index);
-
-		return wallet;
+		return this.storeWallet(
+			await WalletFactory.fromAddressWithLedgerIndex(this.#profile, coin, network, address, index),
+		);
 	}
 
 	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: ReadWriteWallet }> {
@@ -223,12 +207,12 @@ export class WalletRepository {
 		return sortByDesc(this.values(), sortFunction);
 	}
 
-	private storeWallet(id: string, wallet: ReadWriteWallet): ReadWriteWallet {
+	private storeWallet(wallet: ReadWriteWallet): ReadWriteWallet {
 		if (this.findByAddress(wallet.address())) {
 			throw new Error(`The wallet [${wallet.address()}] already exists.`);
 		}
 
-		this.#data.set(id, wallet);
+		this.#data.set(wallet.id(), wallet);
 
 		return wallet;
 	}
