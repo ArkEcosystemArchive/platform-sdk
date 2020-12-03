@@ -18,11 +18,11 @@ beforeEach(async () => (subject = new Client(new Request())));
 
 describe("Client", function () {
 	it("should set the base url and return the client", async () => {
-		expect(subject.withBaseUrl('a')).toBeInstanceOf(Client);
+		expect(subject.withBaseUrl("a")).toBeInstanceOf(Client);
 	});
 
 	it("should set the authentication token and return the client", async () => {
-		expect(subject.withToken('a')).toBeInstanceOf(Client);
+		expect(subject.withToken("a")).toBeInstanceOf(Client);
 	});
 
 	it("should have access to the [aip36] resource", async () => {
@@ -56,5 +56,4 @@ describe("Client", function () {
 	it("should have access to the [user] resource", async () => {
 		expect(subject.user()).toBeInstanceOf(User);
 	});
-
 });

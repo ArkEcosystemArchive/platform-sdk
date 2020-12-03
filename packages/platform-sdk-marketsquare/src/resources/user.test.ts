@@ -38,5 +38,4 @@ describe("User", function () {
 	it("should have access to the [wallet] resource", async () => {
 		expect(subject.wallet()).toBeInstanceOf(Wallet);
 	});
-
 });

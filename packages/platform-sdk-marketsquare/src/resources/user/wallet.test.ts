@@ -15,18 +15,14 @@ afterEach(() => nock.cleanAll());
 
 describe("Wallet", function () {
 	it("should get the desktop wallet settings", async () => {
-		nock("https://marketsquare.io/")
-			.get("/api/wallets/desktop/sync")
-			.reply(200, { key: 'value' });
+		nock("https://marketsquare.io/").get("/api/wallets/desktop/sync").reply(200, { key: "value" });
 
-		await expect(subject.show('desktop')).resolves.toEqual({ key: 'value' });
+		await expect(subject.show("desktop")).resolves.toEqual({ key: "value" });
 	});
 
 	it("should update the desktop wallet settings", async () => {
-		nock("https://marketsquare.io/")
-			.put("/api/wallets/desktop/sync")
-			.reply(204, '{}');
+		nock("https://marketsquare.io/").put("/api/wallets/desktop/sync").reply(204, "{}");
 
-		await expect(subject.update('desktop', { key: 'value' })).resolves.toBeUndefined();
+		await expect(subject.update("desktop", { key: "value" })).resolves.toBeUndefined();
 	});
 });

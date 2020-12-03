@@ -15,18 +15,16 @@ afterEach(() => nock.cleanAll());
 
 describe("Auth", function () {
 	it("should log in with the username and password", async () => {
-		nock("https://marketsquare.io/")
-			.post("/api/login")
-			.reply(200, {
-				user_id: 1,
-				token: 'token',
-				expires_at: '2020-01-01 12:00:00',
-			});
-
-		await expect(subject.login('username', 'password')).resolves.toEqual({
+		nock("https://marketsquare.io/").post("/api/login").reply(200, {
 			user_id: 1,
-			token: 'token',
-			expires_at: '2020-01-01 12:00:00',
+			token: "token",
+			expires_at: "2020-01-01 12:00:00",
+		});
+
+		await expect(subject.login("username", "password")).resolves.toEqual({
+			user_id: 1,
+			token: "token",
+			expires_at: "2020-01-01 12:00:00",
 		});
 	});
 });

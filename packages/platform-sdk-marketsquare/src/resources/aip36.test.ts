@@ -15,10 +15,8 @@ afterEach(() => nock.cleanAll());
 
 describe("AIP36", function () {
 	it("should validate the data and return it", async () => {
-		nock("https://marketsquare.io/")
-			.post("/api/aip36/validate")
-			.reply(200, { key: 'value' });
+		nock("https://marketsquare.io/").post("/api/aip36/validate").reply(200, { key: "value" });
 
-		await expect(subject.validate({ key: 'value' })).resolves.toEqual({ key: 'value' });
+		await expect(subject.validate({ key: "value" })).resolves.toEqual({ key: "value" });
 	});
 });
