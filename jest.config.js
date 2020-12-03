@@ -12,9 +12,4 @@ module.exports = {
 		"^.+\\.tsx?$": "ts-jest",
 	},
 	verbose: true,
-	globals: {
-		"ts-jest": {
-			packageJson: "./package.json",
-		},
-	},
 };
