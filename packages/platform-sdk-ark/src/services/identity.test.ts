@@ -1,7 +1,5 @@
 import "jest-extended";
 
-import nock from "nock";
-
 import { identity } from "../../test/fixtures/identity";
 import { createConfig } from "../../test/helpers";
 import { IdentityService } from "./identity";
@@ -9,19 +7,15 @@ import { IdentityService } from "./identity";
 let subject: IdentityService;
 
 beforeEach(async () => {
-	nock(/.+/)
-		.get("/api/node/configuration/crypto")
-		.reply(200, require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`))
-		.get("/api/node/syncing")
-		.reply(200, require(`${__dirname}/../../test/fixtures/client/syncing.json`))
-		.persist();
-
-	subject = await IdentityService.construct(createConfig());
+	subject = await IdentityService.construct(
+		createConfig(undefined, {
+			networkConfiguration: {
+				crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
+				status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
+			},
+		}),
+	);
 });
-
-afterEach(() => nock.cleanAll());
-
-beforeAll(() => nock.disableNetConnect());
 
 describe("IdentityService", () => {
 	describe("#address", () => {
@@ -49,18 +43,6 @@ describe("IdentityService", () => {
 			const result: any = await subject.address().fromWIF(identity.wif);
 
 			expect(result).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-		});
-
-		it.skip("should detect NEO duplicates on mainnet", async () => {
-			nock("https://neoscan.io/api/main_net/v1/")
-				.get("/get_last_transactions_by_address/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX/1")
-				.reply(200, require(`${__dirname}/../../test/fixtures/identity/neo-duplicate.json`));
-
-			subject = await IdentityService.construct(createConfig({ network: "ark.mainnet" }));
-
-			await expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).rejects.toThrow(
-				"This address exists on the NEO Mainnet.",
-			);
 		});
 
 		it("should validate an address", async () => {

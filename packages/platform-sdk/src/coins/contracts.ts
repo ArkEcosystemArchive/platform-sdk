@@ -15,18 +15,7 @@ import {
 export interface CoinSpec {
 	manifest: any;
 	schema: any;
-	services: {
-		ClientService: any;
-		FeeService: any;
-		IdentityService: any;
-		KnownWalletsService: any;
-		LedgerService: any;
-		LinkService: any;
-		MessageService: any;
-		MultiSignatureService: any;
-		PeerService: any;
-		TransactionService: any;
-	};
+	ServiceProvider: any;
 }
 
 export interface CoinOptions {

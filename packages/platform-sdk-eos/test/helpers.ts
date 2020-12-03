@@ -6,7 +6,7 @@ import { schema } from "../src/schema";
 export const createConfig = (options?: object) => {
 	const config = new Coins.Config(options || { network: "eos.testnet" }, schema);
 
-	config.set("network", manifest.networks["eos.testnet"]);
+	config.set(Coins.ConfigKey.Network, manifest.networks["eos.testnet"]);
 
 	return config;
 };

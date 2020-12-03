@@ -167,7 +167,7 @@ export class Environment {
 		}
 
 		if (this.storage.profiles) {
-			await this.profiles().fill(this.storage.profiles);
+			this.profiles().fill(this.storage.profiles);
 		}
 	}
 

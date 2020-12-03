@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Contact } from "../contacts/contact";
 import { ContactAddress } from "../contacts/contact-address";
 import { ContactAddressInput } from "../contacts/contact-address.models";
+import { pqueue } from "../helpers/queue";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "./data-repository";
 
@@ -54,13 +55,17 @@ export class ContactRepository {
 	}
 
 	public async fill(contacts: object): Promise<void> {
+		const promises: (() => Promise<void>)[] = [];
+
 		for (const [id, contact] of Object.entries(contacts)) {
 			const instance: Contact = new Contact(contact, this.#profile);
 
-			await instance.restore(contact.addresses);
+			promises.push(() => instance.restore(contact.addresses));
 
 			this.#data.set(id, instance);
 		}
+
+		await pqueue(promises);
 	}
 
 	public findById(id: string): Contact {

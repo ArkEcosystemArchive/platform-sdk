@@ -1,6 +1,10 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
-import { addressFromMnemonic } from "../../crypto/shelley/address";
+import {
+	addressFromAccountExtPublicKey,
+	addressFromMnemonic,
+	isValidShelleyAddress,
+} from "../../crypto/shelley/address";
 
 export class Address implements Contracts.Address {
 	readonly #config: Coins.Config;
@@ -10,7 +14,7 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return addressFromMnemonic(mnemonic, 0, false, 0, this.#config.get("network.crypto.networkId"));
+		return addressFromMnemonic(mnemonic, 0, false, 0, this.#config.get(Coins.ConfigKey.CryptoNetworkId));
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -18,7 +22,12 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPublicKey(publicKey: string): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPublicKey");
+		return addressFromAccountExtPublicKey(
+			Buffer.from(publicKey, "hex"),
+			false,
+			0,
+			this.#config.get(Coins.ConfigKey.CryptoNetworkId),
+		);
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<string> {
@@ -30,6 +39,6 @@ export class Address implements Contracts.Address {
 	}
 
 	public async validate(address: string): Promise<boolean> {
-		throw new Exceptions.NotSupported(this.constructor.name, "validate");
+		return isValidShelleyAddress(address);
 	}
 }

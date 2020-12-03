@@ -10,7 +10,7 @@ export const createConfig = (options?: object) => {
 		schema,
 	);
 
-	config.set("network", manifest.networks["cosmos.testnet"]);
+	config.set(Coins.ConfigKey.Network, manifest.networks["cosmos.testnet"]);
 
 	return config;
 };

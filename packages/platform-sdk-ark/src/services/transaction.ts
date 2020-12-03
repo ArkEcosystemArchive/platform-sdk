@@ -3,15 +3,15 @@ import {
 	Transactions as MagistrateTransactions,
 } from "@arkecosystem/core-magistrate-crypto";
 import { Enums } from "@arkecosystem/core-magistrate-crypto";
-import { Managers, Transactions } from "@arkecosystem/crypto";
+import { Transactions } from "@arkecosystem/crypto";
 import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { v4 as uuidv4 } from "uuid";
 
 import { SignedTransactionData } from "../dto/signed-transaction";
-import { applyCryptoConfiguration, retrieveCryptoConfiguration } from "./helpers";
+import { applyCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
 
 Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.EntityTransaction);
@@ -40,14 +40,14 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
-		const configCrypto: any = await retrieveCryptoConfiguration(config);
+		const { crypto, peer, status }: any = config.get(Coins.ConfigKey.NetworkConfiguration);
 
 		return new TransactionService({
 			http: config.get<Contracts.HttpClient>("httpClient"),
-			peer: configCrypto.peer,
+			peer: peer,
 			identity: await IdentityService.construct(config),
-			multiSignatureSigner: new MultiSignatureSigner(configCrypto.crypto, configCrypto.status.height),
-			configCrypto,
+			multiSignatureSigner: new MultiSignatureSigner(crypto, status.height),
+			configCrypto: { crypto, status },
 		});
 	}
 

@@ -16,17 +16,6 @@ beforeEach(() => {
 describe("PeerService", () => {
 	describe("#new", () => {
 		describe("host", () => {
-			it("should throw if the peer is on the wrong network", async () => {
-				await expect(
-					PeerService.construct(
-						createConfig({
-							network: "ark.mainnet",
-							peer: "http://127.0.0.1/api",
-						}),
-					),
-				).rejects.toThrowError("Failed to connect to http://127.0.0.1/api because it is on another network.");
-			});
-
 			it("should fetch peers", async () => {
 				nock("http://127.0.0.1").get("/api/peers").reply(200, {
 					data: dummyPeersWalletApi,

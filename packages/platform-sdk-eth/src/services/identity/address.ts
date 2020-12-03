@@ -13,7 +13,7 @@ export class Address implements Contracts.Address {
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
 		try {
-			return getAddress(createWallet(mnemonic, this.#config.get("network.crypto.slip44")));
+			return getAddress(createWallet(mnemonic, this.#config.get(Coins.ConfigKey.Slip44)));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

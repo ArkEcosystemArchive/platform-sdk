@@ -10,7 +10,7 @@ export const createConfig = (options?: object) => {
 		schema,
 	);
 
-	config.set("network", manifest.networks["eth.mainnet"]);
+	config.set(Coins.ConfigKey.Network, manifest.networks["eth.mainnet"]);
 
 	return config;
 };

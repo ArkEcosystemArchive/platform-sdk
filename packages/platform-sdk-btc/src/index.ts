@@ -1,9 +1,9 @@
 import { manifest } from "./manifest";
 import { schema } from "./schema";
-import * as services from "./services";
+import { ServiceProvider } from "./service-provider";
 
 export const BTC = {
 	manifest,
 	schema,
-	services,
+	ServiceProvider,
 };

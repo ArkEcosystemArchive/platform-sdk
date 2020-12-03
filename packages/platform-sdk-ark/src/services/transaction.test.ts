@@ -9,14 +9,14 @@ import { TransactionService } from "./transaction";
 let subject: TransactionService;
 
 beforeEach(async () => {
-	nock(/.+/)
-		.get("/api/node/configuration/crypto")
-		.reply(200, require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`))
-		.get("/api/node/syncing")
-		.reply(200, require(`${__dirname}/../../test/fixtures/client/syncing.json`))
-		.persist();
-
-	subject = await TransactionService.construct(createConfig());
+	subject = await TransactionService.construct(
+		createConfig(undefined, {
+			networkConfiguration: {
+				crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
+				status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
+			},
+		}),
+	);
 });
 
 afterEach(() => nock.cleanAll());
