@@ -1,7 +1,8 @@
+import * as Models from "../../models";
 import { Resource } from "../resource";
 
 export class Plugin extends Resource {
-	public async all(id: string): Promise<any> {
+	public async all(id: string): Promise<Models.PaginatedResponse<Models.Plugin>> {
 		return this.get(`users/${id}/plugins`);
 	}
 }

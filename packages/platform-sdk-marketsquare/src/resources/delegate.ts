@@ -1,11 +1,12 @@
+import * as Models from "../models";
 import { Resource } from "./resource";
 
 export class Delegate extends Resource {
-	public async all(query?: object): Promise<any> {
+	public async all(query?: object): Promise<Models.PaginatedResponse<Models.Delegate>> {
 		return this.get('delegates', query);
 	}
 
-	public async show(id: string): Promise<any> {
+	public async show(id: string): Promise<Models.Response<Models.Delegate>> {
 		return this.get(`delegates/${id}`);
 	}
 }

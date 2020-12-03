@@ -1,3 +1,5 @@
+import { AIP36 } from "../resources/aip36";
+
 export interface Entity {
 	id: number;
 	name: string;
@@ -29,7 +31,7 @@ export interface Entity {
 	};
 	ipfs?: {
 		hash: string;
-		data: object;
+		data: AIP36;
 	};
 }
 

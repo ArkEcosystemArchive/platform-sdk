@@ -7,16 +7,16 @@ export abstract class Resource {
 		this.#client = client;
 	}
 
-	public async get(path: string, query?: object): Promise<any> {
-		return this.#client.post(path, { query });
+	public async get<T>(path: string, query?: object): Promise<T> {
+		return (await this.#client.post(path, { query })).json() as T;
 	}
 
-	public async post(path: string, body: object): Promise<any> {
-		return this.#client.post(path, { body });
+	public async post<T>(path: string, body: object): Promise<T> {
+		return (await this.#client.post(path, { body })).json() as T;
 	}
 
-	public async put(path: string, body: object): Promise<any> {
-		return this.#client.put(path, { body });
+	public async put<T>(path: string, body: object): Promise<T> {
+		return (await this.#client.put(path, { body })).json() as T;
 	}
 
 	protected getClient(): Contracts.HttpClient {

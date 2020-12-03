@@ -1,7 +1,8 @@
+import * as Models from "../../models";
 import { Resource } from "../resource";
 
 export class Product extends Resource {
-	public async all(id: string): Promise<any> {
+	public async all(id: string): Promise<Models.PaginatedResponse<Models.Product>> {
 		return this.get(`users/${id}/products`);
 	}
 }
