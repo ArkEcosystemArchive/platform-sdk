@@ -1,1 +1,3 @@
-export interface Module {}
+import { PackageEntity } from "./entity";
+
+export interface Module extends PackageEntity {}
