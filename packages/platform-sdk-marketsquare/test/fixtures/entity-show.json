@@ -1,0 +1,176 @@
+{
+	"id": 298,
+	"name": "8c3a800a-e3a2-36fb-b7a0-ef965ceba0f8",
+	"display_name": "8c3a800a-e3a2-36fb-b7a0-ef965ceba0f8",
+	"slug": "8c3a800a-e3a2-36fb-b7a0-ef965ceba0f8",
+	"description": "<p>Quam autem impedit voluptas et. Sint veritatis aspernatur nulla reprehenderit cupiditate id. Laborum voluptatem ut omnis veniam maxime ullam delectus. Magni facilis explicabo omnis. Voluptas excepturi enim minima tenetur ad.</p>",
+	"excerpt": "Non debitis vel eum.",
+	"avatar": "https://avatars3.githubusercontent.com/u/22457396?v=4",
+	"is_claimed": false,
+	"is_featured": false,
+	"is_grant": false,
+	"is_hidden": false,
+	"is_indexable": false,
+	"is_official": false,
+	"is_promoted": false,
+	"is_resigned": false,
+	"is_verified": false,
+	"registered_at": null,
+	"created_at": null,
+	"updated_at": null,
+	"identity": {
+		"address": "cOJxJrxlyr9LnKqPkDz8BKss1xeoRUWXk3",
+		"public_key": "bevbyFKlMjLo2k452UbHcpIoh33xzu3WZOn16zdOiZLtPGCEOxrotZHInRcNy0CsMa"
+	},
+	"aip36": {
+		"id": "J8HIWdQyWBb9kHi4J3We3UHn6XzdLuFU8HtT50pzznQFfZgZEpPcPQqR0SajNM3V",
+		"type": 2,
+		"subtype": 0
+	},
+	"ipfs": {
+		"hash": "QmYySgvnam46W7a4SWi5kh3hpLbaCRvqsbwRoN5JvgVikG",
+		"data": {
+			"sourceControl": [
+				{
+					"type": "bitbucket",
+					"value": "https://bitbucket.org/arkecosystem"
+				},
+				{
+					"type": "github",
+					"value": "https://github.com/arkecosystem"
+				},
+				{
+					"type": "gitlab",
+					"value": "https://gitlab.com/arkecosystem"
+				},
+				{
+					"type": "npm",
+					"value": "https://npmjs.com/arkecosystem"
+				}
+			],
+			"socialMedia": [
+				{
+					"type": "discord",
+					"value": "https://discord.com/arkecosystem"
+				},
+				{
+					"type": "facebook",
+					"value": "https://facebook.com/arkecosystem"
+				},
+				{
+					"type": "instagram",
+					"value": "https://instagram.com/arkecosystem"
+				},
+				{
+					"type": "linkedin",
+					"value": "https://linkedin.com/arkecosystem"
+				},
+				{
+					"type": "medium",
+					"value": "https://medium.com/arkecosystem"
+				},
+				{
+					"type": "reddit",
+					"value": "https://reddit.com/arkecosystem"
+				},
+				{
+					"type": "slack",
+					"value": "https://slack.com/arkecosystem"
+				},
+				{
+					"type": "telegram",
+					"value": "https://telegram.org/arkecosystem"
+				},
+				{
+					"type": "twitter",
+					"value": "https://twitter.com/arkecosystem"
+				},
+				{
+					"type": "wechat",
+					"value": "https://wechat.com/arkecosystem"
+				},
+				{
+					"type": "youtube",
+					"value": "https://youtube.com/arkecosystem"
+				}
+			],
+			"images": [
+				{
+					"type": "logo",
+					"value": "https://avatars3.githubusercontent.com/u/22457396?v=4"
+				},
+				{
+					"type": "image",
+					"value": "https://cdn-images-1.medium.com/max/1024/1*GRNf-dxVMn1dYXNpLBCbwA.png"
+				},
+				{
+					"type": "image",
+					"value": "https://cdn-images-1.medium.com/max/1024/1*GRNf-dxVMn1dYXNpLBCbwA.png"
+				},
+				{
+					"type": "image",
+					"value": "https://cdn-images-1.medium.com/max/1024/1*GRNf-dxVMn1dYXNpLBCbwA.png"
+				},
+				{
+					"type": "image",
+					"value": "https://cdn-images-1.medium.com/max/1024/1*GRNf-dxVMn1dYXNpLBCbwA.png"
+				}
+			],
+			"videos": [
+				{
+					"type": "video",
+					"value": "https://www.youtube.com/watch?v=GvesyESp9UE"
+				},
+				{
+					"type": "video",
+					"value": "https://www.youtube.com/watch?v=GvesyESp9UE"
+				},
+				{
+					"type": "video",
+					"value": "https://www.youtube.com/watch?v=GvesyESp9UE"
+				},
+				{
+					"type": "video",
+					"value": "https://www.youtube.com/watch?v=GvesyESp9UE"
+				},
+				{
+					"type": "video",
+					"value": "https://www.youtube.com/watch?v=GvesyESp9UE"
+				}
+			],
+			"meta": {
+				"displayName": "ARK Ecosystem",
+				"description": "Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit\u200b\u200b, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.",
+				"excerpt": "Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro.",
+				"website": "https://ark.io",
+				"seeds": ["167.114.29.51", "167.114.29.52", "167.114.29.53", "167.114.29.54", "167.114.29.55"],
+				"delegate": {
+					"type": "public",
+					"percentage": {
+						"min": 20,
+						"max": 80
+					},
+					"frequency": {
+						"type": "day",
+						"value": 24
+					},
+					"distribution": {
+						"min": 500,
+						"max": 2500
+					}
+				}
+			}
+		}
+	},
+	"npm": {
+		"version": "n/a",
+		"downloads": 0,
+		"last_updated_at": null
+	},
+	"manifest": {
+		"categories": null,
+		"permissions": null,
+		"urls": null,
+		"minVersion": null
+	}
+}
