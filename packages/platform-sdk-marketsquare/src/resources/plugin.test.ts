@@ -54,4 +54,12 @@ describe("Plugin", function () {
 			"manifest",
 		]);
 	});
+
+	it("should show the versions for the plugin with the given ID", async () => {
+		nock("https://marketsquare.io/")
+			.get("/api/plugins/1/versions")
+			.reply(200, require(`${__dirname}/../../test/fixtures/entity-versions.json`));
+
+		await expect(subject.versions(1)).resolves.toContainAllKeys(["data", "links", "meta"]);
+	});
 });

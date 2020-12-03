@@ -1,10 +1,10 @@
-import { Resource } from "../resource";
-import { Business } from "./business";
-import { Delegate } from "./delegate";
-import { Module } from "./module";
-import { Plugin } from "./plugin";
-import { Product } from "./product";
-import { Setting } from "./setting";
+import { Resource } from "./resource";
+import { Business } from "./user/business";
+import { Delegate } from "./user/delegate";
+import { Module } from "./user/module";
+import { Plugin } from "./user/plugin";
+import { Product } from "./user/product";
+import { Wallet } from "./user/wallet";
 
 export class User extends Resource {
 	public business(): Business {
@@ -27,7 +27,7 @@ export class User extends Resource {
 		return new Product(this.getClient());
 	}
 
-	public setting(): Setting {
-		return new Setting(this.getClient());
+	public wallet(): Wallet {
+		return new Wallet(this.getClient());
 	}
 }
