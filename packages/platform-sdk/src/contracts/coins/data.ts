@@ -305,7 +305,7 @@ export interface IpfsData extends TransactionData {
 	hash(): string;
 }
 
-export interface MultiPaymentData extends TransactionData {
+export interface MultiPaymentData extends TransferData {
 	payments(): { recipientId: string; amount: string }[];
 }
 

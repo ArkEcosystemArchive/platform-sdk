@@ -124,6 +124,10 @@ export class TransactionService implements Contracts.TransactionService {
 			for (const payment of data.payments) {
 				transaction.addPayment(payment.to, payment.amount);
 			}
+
+			if (data.memo) {
+				transaction.vendorField(data.memo);
+			}
 		});
 	}
 
