@@ -51,11 +51,14 @@ export class Request extends Http.Request {
 				statusCode: response.statusCode,
 			});
 		} catch (error) {
-			return new Http.Response({
-				body: await error.text(),
-				headers: error.headers,
-				statusCode: error.statusCode,
-			}, error);
+			return new Http.Response(
+				{
+					body: await error.text(),
+					headers: error.headers,
+					statusCode: error.statusCode,
+				},
+				error,
+			);
 		}
 	}
 }
