@@ -54,6 +54,7 @@ jobs:
                   file: packages/platform-sdk/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     ada:
         needs: [conflicts]
@@ -87,6 +88,7 @@ jobs:
                   file: packages/platform-sdk-ada/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     ark:
         needs: [conflicts]
@@ -120,6 +122,7 @@ jobs:
                   file: packages/platform-sdk-ark/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     atom:
         needs: [conflicts]
@@ -153,6 +156,7 @@ jobs:
                   file: packages/platform-sdk-atom/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     btc:
         needs: [conflicts]
@@ -186,6 +190,7 @@ jobs:
                   file: packages/platform-sdk-btc/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     coincap:
         needs: [conflicts]
@@ -219,6 +224,7 @@ jobs:
                   file: packages/platform-sdk-coincap/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     coingecko:
         needs: [conflicts]
@@ -252,6 +258,7 @@ jobs:
                   file: packages/platform-sdk-coingecko/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     crypto:
         needs: [conflicts]
@@ -285,6 +292,7 @@ jobs:
                   file: packages/platform-sdk-crypto/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     cryptocompare:
         needs: [conflicts]
@@ -318,6 +326,7 @@ jobs:
                   file: packages/platform-sdk-cryptocompare/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     eos:
         needs: [conflicts]
@@ -351,6 +360,7 @@ jobs:
                   file: packages/platform-sdk-eos/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     eth:
         needs: [conflicts]
@@ -384,6 +394,7 @@ jobs:
                   file: packages/platform-sdk-eth/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     http-axios:
         needs: [conflicts]
@@ -417,6 +428,7 @@ jobs:
                   file: packages/platform-sdk-http-axios/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     http-bent:
         needs: [conflicts]
@@ -450,6 +462,7 @@ jobs:
                   file: packages/platform-sdk-http-bent/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     http-got:
         needs: [conflicts]
@@ -483,6 +496,7 @@ jobs:
                   file: packages/platform-sdk-http-got/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     http-ky:
         needs: [conflicts]
@@ -516,6 +530,7 @@ jobs:
                   file: packages/platform-sdk-http-ky/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     http-node-fetch:
         needs: [conflicts]
@@ -549,6 +564,7 @@ jobs:
                   file: packages/platform-sdk-http-node-fetch/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     intl:
         needs: [conflicts]
@@ -582,6 +598,7 @@ jobs:
                   file: packages/platform-sdk-intl/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     lsk:
         needs: [conflicts]
@@ -615,6 +632,7 @@ jobs:
                   file: packages/platform-sdk-lsk/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     markets:
         needs: [conflicts]
@@ -648,6 +666,7 @@ jobs:
                   file: packages/platform-sdk-markets/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     marketsquare:
         needs: [conflicts]
@@ -681,6 +700,7 @@ jobs:
                   file: packages/platform-sdk-marketsquare/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     neo:
         needs: [conflicts]
@@ -714,6 +734,7 @@ jobs:
                   file: packages/platform-sdk-neo/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     news:
         needs: [conflicts]
@@ -747,6 +768,7 @@ jobs:
                   file: packages/platform-sdk-news/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     profiles:
         needs: [conflicts]
@@ -780,6 +802,7 @@ jobs:
                   file: packages/platform-sdk-profiles/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     support:
         needs: [conflicts]
@@ -813,6 +836,7 @@ jobs:
                   file: packages/platform-sdk-support/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     trx:
         needs: [conflicts]
@@ -846,6 +870,7 @@ jobs:
                   file: packages/platform-sdk-trx/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     xlm:
         needs: [conflicts]
@@ -879,6 +904,7 @@ jobs:
                   file: packages/platform-sdk-xlm/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
 
     xrp:
         needs: [conflicts]
@@ -912,3 +938,4 @@ jobs:
                   file: packages/platform-sdk-xrp/.coverage/lcov.info
                   flags: unit
                   fail_ci_if_error: true
+				  verbose: true
