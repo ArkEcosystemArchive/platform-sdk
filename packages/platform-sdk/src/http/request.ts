@@ -25,10 +25,6 @@ export abstract class Request implements HttpClient {
 		return this.bodyFormat("form_params").contentType("application/x-www-form-urlencoded");
 	}
 
-	public asMultipart(): HttpClient {
-		return this.bodyFormat("multipart");
-	}
-
 	public bodyFormat(format: string): HttpClient {
 		this._bodyFormat = format;
 
