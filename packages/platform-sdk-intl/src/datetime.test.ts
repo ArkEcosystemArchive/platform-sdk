@@ -6,11 +6,11 @@ let subject: DateTime;
 beforeEach(() => (subject = DateTime.make("2020-01-01")));
 
 test("#make", () => {
-	const consoleSpy = jest.spyOn(console, 'debug').mockReturnValue();
+	const consoleSpy = jest.spyOn(console, "debug").mockReturnValue();
 
-	DateTime.make('2020-01-01 12:00:00', 'invalid');
+	DateTime.make("2020-01-01 12:00:00", "invalid");
 
-	expect(consoleSpy).toHaveBeenCalledWith('Failed to load data for the [invalid] locale.');
+	expect(consoleSpy).toHaveBeenCalledWith("Failed to load data for the [invalid] locale.");
 });
 
 test("#setLocale", () => {
@@ -18,7 +18,7 @@ test("#setLocale", () => {
 
 	expect(subject.format("L LTS")).toBe("08/04/2020 9:56:24 AM");
 
-	subject.setLocale('de');
+	subject.setLocale("de");
 
 	expect(subject.format("L LTS")).toBe("08/04/2020 9:56:24 AM");
 });
