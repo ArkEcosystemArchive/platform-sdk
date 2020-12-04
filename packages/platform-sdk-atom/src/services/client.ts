@@ -81,8 +81,8 @@ export class ClientService implements Contracts.ClientService {
 			response.txs,
 			{
 				prev: page <= 1 ? undefined : page - 1,
-				self: response.page_number,
-				next: page >= response.page_total ? undefined : page,
+				self: Number(response.page_number),
+				next: page >= Number(response.page_total) ? undefined : page,
 			},
 			TransactionDTO,
 		);
