@@ -25,22 +25,27 @@ export class Request extends Http.Request {
 			if (this._bodyFormat === "form_params") {
 				throw new Error("form_params is not supported.");
 			}
-
-			if (this._bodyFormat === "multipart") {
-				throw new Error("multipart is not supported.");
-			}
 		}
 
 		try {
 			const response = await ky[method.toLowerCase()](url.replace(/^\/+/g, ""), options);
 
-			return new Response({
-				body: await response.json(),
+			return new Http.Response({
+				body: await response.text(),
 				headers: response.headers,
 				statusCode: response.status,
 			});
 		} catch (error) {
-			return new Response(error.response, error);
+			const { response } = error;
+
+			return new Http.Response(
+				{
+					body: await response.text(),
+					headers: response.headers,
+					statusCode: response.status,
+				},
+				error,
+			);
 		}
 	}
 }
