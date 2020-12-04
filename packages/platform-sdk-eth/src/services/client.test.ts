@@ -35,7 +35,7 @@ describe("ClientService", function () {
 			expect(result.recipient()).toBe("0xb5663d3a23706eb4537ffea78f56948a53ac2ebe");
 			expect(result.amount().toString()).toBe("10000000000000000000");
 			expect(result.fee().toString()).toBe("28000");
-			// @ts-ignore
+			// @ts-ignore - Better types so that memo gets detected on TransactionDataType
 			expect(result.memo()).toBeUndefined();
 		});
 	});
