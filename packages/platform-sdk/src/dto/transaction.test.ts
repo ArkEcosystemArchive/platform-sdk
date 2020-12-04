@@ -1,260 +1,261 @@
 import "jest-extended";
+
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { AbstractTransactionData } from "./transaction"
 import { MultiPaymentRecipient } from "../contracts/coins/data";
+import { AbstractTransactionData } from "./transaction";
 
-test('#id', () => {
-	expect(new Transaction({ key: "value" }).id()).toBe('id');
+test("#id", () => {
+	expect(new Transaction({ key: "value" }).id()).toBe("id");
 });
 
-test('#blockId', () => {
-	expect(new Transaction({ key: "value" }).blockId()).toBe('blockId');
+test("#blockId", () => {
+	expect(new Transaction({ key: "value" }).blockId()).toBe("blockId");
 });
 
-test('#timestamp', () => {
+test("#timestamp", () => {
 	expect(new Transaction({ key: "value" }).timestamp()).toBeUndefined();
 });
 
-test('#confirmations', () => {
+test("#confirmations", () => {
 	expect(new Transaction({ key: "value" }).confirmations()).toBe(BigNumber.ZERO);
 });
 
-test('#sender', () => {
-	expect(new Transaction({ key: "value" }).sender()).toBe('sender');
+test("#sender", () => {
+	expect(new Transaction({ key: "value" }).sender()).toBe("sender");
 });
 
-test('#recipient', () => {
-	expect(new Transaction({ key: "value" }).recipient()).toBe('recipient');
+test("#recipient", () => {
+	expect(new Transaction({ key: "value" }).recipient()).toBe("recipient");
 });
 
-test('#recipients', () => {
+test("#recipients", () => {
 	expect(new Transaction({ key: "value" }).recipients()).toEqual([]);
 });
 
-test('#amount', () => {
+test("#amount", () => {
 	expect(new Transaction({ key: "value" }).amount()).toBe(BigNumber.ZERO);
 });
 
-test('#fee', () => {
+test("#fee", () => {
 	expect(new Transaction({ key: "value" }).fee()).toBe(BigNumber.ZERO);
 });
 
-test('#memo', () => {
-	expect(new Transaction({ key: "value" }).memo()).toBe('memo');
+test("#memo", () => {
+	expect(new Transaction({ key: "value" }).memo()).toBe("memo");
 });
 
-test('#asset', () => {
+test("#asset", () => {
 	expect(new Transaction({ key: "value" }).asset()).toEqual({});
 });
 
-test('#isConfirmed', () => {
+test("#isConfirmed", () => {
 	expect(new Transaction({ key: "value" }).isConfirmed()).toBeFalse();
 });
 
-test('#isSent', () => {
+test("#isSent", () => {
 	expect(new Transaction({ key: "value" }).isSent()).toBeFalse();
 });
 
-test('#isReceived', () => {
+test("#isReceived", () => {
 	expect(new Transaction({ key: "value" }).isReceived()).toBeFalse();
 });
 
-test('#isTransfer', () => {
+test("#isTransfer", () => {
 	expect(new Transaction({ key: "value" }).isTransfer()).toBeFalse();
 });
 
-test('#isSecondSignature', () => {
+test("#isSecondSignature", () => {
 	expect(new Transaction({ key: "value" }).isSecondSignature()).toBeFalse();
 });
 
-test('#isDelegateRegistration', () => {
+test("#isDelegateRegistration", () => {
 	expect(new Transaction({ key: "value" }).isDelegateRegistration()).toBeFalse();
 });
 
-test('#isVoteCombination', () => {
+test("#isVoteCombination", () => {
 	expect(new Transaction({ key: "value" }).isVoteCombination()).toBeFalse();
 });
 
-test('#isVote', () => {
+test("#isVote", () => {
 	expect(new Transaction({ key: "value" }).isVote()).toBeFalse();
 });
 
-test('#isUnvote', () => {
+test("#isUnvote", () => {
 	expect(new Transaction({ key: "value" }).isUnvote()).toBeFalse();
 });
 
-test('#isMultiSignature', () => {
+test("#isMultiSignature", () => {
 	expect(new Transaction({ key: "value" }).isMultiSignature()).toBeFalse();
 });
 
-test('#isIpfs', () => {
+test("#isIpfs", () => {
 	expect(new Transaction({ key: "value" }).isIpfs()).toBeFalse();
 });
 
-test('#isMultiPayment', () => {
+test("#isMultiPayment", () => {
 	expect(new Transaction({ key: "value" }).isMultiPayment()).toBeFalse();
 });
 
-test('#isDelegateResignation', () => {
+test("#isDelegateResignation", () => {
 	expect(new Transaction({ key: "value" }).isDelegateResignation()).toBeFalse();
 });
 
-test('#isHtlcLock', () => {
+test("#isHtlcLock", () => {
 	expect(new Transaction({ key: "value" }).isHtlcLock()).toBeFalse();
 });
 
-test('#isHtlcClaim', () => {
+test("#isHtlcClaim", () => {
 	expect(new Transaction({ key: "value" }).isHtlcClaim()).toBeFalse();
 });
 
-test('#isHtlcRefund', () => {
+test("#isHtlcRefund", () => {
 	expect(new Transaction({ key: "value" }).isHtlcRefund()).toBeFalse();
 });
 
-test('#isEntityRegistration', () => {
+test("#isEntityRegistration", () => {
 	expect(new Transaction({ key: "value" }).isEntityRegistration()).toBeFalse();
 });
 
-test('#isEntityResignation', () => {
+test("#isEntityResignation", () => {
 	expect(new Transaction({ key: "value" }).isEntityResignation()).toBeFalse();
 });
 
-test('#isEntityUpdate', () => {
+test("#isEntityUpdate", () => {
 	expect(new Transaction({ key: "value" }).isEntityUpdate()).toBeFalse();
 });
 
-test('#isBusinessEntityRegistration', () => {
+test("#isBusinessEntityRegistration", () => {
 	expect(new Transaction({ key: "value" }).isBusinessEntityRegistration()).toBeFalse();
 });
 
-test('#isBusinessEntityResignation', () => {
+test("#isBusinessEntityResignation", () => {
 	expect(new Transaction({ key: "value" }).isBusinessEntityResignation()).toBeFalse();
 });
 
-test('#isBusinessEntityUpdate', () => {
+test("#isBusinessEntityUpdate", () => {
 	expect(new Transaction({ key: "value" }).isBusinessEntityUpdate()).toBeFalse();
 });
 
-test('#isProductEntityRegistration', () => {
+test("#isProductEntityRegistration", () => {
 	expect(new Transaction({ key: "value" }).isProductEntityRegistration()).toBeFalse();
 });
 
-test('#isProductEntityResignation', () => {
+test("#isProductEntityResignation", () => {
 	expect(new Transaction({ key: "value" }).isProductEntityResignation()).toBeFalse();
 });
 
-test('#isProductEntityUpdate', () => {
+test("#isProductEntityUpdate", () => {
 	expect(new Transaction({ key: "value" }).isProductEntityUpdate()).toBeFalse();
 });
 
-test('#isPluginEntityRegistration', () => {
+test("#isPluginEntityRegistration", () => {
 	expect(new Transaction({ key: "value" }).isPluginEntityRegistration()).toBeFalse();
 });
 
-test('#isPluginEntityResignation', () => {
+test("#isPluginEntityResignation", () => {
 	expect(new Transaction({ key: "value" }).isPluginEntityResignation()).toBeFalse();
 });
 
-test('#isPluginEntityUpdate', () => {
+test("#isPluginEntityUpdate", () => {
 	expect(new Transaction({ key: "value" }).isPluginEntityUpdate()).toBeFalse();
 });
 
-test('#isModuleEntityRegistration', () => {
+test("#isModuleEntityRegistration", () => {
 	expect(new Transaction({ key: "value" }).isModuleEntityRegistration()).toBeFalse();
 });
 
-test('#isModuleEntityResignation', () => {
+test("#isModuleEntityResignation", () => {
 	expect(new Transaction({ key: "value" }).isModuleEntityResignation()).toBeFalse();
 });
 
-test('#isModuleEntityUpdate', () => {
+test("#isModuleEntityUpdate", () => {
 	expect(new Transaction({ key: "value" }).isModuleEntityUpdate()).toBeFalse();
 });
 
-test('#isDelegateEntityRegistration', () => {
+test("#isDelegateEntityRegistration", () => {
 	expect(new Transaction({ key: "value" }).isDelegateEntityRegistration()).toBeFalse();
 });
 
-test('#isDelegateEntityResignation', () => {
+test("#isDelegateEntityResignation", () => {
 	expect(new Transaction({ key: "value" }).isDelegateEntityResignation()).toBeFalse();
 });
 
-test('#isDelegateEntityUpdate', () => {
+test("#isDelegateEntityUpdate", () => {
 	expect(new Transaction({ key: "value" }).isDelegateEntityUpdate()).toBeFalse();
 });
 
-test('#isLegacyBusinessRegistration', () => {
+test("#isLegacyBusinessRegistration", () => {
 	expect(new Transaction({ key: "value" }).isLegacyBusinessRegistration()).toBeFalse();
 });
 
-test('#isLegacyBusinessResignation', () => {
+test("#isLegacyBusinessResignation", () => {
 	expect(new Transaction({ key: "value" }).isLegacyBusinessResignation()).toBeFalse();
 });
 
-test('#isLegacyBusinessUpdate', () => {
+test("#isLegacyBusinessUpdate", () => {
 	expect(new Transaction({ key: "value" }).isLegacyBusinessUpdate()).toBeFalse();
 });
 
-test('#isLegacyBridgechainRegistration', () => {
+test("#isLegacyBridgechainRegistration", () => {
 	expect(new Transaction({ key: "value" }).isLegacyBridgechainRegistration()).toBeFalse();
 });
 
-test('#isLegacyBridgechainResignation', () => {
+test("#isLegacyBridgechainResignation", () => {
 	expect(new Transaction({ key: "value" }).isLegacyBridgechainResignation()).toBeFalse();
 });
 
-test('#isLegacyBridgechainUpdate', () => {
+test("#isLegacyBridgechainUpdate", () => {
 	expect(new Transaction({ key: "value" }).isLegacyBridgechainUpdate()).toBeFalse();
 });
 
-test('#toObject', () => {
+test("#toObject", () => {
 	expect(new Transaction({ key: "value" }).toObject()).toEqual({
-		id: 'id',
-		type: 'transfer',
+		id: "id",
+		type: "transfer",
 		timestamp: undefined,
 		confirmations: BigNumber.ZERO,
-		sender: 'sender',
-		recipient: 'recipient',
+		sender: "sender",
+		recipient: "recipient",
 		amount: BigNumber.ZERO,
 		fee: BigNumber.ZERO,
-		vendorField: 'memo',
+		vendorField: "memo",
 		asset: {},
 	});
 });
 
-test('#raw', () => {
+test("#raw", () => {
 	expect(new Transaction({ key: "value" }).raw()).toEqual({ key: "value" });
 });
 
-test('#hasPassed', () => {
+test("#hasPassed", () => {
 	expect(new Transaction({ key: "value" }).hasPassed()).toBeTrue();
 	expect(new Transaction({}).hasPassed()).toBeFalse();
 });
 
-test('#hasFailed', () => {
+test("#hasFailed", () => {
 	expect(new Transaction({}).hasFailed()).toBeTrue();
 	expect(new Transaction({ key: "value" }).hasFailed()).toBeFalse();
 });
 
-test('#getMeta | #setMeta', () => {
+test("#getMeta | #setMeta", () => {
 	const subject = new Transaction({});
 
-	expect(subject.getMeta('key')).toBeUndefined();
+	expect(subject.getMeta("key")).toBeUndefined();
 
-	subject.setMeta('key', 'value');
+	subject.setMeta("key", "value");
 
-	expect(subject.getMeta('key')).toBe('value');
+	expect(subject.getMeta("key")).toBe("value");
 });
 
 class Transaction extends AbstractTransactionData {
 	public id(): string {
-		return 'id';
+		return "id";
 	}
 
 	public blockId(): string | undefined {
-		return 'blockId';
+		return "blockId";
 	}
 
 	public timestamp(): DateTime | undefined {
@@ -266,11 +267,11 @@ class Transaction extends AbstractTransactionData {
 	}
 
 	public sender(): string {
-		return 'sender';
+		return "sender";
 	}
 
 	public recipient(): string {
-		return 'recipient';
+		return "recipient";
 	}
 
 	public recipients(): MultiPaymentRecipient[] {
@@ -286,7 +287,7 @@ class Transaction extends AbstractTransactionData {
 	}
 
 	public memo(): string | undefined {
-		return this.censorMemo('memo');
+		return this.censorMemo("memo");
 	}
 
 	public asset(): Record<string, unknown> {

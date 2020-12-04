@@ -1,30 +1,25 @@
-import {
-	NotImplemented,
-	NotSupported,
-	InvalidArguments,
-	CryptoException,
-} from "./exceptions"
+import { CryptoException, InvalidArguments, NotImplemented, NotSupported } from "./exceptions";
 
-test('NotImplemented', () => {
+test("NotImplemented", () => {
 	expect(() => {
-		throw new NotImplemented('klass', 'method');
+		throw new NotImplemented("klass", "method");
 	}).toThrow(`Method klass#method is not implemented.`);
 });
 
-test('NotSupported', () => {
+test("NotSupported", () => {
 	expect(() => {
-		throw new NotSupported('klass', 'method');
+		throw new NotSupported("klass", "method");
 	}).toThrow(`Method klass#method is not supported.`);
 });
 
-test('InvalidArguments', () => {
+test("InvalidArguments", () => {
 	expect(() => {
-		throw new InvalidArguments('klass', 'method');
+		throw new InvalidArguments("klass", "method");
 	}).toThrow(`Method klass#method does not accept the given arguments.`);
 });
 
-test('CryptoException', () => {
+test("CryptoException", () => {
 	expect(() => {
-		throw new CryptoException(new Error('Boom'));
-	}).toThrow('Boom');
+		throw new CryptoException(new Error("Boom"));
+	}).toThrow("Boom");
 });

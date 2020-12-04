@@ -1,90 +1,91 @@
 import "jest-extended";
+
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Entity } from "../contracts/coins";
-import { AbstractWalletData } from "./wallet"
+import { AbstractWalletData } from "./wallet";
 
-test('#address', () => {
-	expect(new Wallet({ key: "value" }).address()).toBe('address');
+test("#address", () => {
+	expect(new Wallet({ key: "value" }).address()).toBe("address");
 });
 
-test('#publicKey', () => {
-	expect(new Wallet({ key: "value" }).publicKey()).toBe('publicKey');
+test("#publicKey", () => {
+	expect(new Wallet({ key: "value" }).publicKey()).toBe("publicKey");
 });
 
-test('#balance', () => {
+test("#balance", () => {
 	expect(new Wallet({ key: "value" }).balance()).toBe(BigNumber.ZERO);
 });
 
-test('#nonce', () => {
+test("#nonce", () => {
 	expect(new Wallet({ key: "value" }).nonce()).toBe(BigNumber.ZERO);
 });
 
-test('#secondPublicKey', () => {
-	expect(new Wallet({ key: "value" }).secondPublicKey()).toBe('secondPublicKey');
+test("#secondPublicKey", () => {
+	expect(new Wallet({ key: "value" }).secondPublicKey()).toBe("secondPublicKey");
 });
 
-test('#username', () => {
-	expect(new Wallet({ key: "value" }).username()).toBe('username');
+test("#username", () => {
+	expect(new Wallet({ key: "value" }).username()).toBe("username");
 });
 
-test('#rank', () => {
+test("#rank", () => {
 	expect(new Wallet({ key: "value" }).rank()).toBe(5);
 });
 
-test('#votes', () => {
+test("#votes", () => {
 	expect(new Wallet({ key: "value" }).votes()).toBe(BigNumber.ZERO);
 });
 
-test('#entities', () => {
+test("#entities", () => {
 	expect(new Wallet({ key: "value" }).entities()).toEqual([]);
 });
 
-test('#isDelegate', () => {
+test("#isDelegate", () => {
 	expect(new Wallet({ key: "value" }).isDelegate()).toBeFalse();
 });
 
-test('#isMultiSignature', () => {
+test("#isMultiSignature", () => {
 	expect(new Wallet({ key: "value" }).isMultiSignature()).toBeFalse();
 });
 
-test('#isSecondSignature', () => {
+test("#isSecondSignature", () => {
 	expect(new Wallet({ key: "value" }).isSecondSignature()).toBeFalse();
 });
 
-test('#toObject', () => {
+test("#toObject", () => {
 	expect(new Wallet({ key: "value" }).toObject()).toEqual({
-		address: 'address',
-		publicKey: 'publicKey',
+		address: "address",
+		publicKey: "publicKey",
 		balance: BigNumber.ZERO,
 		nonce: BigNumber.ZERO,
-		username: 'username',
+		username: "username",
 		rank: 5,
 		votes: BigNumber.ZERO,
 	});
 });
 
-test('#raw', () => {
+test("#raw", () => {
 	expect(new Wallet({ key: "value" }).raw()).toEqual({ key: "value" });
 });
 
-test('#hasPassed', () => {
+test("#hasPassed", () => {
 	expect(new Wallet({ key: "value" }).hasPassed()).toBeTrue();
 	expect(new Wallet({}).hasPassed()).toBeFalse();
 });
 
-test('#hasFailed', () => {
+test("#hasFailed", () => {
 	expect(new Wallet({}).hasFailed()).toBeTrue();
 	expect(new Wallet({ key: "value" }).hasFailed()).toBeFalse();
 });
 
 class Wallet extends AbstractWalletData {
 	public address(): string {
-		return 'address';
+		return "address";
 	}
 
 	public publicKey(): string | undefined {
-		return 'publicKey';
+		return "publicKey";
 	}
 
 	public balance(): BigNumber {
@@ -96,11 +97,11 @@ class Wallet extends AbstractWalletData {
 	}
 
 	public secondPublicKey(): string | undefined {
-		return 'secondPublicKey';
+		return "secondPublicKey";
 	}
 
 	public username(): string | undefined {
-		return 'username';
+		return "username";
 	}
 
 	public rank(): number | undefined {

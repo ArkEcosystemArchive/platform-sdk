@@ -1,34 +1,34 @@
 import "jest-extended";
 
-import { AbstractPeerData } from "./peer"
+import { AbstractPeerData } from "./peer";
 
-test('#toObject', () => {
+test("#toObject", () => {
 	expect(new Peer({ key: "value" }).toObject()).toEqual({
-		ip: '127.0.0.1',
+		ip: "127.0.0.1",
 		port: 4003,
-		version: '3.0.0',
+		version: "3.0.0",
 		height: 5000,
 		latency: 23,
 	});
 });
 
-test('#raw', () => {
+test("#raw", () => {
 	expect(new Peer({ key: "value" }).raw()).toEqual({ key: "value" });
 });
 
-test('#hasPassed', () => {
+test("#hasPassed", () => {
 	expect(new Peer({ key: "value" }).hasPassed()).toBeTrue();
 	expect(new Peer({}).hasPassed()).toBeFalse();
 });
 
-test('#hasFailed', () => {
+test("#hasFailed", () => {
 	expect(new Peer({}).hasFailed()).toBeTrue();
 	expect(new Peer({ key: "value" }).hasFailed()).toBeFalse();
 });
 
 class Peer extends AbstractPeerData {
 	public ip(): string {
-		return '127.0.0.1';
+		return "127.0.0.1";
 	}
 
 	public port(): number {
@@ -36,7 +36,7 @@ class Peer extends AbstractPeerData {
 	}
 
 	public version(): string {
-		return '3.0.0';
+		return "3.0.0";
 	}
 
 	public height(): number {
