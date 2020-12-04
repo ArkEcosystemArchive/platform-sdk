@@ -57,6 +57,6 @@
 		"node": ">=12.x"
 	},
 	"jest": {
-		"preset": "../../jest.config.js"
+		"preset": "../../jest.coverage.js"
 	}
 }
