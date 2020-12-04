@@ -3,6 +3,8 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
+import { TransactionDataCollection } from "../../../platform-sdk/dist/coins";
+import { ClientPaginatorCursor, MetaPagination } from "../../../platform-sdk/src/contracts";
 import { identity } from "../../test/fixtures/identity";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
@@ -21,7 +23,8 @@ import {
 	DelegateResignationData,
 	EntityRegistrationData,
 	EntityResignationData,
-	EntityUpdateData, ExtendedTransactionData,
+	EntityUpdateData,
+	ExtendedTransactionData,
 	HtlcClaimData,
 	HtlcLockData,
 	HtlcRefundData,
@@ -31,12 +34,10 @@ import {
 	SecondSignatureData,
 	TransactionData,
 	TransferData,
-	VoteData
+	VoteData,
 } from "./transaction";
-import { transformTransactionData, transformTransactionDataCollection } from "./transaction-mapper";
-import { TransactionDataCollection } from "../../../platform-sdk/dist/coins";
-import { ClientPaginatorCursor, MetaPagination } from "../../../platform-sdk/src/contracts";
 import { ExtendedTransactionDataCollection } from "./transaction-collection";
+import { transformTransactionData, transformTransactionDataCollection } from "./transaction-mapper";
 
 const data = [
 	[BridgechainRegistrationData, "isLegacyBridgechainRegistration"],
@@ -128,17 +129,22 @@ describe("transaction-mapper", () => {
 
 	it("should map collection correctly", () => {
 		const pagination = {
-			prev: 'before',
-			self: 'now',
-			next: 'after'
+			prev: "before",
+			self: "now",
+			next: "after",
 		};
 		// @ts-ignore
-		const collection = new TransactionDataCollection([{
-			isLegacyBridgechainRegistration: () => true
-		}], pagination);
+		const collection = new TransactionDataCollection(
+			[
+				{
+					isLegacyBridgechainRegistration: () => true,
+				},
+			],
+			pagination,
+		);
 
-		let transformedCollection = transformTransactionDataCollection(wallet, collection);
+		const transformedCollection = transformTransactionDataCollection(wallet, collection);
 		expect(transformedCollection).toBeInstanceOf(ExtendedTransactionDataCollection);
 		expect(transformedCollection.getPagination()).toBe(pagination);
-	})
+	});
 });
