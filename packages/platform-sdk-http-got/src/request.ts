@@ -1,5 +1,5 @@
 import { Contracts, Http } from "@arkecosystem/platform-sdk";
-import FormData from 'form-data';
+import FormData from "form-data";
 import got from "got";
 import { URLSearchParams } from "url";
 
