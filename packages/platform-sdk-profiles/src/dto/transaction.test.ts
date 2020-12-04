@@ -1,5 +1,6 @@
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
@@ -11,7 +12,6 @@ import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
 import { BridgechainRegistrationData, TransactionData } from "./transaction";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 describe("transaction", () => {
 	let subject: TransactionData;
@@ -89,11 +89,11 @@ describe("transaction", () => {
 	});
 
 	it("should have a sender", () => {
-		expect(subject.sender()).toBe('sender');
+		expect(subject.sender()).toBe("sender");
 	});
 
 	it("should have a recipient", () => {
-		expect(subject.recipient()).toBe('recipient');
+		expect(subject.recipient()).toBe("recipient");
 	});
 
 	it("should have a recipients", () => {
