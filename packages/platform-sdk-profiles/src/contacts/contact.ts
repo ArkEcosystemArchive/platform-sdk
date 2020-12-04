@@ -8,7 +8,7 @@ import { ContactAddressInput } from "./contact-address.models";
 export class Contact {
 	#profile: Profile;
 
-	#id: string;
+	readonly #id: string;
 	#name: string;
 	#addresses: ContactAddressRepository = new ContactAddressRepository();
 	#starred: boolean;
