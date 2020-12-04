@@ -12,7 +12,7 @@ export class MarketTransformer implements Contracts.MarketTransformer {
 		const tokenId = options.token.toUpperCase();
 		const result = {};
 
-		for (const currency of Object.keys(Data.CURRENCIES)) {
+		for (const currency of Object.keys(options.currencies || Data.CURRENCIES)) {
 			const { assets, rates } = this.data;
 
 			if (!assets[currency]) {
