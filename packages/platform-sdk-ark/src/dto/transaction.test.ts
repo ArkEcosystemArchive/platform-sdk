@@ -46,6 +46,7 @@ describe("TransactionData", function () {
 	});
 
 	test("#memo", () => {
+		// @ts-ignore - Better types so that memo gets detected on TransactionDataType
 		expect(subject.memo()).toBeUndefined();
 	});
 
