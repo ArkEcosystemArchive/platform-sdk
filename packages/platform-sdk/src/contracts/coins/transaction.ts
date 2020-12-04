@@ -93,6 +93,7 @@ export interface IpfsInput extends TransactionInput {
 
 export interface MultiPaymentInput extends TransactionInput {
 	data: {
+		memo?: string;
 		payments: { to: string; amount: string }[];
 	};
 }

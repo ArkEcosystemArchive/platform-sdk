@@ -306,6 +306,7 @@ export interface IpfsData extends TransactionData {
 }
 
 export interface MultiPaymentData extends TransactionData {
+	memo(): string | undefined;
 	payments(): { recipientId: string; amount: string }[];
 }
 

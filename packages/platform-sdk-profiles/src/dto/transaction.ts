@@ -70,7 +70,7 @@ export class TransactionData {
 	}
 
 	public memo(): string | undefined {
-		if (this.#data instanceof TransferData) {
+		if (this.#data instanceof TransferData || this.#data instanceof MultiPaymentData) {
 			return this.#data.memo();
 		}
 

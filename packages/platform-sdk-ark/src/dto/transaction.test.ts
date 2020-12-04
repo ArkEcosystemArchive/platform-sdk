@@ -45,10 +45,6 @@ describe("TransactionData", function () {
 		expect(subject.fee()).toEqual(BigNumber.ZERO);
 	});
 
-	test("#memo", () => {
-		expect(subject.memo()).toBeUndefined();
-	});
-
 	test("#toObject", () => {
 		expect(subject.toObject()).toBeObject();
 	});
