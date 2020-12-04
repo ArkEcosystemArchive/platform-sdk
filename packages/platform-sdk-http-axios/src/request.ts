@@ -36,11 +36,14 @@ export class Request extends Http.Request {
 				statusCode: response.status,
 			});
 		} catch (error) {
-			return new Http.Response({
-				body: JSON.stringify(error.response.data),
-				headers: error.response.headers,
-				statusCode: error.response.status,
-			}, error);
+			return new Http.Response(
+				{
+					body: JSON.stringify(error.response.data),
+					headers: error.response.headers,
+					statusCode: error.response.status,
+				},
+				error,
+			);
 		}
 	}
 }
