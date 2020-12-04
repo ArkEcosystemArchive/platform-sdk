@@ -4,7 +4,7 @@ import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
 import { TransactionDataCollection } from "../../../platform-sdk/dist/coins";
-import { ClientPaginatorCursor, MetaPagination } from "../../../platform-sdk/src/contracts";
+import { TransactionDataCollection } from "../../../platform-sdk/dist/coins";
 import { identity } from "../../test/fixtures/identity";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
@@ -24,7 +24,6 @@ import {
 	EntityRegistrationData,
 	EntityResignationData,
 	EntityUpdateData,
-	ExtendedTransactionData,
 	HtlcClaimData,
 	HtlcLockData,
 	HtlcRefundData,
@@ -133,15 +132,13 @@ describe("transaction-mapper", () => {
 			self: "now",
 			next: "after",
 		};
+
 		// @ts-ignore
-		const collection = new TransactionDataCollection(
-			[
-				{
-					isLegacyBridgechainRegistration: () => true,
-				},
-			],
-			pagination,
-		);
+		const transactionData = new TransactionData(wallet, {
+			isLegacyBridgechainRegistration: () => true,
+		});
+
+		const collection = new TransactionDataCollection([transactionData], pagination);
 
 		const transformedCollection = transformTransactionDataCollection(wallet, collection);
 		expect(transformedCollection).toBeInstanceOf(ExtendedTransactionDataCollection);
