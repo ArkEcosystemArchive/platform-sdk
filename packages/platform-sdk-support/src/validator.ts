@@ -13,11 +13,7 @@ export class Validator {
 			// return schema.validateSync(data, { strict: true });
 			return schema.validateSync(data);
 		} catch (error) {
-			if (error instanceof ValidationError) {
-				this.#error = error;
-			} else {
-				throw error;
-			}
+			this.#error = error;
 		}
 	}
 

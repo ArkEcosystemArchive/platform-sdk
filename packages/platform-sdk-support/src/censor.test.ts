@@ -9,6 +9,7 @@ test("#isBad", () => {
 	expect(subject.isBad("onion")).toBeTrue();
 	expect(subject.isBad("zyva.org")).toBeTrue();
 	expect(subject.isBad("tree")).toBeFalse();
+	expect(subject.isBad("")).toBeFalse();
 });
 
 test("#process", () => {
@@ -19,4 +20,5 @@ test("#process", () => {
 		"*********************** Don't be an ****** :smile:",
 	);
 	expect(subject.process("tree")).toBe("tree");
+	expect(subject.process("")).toBe("");
 });
