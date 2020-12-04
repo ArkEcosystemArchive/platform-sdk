@@ -7,21 +7,23 @@ import nock from "nock";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
-import { Contact } from "./contact";
 import { Profile } from "../profiles/profile";
 import { ContactAddressRepository } from "../repositories/contact-address-repository";
+import { Contact } from "./contact";
 
 describe("contact", () => {
-
 	let subject: Contact;
 
 	beforeEach(async () => {
-		let profile = new Profile({});
-		subject = new Contact({
-			id: "uuid",
-			name: "John Doe",
-			starred: true
-		}, profile);
+		const profile = new Profile({});
+		subject = new Contact(
+			{
+				id: "uuid",
+				name: "John Doe",
+				starred: true,
+			},
+			profile,
+		);
 	});
 
 	it("should have an id", () => {
@@ -48,16 +50,16 @@ describe("contact", () => {
 
 	it("should have an avatar", () => {
 		expect(subject.avatar()).toMatchInlineSnapshot(
-			`"<svg version=\\"1.1\\" xmlns=\\"http://www.w3.org/2000/svg\\" class=\\"picasso\\" width=\\"100\\" height=\\"100\\" viewBox=\\"0 0 100 100\\"><style>.picasso circle{mix-blend-mode:soft-light;}</style><rect fill=\\"rgb(233, 30, 99)\\" width=\\"100\\" height=\\"100\\"/><circle r=\\"45\\" cx=\\"80\\" cy=\\"30\\" fill=\\"rgb(76, 175, 80)\\"/><circle r=\\"55\\" cx=\\"0\\" cy=\\"60\\" fill=\\"rgb(255, 152, 0)\\"/><circle r=\\"40\\" cx=\\"50\\" cy=\\"50\\" fill=\\"rgb(3, 169, 244)\\"/></svg>"`
+			`"<svg version=\\"1.1\\" xmlns=\\"http://www.w3.org/2000/svg\\" class=\\"picasso\\" width=\\"100\\" height=\\"100\\" viewBox=\\"0 0 100 100\\"><style>.picasso circle{mix-blend-mode:soft-light;}</style><rect fill=\\"rgb(233, 30, 99)\\" width=\\"100\\" height=\\"100\\"/><circle r=\\"45\\" cx=\\"80\\" cy=\\"30\\" fill=\\"rgb(76, 175, 80)\\"/><circle r=\\"55\\" cx=\\"0\\" cy=\\"60\\" fill=\\"rgb(255, 152, 0)\\"/><circle r=\\"40\\" cx=\\"50\\" cy=\\"50\\" fill=\\"rgb(3, 169, 244)\\"/></svg>"`,
 		);
 	});
 
 	it("should map to object", () => {
 		expect(subject.toObject()).toStrictEqual({
-			"addresses": [],
-			"id": "uuid",
-			"name": "John Doe",
-			"starred": true
+			addresses: [],
+			id: "uuid",
+			name: "John Doe",
+			starred: true,
 		});
 	});
 
@@ -65,8 +67,9 @@ describe("contact", () => {
 		expect(subject.addresses()).toBeInstanceOf(ContactAddressRepository);
 	});
 
-	it("should have be able to set addresses", () => {
-		expect(subject.setAddresses([])).toResolve();
+	it("should have be able to set addresses", async () => {
+		await subject.setAddresses([]);
+		expect(subject.addresses().count()).toBe(0);
 	});
 
 	it("should be able to restore addresses", async () => {
@@ -95,7 +98,7 @@ describe("contact", () => {
 			coin: "ARK",
 			network: "ark.devnet",
 			name: "John Doe",
-			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"
+			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		};
 
 		await subject.restore([contactAddress]);
@@ -107,7 +110,7 @@ describe("contact", () => {
 			coin: "ARK",
 			network: "ark.devnet",
 			name: "John Doe",
-			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"
+			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		};
 
 		await subject.setAddresses([contactAddress]);
