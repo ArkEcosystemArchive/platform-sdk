@@ -11,6 +11,7 @@ import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
 import { BridgechainRegistrationData, TransactionData } from "./transaction";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 describe("transaction", () => {
 	let subject: TransactionData;
@@ -56,15 +57,60 @@ describe("transaction", () => {
 			id: () => "transactionId",
 			blockId: () => "transactionBlockId",
 			bridgechainId: () => "bridgechainId",
+			type: () => "some type",
+			timestamp: () => undefined,
+			confirmations: () => BigNumber.make(20),
+			sender: () => "sender",
+			recipient: () => "recipient",
+			recipients: () => [],
+			amount: () => BigNumber.make(18),
+			fee: () => BigNumber.make(2),
 		});
 	});
 
-	it("should have an explorer link", async () => {
+	it("should have an explorer link", () => {
 		expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/transaction/transactionId");
 	});
 
-	it("should have an explorer block link", async () => {
+	it("should have an explorer block link", () => {
 		expect(subject.explorerLinkForBlock()).toBe("https://dexplorer.ark.io/block/transactionBlockId");
+	});
+
+	it("should have a type", () => {
+		expect(subject.type()).toBe("some type");
+	});
+
+	it("should have a timestamp", () => {
+		expect(subject.timestamp()).toBeUndefined();
+	});
+
+	it("should have confirmations", () => {
+		expect(subject.confirmations()).toStrictEqual(BigNumber.make(20));
+	});
+
+	it("should have a sender", () => {
+		expect(subject.sender()).toBe('sender');
+	});
+
+	it("should have a recipient", () => {
+		expect(subject.recipient()).toBe('recipient');
+	});
+
+	it("should have a recipients", () => {
+		expect(subject.recipients()).toBeInstanceOf(Array);
+		expect(subject.recipients().length).toBe(0);
+	});
+
+	it("should have an amount", () => {
+		expect(subject.amount()).toStrictEqual(BigNumber.make(18));
+	});
+
+	it("should have a converted amount", () => {
+		expect(subject.convertedAmount().toNumber()).toStrictEqual(0);
+	});
+
+	it("should have a fee", () => {
+		expect(subject.fee().toNumber()).toStrictEqual(2);
 	});
 
 	const data = [
