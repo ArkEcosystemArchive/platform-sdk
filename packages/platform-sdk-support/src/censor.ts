@@ -646,7 +646,7 @@ export class Censor {
 	];
 
 	public isBad(value: string): boolean {
-		if (!value) {
+		if (!value || !value.length) {
 			return false;
 		}
 
