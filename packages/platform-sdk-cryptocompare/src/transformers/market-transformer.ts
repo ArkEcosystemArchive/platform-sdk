@@ -13,7 +13,7 @@ export class MarketTransformer implements Contracts.MarketTransformer {
 				marketCap: value.MKTCAP,
 				volume: value.TOTALVOLUME24HTO,
 				date: new Date(value.LASTUPDATE * 1000),
-				change24h: value.CHANGEPCT24HOUR || null,
+				change24h: value.CHANGEPCT24HOUR,
 			};
 		}
 
