@@ -39,10 +39,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return BigNumber.make(this.data.fee);
 	}
 
-	public memo(): string | undefined {
-		return undefined;
-	}
-
 	public asset(): Record<string, unknown> {
 		return {};
 	}
@@ -60,7 +56,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isTransfer(): boolean {
-		return false;
+		return true;
 	}
 
 	public isSecondSignature(): boolean {

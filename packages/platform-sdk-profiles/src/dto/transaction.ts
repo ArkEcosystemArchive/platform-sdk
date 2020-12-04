@@ -70,7 +70,11 @@ export class TransactionData {
 	}
 
 	public memo(): string | undefined {
-		return this.#data.memo();
+		if (this.#data instanceof TransferData) {
+			return this.#data.memo();
+		}
+
+		return undefined;
 	}
 
 	public asset(): Record<string, unknown> {
@@ -567,7 +571,11 @@ export class SecondSignatureData extends TransactionData {
 	}
 }
 
-export class TransferData extends TransactionData {}
+export class TransferData extends TransactionData {
+	public memo(): string | undefined {
+		return this.data<Contracts.TransferData>().memo();
+	}
+}
 
 export class VoteData extends TransactionData {
 	public votes(): string[] {

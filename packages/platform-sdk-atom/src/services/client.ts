@@ -61,26 +61,28 @@ export class ClientService implements Contracts.ClientService {
 		//
 	}
 
-	public async transaction(id: string): Promise<Contracts.TransactionData> {
+	public async transaction(id: string): Promise<Contracts.TransactionDataType> {
 		const response = await this.get(`txs/${id}`);
 
 		return Helpers.createTransactionDataWithType(response, TransactionDTO);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+		const page = Number(query.cursor || 1);
+
 		const response = await this.get("txs", {
 			"message.action": "send",
 			"message.sender": query.address,
-			page: query.cursor || 1,
+			page,
 			limit: query.limit || 100,
 		});
 
 		return Helpers.createTransactionDataCollectionWithType(
 			response.txs,
 			{
-				prev: undefined, // @TODO: build from URL and page_number
-				self: undefined, // @TODO: build from URL and page_number
-				next: undefined, // @TODO: build from URL and page_number
+				prev: page <= 1 ? undefined : page - 1,
+				self: Number(response.page_number),
+				next: page >= Number(response.page_total) ? undefined : page,
 			},
 			TransactionDTO,
 		);
