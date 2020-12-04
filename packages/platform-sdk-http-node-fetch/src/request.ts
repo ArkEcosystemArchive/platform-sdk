@@ -2,8 +2,6 @@ import { Contracts, Http } from "@arkecosystem/platform-sdk";
 import fetch from "node-fetch";
 import { URLSearchParams } from "url";
 
-import { Response } from "./response";
-
 export class Request extends Http.Request {
 	protected async send(
 		method: string,
@@ -21,7 +19,7 @@ export class Request extends Http.Request {
 		}
 
 		if (options.searchParams) {
-			url = options.searchParams ? `${url}?${new URLSearchParams(options.searchParams)}` : url;
+			url = `${url}?${new URLSearchParams(options.searchParams)}`;
 		}
 
 		if (data && data.data) {
@@ -32,22 +30,30 @@ export class Request extends Http.Request {
 			if (this._bodyFormat === "form_params") {
 				throw new Error("Method form_params is not supported.");
 			}
-
-			if (this._bodyFormat === "multipart") {
-				throw new Error("Method multipart is not supported.");
-			}
 		}
 
 		try {
 			const response = await fetch(url.replace(/^\/+/g, ""), options);
 
-			return new Response({
-				body: await response.json(),
-				headers: response.headers,
+			return new Http.Response({
+				body: await response.text(),
+				headers: response.headers.raw(),
 				statusCode: response.status,
 			});
 		} catch (error) {
-			return new Response(error.response, error);
+			let body: string | undefined;
+
+			try {
+				body = await error.response.body();
+			} catch (error) {
+				body = undefined;
+			}
+
+			return new Http.Response({
+				body,
+				headers: error.response.headers(),
+				statusCode: error.response.status(),
+			}, error);
 		}
 	}
 }
