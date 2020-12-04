@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CoinGecko MarketTransformer should transform the given data 1`] = `
+exports[`MarketTransformer should skip unknown currencies 1`] = `Object {}`;
+
+exports[`MarketTransformer should transform the given data 1`] = `
 Object {
   "AUD": Object {
     "change24h": -2.16414,

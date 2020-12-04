@@ -6,7 +6,7 @@ export class MarketTransformer implements Contracts.MarketTransformer {
 	public transform(options: Contracts.KeyValuePair): Contracts.MarketDataCollection {
 		const result = {};
 
-		for (const currency of Object.keys(Data.CURRENCIES)) {
+		for (const currency of Object.keys(options.currencies || Data.CURRENCIES)) {
 			const currencyLowerCase = currency.toLowerCase();
 
 			if (!this.data.current_price[currencyLowerCase]) {
