@@ -1,6 +1,6 @@
 import { TransactionDataCollection, WalletDataCollection } from "../../coins";
 import { KeyValuePair } from "../types";
-import { SignedTransactionData, TransactionData, WalletData } from "./data";
+import { SignedTransactionData, TransactionData, TransactionDataType, WalletData } from "./data";
 
 export type ClientPaginatorCursor = string | number | undefined;
 
@@ -19,7 +19,7 @@ export interface BroadcastResponse {
 export interface ClientService {
 	destruct(): Promise<void>;
 
-	transaction(id: string): Promise<TransactionData>;
+	transaction(id: string): Promise<TransactionDataType>;
 	transactions(query: ClientTransactionsInput): Promise<TransactionDataCollection>;
 
 	wallet(id: string): Promise<WalletData>;
