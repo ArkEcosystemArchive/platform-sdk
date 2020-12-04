@@ -4,7 +4,6 @@ import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
 import { TransactionDataCollection } from "../../../platform-sdk/dist/coins";
-import { TransactionDataCollection } from "../../../platform-sdk/dist/coins";
 import { identity } from "../../test/fixtures/identity";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
