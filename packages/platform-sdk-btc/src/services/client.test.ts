@@ -37,6 +37,7 @@ describe("ClientService", function () {
 			// expect(result.recipient()).toBe("...");
 			expect(result.amount()).toEqual(BigNumber.make(3050000));
 			expect(result.fee()).toEqual(BigNumber.make(10000));
+			// @ts-ignore
 			expect(result.memo()).toBeUndefined();
 		});
 	});

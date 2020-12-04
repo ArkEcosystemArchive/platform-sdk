@@ -42,6 +42,7 @@ describe("ClientService", function () {
 			expect(result.recipient()).toBe("GB2V4J7WTTKLIN5O3QPUAQCOLLIIULJM3FHHAQ7GEQ5EH53BXXQ47HU3");
 			expect(result.amount()).toEqual(BigNumber.make("100000000"));
 			expect(result.fee()).toEqual(BigNumber.make("10000000000"));
+			// @ts-ignore
 			expect(result.memo()).toBeUndefined();
 		});
 	});

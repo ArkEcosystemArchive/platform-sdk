@@ -34,6 +34,7 @@ describe("ClientService", function () {
 			expect(result.recipient()).toBe("cosmos14ddvyl5t0hzmknceuv3zzu5szuum4rkygpq5ln");
 			expect(result.amount()).toEqual(BigNumber.make(10680));
 			expect(result.fee()).toEqual(BigNumber.make(36875));
+			// @ts-ignore
 			expect(result.memo()).toBe("Hello World");
 		});
 	});
@@ -58,6 +59,7 @@ describe("ClientService", function () {
 			expect(result.items()[0].recipient()).toBe("cosmos14ddvyl5t0hzmknceuv3zzu5szuum4rkygpq5ln");
 			expect(result.items()[0].amount()).toEqual(BigNumber.make(10680));
 			expect(result.items()[0].fee()).toEqual(BigNumber.make(36875));
+			// @ts-ignore
 			expect(result.items()[0].memo()).toBe("Hello World");
 		});
 	});

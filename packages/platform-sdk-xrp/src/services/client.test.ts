@@ -124,6 +124,7 @@ describe("ClientService", function () {
 			expect(result.items()[0].recipient()).toBe("rMH4UxPrbuMa1spCBR98hLLyNJp4d8p4tM");
 			expect(result.items()[0].amount()).toEqual(BigNumber.make(100000));
 			expect(result.items()[0].fee()).toEqual(BigNumber.make(1000));
+			// @ts-ignore
 			expect(result.items()[0].memo()).toBeUndefined();
 		});
 	});
