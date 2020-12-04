@@ -7,8 +7,8 @@ import nock from "nock";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
-import { ContactAddress } from "./contact-address";
 import { KnownWalletService } from "../environment/services/known-wallet-service";
+import { ContactAddress } from "./contact-address";
 
 let subject: ContactAddress;
 
@@ -96,13 +96,10 @@ it("should turn into an object", () => {
 	});
 });
 
-describe('when contact has not been synchronized yet', () => {
+describe("when contact has not been synchronized yet", () => {
 	beforeEach(async () => {
 		nock.cleanAll();
-		nock(/.+/)
-			.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-			.replyWithError( 'blah')
-			.persist();
+		nock(/.+/).get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib").replyWithError("blah").persist();
 
 		subject = await ContactAddress.make({
 			id: "uuid",
@@ -114,18 +111,21 @@ describe('when contact has not been synchronized yet', () => {
 	});
 
 	it("should throw Error trying to determine if the wallet is a delegate", async () => {
-		expect(() => subject.isDelegate())
-			.toThrow("This contact has not been synchronized yet. Please call [syncIdentity] before using it.");
+		expect(() => subject.isDelegate()).toThrow(
+			"This contact has not been synchronized yet. Please call [syncIdentity] before using it.",
+		);
 	});
 
 	it("should throw Error trying to determine if the wallet is a a multi signature one", async () => {
-		expect(() => subject.isMultiSignature())
-			.toThrow("This contact has not been synchronized yet. Please call [syncIdentity] before using it.");
+		expect(() => subject.isMultiSignature()).toThrow(
+			"This contact has not been synchronized yet. Please call [syncIdentity] before using it.",
+		);
 	});
 
 	it("should throw Error trying to determine if the wallet is a a second signature one", async () => {
-		expect(() => subject.isSecondSignature())
-			.toThrow("This contact has not been synchronized yet. Please call [syncIdentity] before using it.");
+		expect(() => subject.isSecondSignature()).toThrow(
+			"This contact has not been synchronized yet. Please call [syncIdentity] before using it.",
+		);
 	});
 
 	it("should has synced with network", () => {
@@ -146,11 +146,11 @@ it("should determine if the wallet is owned by a team", () => {
 });
 
 it("should change the name", () => {
-	subject.setName('new name')
-	expect(subject.name()).toBe('new name');
+	subject.setName("new name");
+	expect(subject.name()).toBe("new name");
 });
 
 it("should change the address", () => {
-	subject.setAddress('new address')
-	expect(subject.address()).toBe('new address');
+	subject.setAddress("new address");
+	expect(subject.address()).toBe("new address");
 });
