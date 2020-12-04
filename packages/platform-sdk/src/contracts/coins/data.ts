@@ -98,8 +98,6 @@ export interface TransactionData {
 
 	fee(): BigNumber;
 
-	memo(): string | undefined;
-
 	asset(): Record<string, unknown>;
 
 	isConfirmed(): boolean;
@@ -308,6 +306,7 @@ export interface IpfsData extends TransactionData {
 }
 
 export interface MultiPaymentData extends TransactionData {
+	memo(): string | undefined;
 	payments(): { recipientId: string; amount: string }[];
 }
 
@@ -320,7 +319,9 @@ export interface SecondSignatureData extends TransactionData {
 	secondPublicKey(): string;
 }
 
-export interface TransferData extends TransactionData {}
+export interface TransferData extends TransactionData {
+	memo(): string | undefined;
+}
 
 export interface VoteData extends TransactionData {
 	votes(): string[];

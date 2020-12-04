@@ -87,8 +87,6 @@ export abstract class AbstractTransactionData {
 
 	abstract fee(): BigNumber;
 
-	abstract memo(): string | undefined;
-
 	abstract asset(): Record<string, unknown>;
 
 	abstract isConfirmed(): boolean;
@@ -181,7 +179,6 @@ export abstract class AbstractTransactionData {
 			recipient: this.recipient(),
 			amount: this.amount(),
 			fee: this.fee(),
-			vendorField: this.memo(),
 			asset: this.asset(),
 		};
 	}
