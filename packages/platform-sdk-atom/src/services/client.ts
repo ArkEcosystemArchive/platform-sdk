@@ -80,9 +80,9 @@ export class ClientService implements Contracts.ClientService {
 		return Helpers.createTransactionDataCollectionWithType(
 			response.txs,
 			{
-				prev: page === 1 ? undefined : page - 1,
-				self: page,
-				next: page === 1 ? page + 1 : page, // @TODO: check if there is a next page
+				prev: page <= 1 ? undefined : page - 1,
+				self: response.page_number,
+				next: page >= response.page_total ? undefined : page,
 			},
 			TransactionDTO,
 		);
