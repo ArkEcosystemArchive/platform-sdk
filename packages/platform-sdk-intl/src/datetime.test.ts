@@ -5,6 +5,24 @@ import { DateTime } from "./datetime";
 let subject: DateTime;
 beforeEach(() => (subject = DateTime.make("2020-01-01")));
 
+test("#make", () => {
+	const consoleSpy = jest.spyOn(console, 'debug').mockReturnValue();
+
+	DateTime.make('2020-01-01 12:00:00', 'invalid');
+
+	expect(consoleSpy).toHaveBeenCalledWith('Failed to load data for the [invalid] locale.');
+});
+
+test("#setLocale", () => {
+	const subject = DateTime.fromUnix(1596534984);
+
+	expect(subject.format("L LTS")).toBe("08/04/2020 9:56:24 AM");
+
+	subject.setLocale('de');
+
+	expect(subject.format("L LTS")).toBe("08/04/2020 9:56:24 AM");
+});
+
 test("#fromUnix", () => {
 	const subject = DateTime.fromUnix(1596534984);
 
@@ -228,6 +246,14 @@ test("#subMonth", () => {
 
 test("#subMonths", () => {
 	expect(subject.subMonths(5)).not.toEqual(subject.toString());
+});
+
+test("#subQuarter", () => {
+	expect(subject.subQuarter()).not.toEqual(subject.toString());
+});
+
+test("#subQuarters", () => {
+	expect(subject.subQuarters(5)).not.toEqual(subject.toString());
 });
 
 test("#subYear", () => {
