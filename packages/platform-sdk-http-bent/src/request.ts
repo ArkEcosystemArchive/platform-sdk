@@ -2,8 +2,6 @@ import { Contracts, Http } from "@arkecosystem/platform-sdk";
 import bent from "bent";
 import { URLSearchParams } from "url";
 
-import { Response } from "./response";
-
 export class Request extends Http.Request {
 	protected async send(
 		method: string,
@@ -21,7 +19,7 @@ export class Request extends Http.Request {
 		}
 
 		if (options.searchParams) {
-			url = options.searchParams ? `${url}?${new URLSearchParams(options.searchParams)}` : url;
+			url = `${url}?${new URLSearchParams(options.searchParams)}`;
 		}
 
 		if (data && data.data) {
@@ -36,14 +34,6 @@ export class Request extends Http.Request {
 					options.body.set(key, value);
 				}
 			}
-
-			if (this._bodyFormat === "multipart") {
-				options.body = new FormData();
-
-				for (const [key, value] of Object.entries(data.data)) {
-					options.body.append(key, value);
-				}
-			}
 		}
 
 		try {
@@ -55,13 +45,20 @@ export class Request extends Http.Request {
 				response = await bent(method)(url, options.json || options.body, options.headers);
 			}
 
-			return new Response({
-				body: await response.json(),
+			return new Http.Response({
+				body: await response.text(),
 				headers: response.headers,
 				statusCode: response.statusCode,
 			});
 		} catch (error) {
-			return new Response(error.response, error);
+			return new Http.Response(
+				{
+					body: await error.text(),
+					headers: error.headers,
+					statusCode: error.statusCode,
+				},
+				error,
+			);
 		}
 	}
 }

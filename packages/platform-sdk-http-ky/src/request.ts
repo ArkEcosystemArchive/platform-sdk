@@ -1,8 +1,6 @@
 import { Contracts, Http } from "@arkecosystem/platform-sdk";
 import ky from "ky-universal";
 
-import { Response } from "./response";
-
 export class Request extends Http.Request {
 	protected async send(
 		method: string,

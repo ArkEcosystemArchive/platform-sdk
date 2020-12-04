@@ -1,3 +1,4 @@
+import { Http } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { Request } from "./request";
@@ -80,5 +81,31 @@ describe("Request", () => {
 			.post("http://httpbin.org/post", { key: "value" });
 
 		expect(response.json()).toEqual(responseBody);
+	});
+
+	it("should post with form_params", async () => {
+		const responseBody = {
+			args: {},
+			data: '{"key":"value"}',
+			files: {},
+			form: {
+				key: "value",
+			},
+			json: {},
+			origin: "87.95.132.111,10.100.91.201",
+			url: "http://httpbin.org/post",
+		};
+
+		nock("http://httpbin.org/").post("/post").reply(200, responseBody);
+
+		const response = await subject.asForm().post("http://httpbin.org/post", { key: "value" });
+
+		expect(response.json()).toEqual(responseBody);
+	});
+
+	it("should handle 404s", async () => {
+		nock("http://httpbin.org/").get("/get").reply(404);
+
+		await expect(subject.get("http://httpbin.org/get")).rejects.toThrow(Http.RequestException);
 	});
 });

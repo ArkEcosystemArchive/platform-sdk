@@ -49,11 +49,14 @@ export class Request extends Http.Request {
 				body = undefined;
 			}
 
-			return new Http.Response({
-				body,
-				headers: error.response.headers(),
-				statusCode: error.response.status(),
-			}, error);
+			return new Http.Response(
+				{
+					body,
+					headers: error.response.headers(),
+					statusCode: error.response.status(),
+				},
+				error,
+			);
 		}
 	}
 }

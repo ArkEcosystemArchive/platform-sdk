@@ -84,7 +84,9 @@ describe("Request", () => {
 	});
 
 	it("should not support form_params", async () => {
-		await expect(subject.asForm().post("http://httpbin.org/post", { key: "value" })).rejects.toThrow("form_params is not supported.");
+		await expect(subject.asForm().post("http://httpbin.org/post", { key: "value" })).rejects.toThrow(
+			"form_params is not supported.",
+		);
 	});
 
 	it("should handle 404s", async () => {
