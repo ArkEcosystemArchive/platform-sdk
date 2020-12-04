@@ -21,7 +21,7 @@ export class QRCode {
 		return BaseCode.toDataURL(this.#value, options);
 	}
 
-    /* istanbul ignore next */
+	/* istanbul ignore next */
 	public async toString(type: StringType = "utf8"): Promise<string> {
 		return BaseCode.toString(this.#value, { type });
 	}

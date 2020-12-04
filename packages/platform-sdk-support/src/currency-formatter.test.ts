@@ -4,7 +4,7 @@ import { BigNumber } from "./bignumber";
 import { CurrencyFormatter } from "./currency-formatter";
 
 test("#simpleFormatCrypto", () => {
-	expect(CurrencyFormatter.simpleFormatCrypto(10, 'ETH')).toBe("10 ETH");
+	expect(CurrencyFormatter.simpleFormatCrypto(10, "ETH")).toBe("10 ETH");
 });
 
 test("#toBuilder", () => {
