@@ -71,9 +71,15 @@ export class AIP36 {
 					type: Joi.allow("logo", "image"),
 					value: Joi.alternatives().try(
 						Joi.string().pattern(/(?:https?:)?\/\/(?:i\.)?(?:imgur\.com)\/([A-z0-9]*)(\.[A-z]{3,4})/),
-						Joi.string().pattern(/(?:https?:)?\/(?:raw\.githubusercontent\.com)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-].*)(\.(jpe?g|png|gif))$/),
-						Joi.string().pattern(/(?:https?:)?\/(?:gitlab\.com)\/([A-Za-z0-9-_.].*)(?:\/-\/raw)(?:\/[A-z0-9_-].*)(\.(jpe?g|png|gif))$/),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:\w+\.)(?:staticflickr\.com)\/([A-z0-9-_]+)(?:\/[A-z0-9_-]+)(\.[A-z]{3,4})/),
+						Joi.string().pattern(
+							/(?:https?:)?\/(?:raw\.githubusercontent\.com)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-].*)(\.(jpe?g|png|gif))$/,
+						),
+						Joi.string().pattern(
+							/(?:https?:)?\/(?:gitlab\.com)\/([A-Za-z0-9-_.].*)(?:\/-\/raw)(?:\/[A-z0-9_-].*)(\.(jpe?g|png|gif))$/,
+						),
+						Joi.string().pattern(
+							/(?:https?:)?\/\/(?:\w+\.)(?:staticflickr\.com)\/([A-z0-9-_]+)(?:\/[A-z0-9_-]+)(\.[A-z]{3,4})/,
+						),
 					),
 				}),
 			),
@@ -118,16 +124,24 @@ export class AIP36 {
 						"youtube",
 					),
 					value: Joi.alternatives().try(
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:discord\.com\/invite|discord.gg(\/invite)?)\/([A-z0-9]+)/),
+						Joi.string().pattern(
+							/(?:https?:)?\/\/(?:www\.)?(?:discord\.com\/invite|discord.gg(\/invite)?)\/([A-z0-9]+)/,
+						),
 						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:facebook\.com)\/([A-Za-z0-9-_.]+)/),
 						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:instagram\.com)\/([A-Za-z0-9-_.]+)/),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:linkedin\.com)\/(?:in|company)\/([\w\-_À-ÿ%]+)\/?/),
+						Joi.string().pattern(
+							/(?:https?:)?\/\/(?:www\.)?(?:linkedin\.com)\/(?:in|company)\/([\w\-_À-ÿ%]+)\/?/,
+						),
 						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:medium\.com)\/([A-Za-z0-9-_.@]+)/),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:reddit\.com)\/(?:u(?:ser)?|r)\/([A-z0-9-_]+)\/?/),
+						Joi.string().pattern(
+							/(?:https?:)?\/\/(?:www\.)?(?:reddit\.com)\/(?:u(?:ser)?|r)\/([A-z0-9-_]+)\/?/,
+						),
 						Joi.string().pattern(/(?:https?:)?\/\/(?:[a-z]+)\.(?:slack\.com)/),
 						Joi.string().pattern(/(?:https?:)?\/\/(?:t(?:elegram)?\.me|telegram\.org)\/([a-z0-9_]{5,32})/),
 						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:twitter\.com)\/@?([A-z0-9_]+)/),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:youtube\.com)\/(?:channel|user)\/([A-z0-9]+)\/?/),
+						Joi.string().pattern(
+							/(?:https?:)?\/\/(?:www\.)?(?:youtube\.com)\/(?:channel|user)\/([A-z0-9]+)\/?/,
+						),
 					),
 				}),
 			),
@@ -135,9 +149,15 @@ export class AIP36 {
 				Joi.object({
 					type: Joi.allow("bitbucket", "github", "gitlab", "npm"),
 					value: Joi.alternatives().try(
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:bitbucket\.org)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:github\.com)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:gitlab\.com)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/),
+						Joi.string().pattern(
+							/(?:https?:)?\/\/(?:www\.)?(?:bitbucket\.org)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/,
+						),
+						Joi.string().pattern(
+							/(?:https?:)?\/\/(?:www\.)?(?:github\.com)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/,
+						),
+						Joi.string().pattern(
+							/(?:https?:)?\/\/(?:www\.)?(?:gitlab\.com)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/,
+						),
 						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:npmjs\.com)\/package\/([A-Za-z0-9-_.@]+)/),
 					),
 				}),
@@ -146,8 +166,12 @@ export class AIP36 {
 				Joi.object({
 					type: Joi.allow("video"),
 					value: Joi.alternatives().try(
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:vimeo\.com|player\.vimeo\.com\/video)\/([0-9]+)/),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:(?:www\.)?(?:youtube\.com)\/(?:watch\?v=|embed\/)|youtu\.be\/)([A-z0-9-_]+)\/?/),
+						Joi.string().pattern(
+							/(?:https?:)?\/\/(?:www\.)?(?:vimeo\.com|player\.vimeo\.com\/video)\/([0-9]+)/,
+						),
+						Joi.string().pattern(
+							/(?:https?:)?\/\/(?:(?:www\.)?(?:youtube\.com)\/(?:watch\?v=|embed\/)|youtu\.be\/)([A-z0-9-_]+)\/?/,
+						),
 					),
 				}),
 			),
