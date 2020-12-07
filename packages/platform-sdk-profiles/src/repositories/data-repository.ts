@@ -83,6 +83,8 @@ export class DataRepository {
 		for (const [key, value] of Object.entries(this.#snapshot)) {
 			this.set(key, value);
 		}
+
+		this.#snapshot = undefined;
 	}
 
 	public toJSON(): string {

@@ -95,6 +95,7 @@ it.skip("should have a converted balance", () => {
 	expect(subject.convertedBalance()).toBeInstanceOf(BigNumber);
 	expect(subject.convertedBalance().toString()).toBe("25");
 });
+
 it("should have a nonce", () => {
 	expect(subject.nonce()).toEqual(BigNumber.make("111932"));
 });
