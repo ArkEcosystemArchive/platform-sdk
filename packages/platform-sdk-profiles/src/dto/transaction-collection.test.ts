@@ -3,12 +3,12 @@ import { ExtendedTransactionDataCollection } from "./transaction-collection";
 let subject: ExtendedTransactionDataCollection;
 
 const dummy = {
-	id: () => 'id',
-	type: () => 'type',
+	id: () => "id",
+	type: () => "type",
 	// @ts-ignore
-	timestamp: () => 'timestamp',
-	sender: () => 'sender',
-	recipient: () => 'recipient',
+	timestamp: () => "timestamp",
+	sender: () => "sender",
+	recipient: () => "recipient",
 };
 
 beforeEach(() => {
@@ -17,21 +17,21 @@ beforeEach(() => {
 });
 
 test("#findById", () => {
-	expect(subject.findById('id')).toEqual(dummy);
+	expect(subject.findById("id")).toEqual(dummy);
 });
 
 test("#findByType", () => {
-	expect(subject.findByType('type')).toEqual(dummy);
+	expect(subject.findByType("type")).toEqual(dummy);
 });
 
 test("#findByTimestamp", () => {
-	expect(subject.findByTimestamp('timestamp')).toEqual(dummy);
+	expect(subject.findByTimestamp("timestamp")).toEqual(dummy);
 });
 
 test("#findBySender", () => {
-	expect(subject.findBySender('sender')).toEqual(dummy);
+	expect(subject.findBySender("sender")).toEqual(dummy);
 });
 
 test("#findByRecipient", () => {
-	expect(subject.findByRecipient('recipient')).toEqual(dummy);
+	expect(subject.findByRecipient("recipient")).toEqual(dummy);
 });
