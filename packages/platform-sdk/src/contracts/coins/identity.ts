@@ -39,6 +39,7 @@ export interface PrivateKey {
 
 export interface WIF {
 	fromMnemonic(mnemonic: string): Promise<string>;
+	fromPrivateKey(privateKey: string): Promise<string>;
 }
 
 export interface Keys {
