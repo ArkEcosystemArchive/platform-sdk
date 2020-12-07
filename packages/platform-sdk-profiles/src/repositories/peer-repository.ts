@@ -8,11 +8,7 @@ interface Peer {
 }
 
 export class PeerRepository {
-	readonly #data: DataRepository;
-
-	public constructor() {
-		this.#data = new DataRepository();
-	}
+	readonly #data: DataRepository = new DataRepository();
 
 	public fill(peers: object): void {
 		for (const [id, peer] of Object.entries(peers)) {
