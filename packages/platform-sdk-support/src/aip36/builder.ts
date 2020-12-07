@@ -14,6 +14,9 @@ export abstract class Builder {
 	}
 
 	protected push<T>(collection: string, item: T): void {
-		this.set(collection, this.get<T[]>(collection, []).push(item));
+		const list: T[] = this.get<T[]>(collection, []);
+		list.push(item);
+
+		this.set(collection, list);
 	}
 }

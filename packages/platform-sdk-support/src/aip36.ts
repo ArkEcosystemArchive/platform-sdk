@@ -53,22 +53,22 @@ export class AIP36 {
 	public validate(): void {
 		const { error, value } = Joi.object({
 			business: Joi.object({
-				type: Joi.toString(),
+				type: Joi.string().required(),
 			}),
 			delegate: Joi.object({
-				type: Joi.string(),
+				type: Joi.string().valid("public", "private").required(),
 				payout: Joi.object({
-					distribution: Joi.object({ min: Joi.number().min(1).max(100), max: Joi.number().min(1).max(100) }),
+					distribution: Joi.object({ min: Joi.number().min(1).max(100).required(), max: Joi.number().min(1).max(100).required() }),
 					frequency: Joi.object({
-						type: Joi.allow("day", "month", "week", "month", "quarter", "year"),
-						value: Joi.number().min(1).max(365),
+						type: Joi.string().valid("day", "week", "month", "quarter", "year").required(),
+						value: Joi.number().min(1).max(365).required(),
 					}),
-					percentage: Joi.object({ min: Joi.number().min(1).max(100), max: Joi.number().min(1).max(100) }),
+					percentage: Joi.object({ min: Joi.number().min(1).max(100).required(), max: Joi.number().min(1).max(100).required() }),
 				}),
 			}),
 			images: Joi.array().items(
 				Joi.object({
-					type: Joi.allow("logo", "image"),
+					type: Joi.valid("logo", "image"),
 					value: Joi.alternatives().try(
 						Joi.string().pattern(/(?:https?:)?\/\/(?:i\.)?(?:imgur\.com)\/([A-z0-9]*)(\.[A-z]{3,4})/),
 						Joi.string().pattern(
@@ -110,7 +110,7 @@ export class AIP36 {
 			}),
 			socialMedia: Joi.array().items(
 				Joi.object({
-					type: Joi.allow(
+					type: Joi.valid(
 						"discord",
 						"facebook",
 						"instagram",
@@ -120,9 +120,8 @@ export class AIP36 {
 						"slack",
 						"telegram",
 						"twitter",
-						"wechat",
 						"youtube",
-					),
+					).required(),
 					value: Joi.alternatives().try(
 						Joi.string().pattern(
 							/(?:https?:)?\/\/(?:www\.)?(?:discord\.com\/invite|discord.gg(\/invite)?)\/([A-z0-9]+)/,
@@ -142,12 +141,12 @@ export class AIP36 {
 						Joi.string().pattern(
 							/(?:https?:)?\/\/(?:www\.)?(?:youtube\.com)\/(?:channel|user)\/([A-z0-9]+)\/?/,
 						),
-					),
+					).required(),
 				}),
 			),
 			sourceControl: Joi.array().items(
 				Joi.object({
-					type: Joi.allow("bitbucket", "github", "gitlab", "npm"),
+					type: Joi.valid("bitbucket", "github", "gitlab", "npm").required(),
 					value: Joi.alternatives().try(
 						Joi.string().pattern(
 							/(?:https?:)?\/\/(?:www\.)?(?:bitbucket\.org)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/,
@@ -159,12 +158,12 @@ export class AIP36 {
 							/(?:https?:)?\/\/(?:www\.)?(?:gitlab\.com)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/,
 						),
 						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:npmjs\.com)\/package\/([A-Za-z0-9-_.@]+)/),
-					),
+					).required(),
 				}),
 			),
 			videos: Joi.array().items(
 				Joi.object({
-					type: Joi.allow("video"),
+					type: Joi.valid("video").required(),
 					value: Joi.alternatives().try(
 						Joi.string().pattern(
 							/(?:https?:)?\/\/(?:www\.)?(?:vimeo\.com|player\.vimeo\.com\/video)\/([0-9]+)/,
@@ -172,7 +171,7 @@ export class AIP36 {
 						Joi.string().pattern(
 							/(?:https?:)?\/\/(?:(?:www\.)?(?:youtube\.com)\/(?:watch\?v=|embed\/)|youtu\.be\/)([A-z0-9-_]+)\/?/,
 						),
-					),
+					).required(),
 				}),
 			),
 		}).validate(this.#data);
