@@ -47,7 +47,7 @@ export class Cache {
 		dot.delete(this.#cache, this.getCacheKey(key));
 	}
 
-	public flush(key: string): void {
+	public flush(): void {
 		this.#cache = {};
 	}
 
