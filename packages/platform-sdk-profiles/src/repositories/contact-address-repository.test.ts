@@ -96,15 +96,33 @@ test("#find", async () => {
 	expect(subject.findById(address.id())).toBeObject();
 });
 
-test("#update", async () => {
+test("#update invalid", async () => {
 	expect(() => subject.update("invalid", { name: "Jane Doe" })).toThrowError("Failed to find");
+});
 
+test("#update both", async () => {
 	const address = await subject.create(stubData);
 
 	subject.update(address.id(), { name: "Jane Doe", address: "new address" });
 
 	expect(subject.findById(address.id()).name()).toEqual("Jane Doe");
 	expect(subject.findByAddress("new address")[0].name()).toEqual("Jane Doe");
+});
+
+test("#update name", async () => {
+	const address = await subject.create(stubData);
+
+	subject.update(address.id(), { name: "Jane Doe" });
+
+	expect(subject.findById(address.id()).name()).toEqual("Jane Doe");
+});
+
+test("#update address", async () => {
+	const address = await subject.create(stubData);
+
+	subject.update(address.id(), { address: "new address" });
+
+	expect(subject.findByAddress("new address")[0].name()).toEqual("John Doe");
 });
 
 test("#forget", async () => {
