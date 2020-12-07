@@ -1,4 +1,4 @@
-class Container {
+export class Container {
 	readonly #bindings: Map<string, any> = new Map();
 
 	public get<T>(key: string): T {
