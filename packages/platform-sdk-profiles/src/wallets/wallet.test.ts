@@ -246,7 +246,9 @@ describe("#setCoin", () => {
 	});
 
 	it("should decrypt the WIF", async () => {
-		const { compressed, privateKey } = decode(await subject.coin().identity().wif().fromMnemonic(identity.mnemonic));
+		const { compressed, privateKey } = decode(
+			await subject.coin().identity().wif().fromMnemonic(identity.mnemonic),
+		);
 
 		subject.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, "password"));
 
