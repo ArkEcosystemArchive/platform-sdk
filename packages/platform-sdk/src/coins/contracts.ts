@@ -3,6 +3,7 @@ import {
 	FeeService,
 	HttpClient,
 	IdentityService,
+	KnownWalletService,
 	LedgerService,
 	LinkService,
 	MessageService,
@@ -14,17 +15,7 @@ import {
 export interface CoinSpec {
 	manifest: any;
 	schema: any;
-	services: {
-		ClientService: any;
-		FeeService: any;
-		IdentityService: any;
-		LedgerService: any;
-		LinkService: any;
-		MessageService: any;
-		MultiSignatureService: any;
-		PeerService: any;
-		TransactionService: any;
-	};
+	ServiceProvider: any;
 }
 
 export interface CoinOptions {
@@ -38,6 +29,7 @@ export interface CoinServices {
 	client: ClientService;
 	fee: FeeService;
 	identity: IdentityService;
+	knownWallets: KnownWalletService;
 	ledger: LedgerService;
 	link: LinkService;
 	message: MessageService;

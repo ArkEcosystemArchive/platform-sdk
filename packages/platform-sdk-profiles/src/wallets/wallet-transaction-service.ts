@@ -1,5 +1,6 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
+import { pqueueSettled } from "../helpers/queue";
 import { SignedTransactionData } from "./dto/signed-transaction";
 import { ReadWriteWallet, WalletData } from "./wallet.models";
 
@@ -62,7 +63,7 @@ export class TransactionService {
 	 * @memberof TransactionService
 	 */
 	public async sync(): Promise<void> {
-		await Promise.allSettled([this.syncPendingMultiSignatures(), this.syncReadyMultiSignatures()]);
+		await pqueueSettled([() => this.syncPendingMultiSignatures(), () => this.syncReadyMultiSignatures()]);
 	}
 
 	/**

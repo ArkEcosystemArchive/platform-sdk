@@ -1,5 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
+import { pqueueSettled } from "../../helpers/queue";
 import { DataRepository } from "../../repositories/data-repository";
 import { container } from "../container";
 import { makeCoin } from "../container.helpers";
@@ -32,14 +33,14 @@ export class FeeService {
 	}
 
 	public async syncAll(): Promise<void> {
-		const promises: Promise<void>[] = [];
+		const promises: (() => Promise<void>)[] = [];
 
 		for (const [coin, networks] of container.get<CoinService>(Identifiers.CoinService).entries()) {
 			for (const network of networks) {
-				promises.push(this.sync(coin, network));
+				promises.push(() => this.sync(coin, network));
 			}
 		}
 
-		await Promise.allSettled(promises);
+		await pqueueSettled(promises);
 	}
 }

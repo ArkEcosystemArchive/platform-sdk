@@ -102,10 +102,6 @@ describe("WalletData", function () {
 			expect(subject.isResignedDelegate()).toBeTrue();
 		});
 
-		test("#isKnown", () => {
-			expect(subject.isKnown()).toBeFalse();
-		});
-
 		test("#isMultiSignature", () => {
 			const response = network === "devnet" ? true : false;
 			expect(subject.isMultiSignature()).toEqual(response);

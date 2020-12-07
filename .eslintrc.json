@@ -18,6 +18,7 @@
 		"@typescript-eslint/ban-ts-comment": "off",
 		"@typescript-eslint/ban-types": "off",
 		"@typescript-eslint/naming-convention": "off",
+		"@typescript-eslint/no-empty-function": "off",
 		"@typescript-eslint/no-empty-interface": "off",
 		"@typescript-eslint/no-explicit-any": "off",
 		"@typescript-eslint/no-misused-promises": "off",
@@ -31,6 +32,7 @@
 		"@typescript-eslint/restrict-plus-operands": "off",
 		"@typescript-eslint/restrict-template-expressions": "off",
 		"no-async-promise-executor": "off",
+		"no-prototype-builtins": "off",
 		"prefer-const": [
 			"error",
 			{

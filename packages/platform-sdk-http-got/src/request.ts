@@ -1,4 +1,5 @@
 import { Contracts, Http } from "@arkecosystem/platform-sdk";
+import FormData from "form-data";
 import got from "got";
 import { URLSearchParams } from "url";
 
@@ -23,14 +24,6 @@ export class Request extends Http.Request {
 			}
 
 			if (this._bodyFormat === "form_params") {
-				options.body = new URLSearchParams();
-
-				for (const [key, value] of Object.entries(data.data)) {
-					options.body.set(key, value);
-				}
-			}
-
-			if (this._bodyFormat === "multipart") {
 				options.body = new FormData();
 
 				for (const [key, value] of Object.entries(data.data)) {

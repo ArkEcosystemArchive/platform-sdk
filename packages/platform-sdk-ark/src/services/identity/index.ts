@@ -1,7 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { CryptoConfig } from "../../contracts";
-import { retrieveCryptoConfiguration } from "../helpers";
 import { Address } from "./address";
 import { Keys } from "./keys";
 import { PrivateKey } from "./private-key";
@@ -12,16 +11,16 @@ export class IdentityService implements Contracts.IdentityService {
 	readonly #config: Coins.Config;
 	readonly #configCrypto: CryptoConfig;
 
-	private constructor(config: Coins.Config, configCrypto: any) {
+	private constructor(config: Coins.Config, network: { pubKeyHash: number; wif: number }) {
 		this.#config = config;
 		this.#configCrypto = {
-			pubKeyHash: configCrypto.network.pubKeyHash,
-			wif: configCrypto.network.wif,
+			pubKeyHash: network.pubKeyHash,
+			wif: network.wif,
 		};
 	}
 
 	public static async construct(config: Coins.Config): Promise<IdentityService> {
-		return new IdentityService(config, (await retrieveCryptoConfiguration(config)).crypto);
+		return new IdentityService(config, config.get(`${Coins.ConfigKey.NetworkConfiguration}.crypto.network`));
 	}
 
 	public async destruct(): Promise<void> {

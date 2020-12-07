@@ -33,3 +33,15 @@ export class Config {
 		return has(this.#config, key);
 	}
 }
+
+export enum ConfigKey {
+	Bech32 = "network.crypto.bech32",
+	CryptoNetworkId = "network.crypto.networkId",
+	CurrencyTicker = "network.currency.ticker",
+	HttpClient = "httpClient",
+	KnownWallets = "network.knownWallets",
+	Network = "network",
+	NetworkConfiguration = "networkConfiguration", // This is currently only used by ARK. This would ideally be stored in a package internal cache, not the config.
+	NetworkId = "network.id",
+	Slip44 = "network.crypto.slip44",
+}

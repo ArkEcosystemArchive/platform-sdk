@@ -1,8 +1,6 @@
 import { Contracts, Http } from "@arkecosystem/platform-sdk";
 import axios from "axios";
 
-import { Response } from "./response";
-
 export class Request extends Http.Request {
 	protected async send(
 		method: string,
@@ -27,22 +25,25 @@ export class Request extends Http.Request {
 			if (this._bodyFormat === "form_params") {
 				throw new Error("Method form_params is not supported.");
 			}
-
-			if (this._bodyFormat === "multipart") {
-				throw new Error("Method multipart is not supported.");
-			}
 		}
 
 		try {
 			const response = await axios[method.toLowerCase()](url.replace(/^\/+/g, ""), options);
 
-			return new Response({
-				body: response.data,
+			return new Http.Response({
+				body: JSON.stringify(response.data),
 				headers: response.headers,
 				statusCode: response.status,
 			});
 		} catch (error) {
-			return new Response(error.response, error);
+			return new Http.Response(
+				{
+					body: JSON.stringify(error.response.data),
+					headers: error.response.headers,
+					statusCode: error.response.status,
+				},
+				error,
+			);
 		}
 	}
 }

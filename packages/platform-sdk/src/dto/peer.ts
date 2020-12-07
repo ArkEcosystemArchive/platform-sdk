@@ -28,7 +28,7 @@ export abstract class AbstractPeerData {
 	}
 
 	public hasPassed(): boolean {
-		return Boolean(this.data);
+		return Object.keys(this.data).length > 0;
 	}
 
 	public hasFailed(): boolean {

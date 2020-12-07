@@ -1,5 +1,6 @@
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
 
+import { pqueueSettled } from "../../helpers/queue";
 import { Profile } from "../../profiles/profile";
 import { ProfileSetting } from "../../profiles/profile.models";
 import { ProfileRepository } from "../../repositories/profile-repository";
@@ -11,14 +12,14 @@ export class ExchangeRateService {
 	public async syncAll(): Promise<void> {
 		const profiles: Profile[] = container.get<ProfileRepository>(Identifiers.ProfileRepository).values();
 
-		const promises: Promise<void>[] = [];
+		const promises: (() => Promise<void>)[] = [];
 		for (const profile of profiles) {
 			for (const [currency, wallets] of Object.entries(profile.wallets().allByCoin())) {
-				promises.push(this.syncCoinByProfile(profile, currency, Object.values(wallets)));
+				promises.push(() => this.syncCoinByProfile(profile, currency, Object.values(wallets)));
 			}
 		}
 
-		await Promise.allSettled(promises);
+		await pqueueSettled(promises);
 	}
 
 	public async syncCoinByProfile(profile: Profile, currency: string, wallets?: ReadWriteWallet[]): Promise<void> {

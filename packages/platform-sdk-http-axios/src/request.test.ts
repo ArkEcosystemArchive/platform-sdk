@@ -1,3 +1,4 @@
+import { Http } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { Request } from "./request";
@@ -80,5 +81,17 @@ describe("Request", () => {
 			.post("http://httpbin.org/post", { key: "value" });
 
 		expect(response.json()).toEqual(responseBody);
+	});
+
+	it("should not support form_params", async () => {
+		await expect(subject.asForm().post("http://httpbin.org/post", { key: "value" })).rejects.toThrow(
+			"form_params is not supported.",
+		);
+	});
+
+	it("should handle 404s", async () => {
+		nock("http://httpbin.org/").get("/get").reply(404);
+
+		await expect(subject.get("http://httpbin.org/get")).rejects.toThrow(Http.RequestException);
 	});
 });

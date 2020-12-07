@@ -31,7 +31,7 @@ beforeEach(async () => {
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
-	profile = new Profile("uuid");
+	profile = new Profile({ id: "uuid" });
 	const address = "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb";
 
 	await profile.wallets().importByAddress(address, "ARK", "ark.devnet");

@@ -5,6 +5,61 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.2.7 - 2020-12-02
+
+Republish of 1.2.6
+
+## 1.2.6 - 2020-12-02
+
+### Changed
+
+-   Implement `pqueueSettled` stub (2d7822e8, @faustbrian)
+
+## 1.2.5 - 2020-12-02
+
+### Changed
+
+-   Use `p-queue` instead of `Promise.all` and `Promise.allSettled` (c18266e8, @faustbrian)
+
+## 1.2.4 - 2020-12-02
+
+### Changed
+
+-   Compare network tokens after retrieving the crypto configuration (c8a115d8, @faustbrian)
+
+## 1.2.3 - 2020-12-02
+
+### Changed
+
+-   Restore wallets before contacts (655fb0f5, @faustbrian)
+
+## 1.2.2 - 2020-12-02
+
+### Changed
+
+-   Remove service exports (4c873f28, @faustbrian)
+-   Pre-sync 1 wallet per network to avoid duplicate requests (d14138c4, @faustbrian)
+
+## 1.2.0 - 2020-12-02
+
+### Changed
+
+-   Move responsibility of service bootstrapping to coins (90fb66ba, @faustbrian)
+-   Import contacts and then sync them with `Promise.all` (42558c64, @faustbrian)
+
+## 1.1.23 - 2020-12-01
+
+### Added
+
+-   Implement crypto for address derivation (8a9aba85, @faustbrian)
+
+### Changed
+
+-   Memoize the avatar by seed (cb9f7c6f, @faustbrian)
+-   Use `Promise.all` to deconstruct coin services (25bbb0d6, @faustbrian)
+-   Use `Promise.all` to construct coin services (c89f0300, @faustbrian)
+-   Remove NEO check (a37780fe, @dated)
+
 ## 1.1.18 - 2020-11-30
 
 ### Fixed

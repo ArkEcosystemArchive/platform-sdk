@@ -4,7 +4,7 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { manifest } from "../src/manifest";
 import { schema } from "../src/schema";
 
-export const createConfig = (options?: object) => {
+export const createConfig = (options?: object, meta = {}) => {
 	const config = new Coins.Config(
 		{
 			...(options || { network: "ark.devnet" }),
@@ -14,7 +14,11 @@ export const createConfig = (options?: object) => {
 	);
 
 	// @ts-ignore
-	config.set("network", manifest.networks[options?.network || "ark.devnet"]);
+	config.set(Coins.ConfigKey.Network, manifest.networks[options?.network || "ark.devnet"]);
+
+	for (const [key, value] of Object.entries(meta)) {
+		config.set(key, value);
+	}
 
 	return config;
 };

@@ -106,6 +106,9 @@ it("should create a profile with data and persist it when instructed to do so", 
 	const newProfile = newEnv.profiles().findById(profile.id());
 
 	expect(newProfile).toBeInstanceOf(Profile);
+
+	await newProfile.restore();
+
 	expect(newProfile.wallets().keys()).toHaveLength(1);
 	expect(newProfile.contacts().keys()).toHaveLength(1);
 	expect(newProfile.notifications().keys()).toHaveLength(1);
@@ -134,6 +137,8 @@ it("should boot the environment from fixed data", async () => {
 	await env.boot();
 
 	const newProfile = env.profiles().findById("b999d134-7a24-481e-a95d-bc47c543bfc9");
+
+	await newProfile.restore();
 
 	expect(newProfile).toBeInstanceOf(Profile);
 	expect(newProfile.wallets().keys()).toHaveLength(1);

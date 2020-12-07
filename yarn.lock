@@ -646,6 +646,7 @@ __metadata:
     eslint-plugin-jest: ^24.1.3
     eslint-plugin-prettier: ^3.1.4
     eslint-plugin-simple-import-sort: ^6.0.0
+    form-data: ^3.0.0
     fs-extra: ^9.0.1
     got: ^11.8.0
     jest: ^26.6.3
@@ -775,6 +776,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-ipfs@workspace:packages/platform-sdk-ipfs"
   dependencies:
     "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/dinero.js": 1.6.5
     "@types/eslint": ^7.2.4
@@ -925,6 +927,41 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@arkecosystem/platform-sdk-marketsquare@workspace:packages/platform-sdk-marketsquare":
+  version: 0.0.0-use.local
+  resolution: "@arkecosystem/platform-sdk-marketsquare@workspace:packages/platform-sdk-marketsquare"
+  dependencies:
+    "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
+    "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dinero.js": 1.6.5
+    "@types/eslint": ^7.2.4
+    "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/jest": ^26.0.15
+    "@types/node": ^14.14.7
+    "@types/prettier": ^2.1.5
+    "@types/rimraf": ^3.0.0
+    "@typescript-eslint/eslint-plugin": ^4.7.0
+    "@typescript-eslint/parser": ^4.7.0
+    codecov: ^3.8.1
+    cross-env: ^7.0.2
+    eslint: ^7.13.0
+    eslint-config-prettier: ^6.15.0
+    eslint-plugin-jest: ^24.1.3
+    eslint-plugin-prettier: ^3.1.4
+    eslint-plugin-simple-import-sort: ^6.0.0
+    jest: ^26.6.3
+    jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.3
+    nock: ^13.0.5
+    npm-check-updates: ^10.1.1
+    prettier: ^2.1.2
+    rimraf: ^3.0.2
+    ts-jest: ^26.4.4
+    typescript: ^4.0.5
+  languageName: unknown
+  linkType: soft
+
 "@arkecosystem/platform-sdk-neo@workspace:packages/platform-sdk-neo":
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-neo@workspace:packages/platform-sdk-neo"
@@ -1017,9 +1054,11 @@ __metadata:
     "@arkecosystem/platform-sdk-eth": "workspace:packages/platform-sdk-eth"
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
+    "@arkecosystem/platform-sdk-ipfs": "workspace:packages/platform-sdk-ipfs"
     "@arkecosystem/platform-sdk-markets": "workspace:packages/platform-sdk-markets"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@arkecosystem/utils": ^1.2.0
+    "@sindresorhus/slugify": ^1.1.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/async": 3.2.4
     "@types/dot-prop": 5.0.1
@@ -1032,6 +1071,7 @@ __metadata:
     "@types/prettier": ^2.1.5
     "@types/rimraf": ^3.0.0
     "@types/semver": 7.3.4
+    "@types/sindresorhus__slugify": 0.9.3
     "@types/uuid": 8.3.0
     "@typescript-eslint/eslint-plugin": ^4.7.0
     "@typescript-eslint/parser": ^4.7.0
@@ -1053,7 +1093,9 @@ __metadata:
     localforage: ^1.9.0
     mem: ^8.0.0
     nock: ^13.0.5
+    node-cache: ^5.1.2
     npm-check-updates: ^10.1.1
+    p-queue: ^6.6.2
     prettier: ^2.1.2
     rimraf: ^3.0.2
     semver: ^7.3.2
@@ -1086,6 +1128,7 @@ __metadata:
     censorify-it: ^3.0.2
     codecov: ^3.8.1
     cross-env: ^7.0.2
+    dot-prop: ^5.0.0
     eslint: ^7.13.0
     eslint-config-prettier: ^6.15.0
     eslint-plugin-jest: ^24.1.3
@@ -1095,6 +1138,7 @@ __metadata:
     jest: ^26.6.3
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.3
+    joi: ^17.3.0
     nock: ^13.0.5
     npm-check-updates: ^10.1.1
     prettier: ^2.1.2
@@ -3696,6 +3740,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sideway/address@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "@sideway/address@npm:4.1.0"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+  checksum: 2/13f0a6b4178b03d7c0062894312313892d9a728987a5d07d43cb42c04bcdf55cd02092eb6f09ffb8d78a1dfae8cf5ce6c9b4ad66934771ea6a18e2b3fcd752d9
+  languageName: node
+  linkType: hard
+
+"@sideway/formula@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@sideway/formula@npm:3.0.0"
+  checksum: 2/b83ecd35fea33e7b826ddcdc9f0735a79bd374927efea36885203200c418ad0f9975c329eaf9e990a7c61cf96f560ed2020227a35e699324ddd3c94dd3f4045f
+  languageName: node
+  linkType: hard
+
+"@sideway/pinpoint@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@sideway/pinpoint@npm:2.0.0"
+  checksum: 2/e5528639aef1d266c23050897a6571c1e2aeccb59b6a22006a153fbd73aee78ae995bf19c022d70de5a00589a7f51372e78ef9aacd34a3dd9b13720c866aca7e
+  languageName: node
+  linkType: hard
+
 "@sindresorhus/is@npm:^0.14.0":
   version: 0.14.0
   resolution: "@sindresorhus/is@npm:0.14.0"
@@ -3714,6 +3781,26 @@ __metadata:
   version: 4.0.0
   resolution: "@sindresorhus/is@npm:4.0.0"
   checksum: 2/7022d5037ff778c5c369c353e16a173c3797de5f4196b631ec00b0f710a3ccb016937ce454d4fac6ca32d695ed30a59444e941f8f78ff7692dc3c50959b3fe61
+  languageName: node
+  linkType: hard
+
+"@sindresorhus/slugify@npm:*, @sindresorhus/slugify@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@sindresorhus/slugify@npm:1.1.0"
+  dependencies:
+    "@sindresorhus/transliterate": ^0.1.1
+    escape-string-regexp: ^4.0.0
+  checksum: 2/af7207f21fd20a444dc7fc33bf04309712ba9d5ccdd04a47686f6c2d6c9e59393fd39d2b04c3ca7721b55059b777b8e57aeee2a3bbe7fd7169b2ed16ed1b7bef
+  languageName: node
+  linkType: hard
+
+"@sindresorhus/transliterate@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@sindresorhus/transliterate@npm:0.1.1"
+  dependencies:
+    escape-string-regexp: ^2.0.0
+    lodash.deburr: ^4.1.0
+  checksum: 2/8825739c69d2c14b3f01769157877f95a596115dcea5534de7de763b81812e221ff6ea22ee37da872a4c465adce625a7ca2551eb3b3040e165692495ad9273a9
   languageName: node
   linkType: hard
 
@@ -4428,6 +4515,15 @@ __metadata:
   version: 7.3.4
   resolution: "@types/semver@npm:7.3.4"
   checksum: 2/7e8588aa55ecb344eda6954674b83a3c568d97d478e70e4617bd3ab22902590ac416ccf2cea48b58fb2f0fbd80f9ad1896332c9b3c3189ffd24e4350ff22094a
+  languageName: node
+  linkType: hard
+
+"@types/sindresorhus__slugify@npm:0.9.3":
+  version: 0.9.3
+  resolution: "@types/sindresorhus__slugify@npm:0.9.3"
+  dependencies:
+    "@sindresorhus/slugify": "*"
+  checksum: 2/766225499679bd63c590dcb42cc700e99e8f0b2ad422ce01bda95818f24f3e951976426a9150f4b26f8d1a2239ac178f2c6d3bddf81a4ae3800c914b14fe3f30
   languageName: node
   linkType: hard
 
@@ -6641,6 +6737,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clone@npm:2.x":
+  version: 2.1.2
+  resolution: "clone@npm:2.1.2"
+  checksum: 2/85232d66015d2d703dc59812e30049931d97c7815bf70569ae4fb7a66be257f46fcf47040e4e7050966ca195a9e615d59d73ba9e39fc37eedba1a76865f27ab1
+  languageName: node
+  linkType: hard
+
 "co@npm:^4.6.0":
   version: 4.6.0
   resolution: "co@npm:4.6.0"
@@ -7814,6 +7917,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"escape-string-regexp@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "escape-string-regexp@npm:4.0.0"
+  checksum: 2/c747be8d5ff7873127e3e0cffe7d2206a37208077fa9c30a3c1bb4f26bebd081c8c24d5fba7a99449f9d20670bea3dc5e1b6098b0f074b099bd38766271a272f
+  languageName: node
+  linkType: hard
+
 "escodegen@npm:^1.14.1":
   version: 1.14.1
   resolution: "escodegen@npm:1.14.1"
@@ -8273,6 +8383,13 @@ __metadata:
   version: 3.1.2
   resolution: "eventemitter3@npm:3.1.2"
   checksum: 2/fa1a206c4e4e8e427542f7fdfa10bd073a4ddf2510fb22e2f9a33b9aa7a0d5669bffba9b889e22d8c1c976af51a92dab274845e58d626ddb2d3563ed4d5d50dc
+  languageName: node
+  linkType: hard
+
+"eventemitter3@npm:^4.0.4":
+  version: 4.0.7
+  resolution: "eventemitter3@npm:4.0.7"
+  checksum: 2/1fc12c7bc3b4194c50975827e72d56ff57c32b75a4c7dbf4d5eebf3c8371f6f1aad6799150b609de1b867c0d8a9885c08b6ca5e7e0dc437d6152f3063b2607dd
   languageName: node
   linkType: hard
 
@@ -10886,6 +11003,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"joi@npm:^17.3.0":
+  version: 17.3.0
+  resolution: "joi@npm:17.3.0"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+    "@hapi/topo": ^5.0.0
+    "@sideway/address": ^4.1.0
+    "@sideway/formula": ^3.0.0
+    "@sideway/pinpoint": ^2.0.0
+  checksum: 2/3a2a6a8df5df408b33661d61abf6389f21d71478748daebe4edf4be2176548a70396601fcf2fd4fc0bc44fc12ab67fa72de310509db47579ad21bca0f2e0611b
+  languageName: node
+  linkType: hard
+
 "js-sha3@npm:0.5.7, js-sha3@npm:^0.5.7":
   version: 0.5.7
   resolution: "js-sha3@npm:0.5.7"
@@ -11416,6 +11546,13 @@ __metadata:
   version: 4.17.15
   resolution: "lodash-es@npm:4.17.15"
   checksum: 2/ee2871b76deefd1754527e659a8c8b688f2e427e67b30709296878e18ad9cb54b4f0fc16a7161298156b4e0ebc2a37dfe501a3ea8725f195763f9de8a7ba6da6
+  languageName: node
+  linkType: hard
+
+"lodash.deburr@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "lodash.deburr@npm:4.1.0"
+  checksum: 2/65d20d5352e198de2037e5dd80e0932df5d0b6c84438e7a5f06fdbdda49aaca3377ae4e339569c6a6eeff884372f1ef65857a18c40359c071cdcf7b6eafec23f
   languageName: node
   linkType: hard
 
@@ -12281,6 +12418,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-cache@npm:^5.1.2":
+  version: 5.1.2
+  resolution: "node-cache@npm:5.1.2"
+  dependencies:
+    clone: 2.x
+  checksum: 2/2790fee0366b9c2f747106cbfeaf2b5f60b20201320dd77ebd097d51703c406898aa1c84819cc57fd54a39962bba413956eb721a7a04357add241c53471b4818
+  languageName: node
+  linkType: hard
+
 "node-dotify@npm:^1.0.2":
   version: 1.0.2
   resolution: "node-dotify@npm:1.0.2"
@@ -12931,12 +13077,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"p-queue@npm:^6.6.2":
+  version: 6.6.2
+  resolution: "p-queue@npm:6.6.2"
+  dependencies:
+    eventemitter3: ^4.0.4
+    p-timeout: ^3.2.0
+  checksum: 2/e95a48f421589ac95dc8913bc949e4c73cfc40c294580f176d2e1af6fa525459ed340c9e8d72a9947ca25e5f79f1d5cfbc10f546f958a324704bfcc838340cee
+  languageName: node
+  linkType: hard
+
 "p-timeout@npm:^1.1.1":
   version: 1.2.1
   resolution: "p-timeout@npm:1.2.1"
   dependencies:
     p-finally: ^1.0.0
   checksum: 2/753ba3cf21c7d5ff7882eb075e1ee4e6eb510d006ea5456b7ea8d642b0fbb581d03cb809431fddf2fbef345295b68cbd5834503b45e0424f72a9588cc95379b6
+  languageName: node
+  linkType: hard
+
+"p-timeout@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "p-timeout@npm:3.2.0"
+  dependencies:
+    p-finally: ^1.0.0
+  checksum: 2/d7e71c1547736ecd392be3c4ea956af1abd2b6f56179f37443672cfaccb41383533cdf2e927890bb5282e1eb41c979be133eef26a6a84a8224ff4f5c9455b517
   languageName: node
   linkType: hard
 

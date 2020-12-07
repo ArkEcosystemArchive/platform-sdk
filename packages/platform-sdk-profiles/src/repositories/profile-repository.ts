@@ -1,7 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 
+import { pqueue } from "../helpers/queue";
 import { Profile } from "../profiles/profile";
+import { ProfileFactory } from "../profiles/profile.factory";
 import { ProfileSetting } from "../profiles/profile.models";
+import { ReadWriteWallet } from "../wallets/wallet.models";
 import { DataRepository } from "./data-repository";
 
 export class ProfileRepository {
@@ -11,27 +14,9 @@ export class ProfileRepository {
 		this.#data = new DataRepository();
 	}
 
-	public async fill(profiles: object): Promise<void> {
+	public fill(profiles: object): void {
 		for (const [id, profile] of Object.entries(profiles)) {
-			const result: Profile = new Profile(profile.id);
-
-			result.peers().fill(profile.peers);
-
-			result.notifications().fill(profile.notifications);
-
-			result.data().fill(profile.data);
-
-			result.plugins().fill(profile.plugins);
-
-			result.settings().fill(profile.settings);
-
-			await result.contacts().fill(profile.contacts);
-
-			await Promise.all(
-				[...Object.values(profile.wallets)].map((wallet) => result.wallets().restore(wallet as any)),
-			);
-
-			this.#data.set(id, result);
+			this.#data.set(id, new Profile(profile));
 		}
 	}
 
@@ -63,22 +48,18 @@ export class ProfileRepository {
 		return this.#data.get(id) as Profile;
 	}
 
-	public create(name: string): Profile {
-		const profiles: Profile[] = this.values();
+	public findByName(name: string): Profile | undefined {
+		return this.values().find((profile: Profile) => profile.name().toLowerCase() === name.toLowerCase());
+	}
 
-		for (const profile of profiles) {
-			if (profile.name() === name) {
-				throw new Error(`The profile [${name}] already exists.`);
-			}
+	public create(name: string): Profile {
+		if (this.findByName(name)) {
+			throw new Error(`The profile [${name}] already exists.`);
 		}
 
-		const id: string = uuidv4();
-		const result: Profile = new Profile(id);
+		const result: Profile = ProfileFactory.fromName(name);
 
-		result.settings().set(ProfileSetting.Name, name);
-		result.initializeSettings();
-
-		this.#data.set(id, result);
+		this.#data.set(result.id(), result);
 
 		return result;
 	}

@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-http-ky",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "1.1.18",
+	"version": "1.2.7",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -57,6 +57,6 @@
 		"node": ">=12.x"
 	},
 	"jest": {
-		"preset": "../../jest.config.js"
+		"preset": "../../jest.coverage.js"
 	}
 }

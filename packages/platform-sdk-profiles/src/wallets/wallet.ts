@@ -4,7 +4,10 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { ExtendedTransactionData } from "../dto/transaction";
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { transformTransactionData, transformTransactionDataCollection } from "../dto/transaction-mapper";
+import { container } from "../environment/container";
 import { makeCoin } from "../environment/container.helpers";
+import { Identifiers } from "../environment/container.models";
+import { KnownWalletService } from "../environment/services/known-wallet-service";
 import { DelegateMapper } from "../mappers/delegate-mapper";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
@@ -315,11 +318,19 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public isKnown(): boolean {
-		if (!this.#wallet) {
-			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
-		}
+		return container.get<KnownWalletService>(Identifiers.KnownWalletService).is(this.networkId(), this.address());
+	}
 
-		return this.#wallet.isKnown();
+	public isOwnedByExchange(): boolean {
+		return container
+			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.isExchange(this.networkId(), this.address());
+	}
+
+	public isOwnedByTeam(): boolean {
+		return container
+			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.isTeam(this.networkId(), this.address());
 	}
 
 	public isLedger(): boolean {

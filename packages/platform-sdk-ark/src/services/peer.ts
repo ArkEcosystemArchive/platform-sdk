@@ -25,21 +25,6 @@ export class PeerService implements Contracts.PeerService {
 
 		let seeds: string[] = [];
 
-		// Validation
-		let response;
-		try {
-			response = (await httpClient.get(`${peer}/node/configuration`)).json();
-		} catch {
-			// We don't know what went wrong so we continue.
-		}
-
-		if (response) {
-			if (response.data.token !== network.currency.ticker) {
-				throw new Error(`Failed to connect to ${peer} because it is on another network.`);
-			}
-		}
-
-		// Seeds
 		try {
 			if (peer && isUrl(peer)) {
 				const response = (await httpClient.get(`${peer}/peers`)).json();

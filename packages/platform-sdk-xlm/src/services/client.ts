@@ -31,7 +31,7 @@ export class ClientService implements Contracts.ClientService {
 		//
 	}
 
-	public async transaction(id: string): Promise<Contracts.TransactionData> {
+	public async transaction(id: string): Promise<Contracts.TransactionDataType> {
 		const transaction = await this.#client.transactions().transaction(id).call();
 		const operations = await transaction.operations();
 
@@ -126,5 +126,9 @@ export class ClientService implements Contracts.ClientService {
 		hosts: string[],
 	): Promise<Contracts.BroadcastResponse> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
+	}
+
+	public async entityHistory(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "entityHistory");
 	}
 }

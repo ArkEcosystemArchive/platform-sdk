@@ -31,8 +31,6 @@ export abstract class AbstractWalletData {
 	// Flags
 	abstract isDelegate(): boolean;
 
-	abstract isKnown(): boolean;
-
 	abstract isMultiSignature(): boolean;
 
 	abstract isSecondSignature(): boolean;
@@ -54,7 +52,7 @@ export abstract class AbstractWalletData {
 	}
 
 	public hasPassed(): boolean {
-		return Boolean(this.data);
+		return Object.keys(this.data).length > 0;
 	}
 
 	public hasFailed(): boolean {

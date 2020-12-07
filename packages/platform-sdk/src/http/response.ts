@@ -23,14 +23,14 @@ export class Response implements HttpResponse {
 	}
 
 	public body(): string {
-		if (!this._body) {
+		if (!this._body || this._body.length <= 0) {
 			throw new Error("The response body is empty.");
 		}
 
 		return this._body;
 	}
 
-	public json(): Record<string, any> {
+	public json<T = Record<string, any>>(): T {
 		return JSON.parse(this.body());
 	}
 

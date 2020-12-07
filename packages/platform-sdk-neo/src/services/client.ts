@@ -42,7 +42,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	// get_transaction/{txid}
-	public async transaction(id: string): Promise<Contracts.TransactionData> {
+	public async transaction(id: string): Promise<Contracts.TransactionDataType> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
 	}
 
@@ -140,6 +140,10 @@ export class ClientService implements Contracts.ClientService {
 		hosts: string[],
 	): Promise<Contracts.BroadcastResponse> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
+	}
+
+	public async entityHistory(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "entityHistory");
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {

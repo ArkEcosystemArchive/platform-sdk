@@ -54,10 +54,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return BigNumber.make(this.data.fee);
 	}
 
-	public memo(): string | undefined {
-		return this.data.vendorField;
-	}
-
 	public asset(): Record<string, unknown> {
 		return this.data.asset;
 	}

@@ -10,7 +10,7 @@ export const createConfig = (options?: object) => {
 		schema,
 	);
 
-	config.set("network", manifest.networks["btc.livenet"]);
+	config.set(Coins.ConfigKey.Network, manifest.networks["btc.livenet"]);
 
 	return config;
 };

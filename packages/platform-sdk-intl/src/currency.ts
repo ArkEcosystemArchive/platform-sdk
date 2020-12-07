@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 // Based on https://github.com/LedgerHQ/ledger-live-common/blob/master/src/currencies/sanitizeValueString.js
 
 const getSeparators = (locale: string): { decimal: number; thousands: number } => {

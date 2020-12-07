@@ -62,16 +62,6 @@ export class URI {
 			fee: number(),
 		};
 
-		if (method === "transfer") {
-			return {
-				...baseSchema,
-				recipient: string().required(),
-				amount: number(),
-				memo: string(),
-				vendorField: string(), // Legacy memo, not an ARK agnostic name
-			};
-		}
-
 		if (method === "vote") {
 			return {
 				...baseSchema,
@@ -92,6 +82,12 @@ export class URI {
 			};
 		}
 
-		throw new Error("Invalid method used in URI");
+		return {
+			...baseSchema,
+			recipient: string().required(),
+			amount: number(),
+			memo: string(),
+			vendorField: string(), // Legacy memo, not an ARK agnostic name
+		};
 	}
 }

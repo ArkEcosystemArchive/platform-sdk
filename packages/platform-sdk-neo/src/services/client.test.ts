@@ -37,6 +37,7 @@ describe("ClientService", function () {
 			expect(result.items()[0].recipient()).toBe("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");
 			expect(result.items()[0].amount()).toEqual(BigNumber.make(1));
 			expect(result.items()[0].fee()).toEqual(BigNumber.ZERO);
+			// @ts-ignore - Better types so that memo gets detected on TransactionDataType
 			expect(result.items()[0].memo()).toBeUndefined();
 		});
 	});

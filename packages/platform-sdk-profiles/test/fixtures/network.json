@@ -103,7 +103,8 @@
 			"entityRegistration": true,
 			"entityResignation": true,
 			"entityUpdate": true
-		}
+		},
+		"knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json"
 	},
 	"default": {
 		"id": "ark.devnet",
@@ -211,6 +212,7 @@
 				"entityResignation": true,
 				"entityUpdate": true
 			}
-		}
+		},
+		"knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json"
 	}
 }

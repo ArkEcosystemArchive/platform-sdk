@@ -12,7 +12,7 @@ export const createConfig = (options?: object) => {
 		schema,
 	);
 
-	config.set("network", manifest.networks["xrp.testnet"]);
+	config.set(Coins.ConfigKey.Network, manifest.networks["xrp.testnet"]);
 
 	return config;
 };

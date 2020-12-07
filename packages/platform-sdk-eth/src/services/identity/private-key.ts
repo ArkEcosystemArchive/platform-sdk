@@ -11,7 +11,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
 		try {
-			return createWallet(mnemonic, this.#config.get("network.crypto.slip44"))
+			return createWallet(mnemonic, this.#config.get(Coins.ConfigKey.Slip44))
 				.getPrivateKey()
 				.toString("hex");
 		} catch (error) {

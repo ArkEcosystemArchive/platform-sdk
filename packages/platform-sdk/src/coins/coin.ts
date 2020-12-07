@@ -2,6 +2,7 @@ import {
 	ClientService,
 	FeeService,
 	IdentityService,
+	KnownWalletService,
 	LedgerService,
 	LinkService,
 	MessageService,
@@ -9,7 +10,7 @@ import {
 	PeerService,
 	TransactionService,
 } from "../contracts/coins";
-import { Config } from "./config";
+import { Config, ConfigKey } from "./config";
 import { CoinServices } from "./contracts";
 import { Manifest } from "./manifest";
 import { Network } from "./network";
@@ -37,7 +38,7 @@ export class Coin {
 		this.#manifest = manifest;
 		this.#config = config;
 		this.#services = services;
-		this.#network = new Network(manifest.get("name"), config.get("network"));
+		this.#network = new Network(manifest.get("name"), config.get(ConfigKey.Network));
 	}
 
 	public async destruct(): Promise<void> {
@@ -45,9 +46,11 @@ export class Coin {
 			this.#services.client.destruct(),
 			this.#services.fee.destruct(),
 			this.#services.identity.destruct(),
+			this.#services.knownWallets.destruct(),
 			this.#services.ledger.destruct(),
 			this.#services.link.destruct(),
 			this.#services.message.destruct(),
+			this.#services.multiSignature.destruct(),
 			this.#services.peer.destruct(),
 			this.#services.transaction.destruct(),
 		]);
@@ -79,6 +82,10 @@ export class Coin {
 
 	public identity(): IdentityService {
 		return this.#services.identity;
+	}
+
+	public knownWallets(): KnownWalletService {
+		return this.#services.knownWallets;
 	}
 
 	public ledger(): LedgerService {

@@ -40,8 +40,6 @@ export interface WalletData {
 
 	isResignedDelegate(): boolean;
 
-	isKnown(): boolean;
-
 	isMultiSignature(): boolean;
 
 	isSecondSignature(): boolean;
@@ -99,8 +97,6 @@ export interface TransactionData {
 	amount(): BigNumber;
 
 	fee(): BigNumber;
-
-	memo(): string | undefined;
 
 	asset(): Record<string, unknown>;
 
@@ -310,6 +306,7 @@ export interface IpfsData extends TransactionData {
 }
 
 export interface MultiPaymentData extends TransactionData {
+	memo(): string | undefined;
 	payments(): { recipientId: string; amount: string }[];
 }
 
@@ -322,7 +319,9 @@ export interface SecondSignatureData extends TransactionData {
 	secondPublicKey(): string;
 }
 
-export interface TransferData extends TransactionData {}
+export interface TransferData extends TransactionData {
+	memo(): string | undefined;
+}
 
 export interface VoteData extends TransactionData {
 	votes(): string[];

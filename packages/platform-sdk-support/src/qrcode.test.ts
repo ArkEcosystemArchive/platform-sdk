@@ -25,6 +25,10 @@ test("#toDataURL with options", async () => {
 });
 
 describe.each(["utf8", "svg", "terminal"])("%s", (type) => {
+	it("should turn into a data URL", async () => {
+		await expect(QRCode.fromString("https://google.com").toDataURL()).resolves.toMatchSnapshot();
+	});
+
 	it("should turn into a string", async () => {
 		await expect(QRCode.fromString("https://google.com").toString(type as any)).resolves.toMatchSnapshot();
 	});

@@ -1,5 +1,7 @@
 import "jest-extended";
 
+import { ValidationError } from "yup";
+
 import { Validator, ValidatorSchema } from "./validator";
 
 let subject: Validator;
@@ -74,4 +76,36 @@ test("#fails", () => {
 	);
 
 	expect(subject.fails()).toBeFalse();
+});
+
+test("#errors", () => {
+	expect(subject.errors()).toBeUndefined();
+
+	subject.validate(
+		{
+			name: "jimmy",
+			age: "invalid number",
+		},
+		ValidatorSchema.object().shape({
+			name: ValidatorSchema.string().required(),
+			age: ValidatorSchema.number().required().positive().integer(),
+		}),
+	);
+
+	expect(subject.errors()).toHaveLength(1);
+});
+
+test("#error", () => {
+	subject.validate(
+		{
+			name: "jimmy",
+			age: "invalid number",
+		},
+		ValidatorSchema.object().shape({
+			name: ValidatorSchema.string().required(),
+			age: ValidatorSchema.number().required().positive().integer(),
+		}),
+	);
+
+	expect(subject.error()).toBeInstanceOf(ValidationError);
 });
