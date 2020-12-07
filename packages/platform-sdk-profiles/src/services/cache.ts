@@ -36,6 +36,7 @@ export class Cache {
 			value,
 		});
 
+		// @TODO
 		// this.checkExpiration(ttl);
 	}
 
@@ -55,6 +56,7 @@ export class Cache {
 		return SHA1.digest(Buffer.from(`${this.#prefix}.${JSON.stringify(value)}`, "utf-8")).toString("hex");
 	}
 
+	// @TODO
 	// private checkExpiration = (ttl: number) => {
 	// 	for (const [key, value] of Object.entries(this.all())) {
 	// 		if (value.expires_at.isBefore(DateTime.make())) {
