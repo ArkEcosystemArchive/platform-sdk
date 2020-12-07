@@ -74,16 +74,6 @@ test("#count", async () => {
 	expect(subject.count()).toBe(1);
 });
 
-test("#flush", async () => {
-	await subject.create(stubData);
-
-	expect(subject.count()).toBe(1);
-
-	subject.flush();
-
-	expect(subject.count()).toBe(0);
-});
-
 test("#fill", async () => {
 	const id: string = uuidv4();
 
