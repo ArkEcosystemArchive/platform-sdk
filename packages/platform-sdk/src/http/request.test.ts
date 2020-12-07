@@ -1,3 +1,5 @@
+/* eslint @typescript-eslint/no-floating-promises 0 */
+
 import "jest-extended";
 
 import { HttpResponse } from "../contracts";
