@@ -39,7 +39,6 @@ import {
 	VoteData,
 } from "./transaction";
 
-// @ts-ignore
 const createSubject = (wallet, properties, klass) => {
 	let meta: Contracts.TransactionDataMeta = "some meta";
 
@@ -89,6 +88,8 @@ beforeAll(async () => {
 		.reply(200, require("../../test/fixtures/client/delegates-1.json"))
 		.get("/api/delegates?page=2")
 		.reply(200, require("../../test/fixtures/client/delegates-2.json"))
+		.get("/api/ipfs/QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9c")
+		.reply(200, { data: "ipfs-content" })
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
@@ -116,6 +117,15 @@ describe("Transaction", () => {
 
 	it("should have an explorer block link", () => {
 		expect(subject.explorerLinkForBlock()).toBe("https://dexplorer.ark.io/block/transactionBlockId");
+	});
+
+	it("should have an explorer block link for undefined block", () => {
+		subject = createSubject(wallet, {
+			...subject,
+			blockId: () => undefined,
+		}, BridgechainRegistrationData)
+
+		expect(subject.explorerLinkForBlock()).toBeUndefined();
 	});
 
 	it("should have a type", () => {
@@ -202,6 +212,10 @@ describe("Transaction", () => {
 		);
 
 		expect(subject.hasPassed()).toBeTrue();
+	});
+
+	test("coin", () => {
+		expect(subject.coin()).toBe(wallet.coin());
 	});
 
 	test("#hasFailed", () => {
@@ -587,6 +601,26 @@ describe("EntityRegistrationData", () => {
 	test("#ipfs", () => {
 		expect(subject.ipfs()).toBe("ipfs");
 	});
+
+	test("#ipfsContent for undefined ipfs", async () => {
+		subject = createSubject(wallet, {
+			...subject,
+			ipfs: () => undefined,
+		}, EntityRegistrationData)
+		expect(await subject.ipfsContent()).toBeUndefined();
+	});
+
+	test("#ipfsContent", async () => {
+		subject = createSubject(wallet, {
+			...subject,
+			ipfs: () => 'QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9c',
+		}, EntityRegistrationData)
+		expect(await subject.ipfsContent()).toBe("ipfs-content");
+	});
+
+	test("marketSquareLink", () => {
+		expect(subject.marketSquareLink()).toBe("https://marketsquare.io/products/name");
+	});
 });
 
 describe("EntityResignationData", () => {
@@ -653,6 +687,22 @@ describe("EntityUpdateData", () => {
 
 	test("#ipfs", () => {
 		expect(subject.ipfs()).toBe("ipfs");
+	});
+
+	test("#ipfsContent for undefined ipfs", async () => {
+		subject = createSubject(wallet, {
+			...subject,
+			ipfs: () => undefined,
+		}, EntityUpdateData)
+		expect(await subject.ipfsContent()).toBeUndefined();
+	});
+
+	test("#ipfsContent", async () => {
+		subject = createSubject(wallet, {
+			...subject,
+			ipfs: () => 'QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9c',
+		}, EntityUpdateData)
+		expect(await subject.ipfsContent()).toBe("ipfs-content");
 	});
 });
 
