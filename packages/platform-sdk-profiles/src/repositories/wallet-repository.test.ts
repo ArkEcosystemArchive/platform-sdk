@@ -63,6 +63,8 @@ test("#last", () => {
 });
 
 test("#allByCoin", async () => {
+	await subject.importByMnemonic("another wallet", "ARK", "ark.devnet");
+
 	expect(subject.allByCoin()).toBeObject();
 	expect(subject.allByCoin().DARK).toBeObject();
 });
@@ -153,8 +155,11 @@ test("#forget", async () => {
 	expect(subject.has(wallet.id())).toBeFalse();
 });
 
-test("#findByAlias", () => {
+test("#findByAlias", async () => {
+	(await subject.generate("ARK", "ark.devnet")).wallet;
+
 	expect(subject.findByAlias("Alias")).toBeInstanceOf(Wallet);
+	expect(subject.findByAlias("Not Exist")).toBeUndefined();
 });
 
 test("#update", async () => {
@@ -163,6 +168,10 @@ test("#update", async () => {
 	const wallet = (await subject.generate("ARK", "ark.devnet")).wallet;
 
 	subject.update(wallet.id(), { alias: "My New Wallet" });
+
+	expect(subject.findById(wallet.id()).alias()).toEqual("My New Wallet");
+
+	subject.update(wallet.id(), {});
 
 	expect(subject.findById(wallet.id()).alias()).toEqual("My New Wallet");
 
