@@ -14,6 +14,7 @@ import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
 import { WalletData } from "../wallets/wallet.models";
+import { Contracts } from "../../../platform-sdk";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,
@@ -35,12 +36,14 @@ import {
 	SecondSignatureData,
 	TransactionData,
 	TransferData,
-	VoteData,
+	VoteData
 } from "./transaction";
 
 // @ts-ignore
-const createSubject = (wallet, properties, klass) =>
-	new klass(wallet, {
+const createSubject = (wallet, properties, klass) => {
+	let meta: Contracts.TransactionDataMeta = "some meta";
+
+	return new klass(wallet, {
 		id: () => "transactionId",
 		blockId: () => "transactionBlockId",
 		bridgechainId: () => "bridgechainId",
@@ -53,8 +56,16 @@ const createSubject = (wallet, properties, klass) =>
 		recipients: () => [],
 		amount: () => BigNumber.make(18),
 		fee: () => BigNumber.make(2),
+		asset: () => ({}),
+		isSent: () => true,
+		toObject: () => ({}),
+		getMeta: (): Contracts.TransactionDataMeta => meta,
+		setMeta: (key: string, value: Contracts.TransactionDataMeta): void => {
+			meta = value;
+		},
 		...(properties || {}),
 	});
+};
 
 let subject: any;
 let profile: Profile;
@@ -88,6 +99,7 @@ beforeAll(async () => {
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	wallet = new Wallet(uuidv4(), profile);
+	wallet.data().set(WalletData.ExchangeRate, 5);
 
 	await wallet.setCoin("ARK", "ark.devnet");
 	await wallet.setIdentity(identity.mnemonic);
@@ -136,11 +148,14 @@ describe("Transaction", () => {
 	});
 
 	it("should have a converted amount", () => {
-		expect(subject.convertedAmount().toNumber()).toStrictEqual(0);
-
 		wallet.data().set(WalletData.ExchangeRate, 10);
 
 		expect(subject.convertedAmount().toNumber()).toStrictEqual(180);
+	});
+
+	it("should have a default converted amount", () => {
+		wallet.data().set(WalletData.ExchangeRate, undefined);
+		expect(subject.convertedAmount().toNumber()).toStrictEqual(0);
 	});
 
 	it("should have a fee", () => {
@@ -212,6 +227,54 @@ describe("Transaction", () => {
 
 		expect(getMeta).toHaveBeenCalled();
 		expect(setMeta).toHaveBeenCalled();
+	});
+
+	it("should not have a memo", () => {
+		expect(subject.memo()).toBe("memo");
+	});
+
+	it("should have a total for sent", () => {
+		expect(subject.total().toNumber()).toStrictEqual(20);
+	});
+
+	it("should have a total for unsent", () => {
+		// @ts-ignore
+		subject = new BridgechainRegistrationData(wallet, {
+			amount: () => BigNumber.make(18),
+			fee: () => BigNumber.make(2),
+			isSent: () => false,
+		});
+		expect(subject.total().toNumber()).toStrictEqual(18);
+	});
+
+	it("should have a converted total", () => {
+		wallet.data().set(WalletData.ExchangeRate, 10);
+		expect(subject.convertedTotal().toNumber()).toBe(0.000002);
+	});
+
+	it("should have a default converted total", () => {
+		wallet.data().set(WalletData.ExchangeRate, undefined);
+		expect(subject.convertedTotal().toNumber()).toStrictEqual(0);
+	});
+
+	it("should have meta", () => {
+		expect(subject.getMeta("someKey")).toStrictEqual("some meta");
+	});
+
+	it("should change meta", () => {
+		subject.setMeta("someKey", "another meta");
+		expect(subject.getMeta("someKey")).toStrictEqual("another meta");
+	});
+
+	// TODO We need to build a real MultiPaymentData here
+	it.skip("should have a memo", () => {
+		// @ts-ignore
+		subject = new MultiPaymentData(wallet, {
+			id: () => "transactionId",
+			blockId: () => "transactionBlockId",
+			memo: () => "This is a memo",
+		});
+		expect(subject.memo()).toBe("This is a memo");
 	});
 
 	const data = [
