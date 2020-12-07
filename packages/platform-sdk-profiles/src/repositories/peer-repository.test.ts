@@ -157,7 +157,23 @@ describe("PeerRepository", () => {
 			isMultiSignature: false,
 		});
 
-		expect(() => subject.get("ARK", "devnet")).toThrow("No peer found for");
+		expect(() => subject.get("ARK", "devnet")).toThrow("No peers found for");
+	});
+
+	it("should fail to forget a peer", async () => {
+		subject.create("ARK", "devnet", {
+			name: "Private",
+			host: "https://ip:port/api",
+			isMultiSignature: false,
+		});
+
+		expect(() =>
+			subject.forget("ARK", "devnet", {
+				name: "MuSig Updated",
+				host: "https://muip:muport/api",
+				isMultiSignature: true,
+			}),
+		).toThrow("Failed to find a peer with [https://muip:muport/api] as host.");
 	});
 
 	it("should update a peer", async () => {
@@ -201,14 +217,20 @@ describe("PeerRepository", () => {
 	`);
 	});
 
-	it("should fail to update a peer if it does not exist", async () => {
+	it("should fail to update if the host does not exist at all", async () => {
+		subject.create("ARK", "devnet", {
+			name: "Private",
+			host: "https://ip:port/api",
+			isMultiSignature: false,
+		});
+
 		expect(() =>
 			subject.update("ARK", "devnet", "https://muip:muport/api", {
 				name: "MuSig Updated",
 				host: "https://muip:muport/api",
 				isMultiSignature: true,
 			}),
-		).toThrow("No peer found for [ARK.devnet]");
+		).toThrow("Failed to find a peer with [https://muip:muport/api] as host.");
 	});
 
 	it("should store multiple peers with different types for the same network", async () => {
