@@ -84,7 +84,11 @@ test("#update", async () => {
 
 	expect(subject.findById(contact.id()).name()).toEqual("Jane Doe");
 
-	const newContact = subject.create(name);
+	const anotherContact = subject.create("Another name");
+
+	await expect(subject.update(anotherContact.id(), { name: "Dorothy" })).resolves;
+
+	const newContact = subject.create("Another name");
 
 	await expect(subject.update(newContact.id(), { name: "Jane Doe" })).rejects.toThrowError(
 		"The contact [Jane Doe] already exists.",
