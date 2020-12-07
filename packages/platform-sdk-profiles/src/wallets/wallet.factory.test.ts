@@ -8,8 +8,8 @@ import nock from "nock";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
-import { WalletFactory } from "./wallet.factory";
 import { Profile } from "../profiles/profile";
+import { WalletFactory } from "./wallet.factory";
 import { WalletData } from "./wallet.models";
 
 beforeAll(() => nock.disableNetConnect());
@@ -86,5 +86,7 @@ test("#fromMnemonicWithEncryption", async () => {
 	expect(wallet.data().get(WalletData.Bip38EncryptedKey)).toBeString();
 
 	// @ts-ignore
-	expect(decrypt(wallet.data().get(WalletData.Bip38EncryptedKey)!, "password").privateKey.toString("hex")).toBe("d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712");
+	expect(decrypt(wallet.data().get(WalletData.Bip38EncryptedKey)!, "password").privateKey.toString("hex")).toBe(
+		"d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
+	);
 });
