@@ -45,11 +45,6 @@ describe("TransactionData", function () {
 		expect(subject.fee()).toEqual(BigNumber.ZERO);
 	});
 
-	test("#memo", () => {
-		// @ts-ignore - Better types so that memo gets detected on TransactionDataType
-		expect(subject.memo()).toBeUndefined();
-	});
-
 	test("#toObject", () => {
 		expect(subject.toObject()).toBeObject();
 	});
