@@ -36,8 +36,8 @@ test("#make", async () => {
 				ServiceProvider: {
 					make: jest.fn(),
 				},
-				// @ts-ignore
 			},
+			// @ts-ignore
 			{ network: "ark.mainnet", httpClient: jest.fn() },
 		),
 	).resolves.toBeInstanceOf(Coin);
