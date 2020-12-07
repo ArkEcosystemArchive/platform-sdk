@@ -36,7 +36,7 @@ export class Cache {
 			value,
 		});
 
-		this.checkExpiration(ttl);
+		// this.checkExpiration(ttl);
 	}
 
 	public has(key: string): boolean {
@@ -55,13 +55,13 @@ export class Cache {
 		return SHA1.digest(Buffer.from(`${this.#prefix}.${JSON.stringify(value)}`, "utf-8")).toString("hex");
 	}
 
-	private checkExpiration = (ttl: number) => {
-		for (const [key, value] of Object.entries(this.all())) {
-			if (value.expires_at.isBefore(DateTime.make())) {
-				this.forget(key);
-			}
-		}
+	// private checkExpiration = (ttl: number) => {
+	// 	for (const [key, value] of Object.entries(this.all())) {
+	// 		if (value.expires_at.isBefore(DateTime.make())) {
+	// 			this.forget(key);
+	// 		}
+	// 	}
 
-		// setTimeout(this.checkExpiration, ttl * 1000, true);
-	};
+	// 	setTimeout(this.checkExpiration, ttl * 1000, true);
+	// }
 }
