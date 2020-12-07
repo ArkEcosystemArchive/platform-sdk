@@ -1,4 +1,5 @@
 import "jest-extended";
+
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 
 import { NetworkRepository } from "./network-repository";

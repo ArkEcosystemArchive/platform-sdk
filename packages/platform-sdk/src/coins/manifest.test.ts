@@ -12,5 +12,7 @@ test("#all", async () => {
 
 test("#get", async () => {
 	expect(new Manifest({ key: "value" }).get("key")).toBe("value");
-	expect(() => new Manifest({ key: "value" }).get("keykey")).toThrow("The [keykey] key does not exist in the manifest.");
+	expect(() => new Manifest({ key: "value" }).get("keykey")).toThrow(
+		"The [keykey] key does not exist in the manifest.",
+	);
 });

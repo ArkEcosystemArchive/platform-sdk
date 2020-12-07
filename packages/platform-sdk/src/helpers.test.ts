@@ -1,7 +1,7 @@
 import "jest-extended";
-import { TransactionDataCollection } from "./coins";
 
-import { createTransactionDataWithType, createTransactionDataCollectionWithType } from "./helpers";
+import { TransactionDataCollection } from "./coins";
+import { createTransactionDataCollectionWithType, createTransactionDataWithType } from "./helpers";
 
 class TransactionData {
 	public isLegacyBridgechainRegistration(): boolean {
@@ -172,5 +172,11 @@ test.each([
 	// @ts-ignore
 	jest.spyOn(TransactionData.prototype, method).mockReturnValue(true);
 
-	expect(createTransactionDataCollectionWithType([{}], { prev: 1, self: 2, next: 3 }, { [dtoName]: dtoClass, TransactionData })).toBeInstanceOf(TransactionDataCollection);
+	expect(
+		createTransactionDataCollectionWithType(
+			[{}],
+			{ prev: 1, self: 2, next: 3 },
+			{ [dtoName]: dtoClass, TransactionData },
+		),
+	).toBeInstanceOf(TransactionDataCollection);
 });
