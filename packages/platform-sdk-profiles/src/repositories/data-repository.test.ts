@@ -108,6 +108,10 @@ test("#forgetIndex", () => {
 	subject.forgetIndex("key", 10);
 
 	expect(subject.get("key")).toEqual([1, 3]);
+
+	subject.forgetIndex("xkey", 10);
+
+	expect(subject.get("xkey")).toBeUndefined();
 });
 
 test("#flush", () => {
