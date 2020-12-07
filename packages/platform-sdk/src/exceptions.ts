@@ -1,10 +1,10 @@
 export class Exception extends Error {
-	public constructor(message: string, code?: string) {
+	public constructor(message: string) {
 		super(message);
 
 		Object.defineProperty(this, "message", {
 			enumerable: false,
-			value: code ? `${code}: ${message}` : message,
+			value: message,
 		});
 
 		Object.defineProperty(this, "name", {
