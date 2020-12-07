@@ -1,4 +1,5 @@
 import "jest-extended";
+import { v4 as uuidv4 } from "uuid";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
@@ -51,6 +52,52 @@ test("#create", async () => {
 	expect(subject.keys()).toHaveLength(1);
 });
 
+test("#all", () => {
+	expect(subject.all()).toBeObject();
+});
+
+test("#first", async () => {
+	const address = await subject.create(stubData);
+
+	expect(subject.first()).toBe(address);
+});
+
+test("#last", async () => {
+	const address = await subject.create(stubData);
+
+	expect(subject.last()).toBe(address);
+});
+
+test("#count", async () => {
+	await subject.create(stubData);
+
+	expect(subject.count()).toBe(1);
+});
+
+test("#flush", async () => {
+	await subject.create(stubData);
+
+	expect(subject.count()).toBe(1);
+
+	subject.flush();
+
+	expect(subject.count()).toBe(0);
+});
+
+test("#fill", async () => {
+	const id: string = uuidv4();
+
+	await subject.fill([{ id, ...stubData }]);
+
+	expect(subject.findById(id)).toBeObject();
+});
+
+test("#toArray", async () => {
+	const wallet = await subject.create(stubData);
+
+	expect(subject.toArray()).toStrictEqual([wallet.toObject()]);
+});
+
 test("#find", async () => {
 	expect(() => subject.findById("invalid")).toThrowError("Failed to find");
 
@@ -64,9 +111,10 @@ test("#update", async () => {
 
 	const address = await subject.create(stubData);
 
-	subject.update(address.id(), { name: "Jane Doe" });
+	subject.update(address.id(), { name: "Jane Doe", address: "new address" });
 
 	expect(subject.findById(address.id()).name()).toEqual("Jane Doe");
+	expect(subject.findByAddress("new address")[0].name()).toEqual("Jane Doe");
 });
 
 test("#forget", async () => {
