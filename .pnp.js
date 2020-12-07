@@ -1519,6 +1519,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["localforage", "npm:1.9.0"],
             ["mem", "npm:8.0.0"],
             ["nock", "npm:13.0.5"],
+            ["node-cache", "npm:5.1.2"],
             ["npm-check-updates", "npm:10.1.1"],
             ["p-queue", "npm:6.6.2"],
             ["prettier", "npm:2.1.2"],
@@ -8250,6 +8251,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["clone", [
+        ["npm:2.1.2", {
+          "packageLocation": "./.yarn/cache/clone-npm-2.1.2-1d491c6629-2.zip/node_modules/clone/",
+          "packageDependencies": [
+            ["clone", "npm:2.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["clone-response", [
         ["npm:1.0.2", {
           "packageLocation": "./.yarn/cache/clone-response-npm-1.0.2-135ae8239d-2.zip/node_modules/clone-response/",
@@ -14511,6 +14521,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["node-addon-api", "npm:3.0.0"],
             ["node-gyp", "npm:6.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["node-cache", [
+        ["npm:5.1.2", {
+          "packageLocation": "./.yarn/cache/node-cache-npm-5.1.2-f65482660d-2.zip/node_modules/node-cache/",
+          "packageDependencies": [
+            ["node-cache", "npm:5.1.2"],
+            ["clone", "npm:2.1.2"]
           ],
           "linkType": "HARD",
         }]
