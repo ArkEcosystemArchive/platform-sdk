@@ -11,7 +11,6 @@ import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
 import { DelegateService } from "../environment/services/delegate-service";
 import { Profile } from "../profiles/profile";
-import { PeerRepository } from "../repositories/peer-repository";
 import { Wallet } from "../wallets/wallet";
 import { DelegateMapper } from "./delegate-mapper";
 
@@ -50,6 +49,13 @@ beforeEach(async () => {
 	await wallet.setIdentity(identity.mnemonic);
 });
 
+it("should return an empty array if there are no public keys", async () => {
+	const mappedDelegates = DelegateMapper.execute(wallet, []);
+
+	expect(mappedDelegates).toBeArray();
+	expect(mappedDelegates).toHaveLength(0);
+});
+
 it("should map the public keys to read-only wallets", async () => {
 	const delegates = require("../../test/fixtures/client/delegates-1.json").data;
 	const addresses = delegates.map((delegate) => delegate.addresses);
@@ -59,6 +65,26 @@ it("should map the public keys to read-only wallets", async () => {
 	await container.get<DelegateService>(Identifiers.DelegateService).sync(wallet.coinId(), wallet.networkId());
 
 	const mappedDelegates = DelegateMapper.execute(wallet, publicKeys);
+
+	expect(mappedDelegates).toBeArray();
+	expect(mappedDelegates).toHaveLength(100);
+
+	for (let i = 0; i < delegates; i++) {
+		expect(mappedDelegates[i].address()).toBe(addresses[i]);
+		expect(mappedDelegates[i].publicKey()).toBe(publicKeys[i]);
+		expect(mappedDelegates[i].username()).toBe(usernames[i]);
+	}
+});
+
+it("should skip public keys for which it does not find a delegate", async () => {
+	const delegates = require("../../test/fixtures/client/delegates-1.json").data;
+	const addresses = delegates.map((delegate) => delegate.addresses);
+	const publicKeys = delegates.map((delegate) => delegate.publicKey);
+	const usernames = delegates.map((delegate) => delegate.usernames);
+
+	await container.get<DelegateService>(Identifiers.DelegateService).sync(wallet.coinId(), wallet.networkId());
+
+	const mappedDelegates = DelegateMapper.execute(wallet, publicKeys.concat(["pubkey"]));
 
 	expect(mappedDelegates).toBeArray();
 	expect(mappedDelegates).toHaveLength(100);
