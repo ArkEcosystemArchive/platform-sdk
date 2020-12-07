@@ -280,17 +280,6 @@ describe("Transaction", () => {
 		expect(subject.getMeta("someKey")).toStrictEqual("another meta");
 	});
 
-	// TODO We need to build a real MultiPaymentData here
-	it.skip("should have a memo", () => {
-		// @ts-ignore
-		subject = new MultiPaymentData(wallet, {
-			id: () => "transactionId",
-			blockId: () => "transactionBlockId",
-			memo: () => "This is a memo",
-		});
-		expect(subject.memo()).toBe("This is a memo");
-	});
-
 	const data = [
 		["isLegacyBridgechainRegistration"],
 		["isLegacyBridgechainResignation"],
@@ -607,7 +596,7 @@ describe("EntityRegistrationData", () => {
 			...subject,
 			ipfs: () => undefined,
 		}, EntityRegistrationData)
-		expect(await subject.ipfsContent()).toBeUndefined();
+		await expect(subject.ipfsContent()).resolves.toBeUndefined();
 	});
 
 	test("#ipfsContent", async () => {
@@ -615,7 +604,7 @@ describe("EntityRegistrationData", () => {
 			...subject,
 			ipfs: () => 'QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9c',
 		}, EntityRegistrationData)
-		expect(await subject.ipfsContent()).toBe("ipfs-content");
+		await expect(subject.ipfsContent()).resolves.toBe("ipfs-content");
 	});
 
 	test("marketSquareLink", () => {
