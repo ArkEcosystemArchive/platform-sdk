@@ -49,7 +49,7 @@ export class Contact {
 		this.#starred = !this.isStarred();
 	}
 
-	public setAvatar(value: string) {
+	public setAvatar(value: string): void {
 		this.#avatar = value;
 	}
 

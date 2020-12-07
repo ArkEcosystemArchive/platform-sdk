@@ -91,6 +91,40 @@ test("#update", async () => {
 	);
 });
 
+test("#update with addresses", async () => {
+	const contact = subject.create(name);
+
+	await subject.update(contact.id(), { name: "Jane Doe" });
+
+	await subject.update(contact.id(), {
+		addresses: [
+			{
+				coin: "ARK",
+				network: "ark.devnet",
+				name: "John Doe",
+				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			},
+		],
+	});
+
+	expect(contact.toObject()).toMatchInlineSnapshot(`
+		Object {
+		  "addresses": Array [
+		    Object {
+		      "address": "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		      "coin": "ARK",
+		      "id": "c486c0c8-75a9-4ddb-a4bb-0d73449b697f",
+		      "name": "John Doe",
+		      "network": "ark.devnet",
+		    },
+		  ],
+		  "id": "391c9d93-0212-492b-a8fe-20bc618e7310",
+		  "name": "Jane Doe",
+		  "starred": false,
+		}
+	`);
+});
+
 test("#forget", () => {
 	expect(() => subject.forget("invalid")).toThrowError("Failed to find");
 
