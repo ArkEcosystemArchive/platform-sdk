@@ -107,22 +107,7 @@ test("#update with addresses", async () => {
 		],
 	});
 
-	expect(contact.toObject()).toMatchInlineSnapshot(`
-		Object {
-		  "addresses": Array [
-		    Object {
-		      "address": "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		      "coin": "ARK",
-		      "id": "c486c0c8-75a9-4ddb-a4bb-0d73449b697f",
-		      "name": "John Doe",
-		      "network": "ark.devnet",
-		    },
-		  ],
-		  "id": "391c9d93-0212-492b-a8fe-20bc618e7310",
-		  "name": "Jane Doe",
-		  "starred": false,
-		}
-	`);
+	expect(contact.toObject().addresses).toHaveLength(1);
 });
 
 test("#forget", () => {
