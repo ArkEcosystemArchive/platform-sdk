@@ -86,7 +86,7 @@ test("#update", async () => {
 
 	const anotherContact = subject.create("Another name");
 
-	expect(subject.update(anotherContact.id(), { name: "Dorothy" })).toResolve();
+	await expect(subject.update(anotherContact.id(), { name: "Dorothy" })).toResolve();
 
 	const newContact = subject.create("Another name");
 
