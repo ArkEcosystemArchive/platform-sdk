@@ -27,11 +27,11 @@ export const promiseAllSettledByKey = async <T>(
 		};
 
 		for (const key in filteredPromises) {
-			if (onlyResolved && filteredPromises[key].status === 'rejected') {
+			if (onlyResolved && filteredPromises[key].status === "rejected") {
 				delete filteredPromises[key];
 			}
 
-			if (onlyRejected && filteredPromises[key].status === 'fulfilled') {
+			if (onlyRejected && filteredPromises[key].status === "fulfilled") {
 				delete filteredPromises[key];
 			}
 		}
