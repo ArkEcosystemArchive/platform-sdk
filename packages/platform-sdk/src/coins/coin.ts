@@ -50,6 +50,7 @@ export class Coin {
 			this.#services.ledger.destruct(),
 			this.#services.link.destruct(),
 			this.#services.message.destruct(),
+			this.#services.multiSignature.destruct(),
 			this.#services.peer.destruct(),
 			this.#services.transaction.destruct(),
 		]);
