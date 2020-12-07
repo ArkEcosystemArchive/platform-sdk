@@ -624,17 +624,25 @@ export class Wallet implements ReadWriteWallet {
 		return Promise.all(ids.map((id: string) => this.findTransactionById(id)));
 	}
 
-	public decryptWIF(password: string): string {
+	/**
+	 * If a wallet makes use of a WIF you will need to decrypt it and
+	 * pass it the transaction signing service instead of asking the
+	 * user for a BIP39 plain text passphrase.
+	 *
+	 * @see https://github.com/bitcoinjs/bip38
+	 */
+	public async wif(password: string): Promise<string> {
 		const encryptedKey: string | undefined = this.data().get(WalletData.Bip38EncryptedKey);
 
 		if (encryptedKey === undefined) {
 			throw new Error("This wallet does not use BIP38 encryption.");
 		}
 
-		const { compressed, privateKey } = decrypt(encryptedKey, password);
+		return this.coin().identity().wif().fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"));
+	}
 
-		// @TODO: we need to add the WIF to the network manifest
-		return encode(170, privateKey, compressed);
+	public usesWIF(): boolean {
+		return this.data().has(WalletData.Bip38EncryptedKey);
 	}
 
 	private async fetchTransactions(
