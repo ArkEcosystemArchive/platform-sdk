@@ -65,7 +65,11 @@ it("should restore previously created data", () => {
 it("should restore the blacklist", () => {
 	subject.fill({ data: { stubPlugin }, blacklist: [1] });
 
-	expect(subject.blacklist()).toMatchSnapshot();
+	expect(subject.blacklist()).toMatchInlineSnapshot(`
+		Set {
+		  1,
+		}
+	`);
 	expect(subject.isBlacklisted(1)).toBeTrue();
 });
 
