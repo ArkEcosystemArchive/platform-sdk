@@ -1,9 +1,10 @@
 import "jest-extended";
+
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
 import { Coin } from "./coin";
-import { Config, } from "./config";
+import { Config } from "./config";
 import { Manifest } from "./manifest";
 import { Network } from "./network";
 import { NetworkRepository } from "./network-repository";
@@ -33,16 +34,22 @@ const services = {
 	transaction: { destruct: jest.fn() },
 };
 
-beforeEach(() => (subject = new Coin({
-	networks: new NetworkRepository(ARK.manifest.networks),
-	manifest: new Manifest(ARK.manifest),
-	// @ts-ignore
-	config: new Config({ network: "ark.mainnet"}, ValidatorSchema.object().shape({
-		network: ValidatorSchema.string().oneOf(["ark.mainnet", "ark.devnet"]),
-	})),
-	// @ts-ignore
-	services,
-})));
+beforeEach(
+	() =>
+		(subject = new Coin({
+			networks: new NetworkRepository(ARK.manifest.networks),
+			manifest: new Manifest(ARK.manifest),
+			// @ts-ignore
+			config: new Config(
+				{ network: "ark.mainnet" },
+				ValidatorSchema.object().shape({
+					network: ValidatorSchema.string().oneOf(["ark.mainnet", "ark.devnet"]),
+				}),
+			),
+			// @ts-ignore
+			services,
+		})),
+);
 
 test("#destruct", async () => {
 	await subject.destruct();
