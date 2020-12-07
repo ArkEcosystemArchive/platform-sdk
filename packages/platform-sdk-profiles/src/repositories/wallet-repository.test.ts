@@ -106,7 +106,9 @@ test("#importByAddressWithLedgerIndex", async () => {
 
 	expect(subject.keys()).toHaveLength(1);
 
-	await expect(subject.importByAddressWithLedgerIndex(identity.address, "ARK", "ark.devnet", 0)).rejects.toThrowError("already exists");
+	await expect(subject.importByAddressWithLedgerIndex(identity.address, "ARK", "ark.devnet", 0)).rejects.toThrowError(
+		"already exists",
+	);
 
 	expect(subject.keys()).toHaveLength(1);
 });
@@ -140,7 +142,7 @@ test("#has", async () => {
 	const wallet = subject.first();
 
 	expect(subject.has(wallet.id())).toBeTrue();
-	expect(subject.has('whatever')).toBeFalse();
+	expect(subject.has("whatever")).toBeFalse();
 });
 
 test("#forget", async () => {
@@ -179,15 +181,17 @@ test("#restore", async () => {
 	await newWallet.setCoin("ARK", "ark.devnet");
 	await newWallet.setIdentity("this is another top secret passphrase");
 
-	await expect(subject.restore({
-		id: newWallet.id(),
-		coin: newWallet.coinId(),
-		network: newWallet.networkId(),
-		networkConfig: newWallet.config(),
-		address: newWallet.address(),
-		data: newWallet.data(),
-		settings: newWallet.settings(),
-	})).resolves.toStrictEqual(newWallet);
+	await expect(
+		subject.restore({
+			id: newWallet.id(),
+			coin: newWallet.coinId(),
+			network: newWallet.networkId(),
+			networkConfig: newWallet.config(),
+			address: newWallet.address(),
+			data: newWallet.data(),
+			settings: newWallet.settings(),
+		}),
+	).resolves.toStrictEqual(newWallet);
 	expect(subject.findById(newWallet.id())).toStrictEqual(newWallet);
 });
 
@@ -211,7 +215,6 @@ describe("#sortBy", () => {
 		expect(wallets[1].address()).toBe(walletARK.address()); // DARK
 		expect(wallets[2].address()).toBe(walletETH.address()); // ETH
 	});
-
 
 	it("should sort by coin desc", async () => {
 		const wallets = subject.sortBy("coin", "desc");

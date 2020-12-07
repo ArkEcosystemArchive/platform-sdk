@@ -120,10 +120,14 @@ describe("Transaction", () => {
 	});
 
 	it("should have an explorer block link for undefined block", () => {
-		subject = createSubject(wallet, {
-			...subject,
-			blockId: () => undefined,
-		}, BridgechainRegistrationData)
+		subject = createSubject(
+			wallet,
+			{
+				...subject,
+				blockId: () => undefined,
+			},
+			BridgechainRegistrationData,
+		);
 
 		expect(subject.explorerLinkForBlock()).toBeUndefined();
 	});
@@ -592,18 +596,26 @@ describe("EntityRegistrationData", () => {
 	});
 
 	test("#ipfsContent for undefined ipfs", async () => {
-		subject = createSubject(wallet, {
-			...subject,
-			ipfs: () => undefined,
-		}, EntityRegistrationData)
+		subject = createSubject(
+			wallet,
+			{
+				...subject,
+				ipfs: () => undefined,
+			},
+			EntityRegistrationData,
+		);
 		await expect(subject.ipfsContent()).resolves.toBeUndefined();
 	});
 
 	test("#ipfsContent", async () => {
-		subject = createSubject(wallet, {
-			...subject,
-			ipfs: () => 'QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9c',
-		}, EntityRegistrationData)
+		subject = createSubject(
+			wallet,
+			{
+				...subject,
+				ipfs: () => "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9c",
+			},
+			EntityRegistrationData,
+		);
 		await expect(subject.ipfsContent()).resolves.toBe("ipfs-content");
 	});
 
@@ -679,18 +691,26 @@ describe("EntityUpdateData", () => {
 	});
 
 	test("#ipfsContent for undefined ipfs", async () => {
-		subject = createSubject(wallet, {
-			...subject,
-			ipfs: () => undefined,
-		}, EntityUpdateData)
+		subject = createSubject(
+			wallet,
+			{
+				...subject,
+				ipfs: () => undefined,
+			},
+			EntityUpdateData,
+		);
 		expect(await subject.ipfsContent()).toBeUndefined();
 	});
 
 	test("#ipfsContent", async () => {
-		subject = createSubject(wallet, {
-			...subject,
-			ipfs: () => 'QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9c',
-		}, EntityUpdateData)
+		subject = createSubject(
+			wallet,
+			{
+				...subject,
+				ipfs: () => "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9c",
+			},
+			EntityUpdateData,
+		);
 		expect(await subject.ipfsContent()).toBe("ipfs-content");
 	});
 });
