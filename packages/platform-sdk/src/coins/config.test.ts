@@ -1,4 +1,5 @@
 import "jest-extended";
+
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
 import { Config, ConfigKey } from "./config";
@@ -18,14 +19,19 @@ beforeEach(
 );
 
 test("#constructor", () => {
-	expect(() => new Config(
-		{
-			network: "invalid",
-		},
-		ValidatorSchema.object().shape({
-			network: ValidatorSchema.string().oneOf(["ark.mainnet", "ark.devnet"]),
-		}),
-	)).toThrow('Failed to validate the configuration: ValidationError: network must be one of the following values: ark.mainnet, ark.devnet');
+	expect(
+		() =>
+			new Config(
+				{
+					network: "invalid",
+				},
+				ValidatorSchema.object().shape({
+					network: ValidatorSchema.string().oneOf(["ark.mainnet", "ark.devnet"]),
+				}),
+			),
+	).toThrow(
+		"Failed to validate the configuration: ValidationError: network must be one of the following values: ark.mainnet, ark.devnet",
+	);
 });
 
 test("#all", () => {

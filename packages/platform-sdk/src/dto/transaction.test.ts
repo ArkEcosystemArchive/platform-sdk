@@ -15,7 +15,7 @@ test("#blockId", () => {
 });
 
 test("#type", () => {
-	const subject = new Transaction({ key: "value" })
+	const subject = new Transaction({ key: "value" });
 
 	expect(subject.type()).toBe("transfer");
 

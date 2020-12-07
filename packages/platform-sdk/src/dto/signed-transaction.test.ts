@@ -29,11 +29,13 @@ test("#fee", () => {
 });
 
 test("#get", () => {
-	expect(new Transaction("id", { key: "value" }).get('key')).toBe('value');
+	expect(new Transaction("id", { key: "value" }).get("key")).toBe("value");
 });
 
 test("#toString", () => {
-	expect(new Transaction("id", JSON.stringify({ key: "value" })).toString()).toMatchInlineSnapshot(`"{\\"key\\":\\"value\\"}"`);
+	expect(new Transaction("id", JSON.stringify({ key: "value" })).toString()).toMatchInlineSnapshot(
+		`"{\\"key\\":\\"value\\"}"`,
+	);
 	expect(new Transaction("id", { key: "value" }).toString()).toMatchInlineSnapshot(`"{\\"key\\":\\"value\\"}"`);
 });
 
