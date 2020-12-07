@@ -14,27 +14,34 @@ beforeEach(
 );
 
 test("#constructor", () => {
-	expect(() => new Response({
-		body: "{}",
-		headers: { Accept: "something" },
-		statusCode: 500,
-	})).toThrow('HTTP request returned status code 500.');
+	expect(
+		() =>
+			new Response({
+				body: "{}",
+				headers: { Accept: "something" },
+				statusCode: 500,
+			}),
+	).toThrow("HTTP request returned status code 500.");
 });
 
 test("#body", () => {
 	expect(subject.body()).toBe("{}");
 
-	expect(() => new Response({
-		body: undefined,
-		headers: { Accept: "something" },
-		statusCode: 200,
-	}).body()).toThrow('The response body is empty.');
+	expect(() =>
+		new Response({
+			body: undefined,
+			headers: { Accept: "something" },
+			statusCode: 200,
+		}).body(),
+	).toThrow("The response body is empty.");
 
-	expect(() => new Response({
-		body: "",
-		headers: { Accept: "something" },
-		statusCode: 200,
-	}).body()).toThrow('The response body is empty.');
+	expect(() =>
+		new Response({
+			body: "",
+			headers: { Accept: "something" },
+			statusCode: 200,
+		}).body(),
+	).toThrow("The response body is empty.");
 });
 
 test("#json", () => {
