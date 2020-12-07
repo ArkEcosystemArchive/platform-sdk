@@ -21,7 +21,7 @@ export class WIF implements Contracts.WIF {
 	public async fromPrivateKey(privateKey: string): Promise<string> {
 		try {
 			// @ts-ignore - We don't care about having a public key for this
-			return BaseWIF.fromKeys({ privateKey }, this.#configCrypto);
+			return BaseWIF.fromKeys({ privateKey, compressed: true }, this.#configCrypto);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

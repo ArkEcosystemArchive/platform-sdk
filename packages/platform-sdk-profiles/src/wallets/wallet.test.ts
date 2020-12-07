@@ -4,8 +4,10 @@ import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { encrypt } from "bip38";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
+import { decode } from "wif";
 
 import { identity } from "../../test/fixtures/identity";
 import { container } from "../environment/container";
@@ -13,7 +15,6 @@ import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
-import { PeerRepository } from "../repositories/peer-repository";
 import { Wallet } from "./wallet";
 import { WalletData } from "./wallet.models";
 
@@ -242,5 +243,27 @@ describe("#setCoin", () => {
 
 		expect(subject.coin().config().get("peer")).toBe("https://relay.com/api");
 		expect(subject.coin().config().get("peerMultiSignature")).toBe("https://musig.com/api");
+	});
+
+	it("should decrypt the WIF", async () => {
+		const { compressed, privateKey } = decode(
+			await subject.coin().identity().wif().fromMnemonic(identity.mnemonic),
+		);
+
+		subject.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, "password"));
+
+		await expect(subject.wif("password")).resolves.toBe(identity.wif);
+	});
+
+	it("should throw if the WIF is tried to be decrypted without one being set", async () => {
+		await expect(subject.wif("password")).rejects.toThrow("This wallet does not use BIP38 encryption.");
+	});
+
+	it("should determine if the wallet uses a WIF", async () => {
+		expect(subject.usesWIF()).toBeFalse();
+
+		subject.data().set(WalletData.Bip38EncryptedKey, "...");
+
+		expect(subject.usesWIF()).toBeTrue();
 	});
 });

@@ -1487,6 +1487,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@sindresorhus/slugify", "npm:1.1.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/async", "npm:3.2.4"],
+            ["@types/bip38", "npm:2.0.1"],
             ["@types/dot-prop", "npm:5.0.1"],
             ["@types/eslint", "npm:7.2.4"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -1499,10 +1500,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/semver", "npm:7.3.4"],
             ["@types/sindresorhus__slugify", "npm:0.9.3"],
             ["@types/uuid", "npm:8.3.0"],
+            ["@types/wif", "npm:2.0.2"],
             ["@typescript-eslint/eslint-plugin", "virtual:28bf10013f0dc3f5a648d9c22f70a8dd4890ee90e15e92164892c7edce794c8926350a258d8468ebdf2d34bf06cd3d7052aeb5926b807a64078459f2968d96a2#npm:4.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
             ["@vechain/picasso", "npm:2.1.1"],
             ["bcrypto", "npm:5.3.0"],
+            ["bip38", "npm:3.1.1"],
             ["codecov", "npm:3.8.1"],
             ["cross-env", "npm:7.0.2"],
             ["dot-prop", "npm:5.3.0"],
@@ -1528,7 +1531,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
             ["type-fest", "npm:0.18.1"],
             ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"],
-            ["uuid", "npm:8.3.1"]
+            ["uuid", "npm:8.3.1"],
+            ["wif", "npm:2.0.6"]
           ],
           "linkType": "SOFT",
         }]
