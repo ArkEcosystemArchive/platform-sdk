@@ -1127,6 +1127,7 @@ __metadata:
     censorify-it: ^3.0.2
     codecov: ^3.8.1
     cross-env: ^7.0.2
+    dot-prop: ^5.0.0
     eslint: ^7.13.0
     eslint-config-prettier: ^6.15.0
     eslint-plugin-jest: ^24.1.3
@@ -1136,6 +1137,7 @@ __metadata:
     jest: ^26.6.3
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.3
+    joi: ^17.3.0
     nock: ^13.0.5
     npm-check-updates: ^10.1.1
     prettier: ^2.1.2
@@ -3734,6 +3736,29 @@ __metadata:
   bin:
     prebuild-install: bin.js
   checksum: 2/d448b1a8f127b9b4b99c3345ebb336ed09d1221f5bbd4cae3033abef95f6d879b7406bc65915d2caa141cbfacc85506a2b537bf3f70dc27501aa459f945595ba
+  languageName: node
+  linkType: hard
+
+"@sideway/address@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "@sideway/address@npm:4.1.0"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+  checksum: 2/13f0a6b4178b03d7c0062894312313892d9a728987a5d07d43cb42c04bcdf55cd02092eb6f09ffb8d78a1dfae8cf5ce6c9b4ad66934771ea6a18e2b3fcd752d9
+  languageName: node
+  linkType: hard
+
+"@sideway/formula@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@sideway/formula@npm:3.0.0"
+  checksum: 2/b83ecd35fea33e7b826ddcdc9f0735a79bd374927efea36885203200c418ad0f9975c329eaf9e990a7c61cf96f560ed2020227a35e699324ddd3c94dd3f4045f
+  languageName: node
+  linkType: hard
+
+"@sideway/pinpoint@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@sideway/pinpoint@npm:2.0.0"
+  checksum: 2/e5528639aef1d266c23050897a6571c1e2aeccb59b6a22006a153fbd73aee78ae995bf19c022d70de5a00589a7f51372e78ef9aacd34a3dd9b13720c866aca7e
   languageName: node
   linkType: hard
 
@@ -10967,6 +10992,19 @@ __metadata:
   version: 1.4.0
   resolution: "jju@npm:1.4.0"
   checksum: 2/a58023d40e8e262366e95175dec782c7dc6ad94f2ad1fafe91f675ca6177505b4a8e679cec49c800acb8ceab9391856c7c03e871b30ef0590115d081fad814b9
+  languageName: node
+  linkType: hard
+
+"joi@npm:^17.3.0":
+  version: 17.3.0
+  resolution: "joi@npm:17.3.0"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+    "@hapi/topo": ^5.0.0
+    "@sideway/address": ^4.1.0
+    "@sideway/formula": ^3.0.0
+    "@sideway/pinpoint": ^2.0.0
+  checksum: 2/3a2a6a8df5df408b33661d61abf6389f21d71478748daebe4edf4be2176548a70396601fcf2fd4fc0bc44fc12ab67fa72de310509db47579ad21bca0f2e0611b
   languageName: node
   linkType: hard
 

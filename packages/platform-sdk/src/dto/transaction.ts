@@ -61,7 +61,7 @@ export abstract class AbstractTransactionData {
 
 	abstract id(): string;
 
-	public abstract blockId(): string | undefined;
+	abstract blockId(): string | undefined;
 
 	public type(): string {
 		for (const [type, method] of Object.entries(this.#types)) {
@@ -188,7 +188,7 @@ export abstract class AbstractTransactionData {
 	}
 
 	public hasPassed(): boolean {
-		return Boolean(this.data);
+		return Object.keys(this.data).length > 0;
 	}
 
 	public hasFailed(): boolean {
@@ -204,16 +204,16 @@ export abstract class AbstractTransactionData {
 	}
 
 	protected censorMemo(memo?: string): string | undefined {
-		if (memo) {
-			const processor: Censor = new Censor();
-
-			if (processor.isBad(memo)) {
-				return undefined;
-			}
-
-			return processor.process(emoji.emojify(memo));
+		if (!memo || memo.length <= 0) {
+			return undefined;
 		}
 
-		return memo;
+		const processor: Censor = new Censor();
+
+		if (processor.isBad(memo)) {
+			return undefined;
+		}
+
+		return processor.process(emoji.emojify(memo));
 	}
 }
