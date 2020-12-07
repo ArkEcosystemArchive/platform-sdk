@@ -66,7 +66,7 @@ export class WalletRepository {
 		address: string,
 		coin: string,
 		network: string,
-		index: string,
+		index: number,
 	): Promise<ReadWriteWallet> {
 		return this.storeWallet(
 			await WalletFactory.fromAddressWithLedgerIndex(this.#profile, coin, network, address, index),

@@ -1,5 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { decrypt } from "bip38";
+import { encode } from "wif";
 
 import { ExtendedTransactionData } from "../dto/transaction";
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
@@ -620,6 +622,19 @@ export class Wallet implements ReadWriteWallet {
 	 */
 	public async findTransactionsByIds(ids: string[]): Promise<ExtendedTransactionData[]> {
 		return Promise.all(ids.map((id: string) => this.findTransactionById(id)));
+	}
+
+	public decryptWIF(password: string): string {
+		const encryptedKey: string | undefined = this.data().get(WalletData.Bip38EncryptedKey);
+
+		if (encryptedKey === undefined) {
+			throw new Error("This wallet does not use BIP38 encryption.");
+		}
+
+		const { compressed, privateKey } = decrypt(encryptedKey, password);
+
+		// @TODO: we need to add the WIF to the network manifest
+		return encode(170, privateKey, compressed);
 	}
 
 	private async fetchTransactions(

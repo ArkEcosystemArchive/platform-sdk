@@ -4,7 +4,6 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { decrypt } from "bip38";
 import nock from "nock";
-import { encode } from "wif";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
@@ -87,9 +86,5 @@ test("#fromMnemonicWithEncryption", async () => {
 	expect(wallet.data().get(WalletData.Bip38EncryptedKey)).toBeString();
 
 	// @ts-ignore
-	const { privateKey }: string = decrypt(wallet.data().get(WalletData.Bip38EncryptedKey)!, "password");
-
-	expect(privateKey.toString("hex")).toBe("d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712");
-
-	console.log(await wallet.coin().identity().wif().fromPrivateKey(privateKey));
+	expect(decrypt(wallet.data().get(WalletData.Bip38EncryptedKey)!, "password").privateKey.toString("hex")).toBe("d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712");
 });
