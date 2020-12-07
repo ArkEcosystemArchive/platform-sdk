@@ -37,6 +37,7 @@ export enum WalletSetting {
 
 export enum WalletData {
 	Balance = "BALANCE",
+	Bip38EncryptedKey = "BIP38_ENCRYPTED_KEY",
 	BroadcastedTransactions = "BROADCASTED_TRANSACTIONS",
 	Delegates = "DELEGATES",
 	ExchangeCurrency = "EXCHANGE_CURRENCY",
