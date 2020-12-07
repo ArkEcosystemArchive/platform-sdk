@@ -54,19 +54,25 @@ test("#isSecondSignature", () => {
 });
 
 test("#toObject", () => {
-	expect(new Wallet({ key: "value" }).toObject()).toEqual({
-		address: "address",
-		publicKey: "publicKey",
-		balance: BigNumber.ZERO,
-		nonce: BigNumber.ZERO,
-		username: "username",
-		rank: 5,
-		votes: BigNumber.ZERO,
-	});
+	expect(new Wallet({ key: "value" }).toObject()).toMatchInlineSnapshot(`
+		Object {
+		  "address": "address",
+		  "balance": BigNumber {},
+		  "nonce": BigNumber {},
+		  "publicKey": "publicKey",
+		  "rank": 5,
+		  "username": "username",
+		  "votes": BigNumber {},
+		}
+	`);
 });
 
 test("#raw", () => {
-	expect(new Wallet({ key: "value" }).raw()).toEqual({ key: "value" });
+	expect(new Wallet({ key: "value" }).raw()).toMatchInlineSnapshot(`
+		Object {
+		  "key": "value",
+		}
+	`);
 });
 
 test("#hasPassed", () => {

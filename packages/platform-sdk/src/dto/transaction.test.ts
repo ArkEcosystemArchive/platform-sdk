@@ -14,6 +14,16 @@ test("#blockId", () => {
 	expect(new Transaction({ key: "value" }).blockId()).toBe("blockId");
 });
 
+test("#type", () => {
+	const subject = new Transaction({ key: "value" })
+
+	expect(subject.type()).toBe("transfer");
+
+	jest.spyOn(subject, "isLegacyBusinessUpdate").mockReturnValue(true);
+
+	expect(subject.type()).toBe("legacyBusinessUpdate");
+});
+
 test("#timestamp", () => {
 	expect(new Transaction({ key: "value" }).timestamp()).toBeUndefined();
 });
@@ -44,6 +54,10 @@ test("#fee", () => {
 
 test("#memo", () => {
 	expect(new Transaction({ key: "value" }).memo()).toBe("memo");
+	expect(new Transaction({ memo: "" }).memo()).toBeUndefined();
+	expect(new Transaction({ memo: "pedo" }).memo()).toBe("****");
+	expect(new Transaction({ memo: "pedophile" }).memo()).toBe("*********");
+	expect(new Transaction({ memo: "zyva.org" }).memo()).toBeUndefined();
 });
 
 test("#asset", () => {
@@ -211,22 +225,27 @@ test("#isLegacyBridgechainUpdate", () => {
 });
 
 test("#toObject", () => {
-	expect(new Transaction({ key: "value" }).toObject()).toEqual({
-		id: "id",
-		type: "transfer",
-		timestamp: undefined,
-		confirmations: BigNumber.ZERO,
-		sender: "sender",
-		recipient: "recipient",
-		amount: BigNumber.ZERO,
-		fee: BigNumber.ZERO,
-		vendorField: "memo",
-		asset: {},
-	});
+	expect(new Transaction({ key: "value" }).toObject()).toMatchInlineSnapshot(`
+		Object {
+		  "amount": BigNumber {},
+		  "asset": Object {},
+		  "confirmations": BigNumber {},
+		  "fee": BigNumber {},
+		  "id": "id",
+		  "recipient": "recipient",
+		  "sender": "sender",
+		  "timestamp": undefined,
+		  "type": "transfer",
+		}
+	`);
 });
 
 test("#raw", () => {
-	expect(new Transaction({ key: "value" }).raw()).toEqual({ key: "value" });
+	expect(new Transaction({ key: "value" }).raw()).toMatchInlineSnapshot(`
+		Object {
+		  "key": "value",
+		}
+	`);
 });
 
 test("#hasPassed", () => {
@@ -287,6 +306,10 @@ class Transaction extends AbstractTransactionData {
 	}
 
 	public memo(): string | undefined {
+		if (this.data.hasOwnProperty("memo")) {
+			return this.censorMemo(this.data.memo);
+		}
+
 		return this.censorMemo("memo");
 	}
 

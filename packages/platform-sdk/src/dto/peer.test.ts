@@ -3,17 +3,23 @@ import "jest-extended";
 import { AbstractPeerData } from "./peer";
 
 test("#toObject", () => {
-	expect(new Peer({ key: "value" }).toObject()).toEqual({
-		ip: "127.0.0.1",
-		port: 4003,
-		version: "3.0.0",
-		height: 5000,
-		latency: 23,
-	});
+	expect(new Peer({ key: "value" }).toObject()).toMatchInlineSnapshot(`
+		Object {
+		  "height": 5000,
+		  "ip": "127.0.0.1",
+		  "latency": 23,
+		  "port": 4003,
+		  "version": "3.0.0",
+		}
+	`);
 });
 
 test("#raw", () => {
-	expect(new Peer({ key: "value" }).raw()).toEqual({ key: "value" });
+	expect(new Peer({ key: "value" }).raw()).toMatchInlineSnapshot(`
+		Object {
+		  "key": "value",
+		}
+	`);
 });
 
 test("#hasPassed", () => {
