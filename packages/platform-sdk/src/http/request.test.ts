@@ -1,4 +1,4 @@
-/* eslint @typescript-eslint/no-floating-promises 0 */
+/* eslint-disable */
 
 import "jest-extended";
 
