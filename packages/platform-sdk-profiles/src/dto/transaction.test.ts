@@ -12,7 +12,6 @@ import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
 import {
-	TransactionData,
 	BridgechainRegistrationData,
 	BridgechainResignationData,
 	BridgechainUpdateData,
@@ -31,25 +30,27 @@ import {
 	MultiPaymentData,
 	MultiSignatureData,
 	SecondSignatureData,
+	TransactionData,
 	TransferData,
 	VoteData,
 } from "./transaction";
 
 // @ts-ignore
-const createSubject = (wallet, properties, klass) => new klass(wallet, {
-	id: () => "transactionId",
-	blockId: () => "transactionBlockId",
-	bridgechainId: () => "bridgechainId",
-	type: () => "some type",
-	timestamp: () => undefined,
-	confirmations: () => BigNumber.make(20),
-	sender: () => "sender",
-	recipient: () => "recipient",
-	recipients: () => [],
-	amount: () => BigNumber.make(18),
-	fee: () => BigNumber.make(2),
-	...(properties || {})
-});
+const createSubject = (wallet, properties, klass) =>
+	new klass(wallet, {
+		id: () => "transactionId",
+		blockId: () => "transactionBlockId",
+		bridgechainId: () => "bridgechainId",
+		type: () => "some type",
+		timestamp: () => undefined,
+		confirmations: () => BigNumber.make(20),
+		sender: () => "sender",
+		recipient: () => "recipient",
+		recipients: () => [],
+		amount: () => BigNumber.make(18),
+		fee: () => BigNumber.make(2),
+		...(properties || {}),
+	});
 
 let subject: any;
 let profile: Profile;
@@ -89,9 +90,9 @@ beforeAll(async () => {
 });
 
 describe("Transaction", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, undefined, BridgechainRegistrationData);
-    });
+	beforeEach(() => {
+		subject = createSubject(wallet, undefined, BridgechainRegistrationData);
+	});
 
 	it("should have an explorer link", () => {
 		expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/transaction/transactionId");
@@ -220,16 +221,20 @@ describe("Transaction", () => {
 });
 
 describe("BridgechainRegistrationData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            name: () => "name",
-            seedNodes: () => "seedNodes",
-            genesisHash: () => "genesisHash",
-            bridgechainRepository: () => "bridgechainRepository",
-            bridgechainAssetRepository: () => "bridgechainAssetRepository",
-            ports: () => ({ thing: 1234 }),
-        }, BridgechainRegistrationData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				name: () => "name",
+				seedNodes: () => "seedNodes",
+				genesisHash: () => "genesisHash",
+				bridgechainRepository: () => "bridgechainRepository",
+				bridgechainAssetRepository: () => "bridgechainAssetRepository",
+				ports: () => ({ thing: 1234 }),
+			},
+			BridgechainRegistrationData,
+		);
+	});
 
 	test("#name", () => {
 		expect(subject.name()).toBe("name");
@@ -257,11 +262,15 @@ describe("BridgechainRegistrationData", () => {
 });
 
 describe("BridgechainResignationData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            bridgechainId: () => "bridgechainId",
-        }, BridgechainResignationData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				bridgechainId: () => "bridgechainId",
+			},
+			BridgechainResignationData,
+		);
+	});
 
 	test("#bridgechainId", () => {
 		expect(subject.bridgechainId()).toBe("bridgechainId");
@@ -269,15 +278,19 @@ describe("BridgechainResignationData", () => {
 });
 
 describe("BridgechainUpdateData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            name: () => "name",
-            seedNodes: () => "seedNodes",
-            bridgechainRepository: () => "bridgechainRepository",
-            bridgechainAssetRepository: () => "bridgechainAssetRepository",
-            ports: () => ({ thing: 1234 }),
-        }, BridgechainUpdateData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				name: () => "name",
+				seedNodes: () => "seedNodes",
+				bridgechainRepository: () => "bridgechainRepository",
+				bridgechainAssetRepository: () => "bridgechainAssetRepository",
+				ports: () => ({ thing: 1234 }),
+			},
+			BridgechainUpdateData,
+		);
+	});
 
 	test("#name", () => {
 		expect(subject.name()).toBe("name");
@@ -301,14 +314,18 @@ describe("BridgechainUpdateData", () => {
 });
 
 describe("BusinessRegistrationData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            name: () => "name",
-            website: () => "website",
-            vatId: () => "vatId",
-            repository: () => "repository",
-        }, BusinessRegistrationData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				name: () => "name",
+				website: () => "website",
+				vatId: () => "vatId",
+				repository: () => "repository",
+			},
+			BusinessRegistrationData,
+		);
+	});
 
 	test("#name", () => {
 		expect(subject.name()).toBe("name");
@@ -328,9 +345,9 @@ describe("BusinessRegistrationData", () => {
 });
 
 describe("BusinessResignationData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, undefined, BusinessResignationData);
-    });
+	beforeEach(() => {
+		subject = createSubject(wallet, undefined, BusinessResignationData);
+	});
 
 	test("#id", () => {
 		expect(subject.id()).toBe("transactionId");
@@ -338,14 +355,18 @@ describe("BusinessResignationData", () => {
 });
 
 describe("BusinessUpdateData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            name: () => "name",
-            website: () => "website",
-            vatId: () => "vatId",
-            repository: () => "repository",
-        }, BusinessUpdateData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				name: () => "name",
+				website: () => "website",
+				vatId: () => "vatId",
+				repository: () => "repository",
+			},
+			BusinessUpdateData,
+		);
+	});
 
 	test("#name", () => {
 		expect(subject.name()).toBe("name");
@@ -365,11 +386,15 @@ describe("BusinessUpdateData", () => {
 });
 
 describe("DelegateRegistrationData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            username: () => "username",
-        }, DelegateRegistrationData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				username: () => "username",
+			},
+			DelegateRegistrationData,
+		);
+	});
 
 	test("#username", () => {
 		expect(subject.username()).toBe("username");
@@ -381,9 +406,9 @@ describe("DelegateRegistrationData", () => {
 });
 
 describe("DelegateResignationData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, undefined, DelegateResignationData);
-    });
+	beforeEach(() => {
+		subject = createSubject(wallet, undefined, DelegateResignationData);
+	});
 
 	test("#id", () => {
 		expect(subject.id()).toBe("transactionId");
@@ -391,15 +416,19 @@ describe("DelegateResignationData", () => {
 });
 
 describe("EntityRegistrationData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            entityType: () => 1,
-            entitySubType: () => 2,
-            entityAction: () => 3,
-            name: () => "name",
-            ipfs: () => "ipfs",
-        }, EntityRegistrationData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				entityType: () => 1,
+				entitySubType: () => 2,
+				entityAction: () => 3,
+				name: () => "name",
+				ipfs: () => "ipfs",
+			},
+			EntityRegistrationData,
+		);
+	});
 
 	test("#entityType", () => {
 		expect(subject.entityType()).toBe(1);
@@ -423,14 +452,18 @@ describe("EntityRegistrationData", () => {
 });
 
 describe("EntityResignationData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            entityType: () => 1,
-            entitySubType: () => 2,
-            entityAction: () => 3,
-            registrationId: () => "registrationId",
-        }, EntityResignationData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				entityType: () => 1,
+				entitySubType: () => 2,
+				entityAction: () => 3,
+				registrationId: () => "registrationId",
+			},
+			EntityResignationData,
+		);
+	});
 
 	test("#entityType", () => {
 		expect(subject.entityType()).toBe(1);
@@ -450,15 +483,19 @@ describe("EntityResignationData", () => {
 });
 
 describe("EntityUpdateData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            entityType: () => 1,
-            entitySubType: () => 2,
-            entityAction: () => 3,
-            name: () => "name",
-            ipfs: () => "ipfs",
-        }, EntityUpdateData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				entityType: () => 1,
+				entitySubType: () => 2,
+				entityAction: () => 3,
+				name: () => "name",
+				ipfs: () => "ipfs",
+			},
+			EntityUpdateData,
+		);
+	});
 
 	test("#entityType", () => {
 		expect(subject.entityType()).toBe(1);
@@ -482,12 +519,16 @@ describe("EntityUpdateData", () => {
 });
 
 describe("HtlcClaimData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            lockTransactionId: () => "lockTransactionId",
-            unlockSecret: () => "unlockSecret",
-        }, HtlcClaimData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				lockTransactionId: () => "lockTransactionId",
+				unlockSecret: () => "unlockSecret",
+			},
+			HtlcClaimData,
+		);
+	});
 
 	test("#lockTransactionId", () => {
 		expect(subject.lockTransactionId()).toBe("lockTransactionId");
@@ -499,13 +540,17 @@ describe("HtlcClaimData", () => {
 });
 
 describe("HtlcLockData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            secretHash: () => "secretHash",
-            expirationType: () => 5,
-            expirationValue: () => 3,
-        }, HtlcLockData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				secretHash: () => "secretHash",
+				expirationType: () => 5,
+				expirationValue: () => 3,
+			},
+			HtlcLockData,
+		);
+	});
 
 	test("#secretHash", () => {
 		expect(subject.secretHash()).toBe("secretHash");
@@ -521,11 +566,15 @@ describe("HtlcLockData", () => {
 });
 
 describe("HtlcRefundData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            lockTransactionId: () => "lockTransactionId",
-        }, HtlcRefundData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				lockTransactionId: () => "lockTransactionId",
+			},
+			HtlcRefundData,
+		);
+	});
 
 	test("#lockTransactionId", () => {
 		expect(subject.lockTransactionId()).toBe("lockTransactionId");
@@ -533,11 +582,15 @@ describe("HtlcRefundData", () => {
 });
 
 describe("IpfsData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            hash: () => "hash",
-        }, IpfsData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				hash: () => "hash",
+			},
+			IpfsData,
+		);
+	});
 
 	test("#hash", () => {
 		expect(subject.hash()).toBe("hash");
@@ -545,11 +598,15 @@ describe("IpfsData", () => {
 });
 
 describe("MultiPaymentData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            payments: () => [{ recipient: "recipient", amount: "1000" }],
-        }, MultiPaymentData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				payments: () => [{ recipient: "recipient", amount: "1000" }],
+			},
+			MultiPaymentData,
+		);
+	});
 
 	test("#payments", () => {
 		expect(subject.payments()).toEqual([{ recipient: "recipient", amount: "1000" }]);
@@ -557,12 +614,16 @@ describe("MultiPaymentData", () => {
 });
 
 describe("MultiSignatureData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            publicKeys: () => ["1", "2", "3"],
-            min: () => 5,
-        }, MultiSignatureData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				publicKeys: () => ["1", "2", "3"],
+				min: () => 5,
+			},
+			MultiSignatureData,
+		);
+	});
 
 	test("#publicKeys", () => {
 		expect(subject.publicKeys()).toEqual(["1", "2", "3"]);
@@ -574,11 +635,15 @@ describe("MultiSignatureData", () => {
 });
 
 describe("SecondSignatureData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            secondPublicKey: () => "secondPublicKey",
-        }, SecondSignatureData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				secondPublicKey: () => "secondPublicKey",
+			},
+			SecondSignatureData,
+		);
+	});
 
 	test("#secondPublicKey", () => {
 		expect(subject.secondPublicKey()).toBe("secondPublicKey");
@@ -586,11 +651,15 @@ describe("SecondSignatureData", () => {
 });
 
 describe("TransferData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            memo: () => "memo",
-        }, TransferData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				memo: () => "memo",
+			},
+			TransferData,
+		);
+	});
 
 	test("#memo", () => {
 		expect(subject.memo()).toBe("memo");
@@ -598,12 +667,16 @@ describe("TransferData", () => {
 });
 
 describe("VoteData", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            votes: () => ["vote"],
-            unvotes: () => ["unvote"],
-        }, VoteData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				votes: () => ["vote"],
+				unvotes: () => ["unvote"],
+			},
+			VoteData,
+		);
+	});
 
 	test("#votes", () => {
 		expect(subject.votes()).toEqual(["vote"]);
