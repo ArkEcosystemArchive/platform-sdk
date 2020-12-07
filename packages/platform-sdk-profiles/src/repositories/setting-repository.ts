@@ -17,10 +17,6 @@ export class SettingRepository {
 		return this.#data.keys();
 	}
 
-	public values(): object {
-		return this.#data.values();
-	}
-
 	public get<T>(key: string, defaultValue?: T): T | undefined {
 		this.assertValidKey(key);
 
