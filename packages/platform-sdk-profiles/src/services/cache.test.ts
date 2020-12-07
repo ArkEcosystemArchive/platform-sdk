@@ -43,7 +43,7 @@ it("should flush the cache", async () => {
 
 	subject.set("key", "value", 1);
 
-	expect(subject.get("key")).toBeObject();
+	expect(subject.get("key")).toBe("value");
 	expect(subject.has("key")).toBeTrue();
 
 	subject.flush();
