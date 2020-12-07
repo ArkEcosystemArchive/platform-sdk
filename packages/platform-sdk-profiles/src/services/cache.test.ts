@@ -36,3 +36,18 @@ it("should set, get and forget a value", async () => {
 	expect(() => subject.get("key")).toThrow();
 	expect(subject.has("key")).toBeFalse();
 });
+
+it("should flush the cache", async () => {
+	expect(() => subject.get("key")).toThrow();
+	expect(subject.has("key")).toBeFalse();
+
+	subject.set("key", "value", 1);
+
+	expect(subject.get("key")).toBe("value");
+	expect(subject.has("key")).toBeTrue();
+
+	subject.flush();
+
+	expect(() => subject.get("key")).toThrow();
+	expect(subject.has("key")).toBeFalse();
+});

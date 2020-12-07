@@ -49,6 +49,14 @@ beforeEach(async () => {
 
 beforeAll(() => nock.disableNetConnect());
 
+it("#first | #last", async () => {
+	const john = subject.create("John");
+	const jane = subject.create("Jane");
+
+	expect(subject.first()).toEqual(john);
+	expect(subject.last()).toEqual(jane);
+});
+
 test("#create", () => {
 	expect(subject.keys()).toHaveLength(0);
 
@@ -81,6 +89,25 @@ test("#update", async () => {
 	await expect(subject.update(newContact.id(), { name: "Jane Doe" })).rejects.toThrowError(
 		"The contact [Jane Doe] already exists.",
 	);
+});
+
+test("#update with addresses", async () => {
+	const contact = subject.create(name);
+
+	await subject.update(contact.id(), { name: "Jane Doe" });
+
+	await subject.update(contact.id(), {
+		addresses: [
+			{
+				coin: "ARK",
+				network: "ark.devnet",
+				name: "John Doe",
+				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			},
+		],
+	});
+
+	expect(contact.toObject().addresses).toHaveLength(1);
 });
 
 test("#forget", () => {

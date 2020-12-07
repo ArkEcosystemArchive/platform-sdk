@@ -113,4 +113,16 @@ describe("#syncCoinByProfile", () => {
 
 		expect(wallet.data().get(WalletData.ExchangeRate)).toBe(0.00002134);
 	});
+
+	it("should fail to sync a coin for a specific profile if there are no wallets", async () => {
+		profile.wallets().flush();
+
+		expect(wallet.data().get(WalletData.ExchangeCurrency)).toBeUndefined();
+		expect(wallet.data().get(WalletData.ExchangeRate)).toBeUndefined();
+
+		await subject.syncCoinByProfile(profile, "DARK");
+
+		expect(wallet.data().get(WalletData.ExchangeCurrency)).toBeUndefined();
+		expect(wallet.data().get(WalletData.ExchangeRate)).toBeUndefined();
+	});
 });

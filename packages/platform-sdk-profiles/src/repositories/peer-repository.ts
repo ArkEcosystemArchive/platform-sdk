@@ -8,11 +8,7 @@ interface Peer {
 }
 
 export class PeerRepository {
-	readonly #data: DataRepository;
-
-	public constructor() {
-		this.#data = new DataRepository();
-	}
+	readonly #data: DataRepository = new DataRepository();
 
 	public fill(peers: object): void {
 		for (const [id, peer] of Object.entries(peers)) {
@@ -36,7 +32,7 @@ export class PeerRepository {
 		const id = `${coin}.${network}`;
 
 		if (this.#data.missing(id)) {
-			throw new Error(`No peer found for [${id}].`);
+			throw new Error(`No peers found for [${id}].`);
 		}
 
 		return this.#data.get(id) as Peer[];
@@ -57,21 +53,19 @@ export class PeerRepository {
 
 	public update(coin: string, network: string, host: string, peer: Peer): void {
 		const index: number = this.get(coin, network).findIndex((item: Peer) => item.host === host);
-		const id = `${coin}.${network}.${index}`;
 
-		if (this.#data.missing(id)) {
-			throw new Error(`No peer found for [${id}].`);
+		if (index === -1) {
+			throw new Error(`Failed to find a peer with [${host}] as host.`);
 		}
 
-		this.#data.set(id, peer);
+		this.#data.set(`${coin}.${network}.${index}`, peer);
 	}
 
 	public forget(coin: string, network: string, peer: Peer): void {
 		const index: number = this.get(coin, network).findIndex((item: Peer) => item.host === peer.host);
-		const id = `${coin}.${network}.${index}`;
 
-		if (this.#data.missing(id)) {
-			throw new Error(`No peer found for [${id}].`);
+		if (index === -1) {
+			throw new Error(`Failed to find a peer with [${peer.host}] as host.`);
 		}
 
 		this.#data.forgetIndex(`${coin}.${network}`, index);

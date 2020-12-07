@@ -70,11 +70,8 @@ export class TransactionData {
 	}
 
 	public memo(): string | undefined {
-		if (this.#data instanceof TransferData || this.#data instanceof MultiPaymentData) {
-			return this.#data.memo();
-		}
-
-		return undefined;
+		// @ts-ignore
+		return this.#data.memo();
 	}
 
 	public asset(): Record<string, unknown> {
@@ -246,7 +243,11 @@ export class TransactionData {
 	}
 
 	public explorerLinkForBlock(): string | undefined {
-		return this.blockId() ? this.#coin.link().block(this.blockId()!) : undefined;
+		if (this.blockId()) {
+			return this.#coin.link().block(this.blockId()!);
+		}
+
+		return undefined;
 	}
 
 	public toObject(): Contracts.KeyValuePair {
@@ -274,7 +275,11 @@ export class TransactionData {
 	 */
 
 	public total(): BigNumber {
-		return this.isSent() ? this.amount().plus(this.fee()) : this.amount();
+		if (this.isSent()) {
+			return this.amount().plus(this.fee());
+		}
+
+		return this.amount();
 	}
 
 	public convertedTotal(): BigNumber {

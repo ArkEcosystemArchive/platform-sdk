@@ -30,6 +30,14 @@ it("should return all data", () => {
 	expect(subject.all()).toBeObject();
 });
 
+it("should return the first item", () => {
+	expect(subject.first()).toMatchInlineSnapshot(`undefined`);
+});
+
+it("should return the last item", () => {
+	expect(subject.last()).toMatchInlineSnapshot(`undefined`);
+});
+
 it("should return all data keys", () => {
 	expect(subject.keys()).toBeArray();
 });
@@ -38,10 +46,31 @@ it("should return all data values", () => {
 	expect(subject.values()).toBeArray();
 });
 
-it("should find specific data", () => {
+it("should find a plugin by its ID", () => {
 	subject.push(stubPlugin);
 
 	expect(subject.findById(1)).toEqual(stubPlugin);
+});
+
+it("should throw if a plugin cannot be found by its ID", () => {
+	expect(() => subject.findById(1)).toThrow("Failed to find a plugin for [1].");
+});
+
+it("should restore previously created data", () => {
+	subject.fill({ data: { 1: stubPlugin }, blacklist: [] });
+
+	expect(subject.findById(1)).toEqual(stubPlugin);
+});
+
+it("should restore the blacklist", () => {
+	subject.fill({ data: { stubPlugin }, blacklist: [1] });
+
+	expect(subject.blacklist()).toMatchInlineSnapshot(`
+		Set {
+		  1,
+		}
+	`);
+	expect(subject.isBlacklisted(1)).toBeTrue();
 });
 
 it("should forget specific data", () => {

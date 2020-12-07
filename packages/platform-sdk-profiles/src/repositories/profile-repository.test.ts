@@ -131,10 +131,51 @@ describe("ProfileRepository", () => {
 		expect(subject.count()).toBe(2);
 		expect(subject.findById(jane.id())).toBeInstanceOf(Profile);
 		expect(subject.findByName(jane.name())).toBeInstanceOf(Profile);
+		expect(subject.has(jane.id())).toBeTrue();
 
 		subject.forget(jane.id());
 
 		expect(subject.count()).toBe(1);
+		expect(subject.has(jane.id())).toBeFalse();
 		expect(() => subject.findById(jane.id())).toThrow("No profile found for");
+	});
+
+	it("should get all profiles", async () => {
+		subject.create("John");
+		subject.create("Jane");
+
+		expect(Object.keys(subject.all())).toHaveLength(2);
+	});
+
+	it("should get all keys", async () => {
+		subject.create("John");
+		subject.create("Jane");
+
+		expect(subject.keys()).toHaveLength(2);
+	});
+
+	it("should get all values", async () => {
+		subject.create("John");
+		subject.create("Jane");
+
+		expect(subject.values()).toHaveLength(2);
+	});
+
+	it("should get the first and last profile", async () => {
+		const john = subject.create("John");
+		const jane = subject.create("Jane");
+
+		expect(subject.first()).toEqual(john);
+		expect(subject.last()).toEqual(jane);
+	});
+
+	it("should fail to push a profile with a duplicate name", async () => {
+		subject.create("John");
+
+		expect(() => subject.create("John")).toThrow("The profile [John] already exists.");
+	});
+
+	it("should fail to forget a profile that doesn't exist", async () => {
+		expect(() => subject.forget("doesnotexist")).toThrow("No profile found for");
 	});
 });

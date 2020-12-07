@@ -12,21 +12,21 @@ export class DelegateMapper {
 
 		return publicKeys
 			.map((publicKey: string) => {
-				const delegate = container
-					.get<DelegateService>(Identifiers.DelegateService)
-					.findByPublicKey(wallet.coinId(), wallet.networkId(), publicKey);
+				try {
+					const delegate = container
+						.get<DelegateService>(Identifiers.DelegateService)
+						.findByPublicKey(wallet.coinId(), wallet.networkId(), publicKey);
 
-				if (!delegate) {
+					return new ReadOnlyWallet({
+						address: delegate.address(),
+						publicKey: delegate.publicKey(),
+						username: delegate.username(),
+						rank: delegate.rank(),
+						explorerLink: wallet.link().wallet(delegate.address()),
+					});
+				} catch (error) {
 					return undefined;
 				}
-
-				return new ReadOnlyWallet({
-					address: delegate.address(),
-					publicKey: delegate.publicKey(),
-					username: delegate.username(),
-					rank: delegate.rank(),
-					explorerLink: wallet.link().wallet(delegate.address()),
-				});
 			})
 			.filter(Boolean) as ReadOnlyWallet[];
 	}

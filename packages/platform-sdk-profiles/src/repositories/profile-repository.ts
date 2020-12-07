@@ -1,10 +1,5 @@
-import { v4 as uuidv4 } from "uuid";
-
-import { pqueue } from "../helpers/queue";
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
-import { ProfileSetting } from "../profiles/profile.models";
-import { ReadWriteWallet } from "../wallets/wallet.models";
 import { DataRepository } from "./data-repository";
 
 export class ProfileRepository {
