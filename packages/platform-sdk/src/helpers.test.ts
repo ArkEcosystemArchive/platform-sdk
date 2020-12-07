@@ -113,6 +113,10 @@ class UnvoteData {}
 
 afterEach(() => jest.restoreAllMocks());
 
+test("#createTransactionDataWithType (unknown type)", () => {
+	expect(createTransactionDataWithType({}, { TransactionData })).toBeInstanceOf(TransactionData);
+});
+
 test.each([
 	["isLegacyBridgechainRegistration", "BridgechainRegistrationData", BridgechainRegistrationData],
 	["isLegacyBridgechainResignation", "BridgechainResignationData", BridgechainResignationData],
