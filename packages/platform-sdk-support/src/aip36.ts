@@ -58,12 +58,18 @@ export class AIP36 {
 			delegate: Joi.object({
 				type: Joi.string().valid("public", "private").required(),
 				payout: Joi.object({
-					distribution: Joi.object({ min: Joi.number().min(1).max(100).required(), max: Joi.number().min(1).max(100).required() }),
+					distribution: Joi.object({
+						min: Joi.number().min(1).max(100).required(),
+						max: Joi.number().min(1).max(100).required(),
+					}),
 					frequency: Joi.object({
 						type: Joi.string().valid("day", "week", "month", "quarter", "year").required(),
 						value: Joi.number().min(1).max(365).required(),
 					}),
-					percentage: Joi.object({ min: Joi.number().min(1).max(100).required(), max: Joi.number().min(1).max(100).required() }),
+					percentage: Joi.object({
+						min: Joi.number().min(1).max(100).required(),
+						max: Joi.number().min(1).max(100).required(),
+					}),
 				}),
 			}),
 			images: Joi.array().items(
@@ -122,56 +128,66 @@ export class AIP36 {
 						"twitter",
 						"youtube",
 					).required(),
-					value: Joi.alternatives().try(
-						Joi.string().pattern(
-							/(?:https?:)?\/\/(?:www\.)?(?:discord\.com\/invite|discord.gg(\/invite)?)\/([A-z0-9]+)/,
-						),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:facebook\.com)\/([A-Za-z0-9-_.]+)/),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:instagram\.com)\/([A-Za-z0-9-_.]+)/),
-						Joi.string().pattern(
-							/(?:https?:)?\/\/(?:www\.)?(?:linkedin\.com)\/(?:in|company)\/([\w\-_À-ÿ%]+)\/?/,
-						),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:medium\.com)\/([A-Za-z0-9-_.@]+)/),
-						Joi.string().pattern(
-							/(?:https?:)?\/\/(?:www\.)?(?:reddit\.com)\/(?:u(?:ser)?|r)\/([A-z0-9-_]+)\/?/,
-						),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:[a-z]+)\.(?:slack\.com)/),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:t(?:elegram)?\.me|telegram\.org)\/([a-z0-9_]{5,32})/),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:twitter\.com)\/@?([A-z0-9_]+)/),
-						Joi.string().pattern(
-							/(?:https?:)?\/\/(?:www\.)?(?:youtube\.com)\/(?:channel|user)\/([A-z0-9]+)\/?/,
-						),
-					).required(),
+					value: Joi.alternatives()
+						.try(
+							Joi.string().pattern(
+								/(?:https?:)?\/\/(?:www\.)?(?:discord\.com\/invite|discord.gg(\/invite)?)\/([A-z0-9]+)/,
+							),
+							Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:facebook\.com)\/([A-Za-z0-9-_.]+)/),
+							Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:instagram\.com)\/([A-Za-z0-9-_.]+)/),
+							Joi.string().pattern(
+								/(?:https?:)?\/\/(?:www\.)?(?:linkedin\.com)\/(?:in|company)\/([\w\-_À-ÿ%]+)\/?/,
+							),
+							Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:medium\.com)\/([A-Za-z0-9-_.@]+)/),
+							Joi.string().pattern(
+								/(?:https?:)?\/\/(?:www\.)?(?:reddit\.com)\/(?:u(?:ser)?|r)\/([A-z0-9-_]+)\/?/,
+							),
+							Joi.string().pattern(/(?:https?:)?\/\/(?:[a-z]+)\.(?:slack\.com)/),
+							Joi.string().pattern(
+								/(?:https?:)?\/\/(?:t(?:elegram)?\.me|telegram\.org)\/([a-z0-9_]{5,32})/,
+							),
+							Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:twitter\.com)\/@?([A-z0-9_]+)/),
+							Joi.string().pattern(
+								/(?:https?:)?\/\/(?:www\.)?(?:youtube\.com)\/(?:channel|user)\/([A-z0-9]+)\/?/,
+							),
+						)
+						.required(),
 				}),
 			),
 			sourceControl: Joi.array().items(
 				Joi.object({
 					type: Joi.valid("bitbucket", "github", "gitlab", "npm").required(),
-					value: Joi.alternatives().try(
-						Joi.string().pattern(
-							/(?:https?:)?\/\/(?:www\.)?(?:bitbucket\.org)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/,
-						),
-						Joi.string().pattern(
-							/(?:https?:)?\/\/(?:www\.)?(?:github\.com)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/,
-						),
-						Joi.string().pattern(
-							/(?:https?:)?\/\/(?:www\.)?(?:gitlab\.com)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/,
-						),
-						Joi.string().pattern(/(?:https?:)?\/\/(?:www\.)?(?:npmjs\.com)\/package\/([A-Za-z0-9-_.@]+)/),
-					).required(),
+					value: Joi.alternatives()
+						.try(
+							Joi.string().pattern(
+								/(?:https?:)?\/\/(?:www\.)?(?:bitbucket\.org)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/,
+							),
+							Joi.string().pattern(
+								/(?:https?:)?\/\/(?:www\.)?(?:github\.com)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/,
+							),
+							Joi.string().pattern(
+								/(?:https?:)?\/\/(?:www\.)?(?:gitlab\.com)\/([A-Za-z0-9-_.]+)(?:\/[A-z0-9_-]+)?\/?/,
+							),
+							Joi.string().pattern(
+								/(?:https?:)?\/\/(?:www\.)?(?:npmjs\.com)\/package\/([A-Za-z0-9-_.@]+)/,
+							),
+						)
+						.required(),
 				}),
 			),
 			videos: Joi.array().items(
 				Joi.object({
 					type: Joi.valid("video").required(),
-					value: Joi.alternatives().try(
-						Joi.string().pattern(
-							/(?:https?:)?\/\/(?:www\.)?(?:vimeo\.com|player\.vimeo\.com\/video)\/([0-9]+)/,
-						),
-						Joi.string().pattern(
-							/(?:https?:)?\/\/(?:(?:www\.)?(?:youtube\.com)\/(?:watch\?v=|embed\/)|youtu\.be\/)([A-z0-9-_]+)\/?/,
-						),
-					).required(),
+					value: Joi.alternatives()
+						.try(
+							Joi.string().pattern(
+								/(?:https?:)?\/\/(?:www\.)?(?:vimeo\.com|player\.vimeo\.com\/video)\/([0-9]+)/,
+							),
+							Joi.string().pattern(
+								/(?:https?:)?\/\/(?:(?:www\.)?(?:youtube\.com)\/(?:watch\?v=|embed\/)|youtu\.be\/)([A-z0-9-_]+)\/?/,
+							),
+						)
+						.required(),
 				}),
 			),
 		}).validate(this.#data);
