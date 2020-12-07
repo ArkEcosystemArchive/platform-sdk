@@ -193,3 +193,87 @@ describe("transaction", () => {
 		expect(transactionData[functionName.toString()]()).toBeTruthy();
 	});
 });
+
+describe("TransactionData", () => {
+	//
+});
+
+describe("BridgechainRegistrationData", () => {
+	//
+});
+
+describe("BridgechainResignationData", () => {
+	//
+});
+
+describe("BridgechainUpdateData", () => {
+	//
+});
+
+describe("BusinessRegistrationData", () => {
+	//
+});
+
+describe("BusinessResignationData", () => {
+	//
+});
+
+describe("BusinessUpdateData", () => {
+	//
+});
+
+describe("DelegateRegistrationData", () => {
+	//
+});
+
+describe("DelegateResignationData", () => {
+	//
+});
+
+describe("EntityRegistrationData", () => {
+	//
+});
+
+describe("EntityResignationData", () => {
+	//
+});
+
+describe("EntityUpdateData", () => {
+	//
+});
+
+describe("HtlcClaimData", () => {
+	//
+});
+
+describe("HtlcLockData", () => {
+	//
+});
+
+describe("HtlcRefundData", () => {
+	//
+});
+
+describe("IpfsData", () => {
+	//
+});
+
+describe("MultiPaymentData", () => {
+	//
+});
+
+describe("MultiSignatureData", () => {
+	//
+});
+
+describe("SecondSignatureData", () => {
+	//
+});
+
+describe("TransferData", () => {
+	//
+});
+
+describe("VoteData", () => {
+	//
+});

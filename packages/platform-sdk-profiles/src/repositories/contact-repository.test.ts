@@ -49,6 +49,14 @@ beforeEach(async () => {
 
 beforeAll(() => nock.disableNetConnect());
 
+it("#first | #last", async () => {
+	const john = subject.create("John");
+	const jane = subject.create("Jane");
+
+	expect(subject.first()).toEqual(john);
+	expect(subject.last()).toEqual(jane);
+});
+
 test("#create", () => {
 	expect(subject.keys()).toHaveLength(0);
 

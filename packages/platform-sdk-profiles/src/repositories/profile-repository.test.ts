@@ -144,36 +144,21 @@ describe("ProfileRepository", () => {
 		subject.create("John");
 		subject.create("Jane");
 
-		expect(subject.all()).toMatchInlineSnapshot(`
-		Object {
-		  "3e8cbef8-ee29-431d-b52c-ee24f9130b18": Profile {},
-		  "bb843a3c-1a76-4ddf-966e-62b87f0fc465": Profile {},
-		}
-	`);
+		expect(Object.keys(subject.all())).toHaveLength(2);
 	});
 
 	it("should get all keys", async () => {
 		subject.create("John");
 		subject.create("Jane");
 
-		expect(subject.keys()).toMatchInlineSnapshot(`
-		Array [
-		  "d93f479e-820d-4556-821e-ff86e9b86d87",
-		  "7fba2c14-11b8-4523-b4b9-d470501086a1",
-		]
-	`);
+		expect(subject.keys()).toHaveLength(2);
 	});
 
 	it("should get all values", async () => {
 		subject.create("John");
 		subject.create("Jane");
 
-		expect(subject.values()).toMatchInlineSnapshot(`
-		Array [
-		  Profile {},
-		  Profile {},
-		]
-	`);
+		expect(subject.values()).toHaveLength(2);
 	});
 
 	it("should get the first and last profile", async () => {
