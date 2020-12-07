@@ -1,3 +1,5 @@
+import "jest-extended";
+
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
@@ -11,6 +13,7 @@ import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
+import { WalletData } from "../wallets/wallet.models";
 import {
 	TransactionData,
 	BridgechainRegistrationData,
@@ -45,6 +48,7 @@ const createSubject = (wallet, properties, klass) => new klass(wallet, {
 	confirmations: () => BigNumber.make(20),
 	sender: () => "sender",
 	recipient: () => "recipient",
+	memo: () => "memo",
 	recipients: () => [],
 	amount: () => BigNumber.make(18),
 	fee: () => BigNumber.make(2),
@@ -132,10 +136,57 @@ describe("Transaction", () => {
 
 	it("should have a converted amount", () => {
 		expect(subject.convertedAmount().toNumber()).toStrictEqual(0);
+
+		wallet.data().set(WalletData.ExchangeRate, 10);
+
+		expect(subject.convertedAmount().toNumber()).toStrictEqual(180);
 	});
 
 	it("should have a fee", () => {
 		expect(subject.fee().toNumber()).toStrictEqual(2);
+	});
+
+	test("#toObject", () => {
+		subject = createSubject(wallet, undefined, TransactionData);
+
+		expect(subject.toObject()).toMatchInlineSnapshot();
+	});
+
+	test("#memo", () => {
+		subject = createSubject(wallet, {
+			memo: () => "memo",
+		}, TransactionData);
+
+		expect(subject.memo()).toBe("memo");
+	});
+
+	test("#hasPassed", () => {
+		subject = createSubject(wallet, {
+			hasPassed: () => true,
+		}, TransactionData);
+
+		expect(subject.hasPassed()).toBeTrue();
+	});
+
+	test("#hasFailed", () => {
+		subject = createSubject(wallet, {
+			hasFailed: () => true,
+		}, TransactionData);
+
+		expect(subject.hasFailed()).toBeTrue();
+	});
+
+	test("#getMeta | #setMeta", () => {
+		const getMeta = jest.fn();
+		const setMeta = jest.fn();
+
+		subject = createSubject(wallet, { getMeta, setMeta }, TransactionData);
+
+		subject.getMeta("key");
+		subject.setMeta("key", "value");
+
+		expect(getMeta).toHaveBeenCalled();
+		expect(setMeta).toHaveBeenCalled();
 	});
 
 	const data = [
@@ -611,5 +662,17 @@ describe("VoteData", () => {
 
 	test("#unvotes", () => {
 		expect(subject.unvotes()).toEqual(["unvote"]);
+	});
+});
+
+describe("Type Specific", () => {
+    beforeEach(() => {
+        subject = createSubject(wallet, {
+            asset: () => ({ key: "value" }),
+        }, VoteData);
+    });
+
+	it("should return the asset", () => {
+		expect(subject.asset()).toEqual({ key: "value" });
 	});
 });
