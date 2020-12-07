@@ -1093,6 +1093,7 @@ __metadata:
     localforage: ^1.9.0
     mem: ^8.0.0
     nock: ^13.0.5
+    node-cache: ^5.1.2
     npm-check-updates: ^10.1.1
     p-queue: ^6.6.2
     prettier: ^2.1.2
@@ -6733,6 +6734,13 @@ __metadata:
   dependencies:
     mimic-response: ^1.0.0
   checksum: 2/71832f9219f2682b0915bdbc0dd187ba8e63d16b0af5342b44f97b34afe9400a1f528a253dd2f70a8dd8b23bfa4c4e106928fcc520fa5899d769af95e4cce53c
+  languageName: node
+  linkType: hard
+
+"clone@npm:2.x":
+  version: 2.1.2
+  resolution: "clone@npm:2.1.2"
+  checksum: 2/85232d66015d2d703dc59812e30049931d97c7815bf70569ae4fb7a66be257f46fcf47040e4e7050966ca195a9e615d59d73ba9e39fc37eedba1a76865f27ab1
   languageName: node
   linkType: hard
 
@@ -12407,6 +12415,15 @@ __metadata:
   dependencies:
     node-gyp: latest
   checksum: 2/c38b1f757d092d4874eae5b525bab0dc00bc58f6a78950598a1f1539dbdf3fda79755009c3b98f8ff110011561327d5854a3567b0c834440b73afdbe5163c450
+  languageName: node
+  linkType: hard
+
+"node-cache@npm:^5.1.2":
+  version: 5.1.2
+  resolution: "node-cache@npm:5.1.2"
+  dependencies:
+    clone: 2.x
+  checksum: 2/2790fee0366b9c2f747106cbfeaf2b5f60b20201320dd77ebd097d51703c406898aa1c84819cc57fd54a39962bba413956eb721a7a04357add241c53471b4818
   languageName: node
   linkType: hard
 
