@@ -1,9 +1,9 @@
+import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
-import { TransactionDataCollection } from "../../../platform-sdk/dist/coins";
 import { identity } from "../../test/fixtures/identity";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
@@ -137,7 +137,7 @@ describe("transaction-mapper", () => {
 			isLegacyBridgechainRegistration: () => true,
 		});
 
-		const collection = new TransactionDataCollection([transactionData], pagination);
+		const collection = new Coins.TransactionDataCollection([transactionData], pagination);
 
 		const transformedCollection = transformTransactionDataCollection(wallet, collection);
 		expect(transformedCollection).toBeInstanceOf(ExtendedTransactionDataCollection);

@@ -1,6 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
-import { WalletDataCollection } from "../../../../platform-sdk/dist/coins";
 import { pqueueSettled } from "../../helpers/queue";
 import { DataRepository } from "../../repositories/data-repository";
 import { ReadOnlyWallet } from "../../wallets/read-only-wallet";
@@ -42,7 +41,7 @@ export class DelegateService {
 
 		const result: Contracts.WalletData[] = [];
 		let hasMore = true;
-		let lastResponse: WalletDataCollection | undefined = undefined;
+		let lastResponse: Coins.WalletDataCollection | undefined = undefined;
 
 		while (hasMore) {
 			if (lastResponse && lastResponse.hasMorePages()) {
