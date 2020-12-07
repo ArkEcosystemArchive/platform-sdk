@@ -39,21 +39,22 @@ import {
 } from "./transaction";
 
 // @ts-ignore
-const createSubject = (wallet, properties, klass) => new klass(wallet, {
-	id: () => "transactionId",
-	blockId: () => "transactionBlockId",
-	bridgechainId: () => "bridgechainId",
-	type: () => "some type",
-	timestamp: () => undefined,
-	confirmations: () => BigNumber.make(20),
-	sender: () => "sender",
-	recipient: () => "recipient",
-	memo: () => "memo",
-	recipients: () => [],
-	amount: () => BigNumber.make(18),
-	fee: () => BigNumber.make(2),
-	...(properties || {})
-});
+const createSubject = (wallet, properties, klass) =>
+	new klass(wallet, {
+		id: () => "transactionId",
+		blockId: () => "transactionBlockId",
+		bridgechainId: () => "bridgechainId",
+		type: () => "some type",
+		timestamp: () => undefined,
+		confirmations: () => BigNumber.make(20),
+		sender: () => "sender",
+		recipient: () => "recipient",
+		memo: () => "memo",
+		recipients: () => [],
+		amount: () => BigNumber.make(18),
+		fee: () => BigNumber.make(2),
+		...(properties || {}),
+	});
 
 let subject: any;
 let profile: Profile;
@@ -153,25 +154,37 @@ describe("Transaction", () => {
 	});
 
 	test("#memo", () => {
-		subject = createSubject(wallet, {
-			memo: () => "memo",
-		}, TransactionData);
+		subject = createSubject(
+			wallet,
+			{
+				memo: () => "memo",
+			},
+			TransactionData,
+		);
 
 		expect(subject.memo()).toBe("memo");
 	});
 
 	test("#hasPassed", () => {
-		subject = createSubject(wallet, {
-			hasPassed: () => true,
-		}, TransactionData);
+		subject = createSubject(
+			wallet,
+			{
+				hasPassed: () => true,
+			},
+			TransactionData,
+		);
 
 		expect(subject.hasPassed()).toBeTrue();
 	});
 
 	test("#hasFailed", () => {
-		subject = createSubject(wallet, {
-			hasFailed: () => true,
-		}, TransactionData);
+		subject = createSubject(
+			wallet,
+			{
+				hasFailed: () => true,
+			},
+			TransactionData,
+		);
 
 		expect(subject.hasFailed()).toBeTrue();
 	});
@@ -738,11 +751,15 @@ describe("VoteData", () => {
 });
 
 describe("Type Specific", () => {
-    beforeEach(() => {
-        subject = createSubject(wallet, {
-            asset: () => ({ key: "value" }),
-        }, VoteData);
-    });
+	beforeEach(() => {
+		subject = createSubject(
+			wallet,
+			{
+				asset: () => ({ key: "value" }),
+			},
+			VoteData,
+		);
+	});
 
 	it("should return the asset", () => {
 		expect(subject.asset()).toEqual({ key: "value" });
