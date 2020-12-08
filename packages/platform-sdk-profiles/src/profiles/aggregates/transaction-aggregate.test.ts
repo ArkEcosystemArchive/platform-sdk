@@ -9,9 +9,9 @@ import { ExtendedTransactionDataCollection } from "../../dto/transaction-collect
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { CoinService } from "../../environment/services/coin-service";
+import * as promiseHelpers from "../../helpers/promise";
 import { Profile } from "../profile";
 import { TransactionAggregate } from "./transaction-aggregate";
-import * as promiseHelpers from "../../helpers/promise";
 
 let subject: TransactionAggregate;
 
