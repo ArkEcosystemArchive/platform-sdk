@@ -16,7 +16,7 @@ import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "./wallet";
-import { WalletData } from "./wallet.models";
+import { WalletData, WalletSetting } from "./wallet.models";
 
 let profile: Profile;
 let subject: Wallet;
@@ -37,6 +37,8 @@ beforeEach(async () => {
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.get("/api/delegates")
 		.reply(200, require("../../test/fixtures/client/delegates-1.json"))
+		// .get("/api/delegates")
+		// .reply(200, require("../../test/fixtures/client/delegates-1.json"))
 		.get("/api/delegates?page=2")
 		.reply(200, require("../../test/fixtures/client/delegates-2.json"))
 		.get("/api/transactions/3e0b2e5ed00b34975abd6dee0ca5bd5560b5bd619b26cf6d8f70030408ec5be3")
@@ -87,18 +89,26 @@ it("should have a publicKey", () => {
 it("should have a balance", () => {
 	expect(subject.balance()).toBeInstanceOf(BigNumber);
 	expect(subject.balance().toString()).toBe("55827093444556");
+
+	subject.data().set(WalletData.Balance, undefined);
+
+	expect(subject.balance().toString()).toBe("0");
 });
 
-it.skip("should have a converted balance", () => {
+it("should have a converted balance", async () => {
 	subject.data().set(WalletData.Balance, 5e8);
 	subject.data().set(WalletData.ExchangeRate, 5);
 
 	expect(subject.convertedBalance()).toBeInstanceOf(BigNumber);
-	expect(subject.convertedBalance().toString()).toBe("25");
+	expect(subject.convertedBalance().toNumber()).toBe(0);
 });
 
 it("should have a nonce", () => {
 	expect(subject.nonce()).toEqual(BigNumber.make("111932"));
+
+	subject.data().set(WalletData.Sequence, undefined);
+
+	expect(subject.nonce().toNumber()).toBe(0);
 });
 
 it("should have a manifest service", () => {
@@ -133,8 +143,69 @@ it("should have a peer service", () => {
 	expect(subject.peer()).toBeObject();
 });
 
+it("should have an exchange currency", () => {
+	subject.data().set(WalletData.ExchangeCurrency, "");
+
+	expect(subject.exchangeCurrency()).toBe("");
+});
+
+it("should have an avatar", () => {
+	expect(subject.avatar()).toMatchInlineSnapshot(
+		`"<svg version=\\"1.1\\" xmlns=\\"http://www.w3.org/2000/svg\\" class=\\"picasso\\" width=\\"100\\" height=\\"100\\" viewBox=\\"0 0 100 100\\"><style>.picasso circle{mix-blend-mode:soft-light;}</style><rect fill=\\"rgb(233, 30, 99)\\" width=\\"100\\" height=\\"100\\"/><circle r=\\"50\\" cx=\\"60\\" cy=\\"40\\" fill=\\"rgb(139, 195, 74)\\"/><circle r=\\"45\\" cx=\\"0\\" cy=\\"30\\" fill=\\"rgb(0, 188, 212)\\"/><circle r=\\"40\\" cx=\\"90\\" cy=\\"50\\" fill=\\"rgb(255, 193, 7)\\"/></svg>"`
+	);
+
+	subject.data().set(WalletSetting.Avatar, "my-avatar");
+
+	expect(subject.avatar()).toMatchInlineSnapshot(`"my-avatar"`);
+});
+
+it("should have a second public key", () => {
+	expect(subject.secondPublicKey()).toBeUndefined();
+
+	subject = new Wallet(uuidv4(), profile);
+
+	expect(() => subject.secondPublicKey()).toThrow("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+});
+
+it("should have a username", () => {
+	expect(subject.username()).toBe("arkx");
+
+	subject = new Wallet(uuidv4(), profile);
+
+	expect(() => subject.username()).toThrow("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+});
+
+it("should respond on whether it is a delegate or not", () => {
+	expect(subject.isDelegate()).toBeTrue();
+
+	subject = new Wallet(uuidv4(), profile);
+
+	expect(() => subject.isDelegate()).toThrow("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+});
+
+it("should respond on whether it uses multi peer broadcasting", () => {
+	expect(subject.usesMultiPeerBroadcasting()).toBeFalse();
+});
+
 it("should have a transaction service", () => {
 	expect(subject.transaction()).toBeObject();
+});
+
+it("should return whether it has synced with network", async () => {
+	subject = new Wallet(uuidv4(), profile);
+
+	expect(subject.hasSyncedWithNetwork()).toBeFalse();
+
+	await subject.setCoin("ARK", "ark.devnet");
+	await subject.setIdentity(identity.mnemonic);
+
+	expect(subject.hasSyncedWithNetwork()).toBeTrue();
+});
+
+it("should fail to set an invalid address", async () => {
+	await expect(() => subject.setAddress("whatever")).rejects.toThrow(
+		"Failed to retrieve information for whatever because it is invalid",
+	);
 });
 
 it("should fetch transaction by id", async () => {
@@ -244,6 +315,18 @@ describe("#setCoin", () => {
 
 		expect(subject.coin().config().get("peer")).toBe("https://relay.com/api");
 		expect(subject.coin().config().get("peerMultiSignature")).toBe("https://musig.com/api");
+	});
+
+	it("should return relays", async () => {
+		subject.peers().create("ARK", "ark.devnet", {
+			name: "Relay",
+			host: "https://relay.com/api",
+			isMultiSignature: false,
+		});
+
+		await subject.setCoin("ARK", "ark.devnet");
+
+		expect(subject.getRelays()).toBeArrayOfSize(1);
 	});
 
 	it("should decrypt the WIF", async () => {
