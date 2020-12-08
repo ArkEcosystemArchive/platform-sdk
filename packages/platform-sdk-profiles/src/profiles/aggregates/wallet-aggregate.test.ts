@@ -13,6 +13,7 @@ import { Profile } from "../profile";
 import { WalletAggregate } from "./wallet-aggregate";
 
 let subject: WalletAggregate;
+let profile: Profile;
 
 beforeAll(() => {
 	nock(/.+/)
@@ -32,33 +33,49 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	const profile = new Profile({ id: "uuid" });
+	profile = new Profile({ id: "uuid" });
 
 	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
 	subject = new WalletAggregate(profile);
 });
 
-test("#balance", async () => {
-	expect(subject.balance("live").toString()).toEqual("0");
+describe("WalletAggregate", () => {
+	it("#balance", async () => {
+		expect(subject.balance("test").toString()).toEqual("55827093444556");
+		expect(subject.balance("live").toString()).toEqual("0");
+		expect(subject.balance().toString()).toEqual("0");
 
-	expect(subject.balance("test").toString()).toEqual("55827093444556");
-});
-
-test("#balancesByNetworkType", async () => {
-	expect(subject.balancesByNetworkType()).toEqual({
-		live: BigNumber.ZERO,
-		test: BigNumber.make("55827093444556"),
+		const mockWalletLive = jest.spyOn(profile.wallets().first().network(), "isLive").mockReturnValue(true);
+		expect(subject.balance("live").toString()).toEqual("55827093444556");
+		mockWalletLive.mockRestore();
 	});
-});
 
-test("#balancePerCoin", async () => {
-	expect(subject.balancePerCoin("live")).toEqual({});
+	it("#convertedBalance", async () => {
+		expect(subject.convertedBalance().toString()).toEqual("0");
+	});
 
-	expect(subject.balancePerCoin("test")).toEqual({
-		DARK: {
-			percentage: "100.00",
-			total: "55827093444556",
-		},
+	it("#balancesByNetworkType", async () => {
+		expect(subject.balancesByNetworkType()).toEqual({
+			live: BigNumber.ZERO,
+			test: BigNumber.make("55827093444556"),
+		});
+	});
+
+	it("#balancePerCoin", async () => {
+		expect(subject.balancePerCoin()).toEqual({});
+		expect(subject.balancePerCoin("live")).toEqual({});
+
+		expect(subject.balancePerCoin("test")).toEqual({
+			DARK: {
+				percentage: "100.00",
+				total: "55827093444556",
+			},
+		});
+
+		const mockWalletLive = jest.spyOn(profile.wallets().first(), "balance").mockReturnValue(BigNumber.ZERO);
+
+		expect(subject.balancePerCoin("test")).toEqual({ DARK: { percentage: "0.00", total: "0" } });
+		mockWalletLive.mockRestore();
 	});
 });
