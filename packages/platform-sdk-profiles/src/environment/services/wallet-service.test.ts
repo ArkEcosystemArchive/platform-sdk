@@ -121,6 +121,4 @@ describe("WalletService", () => {
 		await subject.syncByProfile(profile);
 		mockUndefinedWallets.mockRestore();
 	});
-
-	it("#syncByProfile", async () => {});
 });

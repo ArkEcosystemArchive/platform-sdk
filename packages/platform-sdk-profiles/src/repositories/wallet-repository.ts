@@ -32,15 +32,13 @@ export class WalletRepository {
 		const result = {};
 
 		for (const [id, wallet] of Object.entries(this.all())) {
-			const coin: string | undefined = wallet.currency();
+			const coin: string = wallet.currency();
 
-			if (coin) {
-				if (!result[coin]) {
-					result[coin] = {};
-				}
-
-				result[coin][id] = wallet;
+			if (!result[coin]) {
+				result[coin] = {};
 			}
+
+			result[coin][id] = wallet;
 		}
 
 		return result;

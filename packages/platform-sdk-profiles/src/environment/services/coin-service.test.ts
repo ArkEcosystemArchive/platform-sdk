@@ -55,7 +55,7 @@ describe("CoinService", () => {
 
 	it("#has", async () => {
 		expect(subject.has("ARK", "ark.devnet")).toBeTrue();
-		expect(subject.has("UKNOWN", "ark.devnet")).toBeFalse();
+		expect(subject.has("UNKNOWN", "ark.devnet")).toBeFalse();
 	});
 
 	it("#get", async () => {
