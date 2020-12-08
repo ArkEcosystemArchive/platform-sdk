@@ -183,6 +183,58 @@ it("should respond on whether it is a delegate or not", () => {
 	expect(() => subject.isDelegate()).toThrow("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 });
 
+it("should respond on whether it is a resigned delegate or not", () => {
+	expect(subject.isResignedDelegate()).toBeTrue();
+
+	subject = new Wallet(uuidv4(), profile);
+
+	expect(() => subject.isResignedDelegate()).toThrow("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+});
+
+it("should respond on whether it is known", () => {
+	container.set(Identifiers.KnownWalletService, {
+		is: (a, b)=> false,
+	});
+
+	expect(subject.isKnown()).toBeFalse();
+});
+
+it("should respond on whether it is owned by exchange", () => {
+	container.set(Identifiers.KnownWalletService, {
+		isExchange: (a, b)=> false,
+	});
+
+	expect(subject.isOwnedByExchange()).toBeFalse();
+});
+
+it("should respond on whether it is owned by a team", () => {
+	container.set(Identifiers.KnownWalletService, {
+		isTeam: (a, b)=> false,
+	});
+
+	expect(subject.isOwnedByTeam()).toBeFalse();
+});
+
+it("should respond on whether it is ledger", () => {
+	expect(subject.isLedger()).toBeFalse();
+});
+
+it("should respond on whether it is multi signature or not", () => {
+	expect(subject.isMultiSignature()).toBeFalse();
+
+	subject = new Wallet(uuidv4(), profile);
+
+	expect(() => subject.isMultiSignature()).toThrow("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+});
+
+it("should respond on whether it is second signature or not", () => {
+	expect(subject.isSecondSignature()).toBeFalse();
+
+	subject = new Wallet(uuidv4(), profile);
+
+	expect(() => subject.isSecondSignature()).toThrow("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+});
+
 it("should respond on whether it uses multi peer broadcasting", () => {
 	expect(subject.usesMultiPeerBroadcasting()).toBeFalse();
 });
@@ -224,6 +276,15 @@ it("should fetch transactions by id", async () => {
 	const fetchedIds = transactions.map((transaction) => transaction.id());
 	expect(fetchedIds.includes(transactionId)).toBeTrue();
 	expect(fetchedIds.includes(secondaryTransactionId)).toBeTrue();
+});
+
+it("should return multi signature", () => {
+
+	expect(() => subject.multiSignature()).toThrow("This wallet does not have a multi-signature registered.");
+
+	subject = new Wallet(uuidv4(), profile);
+
+	expect(() => subject.multiSignature()).toThrow("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 });
 
 describe.each([123, 456, 789])("%s", (slip44) => {
