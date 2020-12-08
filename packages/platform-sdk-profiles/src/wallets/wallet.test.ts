@@ -37,8 +37,6 @@ beforeEach(async () => {
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.get("/api/delegates")
 		.reply(200, require("../../test/fixtures/client/delegates-1.json"))
-		// .get("/api/delegates")
-		// .reply(200, require("../../test/fixtures/client/delegates-1.json"))
 		.get("/api/delegates?page=2")
 		.reply(200, require("../../test/fixtures/client/delegates-2.json"))
 		.get("/api/transactions/3e0b2e5ed00b34975abd6dee0ca5bd5560b5bd619b26cf6d8f70030408ec5be3")
@@ -298,6 +296,85 @@ it("should return multi signature", () => {
 	expect(() => subject.multiSignature()).toThrow(
 		"This wallet has not been synchronized yet. Please call [syncIdentity] before using it.",
 	);
+});
+
+it("should return multi signature participants", () => {
+	subject.data().set(WalletData.MultiSignatureParticipants, {
+		min: 2,
+		publicKeys: [
+			'a',
+			'b',
+		]
+	});
+	subject.syncIdentity();
+	subject.syncMultiSignature();
+	expect(() => subject.multiSignatureParticipants()).toThrow(
+		"This wallet does not have a multi-signature registered.",
+	);
+
+	subject.data().set(WalletData.MultiSignatureParticipants, undefined);
+	subject.syncIdentity();
+
+	expect(() => subject.multiSignatureParticipants()).toThrow(
+		"This Multi-Signature has not been synchronized yet. Please call [syncMultiSignature] before using it.",
+	);
+});
+
+it("should return entities", () => {
+	expect(subject.entities()).toBeArrayOfSize(0);
+
+	subject = new Wallet(uuidv4(), profile);
+
+	expect(() => subject.entities()).toThrow(
+		"This wallet has not been synchronized yet. Please call [syncIdentity] before using it.",
+	);
+});
+
+it("should return votes available", () => {
+	expect(() => subject.votesAvailable()).toThrow("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+
+	subject.data().set(WalletData.VotesAvailable, 2);
+
+	expect(subject.votesAvailable()).toBe(2);
+});
+
+it("should return votes used", () => {
+	expect(() => subject.votesUsed()).toThrow("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+
+	subject.data().set(WalletData.VotesUsed, 2);
+
+	expect(subject.votesUsed()).toBe(2);
+});
+
+it("should return explorer link", () => {
+	expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+});
+
+it("should return whether it can vote or not", () => {
+	subject.data().set(WalletData.VotesAvailable, 0);
+
+	expect(subject.canVote()).toBeFalse();
+
+	subject.data().set(WalletData.VotesAvailable, 2);
+
+	expect(subject.canVote()).toBeTrue();
+});
+
+describe("features", () => {
+	it("can", () => {
+		expect(subject.can("some-feature")).toBeFalse();
+	})
+	it("cannot", () => {
+		expect(subject.cannot("some-feature")).toBeTrue();
+	})
+	it("can any", () => {
+		expect(subject.canAny(["some-feature"])).toBeFalse();
+		expect(subject.canAny(['Client.transactions'])).toBeTrue();
+	})
+	it("can all", () => {
+		expect(subject.canAll(["some-feature"])).toBeFalse();
+		expect(subject.canAll([])).toBeTrue();
+	})
 });
 
 describe.each([123, 456, 789])("%s", (slip44) => {
