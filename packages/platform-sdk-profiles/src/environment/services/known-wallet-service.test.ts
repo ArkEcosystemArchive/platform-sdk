@@ -81,6 +81,7 @@ describe("KnownWalletService", () => {
 	test("#isExchange", async () => {
 		expect(subject.isExchange("ark.devnet", "AFrPtEmzu6wdVpa2CnRDEKGQQMWgq8nE9V")).toBeTrue();
 		expect(subject.isExchange("ark.devnet", "AagJoLEnpXYkxYdYkmdDSNMLjjBkLJ6T67")).toBeFalse();
+		expect(subject.isExchange("unknown", "AagJoLEnpXYkxYdYkmdDSNMLjjBkLJ6T67")).toBeFalse();
 	});
 
 	test("#isTeam", async () => {
