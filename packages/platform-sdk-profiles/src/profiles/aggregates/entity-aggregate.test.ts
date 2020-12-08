@@ -77,3 +77,50 @@ it("should aggregate resignations for the given type and sub-type", async () => 
 	expect(resignations.items()).toHaveLength(1);
 	expect(resignations.findById("df520b0a278314e998dc93be1e20c72b8313950c19da23967a9db60eb4e990da")).toBeTruthy();
 });
+
+it("#flush", async () => {
+	nock.cleanAll();
+	nock(/.+/)
+		.get("/api/transactions")
+		.query(true)
+		.reply(200, require("../../../test/fixtures/client/registrations/business.json"));
+
+	profile.entityAggregate().flush();
+	const resignations = await profile.entityAggregate().resignations(EntityType.Business, EntitySubType.None);
+
+	expect(resignations.items()).toHaveLength(1);
+	expect(resignations.findById("df520b0a278314e998dc93be1e20c72b8313950c19da23967a9db60eb4e990da")).toBeTruthy();
+});
+
+it("#should fetch all available registrations", async () => {
+	nock.cleanAll();
+	nock(/.+/)
+		.get("/api/transactions")
+		.query(true)
+		.reply(200, require("../../../test/fixtures/client/registrations/business.json"));
+
+	const firstPage = await profile.entityAggregate().registrations(EntityType.Business, EntitySubType.None);
+	expect(firstPage.findById("df520b0a278314e998dc93be1e20c72b8313950c19da23967a9db60eb4e990da")).toBeTruthy();
+
+	const secondPage = await profile.entityAggregate().registrations(EntityType.Business, EntitySubType.None);
+	expect(secondPage.items()).toHaveLength(0);
+	expect(profile.entityAggregate().hasMore("0.0.updates")).toBeFalse();
+});
+
+it("should filter out empty registration results", async () => {
+	nock.cleanAll();
+	nock(/.+/)
+		.get("/api/transactions")
+		.query(true)
+		.reply(200, require("../../../test/fixtures/client/registrations/business.json"));
+
+	const firstPage = await profile.entityAggregate().registrations(EntityType.Business, EntitySubType.None);
+	expect(firstPage.findById("df520b0a278314e998dc93be1e20c72b8313950c19da23967a9db60eb4e990da")).toBeTruthy();
+
+	nock.cleanAll();
+	nock(/.+/).get("/api/transactions").query(true).reply(200, { meta: {}, data: [] });
+
+	profile.entityAggregate().flush();
+	const nextPage = await profile.entityAggregate().registrations(EntityType.Business, EntitySubType.None);
+	expect(nextPage.items()).toHaveLength(0);
+});
