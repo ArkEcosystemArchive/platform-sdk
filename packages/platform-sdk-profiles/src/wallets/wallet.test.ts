@@ -17,6 +17,8 @@ import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "./wallet";
 import { WalletData, WalletSetting } from "./wallet.models";
+import { EntityAggregate } from "./aggregates/entity-aggregate";
+import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 
 let profile: Profile;
 let subject: Wallet;
@@ -375,6 +377,18 @@ describe("features", () => {
 		expect(subject.canAll(["some-feature"])).toBeFalse();
 		expect(subject.canAll([])).toBeTrue();
 	})
+});
+
+it("should return the entity aggregate", () => {
+	expect(subject.entityAggregate()).toBeInstanceOf(EntityAggregate);
+});
+
+it("should return the entity history aggregate", () => {
+	expect(subject.entityHistoryAggregate()).toBeInstanceOf(EntityHistoryAggregate);
+});
+
+it("should sync", async () => {
+	await expect(subject.sync()).resolves;
 });
 
 describe.each([123, 456, 789])("%s", (slip44) => {
