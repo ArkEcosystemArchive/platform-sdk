@@ -34,22 +34,50 @@ beforeAll(() => {
 	container.set(Identifiers.Coins, { ARK });
 });
 
-beforeEach(() => (subject = new DelegateService()));
-
-it("should sync the delegates", async () => {
-	expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
-
-	await subject.sync("ARK", "ark.devnet");
-
-	expect(subject.all("ARK", "ark.devnet")).toBeArray();
-	expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
+beforeEach(async () => {
+	subject = new DelegateService();
 });
 
-it("should sync the delegates of all coins", async () => {
-	expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
+describe("DelegateService", () => {
+	it("should sync the delegates", async () => {
+		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
-	await subject.syncAll();
+		await subject.sync("ARK", "ark.devnet");
 
-	expect(subject.all("ARK", "ark.devnet")).toBeArray();
-	expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
+		expect(subject.all("ARK", "ark.devnet")).toBeArray();
+		expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
+	});
+
+	it("should sync the delegates of all coins", async () => {
+		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
+
+		await subject.syncAll();
+
+		expect(subject.all("ARK", "ark.devnet")).toBeArray();
+		expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
+	});
+
+	it("#findByAddress", async () => {
+		await subject.syncAll();
+		expect(subject.findByAddress("ARK", "ark.devnet", "DSyG9hK9CE8eyfddUoEvsga4kNVQLdw2ve")).toBeTruthy();
+		expect(() => subject.findByAddress("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
+	});
+
+	it("#findByPublicKey", async () => {
+		await subject.syncAll();
+		expect(
+			subject.findByPublicKey(
+				"ARK",
+				"ark.devnet",
+				"033a5474f68f92f254691e93c06a2f22efaf7d66b543a53efcece021819653a200",
+			),
+		).toBeTruthy();
+		expect(() => subject.findByPublicKey("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
+	});
+
+	it("#findByUsername", async () => {
+		await subject.syncAll();
+		expect(subject.findByUsername("ARK", "ark.devnet", "alessio")).toBeTruthy();
+		expect(() => subject.findByUsername("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
+	});
 });
