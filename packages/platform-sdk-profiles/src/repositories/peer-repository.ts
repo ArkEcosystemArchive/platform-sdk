@@ -71,6 +71,7 @@ export class PeerRepository {
 		this.#data.forgetIndex(`${coin}.${network}`, index);
 
 		// If the list is empty we want to completely remove it.
+		/* istanbul ignore next */
 		if ((this.#data.get<Peer[]>(`${coin}.${network}`) || []).filter(Boolean).length <= 0) {
 			this.#data.forget(`${coin}.${network}`);
 		}

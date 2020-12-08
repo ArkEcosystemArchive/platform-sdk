@@ -3,6 +3,7 @@ import "jest-extended";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
+import { v4 as uuidv4 } from "uuid";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
@@ -51,6 +52,42 @@ test("#create", async () => {
 	expect(subject.keys()).toHaveLength(1);
 });
 
+test("#all", () => {
+	expect(subject.all()).toBeObject();
+});
+
+test("#first", async () => {
+	const address = await subject.create(stubData);
+
+	expect(subject.first()).toBe(address);
+});
+
+test("#last", async () => {
+	const address = await subject.create(stubData);
+
+	expect(subject.last()).toBe(address);
+});
+
+test("#count", async () => {
+	await subject.create(stubData);
+
+	expect(subject.count()).toBe(1);
+});
+
+test("#fill", async () => {
+	const id: string = uuidv4();
+
+	await subject.fill([{ id, ...stubData }]);
+
+	expect(subject.findById(id)).toBeObject();
+});
+
+test("#toArray", async () => {
+	const wallet = await subject.create(stubData);
+
+	expect(subject.toArray()).toStrictEqual([wallet.toObject()]);
+});
+
 test("#find", async () => {
 	expect(() => subject.findById("invalid")).toThrowError("Failed to find");
 
@@ -59,14 +96,33 @@ test("#find", async () => {
 	expect(subject.findById(address.id())).toBeObject();
 });
 
-test("#update", async () => {
+test("#update invalid", async () => {
 	expect(() => subject.update("invalid", { name: "Jane Doe" })).toThrowError("Failed to find");
+});
 
+test("#update both", async () => {
+	const address = await subject.create(stubData);
+
+	subject.update(address.id(), { name: "Jane Doe", address: "new address" });
+
+	expect(subject.findById(address.id()).name()).toEqual("Jane Doe");
+	expect(subject.findByAddress("new address")[0].name()).toEqual("Jane Doe");
+});
+
+test("#update name", async () => {
 	const address = await subject.create(stubData);
 
 	subject.update(address.id(), { name: "Jane Doe" });
 
 	expect(subject.findById(address.id()).name()).toEqual("Jane Doe");
+});
+
+test("#update address", async () => {
+	const address = await subject.create(stubData);
+
+	subject.update(address.id(), { address: "new address" });
+
+	expect(subject.findByAddress("new address")[0].name()).toEqual("John Doe");
 });
 
 test("#forget", async () => {
