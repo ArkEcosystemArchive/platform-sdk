@@ -11,6 +11,7 @@ import { Identifiers } from "../../environment/container.models";
 import { CoinService } from "../../environment/services/coin-service";
 import { Profile } from "../profile";
 import { TransactionAggregate } from "./transaction-aggregate";
+import * as promiseHelpers from "../../helpers/promise";
 
 let subject: TransactionAggregate;
 
@@ -152,6 +153,20 @@ it("should flush the history", async () => {
 	expect(subject.hasMore("transactions")).toBeTrue();
 
 	subject.flush();
+});
 
-	expect(subject.hasMore("transactions")).toBeFalse();
+it("should handle undefined  promiseAllSettledByKey responses in aggregate", async () => {
+	nock(/.+/)
+		.get("/api/transactions")
+		.query(true)
+		.reply(200, require("../../../test/fixtures/client/transactions.json"));
+
+	//@ts-ignore
+	const promiseAllSettledByKeyMock = jest.spyOn(promiseHelpers, "promiseAllSettledByKey").mockImplementation(() => {
+		return Promise.resolve(undefined);
+	});
+
+	const results = await subject.transactions();
+	expect(results).toBeInstanceOf(ExtendedTransactionDataCollection);
+	promiseAllSettledByKeyMock.mockRestore();
 });
