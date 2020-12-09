@@ -1,20 +1,20 @@
 {
-  "data": {
-	"version": 2,
-	"network": 23,
-	"typeGroup": 1,
-	"type": 0,
-	"nonce": "1",
-	"senderPublicKey": "03fb92a2c3efaa177d8a51fc0cdf41905098d8b2cd900cbac94617492827e5f015",
-	"fee": "10000000",
-	"amount": "200000000",
-	"expiration": 0,
-	"recipientId": "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb",
-	"signatures": [
-	  "00c01c44bf33bea20a74d5acc12c5d6aafe82240f3571121382b77c871f4b33d6da2b62fdc6ca2cc6bc583abb2a69e7975be29e8d80a59c52bcff8d54514cf999e",
-	  "01830a2e319f2070f3519bc22c2d449acdb7691bf9dd25e3649a72ac843e08ce26e0b87e30e65b73f853cf8e375dbc495cc75c6fd199bf4b15327bf8c5ec4bfac5",
-	  "0292c299b739f0cb5e36133d85f51fff2fcc7745e8af4d0778908560c0874e3f2303e0436eabce1c09d88efab0004e61c5d6e47768aa8d2ab0cb9f14d523a38308"
-	],
-	"id": "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d"
-  }
+	"data": {
+		"version": 2,
+		"network": 23,
+		"typeGroup": 1,
+		"type": 0,
+		"nonce": "1",
+		"senderPublicKey": "03fb92a2c3efaa177d8a51fc0cdf41905098d8b2cd900cbac94617492827e5f015",
+		"fee": "10000000",
+		"amount": "200000000",
+		"expiration": 0,
+		"recipientId": "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb",
+		"signatures": [
+			"00c01c44bf33bea20a74d5acc12c5d6aafe82240f3571121382b77c871f4b33d6da2b62fdc6ca2cc6bc583abb2a69e7975be29e8d80a59c52bcff8d54514cf999e",
+			"01830a2e319f2070f3519bc22c2d449acdb7691bf9dd25e3649a72ac843e08ce26e0b87e30e65b73f853cf8e375dbc495cc75c6fd199bf4b15327bf8c5ec4bfac5",
+			"0292c299b739f0cb5e36133d85f51fff2fcc7745e8af4d0778908560c0874e3f2303e0436eabce1c09d88efab0004e61c5d6e47768aa8d2ab0cb9f14d523a38308"
+		],
+		"id": "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d"
+	}
 }
