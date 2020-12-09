@@ -242,6 +242,7 @@ export class Profile implements ProfileContract {
 	 */
 	public async restore(password?: string): Promise<void> {
 		let data: ProfileStruct | undefined;
+		let errorReason = "";
 
 		try {
 			if (password !== undefined) {
@@ -249,12 +250,13 @@ export class Profile implements ProfileContract {
 			} else {
 				data = JSON.parse(Base64.decode(this.#data.data));
 			}
-		} catch {
-			// Do nothing if both fail...
+		} catch (e) {
+			// Append the error reason
+			errorReason = ` Reason: ${e.message}`;
 		}
 
 		if (data === undefined) {
-			throw new Error("Failed to decode or decrypt the profile.");
+			throw new Error(`Failed to decode or decrypt the profile.${errorReason}`);
 		}
 
 		// @TODO: we need to apply migrations before we validate the data to ensure that it is conform
