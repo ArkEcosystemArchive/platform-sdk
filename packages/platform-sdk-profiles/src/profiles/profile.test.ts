@@ -164,6 +164,12 @@ describe("#dump", () => {
 		expect(password).toBeUndefined();
 		expect(data).toBeString();
 	});
+
+	it("should fail to dump a profile with a password if the password is invalid", () => {
+		subject.auth().setPassword("password");
+
+		expect(() => subject.dump("invalid-password")).toThrow("The password did not match our records.");
+	});
 });
 
 describe("#restore", () => {
@@ -208,5 +214,21 @@ describe("#restore", () => {
 		  "wallets": Object {},
 		}
 	`);
+	});
+
+	it("should fail to restore a profile with a password if no password was provided", async () => {
+		subject.auth().setPassword("password");
+
+		const profile: Profile = new Profile(subject.dump("password"));
+
+		await expect(profile.restore()).rejects.toThrow("Failed to decode or decrypt the profile.");
+	});
+
+	it("should fail to restore a profile with a password if an invalid password was provided", async () => {
+		subject.auth().setPassword("password");
+
+		const profile: Profile = new Profile(subject.dump("password"));
+
+		await expect(profile.restore("invalid-password")).rejects.toThrow("Failed to decode or decrypt the profile.");
 	});
 });
