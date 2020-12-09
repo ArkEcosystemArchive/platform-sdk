@@ -140,7 +140,7 @@ export class Environment {
 		return container.get(Identifiers.ProfileRepository);
 	}
 
-	public(): WalletService {
+	public wallets(): WalletService {
 		return container.get(Identifiers.WalletService);
 	}
 
