@@ -10,6 +10,7 @@ import nock from "nock";
 import { resolve } from "path";
 
 import storageData from "../../test/fixtures/env-storage.json";
+import corruptedStorageData from "../../test/fixtures/env-storage-corrupted.json";
 import { identity } from "../../test/fixtures/identity";
 import { StubStorage } from "../../test/stubs/storage";
 import { Profile } from "../profiles/profile";
@@ -18,19 +19,58 @@ import { ProfileRepository } from "../repositories/profile-repository";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Environment } from "./env";
+import { WalletService } from "./services/wallet-service";
+import { MemoryStorage } from "./storage/memory";
 
 let subject: Environment;
 
 beforeAll(() => {
+	nock.disableNetConnect();
+
 	nock(/.+/)
+		.get("/api/node/configuration")
+		.reply(200, require("../../test/fixtures/client/configuration.json"))
 		.get("/api/node/configuration/crypto")
 		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
-		.get("/api/peers")
-		.reply(200, require("../../test/fixtures/client/peers.json"))
 		.get("/api/node/syncing")
 		.reply(200, require("../../test/fixtures/client/syncing.json"))
+		.get("/api/peers")
+		.reply(200, require("../../test/fixtures/client/peers.json"))
+		.get("/api/node/fees")
+		.query(true)
+		.reply(200, require("../../test/fixtures/client/node-fees.json"))
+		.get("/api/transactions/fees")
+		.query(true)
+		.reply(200, require("../../test/fixtures/client/transaction-fees.json"))
+		.get("/api/delegates")
+		.query(true)
+		.reply(200, require("../../test/fixtures/client/delegates-2.json"))
+		.get("/ArkEcosystem/common/master/devnet/known-wallets-extended.json")
+		.reply(200, [
+			{
+				type: "team",
+				name: "ACF Hot Wallet",
+				address: "AagJoLEnpXYkxYdYkmdDSNMLjjBkLJ6T67",
+			},
+			{
+				type: "team",
+				name: "ACF Hot Wallet (old)",
+				address: "AWkBFnqvCF4jhqPSdE2HBPJiwaf67tgfGR",
+			},
+			{
+				type: "exchange",
+				name: "Binance",
+				address: "AFrPtEmzu6wdVpa2CnRDEKGQQMWgq8nE9V",
+			},
+		])
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
+		.get(/.+/)
+		.query(true)
+		.reply(200, (url) => {
+			console.log("getting url", url);
+			return { meta: {}, data: {} };
+		})
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
@@ -43,6 +83,7 @@ beforeEach(async () => {
 	subject = new Environment({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
 	await subject.verify();
 	await subject.boot();
+	await subject.persist();
 });
 
 it("should have a profile repository", async () => {
@@ -152,10 +193,87 @@ it("should boot the environment from fixed data", async () => {
 	expect(restoredWallet.alias()).toBe("Johnathan Doe");
 });
 
+it("should boot with empty storage data", async () => {
+	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
+	await env.verify({ profiles: storageData.profiles, data: {} });
+	await env.boot();
+});
+
+it("should boot with empty storage profiles", async () => {
+	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
+	await env.verify({ profiles: {}, data: { key: "value" } });
+	await env.boot();
+});
+
+it("should create preselected storage given storage option as string", async () => {
+	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: "memory" });
+	expect(container.get(Identifiers.Storage)).toBeInstanceOf(MemoryStorage);
+});
+
+it("should throw error when calling usedCoinsWithNetworks without verify first", async () => {
+	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
+	expect(() => env.usedCoinsWithNetworks()).toThrowError("Please call [verify] before looking up profile data.");
+});
+
 it("should get a list of used coins and networks", async () => {
 	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
 	await env.verify(storageData);
 	await env.boot();
 
 	expect(env.usedCoinsWithNetworks()).toEqual({ ARK: ["ark.devnet"] });
+});
+
+it("should throw error when calling boot without verify first", async () => {
+	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
+	await expect(env.boot()).rejects.toThrowError("Please call [verify] before booting the environment.");
+});
+
+it("should get available coins", async () => {
+	await expect(subject.coins().values()).toEqual([]);
+});
+
+it("#exchangeRates", async () => {
+	await subject.exchangeRates().syncAll();
+	expect(subject.exchangeRates()).toEqual({});
+});
+
+it("#fees", async () => {
+	await subject.fees().sync("ARK", "ark.devnet");
+	expect(Object.keys(subject.fees().all("ARK", "ark.devnet"))).toHaveLength(14);
+});
+
+it("#delegates", async () => {
+	await subject.delegates().sync("ARK", "ark.devnet");
+	expect(subject.delegates().all("ARK", "ark.devnet")).toHaveLength(100);
+});
+
+it("#knownWallets", async () => {
+	await subject.knownWallets().syncAll();
+	expect(subject.knownWallets().is("ark.devnet", "unknownWallet")).toBeFalse();
+});
+
+it("#wallets", async () => {
+	await expect(subject.wallets()).toBeInstanceOf(WalletService);
+});
+
+it("#coin", async () => {
+	await expect(subject.coin("ARK", "ark.devnet")).resolves.toBeInstanceOf(Coins.Coin);
+});
+
+it("#registerCoin", async () => {
+	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
+	await env.verify(storageData);
+	await env.boot();
+
+	env.registerCoin("BTC", BTC);
+	expect(() => env.registerCoin("BTC", BTC)).toThrowError(/is already registered/);
+});
+
+it("should fail verification", async () => {
+	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
+	await expect(env.verify(corruptedStorageData)).rejects.toThrowError("Terminating due to corrupted state.");
+});
+
+it("#migrate", async () => {
+	expect(() => subject.migrate(storageData, "2.0.0")).not.toThrow();
 });
