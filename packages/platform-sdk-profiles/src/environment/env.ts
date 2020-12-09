@@ -34,6 +34,7 @@ export class Environment {
 		container.set(Identifiers.FeeService, new FeeService());
 		container.set(Identifiers.KnownWalletService, new KnownWalletService());
 		container.set(Identifiers.WalletService, new WalletService());
+		container.set(Identifiers.Migrator, new Migrator());
 
 		container.set(Identifiers.Coins, options.coins);
 	}
@@ -86,11 +87,11 @@ export class Environment {
 			throw new Error("Please call [verify] before booting the environment.");
 		}
 
-		if (this.storage.data) {
+		if (Object.keys(this.storage.data).length > 0) {
 			this.data().fill(this.storage.data);
 		}
 
-		if (this.storage.profiles) {
+		if (Object.keys(this.storage.profiles).length > 0) {
 			this.profiles().fill(this.storage.profiles);
 		}
 	}
@@ -132,7 +133,7 @@ export class Environment {
 		return container.get(Identifiers.FeeService);
 	}
 
-	public knownWallets(): FeeService {
+	public knownWallets(): KnownWalletService {
 		return container.get(Identifiers.KnownWalletService);
 	}
 

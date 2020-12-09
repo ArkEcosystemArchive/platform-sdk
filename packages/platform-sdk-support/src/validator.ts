@@ -6,12 +6,11 @@ export * as ValidatorSchema from "yup";
 export class Validator {
 	#error: ValidationError | undefined;
 
-	public validate(data: object, schema: { validateSync: Function }): void {
+	public validate(data: object, schema: { validateSync: Function }, validationOptions?: object): any {
 		this.#error = undefined;
 
 		try {
-			// return schema.validateSync(data, { strict: true });
-			return schema.validateSync(data);
+			return schema.validateSync(data, validationOptions);
 		} catch (error) {
 			this.#error = error;
 		}
