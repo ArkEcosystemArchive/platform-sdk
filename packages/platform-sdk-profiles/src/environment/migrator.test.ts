@@ -59,6 +59,16 @@ it("should not run the migration when the version does not change", async () => 
 	expect(data.has("key")).toBeFalse();
 });
 
+it("should run migration when previous version is less but not zero", async () => {
+	const migrations = {
+		"0.0.3": async ({ data }) => data.set("key", "value"),
+	};
+
+	await storage.set("migrations", { latest: "0.0.1" });
+	await subject.migrate(migrations, "0.0.2");
+	await expect(storage.get("migrations")).resolves.toEqual({ latest: "0.0.2" });
+});
+
 it("should run the migration when the version changes", async () => {
 	const migrations = {
 		"1.0.0": async ({ data }) => data.set("key", "value"),
