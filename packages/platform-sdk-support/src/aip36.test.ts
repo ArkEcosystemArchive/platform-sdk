@@ -61,24 +61,6 @@ describe("#validate", () => {
 			);
 		});
 
-		it("should throw if an invalid [delegate.payout.distribution.min] is used", () => {
-			subject.delegate().type("public");
-			subject.delegate().distribution(101, 1);
-
-			expect(() => subject.validate()).toThrow(
-				'"delegate.payout.distribution.min" must be less than or equal to 100',
-			);
-		});
-
-		it("should throw if an invalid [delegate.payout.distribution.max] is used", () => {
-			subject.delegate().type("public");
-			subject.delegate().distribution(1, 101);
-
-			expect(() => subject.validate()).toThrow(
-				'"delegate.payout.distribution.max" must be less than or equal to 100',
-			);
-		});
-
 		it("should throw if an invalid [delegate.payout.percentage.min] is used", () => {
 			subject.delegate().type("public");
 			subject.delegate().percentage(101, 1);
