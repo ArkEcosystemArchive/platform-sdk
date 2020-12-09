@@ -20,6 +20,7 @@ import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { Wallet } from "./wallet";
 import { WalletData, WalletSetting } from "./wallet.models";
+import { ReadOnlyWallet } from "./read-only-wallet";
 
 let profile: Profile;
 let subject: Wallet;
@@ -347,26 +348,54 @@ it("should return multi signature", () => {
 	);
 });
 
-it("should return multi signature participants", async () => {
-	subject.data().set(WalletData.MultiSignatureParticipants, {
-		min: 2,
-		publicKeys: [
-			"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-			"022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce",
-		],
+describe("#multiSignatureParticipants", () => {
+	it("should return multi-signature participants", async () => {
+		const isMultiSignature = jest.spyOn(subject, "isMultiSignature").mockReturnValue(true);
+		const multiSignature = jest.spyOn(subject, "multiSignature").mockReturnValue({
+			min: 2,
+			publicKeys: [
+				"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+				"022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce",
+			],
+		});
+
+		await subject.syncIdentity();
+		await subject.syncMultiSignature();
+
+		expect(subject.multiSignatureParticipants()).toHaveLength(2);
+		expect(subject.multiSignatureParticipants()[0]).toBeInstanceOf(ReadOnlyWallet);
+		expect(subject.multiSignatureParticipants()[1]).toBeInstanceOf(ReadOnlyWallet);
+
+		isMultiSignature.mockRestore();
+		multiSignature.mockRestore();
 	});
-	await subject.syncIdentity();
-	await subject.syncMultiSignature();
-	expect(() => subject.multiSignatureParticipants()).toThrow(
-		"This wallet does not have a multi-signature registered.",
-	);
 
-	subject.data().set(WalletData.MultiSignatureParticipants, undefined);
-	await subject.syncIdentity();
+	it("should throw if the wallet does not have a multi-signature registered", async () => {
+		subject.data().set(WalletData.MultiSignatureParticipants, {
+			min: 2,
+			publicKeys: [
+				"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+				"022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce",
+			],
+		});
 
-	expect(() => subject.multiSignatureParticipants()).toThrow(
-		"This Multi-Signature has not been synchronized yet. Please call [syncMultiSignature] before using it.",
-	);
+		await subject.syncIdentity();
+		await subject.syncMultiSignature();
+
+		expect(() => subject.multiSignatureParticipants()).toThrow(
+			"This wallet does not have a multi-signature registered.",
+		);
+	});
+
+	it("should throw if the multi-signature has not been synchronized yet", async () => {
+		subject.data().set(WalletData.MultiSignatureParticipants, undefined);
+
+		await subject.syncIdentity();
+
+		expect(() => subject.multiSignatureParticipants()).toThrow(
+			"This Multi-Signature has not been synchronized yet. Please call [syncMultiSignature] before using it.",
+		);
+	});
 });
 
 it("should sync multi signature when musig", async () => {
