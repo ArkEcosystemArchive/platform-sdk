@@ -171,4 +171,80 @@ describe("signatures", () => {
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
 	});
+
+	it("should sign second signature", async () => {
+		let input = {
+			nonce: "1",
+			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			sign: {
+				mnemonic: "this is a top secret passphrase",
+			},
+			data: {
+				mnemonic: "this is a top secret second mnemonic",
+			},
+		};
+		let snapshot = `
+		SignedTransactionData {
+		  "identifier": "90b8567a332d628064856f7a4749f98f56f5d2cdeb31a94025ceeeb51489ea81",
+		  "signedData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "signature": Object {
+		        "publicKey": "0339f70b1f32a70b7c2aeb6a20dff6653a87cf1e0ea8a139d0318ca72f530f4113",
+		      },
+		    },
+		    "fee": "500000000",
+		    "id": "90b8567a332d628064856f7a4749f98f56f5d2cdeb31a94025ceeeb51489ea81",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "a643e6a43252847717415e5926af3a8d983be0b9b91f8c53d022d8aa0204fc9ab8b1bdeeb7c019d7b4efe02ca3d3f0cf90c0d141a0091ad9f979a509dbbae980",
+		    "type": 1,
+		    "version": 2,
+		  },
+		}
+	`;
+		let id = await subject.signSecondSignature(input);
+		expect(id).toBeString();
+		expect(subject.signed()).toContainKey(id);
+		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+	});
+
+	it("should sign delegate registration", async () => {
+		let input = {
+			nonce: "1",
+			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			sign: {
+				mnemonic: "this is a top secret passphrase",
+			},
+			data: {
+				username: "johndoe",
+			},
+		};
+		let snapshot = `
+		SignedTransactionData {
+		  "identifier": "9ea43c795cf5939999295a16a07d962f8fd812e97097a8fb93684807d72b3558",
+		  "signedData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "delegate": Object {
+		        "username": "johndoe",
+		      },
+		    },
+		    "fee": "2500000000",
+		    "id": "9ea43c795cf5939999295a16a07d962f8fd812e97097a8fb93684807d72b3558",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "5af540adbe90cfc63be46e7e6213e4eddf3e8082698d74e796a0809b20dcf73b95421de6e9c0a7cfc8987ba31741262ed06c044b204001cdeb6a29d1401a9e23",
+		    "type": 2,
+		    "version": 2,
+		  },
+		}
+	`;
+		let id = await subject.signDelegateRegistration(input);
+		expect(id).toBeString();
+		expect(subject.signed()).toContainKey(id);
+		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+	});
 });
