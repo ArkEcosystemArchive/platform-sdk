@@ -2,6 +2,7 @@ import "jest-extended";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { container } from "../environment/container";
@@ -18,6 +19,8 @@ import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 import { ProfileSetting } from "./profile.models";
+import { EntityAggregate } from "./aggregates/entity-aggregate";
+import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 
 let subject: Profile;
 
@@ -62,6 +65,16 @@ it("should have a custom avatar", () => {
 	expect(subject.avatar()).toBe("custom-avatar");
 });
 
+it("should have a balance", () => {
+	expect(subject.balance()).toBeInstanceOf(BigNumber);
+	expect(subject.balance().toString()).toBe("0");
+});
+
+it("should have a converted balance", () => {
+	expect(subject.convertedBalance()).toBeInstanceOf(BigNumber);
+	expect(subject.convertedBalance().toString()).toBe("0");
+});
+
 it("should have a contacts repository", () => {
 	expect(subject.contacts()).toBeInstanceOf(ContactRepository);
 });
@@ -104,6 +117,14 @@ it("should fail to flush all data if the name is missing", () => {
 
 it("should have a count aggregate", () => {
 	expect(subject.countAggregate()).toBeInstanceOf(CountAggregate);
+});
+
+it("should have a entity aggregate", () => {
+	expect(subject.entityAggregate()).toBeInstanceOf(EntityAggregate);
+});
+
+it("should have a registration aggregate", () => {
+	expect(subject.registrationAggregate()).toBeInstanceOf(RegistrationAggregate);
 });
 
 it("should have a transaction aggregate", () => {
