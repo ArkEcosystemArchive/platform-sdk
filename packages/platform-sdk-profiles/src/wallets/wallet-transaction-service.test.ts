@@ -49,32 +49,23 @@ beforeEach(async () => {
 		.get("/api/wallets/02cec9caeb855e54b71e4d60c00889e78107f6136d1f664e5646ebcb2f62dae2c6")
 		.reply(200, require("../../test/fixtures/client/wallet-musig.json"))
 
-		// .get("/api/delegates")
-		// .reply(200, require("../../test/fixtures/client/delegates-1.json"))
-		// .get("/api/delegates?page=2")
-		// .reply(200, require("../../test/fixtures/client/delegates-2.json"))
-		// .get("/api/transactions/3e0b2e5ed00b34975abd6dee0ca5bd5560b5bd619b26cf6d8f70030408ec5be3")
-		// .query(true)
-		// .reply(200, () => {
-		// 	const response = require("../../test/fixtures/client/transactions.json");
-		// 	return { data: response.data[0] };
-		// })
-		// .get("/api/transactions/bb9004fa874b534905f9eff201150f7f982622015f33e076c52f1e945ef184ed")
-		// .query(true)
-		// .reply(200, () => {
-		// 	const response = require("../../test/fixtures/client/transactions.json");
-		// 	return { data: response.data[1] };
-		// })
-		// .get("/api/transactions")
-		// .query(true)
-		// .reply(200, require("../../test/fixtures/client/transactions.json"))
+		.get("/transaction/a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d")
+		.query(true)
+		.reply(200, require("../../test/fixtures/client/musig-transaction.json"))
+
+		.get("/transaction/bb9004fa874b534905f9eff201150f7f982622015f33e076c52f1e945ef184ed")
+		.query(true)
+		.reply(200, () => {
+			const response = require("../../test/fixtures/client/transactions.json");
+			return { data: response.data[1] };
+		})
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 
-	profile = new Profile({ id: "profile-id" });
+	profile = new Profile({ id: "profile-id", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	wallet = new Wallet(uuidv4(), profile);
@@ -92,6 +83,34 @@ it("should sync", async () => {
 });
 
 describe("signatures", () => {
+	it.skip("should add signature", async () => {
+		const input = {
+			nonce: "1",
+			from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+			data: {
+				publicKeys: [
+					"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
+					"0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+				],
+				min: 2,
+				senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+			},
+			sign: {
+				mnemonics: [
+					"this is a top secret passphrase 1",
+					"this is a top secret passphrase 2",
+				],
+				mnemonic: "this is a top secret passphrase 1",
+			},
+		};
+		await subject.signMultiSignature(input)
+		await subject.sync();
+		await subject.addSignature("a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d", "this is a top secret passphrase 1");
+
+		// TODO assertions
+
+	});
+
 	it("should sign transfer", async () => {
 		const input = {
 			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
