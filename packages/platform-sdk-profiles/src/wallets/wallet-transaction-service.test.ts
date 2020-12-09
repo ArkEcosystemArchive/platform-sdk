@@ -96,19 +96,18 @@ describe("signatures", () => {
 				senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
 			},
 			sign: {
-				mnemonics: [
-					"this is a top secret passphrase 1",
-					"this is a top secret passphrase 2",
-				],
+				mnemonics: ["this is a top secret passphrase 1", "this is a top secret passphrase 2"],
 				mnemonic: "this is a top secret passphrase 1",
 			},
 		};
-		await subject.signMultiSignature(input)
+		await subject.signMultiSignature(input);
 		await subject.sync();
-		await subject.addSignature("a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d", "this is a top secret passphrase 1");
+		await subject.addSignature(
+			"a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
+			"this is a top secret passphrase 1",
+		);
 
 		// TODO assertions
-
 	});
 
 	it("should sign transfer", async () => {
@@ -719,4 +718,42 @@ describe("signatures", () => {
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
 	});
+});
+
+it("#flow", async () => {
+	const input = {
+		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		sign: {
+			mnemonic: "this is a top secret passphrase",
+		},
+		data: {
+			amount: "1",
+			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		},
+	};
+	const id = await subject.signTransfer(input);
+	expect(id).toBeString();
+	expect(subject.signed()).toContainKey(id);
+
+	nock(/.+/)
+		.post("/api/transactions")
+		.reply(201, {
+			data: {
+				accept: [id],
+				broadcast: [],
+				excess: [],
+				invalid: [],
+			},
+			errors: {},
+		});
+	await expect(subject.broadcast(id)).resolves.toBeFalse();
+
+	expect(subject.signed()).toContainKey(id);
+	expect(subject.broadcasted()).toContainKey(id);
+	expect(subject.isAwaitingConfirmation(id)).toBeTrue();
+
+	await subject.confirm(id);
+
+	expect(subject.signed()).not.toContainKey(id);
+	expect(subject.broadcasted()).not.toContainKey(id);
 });
