@@ -123,55 +123,7 @@ describe("signatures", () => {
 		const id = await subject.signTransfer(input);
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
-	});
-
-	it("should sign entity registration", async () => {
-		const input = {
-			nonce: "1",
-			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			sign: {
-				mnemonic: "this is a top secret passphrase",
-			},
-			data: {
-				type: 0,
-				subType: 9,
-				name: "my_business",
-				ipfs: "QmRoWaqjkdGv1fqz5hrFUNHwz9CxVRq7MxoAevWDJPXLEp",
-			},
-		};
-		const snapshot = `
-		SignedTransactionData {
-		  "identifier": "cfb278353c805c1cb66f3be2494c10504f563ca078aa8707cc2d6a0bb0d55982",
-		  "signedData": Object {
-		    "amount": "0",
-		    "asset": Object {
-		      "action": 0,
-		      "data": Object {
-		        "ipfsData": "QmRoWaqjkdGv1fqz5hrFUNHwz9CxVRq7MxoAevWDJPXLEp",
-		        "name": "my_business",
-		      },
-		      "subType": 9,
-		      "type": 0,
-		    },
-		    "fee": "5000000000",
-		    "id": "cfb278353c805c1cb66f3be2494c10504f563ca078aa8707cc2d6a0bb0d55982",
-		    "network": 30,
-		    "nonce": "1",
-		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-		    "signature": "d7deb5fe2582d6451274707a6a91c6318d7b0adbd590e98285d1d2682c91e29e0b03ce99fabe54dd66d4ad4b6d66990a9709b9eb1f19cd3c8aa0121a7bca3dc3",
-		    "type": 6,
-		    "typeGroup": 2,
-		    "version": 2,
-		  },
-		}
-	`;
-
-		const id = await subject.signEntityRegistration(input);
-
-		expect(id).toBeString();
-		expect(subject.signed()).toContainKey(id);
-		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
 	});
 
 	it("should sign second signature", async () => {
@@ -211,7 +163,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
 	});
 
 	it("should sign delegate registration", async () => {
@@ -251,7 +203,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
 	});
 
 	it("should sign vote", async () => {
@@ -291,7 +243,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
 	});
 
 	it("should sign multi signature registration", async () => {
@@ -389,7 +341,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
 	});
 
 	it("should sign multi payment", async () => {
@@ -444,7 +396,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
 	});
 
 	it("should sign delegate resignation", async () => {
@@ -476,7 +428,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
 	});
 
 	it("should sign htlc lock", async () => {
@@ -527,7 +479,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
 	});
 
 	it("should sign htlc claim", async () => {
@@ -569,7 +521,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
 	});
 
 	it("should sign htlc refund", async () => {
@@ -609,6 +561,142 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
+	});
+
+	it("should sign entity registration", async () => {
+		const input = {
+			nonce: "1",
+			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			sign: {
+				mnemonic: "this is a top secret passphrase",
+			},
+			data: {
+				type: 0,
+				subType: 0,
+				name: "my_business",
+				ipfs: "QmRoWaqjkdGv1fqz5hrFUNHwz9CxVRq7MxoAevWDJPXLEp",
+			},
+		};
+		const snapshot = `
+		SignedTransactionData {
+		  "identifier": "79ab06d6018233d757d2c4f0a9b9f7763bc254ef06bcc99af71589a8cfa35691",
+		  "signedData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "action": 0,
+		      "data": Object {
+		        "ipfsData": "QmRoWaqjkdGv1fqz5hrFUNHwz9CxVRq7MxoAevWDJPXLEp",
+		        "name": "my_business",
+		      },
+		      "subType": 0,
+		      "type": 0,
+		    },
+		    "fee": "5000000000",
+		    "id": "79ab06d6018233d757d2c4f0a9b9f7763bc254ef06bcc99af71589a8cfa35691",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "c531164c96edd9264bee7554c9595dde410e59bd914fbc52b7cd9825fa92850554b515c227bc399eeb2cdfad783f37c03a17e82d97111b6f45fd3a122101668c",
+		    "type": 6,
+		    "typeGroup": 2,
+		    "version": 2,
+		  },
+		}
+	`;
+
+		const id = await subject.signEntityRegistration(input);
+
+		expect(id).toBeString();
+		expect(subject.signed()).toContainKey(id);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
+	});
+
+	it("should sign entity resignation", async () => {
+		const input = {
+			nonce: "1",
+			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			sign: {
+				mnemonic: "this is a top secret passphrase",
+			},
+			data: {
+				type: 0,
+				subType: 0,
+				registrationId: "84300b236d0a868cee50dda1347e3089f4df1c13e90162abedb812acd242e81b",
+			},
+		};
+		let snapshot = `
+		SignedTransactionData {
+		  "identifier": "37e06f808c0b771d65c518838a50bba1837b5a255c5fca8d6cfc0774eeb4c0b0",
+		  "signedData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "action": 2,
+		      "data": Object {},
+		      "registrationId": "84300b236d0a868cee50dda1347e3089f4df1c13e90162abedb812acd242e81b",
+		      "subType": 0,
+		      "type": 0,
+		    },
+		    "fee": "5000000000",
+		    "id": "37e06f808c0b771d65c518838a50bba1837b5a255c5fca8d6cfc0774eeb4c0b0",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "ed3143fb112c55c9e07d2908edd53f2b0f8ff6debd1e17865bcb374a9eab501ff5c3a9ecfeea1f2f52c2a6d5231171c3e814af6f847f2cdd612ccd1d650fe08e",
+		    "type": 6,
+		    "typeGroup": 2,
+		    "version": 2,
+		  },
+		}
+	`;
+
+		const id = await subject.signEntityResignation(input);
+		expect(id).toBeString();
+		expect(subject.signed()).toContainKey(id);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
+	});
+
+	it("should sign entity update", async () => {
+		const input = {
+			nonce: "1",
+			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			sign: {
+				mnemonic: "this is a top secret passphrase",
+			},
+			data: {
+				type: 0,
+				subType: 0,
+				registrationId: "84300b236d0a868cee50dda1347e3089f4df1c13e90162abedb812acd242e81b",
+			},
+		};
+		let snapshot = `
+		SignedTransactionData {
+		  "identifier": "54f1f94cb0ec6a09e23d6f4fcc1bc59cddb239dd203455b7bfbda38011cd787e",
+		  "signedData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "action": 1,
+		      "data": Object {},
+		      "registrationId": "84300b236d0a868cee50dda1347e3089f4df1c13e90162abedb812acd242e81b",
+		      "subType": 0,
+		      "type": 0,
+		    },
+		    "fee": "5000000000",
+		    "id": "54f1f94cb0ec6a09e23d6f4fcc1bc59cddb239dd203455b7bfbda38011cd787e",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "219b0076715c64e3c19b727500967885b2ae473cf52e84071109e65fe029923e54a4698bd2697f3466069a077e43b3462f83221b874070ba8256ef19fb63c11f",
+		    "type": 6,
+		    "typeGroup": 2,
+		    "version": 2,
+		  },
+		}
+	`;
+
+		const id = await subject.signEntityUpdate(input);
+		expect(id).toBeString();
+		expect(subject.signed()).toContainKey(id);
+		expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
 	});
 });
