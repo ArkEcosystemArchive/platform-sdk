@@ -1,7 +1,3 @@
-/**
- * Based on https://github.com/Dobby89/promise-all-settled-by-key/blob/master/src/__tests__/index.test.js.
- */
-
 import { Profile } from "../profiles/profile";
 import { MemoryPassword } from "./password";
 
