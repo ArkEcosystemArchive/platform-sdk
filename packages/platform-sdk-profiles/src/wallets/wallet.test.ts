@@ -35,8 +35,26 @@ beforeEach(async () => {
 		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
 		.reply(200, require("../../test/fixtures/client/syncing.json"))
+
+
+		// default wallet
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
+		.get("/api/wallets/034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192")
+		.reply(200, require("../../test/fixtures/client/wallet.json"))
+
+		// second wallet
+		.get("/api/wallets/022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce")
+		.reply(200, require("../../test/fixtures/client/wallet-2.json"))
+		.get("/api/wallets/DNc92FQmYu8G9Xvo6YqhPtRxYsUxdsUn9w")
+		.reply(200, require("../../test/fixtures/client/wallet-2.json"))
+
+		// Musig wallet
+		.get("/api/wallets/DML7XEfePpj5qDFb1SbCWxLRhzdTDop7V1")
+		.reply(200, require("../../test/fixtures/client/wallet-musig.json"))
+		.get("/api/wallets/02cec9caeb855e54b71e4d60c00889e78107f6136d1f664e5646ebcb2f62dae2c6")
+		.reply(200, require("../../test/fixtures/client/wallet-musig.json"))
+
 		.get("/api/delegates")
 		.reply(200, require("../../test/fixtures/client/delegates-1.json"))
 		.get("/api/delegates?page=2")
@@ -304,8 +322,8 @@ it("should return multi signature participants", () => {
 	subject.data().set(WalletData.MultiSignatureParticipants, {
 		min: 2,
 		publicKeys: [
-			'a',
-			'b',
+			'034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192',
+			'022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce',
 		]
 	});
 	subject.syncIdentity();
@@ -320,6 +338,24 @@ it("should return multi signature participants", () => {
 	expect(() => subject.multiSignatureParticipants()).toThrow(
 		"This Multi-Signature has not been synchronized yet. Please call [syncMultiSignature] before using it.",
 	);
+});
+
+it("should sync multi signature when musig", async () => {
+
+	subject = new Wallet(uuidv4(), profile);
+	await subject.setCoin("ARK", "ark.devnet");
+	await subject.setIdentity("new super passphrase");
+
+	await subject.syncMultiSignature();
+
+	expect(subject.isMultiSignature()).toBeTrue();
+});
+
+it("should sync multi signature when not musig", async () => {
+
+	await subject.syncMultiSignature();
+
+	expect(subject.isMultiSignature()).toBeFalse();
 });
 
 it("should return entities", () => {
