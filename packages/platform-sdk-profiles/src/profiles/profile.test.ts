@@ -1,13 +1,14 @@
 import "jest-extended";
 
-import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
+import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
+import { CoinService } from "../environment/services/coin-service";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../repositories/data-repository";
@@ -15,14 +16,13 @@ import { NotificationRepository } from "../repositories/notification-repository"
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
 import { CountAggregate } from "./aggregates/count-aggregate";
+import { EntityAggregate } from "./aggregates/entity-aggregate";
+import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 import { ProfileSetting } from "./profile.models";
-import { EntityAggregate } from "./aggregates/entity-aggregate";
-import { RegistrationAggregate } from "./aggregates/registration-aggregate";
-import { CoinService } from "../environment/services/coin-service";
 
 let subject: Profile;
 
