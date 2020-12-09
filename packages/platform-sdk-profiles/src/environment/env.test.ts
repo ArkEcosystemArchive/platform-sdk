@@ -229,7 +229,7 @@ it("should throw error when calling boot without verify first", async () => {
 });
 
 it("should get available coins", async () => {
-	await expect(subject.coins().values()).toEqual([]);
+	expect(subject.coins().values()).toEqual([]);
 });
 
 it("#exchangeRates", async () => {
@@ -253,7 +253,7 @@ it("#knownWallets", async () => {
 });
 
 it("#wallets", async () => {
-	await expect(subject.wallets()).toBeInstanceOf(WalletService);
+	expect(subject.wallets()).toBeInstanceOf(WalletService);
 });
 
 it("#coin", async () => {

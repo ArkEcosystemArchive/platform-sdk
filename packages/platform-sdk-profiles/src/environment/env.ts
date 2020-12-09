@@ -159,11 +159,11 @@ export class Environment {
 			throw new Error("Please call [verify] before booting the environment.");
 		}
 
-		if (this.storage.data && Object.keys(this.storage.data).length > 0) {
+		if (Object.keys(this.storage.data).length > 0) {
 			this.data().fill(this.storage.data);
 		}
 
-		if (this.storage.profiles && Object.keys(this.storage.profiles).length > 0) {
+		if (Object.keys(this.storage.profiles).length > 0) {
 			this.profiles().fill(this.storage.profiles);
 		}
 	}
