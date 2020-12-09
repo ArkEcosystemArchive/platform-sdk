@@ -151,11 +151,3 @@ it("should boot the environment from fixed data", async () => {
 	expect(restoredWallet.settings().all()).toEqual({ ALIAS: "Johnathan Doe", AVATAR: "..." });
 	expect(restoredWallet.alias()).toBe("Johnathan Doe");
 });
-
-// it("should get a list of used coins and networks", async () => {
-// 	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
-// 	await env.verify(storageData);
-// 	await env.boot();
-
-// 	expect(env.usedCoinsWithNetworks()).toEqual({ ARK: ["ark.devnet"] });
-// });
