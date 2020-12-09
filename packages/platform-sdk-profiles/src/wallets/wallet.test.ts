@@ -19,6 +19,7 @@ import { Wallet } from "./wallet";
 import { WalletData, WalletSetting } from "./wallet.models";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
+import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 
 let profile: Profile;
 let subject: Wallet;
@@ -71,6 +72,9 @@ beforeEach(async () => {
 			const response = require("../../test/fixtures/client/transactions.json");
 			return { data: response.data[1] };
 		})
+		.get("/api/transactions")
+		.query(true)
+		.reply(200, require("../../test/fixtures/client/transactions.json"))
 		.persist();
 
 	container.set(Identifiers.HttpClient, new Request());
@@ -398,6 +402,18 @@ it("should return whether it can vote or not", () => {
 	expect(subject.canVote()).toBeTrue();
 });
 
+describe("transactions",  () => {
+	it("all", async () => {
+		await expect(subject.transactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
+	})
+	it("sent", async () => {
+		await expect(subject.sentTransactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
+	})
+	it("received", async () => {
+		await expect(subject.receivedTransactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
+	})
+});
+
 describe("features", () => {
 	it("can", () => {
 		expect(subject.can("some-feature")).toBeFalse();
@@ -411,7 +427,7 @@ describe("features", () => {
 	})
 	it("can all", () => {
 		expect(subject.canAll(["some-feature"])).toBeFalse();
-		expect(subject.canAll([])).toBeTrue();
+		expect(subject.canAll(["Client.transactions"])).toBeTrue();
 	})
 });
 
