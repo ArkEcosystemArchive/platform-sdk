@@ -381,8 +381,8 @@ export class Profile implements ProfileContract {
 	private decrypt(password: string): ProfileStruct {
 		const usesPassword: boolean = this.#data.password !== undefined;
 
-		if (usesPassword && password === undefined) {
-			throw new Error("This profile uses a password but none was passed for decryption.");
+		if (!usesPassword) {
+			throw new Error("This profile does not use a password but password was passed for decryption");
 		}
 
 		const { id, data } = JSON.parse(PBKDF2.decrypt(Base64.decode(this.#data.data), password));
