@@ -1,5 +1,6 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import { Validator, ValidatorSchema } from "@arkecosystem/platform-sdk-support";
+import Joi from "joi";
 
 import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../repositories/profile-repository";
@@ -52,10 +53,7 @@ export class Environment {
 
 		let { data, profiles } = storage;
 
-		const mapRules = (map: object, rule: Function) =>
-			Object.keys(map).reduce((newMap, key) => ({ ...newMap, [key]: rule }), {});
-
-		const { array, boolean, object, string, number, lazy } = ValidatorSchema;
+		const { object, string, lazy } = ValidatorSchema;
 
 		const validator = new Validator();
 
@@ -65,67 +63,19 @@ export class Environment {
 			for (const key of Object.keys(profiles)) {
 				rules[key] = object({
 					id: string().required(),
-					contacts: object(
-						mapRules(
-							profiles[key].contacts,
-							object({
-								id: string().required(),
-								name: string().required(),
-								addresses: array().of(
-									object({
-										id: string().required(),
-										coin: string().required(),
-										network: string().required(),
-										name: string().required(),
-										address: string().required(),
-									}).noUnknown(),
-								),
-								starred: boolean().required(),
-							}).noUnknown(),
-						),
-					),
-					// TODO: stricter validation to avoid unknown keys or values
-					data: object().required(),
-					// TODO: stricter validation to avoid unknown keys or values
-					notifications: object().required(),
-					// TODO: stricter validation to avoid unknown keys or values
-					peers: object().required(),
-					// TODO: stricter validation to avoid unknown keys or values
-					plugins: object({
-						data: object(),
-						blacklist: array().of(number()),
-					})
-						.default({ data: {}, blacklist: [] })
-						.noUnknown(),
-					// TODO: stricter validation to avoid unknown keys or values
-					settings: object().required(),
-					wallets: object(
-						mapRules(
-							profiles[key].wallets,
-							object({
-								id: string().required(),
-								coin: string().required(),
-								network: string().required(),
-								networkConfig: object({
-									crypto: object({
-										slip44: number().integer().required(),
-									}).required(),
-									networking: object({
-										hosts: array().of(string()).required(),
-										hostsMultiSignature: array().of(string()),
-									}).required(),
-								}).noUnknown(),
-								address: string().required(),
-								publicKey: string(),
-								data: object().required(),
-								settings: object().required(),
-							}).noUnknown(),
-						),
-					),
-				}).noUnknown();
+					password: string().required(),
+					data: string().required(),
+				});
 			}
 
-			return object({ profiles: object(rules), data: object() });
+			return Joi.object({
+				data: Joi.object(),
+				profiles: Joi.object(Joi.object({
+					id: string().required(),
+					password: string().required(),
+					data: string().required(),
+				}))
+			});
 		});
 
 		if (!data) {
@@ -136,18 +86,20 @@ export class Environment {
 			profiles = {};
 		}
 
-		const validated = schema.validateSync(
-			{ data, profiles },
-			{
-				strict: true,
-			},
-		);
+		const { error, value } = Joi.object({
+			data: Joi.object(),
+			profiles: Joi.object().pattern(Joi.string().uuid(), Joi.object({
+				id: string().required(),
+				password: string().required(),
+				data: string().required(),
+			}))
+		}).validate({ data, profiles });
 
-		if (validator.fails()) {
+		if (error) {
 			throw new Error("Terminating due to corrupted state.");
 		}
 
-		this.storage = validated;
+		this.storage = value;
 	}
 
 	/**
@@ -218,7 +170,7 @@ export class Environment {
 		return container.get(Identifiers.ProfileRepository);
 	}
 
-	public wallets(): WalletService {
+	public 	(): WalletService {
 		return container.get(Identifiers.WalletService);
 	}
 

@@ -1520,6 +1520,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.3"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.3"],
+            ["joi", "npm:17.3.0"],
             ["localforage", "npm:1.9.0"],
             ["mem", "npm:8.0.0"],
             ["nock", "npm:13.0.5"],

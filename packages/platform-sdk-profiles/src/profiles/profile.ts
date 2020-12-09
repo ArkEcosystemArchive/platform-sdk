@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import Joi from "joi";
 
 import { pqueue } from "../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
@@ -255,6 +256,8 @@ export class Profile implements ProfileContract {
 			throw new Error("Failed to decode or decrypt the profile.");
 		}
 
+		data = this.validateStruct(data);
+
 		this.peers().fill(data.peers);
 
 		this.notifications().fill(data.notifications);
@@ -380,5 +383,62 @@ export class Profile implements ProfileContract {
 		const { id, data } = JSON.parse(PBKDF2.decrypt(Base64.decode(this.#data.data), password));
 
 		return { id, ...data };
-	}
+    }
+
+    private validateStruct(data: object): ProfileStruct {
+        const { error, value } = Joi.object({
+            id: Joi.string().required(),
+            contacts: Joi.object().pattern(Joi.string().uuid(), Joi.object({
+				id: Joi.string().required(),
+				name: Joi.string().required(),
+				addresses: Joi.array().items(
+					Joi.object({
+						id: Joi.string().required(),
+						coin: Joi.string().required(),
+						network: Joi.string().required(),
+						name: Joi.string().required(),
+						address: Joi.string().required(),
+					}),
+				),
+				starred: Joi.boolean().required(),
+			})),
+            // TODO: stricter validation to avoid unknown keys or values
+            data: Joi.object().required(),
+            // TODO: stricter validation to avoid unknown keys or values
+            notifications: Joi.object().required(),
+            // TODO: stricter validation to avoid unknown keys or values
+            peers: Joi.object().required(),
+            // TODO: stricter validation to avoid unknown keys or values
+            plugins: Joi.object({
+                data: Joi.object(),
+                blacklist: Joi.array().items(Joi.number()),
+            }).default({ data: {}, blacklist: [] }),
+            // TODO: stricter validation to avoid unknown keys or values
+            settings: Joi.object().required(),
+            wallets: Joi.object().pattern(Joi.string().uuid(), Joi.object({
+				id: Joi.string().required(),
+				coin: Joi.string().required(),
+				network: Joi.string().required(),
+				networkConfig: Joi.object({
+					crypto: Joi.object({
+						slip44: Joi.number().integer().required(),
+					}).required(),
+					networking: Joi.object({
+						hosts: Joi.array().items(Joi.string()).required(),
+						hostsMultiSignature: Joi.array().items(Joi.string()),
+					}).required(),
+				}),
+				address: Joi.string().required(),
+				publicKey: Joi.string(),
+				data: Joi.object().required(),
+				settings: Joi.object().required(),
+			})),
+		}).validate(data);
+
+		if (error !== undefined) {
+			throw error;
+		}
+
+        return value as ProfileStruct;
+    }
 }
