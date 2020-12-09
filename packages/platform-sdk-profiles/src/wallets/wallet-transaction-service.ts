@@ -55,7 +55,7 @@ export class TransactionService {
 	}
 
 	/**
-	 * Sync.
+	 * Sync both pending and ready multi signature transactions.
 	 *
 	 * @returns {Promise<void>}
 	 * @memberof TransactionService
