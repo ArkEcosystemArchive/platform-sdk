@@ -166,7 +166,9 @@ describe("signatures", () => {
 		  },
 		}
 	`;
+
 		let id = await subject.signEntityRegistration(input);
+
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
@@ -204,7 +206,9 @@ describe("signatures", () => {
 		  },
 		}
 	`;
+
 		let id = await subject.signSecondSignature(input);
+
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
@@ -242,7 +246,234 @@ describe("signatures", () => {
 		  },
 		}
 	`;
+
 		let id = await subject.signDelegateRegistration(input);
+
+		expect(id).toBeString();
+		expect(subject.signed()).toContainKey(id);
+		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+	});
+
+	it("should sign vote", async () => {
+		let input = {
+			nonce: "1",
+			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			sign: {
+				mnemonic: "this is a top secret passphrase",
+			},
+			data: {
+				vote: "+03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
+			},
+		};
+		let snapshot = `
+		SignedTransactionData {
+		  "identifier": "17afd04af3bac79a735b42649c9ae717f0c96838d8a0e74eb4c0697ca9a11ad2",
+		  "signedData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "votes": Array [
+		        "+03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
+		      ],
+		    },
+		    "fee": "100000000",
+		    "id": "17afd04af3bac79a735b42649c9ae717f0c96838d8a0e74eb4c0697ca9a11ad2",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "4cd275cff9cf6cbb348aa94e664b6d05262f0d83a28b9cd5dd3469dcb99711d5087a470399b92774f3cd5db0f633ff5c4ddcf7738677959d9a95b409c17ec68f",
+		    "type": 3,
+		    "version": 2,
+		  },
+		}
+	`;
+
+		let id = await subject.signVote(input);
+
+		expect(id).toBeString();
+		expect(subject.signed()).toContainKey(id);
+		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+	});
+
+	it("should sign multi signature registration", async () => {
+		let input = {
+			nonce: "1",
+			from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+			data: {
+				publicKeys: [
+					"039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
+					"028d3611c4f32feca3e6713992ae9387e18a0e01954046511878fe078703324dc0",
+					"021d3932ab673230486d0f956d05b9e88791ee298d9af2d6df7d9ed5bb861c92dd",
+				],
+				min: 2,
+				senderPublicKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
+			},
+			sign: {
+				mnemonics: [
+					"this is a top secret passphrase 1",
+					"this is a top secret passphrase 2",
+					"this is a top secret passphrase 3",
+				],
+				mnemonic: "this is a top secret passphrase 1",
+			},
+		};
+		let snapshot = `
+		SignedTransactionData {
+		  "identifier": "eaad3581c9e341b1087cc852ba6b1c8c8e5ccb4e17ec546364b7075a91a30031",
+		  "signedData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "multiSignature": Object {
+		        "min": 2,
+		        "publicKeys": Array [
+		          "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
+		          "028d3611c4f32feca3e6713992ae9387e18a0e01954046511878fe078703324dc0",
+		          "021d3932ab673230486d0f956d05b9e88791ee298d9af2d6df7d9ed5bb861c92dd",
+		        ],
+		      },
+		    },
+		    "fee": "2000000000",
+		    "id": "eaad3581c9e341b1087cc852ba6b1c8c8e5ccb4e17ec546364b7075a91a30031",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "022952bc0ab373a15153b8b6cee2513e298eb7f3ffe6bc50fc850fd24e8ab6c66a",
+		    "signatures": Array [
+		      "0094a23e085467a5cb3b4f5eb9e9bb7c214e8c87b55129ea5131d3490dd5b3ea94f65c70228aca7051d78b5ebe001041bb8e1575fd64af318d672e21a1e7d4201f",
+		      "01111c10bd76401519239ff52144206f76b76097a96d55a3926a13160e44997be4c0dbb470e7b357f1c1bd8d37cbbc05cffa561b5cc42c759e9b1678004610731e",
+		      "025a12958e36f166eabb55aac3ed1087a7c8899b19adf3183ee3e228ac9eed9445c2cf33e5f33d41cba19785c4ca1930991bd6d52f760c4b9bcc61c868b1c62aad",
+		    ],
+		    "type": 4,
+		    "version": 2,
+		  },
+		}
+	`;
+
+		let id = await subject.signMultiSignature(input);
+
+		expect(id).toBeString();
+		expect(subject.waitingForOtherSignatures()).toContainKey(id);
+		expect(subject.waitingForOtherSignatures()[id]).toMatchInlineSnapshot(snapshot);
+	});
+
+	it("should sign ipfs", async () => {
+		let input = {
+			nonce: "1",
+			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			sign: {
+				mnemonic: "this is a top secret passphrase",
+			},
+			data: {
+				hash: "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9w",
+			},
+		};
+		let snapshot = `
+		SignedTransactionData {
+		  "identifier": "c753ed6430a565cc18020f821561176f9da07d66c9276c161fbc66971e713492",
+		  "signedData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "ipfs": "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9w",
+		    },
+		    "fee": "500000000",
+		    "id": "c753ed6430a565cc18020f821561176f9da07d66c9276c161fbc66971e713492",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "00e20906c2a36576c948b0270d55d9a2eea99170872d903446272945461037215e447efea9c8bd5ee94ee628fc45d415930bf54403e29601ed7246cbb6b0faa3",
+		    "type": 5,
+		    "version": 2,
+		  },
+		}
+	`;
+
+		let id = await subject.signIpfs(input);
+
+		expect(id).toBeString();
+		expect(subject.signed()).toContainKey(id);
+		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+	});
+
+	it("should sign multi payment", async () => {
+		let input = {
+			nonce: "1",
+			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			sign: {
+				mnemonic: "this is a top secret passphrase",
+			},
+			data: {
+				payments: [
+					{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
+					{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
+					{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
+				],
+			},
+		};
+		let snapshot = `
+		SignedTransactionData {
+		  "identifier": "2294061d2eb5fc4eff3d9dedb7b6eb2ee3cd38b0d2463bbd7ffd866c77a12052",
+		  "signedData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "payments": Array [
+		        Object {
+		          "amount": "10",
+		          "recipientId": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+		        },
+		        Object {
+		          "amount": "10",
+		          "recipientId": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+		        },
+		        Object {
+		          "amount": "10",
+		          "recipientId": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+		        },
+		      ],
+		    },
+		    "fee": "10000000",
+		    "id": "2294061d2eb5fc4eff3d9dedb7b6eb2ee3cd38b0d2463bbd7ffd866c77a12052",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "3d63add40f7fa512e225338db4108e1ae616bf6784a9e4cdf18e618b841f8dfce1221f62e850ecadff07a023634acb7d3c91349593de47edd3bc899bc0798605",
+		    "type": 6,
+		    "version": 2,
+		  },
+		}
+	`;
+
+		let id = await subject.signMultiPayment(input);
+
+		expect(id).toBeString();
+		expect(subject.signed()).toContainKey(id);
+		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+	});
+
+	it("should sign delegate resignation", async () => {
+		let input = {
+			nonce: "1",
+			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			sign: {
+				mnemonic: "this is a top secret passphrase",
+			},
+		};
+		let snapshot = `
+		SignedTransactionData {
+		  "identifier": "64ee4412671695897cc26c2952e9247c050d4a18533dd4326d751cb88f338cdd",
+		  "signedData": Object {
+		    "amount": "0",
+		    "fee": "2500000000",
+		    "id": "64ee4412671695897cc26c2952e9247c050d4a18533dd4326d751cb88f338cdd",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "4ff3dae099ce41670e48437da5cef5951a3bca7b2ddd64a88e812129eae6250798aa5873dbf626dfca9871760023d335cb83323d0e151ca5e80f82e6c2230f10",
+		    "type": 7,
+		    "version": 2,
+		  },
+		}
+	`;
+
+		let id = await subject.signDelegateResignation(input);
+
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
