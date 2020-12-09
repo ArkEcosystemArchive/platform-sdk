@@ -21,7 +21,11 @@ import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { ProfileContract, ProfileSetting, ProfileStruct } from "./profile.models";
 
-interface ProfileData { id: string, password?: string, data: string }
+interface ProfileData {
+	id: string;
+	password?: string;
+	data: string;
+}
 
 export class Profile implements ProfileContract {
 	#data: ProfileData;
