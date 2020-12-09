@@ -75,6 +75,7 @@ export class ProfileRepository {
 		return this.#data.count();
 	}
 
+	// @TODO: we need to dump the profiles here but respect the user password for encryption
 	public toObject(): Record<string, object> {
 		const result: Record<string, object> = {};
 

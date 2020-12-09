@@ -50,15 +50,8 @@ export class Environment {
 			storage = ((await container.get<Storage>(Identifiers.Storage).all()) as unknown) as StorageData;
 		}
 
-		let { data, profiles } = storage;
-
-		if (!data) {
-			data = {};
-		}
-
-		if (!profiles) {
-			profiles = {};
-		}
+		const data: object = storage.data || {};
+		const profiles: object = storage.profiles || {};
 
 		const { error, value } = Joi.object({
 			data: Joi.object(),
