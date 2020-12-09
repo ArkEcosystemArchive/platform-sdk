@@ -1,4 +1,5 @@
 import "jest-extended";
+
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
@@ -494,7 +495,7 @@ describe("signatures", () => {
 				unlockSecret: "c27f1ce845d8c29eebc9006be932b604fd06755521b1a8b0be4204c65377151a",
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "098651eca8c8dad8ac0ae06704f6db64b2ebe4ca30d871e2565bcbf86e8ea1fd",
 		  "signedData": Object {
@@ -535,7 +536,7 @@ describe("signatures", () => {
 				lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "52df20e0a8b2cf0f952afc87fb179be03f73a053fbf6bfe658e74fd0106a5819",
 		  "signedData": Object {
@@ -625,7 +626,7 @@ describe("signatures", () => {
 				registrationId: "84300b236d0a868cee50dda1347e3089f4df1c13e90162abedb812acd242e81b",
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "37e06f808c0b771d65c518838a50bba1837b5a255c5fca8d6cfc0774eeb4c0b0",
 		  "signedData": Object {
@@ -669,7 +670,7 @@ describe("signatures", () => {
 				registrationId: "84300b236d0a868cee50dda1347e3089f4df1c13e90162abedb812acd242e81b",
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "54f1f94cb0ec6a09e23d6f4fcc1bc59cddb239dd203455b7bfbda38011cd787e",
 		  "signedData": Object {
