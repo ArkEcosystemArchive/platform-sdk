@@ -16,14 +16,14 @@ export class LocalStorage implements Storage {
 		});
 	}
 
-	public async all(): Promise<Record<string, unknown>> {
+	public async all<T = Record<string, unknown>>(): Promise<T> {
 		const result: Record<string, unknown> = {};
 
 		for (const key of await this.#storage.keys()) {
 			result[key] = await this.get(key);
 		}
 
-		return result;
+		return result as T;
 	}
 
 	public async get<T = any>(key: string): Promise<T | undefined> {

@@ -6,16 +6,11 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { identity } from "../../test/fixtures/identity";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
-import { Wallet } from "../wallets/wallet";
-import { ReadWriteWallet } from "../wallets/wallet.models";
 import { ProfileRepository } from "./profile-repository";
-import { WalletRepository } from "./wallet-repository";
 
 let subject: ProfileRepository;
 

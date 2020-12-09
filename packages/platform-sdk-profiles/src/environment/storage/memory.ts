@@ -7,8 +7,8 @@ export class MemoryStorage implements Storage {
 		this.#storage = data || {};
 	}
 
-	public async all(): Promise<Record<string, unknown>> {
-		return this.#storage;
+	public async all<T = Record<string, unknown>>(): Promise<T> {
+		return this.#storage as T;
 	}
 
 	public async get<T = any>(key: string): Promise<T | undefined> {

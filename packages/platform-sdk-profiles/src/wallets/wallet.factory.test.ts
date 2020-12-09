@@ -37,7 +37,7 @@ beforeEach(async () => {
 
 test("#fromMnemonic", async () => {
 	const wallet = await WalletFactory.fromMnemonic(
-		new Profile({ id: "id" }),
+		new Profile({ id: "id", data: "" }),
 		"ARK",
 		"ark.devnet",
 		"this is a top secret passphrase",
@@ -49,7 +49,7 @@ test("#fromMnemonic", async () => {
 
 test("#fromAddress", async () => {
 	const wallet = await WalletFactory.fromAddress(
-		new Profile({ id: "id" }),
+		new Profile({ id: "id", data: "" }),
 		"ARK",
 		"ark.devnet",
 		"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
@@ -61,7 +61,7 @@ test("#fromAddress", async () => {
 
 test("#fromAddressWithLedgerIndex", async () => {
 	const wallet = await WalletFactory.fromAddressWithLedgerIndex(
-		new Profile({ id: "id" }),
+		new Profile({ id: "id", data: "" }),
 		"ARK",
 		"ark.devnet",
 		"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
@@ -74,7 +74,7 @@ test("#fromAddressWithLedgerIndex", async () => {
 
 test("#fromMnemonicWithEncryption", async () => {
 	const wallet = await WalletFactory.fromMnemonicWithEncryption(
-		new Profile({ id: "id" }),
+		new Profile({ id: "id", data: "" }),
 		"ARK",
 		"ark.devnet",
 		"this is a top secret passphrase",

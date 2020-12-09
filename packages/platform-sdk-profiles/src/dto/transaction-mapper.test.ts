@@ -106,7 +106,7 @@ describe("transaction-mapper", () => {
 		container.set(Identifiers.CoinService, new CoinService());
 		container.set(Identifiers.Coins, { ARK });
 
-		profile = new Profile({ id: "profile-id" });
+		profile = new Profile({ id: "profile-id", data: "" });
 		profile.settings().set(ProfileSetting.Name, "John Doe");
 
 		wallet = new Wallet(uuidv4(), profile);

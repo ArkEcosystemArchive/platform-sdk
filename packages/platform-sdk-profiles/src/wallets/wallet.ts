@@ -555,8 +555,6 @@ export class Wallet implements ReadWriteWallet {
 
 	public async sync(): Promise<void> {
 		await this.setCoin(this.coinId(), this.networkId());
-
-		// @TODO: consider others things to sync
 	}
 
 	public async syncIdentity(): Promise<void> {

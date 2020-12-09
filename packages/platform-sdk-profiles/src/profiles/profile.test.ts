@@ -38,7 +38,7 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-	subject = new Profile({ id: "uuid" });
+	subject = new Profile({ id: "uuid", data: "" });
 	subject.settings().set(ProfileSetting.Name, "John Doe");
 });
 
@@ -127,19 +127,114 @@ it("should determine if the password uses a password", () => {
 });
 
 it("should turn into an object", () => {
-	expect(subject.toObject()).toEqual({
-		id: "uuid",
-		contacts: {},
-		data: {},
-		notifications: {},
-		peers: {},
-		plugins: {
-			data: {},
-			blacklist: [],
-		},
-		settings: {
-			NAME: "John Doe",
-		},
-		wallets: {},
+	expect(subject.toObject()).toMatchInlineSnapshot(`
+		Object {
+		  "contacts": Object {},
+		  "data": Object {},
+		  "id": "uuid",
+		  "notifications": Object {},
+		  "peers": Object {},
+		  "plugins": Object {
+		    "blacklist": Array [],
+		    "data": Object {},
+		  },
+		  "settings": Object {
+		    "NAME": "John Doe",
+		  },
+		  "wallets": Object {},
+		}
+	`);
+});
+
+describe("#dump", () => {
+	it("should dump the profile with a password", () => {
+		subject.auth().setPassword("password");
+
+		const { id, password, data } = subject.dump("password");
+
+		expect(id).toBeString();
+		expect(password).toBeString();
+		expect(data).toBeString();
+	});
+
+	it("should dump the profile without a password", () => {
+		const { id, password, data } = subject.dump();
+
+		expect(id).toBeString();
+		expect(password).toBeUndefined();
+		expect(data).toBeString();
+	});
+
+	it("should fail to dump a profile with a password if the password is invalid", () => {
+		subject.auth().setPassword("password");
+
+		expect(() => subject.dump("invalid-password")).toThrow("The password did not match our records.");
+	});
+
+	it("should fail to dump a profile with a password if no password was provided", () => {
+		subject.auth().setPassword("password");
+
+		expect(() => subject.dump()).toThrow("This profile uses a password but none was passed for encryption.");
+	});
+});
+
+describe("#restore", () => {
+	it("should restore a profile with a password", async () => {
+		subject.auth().setPassword("password");
+
+		const profile: Profile = new Profile(subject.dump("password"));
+
+		await profile.restore("password");
+
+		expect(profile.toObject()).toContainAllKeys([
+			"contacts",
+			"data",
+			"notifications",
+			"peers",
+			"plugins",
+			"data",
+			"settings",
+			"wallets",
+		]);
+	});
+
+	it("should restore a profile without a password", async () => {
+		const profile: Profile = new Profile(subject.dump());
+
+		await profile.restore();
+
+		expect(profile.toObject()).toMatchInlineSnapshot(`
+		Object {
+		  "contacts": Object {},
+		  "data": Object {},
+		  "id": "uuid",
+		  "notifications": Object {},
+		  "peers": Object {},
+		  "plugins": Object {
+		    "blacklist": Array [],
+		    "data": Object {},
+		  },
+		  "settings": Object {
+		    "NAME": "John Doe",
+		  },
+		  "wallets": Object {},
+		}
+	`);
+	});
+
+	it("should fail to restore a profile with a password if no password was provided", async () => {
+		subject.auth().setPassword("password");
+
+		const profile: Profile = new Profile(subject.dump("password"));
+
+		await expect(profile.restore()).rejects.toThrow("Failed to decode or decrypt the profile.");
+	});
+
+	it("should fail to restore a profile with a password if an invalid password was provided", async () => {
+		subject.auth().setPassword("password");
+
+		const profile: Profile = new Profile(subject.dump("password"));
+
+		await expect(profile.restore("invalid-password")).rejects.toThrow("Failed to decode or decrypt the profile.");
 	});
 });
