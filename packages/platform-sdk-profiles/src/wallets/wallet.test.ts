@@ -18,9 +18,9 @@ import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
+import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
 import { WalletData, WalletSetting } from "./wallet.models";
-import { ReadOnlyWallet } from "./read-only-wallet";
 
 let profile: Profile;
 let subject: Wallet;
