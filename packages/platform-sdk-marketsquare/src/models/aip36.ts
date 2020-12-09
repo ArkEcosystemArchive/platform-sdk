@@ -37,7 +37,6 @@ interface Delegate {
 	type: string;
 	percentage: Percentage;
 	frequency: Frequency;
-	distribution: Distribution;
 }
 
 interface Meta {
