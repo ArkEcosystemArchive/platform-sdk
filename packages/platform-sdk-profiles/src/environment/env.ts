@@ -46,8 +46,8 @@ export class Environment {
 	 * @memberof Environment
 	 */
 	public async verify(storage?: StorageData): Promise<void> {
-		if (!storage) {
-			storage = ((await container.get<Storage>(Identifiers.Storage).all()) as unknown) as StorageData;
+		if (storage === undefined) {
+			storage = await container.get<Storage>(Identifiers.Storage).all<StorageData>();
 		}
 
 		const data: object = storage.data || {};
