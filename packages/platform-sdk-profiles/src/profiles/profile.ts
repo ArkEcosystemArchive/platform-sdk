@@ -199,9 +199,17 @@ export class Profile implements ProfileContract {
 
 	/**
 	 * Dumps the profile into a standardised object.
+	 *
+	 * @param {string} [password]
+	 * @returns {ProfileData}
+	 * @memberof Profile
 	 */
 	public dump(password?: string): ProfileData {
 		let data: string | undefined;
+
+		if (this.usesPassword() && password === undefined) {
+			throw new Error("This profile uses a password but none was passed for encryption.");
+		}
 
 		if (password === undefined) {
 			data = JSON.stringify(this.toObject());
@@ -360,6 +368,12 @@ export class Profile implements ProfileContract {
 	 * @param password A hard-to-guess password to encrypt the contents.
 	 */
 	private decrypt(password: string): ProfileStruct {
+		const usesPassword: boolean = this.#data.password !== undefined;
+
+		if (usesPassword && password === undefined) {
+			throw new Error("This profile uses a password but none was passed for decryption.");
+		}
+
 		const { id, data } = JSON.parse(new StringCrypto().decryptString(Base64.decode(this.#data.data), password));
 
 		return { id, ...data };
