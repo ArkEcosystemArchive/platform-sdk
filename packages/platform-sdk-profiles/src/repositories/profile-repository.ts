@@ -1,5 +1,4 @@
-import { Hash } from "@arkecosystem/platform-sdk-crypto";
-
+import { MemoryPassword } from "../helpers/password";
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
 import { DataRepository } from "./data-repository";
@@ -94,7 +93,7 @@ export class ProfileRepository {
 				 *
 				 * Any suggestions for an alternative without in-memory data are welcome.
 				 */
-				result[id] = profile.dump(process.env[Hash.sha256(`${profile.id()}/passwd`).toString("hex")]);
+				result[id] = profile.dump(MemoryPassword.get(profile));
 			} else {
 				result[id] = profile.dump();
 			}

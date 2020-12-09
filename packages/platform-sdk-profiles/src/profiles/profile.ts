@@ -2,6 +2,7 @@
 import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
+import { MemoryPassword } from "../helpers/password";
 
 import { pqueue } from "../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
