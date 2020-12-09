@@ -10,16 +10,16 @@ import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
 
 import { identity } from "../../test/fixtures/identity";
+import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
-import { Wallet } from "./wallet";
-import { WalletData, WalletSetting } from "./wallet.models";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
-import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
+import { Wallet } from "./wallet";
+import { WalletData, WalletSetting } from "./wallet.models";
 
 let profile: Profile;
 let subject: Wallet;
@@ -36,7 +36,6 @@ beforeEach(async () => {
 		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
 		.reply(200, require("../../test/fixtures/client/syncing.json"))
-
 
 		// default wallet
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
@@ -322,22 +321,22 @@ it("should return multi signature", () => {
 	);
 });
 
-it("should return multi signature participants", () => {
+it("should return multi signature participants", async () => {
 	subject.data().set(WalletData.MultiSignatureParticipants, {
 		min: 2,
 		publicKeys: [
-			'034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192',
-			'022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce',
-		]
+			"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			"022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce",
+		],
 	});
-	subject.syncIdentity();
-	subject.syncMultiSignature();
+	await subject.syncIdentity();
+	await subject.syncMultiSignature();
 	expect(() => subject.multiSignatureParticipants()).toThrow(
 		"This wallet does not have a multi-signature registered.",
 	);
 
 	subject.data().set(WalletData.MultiSignatureParticipants, undefined);
-	subject.syncIdentity();
+	await subject.syncIdentity();
 
 	expect(() => subject.multiSignatureParticipants()).toThrow(
 		"This Multi-Signature has not been synchronized yet. Please call [syncMultiSignature] before using it.",
@@ -345,7 +344,6 @@ it("should return multi signature participants", () => {
 });
 
 it("should sync multi signature when musig", async () => {
-
 	subject = new Wallet(uuidv4(), profile);
 	await subject.setCoin("ARK", "ark.devnet");
 	await subject.setIdentity("new super passphrase");
@@ -356,7 +354,6 @@ it("should sync multi signature when musig", async () => {
 });
 
 it("should sync multi signature when not musig", async () => {
-
 	await subject.syncMultiSignature();
 
 	expect(subject.isMultiSignature()).toBeFalse();
@@ -373,7 +370,9 @@ it("should return entities", () => {
 });
 
 it("should return votes available", () => {
-	expect(() => subject.votesAvailable()).toThrow("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+	expect(() => subject.votesAvailable()).toThrow(
+		"The voting data has not been synced. Please call [syncVotes] before accessing votes.",
+	);
 
 	subject.data().set(WalletData.VotesAvailable, 2);
 
@@ -381,7 +380,9 @@ it("should return votes available", () => {
 });
 
 it("should return votes used", () => {
-	expect(() => subject.votesUsed()).toThrow("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+	expect(() => subject.votesUsed()).toThrow(
+		"The voting data has not been synced. Please call [syncVotes] before accessing votes.",
+	);
 
 	subject.data().set(WalletData.VotesUsed, 2);
 
@@ -402,33 +403,33 @@ it("should return whether it can vote or not", () => {
 	expect(subject.canVote()).toBeTrue();
 });
 
-describe("transactions",  () => {
+describe("transactions", () => {
 	it("all", async () => {
 		await expect(subject.transactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
-	})
+	});
 	it("sent", async () => {
 		await expect(subject.sentTransactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
-	})
+	});
 	it("received", async () => {
 		await expect(subject.receivedTransactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
-	})
+	});
 });
 
 describe("features", () => {
 	it("can", () => {
 		expect(subject.can("some-feature")).toBeFalse();
-	})
+	});
 	it("cannot", () => {
 		expect(subject.cannot("some-feature")).toBeTrue();
-	})
+	});
 	it("can any", () => {
 		expect(subject.canAny(["some-feature"])).toBeFalse();
-		expect(subject.canAny(['Client.transactions'])).toBeTrue();
-	})
+		expect(subject.canAny(["Client.transactions"])).toBeTrue();
+	});
 	it("can all", () => {
 		expect(subject.canAll(["some-feature"])).toBeFalse();
 		expect(subject.canAll(["Client.transactions"])).toBeTrue();
-	})
+	});
 });
 
 it("should return the entity aggregate", () => {
@@ -440,7 +441,7 @@ it("should return the entity history aggregate", () => {
 });
 
 it("should sync", async () => {
-	await expect(subject.sync()).resolves;
+	await expect(subject.sync()).toResolve();
 });
 
 describe.each([123, 456, 789])("%s", (slip44) => {
