@@ -166,7 +166,7 @@ test("should rollback changes if a migration failed", async () => {
 	};
 
 	const passingMigrations = {
-		"1.0.0": async ({ data }) => data.set("foo", "initial update"),
+		"1.0.0": async ({ data }) => data.set("key", "initial update"),
 	};
 
 	await subject.migrate(passingMigrations, "1.0.0");
