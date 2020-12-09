@@ -59,7 +59,7 @@ export class Environment {
 				Joi.string().uuid(),
 				Joi.object({
 					id: Joi.string().required(),
-					password: Joi.string().required(),
+					password: Joi.string().allow(null),
 					data: Joi.string().required(),
 				}),
 			),
@@ -196,25 +196,26 @@ export class Environment {
 		return result;
 	}
 
-	public usedCoinsWithNetworks(): Record<string, string[]> {
-		if (!this.storage) {
-			throw new Error("Please call [verify] before looking up profile data.");
-		}
+	// @TODO: this seems to be no longer used by the desktop wallet?
+	// public usedCoinsWithNetworks(): Record<string, string[]> {
+	// 	if (!this.storage) {
+	// 		throw new Error("Please call [verify] before looking up profile data.");
+	// 	}
 
-		const result: Record<string, string[]> = {};
+	// 	const result: Record<string, string[]> = {};
 
-		for (const profile of Object.values(this.storage.profiles) as any) {
-			for (const wallet of Object.values(profile.wallets) as any) {
-				if (!result[wallet.coin]) {
-					result[wallet.coin] = [];
-				}
+	// 	for (const profile of Object.values(this.storage.profiles) as any) {
+	// 		for (const wallet of Object.values(profile.wallets) as any) {
+	// 			if (!result[wallet.coin]) {
+	// 				result[wallet.coin] = [];
+	// 			}
 
-				if (!result[wallet.coin].includes(wallet.network)) {
-					result[wallet.coin].push(wallet.network);
-				}
-			}
-		}
+	// 			if (!result[wallet.coin].includes(wallet.network)) {
+	// 				result[wallet.coin].push(wallet.network);
+	// 			}
+	// 		}
+	// 	}
 
-		return result;
-	}
+	// 	return result;
+	// }
 }
