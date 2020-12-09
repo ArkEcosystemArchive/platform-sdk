@@ -2,52 +2,8 @@
 	"profiles": {
 		"b999d134-7a24-481e-a95d-bc47c543bfc9": {
 			"id": "b999d134-7a24-481e-a95d-bc47c543bfc9",
-			"contacts": {
-				"0e147f96-049f-4d89-bad4-ad3341109907": {
-					"id": "0e147f96-049f-4d89-bad4-ad3341109907",
-					"name": "Jane Doe",
-					"starred": false,
-					"addresses": []
-				}
-			},
-			"data": {
-				"key": "value"
-			},
-			"notifications": {
-				"b183aef3-2dba-471a-a588-0fcf8f01b645": {
-					"id": "b183aef3-2dba-471a-a588-0fcf8f01b645",
-					"icon": "warning",
-					"name": "Ledger Update Available",
-					"body": "...",
-					"action": "Read Changelog"
-				}
-			},
-			"peers": {},
-			"plugins": {
-				"data": {},
-				"blacklist": []
-			},
-			"settings": {
-				"ADVANCED_MODE": "value",
-				"NAME": "John Doe"
-			},
-			"wallets": {
-				"ac38fe6d-4b67-4ef1-85be-17c5f6841129": {
-					"id": "ac38fe6d-4b67-4ef1-85be-17c5f6841129",
-					"coin": "ARK",
-					"network": "ark.devnet",
-					"address": "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					"publicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-					"data": {
-						"BALANCE": {},
-						"SEQUENCE": {}
-					},
-					"settings": {
-						"ALIAS": "Johnathan Doe",
-						"AVATAR": "..."
-					}
-				}
-			}
+			"password": null,
+			"data": "ewoJCQkiaWQiOiAiYjk5OWQxMzQtN2EyNC00ODFlLWE5NWQtYmM0N2M1NDNiZmM5IiwKCQkJImNvbnRhY3RzIjogewoJCQkJIjBlMTQ3Zjk2LTA0OWYtNGQ4OS1iYWQ0LWFkMzM0MTEwOTkwNyI6IHsKCQkJCQkiaWQiOiAiMGUxNDdmOTYtMDQ5Zi00ZDg5LWJhZDQtYWQzMzQxMTA5OTA3IiwKCQkJCQkibmFtZSI6ICJKYW5lIERvZSIsCgkJCQkJInN0YXJyZWQiOiBmYWxzZSwKCQkJCQkiYWRkcmVzc2VzIjogW10KCQkJCX0KCQkJfSwKCQkJImRhdGEiOiB7CgkJCQkia2V5IjogInZhbHVlIgoJCQl9LAoJCQkibm90aWZpY2F0aW9ucyI6IHsKCQkJCSJiMTgzYWVmMy0yZGJhLTQ3MWEtYTU4OC0wZmNmOGYwMWI2NDUiOiB7CgkJCQkJImlkIjogImIxODNhZWYzLTJkYmEtNDcxYS1hNTg4LTBmY2Y4ZjAxYjY0NSIsCgkJCQkJImljb24iOiAid2FybmluZyIsCgkJCQkJIm5hbWUiOiAiTGVkZ2VyIFVwZGF0ZSBBdmFpbGFibGUiLAoJCQkJCSJib2R5IjogIi4uLiIsCgkJCQkJImFjdGlvbiI6ICJSZWFkIENoYW5nZWxvZyIKCQkJCX0KCQkJfSwKCQkJInBlZXJzIjoge30sCgkJCSJwbHVnaW5zIjogewoJCQkJImRhdGEiOiB7fSwKCQkJCSJibGFja2xpc3QiOiBbXQoJCQl9LAoJCQkic2V0dGluZ3MiOiB7CgkJCQkiQURWQU5DRURfTU9ERSI6ICJ2YWx1ZSIsCgkJCQkiTkFNRSI6ICJKb2huIERvZSIKCQkJfSwKCQkJIndhbGxldHMiOiB7CgkJCQkiYWMzOGZlNmQtNGI2Ny00ZWYxLTg1YmUtMTdjNWY2ODQxMTI5IjogewoJCQkJCSJpZCI6ICJhYzM4ZmU2ZC00YjY3LTRlZjEtODViZS0xN2M1ZjY4NDExMjkiLAoJCQkJCSJjb2luIjogIkFSSyIsCgkJCQkJIm5ldHdvcmsiOiAiYXJrLmRldm5ldCIsCgkJCQkJImFkZHJlc3MiOiAiRDYxbWZTZ2d6YnZRZ1RVZTZKaFlLSDJkb0hhcUozRHlpYiIsCgkJCQkJInB1YmxpY0tleSI6ICIwMzQxNTFhM2VjNDZiNTY3MGE2ODJiMGE2MzM5NGY4NjM1ODdkMWJjOTc0ODNiMWI2YzcwZWI1OGU3ZjBhZWQxOTIiLAoJCQkJCSJkYXRhIjogewoJCQkJCQkiQkFMQU5DRSI6IHt9LAoJCQkJCQkiU0VRVUVOQ0UiOiB7fQoJCQkJCX0sCgkJCQkJInNldHRpbmdzIjogewoJCQkJCQkiQUxJQVMiOiAiSm9obmF0aGFuIERvZSIsCgkJCQkJCSJBVkFUQVIiOiAiLi4uIgoJCQkJCX0KCQkJCX0KCQkJfQoJCX0="
 		}
 	},
 	"data": {
