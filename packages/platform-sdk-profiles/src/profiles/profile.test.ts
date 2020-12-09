@@ -170,6 +170,12 @@ describe("#dump", () => {
 
 		expect(() => subject.dump("invalid-password")).toThrow("The password did not match our records.");
 	});
+
+	it("should fail to dump a profile with a password if no password was provided", () => {
+		subject.auth().setPassword("password");
+
+		expect(() => subject.dump()).toThrow("This profile uses a password but none was passed for encryption.");
+	});
 });
 
 describe("#restore", () => {
