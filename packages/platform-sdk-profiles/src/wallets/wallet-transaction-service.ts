@@ -55,11 +55,9 @@ export class TransactionService {
 	}
 
 	/**
-	 * Sign a Transfer transaction.
+	 * Sync.
 	 *
-	 * @param {Contracts.TransferInput} input
-	 * @param {Contracts.TransactionOptions} [options]
-	 * @returns {Promise<string>}
+	 * @returns {Promise<void>}
 	 * @memberof TransactionService
 	 */
 	public async sync(): Promise<void> {
