@@ -116,12 +116,38 @@ it("should have a balance", () => {
 	expect(subject.balance().toString()).toBe("0");
 });
 
-it("should have a converted balance", async () => {
+it("should have a converted balance if it is a live wallet", async () => {
+	const live = jest.spyOn(subject.network(), "isLive").mockReturnValue(true);
+	const test = jest.spyOn(subject.network(), "isTest").mockReturnValue(false);
+
 	subject.data().set(WalletData.Balance, 5e8);
 	subject.data().set(WalletData.ExchangeRate, 5);
 
 	expect(subject.convertedBalance()).toBeInstanceOf(BigNumber);
-	expect(subject.convertedBalance().toNumber()).toBe(0);
+	expect(subject.convertedBalance().toNumber()).toBe(25);
+
+	live.mockRestore();
+	test.mockRestore();
+});
+
+it("should not have a converted balance if it is a live wallet but has no exchange rate", async () => {
+	const live = jest.spyOn(subject.network(), "isLive").mockReturnValue(true);
+	const test = jest.spyOn(subject.network(), "isTest").mockReturnValue(false);
+
+	expect(subject.convertedBalance()).toEqual(BigNumber.ZERO);
+
+	live.mockRestore();
+	test.mockRestore();
+});
+
+it("should not have a converted balance if it is a test wallet", async () => {
+	const live = jest.spyOn(subject.network(), "isLive").mockReturnValue(false);
+	const test = jest.spyOn(subject.network(), "isTest").mockReturnValue(true);
+
+	expect(subject.convertedBalance()).toEqual(BigNumber.ZERO);
+
+	live.mockRestore();
+	test.mockRestore();
 });
 
 it("should have a nonce", () => {

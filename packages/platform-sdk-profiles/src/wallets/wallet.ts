@@ -195,7 +195,6 @@ export class Wallet implements ReadWriteWallet {
 		return BigNumber.make(value);
 	}
 
-	/* istanbul ignore next  */
 	public convertedBalance(): BigNumber {
 		if (this.network().isTest()) {
 			return BigNumber.ZERO;
