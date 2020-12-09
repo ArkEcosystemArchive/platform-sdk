@@ -7,3 +7,4 @@ export * from "./bip44";
 export * from "./buffoon";
 export * from "./hash";
 export * from "./keychain";
+export * from "./pbkdf2";

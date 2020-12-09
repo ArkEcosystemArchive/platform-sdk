@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Base64 } from "@arkecosystem/platform-sdk-crypto";
+import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import StringCrypto from "string-crypto";
 
 import { pqueue } from "../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
@@ -356,7 +355,7 @@ export class Profile implements ProfileContract {
 			throw new Error("The password did not match our records.");
 		}
 
-		return new StringCrypto().encryptString(
+		return PBKDF2.encrypt(
 			JSON.stringify({
 				id: this.id(),
 				password: this.settings().get(ProfileSetting.Password),
@@ -369,7 +368,7 @@ export class Profile implements ProfileContract {
 	/**
 	 * Attempt to decrypt the profile data with the given password.
 	 *
-	 * @param password A hard-to-guess password to encrypt the contents.
+	 * @param password A hard-to-guess password to decrypt the contents.
 	 */
 	private decrypt(password: string): ProfileStruct {
 		const usesPassword: boolean = this.#data.password !== undefined;
@@ -378,7 +377,7 @@ export class Profile implements ProfileContract {
 			throw new Error("This profile uses a password but none was passed for decryption.");
 		}
 
-		const { id, data } = JSON.parse(new StringCrypto().decryptString(Base64.decode(this.#data.data), password));
+		const { id, data } = JSON.parse(PBKDF2.decrypt(Base64.decode(this.#data.data), password));
 
 		return { id, ...data };
 	}

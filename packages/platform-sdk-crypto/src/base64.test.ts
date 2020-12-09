@@ -5,7 +5,7 @@ import { Base64 } from "./base64";
 const message = "Hello World";
 
 test("#encode", async () => {
-	expect(Base64.encode(message)).toMatchInlineSnapshot();
+	expect(Base64.encode(message)).toMatchInlineSnapshot(`"SGVsbG8gV29ybGQ="`);
 });
 
 test("#decode", async () => {
