@@ -210,19 +210,6 @@ it("should create preselected storage given storage option as string", async () 
 	expect(container.get(Identifiers.Storage)).toBeInstanceOf(MemoryStorage);
 });
 
-it("should throw error when calling usedCoinsWithNetworks without verify first", async () => {
-	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
-	expect(() => env.usedCoinsWithNetworks()).toThrowError("Please call [verify] before looking up profile data.");
-});
-
-it("should get a list of used coins and networks", async () => {
-	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
-	await env.verify(storageData);
-	await env.boot();
-
-	expect(env.usedCoinsWithNetworks()).toEqual({ ARK: ["ark.devnet"] });
-});
-
 it("should throw error when calling boot without verify first", async () => {
 	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
 	await expect(env.boot()).rejects.toThrowError("Please call [verify] before booting the environment.");
