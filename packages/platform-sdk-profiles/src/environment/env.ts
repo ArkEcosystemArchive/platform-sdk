@@ -1,5 +1,4 @@
 import { Coins } from "@arkecosystem/platform-sdk";
-import { Validator, ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
 
 import { DataRepository } from "../repositories/data-repository";
@@ -53,31 +52,6 @@ export class Environment {
 
 		let { data, profiles } = storage;
 
-		const { object, string, lazy } = ValidatorSchema;
-
-		const validator = new Validator();
-
-		const schema = lazy(({ profiles }) => {
-			const rules = {};
-
-			for (const key of Object.keys(profiles)) {
-				rules[key] = object({
-					id: string().required(),
-					password: string().required(),
-					data: string().required(),
-				});
-			}
-
-			return Joi.object({
-				data: Joi.object(),
-				profiles: Joi.object(Joi.object({
-					id: string().required(),
-					password: string().required(),
-					data: string().required(),
-				}))
-			});
-		});
-
 		if (!data) {
 			data = {};
 		}
@@ -89,9 +63,9 @@ export class Environment {
 		const { error, value } = Joi.object({
 			data: Joi.object(),
 			profiles: Joi.object().pattern(Joi.string().uuid(), Joi.object({
-				id: string().required(),
-				password: string().required(),
-				data: string().required(),
+				id: Joi.string().required(),
+				password: Joi.string().required(),
+				data: Joi.string().required(),
 			}))
 		}).validate({ data, profiles });
 
