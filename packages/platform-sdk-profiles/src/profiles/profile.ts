@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import StringCrypto from "string-crypto";
 
 import { pqueue } from "../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
@@ -19,8 +21,10 @@ import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { ProfileContract, ProfileSetting, ProfileStruct } from "./profile.models";
 
+interface ProfileData { id: string, password?: string, data: string }
+
 export class Profile implements ProfileContract {
-	#data: Record<string, any>;
+	#data: ProfileData;
 
 	#contactRepository: ContactRepository;
 	#dataRepository: DataRepository;
@@ -36,7 +40,7 @@ export class Profile implements ProfileContract {
 	#transactionAggregate: TransactionAggregate;
 	#walletAggregate: WalletAggregate;
 
-	public constructor(data: Record<string, unknown>) {
+	public constructor(data: ProfileData) {
 		this.#data = data;
 
 		this.#contactRepository = new ContactRepository(this);
@@ -55,7 +59,7 @@ export class Profile implements ProfileContract {
 	}
 
 	public id(): string {
-		return this.#data.id as string;
+		return this.#data.id;
 	}
 
 	public name(): string {
@@ -130,19 +134,6 @@ export class Profile implements ProfileContract {
 		this.restoreDefaultSettings(name);
 	}
 
-	public toObject(): ProfileStruct {
-		return {
-			id: this.id(),
-			contacts: this.contacts().toObject(),
-			data: this.data().all(),
-			notifications: this.notifications().all(),
-			peers: this.peers().toObject(),
-			plugins: this.plugins().toObject(),
-			settings: this.settings().all(),
-			wallets: this.wallets().toObject(),
-		};
-	}
-
 	/**
 	 * These methods serve as helpers to aggregate commonly used data.
 	 */
@@ -190,6 +181,92 @@ export class Profile implements ProfileContract {
 		return usesCustomPeer && usesMultiPeerBroadcasting;
 	}
 
+	/**
+	 * Specify data which should be serialized to an object.
+	 */
+	public toObject(): ProfileStruct {
+		return {
+			id: this.id(),
+			contacts: this.contacts().toObject(),
+			data: this.data().all(),
+			notifications: this.notifications().all(),
+			peers: this.peers().toObject(),
+			plugins: this.plugins().toObject(),
+			settings: this.settings().all(),
+			wallets: this.wallets().toObject(),
+		};
+	}
+
+	/**
+	 * Dumps the profile into a standardised object.
+	 */
+	public dump(password?: string): ProfileData {
+		let data: string | undefined;
+
+		if (password === undefined) {
+			data = JSON.stringify(this.toObject());
+		} else {
+			data = this.encrypt(password);
+		}
+
+		if (data === undefined) {
+			throw new Error("Failed to encode or encrypt the profile.");
+		}
+
+		return {
+			id: this.id(),
+			password: this.settings().get(ProfileSetting.Password),
+			data: Base64.encode(data),
+		};
+	}
+
+	/**
+	 * Restore a profile from either a base64 raw or base64 encrypted string.
+	 *
+	 * @param {string} [password]
+	 * @returns {Promise<void>}
+	 * @memberof Profile
+	 */
+	public async restore(password?: string): Promise<void> {
+		let data: ProfileStruct | undefined;
+
+		try {
+			if (password !== undefined) {
+				data = this.decrypt(password);
+			} else {
+				data = JSON.parse(Base64.decode(this.#data.data));
+			}
+		} catch {
+			// Do nothing if both fail...
+		}
+
+		if (data === undefined) {
+			throw new Error("Failed to decode or decrypt the profile.");
+		}
+
+		this.peers().fill(data.peers);
+
+		this.notifications().fill(data.notifications);
+
+		this.data().fill(data.data);
+
+		// @ts-ignore
+		this.plugins().fill(data.plugins);
+
+		this.settings().fill(data.settings);
+
+		await this.restoreWallets(this, data.wallets);
+
+		await this.contacts().fill(data.contacts);
+	}
+
+	/**
+	 * Initialize the factory settings.
+	 *
+	 * If the profile has modified any settings they will be overwritten!
+	 *
+	 * @memberof Profile
+	 */
 	public initializeSettings(): void {
 		this.settings().set(ProfileSetting.AdvancedMode, false);
 		this.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
@@ -206,28 +283,31 @@ export class Profile implements ProfileContract {
 		this.settings().set(ProfileSetting.UseTestNetworks, false);
 	}
 
-	public async restore(): Promise<void> {
-		this.peers().fill(this.#data.peers);
-
-		this.notifications().fill(this.#data.notifications);
-
-		this.data().fill(this.#data.data);
-
-		this.plugins().fill(this.#data.plugins);
-
-		this.settings().fill(this.#data.settings);
-
-		await this.restoreWallets(this, this.#data.wallets);
-
-		await this.contacts().fill(this.#data.contacts);
-	}
-
+	/**
+	 * Restore the default settings, including the name of the profile.
+	 *
+	 * @private
+	 * @param {string} name
+	 * @memberof Profile
+	 */
 	private restoreDefaultSettings(name: string): void {
 		this.settings().set(ProfileSetting.Name, name);
 
 		this.initializeSettings();
 	}
 
+	/**
+	 * Restore each wallet by sending network requests to gather data.
+	 *
+	 * One wallet of each network is pre-synced to avoid duplicate
+	 * requests for subsequent imports to save bandwidth and time.
+	 *
+	 * @private
+	 * @param {Profile} profile
+	 * @param {object} wallets
+	 * @returns {Promise<void>}
+	 * @memberof Profile
+	 */
 	private async restoreWallets(profile: Profile, wallets: object): Promise<void> {
 		const syncWallets = (wallets: object): Promise<ReadWriteWallet[]> =>
 			pqueue([...Object.values(wallets)].map((wallet) => () => profile.wallets().restore(wallet)));
@@ -252,5 +332,36 @@ export class Profile implements ProfileContract {
 		// These wallets will be synced last because they can reuse already existing coin instances from the warmup wallets
 		// to avoid duplicate requests which elongate the waiting time for a user before the wallet is accessible and ready.
 		await syncWallets(laterWallets);
+	}
+
+	/**
+	 * Attempt to encrypt the profile data with the given password.
+	 *
+	 * @param password A hard-to-guess password to encrypt the contents.
+	 */
+	private encrypt(password: string): string {
+		if (!this.auth().verifyPassword(password)) {
+			throw new Error("The password did not match our records.");
+		}
+
+		return new StringCrypto().encryptString(
+			JSON.stringify({
+				id: this.id(),
+				password: this.settings().get(ProfileSetting.Password),
+				data: this.toObject(),
+			}),
+			password,
+		);
+	}
+
+	/**
+	 * Attempt to decrypt the profile data with the given password.
+	 *
+	 * @param password A hard-to-guess password to encrypt the contents.
+	 */
+	private decrypt(password: string): ProfileStruct {
+		const { id, data } = JSON.parse(new StringCrypto().decryptString(Base64.decode(this.#data.data), password));
+
+		return { id, ...data };
 	}
 }

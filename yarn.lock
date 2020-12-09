@@ -1102,6 +1102,7 @@ __metadata:
     prettier: ^2.1.2
     rimraf: ^3.0.2
     semver: ^7.3.2
+    string-crypto: ^1.0.4
     ts-jest: ^26.4.4
     type-fest: ^0.18.1
     typescript: ^4.0.5
@@ -5050,7 +5051,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aes-js@npm:^3.1.1":
+"aes-js@npm:^3.1.1, aes-js@npm:^3.1.2":
   version: 3.1.2
   resolution: "aes-js@npm:3.1.2"
   checksum: 2/ab4633f4054e3d32d69af61bb941e47e188629c7e038d898600f3bd55674739c043b0811225fe4b58c00224f9a027a432f65e5c88681d2e49cbaa5d51f6ea941
@@ -13318,6 +13319,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pbkdf2@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "pbkdf2@npm:3.1.1"
+  dependencies:
+    create-hash: ^1.1.2
+    create-hmac: ^1.1.4
+    ripemd160: ^2.0.1
+    safe-buffer: ^5.0.1
+    sha.js: ^2.4.8
+  checksum: 2/780dd6d50e750d302651638ff1edfe899d3a345e702f6c36fbdbdef3cfefd12d3d76698565022f4cd97d3f8ced5098f4ae2fdd067d3e1fca2849a70eb60e7620
+  languageName: node
+  linkType: hard
+
 "performance-now@npm:^2.1.0":
   version: 2.1.0
   resolution: "performance-now@npm:2.1.0"
@@ -15252,6 +15266,16 @@ resolve@^1.18.1:
   version: 1.1.0
   resolution: "strict-uri-encode@npm:1.1.0"
   checksum: 2/6c80f6998a45414d7c124772383cc10ce7bd22586af80762407cded1569666564fb8c0a4c9c997ac39a1116d46dfffc5d57135e759a0acb66a4da1191f5a3a4a
+  languageName: node
+  linkType: hard
+
+"string-crypto@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "string-crypto@npm:1.0.4"
+  dependencies:
+    aes-js: ^3.1.2
+    pbkdf2: ^3.1.1
+  checksum: 2/5d72d16b5b46f0df9f269b2cc2dd38c8ad72c538ab3de70e626ba1335b6c66f5572f34da8ddc736f41907b93cd2a1e0ce3ad871be847377f9e37eb0413fd2853
   languageName: node
   linkType: hard
 

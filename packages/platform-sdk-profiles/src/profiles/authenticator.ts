@@ -1,11 +1,11 @@
 import { Bcrypt } from "@arkecosystem/platform-sdk-crypto";
 
-import { ProfileSetting } from "./profile.models";
+import { ProfileContract, ProfileSetting } from "./profile.models";
 
 export class Authenticator {
 	readonly #profile;
 
-	public constructor(profile) {
+	public constructor(profile: ProfileContract) {
 		this.#profile = profile;
 	}
 

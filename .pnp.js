@@ -1528,6 +1528,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.2"],
             ["rimraf", "npm:3.0.2"],
             ["semver", "npm:7.3.2"],
+            ["string-crypto", "npm:1.0.4"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
             ["type-fest", "npm:0.18.1"],
             ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"],
@@ -15505,6 +15506,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["sha.js", "npm:2.4.11"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:3.1.1", {
+          "packageLocation": "./.yarn/cache/pbkdf2-npm-3.1.1-bd4801f9ae-2.zip/node_modules/pbkdf2/",
+          "packageDependencies": [
+            ["pbkdf2", "npm:3.1.1"],
+            ["create-hash", "npm:1.2.0"],
+            ["create-hmac", "npm:1.1.7"],
+            ["ripemd160", "npm:2.0.2"],
+            ["safe-buffer", "npm:5.2.0"],
+            ["sha.js", "npm:2.4.11"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["performance-now", [
@@ -17606,6 +17619,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/strict-uri-encode-npm-1.1.0-a79c6f7f24-2.zip/node_modules/strict-uri-encode/",
           "packageDependencies": [
             ["strict-uri-encode", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["string-crypto", [
+        ["npm:1.0.4", {
+          "packageLocation": "./.yarn/cache/string-crypto-npm-1.0.4-dda784909f-2.zip/node_modules/string-crypto/",
+          "packageDependencies": [
+            ["string-crypto", "npm:1.0.4"],
+            ["aes-js", "npm:3.1.2"],
+            ["pbkdf2", "npm:3.1.1"]
           ],
           "linkType": "HARD",
         }]
