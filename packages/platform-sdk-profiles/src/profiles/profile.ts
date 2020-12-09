@@ -257,6 +257,10 @@ export class Profile implements ProfileContract {
 			throw new Error("Failed to decode or decrypt the profile.");
 		}
 
+		// @TODO: we need to apply migrations before we validate the data to ensure that it is conform
+		// since profiles are now restored on a per-profile basis due to encryption we can't apply them
+		// in bulk to all profiles because the profile data won't be accessible until after restoration
+
 		data = this.validateStruct(data);
 
 		this.peers().fill(data.peers);
