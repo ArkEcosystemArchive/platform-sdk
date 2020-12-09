@@ -1,3 +1,5 @@
+import { Hash } from "@arkecosystem/platform-sdk-crypto";
+
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
 import { DataRepository } from "./data-repository";
@@ -77,10 +79,25 @@ export class ProfileRepository {
 
 	public toObject(): Record<string, object> {
 		const result: Record<string, object> = {};
+		const profiles: [string, Profile][] = Object.entries(this.#data.all());
 
-		for (const [id, profile] of Object.entries(this.#data.all())) {
-			// @TODO: we need to dump the profiles here but respect the user password for encryption
-			result[id] = profile.dump();
+		for (const [id, profile] of profiles) {
+			if (profile.usesPassword()) {
+				/**
+				 * @README!
+				 *
+				 * We need to dump the profile here and respect the possible usage of a password for encryption
+				 * so we will temporarily store the plain text password in-memory as { uniqueId: password }.
+				 *
+				 * Ideally we wouldn't need to store anything in-memory but since the application could crash
+				 * at any time or the user could sign out we need the password to encrypt and dump the profile.
+				 *
+				 * Any suggestions for an alternative without in-memory data are welcome.
+				 */
+				result[id] = profile.dump(process.env[Hash.sha256(`${profile.id()}/passwd`).toString("hex")]);
+			} else {
+				result[id] = profile.dump();
+			}
 		}
 
 		return result;
