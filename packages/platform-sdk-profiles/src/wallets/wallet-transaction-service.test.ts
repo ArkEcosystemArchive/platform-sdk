@@ -92,7 +92,7 @@ it("should sync", async () => {
 
 describe("signatures", () => {
 	it("should sign transfer", async () => {
-		let input = {
+		const input = {
 			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			sign: {
 				mnemonic: "this is a top secret passphrase",
@@ -102,7 +102,7 @@ describe("signatures", () => {
 				to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50",
 		  "signedData": Object {
@@ -120,14 +120,14 @@ describe("signatures", () => {
 		  },
 		}
 	`;
-		let id = await subject.signTransfer(input);
+		const id = await subject.signTransfer(input);
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
 	});
 
 	it("should sign entity registration", async () => {
-		let input = {
+		const input = {
 			nonce: "1",
 			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			sign: {
@@ -140,7 +140,7 @@ describe("signatures", () => {
 				ipfs: "QmRoWaqjkdGv1fqz5hrFUNHwz9CxVRq7MxoAevWDJPXLEp",
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "cfb278353c805c1cb66f3be2494c10504f563ca078aa8707cc2d6a0bb0d55982",
 		  "signedData": Object {
@@ -167,7 +167,7 @@ describe("signatures", () => {
 		}
 	`;
 
-		let id = await subject.signEntityRegistration(input);
+		const id = await subject.signEntityRegistration(input);
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
@@ -175,7 +175,7 @@ describe("signatures", () => {
 	});
 
 	it("should sign second signature", async () => {
-		let input = {
+		const input = {
 			nonce: "1",
 			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			sign: {
@@ -185,7 +185,7 @@ describe("signatures", () => {
 				mnemonic: "this is a top secret second mnemonic",
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "90b8567a332d628064856f7a4749f98f56f5d2cdeb31a94025ceeeb51489ea81",
 		  "signedData": Object {
@@ -207,7 +207,7 @@ describe("signatures", () => {
 		}
 	`;
 
-		let id = await subject.signSecondSignature(input);
+		const id = await subject.signSecondSignature(input);
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
@@ -215,7 +215,7 @@ describe("signatures", () => {
 	});
 
 	it("should sign delegate registration", async () => {
-		let input = {
+		const input = {
 			nonce: "1",
 			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			sign: {
@@ -225,7 +225,7 @@ describe("signatures", () => {
 				username: "johndoe",
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "9ea43c795cf5939999295a16a07d962f8fd812e97097a8fb93684807d72b3558",
 		  "signedData": Object {
@@ -247,7 +247,7 @@ describe("signatures", () => {
 		}
 	`;
 
-		let id = await subject.signDelegateRegistration(input);
+		const id = await subject.signDelegateRegistration(input);
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
@@ -255,7 +255,7 @@ describe("signatures", () => {
 	});
 
 	it("should sign vote", async () => {
-		let input = {
+		const input = {
 			nonce: "1",
 			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			sign: {
@@ -265,7 +265,7 @@ describe("signatures", () => {
 				vote: "+03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "17afd04af3bac79a735b42649c9ae717f0c96838d8a0e74eb4c0697ca9a11ad2",
 		  "signedData": Object {
@@ -287,7 +287,7 @@ describe("signatures", () => {
 		}
 	`;
 
-		let id = await subject.signVote(input);
+		const id = await subject.signVote(input);
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
@@ -295,7 +295,7 @@ describe("signatures", () => {
 	});
 
 	it("should sign multi signature registration", async () => {
-		let input = {
+		const input = {
 			nonce: "1",
 			from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
 			data: {
@@ -316,7 +316,7 @@ describe("signatures", () => {
 				mnemonic: "this is a top secret passphrase 1",
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "eaad3581c9e341b1087cc852ba6b1c8c8e5ccb4e17ec546364b7075a91a30031",
 		  "signedData": Object {
@@ -347,7 +347,7 @@ describe("signatures", () => {
 		}
 	`;
 
-		let id = await subject.signMultiSignature(input);
+		const id = await subject.signMultiSignature(input);
 
 		expect(id).toBeString();
 		expect(subject.waitingForOtherSignatures()).toContainKey(id);
@@ -355,7 +355,7 @@ describe("signatures", () => {
 	});
 
 	it("should sign ipfs", async () => {
-		let input = {
+		const input = {
 			nonce: "1",
 			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			sign: {
@@ -365,7 +365,7 @@ describe("signatures", () => {
 				hash: "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9w",
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "c753ed6430a565cc18020f821561176f9da07d66c9276c161fbc66971e713492",
 		  "signedData": Object {
@@ -385,7 +385,7 @@ describe("signatures", () => {
 		}
 	`;
 
-		let id = await subject.signIpfs(input);
+		const id = await subject.signIpfs(input);
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
@@ -393,7 +393,7 @@ describe("signatures", () => {
 	});
 
 	it("should sign multi payment", async () => {
-		let input = {
+		const input = {
 			nonce: "1",
 			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			sign: {
@@ -407,7 +407,7 @@ describe("signatures", () => {
 				],
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "2294061d2eb5fc4eff3d9dedb7b6eb2ee3cd38b0d2463bbd7ffd866c77a12052",
 		  "signedData": Object {
@@ -440,7 +440,7 @@ describe("signatures", () => {
 		}
 	`;
 
-		let id = await subject.signMultiPayment(input);
+		const id = await subject.signMultiPayment(input);
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
@@ -448,14 +448,14 @@ describe("signatures", () => {
 	});
 
 	it("should sign delegate resignation", async () => {
-		let input = {
+		const input = {
 			nonce: "1",
 			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			sign: {
 				mnemonic: "this is a top secret passphrase",
 			},
 		};
-		let snapshot = `
+		const snapshot = `
 		SignedTransactionData {
 		  "identifier": "64ee4412671695897cc26c2952e9247c050d4a18533dd4326d751cb88f338cdd",
 		  "signedData": Object {
@@ -472,7 +472,140 @@ describe("signatures", () => {
 		}
 	`;
 
-		let id = await subject.signDelegateResignation(input);
+		const id = await subject.signDelegateResignation(input);
+
+		expect(id).toBeString();
+		expect(subject.signed()).toContainKey(id);
+		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+	});
+
+	it("should sign htlc lock", async () => {
+		const input = {
+			nonce: "1",
+			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			sign: {
+				mnemonic: "this is a top secret passphrase",
+			},
+			data: {
+				amount: "1",
+				to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+				secretHash: "0f128d401958b1b30ad0d10406f47f9489321017b4614e6cb993fc63913c5454",
+				expiration: {
+					type: 1,
+					value: 1607523002,
+				},
+			},
+		};
+		const snapshot = `
+		SignedTransactionData {
+		  "identifier": "a282b42b1c6c864571310a1393cc2439d2a994e99af9e758dc390e506704ed42",
+		  "signedData": Object {
+		    "amount": "1",
+		    "asset": Object {
+		      "lock": Object {
+		        "expiration": Object {
+		          "type": 1,
+		          "value": 1607523002,
+		        },
+		        "secretHash": "0f128d401958b1b30ad0d10406f47f9489321017b4614e6cb993fc63913c5454",
+		      },
+		    },
+		    "fee": "10000000",
+		    "id": "a282b42b1c6c864571310a1393cc2439d2a994e99af9e758dc390e506704ed42",
+		    "network": 30,
+		    "nonce": "1",
+		    "recipientId": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "5d3aee4dad2cce7fc9eb2dd3f09390ad3bf7fdc9d7b9bb849992a28f67af37f5e724a849afdf89f29051300ecf70de8a137b6245c3f36701f1cf862fd9079876",
+		    "type": 8,
+		    "version": 2,
+		  },
+		}
+	`;
+
+		const id = await subject.signHtlcLock(input);
+
+		expect(id).toBeString();
+		expect(subject.signed()).toContainKey(id);
+		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+	});
+
+	it("should sign htlc claim", async () => {
+		const input = {
+			nonce: "1",
+			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			sign: {
+				mnemonic: "this is a top secret passphrase",
+			},
+			data: {
+				lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
+				unlockSecret: "c27f1ce845d8c29eebc9006be932b604fd06755521b1a8b0be4204c65377151a",
+			},
+		};
+		let snapshot = `
+		SignedTransactionData {
+		  "identifier": "098651eca8c8dad8ac0ae06704f6db64b2ebe4ca30d871e2565bcbf86e8ea1fd",
+		  "signedData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "claim": Object {
+		        "lockTransactionId": "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
+		        "unlockSecret": "c27f1ce845d8c29eebc9006be932b604fd06755521b1a8b0be4204c65377151a",
+		      },
+		    },
+		    "fee": "0",
+		    "id": "098651eca8c8dad8ac0ae06704f6db64b2ebe4ca30d871e2565bcbf86e8ea1fd",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "deb9fdfae03c1a68ea290bde6c0ddf3a563315697d96c74f0833b5b2f1ac8f4e8caf628394a6770d85441157c61f6f0f3d889b02d154a7df924254274c1f239d",
+		    "type": 9,
+		    "version": 2,
+		  },
+		}
+	`;
+
+		const id = await subject.signHtlcClaim(input);
+
+		expect(id).toBeString();
+		expect(subject.signed()).toContainKey(id);
+		expect(subject.signed()[id]).toMatchInlineSnapshot(snapshot);
+	});
+
+	it("should sign htlc refund", async () => {
+		const input = {
+			nonce: "1",
+			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			sign: {
+				mnemonic: "this is a top secret passphrase",
+			},
+			data: {
+				lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
+			},
+		};
+		let snapshot = `
+		SignedTransactionData {
+		  "identifier": "52df20e0a8b2cf0f952afc87fb179be03f73a053fbf6bfe658e74fd0106a5819",
+		  "signedData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "refund": Object {
+		        "lockTransactionId": "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
+		      },
+		    },
+		    "fee": "0",
+		    "id": "52df20e0a8b2cf0f952afc87fb179be03f73a053fbf6bfe658e74fd0106a5819",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "9d28032cd8018f35e46a112c44014cb7ee9486b653d59981835775c865a465f56e0a831de85629a13dd5223c58f4f893cbbe3cdf72c6a99dc274149aa99ed785",
+		    "type": 10,
+		    "version": 2,
+		  },
+		}
+	`;
+
+		const id = await subject.signHtlcRefund(input);
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
