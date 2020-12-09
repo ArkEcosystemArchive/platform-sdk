@@ -94,6 +94,6 @@ export class Migrator {
 	}
 
 	private async getPreviousMigratedVersion(defaultVersion: string): Promise<string> {
-		return get(this.#storage.get(this.#namespace), "latest", defaultVersion);
+		return get(await this.#storage.get(this.#namespace), "latest", defaultVersion);
 	}
 }
