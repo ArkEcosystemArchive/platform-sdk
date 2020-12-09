@@ -22,6 +22,7 @@ import { Profile } from "./profile";
 import { ProfileSetting } from "./profile.models";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { RegistrationAggregate } from "./aggregates/registration-aggregate";
+import { CoinService } from "../environment/services/coin-service";
 
 let subject: Profile;
 
@@ -37,6 +38,7 @@ beforeAll(() => {
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
 
+	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK });
 });
@@ -297,6 +299,66 @@ describe("#restore", () => {
 		const profile: Profile = new Profile(subject.dump("password"));
 
 		await expect(profile.restore("invalid-password")).rejects.toThrow("Failed to decode or decrypt the profile.");
+	});
+
+	it("should restore a profile with wallets", async () => {
+		const withWallets = {
+			id: "uuid",
+			contacts: {},
+			data: { key: "value" },
+			notifications: {},
+			peers: {},
+			plugins: {
+				data: {},
+				blacklist: [],
+			},
+			settings: {
+				THEME: "dark",
+			},
+			wallets: {
+				"88ff9e53-7d40-420d-8f39-9f24acee2164": {
+					id: "88ff9e53-7d40-420d-8f39-9f24acee2164",
+					coin: "ARK",
+					network: "ark.devnet",
+					address: "D6Z26L69gdk9qYmTv5uzk3uGepigtHY4ax",
+					publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+					data: {
+						BALANCE: {},
+						SEQUENCE: {},
+					},
+					settings: {
+						AVATAR: "...",
+					},
+				},
+				"ac38fe6d-4b67-4ef1-85be-17c5f6841129": {
+					id: "ac38fe6d-4b67-4ef1-85be-17c5f6841129",
+					coin: "ARK",
+					network: "ark.devnet",
+					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+					data: {
+						BALANCE: {},
+						SEQUENCE: {},
+					},
+					settings: {
+						ALIAS: "Johnathan Doe",
+						AVATAR: "...",
+					},
+				},
+			},
+		};
+
+		const profileDump = {
+			id: "uuid",
+			password: undefined,
+			data: Base64.encode(JSON.stringify(withWallets)),
+		};
+
+		const profile = new Profile(profileDump);
+		await profile.restore();
+
+		expect(profile.wallets().count()).toEqual(2);
+		expect(profile.settings().get(ProfileSetting.Theme)).toEqual("dark");
 	});
 });
 
