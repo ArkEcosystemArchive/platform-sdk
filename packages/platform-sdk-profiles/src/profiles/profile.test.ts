@@ -1,7 +1,9 @@
 import "jest-extended";
 
+import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { container } from "../environment/container";
@@ -18,6 +20,8 @@ import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 import { ProfileSetting } from "./profile.models";
+import { EntityAggregate } from "./aggregates/entity-aggregate";
+import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 
 let subject: Profile;
 
@@ -62,6 +66,16 @@ it("should have a custom avatar", () => {
 	expect(subject.avatar()).toBe("custom-avatar");
 });
 
+it("should have a balance", () => {
+	expect(subject.balance()).toBeInstanceOf(BigNumber);
+	expect(subject.balance().toString()).toBe("0");
+});
+
+it("should have a converted balance", () => {
+	expect(subject.convertedBalance()).toBeInstanceOf(BigNumber);
+	expect(subject.convertedBalance().toString()).toBe("0");
+});
+
 it("should have a contacts repository", () => {
 	expect(subject.contacts()).toBeInstanceOf(ContactRepository);
 });
@@ -104,6 +118,14 @@ it("should fail to flush all data if the name is missing", () => {
 
 it("should have a count aggregate", () => {
 	expect(subject.countAggregate()).toBeInstanceOf(CountAggregate);
+});
+
+it("should have a entity aggregate", () => {
+	expect(subject.entityAggregate()).toBeInstanceOf(EntityAggregate);
+});
+
+it("should have a registration aggregate", () => {
+	expect(subject.registrationAggregate()).toBeInstanceOf(RegistrationAggregate);
 });
 
 it("should have a transaction aggregate", () => {
@@ -176,6 +198,14 @@ describe("#dump", () => {
 
 		expect(() => subject.dump()).toThrow("This profile uses a password but none was passed for encryption.");
 	});
+
+	it("should fail to dump if encoding or encrypting fails", () => {
+		// @ts-ignore
+		const encodingMock = jest.spyOn(JSON, "stringify").mockReturnValue(undefined);
+
+		expect(() => subject.dump()).toThrow("Failed to encode or encrypt the profile");
+		encodingMock.mockRestore();
+	});
 });
 
 describe("#restore", () => {
@@ -196,6 +226,29 @@ describe("#restore", () => {
 			"settings",
 			"wallets",
 		]);
+	});
+
+	it("should fail to restore a profile with corrupted data", async () => {
+		const corruptedProfileData = {
+			// id: 'uuid',
+			contacts: {},
+			data: {},
+			notifications: {},
+			peers: {},
+			plugins: { data: {}, blacklist: [] },
+			settings: { NAME: "John Doe" },
+			wallets: {},
+		};
+
+		const corruptedDump = {
+			id: "uuid",
+			password: undefined,
+			data: Base64.encode(JSON.stringify(corruptedProfileData)),
+		};
+
+		const profile: Profile = new Profile(corruptedDump);
+
+		await expect(profile.restore()).rejects.toThrow();
 	});
 
 	it("should restore a profile without a password", async () => {
@@ -222,6 +275,14 @@ describe("#restore", () => {
 	`);
 	});
 
+	it("should fail to restore if profile is not using password but password is passed", async () => {
+		const profile: Profile = new Profile(subject.dump());
+
+		await expect(profile.restore("password")).rejects.toThrow(
+			"Failed to decode or decrypt the profile. Reason: This profile does not use a password but password was passed for decryption",
+		);
+	});
+
 	it("should fail to restore a profile with a password if no password was provided", async () => {
 		subject.auth().setPassword("password");
 
@@ -237,4 +298,12 @@ describe("#restore", () => {
 
 		await expect(profile.restore("invalid-password")).rejects.toThrow("Failed to decode or decrypt the profile.");
 	});
+});
+
+it("#usesMultiPeerBroadcasting", async () => {
+	expect(subject.usesMultiPeerBroadcasting()).toBeFalse();
+
+	subject.settings().set(ProfileSetting.UseCustomPeer, true);
+	subject.settings().set(ProfileSetting.UseMultiPeerBroadcast, true);
+	expect(subject.usesMultiPeerBroadcasting()).toBeTrue();
 });
