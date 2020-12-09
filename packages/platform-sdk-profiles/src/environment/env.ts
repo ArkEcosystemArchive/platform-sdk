@@ -62,11 +62,14 @@ export class Environment {
 
 		const { error, value } = Joi.object({
 			data: Joi.object(),
-			profiles: Joi.object().pattern(Joi.string().uuid(), Joi.object({
-				id: Joi.string().required(),
-				password: Joi.string().required(),
-				data: Joi.string().required(),
-			}))
+			profiles: Joi.object().pattern(
+				Joi.string().uuid(),
+				Joi.object({
+					id: Joi.string().required(),
+					password: Joi.string().required(),
+					data: Joi.string().required(),
+				}),
+			),
 		}).validate({ data, profiles });
 
 		if (error) {
@@ -144,7 +147,7 @@ export class Environment {
 		return container.get(Identifiers.ProfileRepository);
 	}
 
-	public 	(): WalletService {
+	public(): WalletService {
 		return container.get(Identifiers.WalletService);
 	}
 
