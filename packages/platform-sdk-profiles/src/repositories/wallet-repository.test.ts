@@ -39,7 +39,7 @@ beforeEach(async () => {
 	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK, BTC, ETH });
 
-	const profile = new Profile({ id: "profile-id" });
+	const profile = new Profile({ id: "profile-id", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	subject = new WalletRepository(profile);
@@ -183,7 +183,7 @@ test("#update", async () => {
 });
 
 test("#restore", async () => {
-	const profile = new Profile({ id: "profile-id" });
+	const profile = new Profile({ id: "profile-id", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	const newWallet = new Wallet(uuidv4(), profile);
