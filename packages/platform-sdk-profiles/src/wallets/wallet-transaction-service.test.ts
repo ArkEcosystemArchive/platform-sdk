@@ -724,7 +724,7 @@ describe("signatures", () => {
 	});
 });
 
-it("#flow", async () => {
+it("#transaction lifecycle", async () => {
 	const input = {
 		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		sign: {
@@ -738,6 +738,13 @@ it("#flow", async () => {
 	const id = await subject.signTransfer(input);
 	expect(id).toBeString();
 	expect(subject.signed()).toContainKey(id);
+	expect(subject.transaction(id)).toBeDefined();
+	expect(subject.waitingForOurSignature()).not.toContainKey(id);
+	expect(subject.waitingForOtherSignatures()).not.toContainKey(id);
+	expect(subject.hasBeenSigned(id)).toBeTrue();
+	expect(subject.hasBeenBroadcasted(id)).toBeFalse();
+	expect(subject.isAwaitingOurSignature(id)).toBeFalse();
+	expect(subject.isAwaitingOtherSignatures(id)).toBeFalse();
 
 	nock(/.+/)
 		.post("/api/transactions")
@@ -766,9 +773,14 @@ it("#flow", async () => {
 	expect(subject.signed()).toContainKey(id);
 	expect(subject.broadcasted()).toContainKey(id);
 	expect(subject.isAwaitingConfirmation(id)).toBeTrue();
+	expect(subject.hasBeenSigned(id)).toBeTrue();
+	expect(subject.hasBeenBroadcasted(id)).toBeTrue();
+	expect(subject.transaction(id)).toBeDefined();
 
 	await subject.confirm(id);
 
 	expect(subject.signed()).not.toContainKey(id);
 	expect(subject.broadcasted()).not.toContainKey(id);
+	expect(subject.isAwaitingConfirmation(id)).toBeFalse();
+	expect(() => subject.transaction(id)).toThrow("Transaction [7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50] could not be found.");
 });
