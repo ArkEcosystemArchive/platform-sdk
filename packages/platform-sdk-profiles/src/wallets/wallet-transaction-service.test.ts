@@ -83,8 +83,12 @@ it("should sync", async () => {
 });
 
 describe("signatures", () => {
-	it.skip("should add signature", async () => {
-		const input = {
+	it("should add signature", async () => {
+		nock(/.+/).post("/transaction").reply(200, {
+			id: "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
+		});
+
+		await subject.signMultiSignature({
 			nonce: "1",
 			from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
 			data: {
@@ -99,8 +103,8 @@ describe("signatures", () => {
 				mnemonics: ["this is a top secret passphrase 1", "this is a top secret passphrase 2"],
 				mnemonic: "this is a top secret passphrase 1",
 			},
-		};
-		await subject.signMultiSignature(input);
+		});
+
 		await subject.sync();
 		await subject.addSignature(
 			"a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
