@@ -9,6 +9,7 @@ import nock from "nock";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
+import { MemoryPassword } from "../helpers/password";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "./profile-repository";
 
@@ -172,5 +173,24 @@ describe("ProfileRepository", () => {
 
 	it("should fail to forget a profile that doesn't exist", async () => {
 		expect(() => subject.forget("doesnotexist")).toThrow("No profile found for");
+	});
+
+	it("should dump all profiles", async () => {
+		const john = subject.create("John");
+		const jane = subject.create("Jane");
+
+		jane.auth().setPassword("password");
+		MemoryPassword.set(jane, "password");
+
+		const repositoryDump = subject.toObject();
+
+		const restoredJane = new Profile(repositoryDump[jane.id()] as any);
+		await restoredJane.restore("password");
+
+		const restoredJohn = new Profile(repositoryDump[john.id()] as any);
+		await restoredJohn.restore();
+
+		expect(restoredJohn.toObject()).toEqual(john.toObject());
+		expect(restoredJane.toObject()).toEqual(jane.toObject());
 	});
 });
