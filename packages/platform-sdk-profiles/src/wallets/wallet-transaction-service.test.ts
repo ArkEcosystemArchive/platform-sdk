@@ -745,8 +745,19 @@ it("#flow", async () => {
 				invalid: [],
 			},
 			errors: {},
-		});
-	await expect(subject.broadcast(id)).resolves.toBeFalse();
+		})
+		.get("/api/transactions/7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50")
+		.reply(200, { data: { confirmations: 51 } });
+
+	await expect(subject.broadcast(id)).resolves.toMatchInlineSnapshot(`
+					Object {
+					  "accepted": Array [
+					    "7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50",
+					  ],
+					  "errors": Object {},
+					  "rejected": Array [],
+					}
+				`);
 
 	expect(subject.signed()).toContainKey(id);
 	expect(subject.broadcasted()).toContainKey(id);
