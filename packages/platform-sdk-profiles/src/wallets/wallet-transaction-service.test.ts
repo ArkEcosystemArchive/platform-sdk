@@ -13,6 +13,8 @@ import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "./wallet";
 import { TransactionService } from "./wallet-transaction-service";
+import { WalletData } from "./wallet.models";
+import { SignedTransactionData } from "./dto/signed-transaction";
 
 let profile: Profile;
 let wallet: Wallet;
@@ -79,6 +81,8 @@ beforeEach(async () => {
 beforeAll(() => nock.disableNetConnect());
 
 it("should sync", async () => {
+	const musig = require("../../test/fixtures/client/musig-transaction.json");
+	nock(/.+/).get("/transactions").query(true).reply(200, [musig]).persist();
 	await expect(subject.sync()).toResolve();
 });
 
@@ -106,20 +110,16 @@ describe("signatures", () => {
 				id: "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
 			});
 
-		await subject.signMultiSignature({
+		const id = await subject.signMultiSignature({
 			nonce: "1",
 			from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
 			data: {
-				publicKeys: [
-					"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
-					"0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
-				],
-				min: 2,
+				publicKeys: ["02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910"],
+				min: 1,
 				senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
 			},
 			sign: {
-				mnemonics: ["this is a top secret passphrase 1", "this is a top secret passphrase 2"],
-				mnemonic: "this is a top secret passphrase 1",
+				mnemonics: ["this is a top secret passphrase 2"],
 			},
 		});
 
@@ -129,7 +129,7 @@ describe("signatures", () => {
 			"this is a top secret passphrase 1",
 		);
 
-		expect(subject.hasBeenSigned("a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d")).toBeTrue();
+		expect(subject.transaction(id)).toBeDefined();
 	});
 
 	it("should sign transfer", async () => {
@@ -345,6 +345,7 @@ describe("signatures", () => {
 		expect(id).toBeString();
 		expect(subject.waitingForOtherSignatures()).toContainKey(id);
 		expect(subject.waitingForOtherSignatures()[id]).toMatchInlineSnapshot(snapshot);
+		expect(subject.canBeSigned(id)).toBeFalse();
 	});
 
 	it("should sign ipfs", async () => {
@@ -797,10 +798,399 @@ it("#transaction lifecycle", async () => {
 
 	await subject.confirm(id);
 
+	//@ts-ignore
+	await expect(subject.confirm(null)).toReject();
+
 	expect(subject.signed()).not.toContainKey(id);
 	expect(subject.broadcasted()).not.toContainKey(id);
 	expect(subject.isAwaitingConfirmation(id)).toBeFalse();
 	expect(() => subject.transaction(id)).toThrow(
 		"Transaction [7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50] could not be found.",
 	);
+});
+
+it("#pending", async () => {
+	const input = {
+		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		sign: {
+			mnemonic: "this is a top secret passphrase",
+		},
+		data: {
+			amount: "1",
+			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		},
+	};
+	const snapshot = `
+		SignedTransactionData {
+		  "identifier": "7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50",
+		  "signedData": Object {
+		    "amount": "1",
+		    "expiration": 0,
+		    "fee": "10000000",
+		    "id": "7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50",
+		    "network": 30,
+		    "nonce": "111933",
+		    "recipientId": "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		    "signature": "04538be8afc96ad0fbcd25c5a5012681fd4effc66cf4cdc9e37556d7731ed6009fe5a2cea82973a535c76e1b79fdb739b224b206ff32d6b978b139a12f2942ba",
+		    "type": 0,
+		    "version": 2,
+		  },
+		}
+	`;
+	const id = await subject.signTransfer(input);
+	expect(id).toBeString();
+	expect(subject.signed()).toContainKey(id);
+	expect(subject.transaction(id)).toMatchInlineSnapshot(snapshot);
+	expect(subject.pending()).toContainKey(id);
+});
+
+it("should throw when already signed", async () => {
+	const input = {
+		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		sign: {
+			mnemonic: "this is a top secret passphrase",
+		},
+		data: {
+			amount: "1",
+			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		},
+	};
+
+	await subject.signTransfer(input);
+
+	await expect(subject.signTransfer(input)).toReject();
+});
+
+it("should fail when using malformed transaction ID ", async () => {
+	//@ts-ignore
+	expect(() => subject.transaction()).toThrow();
+});
+
+it("should fail retrieving public key if wallet is lacking a public key", async () => {
+	const walletPublicKeyMock = jest.spyOn(wallet, "publicKey").mockReturnValue(undefined);
+	//@ts-ignore
+	expect(() => subject.getPublicKey()).toThrow();
+	walletPublicKeyMock.mockRestore();
+});
+
+it("#dump", async () => {
+	const input = {
+		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		sign: {
+			mnemonic: "this is a top secret passphrase",
+		},
+		data: {
+			amount: "1",
+			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		},
+	};
+
+	const id = await subject.signTransfer(input);
+
+	expect(id).toBeString();
+	expect(subject.signed()).toContainKey(id);
+
+	expect(wallet.data().get(WalletData.SignedTransactions)).toBeUndefined();
+	subject.dump();
+	expect(wallet.data().get(WalletData.SignedTransactions)).toContainKey(id);
+});
+
+it("#restore", async () => {
+	const input = {
+		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		sign: {
+			mnemonic: "this is a top secret passphrase",
+		},
+		data: {
+			amount: "1",
+			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		},
+	};
+
+	const id = await subject.signTransfer(input);
+
+	expect(id).toBeString();
+	expect(subject.signed()).toContainKey(id);
+
+	expect(wallet.data().get(WalletData.SignedTransactions)).toBeUndefined();
+
+	subject.dump();
+	subject.restore();
+
+	expect(wallet.data().get(WalletData.SignedTransactions)).toContainKey(id);
+});
+
+it("sign a multisig transaction awaiting other signatures", async () => {
+	nock(/.+/)
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "pending",
+		})
+		.reply(200, [require("../../test/fixtures/client/musig-transaction.json")])
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "ready",
+		})
+		.reply(200, { data: [] })
+		.persist();
+
+	const id = await subject.signMultiSignature({
+		nonce: "1",
+		from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+		data: {
+			publicKeys: [
+				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
+				"0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+			],
+			min: 2,
+			senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+		},
+		sign: {
+			mnemonics: ["this is a top secret passphrase 1", "this is a top secret passphrase 2"],
+			mnemonic: "this is a top secret passphrase 1",
+		},
+	});
+
+	expect(subject.transaction(id)).toBeDefined();
+	expect(subject.pending()).toContainKey(id);
+	expect(subject.waitingForOtherSignatures()).toContainKey(id);
+	expect(
+		subject.isAwaitingSignatureByPublicKey(
+			id,
+			"0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+		),
+	).toBeFalse();
+});
+
+it("should sync multisig transaction awaiting our signature", async () => {
+	nock(/.+/)
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "pending",
+		})
+		.reply(200, [require("../../test/fixtures/client/multisig-transaction-awaiting-our.json")])
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "ready",
+		})
+		.reply(200, [])
+		.persist();
+
+	const id = "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d";
+
+	await subject.sync();
+	expect(subject.waitingForOurSignature()).toContainKey(id);
+});
+
+it("should await singature by public ip", async () => {
+	nock(/.+/)
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "pending",
+		})
+		.reply(200, [require("../../test/fixtures/client/multisig-transaction-awaiting-signature.json")])
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "ready",
+		})
+		.reply(200, [])
+		.persist();
+
+	const id = "46343c36bf7497b68e14d4c0fd713e41a737841b6a858fa41ef0eab6c4647938";
+
+	await subject.sync();
+	// TODO: fix transaction.signatures is not iterable error
+	expect(() =>
+		subject.isAwaitingSignatureByPublicKey(
+			id,
+			"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		),
+	).toThrow();
+});
+
+it("transaction should not await any signatures", async () => {
+	nock(/.+/)
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "pending",
+		})
+		.reply(200, [])
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "ready",
+		})
+		.reply(200, [require("../../test/fixtures/client/multisig-transaction-awaiting-none.json")])
+		.persist();
+
+	const id = "46343c36bf7497b68e14d4c0fd713e41a737841b6a858fa41ef0eab6c4647938";
+
+	await subject.sync();
+	expect(() =>
+		subject.isAwaitingSignatureByPublicKey(
+			id,
+			"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		),
+	).toThrow();
+});
+
+it("should broadcast transaction", async () => {
+	nock(/.+/)
+		.post("/api/transactions")
+		.reply(201, {
+			data: {
+				accept: ["7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50"],
+				broadcast: [],
+				excess: [],
+				invalid: [],
+			},
+			errors: {},
+		})
+		.get("/api/transactions/7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50")
+		.reply(200, { data: { confirmations: 1 } });
+
+	const input = {
+		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		sign: {
+			mnemonic: "this is a top secret passphrase",
+		},
+		data: {
+			amount: "1",
+			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		},
+	};
+
+	const id = await subject.signTransfer(input);
+	expect(subject.transaction(id)).toBeDefined();
+	await subject.broadcast(id);
+	expect(subject.broadcasted()).toContainKey(id);
+	expect(subject.transaction(id)).toBeDefined();
+
+	// usesMultiPeerBroadcasting
+	const walletMultiPeerMock = jest.spyOn(wallet, "usesMultiPeerBroadcasting").mockReturnValue(true);
+	await expect(subject.broadcast(id)).toReject();
+	walletMultiPeerMock.mockRestore();
+});
+
+it("should broadcast multisignature transaction", async () => {
+	nock(/.+/)
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "pending",
+		})
+		.reply(200, require("../../test/fixtures/client/musig-transaction.json"))
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "ready",
+		})
+		.reply(200, { data: [] })
+		.post("/transaction")
+		.reply(201, {
+			data: {
+				accept: ["5d7b213905c3bf62bc233b7f1e211566b1fd7aecad668ed91bb8202b3f35d890"],
+				broadcast: [],
+				excess: [],
+				invalid: [],
+			},
+			errors: {},
+		})
+		.persist();
+
+	const id = await subject.signMultiSignature({
+		nonce: "1",
+		from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+		data: {
+			publicKeys: [
+				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
+				"0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+			],
+			min: 2,
+			senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+		},
+		sign: {
+			mnemonics: ["this is a top secret passphrase 1", "this is a top secret passphrase 2"],
+			mnemonic: "this is a top secret passphrase 1",
+		},
+	});
+
+	expect(subject.transaction(id)).toBeDefined();
+	expect(subject.pending()).toContainKey(id);
+
+	await subject.broadcast(id);
+	expect(subject.waitingForOtherSignatures()).toContainKey(id);
+});
+
+it("#confirm", async () => {
+	nock(/.+/)
+		.post("/api/transactions")
+		.reply(201, {
+			data: {
+				accept: ["7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50"],
+				broadcast: [],
+				excess: [],
+				invalid: [],
+			},
+			errors: {},
+		})
+		.get("/api/transactions/7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50")
+		.reply(200, { data: { confirmations: 1 } });
+
+	const input = {
+		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		sign: {
+			mnemonic: "this is a top secret passphrase",
+		},
+		data: {
+			amount: "1",
+			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		},
+	};
+
+	const id = await subject.signTransfer(input);
+	await expect(subject.broadcast(id)).resolves.toMatchInlineSnapshot(`
+					Object {
+					  "accepted": Array [
+					    "7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50",
+					  ],
+					  "errors": Object {},
+					  "rejected": Array [],
+					}
+				`);
+
+	expect(subject.transaction(id)).toBeDefined();
+
+	// Uncofirmed
+	await subject.confirm(id);
+	expect(subject.isAwaitingConfirmation(id)).toBeTrue();
+
+	// Invalid id
+	//@ts-ignore
+	await expect(subject.confirm(null)).toReject();
+
+	// Handle wallet client error. Should return false
+	const walletClientTransactionMock = jest.spyOn(wallet.client(), "transaction").mockImplementation(() => {
+		throw new Error("transaction error");
+	});
+
+	await expect(subject.confirm(id)).resolves.toBeFalse();
+	walletClientTransactionMock.mockRestore();
+
+	// Confirmed
+	nock.cleanAll();
+	nock(/.+/)
+		.get("/api/transactions/7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50")
+		.reply(200, { data: { confirmations: 51 } });
+
+	await subject.confirm(id);
+	expect(subject.isAwaitingConfirmation(id)).toBeFalse();
 });
