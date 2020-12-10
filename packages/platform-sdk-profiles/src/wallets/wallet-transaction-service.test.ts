@@ -84,9 +84,27 @@ it("should sync", async () => {
 
 describe("signatures", () => {
 	it("should add signature", async () => {
-		nock(/.+/).post("/transaction").reply(200, {
-			id: "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
-		});
+		nock(/.+/)
+			.post("/transaction")
+			.reply(200, {
+				id: "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
+			})
+			.get("/transactions")
+			.query({
+				publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+				state: "pending",
+			})
+			.reply(200, {
+				id: "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
+			})
+			.get("/transactions")
+			.query({
+				publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+				state: "ready",
+			})
+			.reply(200, {
+				id: "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
+			});
 
 		await subject.signMultiSignature({
 			nonce: "1",
@@ -111,7 +129,7 @@ describe("signatures", () => {
 			"this is a top secret passphrase 1",
 		);
 
-		// TODO assertions
+		expect(subject.hasBeenSigned("a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d")).toBeTrue();
 	});
 
 	it("should sign transfer", async () => {
@@ -782,5 +800,7 @@ it("#transaction lifecycle", async () => {
 	expect(subject.signed()).not.toContainKey(id);
 	expect(subject.broadcasted()).not.toContainKey(id);
 	expect(subject.isAwaitingConfirmation(id)).toBeFalse();
-	expect(() => subject.transaction(id)).toThrow("Transaction [7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50] could not be found.");
+	expect(() => subject.transaction(id)).toThrow(
+		"Transaction [7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50] could not be found.",
+	);
 });
