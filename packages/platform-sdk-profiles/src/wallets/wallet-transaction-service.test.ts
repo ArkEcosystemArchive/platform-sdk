@@ -11,10 +11,10 @@ import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
-import { Wallet } from "./wallet";
-import { TransactionService } from "./wallet-transaction-service";
-import { WalletData } from "./wallet.models";
 import { SignedTransactionData } from "./dto/signed-transaction";
+import { Wallet } from "./wallet";
+import { WalletData } from "./wallet.models";
+import { TransactionService } from "./wallet-transaction-service";
 
 let profile: Profile;
 let wallet: Wallet;
@@ -862,7 +862,7 @@ it("should throw when already signed", async () => {
 	await expect(subject.signTransfer(input)).toReject();
 });
 
-it("should fail when using malformed transaction ID ", async () => {
+it("should fail when using malformed transaction ID", async () => {
 	//@ts-ignore
 	expect(() => subject.transaction()).toThrow();
 });
