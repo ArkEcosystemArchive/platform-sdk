@@ -9,9 +9,9 @@ import nock from "nock";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
+import { MemoryPassword } from "../helpers/password";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "./profile-repository";
-import { MemoryPassword } from "../helpers/password";
 
 let subject: ProfileRepository;
 
