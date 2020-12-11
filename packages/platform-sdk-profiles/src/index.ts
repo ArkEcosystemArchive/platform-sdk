@@ -13,6 +13,8 @@ export * from "./environment/migrator";
 export * from "./environment/services/delegate-service";
 export * from "./environment/services/fee-service";
 
+export * from "./helpers/password";
+
 export * from "./mappers/delegate-mapper";
 
 export * from "./profiles/aggregates/count-aggregate";
