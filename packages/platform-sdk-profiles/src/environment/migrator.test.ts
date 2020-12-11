@@ -2,15 +2,15 @@ import "jest-extended";
 
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 
+import { Base64 } from "../../../platform-sdk-crypto/dist";
+import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
+import { Storage, StorageData } from "./env.models";
 import { Migrator } from "./migrator";
 import { LocalStorage } from "./storage/local";
-import { Profile } from "../profiles/profile";
-import { Base64 } from "../../../platform-sdk-crypto/dist";
-import { Storage, StorageData } from "./env.models";
 
 let subject: Migrator;
 let storage: LocalStorage;
