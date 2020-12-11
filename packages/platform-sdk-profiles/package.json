@@ -29,14 +29,17 @@
 		"@sindresorhus/slugify": "^1.1.0",
 		"@vechain/picasso": "^2.1.1",
 		"bcrypto": "^5.3.0",
+		"bip38": "^3.1.1",
 		"dot-prop": "^5.0.0",
+		"joi": "^17.3.0",
 		"localforage": "^1.9.0",
 		"mem": "^8.0.0",
 		"node-cache": "^5.1.2",
 		"p-queue": "^6.6.2",
 		"semver": "^7.3.2",
 		"type-fest": "^0.18.1",
-		"uuid": "^8.3.1"
+		"uuid": "^8.3.1",
+		"wif": "^2.0.6"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-ark": "workspace:packages/platform-sdk-ark",
@@ -45,6 +48,7 @@
 		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/async": "3.2.4",
+		"@types/bip38": "2.0.1",
 		"@types/dot-prop": "5.0.1",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",
@@ -57,6 +61,7 @@
 		"@types/semver": "7.3.4",
 		"@types/sindresorhus__slugify": "0.9.3",
 		"@types/uuid": "8.3.0",
+		"@types/wif": "2.0.2",
 		"@typescript-eslint/eslint-plugin": "^4.7.0",
 		"@typescript-eslint/parser": "^4.7.0",
 		"codecov": "^3.8.1",
@@ -82,6 +87,6 @@
 		"node": ">=12.x"
 	},
 	"jest": {
-		"preset": "../../jest.config.js"
+		"preset": "../../jest.coverage.js"
 	}
 }

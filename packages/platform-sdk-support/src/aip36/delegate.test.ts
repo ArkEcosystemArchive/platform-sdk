@@ -24,14 +24,6 @@ it("should set the percentage", () => {
 	expect(data).toEqual({ delegate: { payout: { percentage: { min: 5, max: 10 } } } });
 });
 
-it("should set the distribution", () => {
-	expect(data).toEqual({});
-
-	subject.distribution(5, 10);
-
-	expect(data).toEqual({ delegate: { payout: { distribution: { min: 5, max: 10 } } } });
-});
-
 it("should set the frequency", () => {
 	expect(data).toEqual({});
 

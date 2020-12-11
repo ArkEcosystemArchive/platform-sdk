@@ -7,6 +7,7 @@ import nock from "nock";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
+import { KnownWalletService } from "../environment/services/known-wallet-service";
 import { ContactAddress } from "./contact-address";
 
 let subject: ContactAddress;
@@ -29,6 +30,7 @@ beforeEach(async () => {
 
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.CoinService, new CoinService());
+	container.set(Identifiers.KnownWalletService, new KnownWalletService());
 	container.set(Identifiers.Coins, { ARK });
 
 	subject = await ContactAddress.make({
@@ -92,4 +94,63 @@ it("should turn into an object", () => {
 		name: "John Doe",
 		network: "ark.devnet",
 	});
+});
+
+describe("when contact has not been synchronized yet", () => {
+	beforeEach(async () => {
+		nock.cleanAll();
+		nock(/.+/).get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib").replyWithError("blah").persist();
+
+		subject = await ContactAddress.make({
+			id: "uuid",
+			coin: "ARK",
+			network: "ark.devnet",
+			name: "John Doe",
+			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		});
+	});
+
+	it("should throw Error trying to determine if the wallet is a delegate", async () => {
+		expect(() => subject.isDelegate()).toThrow(
+			"This contact has not been synchronized yet. Please call [syncIdentity] before using it.",
+		);
+	});
+
+	it("should throw Error trying to determine if the wallet is a a multi signature one", async () => {
+		expect(() => subject.isMultiSignature()).toThrow(
+			"This contact has not been synchronized yet. Please call [syncIdentity] before using it.",
+		);
+	});
+
+	it("should throw Error trying to determine if the wallet is a a second signature one", async () => {
+		expect(() => subject.isSecondSignature()).toThrow(
+			"This contact has not been synchronized yet. Please call [syncIdentity] before using it.",
+		);
+	});
+
+	it("should has synced with network", () => {
+		expect(subject.hasSyncedWithNetwork()).toBeFalse();
+	});
+});
+
+it("should determine if the wallet is known", () => {
+	expect(subject.isKnown()).toBeFalse();
+});
+
+it("should determine if the wallet is owned by an exchange", () => {
+	expect(subject.isOwnedByExchange()).toBeFalse();
+});
+
+it("should determine if the wallet is owned by a team", () => {
+	expect(subject.isOwnedByTeam()).toBeFalse();
+});
+
+it("should change the name", () => {
+	subject.setName("new name");
+	expect(subject.name()).toBe("new name");
+});
+
+it("should change the address", () => {
+	subject.setAddress("new address");
+	expect(subject.address()).toBe("new address");
 });

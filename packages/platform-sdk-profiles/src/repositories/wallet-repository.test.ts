@@ -5,6 +5,7 @@ import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
+import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../test/fixtures/identity";
 import { container } from "../environment/container";
@@ -38,7 +39,7 @@ beforeEach(async () => {
 	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK, BTC, ETH });
 
-	const profile = new Profile({ id: "profile-id" });
+	const profile = new Profile({ id: "profile-id", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	subject = new WalletRepository(profile);
@@ -53,7 +54,17 @@ test("#all", () => {
 	expect(subject.all()).toBeObject();
 });
 
-test("#allByCoin", () => {
+test("#first", () => {
+	expect(subject.first()).toBeObject();
+});
+
+test("#last", () => {
+	expect(subject.last()).toBeObject();
+});
+
+test("#allByCoin", async () => {
+	await subject.importByMnemonic("another wallet", "ARK", "ark.devnet");
+
 	expect(subject.allByCoin()).toBeObject();
 	expect(subject.allByCoin().DARK).toBeObject();
 });
@@ -88,6 +99,22 @@ test("#importByAddress", async () => {
 	expect(subject.keys()).toHaveLength(1);
 });
 
+test("#importByAddressWithLedgerIndex", async () => {
+	subject.flush();
+
+	expect(subject.keys()).toHaveLength(0);
+
+	await subject.importByAddressWithLedgerIndex(identity.address, "ARK", "ark.devnet", 0);
+
+	expect(subject.keys()).toHaveLength(1);
+
+	await expect(subject.importByAddressWithLedgerIndex(identity.address, "ARK", "ark.devnet", 0)).rejects.toThrowError(
+		"already exists",
+	);
+
+	expect(subject.keys()).toHaveLength(1);
+});
+
 test("#generate", async () => {
 	subject.flush();
 
@@ -109,8 +136,30 @@ test("#findByCoin", () => {
 	expect(subject.findByCoin("ARK")).toHaveLength(1);
 });
 
-test("#findByAlias", () => {
+test("#findByCoinWithNetwork", () => {
+	expect(subject.findByCoinWithNetwork("ARK", "ark.devnet")).toHaveLength(1);
+});
+
+test("#has", async () => {
+	const wallet = subject.first();
+
+	expect(subject.has(wallet.id())).toBeTrue();
+	expect(subject.has("whatever")).toBeFalse();
+});
+
+test("#forget", async () => {
+	const wallet = subject.first();
+	expect(subject.has(wallet.id())).toBeTrue();
+
+	subject.forget(wallet.id());
+	expect(subject.has(wallet.id())).toBeFalse();
+});
+
+test("#findByAlias", async () => {
+	(await subject.generate("ARK", "ark.devnet")).wallet;
+
 	expect(subject.findByAlias("Alias")).toBeInstanceOf(Wallet);
+	expect(subject.findByAlias("Not Exist")).toBeUndefined();
 });
 
 test("#update", async () => {
@@ -122,11 +171,37 @@ test("#update", async () => {
 
 	expect(subject.findById(wallet.id()).alias()).toEqual("My New Wallet");
 
+	subject.update(wallet.id(), {});
+
+	expect(subject.findById(wallet.id()).alias()).toEqual("My New Wallet");
+
 	const newWallet = (await subject.generate("ARK", "ark.devnet")).wallet;
 
 	expect(() => subject.update(newWallet.id(), { alias: "My New Wallet" })).toThrowError(
 		"The wallet with alias [My New Wallet] already exists.",
 	);
+});
+
+test("#restore", async () => {
+	const profile = new Profile({ id: "profile-id", data: "" });
+	profile.settings().set(ProfileSetting.Name, "John Doe");
+
+	const newWallet = new Wallet(uuidv4(), profile);
+	await newWallet.setCoin("ARK", "ark.devnet");
+	await newWallet.setIdentity("this is another top secret passphrase");
+
+	await expect(
+		subject.restore({
+			id: newWallet.id(),
+			coin: newWallet.coinId(),
+			network: newWallet.networkId(),
+			networkConfig: newWallet.config(),
+			address: newWallet.address(),
+			data: newWallet.data(),
+			settings: newWallet.settings(),
+		}),
+	).resolves.toStrictEqual(newWallet);
+	expect(subject.findById(newWallet.id())).toStrictEqual(newWallet);
 });
 
 describe("#sortBy", () => {
@@ -148,6 +223,14 @@ describe("#sortBy", () => {
 		expect(wallets[0].address()).toBe(walletBTC.address()); // BTC
 		expect(wallets[1].address()).toBe(walletARK.address()); // DARK
 		expect(wallets[2].address()).toBe(walletETH.address()); // ETH
+	});
+
+	it("should sort by coin desc", async () => {
+		const wallets = subject.sortBy("coin", "desc");
+
+		expect(wallets[0].address()).toBe(walletETH.address()); // ETH
+		expect(wallets[1].address()).toBe(walletARK.address()); // DARK
+		expect(wallets[2].address()).toBe(walletBTC.address()); // BTC
 	});
 
 	it("should sort by address", async () => {

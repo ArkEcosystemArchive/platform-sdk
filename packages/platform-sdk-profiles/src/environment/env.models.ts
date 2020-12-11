@@ -17,7 +17,7 @@ export interface EnvironmentOptions {
 }
 
 export interface Storage {
-	all(): Promise<Record<string, unknown>>;
+	all<T = Record<string, unknown>>(): Promise<T>;
 
 	get<T>(key: string): Promise<T | undefined>;
 

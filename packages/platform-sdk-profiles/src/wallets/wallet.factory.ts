@@ -1,8 +1,10 @@
+import { encrypt } from "bip38";
 import { v4 as uuidv4 } from "uuid";
+import { decode } from "wif";
 
 import { Profile } from "../profiles/profile";
 import { Wallet } from "./wallet";
-import { ReadWriteWallet, WalletFlag } from "./wallet.models";
+import { ReadWriteWallet, WalletData, WalletFlag } from "./wallet.models";
 
 export class WalletFactory {
 	public static async fromMnemonic(
@@ -38,13 +40,29 @@ export class WalletFactory {
 		coin: string,
 		network: string,
 		address: string,
-		index: string,
+		index: number,
 	): Promise<ReadWriteWallet> {
 		// @TODO: eventually handle the whole process from slip44 path to public key to address
 
-		const wallet: ReadWriteWallet = await this.fromAddress(profile, address, coin, network);
+		const wallet: ReadWriteWallet = await this.fromAddress(profile, coin, network, address);
 
 		wallet.data().set(WalletFlag.LedgerIndex, index);
+
+		return wallet;
+	}
+
+	public static async fromMnemonicWithEncryption(
+		profile: Profile,
+		coin: string,
+		network: string,
+		mnemonic: string,
+		password: string,
+	): Promise<ReadWriteWallet> {
+		const wallet: ReadWriteWallet = await this.fromMnemonic(profile, coin, network, mnemonic);
+
+		const { compressed, privateKey } = decode(await wallet.coin().identity().wif().fromMnemonic(mnemonic));
+
+		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 
 		return wallet;
 	}

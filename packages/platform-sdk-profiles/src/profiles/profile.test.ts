@@ -1,11 +1,14 @@
 import "jest-extended";
 
 import { ARK } from "@arkecosystem/platform-sdk-ark";
+import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
+import { CoinService } from "../environment/services/coin-service";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../repositories/data-repository";
@@ -13,6 +16,8 @@ import { NotificationRepository } from "../repositories/notification-repository"
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
 import { CountAggregate } from "./aggregates/count-aggregate";
+import { EntityAggregate } from "./aggregates/entity-aggregate";
+import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
@@ -33,12 +38,13 @@ beforeAll(() => {
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
 
+	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK });
 });
 
 beforeEach(() => {
-	subject = new Profile({ id: "uuid" });
+	subject = new Profile({ id: "uuid", data: "" });
 	subject.settings().set(ProfileSetting.Name, "John Doe");
 });
 
@@ -60,6 +66,16 @@ it("should have a custom avatar", () => {
 	subject.settings().set(ProfileSetting.Avatar, "custom-avatar");
 
 	expect(subject.avatar()).toBe("custom-avatar");
+});
+
+it("should have a balance", () => {
+	expect(subject.balance()).toBeInstanceOf(BigNumber);
+	expect(subject.balance().toString()).toBe("0");
+});
+
+it("should have a converted balance", () => {
+	expect(subject.convertedBalance()).toBeInstanceOf(BigNumber);
+	expect(subject.convertedBalance().toString()).toBe("0");
 });
 
 it("should have a contacts repository", () => {
@@ -106,6 +122,14 @@ it("should have a count aggregate", () => {
 	expect(subject.countAggregate()).toBeInstanceOf(CountAggregate);
 });
 
+it("should have a entity aggregate", () => {
+	expect(subject.entityAggregate()).toBeInstanceOf(EntityAggregate);
+});
+
+it("should have a registration aggregate", () => {
+	expect(subject.registrationAggregate()).toBeInstanceOf(RegistrationAggregate);
+});
+
 it("should have a transaction aggregate", () => {
 	expect(subject.transactionAggregate()).toBeInstanceOf(TransactionAggregate);
 });
@@ -127,19 +151,226 @@ it("should determine if the password uses a password", () => {
 });
 
 it("should turn into an object", () => {
-	expect(subject.toObject()).toEqual({
-		id: "uuid",
-		contacts: {},
-		data: {},
-		notifications: {},
-		peers: {},
-		plugins: {
-			data: {},
-			blacklist: [],
-		},
-		settings: {
-			NAME: "John Doe",
-		},
-		wallets: {},
+	expect(subject.toObject()).toMatchInlineSnapshot(`
+		Object {
+		  "contacts": Object {},
+		  "data": Object {},
+		  "id": "uuid",
+		  "notifications": Object {},
+		  "peers": Object {},
+		  "plugins": Object {
+		    "blacklist": Array [],
+		    "data": Object {},
+		  },
+		  "settings": Object {
+		    "NAME": "John Doe",
+		  },
+		  "wallets": Object {},
+		}
+	`);
+});
+
+describe("#dump", () => {
+	it("should dump the profile with a password", () => {
+		subject.auth().setPassword("password");
+
+		const { id, password, data } = subject.dump("password");
+
+		expect(id).toBeString();
+		expect(password).toBeString();
+		expect(data).toBeString();
 	});
+
+	it("should dump the profile without a password", () => {
+		const { id, password, data } = subject.dump();
+
+		expect(id).toBeString();
+		expect(password).toBeUndefined();
+		expect(data).toBeString();
+	});
+
+	it("should fail to dump a profile with a password if the password is invalid", () => {
+		subject.auth().setPassword("password");
+
+		expect(() => subject.dump("invalid-password")).toThrow("The password did not match our records.");
+	});
+
+	it("should fail to dump a profile with a password if no password was provided", () => {
+		subject.auth().setPassword("password");
+
+		expect(() => subject.dump()).toThrow("This profile uses a password but none was passed for encryption.");
+	});
+
+	it("should fail to dump if encoding or encrypting fails", () => {
+		// @ts-ignore
+		const encodingMock = jest.spyOn(JSON, "stringify").mockReturnValue(undefined);
+
+		expect(() => subject.dump()).toThrow("Failed to encode or encrypt the profile");
+		encodingMock.mockRestore();
+	});
+});
+
+describe("#restore", () => {
+	it("should restore a profile with a password", async () => {
+		subject.auth().setPassword("password");
+
+		const profile: Profile = new Profile(subject.dump("password"));
+
+		await profile.restore("password");
+
+		expect(profile.toObject()).toContainAllKeys([
+			"contacts",
+			"data",
+			"notifications",
+			"peers",
+			"plugins",
+			"data",
+			"settings",
+			"wallets",
+		]);
+	});
+
+	it("should fail to restore a profile with corrupted data", async () => {
+		const corruptedProfileData = {
+			// id: 'uuid',
+			contacts: {},
+			data: {},
+			notifications: {},
+			peers: {},
+			plugins: { data: {}, blacklist: [] },
+			settings: { NAME: "John Doe" },
+			wallets: {},
+		};
+
+		const corruptedDump = {
+			id: "uuid",
+			password: undefined,
+			data: Base64.encode(JSON.stringify(corruptedProfileData)),
+		};
+
+		const profile: Profile = new Profile(corruptedDump);
+
+		await expect(profile.restore()).rejects.toThrow();
+	});
+
+	it("should restore a profile without a password", async () => {
+		const profile: Profile = new Profile(subject.dump());
+
+		await profile.restore();
+
+		expect(profile.toObject()).toMatchInlineSnapshot(`
+		Object {
+		  "contacts": Object {},
+		  "data": Object {},
+		  "id": "uuid",
+		  "notifications": Object {},
+		  "peers": Object {},
+		  "plugins": Object {
+		    "blacklist": Array [],
+		    "data": Object {},
+		  },
+		  "settings": Object {
+		    "NAME": "John Doe",
+		  },
+		  "wallets": Object {},
+		}
+	`);
+	});
+
+	it("should fail to restore if profile is not using password but password is passed", async () => {
+		const profile: Profile = new Profile(subject.dump());
+
+		await expect(profile.restore("password")).rejects.toThrow(
+			"Failed to decode or decrypt the profile. Reason: This profile does not use a password but password was passed for decryption",
+		);
+	});
+
+	it("should fail to restore a profile with a password if no password was provided", async () => {
+		subject.auth().setPassword("password");
+
+		const profile: Profile = new Profile(subject.dump("password"));
+
+		await expect(profile.restore()).rejects.toThrow("Failed to decode or decrypt the profile.");
+	});
+
+	it("should fail to restore a profile with a password if an invalid password was provided", async () => {
+		subject.auth().setPassword("password");
+
+		const profile: Profile = new Profile(subject.dump("password"));
+
+		await expect(profile.restore("invalid-password")).rejects.toThrow("Failed to decode or decrypt the profile.");
+	});
+
+	it("should restore a profile with wallets", async () => {
+		const withWallets = {
+			id: "uuid",
+			contacts: {},
+			data: { key: "value" },
+			notifications: {},
+			peers: {},
+			plugins: {
+				data: {},
+				blacklist: [],
+			},
+			settings: {
+				THEME: "dark",
+			},
+			wallets: {
+				"88ff9e53-7d40-420d-8f39-9f24acee2164": {
+					id: "88ff9e53-7d40-420d-8f39-9f24acee2164",
+					coin: "ARK",
+					network: "ark.devnet",
+					address: "D6Z26L69gdk9qYmTv5uzk3uGepigtHY4ax",
+					publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+					data: {
+						BALANCE: {},
+						SEQUENCE: {},
+					},
+					settings: {
+						AVATAR: "...",
+					},
+				},
+				"ac38fe6d-4b67-4ef1-85be-17c5f6841129": {
+					id: "ac38fe6d-4b67-4ef1-85be-17c5f6841129",
+					coin: "ARK",
+					network: "ark.devnet",
+					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+					data: {
+						BALANCE: {},
+						SEQUENCE: {},
+					},
+					settings: {
+						ALIAS: "Johnathan Doe",
+						AVATAR: "...",
+					},
+				},
+			},
+		};
+
+		const profileDump = {
+			id: "uuid",
+			password: undefined,
+			data: Base64.encode(JSON.stringify(withWallets)),
+		};
+
+		const profile = new Profile(profileDump);
+		await profile.restore();
+
+		expect(profile.wallets().count()).toEqual(2);
+		expect(profile.settings().get(ProfileSetting.Theme)).toEqual("dark");
+	});
+});
+
+test("#usesMultiPeerBroadcasting", async () => {
+	expect(subject.usesMultiPeerBroadcasting()).toBeFalse();
+
+	subject.settings().set(ProfileSetting.UseCustomPeer, true);
+	subject.settings().set(ProfileSetting.UseMultiPeerBroadcast, true);
+
+	expect(subject.usesMultiPeerBroadcasting()).toBeTrue();
+});
+
+test("#migrate", async () => {
+	expect(() => subject.migrate({}, "2.0.0")).not.toThrow();
 });

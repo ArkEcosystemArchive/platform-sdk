@@ -21,10 +21,12 @@ describe.each([["profile", "wallet"]])("SettingRepository(%s)", (type) => {
 		subject.set(key, "value");
 
 		expect(subject.all()).toEqual({ [key]: "value" });
+		expect(subject.keys()).toEqual([key]);
 
 		subject.flush();
 
 		expect(subject.all()).toEqual({});
+		expect(subject.keys()).toEqual([]);
 	});
 
 	test("#get", async () => {

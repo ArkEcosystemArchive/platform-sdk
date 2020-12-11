@@ -8,7 +8,7 @@ import { ContactAddressInput } from "./contact-address.models";
 export class Contact {
 	#profile: Profile;
 
-	#id: string;
+	readonly #id: string;
 	#name: string;
 	#addresses: ContactAddressRepository = new ContactAddressRepository();
 	#starred: boolean;
@@ -49,7 +49,7 @@ export class Contact {
 		this.#starred = !this.isStarred();
 	}
 
-	public setAvatar(value: string) {
+	public setAvatar(value: string): void {
 		this.#avatar = value;
 	}
 

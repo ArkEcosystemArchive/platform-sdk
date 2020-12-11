@@ -5,7 +5,7 @@ import { ProfileSetting } from "./profile.models";
 
 export class ProfileFactory {
 	public static fromName(name: string): Profile {
-		const result: Profile = new Profile({ id: uuidv4() });
+		const result: Profile = new Profile({ id: uuidv4(), data: "" });
 
 		result.settings().set(ProfileSetting.Name, name);
 		result.initializeSettings();

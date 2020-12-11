@@ -6,16 +6,12 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { identity } from "../../test/fixtures/identity";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
+import { MemoryPassword } from "../helpers/password";
 import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
-import { Wallet } from "../wallets/wallet";
-import { ReadWriteWallet } from "../wallets/wallet.models";
 import { ProfileRepository } from "./profile-repository";
-import { WalletRepository } from "./wallet-repository";
 
 let subject: ProfileRepository;
 
@@ -131,10 +127,70 @@ describe("ProfileRepository", () => {
 		expect(subject.count()).toBe(2);
 		expect(subject.findById(jane.id())).toBeInstanceOf(Profile);
 		expect(subject.findByName(jane.name())).toBeInstanceOf(Profile);
+		expect(subject.has(jane.id())).toBeTrue();
 
 		subject.forget(jane.id());
 
 		expect(subject.count()).toBe(1);
+		expect(subject.has(jane.id())).toBeFalse();
 		expect(() => subject.findById(jane.id())).toThrow("No profile found for");
+	});
+
+	it("should get all profiles", async () => {
+		subject.create("John");
+		subject.create("Jane");
+
+		expect(Object.keys(subject.all())).toHaveLength(2);
+	});
+
+	it("should get all keys", async () => {
+		subject.create("John");
+		subject.create("Jane");
+
+		expect(subject.keys()).toHaveLength(2);
+	});
+
+	it("should get all values", async () => {
+		subject.create("John");
+		subject.create("Jane");
+
+		expect(subject.values()).toHaveLength(2);
+	});
+
+	it("should get the first and last profile", async () => {
+		const john = subject.create("John");
+		const jane = subject.create("Jane");
+
+		expect(subject.first()).toEqual(john);
+		expect(subject.last()).toEqual(jane);
+	});
+
+	it("should fail to push a profile with a duplicate name", async () => {
+		subject.create("John");
+
+		expect(() => subject.create("John")).toThrow("The profile [John] already exists.");
+	});
+
+	it("should fail to forget a profile that doesn't exist", async () => {
+		expect(() => subject.forget("doesnotexist")).toThrow("No profile found for");
+	});
+
+	it("should dump all profiles", async () => {
+		const john = subject.create("John");
+		const jane = subject.create("Jane");
+
+		jane.auth().setPassword("password");
+		MemoryPassword.set(jane, "password");
+
+		const repositoryDump = subject.toObject();
+
+		const restoredJane = new Profile(repositoryDump[jane.id()] as any);
+		await restoredJane.restore("password");
+
+		const restoredJohn = new Profile(repositoryDump[john.id()] as any);
+		await restoredJohn.restore();
+
+		expect(restoredJohn.toObject()).toEqual(john.toObject());
+		expect(restoredJane.toObject()).toEqual(jane.toObject());
 	});
 });

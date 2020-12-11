@@ -58,10 +58,6 @@ export class AIP36 {
 			delegate: Joi.object({
 				type: Joi.string().valid("public", "private").required(),
 				payout: Joi.object({
-					distribution: Joi.object({
-						min: Joi.number().min(1).max(100).required(),
-						max: Joi.number().min(1).max(100).required(),
-					}),
 					frequency: Joi.object({
 						type: Joi.string().valid("day", "week", "month", "quarter", "year").required(),
 						value: Joi.number().min(1).max(365).required(),
