@@ -7,40 +7,60 @@ import { WalletData } from "./wallet";
 
 describe("WalletData", function () {
 	const subject = new WalletData(Fixture);
-	const implementedMethods = {
-		address: "my48EN4kDnGEpRZMBfiDS65wdfwfgCGZRz",
-		publicKey: "76a914c05f53de525d80151e209a729cf1c7909c88f88e88ac",
-		balance: BigNumber.make(3050000),
-		entities: [],
-		nonce: BigNumber.make(24242),
-	};
 
-	it("should be instance of WalletData", async () => {
-		expect(subject).toBeInstanceOf(WalletData);
+	it("#address", () => {
+		expect(subject.address()).toEqual("my48EN4kDnGEpRZMBfiDS65wdfwfgCGZRz");
 	});
 
-	describe("Implemented", function () {
-		it.each(Object.keys(implementedMethods))("#%s", async (method: string) => {
-			expect(subject[method]()).toEqual(implementedMethods[method]);
-		});
+	it("#publicKey", () => {
+		expect(subject.publicKey()).toEqual("76a914c05f53de525d80151e209a729cf1c7909c88f88e88ac");
 	});
 
-	describe("Not implemented", function () {
-		const nonImplementedMethods = [
-			"secondPublicKey",
-			"username",
-			"rank",
-			"votes",
-			"multiSignature",
-			"isDelegate",
-			"isKnown",
-			"isMultiSignature",
-			"isSecondSignature",
-			"isResignedDelegate",
-		];
+	it("#balance", () => {
+		expect(subject.balance()).toEqual(BigNumber.make(3050000));
+	});
 
-		it.each(nonImplementedMethods)("#%s", async (method: string) => {
-			expect(() => subject[method]()).toThrow(/not implemented/);
-		});
+	it("#entities", () => {
+		expect(subject.entities()).toHaveLength(0);
+	});
+
+	it("#nonce", () => {
+		expect(subject.nonce()).toEqual(BigNumber.make(24242));
+	});
+
+	it("#secondPublicKey", () => {
+		expect(() => subject.secondPublicKey()).toThrow(/not implemented/);
+	});
+
+	it("#username", () => {
+		expect(() => subject.username()).toThrow(/not implemented/);
+	});
+
+	it("#rank", () => {
+		expect(() => subject.rank()).toThrow(/not implemented/);
+	});
+
+	it("#votes", () => {
+		expect(() => subject.votes()).toThrow(/not implemented/);
+	});
+
+	it("#multiSignature", () => {
+		expect(() => subject.multiSignature()).toThrow(/not implemented/);
+	});
+
+	it("#isMultiSignature", () => {
+		expect(() => subject.isMultiSignature()).toThrow(/not implemented/);
+	});
+
+	it("#isDelegate", () => {
+		expect(() => subject.isDelegate()).toThrow(/not implemented/);
+	});
+
+	it("#isSecondSignature", () => {
+		expect(() => subject.isSecondSignature()).toThrow(/not implemented/);
+	});
+
+	it("#isResignedDelegate", () => {
+		expect(() => subject.isResignedDelegate()).toThrow(/not implemented/);
 	});
 });
