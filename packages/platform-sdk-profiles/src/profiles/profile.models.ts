@@ -74,3 +74,13 @@ export enum ProfileSetting {
 	Theme = "THEME",
 	TimeFormat = "TIME_FORMAT",
 }
+
+export enum ProfileData {
+	LatestMigration = "LATEST_MIGRATION",
+}
+
+export interface ProfileInput {
+	id: string;
+	password?: string;
+	data: string;
+}
