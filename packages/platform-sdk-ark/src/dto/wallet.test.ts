@@ -107,16 +107,6 @@ describe("WalletData", function () {
 			expect(subject.isMultiSignature()).toEqual(response);
 		});
 
-		test("#multiSignature", () => {
-			if (network === "mainnet") {
-				expect(() => subject.multiSignature()).toThrow(/does not have/);
-			}
-
-			if (network === "devnet") {
-				expect(subject.multiSignature()).toEqual(WalletDataFixture.devnet.attributes.multiSignature);
-			}
-		});
-
 		test("#isSecondSignature", () => {
 			expect(subject.isSecondSignature()).toBeFalse();
 		});
@@ -142,5 +132,13 @@ describe("WalletData", function () {
 					: undefined;
 			expect(subject.entities()[0]).toEqual(response);
 		});
+	});
+
+	test("#multiSignature", () => {
+		const devnetSubject = new WalletData(WalletDataFixture.devnet);
+		const mainnetSubject = new WalletData(WalletDataFixture.mainnet);
+
+		expect(() => mainnetSubject.multiSignature()).toThrow(/does not have/);
+		expect(devnetSubject.multiSignature()).toEqual(WalletDataFixture.devnet.attributes.multiSignature);
 	});
 });
