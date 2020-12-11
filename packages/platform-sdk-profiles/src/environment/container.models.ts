@@ -9,7 +9,6 @@ export const Identifiers = {
 	FeeService: "FeeService",
 	HttpClient: "HttpClient",
 	KnownWalletService: "KnownWalletService",
-	Migrator: "Migrator",
 	ProfileRepository: "ProfileRepository",
 	SettingRepository: "SettingRepository",
 	Storage: "Storage",

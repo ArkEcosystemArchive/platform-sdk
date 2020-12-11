@@ -77,3 +77,11 @@ test("MemoryStorage#count", async () => {
 
 	await expect(subject.count()).resolves.toBe(0);
 });
+
+test("MemoryStorage#snapshot", async () => {
+	await expect(subject.snapshot()).resolves.toBe(undefined);
+});
+
+test("MemoryStorage#restore", async () => {
+	await expect(subject.restore()).resolves.toBe(undefined);
+});

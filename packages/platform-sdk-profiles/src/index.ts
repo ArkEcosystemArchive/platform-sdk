@@ -9,7 +9,6 @@ export * from "./dto/transaction-collection";
 export * from "./environment/container.models";
 export * from "./environment/env.models";
 export * from "./environment/env";
-export * from "./environment/migrator";
 export * from "./environment/services/delegate-service";
 export * from "./environment/services/fee-service";
 

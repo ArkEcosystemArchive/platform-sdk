@@ -7,7 +7,6 @@ import { container } from "./container";
 import { makeCoin } from "./container.helpers";
 import { Identifiers } from "./container.models";
 import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
-import { Migrator } from "./migrator";
 import { CoinService } from "./services/coin-service";
 import { DelegateService } from "./services/delegate-service";
 import { ExchangeRateService } from "./services/exchange-rate-service";
@@ -34,7 +33,6 @@ export class Environment {
 		container.set(Identifiers.FeeService, new FeeService());
 		container.set(Identifiers.KnownWalletService, new KnownWalletService());
 		container.set(Identifiers.WalletService, new WalletService());
-		container.set(Identifiers.Migrator, new Migrator());
 
 		container.set(Identifiers.Coins, options.coins);
 	}
@@ -55,19 +53,12 @@ export class Environment {
 		const profiles: object = storage.profiles || {};
 
 		const { error, value } = Joi.object({
-			data: Joi.object(),
-			profiles: Joi.object().pattern(
-				Joi.string().uuid(),
-				Joi.object({
-					id: Joi.string().required(),
-					password: Joi.string().allow(null),
-					data: Joi.string().required(),
-				}),
-			),
+			data: Joi.object().required(),
+			profiles: Joi.object().pattern(Joi.string().uuid(), Joi.object()).required(),
 		}).validate({ data, profiles });
 
 		if (error) {
-			throw new Error("Terminating due to corrupted state.");
+			throw new Error(`Terminating due to corrupted state: ${error}`);
 		}
 
 		this.storage = value;
@@ -83,7 +74,7 @@ export class Environment {
 	 * @memberof Environment
 	 */
 	public async boot(): Promise<void> {
-		if (!this.storage) {
+		if (this.storage === undefined) {
 			throw new Error("Please call [verify] before booting the environment.");
 		}
 
@@ -143,10 +134,6 @@ export class Environment {
 
 	public wallets(): WalletService {
 		return container.get(Identifiers.WalletService);
-	}
-
-	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
-		await container.get<Migrator>(Identifiers.Migrator).migrate(migrations, versionToMigrate);
 	}
 
 	/**

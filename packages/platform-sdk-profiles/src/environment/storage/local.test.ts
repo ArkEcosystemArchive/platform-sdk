@@ -79,17 +79,21 @@ it("should count all items", async () => {
 });
 
 it("should create a snapshot and restore it", async () => {
-	await subject.snapshot();
-
-	await expect(subject.count()).resolves.toBe(0);
-
-	await subject.set(key, "value");
+	await subject.set("a", "b");
 
 	await expect(subject.count()).resolves.toBe(1);
 
+	await subject.snapshot();
+
+	await expect(subject.count()).resolves.toBe(1);
+
+	await subject.set(key, "value");
+
+	await expect(subject.count()).resolves.toBe(2);
+
 	await subject.restore();
 
-	await expect(subject.count()).resolves.toBe(0);
+	await expect(subject.count()).resolves.toBe(1);
 });
 
 it("should fail to restore if there is no snapshot", async () => {
