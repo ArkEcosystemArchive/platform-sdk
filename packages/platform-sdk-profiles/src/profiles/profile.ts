@@ -57,14 +57,6 @@ export class Profile implements ProfileContract {
 		this.#walletAggregate = new WalletAggregate(this);
 	}
 
-	public setRawData(data: ProfileInput): void {
-		this.#data = data;
-	}
-
-	public getRawData(): ProfileInput {
-		return this.#data;
-	}
-
 	public id(): string {
 		return this.#data.id;
 	}
@@ -306,8 +298,40 @@ export class Profile implements ProfileContract {
 		this.settings().set(ProfileSetting.UseTestNetworks, false);
 	}
 
+	/**
+	 * Execute any pending migrations from the given set up to the version that should be migrated.
+	 *
+	 * @param {object} migrations
+	 * @param {string} versionToMigrate
+	 * @returns {Promise<void>}
+	 * @memberof Profile
+	 */
 	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
 		await new Migrator(this).migrate(migrations, versionToMigrate);
+	}
+
+	/**
+	 * Get the raw (underlying) data that makes up a profile.
+	 *
+	 * THIS METHOD SHOULD ONLY BE USED FOR MIGRATIONS!
+	 *
+	 * @returns {ProfileInput}
+	 * @memberof Profile
+	 */
+	public getRawData(): ProfileInput {
+		return this.#data;
+	}
+
+	/**
+	 * Set the raw (underlying) data that makes up a profile.
+	 *
+	 * THIS METHOD SHOULD ONLY BE USED FOR MIGRATIONS!
+	 *
+	 * @param {ProfileInput} data
+	 * @memberof Profile
+	 */
+	public setRawData(data: ProfileInput): void {
+		this.#data = data;
 	}
 
 	/**
