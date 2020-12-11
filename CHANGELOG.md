@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.0.0 - 2020-12-XX
+
+### Added
+
+-   **[BREAKING]** Encrypt profiles that use a password (e360e2f1, @faustbrian)
+-   Implement `ClientService#entityHistory` (d855f67a, @faustbrian)
+-   **[ADA]** Implement key derivation (2a36f9af, @sleepdefic1t)
+-   Implement `@arkecosystem/platform-sdk-marketsquare` package (7e73dc8b, @faustbrian)
+-   Implement `EntityRegistrationData#ipfsContent|marketSquareLink` (d6bba663, @faustbrian)
+-   Implement `KnownWalletService` (f1e3b1fd, @goga-m)
+-   Implement `ProfileRepository#findByName` (f543ec5c, @dated)
+-   Implement AIP36 Builder & Validator (34507e80, @faustbrian)
+-   Implement `WIF#fromPrivateKey` (4b11e735, @faustbrian)
+-   Implement `WalletFactory#fromMnemonicWithEncryption` (baf2e796, @faustbrian)
+
+### Changed
+
+-   **[BREAKING]** Use explicit-restoring for profiles instead of auto-restoring (e5e4b90e, @faustbrian)
+-   Extract profile creation into `ProfileFactory` (da29a8ce, @faustbrian)
+-   Extract wallet creation into `WalletFactory` (d9190e51, @faustbrian)
+-   Implement `ConfigKey` enum instead of using string literals (48e277ca, @faustbrian)
+-   Make `Response#json` return type variable (cf1383c6, @faustbrian)
+-   Move `TransactionData#memo` into `TransferData#memo` (1bbae419, @faustbrian)
+-   **[ATOM]** Build pagination cursors (aefdecf1, @faustbrian)
+-   Support memo for multi payments (read & write) (931900d7, @faustbrian)
+-   Use `node-cache` for cache service (4cca6042, @faustbrian)
+
+### Fixed
+
+-   Respect contract for client input (4de276cd, @faustbrian)
+
 ## 1.2.7 - 2020-12-02
 
 Republish of 1.2.6
