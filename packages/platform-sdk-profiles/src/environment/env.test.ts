@@ -5,7 +5,7 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
-import { removeSync } from "fs-extra";
+import { readFileSync, removeSync } from "fs-extra";
 import nock from "nock";
 import { resolve } from "path";
 
@@ -195,14 +195,16 @@ it("should boot the environment from fixed data", async () => {
 
 it("should boot with empty storage data", async () => {
 	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
-	await env.verify({ profiles: storageData.profiles, data: {} });
-	await env.boot();
+
+	await expect(env.verify({ profiles: storageData.profiles, data: {} })).resolves.toBeUndefined();
+	await expect(env.boot()).resolves.toBeUndefined();
 });
 
 it("should boot with empty storage profiles", async () => {
 	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
-	await env.verify({ profiles: {}, data: { key: "value" } });
-	await env.boot();
+
+	await expect(env.verify({ profiles: {}, data: { key: "value" } })).resolves.toBeUndefined();
+	await expect(env.boot()).resolves.toBeUndefined();
 });
 
 it("should create preselected storage given storage option as string", async () => {
@@ -258,5 +260,7 @@ it("#registerCoin", async () => {
 
 it("should fail verification", async () => {
 	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
-	await expect(env.verify(corruptedStorageData)).rejects.toThrowError("Terminating due to corrupted state.");
+
+	// @ts-ignore
+	await expect(env.verify({ profiles: [], data: {} })).rejects.toThrowError("Terminating due to corrupted state: ValidationError: \"profiles\" must be of type object");
 });

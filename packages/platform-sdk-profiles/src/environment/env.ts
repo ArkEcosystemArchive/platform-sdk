@@ -53,19 +53,12 @@ export class Environment {
 		const profiles: object = storage.profiles || {};
 
 		const { error, value } = Joi.object({
-			data: Joi.object(),
-			profiles: Joi.object().pattern(
-				Joi.string().uuid(),
-				Joi.object({
-					id: Joi.string().required(),
-					password: Joi.string().allow(null),
-					data: Joi.string().required(),
-				}),
-			),
+			data: Joi.object().required(),
+			profiles: Joi.object().pattern(Joi.string().uuid(), Joi.object()).required(),
 		}).validate({ data, profiles });
 
 		if (error) {
-			throw new Error("Terminating due to corrupted state.");
+			throw new Error(`Terminating due to corrupted state: ${error}`);
 		}
 
 		this.storage = value;
