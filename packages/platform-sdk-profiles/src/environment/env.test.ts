@@ -260,7 +260,3 @@ it("should fail verification", async () => {
 	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
 	await expect(env.verify(corruptedStorageData)).rejects.toThrowError("Terminating due to corrupted state.");
 });
-
-it("#migrate", async () => {
-	expect(() => subject.migrate(storageData, "2.0.0")).not.toThrow();
-});
