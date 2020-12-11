@@ -20,6 +20,8 @@ Migrating profiles is fairly straightforward. The biggest change is that you nee
 
 We recommend to take a look at [this](https://github.com/ArkEcosystem/platform-sdk/blob/master/packages/platform-sdk-profiles/test/fixtures/env-storage.json) and [this](https://github.com/ArkEcosystem/platform-sdk/commit/e360e2f1b5108ac92977eb09e5100c248429b5ab) to get the full picture of the changes that have been made to better understand what changes you need to apply and how they should be applied.
 
+**Important:** When you apply migrations you should always do so before calling `env.verify` and `env.boot`. These methods will try to validate the integrity of the data as is. This means that something like the JSON profiles would fail validation because a different structure and Base64 was expected. That is why you should always make sure to make any data modifications before you verify and/or boot the environment.
+
 ##### Password
 
 To ensure that we can encrypt the password protected profile of a user when they are signed out or the application crashes we need to _temporarily_ store the users password after they enter it. You can take a look at [this password helper](https://github.com/ArkEcosystem/platform-sdk/blob/master/packages/platform-sdk-profiles/src/helpers/password.ts) to see how the password needs to be stored. The password should be stored when the user successfully decrypted their profile and be forgotten when the application is closed or they are signed out of their profile on purpose or through a timeout.
