@@ -918,6 +918,11 @@ it("#restore", async () => {
 	subject.restore();
 
 	expect(wallet.data().get(WalletData.SignedTransactions)).toContainKey(id);
+
+	const mockedUndefinedStorage = jest.spyOn(wallet.data(), "get").mockReturnValue(undefined);
+	subject.restore();
+	mockedUndefinedStorage.mockRestore();
+	expect(wallet.data().get(WalletData.SignedTransactions)).toContainKey(id);
 });
 
 it("sign a multisig transaction awaiting other signatures", async () => {
@@ -1005,13 +1010,18 @@ it("should await singature by public ip", async () => {
 	const id = "46343c36bf7497b68e14d4c0fd713e41a737841b6a858fa41ef0eab6c4647938";
 
 	await subject.sync();
-	// TODO: fix transaction.signatures is not iterable error
-	expect(() =>
+	const mockNeedsWalletSignature = jest
+		.spyOn(wallet.coin().multiSignature(), "needsWalletSignature")
+		.mockReturnValue(true);
+
+	expect(
 		subject.isAwaitingSignatureByPublicKey(
 			id,
 			"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
 		),
-	).toThrow();
+	).toBeTrue();
+
+	mockNeedsWalletSignature.mockRestore();
 });
 
 it("transaction should not await any signatures", async () => {
@@ -1086,6 +1096,72 @@ it("should broadcast multisignature transaction", async () => {
 			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
 			state: "pending",
 		})
+		.reply(200, require("../../test/fixtures/client/multisig-transaction-awaiting-none.json"))
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "ready",
+		})
+		.reply(200, { data: [] })
+		.post("/transaction")
+		.reply(201, {
+			data: {
+				accept: ["4b867a3aa16a1a298cee236a3a907b8bc50e139199525522bfa88b5a9bb11a78"],
+				broadcast: [],
+				excess: [],
+				invalid: [],
+			},
+			errors: {},
+		})
+		.persist();
+
+	const id = await subject.signMultiSignature({
+		nonce: "1",
+		from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+		data: {
+			publicKeys: [
+				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
+				"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			],
+			min: 2,
+		},
+		sign: {
+			senderPublicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			multiSignature: {
+				publicKeys: [
+					"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
+					"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+				],
+				min: 2,
+			},
+		},
+	});
+
+	const mockedFalseMultisignatureRegistration = jest
+		.spyOn(subject.transaction(id), "isMultiSignatureRegistration")
+		.mockReturnValue(false);
+	expect(subject.transaction(id)).toBeDefined();
+	expect(subject.pending()).toContainKey(id);
+	expect(subject.transaction(id).isMultiSignature()).toBeTrue();
+
+	await subject.broadcast(id);
+	expect(subject.waitingForOtherSignatures()).toContainKey(id);
+
+	const mockedFalseMultisignature = jest.spyOn(subject.transaction(id), "isMultiSignature").mockReturnValue(false);
+	await subject.broadcast(id);
+	expect(subject.transaction(id)).toBeDefined();
+
+	mockedFalseMultisignatureRegistration.mockRestore();
+	mockedFalseMultisignature.mockRestore();
+});
+
+it("should broadcast multisignature registration", async () => {
+	nock(/.+/)
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "pending",
+		})
 		.reply(200, require("../../test/fixtures/client/musig-transaction.json"))
 		.get("/transactions")
 		.query({
@@ -1124,6 +1200,8 @@ it("should broadcast multisignature transaction", async () => {
 
 	expect(subject.transaction(id)).toBeDefined();
 	expect(subject.pending()).toContainKey(id);
+	expect(subject.transaction(id).isMultiSignature()).toBeFalse();
+	expect(subject.transaction(id).isMultiSignatureRegistration()).toBeTrue();
 
 	await subject.broadcast(id);
 	expect(subject.waitingForOtherSignatures()).toContainKey(id);
@@ -1223,6 +1301,13 @@ it("should sync multisig transaction and delete the ones that do not require our
 
 	expect(subject.waitingForOurSignature()).not.toContainKey(id);
 	expect(subject.isAwaitingOurSignature(id)).toBeFalse();
-
 	canBeSigned.mockRestore();
+
+	const cannotBeSigned = jest.spyOn(subject, "canBeSigned").mockReturnValueOnce(true);
+
+	await subject.sync();
+
+	expect(subject.waitingForOurSignature()).toContainKey(id);
+	expect(subject.isAwaitingOurSignature(id)).toBeTrue();
+	cannotBeSigned.mockRestore();
 });
