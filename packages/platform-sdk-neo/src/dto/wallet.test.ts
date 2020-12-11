@@ -7,13 +7,12 @@ import { WalletData } from "./wallet";
 
 describe("WalletData", function () {
 	const subject = new WalletData(Fixture);
-
 	it("#address", () => {
-		expect(subject.address()).toEqual("my48EN4kDnGEpRZMBfiDS65wdfwfgCGZRz");
+		expect(subject.address()).toEqual("AStJyBXGGBK6bwrRfRUHSjp993PB5C9QgF");
 	});
 
 	it("#publicKey", () => {
-		expect(subject.publicKey()).toEqual("76a914c05f53de525d80151e209a729cf1c7909c88f88e88ac");
+		expect(() => subject.publicKey()).toThrow(/not implemented/);
 	});
 
 	it("#balance", () => {
