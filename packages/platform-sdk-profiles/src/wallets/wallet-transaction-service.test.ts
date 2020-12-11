@@ -11,7 +11,6 @@ import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
-import { SignedTransactionData } from "./dto/signed-transaction";
 import { Wallet } from "./wallet";
 import { WalletData } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
@@ -19,6 +18,8 @@ import { TransactionService } from "./wallet-transaction-service";
 let profile: Profile;
 let wallet: Wallet;
 let subject: TransactionService;
+
+beforeAll(() => nock.disableNetConnect());
 
 beforeEach(async () => {
 	nock.cleanAll();
@@ -75,10 +76,8 @@ beforeEach(async () => {
 	await wallet.setCoin("ARK", "ark.devnet");
 	await wallet.setIdentity(identity.mnemonic);
 
-	subject = wallet.transaction();
+	subject = new TransactionService(wallet);
 });
-
-beforeAll(() => nock.disableNetConnect());
 
 it("should sync", async () => {
 	const musig = require("../../test/fixtures/client/musig-transaction.json");
@@ -1193,4 +1192,37 @@ it("#confirm", async () => {
 
 	await subject.confirm(id);
 	expect(subject.isAwaitingConfirmation(id)).toBeFalse();
+});
+
+it("should sync multisig transaction and delete the ones that do not require our signature from [waitingForOurSignature]", async () => {
+	nock(/.+/)
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "pending",
+		})
+		.reply(200, [require("../../test/fixtures/client/multisig-transaction-awaiting-our.json")])
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "ready",
+		})
+		.reply(200, [])
+		.persist();
+
+	const id = "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d";
+
+	await subject.sync();
+
+	expect(subject.waitingForOurSignature()).toContainKey(id);
+	expect(subject.isAwaitingOurSignature(id)).toBeTrue();
+
+	const canBeSigned = jest.spyOn(subject, "canBeSigned").mockReturnValueOnce(false);
+
+	await subject.sync();
+
+	expect(subject.waitingForOurSignature()).not.toContainKey(id);
+	expect(subject.isAwaitingOurSignature(id)).toBeFalse();
+
+	canBeSigned.mockRestore();
 });
