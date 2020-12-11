@@ -7,7 +7,6 @@ import { container } from "./container";
 import { makeCoin } from "./container.helpers";
 import { Identifiers } from "./container.models";
 import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
-import { Migrator } from "./migrator";
 import { CoinService } from "./services/coin-service";
 import { DelegateService } from "./services/delegate-service";
 import { ExchangeRateService } from "./services/exchange-rate-service";
@@ -34,7 +33,6 @@ export class Environment {
 		container.set(Identifiers.FeeService, new FeeService());
 		container.set(Identifiers.KnownWalletService, new KnownWalletService());
 		container.set(Identifiers.WalletService, new WalletService());
-		container.set(Identifiers.Migrator, new Migrator());
 
 		container.set(Identifiers.Coins, options.coins);
 	}
@@ -143,10 +141,6 @@ export class Environment {
 
 	public wallets(): WalletService {
 		return container.get(Identifiers.WalletService);
-	}
-
-	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
-		await container.get<Migrator>(Identifiers.Migrator).migrate(migrations, versionToMigrate);
 	}
 
 	/**

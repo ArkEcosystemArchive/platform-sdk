@@ -3,7 +3,6 @@ import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
 
-import { MemoryPassword } from "../helpers/password";
 import { pqueue } from "../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
@@ -20,16 +19,11 @@ import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
-import { ProfileContract, ProfileSetting, ProfileStruct } from "./profile.models";
-
-interface ProfileData {
-	id: string;
-	password?: string;
-	data: string;
-}
+import { Migrator } from "./migrator";
+import { ProfileContract, ProfileInput, ProfileSetting, ProfileStruct } from "./profile.models";
 
 export class Profile implements ProfileContract {
-	#data: ProfileData;
+	#data: ProfileInput;
 
 	#contactRepository: ContactRepository;
 	#dataRepository: DataRepository;
@@ -45,7 +39,7 @@ export class Profile implements ProfileContract {
 	#transactionAggregate: TransactionAggregate;
 	#walletAggregate: WalletAggregate;
 
-	public constructor(data: ProfileData) {
+	public constructor(data: ProfileInput) {
 		this.#data = data;
 
 		this.#contactRepository = new ContactRepository(this);
@@ -61,6 +55,14 @@ export class Profile implements ProfileContract {
 		this.#registrationAggregate = new RegistrationAggregate(this);
 		this.#transactionAggregate = new TransactionAggregate(this);
 		this.#walletAggregate = new WalletAggregate(this);
+	}
+
+	public setRawData(data: ProfileInput): void {
+		this.#data = data;
+	}
+
+	public getRawData(): ProfileInput {
+		return this.#data;
 	}
 
 	public id(): string {
@@ -206,10 +208,10 @@ export class Profile implements ProfileContract {
 	 * Dumps the profile into a standardised object.
 	 *
 	 * @param {string} [password]
-	 * @returns {ProfileData}
+	 * @returns {ProfileInput}
 	 * @memberof Profile
 	 */
-	public dump(password?: string): ProfileData {
+	public dump(password?: string): ProfileInput {
 		let data: string | undefined;
 
 		if (this.usesPassword() && password === undefined) {
@@ -302,6 +304,10 @@ export class Profile implements ProfileContract {
 		this.settings().set(ProfileSetting.UseCustomPeer, false);
 		this.settings().set(ProfileSetting.UseMultiPeerBroadcast, false);
 		this.settings().set(ProfileSetting.UseTestNetworks, false);
+	}
+
+	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
+		await new Migrator(this).migrate(migrations, versionToMigrate);
 	}
 
 	/**
