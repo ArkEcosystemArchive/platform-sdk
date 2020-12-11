@@ -5,7 +5,7 @@ import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
-import { Storage } from "./env.models";
+import { Storage, StorageData } from "./env.models";
 
 export class Migrator {
 	readonly #profiles: ProfileRepository;
@@ -33,7 +33,11 @@ export class Migrator {
 
 				await this.#storage.snapshot();
 
-				await migrations[version]({ data: this.#data, profiles: this.#profiles });
+				await migrations[version]({
+					data: this.#data,
+					profiles: this.#profiles,
+					storage: container.get<Storage>(Identifiers.Storage),
+				});
 
 				await this.set(version);
 
