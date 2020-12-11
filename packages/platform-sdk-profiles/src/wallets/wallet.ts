@@ -65,11 +65,9 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public getRelays(): string[] {
-		return (
-			this.peers()
-				.getRelays(this.coinId(), this.networkId())
-				?.map((peer) => peer.host) || []
-		);
+		return this.peers()
+			.getRelays(this.coinId(), this.networkId())
+			.map((peer) => peer.host);
 	}
 
 	/**

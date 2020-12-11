@@ -1,0 +1,26 @@
+{
+	"data": {
+		"version": 2,
+		"network": 23,
+		"typeGroup": 1,
+		"type": 0,
+		"nonce": "1",
+		"senderPublicKey": "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+		"fee": "10000000",
+		"amount": "200000000",
+		"expiration": 0,
+		"recipientId": "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb",
+		"signatures": [
+			"00c01c44bf33bea20a74d5acc12c5d6aafe82240f3571121382b77c871f4b33d6da2b62fdc6ca2cc6bc583abb2a69e7975be29e8d80a59c52bcff8d54514cf999e",
+			"01830a2e319f2070f3519bc22c2d449acdb7691bf9dd25e3649a72ac843e08ce26e0b87e30e65b73f853cf8e375dbc495cc75c6fd199bf4b15327bf8c5ec4bfac5"
+		],
+		"id": "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d"
+	},
+	"multisigAsset": {
+		"min": 2,
+		"publicKeys": [
+			"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
+			"0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896"
+		]
+	}
+}
