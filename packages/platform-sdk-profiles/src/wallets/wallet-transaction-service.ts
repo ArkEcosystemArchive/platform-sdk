@@ -585,7 +585,7 @@ export class TransactionService {
 	 */
 	public restore(): void {
 		const restoreStorage = (storage: object, storageKey: string) => {
-			const transactions: object = this.#wallet.data().get(storageKey, {}) || {};
+			const transactions: object = this.#wallet.data().get(storageKey) || {};
 
 			for (const [id, transaction] of Object.entries(transactions)) {
 				this.assertHasValidIdentifier(id);
