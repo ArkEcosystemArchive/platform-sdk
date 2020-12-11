@@ -262,5 +262,7 @@ it("should fail verification", async () => {
 	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
 
 	// @ts-ignore
-	await expect(env.verify({ profiles: [], data: {} })).rejects.toThrowError("Terminating due to corrupted state: ValidationError: \"profiles\" must be of type object");
+	await expect(env.verify({ profiles: [], data: {} })).rejects.toThrowError(
+		'Terminating due to corrupted state: ValidationError: "profiles" must be of type object',
+	);
 });
