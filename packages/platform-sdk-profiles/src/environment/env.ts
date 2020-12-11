@@ -83,7 +83,7 @@ export class Environment {
 	 * @memberof Environment
 	 */
 	public async boot(): Promise<void> {
-		if (!this.storage) {
+		if (this.storage === undefined) {
 			throw new Error("Please call [verify] before booting the environment.");
 		}
 
