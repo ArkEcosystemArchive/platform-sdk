@@ -362,10 +362,15 @@ describe("#restore", () => {
 	});
 });
 
-it("#usesMultiPeerBroadcasting", async () => {
+test("#usesMultiPeerBroadcasting", async () => {
 	expect(subject.usesMultiPeerBroadcasting()).toBeFalse();
 
 	subject.settings().set(ProfileSetting.UseCustomPeer, true);
 	subject.settings().set(ProfileSetting.UseMultiPeerBroadcast, true);
+
 	expect(subject.usesMultiPeerBroadcasting()).toBeTrue();
+});
+
+test("#migrate", async () => {
+	expect(() => subject.migrate({}, "2.0.0")).not.toThrow();
 });
