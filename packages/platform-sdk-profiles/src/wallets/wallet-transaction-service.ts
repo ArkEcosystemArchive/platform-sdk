@@ -55,11 +55,9 @@ export class TransactionService {
 	}
 
 	/**
-	 * Sign a Transfer transaction.
+	 * Sync both pending and ready multi signature transactions.
 	 *
-	 * @param {Contracts.TransferInput} input
-	 * @param {Contracts.TransactionOptions} [options]
-	 * @returns {Promise<string>}
+	 * @returns {Promise<void>}
 	 * @memberof TransactionService
 	 */
 	public async sync(): Promise<void> {
@@ -294,12 +292,12 @@ export class TransactionService {
 	public transaction(id: string): Contracts.SignedTransactionData {
 		this.assertHasValidIdentifier(id);
 
-		if (this.hasBeenSigned(id)) {
-			return this.#signed[id];
-		}
-
 		if (this.hasBeenBroadcasted(id)) {
 			return this.#broadcasted[id];
+		}
+
+		if (this.hasBeenSigned(id)) {
+			return this.#signed[id];
 		}
 
 		if (this.isAwaitingOurSignature(id)) {
@@ -587,11 +585,7 @@ export class TransactionService {
 	 */
 	public restore(): void {
 		const restoreStorage = (storage: object, storageKey: string) => {
-			const transactions: object | undefined = this.#wallet.data().get(storageKey, {});
-
-			if (!transactions) {
-				return;
-			}
+			const transactions: object = this.#wallet.data().get(storageKey, {}) || {};
 
 			for (const [id, transaction] of Object.entries(transactions)) {
 				this.assertHasValidIdentifier(id);
@@ -688,7 +682,7 @@ export class TransactionService {
 
 		for (const transaction of transactions) {
 			const transactionId: string = transaction.id;
-			const signedTransaction = new SignedTransactionData(transaction.id, transaction);
+			const signedTransaction = new SignedTransactionData(transactionId, transaction);
 
 			this.#waitingForOurSignature[transactionId] = signedTransaction;
 			this.#waitingForOtherSignatures[transactionId] = signedTransaction;
