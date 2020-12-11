@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   **[ATOM]** Build pagination cursors (aefdecf1, @faustbrian)
 -   Support memo for multi payments (read & write) (931900d7, @faustbrian)
 -   Use `node-cache` for cache service (4cca6042, @faustbrian)
+-   Pass storage to migrations to allow for raw data modifications (aeb3c510, @faustbrian)
 
 ### Fixed
 
