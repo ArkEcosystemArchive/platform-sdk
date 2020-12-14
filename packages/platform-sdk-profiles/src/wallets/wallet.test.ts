@@ -14,14 +14,14 @@ import { ExtendedTransactionDataCollection } from "../dto/transaction-collection
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
+import { ExchangeRateService } from "../environment/services/exchange-rate-service";
 import { Profile } from "../profiles/profile";
+import { ProfileRepository } from "../repositories/profile-repository";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
 import { WalletData, WalletSetting } from "./wallet.models";
-import { ExchangeRateService } from "../environment/services/exchange-rate-service";
-import { ProfileRepository } from "../repositories/profile-repository";
 
 let profile: Profile;
 let subject: Wallet;

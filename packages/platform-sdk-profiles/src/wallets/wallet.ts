@@ -9,9 +9,11 @@ import { transformTransactionData, transformTransactionDataCollection } from "..
 import { container } from "../environment/container";
 import { makeCoin } from "../environment/container.helpers";
 import { Identifiers } from "../environment/container.models";
+import { ExchangeRateService } from "../environment/services/exchange-rate-service";
 import { KnownWalletService } from "../environment/services/known-wallet-service";
 import { DelegateMapper } from "../mappers/delegate-mapper";
 import { Profile } from "../profiles/profile";
+import { ProfileSetting } from "../profiles/profile.models";
 import { DataRepository } from "../repositories/data-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
@@ -21,8 +23,6 @@ import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
-import { ExchangeRateService } from "../environment/services/exchange-rate-service";
-import { ProfileSetting } from "../profiles/profile.models";
 
 export class Wallet implements ReadWriteWallet {
 	readonly #entityAggregate: EntityAggregate;
@@ -200,7 +200,7 @@ export class Wallet implements ReadWriteWallet {
 	public exchangeRate(): BigNumber {
 		return container
 			.get<ExchangeRateService>(Identifiers.ExchangeRateService)
-			.currentExchangeRate(this.currency(), this.exchangeCurrency());
+			.ratesByDate(this.currency(), this.exchangeCurrency());
 	}
 
 	public convertedBalance(): BigNumber {

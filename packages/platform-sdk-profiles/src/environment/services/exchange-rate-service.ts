@@ -81,12 +81,12 @@ export class ExchangeRateService {
 		this.#dataRepository.set(storageKey, exchangeRate);
 	}
 
-	public rates() {
-		return this.#dataRepository;
+	public allRates() {
+		return this.#dataRepository.all();
 	}
 
-	public currentExchangeRate(currency: string, exchangeCurrency: string): BigNumber {
-		const activeDate = DateTime.make().format("YYYY-MM-DD");
+	public ratesByDate(currency: string, exchangeCurrency: string, date?: string | number | DateTime): BigNumber {
+		const activeDate = DateTime.make(date).format("YYYY-MM-DD");
 		const storageKey = `${this.storageKey(currency, exchangeCurrency)}.${activeDate}`;
 		const rate: number | undefined = this.#dataRepository.get(storageKey);
 
