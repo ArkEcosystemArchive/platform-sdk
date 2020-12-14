@@ -215,7 +215,7 @@ describe("ExchangeRateService", () => {
 			expect(wallet.data().get(WalletData.ExchangeRates)).toBeUndefined();
 
 			await exchangeService.syncAll();
-			expect(wallet.data().get(WalletData.ExchangeRates)).toEqual({ BTC: { [date]: 0.00005048 } });
+			expect(exchangeService.rates().all()).toEqual({ "DARK-BTC": { [date]: 0.00005048 } });
 		});
 
 		it("should cache historic exchange rates", async () => {
@@ -234,7 +234,7 @@ describe("ExchangeRateService", () => {
 			expect(wallet.data().get(WalletData.ExchangeRates)).toBeUndefined();
 
 			await exchangeService.syncAll();
-			expect(wallet.data().get(WalletData.ExchangeRates)).toEqual({ BTC: { [date]: 0.00005048 } });
+			expect(exchangeService.rates().all()).toEqual({ "DARK-BTC": { [date]: 0.00005048 } });
 
 			nock(/.+/)
 				.get("/data/dayAvg")
@@ -244,7 +244,7 @@ describe("ExchangeRateService", () => {
 
 			await exchangeService.syncAll();
 			// The price should be the cached price from previous sync: 0.00005048
-			expect(wallet.data().get(WalletData.ExchangeRates)).toEqual({ BTC: { [date]: 0.00005048 } });
+			expect(exchangeService.rates().all()).toEqual({ "DARK-BTC": { [date]: 0.00005048 } });
 		});
 	});
 });

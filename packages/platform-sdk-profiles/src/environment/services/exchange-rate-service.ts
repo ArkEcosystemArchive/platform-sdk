@@ -9,10 +9,12 @@ import { Cache } from "../../services/cache";
 import { ReadWriteWallet, WalletData } from "../../wallets/wallet.models";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
+import { DataRepository } from "../../repositories/data-repository";
 
 export class ExchangeRateService {
 	readonly #ttl: number = 10;
 	readonly #cache = new Cache("ExchangeRates");
+	readonly #dataRepository: DataRepository = new DataRepository();
 
 	public constructor(options?: { ttl?: number }) {
 		if (options?.ttl) {
@@ -48,7 +50,7 @@ export class ExchangeRateService {
 		}
 
 		const exchangeCurrency: string = profile.settings().get(ProfileSetting.ExchangeCurrency) || "BTC";
-		if (this.#cache.has(exchangeCurrency)) {
+		if (this.#cache.has(`${currency}-${exchangeCurrency}`)) {
 			return;
 		}
 
@@ -56,28 +58,33 @@ export class ExchangeRateService {
 			profile.settings().get(ProfileSetting.MarketProvider) || "coingecko",
 			container.get(Identifiers.HttpClient),
 		);
+
 		const exchangeRate = await marketService.dailyAverage(currency, exchangeCurrency, +Date.now());
 
-		this.#cache.set(exchangeCurrency, true, this.#ttl);
-		const date = DateTime.make().format("YYYY-MM-DD");
+		this.setRate(currency, exchangeCurrency, exchangeRate);
+		this.#cache.set(`${currency}-${exchangeCurrency}`, true, this.#ttl);
 
 		for (const wallet of wallets) {
-			this.updateWalletExchangeData(wallet, exchangeCurrency, exchangeRate, date);
+			this.updateWalletExchangeData(wallet, exchangeCurrency, exchangeRate);
 		}
 	}
 
-	private updateWalletExchangeData(
-		wallet: ReadWriteWallet,
+	private setRate(
+		currency: string,
 		exchangeCurrency: string,
 		exchangeRate: number,
-		date: string,
-	): void {
-		const walletExchangeRates: Record<string, Record<string, number>> =
-			wallet.data().get(WalletData.ExchangeRates) || {};
+		date?: string | number | DateTime,
+	) {
+		const activeDate = DateTime.make(date).format("YYYY-MM-DD");
+		const storageKey = `${currency}-${exchangeCurrency}.${activeDate}`;
+		this.#dataRepository.set(storageKey, exchangeRate);
+	}
 
-		walletExchangeRates[exchangeCurrency] = { [date]: exchangeRate };
+	public rates() {
+		return this.#dataRepository;
+	}
 
-		wallet.data().set(WalletData.ExchangeRates, walletExchangeRates);
+	private updateWalletExchangeData(wallet: ReadWriteWallet, exchangeCurrency: string, exchangeRate: number): void {
 		wallet.data().set(WalletData.ExchangeRate, exchangeRate);
 		wallet.data().set(WalletData.ExchangeCurrency, exchangeCurrency);
 	}
