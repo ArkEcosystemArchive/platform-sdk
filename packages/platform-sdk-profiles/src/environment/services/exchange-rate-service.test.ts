@@ -82,6 +82,7 @@ beforeEach(async () => {
 	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 	container.set(Identifiers.ProfileRepository, profileRepository);
+	container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
 
 	profile = profileRepository.create("John Doe");
 	wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
@@ -89,7 +90,7 @@ beforeEach(async () => {
 	liveSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);
 	testSpy = jest.spyOn(wallet.network(), "isTest").mockReturnValue(false);
 
-	subject = new ExchangeRateService();
+	subject = container.get(Identifiers.ExchangeRateService);
 });
 
 afterEach(() => {
@@ -110,7 +111,7 @@ describe("ExchangeRateService", () => {
 
 		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 		await subject.syncAll();
-		expect(wallet.data().get(WalletData.ExchangeRate)).toBe(0.00005048);
+		expect(wallet.exchangeRate().toNumber()).toBe(0.00005048);
 	});
 
 	describe("#syncCoinByProfile", () => {
@@ -132,7 +133,7 @@ describe("ExchangeRateService", () => {
 					.filter((wallet: ReadWriteWallet) => wallet.currency() === "DARK"),
 			);
 
-			expect(wallet.data().get(WalletData.ExchangeRate)).toBe(0.00005048);
+			expect(wallet.exchangeRate().toNumber()).toBe(0.00005048);
 		});
 
 		it("should sync a coin using coingecho as default market provider", async () => {
@@ -147,7 +148,7 @@ describe("ExchangeRateService", () => {
 					.filter((wallet: ReadWriteWallet) => wallet.currency() === "DARK"),
 			);
 
-			expect(wallet.data().get(WalletData.ExchangeRate)).toBe(0.0006590832396635801);
+			expect(wallet.exchangeRate().toNumber()).toBe(0.0006590832396635801);
 			profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 		});
 
@@ -169,7 +170,7 @@ describe("ExchangeRateService", () => {
 					.filter((wallet: ReadWriteWallet) => wallet.currency() === "DARK"),
 			);
 
-			expect(wallet.data().get(WalletData.ExchangeRate)).toBe(0.00005048);
+			expect(wallet.exchangeRate().toNumber()).toBe(0.00005048);
 			profile.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
 		});
 
@@ -184,7 +185,7 @@ describe("ExchangeRateService", () => {
 
 			await subject.syncCoinByProfile(profile, "DARK");
 
-			expect(wallet.data().get(WalletData.ExchangeRate)).toBe(0.00002134);
+			expect(wallet.exchangeRate().toNumber()).toBe(0.00002134);
 		});
 
 		it("should fail to sync a coin for a specific profile if there are no wallets", async () => {
@@ -244,6 +245,7 @@ describe("ExchangeRateService", () => {
 
 			await exchangeService.syncAll();
 			// The price should be the cached price from previous sync: 0.00005048
+			console.log(exchangeService.rates().first());
 			expect(exchangeService.rates().all()).toEqual({ "DARK-BTC": { [date]: 0.00005048 } });
 		});
 	});

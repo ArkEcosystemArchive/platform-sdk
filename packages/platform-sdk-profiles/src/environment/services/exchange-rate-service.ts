@@ -1,5 +1,6 @@
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { pqueueSettled } from "../../helpers/queue";
 import { Profile } from "../../profiles/profile";
@@ -27,7 +28,9 @@ export class ExchangeRateService {
 
 		const promises: (() => Promise<void>)[] = [];
 		for (const profile of profiles) {
+			console.log("syncing profile", Object.entries(profile.wallets().allByCoin()));
 			for (const [currency, wallets] of Object.entries(profile.wallets().allByCoin())) {
+				console.log("syncing wallet", currency);
 				promises.push(() => this.syncCoinByProfile(profile, currency, Object.values(wallets)));
 			}
 		}
@@ -50,7 +53,7 @@ export class ExchangeRateService {
 		}
 
 		const exchangeCurrency: string = profile.settings().get(ProfileSetting.ExchangeCurrency) || "BTC";
-		if (this.#cache.has(`${currency}-${exchangeCurrency}`)) {
+		if (this.#cache.has(this.storageKey(currency, exchangeCurrency))) {
 			return;
 		}
 
@@ -62,11 +65,11 @@ export class ExchangeRateService {
 		const exchangeRate = await marketService.dailyAverage(currency, exchangeCurrency, +Date.now());
 
 		this.setRate(currency, exchangeCurrency, exchangeRate);
-		this.#cache.set(`${currency}-${exchangeCurrency}`, true, this.#ttl);
+		this.#cache.set(this.storageKey(currency, exchangeCurrency), true, this.#ttl);
+	}
 
-		for (const wallet of wallets) {
-			this.updateWalletExchangeData(wallet, exchangeCurrency, exchangeRate);
-		}
+	private storageKey(currency: string, exchangeCurrency: string) {
+		return `${currency}-${exchangeCurrency}`;
 	}
 
 	private setRate(
@@ -74,9 +77,10 @@ export class ExchangeRateService {
 		exchangeCurrency: string,
 		exchangeRate: number,
 		date?: string | number | DateTime,
-	) {
+	): void {
 		const activeDate = DateTime.make(date).format("YYYY-MM-DD");
-		const storageKey = `${currency}-${exchangeCurrency}.${activeDate}`;
+		const storageKey = `${this.storageKey(currency, exchangeCurrency)}.${activeDate}`;
+		console.log("setting rates", storageKey, exchangeRate);
 		this.#dataRepository.set(storageKey, exchangeRate);
 	}
 
@@ -84,8 +88,15 @@ export class ExchangeRateService {
 		return this.#dataRepository;
 	}
 
-	private updateWalletExchangeData(wallet: ReadWriteWallet, exchangeCurrency: string, exchangeRate: number): void {
-		wallet.data().set(WalletData.ExchangeRate, exchangeRate);
-		wallet.data().set(WalletData.ExchangeCurrency, exchangeCurrency);
+	public currentExchangeRate(currency: string, exchangeCurrency: string): BigNumber {
+		const activeDate = DateTime.make().format("YYYY-MM-DD");
+		const storageKey = `${this.storageKey(currency, exchangeCurrency)}.${activeDate}`;
+		const rate: number | undefined = this.#dataRepository.get(storageKey);
+
+		if (!rate) {
+			return BigNumber.ZERO;
+		}
+
+		return BigNumber.make(rate);
 	}
 }
