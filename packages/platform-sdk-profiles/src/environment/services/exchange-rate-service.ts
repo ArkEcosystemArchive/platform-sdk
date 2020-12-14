@@ -65,12 +65,12 @@ export class ExchangeRateService {
 		}
 	}
 
-	private async updateWalletExchangeData(
+	private updateWalletExchangeData(
 		wallet: ReadWriteWallet,
 		exchangeCurrency: string,
 		exchangeRate: number,
 		date: string,
-	): Promise<void> {
+	): void {
 		const walletExchangeRates: Record<string, Record<string, number>> =
 			wallet.data().get(WalletData.ExchangeRates) || {};
 
