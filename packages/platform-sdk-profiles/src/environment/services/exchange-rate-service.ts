@@ -5,12 +5,12 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { pqueueSettled } from "../../helpers/queue";
 import { Profile } from "../../profiles/profile";
 import { ProfileSetting } from "../../profiles/profile.models";
+import { DataRepository } from "../../repositories/data-repository";
 import { ProfileRepository } from "../../repositories/profile-repository";
 import { Cache } from "../../services/cache";
 import { ReadWriteWallet, WalletData } from "../../wallets/wallet.models";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
-import { DataRepository } from "../../repositories/data-repository";
 
 export class ExchangeRateService {
 	readonly #ttl: number = 10;
@@ -28,9 +28,7 @@ export class ExchangeRateService {
 
 		const promises: (() => Promise<void>)[] = [];
 		for (const profile of profiles) {
-			console.log("syncing profile", Object.entries(profile.wallets().allByCoin()));
 			for (const [currency, wallets] of Object.entries(profile.wallets().allByCoin())) {
-				console.log("syncing wallet", currency);
 				promises.push(() => this.syncCoinByProfile(profile, currency, Object.values(wallets)));
 			}
 		}
@@ -80,7 +78,6 @@ export class ExchangeRateService {
 	): void {
 		const activeDate = DateTime.make(date).format("YYYY-MM-DD");
 		const storageKey = `${this.storageKey(currency, exchangeCurrency)}.${activeDate}`;
-		console.log("setting rates", storageKey, exchangeRate);
 		this.#dataRepository.set(storageKey, exchangeRate);
 	}
 

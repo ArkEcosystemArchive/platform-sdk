@@ -245,7 +245,6 @@ describe("ExchangeRateService", () => {
 
 			await exchangeService.syncAll();
 			// The price should be the cached price from previous sync: 0.00005048
-			console.log(exchangeService.rates().first());
 			expect(exchangeService.rates().all()).toEqual({ "DARK-BTC": { [date]: 0.00005048 } });
 		});
 	});
