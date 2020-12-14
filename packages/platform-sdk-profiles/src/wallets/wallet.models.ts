@@ -76,6 +76,7 @@ export interface ReadWriteWallet {
 	network(): Coins.Network;
 	currency(): string;
 	exchangeCurrency(): string;
+	exchangeRate(): BigNumber;
 	alias(): string | undefined;
 	address(): string;
 	publicKey(): string | undefined;

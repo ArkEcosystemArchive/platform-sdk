@@ -21,6 +21,8 @@ import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
 import { WalletData, WalletSetting } from "./wallet.models";
+import { ExchangeRateService } from "../environment/services/exchange-rate-service";
+import { ProfileRepository } from "../repositories/profile-repository";
 
 let profile: Profile;
 let subject: Wallet;
@@ -80,9 +82,11 @@ beforeEach(async () => {
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
+	container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
+	container.set(Identifiers.ProfileRepository, new ProfileRepository());
 
-	profile = new Profile({ id: "profile-id", data: "" });
-	profile.settings().set(ProfileSetting.Name, "John Doe");
+	const profileRepository = container.get<ProfileRepository>(Identifiers.ProfileRepository);
+	profile = profileRepository.create("John Doe");
 
 	subject = new Wallet(uuidv4(), profile);
 
@@ -118,14 +122,23 @@ it("should have a balance", () => {
 });
 
 it("should have a converted balance if it is a live wallet", async () => {
+	// cryptocompare
+	nock(/.+/)
+		.get("/data/dayAvg")
+		.query(true)
+		.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
+		.persist();
+
 	const live = jest.spyOn(subject.network(), "isLive").mockReturnValue(true);
 	const test = jest.spyOn(subject.network(), "isTest").mockReturnValue(false);
 
 	subject.data().set(WalletData.Balance, 5e8);
-	subject.data().set(WalletData.ExchangeRate, 5);
 
 	expect(subject.convertedBalance()).toBeInstanceOf(BigNumber);
-	expect(subject.convertedBalance().toNumber()).toBe(25);
+	expect(subject.convertedBalance().toNumber()).toBe(0);
+
+	await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll();
+	expect(subject.convertedBalance().toNumber()).toBe(0.00005048);
 
 	live.mockRestore();
 	test.mockRestore();
@@ -192,9 +205,7 @@ it("should have a peer service", () => {
 });
 
 it("should have an exchange currency", () => {
-	subject.data().set(WalletData.ExchangeCurrency, "");
-
-	expect(subject.exchangeCurrency()).toBe("");
+	expect(subject.exchangeCurrency()).toBe("BTC");
 });
 
 it("should have an avatar", () => {
@@ -525,8 +536,6 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.data).toEqual({
 			BALANCE: "55827093444556",
 			BROADCASTED_TRANSACTIONS: {},
-			EXCHANGE_CURRENCY: "BTC",
-			EXCHANGE_RATE: 0,
 			SEQUENCE: "111932",
 			SIGNED_TRANSACTIONS: {},
 			VOTES: [],

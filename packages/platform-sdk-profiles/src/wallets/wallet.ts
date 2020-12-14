@@ -21,6 +21,8 @@ import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
+import { ExchangeRateService } from "../environment/services/exchange-rate-service";
+import { ProfileSetting } from "../profiles/profile.models";
 
 export class Wallet implements ReadWriteWallet {
 	readonly #entityAggregate: EntityAggregate;
@@ -170,7 +172,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public exchangeCurrency(): string {
-		return this.data().get(WalletData.ExchangeCurrency) as string;
+		return this.#profile.settings().get(ProfileSetting.ExchangeCurrency) || "BTC";
 	}
 
 	public alias(): string | undefined {
@@ -195,15 +197,21 @@ export class Wallet implements ReadWriteWallet {
 		return BigNumber.make(value);
 	}
 
+	public exchangeRate(): BigNumber {
+		return container
+			.get<ExchangeRateService>(Identifiers.ExchangeRateService)
+			.currentExchangeRate(this.currency(), this.exchangeCurrency());
+	}
+
 	public convertedBalance(): BigNumber {
 		if (this.network().isTest()) {
 			return BigNumber.ZERO;
 		}
 
-		const value: string | undefined = this.data().get(WalletData.ExchangeRate);
+		const value = this.exchangeRate();
 
-		if (value === undefined) {
-			return BigNumber.ZERO;
+		if (value.isZero()) {
+			return value;
 		}
 
 		return this.balance().divide(1e8).times(value);
@@ -261,8 +269,6 @@ export class Wallet implements ReadWriteWallet {
 			data: {
 				[WalletData.Balance]: this.balance().toFixed(),
 				[WalletData.BroadcastedTransactions]: this.data().get(WalletData.BroadcastedTransactions, []),
-				[WalletData.ExchangeCurrency]: this.data().get(WalletData.ExchangeCurrency, "BTC"),
-				[WalletData.ExchangeRate]: this.data().get(WalletData.ExchangeRate, 0),
 				[WalletData.Sequence]: this.nonce().toFixed(),
 				[WalletData.SignedTransactions]: this.data().get(WalletData.SignedTransactions, []),
 				[WalletData.Votes]: this.data().get(WalletData.Votes, []),
