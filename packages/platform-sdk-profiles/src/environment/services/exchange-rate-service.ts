@@ -7,8 +7,18 @@ import { ProfileRepository } from "../../repositories/profile-repository";
 import { ReadWriteWallet, WalletData } from "../../wallets/wallet.models";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 export class ExchangeRateService {
+	readonly #lastSynced: Record<string, DateTime> = {};
+	readonly #cacheDurationMilliseconds: number = 10000;
+
+	public constructor(options?: { cacheDurationMilliseconds?: number }) {
+		if (options?.cacheDurationMilliseconds) {
+			this.#cacheDurationMilliseconds = options.cacheDurationMilliseconds;
+		}
+	}
+
 	public async syncAll(): Promise<void> {
 		const profiles: Profile[] = container.get<ProfileRepository>(Identifiers.ProfileRepository).values();
 
@@ -36,17 +46,43 @@ export class ExchangeRateService {
 			return;
 		}
 
+		const exchangeCurrency: string = profile.settings().get(ProfileSetting.ExchangeCurrency) || "BTC";
+		if (!this.shouldSync(exchangeCurrency)) return;
+
 		const marketService = MarketService.make(
 			profile.settings().get(ProfileSetting.MarketProvider) || "coingecko",
 			container.get(Identifiers.HttpClient),
 		);
-
-		const exchangeCurrency: string = profile.settings().get(ProfileSetting.ExchangeCurrency) || "BTC";
 		const exchangeRate = await marketService.dailyAverage(currency, exchangeCurrency, +Date.now());
 
+		this.#lastSynced[exchangeCurrency] = DateTime.make();
+		const date = DateTime.make().format("YYYY-MM-DD");
+
 		for (const wallet of wallets) {
-			wallet.data().set(WalletData.ExchangeCurrency, exchangeCurrency);
-			wallet.data().set(WalletData.ExchangeRate, exchangeRate);
+			this.updateWalletExchangeData(wallet, exchangeCurrency, exchangeRate, date);
 		}
+	}
+
+	private async updateWalletExchangeData(
+		wallet: ReadWriteWallet,
+		exchangeCurrency: string,
+		exchangeRate: number,
+		date: string,
+	): Promise<void> {
+		const walletExchangeRates: Record<string, Record<string, number>> =
+			wallet.data().get(WalletData.ExchangeRates) || {};
+
+		walletExchangeRates[exchangeCurrency] = { [date]: exchangeRate };
+
+		wallet.data().set(WalletData.ExchangeRates, walletExchangeRates);
+		wallet.data().set(WalletData.ExchangeRate, exchangeRate);
+		wallet.data().set(WalletData.ExchangeCurrency, exchangeCurrency);
+	}
+
+	private shouldSync(exchangeCurrency: string): boolean {
+		const lastSynced = this.#lastSynced[exchangeCurrency];
+
+		if (!lastSynced) return true;
+		return lastSynced.diffInMilliseconds(DateTime.make()) >= this.#cacheDurationMilliseconds;
 	}
 }
