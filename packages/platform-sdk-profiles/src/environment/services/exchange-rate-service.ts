@@ -1,14 +1,14 @@
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
 
 import { pqueueSettled } from "../../helpers/queue";
 import { Profile } from "../../profiles/profile";
 import { ProfileSetting } from "../../profiles/profile.models";
 import { ProfileRepository } from "../../repositories/profile-repository";
+import { Cache } from "../../services/cache";
 import { ReadWriteWallet, WalletData } from "../../wallets/wallet.models";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
-import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import { Cache } from "../../services/cache";
 
 export class ExchangeRateService {
 	readonly #ttl: number = 10;
