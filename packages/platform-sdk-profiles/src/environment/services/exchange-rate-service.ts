@@ -13,7 +13,7 @@ export class ExchangeRateService {
 	readonly #lastSynced: Record<string, DateTime> = {};
 	readonly #cacheDurationMilliseconds: number = 10000;
 
-	public constructor(options?: { cacheDurationMilliseconds?: number }) {
+	public constructor(options?: { ttl?: number }) {
 		if (options?.cacheDurationMilliseconds) {
 			this.#cacheDurationMilliseconds = options.cacheDurationMilliseconds;
 		}
