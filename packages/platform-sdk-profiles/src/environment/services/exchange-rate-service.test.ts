@@ -200,7 +200,7 @@ describe("ExchangeRateService", () => {
 		});
 
 		it("should store exchange rates and currency in profile wallets if undefined", async () => {
-			const exchangeService = new ExchangeRateService({ cacheDurationMilliseconds: 6000 });
+			const exchangeService = new ExchangeRateService({ ttl: 5 });
 
 			// cryptocompare
 			nock(/.+/)
@@ -219,7 +219,7 @@ describe("ExchangeRateService", () => {
 		});
 
 		it("should cache historic exchange rates", async () => {
-			const exchangeService = new ExchangeRateService({ cacheDurationMilliseconds: 6000 });
+			const exchangeService = new ExchangeRateService({ ttl: 5 });
 
 			// cryptocompare
 			nock(/.+/)

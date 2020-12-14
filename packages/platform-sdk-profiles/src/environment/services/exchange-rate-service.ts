@@ -11,11 +11,11 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 export class ExchangeRateService {
 	readonly #lastSynced: Record<string, DateTime> = {};
-	readonly #cacheDurationMilliseconds: number = 10000;
+	readonly #ttl: number = 10;
 
 	public constructor(options?: { ttl?: number }) {
-		if (options?.cacheDurationMilliseconds) {
-			this.#cacheDurationMilliseconds = options.cacheDurationMilliseconds;
+		if (options?.ttl) {
+			this.#ttl = options.ttl;
 		}
 	}
 
@@ -47,7 +47,9 @@ export class ExchangeRateService {
 		}
 
 		const exchangeCurrency: string = profile.settings().get(ProfileSetting.ExchangeCurrency) || "BTC";
-		if (!this.shouldSync(exchangeCurrency)) return;
+		if (!this.shouldSync(exchangeCurrency)) {
+			return;
+		}
 
 		const marketService = MarketService.make(
 			profile.settings().get(ProfileSetting.MarketProvider) || "coingecko",
@@ -83,6 +85,6 @@ export class ExchangeRateService {
 		const lastSynced = this.#lastSynced[exchangeCurrency];
 
 		if (!lastSynced) return true;
-		return lastSynced.diffInMilliseconds(DateTime.make()) >= this.#cacheDurationMilliseconds;
+		return lastSynced.diffInSeconds(DateTime.make()) >= this.#ttl;
 	}
 }
