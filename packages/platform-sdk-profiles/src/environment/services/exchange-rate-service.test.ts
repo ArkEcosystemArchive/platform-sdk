@@ -13,6 +13,7 @@ import { ProfileRepository } from "../../repositories/profile-repository";
 import { ReadWriteWallet, WalletData } from "../../wallets/wallet.models";
 import { CoinService } from "./coin-service";
 import { ExchangeRateService } from "./exchange-rate-service";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 let profile: Profile;
 let wallet: ReadWriteWallet;
@@ -196,6 +197,54 @@ describe("ExchangeRateService", () => {
 
 			expect(wallet.data().get(WalletData.ExchangeCurrency)).toBeUndefined();
 			expect(wallet.data().get(WalletData.ExchangeRate)).toBeUndefined();
+		});
+
+		it("should store exchange rates and currency in profile wallets if undefined", async () => {
+			const exchangeService = new ExchangeRateService({ cacheDurationMilliseconds: 6000 });
+
+			// cryptocompare
+			nock(/.+/)
+				.get("/data/dayAvg")
+				.query(true)
+				.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
+				.persist();
+
+			profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+			const date = DateTime.make().format("YYYY-MM-DD");
+
+			expect(wallet.data().get(WalletData.ExchangeRates)).toBeUndefined();
+
+			await exchangeService.syncAll();
+			expect(wallet.data().get(WalletData.ExchangeRates)).toEqual({ BTC: { [date]: 0.00005048 } });
+		});
+
+		it("should cache historic exchange rates", async () => {
+			const exchangeService = new ExchangeRateService({ cacheDurationMilliseconds: 6000 });
+
+			// cryptocompare
+			nock(/.+/)
+				.get("/data/dayAvg")
+				.query(true)
+				.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
+				.persist();
+
+			profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+			const date = DateTime.make().format("YYYY-MM-DD");
+
+			expect(wallet.data().get(WalletData.ExchangeRates)).toBeUndefined();
+
+			await exchangeService.syncAll();
+			expect(wallet.data().get(WalletData.ExchangeRates)).toEqual({ BTC: { [date]: 0.00005048 } });
+
+			nock(/.+/)
+				.get("/data/dayAvg")
+				.query(true)
+				.reply(200, { BTC: 0.00005555, ConversionType: { type: "direct", conversionSymbol: "" } })
+				.persist();
+
+			await exchangeService.syncAll();
+			// The price should be the cached price from previous sync: 0.00005048
+			expect(wallet.data().get(WalletData.ExchangeRates)).toEqual({ BTC: { [date]: 0.00005048 } });
 		});
 	});
 });
