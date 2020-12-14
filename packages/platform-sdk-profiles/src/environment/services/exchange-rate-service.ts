@@ -1,3 +1,4 @@
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
 
 import { pqueueSettled } from "../../helpers/queue";
@@ -7,7 +8,6 @@ import { ProfileRepository } from "../../repositories/profile-repository";
 import { ReadWriteWallet, WalletData } from "../../wallets/wallet.models";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
-import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 export class ExchangeRateService {
 	readonly #lastSynced: Record<string, DateTime> = {};
