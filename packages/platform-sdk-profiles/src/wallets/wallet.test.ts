@@ -15,7 +15,6 @@ import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
 import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
@@ -129,16 +128,17 @@ it("should have a converted balance if it is a live wallet", async () => {
 		.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
 		.persist();
 
+	const wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 	const live = jest.spyOn(subject.network(), "isLive").mockReturnValue(true);
 	const test = jest.spyOn(subject.network(), "isTest").mockReturnValue(false);
 
-	subject.data().set(WalletData.Balance, 5e8);
+	wallet.data().set(WalletData.Balance, 5e8);
 
-	expect(subject.convertedBalance()).toBeInstanceOf(BigNumber);
-	expect(subject.convertedBalance().toNumber()).toBe(0);
+	expect(wallet.convertedBalance()).toBeInstanceOf(BigNumber);
+	expect(wallet.convertedBalance().toNumber()).toBe(0);
 
 	await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll();
-	expect(subject.convertedBalance().toNumber()).toBe(0.00005048);
+	expect(wallet.convertedBalance().toNumber()).toBe(0.0002524);
 
 	live.mockRestore();
 	test.mockRestore();
