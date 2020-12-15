@@ -20,7 +20,7 @@ export class ExchangeRateService {
 			.values()
 			.filter((wallet: ReadWriteWallet) => wallet.currency() === currency && wallet.network().isLive());
 
-		if (!wallets.length) {
+		if (wallets.length === 0) {
 			return;
 		}
 
@@ -53,6 +53,30 @@ export class ExchangeRateService {
 		await this.snapshot();
 	}
 
+	public exchange(currency: string, exchangeCurrency: string, date: DateTime, value: BigNumber): BigNumber {
+		const exchangeRate: BigNumber = container
+			.get<ExchangeRateService>(Identifiers.ExchangeRateService)
+			.rateByDate(currency, exchangeCurrency, date);
+
+		if (exchangeRate.isZero()) {
+			return exchangeRate;
+		}
+
+		return value.times(exchangeRate);
+	}
+
+	private rateByDate(currency: string, exchangeCurrency: string, date: DateTime): BigNumber {
+		const result: number | undefined = this.#dataRepository.get(
+			`${currency}.${exchangeCurrency}.${date.format("YYYY-MM-DD")}`,
+		);
+
+		if (result === undefined) {
+			return BigNumber.ZERO;
+		}
+
+		return BigNumber.make(result);
+	}
+
 	public async snapshot(): Promise<void> {
 		await container.get<Storage>(Identifiers.Storage).set(this.#storageKey, this.#dataRepository.all());
 	}
@@ -63,17 +87,6 @@ export class ExchangeRateService {
 		if (entries !== undefined) {
 			this.#dataRepository.fill(entries);
 		}
-	}
-
-	public ratesByDate(currency: string, exchangeCurrency: string, date?: string | number | DateTime): BigNumber {
-		const activeDate: string = DateTime.make(date).format("YYYY-MM-DD");
-		const rate: number | undefined = this.#dataRepository.get(`${currency}.${exchangeCurrency}.${activeDate}`);
-
-		if (rate === undefined) {
-			return BigNumber.ZERO;
-		}
-
-		return BigNumber.make(rate);
 	}
 
 	private hasFetchedHistoricalRates(currency: string, exchangeCurrency: string): boolean {

@@ -5,16 +5,18 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
-import { v4 as uuidv4 } from "uuid";
 
+import { DateTime } from "../../../platform-sdk-intl/dist";
 import { identity } from "../../test/fixtures/identity";
+import { StubStorage } from "../../test/stubs/storage";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
+import { ExchangeRateService } from "../environment/services/exchange-rate-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
-import { WalletData } from "../wallets/wallet.models";
+import { ReadWriteWallet, WalletData } from "../wallets/wallet.models";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,
@@ -53,8 +55,8 @@ const createSubject = (wallet, properties, klass) => {
 		recipient: () => "recipient",
 		memo: () => "memo",
 		recipients: () => [],
-		amount: () => BigNumber.make(18),
-		fee: () => BigNumber.make(2),
+		amount: () => BigNumber.make(18).times(1e8),
+		fee: () => BigNumber.make(2).times(1e8),
 		asset: () => ({}),
 		isSent: () => true,
 		toObject: () => ({}),
@@ -68,7 +70,10 @@ const createSubject = (wallet, properties, klass) => {
 
 let subject: any;
 let profile: Profile;
-let wallet: Wallet;
+let wallet: ReadWriteWallet;
+
+let liveSpy: jest.SpyInstance;
+let testSpy: jest.SpyInstance;
 
 beforeAll(async () => {
 	nock.disableNetConnect();
@@ -90,20 +95,37 @@ beforeAll(async () => {
 		.reply(200, require("../../test/fixtures/client/delegates-2.json"))
 		.get("/api/ipfs/QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9c")
 		.reply(200, { data: "ipfs-content" })
+		// CryptoCompare
+		.get("/data/dayAvg")
+		.query(true)
+		.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
+		.get("/data/histoday")
+		.query(true)
+		.reply(200, require("../../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
 
+	container.set(Identifiers.Storage, new StubStorage());
+	container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
+});
 
+beforeEach(async () => {
 	profile = new Profile({ id: "profile-id", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
+	profile.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
+	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 
-	wallet = new Wallet(uuidv4(), profile);
-	wallet.data().set(WalletData.ExchangeRate, 5);
+	wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
-	await wallet.setCoin("ARK", "ark.devnet");
-	await wallet.setIdentity(identity.mnemonic);
+	liveSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);
+	testSpy = jest.spyOn(wallet.network(), "isTest").mockReturnValue(false);
+});
+
+afterEach(() => {
+	liveSpy.mockRestore();
+	testSpy.mockRestore();
 });
 
 describe("Transaction", () => {
@@ -161,19 +183,46 @@ describe("Transaction", () => {
 		expect(subject.amount()).toStrictEqual(BigNumber.make(18));
 	});
 
-	it("should have a converted amount", () => {
-		wallet.data().set(WalletData.ExchangeRate, 10);
+	it("should have a converted amount", async () => {
+		subject = createSubject(
+			wallet,
+			{
+				timestamp: () => DateTime.make(),
+				amount: () => BigNumber.make(10e8),
+			},
+			TransferData,
+		);
 
-		expect(subject.convertedAmount().toNumber()).toStrictEqual(180);
+		await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
+
+		expect(subject.convertedAmount().toNumber()).toBe(0.0005048);
 	});
 
 	it("should have a default converted amount", () => {
-		wallet.data().set(WalletData.ExchangeRate, undefined);
 		expect(subject.convertedAmount().toNumber()).toStrictEqual(0);
 	});
 
 	it("should have a fee", () => {
-		expect(subject.fee().toNumber()).toStrictEqual(2);
+		expect(subject.fee().toNumber()).toStrictEqual(2e8);
+	});
+
+	it("should have a converted fee", async () => {
+		subject = createSubject(
+			wallet,
+			{
+				timestamp: () => DateTime.make(),
+				fee: () => BigNumber.make(10e8),
+			},
+			TransferData,
+		);
+
+		await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
+
+		expect(subject.convertedFee().toNumber()).toBe(0.0005048);
+	});
+
+	it("should have a default converted fee", () => {
+		expect(subject.convertedFee().toNumber()).toStrictEqual(0);
 	});
 
 	test("#toObject", () => {
@@ -252,7 +301,7 @@ describe("Transaction", () => {
 	});
 
 	it("should have a total for sent", () => {
-		expect(subject.total().toNumber()).toStrictEqual(20);
+		expect(subject.total().toNumber()).toStrictEqual(20e8);
 	});
 
 	it("should have a total for unsent", () => {
@@ -265,13 +314,23 @@ describe("Transaction", () => {
 		expect(subject.total().toNumber()).toStrictEqual(18);
 	});
 
-	it("should have a converted total", () => {
-		wallet.data().set(WalletData.ExchangeRate, 10);
-		expect(subject.convertedTotal().toNumber()).toBe(0.000002);
+	it("should have a converted total", async () => {
+		subject = createSubject(
+			wallet,
+			{
+				timestamp: () => DateTime.make(),
+				amount: () => BigNumber.make(10e8),
+				fee: () => BigNumber.make(5e8),
+			},
+			TransferData,
+		);
+
+		await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
+
+		expect(subject.convertedTotal().toNumber()).toBe(0.0007572);
 	});
 
 	it("should have a default converted total", () => {
-		wallet.data().set(WalletData.ExchangeRate, undefined);
 		expect(subject.convertedTotal().toNumber()).toStrictEqual(0);
 	});
 

@@ -1,4 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { decrypt } from "bip38";
 import { encode } from "wif";
@@ -202,15 +203,9 @@ export class Wallet implements ReadWriteWallet {
 			return BigNumber.ZERO;
 		}
 
-		const value = container
+		return container
 			.get<ExchangeRateService>(Identifiers.ExchangeRateService)
-			.ratesByDate(this.currency(), this.exchangeCurrency());
-
-		if (value.isZero()) {
-			return value;
-		}
-
-		return this.balance().divide(1e8).times(value);
+			.exchange(this.currency(), this.exchangeCurrency(), DateTime.make(), this.balance().divide(1e8));
 	}
 
 	public nonce(): BigNumber {
