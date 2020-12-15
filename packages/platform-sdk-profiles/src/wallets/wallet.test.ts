@@ -137,7 +137,7 @@ it("should have a converted balance if it is a live wallet", async () => {
 	expect(wallet.convertedBalance()).toBeInstanceOf(BigNumber);
 	expect(wallet.convertedBalance().toNumber()).toBe(0);
 
-	await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll();
+	await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
 	expect(wallet.convertedBalance().toNumber()).toBe(0.0002524);
 
 	live.mockRestore();

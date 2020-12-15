@@ -172,7 +172,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public exchangeCurrency(): string {
-		return this.#profile.settings().get(ProfileSetting.ExchangeCurrency) || "BTC";
+		return this.#profile.settings().get(ProfileSetting.ExchangeCurrency) as string;
 	}
 
 	public alias(): string | undefined {
