@@ -62,6 +62,7 @@ beforeEach(async () => {
 	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 
 	wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	wallet.data().set(WalletData.Balance, 1e8);
 
 	liveSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);
 	testSpy = jest.spyOn(wallet.network(), "isTest").mockReturnValue(false);
@@ -84,7 +85,7 @@ describe("ExchangeRateService", () => {
 
 		await subject.syncAll(profile, "DARK");
 
-		expect(subject.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00005048);
+		expect(wallet.convertedBalance().toNumber()).toBe(0.00005048);
 		await expect(container.get<StubStorage>(Identifiers.Storage).all()).resolves.toMatchSnapshot();
 	});
 
@@ -97,24 +98,20 @@ describe("ExchangeRateService", () => {
 
 		await subject.syncAll(profile, "DARK");
 
-		expect(subject.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00002134);
+		expect(wallet.convertedBalance().toNumber()).toBe(0.00002134);
 	});
 
 	it("should fail to sync a coin for a specific profile if there are no wallets", async () => {
 		profile.wallets().flush();
 
 		expect(wallet.data().get(WalletData.ExchangeCurrency)).toBeUndefined();
-		expect(wallet.data().get(WalletData.ExchangeRate)).toBeUndefined();
 
 		await subject.syncAll(profile, "DARK");
 
 		expect(wallet.data().get(WalletData.ExchangeCurrency)).toBeUndefined();
-		expect(wallet.data().get(WalletData.ExchangeRate)).toBeUndefined();
 	});
 
 	it("should store exchange rates and currency in profile wallets if undefined", async () => {
-		const exchangeService = new ExchangeRateService();
-
 		nock(/.+/)
 			.get("/data/dayAvg")
 			.query(true)
@@ -123,15 +120,11 @@ describe("ExchangeRateService", () => {
 
 		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 
-		expect(wallet.data().get(WalletData.ExchangeRates)).toBeUndefined();
-
-		await exchangeService.syncAll(profile, "DARK");
-		expect(exchangeService.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00005048);
+		await subject.syncAll(profile, "DARK");
+		expect(wallet.convertedBalance().toNumber()).toBe(0.00005048);
 	});
 
 	it("should cache historic exchange rates", async () => {
-		const exchangeService = new ExchangeRateService();
-
 		nock(/.+/)
 			.get("/data/dayAvg")
 			.query(true)
@@ -140,10 +133,8 @@ describe("ExchangeRateService", () => {
 
 		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 
-		expect(wallet.data().get(WalletData.ExchangeRates)).toBeUndefined();
-
-		await exchangeService.syncAll(profile, "DARK");
-		expect(exchangeService.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00005048);
+		await subject.syncAll(profile, "DARK");
+		expect(wallet.convertedBalance().toNumber()).toBe(0.00005048);
 
 		nock(/.+/)
 			.get("/data/dayAvg")
@@ -151,8 +142,8 @@ describe("ExchangeRateService", () => {
 			.reply(200, { BTC: 0.00005555, ConversionType: { type: "direct", conversionSymbol: "" } })
 			.persist();
 
-		await exchangeService.syncAll(profile, "DARK");
+		await subject.syncAll(profile, "DARK");
 		// The price should be the cached price from previous sync: 0.00005048
-		expect(exchangeService.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00005048);
+		expect(wallet.convertedBalance().toNumber()).toBe(0.00005048);
 	});
 });

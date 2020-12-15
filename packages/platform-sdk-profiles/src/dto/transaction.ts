@@ -6,6 +6,7 @@ import slugify from "@sindresorhus/slugify";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
+import { ExchangeRateService } from "../environment/services/exchange-rate-service";
 import { ReadWriteWallet, WalletData } from "../wallets/wallet.models";
 
 export class TransactionData {
@@ -56,17 +57,15 @@ export class TransactionData {
 	}
 
 	public convertedAmount(): BigNumber {
-		const value: string | undefined = this.wallet().data().get(WalletData.ExchangeRate);
-
-		if (value === undefined) {
-			return BigNumber.ZERO;
-		}
-
-		return this.amount().times(value);
+		return this.convertAmount(this.amount().divide(1e8));
 	}
 
 	public fee(): BigNumber {
 		return this.#data.fee();
+	}
+
+	public convertedFee(): BigNumber {
+		return this.convertAmount(this.fee().divide(1e8));
 	}
 
 	public memo(): string | undefined {
@@ -283,13 +282,7 @@ export class TransactionData {
 	}
 
 	public convertedTotal(): BigNumber {
-		const value: string | undefined = this.wallet().data().get(WalletData.ExchangeRate);
-
-		if (value === undefined) {
-			return BigNumber.ZERO;
-		}
-
-		return this.total().divide(1e8).times(value);
+		return this.convertAmount(this.total().divide(1e8));
 	}
 
 	/**
@@ -309,6 +302,18 @@ export class TransactionData {
 
 	protected data<T>(): T {
 		return (this.#data as unknown) as T;
+	}
+
+	private convertAmount(value: BigNumber): BigNumber {
+		const timestamp: DateTime | undefined = this.timestamp();
+
+		if (timestamp === undefined) {
+			return BigNumber.ZERO;
+		}
+
+		return container
+			.get<ExchangeRateService>(Identifiers.ExchangeRateService)
+			.exchange(this.wallet().currency(), this.wallet().exchangeCurrency(), timestamp, value);
 	}
 }
 
