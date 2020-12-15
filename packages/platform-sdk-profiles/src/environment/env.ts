@@ -86,6 +86,7 @@ export class Environment {
 			this.profiles().fill(this.storage.profiles);
 		}
 
+		/* istanbul ignore next */
 		if (container.has(Identifiers.ExchangeRateService)) {
 			await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).restore();
 		}
