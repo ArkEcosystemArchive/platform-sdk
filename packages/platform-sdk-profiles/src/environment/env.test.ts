@@ -19,9 +19,9 @@ import { ProfileRepository } from "../repositories/profile-repository";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Environment } from "./env";
+import { ExchangeRateService } from "./services/exchange-rate-service";
 import { WalletService } from "./services/wallet-service";
 import { MemoryStorage } from "./storage/memory";
-import { ExchangeRateService } from "./services/exchange-rate-service";
 
 let subject: Environment;
 
