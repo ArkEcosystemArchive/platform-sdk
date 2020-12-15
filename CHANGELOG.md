@@ -5,7 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 2.0.0 - 2020-12-XX
+## 2.1.0 - 2020-12-15
+
+### Added
+
+- Cache historic exchange rates (cbb6f1bb, @goga-m)
+- Cache historical exchange rates by date (b657c4fa, @faustbrian)
+- Implement `TransactionData#convertedAmount|fee` (97e67ff3, @faustbrian)
+
+## 2.0.0 - 2020-12-14
 
 ### Added
 
