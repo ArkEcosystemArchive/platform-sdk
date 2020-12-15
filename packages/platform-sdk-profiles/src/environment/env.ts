@@ -85,6 +85,10 @@ export class Environment {
 		if (Object.keys(this.storage.profiles).length > 0) {
 			this.profiles().fill(this.storage.profiles);
 		}
+
+		if (container.has(Identifiers.ExchangeRateService)) {
+			await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).restore();
+		}
 	}
 
 	/**

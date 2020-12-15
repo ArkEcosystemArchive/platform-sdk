@@ -5,15 +5,13 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { Profile } from "../../profiles/profile";
 import { ProfileSetting } from "../../profiles/profile.models";
 import { DataRepository } from "../../repositories/data-repository";
-import { Cache } from "../../services/cache";
 import { ReadWriteWallet } from "../../wallets/wallet.models";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
+import { Storage } from "../env.models";
 
-// @TODO: dump the cached data and restore it on boot
 export class ExchangeRateService {
-	readonly #ttl: number = 10;
-	readonly #cache = new Cache("ExchangeRates");
+	readonly #storageKey: string = "EXCHANGE_RATE_SERVICE";
 	readonly #dataRepository: DataRepository = new DataRepository();
 
 	public async syncAll(profile: Profile, currency: string): Promise<void> {
@@ -26,28 +24,50 @@ export class ExchangeRateService {
 			return;
 		}
 
-		// @TODO: remove this default - the profile itself will already ensure that value is set
-		const exchangeCurrency: string = profile.settings().get(ProfileSetting.ExchangeCurrency) || "BTC";
-		if (this.#cache.has(this.storageKey(currency, exchangeCurrency))) {
+		const exchangeCurrency: string = profile.settings().get(ProfileSetting.ExchangeCurrency) as string;
+
+		await this.fetchDailyRate(profile, currency, exchangeCurrency);
+
+		if (this.hasFetchedHistoricalRates(currency, exchangeCurrency)) {
 			return;
 		}
 
-		const marketService = MarketService.make(
-			// @TODO: remove this default - the profile itself will already ensure that value is set
-			profile.settings().get(ProfileSetting.MarketProvider) || "coingecko",
+		const historicalRates = await MarketService.make(
+			profile.settings().get(ProfileSetting.MarketProvider) as string,
 			container.get(Identifiers.HttpClient),
-		);
+		).historicalPrice({
+			token: currency,
+			currency: exchangeCurrency,
+			days: 2000, // @TODO: this might cause issues with certain providers. Should allow for an "all" option to aggregate all pages without knowing the specific number
+			type: "day",
+			dateFormat: "YYYY-MM-DD",
+		});
 
-		const exchangeRate = await marketService.dailyAverage(currency, exchangeCurrency, +Date.now());
+		for (let i = 0; i < historicalRates.labels.length; i++) {
+			this.#dataRepository.set(
+				`${currency}.${exchangeCurrency}.${historicalRates.labels[i]}`,
+				historicalRates.datasets[i],
+			);
+		}
 
-		this.setRate(currency, exchangeCurrency, exchangeRate);
-		this.#cache.set(this.storageKey(currency, exchangeCurrency), true, this.#ttl);
+		await this.snapshot();
+	}
+
+	public async snapshot(): Promise<void> {
+		await container.get<Storage>(Identifiers.Storage).set(this.#storageKey, this.#dataRepository.all());
+	}
+
+	public async restore(): Promise<void> {
+		const entries: object | undefined = await container.get<Storage>(Identifiers.Storage).get(this.#storageKey);
+
+		if (entries !== undefined) {
+			this.#dataRepository.fill(entries);
+		}
 	}
 
 	public ratesByDate(currency: string, exchangeCurrency: string, date?: string | number | DateTime): BigNumber {
-		const activeDate = DateTime.make(date).format("YYYY-MM-DD");
-		const storageKey = `${this.storageKey(currency, exchangeCurrency)}.${activeDate}`;
-		const rate: number | undefined = this.#dataRepository.get(storageKey);
+		const activeDate: string = DateTime.make(date).format("YYYY-MM-DD");
+		const rate: number | undefined = this.#dataRepository.get(`${currency}.${exchangeCurrency}.${activeDate}`);
 
 		if (rate === undefined) {
 			return BigNumber.ZERO;
@@ -56,19 +76,18 @@ export class ExchangeRateService {
 		return BigNumber.make(rate);
 	}
 
-	private storageKey(currency: string, exchangeCurrency: string): string {
-		return `${currency}-${exchangeCurrency}`;
+	private hasFetchedHistoricalRates(currency: string, exchangeCurrency: string): boolean {
+		/* istanbul ignore next */
+		return Object.keys(this.#dataRepository.get(`${currency}.${exchangeCurrency}`) || {}).length > 1;
 	}
 
-	private setRate(
-		currency: string,
-		exchangeCurrency: string,
-		exchangeRate: number,
-		date?: string | number | DateTime,
-	): void {
-		const activeDate: string = DateTime.make(date).format("YYYY-MM-DD");
-		const storageKey = `${this.storageKey(currency, exchangeCurrency)}.${activeDate}`;
-
-		this.#dataRepository.set(storageKey, exchangeRate);
+	private async fetchDailyRate(profile: Profile, currency: string, exchangeCurrency: string): Promise<void> {
+		this.#dataRepository.set(
+			`${currency}.${exchangeCurrency}.${DateTime.make().format("YYYY-MM-DD")}`,
+			await MarketService.make(
+				profile.settings().get(ProfileSetting.MarketProvider) as string,
+				container.get(Identifiers.HttpClient),
+			).dailyAverage(currency, exchangeCurrency, +Date.now()),
+		);
 	}
 }

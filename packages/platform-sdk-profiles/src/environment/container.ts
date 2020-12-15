@@ -12,6 +12,10 @@ export class Container {
 	public has(key: string): boolean {
 		return this.#bindings.has(key);
 	}
+
+	public forget(key: string): void {
+		this.#bindings.delete(key);
+	}
 }
 
 export const container = new Container();
