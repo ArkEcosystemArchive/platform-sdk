@@ -10,6 +10,7 @@ import { ReadWriteWallet } from "../../wallets/wallet.models";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
 
+// @TODO: dump the cached data and restore it on boot
 export class ExchangeRateService {
 	readonly #ttl: number = 10;
 	readonly #cache = new Cache("ExchangeRates");
@@ -25,12 +26,14 @@ export class ExchangeRateService {
 			return;
 		}
 
+		// @TODO: remove this default - the profile itself will already ensure that value is set
 		const exchangeCurrency: string = profile.settings().get(ProfileSetting.ExchangeCurrency) || "BTC";
 		if (this.#cache.has(this.storageKey(currency, exchangeCurrency))) {
 			return;
 		}
 
 		const marketService = MarketService.make(
+			// @TODO: remove this default - the profile itself will already ensure that value is set
 			profile.settings().get(ProfileSetting.MarketProvider) || "coingecko",
 			container.get(Identifiers.HttpClient),
 		);
