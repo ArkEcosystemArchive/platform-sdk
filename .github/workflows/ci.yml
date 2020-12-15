@@ -46,14 +46,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  token: ${{ secrets.CODECOV_TOKEN }}
-                  file: packages/platform-sdk/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
                   verbose: true
 
     ada:
@@ -82,14 +74,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-ada/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-ada/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     ark:
         needs: [conflicts]
 
@@ -115,14 +99,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-ark/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-ark/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
 
     atom:
         needs: [conflicts]
@@ -150,14 +126,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-atom/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-atom/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     btc:
         needs: [conflicts]
 
@@ -183,14 +151,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-btc/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-btc/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
 
     coincap:
         needs: [conflicts]
@@ -218,14 +178,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-coincap/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-coincap/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     coingecko:
         needs: [conflicts]
 
@@ -251,14 +203,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-coingecko/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-coingecko/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
 
     crypto:
         needs: [conflicts]
@@ -286,14 +230,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-crypto/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-crypto/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     cryptocompare:
         needs: [conflicts]
 
@@ -319,14 +255,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-cryptocompare/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-cryptocompare/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
 
     eos:
         needs: [conflicts]
@@ -354,14 +282,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-eos/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-eos/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     eth:
         needs: [conflicts]
 
@@ -387,14 +307,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-eth/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-eth/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
 
     http-axios:
         needs: [conflicts]
@@ -422,14 +334,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-http-axios/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-http-axios/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     http-bent:
         needs: [conflicts]
 
@@ -455,14 +359,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-http-bent/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-http-bent/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
 
     http-got:
         needs: [conflicts]
@@ -490,14 +386,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-http-got/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-http-got/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     http-ky:
         needs: [conflicts]
 
@@ -523,14 +411,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-http-ky/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-http-ky/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
 
     http-node-fetch:
         needs: [conflicts]
@@ -558,14 +438,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-http-node-fetch/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-http-node-fetch/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     intl:
         needs: [conflicts]
 
@@ -591,14 +463,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-intl/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-intl/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
 
     lsk:
         needs: [conflicts]
@@ -626,14 +490,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-lsk/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-lsk/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     markets:
         needs: [conflicts]
 
@@ -659,14 +515,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-markets/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-markets/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
 
     marketsquare:
         needs: [conflicts]
@@ -694,14 +542,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-marketsquare/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-marketsquare/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     neo:
         needs: [conflicts]
 
@@ -727,14 +567,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-neo/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-neo/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
 
     news:
         needs: [conflicts]
@@ -762,14 +594,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-news/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-news/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     profiles:
         needs: [conflicts]
 
@@ -795,14 +619,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-profiles/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-profiles/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
 
     support:
         needs: [conflicts]
@@ -830,14 +646,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-support/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-support/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     trx:
         needs: [conflicts]
 
@@ -863,14 +671,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-trx/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-trx/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
 
     xlm:
         needs: [conflicts]
@@ -898,14 +698,6 @@ jobs:
             - name: Test
               run: cd packages/platform-sdk-xlm/ && yarn run test --coverage
 
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-xlm/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
-
     xrp:
         needs: [conflicts]
 
@@ -931,11 +723,3 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk-xrp/ && yarn run test --coverage
-
-            - name: Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  file: packages/platform-sdk-xrp/.coverage/lcov.info
-                  flags: unit
-                  fail_ci_if_error: true
-                  verbose: true
