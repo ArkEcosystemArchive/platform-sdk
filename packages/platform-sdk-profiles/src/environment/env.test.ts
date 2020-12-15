@@ -19,6 +19,7 @@ import { ProfileRepository } from "../repositories/profile-repository";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Environment } from "./env";
+import { ExchangeRateService } from "./services/exchange-rate-service";
 import { WalletService } from "./services/wallet-service";
 import { MemoryStorage } from "./storage/memory";
 
@@ -222,8 +223,7 @@ it("should get available coins", async () => {
 });
 
 it("#exchangeRates", async () => {
-	await subject.exchangeRates().syncAll();
-	expect(subject.exchangeRates()).toEqual({});
+	expect(subject.exchangeRates()).toBeInstanceOf(ExchangeRateService);
 });
 
 it("#fees", async () => {

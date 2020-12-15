@@ -9,9 +9,11 @@ import { transformTransactionData, transformTransactionDataCollection } from "..
 import { container } from "../environment/container";
 import { makeCoin } from "../environment/container.helpers";
 import { Identifiers } from "../environment/container.models";
+import { ExchangeRateService } from "../environment/services/exchange-rate-service";
 import { KnownWalletService } from "../environment/services/known-wallet-service";
 import { DelegateMapper } from "../mappers/delegate-mapper";
 import { Profile } from "../profiles/profile";
+import { ProfileSetting } from "../profiles/profile.models";
 import { DataRepository } from "../repositories/data-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
@@ -170,7 +172,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public exchangeCurrency(): string {
-		return this.data().get(WalletData.ExchangeCurrency) as string;
+		return this.#profile.settings().get(ProfileSetting.ExchangeCurrency) as string;
 	}
 
 	public alias(): string | undefined {
@@ -200,10 +202,12 @@ export class Wallet implements ReadWriteWallet {
 			return BigNumber.ZERO;
 		}
 
-		const value: string | undefined = this.data().get(WalletData.ExchangeRate);
+		const value = container
+			.get<ExchangeRateService>(Identifiers.ExchangeRateService)
+			.ratesByDate(this.currency(), this.exchangeCurrency());
 
-		if (value === undefined) {
-			return BigNumber.ZERO;
+		if (value.isZero()) {
+			return value;
 		}
 
 		return this.balance().divide(1e8).times(value);
@@ -261,8 +265,6 @@ export class Wallet implements ReadWriteWallet {
 			data: {
 				[WalletData.Balance]: this.balance().toFixed(),
 				[WalletData.BroadcastedTransactions]: this.data().get(WalletData.BroadcastedTransactions, []),
-				[WalletData.ExchangeCurrency]: this.data().get(WalletData.ExchangeCurrency, "BTC"),
-				[WalletData.ExchangeRate]: this.data().get(WalletData.ExchangeRate, 0),
 				[WalletData.Sequence]: this.nonce().toFixed(),
 				[WalletData.SignedTransactions]: this.data().get(WalletData.SignedTransactions, []),
 				[WalletData.Votes]: this.data().get(WalletData.Votes, []),
