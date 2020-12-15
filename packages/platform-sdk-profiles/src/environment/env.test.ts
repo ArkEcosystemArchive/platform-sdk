@@ -21,6 +21,7 @@ import { Identifiers } from "./container.models";
 import { Environment } from "./env";
 import { WalletService } from "./services/wallet-service";
 import { MemoryStorage } from "./storage/memory";
+import { ExchangeRateService } from "./services/exchange-rate-service";
 
 let subject: Environment;
 
@@ -222,8 +223,7 @@ it("should get available coins", async () => {
 });
 
 it("#exchangeRates", async () => {
-	await subject.exchangeRates().syncAll();
-	expect(subject.exchangeRates()).toEqual({});
+	expect(subject.exchangeRates()).toBeInstanceOf(ExchangeRateService);
 });
 
 it("#fees", async () => {
