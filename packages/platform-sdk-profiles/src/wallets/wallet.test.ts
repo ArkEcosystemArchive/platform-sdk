@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
 
 import { identity } from "../../test/fixtures/identity";
+import { StubStorage } from "../../test/stubs/storage";
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
@@ -76,8 +77,13 @@ beforeEach(async () => {
 		.get("/api/transactions")
 		.query(true)
 		.reply(200, require("../../test/fixtures/client/transactions.json"))
+		// CryptoCompare
+		.get("/data/histoday")
+		.query(true)
+		.reply(200, require("../../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
 
+	container.set(Identifiers.Storage, new StubStorage());
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });

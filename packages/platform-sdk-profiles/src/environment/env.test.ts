@@ -5,12 +5,11 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
-import { readFileSync, removeSync } from "fs-extra";
+import { removeSync } from "fs-extra";
 import nock from "nock";
 import { resolve } from "path";
 
 import storageData from "../../test/fixtures/env-storage.json";
-import corruptedStorageData from "../../test/fixtures/env-storage-corrupted.json";
 import { identity } from "../../test/fixtures/identity";
 import { StubStorage } from "../../test/stubs/storage";
 import { Profile } from "../profiles/profile";
@@ -74,6 +73,7 @@ beforeAll(() => {
 		})
 		.persist();
 
+	container.set(Identifiers.Storage, new StubStorage());
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK, BTC, ETH });
 });
@@ -206,6 +206,18 @@ it("should boot with empty storage profiles", async () => {
 
 	await expect(env.verify({ profiles: {}, data: { key: "value" } })).resolves.toBeUndefined();
 	await expect(env.boot()).resolves.toBeUndefined();
+});
+
+it("should boot with exchange service data", async () => {
+	container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
+	await container.get<Storage>(Identifiers.Storage).set("EXCHANGE_RATE_SERVICE", {});
+
+	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
+
+	await expect(env.verify({ profiles: {}, data: {} })).resolves.toBeUndefined();
+	await expect(env.boot()).resolves.toBeUndefined();
+
+	container.forget(Identifiers.ExchangeRateService);
 });
 
 it("should create preselected storage given storage option as string", async () => {

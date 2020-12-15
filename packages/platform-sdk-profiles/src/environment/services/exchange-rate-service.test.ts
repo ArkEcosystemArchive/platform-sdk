@@ -6,6 +6,7 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import nock from "nock";
 
 import { identity } from "../../../test/fixtures/identity";
+import { StubStorage } from "../../../test/stubs/storage";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { Profile } from "../../profiles/profile";
@@ -26,6 +27,7 @@ beforeEach(async () => {
 	nock.cleanAll();
 
 	nock(/.+/)
+		// ARK Core
 		.get("/api/node/configuration")
 		.reply(200, require("../../../test/fixtures/client/configuration.json"))
 		.get("/api/peers")
@@ -40,57 +42,29 @@ beforeEach(async () => {
 		.reply(200, require("../../../test/fixtures/client/delegates-1.json"))
 		.get("/api/delegates?page=2")
 		.reply(200, require("../../../test/fixtures/client/delegates-2.json"))
-		// coingecho
-		.get("/api/v3/coins/dark/history")
+		// CryptoCompare
+		.get("/data/histoday")
 		.query(true)
-		.reply(200, {
-			id: "ark",
-			symbol: "ark",
-			name: "Ark",
-			market_data: {
-				current_price: {
-					btc: 0.0006590832396635801,
-				},
-				market_cap: {
-					btc: 64577.8220851173,
-				},
-				total_volume: {
-					btc: 3054.8117101964535,
-				},
-			},
-		})
-		// coingecho
-		.get("/api/v3/coins/list")
-		.query(true)
-		.reply(200, [
-			{
-				id: "ark",
-				symbol: "ark",
-				name: "ark",
-			},
-			{
-				id: "dark",
-				symbol: "dark",
-				name: "dark",
-			},
-		])
+		.reply(200, require("../../../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
 
 	const profileRepository = new ProfileRepository();
+	subject = new ExchangeRateService();
 
+	container.set(Identifiers.Storage, new StubStorage());
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.CoinService, new CoinService());
 	container.set(Identifiers.Coins, { ARK });
 	container.set(Identifiers.ProfileRepository, profileRepository);
-	container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
+	container.set(Identifiers.ExchangeRateService, subject);
 
 	profile = profileRepository.create("John Doe");
+	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+
 	wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
 	liveSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);
 	testSpy = jest.spyOn(wallet.network(), "isTest").mockReturnValue(false);
-
-	subject = container.get(Identifiers.ExchangeRateService);
 });
 
 afterEach(() => {
@@ -102,8 +76,6 @@ beforeAll(() => nock.disableNetConnect());
 
 describe("ExchangeRateService", () => {
 	it("should sync a coin for specific profile with wallets argument", async () => {
-		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-
 		nock(/.+/)
 			.get("/data/dayAvg")
 			.query(true)
@@ -113,35 +85,10 @@ describe("ExchangeRateService", () => {
 		await subject.syncAll(profile, "DARK");
 
 		expect(subject.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00005048);
-	});
-
-	it("should sync a coin using coingecho as default market provider", async () => {
-		profile.settings().set(ProfileSetting.MarketProvider, false);
-
-		await subject.syncAll(profile, "DARK");
-
-		expect(subject.ratesByDate("DARK", "BTC").toNumber()).toBe(0.0006590832396635801);
-		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-	});
-
-	it("should sync a coin using btc as default exchange currency", async () => {
-		profile.settings().set(ProfileSetting.ExchangeCurrency, false);
-
-		nock(/.+/)
-			.get("/data/dayAvg")
-			.query(true)
-			.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
-			.persist();
-
-		await subject.syncAll(profile, "DARK");
-
-		expect(subject.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00005048);
-		profile.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
+		await expect(container.get<StubStorage>(Identifiers.Storage).all()).resolves.toMatchSnapshot();
 	});
 
 	it("should sync a coin for specific profile without wallets argument", async () => {
-		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-
 		nock(/.+/)
 			.get("/data/dayAvg")
 			.query(true)
@@ -168,7 +115,6 @@ describe("ExchangeRateService", () => {
 	it("should store exchange rates and currency in profile wallets if undefined", async () => {
 		const exchangeService = new ExchangeRateService();
 
-		// cryptocompare
 		nock(/.+/)
 			.get("/data/dayAvg")
 			.query(true)
@@ -176,7 +122,6 @@ describe("ExchangeRateService", () => {
 			.persist();
 
 		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-		const date = DateTime.make().format("YYYY-MM-DD");
 
 		expect(wallet.data().get(WalletData.ExchangeRates)).toBeUndefined();
 
@@ -187,7 +132,6 @@ describe("ExchangeRateService", () => {
 	it("should cache historic exchange rates", async () => {
 		const exchangeService = new ExchangeRateService();
 
-		// cryptocompare
 		nock(/.+/)
 			.get("/data/dayAvg")
 			.query(true)
@@ -195,7 +139,6 @@ describe("ExchangeRateService", () => {
 			.persist();
 
 		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-		const date = DateTime.make().format("YYYY-MM-DD");
 
 		expect(wallet.data().get(WalletData.ExchangeRates)).toBeUndefined();
 
