@@ -101,7 +101,73 @@ afterEach(() => {
 beforeAll(() => nock.disableNetConnect());
 
 describe("ExchangeRateService", () => {
-	it("should sync the exchange rate for ARK to BTC", async () => {
+	it("should sync a coin for specific profile with wallets argument", async () => {
+		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+
+		nock(/.+/)
+			.get("/data/dayAvg")
+			.query(true)
+			.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
+			.persist();
+
+		await subject.syncAll(profile, "DARK");
+
+		expect(subject.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00005048);
+	});
+
+	it("should sync a coin using coingecho as default market provider", async () => {
+		profile.settings().set(ProfileSetting.MarketProvider, false);
+
+		await subject.syncAll(profile, "DARK");
+
+		expect(subject.ratesByDate("DARK", "BTC").toNumber()).toBe(0.0006590832396635801);
+		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+	});
+
+	it("should sync a coin using btc as default exchange currency", async () => {
+		profile.settings().set(ProfileSetting.ExchangeCurrency, false);
+
+		nock(/.+/)
+			.get("/data/dayAvg")
+			.query(true)
+			.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
+			.persist();
+
+		await subject.syncAll(profile, "DARK");
+
+		expect(subject.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00005048);
+		profile.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
+	});
+
+	it("should sync a coin for specific profile without wallets argument", async () => {
+		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+
+		nock(/.+/)
+			.get("/data/dayAvg")
+			.query(true)
+			.reply(200, { BTC: 0.00002134, ConversionType: { type: "direct", conversionSymbol: "" } })
+			.persist();
+
+		await subject.syncAll(profile, "DARK");
+
+		expect(subject.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00002134);
+	});
+
+	it("should fail to sync a coin for a specific profile if there are no wallets", async () => {
+		profile.wallets().flush();
+
+		expect(wallet.data().get(WalletData.ExchangeCurrency)).toBeUndefined();
+		expect(wallet.data().get(WalletData.ExchangeRate)).toBeUndefined();
+
+		await subject.syncAll(profile, "DARK");
+
+		expect(wallet.data().get(WalletData.ExchangeCurrency)).toBeUndefined();
+		expect(wallet.data().get(WalletData.ExchangeRate)).toBeUndefined();
+	});
+
+	it("should store exchange rates and currency in profile wallets if undefined", async () => {
+		const exchangeService = new ExchangeRateService();
+
 		// cryptocompare
 		nock(/.+/)
 			.get("/data/dayAvg")
@@ -110,142 +176,40 @@ describe("ExchangeRateService", () => {
 			.persist();
 
 		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-		await subject.syncAll();
-		expect(wallet.exchangeRate().toNumber()).toBe(0.00005048);
+		const date = DateTime.make().format("YYYY-MM-DD");
+
+		expect(wallet.data().get(WalletData.ExchangeRates)).toBeUndefined();
+
+		await exchangeService.syncAll(profile, "DARK");
+		expect(exchangeService.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00005048);
 	});
 
-	describe("#syncCoinByProfile", () => {
-		it("should sync a coin for specific profile with wallets argument", async () => {
-			profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+	it("should cache historic exchange rates", async () => {
+		const exchangeService = new ExchangeRateService();
 
-			nock(/.+/)
-				.get("/data/dayAvg")
-				.query(true)
-				.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
-				.persist();
+		// cryptocompare
+		nock(/.+/)
+			.get("/data/dayAvg")
+			.query(true)
+			.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
+			.persist();
 
-			await subject.syncCoinByProfile(
-				profile,
-				"DARK",
-				profile
-					.wallets()
-					.values()
-					.filter((wallet: ReadWriteWallet) => wallet.currency() === "DARK"),
-			);
+		profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
+		const date = DateTime.make().format("YYYY-MM-DD");
 
-			expect(wallet.exchangeRate().toNumber()).toBe(0.00005048);
-		});
+		expect(wallet.data().get(WalletData.ExchangeRates)).toBeUndefined();
 
-		it("should sync a coin using coingecho as default market provider", async () => {
-			profile.settings().set(ProfileSetting.MarketProvider, false);
+		await exchangeService.syncAll(profile, "DARK");
+		expect(exchangeService.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00005048);
 
-			await subject.syncCoinByProfile(
-				profile,
-				"DARK",
-				profile
-					.wallets()
-					.values()
-					.filter((wallet: ReadWriteWallet) => wallet.currency() === "DARK"),
-			);
+		nock(/.+/)
+			.get("/data/dayAvg")
+			.query(true)
+			.reply(200, { BTC: 0.00005555, ConversionType: { type: "direct", conversionSymbol: "" } })
+			.persist();
 
-			expect(wallet.exchangeRate().toNumber()).toBe(0.0006590832396635801);
-			profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-		});
-
-		it("should sync a coin using btc as default exchange currency", async () => {
-			profile.settings().set(ProfileSetting.ExchangeCurrency, false);
-
-			nock(/.+/)
-				.get("/data/dayAvg")
-				.query(true)
-				.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
-				.persist();
-
-			await subject.syncCoinByProfile(
-				profile,
-				"DARK",
-				profile
-					.wallets()
-					.values()
-					.filter((wallet: ReadWriteWallet) => wallet.currency() === "DARK"),
-			);
-
-			expect(wallet.exchangeRate().toNumber()).toBe(0.00005048);
-			profile.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
-		});
-
-		it("should sync a coin for specific profile without wallets argument", async () => {
-			profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-
-			nock(/.+/)
-				.get("/data/dayAvg")
-				.query(true)
-				.reply(200, { BTC: 0.00002134, ConversionType: { type: "direct", conversionSymbol: "" } })
-				.persist();
-
-			await subject.syncCoinByProfile(profile, "DARK");
-
-			expect(wallet.exchangeRate().toNumber()).toBe(0.00002134);
-		});
-
-		it("should fail to sync a coin for a specific profile if there are no wallets", async () => {
-			profile.wallets().flush();
-
-			expect(wallet.data().get(WalletData.ExchangeCurrency)).toBeUndefined();
-			expect(wallet.data().get(WalletData.ExchangeRate)).toBeUndefined();
-
-			await subject.syncCoinByProfile(profile, "DARK");
-
-			expect(wallet.data().get(WalletData.ExchangeCurrency)).toBeUndefined();
-			expect(wallet.data().get(WalletData.ExchangeRate)).toBeUndefined();
-		});
-
-		it("should store exchange rates and currency in profile wallets if undefined", async () => {
-			const exchangeService = new ExchangeRateService({ ttl: 5 });
-
-			// cryptocompare
-			nock(/.+/)
-				.get("/data/dayAvg")
-				.query(true)
-				.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
-				.persist();
-
-			profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-			const date = DateTime.make().format("YYYY-MM-DD");
-
-			expect(wallet.data().get(WalletData.ExchangeRates)).toBeUndefined();
-
-			await exchangeService.syncAll();
-			expect(exchangeService.allRates()).toEqual({ "DARK-BTC": { [date]: 0.00005048 } });
-		});
-
-		it("should cache historic exchange rates", async () => {
-			const exchangeService = new ExchangeRateService({ ttl: 5 });
-
-			// cryptocompare
-			nock(/.+/)
-				.get("/data/dayAvg")
-				.query(true)
-				.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
-				.persist();
-
-			profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-			const date = DateTime.make().format("YYYY-MM-DD");
-
-			expect(wallet.data().get(WalletData.ExchangeRates)).toBeUndefined();
-
-			await exchangeService.syncAll();
-			expect(exchangeService.allRates()).toEqual({ "DARK-BTC": { [date]: 0.00005048 } });
-
-			nock(/.+/)
-				.get("/data/dayAvg")
-				.query(true)
-				.reply(200, { BTC: 0.00005555, ConversionType: { type: "direct", conversionSymbol: "" } })
-				.persist();
-
-			await exchangeService.syncAll();
-			// The price should be the cached price from previous sync: 0.00005048
-			expect(exchangeService.allRates()).toEqual({ "DARK-BTC": { [date]: 0.00005048 } });
-		});
+		await exchangeService.syncAll(profile, "DARK");
+		// The price should be the cached price from previous sync: 0.00005048
+		expect(exchangeService.ratesByDate("DARK", "BTC").toNumber()).toBe(0.00005048);
 	});
 });

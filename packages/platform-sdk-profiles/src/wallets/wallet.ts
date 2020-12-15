@@ -197,18 +197,14 @@ export class Wallet implements ReadWriteWallet {
 		return BigNumber.make(value);
 	}
 
-	public exchangeRate(): BigNumber {
-		return container
-			.get<ExchangeRateService>(Identifiers.ExchangeRateService)
-			.ratesByDate(this.currency(), this.exchangeCurrency());
-	}
-
 	public convertedBalance(): BigNumber {
 		if (this.network().isTest()) {
 			return BigNumber.ZERO;
 		}
 
-		const value = this.exchangeRate();
+		const value = container
+			.get<ExchangeRateService>(Identifiers.ExchangeRateService)
+			.ratesByDate(this.currency(), this.exchangeCurrency());
 
 		if (value.isZero()) {
 			return value;
