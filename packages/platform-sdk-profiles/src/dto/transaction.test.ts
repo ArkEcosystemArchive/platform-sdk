@@ -6,14 +6,16 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
+import { DateTime } from "../../../platform-sdk-intl/dist";
 import { identity } from "../../test/fixtures/identity";
+import { StubStorage } from "../../test/stubs/storage";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
+import { ExchangeRateService } from "../environment/services/exchange-rate-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
-import { StubStorage } from "../../test/stubs/storage";
 import { ReadWriteWallet, WalletData } from "../wallets/wallet.models";
 import {
 	BridgechainRegistrationData,
@@ -38,8 +40,6 @@ import {
 	TransferData,
 	VoteData,
 } from "./transaction";
-import { ExchangeRateService } from "../environment/services/exchange-rate-service";
-import { DateTime } from "../../../platform-sdk-intl/dist";
 
 const createSubject = (wallet, properties, klass) => {
 	let meta: Contracts.TransactionDataMeta = "some meta";
@@ -184,10 +184,14 @@ describe("Transaction", () => {
 	});
 
 	it("should have a converted amount", async () => {
-		subject = createSubject(wallet, {
-			timestamp: () => DateTime.make(),
-			amount: () => BigNumber.make(10e8),
-		}, TransferData);
+		subject = createSubject(
+			wallet,
+			{
+				timestamp: () => DateTime.make(),
+				amount: () => BigNumber.make(10e8),
+			},
+			TransferData,
+		);
 
 		await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
 
@@ -203,10 +207,14 @@ describe("Transaction", () => {
 	});
 
 	it("should have a converted fee", async () => {
-		subject = createSubject(wallet, {
-			timestamp: () => DateTime.make(),
-			fee: () => BigNumber.make(10e8),
-		}, TransferData);
+		subject = createSubject(
+			wallet,
+			{
+				timestamp: () => DateTime.make(),
+				fee: () => BigNumber.make(10e8),
+			},
+			TransferData,
+		);
 
 		await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
 
@@ -307,11 +315,15 @@ describe("Transaction", () => {
 	});
 
 	it("should have a converted total", async () => {
-		subject = createSubject(wallet, {
-			timestamp: () => DateTime.make(),
-			amount: () => BigNumber.make(10e8),
-			fee: () => BigNumber.make(5e8),
-		}, TransferData);
+		subject = createSubject(
+			wallet,
+			{
+				timestamp: () => DateTime.make(),
+				amount: () => BigNumber.make(10e8),
+				fee: () => BigNumber.make(5e8),
+			},
+			TransferData,
+		);
 
 		await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
 
