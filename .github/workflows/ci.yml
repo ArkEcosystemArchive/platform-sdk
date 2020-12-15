@@ -46,7 +46,6 @@ jobs:
 
             - name: Test
               run: cd packages/platform-sdk/ && yarn run test --coverage
-                  verbose: true
 
     ada:
         needs: [conflicts]
