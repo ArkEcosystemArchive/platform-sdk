@@ -1,4 +1,5 @@
 import "jest-extended";
+import { MemoryPassword } from "../helpers/password";
 
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
@@ -45,4 +46,10 @@ it("should fail to change the password if the old password is invalid", () => {
 	subject.setPassword("old-password");
 
 	expect(() => subject.changePassword("invalid-old-password", "new-password")).toThrow("does not match");
+});
+
+it("should set password in memory", () => {
+	subject.setPassword("password");
+
+	expect(MemoryPassword.get(profile)).toEqual("password");
 });
