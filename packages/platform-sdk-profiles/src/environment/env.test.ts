@@ -21,6 +21,7 @@ import { Environment } from "./env";
 import { ExchangeRateService } from "./services/exchange-rate-service";
 import { WalletService } from "./services/wallet-service";
 import { MemoryStorage } from "./storage/memory";
+import { MemoryPassword } from "../helpers/password";
 
 let subject: Environment;
 
@@ -277,4 +278,10 @@ it("should fail verification", async () => {
 	await expect(env.verify({ profiles: [], data: {} })).rejects.toThrowError(
 		'Terminating due to corrupted state: ValidationError: "profiles" must be of type object',
 	);
+});
+
+it("should create a profile with password and persist", () => {
+	const profile = subject.profiles().create("John Doe");
+	profile.auth().setPassword("password");
+	expect(() => subject.persist()).not.toThrowError();
 });
