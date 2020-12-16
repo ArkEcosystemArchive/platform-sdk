@@ -1,6 +1,6 @@
 import "jest-extended";
-import { MemoryPassword } from "../helpers/password";
 
+import { MemoryPassword } from "../helpers/password";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 import { ProfileSetting } from "./profile.models";
