@@ -12,6 +12,7 @@ import { resolve } from "path";
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
 import { StubStorage } from "../../test/stubs/storage";
+import { MemoryPassword } from "../helpers/password";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../repositories/profile-repository";
@@ -21,7 +22,6 @@ import { Environment } from "./env";
 import { ExchangeRateService } from "./services/exchange-rate-service";
 import { WalletService } from "./services/wallet-service";
 import { MemoryStorage } from "./storage/memory";
-import { MemoryPassword } from "../helpers/password";
 
 let subject: Environment;
 
