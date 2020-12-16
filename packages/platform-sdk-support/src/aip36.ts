@@ -1,5 +1,4 @@
 import Joi, { ValidationError } from "joi";
-import { join } from "path";
 
 import { Business } from "./aip36/business";
 import { Delegate } from "./aip36/delegate";
@@ -12,7 +11,11 @@ import { SocialMedia } from "./aip36/social-media";
 import { SourceControl } from "./aip36/source-control";
 
 export class AIP36 {
-	#data: Record<string, unknown> = {};
+	#data: Record<string, unknown>;
+
+	public constructor(data: Record<string, unknown> = {}) {
+		this.#data = data;
+	}
 
 	public business(): Business {
 		return new Business(this.#data);
