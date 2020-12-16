@@ -14,6 +14,14 @@ import { SourceControl } from "./aip36/source-control";
 export class AIP36 {
 	#data: Record<string, unknown> = {};
 
+	private constructor(data: Record<string, unknown>) {
+		this.#data = data;
+	}
+
+	public static fromStruct(data: Record<string, unknown>): AIP36 {
+		return new AIP36(data);
+	}
+
 	public business(): Business {
 		return new Business(this.#data);
 	}
