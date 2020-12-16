@@ -70,7 +70,7 @@ export class TransactionData {
 
 	public memo(): string | undefined {
 		// @ts-ignore
-		return this.#data.memo();
+		return this.#data.memo?.();
 	}
 
 	public asset(): Record<string, unknown> {

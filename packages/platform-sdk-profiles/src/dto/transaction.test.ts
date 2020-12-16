@@ -255,6 +255,19 @@ describe("Transaction", () => {
 		expect(subject.memo()).toBe("memo");
 	});
 
+	test("should not throw if transaction type does not have memo", () => {
+		const subject = createSubject(
+			wallet,
+			{
+				memo: undefined,
+			},
+			TransactionData,
+		);
+
+		expect(() => subject.memo()).not.toThrow();
+		expect(subject.memo()).toBeUndefined();
+	});
+
 	test("#hasPassed", () => {
 		subject = createSubject(
 			wallet,
