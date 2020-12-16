@@ -86,7 +86,8 @@ describe("ExchangeRateService", () => {
 		await subject.syncAll(profile, "DARK");
 
 		expect(wallet.convertedBalance().toNumber()).toBe(0.00005048);
-		await expect(container.get<StubStorage>(Identifiers.Storage).all()).resolves.toMatchSnapshot();
+		const allStorage: Record<string, any> = await container.get<StubStorage>(Identifiers.Storage).all();
+		expect(allStorage.EXCHANGE_RATE_SERVICE).toMatchObject({ DARK: { BTC: expect.anything() } });
 	});
 
 	it("should sync a coin for specific profile without wallets argument", async () => {
