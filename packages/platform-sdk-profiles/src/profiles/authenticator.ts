@@ -1,5 +1,6 @@
 import { Bcrypt } from "@arkecosystem/platform-sdk-crypto";
 
+import { MemoryPassword } from "../helpers/password";
 import { ProfileContract, ProfileSetting } from "./profile.models";
 
 export class Authenticator {
@@ -11,6 +12,8 @@ export class Authenticator {
 
 	public setPassword(password: string): void {
 		this.#profile.settings().set(ProfileSetting.Password, Bcrypt.hash(password));
+
+		MemoryPassword.set(this.#profile, password);
 	}
 
 	public verifyPassword(password: string): boolean {

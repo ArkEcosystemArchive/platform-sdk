@@ -12,6 +12,7 @@ import { resolve } from "path";
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
 import { StubStorage } from "../../test/stubs/storage";
+import { MemoryPassword } from "../helpers/password";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../repositories/profile-repository";
@@ -277,4 +278,10 @@ it("should fail verification", async () => {
 	await expect(env.verify({ profiles: [], data: {} })).rejects.toThrowError(
 		'Terminating due to corrupted state: ValidationError: "profiles" must be of type object',
 	);
+});
+
+it("should create a profile with password and persist", () => {
+	const profile = subject.profiles().create("John Doe");
+	profile.auth().setPassword("password");
+	expect(() => subject.persist()).not.toThrowError();
 });

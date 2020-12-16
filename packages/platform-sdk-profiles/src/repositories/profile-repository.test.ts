@@ -180,7 +180,6 @@ describe("ProfileRepository", () => {
 		const jane = subject.create("Jane");
 
 		jane.auth().setPassword("password");
-		MemoryPassword.set(jane, "password");
 
 		const repositoryDump = subject.toObject();
 
