@@ -31,3 +31,17 @@ it("should forget a value", () => {
 
 	expect(() => container.unbind("key")).not.toThrow();
 });
+
+it("should flush all bindings", () => {
+	const container = new Container();
+
+	expect(() => container.unbind("key")).toThrow();
+
+	container.bind("key", "value");
+
+	expect(() => container.unbind("key")).not.toThrow();
+
+	container.flush();
+
+	expect(() => container.unbind("key")).not.toThrow();
+});

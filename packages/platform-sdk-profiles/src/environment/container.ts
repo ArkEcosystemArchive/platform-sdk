@@ -36,6 +36,12 @@ export class Container {
 
 		throw new Error(`No matching bindings found for [${key}].`);
 	}
+
+	public flush(): void {
+		for (const key of this.#bindings.keys()) {
+			this.unbind(key);
+		}
+	}
 }
 
 export const container = new Container();

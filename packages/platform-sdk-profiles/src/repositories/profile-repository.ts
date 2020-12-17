@@ -72,6 +72,10 @@ export class ProfileRepository {
 		this.#data.forget(id);
 	}
 
+	public flush(): void {
+		this.#data.flush();
+	}
+
 	public count(): number {
 		return this.#data.count();
 	}

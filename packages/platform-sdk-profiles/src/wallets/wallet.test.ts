@@ -87,6 +87,7 @@ beforeEach(async () => {
 		.persist();
 
 	const profileRepository = container.get<ProfileRepository>(Identifiers.ProfileRepository);
+	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
 	subject = new Wallet(uuidv4(), profile);
