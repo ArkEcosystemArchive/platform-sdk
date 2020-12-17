@@ -158,6 +158,16 @@ describe("ProfileRepository", () => {
 		expect(subject.values()).toHaveLength(2);
 	});
 
+	it("should forget all values", async () => {
+		subject.create("Jane");
+
+		expect(subject.values()).toHaveLength(1);
+
+		subject.flush();
+
+		expect(subject.values()).toHaveLength(0);
+	});
+
 	it("should get the first and last profile", async () => {
 		const john = subject.create("John");
 		const jane = subject.create("Jane");
