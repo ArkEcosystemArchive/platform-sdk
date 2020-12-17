@@ -16,7 +16,7 @@ import { Wallet } from "../src/wallets/wallet";
 export const bootContainer = (): void => {
 	container.set(Identifiers.HttpClient, new Request());
 	container.set(Identifiers.Coins, { ARK, BTC, ETH });
-}
+};
 
 export const makeProfile = (data: object = {}): Profile => new Profile({ id: "uuid", data: "", ...data });
 export const makeContact = (data: ContactStruct, profile: Profile): Contact => new Contact(data, profile);
