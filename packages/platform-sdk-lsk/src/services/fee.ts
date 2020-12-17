@@ -33,10 +33,6 @@ export class FeeService implements Contracts.FeeService {
 			htlcLock: this.transform(0),
 			htlcClaim: this.transform(0),
 			htlcRefund: this.transform(0),
-			// Magistrate
-			entityRegistration: this.transform(0),
-			entityResignation: this.transform(0),
-			entityUpdate: this.transform(0),
 		};
 	}
 

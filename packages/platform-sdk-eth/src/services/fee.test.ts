@@ -33,9 +33,6 @@ describe("FeeService", function () {
 			"htlcLock",
 			"htlcClaim",
 			"htlcRefund",
-			"entityRegistration",
-			"entityResignation",
-			"entityUpdate",
 		]);
 
 		expect(result.transfer).toEqual({

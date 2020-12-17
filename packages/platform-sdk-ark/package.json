@@ -18,7 +18,6 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
-		"@arkecosystem/core-magistrate-crypto": "^2.7",
 		"@arkecosystem/crypto": "^2.7",
 		"@arkecosystem/crypto-identities": "^1.1.1",
 		"@arkecosystem/ledger-transport": "^1.1.3",

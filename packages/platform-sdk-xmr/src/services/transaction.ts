@@ -86,27 +86,6 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
 	}
 
-	public async entityRegistration(
-		input: Contracts.EntityRegistrationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "entityRegistration");
-	}
-
-	public async entityResignation(
-		input: Contracts.EntityResignationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "entityResignation");
-	}
-
-	public async entityUpdate(
-		input: Contracts.EntityUpdateInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "entityUpdate");
-	}
-
 	public multiSign(
 		transaction: Contracts.RawTransactionData,
 		input: Contracts.TransactionInputs,

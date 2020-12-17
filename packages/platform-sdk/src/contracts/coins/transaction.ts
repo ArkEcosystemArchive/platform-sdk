@@ -19,11 +19,6 @@ export interface TransactionService {
 	htlcClaim(input: HtlcClaimInput, options?: TransactionOptions): Promise<SignedTransactionData>;
 	htlcRefund(input: HtlcRefundInput, options?: TransactionOptions): Promise<SignedTransactionData>;
 
-	// Magistrate
-	entityRegistration(input: EntityRegistrationInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	entityResignation(input: EntityResignationInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	entityUpdate(input: EntityUpdateInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-
 	// Multi-Signature
 	multiSign(transaction: RawTransactionData, input: TransactionInputs): Promise<SignedTransactionData>;
 }
