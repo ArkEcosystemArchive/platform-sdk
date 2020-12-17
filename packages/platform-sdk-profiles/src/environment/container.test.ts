@@ -6,7 +6,7 @@ it("should bind a value and be able to retrieve it", () => {
 	const container = new Container();
 
 	expect(container.has("key")).toBeFalse();
-	expect(container.get("key")).toBeUndefined();
+	expect(() => container.get("key")).toThrow();
 
 	container.set("key", "value");
 

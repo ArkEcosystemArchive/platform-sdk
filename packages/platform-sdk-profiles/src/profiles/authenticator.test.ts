@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { bootContainer } from "../../test/helpers";
 import { MemoryPassword } from "../helpers/password";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
@@ -7,6 +8,8 @@ import { ProfileSetting } from "./profile.models";
 
 let subject: Authenticator;
 let profile: Profile;
+
+beforeAll(() => bootContainer());
 
 beforeEach(() => {
 	profile = new Profile({ id: "uuid", data: "" });

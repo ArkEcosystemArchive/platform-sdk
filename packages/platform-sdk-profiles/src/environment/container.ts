@@ -2,7 +2,11 @@ export class Container {
 	readonly #bindings: Map<string, any> = new Map();
 
 	public get<T>(key: string): T {
-		return this.#bindings.get(key);
+		if (this.has(key)) {
+			return this.#bindings.get(key);
+		}
+
+		throw new Error(`No matching bindings found for [${key}].`);
 	}
 
 	public set(key: string, value: unknown): void {

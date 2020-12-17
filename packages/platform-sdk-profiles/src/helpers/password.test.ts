@@ -1,5 +1,8 @@
+import { bootContainer } from "../../test/helpers";
 import { Profile } from "../profiles/profile";
 import { MemoryPassword } from "./password";
+
+beforeAll(() => bootContainer());
 
 it("should set, get and forget the password", () => {
 	const profile: Profile = new Profile({ id: "uuid", data: "" });

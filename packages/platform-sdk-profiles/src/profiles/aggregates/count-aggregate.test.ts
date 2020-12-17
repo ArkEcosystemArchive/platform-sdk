@@ -1,9 +1,12 @@
 import "jest-extended";
 
+import { bootContainer } from "../../../test/helpers";
 import { Profile } from "../profile";
 import { CountAggregate } from "./count-aggregate";
 
 let subject: CountAggregate;
+
+beforeAll(() => bootContainer());
 
 beforeEach(async () => {
 	subject = new CountAggregate(new Profile({ id: "uuid", data: "" }));
