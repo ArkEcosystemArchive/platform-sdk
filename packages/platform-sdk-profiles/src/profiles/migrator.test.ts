@@ -2,12 +2,15 @@ import "jest-extended";
 
 import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 
+import { bootContainer } from "../../test/helpers";
 import { Migrator } from "./migrator";
 import { Profile } from "./profile";
 import { ProfileData, ProfileInput, ProfileSetting } from "./profile.models";
 
 let subject: Migrator;
 let profile: Profile;
+
+beforeAll(() => bootContainer());
 
 beforeEach(async () => {
 	profile = new Profile({ id: "id", data: Base64.encode("{}") });
