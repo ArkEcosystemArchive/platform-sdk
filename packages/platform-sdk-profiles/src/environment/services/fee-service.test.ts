@@ -45,7 +45,7 @@ describe("FeeService", () => {
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
 		await subject.sync("ARK", "ark.devnet");
-		expect(Object.keys(subject.all("ARK", "ark.devnet"))).toHaveLength(14);
+		expect(Object.keys(subject.all("ARK", "ark.devnet"))).toHaveLength(11);
 	});
 
 	it("should sync fees of all coins", async () => {
@@ -53,7 +53,7 @@ describe("FeeService", () => {
 
 		await subject.syncAll();
 
-		expect(Object.keys(subject.all("ARK", "ark.devnet"))).toHaveLength(14);
+		expect(Object.keys(subject.all("ARK", "ark.devnet"))).toHaveLength(11);
 	});
 
 	it("#findByType", async () => {
