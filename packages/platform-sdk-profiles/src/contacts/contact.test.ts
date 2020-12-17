@@ -92,13 +92,15 @@ describe("contact", () => {
 			.reply(200, require("../../test/fixtures/client/wallet.json"))
 			.persist();
 
-		await subject.restore([{
-			id: "uuid",
-			coin: "ARK",
-			network: "ark.devnet",
-			name: "John Doe",
-			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		}]);
+		await subject.restore([
+			{
+				id: "uuid",
+				coin: "ARK",
+				network: "ark.devnet",
+				name: "John Doe",
+				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			},
+		]);
 
 		expect(subject.addresses().count()).toEqual(1);
 	});

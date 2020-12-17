@@ -13,7 +13,7 @@ import { bootContainer } from "../../../test/helpers";
 let subject: DelegateService;
 
 beforeAll(() => {
-    bootContainer();
+	bootContainer();
 
 	nock.disableNetConnect();
 

@@ -8,6 +8,7 @@ import nock from "nock";
 
 import { DateTime } from "../../../platform-sdk-intl/dist";
 import { identity } from "../../test/fixtures/identity";
+import { bootContainer } from "../../test/helpers";
 import { StubStorage } from "../../test/stubs/storage";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
@@ -40,7 +41,6 @@ import {
 	TransferData,
 	VoteData,
 } from "./transaction";
-import { bootContainer } from "../../test/helpers";
 
 const createSubject = (wallet, properties, klass) => {
 	let meta: Contracts.TransactionDataMeta = "some meta";
