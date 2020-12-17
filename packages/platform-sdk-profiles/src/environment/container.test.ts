@@ -43,5 +43,5 @@ it("should flush all bindings", () => {
 
 	container.flush();
 
-	expect(() => container.unbind("key")).not.toThrow();
+	expect(() => container.unbind("key")).toThrow();
 });
