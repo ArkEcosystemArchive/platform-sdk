@@ -12,7 +12,7 @@ import { DelegateService } from "./delegate-service";
 let subject: DelegateService;
 
 beforeAll(() => {
-    bootContainer();
+	bootContainer();
 
 	nock.disableNetConnect();
 
