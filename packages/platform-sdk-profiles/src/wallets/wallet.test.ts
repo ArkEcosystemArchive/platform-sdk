@@ -23,6 +23,7 @@ import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
 import { WalletData, WalletSetting } from "./wallet.models";
+import { bootContainer } from "../../test/helpers";
 
 let profile: Profile;
 let subject: Wallet;

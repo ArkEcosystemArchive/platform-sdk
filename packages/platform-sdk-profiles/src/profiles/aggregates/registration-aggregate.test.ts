@@ -10,6 +10,7 @@ import { Identifiers } from "../../environment/container.models";
 import { CoinService } from "../../environment/services/coin-service";
 import { Profile } from "../profile";
 import { RegistrationAggregate } from "./registration-aggregate";
+import { bootContainer } from "../../../test/helpers";
 
 let subject: RegistrationAggregate;
 let profile: Profile;

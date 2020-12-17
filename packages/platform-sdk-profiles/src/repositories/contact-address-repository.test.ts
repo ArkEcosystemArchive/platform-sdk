@@ -9,6 +9,7 @@ import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
 import { ContactAddressRepository } from "./contact-address-repository";
+import { bootContainer } from "../../test/helpers";
 
 let subject: ContactAddressRepository;
 

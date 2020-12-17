@@ -11,6 +11,7 @@ import { Identifiers } from "../../environment/container.models";
 import { CoinService } from "../../environment/services/coin-service";
 import * as promiseHelpers from "../../helpers/promise";
 import { Profile } from "../profile";
+import { bootContainer } from "../../../test/helpers";
 
 let profile: Profile;
 

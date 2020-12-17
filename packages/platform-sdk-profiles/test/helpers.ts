@@ -36,6 +36,29 @@ export const bootContainer = (): void => {
 	container.bind(Identifiers.WalletService, new WalletService());
 };
 
+export const knock = (): void => {
+	nock.disableNetConnect();
+
+	nock(/.+/)
+		.get("/api/node/configuration")
+		.reply(200, require("./fixtures/client/configuration.json"))
+		.get("/api/node/configuration/crypto")
+		.reply(200, require("./fixtures/client/cryptoConfiguration.json"))
+		.get("/api/node/syncing")
+		.reply(200, require("./fixtures/client/syncing.json"))
+		.get("/api/peers")
+		.reply(200, require("./fixtures/client/peers.json"))
+		.get("/api/node/fees")
+		.query(true)
+		.reply(200, require("./fixtures/client/node-fees.json"))
+		.get("/api/transactions/fees")
+		.query(true)
+		.reply(200, require("./fixtures/client/transaction-fees.json"))
+		.get("/api/delegates")
+		.query(true)
+		.reply(200, require("./fixtures/client/delegates-2.json"));
+};
+
 export const makeProfile = (data: object = {}): Profile => new Profile({ id: "uuid", data: "", ...data });
 export const makeContact = (data: ContactStruct, profile: Profile): Contact => new Contact(data, profile);
 export const makeWallet = (id: string, profile: Profile): Wallet => new Wallet(id, profile);

@@ -13,6 +13,7 @@ import { DelegateService } from "../environment/services/delegate-service";
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { DelegateMapper } from "./delegate-mapper";
+import { bootContainer } from "../../test/helpers";
 
 let wallet: Wallet;
 

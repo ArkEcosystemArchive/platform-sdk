@@ -14,6 +14,7 @@ import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "./wallet";
 import { WalletData } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
+import { bootContainer } from "../../test/helpers";
 
 let profile: Profile;
 let wallet: Wallet;

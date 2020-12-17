@@ -13,6 +13,7 @@ import { ProfileRepository } from "../../repositories/profile-repository";
 import { ReadWriteWallet, WalletData } from "../../wallets/wallet.models";
 import { CoinService } from "./coin-service";
 import { WalletService } from "./wallet-service";
+import { bootContainer } from "../../../test/helpers";
 
 let profile: Profile;
 let wallet: ReadWriteWallet;

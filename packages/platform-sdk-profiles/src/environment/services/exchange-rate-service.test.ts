@@ -15,6 +15,7 @@ import { ProfileRepository } from "../../repositories/profile-repository";
 import { ReadWriteWallet, WalletData } from "../../wallets/wallet.models";
 import { CoinService } from "./coin-service";
 import { ExchangeRateService } from "./exchange-rate-service";
+import { bootContainer } from "../../../test/helpers";
 
 let profile: Profile;
 let wallet: ReadWriteWallet;

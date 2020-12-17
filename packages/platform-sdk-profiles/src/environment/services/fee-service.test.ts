@@ -8,6 +8,7 @@ import { container } from "../container";
 import { Identifiers } from "../container.models";
 import { CoinService } from "./coin-service";
 import { FeeService } from "./fee-service";
+import { bootContainer } from "../../../test/helpers";
 
 let subject: FeeService;
 import NodeFeesFixture from "../../../test/fixtures/client/node-fees.json";

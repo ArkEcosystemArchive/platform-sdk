@@ -11,6 +11,7 @@ import { Identifiers } from "../../environment/container.models";
 import { CoinService } from "../../environment/services/coin-service";
 import { Profile } from "../profile";
 import { WalletAggregate } from "./wallet-aggregate";
+import { bootContainer } from "../../../test/helpers";
 
 let subject: WalletAggregate;
 let profile: Profile;

@@ -11,6 +11,7 @@ import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { WalletFactory } from "./wallet.factory";
 import { WalletData } from "./wallet.models";
+import { bootContainer } from "../../test/helpers";
 
 beforeAll(() => {
 	bootContainer();

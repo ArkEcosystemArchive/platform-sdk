@@ -8,6 +8,7 @@ import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { CoinService } from "./coin-service";
 import { KnownWalletService } from "./known-wallet-service";
+import { bootContainer } from "../../../test/helpers";
 
 let subject: KnownWalletService;
 

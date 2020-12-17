@@ -12,6 +12,7 @@ import { CoinService } from "../../environment/services/coin-service";
 import * as promiseHelpers from "../../helpers/promise";
 import { Profile } from "../profile";
 import { TransactionAggregate } from "./transaction-aggregate";
+import { bootContainer } from "../../../test/helpers";
 
 let subject: TransactionAggregate;
 

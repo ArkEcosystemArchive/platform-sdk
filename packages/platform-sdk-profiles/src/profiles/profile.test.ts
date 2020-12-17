@@ -23,6 +23,7 @@ import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 import { ProfileSetting } from "./profile.models";
+import { bootContainer } from "../../test/helpers";
 
 let subject: Profile;
 
