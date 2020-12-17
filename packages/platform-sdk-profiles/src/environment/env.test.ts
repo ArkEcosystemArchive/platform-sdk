@@ -74,9 +74,9 @@ beforeAll(() => {
 		})
 		.persist();
 
-	container.set(Identifiers.Storage, new StubStorage());
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.Coins, { ARK, BTC, ETH });
+	container.singleton(Identifiers.Storage, StubStorage);
+	container.singleton(Identifiers.HttpClient, Request);
+	container.bind(Identifiers.Coins, { ARK, BTC, ETH });
 });
 
 beforeEach(async () => {
@@ -210,7 +210,7 @@ it("should boot with empty storage profiles", async () => {
 });
 
 it("should boot with exchange service data", async () => {
-	container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
+	container.singleton(Identifiers.ExchangeRateService, ExchangeRateService);
 	await container.get<Storage>(Identifiers.Storage).set("EXCHANGE_RATE_SERVICE", {});
 
 	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });

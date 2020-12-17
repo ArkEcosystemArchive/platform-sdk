@@ -83,12 +83,12 @@ beforeEach(async () => {
 		.reply(200, require("../../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
 
-	container.set(Identifiers.Storage, new StubStorage());
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
-	container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
-	container.set(Identifiers.ProfileRepository, new ProfileRepository());
+	container.singleton(Identifiers.Storage, StubStorage);
+	container.singleton(Identifiers.HttpClient, Request);
+	container.singleton(Identifiers.CoinService, CoinService);
+	container.bind(Identifiers.Coins, { ARK });
+	container.singleton(Identifiers.ExchangeRateService, ExchangeRateService);
+	container.singleton(Identifiers.ProfileRepository, ProfileRepository);
 
 	const profileRepository = container.get<ProfileRepository>(Identifiers.ProfileRepository);
 	profile = profileRepository.create("John Doe");
@@ -265,7 +265,7 @@ it("should respond on whether it is a resigned delegate or not", () => {
 });
 
 it("should respond on whether it is known", () => {
-	container.set(Identifiers.KnownWalletService, {
+	container.bind(Identifiers.KnownWalletService, {
 		is: (a, b) => false,
 	});
 
@@ -273,7 +273,7 @@ it("should respond on whether it is known", () => {
 });
 
 it("should respond on whether it is owned by exchange", () => {
-	container.set(Identifiers.KnownWalletService, {
+	container.bind(Identifiers.KnownWalletService, {
 		isExchange: (a, b) => false,
 	});
 
@@ -281,7 +281,7 @@ it("should respond on whether it is owned by exchange", () => {
 });
 
 it("should respond on whether it is owned by a team", () => {
-	container.set(Identifiers.KnownWalletService, {
+	container.bind(Identifiers.KnownWalletService, {
 		isTeam: (a, b) => false,
 	});
 

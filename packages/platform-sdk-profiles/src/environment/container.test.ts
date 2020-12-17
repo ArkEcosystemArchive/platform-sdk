@@ -8,7 +8,7 @@ it("should bind a value and be able to retrieve it", () => {
 	expect(container.has("key")).toBeFalse();
 	expect(() => container.get("key")).toThrow("No matching bindings found for serviceIdentifier: key");
 
-	container.set("key", "value");
+	container.bind("key", "value");
 
 	expect(container.has("key")).toBeTrue();
 	expect(container.get("key")).toBe("value");

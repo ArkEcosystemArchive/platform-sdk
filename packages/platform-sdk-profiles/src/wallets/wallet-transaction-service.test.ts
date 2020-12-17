@@ -64,9 +64,9 @@ beforeEach(async () => {
 		})
 		.persist();
 
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
+	container.singleton(Identifiers.HttpClient, Request);
+	container.singleton(Identifiers.CoinService, CoinService);
+	container.bind(Identifiers.Coins, { ARK });
 
 	profile = new Profile({ id: "profile-id", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");

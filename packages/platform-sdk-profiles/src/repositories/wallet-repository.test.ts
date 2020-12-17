@@ -35,9 +35,9 @@ beforeEach(async () => {
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
 
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK, BTC, ETH });
+	container.singleton(Identifiers.HttpClient, Request);
+	container.singleton(Identifiers.CoinService, CoinService);
+	container.bind(Identifiers.Coins, { ARK, BTC, ETH });
 
 	const profile = new Profile({ id: "profile-id", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");

@@ -104,11 +104,11 @@ beforeAll(async () => {
 		.reply(200, require("../../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
 
-	container.set(Identifiers.Storage, new StubStorage());
-	container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
+	container.singleton(Identifiers.Storage, StubStorage);
+	container.singleton(Identifiers.ExchangeRateService, ExchangeRateService);
+	container.singleton(Identifiers.HttpClient, Request);
+	container.singleton(Identifiers.CoinService, CoinService);
+	container.bind(Identifiers.Coins, { ARK });
 });
 
 beforeEach(async () => {

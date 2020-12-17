@@ -38,10 +38,10 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	container.set(Identifiers.DelegateService, new DelegateService());
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
+	container.singleton(Identifiers.DelegateService, DelegateService);
+	container.singleton(Identifiers.HttpClient, Request);
+	container.singleton(Identifiers.CoinService, CoinService);
+	container.bind(Identifiers.Coins, { ARK });
 
 	wallet = new Wallet(uuidv4(), new Profile({ id: "profile-id", data: "" }));
 

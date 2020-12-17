@@ -19,22 +19,22 @@ export class Environment {
 	private storage: StorageData | undefined;
 
 	public constructor(options: EnvironmentOptions) {
-		container.set(
+		container.bind(
 			Identifiers.Storage,
 			typeof options.storage === "string" ? StorageFactory.make(options.storage) : options.storage,
 		);
 
-		container.set(Identifiers.AppData, new DataRepository());
-		container.set(Identifiers.HttpClient, options.httpClient);
-		container.set(Identifiers.ProfileRepository, new ProfileRepository());
-		container.set(Identifiers.CoinService, new CoinService());
-		container.set(Identifiers.DelegateService, new DelegateService());
-		container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
-		container.set(Identifiers.FeeService, new FeeService());
-		container.set(Identifiers.KnownWalletService, new KnownWalletService());
-		container.set(Identifiers.WalletService, new WalletService());
+		container.singleton(Identifiers.AppData, DataRepository);
+		container.bind(Identifiers.HttpClient, options.httpClient);
+		container.singleton(Identifiers.ProfileRepository, ProfileRepository);
+		container.singleton(Identifiers.CoinService, CoinService);
+		container.singleton(Identifiers.DelegateService, DelegateService);
+		container.singleton(Identifiers.ExchangeRateService, ExchangeRateService);
+		container.singleton(Identifiers.FeeService, FeeService);
+		container.singleton(Identifiers.KnownWalletService, KnownWalletService);
+		container.singleton(Identifiers.WalletService, WalletService);
 
-		container.set(Identifiers.Coins, options.coins);
+		container.bind(Identifiers.Coins, options.coins);
 	}
 
 	/**

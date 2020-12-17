@@ -53,9 +53,9 @@ beforeEach(async () => {
 
 	const coinService = new CoinService();
 
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, coinService);
-	container.set(Identifiers.Coins, { ARK });
+	container.singleton(Identifiers.HttpClient, Request);
+	container.bind(Identifiers.CoinService, coinService);
+	container.bind(Identifiers.Coins, { ARK });
 
 	await coinService.push("ARK", "ark.devnet");
 
