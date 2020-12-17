@@ -6,6 +6,7 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import nock from "nock";
 
 import { identity } from "../../../test/fixtures/identity";
+import { bootContainer } from "../../../test/helpers";
 import { StubStorage } from "../../../test/stubs/storage";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
@@ -22,6 +23,8 @@ let subject: ExchangeRateService;
 
 let liveSpy: jest.SpyInstance;
 let testSpy: jest.SpyInstance;
+
+beforeAll(() => bootContainer());
 
 beforeEach(async () => {
 	nock.cleanAll();
@@ -51,12 +54,8 @@ beforeEach(async () => {
 	const profileRepository = new ProfileRepository();
 	subject = new ExchangeRateService();
 
-	container.set(Identifiers.Storage, new StubStorage());
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
-	container.set(Identifiers.ProfileRepository, profileRepository);
-	container.set(Identifiers.ExchangeRateService, subject);
+	container.rebind(Identifiers.ProfileRepository, profileRepository);
+	container.rebind(Identifiers.ExchangeRateService, subject);
 
 	profile = profileRepository.create("John Doe");
 	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");

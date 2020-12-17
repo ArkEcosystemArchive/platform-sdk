@@ -4,6 +4,7 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
+import { bootContainer } from "../../../test/helpers";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { CoinService } from "./coin-service";
@@ -11,7 +12,11 @@ import { KnownWalletService } from "./known-wallet-service";
 
 let subject: KnownWalletService;
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	bootContainer();
+
+	nock.disableNetConnect();
+});
 
 beforeEach(async () => {
 	nock.cleanAll();
@@ -53,9 +58,7 @@ beforeEach(async () => {
 
 	const coinService = new CoinService();
 
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, coinService);
-	container.set(Identifiers.Coins, { ARK });
+	container.rebind(Identifiers.CoinService, coinService);
 
 	await coinService.push("ARK", "ark.devnet");
 

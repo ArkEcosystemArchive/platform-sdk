@@ -5,6 +5,7 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
+import { bootContainer } from "../../test/helpers";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
@@ -35,14 +36,14 @@ beforeEach(async () => {
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
 
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
-
 	subject = new ContactAddressRepository();
 });
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	bootContainer();
+
+	nock.disableNetConnect();
+});
 
 test("#create", async () => {
 	expect(subject.keys()).toHaveLength(0);

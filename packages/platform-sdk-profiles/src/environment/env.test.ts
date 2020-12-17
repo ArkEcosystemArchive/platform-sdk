@@ -25,6 +25,13 @@ import { MemoryStorage } from "./storage/memory";
 
 let subject: Environment;
 
+const makeSubject = async (): Promise<void> => {
+	subject = new Environment({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
+	await subject.verify();
+	await subject.boot();
+	await subject.persist();
+};
+
 beforeAll(() => {
 	nock.disableNetConnect();
 
@@ -73,30 +80,29 @@ beforeAll(() => {
 			return { meta: {}, data: {} };
 		})
 		.persist();
-
-	container.set(Identifiers.Storage, new StubStorage());
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.Coins, { ARK, BTC, ETH });
 });
 
 beforeEach(async () => {
 	removeSync(resolve(__dirname, "../../test/stubs/env.json"));
 
-	subject = new Environment({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
-	await subject.verify();
-	await subject.boot();
-	await subject.persist();
+	container.flush();
 });
 
 it("should have a profile repository", async () => {
+	await makeSubject();
+
 	expect(subject.profiles()).toBeInstanceOf(ProfileRepository);
 });
 
 it("should have a data repository", async () => {
+	await makeSubject();
+
 	expect(subject.data()).toBeInstanceOf(DataRepository);
 });
 
 it("should have available networks", async () => {
+	await makeSubject();
+
 	const coins: Record<string, Coins.CoinSpec> = { ARK, BTC, ETH };
 
 	for (const network of subject.availableNetworks()) {
@@ -105,6 +111,8 @@ it("should have available networks", async () => {
 });
 
 it("should create a profile with data and persist it when instructed to do so", async () => {
+	await makeSubject();
+
 	/**
 	 * Save data in the current environment.
 	 */
@@ -141,6 +149,8 @@ it("should create a profile with data and persist it when instructed to do so", 
 	/**
 	 * Load data that the previous environment instance saved.
 	 */
+
+	container.flush();
 
 	const newEnv = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
 	await newEnv.verify();
@@ -210,15 +220,12 @@ it("should boot with empty storage profiles", async () => {
 });
 
 it("should boot with exchange service data", async () => {
-	container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
-	await container.get<Storage>(Identifiers.Storage).set("EXCHANGE_RATE_SERVICE", {});
-
 	const env = new Environment({ coins: { ARK }, httpClient: new Request(), storage: new StubStorage() });
+
+	await container.get<Storage>(Identifiers.Storage).set("EXCHANGE_RATE_SERVICE", {});
 
 	await expect(env.verify({ profiles: {}, data: {} })).resolves.toBeUndefined();
 	await expect(env.boot()).resolves.toBeUndefined();
-
-	container.forget(Identifiers.ExchangeRateService);
 });
 
 it("should create preselected storage given storage option as string", async () => {
@@ -232,33 +239,47 @@ it("should throw error when calling boot without verify first", async () => {
 });
 
 it("should get available coins", async () => {
+	await makeSubject();
+
 	expect(subject.coins().values()).toEqual([]);
 });
 
 it("#exchangeRates", async () => {
+	await makeSubject();
+
 	expect(subject.exchangeRates()).toBeInstanceOf(ExchangeRateService);
 });
 
 it("#fees", async () => {
+	await makeSubject();
+
 	await subject.fees().sync("ARK", "ark.devnet");
 	expect(Object.keys(subject.fees().all("ARK", "ark.devnet"))).toHaveLength(14);
 });
 
 it("#delegates", async () => {
+	await makeSubject();
+
 	await subject.delegates().sync("ARK", "ark.devnet");
 	expect(subject.delegates().all("ARK", "ark.devnet")).toHaveLength(100);
 });
 
 it("#knownWallets", async () => {
+	await makeSubject();
+
 	await subject.knownWallets().syncAll();
 	expect(subject.knownWallets().is("ark.devnet", "unknownWallet")).toBeFalse();
 });
 
 it("#wallets", async () => {
+	await makeSubject();
+
 	expect(subject.wallets()).toBeInstanceOf(WalletService);
 });
 
 it("#coin", async () => {
+	await makeSubject();
+
 	await expect(subject.coin("ARK", "ark.devnet")).resolves.toBeInstanceOf(Coins.Coin);
 });
 
@@ -280,7 +301,9 @@ it("should fail verification", async () => {
 	);
 });
 
-it("should create a profile with password and persist", () => {
+it("should create a profile with password and persist", async () => {
+	await makeSubject();
+
 	const profile = subject.profiles().create("John Doe");
 	profile.auth().setPassword("password");
 	expect(() => subject.persist()).not.toThrowError();

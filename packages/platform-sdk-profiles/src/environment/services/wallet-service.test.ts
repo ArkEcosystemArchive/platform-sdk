@@ -5,6 +5,7 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
 import { identity } from "../../../test/fixtures/identity";
+import { bootContainer } from "../../../test/helpers";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { Profile } from "../../profiles/profile";
@@ -20,6 +21,8 @@ let subject: WalletService;
 
 let liveSpy: jest.SpyInstance;
 let testSpy: jest.SpyInstance;
+
+beforeAll(() => bootContainer());
 
 beforeEach(async () => {
 	nock.cleanAll();
@@ -77,10 +80,7 @@ beforeEach(async () => {
 
 	const profileRepository = new ProfileRepository();
 
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
-	container.set(Identifiers.ProfileRepository, profileRepository);
+	container.rebind(Identifiers.ProfileRepository, profileRepository);
 
 	profile = profileRepository.create("John Doe");
 

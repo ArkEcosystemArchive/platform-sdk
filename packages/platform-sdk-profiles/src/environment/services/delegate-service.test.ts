@@ -4,6 +4,7 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
+import { bootContainer } from "../../../test/helpers";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
 import { CoinService } from "./coin-service";
@@ -12,6 +13,8 @@ import { DelegateService } from "./delegate-service";
 let subject: DelegateService;
 
 beforeAll(() => {
+	bootContainer();
+
 	nock.disableNetConnect();
 
 	nock(/.+/)
@@ -28,10 +31,6 @@ beforeAll(() => {
 		.get("/api/delegates?page=2")
 		.reply(200, require("../../../test/fixtures/client/delegates-2.json"))
 		.persist();
-
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
 });
 
 beforeEach(async () => {

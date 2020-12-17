@@ -6,6 +6,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../../../test/fixtures/identity";
+import { bootContainer } from "../../../test/helpers";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { CoinService } from "../../environment/services/coin-service";
@@ -16,6 +17,8 @@ let subject: WalletAggregate;
 let profile: Profile;
 
 beforeAll(() => {
+	bootContainer();
+
 	nock(/.+/)
 		.get("/api/node/configuration/crypto")
 		.reply(200, require("../../../test/fixtures/client/cryptoConfiguration.json"))
@@ -26,10 +29,6 @@ beforeAll(() => {
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../../test/fixtures/client/wallet.json"))
 		.persist();
-
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
 });
 
 beforeEach(async () => {

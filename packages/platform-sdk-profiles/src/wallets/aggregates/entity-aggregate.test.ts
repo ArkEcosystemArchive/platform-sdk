@@ -4,6 +4,7 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
+import { bootContainer } from "../../../test/helpers";
 import { EntitySubType, EntityType } from "../../enums";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
@@ -15,6 +16,8 @@ import { EntityAggregate } from "./entity-aggregate";
 let subject: EntityAggregate;
 let profile: Profile;
 let wallet: any;
+
+beforeAll(() => bootContainer());
 
 beforeEach(async () => {
 	nock.disableNetConnect();
@@ -32,9 +35,6 @@ beforeEach(async () => {
 		.reply(200, require("../../../test/fixtures/wallets/D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb.json"))
 		.persist();
 
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
 	profile = new Profile({ id: "uuid", data: "" });
 	const address = "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb";
 

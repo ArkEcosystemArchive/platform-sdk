@@ -6,6 +6,7 @@ import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../../test/fixtures/identity";
+import { bootContainer } from "../../../test/helpers";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { CoinService } from "../../environment/services/coin-service";
@@ -17,6 +18,8 @@ import { EntityHistoryAggregate } from "./entity-history-aggregate";
 let subject: EntityHistoryAggregate;
 
 beforeAll(async () => {
+	bootContainer();
+
 	nock.disableNetConnect();
 
 	nock(/.+/)
@@ -40,10 +43,6 @@ beforeAll(async () => {
 		.query(true)
 		.reply(200, require("../../../test/fixtures/client/registrations/business.json"))
 		.persist();
-
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
 
 	const profile = new Profile({ id: "profile-id", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");

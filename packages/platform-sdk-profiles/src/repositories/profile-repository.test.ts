@@ -6,6 +6,7 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
+import { bootContainer } from "../../test/helpers";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
@@ -15,7 +16,11 @@ import { ProfileRepository } from "./profile-repository";
 
 let subject: ProfileRepository;
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	bootContainer();
+
+	nock.disableNetConnect();
+});
 
 beforeEach(() => {
 	nock.cleanAll();
@@ -32,10 +37,6 @@ beforeEach(() => {
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
-
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK, BTC, ETH });
 
 	subject = new ProfileRepository();
 });
@@ -155,6 +156,16 @@ describe("ProfileRepository", () => {
 		subject.create("Jane");
 
 		expect(subject.values()).toHaveLength(2);
+	});
+
+	it("should forget all values", async () => {
+		subject.create("Jane");
+
+		expect(subject.values()).toHaveLength(1);
+
+		subject.flush();
+
+		expect(subject.values()).toHaveLength(0);
 	});
 
 	it("should get the first and last profile", async () => {

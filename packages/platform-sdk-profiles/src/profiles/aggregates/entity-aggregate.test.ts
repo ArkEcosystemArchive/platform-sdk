@@ -4,6 +4,7 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
+import { bootContainer } from "../../../test/helpers";
 import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
 import { EntitySubType, EntityType } from "../../enums";
 import { container } from "../../environment/container";
@@ -20,6 +21,8 @@ const entityActionMap = {
 	resignations: "resign",
 };
 
+beforeAll(() => bootContainer());
+
 beforeEach(async () => {
 	nock.disableNetConnect();
 
@@ -35,10 +38,6 @@ beforeEach(async () => {
 		.get("/api/wallets/D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb")
 		.reply(200, require("../../../test/fixtures/wallets/D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb.json"))
 		.persist();
-
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
 
 	profile = new Profile({ id: "uuid", data: "" });
 	const address = "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb";

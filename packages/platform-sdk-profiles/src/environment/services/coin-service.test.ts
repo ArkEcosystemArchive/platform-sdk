@@ -6,6 +6,7 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
+import { bootContainer } from "../../../test/helpers";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
 import { CoinService } from "./coin-service";
@@ -14,6 +15,8 @@ let subject: CoinService;
 import NodeFeesFixture from "../../../test/fixtures/client/node-fees.json";
 
 beforeAll(() => {
+	bootContainer();
+
 	nock.disableNetConnect();
 
 	nock(/.+/)
@@ -32,10 +35,6 @@ beforeAll(() => {
 		.query(true)
 		.reply(200, require("../../../test/fixtures/client/transaction-fees.json"))
 		.persist();
-
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
 });
 
 beforeEach(async () => {

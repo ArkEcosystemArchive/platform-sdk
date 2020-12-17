@@ -8,6 +8,7 @@ import nock from "nock";
 
 import { DateTime } from "../../../platform-sdk-intl/dist";
 import { identity } from "../../test/fixtures/identity";
+import { bootContainer } from "../../test/helpers";
 import { StubStorage } from "../../test/stubs/storage";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
@@ -76,6 +77,8 @@ let liveSpy: jest.SpyInstance;
 let testSpy: jest.SpyInstance;
 
 beforeAll(async () => {
+	bootContainer();
+
 	nock.disableNetConnect();
 
 	nock(/.+/)
@@ -103,12 +106,6 @@ beforeAll(async () => {
 		.query(true)
 		.reply(200, require("../../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
-
-	container.set(Identifiers.Storage, new StubStorage());
-	container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
 });
 
 beforeEach(async () => {

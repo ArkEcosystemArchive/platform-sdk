@@ -6,6 +6,7 @@ import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../test/fixtures/identity";
+import { bootContainer } from "../../test/helpers";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
@@ -17,6 +18,8 @@ import { DelegateMapper } from "./delegate-mapper";
 let wallet: Wallet;
 
 beforeAll(() => {
+	bootContainer();
+
 	nock.disableNetConnect();
 
 	nock(/.+/)
@@ -38,11 +41,6 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	container.set(Identifiers.DelegateService, new DelegateService());
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
-
 	wallet = new Wallet(uuidv4(), new Profile({ id: "profile-id", data: "" }));
 
 	await wallet.setCoin("ARK", "ark.devnet");

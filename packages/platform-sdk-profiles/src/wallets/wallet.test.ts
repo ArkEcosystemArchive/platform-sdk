@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
 
 import { identity } from "../../test/fixtures/identity";
+import { bootContainer } from "../../test/helpers";
 import { StubStorage } from "../../test/stubs/storage";
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { container } from "../environment/container";
@@ -26,6 +27,8 @@ import { WalletData, WalletSetting } from "./wallet.models";
 
 let profile: Profile;
 let subject: Wallet;
+
+beforeAll(() => bootContainer());
 
 beforeEach(async () => {
 	nock.cleanAll();
@@ -83,14 +86,8 @@ beforeEach(async () => {
 		.reply(200, require("../../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
 
-	container.set(Identifiers.Storage, new StubStorage());
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
-	container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
-	container.set(Identifiers.ProfileRepository, new ProfileRepository());
-
 	const profileRepository = container.get<ProfileRepository>(Identifiers.ProfileRepository);
+	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
 	subject = new Wallet(uuidv4(), profile);
@@ -265,7 +262,7 @@ it("should respond on whether it is a resigned delegate or not", () => {
 });
 
 it("should respond on whether it is known", () => {
-	container.set(Identifiers.KnownWalletService, {
+	container.rebind(Identifiers.KnownWalletService, {
 		is: (a, b) => false,
 	});
 
@@ -273,7 +270,7 @@ it("should respond on whether it is known", () => {
 });
 
 it("should respond on whether it is owned by exchange", () => {
-	container.set(Identifiers.KnownWalletService, {
+	container.rebind(Identifiers.KnownWalletService, {
 		isExchange: (a, b) => false,
 	});
 
@@ -281,7 +278,7 @@ it("should respond on whether it is owned by exchange", () => {
 });
 
 it("should respond on whether it is owned by a team", () => {
-	container.set(Identifiers.KnownWalletService, {
+	container.rebind(Identifiers.KnownWalletService, {
 		isTeam: (a, b) => false,
 	});
 

@@ -5,6 +5,7 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
 import { identity } from "../../../test/fixtures/identity";
+import { bootContainer } from "../../../test/helpers";
 import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
@@ -16,6 +17,8 @@ import { TransactionAggregate } from "./transaction-aggregate";
 let subject: TransactionAggregate;
 
 beforeAll(() => {
+	bootContainer();
+
 	nock.disableNetConnect();
 
 	nock(/.+/)
@@ -30,10 +33,6 @@ beforeAll(() => {
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../../test/fixtures/client/wallet.json"))
 		.persist();
-
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
 });
 
 beforeEach(async () => {

@@ -19,22 +19,22 @@ export class Environment {
 	private storage: StorageData | undefined;
 
 	public constructor(options: EnvironmentOptions) {
-		container.set(
+		container.bind(
 			Identifiers.Storage,
 			typeof options.storage === "string" ? StorageFactory.make(options.storage) : options.storage,
 		);
 
-		container.set(Identifiers.AppData, new DataRepository());
-		container.set(Identifiers.HttpClient, options.httpClient);
-		container.set(Identifiers.ProfileRepository, new ProfileRepository());
-		container.set(Identifiers.CoinService, new CoinService());
-		container.set(Identifiers.DelegateService, new DelegateService());
-		container.set(Identifiers.ExchangeRateService, new ExchangeRateService());
-		container.set(Identifiers.FeeService, new FeeService());
-		container.set(Identifiers.KnownWalletService, new KnownWalletService());
-		container.set(Identifiers.WalletService, new WalletService());
+		container.bind(Identifiers.AppData, new DataRepository());
+		container.bind(Identifiers.HttpClient, options.httpClient);
+		container.bind(Identifiers.ProfileRepository, new ProfileRepository());
+		container.bind(Identifiers.CoinService, new CoinService());
+		container.bind(Identifiers.DelegateService, new DelegateService());
+		container.bind(Identifiers.ExchangeRateService, new ExchangeRateService());
+		container.bind(Identifiers.FeeService, new FeeService());
+		container.bind(Identifiers.KnownWalletService, new KnownWalletService());
+		container.bind(Identifiers.WalletService, new WalletService());
 
-		container.set(Identifiers.Coins, options.coins);
+		container.bind(Identifiers.Coins, options.coins);
 	}
 
 	/**
