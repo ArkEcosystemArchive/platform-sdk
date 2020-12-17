@@ -38,10 +38,6 @@ export class FeeService implements Contracts.FeeService {
 			htlcLock: this.transform("htlcLock", 1, staticFees, dynamicFees),
 			htlcClaim: this.transform("htlcClaim", 1, staticFees, dynamicFees),
 			htlcRefund: this.transform("htlcRefund", 1, staticFees, dynamicFees),
-			// Magistrate
-			entityRegistration: this.transform("entityRegistration", 2, staticFees, dynamicFees),
-			entityResignation: this.transform("entityResignation", 2, staticFees, dynamicFees),
-			entityUpdate: this.transform("entityUpdate", 2, staticFees, dynamicFees),
 		};
 	}
 

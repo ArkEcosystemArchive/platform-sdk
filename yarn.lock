@@ -13,16 +13,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-magistrate-crypto@npm:^2.7":
-  version: 2.7.1
-  resolution: "@arkecosystem/core-magistrate-crypto@npm:2.7.1"
-  dependencies:
-    "@arkecosystem/crypto": ^2.7.1
-    bytebuffer: ^5.0.1
-  checksum: 2/22707f795f263e3dfbe342f8ab0994560d0274014d00ce62af3d54a1b357559bbb88f8bf1d6f2fc51694006ed6006374cd9fa4cef18c495e918d7bb0a22dfd3a
-  languageName: node
-  linkType: hard
-
 "@arkecosystem/crypto-identities@npm:^1.1.1":
   version: 1.1.1
   resolution: "@arkecosystem/crypto-identities@npm:1.1.1"
@@ -35,7 +25,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/crypto@npm:^2.7, @arkecosystem/crypto@npm:^2.7.1":
+"@arkecosystem/crypto@npm:^2.7":
   version: 2.7.1
   resolution: "@arkecosystem/crypto@npm:2.7.1"
   dependencies:
@@ -153,7 +143,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-ark@workspace:packages/platform-sdk-ark"
   dependencies:
-    "@arkecosystem/core-magistrate-crypto": ^2.7
     "@arkecosystem/crypto": ^2.7
     "@arkecosystem/crypto-identities": ^1.1.1
     "@arkecosystem/ledger-transport": ^1.1.3

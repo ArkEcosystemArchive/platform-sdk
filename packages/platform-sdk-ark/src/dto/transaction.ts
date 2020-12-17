@@ -1,7 +1,8 @@
-import { Enums } from "@arkecosystem/core-magistrate-crypto";
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+
+import { EntityAction, EntityType } from "../enums";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
@@ -135,81 +136,75 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isEntityRegistration(): boolean {
-		return (
-			this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === Enums.EntityAction.Register
-		);
+		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === EntityAction.Register;
 	}
 
 	public isEntityResignation(): boolean {
-		return (
-			this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === Enums.EntityAction.Resign
-		);
+		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === EntityAction.Resign;
 	}
 
 	public isEntityUpdate(): boolean {
-		return (
-			this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === Enums.EntityAction.Update
-		);
+		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === EntityAction.Update;
 	}
 
 	public isBusinessEntityRegistration(): boolean {
-		return this.isEntityRegistration() && this.data.asset.type === Enums.EntityType.Business;
+		return this.isEntityRegistration() && this.data.asset.type === EntityType.Business;
 	}
 
 	public isBusinessEntityResignation(): boolean {
-		return this.isEntityResignation() && this.data.asset.type === Enums.EntityType.Business;
+		return this.isEntityResignation() && this.data.asset.type === EntityType.Business;
 	}
 
 	public isBusinessEntityUpdate(): boolean {
-		return this.isEntityUpdate() && this.data.asset.type === Enums.EntityType.Business;
+		return this.isEntityUpdate() && this.data.asset.type === EntityType.Business;
 	}
 
 	public isProductEntityRegistration(): boolean {
-		return this.isEntityRegistration() && this.data.asset.type === Enums.EntityType.Product;
+		return this.isEntityRegistration() && this.data.asset.type === EntityType.Product;
 	}
 
 	public isProductEntityResignation(): boolean {
-		return this.isEntityResignation() && this.data.asset.type === Enums.EntityType.Product;
+		return this.isEntityResignation() && this.data.asset.type === EntityType.Product;
 	}
 
 	public isProductEntityUpdate(): boolean {
-		return this.isEntityUpdate() && this.data.asset.type === Enums.EntityType.Product;
+		return this.isEntityUpdate() && this.data.asset.type === EntityType.Product;
 	}
 
 	public isPluginEntityRegistration(): boolean {
-		return this.isEntityRegistration() && this.data.asset.type === Enums.EntityType.Plugin;
+		return this.isEntityRegistration() && this.data.asset.type === EntityType.Plugin;
 	}
 
 	public isPluginEntityResignation(): boolean {
-		return this.isEntityResignation() && this.data.asset.type === Enums.EntityType.Plugin;
+		return this.isEntityResignation() && this.data.asset.type === EntityType.Plugin;
 	}
 
 	public isPluginEntityUpdate(): boolean {
-		return this.isEntityUpdate() && this.data.asset.type === Enums.EntityType.Plugin;
+		return this.isEntityUpdate() && this.data.asset.type === EntityType.Plugin;
 	}
 
 	public isModuleEntityRegistration(): boolean {
-		return this.isEntityRegistration() && this.data.asset.type === Enums.EntityType.Module;
+		return this.isEntityRegistration() && this.data.asset.type === EntityType.Module;
 	}
 
 	public isModuleEntityResignation(): boolean {
-		return this.isEntityResignation() && this.data.asset.type === Enums.EntityType.Module;
+		return this.isEntityResignation() && this.data.asset.type === EntityType.Module;
 	}
 
 	public isModuleEntityUpdate(): boolean {
-		return this.isEntityUpdate() && this.data.asset.type === Enums.EntityType.Module;
+		return this.isEntityUpdate() && this.data.asset.type === EntityType.Module;
 	}
 
 	public isDelegateEntityRegistration(): boolean {
-		return this.isEntityRegistration() && this.data.asset.type === Enums.EntityType.Delegate;
+		return this.isEntityRegistration() && this.data.asset.type === EntityType.Delegate;
 	}
 
 	public isDelegateEntityResignation(): boolean {
-		return this.isEntityResignation() && this.data.asset.type === Enums.EntityType.Delegate;
+		return this.isEntityResignation() && this.data.asset.type === EntityType.Delegate;
 	}
 
 	public isDelegateEntityUpdate(): boolean {
-		return this.isEntityUpdate() && this.data.asset.type === Enums.EntityType.Delegate;
+		return this.isEntityUpdate() && this.data.asset.type === EntityType.Delegate;
 	}
 
 	public isLegacyBusinessRegistration(): boolean {

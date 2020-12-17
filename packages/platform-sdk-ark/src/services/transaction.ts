@@ -1,8 +1,3 @@
-import {
-	Builders as MagistrateBuilders,
-	Transactions as MagistrateTransactions,
-} from "@arkecosystem/core-magistrate-crypto";
-import { Enums } from "@arkecosystem/core-magistrate-crypto";
 import { Transactions } from "@arkecosystem/crypto";
 import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
@@ -14,8 +9,6 @@ import { SignedTransactionData } from "../dto/signed-transaction";
 import { applyCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
 
-Transactions.TransactionRegistry.registerTransactionType(MagistrateTransactions.EntityTransaction);
-
 const ucfirst = (value: string): string => value?.charAt(0).toUpperCase() + value?.slice(1);
 
 export class TransactionService implements Contracts.TransactionService {
@@ -24,12 +17,6 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #peer: string;
 	readonly #multiSignatureSigner: MultiSignatureSigner;
 	readonly #configCrypto: any;
-
-	readonly #magistrateBuilders = {
-		entityRegistration: MagistrateBuilders.EntityBuilder,
-		entityResignation: MagistrateBuilders.EntityBuilder,
-		entityUpdate: MagistrateBuilders.EntityBuilder,
-	};
 
 	private constructor({ http, identity, peer, multiSignatureSigner, configCrypto }) {
 		this.#http = http;
@@ -177,50 +164,6 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 	}
 
-	public async entityRegistration(
-		input: Contracts.EntityRegistrationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("entityRegistration", input, options, ({ transaction, data }) =>
-			transaction.asset({
-				type: data.type,
-				subType: data.subType,
-				action: Enums.EntityAction.Register,
-				data: { name: data.name, ipfsData: data.ipfs },
-			}),
-		);
-	}
-
-	public async entityResignation(
-		input: Contracts.EntityResignationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("entityResignation", input, options, ({ transaction, data }) => {
-			transaction.asset({
-				type: data.type,
-				subType: data.subType,
-				action: Enums.EntityAction.Resign,
-				registrationId: data.registrationId,
-				data: {},
-			});
-		});
-	}
-
-	public async entityUpdate(
-		input: Contracts.EntityUpdateInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("entityUpdate", input, options, ({ transaction, data }) =>
-			transaction.asset({
-				type: data.type,
-				subType: data.subType,
-				action: Enums.EntityAction.Update,
-				registrationId: data.registrationId,
-				data: { ipfsData: data.ipfs },
-			}),
-		);
-	}
-
 	/**
 	 * This method should be used to split-sign transactions in combination with the MuSig Server.
 	 *
@@ -275,13 +218,7 @@ export class TransactionService implements Contracts.TransactionService {
 				address = await this.#identity.address().fromWIF(input.sign.wif);
 			}
 
-			let transaction;
-
-			if (this.#magistrateBuilders[type]) {
-				transaction = new this.#magistrateBuilders[type]();
-			} else {
-				transaction = Transactions.BuilderFactory[type]().version(2);
-			}
+			const transaction = Transactions.BuilderFactory[type]().version(2);
 
 			if (input.sign.senderPublicKey) {
 				address = await this.#identity.address().fromPublicKey(input.sign.senderPublicKey);

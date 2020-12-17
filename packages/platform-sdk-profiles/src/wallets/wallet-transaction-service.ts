@@ -238,51 +238,6 @@ export class TransactionService {
 	}
 
 	/**
-	 * Sign an entity registration transaction.
-	 *
-	 * @param {Contracts.EntityRegistrationInput} input
-	 * @param {Contracts.TransactionOptions} [options]
-	 * @returns {Promise<string>}
-	 * @memberof TransactionService
-	 */
-	public async signEntityRegistration(
-		input: Contracts.EntityRegistrationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<string> {
-		return this.signTransaction("entityRegistration", input, options);
-	}
-
-	/**
-	 * Sign an entity resignation transaction.
-	 *
-	 * @param {Contracts.EntityResignationInput} input
-	 * @param {Contracts.TransactionOptions} [options]
-	 * @returns {Promise<string>}
-	 * @memberof TransactionService
-	 */
-	public async signEntityResignation(
-		input: Contracts.EntityResignationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<string> {
-		return this.signTransaction("entityResignation", input, options);
-	}
-
-	/**
-	 * Sign an entity update transaction.
-	 *
-	 * @param {Contracts.EntityUpdateInput} input
-	 * @param {Contracts.TransactionOptions} [options]
-	 * @returns {Promise<string>}
-	 * @memberof TransactionService
-	 */
-	public async signEntityUpdate(
-		input: Contracts.EntityUpdateInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<string> {
-		return this.signTransaction("entityUpdate", input, options);
-	}
-
-	/**
 	 * Get the transaction for the given ID if it is exists with any valid state.
 	 *
 	 * @param {string} id

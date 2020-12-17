@@ -254,7 +254,7 @@ it("#fees", async () => {
 	await makeSubject();
 
 	await subject.fees().sync("ARK", "ark.devnet");
-	expect(Object.keys(subject.fees().all("ARK", "ark.devnet"))).toHaveLength(14);
+	expect(Object.keys(subject.fees().all("ARK", "ark.devnet"))).toHaveLength(11);
 });
 
 it("#delegates", async () => {
