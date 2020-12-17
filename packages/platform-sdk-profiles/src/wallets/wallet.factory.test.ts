@@ -12,7 +12,11 @@ import { Profile } from "../profiles/profile";
 import { WalletFactory } from "./wallet.factory";
 import { WalletData } from "./wallet.models";
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	bootContainer();
+
+	nock.disableNetConnect();
+});
 
 beforeEach(async () => {
 	nock.cleanAll();
@@ -29,10 +33,6 @@ beforeEach(async () => {
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
-
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
 });
 
 test("#fromMnemonic", async () => {

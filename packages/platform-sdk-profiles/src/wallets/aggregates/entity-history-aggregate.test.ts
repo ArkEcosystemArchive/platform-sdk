@@ -13,10 +13,13 @@ import { Profile } from "../../profiles/profile";
 import { ProfileSetting } from "../../profiles/profile.models";
 import { Wallet } from "../../wallets/wallet";
 import { EntityHistoryAggregate } from "./entity-history-aggregate";
+import { bootContainer } from "../../../test/helpers";
 
 let subject: EntityHistoryAggregate;
 
 beforeAll(async () => {
+	bootContainer();
+
 	nock.disableNetConnect();
 
 	nock(/.+/)
@@ -40,10 +43,6 @@ beforeAll(async () => {
 		.query(true)
 		.reply(200, require("../../../test/fixtures/client/registrations/business.json"))
 		.persist();
-
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
 
 	const profile = new Profile({ id: "profile-id", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");

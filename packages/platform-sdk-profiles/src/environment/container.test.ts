@@ -25,9 +25,9 @@ it("should bind a value and throw when trying to bind it again", () => {
 it("should forget a value", () => {
 	const container = new Container();
 
-	expect(() => container.forget("key")).toThrow();
+	expect(() => container.unbind("key")).toThrow();
 
 	container.bind("key", "value");
 
-	expect(() => container.forget("key")).not.toThrow();
+	expect(() => container.unbind("key")).not.toThrow();
 });

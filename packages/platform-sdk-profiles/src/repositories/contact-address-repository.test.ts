@@ -35,14 +35,14 @@ beforeEach(async () => {
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
 
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
-
 	subject = new ContactAddressRepository();
 });
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	bootContainer();
+
+	nock.disableNetConnect();
+});
 
 test("#create", async () => {
 	expect(subject.keys()).toHaveLength(0);

@@ -18,7 +18,7 @@ export class Container {
 	}
 
 	public rebind(key: string, value: unknown): void {
-		this.forget(key);
+		this.unbind(key);
 
 		this.bind(key, value);
 	}
@@ -27,7 +27,7 @@ export class Container {
 		return this.#bindings.has(key);
 	}
 
-	public forget(key: string): void {
+	public unbind(key: string): void {
 		if (this.has(key)) {
 			this.#bindings.delete(key);
 

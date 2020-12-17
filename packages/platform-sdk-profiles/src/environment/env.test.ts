@@ -22,10 +22,13 @@ import { Environment } from "./env";
 import { ExchangeRateService } from "./services/exchange-rate-service";
 import { WalletService } from "./services/wallet-service";
 import { MemoryStorage } from "./storage/memory";
+import { bootContainer } from "../../test/helpers";
 
 let subject: Environment;
 
 beforeAll(() => {
+	bootContainer();
+
 	nock.disableNetConnect();
 
 	nock(/.+/)
@@ -74,9 +77,7 @@ beforeAll(() => {
 		})
 		.persist();
 
-	container.bind(Identifiers.Storage, new StubStorage());
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.Coins, { ARK, BTC, ETH });
+	container.unbind(Identifiers.ExchangeRateService);
 });
 
 beforeEach(async () => {
@@ -218,7 +219,7 @@ it("should boot with exchange service data", async () => {
 	await expect(env.verify({ profiles: {}, data: {} })).resolves.toBeUndefined();
 	await expect(env.boot()).resolves.toBeUndefined();
 
-	container.forget(Identifiers.ExchangeRateService);
+	container.unbind(Identifiers.ExchangeRateService);
 });
 
 it("should create preselected storage given storage option as string", async () => {

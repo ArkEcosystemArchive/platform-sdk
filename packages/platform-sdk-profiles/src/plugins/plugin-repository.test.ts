@@ -18,9 +18,7 @@ const stubPlugin = {
 
 let subject: PluginRepository;
 
-beforeAll(() => {
-	container.bind(Identifiers.HttpClient, new Request());
-});
+beforeAll(() => bootContainer());
 
 beforeEach(() => {
 	subject = new PluginRepository();

@@ -23,6 +23,8 @@ let subject: ExchangeRateService;
 let liveSpy: jest.SpyInstance;
 let testSpy: jest.SpyInstance;
 
+beforeAll(() => bootContainer());
+
 beforeEach(async () => {
 	nock.cleanAll();
 
@@ -51,12 +53,8 @@ beforeEach(async () => {
 	const profileRepository = new ProfileRepository();
 	subject = new ExchangeRateService();
 
-	container.bind(Identifiers.Storage, new StubStorage());
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
-	container.bind(Identifiers.ProfileRepository, profileRepository);
-	container.bind(Identifiers.ExchangeRateService, subject);
+	container.rebind(Identifiers.ProfileRepository, profileRepository);
+	container.rebind(Identifiers.ExchangeRateService, subject);
 
 	profile = profileRepository.create("John Doe");
 	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");

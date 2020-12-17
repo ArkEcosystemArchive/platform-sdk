@@ -27,6 +27,8 @@ import { WalletData, WalletSetting } from "./wallet.models";
 let profile: Profile;
 let subject: Wallet;
 
+beforeAll(() => bootContainer());
+
 beforeEach(async () => {
 	nock.cleanAll();
 
@@ -82,13 +84,6 @@ beforeEach(async () => {
 		.query(true)
 		.reply(200, require("../../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
-
-	container.bind(Identifiers.Storage, new StubStorage());
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
-	container.bind(Identifiers.ExchangeRateService, new ExchangeRateService());
-	container.bind(Identifiers.ProfileRepository, new ProfileRepository());
 
 	const profileRepository = container.get<ProfileRepository>(Identifiers.ProfileRepository);
 	profile = profileRepository.create("John Doe");
@@ -265,7 +260,7 @@ it("should respond on whether it is a resigned delegate or not", () => {
 });
 
 it("should respond on whether it is known", () => {
-	container.bind(Identifiers.KnownWalletService, {
+	container.rebind(Identifiers.KnownWalletService, {
 		is: (a, b) => false,
 	});
 
@@ -273,7 +268,7 @@ it("should respond on whether it is known", () => {
 });
 
 it("should respond on whether it is owned by exchange", () => {
-	container.bind(Identifiers.KnownWalletService, {
+	container.rebind(Identifiers.KnownWalletService, {
 		isExchange: (a, b) => false,
 	});
 
@@ -281,7 +276,7 @@ it("should respond on whether it is owned by exchange", () => {
 });
 
 it("should respond on whether it is owned by a team", () => {
-	container.bind(Identifiers.KnownWalletService, {
+	container.rebind(Identifiers.KnownWalletService, {
 		isTeam: (a, b) => false,
 	});
 

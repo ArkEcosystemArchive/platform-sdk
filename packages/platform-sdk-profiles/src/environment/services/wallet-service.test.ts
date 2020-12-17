@@ -21,6 +21,8 @@ let subject: WalletService;
 let liveSpy: jest.SpyInstance;
 let testSpy: jest.SpyInstance;
 
+beforeAll(() => bootContainer());
+
 beforeEach(async () => {
 	nock.cleanAll();
 
@@ -77,10 +79,7 @@ beforeEach(async () => {
 
 	const profileRepository = new ProfileRepository();
 
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
-	container.bind(Identifiers.ProfileRepository, profileRepository);
+	container.rebind(Identifiers.ProfileRepository, profileRepository);
 
 	profile = profileRepository.create("John Doe");
 

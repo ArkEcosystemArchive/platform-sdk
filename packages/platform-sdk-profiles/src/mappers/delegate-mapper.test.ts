@@ -17,6 +17,8 @@ import { DelegateMapper } from "./delegate-mapper";
 let wallet: Wallet;
 
 beforeAll(() => {
+	bootContainer();
+
 	nock.disableNetConnect();
 
 	nock(/.+/)
@@ -38,11 +40,6 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	container.bind(Identifiers.DelegateService, new DelegateService());
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
-
 	wallet = new Wallet(uuidv4(), new Profile({ id: "profile-id", data: "" }));
 
 	await wallet.setCoin("ARK", "ark.devnet");

@@ -14,6 +14,8 @@ let subject: CoinService;
 import NodeFeesFixture from "../../../test/fixtures/client/node-fees.json";
 
 beforeAll(() => {
+	bootContainer();
+
 	nock.disableNetConnect();
 
 	nock(/.+/)
@@ -32,10 +34,6 @@ beforeAll(() => {
 		.query(true)
 		.reply(200, require("../../../test/fixtures/client/transaction-fees.json"))
 		.persist();
-
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
 });
 
 beforeEach(async () => {

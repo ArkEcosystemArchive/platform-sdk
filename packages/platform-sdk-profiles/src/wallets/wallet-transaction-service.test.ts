@@ -19,7 +19,11 @@ let profile: Profile;
 let wallet: Wallet;
 let subject: TransactionService;
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	bootContainer();
+
+	nock.disableNetConnect();
+});
 
 beforeEach(async () => {
 	nock.cleanAll();
@@ -63,10 +67,6 @@ beforeEach(async () => {
 			return { data: response.data[1] };
 		})
 		.persist();
-
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
 
 	profile = new Profile({ id: "profile-id", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");

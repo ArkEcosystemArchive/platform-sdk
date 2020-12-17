@@ -11,10 +11,13 @@ import { CoinService } from "../../environment/services/coin-service";
 import { Profile } from "../../profiles/profile";
 import { Wallet } from "../wallet";
 import { EntityAggregate } from "./entity-aggregate";
+import { bootContainer } from "../../../test/helpers";
 
 let subject: EntityAggregate;
 let profile: Profile;
 let wallet: any;
+
+beforeAll(() => bootContainer());
 
 beforeEach(async () => {
 	nock.disableNetConnect();
@@ -32,9 +35,6 @@ beforeEach(async () => {
 		.reply(200, require("../../../test/fixtures/wallets/D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb.json"))
 		.persist();
 
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
 	profile = new Profile({ id: "uuid", data: "" });
 	const address = "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb";
 

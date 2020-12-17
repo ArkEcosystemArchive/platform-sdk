@@ -11,7 +11,11 @@ import { KnownWalletService } from "./known-wallet-service";
 
 let subject: KnownWalletService;
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	bootContainer();
+
+	nock.disableNetConnect();
+});
 
 beforeEach(async () => {
 	nock.cleanAll();
@@ -53,9 +57,7 @@ beforeEach(async () => {
 
 	const coinService = new CoinService();
 
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, coinService);
-	container.bind(Identifiers.Coins, { ARK });
+	container.rebind(Identifiers.CoinService, coinService);
 
 	await coinService.push("ARK", "ark.devnet");
 

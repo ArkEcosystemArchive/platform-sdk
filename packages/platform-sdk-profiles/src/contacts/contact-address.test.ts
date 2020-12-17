@@ -4,6 +4,7 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
+import { bootContainer } from "../../test/helpers";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
@@ -11,6 +12,8 @@ import { KnownWalletService } from "../environment/services/known-wallet-service
 import { ContactAddress } from "./contact-address";
 
 let subject: ContactAddress;
+
+beforeAll(() => bootContainer());
 
 beforeEach(async () => {
 	nock.cleanAll();
@@ -27,11 +30,6 @@ beforeEach(async () => {
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
-
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.KnownWalletService, new KnownWalletService());
-	container.bind(Identifiers.Coins, { ARK });
 
 	subject = await ContactAddress.make({
 		id: "uuid",

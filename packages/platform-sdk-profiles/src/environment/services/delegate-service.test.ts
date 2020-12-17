@@ -12,6 +12,8 @@ import { DelegateService } from "./delegate-service";
 let subject: DelegateService;
 
 beforeAll(() => {
+    bootContainer();
+
 	nock.disableNetConnect();
 
 	nock(/.+/)
@@ -28,10 +30,6 @@ beforeAll(() => {
 		.get("/api/delegates?page=2")
 		.reply(200, require("../../../test/fixtures/client/delegates-2.json"))
 		.persist();
-
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
 });
 
 beforeEach(async () => {

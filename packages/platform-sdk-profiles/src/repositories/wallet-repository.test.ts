@@ -16,8 +16,11 @@ import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
 import { ReadWriteWallet } from "../wallets/wallet.models";
 import { WalletRepository } from "./wallet-repository";
+import { bootContainer } from "../../test/helpers";
 
 let subject: WalletRepository;
+
+beforeAll(() => bootContainer());
 
 beforeEach(async () => {
 	nock.cleanAll();
@@ -34,10 +37,6 @@ beforeEach(async () => {
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
-
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK, BTC, ETH });
 
 	const profile = new Profile({ id: "profile-id", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");

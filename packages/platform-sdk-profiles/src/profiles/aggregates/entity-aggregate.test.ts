@@ -20,6 +20,8 @@ const entityActionMap = {
 	resignations: "resign",
 };
 
+beforeAll(() => bootContainer());
+
 beforeEach(async () => {
 	nock.disableNetConnect();
 
@@ -35,10 +37,6 @@ beforeEach(async () => {
 		.get("/api/wallets/D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb")
 		.reply(200, require("../../../test/fixtures/wallets/D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb.json"))
 		.persist();
-
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
 
 	profile = new Profile({ id: "uuid", data: "" });
 	const address = "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb";

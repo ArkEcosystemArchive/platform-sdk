@@ -40,6 +40,7 @@ import {
 	TransferData,
 	VoteData,
 } from "./transaction";
+import { bootContainer } from "../../test/helpers";
 
 const createSubject = (wallet, properties, klass) => {
 	let meta: Contracts.TransactionDataMeta = "some meta";
@@ -76,6 +77,8 @@ let liveSpy: jest.SpyInstance;
 let testSpy: jest.SpyInstance;
 
 beforeAll(async () => {
+	bootContainer();
+
 	nock.disableNetConnect();
 
 	nock(/.+/)
@@ -103,12 +106,6 @@ beforeAll(async () => {
 		.query(true)
 		.reply(200, require("../../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
-
-	container.bind(Identifiers.Storage, new StubStorage());
-	container.bind(Identifiers.ExchangeRateService, new ExchangeRateService());
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
 });
 
 beforeEach(async () => {

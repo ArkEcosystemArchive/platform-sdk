@@ -12,10 +12,15 @@ import { CoinService } from "../environment/services/coin-service";
 import { MemoryPassword } from "../helpers/password";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "./profile-repository";
+import { bootContainer } from "../../test/helpers";
 
 let subject: ProfileRepository;
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	bootContainer();
+
+	nock.disableNetConnect();
+});
 
 beforeEach(() => {
 	nock.cleanAll();
@@ -32,10 +37,6 @@ beforeEach(() => {
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
-
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK, BTC, ETH });
 
 	subject = new ProfileRepository();
 });

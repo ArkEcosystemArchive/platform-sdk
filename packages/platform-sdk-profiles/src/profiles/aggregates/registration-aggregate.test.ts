@@ -15,6 +15,8 @@ let subject: RegistrationAggregate;
 let profile: Profile;
 
 beforeAll(() => {
+	bootContainer();
+
 	nock(/.+/)
 		.get("/api/node/configuration/crypto")
 		.reply(200, require("../../../test/fixtures/client/cryptoConfiguration.json"))
@@ -25,10 +27,6 @@ beforeAll(() => {
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../../test/fixtures/client/wallet.json"))
 		.persist();
-
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.CoinService, new CoinService());
-	container.bind(Identifiers.Coins, { ARK });
 });
 
 beforeEach(async () => {
