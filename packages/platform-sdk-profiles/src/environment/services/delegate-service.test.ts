@@ -4,11 +4,11 @@ import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
+import { bootContainer } from "../../../test/helpers";
 import { container } from "../container";
 import { Identifiers } from "../container.models";
 import { CoinService } from "./coin-service";
 import { DelegateService } from "./delegate-service";
-import { bootContainer } from "../../../test/helpers";
 
 let subject: DelegateService;
 

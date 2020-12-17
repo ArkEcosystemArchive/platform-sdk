@@ -6,6 +6,7 @@ import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../test/fixtures/identity";
+import { bootContainer } from "../../test/helpers";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
@@ -14,7 +15,6 @@ import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "./wallet";
 import { WalletData } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
-import { bootContainer } from "../../test/helpers";
 
 let profile: Profile;
 let wallet: Wallet;
