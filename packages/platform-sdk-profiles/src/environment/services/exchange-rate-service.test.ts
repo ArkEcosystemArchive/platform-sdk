@@ -6,6 +6,7 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import nock from "nock";
 
 import { identity } from "../../../test/fixtures/identity";
+import { bootContainer } from "../../../test/helpers";
 import { StubStorage } from "../../../test/stubs/storage";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
@@ -15,7 +16,6 @@ import { ProfileRepository } from "../../repositories/profile-repository";
 import { ReadWriteWallet, WalletData } from "../../wallets/wallet.models";
 import { CoinService } from "./coin-service";
 import { ExchangeRateService } from "./exchange-rate-service";
-import { bootContainer } from "../../../test/helpers";
 
 let profile: Profile;
 let wallet: ReadWriteWallet;

@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
 
 import { identity } from "../../test/fixtures/identity";
+import { bootContainer } from "../../test/helpers";
 import { StubStorage } from "../../test/stubs/storage";
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { container } from "../environment/container";
@@ -23,7 +24,6 @@ import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
 import { WalletData, WalletSetting } from "./wallet.models";
-import { bootContainer } from "../../test/helpers";
 
 let profile: Profile;
 let subject: Wallet;

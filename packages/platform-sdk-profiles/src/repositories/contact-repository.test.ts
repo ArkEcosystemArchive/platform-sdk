@@ -5,13 +5,13 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
 import { identity } from "../../test/fixtures/identity";
+import { bootContainer } from "../../test/helpers";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
 import { ContactRepository } from "./contact-repository";
-import { bootContainer } from "../../test/helpers";
 
 let subject: ContactRepository;
 

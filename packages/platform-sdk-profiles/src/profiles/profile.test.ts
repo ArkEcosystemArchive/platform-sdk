@@ -6,6 +6,7 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
+import { bootContainer } from "../../test/helpers";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { CoinService } from "../environment/services/coin-service";
@@ -23,7 +24,6 @@ import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 import { ProfileSetting } from "./profile.models";
-import { bootContainer } from "../../test/helpers";
 
 let subject: Profile;
 
