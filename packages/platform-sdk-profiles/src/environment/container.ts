@@ -9,8 +9,18 @@ export class Container {
 		throw new Error(`No matching bindings found for [${key}].`);
 	}
 
-	public set(key: string, value: unknown): void {
+	public bind(key: string, value: unknown): void {
+		if (this.has(key)) {
+			throw new Error(`Binding with name [${key}] already exists. Call [rebind] to replace it.`);
+		}
+
 		this.#bindings.set(key, value);
+	}
+
+	public rebind(key: string, value: unknown): void {
+		this.forget(key);
+
+		this.bind(key, value);
 	}
 
 	public has(key: string): boolean {
@@ -18,7 +28,13 @@ export class Container {
 	}
 
 	public forget(key: string): void {
-		this.#bindings.delete(key);
+		if (this.has(key)) {
+			this.#bindings.delete(key);
+
+			return;
+		}
+
+		throw new Error(`No matching bindings found for [${key}].`);
 	}
 }
 

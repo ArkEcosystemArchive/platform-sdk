@@ -14,8 +14,8 @@ import { Profile } from "../src/profiles/profile";
 import { Wallet } from "../src/wallets/wallet";
 
 export const bootContainer = (): void => {
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.Coins, { ARK, BTC, ETH });
+	container.bind(Identifiers.HttpClient, new Request());
+	container.bind(Identifiers.Coins, { ARK, BTC, ETH });
 };
 
 export const makeProfile = (data: object = {}): Profile => new Profile({ id: "uuid", data: "", ...data });

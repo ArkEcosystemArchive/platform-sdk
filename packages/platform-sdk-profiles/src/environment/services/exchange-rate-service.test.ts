@@ -51,12 +51,12 @@ beforeEach(async () => {
 	const profileRepository = new ProfileRepository();
 	subject = new ExchangeRateService();
 
-	container.set(Identifiers.Storage, new StubStorage());
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
-	container.set(Identifiers.ProfileRepository, profileRepository);
-	container.set(Identifiers.ExchangeRateService, subject);
+	container.bind(Identifiers.Storage, new StubStorage());
+	container.bind(Identifiers.HttpClient, new Request());
+	container.bind(Identifiers.CoinService, new CoinService());
+	container.bind(Identifiers.Coins, { ARK });
+	container.bind(Identifiers.ProfileRepository, profileRepository);
+	container.bind(Identifiers.ExchangeRateService, subject);
 
 	profile = profileRepository.create("John Doe");
 	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");

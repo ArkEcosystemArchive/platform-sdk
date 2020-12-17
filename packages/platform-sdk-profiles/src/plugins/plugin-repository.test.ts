@@ -19,7 +19,7 @@ const stubPlugin = {
 let subject: PluginRepository;
 
 beforeAll(() => {
-	container.set(Identifiers.HttpClient, new Request());
+	container.bind(Identifiers.HttpClient, new Request());
 });
 
 beforeEach(() => {

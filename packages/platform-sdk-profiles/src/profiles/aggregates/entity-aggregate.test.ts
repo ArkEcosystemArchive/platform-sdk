@@ -36,9 +36,9 @@ beforeEach(async () => {
 		.reply(200, require("../../../test/fixtures/wallets/D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb.json"))
 		.persist();
 
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
+	container.bind(Identifiers.HttpClient, new Request());
+	container.bind(Identifiers.CoinService, new CoinService());
+	container.bind(Identifiers.Coins, { ARK });
 
 	profile = new Profile({ id: "uuid", data: "" });
 	const address = "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb";

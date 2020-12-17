@@ -33,9 +33,9 @@ beforeEach(() => {
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
 
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK, BTC, ETH });
+	container.bind(Identifiers.HttpClient, new Request());
+	container.bind(Identifiers.CoinService, new CoinService());
+	container.bind(Identifiers.Coins, { ARK, BTC, ETH });
 
 	subject = new ProfileRepository();
 });

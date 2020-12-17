@@ -77,10 +77,10 @@ beforeEach(async () => {
 
 	const profileRepository = new ProfileRepository();
 
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
-	container.set(Identifiers.ProfileRepository, profileRepository);
+	container.bind(Identifiers.HttpClient, new Request());
+	container.bind(Identifiers.CoinService, new CoinService());
+	container.bind(Identifiers.Coins, { ARK });
+	container.bind(Identifiers.ProfileRepository, profileRepository);
 
 	profile = profileRepository.create("John Doe");
 

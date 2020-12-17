@@ -32,9 +32,9 @@ beforeAll(() => {
 		.reply(200, require("../../../test/fixtures/client/transaction-fees.json"))
 		.persist();
 
-	container.set(Identifiers.HttpClient, new Request());
-	container.set(Identifiers.CoinService, new CoinService());
-	container.set(Identifiers.Coins, { ARK });
+	container.bind(Identifiers.HttpClient, new Request());
+	container.bind(Identifiers.CoinService, new CoinService());
+	container.bind(Identifiers.Coins, { ARK });
 });
 
 beforeEach(async () => {
