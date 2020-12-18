@@ -71,7 +71,11 @@ export class URI {
 				method = "transfer";
 			}
 
-			const result = Joi.object(this.getSchema(method)).validate({ method, ...params });
+			const { error, value: result } = Joi.object(this.getSchema(method)).validate({ method, ...params });
+
+			if (error !== undefined) {
+				throw error;
+			}
 
 			for (const [key, value] of Object.entries(result)) {
 				result[key] = this.decodeURIComponent(value);
@@ -124,6 +128,7 @@ export class URI {
 
 		if (method === "sign-message") {
 			return {
+				...baseSchema,
 				message: Joi.string().required(),
 			};
 		}
@@ -141,6 +146,8 @@ export class URI {
 			amount: Joi.number(),
 			memo: Joi.string(),
 			vendorField: Joi.string(), // Legacy memo, not an ARK agnostic name
+			label: Joi.string(), // ???
+			relay: Joi.string(), // ???
 		};
 	}
 }

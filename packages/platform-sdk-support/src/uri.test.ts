@@ -49,7 +49,7 @@ describe("URI", () => {
 				"ark:transfer?coin=ark&network=ark.mainnet&recipient=DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9&amount=ARK&memo=ARK",
 			),
 		).toThrowError(
-			'The given data is malformed: ValidationError: amount must be a `number` type, but the final value was: `NaN` (cast from the value `"ARK"`).',
+			'The given data is malformed: ValidationError: \"amount\" must be a number',
 		);
 	});
 });
