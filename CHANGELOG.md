@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.1.7 - 2020-12-18
+
+### Changed
+
+-   Throw if an unknown binding is retrieved from the container (e103d123, @faustbrian)
+-   Throw if known bindings are tried to be overwritten without explicit consent (a55381aa, @faustbrian)
+-   Remove entity transaction signing (17479a42, @faustbrian)
+-   Export `Migrator` (b29900e4, @goga-m)
+
 ## 2.1.3 - 2020-12-16
 
 ### Fixed
