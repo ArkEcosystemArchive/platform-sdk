@@ -23,8 +23,7 @@
 		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@ledgerhq/hw-app-trx": "^5.29.0",
-		"tronweb": "^3.1.0",
-		"yup": "^0.29.3"
+		"tronweb": "^3.1.0"
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.29.0",

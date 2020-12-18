@@ -12,8 +12,8 @@ beforeEach(
 			{
 				network: "ark.mainnet",
 			},
-			ValidatorSchema.object().shape({
-				network: ValidatorSchema.string().oneOf(["ark.mainnet", "ark.devnet"]),
+			ValidatorSchema.object({
+				network: ValidatorSchema.string().allow("ark.mainnet", "ark.devnet"),
 			}),
 		)),
 );
@@ -25,8 +25,8 @@ test("#constructor", () => {
 				{
 					network: "invalid",
 				},
-				ValidatorSchema.object().shape({
-					network: ValidatorSchema.string().oneOf(["ark.mainnet", "ark.devnet"]),
+				ValidatorSchema.object({
+					network: ValidatorSchema.string().allow("ark.mainnet", "ark.devnet"),
 				}),
 			),
 	).toThrow(

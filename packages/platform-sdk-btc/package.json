@@ -25,8 +25,7 @@
 		"@ledgerhq/hw-app-btc": "^5.29.0",
 		"bignumber.js": "^9.0.1",
 		"bitcoinjs-lib": "^5.2.0",
-		"bitcore-lib": "^8.23.1",
-		"yup": "^0.29.3"
+		"bitcore-lib": "^8.23.1"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",

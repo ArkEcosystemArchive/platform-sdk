@@ -1,19 +1,16 @@
-// @ts-ignore - Cannot find module 'yup' or its corresponding type declarations.
-import { ValidationError } from "yup";
+import Joi from "joi";
 
-export * as ValidatorSchema from "yup";
+export const ValidatorSchema = Joi;
 
 export class Validator {
-	#error: ValidationError | undefined;
+	#error: Joi.ValidationError | undefined;
 
-	public validate(data: object, schema: { validateSync: Function }, validationOptions?: object): any {
-		this.#error = undefined;
+	public validate(data: object, schema: Joi.Schema): any {
+		const { error, value } = schema.validate(data);
 
-		try {
-			return schema.validateSync(data, validationOptions);
-		} catch (error) {
-			this.#error = error;
-		}
+		this.#error = error;
+
+		return value;
 	}
 
 	public passes(): boolean {
@@ -25,10 +22,10 @@ export class Validator {
 	}
 
 	public errors(): string[] | undefined {
-		return this.#error?.errors;
+		return this.#error?.details.map((error: Joi.ValidationErrorItem) => error.message);
 	}
 
-	public error(): ValidationError | undefined {
+	public error(): Joi.ValidationError | undefined {
 		return this.#error;
 	}
 }

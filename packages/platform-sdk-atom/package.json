@@ -25,8 +25,7 @@
 		"bcrypto": "^5.3.0",
 		"bech32": "^1.1.4",
 		"ledger-cosmos-js": "^2.1.8",
-		"uuid": "^8.3.1",
-		"yup": "^0.29.3"
+		"uuid": "^8.3.1"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",

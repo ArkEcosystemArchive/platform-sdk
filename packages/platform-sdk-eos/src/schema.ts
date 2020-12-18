@@ -1,7 +1,7 @@
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
-export const schema = ValidatorSchema.object().shape({
-	network: ValidatorSchema.string().oneOf([
+export const schema = ValidatorSchema.object({
+	network: ValidatorSchema.string().allow(
 		"eos.mainnet",
 		"eos.testnet",
 		"telos.mainnet",
@@ -11,14 +11,13 @@ export const schema = ValidatorSchema.object().shape({
 		"worbli.testnet",
 		"meetone.mainnet",
 		"bos.mainnet",
-	]),
-	peer: ValidatorSchema.string().url().notRequired(),
-	peerMultiSignature: ValidatorSchema.string().url().notRequired(),
+	),
+	peer: ValidatorSchema.string().uri(),
+	peerMultiSignature: ValidatorSchema.string().uri(),
 	httpClient: ValidatorSchema.object(),
-	services: ValidatorSchema.object()
-		.shape({
-			ledger: ValidatorSchema.object().shape({
-				transport: ValidatorSchema.mixed().notRequired(),
+	services: ValidatorSchema.object({
+			ledger: ValidatorSchema.object({
+				transport: ValidatorSchema.any(),
 			}),
 		})
 		.default(undefined),

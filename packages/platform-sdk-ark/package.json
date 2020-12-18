@@ -31,8 +31,7 @@
 		"lodash.orderby": "^4.6.0",
 		"node-dotify": "^1.0.2",
 		"semver": "^7.3.2",
-		"uuid": "^8.3.1",
-		"yup": "^0.29.3"
+		"uuid": "^8.3.1"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",

@@ -26,8 +26,7 @@
 		"bip39": "^3.0.3",
 		"ethereumjs-tx": "^2.1.2",
 		"ethereumjs-wallet": "^1.0.1",
-		"web3": "^1.3.0",
-		"yup": "^0.29.3"
+		"web3": "^1.3.0"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",

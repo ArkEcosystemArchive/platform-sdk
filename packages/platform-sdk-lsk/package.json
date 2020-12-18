@@ -27,8 +27,7 @@
 		"@liskhq/lisk-cryptography": "^2.5",
 		"@liskhq/lisk-transactions": "^2.0",
 		"@liskhq/lisk-transactions-new": "npm:@liskhq/lisk-transactions@=3.0.0",
-		"dpos-ledger-api": "^3.0.1",
-		"yup": "^0.29.3"
+		"dpos-ledger-api": "^3.0.1"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
