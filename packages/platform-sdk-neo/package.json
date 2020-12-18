@@ -23,8 +23,7 @@
 		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@cityofzion/neon-js": "^4.8.2",
-		"uuid": "^8.3.1",
-		"yup": "^0.29.3"
+		"uuid": "^8.3.1"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",

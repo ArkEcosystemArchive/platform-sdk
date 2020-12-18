@@ -28,9 +28,9 @@
 		"censorify-it": "^3.0.2",
 		"dayjs": "^1.9",
 		"dot-prop": "^6.0.0",
+		"joi": "^17.3.0",
 		"node-emoji": "^1.10.0",
-		"type-fest": "^0.18.1",
-		"yup": "^0.29.3"
+		"type-fest": "^0.18.1"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-ark": "workspace:packages/platform-sdk-ark",

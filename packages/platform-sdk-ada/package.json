@@ -21,8 +21,7 @@
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"cardano-crypto.js": "^6.0.0",
-		"yup": "^0.29.3"
+		"cardano-crypto.js": "^6.0.0"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",

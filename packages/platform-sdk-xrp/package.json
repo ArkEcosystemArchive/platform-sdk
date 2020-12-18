@@ -25,8 +25,7 @@
 		"@ledgerhq/hw-app-xrp": "^5.29.0",
 		"bignumber.js": "^9.0.1",
 		"ripple-keypairs": "^1.0.2",
-		"ripple-lib": "^1.8.2",
-		"yup": "^0.29.3"
+		"ripple-lib": "^1.8.2"
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.29.0",

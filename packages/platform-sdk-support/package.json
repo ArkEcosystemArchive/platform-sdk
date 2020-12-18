@@ -25,8 +25,7 @@
 		"front-matter": "^4.0.2",
 		"joi": "^17.3.0",
 		"qrcode": "^1.4.4",
-		"remarkable": "^2.0.1",
-		"yup": "^0.29.3"
+		"remarkable": "^2.0.1"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",

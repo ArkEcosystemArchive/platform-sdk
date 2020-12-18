@@ -1,5 +1,5 @@
+import Joi from "joi";
 import querystring from "querystring";
-import { number, object, string } from "yup";
 
 /**
  * An AIP13/26 compliant serialiser and deserialiser.
@@ -71,9 +71,11 @@ export class URI {
 				method = "transfer";
 			}
 
-			const result = object()
-				.shape(this.getSchema(method))
-				.validateSync({ method, ...params });
+			const { error, value: result } = Joi.object(this.getSchema(method)).validate({ method, ...params });
+
+			if (error !== undefined) {
+				throw error;
+			}
 
 			for (const [key, value] of Object.entries(result)) {
 				result[key] = this.decodeURIComponent(value);
@@ -111,38 +113,41 @@ export class URI {
 	 */
 	private getSchema(method: string): object {
 		const baseSchema = {
-			method: string().matches(/(transfer|vote|sign-message|register-delegate)/),
-			coin: string().default("ark"),
-			network: string().default("ark.mainnet"),
-			fee: number(),
+			method: Joi.string().pattern(/(transfer|vote|sign-message|register-delegate)/),
+			coin: Joi.string().default("ark"),
+			network: Joi.string().default("ark.mainnet"),
+			fee: Joi.number(),
 		};
 
 		if (method === "vote") {
 			return {
 				...baseSchema,
-				delegate: string().required(),
+				delegate: Joi.string().required(),
 			};
 		}
 
 		if (method === "sign-message") {
 			return {
-				message: string().required(),
+				...baseSchema,
+				message: Joi.string().required(),
 			};
 		}
 
 		if (method === "register-delegate") {
 			return {
 				...baseSchema,
-				delegate: string().required(),
+				delegate: Joi.string().required(),
 			};
 		}
 
 		return {
 			...baseSchema,
-			recipient: string().required(),
-			amount: number(),
-			memo: string(),
-			vendorField: string(), // Legacy memo, not an ARK agnostic name
+			recipient: Joi.string().required(),
+			amount: Joi.number(),
+			memo: Joi.string(),
+			vendorField: Joi.string(), // Legacy memo, not an ARK agnostic name
+			label: Joi.string(), // ???
+			relay: Joi.string(), // ???
 		};
 	}
 }

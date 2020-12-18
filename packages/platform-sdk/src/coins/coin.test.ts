@@ -42,8 +42,8 @@ beforeEach(
 			// @ts-ignore
 			config: new Config(
 				{ network: "ark.mainnet" },
-				ValidatorSchema.object().shape({
-					network: ValidatorSchema.string().oneOf(["ark.mainnet", "ark.devnet"]),
+				ValidatorSchema.object({
+					network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet"),
 				}),
 			),
 			// @ts-ignore

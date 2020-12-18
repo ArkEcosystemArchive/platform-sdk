@@ -1,8 +1,8 @@
 import "jest-extended";
 
-import { ValidationError } from "yup";
+import Joi from "joi";
 
-import { Validator, ValidatorSchema } from "./validator";
+import { Validator } from "./validator";
 
 let subject: Validator;
 beforeEach(() => (subject = new Validator()));
@@ -13,9 +13,9 @@ test("#validate", () => {
 			name: "jimmy",
 			age: "24",
 		},
-		ValidatorSchema.object().shape({
-			name: ValidatorSchema.string().required(),
-			age: ValidatorSchema.number().required().positive().integer(),
+		Joi.object({
+			name: Joi.string().required(),
+			age: Joi.number().required().positive().integer(),
 		}),
 	);
 
@@ -28,9 +28,9 @@ test("#passes", () => {
 			name: "jimmy",
 			age: 24,
 		},
-		ValidatorSchema.object().shape({
-			name: ValidatorSchema.string().required(),
-			age: ValidatorSchema.number().required().positive().integer(),
+		Joi.object({
+			name: Joi.string().required(),
+			age: Joi.number().required().positive().integer(),
 		}),
 	);
 
@@ -41,9 +41,9 @@ test("#passes", () => {
 			name: "jimmy",
 			age: "invalid number",
 		},
-		ValidatorSchema.object().shape({
-			name: ValidatorSchema.string().required(),
-			age: ValidatorSchema.number().required().positive().integer(),
+		Joi.object({
+			name: Joi.string().required(),
+			age: Joi.number().required().positive().integer(),
 		}),
 	);
 
@@ -56,9 +56,9 @@ test("#fails", () => {
 			name: "jimmy",
 			age: "invalid number",
 		},
-		ValidatorSchema.object().shape({
-			name: ValidatorSchema.string().required(),
-			age: ValidatorSchema.number().required().positive().integer(),
+		Joi.object({
+			name: Joi.string().required(),
+			age: Joi.number().required().positive().integer(),
 		}),
 	);
 
@@ -69,9 +69,9 @@ test("#fails", () => {
 			name: "jimmy",
 			age: 24,
 		},
-		ValidatorSchema.object().shape({
-			name: ValidatorSchema.string().required(),
-			age: ValidatorSchema.number().required().positive().integer(),
+		Joi.object({
+			name: Joi.string().required(),
+			age: Joi.number().required().positive().integer(),
 		}),
 	);
 
@@ -86,9 +86,9 @@ test("#errors", () => {
 			name: "jimmy",
 			age: "invalid number",
 		},
-		ValidatorSchema.object().shape({
-			name: ValidatorSchema.string().required(),
-			age: ValidatorSchema.number().required().positive().integer(),
+		Joi.object({
+			name: Joi.string().required(),
+			age: Joi.number().positive().integer().required(),
 		}),
 	);
 
@@ -101,11 +101,11 @@ test("#error", () => {
 			name: "jimmy",
 			age: "invalid number",
 		},
-		ValidatorSchema.object().shape({
-			name: ValidatorSchema.string().required(),
-			age: ValidatorSchema.number().required().positive().integer(),
+		Joi.object({
+			name: Joi.string().required(),
+			age: Joi.number().required().positive().integer(),
 		}),
 	);
 
-	expect(subject.error()).toBeInstanceOf(ValidationError);
+	expect(subject.error()).toBeInstanceOf(Joi.ValidationError);
 });

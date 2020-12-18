@@ -1,14 +1,12 @@
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
-export const schema = ValidatorSchema.object().shape({
-	network: ValidatorSchema.string().oneOf(["xrp.mainnet", "xrp.testnet"]),
-	peer: ValidatorSchema.string().notRequired(),
+export const schema: any = ValidatorSchema.object({
+	network: ValidatorSchema.string().valid("xrp.mainnet", "xrp.testnet"),
+	peer: ValidatorSchema.string(),
 	httpClient: ValidatorSchema.object(),
-	services: ValidatorSchema.object()
-		.shape({
-			ledger: ValidatorSchema.object().shape({
-				transport: ValidatorSchema.mixed().notRequired(),
-			}),
-		})
-		.default(undefined),
+	services: ValidatorSchema.object({
+		ledger: ValidatorSchema.object({
+			transport: ValidatorSchema.any(),
+		}),
+	}).default(undefined),
 });
