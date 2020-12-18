@@ -1,10 +1,36 @@
 import Joi from "joi";
 import querystring from "querystring";
 
+/**
+ * An AIP13/26 compliant serialiser and deserialiser.
+ *
+ * @export
+ * @class URI
+ */
 export class URI {
+	/**
+	 * The pattern that represents a valid URI according to AIP13/26.
+	 *
+	 * @type {RegExp}
+	 * @memberof URI
+	 */
 	readonly #pattern: RegExp = new RegExp(/^(?:ark:)([-0-9a-zA-Z]{1,34})([-a-zA-Z0-9+&@#/%=~_|$?!:,.]*)$/);
+
+	/**
+	 * The methods that represent valid actions to be performed through an URI.
+	 *
+	 * @type {string[]}
+	 * @memberof URI
+	 */
 	readonly #methods: string[] = ["transfer", "vote", "sign-message", "register-delegate"];
 
+	/**
+	 * Creates an URI from the given input.
+	 *
+	 * @param {Record<string, string>} input
+	 * @returns {string}
+	 * @memberof URI
+	 */
 	public serialize(input: Record<string, string>): string {
 		const method: string = input.method;
 
@@ -13,6 +39,19 @@ export class URI {
 		return `ark:${method}?${querystring.stringify(input)}`;
 	}
 
+	/**
+	 * Parses the given value according to AIP13/26 specifications and throws
+	 * if it encounters any data or formats that are not known according to
+	 * specifications.
+	 *
+	 * These should throw an error because we don't want to pass on data to
+	 * the end-user that is unknown and could cause harm to the user and/or
+	 * application which would be unable to handle the deserialised content.
+	 *
+	 * @param {string} data
+	 * @returns {*}
+	 * @memberof URI
+	 */
 	public deserialize(data: string): any {
 		const parsed: RegExpExecArray | null = this.#pattern.exec(data);
 
@@ -44,6 +83,14 @@ export class URI {
 		}
 	}
 
+	/**
+	 * Decodes the value until it no longer contains encoded segments.
+	 *
+	 * @private
+	 * @param {*} value
+	 * @returns {string}
+	 * @memberof URI
+	 */
 	private decodeURIComponent(value): string {
 		while (value !== decodeURIComponent(value)) {
 			value = decodeURIComponent(value);
@@ -52,6 +99,14 @@ export class URI {
 		return value;
 	}
 
+	/**
+	 * Get the schema that should be used to validate the deserialised data.
+	 *
+	 * @private
+	 * @param {string} method
+	 * @returns {object}
+	 * @memberof URI
+	 */
 	private getSchema(method: string): object {
 		const baseSchema = {
 			method: Joi.string().pattern(/(transfer|vote|sign-message|register-delegate)/),

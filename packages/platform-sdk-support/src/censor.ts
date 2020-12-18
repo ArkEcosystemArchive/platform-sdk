@@ -1,10 +1,31 @@
 import BadWords from "bad-words";
 import Censorify from "censorify-it";
 
+/**
+ * A helper to determine if a value contains any censorship-worthy
+ * terminology which should be removed to protect the user against
+ * potential harm by clicking links that they should not be clicking.
+ *
+ * @export
+ * @class Censor
+ */
 export class Censor {
+	/**
+	 * A list of blacklisted terms that should not be contained within any given value.
+	 *
+	 * @private
+	 * @memberof Censor
+	 */
 	private readonly blacklist = ["onion"];
 
-	// Taken from https://github.com/boutetnico/url-shorteners/blob/master/list.txt
+	/**
+	 * A list of short URL services that should not be contained within any given value.
+	 *
+	 * Taken from https://github.com/boutetnico/url-shorteners/blob/master/list.txt
+	 *
+	 * @private
+	 * @memberof Censor
+	 */
 	private readonly shortUrls = [
 		"0rz.tw",
 		"1-url.net",
@@ -645,6 +666,14 @@ export class Censor {
 		"zzb.bz",
 	];
 
+	/**
+	 * Determines if the given value contains bad terminology which would indicate
+	 * the need for further investigation, processing and eventual censorship.
+	 *
+	 * @param {string} value
+	 * @returns {boolean}
+	 * @memberof Censor
+	 */
 	public isBad(value: string): boolean {
 		if (!value || !value.length) {
 			return false;
@@ -664,6 +693,13 @@ export class Censor {
 		return false;
 	}
 
+	/**
+	 * Remove spam and bad terminology from the given value.
+	 *
+	 * @param {string} value
+	 * @returns {string}
+	 * @memberof Censor
+	 */
 	public process(value: string): string {
 		if (value) {
 			value = this.removeSpam(value);
@@ -673,6 +709,14 @@ export class Censor {
 		return value;
 	}
 
+	/**
+	 * Remove any bad terminology from the given value.
+	 *
+	 * @private
+	 * @param {string} value
+	 * @returns {string}
+	 * @memberof Censor
+	 */
 	private removeBadWords(value: string): string {
 		const badwords = new BadWords();
 		badwords.addWords("pedo", "pedophile");
@@ -680,6 +724,14 @@ export class Censor {
 		return badwords.clean(value);
 	}
 
+	/**
+	 * Remove any spam terminology from the given value.
+	 *
+	 * @private
+	 * @param {string} value
+	 * @returns {string}
+	 * @memberof Censor
+	 */
 	private removeSpam(value: string): string {
 		return new Censorify().process(value);
 	}
