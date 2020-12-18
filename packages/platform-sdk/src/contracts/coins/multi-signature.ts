@@ -104,7 +104,7 @@ export interface MultiSignatureService {
 	getValidMultiSignatures(transaction: SignedTransactionData): string[];
 
 	/**
-	 *
+	 * Determine how many signatures are missing.
 	 *
 	 * @param {SignedTransactionData} transaction
 	 * @returns {number}
