@@ -33,3 +33,7 @@ describe.each(["utf8", "svg", "terminal"])("%s", (type) => {
 		await expect(QRCode.fromString("https://google.com").toString(type as any)).resolves.toMatchSnapshot();
 	});
 });
+
+it("should turn into a utf-8 string if no argument is given", async () => {
+	await expect(QRCode.fromString("https://google.com").toString()).resolves.toMatchSnapshot();
+});
