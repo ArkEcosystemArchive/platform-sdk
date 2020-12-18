@@ -102,7 +102,7 @@ export class URI {
 	}
 
 	/**
-	 * Get the schema that should be used to validate the the deserialised data.
+	 * Get the schema that should be used to validate the deserialised data.
 	 *
 	 * @private
 	 * @param {string} method
