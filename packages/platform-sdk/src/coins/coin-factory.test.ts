@@ -26,11 +26,10 @@ test("#make", async () => {
 					peerMultiSignature: ValidatorSchema.string().uri(),
 					httpClient: ValidatorSchema.object(),
 					services: ValidatorSchema.object({
-							ledger: ValidatorSchema.object({
-								transport: ValidatorSchema.any(),
-							}),
-						})
-						.default(undefined),
+						ledger: ValidatorSchema.object({
+							transport: ValidatorSchema.any(),
+						}),
+					}).default(undefined),
 				}),
 				ServiceProvider: {
 					make: jest.fn(),
