@@ -1,11 +1,12 @@
 import { get, has, set } from "dot-prop";
+import { Schema } from "Joi";
 
 export class Config {
 	readonly #config: Record<string, any>;
 
-	public constructor(config: object, schema: { validateSync: Function }) {
+	public constructor(config: object, schema: Schema) {
 		try {
-			this.#config = schema.validateSync(config);
+			this.#config = schema.validate(config);
 		} catch (error) {
 			throw new Error(`Failed to validate the configuration: ${error}`);
 		}
