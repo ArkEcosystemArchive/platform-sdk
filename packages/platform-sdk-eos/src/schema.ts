@@ -1,7 +1,7 @@
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
 export const schema: any = ValidatorSchema.object({
-	network: ValidatorSchema.string().allow(
+	network: ValidatorSchema.string().valid(
 		"eos.mainnet",
 		"eos.testnet",
 		"telos.mainnet",

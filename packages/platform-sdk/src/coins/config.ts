@@ -1,5 +1,5 @@
 import { get, has, set } from "dot-prop";
-import { Schema } from "joi";
+import Joi, { Schema } from "joi";
 
 export class Config {
 	readonly #config: Record<string, any>;
@@ -7,7 +7,7 @@ export class Config {
 	public constructor(config: object, schema: Schema) {
 		const { error, value } = schema.validate(config);
 
-		if (error) {
+		if (error !== undefined) {
 			throw new Error(`Failed to validate the configuration: ${error.message}`);
 		}
 

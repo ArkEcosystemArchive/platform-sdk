@@ -16,7 +16,7 @@ test("#make", async () => {
 					},
 				},
 				schema: ValidatorSchema.object({
-					network: ValidatorSchema.string().allow(
+					network: ValidatorSchema.string().valid(
 						"ark.mainnet",
 						"ark.devnet",
 						"compendia.mainnet",

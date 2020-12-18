@@ -1,7 +1,7 @@
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
 export const schema: any = ValidatorSchema.object({
-	network: ValidatorSchema.string().allow("ark.mainnet", "ark.devnet", "compendia.mainnet", "compendia.testnet"),
+	network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet", "compendia.mainnet", "compendia.testnet"),
 	peer: ValidatorSchema.string().uri(),
 	peerMultiSignature: ValidatorSchema.string().uri(),
 	httpClient: ValidatorSchema.object(),

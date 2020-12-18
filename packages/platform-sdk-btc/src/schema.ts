@@ -1,7 +1,7 @@
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
 export const schema: any = ValidatorSchema.object({
-	network: ValidatorSchema.string().allow("btc.livenet", "btc.testnet"),
+	network: ValidatorSchema.string().valid("btc.livenet", "btc.testnet"),
 	peer: ValidatorSchema.string().uri(),
 	peerMultiSignature: ValidatorSchema.string().uri(),
 	httpClient: ValidatorSchema.object(),

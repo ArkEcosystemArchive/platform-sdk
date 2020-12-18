@@ -13,7 +13,7 @@ beforeEach(
 				network: "ark.mainnet",
 			},
 			ValidatorSchema.object({
-				network: ValidatorSchema.string().allow("ark.mainnet", "ark.devnet"),
+				network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet").required(),
 			}),
 		)),
 );
@@ -26,12 +26,10 @@ test("#constructor", () => {
 					network: "invalid",
 				},
 				ValidatorSchema.object({
-					network: ValidatorSchema.string().allow("ark.mainnet", "ark.devnet"),
+					network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet").required(),
 				}),
 			),
-	).toThrow(
-		"Failed to validate the configuration: ValidationError: network must be one of the following values: ark.mainnet, ark.devnet",
-	);
+	).toThrow('Failed to validate the configuration: "network" must be one of [ark.mainnet, ark.devnet]');
 });
 
 test("#all", () => {
