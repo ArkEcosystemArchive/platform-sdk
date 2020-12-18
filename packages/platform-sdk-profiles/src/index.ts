@@ -21,6 +21,7 @@ export * from "./profiles/aggregates/entity-aggregate";
 export * from "./profiles/aggregates/transaction-aggregate";
 export * from "./profiles/aggregates/wallet-aggregate";
 export * from "./profiles/authenticator";
+export * from "./profiles/migrator";
 export * from "./profiles/profile.models";
 export * from "./profiles/profile";
 
