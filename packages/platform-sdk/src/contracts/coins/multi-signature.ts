@@ -48,7 +48,7 @@ export interface MultiSignatureService {
 	broadcast(transaction: MultiSignatureTransaction): Promise<string>;
 
 	/**
-	 *
+	 * Determine if the multi-signature is ready to be broadcasting.
 	 *
 	 * @param {SignedTransactionData} transaction
 	 * @param {boolean} [excludeFinal]
@@ -58,7 +58,7 @@ export interface MultiSignatureService {
 	isMultiSignatureReady(transaction: SignedTransactionData, excludeFinal?: boolean): boolean;
 
 	/**
-	 *
+	 * Determine if the transaction is missing any signatures.
 	 *
 	 * @param {SignedTransactionData} transaction
 	 * @returns {boolean}
@@ -67,7 +67,7 @@ export interface MultiSignatureService {
 	needsSignatures(transaction: SignedTransactionData): boolean;
 
 	/**
-	 *
+	 * Determine if the transaction is missing all signatures.
 	 *
 	 * @param {SignedTransactionData} transaction
 	 * @returns {boolean}
@@ -76,7 +76,7 @@ export interface MultiSignatureService {
 	needsAllSignatures(transaction: SignedTransactionData): boolean;
 
 	/**
-	 *
+	 * Determine if the transaction is missing a signature from the given public key.
 	 *
 	 * @param {SignedTransactionData} transaction
 	 * @param {string} publicKey
@@ -86,7 +86,7 @@ export interface MultiSignatureService {
 	needsWalletSignature(transaction: SignedTransactionData, publicKey: string): boolean;
 
 	/**
-	 *
+	 * Determine if the transaction is missing its final signature.
 	 *
 	 * @param {SignedTransactionData} transaction
 	 * @returns {boolean}
@@ -95,7 +95,7 @@ export interface MultiSignatureService {
 	needsFinalSignature(transaction: SignedTransactionData): boolean;
 
 	/**
-	 *
+	 * Retrieve all signatures that are valid according to schnorr verification.
 	 *
 	 * @param {SignedTransactionData} transaction
 	 * @returns {string[]}
