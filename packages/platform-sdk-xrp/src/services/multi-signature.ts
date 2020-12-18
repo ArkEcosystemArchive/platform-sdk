@@ -2,7 +2,6 @@ import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 /** @inheritdoc */
 export class MultiSignatureService implements Contracts.MultiSignatureService {
-	/** @inheritdoc */
 	/**
 	 * Creates an instance of MultiSignatureService.
 	 *
