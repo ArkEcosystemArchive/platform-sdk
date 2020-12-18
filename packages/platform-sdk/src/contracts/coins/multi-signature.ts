@@ -2,6 +2,12 @@ import { SignedTransactionData } from "./data";
 
 export type MultiSignatureTransaction = Record<string, any>;
 
+/**
+ * A service to manage, sign and broadcast all multi-signature transactions.
+ *
+ * @export
+ * @interface MultiSignatureService
+ */
 export interface MultiSignatureService {
 	/**
 	 * Destroy the MultiSignatureService instance.
