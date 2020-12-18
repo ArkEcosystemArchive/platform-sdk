@@ -1,5 +1,5 @@
 import { get, has, set } from "dot-prop";
-import { Schema } from "Joi";
+import { Schema } from "joi";
 
 export class Config {
 	readonly #config: Record<string, any>;
