@@ -5,11 +5,13 @@ export class Config {
 	readonly #config: Record<string, any>;
 
 	public constructor(config: object, schema: Schema) {
-		try {
-			this.#config = schema.validate(config);
-		} catch (error) {
-			throw new Error(`Failed to validate the configuration: ${error}`);
+		const { error, value } = schema.validate(config);
+
+		if (error) {
+			throw new Error(`Failed to validate the configuration: ${error.message}`);
 		}
+
+		this.#config = value;
 	}
 
 	public all(): Record<string, any> {
