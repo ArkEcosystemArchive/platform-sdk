@@ -1,4 +1,3 @@
-export * from "./aip36";
 export * from "./arr";
 export * from "./bignumber";
 export * from "./censor";
