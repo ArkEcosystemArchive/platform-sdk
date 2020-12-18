@@ -48,9 +48,7 @@ describe("URI", () => {
 			subject.deserialize(
 				"ark:transfer?coin=ark&network=ark.mainnet&recipient=DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9&amount=ARK&memo=ARK",
 			),
-		).toThrowError(
-			'The given data is malformed: ValidationError: \"amount\" must be a number',
-		);
+		).toThrowError('The given data is malformed: ValidationError: "amount" must be a number');
 	});
 });
 
