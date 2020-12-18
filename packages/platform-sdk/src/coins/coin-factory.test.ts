@@ -36,7 +36,7 @@ test("#make", async () => {
 				},
 			},
 			// @ts-ignore
-			{ network: "ark.mainnet", httpClient: jest.fn() },
+			{ network: "ark.mainnet", httpClient: {} },
 		),
 	).resolves.toBeInstanceOf(Coin);
 });
