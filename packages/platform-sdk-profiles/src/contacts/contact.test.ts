@@ -18,7 +18,7 @@ describe("contact", () => {
 	let subject: Contact;
 
 	beforeEach(async () => {
-		const profile = new Profile({ id: "uuid", data: "" });
+		const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 		subject = new Contact(
 			{
 				id: "uuid",

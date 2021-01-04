@@ -43,7 +43,7 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-	subject = new Profile({ id: "uuid", data: "" });
+	subject = new Profile({ id: "uuid", name: "name", data: "" });
 	subject.settings().set(ProfileSetting.Name, "John Doe");
 });
 
@@ -243,6 +243,8 @@ describe("#restore", () => {
 
 		const corruptedDump = {
 			id: "uuid",
+			name: "name",
+			avatar: "avatar",
 			password: undefined,
 			data: Base64.encode(JSON.stringify(corruptedProfileData)),
 		};
@@ -349,6 +351,8 @@ describe("#restore", () => {
 
 		const profileDump = {
 			id: "uuid",
+			name: "name",
+			avatar: "avatar",
 			password: undefined,
 			data: Base64.encode(JSON.stringify(withWallets)),
 		};

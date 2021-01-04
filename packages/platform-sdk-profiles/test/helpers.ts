@@ -59,6 +59,7 @@ export const knock = (): void => {
 		.reply(200, require("./fixtures/client/delegates-2.json"));
 };
 
-export const makeProfile = (data: object = {}): Profile => new Profile({ id: "uuid", data: "", ...data });
+export const makeProfile = (data: object = {}): Profile =>
+	new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "", ...data });
 export const makeContact = (data: ContactStruct, profile: Profile): Contact => new Contact(data, profile);
 export const makeWallet = (id: string, profile: Profile): Wallet => new Wallet(id, profile);

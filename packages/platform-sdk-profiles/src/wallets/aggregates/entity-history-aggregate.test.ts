@@ -44,7 +44,7 @@ beforeAll(async () => {
 		.reply(200, require("../../../test/fixtures/client/registrations/business.json"))
 		.persist();
 
-	const profile = new Profile({ id: "profile-id", data: "" });
+	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	const wallet = new Wallet(uuidv4(), profile);

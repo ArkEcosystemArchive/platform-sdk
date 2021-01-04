@@ -9,7 +9,7 @@ let subject: CountAggregate;
 beforeAll(() => bootContainer());
 
 beforeEach(async () => {
-	subject = new CountAggregate(new Profile({ id: "uuid", data: "" }));
+	subject = new CountAggregate(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
 });
 
 it.each(["contacts", "notifications", "wallets"])("should count %s", (method: string) => {

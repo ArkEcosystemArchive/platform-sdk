@@ -12,7 +12,7 @@ let profile: Profile;
 beforeAll(() => bootContainer());
 
 beforeEach(() => {
-	profile = new Profile({ id: "uuid", data: "" });
+	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 	subject = new Authenticator(profile);
 });
 

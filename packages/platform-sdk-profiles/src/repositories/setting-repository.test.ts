@@ -47,6 +47,14 @@ describe.each([["profile", "wallet"]])("SettingRepository(%s)", (type) => {
 		expect(subject.has(key)).toBeTrue();
 	});
 
+	test("#missing", async () => {
+		expect(subject.missing(key)).toBeTrue();
+
+		subject.set(key, "value");
+
+		expect(subject.missing(key)).toBeFalse();
+	});
+
 	test("#forget", async () => {
 		expect(subject.has(key)).toBeFalse();
 

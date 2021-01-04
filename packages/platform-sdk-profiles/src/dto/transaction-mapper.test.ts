@@ -105,7 +105,7 @@ describe("transaction-mapper", () => {
 			.reply(200, require("../../test/fixtures/client/syncing.json"))
 			.persist();
 
-		profile = new Profile({ id: "profile-id", data: "" });
+		profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 		profile.settings().set(ProfileSetting.Name, "John Doe");
 
 		wallet = new Wallet(uuidv4(), profile);

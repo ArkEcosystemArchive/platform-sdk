@@ -81,6 +81,8 @@ export enum ProfileData {
 
 export interface ProfileInput {
 	id: string;
+	name: string;
+	avatar?: string;
 	password?: string;
 	data: string;
 }
