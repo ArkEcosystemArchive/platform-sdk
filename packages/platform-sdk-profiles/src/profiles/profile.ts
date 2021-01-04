@@ -62,6 +62,10 @@ export class Profile implements ProfileContract {
 	}
 
 	public name(): string {
+		if (this.settings().missing(ProfileSetting.Name)) {
+			return this.#data.name;
+		}
+
 		return this.settings().get<string>(ProfileSetting.Name)!;
 	}
 
@@ -70,6 +74,10 @@ export class Profile implements ProfileContract {
 
 		if (avatarFromSettings) {
 			return avatarFromSettings;
+		}
+
+		if (this.#data.avatar) {
+			return this.#data.avatar;
 		}
 
 		return Avatar.make(this.name());
@@ -222,6 +230,8 @@ export class Profile implements ProfileContract {
 
 		return {
 			id: this.id(),
+			name: this.name(),
+			avatar: this.avatar(),
 			password: this.settings().get(ProfileSetting.Password),
 			data: Base64.encode(data),
 		};
@@ -398,6 +408,8 @@ export class Profile implements ProfileContract {
 		return PBKDF2.encrypt(
 			JSON.stringify({
 				id: this.id(),
+				name: this.name(),
+				avatar: this.avatar(),
 				password: this.settings().get(ProfileSetting.Password),
 				data: this.toObject(),
 			}),

@@ -41,6 +41,10 @@ export class SettingRepository {
 		return this.#data.has(key);
 	}
 
+	public missing(key: string): boolean {
+		return !this.has(key);
+	}
+
 	public forget(key: string): void {
 		this.assertValidKey(key);
 

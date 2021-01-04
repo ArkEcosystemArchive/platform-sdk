@@ -13,7 +13,7 @@ let profile: Profile;
 beforeAll(() => bootContainer());
 
 beforeEach(async () => {
-	profile = new Profile({ id: "id", data: Base64.encode("{}") });
+	profile = new Profile({ id: "id", name: "name", avatar: "avatar", data: Base64.encode("{}") });
 	subject = new Migrator(profile);
 });
 
@@ -219,6 +219,7 @@ it("should migrate profiles from JSON to Base64", async () => {
 
 				profile.setRawData({
 					id: profile.id(),
+					name: profile.name(),
 					password: profile.settings().get(ProfileSetting.Password),
 					data: Base64.encode(JSON.stringify({ id: profile.id(), ...profileData.data })),
 				});

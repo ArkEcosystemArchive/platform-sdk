@@ -39,7 +39,7 @@ beforeEach(async () => {
 		.reply(200, require("../../../test/fixtures/wallets/D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb.json"))
 		.persist();
 
-	profile = new Profile({ id: "uuid", data: "" });
+	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 	const address = "D5sRKWckH4rE1hQ9eeMeHAepgyC3cvJtwb";
 
 	await profile.wallets().importByAddress(address, "ARK", "ark.devnet");

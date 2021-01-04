@@ -36,7 +36,7 @@ beforeEach(async () => {
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
 
-	const profile = new Profile({ id: "profile-id", data: "" });
+	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");

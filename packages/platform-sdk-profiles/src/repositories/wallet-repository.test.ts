@@ -38,7 +38,7 @@ beforeEach(async () => {
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.persist();
 
-	const profile = new Profile({ id: "profile-id", data: "" });
+	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	subject = new WalletRepository(profile);
@@ -182,7 +182,7 @@ test("#update", async () => {
 });
 
 test("#restore", async () => {
-	const profile = new Profile({ id: "profile-id", data: "" });
+	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	const newWallet = new Wallet(uuidv4(), profile);

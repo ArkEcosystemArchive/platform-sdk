@@ -5,7 +5,7 @@ import { MemoryPassword } from "./password";
 beforeAll(() => bootContainer());
 
 it("should set, get and forget the password", () => {
-	const profile: Profile = new Profile({ id: "uuid", data: "" });
+	const profile: Profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 
 	expect(() => MemoryPassword.get(profile)).toThrow("Failed to find a password for the given profile.");
 

@@ -36,7 +36,7 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	const profile = new Profile({ id: "uuid", data: "" });
+	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 
 	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 

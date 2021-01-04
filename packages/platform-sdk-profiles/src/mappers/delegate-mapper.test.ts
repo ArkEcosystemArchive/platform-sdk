@@ -41,7 +41,7 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	wallet = new Wallet(uuidv4(), new Profile({ id: "profile-id", data: "" }));
+	wallet = new Wallet(uuidv4(), new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" }));
 
 	await wallet.setCoin("ARK", "ark.devnet");
 	await wallet.setIdentity(identity.mnemonic);
