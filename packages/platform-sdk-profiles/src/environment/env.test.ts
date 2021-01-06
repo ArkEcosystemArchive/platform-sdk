@@ -308,3 +308,9 @@ it("should create a profile with password and persist", async () => {
 	profile.auth().setPassword("password");
 	expect(() => subject.persist()).not.toThrowError();
 });
+
+it("should flush all bindings", async () => {
+	container.bind("test", true);
+	subject.flush();
+	expect(() => container.get("test")).toThrow();
+});
