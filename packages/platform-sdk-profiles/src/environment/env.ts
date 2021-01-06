@@ -188,4 +188,8 @@ export class Environment {
 
 		return result;
 	}
+
+	public flush(): void {
+		container.flush();
+	}
 }
