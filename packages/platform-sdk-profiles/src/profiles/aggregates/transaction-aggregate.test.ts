@@ -167,7 +167,7 @@ describe("TransactionAggregate", () => {
 
 		expect(subject.hasMore("transactions")).toBeTrue();
 
-		subject.flushAll();
+		subject.flush();
 	});
 
 	it("should handle undefined  promiseAllSettledByKey responses in aggregate", async () => {
