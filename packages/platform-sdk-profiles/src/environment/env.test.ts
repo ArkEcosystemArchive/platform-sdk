@@ -311,6 +311,16 @@ it("should create a profile with password and persist", async () => {
 
 it("should flush all bindings", async () => {
 	container.bind("test", true);
-	subject.flush();
+	subject.reset();
 	expect(() => container.get("test")).toThrow();
+});
+
+it("should flush all bindings and rebind them", async () => {
+	await makeSubject();
+
+	expect(() => container.get(Identifiers.Storage)).not.toThrow();
+
+	subject.reset({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
+
+	expect(() => container.get(Identifiers.Storage)).not.toThrow();
 });

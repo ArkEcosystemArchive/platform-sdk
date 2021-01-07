@@ -19,22 +19,7 @@ export class Environment {
 	private storage: StorageData | undefined;
 
 	public constructor(options: EnvironmentOptions) {
-		container.bind(
-			Identifiers.Storage,
-			typeof options.storage === "string" ? StorageFactory.make(options.storage) : options.storage,
-		);
-
-		container.bind(Identifiers.AppData, new DataRepository());
-		container.bind(Identifiers.HttpClient, options.httpClient);
-		container.bind(Identifiers.ProfileRepository, new ProfileRepository());
-		container.bind(Identifiers.CoinService, new CoinService());
-		container.bind(Identifiers.DelegateService, new DelegateService());
-		container.bind(Identifiers.ExchangeRateService, new ExchangeRateService());
-		container.bind(Identifiers.FeeService, new FeeService());
-		container.bind(Identifiers.KnownWalletService, new KnownWalletService());
-		container.bind(Identifiers.WalletService, new WalletService());
-
-		container.bind(Identifiers.Coins, options.coins);
+		this.configure(options);
 	}
 
 	/**
@@ -109,34 +94,82 @@ export class Environment {
 		await storage.set("data", this.data().all());
 	}
 
+	/**
+	 * Access the coin service.
+	 *
+	 * @returns {CoinService}
+	 * @memberof Environment
+	 */
 	public coins(): CoinService {
 		return container.get(Identifiers.CoinService);
 	}
 
+	/**
+	 * Access the application data.
+	 *
+	 * @returns {DataRepository}
+	 * @memberof Environment
+	 */
 	public data(): DataRepository {
 		return container.get(Identifiers.AppData);
 	}
 
+	/**
+	 *
+	 *
+	 * @returns {DelegateService}
+	 * @memberof Environment
+	 */
 	public delegates(): DelegateService {
 		return container.get(Identifiers.DelegateService);
 	}
 
+	/**
+	 * Access the exchange rate service.
+	 *
+	 * @returns {ExchangeRateService}
+	 * @memberof Environment
+	 */
 	public exchangeRates(): ExchangeRateService {
 		return container.get(Identifiers.ExchangeRateService);
 	}
 
+	/**
+	 * Access the fees service.
+	 *
+	 * @returns {FeeService}
+	 * @memberof Environment
+	 */
 	public fees(): FeeService {
 		return container.get(Identifiers.FeeService);
 	}
 
+	/**
+	 * Access the known wallets service.
+	 *
+	 * @returns {KnownWalletService}
+	 * @memberof Environment
+	 */
 	public knownWallets(): KnownWalletService {
 		return container.get(Identifiers.KnownWalletService);
 	}
 
+	/**
+	 * Access the profile repository.
+	 *
+	 * @returns {ProfileRepository}
+	 * @memberof Environment
+	 */
 	public profiles(): ProfileRepository {
 		return container.get(Identifiers.ProfileRepository);
 	}
 
+	/**
+	 * Access the wallet service.
+	 *
+	 * @returns {WalletService}
+	 * @memberof Environment
+	 */
 	public wallets(): WalletService {
 		return container.get(Identifiers.WalletService);
 	}
@@ -173,6 +206,12 @@ export class Environment {
 		container.get<CoinList>(Identifiers.Coins)[coin] = spec;
 	}
 
+	/**
+	 * Return a list of all available networks.
+	 *
+	 * @returns {Coins.Network[]}
+	 * @memberof Environment
+	 */
 	public availableNetworks(): Coins.Network[] {
 		const coins: CoinList = container.get<CoinList>(Identifiers.Coins);
 
@@ -189,7 +228,43 @@ export class Environment {
 		return result;
 	}
 
-	public flush(): void {
+	/**
+	 * Remove all bindings from the container and optionally rebind them.
+	 *
+	 * @memberof Environment
+	 */
+	public reset(options?: EnvironmentOptions): void {
 		container.flush();
+
+		if (options !== undefined) {
+			this.configure(options);
+		}
+	}
+
+	/**
+	 * Create all necessary container bindings based on the given options.
+	 *
+	 * @private
+	 * @param {EnvironmentOptions} options
+	 * @memberof Environment
+	 */
+	private configure(options: EnvironmentOptions): void {
+		if (typeof options.storage === "string") {
+			container.bind(Identifiers.Storage, StorageFactory.make(options.storage));
+		} else {
+			container.bind(Identifiers.Storage, options.storage);
+		}
+
+		container.bind(Identifiers.AppData, new DataRepository());
+		container.bind(Identifiers.HttpClient, options.httpClient);
+		container.bind(Identifiers.ProfileRepository, new ProfileRepository());
+		container.bind(Identifiers.CoinService, new CoinService());
+		container.bind(Identifiers.DelegateService, new DelegateService());
+		container.bind(Identifiers.ExchangeRateService, new ExchangeRateService());
+		container.bind(Identifiers.FeeService, new FeeService());
+		container.bind(Identifiers.KnownWalletService, new KnownWalletService());
+		container.bind(Identifiers.WalletService, new WalletService());
+
+		container.bind(Identifiers.Coins, options.coins);
 	}
 }
