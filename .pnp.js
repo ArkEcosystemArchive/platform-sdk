@@ -67,6 +67,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/platform-sdk-eth"
       },
       {
+        "name": "@arkecosystem/platform-sdk-hive",
+        "reference": "workspace:packages/platform-sdk-hive"
+      },
+      {
         "name": "@arkecosystem/platform-sdk-http-axios",
         "reference": "workspace:packages/platform-sdk-http-axios"
       },
@@ -157,6 +161,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@arkecosystem/platform-sdk-cryptocompare", ["workspace:packages/platform-sdk-cryptocompare"]],
       ["@arkecosystem/platform-sdk-eos", ["workspace:packages/platform-sdk-eos"]],
       ["@arkecosystem/platform-sdk-eth", ["workspace:packages/platform-sdk-eth"]],
+      ["@arkecosystem/platform-sdk-hive", ["workspace:packages/platform-sdk-hive"]],
       ["@arkecosystem/platform-sdk-http-axios", ["workspace:packages/platform-sdk-http-axios"]],
       ["@arkecosystem/platform-sdk-http-bent", ["workspace:packages/platform-sdk-http-bent"]],
       ["@arkecosystem/platform-sdk-http-got", ["workspace:packages/platform-sdk-http-got"]],
@@ -906,6 +911,46 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
             ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"],
             ["web3", "npm:1.3.0"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@arkecosystem/platform-sdk-hive", [
+        ["workspace:packages/platform-sdk-hive", {
+          "packageLocation": "./packages/platform-sdk-hive/",
+          "packageDependencies": [
+            ["@arkecosystem/platform-sdk-hive", "workspace:packages/platform-sdk-hive"],
+            ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
+            ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
+            ["@hiveio/hive-js", "npm:0.8.12"],
+            ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/eslint", "npm:7.2.4"],
+            ["@types/eslint-plugin-prettier", "npm:3.1.0"],
+            ["@types/hapi__joi", "npm:17.1.6"],
+            ["@types/jest", "npm:26.0.15"],
+            ["@types/node", "npm:14.14.7"],
+            ["@types/prettier", "npm:2.1.5"],
+            ["@types/rimraf", "npm:3.0.0"],
+            ["@typescript-eslint/eslint-plugin", "virtual:921d915d7c60ac4a025af1914d9ca6ce561d93271549acfb4b87947d318cb7947a9eeaae51a9fe5a33675fc91eac07974886022158a1062b8bab4e1600c61da6#npm:4.7.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["cross-env", "npm:7.0.2"],
+            ["eslint", "npm:7.13.0"],
+            ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.15.0"],
+            ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:24.1.3"],
+            ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.4"],
+            ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.0.0"],
+            ["jest", "npm:26.6.3"],
+            ["jest-extended", "npm:0.11.5"],
+            ["jest-localstorage-mock", "npm:2.4.3"],
+            ["nock", "npm:13.0.5"],
+            ["npm-check-updates", "npm:10.1.1"],
+            ["prettier", "npm:2.1.2"],
+            ["rimraf", "npm:3.0.2"],
+            ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
+            ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"]
           ],
           "linkType": "SOFT",
         }]
@@ -3379,6 +3424,34 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@hiveio/hive-js", [
+        ["npm:0.8.12", {
+          "packageLocation": "./.yarn/cache/@hiveio-hive-js-npm-0.8.12-52e40cf678-2.zip/node_modules/@hiveio/hive-js/",
+          "packageDependencies": [
+            ["@hiveio/hive-js", "npm:0.8.12"],
+            ["@steemit/rpc-auth", "npm:1.1.1"],
+            ["bigi", "npm:1.4.2"],
+            ["bluebird", "npm:3.7.2"],
+            ["browserify-aes", "npm:1.2.0"],
+            ["bs58", "npm:4.0.1"],
+            ["buffer", "npm:5.7.1"],
+            ["bytebuffer", "npm:5.0.1"],
+            ["create-hash", "npm:1.2.0"],
+            ["create-hmac", "npm:1.1.7"],
+            ["cross-env", "npm:5.2.1"],
+            ["cross-fetch", "npm:1.1.1"],
+            ["debug", "virtual:2bcc47d217f870e3d52f0e55493dc34fd3da852877f7db32fa2940cc320151746026495daf6a34a974488cf5a949d93be1e2dc1ffba036faf081a9b15fcd2252#npm:2.6.9"],
+            ["detect-node", "npm:2.0.4"],
+            ["ecurve", "npm:1.0.6"],
+            ["jsbi", "npm:3.1.4"],
+            ["lodash", "npm:4.17.20"],
+            ["retry", "npm:0.12.0"],
+            ["secure-random", "npm:1.1.2"],
+            ["ws", "npm:3.3.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@istanbuljs/load-nyc-config", [
         ["npm:1.0.0", {
           "packageLocation": "./.yarn/cache/@istanbuljs-load-nyc-config-npm-1.0.0-b3fc180ee9-2.zip/node_modules/@istanbuljs/load-nyc-config/",
@@ -4299,6 +4372,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@sinonjs/fake-timers", "npm:6.0.1"],
             ["@sinonjs/commons", "npm:1.7.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@steemit/libcrypto", [
+        ["npm:1.0.1", {
+          "packageLocation": "./.yarn/cache/@steemit-libcrypto-npm-1.0.1-831f97b43b-2.zip/node_modules/@steemit/libcrypto/",
+          "packageDependencies": [
+            ["@steemit/libcrypto", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@steemit/rpc-auth", [
+        ["npm:1.1.1", {
+          "packageLocation": "./.yarn/cache/@steemit-rpc-auth-npm-1.1.1-91f376a89f-2.zip/node_modules/@steemit/rpc-auth/",
+          "packageDependencies": [
+            ["@steemit/rpc-auth", "npm:1.1.1"],
+            ["@steemit/libcrypto", "npm:1.0.1"]
           ],
           "linkType": "HARD",
         }]
@@ -5588,6 +5680,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-0eaf39c615/0/cache/@typescript-eslint-eslint-plugin-npm-4.7.0-19037dfb47-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
           "packageDependencies": [
             ["@typescript-eslint/eslint-plugin", "virtual:889e3d03d0998594ffdf10428c5829cd2081e0748c7c3495539d86601ec3b3c6d3e90362e2157e2b1b852dfec03b4a6a87578df8ca007458bbe1cb97609c909d#npm:4.7.0"],
+            ["@typescript-eslint/experimental-utils", "virtual:9055e622c16d57baeebee120c75c48762d66a3bf726f27314fd539fe4e278f0d0a96ec9c5935c2a71a87fd2eaa0e1f42693a0e32e52f1b66699c55bad0b52db6#npm:4.7.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["@typescript-eslint/scope-manager", "npm:4.7.0"],
+            ["debug", "virtual:88318143fb6d80d1f55c54ae799fe6cfcf29c86ca9b9dae7a485ec5bdb22c3a20f79119854bb9696c57b5a03879e8671e3e9d39fcd8ca2cec3e6655f73233a79#npm:4.1.1"],
+            ["eslint", "npm:7.13.0"],
+            ["functional-red-black-tree", "npm:1.0.1"],
+            ["regexpp", "npm:3.1.0"],
+            ["semver", "npm:7.3.2"],
+            ["tsutils", "virtual:9055e622c16d57baeebee120c75c48762d66a3bf726f27314fd539fe4e278f0d0a96ec9c5935c2a71a87fd2eaa0e1f42693a0e32e52f1b66699c55bad0b52db6#npm:3.17.1"],
+            ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"]
+          ],
+          "packagePeers": [
+            "eslint",
+            "@typescript-eslint/parser",
+            "typescript"
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:921d915d7c60ac4a025af1914d9ca6ce561d93271549acfb4b87947d318cb7947a9eeaae51a9fe5a33675fc91eac07974886022158a1062b8bab4e1600c61da6#npm:4.7.0", {
+          "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-2e4b104be8/0/cache/@typescript-eslint-eslint-plugin-npm-4.7.0-19037dfb47-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
+          "packageDependencies": [
+            ["@typescript-eslint/eslint-plugin", "virtual:921d915d7c60ac4a025af1914d9ca6ce561d93271549acfb4b87947d318cb7947a9eeaae51a9fe5a33675fc91eac07974886022158a1062b8bab4e1600c61da6#npm:4.7.0"],
             ["@typescript-eslint/experimental-utils", "virtual:9055e622c16d57baeebee120c75c48762d66a3bf726f27314fd539fe4e278f0d0a96ec9c5935c2a71a87fd2eaa0e1f42693a0e32e52f1b66699c55bad0b52db6#npm:4.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
             ["@typescript-eslint/scope-manager", "npm:4.7.0"],
@@ -6991,6 +7105,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["base64-js", "npm:1.3.1"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:1.5.1", {
+          "packageLocation": "./.yarn/cache/base64-js-npm-1.5.1-b2f7275641-2.zip/node_modules/base64-js/",
+          "packageDependencies": [
+            ["base64-js", "npm:1.5.1"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["bcrypt-pbkdf", [
@@ -7648,6 +7769,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["buffer", "npm:5.6.0"],
             ["base64-js", "npm:1.3.1"],
+            ["ieee754", "npm:1.1.13"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.7.1", {
+          "packageLocation": "./.yarn/cache/buffer-npm-5.7.1-513ef8259e-2.zip/node_modules/buffer/",
+          "packageDependencies": [
+            ["buffer", "npm:5.7.1"],
+            ["base64-js", "npm:1.5.1"],
             ["ieee754", "npm:1.1.13"]
           ],
           "linkType": "HARD",
@@ -8528,11 +8658,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["cross-env", [
+        ["npm:5.2.1", {
+          "packageLocation": "./.yarn/cache/cross-env-npm-5.2.1-90c1c3d1d2-2.zip/node_modules/cross-env/",
+          "packageDependencies": [
+            ["cross-env", "npm:5.2.1"],
+            ["cross-spawn", "npm:6.0.5"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:7.0.2", {
           "packageLocation": "./.yarn/cache/cross-env-npm-7.0.2-1e9c9fdbca-2.zip/node_modules/cross-env/",
           "packageDependencies": [
             ["cross-env", "npm:7.0.2"],
             ["cross-spawn", "npm:7.0.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["cross-fetch", [
+        ["npm:1.1.1", {
+          "packageLocation": "./.yarn/cache/cross-fetch-npm-1.1.1-dea2f2a8f2-2.zip/node_modules/cross-fetch/",
+          "packageDependencies": [
+            ["cross-fetch", "npm:1.1.1"],
+            ["node-fetch", "npm:1.7.3"],
+            ["whatwg-fetch", "npm:2.0.3"]
           ],
           "linkType": "HARD",
         }]
@@ -9327,6 +9476,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["encoding", "npm:0.1.12"],
             ["iconv-lite", "npm:0.4.24"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:0.1.13", {
+          "packageLocation": "./.yarn/cache/encoding-npm-0.1.13-82a1837d30-2.zip/node_modules/encoding/",
+          "packageDependencies": [
+            ["encoding", "npm:0.1.13"],
+            ["iconv-lite", "npm:0.6.2"]
           ],
           "linkType": "HARD",
         }]
@@ -11466,6 +11623,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["safer-buffer", "npm:2.1.2"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:0.6.2", {
+          "packageLocation": "./.yarn/cache/iconv-lite-npm-0.6.2-13e85ec7dc-2.zip/node_modules/iconv-lite/",
+          "packageDependencies": [
+            ["iconv-lite", "npm:0.6.2"],
+            ["safer-buffer", "npm:2.1.2"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["idna-uts46-hx", [
@@ -12930,6 +13095,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["js-yaml", "npm:3.13.1"],
             ["argparse", "npm:1.0.10"],
             ["esprima", "npm:4.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["jsbi", [
+        ["npm:3.1.4", {
+          "packageLocation": "./.yarn/cache/jsbi-npm-3.1.4-248bd487e1-2.zip/node_modules/jsbi/",
+          "packageDependencies": [
+            ["jsbi", "npm:3.1.4"]
           ],
           "linkType": "HARD",
         }]
@@ -14447,6 +14621,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["node-fetch", [
+        ["npm:1.7.3", {
+          "packageLocation": "./.yarn/cache/node-fetch-npm-1.7.3-eb8372f991-2.zip/node_modules/node-fetch/",
+          "packageDependencies": [
+            ["node-fetch", "npm:1.7.3"],
+            ["encoding", "npm:0.1.13"],
+            ["is-stream", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:2.6.1", {
           "packageLocation": "./.yarn/cache/node-fetch-npm-2.6.1-46c670dbc1-2.zip/node_modules/node-fetch/",
           "packageDependencies": [
@@ -16435,6 +16618,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/retry-npm-0.10.1-49d64d46ee-2.zip/node_modules/retry/",
           "packageDependencies": [
             ["retry", "npm:0.10.1"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:0.12.0", {
+          "packageLocation": "./.yarn/cache/retry-npm-0.12.0-72ac7fb4cc-2.zip/node_modules/retry/",
+          "packageDependencies": [
+            ["retry", "npm:0.12.0"]
           ],
           "linkType": "HARD",
         }]
@@ -19214,6 +19404,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["whatwg-encoding", "npm:1.0.5"],
             ["iconv-lite", "npm:0.4.24"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["whatwg-fetch", [
+        ["npm:2.0.3", {
+          "packageLocation": "./.yarn/cache/whatwg-fetch-npm-2.0.3-d66f21a388-2.zip/node_modules/whatwg-fetch/",
+          "packageDependencies": [
+            ["whatwg-fetch", "npm:2.0.3"]
           ],
           "linkType": "HARD",
         }]
