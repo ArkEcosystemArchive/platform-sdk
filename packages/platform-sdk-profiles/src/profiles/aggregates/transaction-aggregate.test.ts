@@ -143,7 +143,7 @@ describe("TransactionAggregate", () => {
 			nock(/.+/)
 				.get("/api/transactions")
 				.query(true)
-				.reply(200, require("../../../test/fixtures/client/transactions.json"))
+				.reply(200, require("../../../test/fixtures/client/transactions.json"));
 
 			expect(subject.hasMore(method)).toBeFalse();
 
