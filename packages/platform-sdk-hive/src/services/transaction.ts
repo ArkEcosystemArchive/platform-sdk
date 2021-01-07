@@ -4,7 +4,6 @@ import hive from "@hiveio/hive-js";
 export class TransactionService implements Contracts.TransactionService {
 	public constructor(config: Coins.Config) {
 		hive.api.setOptions({ url: "https://api.hive.blog" });
-
 	}
 
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
@@ -19,9 +18,16 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		hive.broadcast.transfer(input.sign.wif, input.from, input.data.to, input.data.amount, input.data.memo, function(err, result) {
-			console.log(err, result);
-		});
+		hive.broadcast.transfer(
+			input.sign.wif,
+			input.from,
+			input.data.to,
+			input.data.amount,
+			input.data.memo,
+			function (err, result) {
+				console.log(err, result);
+			},
+		);
 	}
 
 	public async secondSignature(
