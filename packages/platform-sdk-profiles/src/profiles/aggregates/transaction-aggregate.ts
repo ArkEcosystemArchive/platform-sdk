@@ -45,7 +45,7 @@ export class TransactionAggregate {
 			return;
 		}
 
-		this.#history = {}
+		this.#history = {};
 	}
 
 	private async aggregate(
