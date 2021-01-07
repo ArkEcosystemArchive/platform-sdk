@@ -42,9 +42,7 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.VoteInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		hive.broadcast.accountWitnessVote(input.sign.wif, input.from, input.data.vote, true, function(err, result) {
-			console.log(err, result);
-		});
+		throw new Exceptions.NotImplemented(this.constructor.name, "vote");
 	}
 
 	public async multiSignature(
