@@ -39,7 +39,12 @@ export class TransactionAggregate {
 			.includes(true);
 	}
 
-	public flush(): void {
+	public flush(method?: string): void {
+		if (method) {
+			this.#history[method] = {};
+			return;
+		}
+
 		this.#history = {};
 	}
 
