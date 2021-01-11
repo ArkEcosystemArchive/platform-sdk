@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.3.4 - 2020-01-11
+
+### Fixed
+
+-   Prevent null entries in `ExchangeRateService#restore` (4262264f, @goga-m)
+
+## 2.3.3 - 2020-01-08
+
+### Changed
+
+-   Flush only the aggregate transaction method (70fc1b23, @luciorubeens)
+
+## 2.3.2 - 2020-01-07
+
+### Added
+
+-   Add ability to reset environment instance (6b41adbd, @faustbrian)
+
+## 2.3.1 - 2020-01-06
+
+### Added
+
+-   Flush `env` container (045052d5, @goga-m)
+
 ## 2.3.0 - 2020-01-04
 
 ### Changed
