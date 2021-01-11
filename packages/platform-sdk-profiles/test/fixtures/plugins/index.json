@@ -1,148 +1,1566 @@
 {
-	"data": [
+	"objects": [
 		{
-			"id": 467,
-			"type": "plugin",
-			"name": "animal-avatars",
-			"slug": "animal-avatars",
-			"description": "<p>A collection of custom animal avatars to show in the wallet.</p>\n",
-			"version": "0.1.2",
-			"downloads": 0,
-			"manifest": {
-				"categories": ["utility", "avatar"],
-				"permissions": ["COMPONENTS", "AVATARS"],
-				"urls": [],
-				"minVersion": "2.6"
-			},
-			"aip36": {
-				"sourceControl": [
-					{ "type": "bitbucket", "value": "https://bitbucket.org/" },
-					{ "type": "github", "value": "https://github.com/brenopolanski/animal-avatars-ark-wallet" },
-					{ "type": "gitlab", "value": "https://gitlab.com/" },
+			"package": {
+				"name": "@dated/transaction-export-plugin",
+				"scope": "dated",
+				"version": "1.0.3",
+				"description": "Export your wallet transaction history",
+				"keywords": ["utility", "export", "transactions", "taxes", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-11-26T21:18:44.681Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40dated%2Ftransaction-export-plugin",
+					"homepage": "https://github.com/dated/transaction-export-plugin",
+					"repository": "https://github.com/dated/transaction-export-plugin",
+					"bugs": "https://github.com/dated/transaction-export-plugin/issues"
+				},
+				"author": {
+					"name": "Edgar Goetzendorff",
+					"email": "hello@dated.fun",
+					"username": "dated"
+				},
+				"publisher": {
+					"username": "dated",
+					"email": "hello@dated.fun"
+				},
+				"maintainers": [
 					{
-						"type": "npm",
-						"value": "https://www.npmjs.com/package/@breno.polanski/animal-avatars-ark-wallet"
+						"username": "dated",
+						"email": "hello@dated.fun"
 					}
-				],
-				"socialMedia": [
-					{ "type": "discord", "value": "https://discord.com/" },
-					{ "type": "facebook", "value": "https://facebook.com/" },
-					{ "type": "instagram", "value": "https://instagram.com/" },
-					{ "type": "linkedin", "value": "https://linkedin.com/" },
-					{ "type": "medium", "value": "https://medium.com/" },
-					{ "type": "reddit", "value": "https://reddit.com/" },
-					{ "type": "slack", "value": "https://slack.com/" },
-					{ "type": "telegram", "value": "https://telegram.org/" },
-					{ "type": "twitter", "value": "https://twitter.com/" },
-					{ "type": "wechat", "value": "https://wechat.com/" },
-					{ "type": "youtube", "value": "https://youtube.com/" }
-				],
-				"images": [
-					{
-						"type": "logo",
-						"value": "https://raw.githubusercontent.com/brenopolanski/animal-avatars-ark-wallet/master/images/logo.png"
-					},
-					{
-						"type": "image",
-						"value": "https://raw.githubusercontent.com/brenopolanski/animal-avatars-ark-wallet/master/images/preview-1.jpg"
-					},
-					{
-						"type": "image",
-						"value": "https://raw.githubusercontent.com/brenopolanski/animal-avatars-ark-wallet/master/images/preview-2.jpg"
-					},
-					{
-						"type": "image",
-						"value": "https://raw.githubusercontent.com/brenopolanski/animal-avatars-ark-wallet/master/images/preview-3.jpg"
-					}
-				],
-				"meta": { "displayName": "Animal Avatars", "description": "Animal Avatars plugin for Desktop Wallet" }
+				]
 			},
-			"versions": [
-				{ "id": 1, "name": "0.1.0", "released_at": "2020-01-20T18:50:29.000000Z", "is_verified": false },
-				{ "id": 2, "name": "0.1.1", "released_at": "2020-01-23T14:19:42.000000Z", "is_verified": false },
-				{ "id": 3, "name": "0.1.2", "released_at": "2020-03-11T12:41:34.000000Z", "is_verified": false }
-			],
-			"updated_at": "2020-03-11T12:41:37.022000Z"
+			"score": {
+				"final": 0.27524236137537345,
+				"detail": {
+					"quality": 0.5213276902978076,
+					"popularity": 0.006221107483898577,
+					"maintenance": 0.3333333333333333
+				}
+			},
+			"searchScore": 7.242407e-7
 		},
 		{
-			"id": 486,
-			"type": "plugin",
-			"name": "additional-avatars",
-			"slug": "additional-avatars",
-			"description": "<p>A collection of custom avatars to show in the wallet.</p>\n",
-			"version": "0.0.8",
-			"downloads": 0,
-			"manifest": {
-				"categories": ["utility", "avatar"],
-				"permissions": ["COMPONENTS", "AVATARS"],
-				"urls": [],
-				"minVersion": "2.6"
-			},
-			"aip36": {
-				"sourceControl": [
-					{ "type": "bitbucket", "value": "https://bitbucket.org/" },
+			"package": {
+				"name": "@elevenyellow.com/ark-switchain-plugin",
+				"scope": "elevenyellow.com",
+				"version": "1.2.0",
+				"description": "Switchain plugin on Ark Desktop Wallet",
+				"keywords": ["@arkecosystem", "desktop-wallet", "plugin", "switchain", "exchange", "swap"],
+				"date": "2020-03-17T08:27:19.488Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40elevenyellow.com%2Fark-switchain-plugin",
+					"homepage": "https://github.com/elevenyellow/ark-switchain-plugin#readme",
+					"repository": "https://github.com/elevenyellow/ark-switchain-plugin",
+					"bugs": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
+				},
+				"author": {
+					"name": "Switchain"
+				},
+				"publisher": {
+					"username": "garbolino",
+					"email": "roly@elevenyellow.com"
+				},
+				"maintainers": [
 					{
-						"type": "github",
-						"value": "https://github.com/ark-ecosystem-desktop-plugins/additional-avatars"
-					},
-					{ "type": "gitlab", "value": "https://gitlab.com/" },
-					{ "type": "npm", "value": "https://www.npmjs.com/package/@arkecosystem/additional-avatars" }
-				],
-				"socialMedia": [
-					{ "type": "discord", "value": "https://discord.com/" },
-					{ "type": "facebook", "value": "https://facebook.com/" },
-					{ "type": "instagram", "value": "https://instagram.com/" },
-					{ "type": "linkedin", "value": "https://linkedin.com/" },
-					{ "type": "medium", "value": "https://medium.com/" },
-					{ "type": "reddit", "value": "https://reddit.com/" },
-					{ "type": "slack", "value": "https://slack.com/" },
-					{ "type": "telegram", "value": "https://telegram.org/" },
-					{ "type": "twitter", "value": "https://twitter.com/" },
-					{ "type": "wechat", "value": "https://wechat.com/" },
-					{ "type": "youtube", "value": "https://youtube.com/" }
-				],
-				"images": [
-					{
-						"type": "logo",
-						"value": "https://raw.githubusercontent.com/ark-ecosystem-desktop-plugins/additional-avatars/master/images/logo.png"
+						"username": "javiercarceller",
+						"email": "elxavicio@gmail.com"
 					},
 					{
-						"type": "image",
-						"value": "https://raw.githubusercontent.com/ark-ecosystem-desktop-plugins/additional-avatars/master/images/preview-1.jpg"
+						"username": "cook1e-monster",
+						"email": "carlossil01@gmail.com"
 					},
 					{
-						"type": "image",
-						"value": "https://raw.githubusercontent.com/ark-ecosystem-desktop-plugins/additional-avatars/master/images/preview-2.jpg"
+						"username": "ajamardo",
+						"email": "agus@elevenyellow.com"
 					},
 					{
-						"type": "image",
-						"value": "https://raw.githubusercontent.com/ark-ecosystem-desktop-plugins/additional-avatars/master/images/preview-3.jpg"
+						"username": "enzo",
+						"email": "enzo@josema.es"
+					},
+					{
+						"username": "chemuto",
+						"email": "chemuto@elevenyellow.com"
+					},
+					{
+						"username": "garbolino",
+						"email": "roly@elevenyellow.com"
+					},
+					{
+						"username": "dcusan",
+						"email": "daniel.cusan@gmail.com"
+					},
+					{
+						"username": "elevenyellow",
+						"email": "all@elevenyellow.com"
 					}
-				],
-				"meta": { "displayName": "Additional Avatars", "description": "Avatar plugin for Desktop Wallet" }
+				]
 			},
-			"versions": [
-				{ "id": 4, "name": "0.0.5", "released_at": "2019-11-25T20:41:02.000000Z", "is_verified": false },
-				{ "id": 5, "name": "0.0.6", "released_at": "2019-11-26T14:58:23.000000Z", "is_verified": false },
-				{ "id": 6, "name": "0.0.7", "released_at": "2019-11-26T15:22:36.000000Z", "is_verified": false },
-				{ "id": 7, "name": "0.0.8", "released_at": "2020-03-12T11:05:37.000000Z", "is_verified": false }
-			],
-			"updated_at": "2020-05-14T13:11:54.949000Z"
+			"score": {
+				"final": 0.2683590985999618,
+				"detail": {
+					"quality": 0.5079887285641889,
+					"popularity": 0.0033602844645739013,
+					"maintenance": 0.3279610870517266
+				}
+			},
+			"searchScore": 5.922753e-7
+		},
+		{
+			"package": {
+				"name": "@dated/delegate-calculator-plugin",
+				"scope": "dated",
+				"version": "1.0.4",
+				"description": "Compare delegate payouts and get an overview of your potential staking rewards directly in the ARK Desktop Wallet",
+				"keywords": ["utility", "rewards", "staking", "delegates", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-03-26T16:59:19.719Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40dated%2Fdelegate-calculator-plugin"
+				},
+				"author": {
+					"name": "Edgar Goetzendorff",
+					"email": "hello@dated.fun",
+					"username": "dated"
+				},
+				"publisher": {
+					"username": "dated",
+					"email": "hello@dated.fun"
+				},
+				"maintainers": [
+					{
+						"username": "dated",
+						"email": "hello@dated.fun"
+					}
+				]
+			},
+			"score": {
+				"final": 0.2664254993107441,
+				"detail": {
+					"quality": 0.5213276902978076,
+					"popularity": 0.00436922798396124,
+					"maintenance": 0.3099941783629012
+				}
+			},
+			"searchScore": 4.7209718e-7
+		},
+		{
+			"package": {
+				"name": "cn-ark-plugin",
+				"scope": "unscoped",
+				"version": "1.1.0",
+				"description": "ChangeNOW plugin on Ark Desktop Wallet",
+				"keywords": ["@arkecosystem", "desktop-wallet", "plugin", "changenow", "exchange", "swap"],
+				"date": "2020-02-12T10:19:43.223Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/cn-ark-plugin",
+					"homepage": "https://github.com/ChangeNow-io/ARKPlugin",
+					"repository": "https://github.com/ChangeNow-io/ARKPlugin",
+					"bugs": "https://github.com/ChangeNow-io/ARKPlugin/issues"
+				},
+				"author": {
+					"name": "ChangeNOW"
+				},
+				"publisher": {
+					"username": "changenow",
+					"email": "api@changenow.io"
+				},
+				"maintainers": [
+					{
+						"username": "changenow",
+						"email": "api@changenow.io"
+					}
+				]
+			},
+			"score": {
+				"final": 0.26221143924521173,
+				"detail": {
+					"quality": 0.5089404031797136,
+					"popularity": 0.0029467310408064318,
+					"maintenance": 0.3099941783629012
+				}
+			},
+			"searchScore": 4.5104517e-7
+		},
+		{
+			"package": {
+				"name": "@giliam/ark-pro",
+				"scope": "giliam",
+				"version": "1.0.6",
+				"description": "A modern dark theme for the ARK desktop wallet.",
+				"keywords": ["theme", "dark", "pro", "ark", "@arkecosystem", "@giliam", "desktop-wallet", "plugin"],
+				"date": "2020-01-30T13:56:52.628Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40giliam%2Fark-pro",
+					"homepage": "https://github.com/giliamverheide/ARK-Pro#readme",
+					"repository": "https://github.com/giliamverheide/ARK-Pro",
+					"bugs": "https://github.com/giliamverheide/ARK-Pro/issues"
+				},
+				"author": {
+					"name": "Giliam Verheide"
+				},
+				"publisher": {
+					"username": "giliam",
+					"email": "giliam@verheide.nl"
+				},
+				"maintainers": [
+					{
+						"username": "giliam",
+						"email": "giliam@verheide.nl"
+					}
+				]
+			},
+			"score": {
+				"final": 0.26819968673042094,
+				"detail": {
+					"quality": 0.5089404031797136,
+					"popularity": 0.003123627970840562,
+					"maintenance": 0.3269265599620362
+				}
+			},
+			"searchScore": 4.060519e-7
+		},
+		{
+			"package": {
+				"name": "@giliam/ark-breeze",
+				"scope": "giliam",
+				"version": "1.0.5",
+				"description": "A modern light theme for the ARK desktop wallet.",
+				"keywords": ["theme", "light", "breeze", "ark", "@arkecosystem", "@giliam", "desktop-wallet", "plugin"],
+				"date": "2020-01-30T13:55:39.385Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40giliam%2Fark-breeze",
+					"homepage": "https://github.com/giliamverheide/ARK-Breeze#readme",
+					"repository": "https://github.com/giliamverheide/ARK-Breeze",
+					"bugs": "https://github.com/giliamverheide/ARK-Breeze/issues"
+				},
+				"author": {
+					"name": "Giliam Verheide"
+				},
+				"publisher": {
+					"username": "giliam",
+					"email": "giliam@verheide.nl"
+				},
+				"maintainers": [
+					{
+						"username": "giliam",
+						"email": "giliam@verheide.nl"
+					}
+				]
+			},
+			"score": {
+				"final": 0.2673755651848413,
+				"detail": {
+					"quality": 0.5089404031797136,
+					"popularity": 0.0029467310408064318,
+					"maintenance": 0.3247488239046999
+				}
+			},
+			"searchScore": 3.8938683e-7
+		},
+		{
+			"package": {
+				"name": "@dated/italian-language-plugin",
+				"scope": "dated",
+				"version": "1.0.1",
+				"description": "Italian Language Pack for the ARK Desktop Wallet",
+				"keywords": ["italian", "language", "translations", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-03-24T15:13:07.075Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40dated%2Fitalian-language-plugin"
+				},
+				"author": {
+					"name": "Edgar Goetzendorff",
+					"email": "hello@dated.fun",
+					"username": "dated"
+				},
+				"publisher": {
+					"username": "dated",
+					"email": "hello@dated.fun"
+				},
+				"maintainers": [
+					{
+						"username": "dated",
+						"email": "hello@dated.fun"
+					}
+				]
+			},
+			"score": {
+				"final": 0.2519894014305885,
+				"detail": {
+					"quality": 0.5213276902978076,
+					"popularity": 0.0023205912170773282,
+					"maintenance": 0.27079682118648335
+				}
+			},
+			"searchScore": 2.4646752e-7
+		},
+		{
+			"package": {
+				"name": "@breno.polanski/brazilian-portuguese-language-plugin",
+				"scope": "breno.polanski",
+				"version": "1.0.1",
+				"description": "Brazilian Portuguese Language Pack",
+				"keywords": ["language", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-03-26T13:02:47.658Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40breno.polanski%2Fbrazilian-portuguese-language-plugin",
+					"homepage": "https://github.com/brenopolanski/brazilian-portuguese-language-plugin#readme",
+					"repository": "https://github.com/brenopolanski/brazilian-portuguese-language-plugin",
+					"bugs": "https://github.com/brenopolanski/brazilian-portuguese-language-plugin/issues"
+				},
+				"author": {
+					"name": "Breno Polanski",
+					"email": "breno.polanski@gmail.com",
+					"url": "http://brenopolanski.com",
+					"username": "breno.polanski"
+				},
+				"publisher": {
+					"username": "breno.polanski",
+					"email": "breno.polanski@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "breno.polanski",
+						"email": "breno.polanski@gmail.com"
+					}
+				]
+			},
+			"score": {
+				"final": 0.24826351198737373,
+				"detail": {
+					"quality": 0.5089404031797136,
+					"popularity": 0.0022928674805443223,
+					"maintenance": 0.27079682118648335
+				}
+			},
+			"searchScore": 1.8071931e-7
+		},
+		{
+			"package": {
+				"name": "@daniel.barta/lively-wallet-template",
+				"scope": "daniel.barta",
+				"version": "1.0.0",
+				"description": "Lively ARK Dekstop Wallet Theme",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-01-29T15:51:14.092Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40daniel.barta%2Flively-wallet-template",
+					"homepage": "https://github.com/bartadaniel/lively-theme",
+					"repository": "https://github.com/bartadaniel/lively-theme",
+					"bugs": "https://github.com/bartadaniel/lively-theme/issues"
+				},
+				"author": {
+					"name": "Daniel Barta"
+				},
+				"publisher": {
+					"username": "daniel.barta",
+					"email": "barta.daniel@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "daniel.barta",
+						"email": "barta.daniel@gmail.com"
+					}
+				]
+			},
+			"score": {
+				"final": 0.2366950926254447,
+				"detail": {
+					"quality": 0.4703149048243977,
+					"popularity": 0.0023478107510178123,
+					"maintenance": 0.27079682118648335
+				}
+			},
+			"searchScore": 1.2272298e-7
+		},
+		{
+			"package": {
+				"name": "@jarunik/german-language-plugin",
+				"scope": "jarunik",
+				"version": "1.0.0",
+				"description": "German Language Option for Profile",
+				"keywords": ["german", "language", "translations", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-03-28T09:14:21.729Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40jarunik%2Fgerman-language-plugin"
+				},
+				"author": {
+					"name": "Jarunik",
+					"email": "jarunik@arkcoin.net"
+				},
+				"publisher": {
+					"username": "jarunik",
+					"email": "jens@hviid.ch"
+				},
+				"maintainers": [
+					{
+						"username": "jarunik",
+						"email": "jens@hviid.ch"
+					}
+				]
+			},
+			"score": {
+				"final": 0.2375424520234056,
+				"detail": {
+					"quality": 0.5213276902978076,
+					"popularity": 0.0013213782887364304,
+					"maintenance": 0.23051903580858735
+				}
+			},
+			"searchScore": 9.453205e-8
+		},
+		{
+			"package": {
+				"name": "@borismar/ark-desktop-wallet-theme-one",
+				"scope": "borismar",
+				"version": "0.9.6",
+				"description": "ARK Desktop Wallet almost gray theme",
+				"keywords": ["theme", "@borismar", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-01-20T17:21:08.149Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40borismar%2Fark-desktop-wallet-theme-one",
+					"homepage": "https://github.com/bobobobob/ark-theme-one#readme",
+					"repository": "https://github.com/bobobobob/ark-theme-one",
+					"bugs": "https://github.com/bobobobob/ark-theme-one/issues"
+				},
+				"author": {
+					"name": "Boris Martirosov"
+				},
+				"publisher": {
+					"username": "borismar",
+					"email": "boris.martirosov@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "borismar",
+						"email": "boris.martirosov@gmail.com"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.2296999824575624,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0025496841597986747,
+					"maintenance": 0.3099941783629012
+				}
+			},
+			"searchScore": 9.436744e-8
+		},
+		{
+			"package": {
+				"name": "@arkecosystem/desktop-wallet-explorer",
+				"scope": "arkecosystem",
+				"version": "0.1.13",
+				"description": "Use the ARK Mainnet explorer directly within the wallet",
+				"keywords": ["utility", "explorer", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-03-03T17:49:37.930Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40arkecosystem%2Fdesktop-wallet-explorer",
+					"homepage": "https://github.com/ark-ecosystem-desktop-plugins/explorer#readme",
+					"repository": "https://github.com/ark-ecosystem-desktop-plugins/explorer",
+					"bugs": "https://github.com/ark-ecosystem-desktop-plugins/explorer/issues"
+				},
+				"publisher": {
+					"username": "alexbarnsley",
+					"email": "alex@ark.io"
+				},
+				"maintainers": [
+					{
+						"username": "faustbrian",
+						"email": "hello@basecode.sh"
+					},
+					{
+						"username": "luciorubeens",
+						"email": "luciorubeens@gmail.com"
+					},
+					{
+						"username": "arkio",
+						"email": "fx.thoorens@ark.io"
+					},
+					{
+						"username": "alexbarnsley",
+						"email": "alex@ark.io"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.22310451313917123,
+				"detail": {
+					"quality": 0.4307630009274387,
+					"popularity": 0.003979327726039245,
+					"maintenance": 0.2642367090195025
+				}
+			},
+			"searchScore": 7.294443e-8
+		},
+		{
+			"package": {
+				"name": "@giliam/ark-pure",
+				"scope": "giliam",
+				"version": "1.0.0",
+				"description": "A modern theme with an expanded sidebar for the ARK desktop wallet.",
+				"keywords": ["theme", "light", "pure", "ark", "@arkecosystem", "@giliam", "desktop-wallet", "plugin"],
+				"date": "2020-01-30T18:57:05.099Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40giliam%2Fark-pure",
+					"homepage": "https://github.com/giliamverheide/ARK-Pure#readme",
+					"repository": "https://github.com/giliamverheide/ARK-Pure",
+					"bugs": "https://github.com/giliamverheide/ARK-Pure/issues"
+				},
+				"author": {
+					"name": "Giliam Verheide"
+				},
+				"publisher": {
+					"username": "giliam",
+					"email": "giliam@verheide.nl"
+				},
+				"maintainers": [
+					{
+						"username": "giliam",
+						"email": "giliam@verheide.nl"
+					}
+				]
+			},
+			"score": {
+				"final": 0.23413603701636942,
+				"detail": {
+					"quality": 0.5089404031797136,
+					"popularity": 0.002206438655570807,
+					"maintenance": 0.23051903580858735
+				}
+			},
+			"searchScore": 6.6677856e-8
+		},
+		{
+			"package": {
+				"name": "@breno.polanski/animal-avatars-ark-wallet",
+				"scope": "breno.polanski",
+				"version": "0.1.2",
+				"description": "A collection of custom animal avatars to show in the wallet.",
+				"keywords": ["avatar", "@arkecosystem", "desktop-wallet", "plugin", "animal-avatars"],
+				"date": "2020-03-11T12:41:34.711Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40breno.polanski%2Fanimal-avatars-ark-wallet",
+					"homepage": "https://github.com/brenopolanski/animal-avatars-ark-wallet#readme",
+					"repository": "https://github.com/brenopolanski/animal-avatars-ark-wallet",
+					"bugs": "https://github.com/brenopolanski/animal-avatars-ark-wallet/issues"
+				},
+				"author": {
+					"name": "Breno Polanski",
+					"email": "breno.polanski@gmail.com",
+					"url": "http://brenopolanski.com",
+					"username": "breno.polanski"
+				},
+				"publisher": {
+					"username": "breno.polanski",
+					"email": "breno.polanski@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "breno.polanski",
+						"email": "breno.polanski@gmail.com"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.22456332540272117,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0026416302656845523,
+					"maintenance": 0.29522606924318323
+				}
+			},
+			"searchScore": 5.194202e-8
+		},
+		{
+			"package": {
+				"name": "@cambot1088/cyj-theme_2",
+				"scope": "cambot1088",
+				"version": "0.0.3",
+				"description": "The Cam's Yellow Jacket Wallet Template",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-01-20T23:53:20.469Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40cambot1088%2Fcyj-theme_2",
+					"homepage": "https://github.com/cambo/cyj-theme_2",
+					"repository": "https://github.com/cambo/cyj-theme_2"
+				},
+				"author": {
+					"name": "cam",
+					"url": "cams_yellow_jacket"
+				},
+				"publisher": {
+					"username": "cambot1088",
+					"email": "cam.ark.eco@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "cambot1088",
+						"email": "cam.ark.eco@gmail.com"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.22445096173570867,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0023205912170773282,
+					"maintenance": 0.29522606924318323
+				}
+			},
+			"searchScore": 3.8505096e-8
+		},
+		{
+			"package": {
+				"name": "@azure-infinity/cyberpunk-theme",
+				"scope": "azure-infinity",
+				"version": "0.0.5",
+				"description": "Live in the future with this theme.",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-01-25T14:45:40.367Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40azure-infinity%2Fcyberpunk-theme"
+				},
+				"author": {
+					"name": "Azure-Infinity"
+				},
+				"publisher": {
+					"username": "azure-infinity",
+					"email": "azzurrii.infinity@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "azure-infinity",
+						"email": "azzurrii.infinity@gmail.com"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.22453114426566112,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0025496841597986747,
+					"maintenance": 0.29522606924318323
+				}
+			},
+			"searchScore": 3.431807e-8
+		},
+		{
+			"package": {
+				"name": "@azure-infinity/beyond-infinity",
+				"scope": "azure-infinity",
+				"version": "0.1.1",
+				"description": "This theme will take ARK to infinity and beyond.",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-01-24T15:24:10.373Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40azure-infinity%2Fbeyond-infinity",
+					"homepage": "https://github.com/azure-infinity/beyond-infinity",
+					"bugs": "https://github.com/azure-infinity/beyond-infinity/issues"
+				},
+				"author": {
+					"name": "Azure-Infinity"
+				},
+				"publisher": {
+					"username": "azure-infinity",
+					"email": "azzurrii.infinity@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "azure-infinity",
+						"email": "azzurrii.infinity@gmail.com"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.22447904177305403,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0024008198952069895,
+					"maintenance": 0.29522606924318323
+				}
+			},
+			"searchScore": 3.4154738e-8
+		},
+		{
+			"package": {
+				"name": "@breno.polanski/dracula-theme-ark-wallet",
+				"scope": "breno.polanski",
+				"version": "0.1.1",
+				"description": "A dark theme for ARK Desktop Wallet.",
+				"keywords": ["theme", "dark", "dracula", "dracula-theme", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-03-11T12:41:46.465Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40breno.polanski%2Fdracula-theme-ark-wallet",
+					"homepage": "https://github.com/brenopolanski/dracula-theme-ark-wallet#readme",
+					"repository": "https://github.com/brenopolanski/dracula-theme-ark-wallet",
+					"bugs": "https://github.com/brenopolanski/dracula-theme-ark-wallet/issues"
+				},
+				"author": {
+					"name": "Breno Polanski",
+					"email": "breno.polanski@gmail.com",
+					"url": "http://brenopolanski.com",
+					"username": "breno.polanski"
+				},
+				"publisher": {
+					"username": "breno.polanski",
+					"email": "breno.polanski@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "breno.polanski",
+						"email": "breno.polanski@gmail.com"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.2159007249158637,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0023205912170773282,
+					"maintenance": 0.27079682118648335
+				}
+			},
+			"searchScore": 3.2138782e-8
+		},
+		{
+			"package": {
+				"name": "@dancingleprechaun/troll-plugin",
+				"scope": "dancingleprechaun",
+				"version": "0.0.2",
+				"description": "practice plugin msq",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-06-09T16:35:46.188Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40dancingleprechaun%2Ftroll-plugin",
+					"homepage": "https://github.com/elaine-egan/ankh-morpork.git#readme",
+					"repository": "https://github.com/elaine-egan/ankh-morpork",
+					"bugs": "https://github.com/elaine-egan/ankh-morpork.git"
+				},
+				"author": {
+					"name": "me"
+				},
+				"publisher": {
+					"username": "dancingleprechaun",
+					"email": "elaine@ark.io"
+				},
+				"maintainers": [
+					{
+						"username": "dancingleprechaun",
+						"email": "elaine@ark.io"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.21592880495320907,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0024008198952069895,
+					"maintenance": 0.27079682118648335
+				}
+			},
+			"searchScore": 2.8308067e-8
+		},
+		{
+			"package": {
+				"name": "@arkecosystem/desktop-wallet-theme-dark-contrast",
+				"scope": "arkecosystem",
+				"version": "0.1.6",
+				"description": "Dark contrast theme",
+				"keywords": ["theme", "dark", "contrast", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-03-12T11:05:23.776Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40arkecosystem%2Fdesktop-wallet-theme-dark-contrast",
+					"homepage": "https://github.com/ark-ecosystem-desktop-plugins/dark-contrast-theme#readme",
+					"repository": "https://github.com/ark-ecosystem-desktop-plugins/dark-contrast-theme",
+					"bugs": "https://github.com/ark-ecosystem-desktop-plugins/dark-contrast-theme/issues"
+				},
+				"publisher": {
+					"username": "alexbarnsley",
+					"email": "alex@ark.io"
+				},
+				"maintainers": [
+					{
+						"username": "faustbrian",
+						"email": "hello@basecode.sh"
+					},
+					{
+						"username": "luciorubeens",
+						"email": "luciorubeens@gmail.com"
+					},
+					{
+						"username": "arkio",
+						"email": "fx.thoorens@ark.io"
+					},
+					{
+						"username": "alexbarnsley",
+						"email": "alex@ark.io"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.20848534884272385,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0029467310408064318,
+					"maintenance": 0.24898389258235473
+				}
+			},
+			"searchScore": 2.2806365e-8
+		},
+		{
+			"package": {
+				"name": "@marcow/desktop-wallet-theme",
+				"scope": "marcow",
+				"version": "0.0.1",
+				"description": "Spacial Ark Wallet Template",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-01-15T12:45:08.682Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40marcow%2Fdesktop-wallet-theme"
+				},
+				"author": {
+					"name": "Rastrow"
+				},
+				"publisher": {
+					"username": "marcow",
+					"email": "rafaelpuva@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "marcow",
+						"email": "rafaelpuva@gmail.com"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.20128457017571155,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0008379344802529765,
+					"maintenance": 0.23051903580858735
+				}
+			},
+			"searchScore": 1.8060447e-8
+		},
+		{
+			"package": {
+				"name": "@dancingleprechaun/green-wallet-template",
+				"scope": "dancingleprechaun",
+				"version": "0.0.1",
+				"description": "Greenish Desktop Wallet Theme",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-04-30T09:56:33.369Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40dancingleprechaun%2Fgreen-wallet-template"
+				},
+				"author": {
+					"name": "Arthur Daly"
+				},
+				"publisher": {
+					"username": "dancingleprechaun",
+					"email": "elaine@ark.io"
+				},
+				"maintainers": [
+					{
+						"username": "dancingleprechaun",
+						"email": "elaine@ark.io"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.2017635466370728,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.002206438655570807,
+					"maintenance": 0.23051903580858735
+				}
+			},
+			"searchScore": 1.5569086e-8
+		},
+		{
+			"package": {
+				"name": "@ross121/red-snow-theme",
+				"scope": "ross121",
+				"version": "0.0.2",
+				"description": "The ARK wallet theme with a bit more red.",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-01-30T12:42:41.330Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40ross121%2Fred-snow-theme",
+					"homepage": "https://github.com/ross121/red-snow-theme",
+					"repository": "https://github.com/ross121/red-snow-theme",
+					"bugs": "https://github.com/ross121/red-snow-theme/issues"
+				},
+				"author": {
+					"name": "ross121"
+				},
+				"publisher": {
+					"username": "ross121",
+					"email": "ross121@pm.me"
+				},
+				"maintainers": [
+					{
+						"username": "ross121",
+						"email": "ross121@pm.me"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.20888624261167466,
+				"detail": {
+					"quality": 0.3783579812970603,
+					"popularity": 0.0017141737351069172,
+					"maintenance": 0.27079682118648335
+				}
+			},
+			"searchScore": 1.43494505e-8
+		},
+		{
+			"package": {
+				"name": "@dvnc/dvnc-wallet-theme-template",
+				"scope": "dvnc",
+				"version": "0.0.1",
+				"description": "dvnc style Wallet Theme Template",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-01-29T02:16:58.040Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40dvnc%2Fdvnc-wallet-theme-template",
+					"homepage": "https://github.com/DVNCL/dvnc-theme",
+					"repository": "https://github.com/DVNCL/dvnc-theme",
+					"bugs": "https://github.com/DVNCL/dvnc-theme/issues"
+				},
+				"author": {
+					"name": "dvnc"
+				},
+				"publisher": {
+					"username": "dvnc",
+					"email": "dlynch76.dl@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "dvnc",
+						"email": "dlynch76.dl@gmail.com"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.20174233783753798,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.002145842085471352,
+					"maintenance": 0.23051903580858735
+				}
+			},
+			"searchScore": 1.3483485e-8
+		},
+		{
+			"package": {
+				"name": "@pieface/avfc-theme",
+				"scope": "pieface",
+				"version": "0.0.3",
+				"description": "Aston Villa theme for the ARK Desktop Wallet",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-04-14T09:25:07.331Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40pieface%2Favfc-theme",
+					"homepage": "https://github.com/avfcpieface/avfc-theme#readme",
+					"repository": "https://github.com/avfcpieface/avfc-theme",
+					"bugs": "https://github.com/avfcpieface/avfc-theme/issues"
+				},
+				"author": {
+					"name": "PieFacE"
+				},
+				"publisher": {
+					"username": "pieface",
+					"email": "samharperpittam@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "pieface",
+						"email": "samharperpittam@gmail.com"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.20487280804183136,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0014314299240120944,
+					"maintenance": 0.24017764855374193
+				}
+			},
+			"searchScore": 1.26206325e-8
+		},
+		{
+			"package": {
+				"name": "@arkecosystem/desktop-wallet-sound-notifications",
+				"scope": "arkecosystem",
+				"version": "0.1.6",
+				"description": "Play a notification sound when you receive new transactions",
+				"keywords": ["utility", "notification", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2019-12-09T21:54:40.610Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40arkecosystem%2Fdesktop-wallet-sound-notifications",
+					"homepage": "https://github.com/ark-ecosystem-desktop-plugins/sound-notifications#readme",
+					"repository": "https://github.com/ark-ecosystem-desktop-plugins/sound-notifications",
+					"bugs": "https://github.com/ark-ecosystem-desktop-plugins/sound-notifications/issues"
+				},
+				"author": {
+					"name": "Lucio Rubens",
+					"email": "lucio@ark.io"
+				},
+				"publisher": {
+					"username": "alexbarnsley",
+					"email": "alex@ark.io"
+				},
+				"maintainers": [
+					{
+						"username": "faustbrian",
+						"email": "hello@basecode.sh"
+					},
+					{
+						"username": "luciorubeens",
+						"email": "luciorubeens@gmail.com"
+					},
+					{
+						"username": "arkio",
+						"email": "fx.thoorens@ark.io"
+					},
+					{
+						"username": "alexbarnsley",
+						"email": "alex@ark.io"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.19443504470115358,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0032692094662405764,
+					"maintenance": 0.20851768803814832
+				}
+			},
+			"searchScore": 1.0169691e-8
+		},
+		{
+			"package": {
+				"name": "@khlilo58/captivating-theme-template",
+				"scope": "khlilo58",
+				"version": "0.0.1",
+				"description": "Plugin for Ark Wallet",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-01-24T21:41:31.375Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40khlilo58%2Fcaptivating-theme-template"
+				},
+				"author": {
+					"name": "Khlilo58"
+				},
+				"publisher": {
+					"username": "khlilo58",
+					"email": "jelassikhalil55@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "khlilo58",
+						"email": "jelassikhalil55@gmail.com"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.20128457017571155,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0008379344802529765,
+					"maintenance": 0.23051903580858735
+				}
+			},
+			"searchScore": 9.755337e-9
+		},
+		{
+			"package": {
+				"name": "@doubled1c3/youtube-demo-theme",
+				"scope": "doubled1c3",
+				"version": "0.0.1",
+				"description": "Demo theme for YouTube video on creating and publishing themes using NPM",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-01-15T23:19:05.917Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40doubled1c3%2Fyoutube-demo-theme"
+				},
+				"author": {
+					"name": "Justin Renken"
+				},
+				"publisher": {
+					"username": "doubled1c3",
+					"email": "justin@ark.io"
+				},
+				"maintainers": [
+					{
+						"username": "doubled1c3",
+						"email": "justin@ark.io"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.20173138953875153,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.002114561231795714,
+					"maintenance": 0.23051903580858735
+				}
+			},
+			"searchScore": 8.429921e-9
+		},
+		{
+			"package": {
+				"name": "@azure-infinity/infinite-universe",
+				"scope": "azure-infinity",
+				"version": "0.0.1",
+				"description": "This theme brings light to darkness.",
+				"keywords": ["theme", "template", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-01-24T19:08:31.560Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40azure-infinity%2Finfinite-universe",
+					"homepage": "https://github.com/azure-infinity/infinite-universe",
+					"repository": "https://github.com/azure-infinity/infinite-universe",
+					"bugs": "https://github.com/azure-infinity/infinite-universe/issues"
+				},
+				"author": {
+					"name": "Azure-Infinity"
+				},
+				"publisher": {
+					"username": "azure-infinity",
+					"email": "azzurrii.infinity@gmail.com"
+				},
+				"maintainers": [
+					{
+						"username": "azure-infinity",
+						"email": "azzurrii.infinity@gmail.com"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.20172019615618775,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.00208258013875632,
+					"maintenance": 0.23051903580858735
+				}
+			},
+			"searchScore": 8.420341e-9
+		},
+		{
+			"package": {
+				"name": "@arkecosystem/additional-avatars",
+				"scope": "arkecosystem",
+				"version": "0.0.8",
+				"description": "A collection of custom avatars to show in the wallet.",
+				"keywords": ["avatar", "@arkecosystem", "desktop-wallet", "plugin"],
+				"date": "2020-03-12T11:05:37.114Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40arkecosystem%2Fadditional-avatars",
+					"homepage": "https://github.com/ark-ecosystem-desktop-plugins/additional-avatars#readme",
+					"repository": "https://github.com/ark-ecosystem-desktop-plugins/additional-avatars",
+					"bugs": "https://github.com/ark-ecosystem-desktop-plugins/additional-avatars/issues"
+				},
+				"author": {
+					"name": "Alex Barnsley",
+					"email": "alex@ark.io",
+					"username": "alexbarnsley"
+				},
+				"publisher": {
+					"username": "alexbarnsley",
+					"email": "alex@ark.io"
+				},
+				"maintainers": [
+					{
+						"username": "faustbrian",
+						"email": "hello@basecode.sh"
+					},
+					{
+						"username": "luciorubeens",
+						"email": "luciorubeens@gmail.com"
+					},
+					{
+						"username": "arkio",
+						"email": "fx.thoorens@ark.io"
+					},
+					{
+						"username": "alexbarnsley",
+						"email": "alex@ark.io"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.19842761020609084,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0032219526271943305,
+					"maintenance": 0.21997227489130103
+				}
+			},
+			"searchScore": 8.159677e-9
+		},
+		{
+			"package": {
+				"name": "@alessiodf/minesweeper-flags",
+				"scope": "alessiodf",
+				"version": "1.0.6",
+				"description": "Minesweeper Flags is a two-player variant of Minesweeper, where the objective is to discover 26 out of 51 mines before your opponent. Play against a real life opponent to win tokens on any supported ARK-powered network.",
+				"keywords": [
+					"@arkecosystem",
+					"desktop-wallet",
+					"plugin",
+					"game",
+					"games",
+					"gaming",
+					"delegate fun",
+					"fun",
+					"minesweeper flags",
+					"minesweeper"
+				],
+				"date": "2020-01-09T12:26:46.802Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40alessiodf%2Fminesweeper-flags",
+					"homepage": "https://www.arkfun.io/minesweeper-flags/"
+				},
+				"author": {
+					"name": "Delegate Fun"
+				},
+				"publisher": {
+					"username": "alessiodf",
+					"email": "alessiodf@pm.me"
+				},
+				"maintainers": [
+					{
+						"username": "alessiodf",
+						"email": "alessiodf@pm.me"
+					}
+				]
+			},
+			"score": {
+				"final": 0.1481757182681064,
+				"detail": {
+					"quality": 0.2,
+					"popularity": 0.0029467310408064318,
+					"maintenance": 0.24898389258235473
+				}
+			},
+			"searchScore": 7.798619e-11
+		},
+		{
+			"package": {
+				"name": "@alessiodf/universal-delegate-monitor",
+				"scope": "alessiodf",
+				"version": "0.9.0",
+				"description": "Check the health of the active delegates on various ARK-powered networks along with their estimated forging times. You can also monitor specific delegates of your choice to check their statuses and forging times at a glance.",
+				"keywords": [
+					"utility",
+					"universal",
+					"delegate",
+					"monitor",
+					"network",
+					"health",
+					"forging",
+					"@arkecosystem",
+					"desktop-wallet",
+					"plugin"
+				],
+				"date": "2019-12-11T20:24:04.124Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40alessiodf%2Funiversal-delegate-monitor",
+					"homepage": "https://github.com/alessiodf/universal-delegate-monitor/",
+					"repository": "https://github.com/alessiodf/universal-delegate-monitor",
+					"bugs": "https://github.com/alessiodf/universal-delegate-monitor/issues"
+				},
+				"author": {
+					"name": "Alessio"
+				},
+				"publisher": {
+					"username": "alessiodf",
+					"email": "alessiodf@pm.me"
+				},
+				"maintainers": [
+					{
+						"username": "alessiodf",
+						"email": "alessiodf@pm.me"
+					}
+				]
+			},
+			"flags": {
+				"unstable": true
+			},
+			"score": {
+				"final": 0.1402799780333349,
+				"detail": {
+					"quality": 0.4010321019153915,
+					"popularity": 0.0035167556451198775,
+					"maintenance": 0.053541379951215634
+				}
+			},
+			"searchScore": 5.7786623e-11
+		},
+		{
+			"package": {
+				"name": "@alessiodf/t-grexx",
+				"scope": "alessiodf",
+				"version": "1.0.1",
+				"description": "Forget Survival Evolved, here is ARK's own dinosaur game! Jump over the obstacles and avoid the pesky pterodactyls to score points as the game gets progressively faster. The highest scorer receives free ARK straight into their wallet.",
+				"keywords": [
+					"@arkecosystem",
+					"desktop-wallet",
+					"plugin",
+					"game",
+					"games",
+					"gaming",
+					"delegate fun",
+					"fun",
+					"t-grexx",
+					"dinosaur",
+					"dino",
+					"infinite runner",
+					"runner",
+					"platform"
+				],
+				"date": "2020-01-09T12:26:30.857Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40alessiodf%2Ft-grexx",
+					"homepage": "https://www.arkfun.io/dino/"
+				},
+				"author": {
+					"name": "Delegate Fun"
+				},
+				"publisher": {
+					"username": "alessiodf",
+					"email": "alessiodf@pm.me"
+				},
+				"maintainers": [
+					{
+						"username": "alessiodf",
+						"email": "alessiodf@pm.me"
+					}
+				]
+			},
+			"score": {
+				"final": 0.14171949773724807,
+				"detail": {
+					"quality": 0.2,
+					"popularity": 0.002965243440693017,
+					"maintenance": 0.23051903580858724
+				}
+			},
+			"searchScore": 3.8252127e-11
+		},
+		{
+			"package": {
+				"name": "@alessiodf/connect-4",
+				"scope": "alessiodf",
+				"version": "1.0.0",
+				"description": "Be the first to form a horizontal, vertical or diagonal line of four of your discs to win. Play against a real life opponent to win tokens on any supported ARK-powered network.",
+				"keywords": [
+					"@arkecosystem",
+					"desktop-wallet",
+					"plugin",
+					"game",
+					"games",
+					"gaming",
+					"delegate fun",
+					"fun",
+					"connect 4",
+					"turts vs toots",
+					"turt",
+					"toot"
+				],
+				"date": "2020-02-24T14:28:12.271Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40alessiodf%2Fconnect-4",
+					"homepage": "https://www.arkfun.io/connect-4/"
+				},
+				"author": {
+					"name": "Delegate Fun"
+				},
+				"publisher": {
+					"username": "alessiodf",
+					"email": "alessiodf@pm.me"
+				},
+				"maintainers": [
+					{
+						"username": "alessiodf",
+						"email": "alessiodf@pm.me"
+					}
+				]
+			},
+			"score": {
+				"final": 0.14169984785642553,
+				"detail": {
+					"quality": 0.2,
+					"popularity": 0.0029091009240570813,
+					"maintenance": 0.23051903580858735
+				}
+			},
+			"searchScore": 3.6435792e-11
+		},
+		{
+			"package": {
+				"name": "@alessiodf/match-3",
+				"scope": "alessiodf",
+				"version": "1.0.1",
+				"description": "Save the animals from the flood by swapping adjacent tiles to build chains of 3 or more to bring them to safety inside your Ark. Two other modes with different tile sets are also playable. The highest scorer receives free ARK straight into their wallet.",
+				"keywords": [
+					"@arkecosystem",
+					"desktop-wallet",
+					"plugin",
+					"game",
+					"games",
+					"gaming",
+					"delegate fun",
+					"fun",
+					"match 3",
+					"bejeweled",
+					"stay deluded",
+					"puzzle"
+				],
+				"date": "2020-01-09T12:26:37.827Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40alessiodf%2Fmatch-3",
+					"homepage": "https://www.arkfun.io/match3/"
+				},
+				"author": {
+					"name": "Delegate Fun"
+				},
+				"publisher": {
+					"username": "alessiodf",
+					"email": "alessiodf@pm.me"
+				},
+				"maintainers": [
+					{
+						"username": "alessiodf",
+						"email": "alessiodf@pm.me"
+					}
+				]
+			},
+			"score": {
+				"final": 0.12974768622371205,
+				"detail": {
+					"quality": 0.2,
+					"popularity": 0.003123627970840562,
+					"maintenance": 0.1961554755254796
+				}
+			},
+			"searchScore": 1.2846478e-11
+		},
+		{
+			"package": {
+				"name": "@alessiodf/bold-ninja",
+				"scope": "alessiodf",
+				"version": "1.0.1",
+				"description": "Control your ninja and help him jump across platforms to collect cryptocurrencies along the way to earn points. Earn two seconds of game time and varying points for every item you collect. The highest scorer receives free ARK straight into their wallet.",
+				"keywords": [
+					"@arkecosystem",
+					"desktop-wallet",
+					"plugin",
+					"game",
+					"games",
+					"gaming",
+					"delegate fun",
+					"fun",
+					"bold ninja",
+					"boldninja",
+					"ninja",
+					"infinite runner",
+					"runner",
+					"platform"
+				],
+				"date": "2020-01-09T12:26:22.609Z",
+				"links": {
+					"npm": "https://www.npmjs.com/package/%40alessiodf%2Fbold-ninja",
+					"homepage": "https://www.arkfun.io/ninja/"
+				},
+				"author": {
+					"name": "Delegate Fun"
+				},
+				"publisher": {
+					"username": "alessiodf",
+					"email": "alessiodf@pm.me"
+				},
+				"maintainers": [
+					{
+						"username": "alessiodf",
+						"email": "alessiodf@pm.me"
+					}
+				]
+			},
+			"score": {
+				"final": 0.1297876601546965,
+				"detail": {
+					"quality": 0.2,
+					"popularity": 0.0032378392022247467,
+					"maintenance": 0.1961554755254796
+				}
+			},
+			"searchScore": 1.2040107e-11
 		}
 	],
-	"links": {
-		"first": "https://marketsquare.io/api/plugins?page=1",
-		"last": "https://marketsquare.io/api/plugins?page=2",
-		"prev": null,
-		"next": "https://marketsquare.io/api/plugins?page=2"
-	},
-	"meta": {
-		"current_page": 1,
-		"from": 1,
-		"last_page": 1,
-		"path": "https://marketsquare.io/api/plugins",
-		"per_page": 15,
-		"to": 15,
-		"total": 2
-	}
+	"total": 36,
+	"time": "Mon Jan 11 2021 05:43:32 GMT+0000 (UTC)"
 }

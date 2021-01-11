@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export interface RegistryPluginManifest {
 	categories: string[];
 	permissions: string[];
@@ -39,33 +41,113 @@ export interface RegistryPluginVersion {
 	is_verified: boolean;
 }
 
-export interface RegistryPlugin {
-	id: number;
-	type: string;
-	name: string;
-	slug: string;
-	description: string;
-	version: string;
-	downloads: number;
-	manifest: RegistryPluginManifest;
-	aip36: RegistryPluginAip36;
-	versions: RegistryPluginVersion[];
-	updated_at: Date;
-}
+export class RegistryPlugin {
+	readonly #data: any;
+	readonly #downloads: any;
+	readonly #date: string;
 
-export interface RegistryPluginResponse {
-	data: RegistryPlugin;
-}
+	public constructor(data: any, downloads: any, date: string) {
+		this.#data = data;
+		this.#downloads = downloads;
+		this.#date = date;
+	}
 
-export interface RegistryPluginListResponse {
-	data: RegistryPlugin[];
-	meta: {
-		current_page: number;
-		from: number;
-		last_page: number;
-		path: string;
-		per_page: number;
-		to: number;
-		total: number;
-	};
+	public name(): string {
+		return this.#data.name;
+	}
+
+	public alias(): string {
+		return this.getMetaData("title");
+	}
+
+	public date(): string {
+		return this.#date;
+	}
+
+	public version(): string {
+		return this.#data["dist-tags"].latest;
+	}
+
+	public description(): string {
+		return this.#data.description;
+	}
+
+	public author(): { name: string; email: string } {
+		return this.#data.author;
+	}
+
+	public installSize(): number {
+		return this.getLatestVersion().dist.unpackedSize;
+	}
+
+	public downloads(): number {
+		let result = 0;
+
+		for (const { downloads } of this.#downloads) {
+			result += downloads;
+		}
+
+		return result;
+	}
+
+	public sourceProvider(): any {
+		for (const [provider, pattern] of Object.entries({
+			github: /http(?:s)?:\/\/(?:www\.)?github\.com(\/[a-z\d](?:[a-z\d]|-(?=[a-z\d])){1,39}){2}/,
+			gitlab: /http(?:s)?:\/\/(?:www\.)?gitlab\.com(\/[a-z\d](?:[a-z\d]|-(?=[a-z\d])){1,39}){2}/,
+			bitbucket: /http(?:s)?:\/\/(?:www\.)?bitbucket\.com(\/[a-z\d](?:[a-z\d]|-(?=[a-z\d])){1,39}){2}/,
+		})) {
+			if (new RegExp(pattern).test(this.#data.homepage)) {
+				return {
+					name: provider,
+					url: this.#data.repository.url,
+				};
+			}
+		}
+
+		return null;
+	}
+
+	public images(): string[] {
+		return this.getMetaData("images");
+	}
+
+	public categories(): string[] {
+		return this.getMetaData("categories");
+	}
+
+	public permissions(): string[] {
+		return this.getMetaData("permissions");
+	}
+
+	public urls(): string[] {
+		return this.getMetaData("urls");
+	}
+
+	public minimumVersion(): string {
+		return this.getMetaData("minimumVersion");
+	}
+
+	public versions(): string[] {
+		return Object.keys(this.#data.versions);
+	}
+
+	private getLatestVersion(): any {
+		return this.#data.versions[Object.keys(this.#data.versions)[Object.keys(this.#data.versions).length - 1]];
+	}
+
+	private getMetaData(key: string): any {
+		const latestVersion = this.getLatestVersion();
+
+		if (latestVersion[key]) {
+			return latestVersion[key];
+		}
+
+		if (latestVersion["desktop-wallet"]) {
+			if (latestVersion["desktop-wallet"][key]) {
+				return latestVersion["desktop-wallet"][key];
+			}
+		}
+
+		return undefined;
+	}
 }
