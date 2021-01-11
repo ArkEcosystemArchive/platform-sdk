@@ -82,9 +82,11 @@ export class ExchangeRateService {
 	}
 
 	public async restore(): Promise<void> {
-		const entries: object | undefined = await container.get<Storage>(Identifiers.Storage).get(this.#storageKey);
+		const entries: object | undefined | null = await container
+			.get<Storage>(Identifiers.Storage)
+			.get(this.#storageKey);
 
-		if (entries !== undefined) {
+		if (entries !== undefined && entries !== null) {
 			this.#dataRepository.fill(entries);
 		}
 	}
