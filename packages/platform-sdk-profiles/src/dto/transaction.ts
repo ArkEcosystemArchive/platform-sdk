@@ -2,12 +2,11 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { File } from "@arkecosystem/platform-sdk-ipfs";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import slugify from "@sindresorhus/slugify";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { ExchangeRateService } from "../environment/services/exchange-rate-service";
-import { ReadWriteWallet, WalletData } from "../wallets/wallet.models";
+import { ReadWriteWallet } from "../wallets/wallet.models";
 
 export class TransactionData {
 	readonly #wallet: ReadWriteWallet;
@@ -413,12 +412,6 @@ export class DelegateRegistrationData extends TransactionData {
 	public username(): string {
 		return this.data<Contracts.DelegateRegistrationData>().username();
 	}
-
-	public marketSquareLink(): string {
-		const slug: string = slugify(this.username());
-
-		return `https://marketsquare.io/delegates/${slug}`;
-	}
 }
 
 export class DelegateResignationData extends TransactionData {}
@@ -453,19 +446,6 @@ export class EntityRegistrationData extends TransactionData {
 		}
 
 		return new File(container.get(Identifiers.HttpClient)).get(hash) as any;
-	}
-
-	public marketSquareLink(): string {
-		const slug: string = slugify(this.name());
-		const type: string = {
-			0: "businesses",
-			1: "products",
-			2: "plugins",
-			3: "modules",
-			4: "delegates",
-		}[this.entityType()];
-
-		return `https://marketsquare.io/${type}/${slug}`;
 	}
 }
 

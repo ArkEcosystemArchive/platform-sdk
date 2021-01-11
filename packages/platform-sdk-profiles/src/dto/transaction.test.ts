@@ -613,10 +613,6 @@ describe("DelegateRegistrationData", () => {
 	test("#username", () => {
 		expect(subject.username()).toBe("username");
 	});
-
-	test("#marketSquareLink", () => {
-		expect(subject.marketSquareLink()).toBe("https://marketsquare.io/delegates/username");
-	});
 });
 
 describe("DelegateResignationData", () => {
@@ -686,10 +682,6 @@ describe("EntityRegistrationData", () => {
 			EntityRegistrationData,
 		);
 		await expect(subject.ipfsContent()).resolves.toBe("ipfs-content");
-	});
-
-	test("marketSquareLink", () => {
-		expect(subject.marketSquareLink()).toBe("https://marketsquare.io/products/name");
 	});
 });
 
