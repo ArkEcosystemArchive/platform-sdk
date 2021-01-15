@@ -15,6 +15,8 @@ const services = {
 	// @ts-ignore
 	client: { destruct: jest.fn() },
 	// @ts-ignore
+	dataTransferObject: { destruct: jest.fn() },
+	// @ts-ignore
 	fee: { destruct: jest.fn() },
 	// @ts-ignore
 	identity: { destruct: jest.fn() },
@@ -55,6 +57,7 @@ test("#destruct", async () => {
 	await subject.destruct();
 
 	expect(services.client.destruct).toHaveBeenCalledTimes(1);
+	expect(services.dataTransferObject.destruct).toHaveBeenCalledTimes(1);
 	expect(services.fee.destruct).toHaveBeenCalledTimes(1);
 	expect(services.identity.destruct).toHaveBeenCalledTimes(1);
 	expect(services.knownWallets.destruct).toHaveBeenCalledTimes(1);
@@ -84,6 +87,10 @@ test("#config", () => {
 
 test("#client", () => {
 	expect(subject.client()).toBeObject();
+});
+
+test("#dataTransferObject", () => {
+	expect(subject.dataTransferObject()).toBeObject();
 });
 
 test("#fee", () => {

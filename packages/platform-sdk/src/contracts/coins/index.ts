@@ -1,5 +1,6 @@
 export * from "./client";
 export * from "./data";
+export * from "./data-transfer-object";
 export * from "./entity";
 export * from "./fee";
 export * from "./http";

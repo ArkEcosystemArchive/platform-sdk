@@ -545,15 +545,7 @@ export class TransactionService {
 			for (const [id, transaction] of Object.entries(transactions)) {
 				this.assertHasValidIdentifier(id);
 
-				/**
-				 * @TODO
-				 *
-				 * Implement a SignedTransactionFactory which will allow us to restore
-				 * the transactions into their original coin-specific format.
-				 *
-				 * Not super urgent because the way it is consumed it's not an issue yet.
-				 */
-				storage[id] = new SignedTransactionData(id, transaction);
+				storage[id] = this.#wallet.dataTransferObject().signedTransaction(id, transaction);
 			}
 		};
 

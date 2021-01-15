@@ -3,6 +3,7 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { ClientService } from "./services/client";
+import { DataTransferObjectService } from "./services/data-transfer-object";
 import { FeeService } from "./services/fee";
 import { IdentityService } from "./services/identity";
 import { KnownWalletService } from "./services/known-wallets";
@@ -19,8 +20,20 @@ export class ServiceProvider {
 
 		const multiSignature = await MultiSignatureService.construct(config);
 
-		const [client, fee, identity, knownWallets, ledger, link, message, peer, transaction] = await Promise.all([
-			ClientService.construct(config),
+		const [
+			client,
+			dataTransferObject,
+			fee,
+			identity,
+			knownWallets,
+			ledger,
+			link,
+			message,
+			peer,
+			transaction,
+		] = await Promise.all([
+			ClientService.construct(config) as any,
+			DataTransferObjectService.construct(config),
 			FeeService.construct(config),
 			IdentityService.construct(config),
 			KnownWalletService.construct(config),
@@ -33,6 +46,7 @@ export class ServiceProvider {
 
 		return {
 			client,
+			dataTransferObject,
 			fee,
 			identity,
 			knownWallets,
