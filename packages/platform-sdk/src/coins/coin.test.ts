@@ -15,6 +15,8 @@ const services = {
 	// @ts-ignore
 	client: { destruct: jest.fn() },
 	// @ts-ignore
+	dataTransferObject: { destruct: jest.fn() },
+	// @ts-ignore
 	fee: { destruct: jest.fn() },
 	// @ts-ignore
 	identity: { destruct: jest.fn() },
