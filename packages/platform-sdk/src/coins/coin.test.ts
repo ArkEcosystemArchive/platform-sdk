@@ -57,6 +57,7 @@ test("#destruct", async () => {
 	await subject.destruct();
 
 	expect(services.client.destruct).toHaveBeenCalledTimes(1);
+	expect(services.dataTransferObject.destruct).toHaveBeenCalledTimes(1);
 	expect(services.fee.destruct).toHaveBeenCalledTimes(1);
 	expect(services.identity.destruct).toHaveBeenCalledTimes(1);
 	expect(services.knownWallets.destruct).toHaveBeenCalledTimes(1);
@@ -86,6 +87,10 @@ test("#config", () => {
 
 test("#client", () => {
 	expect(subject.client()).toBeObject();
+});
+
+test("#dataTransferObject", () => {
+	expect(subject.dataTransferObject()).toBeObject();
 });
 
 test("#fee", () => {
