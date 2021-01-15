@@ -1,6 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
 import { ClientService } from "./services/client";
+import { DataTransferObjectService } from "./services/data-transfer-object";
 import { FeeService } from "./services/fee";
 import { IdentityService } from "./services/identity";
 import { KnownWalletService } from "./services/known-wallets";
@@ -15,6 +16,7 @@ export class ServiceProvider {
 	public static async make(coin: Coins.CoinSpec, config: Coins.Config): Promise<Coins.CoinServices> {
 		const [
 			client,
+			dataTransferObject,
 			fee,
 			identity,
 			knownWallets,
@@ -25,7 +27,8 @@ export class ServiceProvider {
 			peer,
 			transaction,
 		] = await Promise.all([
-			ClientService.construct(config),
+			ClientService.construct(config) as any,
+			DataTransferObjectService.construct(config),
 			FeeService.construct(config),
 			IdentityService.construct(config),
 			KnownWalletService.construct(config),
@@ -39,6 +42,7 @@ export class ServiceProvider {
 
 		return {
 			client,
+			dataTransferObject,
 			fee,
 			identity,
 			knownWallets,

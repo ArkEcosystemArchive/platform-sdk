@@ -1,5 +1,6 @@
 import {
 	ClientService,
+	DataTransferObjectService,
 	FeeService,
 	HttpClient,
 	IdentityService,
@@ -27,6 +28,7 @@ export interface CoinOptions {
 
 export interface CoinServices {
 	client: ClientService;
+	dataTransferObject: DataTransferObjectService;
 	fee: FeeService;
 	identity: IdentityService;
 	knownWallets: KnownWalletService;
