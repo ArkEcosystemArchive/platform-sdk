@@ -659,30 +659,6 @@ describe("EntityRegistrationData", () => {
 	test("#ipfs", () => {
 		expect(subject.ipfs()).toBe("ipfs");
 	});
-
-	test("#ipfsContent for undefined ipfs", async () => {
-		subject = createSubject(
-			wallet,
-			{
-				...subject,
-				ipfs: () => undefined,
-			},
-			EntityRegistrationData,
-		);
-		await expect(subject.ipfsContent()).resolves.toBeUndefined();
-	});
-
-	test("#ipfsContent", async () => {
-		subject = createSubject(
-			wallet,
-			{
-				...subject,
-				ipfs: () => "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9c",
-			},
-			EntityRegistrationData,
-		);
-		await expect(subject.ipfsContent()).resolves.toBe("ipfs-content");
-	});
 });
 
 describe("EntityResignationData", () => {
@@ -749,30 +725,6 @@ describe("EntityUpdateData", () => {
 
 	test("#ipfs", () => {
 		expect(subject.ipfs()).toBe("ipfs");
-	});
-
-	test("#ipfsContent for undefined ipfs", async () => {
-		subject = createSubject(
-			wallet,
-			{
-				...subject,
-				ipfs: () => undefined,
-			},
-			EntityUpdateData,
-		);
-		expect(await subject.ipfsContent()).toBeUndefined();
-	});
-
-	test("#ipfsContent", async () => {
-		subject = createSubject(
-			wallet,
-			{
-				...subject,
-				ipfs: () => "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9c",
-			},
-			EntityUpdateData,
-		);
-		expect(await subject.ipfsContent()).toBe("ipfs-content");
 	});
 });
 
