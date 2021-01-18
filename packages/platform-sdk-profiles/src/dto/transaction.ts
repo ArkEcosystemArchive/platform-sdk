@@ -1,6 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import { File } from "@arkecosystem/platform-sdk-ipfs";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { container } from "../environment/container";
@@ -437,16 +436,6 @@ export class EntityRegistrationData extends TransactionData {
 	public ipfs(): string | undefined {
 		return this.data<Contracts.EntityUpdateData>().ipfs();
 	}
-
-	public async ipfsContent(): Promise<object | undefined> {
-		const hash: string | undefined = this.ipfs();
-
-		if (hash === undefined) {
-			return undefined;
-		}
-
-		return new File(container.get(Identifiers.HttpClient)).get(hash) as any;
-	}
 }
 
 // This type is currently only supported by ARK. We are more lenient with its strictness in data formatting and usage
@@ -488,16 +477,6 @@ export class EntityUpdateData extends TransactionData {
 
 	public ipfs(): string | undefined {
 		return this.data<Contracts.EntityUpdateData>().ipfs();
-	}
-
-	public async ipfsContent(): Promise<object | undefined> {
-		const hash: string | undefined = this.ipfs();
-
-		if (hash === undefined) {
-			return undefined;
-		}
-
-		return new File(container.get(Identifiers.HttpClient)).get(hash) as any;
 	}
 }
 
