@@ -202,7 +202,7 @@ describe("#dump", () => {
 
 		expect(() => subject.dump()).toThrow("Failed to encode or encrypt the profile");
 		encodingMock.mockRestore();
-    });
+	});
 });
 
 describe("#restore", () => {
