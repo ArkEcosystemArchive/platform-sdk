@@ -12,7 +12,6 @@ import { resolve } from "path";
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
 import { StubStorage } from "../../test/stubs/storage";
-import { MemoryPassword } from "../helpers/password";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../repositories/profile-repository";
@@ -323,4 +322,37 @@ it("should flush all bindings and rebind them", async () => {
 	subject.reset({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
 
 	expect(() => container.get(Identifiers.Storage)).not.toThrow();
+});
+
+it("should persist the env and restore it", async () => {
+	// Create initial environment
+	await makeSubject();
+
+	const john = subject.profiles().create("John");
+	await john.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+
+	const jane = subject.profiles().create("Jane");
+	await jane.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+
+	jane.auth().setPassword("password");
+
+	await subject.persist();
+
+	// Boot new env after we persisted the data
+	subject.reset({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
+	await subject.verify();
+	await subject.boot();
+
+	// Assert that we got back what we dumped in the previous env
+	const restoredJane = subject.profiles().findById(jane.id());
+	await restoredJane.restore("password");
+
+	const restoredJohn = subject.profiles().findById(john.id());
+	await restoredJohn.restore();
+
+	console.log(restoredJohn.toObject());
+	console.log(restoredJane.toObject());
+
+	expect(restoredJohn.toObject()).toEqual(john.toObject());
+	expect(restoredJane.toObject()).toEqual(jane.toObject());
 });
