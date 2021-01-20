@@ -1,15 +1,11 @@
 import "jest-extended";
 
-import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Base64 } from "@arkecosystem/platform-sdk-crypto";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
+import { identity } from "../../test/fixtures/identity";
 import { bootContainer } from "../../test/helpers";
-import { container } from "../environment/container";
-import { Identifiers } from "../environment/container.models";
-import { CoinService } from "../environment/services/coin-service";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../repositories/data-repository";
@@ -206,7 +202,7 @@ describe("#dump", () => {
 
 		expect(() => subject.dump()).toThrow("Failed to encode or encrypt the profile");
 		encodingMock.mockRestore();
-	});
+    });
 });
 
 describe("#restore", () => {
@@ -214,6 +210,8 @@ describe("#restore", () => {
 		subject.auth().setPassword("password");
 
 		const profile: Profile = new Profile(subject.dump("password"));
+
+		await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
 		await profile.restore("password");
 
