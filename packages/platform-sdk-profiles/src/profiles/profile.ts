@@ -55,7 +55,7 @@ export class Profile implements ProfileContract {
 		this.#registrationAggregate = new RegistrationAggregate(this);
 		this.#transactionAggregate = new TransactionAggregate(this);
 		this.#walletAggregate = new WalletAggregate(this);
-    }
+	}
 
 	public id(): string {
 		return this.#data.id;
@@ -344,10 +344,10 @@ export class Profile implements ProfileContract {
 		this.#data = data;
 	}
 
-    /**
-     * Determine if the profile was recently created, based on the data being empty
-     * which should only happen if the profile has never been persisted before.
-     */
+	/**
+	 * Determine if the profile was recently created, based on the data being empty
+	 * which should only happen if the profile has never been persisted before.
+	 */
 	public wasCreated(): boolean {
 		return this.#data.data === "";
 	}
