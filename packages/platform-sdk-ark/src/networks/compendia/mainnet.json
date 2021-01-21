@@ -16,12 +16,15 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://apis.compendia.org"],
+		"hosts": [
+			"https://apis.compendia.org"
+		],
 		"hostsMultiSignature": []
 	},
 	"governance": {
 		"voting": {
 			"enabled": true,
+			"delegateCount": 47,
 			"maximumPerWallet": 1,
 			"maximumPerTransaction": 1
 		}

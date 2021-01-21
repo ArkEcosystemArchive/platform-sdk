@@ -17,12 +17,15 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://testnet.lisk.io"],
+		"hosts": [
+			"https://testnet.lisk.io"
+		],
 		"hostsMultiSignature": []
 	},
 	"governance": {
 		"voting": {
 			"enabled": true,
+			"delegateCount": 101,
 			"maximumPerWallet": 101,
 			"maximumPerTransaction": 33
 		}

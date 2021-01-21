@@ -1,115 +1,116 @@
 {
-	"id": "telos.testnet",
-	"type": "test",
-	"name": "TELOS Testnet",
-	"explorer": "https://telos-test.bloks.io/",
-	"currency": {
-		"ticker": "TLOS",
-		"symbol": "TLOS"
-	},
-	"crypto": {
-		"networkId": "e17615decaecd202a365f4c029f206eee98511979de8a5756317e2469f2289e3",
-		"slip44": 194,
-		"bech32": "TLOS",
-		"signingMethods": {
-			"mnemonic": false,
-			"privateKey": true,
-			"wif": false
-		}
-	},
-	"networking": {
-		"hosts": [
-			"https://telos-testnet.eosblocksmith.io",
-			"https://api.eos.miami",
-			"https://testnet.telos.caleos.io",
-			"https://api-test.telosfoundation.io"
-		],
-		"hostsMultiSignature": []
-	},
-	"governance": {
-		"voting": {
-			"enabled": false,
-			"maximumPerWallet": 0,
-			"maximumPerTransaction": 0
-		}
-	},
-	"featureFlags": {
-		"Client": {
-			"transaction": false,
-			"transactions": false,
-			"wallet": true,
-			"wallets": false,
-			"delegate": false,
-			"delegates": false,
-			"votes": false,
-			"voters": false,
-			"configuration": false,
-			"fees": false,
-			"syncing": false,
-			"broadcast": true
-		},
-		"Fee": {
-			"all": false
-		},
-		"Identity": {
-			"address": {
-				"mnemonic": false,
-				"multiSignature": false,
-				"publicKey": false,
-				"privateKey": false,
-				"wif": false
-			},
-			"publicKey": {
-				"mnemonic": true,
-				"multiSignature": false,
-				"wif": false
-			},
-			"privateKey": {
-				"mnemonic": false,
-				"wif": false
-			},
-			"wif": {
-				"mnemonic": false
-			},
-			"keyPair": {
-				"mnemonic": false,
-				"privateKey": false,
-				"wif": false
-			}
-		},
-		"Ledger": {
-			"getVersion": false,
-			"getPublicKey": false,
-			"signTransaction": false,
-			"signMessage": false
-		},
-		"Link": {
-			"block": true,
-			"transaction": true,
-			"wallet": true
-		},
-		"Message": {
-			"sign": true,
-			"verify": true
-		},
-		"Peer": {
-			"search": false
-		},
-		"Transaction": {
-			"transfer": false,
-			"secondSignature": false,
-			"delegateRegistration": false,
-			"vote": false,
-			"multiSignature": false,
-			"ipfs": false,
-			"multiPayment": false,
-			"delegateResignation": false,
-			"htlcLock": false,
-			"htlcClaim": false,
-			"htlcRefund": false,
-			"entityRegistration": false,
-			"entityResignation": false,
-			"entityUpdate": false
-		}
-	}
+    "id": "telos.testnet",
+    "type": "test",
+    "name": "TELOS Testnet",
+    "explorer": "https://telos-test.bloks.io/",
+    "currency": {
+        "ticker": "TLOS",
+        "symbol": "TLOS"
+    },
+    "crypto": {
+        "networkId": "e17615decaecd202a365f4c029f206eee98511979de8a5756317e2469f2289e3",
+        "slip44": 194,
+        "bech32": "TLOS",
+        "signingMethods": {
+            "mnemonic": false,
+            "privateKey": true,
+            "wif": false
+        }
+    },
+    "networking": {
+        "hosts": [
+            "https://telos-testnet.eosblocksmith.io",
+            "https://api.eos.miami",
+            "https://testnet.telos.caleos.io",
+            "https://api-test.telosfoundation.io"
+        ],
+        "hostsMultiSignature": []
+    },
+    "governance": {
+        "voting": {
+            "enabled": false,
+            "delegateCount": 0,
+            "maximumPerWallet": 0,
+            "maximumPerTransaction": 0
+        }
+    },
+    "featureFlags": {
+        "Client": {
+            "transaction": false,
+            "transactions": false,
+            "wallet": true,
+            "wallets": false,
+            "delegate": false,
+            "delegates": false,
+            "votes": false,
+            "voters": false,
+            "configuration": false,
+            "fees": false,
+            "syncing": false,
+            "broadcast": true
+        },
+        "Fee": {
+            "all": false
+        },
+        "Identity": {
+            "address": {
+                "mnemonic": false,
+                "multiSignature": false,
+                "publicKey": false,
+                "privateKey": false,
+                "wif": false
+            },
+            "publicKey": {
+                "mnemonic": true,
+                "multiSignature": false,
+                "wif": false
+            },
+            "privateKey": {
+                "mnemonic": false,
+                "wif": false
+            },
+            "wif": {
+                "mnemonic": false
+            },
+            "keyPair": {
+                "mnemonic": false,
+                "privateKey": false,
+                "wif": false
+            }
+        },
+        "Ledger": {
+            "getVersion": false,
+            "getPublicKey": false,
+            "signTransaction": false,
+            "signMessage": false
+        },
+        "Link": {
+            "block": true,
+            "transaction": true,
+            "wallet": true
+        },
+        "Message": {
+            "sign": true,
+            "verify": true
+        },
+        "Peer": {
+            "search": false
+        },
+        "Transaction": {
+            "transfer": false,
+            "secondSignature": false,
+            "delegateRegistration": false,
+            "vote": false,
+            "multiSignature": false,
+            "ipfs": false,
+            "multiPayment": false,
+            "delegateResignation": false,
+            "htlcLock": false,
+            "htlcClaim": false,
+            "htlcRefund": false,
+            "entityRegistration": false,
+            "entityResignation": false,
+            "entityUpdate": false
+        }
+    }
 }

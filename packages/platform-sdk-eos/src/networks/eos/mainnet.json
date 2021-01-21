@@ -18,12 +18,17 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://eos.greymass.com", "https://api.eosn.io", "https://mainnet.genereos.io"],
+		"hosts": [
+			"https://eos.greymass.com",
+			"https://api.eosn.io",
+			"https://mainnet.genereos.io"
+		],
 		"hostsMultiSignature": []
 	},
 	"governance": {
 		"voting": {
 			"enabled": false,
+			"delegateCount": 0,
 			"maximumPerWallet": 0,
 			"maximumPerTransaction": 0
 		}

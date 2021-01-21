@@ -18,12 +18,15 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://stargate.cosmos.network"],
+		"hosts": [
+			"https://stargate.cosmos.network"
+		],
 		"hostsMultiSignature": []
 	},
 	"governance": {
 		"voting": {
 			"enabled": false,
+			"delegateCount": 0,
 			"maximumPerWallet": 0,
 			"maximumPerTransaction": 0
 		}

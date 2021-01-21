@@ -16,12 +16,17 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://wallets.ark.io"],
-		"hostsMultiSignature": ["https://musig1.ark.io"]
+		"hosts": [
+			"https://wallets.ark.io"
+		],
+		"hostsMultiSignature": [
+			"https://musig1.ark.io"
+		]
 	},
 	"governance": {
 		"voting": {
 			"enabled": true,
+			"delegateCount": 51,
 			"maximumPerWallet": 1,
 			"maximumPerTransaction": 1
 		}

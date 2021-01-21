@@ -107,6 +107,7 @@ test("#all", () => {
 		    "governance": Object {
 		      "voting": Object {
 		        "enabled": true,
+		        "delegateCount": 51,
 		        "maximumPerTransaction": 1,
 		        "maximumPerWallet": 1,
 		      },
@@ -220,6 +221,7 @@ test("#all", () => {
 		    "governance": Object {
 		      "voting": Object {
 		        "enabled": true,
+		        "delegateCount": 51,
 		        "maximumPerTransaction": 1,
 		        "maximumPerWallet": 1,
 		      },
@@ -333,6 +335,7 @@ test("#all", () => {
 		    "governance": Object {
 		      "voting": Object {
 		        "enabled": true,
+		        "delegateCount": 51,
 		        "maximumPerTransaction": 1,
 		        "maximumPerWallet": 1,
 		      },

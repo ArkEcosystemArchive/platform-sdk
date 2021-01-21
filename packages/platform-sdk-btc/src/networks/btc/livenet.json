@@ -16,12 +16,15 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://coins.com/api/btc"],
+		"hosts": [
+			"https://coins.com/api/btc"
+		],
 		"hostsMultiSignature": []
 	},
 	"governance": {
 		"voting": {
 			"enabled": false,
+			"delegateCount": 0,
 			"maximumPerWallet": 0,
 			"maximumPerTransaction": 0
 		}

@@ -18,12 +18,15 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://api.testnet.eos.io"],
+		"hosts": [
+			"https://api.testnet.eos.io"
+		],
 		"hostsMultiSignature": []
 	},
 	"governance": {
 		"voting": {
 			"enabled": false,
+			"delegateCount": 0,
 			"maximumPerWallet": 0,
 			"maximumPerTransaction": 0
 		}
