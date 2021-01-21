@@ -17,9 +17,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://testnet.lisk.io"
-		],
+		"hosts": ["https://testnet.lisk.io"],
 		"hostsMultiSignature": []
 	},
 	"governance": {

@@ -18,9 +18,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://api.cosmos.network"
-		],
+		"hosts": ["https://api.cosmos.network"],
 		"hostsMultiSignature": []
 	},
 	"governance": {

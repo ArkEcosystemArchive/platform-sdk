@@ -18,9 +18,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://api.boscore.io"
-		],
+		"hosts": ["https://api.boscore.io"],
 		"hostsMultiSignature": []
 	},
 	"governance": {

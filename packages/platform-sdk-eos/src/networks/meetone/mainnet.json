@@ -1,113 +1,111 @@
 {
-    "id": "meetone.mainnet",
-    "type": "live",
-    "name": "MEETONE Mainnet",
-    "explorer": "https://meetone.bloks.io/",
-    "currency": {
-        "ticker": "MEETONE",
-        "symbol": "MEETONE"
-    },
-    "crypto": {
-        "networkId": "cfe6486a83bad4962f232d48003b1824ab5665c36778141034d75e57b956e422",
-        "slip44": 194,
-        "bech32": "MEETONE",
-        "signingMethods": {
-            "mnemonic": false,
-            "privateKey": true,
-            "wif": false
-        }
-    },
-    "networking": {
-        "hosts": [
-            "https://fullnode.meet.one"
-        ],
-        "hostsMultiSignature": []
-    },
-    "governance": {
-        "voting": {
-            "enabled": false,
-            "delegateCount": 0,
-            "maximumPerWallet": 0,
-            "maximumPerTransaction": 0
-        }
-    },
-    "featureFlags": {
-        "Client": {
-            "transaction": false,
-            "transactions": false,
-            "wallet": true,
-            "wallets": false,
-            "delegate": false,
-            "delegates": false,
-            "votes": false,
-            "voters": false,
-            "configuration": false,
-            "fees": false,
-            "syncing": false,
-            "broadcast": true
-        },
-        "Fee": {
-            "all": false
-        },
-        "Identity": {
-            "address": {
-                "mnemonic": false,
-                "multiSignature": false,
-                "publicKey": false,
-                "privateKey": false,
-                "wif": false
-            },
-            "publicKey": {
-                "mnemonic": true,
-                "multiSignature": false,
-                "wif": false
-            },
-            "privateKey": {
-                "mnemonic": false,
-                "wif": false
-            },
-            "wif": {
-                "mnemonic": false
-            },
-            "keyPair": {
-                "mnemonic": false,
-                "privateKey": false,
-                "wif": false
-            }
-        },
-        "Ledger": {
-            "getVersion": false,
-            "getPublicKey": false,
-            "signTransaction": false,
-            "signMessage": false
-        },
-        "Link": {
-            "block": true,
-            "transaction": true,
-            "wallet": true
-        },
-        "Message": {
-            "sign": true,
-            "verify": true
-        },
-        "Peer": {
-            "search": false
-        },
-        "Transaction": {
-            "transfer": false,
-            "secondSignature": false,
-            "delegateRegistration": false,
-            "vote": false,
-            "multiSignature": false,
-            "ipfs": false,
-            "multiPayment": false,
-            "delegateResignation": false,
-            "htlcLock": false,
-            "htlcClaim": false,
-            "htlcRefund": false,
-            "entityRegistration": false,
-            "entityResignation": false,
-            "entityUpdate": false
-        }
-    }
+	"id": "meetone.mainnet",
+	"type": "live",
+	"name": "MEETONE Mainnet",
+	"explorer": "https://meetone.bloks.io/",
+	"currency": {
+		"ticker": "MEETONE",
+		"symbol": "MEETONE"
+	},
+	"crypto": {
+		"networkId": "cfe6486a83bad4962f232d48003b1824ab5665c36778141034d75e57b956e422",
+		"slip44": 194,
+		"bech32": "MEETONE",
+		"signingMethods": {
+			"mnemonic": false,
+			"privateKey": true,
+			"wif": false
+		}
+	},
+	"networking": {
+		"hosts": ["https://fullnode.meet.one"],
+		"hostsMultiSignature": []
+	},
+	"governance": {
+		"voting": {
+			"enabled": false,
+			"delegateCount": 0,
+			"maximumPerWallet": 0,
+			"maximumPerTransaction": 0
+		}
+	},
+	"featureFlags": {
+		"Client": {
+			"transaction": false,
+			"transactions": false,
+			"wallet": true,
+			"wallets": false,
+			"delegate": false,
+			"delegates": false,
+			"votes": false,
+			"voters": false,
+			"configuration": false,
+			"fees": false,
+			"syncing": false,
+			"broadcast": true
+		},
+		"Fee": {
+			"all": false
+		},
+		"Identity": {
+			"address": {
+				"mnemonic": false,
+				"multiSignature": false,
+				"publicKey": false,
+				"privateKey": false,
+				"wif": false
+			},
+			"publicKey": {
+				"mnemonic": true,
+				"multiSignature": false,
+				"wif": false
+			},
+			"privateKey": {
+				"mnemonic": false,
+				"wif": false
+			},
+			"wif": {
+				"mnemonic": false
+			},
+			"keyPair": {
+				"mnemonic": false,
+				"privateKey": false,
+				"wif": false
+			}
+		},
+		"Ledger": {
+			"getVersion": false,
+			"getPublicKey": false,
+			"signTransaction": false,
+			"signMessage": false
+		},
+		"Link": {
+			"block": true,
+			"transaction": true,
+			"wallet": true
+		},
+		"Message": {
+			"sign": true,
+			"verify": true
+		},
+		"Peer": {
+			"search": false
+		},
+		"Transaction": {
+			"transfer": false,
+			"secondSignature": false,
+			"delegateRegistration": false,
+			"vote": false,
+			"multiSignature": false,
+			"ipfs": false,
+			"multiPayment": false,
+			"delegateResignation": false,
+			"htlcLock": false,
+			"htlcClaim": false,
+			"htlcRefund": false,
+			"entityRegistration": false,
+			"entityResignation": false,
+			"entityUpdate": false
+		}
+	}
 }
