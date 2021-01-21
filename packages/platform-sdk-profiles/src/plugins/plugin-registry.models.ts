@@ -107,6 +107,10 @@ export class RegistryPlugin {
 		return null;
 	}
 
+	public logo(): string[] {
+		return this.getMetaData("logo");
+	}
+
 	public images(): string[] {
 		return this.getMetaData("images");
 	}
@@ -129,6 +133,10 @@ export class RegistryPlugin {
 
 	public versions(): string[] {
 		return Object.keys(this.#data.versions);
+	}
+
+	public raw() {
+		return this.getLatestVersion();
 	}
 
 	private getLatestVersion(): any {
