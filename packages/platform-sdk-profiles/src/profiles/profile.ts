@@ -345,6 +345,14 @@ export class Profile implements ProfileContract {
 	}
 
 	/**
+	 * Determine if the profile was recently created, based on the data being empty
+	 * which should only happen if the profile has never been persisted before.
+	 */
+	public wasCreated(): boolean {
+		return this.#data.data === "";
+	}
+
+	/**
 	 * Restore the default settings, including the name of the profile.
 	 *
 	 * @private
