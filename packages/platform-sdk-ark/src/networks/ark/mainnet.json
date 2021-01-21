@@ -22,6 +22,7 @@
 	"governance": {
 		"voting": {
 			"enabled": true,
+			"delegateCount": 51,
 			"maximumPerWallet": 1,
 			"maximumPerTransaction": 1
 		}
