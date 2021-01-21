@@ -152,8 +152,8 @@ it("should have an object representation", () => {
 		  },
 		  "governance": Object {
 		    "voting": Object {
-		      "enabled": true,
 		      "delegateCount": 51,
+		      "enabled": true,
 		      "maximumPerTransaction": 1,
 		      "maximumPerWallet": 1,
 		    },
