@@ -47,11 +47,15 @@ it("should allows voting", () => {
 	expect(subject.allowsVoting()).toBeTrue();
 });
 
-it("should maximum votes per wallet", () => {
+it("should get the delegate count", () => {
+	expect(subject.delegateCount()).toBe(51);
+});
+
+it("should get maximum votes per wallet", () => {
 	expect(subject.maximumVotesPerWallet()).toBe(1);
 });
 
-it("should maximum votes per transaction", () => {
+it("should get maximum votes per transaction", () => {
 	expect(subject.maximumVotesPerTransaction()).toBe(1);
 });
 
