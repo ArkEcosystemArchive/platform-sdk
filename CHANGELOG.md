@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.4.0 - 2020-01-21
+
+### Added
+
+-   Restore signed transactions into their original DTO (00cfd879, @faustbrian)
+-   Expose number of delegates on network through manifest (02aa46d6, @faustbrian)
+
+### Changed
+
+-   Deprecate `platform-sdk-ipfs` (d6d7350e, @faustbrian)
+-   Deprecate `platform-sdk-xmr` (ff9ec485, @faustbrian)
+
 ## 2.3.6 - 2020-01-11
 
 ### Changed
