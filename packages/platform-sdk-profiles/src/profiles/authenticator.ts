@@ -11,7 +11,11 @@ export class Authenticator {
 	}
 
 	public setPassword(password: string): void {
-		this.#profile.settings().set(ProfileSetting.Password, Bcrypt.hash(password));
+		const encrypted: string = Bcrypt.hash(password);
+
+		this.#profile.settings().set(ProfileSetting.Password, encrypted);
+
+		this.#profile.setRawDataKey("password", encrypted);
 
 		MemoryPassword.set(this.#profile, password);
 	}
