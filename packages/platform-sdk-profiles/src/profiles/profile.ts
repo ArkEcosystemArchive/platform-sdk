@@ -174,7 +174,10 @@ export class Profile implements ProfileContract {
 	}
 
 	public usesPassword(): boolean {
-		return this.settings().get(ProfileSetting.Password) !== undefined;
+        const hasPreRestore: boolean = this.#data.password !== undefined;
+        const hasPostRestore: boolean = this.settings().get(ProfileSetting.Password) !== undefined;
+
+		return hasPreRestore || hasPostRestore;
 	}
 
 	/**
@@ -431,9 +434,7 @@ export class Profile implements ProfileContract {
 	 * @param password A hard-to-guess password to decrypt the contents.
 	 */
 	private decrypt(password: string): ProfileStruct {
-		const usesPassword: boolean = this.#data.password !== undefined;
-
-		if (!usesPassword) {
+		if (!this.usesPassword()) {
 			throw new Error("This profile does not use a password but password was passed for decryption");
 		}
 
