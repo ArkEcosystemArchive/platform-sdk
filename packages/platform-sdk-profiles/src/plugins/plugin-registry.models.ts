@@ -3,7 +3,7 @@
 export interface RegistryPluginManifest {
 	logo?: string;
 	title?: string;
-	images?: string[]
+	images?: string[];
 	categories?: string[];
 	permissions?: string[];
 	urls?: any[];
