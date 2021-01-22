@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.4.4 - 2020-01-22
+
+### Changed
+
+-   Throw exception if non-password profile tries to verify password (f7bd0835, @faustbrian)
+
+## 2.4.3 - 2020-01-22
+
+### Changed
+
+-   Rename `wasCreated` to `wasRecentlyCreated` (ae7f3d46, @faustbrian)
+
+### Fixed
+
+-   Check for `pre` and `post` restore password usage (5d3cfd94, @faustbrian)
+
+## 2.4.1 - 2020-01-22
+
+### Added
+
+-   Implement `Profile#wasCreated` (187127a8, @faustbrian)
+
 ## 2.4.0 - 2020-01-21
 
 ### Added
