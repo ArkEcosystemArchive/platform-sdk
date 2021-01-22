@@ -24,7 +24,7 @@ export class Authenticator {
 			throw new Error("No password is set.");
 		}
 
-		return Bcrypt.verify(this.#profile.getRawDataKey("password"), password);
+		return Bcrypt.verify(this.#profile.getRawData().password, password);
 	}
 
 	public changePassword(oldPassword: string, newPassword: string): void {
