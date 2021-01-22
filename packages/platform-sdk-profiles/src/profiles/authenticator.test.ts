@@ -31,6 +31,10 @@ it("should verify the password", async () => {
 	expect(subject.verifyPassword("invalid")).toBeFalse();
 });
 
+it("should fail to verify the password for a profile that doesn't use a profile", async () => {
+	expect(() => subject.verifyPassword("password")).toThrow("No password is set.");
+});
+
 it("should change the password", () => {
 	subject.setPassword("old-password");
 
