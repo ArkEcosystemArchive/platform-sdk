@@ -219,8 +219,8 @@ it("should migrate profiles from JSON to Base64", async () => {
 
 				profile.setRawData({
 					id: profile.id(),
-					name: profile.name(),
-					password: profile.settings().get(ProfileSetting.Password),
+					name: profile.data.name,
+					password: profileData.data.settings.PASSWORD,
 					data: Base64.encode(JSON.stringify({ id: profile.id(), ...profileData.data })),
 				});
 			},

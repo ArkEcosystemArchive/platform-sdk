@@ -174,10 +174,7 @@ export class Profile implements ProfileContract {
 	}
 
 	public usesPassword(): boolean {
-        const hasPreRestore: boolean = this.#data.password !== undefined;
-        const hasPostRestore: boolean = this.settings().get(ProfileSetting.Password) !== undefined;
-
-		return hasPreRestore || hasPostRestore;
+		return this.#data.password !== undefined;
 	}
 
 	/**
@@ -345,6 +342,20 @@ export class Profile implements ProfileContract {
 	 */
 	public setRawData(data: ProfileInput): void {
 		this.#data = data;
+	}
+
+	/**
+	 * Set the given key to the given value for the raw
+	 * underlying data that makes up a profile's struct.
+	 *
+	 * THIS METHOD SHOULD ONLY BE USED FOR MIGRATIONS!
+	 *
+	 * @param {string} key
+	 * @param {string} value
+	 * @memberof Profile
+	 */
+	public setRawDataKey(key: keyof ProfileInput, value: string): void {
+		this.#data[key] = value;
 	}
 
 	/**
