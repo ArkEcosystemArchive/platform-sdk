@@ -168,8 +168,9 @@ it("should turn into an object", () => {
 describe("#dump", () => {
 	it("should dump the profile with a password", () => {
 		subject.auth().setPassword("password");
+		subject.encrypt("password");
 
-		const { id, password, data } = subject.dump("password");
+		const { id, password, data } = subject.dump();
 
 		expect(id).toBeString();
 		expect(password).toBeString();
@@ -184,16 +185,10 @@ describe("#dump", () => {
 		expect(data).toBeString();
 	});
 
-	it("should fail to dump a profile with a password if the password is invalid", () => {
-		subject.auth().setPassword("password");
+	it("should fail to dump a profile with a password if the profile was not encrypted", () => {
+		subject = new Profile({ id: "uuid", name: "name", data: "", password: "password" });
 
-		expect(() => subject.dump("invalid-password")).toThrow("The password did not match our records.");
-	});
-
-	it("should fail to dump a profile with a password if no password was provided", () => {
-		subject.auth().setPassword("password");
-
-		expect(() => subject.dump()).toThrow("This profile uses a password but none was passed for encryption.");
+		expect(() => subject.dump()).toThrow("This profile uses a password for encryption but it was not encrypted.");
 	});
 
 	it("should fail to dump if encoding or encrypting fails", () => {
@@ -208,8 +203,9 @@ describe("#dump", () => {
 describe("#restore", () => {
 	it("should restore a profile with a password", async () => {
 		subject.auth().setPassword("password");
+		subject.encrypt("password");
 
-		const profile: Profile = new Profile(subject.dump("password"));
+		const profile: Profile = new Profile(subject.dump());
 
 		await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
@@ -286,16 +282,18 @@ describe("#restore", () => {
 
 	it("should fail to restore a profile with a password if no password was provided", async () => {
 		subject.auth().setPassword("password");
+		subject.encrypt("password");
 
-		const profile: Profile = new Profile(subject.dump("password"));
+		const profile: Profile = new Profile(subject.dump());
 
 		await expect(profile.restore()).rejects.toThrow("Failed to decode or decrypt the profile.");
 	});
 
 	it("should fail to restore a profile with a password if an invalid password was provided", async () => {
 		subject.auth().setPassword("password");
+		subject.encrypt("password");
 
-		const profile: Profile = new Profile(subject.dump("password"));
+		const profile: Profile = new Profile(subject.dump());
 
 		await expect(profile.restore("invalid-password")).rejects.toThrow("Failed to decode or decrypt the profile.");
 	});
@@ -382,4 +380,10 @@ it("should determine if the profile was recently created", () => {
 	subject = new Profile({ id: "uuid", name: "name", data: "abc" });
 
 	expect(subject.wasRecentlyCreated()).toBeFalse();
+});
+
+it("should fail to encrypt a profile if the password is invalid", () => {
+	subject.auth().setPassword("password");
+
+	expect(() => subject.encrypt("invalid-password")).toThrow("The password did not match our records.");
 });

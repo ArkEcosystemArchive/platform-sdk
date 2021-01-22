@@ -185,8 +185,8 @@ describe("ProfileRepository", () => {
 
 		const jane = subject.create("Jane");
 		await jane.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
-
 		jane.auth().setPassword("password");
+		jane.encrypt("password");
 
 		const repositoryDump = subject.toObject();
 
