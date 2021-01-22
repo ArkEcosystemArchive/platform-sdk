@@ -348,7 +348,7 @@ export class Profile implements ProfileContract {
 	 * Determine if the profile was recently created, based on the data being empty
 	 * which should only happen if the profile has never been persisted before.
 	 */
-	public wasCreated(): boolean {
+	public wasRecentlyCreated(): boolean {
 		return this.#data.data === "";
 	}
 

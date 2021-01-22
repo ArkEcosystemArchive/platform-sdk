@@ -376,10 +376,10 @@ test("#migrate", async () => {
 	expect(() => subject.migrate({}, "2.0.0")).not.toThrow();
 });
 
-it("should determine if the profile was just created", () => {
-	expect(subject.wasCreated()).toBeTrue();
+it("should determine if the profile was recently created", () => {
+	expect(subject.wasRecentlyCreated()).toBeTrue();
 
 	subject = new Profile({ id: "uuid", name: "name", data: "abc" });
 
-	expect(subject.wasCreated()).toBeFalse();
+	expect(subject.wasRecentlyCreated()).toBeFalse();
 });
