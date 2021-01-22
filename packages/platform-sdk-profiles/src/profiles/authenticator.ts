@@ -14,14 +14,17 @@ export class Authenticator {
 		const encrypted: string = Bcrypt.hash(password);
 
 		this.#profile.settings().set(ProfileSetting.Password, encrypted);
-
-		this.#profile.setRawDataKey("password", encrypted);
+		this.#profile.setRawDataKey("password", encrypted); // This is needed for new profiles
 
 		MemoryPassword.set(this.#profile, password);
 	}
 
 	public verifyPassword(password: string): boolean {
-		return Bcrypt.verify(this.#profile.settings().get(ProfileSetting.Password), password);
+		if (!this.#profile.usesPassword()) {
+			throw new Error("No password is set.");
+		}
+
+		return Bcrypt.verify(this.#profile.getRawDataKey("password"), password);
 	}
 
 	public changePassword(oldPassword: string, newPassword: string): void {

@@ -174,7 +174,7 @@ export class Profile implements ProfileContract {
 	}
 
 	public usesPassword(): boolean {
-		return this.settings().get(ProfileSetting.Password) !== undefined;
+		return this.#data.password !== undefined;
 	}
 
 	/**
