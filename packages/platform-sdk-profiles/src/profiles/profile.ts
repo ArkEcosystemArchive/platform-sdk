@@ -174,7 +174,7 @@ export class Profile implements ProfileContract {
 	}
 
 	public usesPassword(): boolean {
-		return this.settings().get(ProfileSetting.Password) !== undefined;
+		return this.#data.password !== undefined;
 	}
 
 	/**
@@ -345,10 +345,24 @@ export class Profile implements ProfileContract {
 	}
 
 	/**
+	 * Set the given key to the given value for the raw
+	 * underlying data that makes up a profile's struct.
+	 *
+	 * THIS METHOD SHOULD ONLY BE USED FOR MIGRATIONS!
+	 *
+	 * @param {string} key
+	 * @param {string} value
+	 * @memberof Profile
+	 */
+	public setRawDataKey(key: keyof ProfileInput, value: string): void {
+		this.#data[key] = value;
+	}
+
+	/**
 	 * Determine if the profile was recently created, based on the data being empty
 	 * which should only happen if the profile has never been persisted before.
 	 */
-	public wasCreated(): boolean {
+	public wasRecentlyCreated(): boolean {
 		return this.#data.data === "";
 	}
 
@@ -431,9 +445,7 @@ export class Profile implements ProfileContract {
 	 * @param password A hard-to-guess password to decrypt the contents.
 	 */
 	private decrypt(password: string): ProfileStruct {
-		const usesPassword: boolean = this.#data.password !== undefined;
-
-		if (!usesPassword) {
+		if (!this.usesPassword()) {
 			throw new Error("This profile does not use a password but password was passed for decryption");
 		}
 
