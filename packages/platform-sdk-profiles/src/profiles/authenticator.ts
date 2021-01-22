@@ -14,8 +14,19 @@ export class Authenticator {
 		const encrypted: string = Bcrypt.hash(password);
 
 		this.#profile.settings().set(ProfileSetting.Password, encrypted);
-		this.#profile.setRawDataKey("password", encrypted); // This is needed for new profiles
 
+		// This is needed for new profiles because they are initialised
+		// without any data besides their ID and name which means the
+		// password will be omitted and we won't know to use it.
+		this.#profile.setRawDataKey("password", encrypted);
+
+		// When the password gets changed we need to re-encrypt the
+		// data of the profile or we could end up with a corrupted
+		// profile that can no longer be used or restored.
+		this.#profile.encrypt(password);
+
+		// We'll need the password for future use in plain-text
+		// during the lifetime of this profile session.
 		MemoryPassword.set(this.#profile, password);
 	}
 

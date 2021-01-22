@@ -12,6 +12,7 @@ import { resolve } from "path";
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
 import { StubStorage } from "../../test/stubs/storage";
+import { MemoryPassword } from "../helpers/password";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../repositories/profile-repository";
@@ -332,9 +333,12 @@ it("should persist the env and restore it", async () => {
 	await john.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
 	const jane = subject.profiles().create("Jane");
-	await jane.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
-
 	jane.auth().setPassword("password");
+	jane.encrypt("password");
+
+	const jack = subject.profiles().create("Jack");
+	jack.auth().setPassword("password");
+	jack.encrypt("password");
 
 	await subject.persist();
 
@@ -344,15 +348,16 @@ it("should persist the env and restore it", async () => {
 	await subject.boot();
 
 	// Assert that we got back what we dumped in the previous env
-	const restoredJane = subject.profiles().findById(jane.id());
-	await restoredJane.restore("password");
-
 	const restoredJohn = subject.profiles().findById(john.id());
 	await restoredJohn.restore();
 
-	console.log(restoredJohn.toObject());
-	console.log(restoredJane.toObject());
+	const restoredJane = subject.profiles().findById(jane.id());
+	await restoredJane.restore("password");
+
+	const restoredJack = subject.profiles().findById(jack.id());
+	await restoredJack.restore("password");
 
 	expect(restoredJohn.toObject()).toEqual(john.toObject());
 	expect(restoredJane.toObject()).toEqual(jane.toObject());
+	expect(restoredJack.toObject()).toEqual(jack.toObject());
 });

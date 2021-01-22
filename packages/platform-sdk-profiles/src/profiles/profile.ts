@@ -24,6 +24,7 @@ import { ProfileContract, ProfileInput, ProfileSetting, ProfileStruct } from "./
 
 export class Profile implements ProfileContract {
 	#data: ProfileInput;
+	#encrypted: string | undefined;
 
 	#contactRepository: ContactRepository;
 	#dataRepository: DataRepository;
@@ -41,6 +42,10 @@ export class Profile implements ProfileContract {
 
 	public constructor(data: ProfileInput) {
 		this.#data = data;
+
+		if (this.usesPassword()) {
+			this.#encrypted = data.data;
+		}
 
 		this.#contactRepository = new ContactRepository(this);
 		this.#dataRepository = new DataRepository();
@@ -211,17 +216,17 @@ export class Profile implements ProfileContract {
 	 * @returns {ProfileInput}
 	 * @memberof Profile
 	 */
-	public dump(password?: string): ProfileInput {
+	public dump(): ProfileInput {
 		let data: string | undefined;
 
-		if (this.usesPassword() && password === undefined) {
-			throw new Error("This profile uses a password but none was passed for encryption.");
-		}
+		if (this.usesPassword()) {
+			if (!this.#encrypted) {
+				throw new Error("This profile uses a password for encryption but it was not encrypted.");
+			}
 
-		if (password === undefined) {
-			data = JSON.stringify(this.toObject());
+			data = this.#encrypted;
 		} else {
-			data = this.encrypt(password);
+			data = JSON.stringify(this.toObject());
 		}
 
 		if (data === undefined) {
@@ -367,6 +372,30 @@ export class Profile implements ProfileContract {
 	}
 
 	/**
+	 * Attempt to encrypt the profile data with the given password.
+	 *
+	 * @param password A hard-to-guess password to encrypt the contents.
+	 */
+	public encrypt(password: string): string {
+		if (!this.auth().verifyPassword(password)) {
+			throw new Error("The password did not match our records.");
+		}
+
+		this.#encrypted = PBKDF2.encrypt(
+			JSON.stringify({
+				id: this.id(),
+				name: this.name(),
+				avatar: this.avatar(),
+				password: this.settings().get(ProfileSetting.Password),
+				data: this.toObject(),
+			}),
+			password,
+		);
+
+		return this.#encrypted;
+	}
+
+	/**
 	 * Restore the default settings, including the name of the profile.
 	 *
 	 * @private
@@ -415,28 +444,6 @@ export class Profile implements ProfileContract {
 		// These wallets will be synced last because they can reuse already existing coin instances from the warmup wallets
 		// to avoid duplicate requests which elongate the waiting time for a user before the wallet is accessible and ready.
 		await syncWallets(laterWallets);
-	}
-
-	/**
-	 * Attempt to encrypt the profile data with the given password.
-	 *
-	 * @param password A hard-to-guess password to encrypt the contents.
-	 */
-	private encrypt(password: string): string {
-		if (!this.auth().verifyPassword(password)) {
-			throw new Error("The password did not match our records.");
-		}
-
-		return PBKDF2.encrypt(
-			JSON.stringify({
-				id: this.id(),
-				name: this.name(),
-				avatar: this.avatar(),
-				password: this.settings().get(ProfileSetting.Password),
-				data: this.toObject(),
-			}),
-			password,
-		);
 	}
 
 	/**
