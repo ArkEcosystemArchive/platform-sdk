@@ -22,7 +22,7 @@ export class Base64 {
 
 	public static validate(value: string): boolean {
 		try {
-			return btoa(atob(value)) == value;
+			return btoa(atob(value)) === value;
 		} catch {
 			return false;
 		}
