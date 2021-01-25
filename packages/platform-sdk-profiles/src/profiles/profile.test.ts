@@ -189,7 +189,9 @@ describe("#dump", () => {
 	it("should fail to dump a profile with a password if the profile was not encrypted", () => {
 		subject = new Profile({ id: "uuid", name: "name", data: "", password: "password" });
 
-		expect(() => subject.dump()).toThrow("The profile has not been encoded or encrypted. Please call [save] before dumping.");
+		expect(() => subject.dump()).toThrow(
+			"The profile has not been encoded or encrypted. Please call [save] before dumping.",
+		);
 	});
 });
 
