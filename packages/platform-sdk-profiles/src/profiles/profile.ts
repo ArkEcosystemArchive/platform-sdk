@@ -237,7 +237,7 @@ export class Profile implements ProfileContract {
 			id: this.id(),
 			name: this.name(),
 			avatar: this.avatar(),
-			password: this.settings().get(ProfileSetting.Password),
+			password: this.#data.password,
 			data: Base64.encode(data),
 		};
 	}
@@ -386,7 +386,7 @@ export class Profile implements ProfileContract {
 				id: this.id(),
 				name: this.name(),
 				avatar: this.avatar(),
-				password: this.settings().get(ProfileSetting.Password),
+				password: this.#data.password,
 				data: this.toObject(),
 			}),
 			password,
