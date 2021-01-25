@@ -25,7 +25,6 @@ import { ProfileContract, ProfileInput, ProfileSetting, ProfileStruct } from "./
 
 export class Profile implements ProfileContract {
 	#data: ProfileInput;
-	#encrypted: string | undefined;
 
 	#contactRepository: ContactRepository;
 	#dataRepository: DataRepository;
@@ -43,10 +42,6 @@ export class Profile implements ProfileContract {
 
 	public constructor(data: ProfileInput) {
 		this.#data = data;
-
-		if (this.usesPassword()) {
-			this.#encrypted = data.data;
-		}
 
 		this.#contactRepository = new ContactRepository(this);
 		this.#dataRepository = new DataRepository();
@@ -218,24 +213,8 @@ export class Profile implements ProfileContract {
 	 * @memberof Profile
 	 */
 	public dump(): ProfileInput {
-		let data: string | undefined;
-
-		try {
-			if (this.usesPassword()) {
-				if (!this.#encrypted) {
-					throw new Error("This profile uses a password for encryption but it was not encrypted.");
-				}
-
-				data = this.#encrypted;
-			} else {
-				data = Base64.encode(JSON.stringify(this.toObject()));
-			}
-		} catch (error) {
-			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
-		}
-
-		if (data === undefined) {
-			throw new Error("Failed to encode or encrypt the profile.");
+		if (!this.#data.data) {
+			throw new Error("The profile has not been encoded or encrypted. Please call [save] before dumping.");
 		}
 
 		return {
@@ -243,7 +222,7 @@ export class Profile implements ProfileContract {
 			name: this.name(),
 			avatar: this.avatar(),
 			password: this.#data.password,
-			data,
+			data: this.#data.data,
 		};
 	}
 
@@ -264,12 +243,11 @@ export class Profile implements ProfileContract {
 			} else {
 				data = JSON.parse(Base64.decode(this.#data.data));
 			}
-		} catch (e) {
-			// Append the error reason
-			errorReason = ` Reason: ${e.message}`;
+		} catch (error) {
+			errorReason = ` Reason: ${error.message}`;
 		}
 
-		if (data === undefined) {
+		if (!data) {
 			throw new Error(`Failed to decode or decrypt the profile.${errorReason}`);
 		}
 
@@ -292,7 +270,7 @@ export class Profile implements ProfileContract {
 
 		await this.restoreWallets(this, data.wallets);
 
-		await this.contacts().fill(data.contacts);
+        await this.contacts().fill(data.contacts);
 	}
 
 	/**
@@ -376,33 +354,24 @@ export class Profile implements ProfileContract {
 		return this.#data.data === "";
 	}
 
-	/**
-	 * Attempt to encrypt the profile data with the given password.
-	 *
-	 * @param password A hard-to-guess password to encrypt the contents.
-	 */
-	public encrypt(password?: string): void {
-		if (password === undefined) {
-			password = MemoryPassword.get(this);
+    /**
+     * Save
+     */
+    public save(password?: string): void {
+        let data: string | undefined;
+
+        if (this.usesPassword()) {
+            data = this.encrypt(password);
+        } else {
+			data = JSON.stringify(this.toObject());
+        }
+
+        if (!data) {
+			throw new Error("Failed to encode or encrypt the profile.");
 		}
 
-		if (!this.auth().verifyPassword(password)) {
-			throw new Error("The password did not match our records.");
-		}
-
-		this.#encrypted = Base64.encode(
-			PBKDF2.encrypt(
-				JSON.stringify({
-					id: this.id(),
-					name: this.name(),
-					avatar: this.avatar(),
-					password: this.#data.password,
-					data: this.toObject(),
-				}),
-				password,
-			),
-		);
-	}
+        this.#data.data = Base64.encode(data);
+    }
 
 	/**
 	 * Restore the default settings, including the name of the profile.
@@ -453,6 +422,32 @@ export class Profile implements ProfileContract {
 		// These wallets will be synced last because they can reuse already existing coin instances from the warmup wallets
 		// to avoid duplicate requests which elongate the waiting time for a user before the wallet is accessible and ready.
 		await syncWallets(laterWallets);
+	}
+
+	/**
+	 * Attempt to encrypt the profile data with the given password.
+	 *
+	 * @param password A hard-to-guess password to encrypt the contents.
+	 */
+	private encrypt(password?: string): string {
+		if (password === undefined) {
+			password = MemoryPassword.get(this);
+		}
+
+		if (!this.auth().verifyPassword(password)) {
+			throw new Error("The password did not match our records.");
+		}
+
+		return PBKDF2.encrypt(
+			JSON.stringify({
+				id: this.id(),
+				name: this.name(),
+				avatar: this.avatar(),
+				password: this.#data.password,
+				data: this.toObject(),
+			}),
+			password,
+		);
 	}
 
 	/**

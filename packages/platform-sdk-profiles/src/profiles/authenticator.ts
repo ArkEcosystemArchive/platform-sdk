@@ -20,14 +20,14 @@ export class Authenticator {
 		// password will be omitted and we won't know to use it.
 		this.#profile.setRawDataKey("password", encrypted);
 
-		// When the password gets changed we need to re-encrypt the
-		// data of the profile or we could end up with a corrupted
-		// profile that can no longer be used or restored.
-		this.#profile.encrypt(password);
-
 		// We'll need the password for future use in plain-text
 		// during the lifetime of this profile session.
 		MemoryPassword.set(this.#profile, password);
+
+		// When the password gets changed we need to re-encrypt the
+		// data of the profile or we could end up with a corrupted
+		// profile that can no longer be used or restored.
+		this.#profile.save(password);
 	}
 
 	public verifyPassword(password: string): boolean {
