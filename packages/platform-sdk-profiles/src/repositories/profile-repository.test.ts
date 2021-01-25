@@ -182,11 +182,12 @@ describe("ProfileRepository", () => {
 	it("should dump all profiles", async () => {
 		const john = subject.create("John");
 		await john.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+		john.save();
 
 		const jane = subject.create("Jane");
 		await jane.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 		jane.auth().setPassword("password");
-		jane.encrypt("password");
+		jane.save("password");
 
 		const repositoryDump = subject.toObject();
 

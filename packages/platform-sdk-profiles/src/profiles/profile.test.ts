@@ -168,7 +168,7 @@ it("should turn into an object", () => {
 describe("#dump", () => {
 	it("should dump the profile with a password", () => {
 		subject.auth().setPassword("password");
-		subject.encrypt("password");
+		subject.save("password");
 
 		const { id, password, data } = subject.dump();
 
@@ -178,6 +178,7 @@ describe("#dump", () => {
 	});
 
 	it("should dump the profile without a password", () => {
+		subject.save();
 		const { id, password, data } = subject.dump();
 
 		expect(id).toBeString();
@@ -188,22 +189,16 @@ describe("#dump", () => {
 	it("should fail to dump a profile with a password if the profile was not encrypted", () => {
 		subject = new Profile({ id: "uuid", name: "name", data: "", password: "password" });
 
-		expect(() => subject.dump()).toThrow("This profile uses a password for encryption but it was not encrypted.");
-	});
-
-	it("should fail to dump if encoding or encrypting fails", () => {
-		// @ts-ignore
-		const encodingMock = jest.spyOn(JSON, "stringify").mockReturnValue(undefined);
-
-		expect(() => subject.dump()).toThrow("Failed to encode or encrypt the profile");
-		encodingMock.mockRestore();
+		expect(() => subject.dump()).toThrow(
+			"The profile has not been encoded or encrypted. Please call [save] before dumping.",
+		);
 	});
 });
 
 describe("#restore", () => {
 	it("should restore a profile with a password", async () => {
 		subject.auth().setPassword("password");
-		subject.encrypt("password");
+		subject.save("password");
 
 		const profile: Profile = new Profile(subject.dump());
 
@@ -235,20 +230,20 @@ describe("#restore", () => {
 			wallets: {},
 		};
 
-		const corruptedDump = {
+		const profile: Profile = new Profile({
 			id: "uuid",
 			name: "name",
 			avatar: "avatar",
 			password: undefined,
 			data: Base64.encode(JSON.stringify(corruptedProfileData)),
-		};
-
-		const profile: Profile = new Profile(corruptedDump);
+		});
 
 		await expect(profile.restore()).rejects.toThrow();
 	});
 
 	it("should restore a profile without a password", async () => {
+		subject.save();
+
 		const profile: Profile = new Profile(subject.dump());
 
 		await profile.restore();
@@ -273,6 +268,8 @@ describe("#restore", () => {
 	});
 
 	it("should fail to restore if profile is not using password but password is passed", async () => {
+		subject.save();
+
 		const profile: Profile = new Profile(subject.dump());
 
 		await expect(profile.restore("password")).rejects.toThrow(
@@ -282,7 +279,7 @@ describe("#restore", () => {
 
 	it("should fail to restore a profile with a password if no password was provided", async () => {
 		subject.auth().setPassword("password");
-		subject.encrypt("password");
+		subject.save("password");
 
 		const profile: Profile = new Profile(subject.dump());
 
@@ -291,7 +288,7 @@ describe("#restore", () => {
 
 	it("should fail to restore a profile with a password if an invalid password was provided", async () => {
 		subject.auth().setPassword("password");
-		subject.encrypt("password");
+		subject.save("password");
 
 		const profile: Profile = new Profile(subject.dump());
 
@@ -385,11 +382,11 @@ it("should determine if the profile was recently created", () => {
 it("should fail to encrypt a profile if the password is invalid", () => {
 	subject.auth().setPassword("password");
 
-	expect(() => subject.encrypt("invalid-password")).toThrow("The password did not match our records.");
+	expect(() => subject.save("invalid-password")).toThrow("The password did not match our records.");
 });
 
 it("should encrypt a profile with the in-memory password if none was provided", () => {
 	subject.auth().setPassword("password");
 
-	expect(() => subject.encrypt()).not.toThrow("The password did not match our records.");
+	expect(() => subject.save()).not.toThrow("The password did not match our records.");
 });
