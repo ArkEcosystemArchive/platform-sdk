@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 2.5.0 - 2020-01-25
 
+### Changed
+
+-   Use in-memory password for encryption if no password was provided (a0ab5fa7, @faustbrian)
+
+## 2.5.0 - 2020-01-25
+
 ### Added
 
 -   Export plugin logo from metadata (ebe77d4d, @luciorubeens)
