@@ -270,7 +270,7 @@ export class Profile implements ProfileContract {
 
 		await this.restoreWallets(this, data.wallets);
 
-        await this.contacts().fill(data.contacts);
+		await this.contacts().fill(data.contacts);
 	}
 
 	/**
@@ -354,24 +354,24 @@ export class Profile implements ProfileContract {
 		return this.#data.data === "";
 	}
 
-    /**
-     * Save
-     */
-    public save(password?: string): void {
-        let data: string | undefined;
+	/**
+	 * Save
+	 */
+	public save(password?: string): void {
+		let data: string | undefined;
 
-        if (this.usesPassword()) {
-            data = this.encrypt(password);
-        } else {
+		if (this.usesPassword()) {
+			data = this.encrypt(password);
+		} else {
 			data = JSON.stringify(this.toObject());
-        }
+		}
 
-        if (!data) {
+		if (!data) {
 			throw new Error("Failed to encode or encrypt the profile.");
 		}
 
-        this.#data.data = Base64.encode(data);
-    }
+		this.#data.data = Base64.encode(data);
+	}
 
 	/**
 	 * Restore the default settings, including the name of the profile.
