@@ -19,4 +19,12 @@ export class Base64 {
 	public static decode(value: string, encoding: BufferEncoding = "utf8"): string {
 		return Buffer.from(value, "base64").toString(encoding);
 	}
+
+	public static validate(value: string): boolean {
+		try {
+			return btoa(atob(value)) == value;
+		} catch {
+			return false;
+		}
+	}
 }

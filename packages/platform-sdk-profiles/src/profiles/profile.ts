@@ -225,9 +225,13 @@ export class Profile implements ProfileContract {
 				throw new Error("This profile uses a password for encryption but it was not encrypted.");
 			}
 
-			data = this.#encrypted;
+			if (Base64.validate(this.#encrypted)) {
+				data = this.#encrypted;
+			} else {
+				data = Base64.encode(this.#encrypted);
+			}
 		} else {
-			data = JSON.stringify(this.toObject());
+			data = Base64.encode(JSON.stringify(this.toObject()));
 		}
 
 		if (data === undefined) {
@@ -239,7 +243,7 @@ export class Profile implements ProfileContract {
 			name: this.name(),
 			avatar: this.avatar(),
 			password: this.#data.password,
-			data: Base64.encode(data),
+			data,
 		};
 	}
 
