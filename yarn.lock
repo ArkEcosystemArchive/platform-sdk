@@ -785,10 +785,10 @@ __metadata:
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@ledgerhq/hw-transport-mocker": ^5.29.0
     "@liskhq/lisk-client": ^2.0
-    "@liskhq/lisk-client-new": "npm:@liskhq/lisk-client@=3.0.0"
+    "@liskhq/lisk-client-new": "npm:@liskhq/lisk-client@=5.0.0"
     "@liskhq/lisk-cryptography": ^2.5
     "@liskhq/lisk-transactions": ^2.0
-    "@liskhq/lisk-transactions-new": "npm:@liskhq/lisk-transactions@=3.0.0"
+    "@liskhq/lisk-transactions-new": "npm:@liskhq/lisk-transactions@=5.0.0"
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.4
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -3282,27 +3282,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@liskhq/lisk-api-client@npm:3.0.0":
-  version: 3.0.0
-  resolution: "@liskhq/lisk-api-client@npm:3.0.0"
+"@liskhq/lisk-api-client@npm:^5.0.0":
+  version: 5.0.2
+  resolution: "@liskhq/lisk-api-client@npm:5.0.2"
   dependencies:
-    "@types/node": 12.12.11
-    axios: 0.19.0
-  checksum: 2/facb34ead34512ec927a9cedeb39ea22eed9fdf5eaf48d828b9feee517bb9aad29a5b756709f96c0c7af9d795858a500f4d5f947aa3592931c2beb9f8fd70a01
+    "@liskhq/lisk-codec": ^0.1.0
+    "@liskhq/lisk-cryptography": ^3.0.0
+    "@liskhq/lisk-transactions": ^5.0.1
+    isomorphic-ws: 4.0.1
+    pm2-axon: 4.0.0
+    pm2-axon-rpc: 0.6.0
+    ws: 7.4.0
+  checksum: 2/53a3aa5b21f977e3937e8cd9a3f65abe637a5dd020d7dac7d64716a5a5e4973b064fcc2680921467411a21b8b13a6bef32d2f8d1227f2168b38295c1d819aade
   languageName: node
   linkType: hard
 
-"@liskhq/lisk-client-new@npm:@liskhq/lisk-client@=3.0.0":
-  version: 3.0.0
-  resolution: "@liskhq/lisk-client@npm:3.0.0"
+"@liskhq/lisk-client-new@npm:@liskhq/lisk-client@=5.0.0":
+  version: 5.0.0
+  resolution: "@liskhq/lisk-client@npm:5.0.0"
   dependencies:
-    "@liskhq/lisk-api-client": 3.0.0
-    "@liskhq/lisk-constants": 1.3.0
-    "@liskhq/lisk-cryptography": 2.4.0
-    "@liskhq/lisk-passphrase": 3.0.0
-    "@liskhq/lisk-transactions": 3.0.0
-    "@types/node": 12.12.11
-  checksum: 2/98e5314634c004d3aab11f8f499d85c35a0556051b8e5b3ecbe5cd287d78c256a76beb74c1b12ae0ed49e1d66885592a53a293071eaad200e6a3a7282e632e22
+    "@liskhq/lisk-api-client": ^5.0.0
+    "@liskhq/lisk-codec": ^0.1.0
+    "@liskhq/lisk-cryptography": ^3.0.0
+    "@liskhq/lisk-passphrase": ^3.0.1
+    "@liskhq/lisk-transactions": ^5.0.0
+    "@liskhq/lisk-tree": ^0.1.0
+    "@liskhq/lisk-utils": ^0.1.0
+    "@liskhq/lisk-validator": ^0.5.0
+    buffer: 6.0.3
+  checksum: 2/d628c5bf85e18cf04de6a34019a56c5c7f8b4c5d7fc3dbe8a1ff79caad7d970f08979312555b8384a10011d323f39e3a11e0d2222fdc065fb672f71af5e69f31
   languageName: node
   linkType: hard
 
@@ -3320,21 +3328,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@liskhq/lisk-codec@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@liskhq/lisk-codec@npm:0.1.0"
+  dependencies:
+    "@liskhq/lisk-utils": ^0.1.0
+    "@liskhq/lisk-validator": ^0.5.0
+  checksum: 2/6f1a486b67b0e25b4f4b7f59acd6523ebc3447d1d51484535586bd71ab4339bc2aefb0558723b10e0a5e4bed1f5580f2e14b5a3955704d432d404df9bd54466b
+  languageName: node
+  linkType: hard
+
 "@liskhq/lisk-constants@npm:1.2.3":
   version: 1.2.3
   resolution: "@liskhq/lisk-constants@npm:1.2.3"
   dependencies:
     "@types/node": 10.12.21
   checksum: 2/cc8e2bec9d80cf54844e8dd1500c2192c658b5dc85d13cb217ccce160dd9ebe0f1309afe837312ecc2014263da95fb7556564d8be253da3306c43e6235b56f9e
-  languageName: node
-  linkType: hard
-
-"@liskhq/lisk-constants@npm:1.3.0":
-  version: 1.3.0
-  resolution: "@liskhq/lisk-constants@npm:1.3.0"
-  dependencies:
-    "@types/node": 12.12.11
-  checksum: 2/5122c45a7998fc85d29ef1e6875ade0c2eb028e116955eafc25b48f8a1565d24db3003b853897547b439a9943eba15a78303cda31e500c46be3a2236db058558
   languageName: node
   linkType: hard
 
@@ -3357,25 +3366,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@liskhq/lisk-cryptography@npm:2.4.0":
-  version: 2.4.0
-  resolution: "@liskhq/lisk-cryptography@npm:2.4.0"
-  dependencies:
-    "@liskhq/bignum": 1.3.1
-    "@types/ed2curve": 0.2.2
-    "@types/node": 12.12.11
-    buffer-reverse: 1.0.1
-    ed2curve: 0.2.1
-    sodium-native: 2.4.6
-    tweetnacl: 1.0.1
-    varuint-bitcoin: 1.1.0
-  dependenciesMeta:
-    sodium-native:
-      optional: true
-  checksum: 2/9e68398ada095576fe0615b2e7b0e847ef6651ee633b4df1ae28beae6371305da523ead4c35c4fd0dcb91fe6fb5c95fc7e3b4033a9e9cf8917dd72a7524904ce
-  languageName: node
-  linkType: hard
-
 "@liskhq/lisk-cryptography@npm:^2.5":
   version: 2.5.0
   resolution: "@liskhq/lisk-cryptography@npm:2.5.0"
@@ -3392,6 +3382,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@liskhq/lisk-cryptography@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@liskhq/lisk-cryptography@npm:3.0.0"
+  dependencies:
+    buffer-reverse: 1.0.1
+    ed2curve: 0.3.0
+    sodium-native: 3.2.0
+    tweetnacl: 1.0.3
+    varuint-bitcoin: 1.1.2
+  dependenciesMeta:
+    sodium-native:
+      optional: true
+  checksum: 2/989ab870630f3d62ba59764e5fdf716e88abbf90dd82f93cb9e820ae8ed9ffc1a9868ce7b338cc6f06490e90976ea2ffc93fdd911f3a156fa00b8f2e42d206b3
+  languageName: node
+  linkType: hard
+
 "@liskhq/lisk-passphrase@npm:2.0.3":
   version: 2.0.3
   resolution: "@liskhq/lisk-passphrase@npm:2.0.3"
@@ -3403,27 +3409,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@liskhq/lisk-passphrase@npm:3.0.0":
-  version: 3.0.0
-  resolution: "@liskhq/lisk-passphrase@npm:3.0.0"
+"@liskhq/lisk-passphrase@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@liskhq/lisk-passphrase@npm:3.0.1"
   dependencies:
-    "@types/bip39": 2.4.1
-    "@types/node": 12.12.11
-    bip39: 2.5.0
-  checksum: 2/d59e14ff6d0db80f93454c776d8012e2b8b29f2f2e53b4b4acde78f2b3a1dc92c00411d433194cf765ac81279f0bad60f7d9cc50bbfe090b4dc0227ba13e3d91
+    bip39: 3.0.2
+  checksum: 2/fb652846f21a836b0b00fea4c2c9ce0786fcb2881402c7b534cbd025370bdca3a8eaaafc98b6f33b057a577451eaa74ec6465814406670a9f2ed95a23015b3b9
   languageName: node
   linkType: hard
 
-"@liskhq/lisk-transactions-new@npm:@liskhq/lisk-transactions@=3.0.0, @liskhq/lisk-transactions@npm:3.0.0":
-  version: 3.0.0
-  resolution: "@liskhq/lisk-transactions@npm:3.0.0"
+"@liskhq/lisk-transactions-new@npm:@liskhq/lisk-transactions@=5.0.0, @liskhq/lisk-transactions@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@liskhq/lisk-transactions@npm:5.0.0"
   dependencies:
-    "@liskhq/bignum": 1.3.1
-    "@liskhq/lisk-cryptography": 2.4.0
-    "@liskhq/lisk-validator": 0.3.0
-    ajv: 6.8.1
-    ajv-merge-patch: 4.1.0
-  checksum: 2/d5f5879bd7515cce91f0bab9d1447006c269ef273ce887fb57b790e0a6f0213c0050fbbc91c751898a6912c66d1d3411e91db130c8941435453b12aba18fae71
+    "@liskhq/lisk-codec": ^0.1.0
+    "@liskhq/lisk-cryptography": ^3.0.0
+    "@liskhq/lisk-validator": ^0.5.0
+  checksum: 2/06dd499c32fd8b93330649156a8988b9670702e1b4d9745b4ae2cf25bef323cc5ee2600c7988a2ec75a86b17127200f10327c85644af9824826f8231746db274
   languageName: node
   linkType: hard
 
@@ -3440,19 +3442,49 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@liskhq/lisk-validator@npm:0.3.0":
-  version: 0.3.0
-  resolution: "@liskhq/lisk-validator@npm:0.3.0"
+"@liskhq/lisk-transactions@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "@liskhq/lisk-transactions@npm:5.0.1"
   dependencies:
-    "@liskhq/bignum": 1.3.1
-    "@liskhq/lisk-cryptography": 2.4.0
+    "@liskhq/lisk-codec": ^0.1.0
+    "@liskhq/lisk-cryptography": ^3.0.0
+    "@liskhq/lisk-validator": ^0.5.0
+  checksum: 2/84f649f94371ed2993595f4c79fb45e9e5a2c6299bf696629bd68aefc9556a6be5c15c3942fad622b86e48431b94654f68686bede6e4c2be8e3ec56f91e68ee3
+  languageName: node
+  linkType: hard
+
+"@liskhq/lisk-tree@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@liskhq/lisk-tree@npm:0.1.0"
+  dependencies:
+    "@liskhq/lisk-cryptography": ^3.0.0
+    "@liskhq/lisk-utils": ^0.1.0
+  checksum: 2/7accd8aa2a448b57c838775c38d91fae340a9b46c9d28c63dce140b9c692496edc49d3149402fda21de545866039a43878101a16d005011a247609d7a4b989d7
+  languageName: node
+  linkType: hard
+
+"@liskhq/lisk-utils@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@liskhq/lisk-utils@npm:0.1.0"
+  dependencies:
+    lodash.clonedeep: 4.5.0
+  checksum: 2/dedb8ccb7637e5b461d1196c0de04c38a20f3ed58dc7e96fe9eb744b3807975414bb889d867308ae38811b19969d153deeaccb995a94d972c2494976d6c29183
+  languageName: node
+  linkType: hard
+
+"@liskhq/lisk-validator@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@liskhq/lisk-validator@npm:0.5.0"
+  dependencies:
+    "@liskhq/lisk-cryptography": ^3.0.0
     "@types/node": 12.12.11
-    "@types/semver": 5.5.0
-    "@types/validator": 10.9.0
-    ajv: 6.9.2
-    semver: 5.6.0
-    validator: 10.11.0
-  checksum: 2/2c651d545405592d40aec4bb403d01a120679e69419904b2478f5410bd41cd436eb64a05fe2fa9d5dbc606305292c138b9c33b7bd9d629f927db532d08349eee
+    "@types/semver": 7.1.0
+    "@types/validator": 12.0.1
+    ajv: 6.12.0
+    debug: 4.1.1
+    semver: 7.1.3
+    validator: 12.2.0
+  checksum: 2/933bb6e04ba179c56c61414f8ce87301c50c77f30aa19bc51e61426ea0575b8710df0a1809ca8bb132d966f26db07f5620b9ab72e1f2dd8d2a457057853bba59
   languageName: node
   linkType: hard
 
@@ -4349,10 +4381,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semver@npm:5.5.0":
-  version: 5.5.0
-  resolution: "@types/semver@npm:5.5.0"
-  checksum: 2/df74589466e171c36dd868b760609e518830f212134c238674ddd6eb83653368c59f4510aa6523b7692ec99c5d8ab40b818e30f9d65e0df97c56bdbacef06661
+"@types/semver@npm:7.1.0":
+  version: 7.1.0
+  resolution: "@types/semver@npm:7.1.0"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2/d4450e985101a5241a879c919a6f462e4d1ed82c7720d1b732a01bc5692356c5fd817e7ef985efd7b2175f47513d56c3d308ea79dd1f9faf18153a2c673df8fe
   languageName: node
   linkType: hard
 
@@ -4416,10 +4450,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/validator@npm:10.9.0":
-  version: 10.9.0
-  resolution: "@types/validator@npm:10.9.0"
-  checksum: 2/d2f176fdac47a22f13ed68194900f9b600b69bab73251d7db495c0f0423236e4d20c6067f7befb891ea7bc05f3ce4f871a90cdaa2d30d04fa0c36fe26b2c3e50
+"@types/validator@npm:12.0.1":
+  version: 12.0.1
+  resolution: "@types/validator@npm:12.0.1"
+  checksum: 2/4c11904de60a2962de9df66c992667050b2035047304c675beb98a092fa2cc4379be1503d047363340e5ae10b26f218e7d6ad7518b88b452a531af0145f025ca
   languageName: node
   linkType: hard
 
@@ -4949,6 +4983,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ajv@npm:6.12.0":
+  version: 6.12.0
+  resolution: "ajv@npm:6.12.0"
+  dependencies:
+    fast-deep-equal: ^3.1.1
+    fast-json-stable-stringify: ^2.0.0
+    json-schema-traverse: ^0.4.1
+    uri-js: ^4.2.2
+  checksum: 2/aed1e0ab1b906913e2b466b1a0372ee5e4fe2927802ff81bcce350f482b0546cdb49df6ab551adad191ac19766007cdaf6c2d8b70e992528b806d9a8275ce2bd
+  languageName: node
+  linkType: hard
+
 "ajv@npm:6.8.1":
   version: 6.8.1
   resolution: "ajv@npm:6.8.1"
@@ -4958,18 +5004,6 @@ __metadata:
     json-schema-traverse: ^0.4.1
     uri-js: ^4.2.2
   checksum: 2/e8faffc5d2cb430fb11985cdd7db5cf16fe6e40f3a2f9763a7d0fcdf09806a13e70b2d882ba6a2b6f122aa706b3f7a6b86fb6c9c358619ecb99b035d782caa72
-  languageName: node
-  linkType: hard
-
-"ajv@npm:6.9.2":
-  version: 6.9.2
-  resolution: "ajv@npm:6.9.2"
-  dependencies:
-    fast-deep-equal: ^2.0.1
-    fast-json-stable-stringify: ^2.0.0
-    json-schema-traverse: ^0.4.1
-    uri-js: ^4.2.2
-  checksum: 2/2a0a7096bd21197185b6543cd97c7a2d2ffe900013e0ab968e1bb659f488fc4065e0e2f377b7b0a15132d8906060a9dd7a5e153d889b51b03e6005724223c0af
   languageName: node
   linkType: hard
 
@@ -4994,6 +5028,22 @@ __metadata:
     json-schema-traverse: ^0.4.1
     uri-js: ^4.2.2
   checksum: 2/50d72b0a10326732072f5481b1b6bd5a43f8d770878b8f88ba5bb232abb745cefbf7f87a0e64679bd477d4a8bba0b3aea084675bd34943db5279c15907ee658f
+  languageName: node
+  linkType: hard
+
+"amp-message@npm:~0.1.1":
+  version: 0.1.2
+  resolution: "amp-message@npm:0.1.2"
+  dependencies:
+    amp: 0.3.1
+  checksum: 2/f73674dc346f39942b24c3813a3f226b3d9bf8643ec5773dde1909f3f5d7995709850ec8be122428cb6401cc1620eb4a028fa72dde381a0da79c4ef0a335c763
+  languageName: node
+  linkType: hard
+
+"amp@npm:0.3.1, amp@npm:~0.3.1":
+  version: 0.3.1
+  resolution: "amp@npm:0.3.1"
+  checksum: 2/16db554bb2a85842f8a2665fedbf49c29a8c4be1e4d0f8ab078dab6c5356fc8ab9412c2f0e6564fe21c14ade93fc1ac4a22cfbb4d5f65494570990d0b2a564f8
   languageName: node
   linkType: hard
 
@@ -5449,6 +5499,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"base64-js@npm:^1.3.1":
+  version: 1.5.1
+  resolution: "base64-js@npm:1.5.1"
+  checksum: 2/c1b41a26ddc6620eb7f1ee6c29c812f5942a4e328e74263f995872cfb8ca3aee08542beb25cd10fd7ef16e4f16603e25c35a26e776c01fd55277e5035e829e0e
+  languageName: node
+  linkType: hard
+
 "base@npm:^0.11.1":
   version: 0.11.2
   resolution: "base@npm:0.11.2"
@@ -5662,6 +5719,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bip39@npm:3.0.2, bip39@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "bip39@npm:3.0.2"
+  dependencies:
+    "@types/node": 11.11.6
+    create-hash: ^1.1.0
+    pbkdf2: ^3.0.9
+    randombytes: ^2.0.1
+  checksum: 2/24c59dafc6c3b5c4ff0b8d0861509c0007bc0301b217125d1f1de6a39e84d21c9cfc1df743d472237c2ec4116387a46389843b36c95585b0eacebb6f5be6ecbd
+  languageName: node
+  linkType: hard
+
 "bip39@npm:^2.5.0":
   version: 2.6.0
   resolution: "bip39@npm:2.6.0"
@@ -5672,18 +5741,6 @@ __metadata:
     safe-buffer: ^5.0.1
     unorm: ^1.3.3
   checksum: 2/4ec18f56b4c3939ac3b79ce22aee592ed8685498fdd0e52b42494725a0fd5b27e10ba96cb6c26eca13af741df24bb4b542837b9cd2872dc254ab7f07cc37be23
-  languageName: node
-  linkType: hard
-
-"bip39@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "bip39@npm:3.0.2"
-  dependencies:
-    "@types/node": 11.11.6
-    create-hash: ^1.1.0
-    pbkdf2: ^3.0.9
-    randombytes: ^2.0.1
-  checksum: 2/24c59dafc6c3b5c4ff0b8d0861509c0007bc0301b217125d1f1de6a39e84d21c9cfc1df743d472237c2ec4116387a46389843b36c95585b0eacebb6f5be6ecbd
   languageName: node
   linkType: hard
 
@@ -6111,6 +6168,16 @@ __metadata:
   dependencies:
     safe-buffer: ^5.1.1
   checksum: 2/06ab1b0ebdcf27b49268cbc82b91c6db555b041b72f7db110760e0ea77be300fd534b198e7bb8c091c77a477f9c833d3e44cd26ec06f50049efceb7ce2a45849
+  languageName: node
+  linkType: hard
+
+"buffer@npm:6.0.3":
+  version: 6.0.3
+  resolution: "buffer@npm:6.0.3"
+  dependencies:
+    base64-js: ^1.3.1
+    ieee754: ^1.2.1
+  checksum: 2/a8cf6a58571dc7c43b24ab821ad4c72222d9040775f49fd143a30fad45f33ec0a8e0d572ca80d589ad4f8b4715aa012c029dc2b925dc95467f135c2d13d7abfb
   languageName: node
   linkType: hard
 
@@ -6991,7 +7058,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1":
+"debug@npm:4, debug@npm:4.1.1, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1":
   version: 4.1.1
   resolution: "debug@npm:4.1.1"
   dependencies:
@@ -7006,6 +7073,29 @@ __metadata:
   dependencies:
     ms: 2.0.0
   checksum: 2/1295acd5e0531761255661d325cd0a80ac8c5f6de8942a53bb23c2197ccb97526972de662ed0e5d9393be83f3428a298a6e7185ecb02f0da6282019cd2ffb4a8
+  languageName: node
+  linkType: hard
+
+"debug@npm:^3.0":
+  version: 3.2.7
+  resolution: "debug@npm:3.2.7"
+  dependencies:
+    ms: ^2.1.1
+  checksum: 2/9fc1277e666db3af31df89e9e41f5c83da6e9de56d4a95b37e095d47ba1958238b8c7b49d4327b516465d46b6340bee723a97a7b2f28c5c7563f8b0a8fc9458a
+  languageName: node
+  linkType: hard
+
+"debug@npm:^4.2":
+  version: 4.3.2
+  resolution: "debug@npm:4.3.2"
+  dependencies:
+    ms: 2.1.2
+  peerDependencies:
+    supports-color: "*"
+  peerDependenciesMeta:
+    supports-color:
+      optional: true
+  checksum: 2/5543570879e2274f6725d4285a034d6e0822d35faefc6f55965933fb440e8c21eb3a0bef934e66f4b6b491f898ee2de37cab980e9d4fd61372136c19d3ce4527
   languageName: node
   linkType: hard
 
@@ -9417,6 +9507,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"ieee754@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "ieee754@npm:1.2.1"
+  checksum: 2/6c1cfab995ecab3b0dbb6cfb7e192686eb02f0f8e788f2d962e1fc02e2d5ab38a85e06d417221f136bd029663a77cdb920d99605d68d3730a05597dd7910426a
+  languageName: node
+  linkType: hard
+
 "ignore-walk@npm:^3.0.3":
   version: 3.0.3
   resolution: "ignore-walk@npm:3.0.3"
@@ -11200,6 +11297,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"lodash.clonedeep@npm:4.5.0":
+  version: 4.5.0
+  resolution: "lodash.clonedeep@npm:4.5.0"
+  checksum: 2/41e2fe4c57c56a66a4775a6ddeebe9272f0ce4d257d97b3cb8724a9b01eeec9b09ce7e8603d6926baf5f48c287d988f0de4bf5aa244ea86b1f22c1e6f203cc27
+  languageName: node
+  linkType: hard
+
 "lodash.deburr@npm:^4.1.0":
   version: 4.1.0
   resolution: "lodash.deburr@npm:4.1.0"
@@ -11840,7 +11944,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"ms@npm:^2.0.0, ms@npm:^2.1.1":
+"ms@npm:2.1.2, ms@npm:^2.0.0, ms@npm:^2.1.1":
   version: 2.1.2
   resolution: "ms@npm:2.1.2"
   checksum: 2/9b65fb709bc30c0c07289dcbdb61ca032acbb9ea5698b55fa62e2cebb04c5953f1876a1f3f7f4bc2e91d4bf4d86003f3e207c3bc6ee2f716f99827e62389cd0e
@@ -12977,6 +13081,27 @@ fsevents@^2.1.2:
   version: 7.0.0
   resolution: "pluralize@npm:7.0.0"
   checksum: 2/d35d8aeda1eb2f81123131e76ed0f2f48d681abfa4c46e4c6fdd6dca622650c8bd531aa0c5a3c7f779bd9660d08ceb51660e1f55def4bd14328ecfa76fe69962
+  languageName: node
+  linkType: hard
+
+"pm2-axon-rpc@npm:0.6.0":
+  version: 0.6.0
+  resolution: "pm2-axon-rpc@npm:0.6.0"
+  dependencies:
+    debug: ^3.0
+  checksum: 2/026f0dbf49e8d65b602492e485c3846f3e8324c1dddfe4c2b0027d5a221fa3d3da28b99688500a6fd3c62a3d9f5b46c1f3305542f6468efb781e812298cc4649
+  languageName: node
+  linkType: hard
+
+"pm2-axon@npm:4.0.0":
+  version: 4.0.0
+  resolution: "pm2-axon@npm:4.0.0"
+  dependencies:
+    amp: ~0.3.1
+    amp-message: ~0.1.1
+    debug: ^4.2
+    escape-string-regexp: ^4.0.0
+  checksum: 2/3e73a65d3a3d0e29017f923805d78d4503349e2975fbfb02089f69277335a352ebea3c10b0d4c92f3a5c462e858b389c5ababe5a4fc138e796fae55930dd5bfd
   languageName: node
   linkType: hard
 
@@ -14170,12 +14295,12 @@ resolve@^1.18.1:
   languageName: node
   linkType: hard
 
-"semver@npm:5.6.0":
-  version: 5.6.0
-  resolution: "semver@npm:5.6.0"
+"semver@npm:7.1.3":
+  version: 7.1.3
+  resolution: "semver@npm:7.1.3"
   bin:
-    semver: ./bin/semver
-  checksum: 2/7e7b2f9a72b5ad7e123c28ba44398cad73e55b2ecb8634cf7ef9d4bb3d93ffab5315a0cb505f2f735edebc381fc689bd2bf3e952f8318cdfc88947e99898bf69
+    semver: bin/semver.js
+  checksum: 2/a3e1074182f6acb79aba09ac0547000b6bdc12bf793b47236bdf00dbb1b13d4b574c8f1bc55d89b149a19fbb77351e93f9f254082732d41a959acbe99b1a42b9
   languageName: node
   linkType: hard
 
@@ -14468,6 +14593,17 @@ resolve@^1.18.1:
     node-gyp: latest
     node-gyp-build: ^4.1.0
   checksum: 2/2976d8a24173083c1947a07c64f1d7dc37b7a891cd66697020f1fd13ab366d5fabb4995d163dfae24f9e373a846a0d30b939ecb2743d0982d2c98afce378bbfa
+  languageName: node
+  linkType: hard
+
+"sodium-native@npm:3.2.0":
+  version: 3.2.0
+  resolution: "sodium-native@npm:3.2.0"
+  dependencies:
+    ini: ^1.3.5
+    node-gyp: latest
+    node-gyp-build: ^4.2.0
+  checksum: 2/29672a15a608cc68aef56c6cf47e6d22c87dd13b76add65b900e33504cb82a9dbd6dc736c46945829b26631eae1423e039ce78a354aad5c358d0ca1044b42e32
   languageName: node
   linkType: hard
 
@@ -15881,7 +16017,14 @@ typescript@^4.0.5:
   languageName: node
   linkType: hard
 
-"validator@npm:10.11.0, validator@npm:^10.7.1":
+"validator@npm:12.2.0":
+  version: 12.2.0
+  resolution: "validator@npm:12.2.0"
+  checksum: 2/e5f79e631bf10873c5028f181fe1ec4d856d08dade447bf73a77c1afb548bb3385d11b09e358f5138d3550bedd3422bb36ec1ff85c1edc21f2df38da1e53a076
+  languageName: node
+  linkType: hard
+
+"validator@npm:^10.7.1":
   version: 10.11.0
   resolution: "validator@npm:10.11.0"
   checksum: 2/07a37cd1469001b121696c2aa5494e9a4e416feabad31d849c02dfa414ae39c7885acb08d81d50d45e0ec63a1269bd8169937acf76202a79dc1ae53e909186b5
@@ -16494,6 +16637,21 @@ typescript@^4.0.5:
   languageName: node
   linkType: hard
 
+"ws@npm:7.4.0, ws@npm:^7.4.0":
+  version: 7.4.0
+  resolution: "ws@npm:7.4.0"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ^5.0.2
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 2/67c0f3b86d89c20e337b0bd712e0a2752068eadc0cf13c024d0532c18d073381ced485fb114a636998327a82c34d83720f4ceb7632395c0cb9580ce221177fd8
+  languageName: node
+  linkType: hard
+
 "ws@npm:^3.0.0":
   version: 3.3.3
   resolution: "ws@npm:3.3.3"
@@ -16517,21 +16675,6 @@ typescript@^4.0.5:
     utf-8-validate:
       optional: true
   checksum: 2/bd4ff2ceb52eaebefb05093c673e7dd0005131f31f2eae0452b8a0276af83d911213fe659cb455af1883565ea38d90a25dd8601b905617037d48d2c16c6992f0
-  languageName: node
-  linkType: hard
-
-"ws@npm:^7.4.0":
-  version: 7.4.0
-  resolution: "ws@npm:7.4.0"
-  peerDependencies:
-    bufferutil: ^4.0.1
-    utf-8-validate: ^5.0.2
-  peerDependenciesMeta:
-    bufferutil:
-      optional: true
-    utf-8-validate:
-      optional: true
-  checksum: 2/67c0f3b86d89c20e337b0bd712e0a2752068eadc0cf13c024d0532c18d073381ced485fb114a636998327a82c34d83720f4ceb7632395c0cb9580ce221177fd8
   languageName: node
   linkType: hard
 
