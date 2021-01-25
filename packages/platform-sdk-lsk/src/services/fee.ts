@@ -1,6 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import * as transactions from "@liskhq/lisk-transactions";
-import * as transactionsBeta from "@liskhq/lisk-transactions-new";
 
 import { manifest } from "../manifest";
 
@@ -37,11 +36,7 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	private transform(type: string | number): Contracts.TransactionFee {
-		let fee: number = type === 0 ? 0 : transactions.constants[type];
-
-		if (this.#network === manifest.networks["lsk.betanet"].crypto.networkId) {
-			fee = transactionsBeta.constants[type];
-		}
+		const fee: number = type === 0 ? 0 : transactions.constants[type];
 
 		return {
 			static: `${fee}`,
