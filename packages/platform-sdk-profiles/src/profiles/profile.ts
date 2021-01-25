@@ -400,7 +400,7 @@ export class Profile implements ProfileContract {
 					data: this.toObject(),
 				}),
 				password,
-			)
+			),
 		);
 	}
 
