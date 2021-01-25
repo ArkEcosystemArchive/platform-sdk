@@ -220,18 +220,18 @@ export class Profile implements ProfileContract {
 	public dump(): ProfileInput {
 		let data: string | undefined;
 
-		if (this.usesPassword()) {
-			if (!this.#encrypted) {
-				throw new Error("This profile uses a password for encryption but it was not encrypted.");
-			}
+		try {
+			if (this.usesPassword()) {
+				if (!this.#encrypted) {
+					throw new Error("This profile uses a password for encryption but it was not encrypted.");
+				}
 
-			if (Base64.validate(this.#encrypted)) {
 				data = this.#encrypted;
 			} else {
-				data = Base64.encode(this.#encrypted);
+				data = Base64.encode(JSON.stringify(this.toObject()));
 			}
-		} else {
-			data = Base64.encode(JSON.stringify(this.toObject()));
+		} catch (error) {
+			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
 		}
 
 		if (data === undefined) {
@@ -390,15 +390,17 @@ export class Profile implements ProfileContract {
 			throw new Error("The password did not match our records.");
 		}
 
-		this.#encrypted = PBKDF2.encrypt(
-			JSON.stringify({
-				id: this.id(),
-				name: this.name(),
-				avatar: this.avatar(),
-				password: this.#data.password,
-				data: this.toObject(),
-			}),
-			password,
+		this.#encrypted = Base64.encode(
+			PBKDF2.encrypt(
+				JSON.stringify({
+					id: this.id(),
+					name: this.name(),
+					avatar: this.avatar(),
+					password: this.#data.password,
+					data: this.toObject(),
+				}),
+				password,
+			)
 		);
 	}
 
