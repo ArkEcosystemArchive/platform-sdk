@@ -3,6 +3,7 @@ import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
 
+import { MemoryPassword } from "../helpers/password";
 import { pqueue } from "../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
@@ -376,7 +377,11 @@ export class Profile implements ProfileContract {
 	 *
 	 * @param password A hard-to-guess password to encrypt the contents.
 	 */
-	public encrypt(password: string): string {
+	public encrypt(password?: string): void {
+		if (password === undefined) {
+			password = MemoryPassword.get(this);
+		}
+
 		if (!this.auth().verifyPassword(password)) {
 			throw new Error("The password did not match our records.");
 		}
@@ -391,8 +396,6 @@ export class Profile implements ProfileContract {
 			}),
 			password,
 		);
-
-		return this.#encrypted;
 	}
 
 	/**

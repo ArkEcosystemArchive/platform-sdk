@@ -387,3 +387,9 @@ it("should fail to encrypt a profile if the password is invalid", () => {
 
 	expect(() => subject.encrypt("invalid-password")).toThrow("The password did not match our records.");
 });
+
+it("should encrypt a profile with the in-memory password if none was provided", () => {
+	subject.auth().setPassword("password");
+
+	expect(() => subject.encrypt()).not.toThrow("The password did not match our records.");
+});

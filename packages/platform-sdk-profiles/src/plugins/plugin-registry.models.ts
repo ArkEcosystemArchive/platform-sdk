@@ -1,10 +1,13 @@
 /* istanbul ignore file */
 
 export interface RegistryPluginManifest {
-	categories: string[];
-	permissions: string[];
-	urls: any[];
-	minVersion: string;
+	logo?: string;
+	title?: string;
+	images?: string[];
+	categories?: string[];
+	permissions?: string[];
+	urls?: any[];
+	minVersion?: string;
 }
 
 export interface RegistryPluginSourceControl {
@@ -41,6 +44,28 @@ export interface RegistryPluginVersion {
 	is_verified: boolean;
 }
 
+export interface RegistryPluginProperties {
+	name: string;
+	version: string;
+	description?: string;
+	keywords?: string[];
+	homepage?: { [key: string]: any } | string;
+	bugs?: { [key: string]: any };
+	license?: string;
+	author?: { [key: string]: any } | string;
+	contributors?: ({ [key: string]: any } | string)[];
+	maintainers?: ({ [key: string]: any } | string)[];
+	repository?: { [key: string]: any } | string;
+	dist?: {
+		shasum?: string;
+		tarball?: string;
+		unpackedSize?: number;
+		[key: string]: any;
+	};
+	"desktop-wallet"?: RegistryPluginManifest;
+	[key: string]: any;
+}
+
 export class RegistryPlugin {
 	readonly #data: any;
 	readonly #downloads: any;
@@ -72,12 +97,12 @@ export class RegistryPlugin {
 		return this.#data.description;
 	}
 
-	public author(): { name: string; email: string } {
+	public author() {
 		return this.#data.author;
 	}
 
-	public installSize(): number {
-		return this.getLatestVersion().dist.unpackedSize;
+	public installSize() {
+		return this.getLatestVersion().dist?.unpackedSize;
 	}
 
 	public downloads(): number {
@@ -107,6 +132,10 @@ export class RegistryPlugin {
 		return null;
 	}
 
+	public logo(): string {
+		return this.getMetaData("logo");
+	}
+
 	public images(): string[] {
 		return this.getMetaData("images");
 	}
@@ -131,7 +160,7 @@ export class RegistryPlugin {
 		return Object.keys(this.#data.versions);
 	}
 
-	private getLatestVersion(): any {
+	public getLatestVersion(): RegistryPluginProperties {
 		return this.#data.versions[Object.keys(this.#data.versions)[Object.keys(this.#data.versions).length - 1]];
 	}
 
