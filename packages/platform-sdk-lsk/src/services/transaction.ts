@@ -1,7 +1,6 @@
-import { Coins, Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import * as transactions from "@liskhq/lisk-transactions";
-import * as transactionsBeta from "@liskhq/lisk-transactions-new";
 
 import { manifest } from "../manifest";
 
@@ -152,10 +151,6 @@ export class TransactionService implements Contracts.TransactionService {
 
 			if (input.sign.secondMnemonic) {
 				struct.secondPassphrase = BIP39.normalize(input.sign.secondMnemonic);
-			}
-
-			if (this.#network === manifest.networks["lsk.betanet"].crypto.networkId) {
-				return transactionsBeta[type](struct);
 			}
 
 			return transactions[type](struct);
