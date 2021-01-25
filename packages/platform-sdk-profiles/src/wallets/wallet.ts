@@ -388,6 +388,10 @@ export class Wallet implements ReadWriteWallet {
 		return this.#coin.client();
 	}
 
+	public dataTransferObject(): Contracts.DataTransferObjectService {
+		return this.#coin.dataTransferObject();
+	}
+
 	public identity(): Contracts.IdentityService {
 		return this.#coin.identity();
 	}

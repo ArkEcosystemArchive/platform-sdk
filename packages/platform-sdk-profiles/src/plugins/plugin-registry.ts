@@ -1,6 +1,8 @@
+/* istanbul ignore file */
+
 import { Contracts } from "@arkecosystem/platform-sdk";
 
-import { RegistryPluginListResponse, RegistryPluginResponse } from "./plugin-registry.models";
+import { RegistryPlugin } from "./plugin-registry.models";
 
 export class PluginRegistry {
 	readonly #httpClient: Contracts.HttpClient;
@@ -9,24 +11,47 @@ export class PluginRegistry {
 		this.#httpClient = httpClient;
 	}
 
-	public async all(
-		query: {
-			page?: number;
-			perPage?: string;
-			is_featured?: boolean;
-			is_official?: boolean;
-			is_promoted?: boolean;
-			is_verified?: boolean;
-		} = {},
-	): Promise<RegistryPluginListResponse> {
-		const { data, meta }: any = (await this.#httpClient.get("https://marketsquare.io/api/plugins", query)).json();
+	public async all(): Promise<RegistryPlugin[]> {
+		const results: Promise<RegistryPlugin>[] = [];
 
-		return { data, meta };
+		let i = 0;
+		// eslint-disable-next-line no-constant-condition
+		while (true) {
+			const { objects } = (
+				await this.#httpClient.get("https://registry.npmjs.com/-/v1/search", {
+					text: "keywords:" + ["@arkecosystem", "desktop-wallet", "plugin"].join(" "),
+					from: i * 250,
+					size: 250,
+					t: +new Date(),
+				})
+			).json();
+
+			if (objects === undefined) {
+				break;
+			}
+
+			if (objects && objects.length === 0) {
+				break;
+			}
+
+			for (const item of objects) {
+				results.push(this.findById(item.package.name, item.package.date));
+			}
+
+			i++;
+		}
+
+		return Promise.all(results);
 	}
 
-	public async findById(id: number): Promise<RegistryPluginResponse> {
-		const { data }: any = (await this.#httpClient.get(`https://marketsquare.io/api/plugins/${id}`)).json();
+	private async findById(id: string, date: string): Promise<RegistryPlugin> {
+		const [details, downloads] = await Promise.all([
+			await this.#httpClient.get(`https://registry.npmjs.com/${id}`),
+			await this.#httpClient.get(
+				`https://api.npmjs.org/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${id}`,
+			),
+		]);
 
-		return data;
+		return new RegistryPlugin(details.json(), downloads.json().downloads, date);
 	}
 }

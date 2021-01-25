@@ -140,6 +140,9 @@ it("should create a profile with data and persist it when instructed to do so", 
 	// Create a Setting
 	profile.settings().set("ADVANCED_MODE", "value");
 
+	// Encode all data
+	profile.save();
+
 	// Create a Global DataEntry
 	subject.data().set("key", "value");
 
@@ -323,4 +326,42 @@ it("should flush all bindings and rebind them", async () => {
 	subject.reset({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
 
 	expect(() => container.get(Identifiers.Storage)).not.toThrow();
+});
+
+it("should persist the env and restore it", async () => {
+	// Create initial environment
+	await makeSubject();
+
+	const john = subject.profiles().create("John");
+	await john.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	john.save();
+
+	const jane = subject.profiles().create("Jane");
+	jane.auth().setPassword("password");
+	jane.save("password");
+
+	const jack = subject.profiles().create("Jack");
+	jack.auth().setPassword("password");
+	jack.save("password");
+
+	await subject.persist();
+
+	// Boot new env after we persisted the data
+	subject.reset({ coins: { ARK, BTC, ETH }, httpClient: new Request(), storage: new StubStorage() });
+	await subject.verify();
+	await subject.boot();
+
+	// Assert that we got back what we dumped in the previous env
+	const restoredJohn = subject.profiles().findById(john.id());
+	await restoredJohn.restore();
+
+	const restoredJane = subject.profiles().findById(jane.id());
+	await restoredJane.restore("password");
+
+	const restoredJack = subject.profiles().findById(jack.id());
+	await restoredJack.restore("password");
+
+	expect(restoredJohn.toObject()).toEqual(john.toObject());
+	expect(restoredJane.toObject()).toEqual(jane.toObject());
+	expect(restoredJack.toObject()).toEqual(jack.toObject());
 });

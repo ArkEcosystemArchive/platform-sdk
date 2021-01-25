@@ -11,13 +11,31 @@ export class Authenticator {
 	}
 
 	public setPassword(password: string): void {
-		this.#profile.settings().set(ProfileSetting.Password, Bcrypt.hash(password));
+		const encrypted: string = Bcrypt.hash(password);
 
+		this.#profile.settings().set(ProfileSetting.Password, encrypted);
+
+		// This is needed for new profiles because they are initialised
+		// without any data besides their ID and name which means the
+		// password will be omitted and we won't know to use it.
+		this.#profile.setRawDataKey("password", encrypted);
+
+		// We'll need the password for future use in plain-text
+		// during the lifetime of this profile session.
 		MemoryPassword.set(this.#profile, password);
+
+		// When the password gets changed we need to re-encrypt the
+		// data of the profile or we could end up with a corrupted
+		// profile that can no longer be used or restored.
+		this.#profile.save(password);
 	}
 
 	public verifyPassword(password: string): boolean {
-		return Bcrypt.verify(this.#profile.settings().get(ProfileSetting.Password), password);
+		if (!this.#profile.usesPassword()) {
+			throw new Error("No password is set.");
+		}
+
+		return Bcrypt.verify(this.#profile.getRawData().password, password);
 	}
 
 	public changePassword(oldPassword: string, newPassword: string): void {

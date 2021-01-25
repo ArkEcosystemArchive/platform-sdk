@@ -1,16 +1,9 @@
 import "jest-extended";
 
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { BTC } from "@arkecosystem/platform-sdk-btc";
-import { ETH } from "@arkecosystem/platform-sdk-eth";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
+import { identity } from "../../test/fixtures/identity";
 import { bootContainer } from "../../test/helpers";
-import { container } from "../environment/container";
-import { Identifiers } from "../environment/container.models";
-import { CoinService } from "../environment/services/coin-service";
-import { MemoryPassword } from "../helpers/password";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "./profile-repository";
 
@@ -188,9 +181,13 @@ describe("ProfileRepository", () => {
 
 	it("should dump all profiles", async () => {
 		const john = subject.create("John");
-		const jane = subject.create("Jane");
+		await john.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+		john.save();
 
+		const jane = subject.create("Jane");
+		await jane.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 		jane.auth().setPassword("password");
+		jane.save("password");
 
 		const repositoryDump = subject.toObject();
 

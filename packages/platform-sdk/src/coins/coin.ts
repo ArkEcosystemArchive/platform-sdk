@@ -1,5 +1,6 @@
 import {
 	ClientService,
+	DataTransferObjectService,
 	FeeService,
 	IdentityService,
 	KnownWalletService,
@@ -44,6 +45,7 @@ export class Coin {
 	public async destruct(): Promise<void> {
 		await Promise.all([
 			this.#services.client.destruct(),
+			this.#services.dataTransferObject.destruct(),
 			this.#services.fee.destruct(),
 			this.#services.identity.destruct(),
 			this.#services.knownWallets.destruct(),
@@ -74,6 +76,10 @@ export class Coin {
 
 	public client(): ClientService {
 		return this.#services.client;
+	}
+
+	public dataTransferObject(): DataTransferObjectService {
+		return this.#services.dataTransferObject;
 	}
 
 	public fee(): FeeService {

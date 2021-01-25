@@ -146,4 +146,26 @@ describe("ExchangeRateService", () => {
 		// The price should be the cached price from previous sync: 0.00005048
 		expect(wallet.convertedBalance().toNumber()).toBe(0.00005048);
 	});
+
+	it("handle restore", async () => {
+		expect(async () => {
+			await subject.restore();
+		}).not.toThrow();
+
+		expect(await container.get<StubStorage>(Identifiers.Storage).get("EXCHANGE_RATE_SERVICE")).toMatchObject({
+			DARK: { BTC: expect.anything() },
+		});
+
+		//@ts-ignore
+		await container.get<StubStorage>(Identifiers.Storage).set("EXCHANGE_RATE_SERVICE", null);
+		expect(async () => {
+			await subject.restore();
+		}).not.toThrow();
+
+		//@ts-ignore
+		await container.get<StubStorage>(Identifiers.Storage).set("EXCHANGE_RATE_SERVICE", undefined);
+		expect(async () => {
+			await subject.restore();
+		}).not.toThrow();
+	});
 });

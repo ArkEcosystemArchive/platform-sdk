@@ -43,6 +43,7 @@
 	"governance": {
 		"voting": {
 			"enabled": false,
+			"delegateCount": 0,
 			"maximumPerWallet": 0,
 			"maximumPerTransaction": 0
 		}

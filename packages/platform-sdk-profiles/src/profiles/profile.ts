@@ -3,6 +3,7 @@ import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
 
+import { MemoryPassword } from "../helpers/password";
 import { pqueue } from "../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
@@ -174,7 +175,7 @@ export class Profile implements ProfileContract {
 	}
 
 	public usesPassword(): boolean {
-		return this.settings().get(ProfileSetting.Password) !== undefined;
+		return this.#data.password !== undefined;
 	}
 
 	/**
@@ -211,29 +212,17 @@ export class Profile implements ProfileContract {
 	 * @returns {ProfileInput}
 	 * @memberof Profile
 	 */
-	public dump(password?: string): ProfileInput {
-		let data: string | undefined;
-
-		if (this.usesPassword() && password === undefined) {
-			throw new Error("This profile uses a password but none was passed for encryption.");
-		}
-
-		if (password === undefined) {
-			data = JSON.stringify(this.toObject());
-		} else {
-			data = this.encrypt(password);
-		}
-
-		if (data === undefined) {
-			throw new Error("Failed to encode or encrypt the profile.");
+	public dump(): ProfileInput {
+		if (!this.#data.data) {
+			throw new Error("The profile has not been encoded or encrypted. Please call [save] before dumping.");
 		}
 
 		return {
 			id: this.id(),
 			name: this.name(),
 			avatar: this.avatar(),
-			password: this.settings().get(ProfileSetting.Password),
-			data: Base64.encode(data),
+			password: this.#data.password,
+			data: this.#data.data,
 		};
 	}
 
@@ -254,9 +243,8 @@ export class Profile implements ProfileContract {
 			} else {
 				data = JSON.parse(Base64.decode(this.#data.data));
 			}
-		} catch (e) {
-			// Append the error reason
-			errorReason = ` Reason: ${e.message}`;
+		} catch (error) {
+			errorReason = ` Reason: ${error.message}`;
 		}
 
 		if (data === undefined) {
@@ -345,6 +333,47 @@ export class Profile implements ProfileContract {
 	}
 
 	/**
+	 * Set the given key to the given value for the raw
+	 * underlying data that makes up a profile's struct.
+	 *
+	 * THIS METHOD SHOULD ONLY BE USED FOR MIGRATIONS!
+	 *
+	 * @param {string} key
+	 * @param {string} value
+	 * @memberof Profile
+	 */
+	public setRawDataKey(key: keyof ProfileInput, value: string): void {
+		this.#data[key] = value;
+	}
+
+	/**
+	 * Determine if the profile was recently created, based on the data being empty
+	 * which should only happen if the profile has never been persisted before.
+	 */
+	public wasRecentlyCreated(): boolean {
+		return this.#data.data === "";
+	}
+
+	/**
+	 * Encode or encrypt the profile data for dumping later on.
+	 */
+	public save(password?: string): void {
+		let data: string | undefined;
+
+		if (this.usesPassword()) {
+			data = this.encrypt(password);
+		} else {
+			data = JSON.stringify(this.toObject());
+		}
+
+		if (data === undefined) {
+			throw new Error("Failed to encode or encrypt the profile.");
+		}
+
+		this.#data.data = Base64.encode(data);
+	}
+
+	/**
 	 * Restore the default settings, including the name of the profile.
 	 *
 	 * @private
@@ -400,7 +429,11 @@ export class Profile implements ProfileContract {
 	 *
 	 * @param password A hard-to-guess password to encrypt the contents.
 	 */
-	private encrypt(password: string): string {
+	private encrypt(password?: string): string {
+		if (password === undefined) {
+			password = MemoryPassword.get(this);
+		}
+
 		if (!this.auth().verifyPassword(password)) {
 			throw new Error("The password did not match our records.");
 		}
@@ -410,7 +443,7 @@ export class Profile implements ProfileContract {
 				id: this.id(),
 				name: this.name(),
 				avatar: this.avatar(),
-				password: this.settings().get(ProfileSetting.Password),
+				password: this.#data.password,
 				data: this.toObject(),
 			}),
 			password,
@@ -423,9 +456,7 @@ export class Profile implements ProfileContract {
 	 * @param password A hard-to-guess password to decrypt the contents.
 	 */
 	private decrypt(password: string): ProfileStruct {
-		const usesPassword: boolean = this.#data.password !== undefined;
-
-		if (!usesPassword) {
+		if (!this.usesPassword()) {
 			throw new Error("This profile does not use a password but password was passed for decryption");
 		}
 

@@ -138,9 +138,24 @@ describe("TransactionAggregate", () => {
 
 			expect(subject.hasMore(method)).toBeTrue();
 		});
+
+		it("should flush the history", async () => {
+			nock(/.+/)
+				.get("/api/transactions")
+				.query(true)
+				.reply(200, require("../../../test/fixtures/client/transactions.json"));
+
+			expect(subject.hasMore(method)).toBeFalse();
+
+			await subject[method]();
+
+			expect(subject.hasMore(method)).toBeTrue();
+
+			subject.flush(method);
+		});
 	});
 
-	it("should flush the history", async () => {
+	it("should flush all the history", async () => {
 		nock(/.+/)
 			.get("/api/transactions")
 			.query(true)

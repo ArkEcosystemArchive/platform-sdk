@@ -94,6 +94,13 @@ export class Network {
 	}
 
 	/**
+	 * Get the number of delegates that forge blocks.
+	 */
+	public delegateCount(): number {
+		return this.#network.governance.voting.delegateCount;
+	}
+
+	/**
 	 * Get the maximum number of votes per wallet.
 	 */
 	public maximumVotesPerWallet(): number {

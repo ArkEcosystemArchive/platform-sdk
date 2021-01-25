@@ -101,6 +101,7 @@ export interface ReadWriteWallet {
 	manifest(): Coins.Manifest;
 	config(): Coins.Config;
 	client(): Contracts.ClientService;
+	dataTransferObject(): Contracts.DataTransferObjectService;
 	identity(): Contracts.IdentityService;
 	ledger(): Contracts.LedgerService;
 	link(): Contracts.LinkService;

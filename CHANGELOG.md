@@ -5,6 +5,111 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.5.4 - 2020-01-25
+
+### Fixed
+
+-   Apply base64 encoding only if not already done (890cbec4, @faustbrian)
+
+## 2.5.3 - 2020-01-25
+
+### Fixed
+
+-   Store encrypted password from raw data (ea334581, @faustbrian)
+
+## 2.5.2 - 2020-01-25
+
+### Changed
+
+-   **[LSK]** drop `betanet` support (03e9003e, @faustbrian)
+
+## 2.5.1 - 2020-01-25
+
+### Changed
+
+-   Use in-memory password for encryption if no password was provided (a0ab5fa7, @faustbrian)
+
+## 2.5.0 - 2020-01-25
+
+### Added
+
+-   Export plugin logo from metadata (ebe77d4d, @luciorubeens)
+
+### Changed
+
+-   **[BREAKING]** Require explicit profile encryption (0911acfd, @faustbrian)
+
+## 2.4.5 - 2020-01-22
+
+### Fixed
+
+-   Remove default avatar value in `ProfileFactory#fromName` (f7c725e4, @dated)
+
+## 2.4.4 - 2020-01-22
+
+### Changed
+
+-   Throw exception if non-password profile tries to verify password (f7bd0835, @faustbrian)
+
+## 2.4.3 - 2020-01-22
+
+### Changed
+
+-   Rename `wasCreated` to `wasRecentlyCreated` (ae7f3d46, @faustbrian)
+
+### Fixed
+
+-   Check for `pre` and `post` restore password usage (5d3cfd94, @faustbrian)
+
+## 2.4.1 - 2020-01-22
+
+### Added
+
+-   Implement `Profile#wasCreated` (187127a8, @faustbrian)
+
+## 2.4.0 - 2020-01-21
+
+### Added
+
+-   Restore signed transactions into their original DTO (00cfd879, @faustbrian)
+-   Expose number of delegates on network through manifest (02aa46d6, @faustbrian)
+
+### Changed
+
+-   Deprecate `platform-sdk-ipfs` (d6d7350e, @faustbrian)
+-   Deprecate `platform-sdk-xmr` (ff9ec485, @faustbrian)
+
+## 2.3.6 - 2020-01-11
+
+### Changed
+
+-   Deprecate `@arkecosystem/platform-sdk-marketsquare` (4313ab42, @faustbrian)
+-   Retrieve plugins from NPM (611197e3, @faustbrian)
+
+## 2.3.4 - 2020-01-11
+
+### Fixed
+
+-   Prevent null entries in `ExchangeRateService#restore` (4262264f, @goga-m)
+
+## 2.3.3 - 2020-01-08
+
+### Changed
+
+-   Flush only the aggregate transaction method (70fc1b23, @luciorubeens)
+
+## 2.3.2 - 2020-01-07
+
+### Added
+
+-   Add ability to reset environment instance (6b41adbd, @faustbrian)
+
+## 2.3.1 - 2020-01-06
+
+### Added
+
+-   Flush `env` container (045052d5, @goga-m)
+
 ## 2.3.0 - 2020-01-04
 
 ### Changed
