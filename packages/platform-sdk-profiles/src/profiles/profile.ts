@@ -355,7 +355,7 @@ export class Profile implements ProfileContract {
 	}
 
 	/**
-	 * Save
+	 * Encode or encrypt the profile data for dumping later on.
 	 */
 	public save(password?: string): void {
 		let data: string | undefined;
