@@ -104,5 +104,6 @@
 			"entityResignation": false,
 			"entityUpdate": false
 		}
-	}
+	},
+	"knownWallets": null
 }
