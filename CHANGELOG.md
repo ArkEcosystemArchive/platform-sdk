@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
--   Store encrypted password from raw data (#916) (ea334581, @faustbrian)
+-   Store encrypted password from raw data (ea334581, @faustbrian)
 
 ## 2.5.2 - 2020-01-25
 
