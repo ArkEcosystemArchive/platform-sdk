@@ -247,7 +247,7 @@ export class Profile implements ProfileContract {
 			errorReason = ` Reason: ${error.message}`;
 		}
 
-		if (!data) {
+		if (data === undefined) {
 			throw new Error(`Failed to decode or decrypt the profile.${errorReason}`);
 		}
 
@@ -366,7 +366,7 @@ export class Profile implements ProfileContract {
 			data = JSON.stringify(this.toObject());
         }
 
-        if (!data) {
+        if (data === undefined) {
 			throw new Error("Failed to encode or encrypt the profile.");
 		}
 
