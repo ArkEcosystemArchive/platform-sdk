@@ -366,7 +366,7 @@ export class Profile implements ProfileContract {
 			data = JSON.stringify(this.toObject());
 		}
 
-        if (data === undefined) {
+		if (data === undefined) {
 			throw new Error("Failed to encode or encrypt the profile.");
 		}
 
