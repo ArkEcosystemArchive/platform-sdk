@@ -221,6 +221,14 @@ it("should have an avatar", () => {
 	expect(subject.avatar()).toMatchInlineSnapshot(`"my-avatar"`);
 });
 
+it("should have a known name", () => {
+	container.rebind(Identifiers.KnownWalletService, {
+		name: (a, b) => "arkx",
+	});
+
+	expect(subject.knownName()).toBe("arkx");
+});
+
 it("should have a second public key", () => {
 	expect(subject.secondPublicKey()).toBeUndefined();
 
