@@ -282,6 +282,10 @@ export class Wallet implements ReadWriteWallet {
 	 * These methods serve as identifiers for special types of wallets.
 	 */
 
+	public knownName(): string | undefined {
+		return container.get<KnownWalletService>(Identifiers.KnownWalletService).name(this.networkId(), this.address());
+	}
+
 	public secondPublicKey(): string | undefined {
 		if (!this.#wallet) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");

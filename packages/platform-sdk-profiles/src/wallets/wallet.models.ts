@@ -85,11 +85,15 @@ export interface ReadWriteWallet {
 	settings(): SettingRepository;
 	toObject(): WalletStruct;
 
+	knownName(): string | undefined;
 	secondPublicKey(): string | undefined;
 	username(): string | undefined;
 
 	isDelegate(): boolean;
 	isResignedDelegate(): boolean;
+	isKnown(): boolean;
+	isOwnedByExchange(): boolean;
+	isOwnedByTeam(): boolean;
 	isLedger(): boolean;
 	isMultiSignature(): boolean;
 	isSecondSignature(): boolean;
