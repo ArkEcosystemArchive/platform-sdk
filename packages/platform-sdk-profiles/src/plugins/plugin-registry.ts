@@ -2,13 +2,15 @@
 
 import { Contracts } from "@arkecosystem/platform-sdk";
 
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
 import { RegistryPlugin } from "./plugin-registry.models";
 
 export class PluginRegistry {
 	readonly #httpClient: Contracts.HttpClient;
 
-	public constructor(httpClient: Contracts.HttpClient) {
-		this.#httpClient = httpClient;
+	public constructor() {
+		this.#httpClient = container.get<Contracts.HttpClient>(Identifiers.HttpClient);
 	}
 
 	public async all(): Promise<RegistryPlugin[]> {
