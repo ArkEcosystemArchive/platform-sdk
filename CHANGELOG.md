@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.5.8 - 2020-01-26
+
+### Added
+
+-   Implement `ReadWriteWallet#knownName` (6c963d89, @dated)
+
+### Changed
+
+-   Handle all save exceptions (3cbc496e, @faustbrian)
+
+### Fixed
+
+-   Add empty knownWallets key to bind network config (d0ef6c14, @dated)
+
+## 2.5.5 - 2020-01-25
+
+### Changed
+
+-   Require manual profile dumping (encoding/encrypting) (bac9e24d, @faustbrian)
+
 ## 2.5.4 - 2020-01-25
 
 ### Fixed
