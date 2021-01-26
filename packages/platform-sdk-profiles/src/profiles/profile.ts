@@ -358,19 +358,15 @@ export class Profile implements ProfileContract {
 	 * Encode or encrypt the profile data for dumping later on.
 	 */
 	public save(password?: string): void {
-		let data: string | undefined;
-
-		if (this.usesPassword()) {
-			data = this.encrypt(password);
-		} else {
-			data = JSON.stringify(this.toObject());
+		try {
+			if (this.usesPassword()) {
+				this.#data.data = Base64.encode(this.encrypt(password));
+			} else {
+				this.#data.data = Base64.encode(JSON.stringify(this.toObject()));
+			}
+		} catch (error) {
+			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
 		}
-
-		if (data === undefined) {
-			throw new Error("Failed to encode or encrypt the profile.");
-		}
-
-		this.#data.data = Base64.encode(data);
 	}
 
 	/**

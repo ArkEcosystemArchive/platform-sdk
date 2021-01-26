@@ -390,3 +390,11 @@ it("should encrypt a profile with the in-memory password if none was provided", 
 
 	expect(() => subject.save()).not.toThrow("The password did not match our records.");
 });
+
+it("should fail to save if encoding or encrypting fails", () => {
+	// @ts-ignore
+	const encodingMock = jest.spyOn(JSON, "stringify").mockReturnValue(undefined);
+
+	expect(() => subject.save()).toThrow("Failed to encode or encrypt the profile");
+	encodingMock.mockRestore();
+});
