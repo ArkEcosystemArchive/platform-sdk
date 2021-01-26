@@ -238,7 +238,7 @@ export class Profile implements ProfileContract {
 		let errorReason = "";
 
 		try {
-			if (password !== undefined) {
+			if (typeof password === "string") {
 				data = this.decrypt(password);
 			} else {
 				data = JSON.parse(Base64.decode(this.#data.data));
@@ -426,7 +426,7 @@ export class Profile implements ProfileContract {
 	 * @param password A hard-to-guess password to encrypt the contents.
 	 */
 	private encrypt(password?: string): string {
-		if (password === undefined) {
+		if (typeof password !== "string") {
 			password = MemoryPassword.get(this);
 		}
 
