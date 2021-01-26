@@ -1,8 +1,8 @@
 import "jest-extended";
 
-import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
+import { bootContainer } from "../../test/helpers";
 import { PluginRegistry } from "./plugin-registry";
 
 const pluginNames: string[] = [
@@ -48,7 +48,11 @@ let subject: PluginRegistry;
 
 beforeAll(() => nock.disableNetConnect());
 
-beforeEach(() => (subject = new PluginRegistry(new Request())));
+beforeEach(() => {
+	bootContainer();
+
+	subject = new PluginRegistry();
+});
 
 afterEach(() => nock.cleanAll());
 

@@ -1,10 +1,6 @@
 import "jest-extended";
 
-import { Request } from "@arkecosystem/platform-sdk-http-got";
-
 import { bootContainer } from "../../test/helpers";
-import { container } from "../environment/container";
-import { Identifiers } from "../environment/container.models";
 import { PluginRegistry } from "./plugin-registry";
 import { PluginRepository } from "./plugin-repository";
 

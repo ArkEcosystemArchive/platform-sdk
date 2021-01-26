@@ -1,5 +1,3 @@
-import { container } from "../environment/container";
-import { Identifiers } from "../environment/container.models";
 import { DataRepository } from "../repositories/data-repository";
 import { PluginRegistry } from "./plugin-registry";
 
@@ -19,7 +17,7 @@ export class PluginRepository {
 
 	public constructor() {
 		this.#data = new DataRepository();
-		this.#registry = new PluginRegistry(container.get(Identifiers.HttpClient));
+		this.#registry = new PluginRegistry();
 	}
 
 	public all(): Record<string, Plugin> {
