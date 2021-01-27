@@ -35,10 +35,18 @@ describe("KnownWalletService", () => {
 		await expect(subject.all()).resolves.toEqual(wallets);
 	});
 
-	it("should fail to return a list of known wallets if the request fails", async () => {
+	it("should return an empty list if the request fails", async () => {
 		nock("https://raw.githubusercontent.com")
 			.get("/ArkEcosystem/common/master/devnet/known-wallets-extended.json")
 			.reply(404);
+
+		await expect(subject.all()).resolves.toEqual([]);
+	});
+
+	it("should return an empty list if the request response is not an array", async () => {
+		nock("https://raw.githubusercontent.com")
+			.get("/ArkEcosystem/common/master/devnet/known-wallets-extended.json")
+			.reply(200, {});
 
 		await expect(subject.all()).resolves.toEqual([]);
 	});

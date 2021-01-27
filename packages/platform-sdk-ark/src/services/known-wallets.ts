@@ -17,7 +17,8 @@ export class KnownWalletService implements Contracts.KnownWalletService {
 
 	public async all(): Promise<Contracts.KnownWallet[]> {
 		try {
-			return (await this.#httpClient.get(this.#source)).json() as Contracts.KnownWallet[];
+			const results = (await this.#httpClient.get(this.#source)).json();
+			return (Array.isArray(results) ? results : []) as Contracts.KnownWallet[];
 		} catch (error) {
 			return [];
 		}
