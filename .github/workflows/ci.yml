@@ -46,29 +46,29 @@ jobs:
 
             - name: Test
               run: |
-                  jest packages/platform-sdk/ --coverage
-                  jest packages/platform-sdk-ada/ --coverage
-                  jest packages/platform-sdk-ark/ --coverage
-                  jest packages/platform-sdk-atom/ --coverage
-                  jest packages/platform-sdk-btc/ --coverage
-                  jest packages/platform-sdk-coincap/ --coverage
-                  jest packages/platform-sdk-coingecko/ --coverage
-                  jest packages/platform-sdk-crypto/ --coverage
-                  jest packages/platform-sdk-cryptocompare/ --coverage
-                  jest packages/platform-sdk-eos/ --coverage
-                  jest packages/platform-sdk-eth/ --coverage
-                  jest packages/platform-sdk-http-axios/ --coverage
-                  jest packages/platform-sdk-http-bent/ --coverage
-                  jest packages/platform-sdk-http-got/ --coverage
-                  jest packages/platform-sdk-http-ky/ --coverage
-                  jest packages/platform-sdk-http-node-fetch/ --coverage
-                  jest packages/platform-sdk-intl/ --coverage
-                  jest packages/platform-sdk-lsk/ --coverage
-                  jest packages/platform-sdk-markets/ --coverage
-                  jest packages/platform-sdk-neo/ --coverage
-                  jest packages/platform-sdk-news/ --coverage
-                  jest packages/platform-sdk-profiles/ --coverage
-                  jest packages/platform-sdk-support/ --coverage
-                  jest packages/platform-sdk-trx/ --coverage
-                  jest packages/platform-sdk-xlm/ --coverage
-                  jest packages/platform-sdk-xrp/ --coverage
+                  jest packages/platform-sdk/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-ada/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-ark/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-atom/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-btc/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-coincap/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-coingecko/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-crypto/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-cryptocompare/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-eos/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-eth/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-http-axios/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-http-bent/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-http-got/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-http-ky/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-http-node-fetch/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-intl/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-lsk/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-markets/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-neo/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-news/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-profiles/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-support/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-trx/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-xlm/ --ci --maxWorkers=4
+                  jest packages/platform-sdk-xrp/ --ci --maxWorkers=4
