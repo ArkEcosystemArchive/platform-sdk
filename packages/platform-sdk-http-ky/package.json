@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-http-ky",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "2.5.11",
+	"version": "2.5.12",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
