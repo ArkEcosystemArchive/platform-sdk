@@ -125,9 +125,9 @@ test("#importByMnemonicWithEncryption", async () => {
 
 	expect(subject.keys()).toHaveLength(1);
 
-	await expect(subject.importByMnemonicWithEncryption(identity.mnemonic, "ARK", "ark.devnet", "password")).rejects.toThrowError(
-		"already exists",
-	);
+	await expect(
+		subject.importByMnemonicWithEncryption(identity.mnemonic, "ARK", "ark.devnet", "password"),
+	).rejects.toThrowError("already exists");
 
 	expect(subject.keys()).toHaveLength(1);
 });
