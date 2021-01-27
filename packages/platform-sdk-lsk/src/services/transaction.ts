@@ -2,8 +2,6 @@ import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import * as transactions from "@liskhq/lisk-transactions";
 
-import { manifest } from "../manifest";
-
 export class TransactionService implements Contracts.TransactionService {
 	readonly #network;
 

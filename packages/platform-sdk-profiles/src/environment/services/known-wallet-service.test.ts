@@ -1,7 +1,5 @@
 import "jest-extended";
 
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
 import { bootContainer } from "../../../test/helpers";

@@ -1,9 +1,6 @@
 import "jest-extended";
 
 import { Coins } from "@arkecosystem/platform-sdk";
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
-import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { bootContainer } from "../../../test/helpers";

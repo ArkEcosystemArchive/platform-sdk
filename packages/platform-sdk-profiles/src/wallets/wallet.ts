@@ -2,7 +2,6 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { decrypt } from "bip38";
-import { encode } from "wif";
 
 import { ExtendedTransactionData } from "../dto/transaction";
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";

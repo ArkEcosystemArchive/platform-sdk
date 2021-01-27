@@ -1,23 +1,18 @@
 import "jest-extended";
 
 import { Contracts } from "@arkecosystem/platform-sdk";
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { DateTime } from "../../../platform-sdk-intl/dist";
 import { identity } from "../../test/fixtures/identity";
 import { bootContainer } from "../../test/helpers";
-import { StubStorage } from "../../test/stubs/storage";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { CoinService } from "../environment/services/coin-service";
 import { ExchangeRateService } from "../environment/services/exchange-rate-service";
 import { Profile } from "../profiles/profile";
 import { ProfileSetting } from "../profiles/profile.models";
-import { Wallet } from "../wallets/wallet";
-import { ReadWriteWallet, WalletData } from "../wallets/wallet.models";
+import { ReadWriteWallet } from "../wallets/wallet.models";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,

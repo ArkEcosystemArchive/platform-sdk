@@ -1,6 +1,5 @@
 import "jest-extended";
 
-import { DTO } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";

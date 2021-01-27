@@ -1,7 +1,5 @@
 import "jest-extended";
 
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
@@ -9,7 +7,6 @@ import { identity } from "../../test/fixtures/identity";
 import { bootContainer } from "../../test/helpers";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { CoinService } from "../environment/services/coin-service";
 import { DelegateService } from "../environment/services/delegate-service";
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";

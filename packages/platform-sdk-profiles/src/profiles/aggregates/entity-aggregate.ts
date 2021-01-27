@@ -2,7 +2,7 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { ExtendedTransactionData } from "../../dto/transaction";
 import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
-import { transformTransactionData, transformTransactionDataCollection } from "../../dto/transaction-mapper";
+import { transformTransactionData } from "../../dto/transaction-mapper";
 import { promiseAllSettledByKey } from "../../helpers/promise";
 import { ReadWriteWallet } from "../../wallets/wallet.models";
 import { ProfileContract } from "../profile.models";

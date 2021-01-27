@@ -1,4 +1,4 @@
-import { Coins, Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { api, wallet } from "@cityofzion/neon-js";
 import { v4 as uuidv4 } from "uuid";
 

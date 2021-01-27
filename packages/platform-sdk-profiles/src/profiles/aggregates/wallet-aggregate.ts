@@ -1,6 +1,5 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { Wallet } from "../../wallets/wallet";
 import { ReadWriteWallet } from "../../wallets/wallet.models";
 import { ProfileContract } from "../profile.models";
 
