@@ -4,7 +4,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { RegistryPlugin } from "./plugin-registry.models";
+import { PartialRegistryPlugin, RegistryPlugin } from "./plugin-registry.models";
 
 export class PluginRegistry {
 	readonly #httpClient: Contracts.HttpClient;
@@ -13,8 +13,8 @@ export class PluginRegistry {
 		this.#httpClient = container.get<Contracts.HttpClient>(Identifiers.HttpClient);
 	}
 
-	public async all(): Promise<RegistryPlugin[]> {
-		const results: Promise<RegistryPlugin>[] = [];
+	public async all(): Promise<PartialRegistryPlugin[]> {
+		const results: PartialRegistryPlugin[] = [];
 
 		let i = 0;
 		// eslint-disable-next-line no-constant-condition
@@ -37,16 +37,16 @@ export class PluginRegistry {
 			}
 
 			for (const item of objects) {
-				results.push(this.findById(item.package.name, item.package.date));
+				results.push(new PartialRegistryPlugin(item.package));
 			}
 
 			i++;
 		}
 
-		return Promise.all(results);
+		return results;
 	}
 
-	private async findById(id: string, date: string): Promise<RegistryPlugin> {
+	public async findById(id: string, date: string): Promise<RegistryPlugin> {
 		const [details, downloads] = await Promise.all([
 			await this.#httpClient.get(`https://registry.npmjs.com/${id}`),
 			await this.#httpClient.get(
