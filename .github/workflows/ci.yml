@@ -46,29 +46,29 @@ jobs:
 
             - name: Test
               run: |
-                  cd packages/platform-sdk/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-ada/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-ark/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-atom/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-btc/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-coincap/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-coingecko/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-crypto/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-cryptocompare/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-eos/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-eth/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-http-axios/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-http-bent/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-http-got/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-http-ky/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-http-node-fetch/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-intl/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-lsk/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-markets/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-neo/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-news/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-profiles/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-support/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-trx/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-xlm/ && yarn run test --coverage && cd ..
-                  cd packages/platform-sdk-xrp/ && yarn run test --coverage && cd ..
+                  jest packages/platform-sdk/ --coverage
+                  jest packages/platform-sdk-ada/ --coverage
+                  jest packages/platform-sdk-ark/ --coverage
+                  jest packages/platform-sdk-atom/ --coverage
+                  jest packages/platform-sdk-btc/ --coverage
+                  jest packages/platform-sdk-coincap/ --coverage
+                  jest packages/platform-sdk-coingecko/ --coverage
+                  jest packages/platform-sdk-crypto/ --coverage
+                  jest packages/platform-sdk-cryptocompare/ --coverage
+                  jest packages/platform-sdk-eos/ --coverage
+                  jest packages/platform-sdk-eth/ --coverage
+                  jest packages/platform-sdk-http-axios/ --coverage
+                  jest packages/platform-sdk-http-bent/ --coverage
+                  jest packages/platform-sdk-http-got/ --coverage
+                  jest packages/platform-sdk-http-ky/ --coverage
+                  jest packages/platform-sdk-http-node-fetch/ --coverage
+                  jest packages/platform-sdk-intl/ --coverage
+                  jest packages/platform-sdk-lsk/ --coverage
+                  jest packages/platform-sdk-markets/ --coverage
+                  jest packages/platform-sdk-neo/ --coverage
+                  jest packages/platform-sdk-news/ --coverage
+                  jest packages/platform-sdk-profiles/ --coverage
+                  jest packages/platform-sdk-support/ --coverage
+                  jest packages/platform-sdk-trx/ --coverage
+                  jest packages/platform-sdk-xlm/ --coverage
+                  jest packages/platform-sdk-xrp/ --coverage
