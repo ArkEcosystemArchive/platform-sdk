@@ -241,6 +241,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:0.11.5"
       ],
       [
+        "jest-localstorage-mock",
+        "npm:2.4.6"
+      ],
+      [
         "nock",
         "npm:13.0.5"
       ],
@@ -295,6 +299,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-unused-imports", "npm:1.0.1"],
             ["jest", "npm:26.6.3"],
             ["jest-extended", "npm:0.11.5"],
+            ["jest-localstorage-mock", "npm:2.4.6"],
             ["nock", "npm:13.0.5"],
             ["npm-check-updates", "npm:10.1.1"],
             ["prettier", "npm:2.1.2"],
@@ -12152,6 +12157,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-localstorage-mock", "npm:2.4.3"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:2.4.6", {
+          "packageLocation": "./.yarn/cache/jest-localstorage-mock-npm-2.4.6-f47f407df8-2.zip/node_modules/jest-localstorage-mock/",
+          "packageDependencies": [
+            ["jest-localstorage-mock", "npm:2.4.6"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["jest-matcher-utils", [
@@ -14984,6 +14996,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-unused-imports", "npm:1.0.1"],
             ["jest", "npm:26.6.3"],
             ["jest-extended", "npm:0.11.5"],
+            ["jest-localstorage-mock", "npm:2.4.6"],
             ["nock", "npm:13.0.5"],
             ["npm-check-updates", "npm:10.1.1"],
             ["prettier", "npm:2.1.2"],
