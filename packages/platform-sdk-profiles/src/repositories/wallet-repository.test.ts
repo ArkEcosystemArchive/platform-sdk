@@ -18,6 +18,8 @@ import { Wallet } from "../wallets/wallet";
 import { ReadWriteWallet } from "../wallets/wallet.models";
 import { WalletRepository } from "./wallet-repository";
 
+jest.setTimeout(60000);
+
 let subject: WalletRepository;
 
 beforeAll(() => bootContainer());
