@@ -1,4 +1,6 @@
 import { Crypto } from "@arkecosystem/crypto";
+import { Keys, PublicKey } from "@arkecosystem/crypto-identities";
+import { KeyPair } from "@arkecosystem/crypto-identities/dist/contracts";
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
@@ -13,12 +15,13 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const { message, publicKey, signature } = Crypto.Message.sign(
-				input.message,
-				BIP39.normalize(input.mnemonic),
-			);
+			const keys: KeyPair = Keys.fromPassphrase(BIP39.normalize(input.mnemonic));
 
-			return { message, signatory: publicKey, signature };
+			return {
+				message: input.message,
+				signatory: keys.publicKey,
+				signature: Crypto.Hash.signSchnorr(Crypto.HashAlgorithms.sha256(input.message), keys),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -26,11 +29,11 @@ export class MessageService implements Contracts.MessageService {
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		try {
-			return Crypto.Message.verify({
-				message: input.message,
-				publicKey: input.signatory,
-				signature: input.signature,
-			});
+			return Crypto.Hash.verifySchnorr(
+				Crypto.HashAlgorithms.sha256(input.message),
+				input.signature,
+				input.signatory,
+			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
