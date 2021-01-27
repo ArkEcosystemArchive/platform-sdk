@@ -272,6 +272,8 @@ export class Wallet implements ReadWriteWallet {
 					WalletData.WaitingForOtherSignaturesTransactions,
 					[],
 				),
+				...(this.isLedger() && { [WalletFlag.LedgerIndex]: true }),
+				...(this.isStarred() && { [WalletFlag.Starred]: true }),
 			},
 			settings: this.settings().all(),
 		};
