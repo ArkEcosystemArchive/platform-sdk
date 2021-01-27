@@ -341,6 +341,7 @@ test("#all", () => {
 		      },
 		    },
 		    "id": "compendia.mainnet",
+		    "knownWallets": null,
 		    "name": "Compendia - Mainnet",
 		    "networking": Object {
 		      "hosts": Array [

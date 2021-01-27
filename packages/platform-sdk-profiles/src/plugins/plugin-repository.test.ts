@@ -5,7 +5,7 @@ import { PluginRegistry } from "./plugin-registry";
 import { PluginRepository } from "./plugin-repository";
 
 const stubPlugin = {
-	id: 1,
+	id: "@hello/world",
 	name: "@hello/world",
 	version: "1.0.0",
 	isEnabled: true,
@@ -44,28 +44,28 @@ it("should return all data values", () => {
 it("should find a plugin by its ID", () => {
 	subject.push(stubPlugin);
 
-	expect(subject.findById(1)).toEqual(stubPlugin);
+	expect(subject.findById(stubPlugin.id)).toEqual(stubPlugin);
 });
 
 it("should throw if a plugin cannot be found by its ID", () => {
-	expect(() => subject.findById(1)).toThrow("Failed to find a plugin for [1].");
+	expect(() => subject.findById(stubPlugin.id)).toThrow(`Failed to find a plugin for [${stubPlugin.id}].`);
 });
 
 it("should restore previously created data", () => {
-	subject.fill({ data: { 1: stubPlugin }, blacklist: [] });
+	subject.fill({ data: { [stubPlugin.id]: stubPlugin }, blacklist: [] });
 
-	expect(subject.findById(1)).toEqual(stubPlugin);
+	expect(subject.findById(stubPlugin.id)).toEqual(stubPlugin);
 });
 
 it("should restore the blacklist", () => {
-	subject.fill({ data: { stubPlugin }, blacklist: [1] });
+	subject.fill({ data: { stubPlugin }, blacklist: [stubPlugin.id] });
 
 	expect(subject.blacklist()).toMatchInlineSnapshot(`
 		Set {
-		  1,
+		  "@hello/world",
 		}
 	`);
-	expect(subject.isBlacklisted(1)).toBeTrue();
+	expect(subject.isBlacklisted(stubPlugin.id)).toBeTrue();
 });
 
 it("should forget specific data", () => {
@@ -73,7 +73,7 @@ it("should forget specific data", () => {
 
 	expect(subject.count()).toBe(1);
 
-	subject.forget(1);
+	subject.forget(stubPlugin.id);
 
 	expect(subject.count()).toBe(0);
 });
@@ -97,11 +97,11 @@ it("should add an item to the blacklist", () => {
 
 	expect(blacklist.size).toBe(0);
 
-	blacklist.add(1);
+	blacklist.add(stubPlugin.id);
 
 	expect(blacklist.size).toBe(1);
 
-	blacklist.delete(1);
+	blacklist.delete(stubPlugin.id);
 
 	expect(blacklist.size).toBe(0);
 });
