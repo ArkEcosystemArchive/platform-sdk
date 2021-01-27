@@ -48,14 +48,6 @@ describe("signTransaction", () => {
 	});
 });
 
-describe("signTransactionWithSchnorr", () => {
-	it("should fail with a 'NotImplemented' error", async () => {
-		const lsk = await createMockService("");
-
-		await expect(lsk.signTransactionWithSchnorr("", Buffer.alloc(0))).rejects.toThrow();
-	});
-});
-
 describe("signMessage", () => {
 	it("should pass with a signature", async () => {
 		const lsk = await createMockService(ledger.message.record);
@@ -63,13 +55,5 @@ describe("signMessage", () => {
 		await expect(lsk.signMessage(ledger.bip44.path, Buffer.from(ledger.message.payload, "hex"))).resolves.toEqual(
 			ledger.message.result,
 		);
-	});
-});
-
-describe("signMessageWithSchnorr", () => {
-	it("should fail with a 'NotImplemented' error", async () => {
-		const lsk = await createMockService("");
-
-		await expect(lsk.signMessageWithSchnorr("", Buffer.alloc(0))).rejects.toThrow();
 	});
 });

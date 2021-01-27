@@ -38,15 +38,7 @@ export class LedgerService implements Contracts.LedgerService {
 		return this.#transport.signTransaction(path, payload);
 	}
 
-	public async signTransactionWithSchnorr(path: string, payload: Buffer): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "signTransactionWithSchnorr");
-	}
-
 	public async signMessage(path: string, payload: Buffer): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "signMessage");
-	}
-
-	public async signMessageWithSchnorr(path: string, payload: Buffer): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "signMessageWithSchnorr");
 	}
 }

@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import Ethereum from "@ledgerhq/hw-app-eth";
 
 export class LedgerService implements Contracts.LedgerService {
@@ -38,15 +38,7 @@ export class LedgerService implements Contracts.LedgerService {
 		return JSON.stringify(await this.#transport.signTransaction(path, payload));
 	}
 
-	public async signTransactionWithSchnorr(path: string, payload: Buffer): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "signTransactionWithSchnorr");
-	}
-
 	public async signMessage(path: string, payload: Buffer): Promise<string> {
 		return JSON.stringify(await this.#transport.signPersonalMessage(path, payload));
-	}
-
-	public async signMessageWithSchnorr(path: string, payload: Buffer): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "signMessageWithSchnorr");
 	}
 }

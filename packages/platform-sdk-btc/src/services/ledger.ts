@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import Bitcoin from "@ledgerhq/hw-app-btc";
 import { getAppAndVersion } from "@ledgerhq/hw-app-btc/lib/getAppAndVersion";
 import { serializeTransactionOutputs } from "@ledgerhq/hw-app-btc/lib/serializeTransaction";
@@ -50,17 +50,9 @@ export class LedgerService implements Contracts.LedgerService {
 		return signature.toString();
 	}
 
-	public async signTransactionWithSchnorr(path: string, payload: Buffer): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "signTransactionWithSchnorr");
-	}
-
 	public async signMessage(path: string, payload: Buffer): Promise<string> {
 		const signature = await this.#transport.signMessageNew(path, payload.toString("hex"));
 
 		return JSON.stringify(signature);
-	}
-
-	public async signMessageWithSchnorr(path: string, payload: Buffer): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "signMessageWithSchnorr");
 	}
 }
