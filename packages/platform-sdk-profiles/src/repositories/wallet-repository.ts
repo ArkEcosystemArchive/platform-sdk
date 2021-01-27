@@ -71,6 +71,17 @@ export class WalletRepository {
 		);
 	}
 
+	public async importByMnemonicWithEncryption(
+		mnemonic: string,
+		coin: string,
+		network: string,
+		password: string,
+	): Promise<ReadWriteWallet> {
+		return this.storeWallet(
+			await WalletFactory.fromMnemonicWithEncryption(this.#profile, coin, network, mnemonic, password),
+		);
+	}
+
 	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: ReadWriteWallet }> {
 		const mnemonic: string = BIP39.generate();
 

@@ -18,6 +18,8 @@ import { Wallet } from "../wallets/wallet";
 import { ReadWriteWallet } from "../wallets/wallet.models";
 import { WalletRepository } from "./wallet-repository";
 
+jest.setTimeout(60000);
+
 let subject: WalletRepository;
 
 beforeAll(() => bootContainer());
@@ -110,6 +112,22 @@ test("#importByAddressWithLedgerIndex", async () => {
 	await expect(subject.importByAddressWithLedgerIndex(identity.address, "ARK", "ark.devnet", 0)).rejects.toThrowError(
 		"already exists",
 	);
+
+	expect(subject.keys()).toHaveLength(1);
+});
+
+test("#importByMnemonicWithEncryption", async () => {
+	subject.flush();
+
+	expect(subject.keys()).toHaveLength(0);
+
+	await subject.importByMnemonicWithEncryption(identity.mnemonic, "ARK", "ark.devnet", "password");
+
+	expect(subject.keys()).toHaveLength(1);
+
+	await expect(
+		subject.importByMnemonicWithEncryption(identity.mnemonic, "ARK", "ark.devnet", "password"),
+	).rejects.toThrowError("already exists");
 
 	expect(subject.keys()).toHaveLength(1);
 });
