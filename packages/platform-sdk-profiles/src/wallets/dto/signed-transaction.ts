@@ -1,4 +1,4 @@
-import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class SignedTransactionData

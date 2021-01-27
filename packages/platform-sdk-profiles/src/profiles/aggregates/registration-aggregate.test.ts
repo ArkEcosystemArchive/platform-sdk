@@ -1,14 +1,9 @@
 import "jest-extended";
 
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
 import { identity } from "../../../test/fixtures/identity";
 import { bootContainer } from "../../../test/helpers";
-import { container } from "../../environment/container";
-import { Identifiers } from "../../environment/container.models";
-import { CoinService } from "../../environment/services/coin-service";
 import { Profile } from "../profile";
 import { RegistrationAggregate } from "./registration-aggregate";
 

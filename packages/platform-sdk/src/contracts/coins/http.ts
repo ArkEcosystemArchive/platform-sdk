@@ -1,5 +1,3 @@
-import { Primitive } from "type-fest";
-
 export interface HttpClient {
 	baseUrl(url: string): HttpClient;
 

@@ -1,4 +1,4 @@
-import { Coins, Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { createHash } from "crypto";
 import { Api, JsonRpc } from "eosjs";

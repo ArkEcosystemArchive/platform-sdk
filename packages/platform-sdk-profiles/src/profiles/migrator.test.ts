@@ -5,7 +5,7 @@ import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import { bootContainer } from "../../test/helpers";
 import { Migrator } from "./migrator";
 import { Profile } from "./profile";
-import { ProfileData, ProfileInput, ProfileSetting } from "./profile.models";
+import { ProfileData } from "./profile.models";
 
 let subject: Migrator;
 let profile: Profile;

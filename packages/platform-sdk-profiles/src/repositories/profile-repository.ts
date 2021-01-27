@@ -1,4 +1,3 @@
-import { MemoryPassword } from "../helpers/password";
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
 import { DataRepository } from "./data-repository";

@@ -1,7 +1,5 @@
 import "jest-extended";
 
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
 import { identity } from "../../../test/fixtures/identity";
@@ -9,10 +7,8 @@ import { bootContainer } from "../../../test/helpers";
 import { container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { Profile } from "../../profiles/profile";
-import { ProfileSetting } from "../../profiles/profile.models";
 import { ProfileRepository } from "../../repositories/profile-repository";
-import { ReadWriteWallet, WalletData } from "../../wallets/wallet.models";
-import { CoinService } from "./coin-service";
+import { ReadWriteWallet } from "../../wallets/wallet.models";
 import { WalletService } from "./wallet-service";
 
 let profile: Profile;

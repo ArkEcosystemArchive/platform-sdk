@@ -1,4 +1,4 @@
-import { Coins, Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { v4 as uuidv4 } from "uuid";
 
 import { SignedTransactionData } from "../dto";

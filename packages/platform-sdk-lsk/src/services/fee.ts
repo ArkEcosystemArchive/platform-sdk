@@ -1,8 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import * as transactions from "@liskhq/lisk-transactions";
 
-import { manifest } from "../manifest";
-
 export class FeeService implements Contracts.FeeService {
 	readonly #network;
 

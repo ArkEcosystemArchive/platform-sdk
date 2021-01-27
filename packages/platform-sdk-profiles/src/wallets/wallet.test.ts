@@ -1,8 +1,6 @@
 import "jest-extended";
 
 import { Coins } from "@arkecosystem/platform-sdk";
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { encrypt } from "bip38";
 import nock from "nock";
@@ -11,11 +9,9 @@ import { decode } from "wif";
 
 import { identity } from "../../test/fixtures/identity";
 import { bootContainer } from "../../test/helpers";
-import { StubStorage } from "../../test/stubs/storage";
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { CoinService } from "../environment/services/coin-service";
 import { ExchangeRateService } from "../environment/services/exchange-rate-service";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "../repositories/profile-repository";

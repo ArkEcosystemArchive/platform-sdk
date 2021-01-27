@@ -1,14 +1,8 @@
 import "jest-extended";
 
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
 import { bootContainer } from "../../test/helpers";
-import { container } from "../environment/container";
-import { Identifiers } from "../environment/container.models";
-import { CoinService } from "../environment/services/coin-service";
-import { KnownWalletService } from "../environment/services/known-wallet-service";
 import { ContactAddress } from "./contact-address";
 
 let subject: ContactAddress;

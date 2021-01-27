@@ -1,6 +1,5 @@
 import "jest-extended";
 
-import { Profile } from "../profiles/profile";
 import { PeerRepository } from "./peer-repository";
 
 let subject: PeerRepository;
