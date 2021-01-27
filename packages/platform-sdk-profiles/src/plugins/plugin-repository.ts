@@ -2,7 +2,7 @@ import { DataRepository } from "../repositories/data-repository";
 import { PluginRegistry } from "./plugin-registry";
 
 interface Plugin {
-	id: number;
+	id: string;
 	name: string;
 	version: string;
 	isEnabled: boolean;
@@ -13,7 +13,7 @@ interface Plugin {
 export class PluginRepository {
 	readonly #data: DataRepository;
 	readonly #registry: PluginRegistry;
-	readonly #blacklist: Set<number> = new Set<number>();
+	readonly #blacklist: Set<string> = new Set<string>();
 
 	public constructor() {
 		this.#data = new DataRepository();
@@ -44,7 +44,7 @@ export class PluginRepository {
 		this.#data.set(`${plugin.id}`, plugin);
 	}
 
-	public fill({ data, blacklist }: { data: object; blacklist: number[] }): void {
+	public fill({ data, blacklist }: { data: object; blacklist: string[] }): void {
 		this.#data.fill(data);
 
 		for (const blacklistValue of blacklist) {
@@ -74,11 +74,11 @@ export class PluginRepository {
 		return this.keys().length;
 	}
 
-	public blacklist(): Set<number> {
+	public blacklist(): Set<string> {
 		return this.#blacklist;
 	}
 
-	public isBlacklisted(id: number): boolean {
+	public isBlacklisted(id: string): boolean {
 		return this.#blacklist.has(id);
 	}
 

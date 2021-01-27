@@ -77,6 +77,10 @@ export class RegistryPlugin {
 		this.#date = date;
 	}
 
+	public id(): string {
+		return this.#data._id;
+	}
+
 	public name(): string {
 		return this.#data.name;
 	}
