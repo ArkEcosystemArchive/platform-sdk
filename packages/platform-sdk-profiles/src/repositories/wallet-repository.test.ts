@@ -114,6 +114,22 @@ test("#importByAddressWithLedgerIndex", async () => {
 	expect(subject.keys()).toHaveLength(1);
 });
 
+test("#importByMnemonicWithEncryption", async () => {
+	subject.flush();
+
+	expect(subject.keys()).toHaveLength(0);
+
+	await subject.importByMnemonicWithEncryption(identity.mnemonic, "ARK", "ark.devnet", "password");
+
+	expect(subject.keys()).toHaveLength(1);
+
+	await expect(subject.importByMnemonicWithEncryption(identity.mnemonic, "ARK", "ark.devnet", "password")).rejects.toThrowError(
+		"already exists",
+	);
+
+	expect(subject.keys()).toHaveLength(1);
+});
+
 test("#generate", async () => {
 	subject.flush();
 
