@@ -184,3 +184,43 @@ export class RegistryPlugin {
 		return undefined;
 	}
 }
+
+export class PartialRegistryPlugin {
+	readonly #data: any;
+
+	public constructor(data: any) {
+		this.#data = data;
+	}
+
+	public id(): string {
+		return this.#data.name;
+	}
+
+	public name(): string {
+		return this.id();
+	}
+
+	public alias(): string {
+		return this.id();
+	}
+
+	public date(): string {
+		return this.#data.date;
+	}
+
+	public version(): string {
+		return this.#data.version;
+	}
+
+	public description(): string {
+		return this.#data.description;
+	}
+
+	public author() {
+		return this.#data.author;
+	}
+
+	public logo(): string {
+		return "n/a";
+	}
+}
