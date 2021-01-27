@@ -52,8 +52,8 @@ export class PluginRepository {
 		}
 	}
 
-	public findById(id: number): Plugin {
-		const plugin: Plugin | undefined = this.#data.get(`${id}`);
+	public findById(id: string): Plugin {
+		const plugin: Plugin | undefined = this.#data.get(id);
 
 		if (!plugin) {
 			throw new Error(`Failed to find a plugin for [${id}].`);
@@ -62,8 +62,8 @@ export class PluginRepository {
 		return plugin;
 	}
 
-	public forget(id: number): void {
-		this.#data.forget(`${id}`);
+	public forget(id: string): void {
+		this.#data.forget(id);
 	}
 
 	public flush(): void {
