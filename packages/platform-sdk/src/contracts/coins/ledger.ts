@@ -18,9 +18,5 @@ export interface LedgerService {
 
 	signTransaction(path: string, payload: Buffer): Promise<string>;
 
-	signTransactionWithSchnorr(path: string, payload: Buffer): Promise<string>;
-
 	signMessage(path: string, payload: Buffer): Promise<string>;
-
-	signMessageWithSchnorr(path: string, payload: Buffer): Promise<string>;
 }

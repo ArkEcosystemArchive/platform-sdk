@@ -70,26 +70,10 @@ describe("signTransaction", () => {
 	});
 });
 
-describe("signTransactionWithSchnorr", () => {
-	it("should fail with a 'NotImplemented' error", async () => {
-		const subject = await createMockService("");
-
-		await expect(subject.signTransactionWithSchnorr("", Buffer.alloc(0))).rejects.toThrow();
-	});
-});
-
 describe("signMessage", () => {
 	it("should fail with a 'NotImplemented' error", async () => {
 		const subject = await createMockService("");
 
 		await expect(subject.signMessage("", Buffer.alloc(0))).rejects.toThrow();
-	});
-});
-
-describe("signMessageWithSchnorr", () => {
-	it("should fail with a 'NotImplemented' error", async () => {
-		const subject = await createMockService("");
-
-		await expect(subject.signMessageWithSchnorr("", Buffer.alloc(0))).rejects.toThrow();
 	});
 });

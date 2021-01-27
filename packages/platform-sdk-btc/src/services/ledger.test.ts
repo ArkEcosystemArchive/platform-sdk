@@ -70,14 +70,6 @@ describe("signTransaction", () => {
 	});
 });
 
-describe("signTransactionWithSchnorr", () => {
-	it("should fail with a 'NotImplemented' error", async () => {
-		const subject = await createMockService("");
-
-		await expect(subject.signTransactionWithSchnorr("", Buffer.alloc(0))).rejects.toThrow();
-	});
-});
-
 describe("signMessage", () => {
 	it("should pass with an ecdsa signature", async () => {
 		const subject = await createMockService(ledger.message.record);
@@ -85,13 +77,5 @@ describe("signMessage", () => {
 		await expect(
 			subject.signMessage(ledger.bip44.path, Buffer.from(ledger.message.payload, "utf-8")),
 		).resolves.toEqual(ledger.message.result);
-	});
-});
-
-describe("signMessageWithSchnorr", () => {
-	it("should fail with a 'NotImplemented' error", async () => {
-		const subject = await createMockService("");
-
-		await expect(subject.signMessageWithSchnorr("", Buffer.alloc(0))).rejects.toThrow();
 	});
 });

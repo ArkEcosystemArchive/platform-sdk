@@ -53,41 +53,21 @@ describe("getPublicKey", () => {
 });
 
 describe("signTransaction", () => {
-	it("should pass with an ecdsa signature", async () => {
-		const ark = await createMockService(ledger.transaction.ecdsa.record);
-
-		await expect(
-			ark.signTransaction(ledger.bip44.path, Buffer.from(ledger.transaction.ecdsa.payload, "hex")),
-		).resolves.toEqual(ledger.transaction.ecdsa.result);
-	});
-});
-
-describe("signTransactionWithSchnorr", () => {
 	it("should pass with a schnorr signature", async () => {
 		const ark = await createMockService(ledger.transaction.schnorr.record);
 
 		await expect(
-			ark.signTransactionWithSchnorr(ledger.bip44.path, Buffer.from(ledger.transaction.schnorr.payload, "hex")),
+			ark.signTransaction(ledger.bip44.path, Buffer.from(ledger.transaction.schnorr.payload, "hex")),
 		).resolves.toEqual(ledger.transaction.schnorr.result);
 	});
 });
 
 describe("signMessage", () => {
-	it("should pass with an ecdsa signature", async () => {
-		const ark = await createMockService(ledger.message.ecdsa.record);
-
-		await expect(
-			ark.signMessage(ledger.bip44.path, Buffer.from(ledger.message.ecdsa.payload, "hex")),
-		).resolves.toEqual(ledger.message.ecdsa.result);
-	});
-});
-
-describe("signMessageWithSchnorr", () => {
 	it("should pass with a schnorr signature", async () => {
 		const ark = await createMockService(ledger.message.schnorr.record);
 
 		await expect(
-			ark.signMessageWithSchnorr(ledger.bip44.path, Buffer.from(ledger.message.schnorr.payload, "hex")),
+			ark.signMessage(ledger.bip44.path, Buffer.from(ledger.message.schnorr.payload, "hex")),
 		).resolves.toEqual(ledger.message.schnorr.result);
 	});
 });
