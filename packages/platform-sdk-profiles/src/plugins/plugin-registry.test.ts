@@ -4,46 +4,30 @@ import nock from "nock";
 
 import { bootContainer } from "../../test/helpers";
 import { PluginRegistry } from "./plugin-registry";
-import { ExpandedRegistryPlugin } from "./plugin-registry.models";
 
-const pluginNames: string[] = [
-	"@alessiodf/bold-ninja",
-	"@alessiodf/connect-4",
-	"@alessiodf/match-3",
-	"@alessiodf/minesweeper-flags",
-	"@alessiodf/t-grexx",
-	"@alessiodf/universal-delegate-monitor",
-	"@arkecosystem/additional-avatars",
-	"@arkecosystem/desktop-wallet-explorer",
-	"@arkecosystem/desktop-wallet-sound-notifications",
-	"@arkecosystem/desktop-wallet-theme-dark-contrast",
-	"@azure-infinity/beyond-infinity",
-	"@azure-infinity/cyberpunk-theme",
-	"@azure-infinity/infinite-universe",
-	"@borismar/ark-desktop-wallet-theme-one",
-	"@breno.polanski/animal-avatars-ark-wallet",
-	"@breno.polanski/brazilian-portuguese-language-plugin",
-	"@breno.polanski/dracula-theme-ark-wallet",
-	"@cambot1088/cyj-theme_2",
-	"@dancingleprechaun/green-wallet-template",
-	"@dancingleprechaun/troll-plugin",
-	"@daniel.barta/lively-wallet-template",
-	"@dated/delegate-calculator-plugin",
-	"@dated/italian-language-plugin",
-	"@dated/transaction-export-plugin",
-	"@doubled1c3/youtube-demo-theme",
-	"@dvnc/dvnc-wallet-theme-template",
-	"@elevenyellow.com/ark-switchain-plugin",
-	"@giliam/ark-breeze",
-	"@giliam/ark-pro",
-	"@giliam/ark-pure",
-	"@jarunik/german-language-plugin",
-	"@khlilo58/captivating-theme-template",
-	"@marcow/desktop-wallet-theme",
-	"@pieface/avfc-theme",
-	"@ross121/red-snow-theme",
-	"cn-ark-plugin",
-];
+const createNetworkMocks = () => {
+	nock("https://registry.npmjs.com")
+		.get("/-/v1/search")
+		.query(true)
+		.once()
+		.reply(200, require("../../test/fixtures/plugins/index.json"))
+		.get("/-/v1/search")
+		.query(true)
+		.once()
+		.reply(200, {});
+
+	const plugins = require("../../test/fixtures/plugins/index.json").objects;
+
+	for (const { package: plugin } of plugins) {
+		if (plugin.links?.repository === undefined) {
+			continue;
+		}
+
+		nock("https://raw.github.com")
+			.get(`${plugin.links.repository.replace("https://github.com", "")}/master/package.json`)
+			.reply(200, require("../../test/fixtures/plugins/github.json"));
+	}
+};
 
 let subject: PluginRegistry;
 
@@ -61,40 +45,67 @@ afterEach(() => nock.cleanAll());
 
 describe("PluginRegistry", () => {
 	it("should list all plugins", async () => {
-		nock("https://registry.npmjs.com")
-			.get("/-/v1/search")
-			.query(true)
-			.once()
-			.reply(200, require("../../test/fixtures/plugins/index.json"))
-			.get("/-/v1/search")
-			.query(true)
-			.once()
-			.reply(200, {});
+		createNetworkMocks();
 
-		await expect(subject.all()).resolves.toHaveLength(22); // 22 because not all plugins link to a repository.
+		const result = await subject.all();
+
+		// 22 because not all plugins link to a public repository.
+		expect(result).toHaveLength(22);
+
+		// Ensure that all properties are loaded correctly based on NPM and package.json data
+		const pkg = result[0];
+		expect(pkg.id()).toBe("@dated/transaction-export-plugin");
+		expect(pkg.name()).toBe("@dated/transaction-export-plugin");
+		expect(pkg.alias()).toBe("Transaction Export");
+		expect(pkg.date()).toBe("2020-11-26T21:18:44.681Z");
+		expect(pkg.version()).toBe("1.0.3");
+		expect(pkg.description()).toBe("Export your wallet transaction history");
+		expect(pkg.author()).toEqual({ email: "hello@dated.fun", name: "Edgar Goetzendorff", username: "dated" });
+		expect(pkg.sourceProvider()).toEqual({
+			name: "github",
+			url: "https://github.com/dated/transaction-export-plugin",
+		});
+		expect(pkg.logo()).toBe("https://raw.githubusercontent.com/dated/transaction-export-plugin/master/logo.png");
+		expect(pkg.images()).toEqual([
+			"https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-1.png",
+			"https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-2.png",
+			"https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-3.png",
+		]);
+		expect(pkg.categories()).toEqual(["utility"]);
+		expect(pkg.permissions()).toEqual([
+			"COMPONENTS",
+			"ROUTES",
+			"MENU_ITEMS",
+			"UI_COMPONENTS",
+			"PROFILE_CURRENT",
+			"PEER_ALL",
+			"HTTP",
+			"UTILS",
+			"STORAGE",
+			"ALERTS",
+			"DIALOGS",
+		]);
+		expect(pkg.urls()).toEqual(["^"]);
+		expect(pkg.minimumVersion()).toBe("2.9.1");
 	});
 
-	it("should expand the information for the given partial plugin", async () => {
-		nock("https://registry.npmjs.com")
-			.get("/-/v1/search")
-			.query(true)
-			.once()
-			.reply(200, require("../../test/fixtures/plugins/index.json"))
-			.get("/-/v1/search")
-			.query(true)
-			.once()
-			.reply(200, {});
-
-		const partial = (await subject.all())[0];
+	it("should get the size of the given plugin", async () => {
+		createNetworkMocks();
 
 		nock("https://registry.npmjs.com")
-			.get(`/${partial.id()}`)
+			.get("/@dated/transaction-export-plugin")
 			.reply(200, require("../../test/fixtures/plugins/show.json"));
 
+		await expect(subject.size((await subject.all())[0])).resolves.toBe(304275);
+	});
+
+	it("should get the download count of the given plugin", async () => {
+		createNetworkMocks();
+
 		nock("https://api.npmjs.org")
-			.get(`/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${partial.id()}`)
+			.get(`/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/@dated/transaction-export-plugin`)
 			.reply(200, require("../../test/fixtures/plugins/downloads.json"));
 
-		await expect(subject.expand(partial)).resolves.toBeInstanceOf(ExpandedRegistryPlugin);
+		await expect(subject.downloads((await subject.all())[0])).resolves.toBe(446);
 	});
 });

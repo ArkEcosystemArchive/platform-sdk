@@ -4,7 +4,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { ExpandedRegistryPlugin, PartialRegistryPlugin } from "./plugin-registry.models";
+import { RegistryPlugin } from "./plugin-registry.models";
 
 export class PluginRegistry {
 	readonly #httpClient: Contracts.HttpClient;
@@ -13,8 +13,8 @@ export class PluginRegistry {
 		this.#httpClient = container.get<Contracts.HttpClient>(Identifiers.HttpClient);
 	}
 
-	public async all(): Promise<PartialRegistryPlugin[]> {
-		const results: PartialRegistryPlugin[] = [];
+	public async all(): Promise<RegistryPlugin[]> {
+		const results: Promise<RegistryPlugin>[] = [];
 
 		let i = 0;
 		// eslint-disable-next-line no-constant-condition
@@ -42,23 +42,43 @@ export class PluginRegistry {
 					continue;
 				}
 
-				results.push(new PartialRegistryPlugin(item.package));
+				results.push(this.expand(item.package));
 			}
 
 			i++;
 		}
 
-		return results;
+		return Promise.all(results);
 	}
 
-	public async expand(plugin: PartialRegistryPlugin): Promise<ExpandedRegistryPlugin> {
-		const [details, downloads] = await Promise.all([
-			await this.#httpClient.get(`https://registry.npmjs.com/${plugin.id()}`),
-			await this.#httpClient.get(
-				`https://api.npmjs.org/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${plugin.id()}`,
-			),
-		]);
+	public async size(pkg: RegistryPlugin): Promise<number> {
+		const response = (await this.#httpClient.get(`https://registry.npmjs.com/${pkg.id()}`)).json();
 
-		return new ExpandedRegistryPlugin(details.json(), downloads.json().downloads, plugin.date());
+		return response.versions[pkg.version()].dist?.unpackedSize;
+	}
+
+	public async downloads(pkg: RegistryPlugin): Promise<number> {
+		const response = await this.#httpClient.get(
+			`https://api.npmjs.org/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${pkg.id()}`,
+		);
+
+		let result = 0;
+
+		for (const { downloads } of response.json().downloads) {
+			result += downloads;
+		}
+
+		return result;
+	}
+
+	private async expand(pkg: any): Promise<RegistryPlugin> {
+		return new RegistryPlugin(
+			pkg,
+			(
+				await this.#httpClient.get(
+					pkg.links.repository.replace("//github.com", "//raw.github.com") + "/master/package.json",
+				)
+			).json(),
+		);
 	}
 }
