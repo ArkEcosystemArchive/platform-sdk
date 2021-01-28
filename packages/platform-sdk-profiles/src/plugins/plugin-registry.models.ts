@@ -44,6 +44,8 @@ export interface RegistryPluginVersion {
 	is_verified: boolean;
 }
 
+type RegistryPluginAuthor = { [key: string]: any } | string;
+
 export interface RegistryPluginProperties {
 	name: string;
 	version: string;
@@ -52,7 +54,7 @@ export interface RegistryPluginProperties {
 	homepage?: { [key: string]: any } | string;
 	bugs?: { [key: string]: any };
 	license?: string;
-	author?: { [key: string]: any } | string;
+	author?: RegistryPluginAuthor;
 	contributors?: ({ [key: string]: any } | string)[];
 	maintainers?: ({ [key: string]: any } | string)[];
 	repository?: { [key: string]: any } | string;
@@ -66,12 +68,12 @@ export interface RegistryPluginProperties {
 	[key: string]: any;
 }
 
-export class RegistryPlugin {
-	readonly #data: any;
+export class ExpandedRegistryPlugin {
+	readonly #data: Record<string, any>;
 	readonly #downloads: any;
 	readonly #date: string;
 
-	public constructor(data: any, downloads: any, date: string) {
+	public constructor(data: Record<string, any>, downloads: any, date: string) {
 		this.#data = data;
 		this.#downloads = downloads;
 		this.#date = date;
@@ -101,7 +103,7 @@ export class RegistryPlugin {
 		return this.#data.description;
 	}
 
-	public author() {
+	public author(): RegistryPluginAuthor {
 		return this.#data.author;
 	}
 
@@ -186,9 +188,9 @@ export class RegistryPlugin {
 }
 
 export class PartialRegistryPlugin {
-	readonly #data: any;
+	readonly #data: Record<string, any>;
 
-	public constructor(data: any) {
+	public constructor(data: Record<string, any>) {
 		this.#data = data;
 	}
 
@@ -216,11 +218,12 @@ export class PartialRegistryPlugin {
 		return this.#data.description;
 	}
 
-	public author() {
+	public author(): RegistryPluginAuthor {
 		return this.#data.author;
 	}
 
 	public logo(): string {
+		// @TODO: get this from the repository
 		return "n/a";
 	}
 }
