@@ -72,8 +72,13 @@ export class PluginRegistry {
 	}
 
 	private async expand(pkg: any): Promise<RegistryPlugin> {
-		return new RegistryPlugin(pkg, (await this.#httpClient.get(
-			pkg.links.repository.replace("//github.com", "//raw.github.com") + "/master/package.json",
-		)).json());
+		return new RegistryPlugin(
+			pkg,
+			(
+				await this.#httpClient.get(
+					pkg.links.repository.replace("//github.com", "//raw.github.com") + "/master/package.json",
+				)
+			).json(),
+		);
 	}
 }

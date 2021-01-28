@@ -27,7 +27,7 @@ const createNetworkMocks = () => {
 			.get(`${plugin.links.repository.replace("https://github.com", "")}/master/package.json`)
 			.reply(200, require("../../test/fixtures/plugins/github.json"));
 	}
-}
+};
 
 let subject: PluginRegistry;
 
@@ -60,13 +60,32 @@ describe("PluginRegistry", () => {
 		expect(pkg.date()).toBe("2020-11-26T21:18:44.681Z");
 		expect(pkg.version()).toBe("1.0.3");
 		expect(pkg.description()).toBe("Export your wallet transaction history");
-		expect(pkg.author()).toEqual({"email": "hello@dated.fun", "name": "Edgar Goetzendorff", "username": "dated"});
-		expect(pkg.sourceProvider()).toEqual({"name": "github", "url": "https://github.com/dated/transaction-export-plugin"});
+		expect(pkg.author()).toEqual({ email: "hello@dated.fun", name: "Edgar Goetzendorff", username: "dated" });
+		expect(pkg.sourceProvider()).toEqual({
+			name: "github",
+			url: "https://github.com/dated/transaction-export-plugin",
+		});
 		expect(pkg.logo()).toBe("https://raw.githubusercontent.com/dated/transaction-export-plugin/master/logo.png");
-		expect(pkg.images()).toEqual(["https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-1.png", "https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-2.png", "https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-3.png"]);
+		expect(pkg.images()).toEqual([
+			"https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-1.png",
+			"https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-2.png",
+			"https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-3.png",
+		]);
 		expect(pkg.categories()).toEqual(["utility"]);
-		expect(pkg.permissions()).toEqual(["COMPONENTS", "ROUTES", "MENU_ITEMS", "UI_COMPONENTS", "PROFILE_CURRENT", "PEER_ALL", "HTTP", "UTILS", "STORAGE", "ALERTS", "DIALOGS"]);
-		expect(pkg.urls()).toEqual(['^']);
+		expect(pkg.permissions()).toEqual([
+			"COMPONENTS",
+			"ROUTES",
+			"MENU_ITEMS",
+			"UI_COMPONENTS",
+			"PROFILE_CURRENT",
+			"PEER_ALL",
+			"HTTP",
+			"UTILS",
+			"STORAGE",
+			"ALERTS",
+			"DIALOGS",
+		]);
+		expect(pkg.urls()).toEqual(["^"]);
 		expect(pkg.minimumVersion()).toBe("2.9.1");
 	});
 
