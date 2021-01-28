@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.6.0 - 2020-01-28
+
+### Fixed
+
+-   Store flags when dumping wallet (6dd50c96, @dated)
+
+### Changed
+
+-   Only return partial information for npm listing (c694a8b2, @faustbrian)
+-   Return empty list if known wallets response is not an array (0bb24c66, @dated)
+-   Ignore plugins that don't publicly expose their source code (8783c600, @faustbrian)
+-   Split requests between NPM and GitHub (9fc9134e, @faustbrian)
+
 ## 2.5.15 - 2020-01-27
 
 ### Added
