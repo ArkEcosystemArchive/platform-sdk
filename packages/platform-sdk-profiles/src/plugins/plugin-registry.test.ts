@@ -4,6 +4,7 @@ import nock from "nock";
 
 import { bootContainer } from "../../test/helpers";
 import { PluginRegistry } from "./plugin-registry";
+import { ExpandedRegistryPlugin } from "./plugin-registry.models";
 
 let subject: PluginRegistry;
 
