@@ -4,6 +4,7 @@ import nock from "nock";
 
 import { bootContainer } from "../../test/helpers";
 import { PluginRegistry } from "./plugin-registry";
+import { ExpandedRegistryPlugin } from "./plugin-registry.models";
 
 const pluginNames: string[] = [
 	"@alessiodf/bold-ninja",
@@ -46,11 +47,13 @@ const pluginNames: string[] = [
 
 let subject: PluginRegistry;
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	nock.disableNetConnect();
+
+	bootContainer();
+});
 
 beforeEach(() => {
-	bootContainer();
-
 	subject = new PluginRegistry();
 });
 
@@ -68,19 +71,30 @@ describe("PluginRegistry", () => {
 			.once()
 			.reply(200, {});
 
-		for (const pluginName of pluginNames) {
-			nock("https://registry.npmjs.com")
-				.get(`/${pluginName}`)
-				.reply(200, require("../../test/fixtures/plugins/show.json"));
+		await expect(subject.all()).resolves.toHaveLength(22); // 22 because not all plugins link to a repository.
+	});
 
-			nock("https://api.npmjs.org")
-				.get(`/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${pluginName}`)
-				.reply(200, require("../../test/fixtures/plugins/downloads.json"));
-		}
+	it("should expand the information for the given partial plugin", async () => {
+		nock("https://registry.npmjs.com")
+			.get("/-/v1/search")
+			.query(true)
+			.once()
+			.reply(200, require("../../test/fixtures/plugins/index.json"))
+			.get("/-/v1/search")
+			.query(true)
+			.once()
+			.reply(200, {});
 
-		const actual = await subject.all();
+		const partial = (await subject.all())[0];
 
-		expect(actual).toBeArray();
-		expect(actual).toHaveLength(pluginNames.length);
+		nock("https://registry.npmjs.com")
+			.get(`/${partial.id()}`)
+			.reply(200, require("../../test/fixtures/plugins/show.json"));
+
+		nock("https://api.npmjs.org")
+			.get(`/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${partial.id()}`)
+			.reply(200, require("../../test/fixtures/plugins/downloads.json"));
+
+		await expect(subject.expand(partial)).resolves.toBeInstanceOf(ExpandedRegistryPlugin);
 	});
 });

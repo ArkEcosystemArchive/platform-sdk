@@ -4,7 +4,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { PartialRegistryPlugin, RegistryPlugin } from "./plugin-registry.models";
+import { ExpandedRegistryPlugin, PartialRegistryPlugin } from "./plugin-registry.models";
 
 export class PluginRegistry {
 	readonly #httpClient: Contracts.HttpClient;
@@ -37,6 +37,11 @@ export class PluginRegistry {
 			}
 
 			for (const item of objects) {
+				// If a plugin doesn't have it's code public we will ignore it.
+				if (item.package.links?.repository === undefined) {
+					continue;
+				}
+
 				results.push(new PartialRegistryPlugin(item.package));
 			}
 
@@ -46,14 +51,14 @@ export class PluginRegistry {
 		return results;
 	}
 
-	public async findById(id: string, date: string): Promise<RegistryPlugin> {
+	public async expand(plugin: PartialRegistryPlugin): Promise<ExpandedRegistryPlugin> {
 		const [details, downloads] = await Promise.all([
-			await this.#httpClient.get(`https://registry.npmjs.com/${id}`),
+			await this.#httpClient.get(`https://registry.npmjs.com/${plugin.id()}`),
 			await this.#httpClient.get(
-				`https://api.npmjs.org/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${id}`,
+				`https://api.npmjs.org/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${plugin.id()}`,
 			),
 		]);
 
-		return new RegistryPlugin(details.json(), downloads.json().downloads, date);
+		return new ExpandedRegistryPlugin(details.json(), downloads.json().downloads, plugin.date());
 	}
 }
