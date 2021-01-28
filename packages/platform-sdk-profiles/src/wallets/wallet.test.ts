@@ -19,7 +19,7 @@ import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
-import { WalletData, WalletSetting } from "./wallet.models";
+import { WalletData, WalletFlag, WalletSetting } from "./wallet.models";
 
 let profile: Profile;
 let subject: Wallet;
@@ -522,6 +522,9 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		subject.coin().config().set("network.crypto.slip44", slip44);
 		subject.data().set("key", "value");
 
+		subject.data().set(WalletFlag.LedgerIndex, true);
+		subject.data().set(WalletFlag.Starred, true);
+
 		const actual: any = subject.toObject();
 
 		expect(actual).toContainAllKeys([
@@ -543,8 +546,10 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.data).toEqual({
 			BALANCE: "55827093444556",
 			BROADCASTED_TRANSACTIONS: {},
+			LEDGER_INDEX: true,
 			SEQUENCE: "111932",
 			SIGNED_TRANSACTIONS: {},
+			STARRED: true,
 			VOTES: [],
 			VOTES_USED: 0,
 			VOTES_AVAILABLE: 0,
