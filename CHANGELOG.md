@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   Only return partial information for npm listing (c694a8b2, @faustbrian)
 -   Return empty list if known wallets response is not an array (0bb24c66, @dated)
--   Ignore plugins don't publicly expose their source code (8783c600, @faustbrian)
+-   Ignore plugins that don't publicly expose their source code (8783c600, @faustbrian)
 -   Split requests between NPM and GitHub (9fc9134e, @faustbrian)
 
 ## 2.5.15 - 2020-01-27
