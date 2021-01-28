@@ -51,9 +51,15 @@ export class PluginRegistry {
 		return Promise.all(results);
 	}
 
-	public async downloads(id: string): Promise<number> {
+	public async size(pkg: RegistryPlugin): Promise<number> {
+		const response = (await this.#httpClient.get(`https://registry.npmjs.com/${pkg.id()}`)).json();
+
+		return response.versions[pkg.version()].dist?.unpackedSize;
+	}
+
+	public async downloads(pkg: RegistryPlugin): Promise<number> {
 		const response = await this.#httpClient.get(
-			`https://api.npmjs.org/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${id}`,
+			`https://api.npmjs.org/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${pkg.id()}`,
 		);
 
 		let result = 0;

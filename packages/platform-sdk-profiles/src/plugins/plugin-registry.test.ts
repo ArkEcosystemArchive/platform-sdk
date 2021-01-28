@@ -4,7 +4,30 @@ import nock from "nock";
 
 import { bootContainer } from "../../test/helpers";
 import { PluginRegistry } from "./plugin-registry";
-import { ExpandedRegistryPlugin } from "./plugin-registry.models";
+
+const createNetworkMocks = () => {
+	nock("https://registry.npmjs.com")
+		.get("/-/v1/search")
+		.query(true)
+		.once()
+		.reply(200, require("../../test/fixtures/plugins/index.json"))
+		.get("/-/v1/search")
+		.query(true)
+		.once()
+		.reply(200, {});
+
+	const plugins = require("../../test/fixtures/plugins/index.json").objects;
+
+	for (const { package: plugin } of plugins) {
+		if (plugin.links?.repository === undefined) {
+			continue;
+		}
+
+		nock("https://raw.github.com")
+			.get(`${plugin.links.repository.replace("https://github.com", "")}/master/package.json`)
+			.reply(200, require("../../test/fixtures/plugins/github.json"));
+	}
+}
 
 let subject: PluginRegistry;
 
@@ -22,27 +45,7 @@ afterEach(() => nock.cleanAll());
 
 describe("PluginRegistry", () => {
 	it("should list all plugins", async () => {
-		nock("https://registry.npmjs.com")
-			.get("/-/v1/search")
-			.query(true)
-			.once()
-			.reply(200, require("../../test/fixtures/plugins/index.json"))
-			.get("/-/v1/search")
-			.query(true)
-			.once()
-			.reply(200, {});
-
-		const plugins = require("../../test/fixtures/plugins/index.json").objects;
-
-		for (const { package: plugin } of plugins) {
-			if (plugin.links?.repository === undefined) {
-				continue;
-			}
-
-			nock("https://raw.github.com")
-				.get(`${plugin.links.repository.replace("https://github.com", "")}/master/package.json`)
-				.reply(200, require("../../test/fixtures/plugins/github.json"));
-		}
+		createNetworkMocks();
 
 		const result = await subject.all();
 
@@ -67,11 +70,23 @@ describe("PluginRegistry", () => {
 		expect(pkg.minimumVersion()).toBe("2.9.1");
 	});
 
+	it("should get the size of the given plugin", async () => {
+		createNetworkMocks();
+
+		nock("https://registry.npmjs.com")
+			.get("/@dated/transaction-export-plugin")
+			.reply(200, require("../../test/fixtures/plugins/show.json"));
+
+		await expect(subject.size((await subject.all())[0])).resolves.toBe(304275);
+	});
+
 	it("should get the download count of the given plugin", async () => {
+		createNetworkMocks();
+
 		nock("https://api.npmjs.org")
 			.get(`/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/@dated/transaction-export-plugin`)
 			.reply(200, require("../../test/fixtures/plugins/downloads.json"));
 
-		await expect(subject.downloads("@dated/transaction-export-plugin")).resolves.toBe(446);
+		await expect(subject.downloads((await subject.all())[0])).resolves.toBe(446);
 	});
 });
