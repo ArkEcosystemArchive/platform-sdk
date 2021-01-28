@@ -68,23 +68,21 @@ export interface RegistryPluginProperties {
 	[key: string]: any;
 }
 
-export class ExpandedRegistryPlugin {
+export class RegistryPlugin {
 	readonly #data: Record<string, any>;
-	readonly #downloads: any;
-	readonly #date: string;
+	readonly #package: Record<string, any>;
 
-	public constructor(data: Record<string, any>, downloads: any, date: string) {
+	public constructor(data: Record<string, any>, pkg: Record<string, any>) {
 		this.#data = data;
-		this.#downloads = downloads;
-		this.#date = date;
+		this.#package = pkg;
 	}
 
 	public id(): string {
-		return this.#data._id;
+		return this.#data.name;
 	}
 
 	public name(): string {
-		return this.#data.name;
+		return this.id();
 	}
 
 	public alias(): string {
@@ -92,11 +90,11 @@ export class ExpandedRegistryPlugin {
 	}
 
 	public date(): string {
-		return this.#date;
+		return this.#data.date;
 	}
 
 	public version(): string {
-		return this.#data["dist-tags"].latest;
+		return this.#data.version;
 	}
 
 	public description(): string {
@@ -107,30 +105,16 @@ export class ExpandedRegistryPlugin {
 		return this.#data.author;
 	}
 
-	public installSize() {
-		return this.getLatestVersion().dist?.unpackedSize;
-	}
-
-	public downloads(): number {
-		let result = 0;
-
-		for (const { downloads } of this.#downloads) {
-			result += downloads;
-		}
-
-		return result;
-	}
-
 	public sourceProvider(): any {
 		for (const [provider, pattern] of Object.entries({
 			github: /http(?:s)?:\/\/(?:www\.)?github\.com(\/[a-z\d](?:[a-z\d]|-(?=[a-z\d])){1,39}){2}/,
 			gitlab: /http(?:s)?:\/\/(?:www\.)?gitlab\.com(\/[a-z\d](?:[a-z\d]|-(?=[a-z\d])){1,39}){2}/,
 			bitbucket: /http(?:s)?:\/\/(?:www\.)?bitbucket\.com(\/[a-z\d](?:[a-z\d]|-(?=[a-z\d])){1,39}){2}/,
 		})) {
-			if (new RegExp(pattern).test(this.#data.homepage)) {
+			if (new RegExp(pattern).test(this.#data.links.repository)) {
 				return {
 					name: provider,
-					url: this.#data.repository.url,
+					url: this.#data.links.repository,
 				};
 			}
 		}
@@ -162,68 +146,17 @@ export class ExpandedRegistryPlugin {
 		return this.getMetaData("minimumVersion");
 	}
 
-	public versions(): string[] {
-		return Object.keys(this.#data.versions);
-	}
-
-	public getLatestVersion(): RegistryPluginProperties {
-		return this.#data.versions[Object.keys(this.#data.versions)[Object.keys(this.#data.versions).length - 1]];
-	}
-
 	private getMetaData(key: string): any {
-		const latestVersion = this.getLatestVersion();
-
-		if (latestVersion[key]) {
-			return latestVersion[key];
+		if (this.#package[key]) {
+			return this.#package[key];
 		}
 
-		if (latestVersion["desktop-wallet"]) {
-			if (latestVersion["desktop-wallet"][key]) {
-				return latestVersion["desktop-wallet"][key];
+		if (this.#package["desktop-wallet"]) {
+			if (this.#package["desktop-wallet"][key]) {
+				return this.#package["desktop-wallet"][key];
 			}
 		}
 
 		return undefined;
-	}
-}
-
-export class PartialRegistryPlugin {
-	readonly #data: Record<string, any>;
-
-	public constructor(data: Record<string, any>) {
-		this.#data = data;
-	}
-
-	public id(): string {
-		return this.#data.name;
-	}
-
-	public name(): string {
-		return this.id();
-	}
-
-	public alias(): string {
-		return this.id();
-	}
-
-	public date(): string {
-		return this.#data.date;
-	}
-
-	public version(): string {
-		return this.#data.version;
-	}
-
-	public description(): string {
-		return this.#data.description;
-	}
-
-	public author(): RegistryPluginAuthor {
-		return this.#data.author;
-	}
-
-	public logo(): string {
-		// @TODO: get this from the repository
-		return "n/a";
 	}
 }
