@@ -920,7 +920,7 @@
 			"ip": "141.155.116.208",
 			"port": 4002,
 			"ports": {},
-			"version": "2.6.0-next.11",
+			"version": "2.6.1-next.11",
 			"height": 4422859,
 			"latency": 520
 		},

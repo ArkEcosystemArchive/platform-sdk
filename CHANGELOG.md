@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.6.1 - 2020-01-29
+
+### Changed
+
+-   Support combinatory voting (dfadc97a, @faustbrian)
+
 ## 2.6.0 - 2020-01-28
 
 ### Fixed
