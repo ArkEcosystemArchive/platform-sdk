@@ -250,8 +250,8 @@ describe("signatures", () => {
 				mnemonic: "this is a top secret passphrase",
 			},
 			data: {
-                votes: ["03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec"],
-                unvoes: [],
+				votes: ["03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec"],
+				unvoes: [],
 			},
 		};
 		const snapshot = `
