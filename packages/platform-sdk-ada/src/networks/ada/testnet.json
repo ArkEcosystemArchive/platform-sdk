@@ -16,7 +16,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [],
+		"hosts": ["http://localhost:8090/"],
 		"hostsMultiSignature": []
 	},
 	"governance": {
@@ -31,7 +31,7 @@
 		"Client": {
 			"transaction": false,
 			"transactions": false,
-			"wallet": false,
+			"wallet": true,
 			"wallets": false,
 			"delegate": false,
 			"delegates": false,
