@@ -70,7 +70,7 @@ export interface DelegateRegistrationInput extends TransactionInput {
 }
 
 export interface VoteInput extends TransactionInput {
-	data: { vote: string };
+	data: { votes: string[]; unvotes: string[] };
 }
 
 export interface MultiSignatureInput extends TransactionInput {
