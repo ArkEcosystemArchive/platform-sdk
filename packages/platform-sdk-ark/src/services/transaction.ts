@@ -77,9 +77,23 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.VoteInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("vote", input, options, ({ transaction, data }) =>
-			transaction.votesAsset([data.vote]),
-		);
+		return this.createFromData("vote", input, options, ({ transaction, data }) => {
+			const votes: string[] = [];
+
+			if (data.votes) {
+				for (const vote of data.votes) {
+					votes.push(`+${vote}`);
+				}
+			}
+
+			if (data.unvotes) {
+				for (const unvote of data.unvotes) {
+					votes.push(`-${unvote}`);
+				}
+			}
+
+			transaction.votesAsset(votes);
+		});
 	}
 
 	public async multiSignature(
