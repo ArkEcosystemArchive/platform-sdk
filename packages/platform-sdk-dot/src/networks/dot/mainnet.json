@@ -8,7 +8,7 @@
 		"symbol": "DOT"
 	},
 	"crypto": {
-		"networkId": 1,
+		"networkId": 0,
 		"signingMethods": {
 			"mnemonic": false,
 			"privateKey": false,

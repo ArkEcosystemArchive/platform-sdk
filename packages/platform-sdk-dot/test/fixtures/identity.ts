@@ -3,7 +3,7 @@ export const identity = {
 	privateKey:
 		"0x02934fc044ed5fc162c0510a6a210b00bf9ed52dc8cd914f47ed99b068aaf48ba267452515f435be3c0ade3ad6fac3f676a98bcdda65be5ff93a5e236252817f",
 	publicKey: "0xa267452515f435be3c0ade3ad6fac3f676a98bcdda65be5ff93a5e236252817f",
-	address: "5GRdmMkKeKaV94qU3JjDr2ZwRAgn3xwzd2FEJYKjjSFipiAe",
+	address: "15Mvuh1PW6qxabqyzwnDzBQ6GngRkGW8hWyiTqK6HXHF1DN9",
 	wif: "",
 	mnemonic: "entire material egg meadow latin bargain dutch coral blood melt acoustic thought",
 	// Multi Signature

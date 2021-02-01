@@ -25,7 +25,7 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public address(): Address {
-		return new Address();
+		return new Address(this.#config);
 	}
 
 	public publicKey(): PublicKey {
