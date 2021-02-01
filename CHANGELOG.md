@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.7.4 - 2020-02-01
+
+### Added
+
+-   Implement feature flag to indicate memo support (a4951515, @faustbrian)
+
+### Changed
+
+-   Verify message without mnemonic (892bc34f, @faustbrian)
+
 ## 2.7.2 - 2020-02-01
 
 ### Fixed
