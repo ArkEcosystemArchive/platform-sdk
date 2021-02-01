@@ -17,7 +17,9 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://platform.ark.io/api/eth"],
+		"hosts": [
+			"https://platform.ark.io/api/eth"
+		],
 		"hostsMultiSignature": []
 	},
 	"governance": {
@@ -101,10 +103,10 @@
 			"delegateResignation": false,
 			"htlcLock": false,
 			"htlcClaim": false,
-			"htlcRefund": false,
-			"entityRegistration": false,
-			"entityResignation": false,
-			"entityUpdate": false
+			"htlcRefund": false
+		},
+		"Miscellaneous": {
+			"memo": false
 		}
 	}
 }

@@ -18,7 +18,10 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://worbli-testnet.eosblocksmith.io", "https://worbli-testnet.eosphere.io"],
+		"hosts": [
+			"https://worbli-testnet.eosblocksmith.io",
+			"https://worbli-testnet.eosphere.io"
+		],
 		"hostsMultiSignature": []
 	},
 	"governance": {
@@ -102,10 +105,10 @@
 			"delegateResignation": false,
 			"htlcLock": false,
 			"htlcClaim": false,
-			"htlcRefund": false,
-			"entityRegistration": false,
-			"entityResignation": false,
-			"entityUpdate": false
+			"htlcRefund": false
+		},
+		"Miscellaneous": {
+			"memo": false
 		}
 	}
 }

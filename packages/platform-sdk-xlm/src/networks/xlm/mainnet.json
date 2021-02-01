@@ -16,7 +16,9 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://horizon.stellar.org"],
+		"hosts": [
+			"https://horizon.stellar.org"
+		],
 		"hostsMultiSignature": []
 	},
 	"governance": {
@@ -100,10 +102,10 @@
 			"delegateResignation": false,
 			"htlcLock": false,
 			"htlcClaim": false,
-			"htlcRefund": false,
-			"entityRegistration": false,
-			"entityResignation": false,
-			"entityUpdate": false
+			"htlcRefund": false
+		},
+		"Miscellaneous": {
+			"memo": false
 		}
 	}
 }

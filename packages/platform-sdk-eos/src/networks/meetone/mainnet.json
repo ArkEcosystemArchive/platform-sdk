@@ -18,7 +18,9 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://fullnode.meet.one"],
+		"hosts": [
+			"https://fullnode.meet.one"
+		],
 		"hostsMultiSignature": []
 	},
 	"governance": {
@@ -102,10 +104,10 @@
 			"delegateResignation": false,
 			"htlcLock": false,
 			"htlcClaim": false,
-			"htlcRefund": false,
-			"entityRegistration": false,
-			"entityResignation": false,
-			"entityUpdate": false
+			"htlcRefund": false
+		},
+		"Miscellaneous": {
+			"memo": false
 		}
 	}
 }

@@ -50,4 +50,5 @@ export enum FeatureFlag {
 	TransactionEntityRegistration = "Transaction.entityRegistration",
 	TransactionEntityResignation = "Transaction.entityResignation",
 	TransactionEntityUpdate = "Transaction.entityUpdate",
+	MiscellaneousMemo = "Miscellaneous.memo",
 }

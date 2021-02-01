@@ -18,7 +18,11 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://eos.greymass.com", "https://api.eosn.io", "https://mainnet.genereos.io"],
+		"hosts": [
+			"https://eos.greymass.com",
+			"https://api.eosn.io",
+			"https://mainnet.genereos.io"
+		],
 		"hostsMultiSignature": []
 	},
 	"governance": {
@@ -102,10 +106,10 @@
 			"delegateResignation": false,
 			"htlcLock": false,
 			"htlcClaim": false,
-			"htlcRefund": false,
-			"entityRegistration": false,
-			"entityResignation": false,
-			"entityUpdate": false
+			"htlcRefund": false
+		},
+		"Miscellaneous": {
+			"memo": false
 		}
 	}
 }

@@ -18,7 +18,10 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://api.worbli.io", "https://worbli-mainnet.eosblocksmith.io"],
+		"hosts": [
+			"https://api.worbli.io",
+			"https://worbli-mainnet.eosblocksmith.io"
+		],
 		"hostsMultiSignature": []
 	},
 	"governance": {
@@ -102,10 +105,10 @@
 			"delegateResignation": false,
 			"htlcLock": false,
 			"htlcClaim": false,
-			"htlcRefund": false,
-			"entityRegistration": false,
-			"entityResignation": false,
-			"entityUpdate": false
+			"htlcRefund": false
+		},
+		"Miscellaneous": {
+			"memo": false
 		}
 	}
 }

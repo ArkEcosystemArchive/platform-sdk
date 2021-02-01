@@ -16,8 +16,12 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://dwallets.ark.io"],
-		"hostsMultiSignature": ["https://dmusig1.ark.io"]
+		"hosts": [
+			"https://dwallets.ark.io"
+		],
+		"hostsMultiSignature": [
+			"https://dmusig1.ark.io"
+		]
 	},
 	"governance": {
 		"voting": {
@@ -100,10 +104,10 @@
 			"delegateResignation": true,
 			"htlcLock": true,
 			"htlcClaim": true,
-			"htlcRefund": true,
-			"entityRegistration": true,
-			"entityResignation": true,
-			"entityUpdate": true
+			"htlcRefund": true
+		},
+		"Miscellaneous": {
+			"memo": true
 		}
 	},
 	"knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json"
