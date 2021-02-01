@@ -15,10 +15,6 @@ describe("MessageService", () => {
 			mnemonic: identity.mnemonic,
 		});
 
-		expect(result.message).toBe("Hello World");
-		expect(result.signatory).toBe("0xc0e7505bb4a5e539d7effbdb29347ad65075c4cdeb338486bfff9eabbcdb632d");
-		expect(result.signature).toBeString();
-
-		// await expect(subject.verify(result)).resolves.toBeTrue();
+		await expect(subject.verify({ ...result, mnemonic: identity.mnemonic })).resolves.toBeTrue();
 	});
 });

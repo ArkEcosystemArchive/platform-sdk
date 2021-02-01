@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Keyring } from "@polkadot/keyring";
-import { stringToU8a, u8aToHex } from "@polkadot/util";
+import { hexToU8a, stringToU8a, u8aToHex } from "@polkadot/util";
 import { waitReady } from "@polkadot/wasm-crypto";
 
 export class MessageService implements Contracts.MessageService {
@@ -27,7 +27,7 @@ export class MessageService implements Contracts.MessageService {
 			return {
 				message: input.message,
 				signatory: u8aToHex(keypair.publicKey),
-				signature: Buffer.from(keypair.sign(stringToU8a(input.message))).toString("hex"),
+				signature: u8aToHex(keypair.sign(stringToU8a(input.message))),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -35,6 +35,16 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		throw new Exceptions.NotSupported(this.constructor.name, "verify");
+		if (input.mnemonic === undefined) {
+			throw new Exceptions.InvalidArguments(this.constructor.name, "verify");
+		}
+
+		try {
+			return this.#keyring
+				.addFromMnemonic(input.mnemonic)
+				.verify(stringToU8a(input.message), hexToU8a(input.signature));
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 }
