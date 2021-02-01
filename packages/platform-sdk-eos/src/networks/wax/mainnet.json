@@ -18,9 +18,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://wax.eosphere.io"
-		],
+		"hosts": ["https://wax.eosphere.io"],
 		"hostsMultiSignature": []
 	},
 	"governance": {

@@ -17,9 +17,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://coins.com/api/eth"
-		],
+		"hosts": ["https://coins.com/api/eth"],
 		"hostsMultiSignature": []
 	},
 	"governance": {

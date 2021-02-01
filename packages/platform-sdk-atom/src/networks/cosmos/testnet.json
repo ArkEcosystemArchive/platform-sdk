@@ -18,9 +18,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://stargate.cosmos.network"
-		],
+		"hosts": ["https://stargate.cosmos.network"],
 		"hostsMultiSignature": []
 	},
 	"governance": {

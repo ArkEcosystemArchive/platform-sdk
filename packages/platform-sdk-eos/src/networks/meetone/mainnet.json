@@ -18,9 +18,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://fullnode.meet.one"
-		],
+		"hosts": ["https://fullnode.meet.one"],
 		"hostsMultiSignature": []
 	},
 	"governance": {

@@ -18,9 +18,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://api.testnet.eos.io"
-		],
+		"hosts": ["https://api.testnet.eos.io"],
 		"hostsMultiSignature": []
 	},
 	"governance": {

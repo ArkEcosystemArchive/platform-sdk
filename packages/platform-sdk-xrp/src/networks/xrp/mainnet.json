@@ -16,9 +16,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"wss://s2.ripple.com/"
-		],
+		"hosts": ["wss://s2.ripple.com/"],
 		"hostsMultiSignature": []
 	},
 	"governance": {

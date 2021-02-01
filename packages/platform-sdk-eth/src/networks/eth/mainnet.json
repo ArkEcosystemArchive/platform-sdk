@@ -17,9 +17,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://platform.ark.io/api/eth"
-		],
+		"hosts": ["https://platform.ark.io/api/eth"],
 		"hostsMultiSignature": []
 	},
 	"governance": {

@@ -16,9 +16,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://horizon-testnet.stellar.org"
-		],
+		"hosts": ["https://horizon-testnet.stellar.org"],
 		"hostsMultiSignature": []
 	},
 	"governance": {

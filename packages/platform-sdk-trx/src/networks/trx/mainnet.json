@@ -16,9 +16,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://api.trongrid.io"
-		],
+		"hosts": ["https://api.trongrid.io"],
 		"hostsMultiSignature": []
 	},
 	"governance": {
