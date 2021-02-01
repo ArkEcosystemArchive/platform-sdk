@@ -1,8 +1,29 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
+import { ApiPromise, WsProvider } from "@polkadot/api";
+import { Keyring } from "@polkadot/keyring";
+import { waitReady } from "@polkadot/wasm-crypto";
+
+import { SignedTransactionData } from "../dto/signed-transaction";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #client: ApiPromise;
+	readonly #keyring: Keyring;
+
+	public constructor(client: ApiPromise) {
+		this.#client = client;
+		this.#keyring = new Keyring({ type: "sr25519" });
+	}
+
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService();
+		await waitReady();
+
+		const wsProvider = new WsProvider(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
+		const api = await ApiPromise.create({ provider: wsProvider });
+
+		await api.isReady;
+
+		return new TransactionService(api);
 	}
 
 	public async destruct(): Promise<void> {
@@ -13,7 +34,15 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transfer");
+		if (input.sign.mnemonic === undefined) {
+			throw new Exceptions.InvalidArguments(this.constructor.name, "transfer");
+		}
+
+		const keypair = this.#keyring.addFromUri(input.sign.mnemonic);
+		const transfer = this.#client.tx.balances.transfer(input.data.to, input.data.amount);
+		const transaction = await transfer.signAsync(keypair);
+
+		return new SignedTransactionData(transaction.hash.toHex(), JSON.parse(transaction.toString()));
 	}
 
 	public async secondSignature(
