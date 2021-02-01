@@ -1,13 +1,12 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Keyring, decodeAddress, encodeAddress } from '@polkadot/keyring';
 import { hexToU8a, isHex } from '@polkadot/util';
+import { createKeyMulti } from '@polkadot/util-crypto';
 
 export class Address implements Contracts.Address {
-	readonly #config: Coins.Config;
 	readonly #keyring: Keyring;
 
-	public constructor(config: Coins.Config) {
-		this.#config = config;
+	public constructor() {
 		this.#keyring = new Keyring({ type: 'sr25519' });
 	}
 
@@ -16,7 +15,7 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
+		return encodeAddress(createKeyMulti(publicKeys, min), 0);
 	}
 
 	public async fromPublicKey(publicKey: string): Promise<string> {

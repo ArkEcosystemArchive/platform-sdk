@@ -8,9 +8,13 @@ export const identity = {
 	mnemonic: "entire material egg meadow latin bargain dutch coral blood melt acoustic thought",
 	// Multi Signature
 	multiSignature: {
-		min: 3,
-		publicKeys: [],
+		min: 2,
+		publicKeys: [
+			"1nUC7afqmo7zwRFWxDjrUQu9skk6fk99pafb4SiyGSRc8z3",
+			"1ZX2XntfLEHrBPy73DpfQp9rG7pbLyvrFjEpi7mNKQgyga5",
+			"14b1kB7CrqzRUeMsKc26FJ73f8FCpxAX6sNieu9gfYSfJuoL",
+		],
 	},
-	multiSignatureAddress: "",
+	multiSignatureAddress: "15fM3UuojPVmB3w9wjJcx9FRDr9QF7tLv8GjrDYURStCwAB",
 	multiSignaturePublicKey: "",
 };

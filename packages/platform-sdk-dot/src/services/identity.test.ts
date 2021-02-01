@@ -19,10 +19,12 @@ describe("IdentityService", () => {
 		});
 
 
-		it("should fail to generate an output from a multiSignature", async () => {
-			await expect(
-				subject.address().fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys),
-			).rejects.toThrow(/is not supported/);
+		it("should generate an output from a multiSignature", async () => {
+			const result: any = await subject
+				.address()
+				.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys);
+
+			expect(result).toBe(identity.multiSignatureAddress);
 		});
 
 		it("should fail to generate an output from a privateKey", async () => {
