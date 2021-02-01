@@ -84,15 +84,15 @@ test("#all", () => {
 		        "sign": true,
 		        "verify": true,
 		      },
+		      "Miscellaneous": Object {
+		        "memo": true,
+		      },
 		      "Peer": Object {
 		        "search": true,
 		      },
 		      "Transaction": Object {
 		        "delegateRegistration": true,
 		        "delegateResignation": true,
-		        "entityRegistration": true,
-		        "entityResignation": true,
-		        "entityUpdate": true,
 		        "htlcClaim": true,
 		        "htlcLock": true,
 		        "htlcRefund": true,
@@ -198,18 +198,18 @@ test("#all", () => {
 		        "sign": true,
 		        "verify": true,
 		      },
+		      "Miscellaneous": Object {
+		        "memo": true,
+		      },
 		      "Peer": Object {
 		        "search": true,
 		      },
 		      "Transaction": Object {
 		        "delegateRegistration": true,
 		        "delegateResignation": true,
-		        "entityRegistration": true,
-		        "entityResignation": true,
-		        "entityUpdate": true,
-		        "htlcClaim": true,
-		        "htlcLock": true,
-		        "htlcRefund": true,
+		        "htlcClaim": false,
+		        "htlcLock": false,
+		        "htlcRefund": false,
 		        "ipfs": true,
 		        "multiPayment": true,
 		        "multiSignature": true,
@@ -312,15 +312,15 @@ test("#all", () => {
 		        "sign": true,
 		        "verify": true,
 		      },
+		      "Miscellaneous": Object {
+		        "memo": true,
+		      },
 		      "Peer": Object {
 		        "search": true,
 		      },
 		      "Transaction": Object {
 		        "delegateRegistration": true,
 		        "delegateResignation": true,
-		        "entityRegistration": false,
-		        "entityResignation": false,
-		        "entityUpdate": false,
 		        "htlcClaim": false,
 		        "htlcLock": false,
 		        "htlcRefund": false,

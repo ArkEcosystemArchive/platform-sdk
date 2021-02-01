@@ -100,10 +100,10 @@
 			"delegateResignation": true,
 			"htlcLock": true,
 			"htlcClaim": true,
-			"htlcRefund": true,
-			"entityRegistration": true,
-			"entityResignation": true,
-			"entityUpdate": true
+			"htlcRefund": true
+		},
+		"Miscellaneous": {
+			"memo": true
 		}
 	},
 	"knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json"

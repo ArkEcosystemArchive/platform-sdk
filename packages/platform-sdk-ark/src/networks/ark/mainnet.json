@@ -98,12 +98,12 @@
 			"ipfs": true,
 			"multiPayment": true,
 			"delegateResignation": true,
-			"htlcLock": true,
-			"htlcClaim": true,
-			"htlcRefund": true,
-			"entityRegistration": true,
-			"entityResignation": true,
-			"entityUpdate": true
+			"htlcLock": false,
+			"htlcClaim": false,
+			"htlcRefund": false
+		},
+		"Miscellaneous": {
+			"memo": true
 		}
 	},
 	"knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/mainnet/known-wallets-extended.json"
