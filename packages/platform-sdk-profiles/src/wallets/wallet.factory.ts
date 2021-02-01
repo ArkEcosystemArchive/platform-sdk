@@ -46,7 +46,7 @@ export class WalletFactory {
 
 		const wallet: ReadWriteWallet = await this.fromAddress(profile, coin, network, address);
 
-		wallet.data().set(WalletFlag.LedgerIndex, index);
+		wallet.data().set(WalletData.LedgerIndex, index);
 
 		return wallet;
 	}

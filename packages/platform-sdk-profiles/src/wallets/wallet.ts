@@ -272,7 +272,7 @@ export class Wallet implements ReadWriteWallet {
 					WalletData.WaitingForOtherSignaturesTransactions,
 					[],
 				),
-				...(this.isLedger() && { [WalletFlag.LedgerIndex]: true }),
+				[WalletData.LedgerIndex]: this.data().get(WalletData.LedgerIndex),
 				...(this.isStarred() && { [WalletFlag.Starred]: true }),
 			},
 			settings: this.settings().all(),
@@ -336,7 +336,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public isLedger(): boolean {
-		return this.data().has(WalletFlag.LedgerIndex);
+		return this.data().get(WalletData.LedgerIndex) !== undefined;
 	}
 
 	public isMultiSignature(): boolean {

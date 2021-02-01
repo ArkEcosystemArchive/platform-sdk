@@ -522,7 +522,7 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		subject.coin().config().set("network.crypto.slip44", slip44);
 		subject.data().set("key", "value");
 
-		subject.data().set(WalletFlag.LedgerIndex, true);
+		subject.data().set(WalletData.LedgerIndex, true);
 		subject.data().set(WalletFlag.Starred, true);
 
 		const actual: any = subject.toObject();
