@@ -10,7 +10,6 @@ export interface SignedMessage {
 	message: string;
 	signatory: string;
 	signature: string;
-	mnemonic?: string;
 }
 
 export interface MessageInput {
