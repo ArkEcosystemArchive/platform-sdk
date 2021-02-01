@@ -93,16 +93,16 @@ test("#importByAddress", async () => {
 	expect(subject.keys()).toHaveLength(1);
 });
 
-test("#importByAddressWithLedgerIndex", async () => {
+test("#importByAddressWithLedgerPath", async () => {
 	subject.flush();
 
 	expect(subject.keys()).toHaveLength(0);
 
-	await subject.importByAddressWithLedgerIndex(identity.address, "ARK", "ark.devnet", 0);
+	await subject.importByAddressWithLedgerPath(identity.address, "ARK", "ark.devnet", "0");
 
 	expect(subject.keys()).toHaveLength(1);
 
-	await expect(subject.importByAddressWithLedgerIndex(identity.address, "ARK", "ark.devnet", 0)).rejects.toThrowError(
+	await expect(subject.importByAddressWithLedgerPath(identity.address, "ARK", "ark.devnet", "0")).rejects.toThrowError(
 		"already exists",
 	);
 

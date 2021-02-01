@@ -35,18 +35,18 @@ export class WalletFactory {
 		return wallet;
 	}
 
-	public static async fromAddressWithLedgerIndex(
+	public static async fromAddressWithLedgerPath(
 		profile: Profile,
 		coin: string,
 		network: string,
 		address: string,
-		index: number,
+		path: string,
 	): Promise<ReadWriteWallet> {
 		// @TODO: eventually handle the whole process from slip44 path to public key to address
 
 		const wallet: ReadWriteWallet = await this.fromAddress(profile, coin, network, address);
 
-		wallet.data().set(WalletData.LedgerIndex, index);
+		wallet.data().set(WalletData.LedgerPath, path);
 
 		return wallet;
 	}

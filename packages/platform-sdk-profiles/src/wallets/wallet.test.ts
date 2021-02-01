@@ -522,7 +522,7 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		subject.coin().config().set("network.crypto.slip44", slip44);
 		subject.data().set("key", "value");
 
-		subject.data().set(WalletData.LedgerIndex, true);
+		subject.data().set(WalletData.LedgerPath, "1");
 		subject.data().set(WalletFlag.Starred, true);
 
 		const actual: any = subject.toObject();
@@ -546,7 +546,7 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.data).toEqual({
 			BALANCE: "55827093444556",
 			BROADCASTED_TRANSACTIONS: {},
-			LEDGER_INDEX: true,
+			LEDGER_PATH: "1",
 			SEQUENCE: "111932",
 			SIGNED_TRANSACTIONS: {},
 			STARRED: true,

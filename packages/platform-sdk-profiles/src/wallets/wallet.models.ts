@@ -41,7 +41,7 @@ export enum WalletData {
 	BroadcastedTransactions = "BROADCASTED_TRANSACTIONS",
 	Delegates = "DELEGATES",
 	ExchangeCurrency = "EXCHANGE_CURRENCY",
-	LedgerIndex = "LEDGER_INDEX",
+	LedgerPath = "LEDGER_PATH",
 	MultiSignatureParticipants = "MULTI_SIGNATURE_PARTICIPANTS",
 	Sequence = "SEQUENCE",
 	SignedTransactions = "SIGNED_TRANSACTIONS",
