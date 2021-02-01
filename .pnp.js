@@ -329,7 +329,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/utils", "npm:1.1.8"],
             ["@types/bytebuffer", "npm:5.0.40"],
             ["ajv", "npm:6.12.2"],
-            ["ajv-keywords", "virtual:6b459398d766659c9eef73192cda450cc5f632dca4f80776ef021d6a0998beb71ebafc0ee36f87c12c30bd87bd62ff0c45949c676dc82f9fc3a677d1ae7d2708#npm:3.4.1"],
+            ["ajv-keywords", "virtual:94178486b0e3556877eef2eecfdc7b189adbf7da604f01029b599a73ecce0d36cfd0262c256069cc81c5c2eb88fc195f2e9b5f571f01c2bd48a8c01b558a95f2#npm:3.4.1"],
             ["bcrypto", "npm:5.2.0"],
             ["bip32", "npm:2.0.5"],
             ["bip39", "npm:3.0.2"],
@@ -349,29 +349,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:2.7.1", {
-          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-2.7.1-6b459398d7-2.zip/node_modules/@arkecosystem/crypto/",
+        ["npm:3.0.0-next.20", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-3.0.0-next.20-94178486b0-2.zip/node_modules/@arkecosystem/crypto/",
           "packageDependencies": [
-            ["@arkecosystem/crypto", "npm:2.7.1"],
-            ["@arkecosystem/utils", "npm:1.2.0"],
-            ["@types/bytebuffer", "npm:5.0.40"],
+            ["@arkecosystem/crypto", "npm:3.0.0-next.20"],
+            ["@arkecosystem/crypto-identities", "npm:1.1.1"],
+            ["@arkecosystem/crypto-networks", "npm:1.0.0"],
+            ["@arkecosystem/utils", "npm:1.2.1"],
             ["ajv", "npm:6.12.2"],
-            ["ajv-keywords", "virtual:6b459398d766659c9eef73192cda450cc5f632dca4f80776ef021d6a0998beb71ebafc0ee36f87c12c30bd87bd62ff0c45949c676dc82f9fc3a677d1ae7d2708#npm:3.4.1"],
-            ["bcrypto", "npm:5.2.0"],
+            ["ajv-keywords", "virtual:94178486b0e3556877eef2eecfdc7b189adbf7da604f01029b599a73ecce0d36cfd0262c256069cc81c5c2eb88fc195f2e9b5f571f01c2bd48a8c01b558a95f2#npm:3.4.1"],
+            ["bcrypto", "npm:5.3.0"],
             ["bip32", "npm:2.0.5"],
             ["bip39", "npm:3.0.2"],
             ["browserify-aes", "npm:1.2.0"],
             ["bstring", "npm:0.3.9"],
             ["buffer-xor", "npm:2.0.2"],
+            ["builtin-modules", "npm:3.2.0"],
             ["bytebuffer", "npm:5.0.1"],
-            ["dayjs", "npm:1.8.25"],
+            ["dayjs", "npm:1.9.6"],
             ["deepmerge", "npm:4.2.2"],
             ["fast-memoize", "npm:2.5.2"],
-            ["ipaddr.js", "npm:1.9.1"],
+            ["ipaddr.js", "npm:2.0.0"],
             ["lodash.get", "npm:4.4.2"],
             ["lodash.set", "npm:4.3.2"],
-            ["lodash.sumby", "npm:4.6.0"],
-            ["tiny-glob", "npm:0.2.6"],
             ["wif", "npm:2.0.6"]
           ],
           "linkType": "HARD",
@@ -386,6 +386,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["bstring", "npm:0.3.9"],
             ["fast-memoize", "npm:2.5.2"],
             ["wif", "npm:2.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@arkecosystem/crypto-networks", [
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-networks-npm-1.0.0-7f28222907-2.zip/node_modules/@arkecosystem/crypto-networks/",
+          "packageDependencies": [
+            ["@arkecosystem/crypto-networks", "npm:1.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -506,7 +515,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/platform-sdk-ark/",
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
-            ["@arkecosystem/crypto", "npm:2.7.1"],
+            ["@arkecosystem/crypto", "npm:3.0.0-next.20"],
             ["@arkecosystem/crypto-identities", "npm:1.1.1"],
             ["@arkecosystem/ledger-transport", "npm:1.1.3"],
             ["@arkecosystem/multi-signature", "npm:0.1.5"],
@@ -1649,6 +1658,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["fast-deep-equal", "npm:3.1.3"],
             ["fast-sort", "npm:2.2.0"],
             ["type-fest", "npm:0.16.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:1.2.1", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-utils-npm-1.2.1-cd80c58e4e-2.zip/node_modules/@arkecosystem/utils/",
+          "packageDependencies": [
+            ["@arkecosystem/utils", "npm:1.2.1"],
+            ["@hapi/bourne", "npm:2.0.0"],
+            ["deepmerge", "npm:4.2.2"],
+            ["fast-copy", "npm:2.1.0"],
+            ["fast-deep-equal", "npm:3.1.3"],
+            ["fast-sort", "npm:2.2.0"],
+            ["type-fest", "npm:0.17.0"]
           ],
           "linkType": "HARD",
         }]
@@ -6546,10 +6568,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ajv-keywords", [
-        ["virtual:6b459398d766659c9eef73192cda450cc5f632dca4f80776ef021d6a0998beb71ebafc0ee36f87c12c30bd87bd62ff0c45949c676dc82f9fc3a677d1ae7d2708#npm:3.4.1", {
-          "packageLocation": "./.yarn/$$virtual/ajv-keywords-virtual-c89b250f93/0/cache/ajv-keywords-npm-3.4.1-851fd088de-2.zip/node_modules/ajv-keywords/",
+        ["virtual:94178486b0e3556877eef2eecfdc7b189adbf7da604f01029b599a73ecce0d36cfd0262c256069cc81c5c2eb88fc195f2e9b5f571f01c2bd48a8c01b558a95f2#npm:3.4.1", {
+          "packageLocation": "./.yarn/$$virtual/ajv-keywords-virtual-7c5b9a395d/0/cache/ajv-keywords-npm-3.4.1-851fd088de-2.zip/node_modules/ajv-keywords/",
           "packageDependencies": [
-            ["ajv-keywords", "virtual:6b459398d766659c9eef73192cda450cc5f632dca4f80776ef021d6a0998beb71ebafc0ee36f87c12c30bd87bd62ff0c45949c676dc82f9fc3a677d1ae7d2708#npm:3.4.1"],
+            ["ajv-keywords", "virtual:94178486b0e3556877eef2eecfdc7b189adbf7da604f01029b599a73ecce0d36cfd0262c256069cc81c5c2eb88fc195f2e9b5f571f01c2bd48a8c01b558a95f2#npm:3.4.1"],
             ["ajv", "npm:6.12.2"]
           ],
           "packagePeers": [
@@ -7850,6 +7872,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/bufio-npm-1.0.7-f7ef1d1822-2.zip/node_modules/bufio/",
           "packageDependencies": [
             ["bufio", "npm:1.0.7"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["builtin-modules", [
+        ["npm:3.2.0", {
+          "packageLocation": "./.yarn/cache/builtin-modules-npm-3.2.0-ef7266e931-2.zip/node_modules/builtin-modules/",
+          "packageDependencies": [
+            ["builtin-modules", "npm:3.2.0"]
           ],
           "linkType": "HARD",
         }]
@@ -11717,6 +11748,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/ipaddr.js-npm-1.9.1-19ae7878b4-2.zip/node_modules/ipaddr.js/",
           "packageDependencies": [
             ["ipaddr.js", "npm:1.9.1"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:2.0.0", {
+          "packageLocation": "./.yarn/cache/ipaddr.js-npm-2.0.0-61e757f790-2.zip/node_modules/ipaddr.js/",
+          "packageDependencies": [
+            ["ipaddr.js", "npm:2.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -18146,6 +18184,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/type-fest-npm-0.16.0-e1b8ff05d9-2.zip/node_modules/type-fest/",
           "packageDependencies": [
             ["type-fest", "npm:0.16.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:0.17.0", {
+          "packageLocation": "./.yarn/cache/type-fest-npm-0.17.0-65da161963-2.zip/node_modules/type-fest/",
+          "packageDependencies": [
+            ["type-fest", "npm:0.17.0"]
           ],
           "linkType": "HARD",
         }],
