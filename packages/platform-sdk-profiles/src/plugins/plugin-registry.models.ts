@@ -146,6 +146,40 @@ export class RegistryPlugin {
 		return this.getMetaData("minimumVersion");
 	}
 
+	public toObject(): {
+		id: string;
+		name: string;
+		alias: string;
+		date: string;
+		version: string;
+		description: string;
+		author: RegistryPluginAuthor;
+		sourceProvider: any;
+		logo: string;
+		images: string[];
+		categories: string[];
+		permissions: string[];
+		urls: string[];
+		minimumVersion: string;
+	} {
+		return {
+			id: this.id(),
+			name: this.name(),
+			alias: this.alias(),
+			date: this.date(),
+			version: this.version(),
+			description: this.description(),
+			author: this.author(),
+			sourceProvider: this.sourceProvider(),
+			logo: this.logo(),
+			images: this.images(),
+			categories: this.categories(),
+			permissions: this.permissions(),
+			urls: this.urls(),
+			minimumVersion: this.minimumVersion(),
+		};
+	}
+
 	private getMetaData(key: string): any {
 		if (this.#package[key]) {
 			return this.#package[key];
