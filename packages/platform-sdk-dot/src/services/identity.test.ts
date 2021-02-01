@@ -18,7 +18,6 @@ describe("IdentityService", () => {
 			expect(result).toBe(identity.address);
 		});
 
-
 		it("should fail to generate an output from a multiSignature", async () => {
 			await expect(
 				subject.address().fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys),

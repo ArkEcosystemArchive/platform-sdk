@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Keyring } from '@polkadot/keyring';
+import { Keyring } from "@polkadot/keyring";
 
 export class WIF implements Contracts.WIF {
 	readonly #config: Coins.Config;
@@ -7,7 +7,7 @@ export class WIF implements Contracts.WIF {
 
 	public constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#keyring = new Keyring({ type: 'sr25519' });
+		this.#keyring = new Keyring({ type: "sr25519" });
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {

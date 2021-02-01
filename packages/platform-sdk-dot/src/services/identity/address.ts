@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Keyring, decodeAddress, encodeAddress } from '@polkadot/keyring';
-import { hexToU8a, isHex } from '@polkadot/util';
+import { decodeAddress, encodeAddress, Keyring } from "@polkadot/keyring";
+import { hexToU8a, isHex } from "@polkadot/util";
 
 export class Address implements Contracts.Address {
 	readonly #config: Coins.Config;
@@ -8,7 +8,7 @@ export class Address implements Contracts.Address {
 
 	public constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#keyring = new Keyring({ type: 'sr25519' });
+		this.#keyring = new Keyring({ type: "sr25519" });
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
