@@ -1,7 +1,7 @@
 # ARK Platform SDK - Polkadot
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-polkadot/banner.png" />
+    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-dot/banner.png" />
 </p>
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)
@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-polkadot
+yarn add @arkecosystem/platform-sdk-dot
 ```
 
 ## Usage
