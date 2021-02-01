@@ -1,11 +1,11 @@
 {
-	"id": "ada.mainnet",
+	"id": "dot.mainnet",
 	"type": "live",
 	"name": "Mainnet",
-	"explorer": "https://explorer.cardano.org/",
+	"explorer": "https://polkascan.io/polkadot",
 	"currency": {
-		"ticker": "ADA",
-		"symbol": "ADA"
+		"ticker": "DOT",
+		"symbol": "DOT"
 	},
 	"crypto": {
 		"networkId": 1,
@@ -48,8 +48,8 @@
 		"Identity": {
 			"address": {
 				"mnemonic": true,
-				"multiSignature": false,
-				"publicKey": true,
+				"multiSignature": true,
+				"publicKey": false,
 				"privateKey": false,
 				"wif": false
 			},
@@ -67,7 +67,7 @@
 			},
 			"keyPair": {
 				"mnemonic": true,
-				"privateKey": true,
+				"privateKey": false,
 				"wif": false
 			}
 		},
