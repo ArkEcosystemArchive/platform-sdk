@@ -59,6 +59,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/platform-sdk-cryptocompare"
       },
       {
+        "name": "@arkecosystem/platform-sdk-dot",
+        "reference": "workspace:packages/platform-sdk-dot"
+      },
+      {
         "name": "@arkecosystem/platform-sdk-eos",
         "reference": "workspace:packages/platform-sdk-eos"
       },
@@ -143,6 +147,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@arkecosystem/platform-sdk-coingecko", ["workspace:packages/platform-sdk-coingecko"]],
       ["@arkecosystem/platform-sdk-crypto", ["workspace:packages/platform-sdk-crypto"]],
       ["@arkecosystem/platform-sdk-cryptocompare", ["workspace:packages/platform-sdk-cryptocompare"]],
+      ["@arkecosystem/platform-sdk-dot", ["workspace:packages/platform-sdk-dot"]],
       ["@arkecosystem/platform-sdk-eos", ["workspace:packages/platform-sdk-eos"]],
       ["@arkecosystem/platform-sdk-eth", ["workspace:packages/platform-sdk-eth"]],
       ["@arkecosystem/platform-sdk-http-axios", ["workspace:packages/platform-sdk-http-axios"]],
@@ -788,6 +793,52 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/prettier", "npm:2.1.5"],
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:c018bf5e40ffc10b6ef3e08a9374c747a42ed398349429091c9b56dd65aaea390b6a2b2e8c0b524b53288cbb3d791e5a14edabb7148f63788b7d1842fa922813#npm:4.7.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["cross-env", "npm:7.0.2"],
+            ["eslint", "npm:7.13.0"],
+            ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.15.0"],
+            ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:24.1.3"],
+            ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.4"],
+            ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.0.0"],
+            ["got", "npm:11.8.0"],
+            ["jest", "npm:26.6.3"],
+            ["jest-extended", "npm:0.11.5"],
+            ["jest-localstorage-mock", "npm:2.4.3"],
+            ["nock", "npm:13.0.5"],
+            ["npm-check-updates", "npm:10.1.1"],
+            ["prettier", "npm:2.1.2"],
+            ["rimraf", "npm:3.0.2"],
+            ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
+            ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@arkecosystem/platform-sdk-dot", [
+        ["workspace:packages/platform-sdk-dot", {
+          "packageLocation": "./packages/platform-sdk-dot/",
+          "packageDependencies": [
+            ["@arkecosystem/platform-sdk-dot", "workspace:packages/platform-sdk-dot"],
+            ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
+            ["@polkadot/api", "npm:3.6.4"],
+            ["@polkadot/keyring", "virtual:592b15c41d3986492440f390c88a7362d4a147f0b5cdd997ac3dd3c899a68b6d82223757091b96eb31e6dafbf9f2f7a2748be5b70e422df70b27d3c854451d88#npm:5.5.1"],
+            ["@polkadot/util", "npm:5.5.1"],
+            ["@polkadot/util-crypto", "virtual:500484cc192daa2295fd5508279ba491254bbbe736dace54233261ebf337bf31359f814f9559decced48f961aa142dbccdedcc023ea94681fb05c6e7b5262832#npm:5.5.1"],
+            ["@polkadot/wasm-crypto", "virtual:da097f206a0212514dee9359bb018ae4921f8763fc527a380a4ea63f628368f43fb8f03460f3fe4ab5a4b883ab7eb8dc27c2d4d07451dde088e6f123f5053ec0#npm:3.2.2"],
+            ["@polkadot/x-global", "npm:5.5.1"],
+            ["@polkadot/x-randomvalues", "npm:5.5.1"],
+            ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/eslint", "npm:7.2.4"],
+            ["@types/eslint-plugin-prettier", "npm:3.1.0"],
+            ["@types/hapi__joi", "npm:17.1.6"],
+            ["@types/jest", "npm:26.0.15"],
+            ["@types/node", "npm:14.14.7"],
+            ["@types/prettier", "npm:2.1.5"],
+            ["@types/rimraf", "npm:3.0.0"],
+            ["@typescript-eslint/eslint-plugin", "virtual:592b15c41d3986492440f390c88a7362d4a147f0b5cdd997ac3dd3c899a68b6d82223757091b96eb31e6dafbf9f2f7a2748be5b70e422df70b27d3c854451d88#npm:4.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
             ["cross-env", "npm:7.0.2"],
             ["eslint", "npm:7.13.0"],
@@ -1983,6 +2034,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.11.2-f2cfabd212-2.zip/node_modules/@babel/runtime/",
           "packageDependencies": [
             ["@babel/runtime", "npm:7.11.2"],
+            ["regenerator-runtime", "npm:0.13.5"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:7.12.5", {
+          "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.12.5-b3edb8ee8e-2.zip/node_modules/@babel/runtime/",
+          "packageDependencies": [
+            ["@babel/runtime", "npm:7.12.5"],
             ["regenerator-runtime", "npm:0.13.5"]
           ],
           "linkType": "HARD",
@@ -3952,6 +4011,326 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@polkadot/api", [
+        ["npm:3.6.4", {
+          "packageLocation": "./.yarn/cache/@polkadot-api-npm-3.6.4-3e91e80429-2.zip/node_modules/@polkadot/api/",
+          "packageDependencies": [
+            ["@polkadot/api", "npm:3.6.4"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/api-derive", "npm:3.6.4"],
+            ["@polkadot/keyring", "virtual:3e91e804298e8032af9f22197f2fa616a6024534a7e874963b4bc8ae1c144456d635d3cceae55b393add1d249362c26ec33d18fb94918e9eb7684c79c236e568#npm:5.5.1"],
+            ["@polkadot/metadata", "npm:3.6.4"],
+            ["@polkadot/rpc-core", "npm:3.6.4"],
+            ["@polkadot/rpc-provider", "npm:3.6.4"],
+            ["@polkadot/types", "npm:3.6.4"],
+            ["@polkadot/types-known", "npm:3.6.4"],
+            ["@polkadot/util", "npm:5.5.1"],
+            ["@polkadot/util-crypto", "virtual:500484cc192daa2295fd5508279ba491254bbbe736dace54233261ebf337bf31359f814f9559decced48f961aa142dbccdedcc023ea94681fb05c6e7b5262832#npm:5.5.1"],
+            ["@polkadot/x-rxjs", "npm:5.5.1"],
+            ["bn.js", "npm:4.11.9"],
+            ["eventemitter3", "npm:4.0.7"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/api-derive", [
+        ["npm:3.6.4", {
+          "packageLocation": "./.yarn/cache/@polkadot-api-derive-npm-3.6.4-159cee84ad-2.zip/node_modules/@polkadot/api-derive/",
+          "packageDependencies": [
+            ["@polkadot/api-derive", "npm:3.6.4"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/api", "npm:3.6.4"],
+            ["@polkadot/rpc-core", "npm:3.6.4"],
+            ["@polkadot/types", "npm:3.6.4"],
+            ["@polkadot/util", "npm:5.5.1"],
+            ["@polkadot/util-crypto", "virtual:500484cc192daa2295fd5508279ba491254bbbe736dace54233261ebf337bf31359f814f9559decced48f961aa142dbccdedcc023ea94681fb05c6e7b5262832#npm:5.5.1"],
+            ["@polkadot/x-rxjs", "npm:5.5.1"],
+            ["bn.js", "npm:4.11.9"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/keyring", [
+        ["virtual:3e91e804298e8032af9f22197f2fa616a6024534a7e874963b4bc8ae1c144456d635d3cceae55b393add1d249362c26ec33d18fb94918e9eb7684c79c236e568#npm:5.5.1", {
+          "packageLocation": "./.yarn/$$virtual/@polkadot-keyring-virtual-105f309415/0/cache/@polkadot-keyring-npm-5.5.1-7bee12dbff-2.zip/node_modules/@polkadot/keyring/",
+          "packageDependencies": [
+            ["@polkadot/keyring", "virtual:3e91e804298e8032af9f22197f2fa616a6024534a7e874963b4bc8ae1c144456d635d3cceae55b393add1d249362c26ec33d18fb94918e9eb7684c79c236e568#npm:5.5.1"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/util", "npm:5.5.1"],
+            ["@polkadot/util-crypto", "virtual:500484cc192daa2295fd5508279ba491254bbbe736dace54233261ebf337bf31359f814f9559decced48f961aa142dbccdedcc023ea94681fb05c6e7b5262832#npm:5.5.1"]
+          ],
+          "packagePeers": [
+            "@polkadot/util",
+            "@polkadot/util-crypto"
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:592b15c41d3986492440f390c88a7362d4a147f0b5cdd997ac3dd3c899a68b6d82223757091b96eb31e6dafbf9f2f7a2748be5b70e422df70b27d3c854451d88#npm:5.5.1", {
+          "packageLocation": "./.yarn/$$virtual/@polkadot-keyring-virtual-76fe8c73c4/0/cache/@polkadot-keyring-npm-5.5.1-7bee12dbff-2.zip/node_modules/@polkadot/keyring/",
+          "packageDependencies": [
+            ["@polkadot/keyring", "virtual:592b15c41d3986492440f390c88a7362d4a147f0b5cdd997ac3dd3c899a68b6d82223757091b96eb31e6dafbf9f2f7a2748be5b70e422df70b27d3c854451d88#npm:5.5.1"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/util", "npm:5.5.1"],
+            ["@polkadot/util-crypto", "virtual:500484cc192daa2295fd5508279ba491254bbbe736dace54233261ebf337bf31359f814f9559decced48f961aa142dbccdedcc023ea94681fb05c6e7b5262832#npm:5.5.1"]
+          ],
+          "packagePeers": [
+            "@polkadot/util",
+            "@polkadot/util-crypto"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/metadata", [
+        ["npm:3.6.4", {
+          "packageLocation": "./.yarn/cache/@polkadot-metadata-npm-3.6.4-144d629d54-2.zip/node_modules/@polkadot/metadata/",
+          "packageDependencies": [
+            ["@polkadot/metadata", "npm:3.6.4"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/types", "npm:3.6.4"],
+            ["@polkadot/types-known", "npm:3.6.4"],
+            ["@polkadot/util", "npm:5.5.1"],
+            ["@polkadot/util-crypto", "virtual:500484cc192daa2295fd5508279ba491254bbbe736dace54233261ebf337bf31359f814f9559decced48f961aa142dbccdedcc023ea94681fb05c6e7b5262832#npm:5.5.1"],
+            ["bn.js", "npm:4.11.9"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/networks", [
+        ["npm:5.5.1", {
+          "packageLocation": "./.yarn/cache/@polkadot-networks-npm-5.5.1-12184b932d-2.zip/node_modules/@polkadot/networks/",
+          "packageDependencies": [
+            ["@polkadot/networks", "npm:5.5.1"],
+            ["@babel/runtime", "npm:7.12.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/rpc-core", [
+        ["npm:3.6.4", {
+          "packageLocation": "./.yarn/cache/@polkadot-rpc-core-npm-3.6.4-617a87d9c2-2.zip/node_modules/@polkadot/rpc-core/",
+          "packageDependencies": [
+            ["@polkadot/rpc-core", "npm:3.6.4"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/metadata", "npm:3.6.4"],
+            ["@polkadot/rpc-provider", "npm:3.6.4"],
+            ["@polkadot/types", "npm:3.6.4"],
+            ["@polkadot/util", "npm:5.5.1"],
+            ["@polkadot/x-rxjs", "npm:5.5.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/rpc-provider", [
+        ["npm:3.6.4", {
+          "packageLocation": "./.yarn/cache/@polkadot-rpc-provider-npm-3.6.4-18280379ca-2.zip/node_modules/@polkadot/rpc-provider/",
+          "packageDependencies": [
+            ["@polkadot/rpc-provider", "npm:3.6.4"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/types", "npm:3.6.4"],
+            ["@polkadot/util", "npm:5.5.1"],
+            ["@polkadot/util-crypto", "virtual:500484cc192daa2295fd5508279ba491254bbbe736dace54233261ebf337bf31359f814f9559decced48f961aa142dbccdedcc023ea94681fb05c6e7b5262832#npm:5.5.1"],
+            ["@polkadot/x-fetch", "npm:5.5.1"],
+            ["@polkadot/x-global", "npm:5.5.1"],
+            ["@polkadot/x-ws", "npm:5.5.1"],
+            ["bn.js", "npm:4.11.9"],
+            ["eventemitter3", "npm:4.0.7"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/types", [
+        ["npm:3.6.4", {
+          "packageLocation": "./.yarn/cache/@polkadot-types-npm-3.6.4-500484cc19-2.zip/node_modules/@polkadot/types/",
+          "packageDependencies": [
+            ["@polkadot/types", "npm:3.6.4"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/metadata", "npm:3.6.4"],
+            ["@polkadot/util", "npm:5.5.1"],
+            ["@polkadot/util-crypto", "virtual:500484cc192daa2295fd5508279ba491254bbbe736dace54233261ebf337bf31359f814f9559decced48f961aa142dbccdedcc023ea94681fb05c6e7b5262832#npm:5.5.1"],
+            ["@polkadot/x-rxjs", "npm:5.5.1"],
+            ["@types/bn.js", "npm:4.11.6"],
+            ["bn.js", "npm:4.11.9"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/types-known", [
+        ["npm:3.6.4", {
+          "packageLocation": "./.yarn/cache/@polkadot-types-known-npm-3.6.4-459efa3a54-2.zip/node_modules/@polkadot/types-known/",
+          "packageDependencies": [
+            ["@polkadot/types-known", "npm:3.6.4"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/types", "npm:3.6.4"],
+            ["@polkadot/util", "npm:5.5.1"],
+            ["bn.js", "npm:4.11.9"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/util", [
+        ["npm:5.5.1", {
+          "packageLocation": "./.yarn/cache/@polkadot-util-npm-5.5.1-53ae259c27-2.zip/node_modules/@polkadot/util/",
+          "packageDependencies": [
+            ["@polkadot/util", "npm:5.5.1"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/x-global", "npm:5.5.1"],
+            ["@polkadot/x-textdecoder", "npm:5.5.1"],
+            ["@polkadot/x-textencoder", "npm:5.5.1"],
+            ["@types/bn.js", "npm:4.11.6"],
+            ["bn.js", "npm:4.11.9"],
+            ["camelcase", "npm:5.3.1"],
+            ["ip-regex", "npm:4.3.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/util-crypto", [
+        ["virtual:500484cc192daa2295fd5508279ba491254bbbe736dace54233261ebf337bf31359f814f9559decced48f961aa142dbccdedcc023ea94681fb05c6e7b5262832#npm:5.5.1", {
+          "packageLocation": "./.yarn/$$virtual/@polkadot-util-crypto-virtual-da097f206a/0/cache/@polkadot-util-crypto-npm-5.5.1-8e39255409-2.zip/node_modules/@polkadot/util-crypto/",
+          "packageDependencies": [
+            ["@polkadot/util-crypto", "virtual:500484cc192daa2295fd5508279ba491254bbbe736dace54233261ebf337bf31359f814f9559decced48f961aa142dbccdedcc023ea94681fb05c6e7b5262832#npm:5.5.1"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/networks", "npm:5.5.1"],
+            ["@polkadot/util", "npm:5.5.1"],
+            ["@polkadot/wasm-crypto", "virtual:da097f206a0212514dee9359bb018ae4921f8763fc527a380a4ea63f628368f43fb8f03460f3fe4ab5a4b883ab7eb8dc27c2d4d07451dde088e6f123f5053ec0#npm:3.2.2"],
+            ["@polkadot/x-randomvalues", "npm:5.5.1"],
+            ["base-x", "npm:3.0.8"],
+            ["blakejs", "npm:1.1.0"],
+            ["bn.js", "npm:4.11.9"],
+            ["create-hash", "npm:1.2.0"],
+            ["elliptic", "npm:6.5.3"],
+            ["hash.js", "npm:1.1.7"],
+            ["js-sha3", "npm:0.8.0"],
+            ["scryptsy", "npm:2.1.0"],
+            ["tweetnacl", "npm:1.0.3"],
+            ["xxhashjs", "npm:0.2.2"]
+          ],
+          "packagePeers": [
+            "@polkadot/util"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/wasm-crypto", [
+        ["virtual:da097f206a0212514dee9359bb018ae4921f8763fc527a380a4ea63f628368f43fb8f03460f3fe4ab5a4b883ab7eb8dc27c2d4d07451dde088e6f123f5053ec0#npm:3.2.2", {
+          "packageLocation": "./.yarn/$$virtual/@polkadot-wasm-crypto-virtual-cd05c57c9f/0/cache/@polkadot-wasm-crypto-npm-3.2.2-371f285e74-2.zip/node_modules/@polkadot/wasm-crypto/",
+          "packageDependencies": [
+            ["@polkadot/wasm-crypto", "virtual:da097f206a0212514dee9359bb018ae4921f8763fc527a380a4ea63f628368f43fb8f03460f3fe4ab5a4b883ab7eb8dc27c2d4d07451dde088e6f123f5053ec0#npm:3.2.2"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/util", "npm:5.5.1"],
+            ["@polkadot/wasm-crypto-asmjs", "npm:3.2.2"],
+            ["@polkadot/wasm-crypto-wasm", "npm:3.2.2"],
+            ["@polkadot/x-randomvalues", "npm:5.5.1"]
+          ],
+          "packagePeers": [
+            "@polkadot/util",
+            "@polkadot/x-randomvalues"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/wasm-crypto-asmjs", [
+        ["npm:3.2.2", {
+          "packageLocation": "./.yarn/cache/@polkadot-wasm-crypto-asmjs-npm-3.2.2-9cf9e47d1f-2.zip/node_modules/@polkadot/wasm-crypto-asmjs/",
+          "packageDependencies": [
+            ["@polkadot/wasm-crypto-asmjs", "npm:3.2.2"],
+            ["@babel/runtime", "npm:7.12.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/wasm-crypto-wasm", [
+        ["npm:3.2.2", {
+          "packageLocation": "./.yarn/cache/@polkadot-wasm-crypto-wasm-npm-3.2.2-65245ddecd-2.zip/node_modules/@polkadot/wasm-crypto-wasm/",
+          "packageDependencies": [
+            ["@polkadot/wasm-crypto-wasm", "npm:3.2.2"],
+            ["@babel/runtime", "npm:7.12.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/x-fetch", [
+        ["npm:5.5.1", {
+          "packageLocation": "./.yarn/cache/@polkadot-x-fetch-npm-5.5.1-6e5b651271-2.zip/node_modules/@polkadot/x-fetch/",
+          "packageDependencies": [
+            ["@polkadot/x-fetch", "npm:5.5.1"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/x-global", "npm:5.5.1"],
+            ["@types/node-fetch", "npm:2.5.8"],
+            ["node-fetch", "npm:2.6.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/x-global", [
+        ["npm:5.5.1", {
+          "packageLocation": "./.yarn/cache/@polkadot-x-global-npm-5.5.1-d53f8d4092-2.zip/node_modules/@polkadot/x-global/",
+          "packageDependencies": [
+            ["@polkadot/x-global", "npm:5.5.1"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@types/node-fetch", "npm:2.5.8"],
+            ["node-fetch", "npm:2.6.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/x-randomvalues", [
+        ["npm:5.5.1", {
+          "packageLocation": "./.yarn/cache/@polkadot-x-randomvalues-npm-5.5.1-a4e746f7bf-2.zip/node_modules/@polkadot/x-randomvalues/",
+          "packageDependencies": [
+            ["@polkadot/x-randomvalues", "npm:5.5.1"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/x-global", "npm:5.5.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/x-rxjs", [
+        ["npm:5.5.1", {
+          "packageLocation": "./.yarn/cache/@polkadot-x-rxjs-npm-5.5.1-7bd44661c1-2.zip/node_modules/@polkadot/x-rxjs/",
+          "packageDependencies": [
+            ["@polkadot/x-rxjs", "npm:5.5.1"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["rxjs", "npm:6.6.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/x-textdecoder", [
+        ["npm:5.5.1", {
+          "packageLocation": "./.yarn/cache/@polkadot-x-textdecoder-npm-5.5.1-7e559f29e0-2.zip/node_modules/@polkadot/x-textdecoder/",
+          "packageDependencies": [
+            ["@polkadot/x-textdecoder", "npm:5.5.1"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/x-global", "npm:5.5.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/x-textencoder", [
+        ["npm:5.5.1", {
+          "packageLocation": "./.yarn/cache/@polkadot-x-textencoder-npm-5.5.1-e4615e06a6-2.zip/node_modules/@polkadot/x-textencoder/",
+          "packageDependencies": [
+            ["@polkadot/x-textencoder", "npm:5.5.1"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/x-global", "npm:5.5.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@polkadot/x-ws", [
+        ["npm:5.5.1", {
+          "packageLocation": "./.yarn/cache/@polkadot-x-ws-npm-5.5.1-39300c20db-2.zip/node_modules/@polkadot/x-ws/",
+          "packageDependencies": [
+            ["@polkadot/x-ws", "npm:5.5.1"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@polkadot/x-global", "npm:5.5.1"],
+            ["@types/websocket", "npm:1.0.1"],
+            ["websocket", "npm:1.0.33"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@shiftkey/node-abi", [
         ["npm:2.19.2-pre", {
           "packageLocation": "./.yarn/cache/@shiftkey-node-abi-npm-2.19.2-pre-35e596c6c3-2.zip/node_modules/@shiftkey/node-abi/",
@@ -4731,6 +5110,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["form-data", "npm:3.0.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:2.5.8", {
+          "packageLocation": "./.yarn/cache/@types-node-fetch-npm-2.5.8-d946aa06c6-2.zip/node_modules/@types/node-fetch/",
+          "packageDependencies": [
+            ["@types/node-fetch", "npm:2.5.8"],
+            ["@types/node", "npm:13.13.4"],
+            ["form-data", "npm:3.0.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@types/node-forge", [
@@ -4919,6 +5307,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-uuid-npm-8.3.0-60b441a3d7-2.zip/node_modules/@types/uuid/",
           "packageDependencies": [
             ["@types/uuid", "npm:8.3.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/websocket", [
+        ["npm:1.0.1", {
+          "packageLocation": "./.yarn/cache/@types-websocket-npm-1.0.1-3e28e1647f-2.zip/node_modules/@types/websocket/",
+          "packageDependencies": [
+            ["@types/websocket", "npm:1.0.1"],
+            ["@types/node", "npm:13.13.4"]
           ],
           "linkType": "HARD",
         }]
@@ -5247,6 +5645,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-b46f640ed4/0/cache/@typescript-eslint-eslint-plugin-npm-4.7.0-19037dfb47-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
           "packageDependencies": [
             ["@typescript-eslint/eslint-plugin", "virtual:58dc3fa0fd03d8a53e7311f303a84021b8334e7f5f1b6fe3274957c89a6a73f563ceb5631e7345beb6dc35e79a56de8a3f39f9afe9a9422d0873bd2b90c8367a#npm:4.7.0"],
+            ["@typescript-eslint/experimental-utils", "virtual:f0adb372351ee870f0bd9705221d1af55cbfed51326fcb5df9a8d7b0b6c95ce0475cb1c0f77ed4eb18fcbecaecdc91325aeaf120f52f8eb8c869d212b5c1ce9b#npm:4.7.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["@typescript-eslint/scope-manager", "npm:4.7.0"],
+            ["debug", "virtual:88318143fb6d80d1f55c54ae799fe6cfcf29c86ca9b9dae7a485ec5bdb22c3a20f79119854bb9696c57b5a03879e8671e3e9d39fcd8ca2cec3e6655f73233a79#npm:4.1.1"],
+            ["eslint", "npm:7.13.0"],
+            ["functional-red-black-tree", "npm:1.0.1"],
+            ["regexpp", "npm:3.1.0"],
+            ["semver", "npm:7.3.2"],
+            ["tsutils", "virtual:f0adb372351ee870f0bd9705221d1af55cbfed51326fcb5df9a8d7b0b6c95ce0475cb1c0f77ed4eb18fcbecaecdc91325aeaf120f52f8eb8c869d212b5c1ce9b#npm:3.17.1"],
+            ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"]
+          ],
+          "packagePeers": [
+            "eslint",
+            "@typescript-eslint/parser",
+            "typescript"
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:592b15c41d3986492440f390c88a7362d4a147f0b5cdd997ac3dd3c899a68b6d82223757091b96eb31e6dafbf9f2f7a2748be5b70e422df70b27d3c854451d88#npm:4.7.0", {
+          "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-ebeaffd342/0/cache/@typescript-eslint-eslint-plugin-npm-4.7.0-19037dfb47-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
+          "packageDependencies": [
+            ["@typescript-eslint/eslint-plugin", "virtual:592b15c41d3986492440f390c88a7362d4a147f0b5cdd997ac3dd3c899a68b6d82223757091b96eb31e6dafbf9f2f7a2748be5b70e422df70b27d3c854451d88#npm:4.7.0"],
             ["@typescript-eslint/experimental-utils", "virtual:f0adb372351ee870f0bd9705221d1af55cbfed51326fcb5df9a8d7b0b6c95ce0475cb1c0f77ed4eb18fcbecaecdc91325aeaf120f52f8eb8c869d212b5c1ce9b#npm:4.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
             ["@typescript-eslint/scope-manager", "npm:4.7.0"],
@@ -8304,6 +8724,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["cuint", [
+        ["npm:0.2.2", {
+          "packageLocation": "./.yarn/cache/cuint-npm-0.2.2-3990651cc6-2.zip/node_modules/cuint/",
+          "packageDependencies": [
+            ["cuint", "npm:0.2.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["cursor", [
         ["npm:0.1.5", {
           "packageLocation": "./.yarn/cache/cursor-npm-0.1.5-357999b805-2.zip/node_modules/cursor/",
@@ -11272,6 +11701,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/ip-regex-npm-4.1.0-2135f98d43-2.zip/node_modules/ip-regex/",
           "packageDependencies": [
             ["ip-regex", "npm:4.1.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:4.3.0", {
+          "packageLocation": "./.yarn/cache/ip-regex-npm-4.3.0-4ac12c6be9-2.zip/node_modules/ip-regex/",
+          "packageDependencies": [
+            ["ip-regex", "npm:4.3.0"]
           ],
           "linkType": "HARD",
         }]
@@ -18628,6 +19064,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["yaeti", "npm:0.0.6"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:1.0.33", {
+          "packageLocation": "./.yarn/cache/websocket-npm-1.0.33-4e114f0014-2.zip/node_modules/websocket/",
+          "packageDependencies": [
+            ["websocket", "npm:1.0.33"],
+            ["bufferutil", "npm:4.0.1"],
+            ["debug", "virtual:2bcc47d217f870e3d52f0e55493dc34fd3da852877f7db32fa2940cc320151746026495daf6a34a974488cf5a949d93be1e2dc1ffba036faf081a9b15fcd2252#npm:2.6.9"],
+            ["es5-ext", "npm:0.10.53"],
+            ["typedarray-to-buffer", "npm:3.1.5"],
+            ["utf-8-validate", "npm:5.0.2"],
+            ["yaeti", "npm:0.0.6"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["whatwg-encoding", [
@@ -18955,6 +19404,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/xtend-npm-4.0.2-7f2375736e-2.zip/node_modules/xtend/",
           "packageDependencies": [
             ["xtend", "npm:4.0.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["xxhashjs", [
+        ["npm:0.2.2", {
+          "packageLocation": "./.yarn/cache/xxhashjs-npm-0.2.2-70e0154c76-2.zip/node_modules/xxhashjs/",
+          "packageDependencies": [
+            ["xxhashjs", "npm:0.2.2"],
+            ["cuint", "npm:0.2.2"]
           ],
           "linkType": "HARD",
         }]
