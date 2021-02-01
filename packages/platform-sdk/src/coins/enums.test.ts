@@ -41,6 +41,7 @@ test("FeatureFlag", () => {
 		  "LinkWallet": "Link.wallet",
 		  "MessageSign": "Message.sign",
 		  "MessageVerify": "Message.verify",
+		  "MiscellaneousMemo": "Miscellaneous.memo",
 		  "PeerSearch": "Peer.search",
 		  "TransactionDelegateRegistration": "Transaction.delegateRegistration",
 		  "TransactionDelegateResignation": "Transaction.delegateResignation",

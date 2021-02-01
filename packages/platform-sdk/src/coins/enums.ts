@@ -47,8 +47,5 @@ export enum FeatureFlag {
 	TransactionHtlcLock = "Transaction.htlcLock",
 	TransactionHtlcClaim = "Transaction.htlcClaim",
 	TransactionHtlcRefund = "Transaction.htlcRefund",
-	TransactionEntityRegistration = "Transaction.entityRegistration",
-	TransactionEntityResignation = "Transaction.entityResignation",
-	TransactionEntityUpdate = "Transaction.entityUpdate",
 	MiscellaneousMemo = "Miscellaneous.memo",
 }

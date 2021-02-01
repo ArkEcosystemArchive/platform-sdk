@@ -84,6 +84,9 @@ test("#all", () => {
 		        "sign": true,
 		        "verify": true,
 		      },
+		      "Miscellaneous": Object {
+		        "memo": true,
+		      },
 		      "Peer": Object {
 		        "search": true,
 		      },
@@ -195,15 +198,18 @@ test("#all", () => {
 		        "sign": true,
 		        "verify": true,
 		      },
+		      "Miscellaneous": Object {
+		        "memo": true,
+		      },
 		      "Peer": Object {
 		        "search": true,
 		      },
 		      "Transaction": Object {
 		        "delegateRegistration": true,
 		        "delegateResignation": true,
-		        "htlcClaim": true,
-		        "htlcLock": true,
-		        "htlcRefund": true,
+		        "htlcClaim": false,
+		        "htlcLock": false,
+		        "htlcRefund": false,
 		        "ipfs": true,
 		        "multiPayment": true,
 		        "multiSignature": true,
@@ -305,6 +311,9 @@ test("#all", () => {
 		      "Message": Object {
 		        "sign": true,
 		        "verify": true,
+		      },
+		      "Miscellaneous": Object {
+		        "memo": true,
 		      },
 		      "Peer": Object {
 		        "search": true,
