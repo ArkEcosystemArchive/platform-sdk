@@ -102,9 +102,9 @@ test("#importByAddressWithLedgerPath", async () => {
 
 	expect(subject.keys()).toHaveLength(1);
 
-	await expect(subject.importByAddressWithLedgerPath(identity.address, "ARK", "ark.devnet", "0")).rejects.toThrowError(
-		"already exists",
-	);
+	await expect(
+		subject.importByAddressWithLedgerPath(identity.address, "ARK", "ark.devnet", "0"),
+	).rejects.toThrowError("already exists");
 
 	expect(subject.keys()).toHaveLength(1);
 });
