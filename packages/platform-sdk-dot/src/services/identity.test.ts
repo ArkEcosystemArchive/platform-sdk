@@ -18,7 +18,6 @@ describe("IdentityService", () => {
 			expect(result).toBe(identity.address);
 		});
 
-
 		it("should generate an output from a multiSignature", async () => {
 			const result: any = await subject
 				.address()
