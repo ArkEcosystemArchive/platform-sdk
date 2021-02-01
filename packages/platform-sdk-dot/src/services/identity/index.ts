@@ -1,5 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { waitReady } from '@polkadot/wasm-crypto';
+import { waitReady } from "@polkadot/wasm-crypto";
 
 import { Address } from "./address";
 import { Keys } from "./keys";

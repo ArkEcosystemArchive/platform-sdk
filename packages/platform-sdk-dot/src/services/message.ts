@@ -1,13 +1,13 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Keyring } from '@polkadot/keyring';
-import { stringToU8a, u8aToHex } from '@polkadot/util';
-import { waitReady } from '@polkadot/wasm-crypto';
+import { Keyring } from "@polkadot/keyring";
+import { stringToU8a, u8aToHex } from "@polkadot/util";
+import { waitReady } from "@polkadot/wasm-crypto";
 
 export class MessageService implements Contracts.MessageService {
 	readonly #keyring: Keyring;
 
 	public constructor() {
-		this.#keyring = new Keyring({ type: 'sr25519' });
+		this.#keyring = new Keyring({ type: "sr25519" });
 	}
 
 	public static async construct(config: Coins.Config): Promise<MessageService> {

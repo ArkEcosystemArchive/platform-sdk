@@ -1,6 +1,6 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { u8aToHex } from '@polkadot/util';
-import { mnemonicToMiniSecret, naclKeypairFromSeed } from '@polkadot/util-crypto';
+import { u8aToHex } from "@polkadot/util";
+import { mnemonicToMiniSecret, naclKeypairFromSeed } from "@polkadot/util-crypto";
 
 export class PrivateKey implements Contracts.PrivateKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
