@@ -16,7 +16,7 @@
 		}
 	},
 	"networking": {
-		"hosts": ["http://localhost:8090/"],
+		"hosts": ["http://localhost:8090"],
 		"hostsMultiSignature": []
 	},
 	"governance": {
