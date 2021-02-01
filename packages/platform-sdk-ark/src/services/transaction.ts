@@ -9,8 +9,6 @@ import { SignedTransactionData } from "../dto/signed-transaction";
 import { applyCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
 
-const ucfirst = (value: string): string => value?.charAt(0).toUpperCase() + value?.slice(1);
-
 export class TransactionService implements Contracts.TransactionService {
 	readonly #http: Contracts.HttpClient;
 	readonly #identity: IdentityService;
