@@ -49,44 +49,52 @@ describe("PluginRegistry", () => {
 
 		const result = await subject.all();
 
-		// 22 because not all plugins link to a public repository.
 		expect(result).toHaveLength(22);
-
-		// Ensure that all properties are loaded correctly based on NPM and package.json data
-		const pkg = result[0];
-		expect(pkg.id()).toBe("@dated/transaction-export-plugin");
-		expect(pkg.name()).toBe("@dated/transaction-export-plugin");
-		expect(pkg.alias()).toBe("Transaction Export");
-		expect(pkg.date()).toBe("2020-11-26T21:18:44.681Z");
-		expect(pkg.version()).toBe("1.0.3");
-		expect(pkg.description()).toBe("Export your wallet transaction history");
-		expect(pkg.author()).toEqual({ email: "hello@dated.fun", name: "Edgar Goetzendorff", username: "dated" });
-		expect(pkg.sourceProvider()).toEqual({
-			name: "github",
-			url: "https://github.com/dated/transaction-export-plugin",
-		});
-		expect(pkg.logo()).toBe("https://raw.githubusercontent.com/dated/transaction-export-plugin/master/logo.png");
-		expect(pkg.images()).toEqual([
-			"https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-1.png",
-			"https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-2.png",
-			"https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-3.png",
-		]);
-		expect(pkg.categories()).toEqual(["utility"]);
-		expect(pkg.permissions()).toEqual([
-			"COMPONENTS",
-			"ROUTES",
-			"MENU_ITEMS",
-			"UI_COMPONENTS",
-			"PROFILE_CURRENT",
-			"PEER_ALL",
-			"HTTP",
-			"UTILS",
-			"STORAGE",
-			"ALERTS",
-			"DIALOGS",
-		]);
-		expect(pkg.urls()).toEqual(["^"]);
-		expect(pkg.minimumVersion()).toBe("2.9.1");
+		expect(result[0].toObject()).toMatchInlineSnapshot(`
+		Object {
+		  "alias": "Transaction Export",
+		  "author": Object {
+		    "email": "hello@dated.fun",
+		    "name": "Edgar Goetzendorff",
+		    "username": "dated",
+		  },
+		  "categories": Array [
+		    "utility",
+		  ],
+		  "date": "2020-11-26T21:18:44.681Z",
+		  "description": "Export your wallet transaction history",
+		  "id": "@dated/transaction-export-plugin",
+		  "images": Array [
+		    "https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-1.png",
+		    "https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-2.png",
+		    "https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-3.png",
+		  ],
+		  "logo": "https://raw.githubusercontent.com/dated/transaction-export-plugin/master/logo.png",
+		  "minimumVersion": "2.9.1",
+		  "name": "@dated/transaction-export-plugin",
+		  "permissions": Array [
+		    "COMPONENTS",
+		    "ROUTES",
+		    "MENU_ITEMS",
+		    "UI_COMPONENTS",
+		    "PROFILE_CURRENT",
+		    "PEER_ALL",
+		    "HTTP",
+		    "UTILS",
+		    "STORAGE",
+		    "ALERTS",
+		    "DIALOGS",
+		  ],
+		  "sourceProvider": Object {
+		    "name": "github",
+		    "url": "https://github.com/dated/transaction-export-plugin",
+		  },
+		  "urls": Array [
+		    "^",
+		  ],
+		  "version": "1.0.3",
+		}
+	`);
 	});
 
 	it("should get the size of the given plugin", async () => {
