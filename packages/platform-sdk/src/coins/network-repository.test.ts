@@ -90,9 +90,6 @@ test("#all", () => {
 		      "Transaction": Object {
 		        "delegateRegistration": true,
 		        "delegateResignation": true,
-		        "entityRegistration": true,
-		        "entityResignation": true,
-		        "entityUpdate": true,
 		        "htlcClaim": true,
 		        "htlcLock": true,
 		        "htlcRefund": true,
@@ -204,9 +201,6 @@ test("#all", () => {
 		      "Transaction": Object {
 		        "delegateRegistration": true,
 		        "delegateResignation": true,
-		        "entityRegistration": true,
-		        "entityResignation": true,
-		        "entityUpdate": true,
 		        "htlcClaim": true,
 		        "htlcLock": true,
 		        "htlcRefund": true,
@@ -318,9 +312,6 @@ test("#all", () => {
 		      "Transaction": Object {
 		        "delegateRegistration": true,
 		        "delegateResignation": true,
-		        "entityRegistration": false,
-		        "entityResignation": false,
-		        "entityUpdate": false,
 		        "htlcClaim": false,
 		        "htlcLock": false,
 		        "htlcRefund": false,
