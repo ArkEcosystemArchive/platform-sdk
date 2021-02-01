@@ -27,7 +27,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public async destruct(): Promise<void> {
-		//
+		await this.#client.disconnect();
 	}
 
 	public async transfer(
