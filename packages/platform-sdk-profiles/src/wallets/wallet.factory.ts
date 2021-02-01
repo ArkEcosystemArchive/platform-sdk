@@ -4,7 +4,7 @@ import { decode } from "wif";
 
 import { Profile } from "../profiles/profile";
 import { Wallet } from "./wallet";
-import { ReadWriteWallet, WalletData, WalletFlag } from "./wallet.models";
+import { ReadWriteWallet, WalletData } from "./wallet.models";
 
 export class WalletFactory {
 	public static async fromMnemonic(
