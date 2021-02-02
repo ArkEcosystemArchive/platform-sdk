@@ -832,6 +832,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@polkadot/api", "npm:3.6.4"],
             ["@polkadot/keyring", "virtual:592b15c41d3986492440f390c88a7362d4a147f0b5cdd997ac3dd3c899a68b6d82223757091b96eb31e6dafbf9f2f7a2748be5b70e422df70b27d3c854451d88#npm:5.5.1"],
             ["@polkadot/util", "npm:5.5.1"],
@@ -849,6 +850,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:592b15c41d3986492440f390c88a7362d4a147f0b5cdd997ac3dd3c899a68b6d82223757091b96eb31e6dafbf9f2f7a2748be5b70e422df70b27d3c854451d88#npm:4.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["@zondax/ledger-polkadot", "npm:0.13.0"],
             ["cross-env", "npm:7.0.2"],
             ["eslint", "npm:7.13.0"],
             ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.15.0"],
@@ -3672,6 +3674,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rxjs", "npm:6.6.3"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:5.41.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-devices-npm-5.41.0-acbd3ab7af-2.zip/node_modules/@ledgerhq/devices/",
+          "packageDependencies": [
+            ["@ledgerhq/devices", "npm:5.41.0"],
+            ["@ledgerhq/errors", "npm:5.41.0"],
+            ["@ledgerhq/logs", "npm:5.41.0"],
+            ["rxjs", "npm:6.6.3"],
+            ["semver", "npm:7.3.4"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@ledgerhq/errors", [
@@ -3693,6 +3706,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@ledgerhq-errors-npm-5.29.0-b280a188aa-2.zip/node_modules/@ledgerhq/errors/",
           "packageDependencies": [
             ["@ledgerhq/errors", "npm:5.29.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.41.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-errors-npm-5.41.0-ce29ba5c88-2.zip/node_modules/@ledgerhq/errors/",
+          "packageDependencies": [
+            ["@ledgerhq/errors", "npm:5.41.0"]
           ],
           "linkType": "HARD",
         }]
@@ -3792,6 +3812,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["events", "npm:3.2.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:5.41.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-npm-5.41.0-7b7b2d4cd4-2.zip/node_modules/@ledgerhq/hw-transport/",
+          "packageDependencies": [
+            ["@ledgerhq/hw-transport", "npm:5.41.0"],
+            ["@ledgerhq/devices", "npm:5.41.0"],
+            ["@ledgerhq/errors", "npm:5.41.0"],
+            ["events", "npm:3.2.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@ledgerhq/hw-transport-mocker", [
@@ -3824,6 +3854,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@ledgerhq-logs-npm-5.29.0-ff1b009675-2.zip/node_modules/@ledgerhq/logs/",
           "packageDependencies": [
             ["@ledgerhq/logs", "npm:5.29.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.41.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-logs-npm-5.41.0-284498e52b-2.zip/node_modules/@ledgerhq/logs/",
+          "packageDependencies": [
+            ["@ledgerhq/logs", "npm:5.41.0"]
           ],
           "linkType": "HARD",
         }]
@@ -6391,6 +6428,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["micromatch", "npm:4.0.2"],
             ["stream-buffers", "npm:3.0.2"],
             ["tslib", "npm:1.13.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@zondax/ledger-polkadot", [
+        ["npm:0.13.0", {
+          "packageLocation": "./.yarn/cache/@zondax-ledger-polkadot-npm-0.13.0-7d91b4a81d-2.zip/node_modules/@zondax/ledger-polkadot/",
+          "packageDependencies": [
+            ["@zondax/ledger-polkadot", "npm:0.13.0"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@ledgerhq/hw-transport", "npm:5.41.0"]
           ],
           "linkType": "HARD",
         }]
@@ -16753,6 +16801,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/semver-npm-7.3.2-161b023bbb-2.zip/node_modules/semver/",
           "packageDependencies": [
             ["semver", "npm:7.3.2"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:7.3.4", {
+          "packageLocation": "./.yarn/cache/semver-npm-7.3.4-4c3baf0ead-2.zip/node_modules/semver/",
+          "packageDependencies": [
+            ["semver", "npm:7.3.4"],
+            ["lru-cache", "npm:6.0.0"]
           ],
           "linkType": "HARD",
         }]
