@@ -53,10 +53,12 @@ describe("getPublicKey", () => {
 });
 
 describe("signTransaction", () => {
-	it("should fail to generate an output from a transaction", async () => {
-		const polkadot = await createMockService("");
+	it("should generate output from a transaction", async () => {
+		const polkadot = await createMockService(ledger.transaction.record);
 
-		await expect(polkadot.signTransaction("", Buffer.alloc(0))).rejects.toThrow();
+		await expect(
+			polkadot.signTransaction(ledger.bip44.path, Buffer.from(ledger.transaction.payload, "hex")),
+		).resolves.toEqual(ledger.transaction.result);
 	});
 });
 
