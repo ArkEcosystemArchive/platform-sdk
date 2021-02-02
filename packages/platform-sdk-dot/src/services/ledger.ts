@@ -1,6 +1,11 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
+import { newPolkadotApp } from '@zondax/ledger-polkadot';
+
 export class LedgerService implements Contracts.LedgerService {
+	#ledger: Contracts.LedgerTransport;
+	#transport;
+	
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
 		return new LedgerService();
 	}
@@ -10,15 +15,17 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "connect");
+		this.#ledger = await transport.create();
+		this.#transport = await newPolkadotApp(this.#ledger);
 	}
 
 	public async disconnect(): Promise<void> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "disconnect");
+		await this.#ledger.close();
 	}
 
 	public async getVersion(): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getVersion");
+
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
