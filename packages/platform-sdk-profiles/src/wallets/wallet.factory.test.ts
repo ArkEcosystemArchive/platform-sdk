@@ -55,13 +55,13 @@ test("#fromAddress", async () => {
 	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 });
 
-test("#fromAddressWithLedgerIndex", async () => {
-	const wallet = await WalletFactory.fromAddressWithLedgerIndex(
+test("#fromAddressWithLedgerPath", async () => {
+	const wallet = await WalletFactory.fromAddressWithLedgerPath(
 		new Profile({ id: "id", name: "name", avatar: "avatar", data: "" }),
 		"ARK",
 		"ark.devnet",
 		"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		1,
+		"1",
 	);
 
 	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");

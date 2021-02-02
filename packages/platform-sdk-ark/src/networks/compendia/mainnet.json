@@ -100,10 +100,10 @@
 			"delegateResignation": true,
 			"htlcLock": false,
 			"htlcClaim": false,
-			"htlcRefund": false,
-			"entityRegistration": false,
-			"entityResignation": false,
-			"entityUpdate": false
+			"htlcRefund": false
+		},
+		"Miscellaneous": {
+			"memo": true
 		}
 	},
 	"knownWallets": null

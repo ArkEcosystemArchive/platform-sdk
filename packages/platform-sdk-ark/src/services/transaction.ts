@@ -78,15 +78,15 @@ export class TransactionService implements Contracts.TransactionService {
 		return this.createFromData("vote", input, options, ({ transaction, data }) => {
 			const votes: string[] = [];
 
-			if (Array.isArray(data.votes)) {
-				for (const vote of data.votes) {
-					votes.push(`+${vote}`);
-				}
-			}
-
 			if (Array.isArray(data.unvotes)) {
 				for (const unvote of data.unvotes) {
 					votes.push(`-${unvote}`);
+				}
+			}
+
+			if (Array.isArray(data.votes)) {
+				for (const vote of data.votes) {
+					votes.push(`+${vote}`);
 				}
 			}
 

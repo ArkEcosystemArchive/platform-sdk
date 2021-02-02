@@ -103,9 +103,9 @@ export interface CoinNetwork {
 			htlcLock: boolean;
 			htlcClaim: boolean;
 			htlcRefund: boolean;
-			entityRegistration: boolean;
-			entityResignation: boolean;
-			entityUpdate: boolean;
+		};
+		Miscellaneous: {
+			memo: boolean;
 		};
 	};
 }

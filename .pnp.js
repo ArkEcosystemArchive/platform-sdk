@@ -329,7 +329,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/utils", "npm:1.1.8"],
             ["@types/bytebuffer", "npm:5.0.40"],
             ["ajv", "npm:6.12.2"],
-            ["ajv-keywords", "virtual:6b459398d766659c9eef73192cda450cc5f632dca4f80776ef021d6a0998beb71ebafc0ee36f87c12c30bd87bd62ff0c45949c676dc82f9fc3a677d1ae7d2708#npm:3.4.1"],
+            ["ajv-keywords", "virtual:94178486b0e3556877eef2eecfdc7b189adbf7da604f01029b599a73ecce0d36cfd0262c256069cc81c5c2eb88fc195f2e9b5f571f01c2bd48a8c01b558a95f2#npm:3.4.1"],
             ["bcrypto", "npm:5.2.0"],
             ["bip32", "npm:2.0.5"],
             ["bip39", "npm:3.0.2"],
@@ -349,29 +349,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:2.7.1", {
-          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-2.7.1-6b459398d7-2.zip/node_modules/@arkecosystem/crypto/",
+        ["npm:3.0.0-next.20", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-npm-3.0.0-next.20-94178486b0-2.zip/node_modules/@arkecosystem/crypto/",
           "packageDependencies": [
-            ["@arkecosystem/crypto", "npm:2.7.1"],
-            ["@arkecosystem/utils", "npm:1.2.0"],
-            ["@types/bytebuffer", "npm:5.0.40"],
+            ["@arkecosystem/crypto", "npm:3.0.0-next.20"],
+            ["@arkecosystem/crypto-identities", "npm:1.1.1"],
+            ["@arkecosystem/crypto-networks", "npm:1.0.0"],
+            ["@arkecosystem/utils", "npm:1.2.1"],
             ["ajv", "npm:6.12.2"],
-            ["ajv-keywords", "virtual:6b459398d766659c9eef73192cda450cc5f632dca4f80776ef021d6a0998beb71ebafc0ee36f87c12c30bd87bd62ff0c45949c676dc82f9fc3a677d1ae7d2708#npm:3.4.1"],
-            ["bcrypto", "npm:5.2.0"],
+            ["ajv-keywords", "virtual:94178486b0e3556877eef2eecfdc7b189adbf7da604f01029b599a73ecce0d36cfd0262c256069cc81c5c2eb88fc195f2e9b5f571f01c2bd48a8c01b558a95f2#npm:3.4.1"],
+            ["bcrypto", "npm:5.3.0"],
             ["bip32", "npm:2.0.5"],
             ["bip39", "npm:3.0.2"],
             ["browserify-aes", "npm:1.2.0"],
             ["bstring", "npm:0.3.9"],
             ["buffer-xor", "npm:2.0.2"],
+            ["builtin-modules", "npm:3.2.0"],
             ["bytebuffer", "npm:5.0.1"],
-            ["dayjs", "npm:1.8.25"],
+            ["dayjs", "npm:1.9.6"],
             ["deepmerge", "npm:4.2.2"],
             ["fast-memoize", "npm:2.5.2"],
-            ["ipaddr.js", "npm:1.9.1"],
+            ["ipaddr.js", "npm:2.0.0"],
             ["lodash.get", "npm:4.4.2"],
             ["lodash.set", "npm:4.3.2"],
-            ["lodash.sumby", "npm:4.6.0"],
-            ["tiny-glob", "npm:0.2.6"],
             ["wif", "npm:2.0.6"]
           ],
           "linkType": "HARD",
@@ -386,6 +386,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["bstring", "npm:0.3.9"],
             ["fast-memoize", "npm:2.5.2"],
             ["wif", "npm:2.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@arkecosystem/crypto-networks", [
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-crypto-networks-npm-1.0.0-7f28222907-2.zip/node_modules/@arkecosystem/crypto-networks/",
+          "packageDependencies": [
+            ["@arkecosystem/crypto-networks", "npm:1.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -506,7 +515,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/platform-sdk-ark/",
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-ark", "workspace:packages/platform-sdk-ark"],
-            ["@arkecosystem/crypto", "npm:2.7.1"],
+            ["@arkecosystem/crypto", "npm:3.0.0-next.20"],
             ["@arkecosystem/crypto-identities", "npm:1.1.1"],
             ["@arkecosystem/ledger-transport", "npm:1.1.3"],
             ["@arkecosystem/multi-signature", "npm:0.1.5"],
@@ -823,6 +832,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@polkadot/api", "npm:3.6.4"],
             ["@polkadot/keyring", "virtual:592b15c41d3986492440f390c88a7362d4a147f0b5cdd997ac3dd3c899a68b6d82223757091b96eb31e6dafbf9f2f7a2748be5b70e422df70b27d3c854451d88#npm:5.5.1"],
             ["@polkadot/util", "npm:5.5.1"],
@@ -840,6 +850,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:592b15c41d3986492440f390c88a7362d4a147f0b5cdd997ac3dd3c899a68b6d82223757091b96eb31e6dafbf9f2f7a2748be5b70e422df70b27d3c854451d88#npm:4.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["@zondax/ledger-polkadot", "npm:0.13.0"],
             ["cross-env", "npm:7.0.2"],
             ["eslint", "npm:7.13.0"],
             ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.15.0"],
@@ -1649,6 +1660,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["fast-deep-equal", "npm:3.1.3"],
             ["fast-sort", "npm:2.2.0"],
             ["type-fest", "npm:0.16.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:1.2.1", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-utils-npm-1.2.1-cd80c58e4e-2.zip/node_modules/@arkecosystem/utils/",
+          "packageDependencies": [
+            ["@arkecosystem/utils", "npm:1.2.1"],
+            ["@hapi/bourne", "npm:2.0.0"],
+            ["deepmerge", "npm:4.2.2"],
+            ["fast-copy", "npm:2.1.0"],
+            ["fast-deep-equal", "npm:3.1.3"],
+            ["fast-sort", "npm:2.2.0"],
+            ["type-fest", "npm:0.17.0"]
           ],
           "linkType": "HARD",
         }]
@@ -3650,6 +3674,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rxjs", "npm:6.6.3"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:5.41.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-devices-npm-5.41.0-acbd3ab7af-2.zip/node_modules/@ledgerhq/devices/",
+          "packageDependencies": [
+            ["@ledgerhq/devices", "npm:5.41.0"],
+            ["@ledgerhq/errors", "npm:5.41.0"],
+            ["@ledgerhq/logs", "npm:5.41.0"],
+            ["rxjs", "npm:6.6.3"],
+            ["semver", "npm:7.3.4"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@ledgerhq/errors", [
@@ -3671,6 +3706,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@ledgerhq-errors-npm-5.29.0-b280a188aa-2.zip/node_modules/@ledgerhq/errors/",
           "packageDependencies": [
             ["@ledgerhq/errors", "npm:5.29.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.41.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-errors-npm-5.41.0-ce29ba5c88-2.zip/node_modules/@ledgerhq/errors/",
+          "packageDependencies": [
+            ["@ledgerhq/errors", "npm:5.41.0"]
           ],
           "linkType": "HARD",
         }]
@@ -3770,6 +3812,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["events", "npm:3.2.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:5.41.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-hw-transport-npm-5.41.0-7b7b2d4cd4-2.zip/node_modules/@ledgerhq/hw-transport/",
+          "packageDependencies": [
+            ["@ledgerhq/hw-transport", "npm:5.41.0"],
+            ["@ledgerhq/devices", "npm:5.41.0"],
+            ["@ledgerhq/errors", "npm:5.41.0"],
+            ["events", "npm:3.2.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@ledgerhq/hw-transport-mocker", [
@@ -3802,6 +3854,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@ledgerhq-logs-npm-5.29.0-ff1b009675-2.zip/node_modules/@ledgerhq/logs/",
           "packageDependencies": [
             ["@ledgerhq/logs", "npm:5.29.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.41.0", {
+          "packageLocation": "./.yarn/cache/@ledgerhq-logs-npm-5.41.0-284498e52b-2.zip/node_modules/@ledgerhq/logs/",
+          "packageDependencies": [
+            ["@ledgerhq/logs", "npm:5.41.0"]
           ],
           "linkType": "HARD",
         }]
@@ -6373,6 +6432,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@zondax/ledger-polkadot", [
+        ["npm:0.13.0", {
+          "packageLocation": "./.yarn/cache/@zondax-ledger-polkadot-npm-0.13.0-7d91b4a81d-2.zip/node_modules/@zondax/ledger-polkadot/",
+          "packageDependencies": [
+            ["@zondax/ledger-polkadot", "npm:0.13.0"],
+            ["@babel/runtime", "npm:7.12.5"],
+            ["@ledgerhq/hw-transport", "npm:5.41.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["abab", [
         ["npm:2.0.3", {
           "packageLocation": "./.yarn/cache/abab-npm-2.0.3-278ae51229-2.zip/node_modules/abab/",
@@ -6546,10 +6616,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ajv-keywords", [
-        ["virtual:6b459398d766659c9eef73192cda450cc5f632dca4f80776ef021d6a0998beb71ebafc0ee36f87c12c30bd87bd62ff0c45949c676dc82f9fc3a677d1ae7d2708#npm:3.4.1", {
-          "packageLocation": "./.yarn/$$virtual/ajv-keywords-virtual-c89b250f93/0/cache/ajv-keywords-npm-3.4.1-851fd088de-2.zip/node_modules/ajv-keywords/",
+        ["virtual:94178486b0e3556877eef2eecfdc7b189adbf7da604f01029b599a73ecce0d36cfd0262c256069cc81c5c2eb88fc195f2e9b5f571f01c2bd48a8c01b558a95f2#npm:3.4.1", {
+          "packageLocation": "./.yarn/$$virtual/ajv-keywords-virtual-7c5b9a395d/0/cache/ajv-keywords-npm-3.4.1-851fd088de-2.zip/node_modules/ajv-keywords/",
           "packageDependencies": [
-            ["ajv-keywords", "virtual:6b459398d766659c9eef73192cda450cc5f632dca4f80776ef021d6a0998beb71ebafc0ee36f87c12c30bd87bd62ff0c45949c676dc82f9fc3a677d1ae7d2708#npm:3.4.1"],
+            ["ajv-keywords", "virtual:94178486b0e3556877eef2eecfdc7b189adbf7da604f01029b599a73ecce0d36cfd0262c256069cc81c5c2eb88fc195f2e9b5f571f01c2bd48a8c01b558a95f2#npm:3.4.1"],
             ["ajv", "npm:6.12.2"]
           ],
           "packagePeers": [
@@ -7850,6 +7920,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/bufio-npm-1.0.7-f7ef1d1822-2.zip/node_modules/bufio/",
           "packageDependencies": [
             ["bufio", "npm:1.0.7"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["builtin-modules", [
+        ["npm:3.2.0", {
+          "packageLocation": "./.yarn/cache/builtin-modules-npm-3.2.0-ef7266e931-2.zip/node_modules/builtin-modules/",
+          "packageDependencies": [
+            ["builtin-modules", "npm:3.2.0"]
           ],
           "linkType": "HARD",
         }]
@@ -11717,6 +11796,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/ipaddr.js-npm-1.9.1-19ae7878b4-2.zip/node_modules/ipaddr.js/",
           "packageDependencies": [
             ["ipaddr.js", "npm:1.9.1"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:2.0.0", {
+          "packageLocation": "./.yarn/cache/ipaddr.js-npm-2.0.0-61e757f790-2.zip/node_modules/ipaddr.js/",
+          "packageDependencies": [
+            ["ipaddr.js", "npm:2.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -16717,6 +16803,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["semver", "npm:7.3.2"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:7.3.4", {
+          "packageLocation": "./.yarn/cache/semver-npm-7.3.4-4c3baf0ead-2.zip/node_modules/semver/",
+          "packageDependencies": [
+            ["semver", "npm:7.3.4"],
+            ["lru-cache", "npm:6.0.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["semver-diff", [
@@ -18146,6 +18240,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/type-fest-npm-0.16.0-e1b8ff05d9-2.zip/node_modules/type-fest/",
           "packageDependencies": [
             ["type-fest", "npm:0.16.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:0.17.0", {
+          "packageLocation": "./.yarn/cache/type-fest-npm-0.17.0-65da161963-2.zip/node_modules/type-fest/",
+          "packageDependencies": [
+            ["type-fest", "npm:0.17.0"]
           ],
           "linkType": "HARD",
         }],

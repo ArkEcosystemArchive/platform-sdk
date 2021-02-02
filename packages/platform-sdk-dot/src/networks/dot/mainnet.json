@@ -72,8 +72,8 @@
 			}
 		},
 		"Ledger": {
-			"getVersion": false,
-			"getPublicKey": false,
+			"getVersion": true,
+			"getPublicKey": true,
 			"signTransaction": false,
 			"signMessage": false
 		},
@@ -100,10 +100,10 @@
 			"delegateResignation": false,
 			"htlcLock": false,
 			"htlcClaim": false,
-			"htlcRefund": false,
-			"entityRegistration": false,
-			"entityResignation": false,
-			"entityUpdate": false
+			"htlcRefund": false
+		},
+		"Miscellaneous": {
+			"memo": false
 		}
 	}
 }

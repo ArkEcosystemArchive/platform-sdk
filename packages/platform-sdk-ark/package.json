@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-ark",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "2.7.0",
+	"version": "2.7.6",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -18,7 +18,7 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
-		"@arkecosystem/crypto": "^2.7",
+		"@arkecosystem/crypto": "^3.0.0-next.20",
 		"@arkecosystem/crypto-identities": "^1.1.1",
 		"@arkecosystem/ledger-transport": "^1.1.3",
 		"@arkecosystem/multi-signature": "^0.1.5",
