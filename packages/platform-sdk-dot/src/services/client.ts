@@ -1,12 +1,28 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
+import { ApiPromise, WsProvider } from "@polkadot/api";
+import { waitReady } from "@polkadot/wasm-crypto";
 
 export class ClientService implements Contracts.ClientService {
+	readonly #client: ApiPromise;
+
+	public constructor(client: ApiPromise) {
+		this.#client = client;
+	}
+
 	public static async construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService();
+		await waitReady();
+
+		const wsProvider = new WsProvider(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
+		const api = await ApiPromise.create({ provider: wsProvider });
+
+		await api.isReady;
+
+		return new ClientService(api);
 	}
 
 	public async destruct(): Promise<void> {
-		//
+		await this.#client.disconnect();
 	}
 
 	public async transaction(id: string): Promise<Contracts.TransactionDataType> {
@@ -46,7 +62,18 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
+		for (const transaction of transactions) {
+			const response = await this.#client.rpc.author.submitExtrinsic(transaction as any);
+			console.log(response);
+		}
+
+		return result;
 	}
 
 	public async broadcastSpread(
