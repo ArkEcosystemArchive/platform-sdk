@@ -452,6 +452,7 @@ __metadata:
     "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
+    "@ledgerhq/hw-transport-mocker": ^5.29.0
     "@polkadot/api": ^3.6.4
     "@polkadot/keyring": ^5.5.1
     "@polkadot/util": ^5.5.1
@@ -469,6 +470,7 @@ __metadata:
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^4.7.0
     "@typescript-eslint/parser": ^4.7.0
+    "@zondax/ledger-polkadot": ^0.13.0
     cross-env: ^7.0.2
     eslint: ^7.13.0
     eslint-config-prettier: ^6.15.0
@@ -3190,6 +3192,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ledgerhq/devices@npm:^5.41.0":
+  version: 5.41.0
+  resolution: "@ledgerhq/devices@npm:5.41.0"
+  dependencies:
+    "@ledgerhq/errors": ^5.41.0
+    "@ledgerhq/logs": ^5.41.0
+    rxjs: ^6.6.3
+    semver: ^7.3.4
+  checksum: 2/5f1ff31df030b86789d746d1c6db7bb884b8ca8b884353b56322915a432e5ec24d8f3f0285ee046f7d6b914c7f9d1272e7875de8985add7010d4244b81cb99b5
+  languageName: node
+  linkType: hard
+
 "@ledgerhq/errors@npm:^5.19.1":
   version: 5.19.1
   resolution: "@ledgerhq/errors@npm:5.19.1"
@@ -3208,6 +3222,13 @@ __metadata:
   version: 5.29.0
   resolution: "@ledgerhq/errors@npm:5.29.0"
   checksum: 2/53dfeff6ca99c905e5d1a0c67d4759a8346727f6d10aa4618fc83081d8a56b95a959b06f7cfcaf94e8e3b6b1a6d9026b48369fb961d789068d3c9692f65f8f94
+  languageName: node
+  linkType: hard
+
+"@ledgerhq/errors@npm:^5.41.0":
+  version: 5.41.0
+  resolution: "@ledgerhq/errors@npm:5.41.0"
+  checksum: 2/f06e63e1f96fcb89f718ae617b31ec4d0ea83d82dafc92125beebcee0759dfe1fd32b7a72f6b7e656d57a93637f2417743b04adf77a84d2a27f4cd75ac158c25
   languageName: node
   linkType: hard
 
@@ -3314,6 +3335,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ledgerhq/hw-transport@npm:^5.38.0":
+  version: 5.41.0
+  resolution: "@ledgerhq/hw-transport@npm:5.41.0"
+  dependencies:
+    "@ledgerhq/devices": ^5.41.0
+    "@ledgerhq/errors": ^5.41.0
+    events: ^3.2.0
+  checksum: 2/46dbc86686dd70ea29b6fb46a8c6dd5cd308ebdd02bc6065302f39471fc7b966f69d2b1ced42a2c759fc11d30f85fc64401681b569ce99720102df418bf045bd
+  languageName: node
+  linkType: hard
+
 "@ledgerhq/logs@npm:^5.19.1":
   version: 5.19.1
   resolution: "@ledgerhq/logs@npm:5.19.1"
@@ -3332,6 +3364,13 @@ __metadata:
   version: 5.29.0
   resolution: "@ledgerhq/logs@npm:5.29.0"
   checksum: 2/c5297934fc79ef18bc7f8adb38f655f83404f663f75d8e812b43c474485f97cd71bb43da1fe50a06bd852ecf66135214b8bacccad0c7eda29c95783007e2e4c7
+  languageName: node
+  linkType: hard
+
+"@ledgerhq/logs@npm:^5.41.0":
+  version: 5.41.0
+  resolution: "@ledgerhq/logs@npm:5.41.0"
+  checksum: 2/83de45a01f5b35b2fdbf23971ce5f5b86553aa44f1fe8a4c186bbef48d1964b4d71a04c5d35d4f583e6923c4d46cb031745dd2277b16c20cd8d06f7a86233b0a
   languageName: node
   linkType: hard
 
@@ -5068,6 +5107,16 @@ __metadata:
   bin:
     shell: ./lib/cli.js
   checksum: 2/fd09d872d57d0e4d6b0eea5ba15148e277b2c875eb46f098405617987801d5a9f50c34ba51ccc5b4528d6724b212de8540a39668c1b438654ce549e7aa53dcde
+  languageName: node
+  linkType: hard
+
+"@zondax/ledger-polkadot@npm:^0.13.0":
+  version: 0.13.0
+  resolution: "@zondax/ledger-polkadot@npm:0.13.0"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    "@ledgerhq/hw-transport": ^5.38.0
+  checksum: 2/6eece4961ec7df1e630bab56a8a7d86d378b76f9f4658b007d5e253559cbc3b11dadc6e227bdb9be042f3142576bf114b46aa555e35fc8f95eea21fa384160ca
   languageName: node
   linkType: hard
 
@@ -14493,6 +14542,17 @@ resolve@^1.18.1:
   bin:
     semver: ./bin/semver.js
   checksum: 2/f0d155c06a67cc7e500c92d929339f1c6efd4ce9fe398aee6acc00a2333489cca0f5b4e76ee7292beba237fcca4b5a3d4a6153471f105f56299801bdab37289f
+  languageName: node
+  linkType: hard
+
+"semver@npm:^7.3.4":
+  version: 7.3.4
+  resolution: "semver@npm:7.3.4"
+  dependencies:
+    lru-cache: ^6.0.0
+  bin:
+    semver: bin/semver.js
+  checksum: 2/f2c7f9aeb976d1484b2f39aa7afc8332a1d21fd32ca4a6fbf650e1423455ebf3e7029f6e2e7ba0cd71935b85942521f1ec25b6cc2c031b953c8ca4ff2d7a823d
   languageName: node
   linkType: hard
 
