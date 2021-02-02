@@ -60,14 +60,14 @@ export class WalletRepository {
 		return this.storeWallet(await WalletFactory.fromAddress(this.#profile, coin, network, address));
 	}
 
-	public async importByAddressWithLedgerIndex(
+	public async importByAddressWithLedgerPath(
 		address: string,
 		coin: string,
 		network: string,
-		index: number,
+		path: string,
 	): Promise<ReadWriteWallet> {
 		return this.storeWallet(
-			await WalletFactory.fromAddressWithLedgerIndex(this.#profile, coin, network, address, index),
+			await WalletFactory.fromAddressWithLedgerPath(this.#profile, coin, network, address, path),
 		);
 	}
 
