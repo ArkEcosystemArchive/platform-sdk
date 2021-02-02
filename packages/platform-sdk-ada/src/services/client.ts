@@ -1,8 +1,29 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
+
+import { WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
+	readonly #http: Contracts.HttpClient;
+	readonly #peer: string;
+
+	private constructor({ http, peer }) {
+		this.#http = http;
+		this.#peer = peer;
+	}
+
 	public static async construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService();
+		try {
+			return new ClientService({
+				http: config.get<Contracts.HttpClient>("httpClient"),
+				peer: config.get<string>("peer"),
+			});
+		} catch {
+			return new ClientService({
+				http: config.get<Contracts.HttpClient>("httpClient"),
+				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+			});
+		}
 	}
 
 	public async destruct(): Promise<void> {
@@ -18,7 +39,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
+		return new WalletData(await this.get(`v2/wallets/${id}`));
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
@@ -58,5 +79,11 @@ export class ClientService implements Contracts.ClientService {
 
 	public async entityHistory(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "entityHistory");
+	}
+
+	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		const response = await this.#http.get(`${this.#peer}/${path}`, query);
+
+		return response.json();
 	}
 }
