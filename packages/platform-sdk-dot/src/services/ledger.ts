@@ -30,7 +30,10 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
+		const parsedPath = this.parseDotPath(path)
+		const { pubKey } = await this.#transport.getAddress(parsedPath[2], parsedPath[3], parsedPath[4]);
+
+		return pubKey;
 	}
 
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
@@ -39,5 +42,17 @@ export class LedgerService implements Contracts.LedgerService {
 
 	public async signMessage(path: string, payload: Buffer): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "signMessage");
+	}
+
+	private parseDotPath(path: string): number[] {
+		const HARDENING = 0x80000000;
+		const elements: number[] = [];
+
+		for (const level of path.split("/")) {
+			const element = parseInt(level, 10) + (level.endsWith("'") ? HARDENING : 0);
+			elements.push(element);
+		}
+
+		return elements;
 	}
 }

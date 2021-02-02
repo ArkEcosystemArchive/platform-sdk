@@ -45,10 +45,10 @@ describe("getVersion", () => {
 });
 
 describe("getPublicKey", () => {
-	it("should fail to generate a publicKey", async () => {
-		const polkadot = await createMockService("");
+	it("should generate a publicKey", async () => {
+		const polkadot = await createMockService(ledger.publicKey.record);
 
-		await expect(polkadot.getPublicKey("")).rejects.toThrow();
+		await expect(polkadot.getPublicKey(ledger.bip44.path)).resolves.toEqual(ledger.publicKey.result);
 	});
 });
 
