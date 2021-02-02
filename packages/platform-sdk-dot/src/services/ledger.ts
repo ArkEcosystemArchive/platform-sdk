@@ -5,7 +5,7 @@ import { newPolkadotApp } from '@zondax/ledger-polkadot';
 export class LedgerService implements Contracts.LedgerService {
 	#ledger: Contracts.LedgerTransport;
 	#transport;
-	
+
 	public static async construct(config: Coins.Config): Promise<LedgerService> {
 		return new LedgerService();
 	}
@@ -24,8 +24,9 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public async getVersion(): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getVersion");
+		const { major, minor, patch } = await this.#transport.getVersion();
 
+		return `${major}.${minor}.${patch}`;
 	}
 
 	public async getPublicKey(path: string): Promise<string> {

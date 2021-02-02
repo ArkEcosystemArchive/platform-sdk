@@ -72,7 +72,7 @@
 			}
 		},
 		"Ledger": {
-			"getVersion": false,
+			"getVersion": true,
 			"getPublicKey": false,
 			"signTransaction": false,
 			"signMessage": false

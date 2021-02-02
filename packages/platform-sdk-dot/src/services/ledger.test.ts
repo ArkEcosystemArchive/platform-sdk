@@ -37,10 +37,10 @@ describe("destruct", () => {
 });
 
 describe("getVersion", () => {
-	it("should fail to generate an app version", async () => {
-		const polkadot = await createMockService("");
+	it("should generate an app version", async () => {
+		const polkadot = await createMockService(ledger.appVersion.record);
 
-		await expect(polkadot.getVersion()).rejects.toThrow();;
+		await expect(polkadot.getVersion()).resolves.toEqual(ledger.appVersion.result);
 	});
 });
 
