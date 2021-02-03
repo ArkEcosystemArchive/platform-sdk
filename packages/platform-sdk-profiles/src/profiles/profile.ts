@@ -15,7 +15,6 @@ import { WalletRepository } from "../repositories/wallet-repository";
 import { Avatar } from "../services/avatar";
 import { ReadWriteWallet } from "../wallets/wallet.models";
 import { CountAggregate } from "./aggregates/count-aggregate";
-import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
@@ -35,7 +34,6 @@ export class Profile implements ProfileContract {
 	#walletRepository: WalletRepository;
 
 	#countAggregate: CountAggregate;
-	#entityAggregate: EntityAggregate;
 	#registrationAggregate: RegistrationAggregate;
 	#transactionAggregate: TransactionAggregate;
 	#walletAggregate: WalletAggregate;
@@ -52,7 +50,6 @@ export class Profile implements ProfileContract {
 		this.#walletRepository = new WalletRepository(this);
 
 		this.#countAggregate = new CountAggregate(this);
-		this.#entityAggregate = new EntityAggregate(this);
 		this.#registrationAggregate = new RegistrationAggregate(this);
 		this.#transactionAggregate = new TransactionAggregate(this);
 		this.#walletAggregate = new WalletAggregate(this);
@@ -148,10 +145,6 @@ export class Profile implements ProfileContract {
 
 	public countAggregate(): CountAggregate {
 		return this.#countAggregate;
-	}
-
-	public entityAggregate(): EntityAggregate {
-		return this.#entityAggregate;
 	}
 
 	public registrationAggregate(): RegistrationAggregate {

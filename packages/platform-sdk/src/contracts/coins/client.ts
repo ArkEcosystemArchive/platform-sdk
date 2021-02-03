@@ -36,9 +36,6 @@ export interface ClientService {
 
 	broadcast(transactions: SignedTransactionData[]): Promise<BroadcastResponse>;
 	broadcastSpread(transactions: SignedTransactionData[], hosts: string[]): Promise<BroadcastResponse>;
-
-	// This is currently only used by ARK.
-	entityHistory(id: string, query?: KeyValuePair): Promise<TransactionDataCollection>;
 }
 
 export interface ClientPagination {

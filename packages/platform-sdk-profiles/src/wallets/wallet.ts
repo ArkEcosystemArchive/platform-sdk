@@ -18,16 +18,11 @@ import { DataRepository } from "../repositories/data-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
-import { EntityAggregate } from "./aggregates/entity-aggregate";
-import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
 
 export class Wallet implements ReadWriteWallet {
-	readonly #entityAggregate: EntityAggregate;
-	readonly #entityHistoryAggregate: EntityHistoryAggregate;
-
 	readonly #dataRepository: DataRepository;
 	readonly #settingRepository: SettingRepository;
 	readonly #transactionService: TransactionService;
@@ -47,9 +42,6 @@ export class Wallet implements ReadWriteWallet {
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
-
-		this.#entityAggregate = new EntityAggregate(this);
-		this.#entityHistoryAggregate = new EntityHistoryAggregate(this);
 
 		this.restore();
 	}
@@ -539,18 +531,6 @@ export class Wallet implements ReadWriteWallet {
 
 	public cannot(feature: string): boolean {
 		return this.#coin.network().cannot(feature);
-	}
-
-	/**
-	 * These methods serve as helpers to aggregate commonly used data.
-	 */
-
-	public entityAggregate(): EntityAggregate {
-		return this.#entityAggregate;
-	}
-
-	public entityHistoryAggregate(): EntityHistoryAggregate {
-		return this.#entityHistoryAggregate;
 	}
 
 	/**

@@ -6,7 +6,6 @@ import { ExtendedTransactionDataCollection } from "../dto/transaction-collection
 import { DataRepository } from "../repositories/data-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
-import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 
@@ -135,8 +134,6 @@ export interface ReadWriteWallet {
 	canAny(features: string[]): boolean;
 	canAll(features: string[]): boolean;
 	cannot(feature: string): boolean;
-
-	entityAggregate(): EntityAggregate;
 
 	sync(): Promise<void>;
 	syncIdentity(): Promise<void>;
