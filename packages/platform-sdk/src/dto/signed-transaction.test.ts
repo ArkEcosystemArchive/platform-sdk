@@ -5,42 +5,42 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { AbstractSignedTransactionData } from "./signed-transaction";
 
 test("#id", () => {
-	expect(new Transaction("id", { key: "value" }).id()).toBe("id");
+	expect(new Transaction("id", { key: "value" }, "").id()).toBe("id");
 });
 
 test("#data", () => {
-	expect(new Transaction("id", { key: "value" }).blockId()).toBe("blockId");
+	expect(new Transaction("id", { key: "value" }, "").blockId()).toBe("blockId");
 });
 
 test("#sender", () => {
-	expect(new Transaction("id", { key: "value" }).sender()).toBe("sender");
+	expect(new Transaction("id", { key: "value" }, "").sender()).toBe("sender");
 });
 
 test("#recipient", () => {
-	expect(new Transaction("id", { key: "value" }).recipient()).toBe("recipient");
+	expect(new Transaction("id", { key: "value" }, "").recipient()).toBe("recipient");
 });
 
 test("#amount", () => {
-	expect(new Transaction("id", { key: "value" }).amount()).toBe(BigNumber.ZERO);
+	expect(new Transaction("id", { key: "value" }, "").amount()).toBe(BigNumber.ZERO);
 });
 
 test("#fee", () => {
-	expect(new Transaction("id", { key: "value" }).fee()).toBe(BigNumber.ZERO);
+	expect(new Transaction("id", { key: "value" }, "").fee()).toBe(BigNumber.ZERO);
 });
 
 test("#get", () => {
-	expect(new Transaction("id", { key: "value" }).get("key")).toBe("value");
+	expect(new Transaction("id", { key: "value" }, "").get("key")).toBe("value");
 });
 
 test("#toString", () => {
-	expect(new Transaction("id", JSON.stringify({ key: "value" })).toString()).toMatchInlineSnapshot(
+	expect(new Transaction("id", JSON.stringify({ key: "value" }), "").toString()).toMatchInlineSnapshot(
 		`"{\\"key\\":\\"value\\"}"`,
 	);
-	expect(new Transaction("id", { key: "value" }).toString()).toMatchInlineSnapshot(`"{\\"key\\":\\"value\\"}"`);
+	expect(new Transaction("id", { key: "value" }, "").toString()).toMatchInlineSnapshot(`"{\\"key\\":\\"value\\"}"`);
 });
 
 test("#toObject", () => {
-	expect(new Transaction("id", { key: "value" }).toObject()).toMatchInlineSnapshot(`
+	expect(new Transaction("id", { key: "value" }, "").toObject()).toMatchInlineSnapshot(`
 		Object {
 		  "amount": "0",
 		  "data": Object {
