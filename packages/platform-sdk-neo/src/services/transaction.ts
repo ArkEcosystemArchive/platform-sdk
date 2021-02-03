@@ -18,11 +18,13 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			// TODO: compute the ID
-			return new SignedTransactionData(uuidv4(), {
+			const signedTransaction = {
 				account: new wallet.Account(input.sign.privateKey),
 				intents: api.makeIntent({ NEO: input.data.amount, GAS: input.fee }, input.data.to),
-			});
+			};
+
+			// TODO: compute the ID
+			return new SignedTransactionData(uuidv4(), signedTransaction, signedTransaction);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

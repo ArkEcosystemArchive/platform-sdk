@@ -208,7 +208,11 @@ export class TransactionService implements Contracts.TransactionService {
 			compressed: true,
 		});
 
-		return new SignedTransactionData(transactionWithSignature.id!, transactionWithSignature);
+		return new SignedTransactionData(
+			transactionWithSignature.id!,
+			transactionWithSignature,
+			transactionWithSignature,
+		);
 	}
 
 	private async createFromData(
@@ -262,13 +266,16 @@ export class TransactionService implements Contracts.TransactionService {
 			}
 
 			if (options && options.unsignedBytes === true) {
+				const signedTransaction = Transactions.Serializer.getBytes(transaction.data, {
+					excludeSignature: true,
+					excludeSecondSignature: true,
+				}).toString("hex");
+
 				return new SignedTransactionData(
 					// TODO: compute ID
 					uuidv4(),
-					Transactions.Serializer.getBytes(transaction.data, {
-						excludeSignature: true,
-						excludeSecondSignature: true,
-					}).toString("hex"),
+					signedTransaction,
+					signedTransaction,
 				);
 			}
 
@@ -320,7 +327,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			const signedTransaction = transaction.build().toJson();
 
-			return new SignedTransactionData(signedTransaction.id, signedTransaction);
+			return new SignedTransactionData(signedTransaction.id, signedTransaction, signedTransaction);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -329,6 +336,6 @@ export class TransactionService implements Contracts.TransactionService {
 	private async handleMultiSignature(transaction: Contracts.RawTransactionData, input: Contracts.TransactionInputs) {
 		const transactionWithSignature = this.#multiSignatureSigner.sign(transaction, input.sign.multiSignature);
 
-		return new SignedTransactionData(transactionWithSignature.id!, transactionWithSignature);
+		return new SignedTransactionData(transactionWithSignature.id!, transactionWithSignature, transactionWithSignature);
 	}
 }
