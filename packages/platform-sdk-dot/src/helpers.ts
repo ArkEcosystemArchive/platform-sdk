@@ -10,4 +10,4 @@ export const createRpcClient = async (config: Coins.Config): Promise<ApiPromise>
 	await api.isReady;
 
 	return api;
-}
+};
