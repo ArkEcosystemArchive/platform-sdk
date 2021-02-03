@@ -1,6 +1,7 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { ApiPromise } from "@polkadot/api";
 import { Keyring } from "@polkadot/keyring";
+import { u8aToHex } from "@polkadot/util";
 import { waitReady } from "@polkadot/wasm-crypto";
 
 import { SignedTransactionData } from "../dto/signed-transaction";
@@ -33,11 +34,13 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "transfer");
 		}
 
-		const keypair = this.#keyring.addFromUri(input.sign.mnemonic);
-		const transfer = this.#client.tx.balances.transfer(input.data.to, input.data.amount);
-		const transaction = await transfer.signAsync(keypair);
+		const keypair = this.#keyring.addFromMnemonic(input.sign.mnemonic);
+		const transaction = await this.#client.tx.balances
+			.transfer(input.data.to, input.data.amount)
+			.signAsync(keypair);
 
-		return new SignedTransactionData(transaction.hash.toHex(), JSON.parse(transaction.toString()));
+		// @TODO: implement SignedTransactionData#toHex because some coins
+		return new SignedTransactionData(transaction.hash.toHex(), transaction.toHex());
 	}
 
 	public async secondSignature(

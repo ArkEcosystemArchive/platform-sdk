@@ -62,7 +62,13 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+			try {
+				await this.#client.rpc.author.submitExtrinsic(transaction.data());
+
+				result.accepted.push(transaction.id());
+			} catch {
+				result.rejected.push(transaction.id());
+			}
 		}
 
 		return result;
