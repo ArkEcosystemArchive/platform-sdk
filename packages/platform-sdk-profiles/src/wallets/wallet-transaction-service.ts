@@ -629,7 +629,7 @@ export class TransactionService {
 
 		for (const transaction of transactions) {
 			const transactionId: string = transaction.id;
-			const signedTransaction = new SignedTransactionData(transactionId, transaction, transaction);
+			const signedTransaction = new SignedTransactionData(transactionId, transaction, JSON.stringify(transaction));
 
 			this.#waitingForOurSignature[transactionId] = signedTransaction;
 			this.#waitingForOtherSignatures[transactionId] = signedTransaction;
