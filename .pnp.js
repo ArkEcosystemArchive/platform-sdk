@@ -835,7 +835,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@polkadot/api", "npm:3.6.4"],
             ["@polkadot/keyring", "virtual:592b15c41d3986492440f390c88a7362d4a147f0b5cdd997ac3dd3c899a68b6d82223757091b96eb31e6dafbf9f2f7a2748be5b70e422df70b27d3c854451d88#npm:5.5.1"],
+            ["@polkadot/metadata", "npm:3.7.3"],
             ["@polkadot/types", "npm:3.7.3"],
+            ["@polkadot/types-known", "npm:3.7.3"],
             ["@polkadot/util", "npm:5.5.1"],
             ["@polkadot/util-crypto", "virtual:500484cc192daa2295fd5508279ba491254bbbe736dace54233261ebf337bf31359f814f9559decced48f961aa142dbccdedcc023ea94681fb05c6e7b5262832#npm:5.5.1"],
             ["@polkadot/wasm-crypto", "virtual:da097f206a0212514dee9359bb018ae4921f8763fc527a380a4ea63f628368f43fb8f03460f3fe4ab5a4b883ab7eb8dc27c2d4d07451dde088e6f123f5053ec0#npm:3.2.2"],
@@ -847,6 +849,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/hapi__joi", "npm:17.1.6"],
             ["@types/jest", "npm:26.0.15"],
+            ["@types/memoizee", "npm:0.4.5"],
             ["@types/node", "npm:14.14.7"],
             ["@types/prettier", "npm:2.1.5"],
             ["@types/rimraf", "npm:3.0.0"],
@@ -863,6 +866,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.3"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.3"],
+            ["memoizee", "npm:0.4.15"],
             ["nock", "npm:13.0.5"],
             ["npm-check-updates", "npm:10.1.1"],
             ["prettier", "npm:2.1.2"],
@@ -4225,7 +4229,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@polkadot/types", "npm:3.7.3"],
             ["@polkadot/types-known", "npm:3.7.3"],
             ["@polkadot/util", "npm:5.5.2"],
-            ["@polkadot/util-crypto", "virtual:97ce5b70380ef2873bb5a2e15dd35c0b203efb921118786fbc7c14206201ed29a7bb151ddf44544366037bbe2b13c1c7bce5cd2a8cd6e0f522db0d57b180a7c8#npm:5.5.2"],
+            ["@polkadot/util-crypto", "virtual:b78a76f9f926cf69827cb57d45a3a9d62ba267ef46581c7e54236531f1f458770a4b4d0a075f90929d98112f16d177a462acf3928bc4e5aa447a665c5f831864#npm:5.5.2"],
             ["bn.js", "npm:4.11.9"]
           ],
           "linkType": "HARD",
@@ -4346,7 +4350,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/runtime", "npm:7.12.5"],
             ["@polkadot/metadata", "npm:3.7.3"],
             ["@polkadot/util", "npm:5.5.2"],
-            ["@polkadot/util-crypto", "virtual:97ce5b70380ef2873bb5a2e15dd35c0b203efb921118786fbc7c14206201ed29a7bb151ddf44544366037bbe2b13c1c7bce5cd2a8cd6e0f522db0d57b180a7c8#npm:5.5.2"],
+            ["@polkadot/util-crypto", "virtual:b78a76f9f926cf69827cb57d45a3a9d62ba267ef46581c7e54236531f1f458770a4b4d0a075f90929d98112f16d177a462acf3928bc4e5aa447a665c5f831864#npm:5.5.2"],
             ["@polkadot/x-rxjs", "npm:5.5.2"],
             ["@types/bn.js", "npm:4.11.6"],
             ["bn.js", "npm:4.11.9"]
@@ -4448,14 +4452,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["virtual:97ce5b70380ef2873bb5a2e15dd35c0b203efb921118786fbc7c14206201ed29a7bb151ddf44544366037bbe2b13c1c7bce5cd2a8cd6e0f522db0d57b180a7c8#npm:5.5.2", {
-          "packageLocation": "./.yarn/$$virtual/@polkadot-util-crypto-virtual-cd4871c598/0/cache/@polkadot-util-crypto-npm-5.5.2-0d4708f390-2.zip/node_modules/@polkadot/util-crypto/",
+        ["virtual:b78a76f9f926cf69827cb57d45a3a9d62ba267ef46581c7e54236531f1f458770a4b4d0a075f90929d98112f16d177a462acf3928bc4e5aa447a665c5f831864#npm:5.5.2", {
+          "packageLocation": "./.yarn/$$virtual/@polkadot-util-crypto-virtual-b23d8261a7/0/cache/@polkadot-util-crypto-npm-5.5.2-0d4708f390-2.zip/node_modules/@polkadot/util-crypto/",
           "packageDependencies": [
-            ["@polkadot/util-crypto", "virtual:97ce5b70380ef2873bb5a2e15dd35c0b203efb921118786fbc7c14206201ed29a7bb151ddf44544366037bbe2b13c1c7bce5cd2a8cd6e0f522db0d57b180a7c8#npm:5.5.2"],
+            ["@polkadot/util-crypto", "virtual:b78a76f9f926cf69827cb57d45a3a9d62ba267ef46581c7e54236531f1f458770a4b4d0a075f90929d98112f16d177a462acf3928bc4e5aa447a665c5f831864#npm:5.5.2"],
             ["@babel/runtime", "npm:7.12.5"],
             ["@polkadot/networks", "npm:5.5.2"],
             ["@polkadot/util", "npm:5.5.2"],
-            ["@polkadot/wasm-crypto", "virtual:cd4871c598149f89676544e55e0c15864001dd353209b5c20ca179c6eef7a8965a73187706e43e8700d634577cfcc1499e3e9887c36005854ae09c5eb904cb52#npm:3.2.2"],
+            ["@polkadot/wasm-crypto", "virtual:b23d8261a7e8ae84db9ee8fa834a77aeb783dbd087aa4c723691698600ba899490d1a3ce6d23168d3f70f713202241df1ac13d115a6230040700e33d0778fca7#npm:3.2.2"],
             ["@polkadot/x-randomvalues", "npm:5.5.2"],
             ["base-x", "npm:3.0.8"],
             ["blakejs", "npm:1.1.0"],
@@ -4475,10 +4479,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@polkadot/wasm-crypto", [
-        ["virtual:cd4871c598149f89676544e55e0c15864001dd353209b5c20ca179c6eef7a8965a73187706e43e8700d634577cfcc1499e3e9887c36005854ae09c5eb904cb52#npm:3.2.2", {
-          "packageLocation": "./.yarn/$$virtual/@polkadot-wasm-crypto-virtual-823a9d4154/0/cache/@polkadot-wasm-crypto-npm-3.2.2-371f285e74-2.zip/node_modules/@polkadot/wasm-crypto/",
+        ["virtual:b23d8261a7e8ae84db9ee8fa834a77aeb783dbd087aa4c723691698600ba899490d1a3ce6d23168d3f70f713202241df1ac13d115a6230040700e33d0778fca7#npm:3.2.2", {
+          "packageLocation": "./.yarn/$$virtual/@polkadot-wasm-crypto-virtual-070448bb64/0/cache/@polkadot-wasm-crypto-npm-3.2.2-371f285e74-2.zip/node_modules/@polkadot/wasm-crypto/",
           "packageDependencies": [
-            ["@polkadot/wasm-crypto", "virtual:cd4871c598149f89676544e55e0c15864001dd353209b5c20ca179c6eef7a8965a73187706e43e8700d634577cfcc1499e3e9887c36005854ae09c5eb904cb52#npm:3.2.2"],
+            ["@polkadot/wasm-crypto", "virtual:b23d8261a7e8ae84db9ee8fa834a77aeb783dbd087aa4c723691698600ba899490d1a3ce6d23168d3f70f713202241df1ac13d115a6230040700e33d0778fca7#npm:3.2.2"],
             ["@babel/runtime", "npm:7.12.5"],
             ["@polkadot/util", "npm:5.5.2"],
             ["@polkadot/wasm-crypto-asmjs", "npm:3.2.2"],
@@ -5348,6 +5352,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-long-npm-4.0.1-022c8b6e77-2.zip/node_modules/@types/long/",
           "packageDependencies": [
             ["@types/long", "npm:4.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/memoizee", [
+        ["npm:0.4.5", {
+          "packageLocation": "./.yarn/cache/@types-memoizee-npm-0.4.5-59839c2b2b-2.zip/node_modules/@types/memoizee/",
+          "packageDependencies": [
+            ["@types/memoizee", "npm:0.4.5"]
           ],
           "linkType": "HARD",
         }]

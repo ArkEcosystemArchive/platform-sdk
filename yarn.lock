@@ -455,7 +455,9 @@ __metadata:
     "@ledgerhq/hw-transport-mocker": ^5.29.0
     "@polkadot/api": ^3.6.4
     "@polkadot/keyring": ^5.5.1
+    "@polkadot/metadata": ^3.7.3
     "@polkadot/types": ^3.7.3
+    "@polkadot/types-known": ^3.7.3
     "@polkadot/util": ^5.5.1
     "@polkadot/util-crypto": ^5.5.1
     "@polkadot/wasm-crypto": ^3.2.2
@@ -467,6 +469,7 @@ __metadata:
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/hapi__joi": 17.1.6
     "@types/jest": ^26.0.15
+    "@types/memoizee": 0.4.5
     "@types/node": ^14.14.7
     "@types/prettier": ^2.1.5
     "@types/rimraf": ^3.0.0
@@ -483,6 +486,7 @@ __metadata:
     jest: ^26.6.3
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.3
+    memoizee: ^0.4.15
     nock: ^13.0.5
     npm-check-updates: ^10.1.1
     prettier: ^2.1.2
@@ -3688,7 +3692,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/metadata@npm:3.7.3":
+"@polkadot/metadata@npm:3.7.3, @polkadot/metadata@npm:^3.7.3":
   version: 3.7.3
   resolution: "@polkadot/metadata@npm:3.7.3"
   dependencies:
@@ -3805,7 +3809,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/types-known@npm:3.7.3":
+"@polkadot/types-known@npm:3.7.3, @polkadot/types-known@npm:^3.7.3":
   version: 3.7.3
   resolution: "@polkadot/types-known@npm:3.7.3"
   dependencies:
@@ -4717,6 +4721,13 @@ __metadata:
   version: 4.0.1
   resolution: "@types/long@npm:4.0.1"
   checksum: 2/ed2a125330dbf2b425b2e58b1e1151a37106ceeec973f9f191fba0bda83ed00fae6d858254022e8b6e7165fec5f0c3872b7cb5f425c753383fed54699fb63b38
+  languageName: node
+  linkType: hard
+
+"@types/memoizee@npm:0.4.5":
+  version: 0.4.5
+  resolution: "@types/memoizee@npm:0.4.5"
+  checksum: 2/8e5891a0ef7bc485751312ded849a0439c62551fb62e1440e358bcf78ea79db2f578b63591b828269bac8b34d0f5a24663ce9c58703be1bcafe9467fe8ce0483
   languageName: node
   linkType: hard
 
@@ -12131,7 +12142,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"memoizee@npm:^0.4.14":
+"memoizee@npm:^0.4.14, memoizee@npm:^0.4.15":
   version: 0.4.15
   resolution: "memoizee@npm:0.4.15"
   dependencies:

@@ -5,20 +5,18 @@ import { Keyring } from "@polkadot/keyring";
 // @ts-ignore
 import { EXTRINSIC_VERSION } from '@polkadot/types/extrinsic/v4/Extrinsic';
 import { waitReady } from "@polkadot/wasm-crypto";
+
+import { SignedTransactionData } from "../dto/signed-transaction";
 import {
-    createMetadata,
     createSignedTx,
     createSigningPayload,
-    decode,
     deriveAddress,
     getRegistry,
     getTxHash,
     methods,
     POLKADOT_SS58_FORMAT,
-// @ts-ignore
-} from "@substrate/txwrapper";
-
-import { SignedTransactionData } from "../dto/signed-transaction";
+} from "../crypto";
+import { createMetadata } from "../crypto/util";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #client: ApiPromise;
@@ -63,6 +61,7 @@ export class TransactionService implements Contracts.TransactionService {
         const { specVersion, transactionVersion } = await this.#client.rpc.state.getRuntimeVersion();
 
         // Create Polkadot's type registry.
+			// @ts-ignore
         const registry = getRegistry('Polkadot', 'polkadot', specVersion);
 
         // Create a `balances.transfer` unsigned tx
@@ -71,17 +70,26 @@ export class TransactionService implements Contracts.TransactionService {
 			dest: input.data.to,
 		}, {
 			address: deriveAddress(signatory.publicKey, POLKADOT_SS58_FORMAT),
+			// @ts-ignore
 			blockHash,
+			// @ts-ignore
 			blockNumber: registry.createType('BlockNumber', block.header.number).toNumber(),
+			// @ts-ignore
 			eraPeriod: 64,
+			// @ts-ignore
 			genesisHash,
+			// @ts-ignore
 			metadataRpc,
 			nonce: 0, // Assuming this is Alice's first tx on the chain
+			// @ts-ignore
 			specVersion,
+			// @ts-ignore
 			tip: 0,
+			// @ts-ignore
 			transactionVersion,
 		}, {
 			metadataRpc,
+			// @ts-ignore
 			registry,
 		});
 
@@ -91,6 +99,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// Important! The registry needs to be updated with latest metadata, so make
 		// sure to run `registry.setMetadata(metadata)` before signing.
+		// @ts-ignore
 		registry.setMetadata(createMetadata(registry, metadataRpc));
 
         // Sign a payload. This operation should be performed on an offline device.
@@ -101,6 +110,7 @@ export class TransactionService implements Contracts.TransactionService {
         console.log(`\nSignature: ${signature}`);
 
         // Serialize a signed transaction.
+			// @ts-ignore
         const tx = createSignedTx(unsigned, signature, { metadataRpc, registry });
         console.log(`\nTransaction to Submit: ${tx}`);
 
@@ -111,6 +121,7 @@ export class TransactionService implements Contracts.TransactionService {
         // Send the tx to the node. Again, since `txwrapper` is offline-only, this
         // operation should be handled externally. Here, we just send a JSONRPC
         // request directly to the node.
+			// @ts-ignore
         const actualTxHash = await this.#client.rpc.author.submitAndWatchExtrinsic(tx);
         console.log(`Actual Tx Hash: ${actualTxHash}`);
 
