@@ -40,7 +40,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 		return new SignedTransactionData(
 			transaction.hash.toHex(),
-			JSON.parse(transaction.toJSON()),
+			JSON.parse(transaction.toString()),
 			transaction.toHex(),
 		);
 	}
