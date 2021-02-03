@@ -43,8 +43,6 @@ export class Wallet implements ReadWriteWallet {
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
 
-		this.#entityAggregate = new EntityAggregate(this);
-
 		this.restore();
 	}
 

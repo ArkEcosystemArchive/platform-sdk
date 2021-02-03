@@ -15,8 +15,6 @@ import { Identifiers } from "../environment/container.models";
 import { ExchangeRateService } from "../environment/services/exchange-rate-service";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "../repositories/profile-repository";
-import { EntityAggregate } from "./aggregates/entity-aggregate";
-import { EntityHistoryAggregate } from "./aggregates/entity-history-aggregate";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
 import { WalletData, WalletFlag, WalletSetting } from "./wallet.models";
@@ -503,10 +501,6 @@ describe("features", () => {
 		expect(subject.canAll(["some-feature"])).toBeFalse();
 		expect(subject.canAll(["Client.transactions"])).toBeTrue();
 	});
-});
-
-it("should return the entity aggregate", () => {
-	expect(subject.entityAggregate()).toBeInstanceOf(EntityAggregate);
 });
 
 it("should sync", async () => {
