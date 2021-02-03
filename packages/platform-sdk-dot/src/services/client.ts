@@ -15,7 +15,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async destruct(): Promise<void> {
-		//
+		await this.#client.disconnect();
 	}
 
 	public async transaction(id: string): Promise<Contracts.TransactionDataType> {
