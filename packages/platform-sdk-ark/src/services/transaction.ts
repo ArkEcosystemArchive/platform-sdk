@@ -211,7 +211,7 @@ export class TransactionService implements Contracts.TransactionService {
 		return new SignedTransactionData(
 			transactionWithSignature.id!,
 			transactionWithSignature,
-			transactionWithSignature,
+			JSON.stringify(transactionWithSignature),
 		);
 	}
 
@@ -339,7 +339,7 @@ export class TransactionService implements Contracts.TransactionService {
 		return new SignedTransactionData(
 			transactionWithSignature.id!,
 			transactionWithSignature,
-			transactionWithSignature,
+			JSON.stringify(transactionWithSignature),
 		);
 	}
 }

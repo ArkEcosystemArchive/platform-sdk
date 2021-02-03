@@ -24,7 +24,7 @@ export class TransactionService implements Contracts.TransactionService {
 			};
 
 			// TODO: compute the ID
-			return new SignedTransactionData(uuidv4(), signedTransaction, signedTransaction);
+			return new SignedTransactionData(uuidv4(), signedTransaction, JSON.stringify(signedTransaction));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

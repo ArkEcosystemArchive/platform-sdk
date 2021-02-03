@@ -81,7 +81,7 @@ export class TransactionService implements Contracts.TransactionService {
 				// TODO: compute the ID
 				uuidv4(),
 				signedTransaction,
-				signedTransaction,
+				JSON.stringify(signedTransaction),
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

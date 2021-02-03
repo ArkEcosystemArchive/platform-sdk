@@ -12,7 +12,7 @@ export class DataTransferObjectService implements Contracts.DataTransferObjectSe
 	}
 
 	public signedTransaction(identifier: string, signedData: string): Contracts.SignedTransactionData {
-		return new DTO.SignedTransactionData(identifier, signedData);
+		return new DTO.SignedTransactionData(identifier, signedData, signedData);
 	}
 
 	public transaction(transaction: unknown): Contracts.TransactionDataType {
