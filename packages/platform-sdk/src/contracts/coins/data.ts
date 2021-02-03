@@ -370,5 +370,6 @@ export interface SignedTransactionData {
 	// Helpers
 	get<T = string>(key: string): T;
 	toString(): string;
+	toBroadcast(): string;
 	toObject(): { id: string; sender: string; recipient: string; amount: string; data: any };
 }
