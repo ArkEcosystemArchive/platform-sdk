@@ -17,7 +17,6 @@ export * from "./helpers/password";
 export * from "./mappers/delegate-mapper";
 
 export * from "./profiles/aggregates/count-aggregate";
-export * from "./profiles/aggregates/entity-aggregate";
 export * from "./profiles/aggregates/transaction-aggregate";
 export * from "./profiles/aggregates/wallet-aggregate";
 export * from "./profiles/authenticator";
