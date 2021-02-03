@@ -33,11 +33,13 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "transfer");
 		}
 
-		const keypair = this.#keyring.addFromUri(input.sign.mnemonic);
-		const transfer = this.#client.tx.balances.transfer(input.data.to, input.data.amount);
-		const transaction = await transfer.signAsync(keypair);
+		const keypair = this.#keyring.addFromMnemonic(input.sign.mnemonic);
+		const transaction = await this.#client.tx.balances
+			.transfer(input.data.to, input.data.amount)
+			.signAsync(keypair);
 
-		return new SignedTransactionData(transaction.hash.toHex(), JSON.parse(transaction.toString()));
+		// @TODO: implement SignedTransactionData#toBroadcast because some coins require JSON and others Hex
+		return new SignedTransactionData(transaction.hash.toHex(), transaction.toHex());
 	}
 
 	public async secondSignature(
