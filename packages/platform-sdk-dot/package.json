@@ -28,6 +28,7 @@
 		"@polkadot/wasm-crypto": "^3.2.2",
 		"@polkadot/x-global": "^5.5.1",
 		"@polkadot/x-randomvalues": "^5.5.1",
+		"@substrate/txwrapper": "^3.10.7",
 		"@zondax/ledger-polkadot": "^0.13.0"
 	},
 	"devDependencies": {
