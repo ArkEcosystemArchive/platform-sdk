@@ -112,8 +112,4 @@ export class ClientService implements Contracts.ClientService {
 	): Promise<Contracts.BroadcastResponse> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
 	}
-
-	public async entityHistory(id: string, query?: Contracts.KeyValuePair): Promise<Coins.TransactionDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "entityHistory");
-	}
 }

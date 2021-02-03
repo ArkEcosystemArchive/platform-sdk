@@ -7,7 +7,6 @@ import { NotificationRepository } from "../repositories/notification-repository"
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
 import { CountAggregate } from "./aggregates/count-aggregate";
-import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
@@ -27,7 +26,6 @@ export interface ProfileContract {
 	flush(): void;
 	toObject(): ProfileStruct;
 	countAggregate(): CountAggregate;
-	entityAggregate(): EntityAggregate;
 	registrationAggregate(): RegistrationAggregate;
 	transactionAggregate(): TransactionAggregate;
 	walletAggregate(): WalletAggregate;

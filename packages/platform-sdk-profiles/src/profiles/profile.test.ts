@@ -13,7 +13,6 @@ import { NotificationRepository } from "../repositories/notification-repository"
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
 import { CountAggregate } from "./aggregates/count-aggregate";
-import { EntityAggregate } from "./aggregates/entity-aggregate";
 import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
@@ -115,10 +114,6 @@ it("should fail to flush all data if the name is missing", () => {
 
 it("should have a count aggregate", () => {
 	expect(subject.countAggregate()).toBeInstanceOf(CountAggregate);
-});
-
-it("should have a entity aggregate", () => {
-	expect(subject.entityAggregate()).toBeInstanceOf(EntityAggregate);
 });
 
 it("should have a registration aggregate", () => {
