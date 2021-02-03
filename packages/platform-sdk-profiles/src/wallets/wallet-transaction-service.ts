@@ -469,7 +469,7 @@ export class TransactionService {
 				result = await this.#wallet.client().broadcast([transaction]);
 			}
 		} else if (transaction.isMultiSignature() || transaction.isMultiSignatureRegistration()) {
-			result.accepted.push(await this.#wallet.coin().multiSignature().broadcast(transaction.data()));
+			result.accepted.push(await this.#wallet.coin().multiSignature().broadcast(transaction.toBroadcast()));
 		}
 
 		if (result.accepted.includes(id)) {

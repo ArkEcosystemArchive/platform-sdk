@@ -112,7 +112,7 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			const { data, errors } = await this.post("transactions", transaction.data());
+			const { data, errors } = await this.post("transactions", transaction.toBroadcast());
 
 			if (data) {
 				result.accepted.push(transaction.id());
