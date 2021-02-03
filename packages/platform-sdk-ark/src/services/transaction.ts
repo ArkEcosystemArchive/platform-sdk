@@ -336,6 +336,10 @@ export class TransactionService implements Contracts.TransactionService {
 	private async handleMultiSignature(transaction: Contracts.RawTransactionData, input: Contracts.TransactionInputs) {
 		const transactionWithSignature = this.#multiSignatureSigner.sign(transaction, input.sign.multiSignature);
 
-		return new SignedTransactionData(transactionWithSignature.id!, transactionWithSignature, transactionWithSignature);
+		return new SignedTransactionData(
+			transactionWithSignature.id!,
+			transactionWithSignature,
+			transactionWithSignature,
+		);
 	}
 }

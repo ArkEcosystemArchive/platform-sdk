@@ -38,7 +38,11 @@ export class TransactionService implements Contracts.TransactionService {
 			.transfer(input.data.to, input.data.amount)
 			.signAsync(keypair);
 
-		return new SignedTransactionData(transaction.hash.toHex(), JSON.parse(transaction.toJSON()), transaction.toHex());
+		return new SignedTransactionData(
+			transaction.hash.toHex(),
+			JSON.parse(transaction.toJSON()),
+			transaction.toHex(),
+		);
 	}
 
 	public async secondSignature(
