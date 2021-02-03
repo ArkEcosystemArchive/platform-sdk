@@ -644,7 +644,7 @@ export class TransactionService {
 		const transactions = await this.#wallet.coin().multiSignature().allWithReadyState(this.getPublicKey());
 
 		for (const transaction of transactions) {
-			this.#signed[transaction.id] = new SignedTransactionData(transaction.id, transaction, transaction);
+			this.#signed[transaction.id] = new SignedTransactionData(transaction.id, transaction, JSON.stringify(transaction));
 		}
 	}
 }
