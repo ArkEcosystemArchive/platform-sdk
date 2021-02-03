@@ -74,7 +74,7 @@
 		"Ledger": {
 			"getVersion": true,
 			"getPublicKey": true,
-			"signTransaction": false,
+			"signTransaction": true,
 			"signMessage": false
 		},
 		"Link": {
