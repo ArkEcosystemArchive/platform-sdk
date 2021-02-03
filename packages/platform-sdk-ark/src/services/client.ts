@@ -108,7 +108,7 @@ export class ClientService implements Contracts.ClientService {
 			response = await this.post("transactions", {
 				body: {
 					transactions: transactions.map((transaction: Contracts.SignedTransactionData) =>
-						transaction.data(),
+						transaction.toBroadcast(),
 					),
 				},
 			});
@@ -133,7 +133,7 @@ export class ClientService implements Contracts.ClientService {
 							(
 								await this.#http.post(`${host}/transactions`, {
 									transactions: transactions.map((transaction: Contracts.SignedTransactionData) =>
-										transaction.data(),
+										transaction.toBroadcast(),
 									),
 								})
 							).json(),

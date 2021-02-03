@@ -219,7 +219,7 @@ export class ClientService implements Contracts.ClientService {
 		for (const transaction of transactions) {
 			try {
 				// @ts-ignore
-				const { engine_result, tx_json } = await this.#connection.submit(transaction.data());
+				const { engine_result, tx_json } = await this.#connection.submit(transaction.toBroadcast());
 
 				const transactionId: string = tx_json.hash;
 

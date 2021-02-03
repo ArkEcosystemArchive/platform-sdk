@@ -89,7 +89,7 @@ export class ClientService implements Contracts.ClientService {
 				throw new Error("Failed to compute the transaction ID.");
 			}
 
-			const response = await this.post("transactions", { transactions: [transaction.data()] });
+			const response = await this.post("transactions", { transactions: [transaction.toBroadcast()] });
 
 			if (response.result) {
 				result.accepted.push(transactionId);
