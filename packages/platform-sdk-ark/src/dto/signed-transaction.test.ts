@@ -13,7 +13,7 @@ beforeEach(() => {
 		fee: "0",
 		senderPublicKey: "0208e6835a8f020cfad439c059b89addc1ce21f8cab0af6e6957e22d3720bff8a4",
 		recipientId: "D6Z26L69gdk9qYmTv5uzk3uGepigtHY4ax",
-	});
+	}, "");
 });
 
 describe("SignedTransactionData", function () {

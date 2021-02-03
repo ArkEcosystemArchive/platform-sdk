@@ -27,7 +27,7 @@ beforeEach(() => {
 		signatures: [],
 		asset: {},
 		receivedAt: undefined,
-	});
+	}, "");
 });
 
 describe("SignedTransactionData", function () {

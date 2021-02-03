@@ -14,7 +14,7 @@ beforeEach(
 			fee: BigNumber.ONE,
 			isMultiSignature: false,
 			isMultiSignatureRegistration: false,
-		})),
+		}, "")),
 );
 
 it("#sender", async () => {

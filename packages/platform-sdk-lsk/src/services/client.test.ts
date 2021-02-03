@@ -120,7 +120,7 @@ describe("ClientService", function () {
 				"48580d51e30a177b854ef35771a62911140085808bf2299828202ce439faaf96dc677822279caf1bdddf99d01867cba119e9b1cd5bb7f65cbc531f6c1ce93705",
 			signatures: [],
 			asset: {},
-		});
+		}, "");
 
 		it("should pass", async () => {
 			nock(/.+/)

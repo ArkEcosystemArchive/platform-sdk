@@ -118,7 +118,7 @@ describe("ClientService", function () {
 				},
 			],
 			memo: "",
-		});
+		}, "");
 
 		it("should pass", async () => {
 			nock("https://stargate.cosmos.network")
