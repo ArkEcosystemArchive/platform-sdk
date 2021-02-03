@@ -1,7 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { ApiPromise } from "@polkadot/api";
 import { Keyring } from "@polkadot/keyring";
-import { u8aToHex } from "@polkadot/util";
 import { waitReady } from "@polkadot/wasm-crypto";
 
 import { SignedTransactionData } from "../dto/signed-transaction";
