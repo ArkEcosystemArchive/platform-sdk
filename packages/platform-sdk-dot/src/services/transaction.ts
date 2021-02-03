@@ -52,16 +52,10 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "transfer");
         }
 
-        const alice = this.#keyring.addFromUri('//Alice', { name: 'Alice' }, 'sr25519');
-        console.log(
-            "Alice's SS58-Encoded Address:",
-            deriveAddress(alice.publicKey, POLKADOT_SS58_FORMAT)
-        );
+		// Create the signatory wallet
+        const signatory = this.#keyring.addFromMnemonic(input.sign.mnemonic);
 
-        // Construct a balance transfer transaction offline.
-        // To construct the tx, we need some up-to-date information from the node.
-        // `txwrapper` is offline-only, so does not care how you retrieve this info.
-        // In this tutorial, we simply send RPC requests to the node.
+		// Gather the required network state
         const { block } = await this.#client.rpc.chain.getBlock();
         const blockHash = await this.#client.rpc.chain.getBlockHash();
         const genesisHash = await this.#client.rpc.chain.getBlockHash(0);
@@ -71,65 +65,29 @@ export class TransactionService implements Contracts.TransactionService {
         // Create Polkadot's type registry.
         const registry = getRegistry('Polkadot', 'polkadot', specVersion);
 
-        // Now we can create our `balances.transfer` unsigned tx. The following
-        // function takes the above data as arguments, so can be performed offline
-        // if desired.
-        const unsigned = methods.balances.transfer(
-            {
-            value: '90071992547409910',
-            dest: '14E5nqKAp3oAJcmzgZhUD2RcptBeUBScxKHgJKU4HPNcKVf3', // Bob
-            },
-            {
-            address: deriveAddress(alice.publicKey, POLKADOT_SS58_FORMAT),
-            blockHash,
-            blockNumber: registry
-                .createType('BlockNumber', block.header.number)
-                .toNumber(),
-            eraPeriod: 64,
-            genesisHash,
-            metadataRpc,
-            nonce: 0, // Assuming this is Alice's first tx on the chain
-            specVersion,
-            tip: 0,
-            transactionVersion,
-            },
-            {
-            metadataRpc,
-            registry,
-            }
-        );
+        // Create a `balances.transfer` unsigned tx
+        const unsigned = methods.balances.transfer({
+			value: input.data.amount,
+			dest: input.data.to,
+		}, {
+			address: deriveAddress(signatory.publicKey, POLKADOT_SS58_FORMAT),
+			blockHash,
+			blockNumber: registry.createType('BlockNumber', block.header.number).toNumber(),
+			eraPeriod: 64,
+			genesisHash,
+			metadataRpc,
+			nonce: 0, // Assuming this is Alice's first tx on the chain
+			specVersion,
+			tip: 0,
+			transactionVersion,
+		}, {
+			metadataRpc,
+			registry,
+		});
 
-        // Decode an unsigned transaction.
-        const decodedUnsigned = decode(
-            unsigned,
-            {
-            metadataRpc,
-            registry,
-            },
-            true
-        );
-        console.log(
-            `\nDecoded Transaction\n  To: ${decodedUnsigned.method.args.dest}\n` +
-            `  Amount: ${decodedUnsigned.method.args.value}`
-        );
-
-        // Construct the signing payload from an unsigned transaction.
+        // Construct the signing payload from an unsigned transaction
         const signingPayload = createSigningPayload(unsigned, { registry });
         console.log(`\nPayload to Sign: ${signingPayload}`);
-
-        // Decode the information from a signing payload.
-        const payloadInfo = decode(
-            signingPayload,
-            {
-            metadataRpc,
-            registry,
-            },
-            true
-        );
-        console.log(
-            `\nDecoded Transaction\n  To: ${payloadInfo.method.args.dest}\n` +
-            `  Amount: ${payloadInfo.method.args.value}`
-        );
 
 		// Important! The registry needs to be updated with latest metadata, so make
 		// sure to run `registry.setMetadata(metadata)` before signing.
@@ -137,10 +95,8 @@ export class TransactionService implements Contracts.TransactionService {
 
         // Sign a payload. This operation should be performed on an offline device.
 		const { signature } = registry
-		  .createType('ExtrinsicPayload', signingPayload, {
-			version: EXTRINSIC_VERSION,
-		  })
-		  .sign(alice);
+			.createType("ExtrinsicPayload", signingPayload, { version: EXTRINSIC_VERSION })
+			.sign(signatory);
 
         console.log(`\nSignature: ${signature}`);
 
@@ -157,20 +113,6 @@ export class TransactionService implements Contracts.TransactionService {
         // request directly to the node.
         const actualTxHash = await this.#client.rpc.author.submitAndWatchExtrinsic(tx);
         console.log(`Actual Tx Hash: ${actualTxHash}`);
-
-        // Decode a signed payload.
-        const txInfo = decode(
-            tx,
-            {
-            metadataRpc,
-            registry,
-            },
-            true
-        );
-        console.log(
-            `\nDecoded Transaction\n  To: ${txInfo.method.args.dest}\n` +
-            `  Amount: ${txInfo.method.args.value}\n`
-        );
 
 		// const keypair = this.#keyring.addFromUri(input.sign.mnemonic);
 		// const transfer = this.#client.tx.balances.transfer(input.data.to, input.data.amount);
