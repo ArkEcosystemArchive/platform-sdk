@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.7.6 - 2020-02-02
+
+### Added
+
+-   Implement `LedgerService` (23249229, @sleepdefic1t)
+
+### Changed
+
+-   Define `LedgerIndex` as `WalletData` (8183cce7, @dated)
+
 ## 2.7.4 - 2020-02-01
 
 ### Added

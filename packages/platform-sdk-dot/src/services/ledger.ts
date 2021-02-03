@@ -36,7 +36,10 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "signTransaction");
+		const parsedPath = this.parseDotPath(path);
+		const { signature } = await this.#transport.sign(parsedPath[2], parsedPath[3], parsedPath[4], payload);
+
+		return signature.toString("hex");
 	}
 
 	public async signMessage(path: string, payload: Buffer): Promise<string> {
