@@ -22,7 +22,7 @@ describe("Core", () => {
 					mnemonic: identity.mnemonic,
 				},
 				data: {
-					amount: "1",
+					amount: "12345",
 					to: identity.address,
 				},
 			});
