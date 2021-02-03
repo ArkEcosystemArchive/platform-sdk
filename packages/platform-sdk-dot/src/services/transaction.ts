@@ -1,10 +1,10 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
-import { ApiPromise, WsProvider } from "@polkadot/api";
+import { ApiPromise } from "@polkadot/api";
 import { Keyring } from "@polkadot/keyring";
 import { waitReady } from "@polkadot/wasm-crypto";
 
 import { SignedTransactionData } from "../dto/signed-transaction";
+import { createRpcClient } from "../helpers";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #client: ApiPromise;
@@ -18,16 +18,11 @@ export class TransactionService implements Contracts.TransactionService {
 	public static async construct(config: Coins.Config): Promise<TransactionService> {
 		await waitReady();
 
-		const wsProvider = new WsProvider(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
-		const api = await ApiPromise.create({ provider: wsProvider });
-
-		await api.isReady;
-
-		return new TransactionService(api);
+		return new TransactionService(await createRpcClient(config));
 	}
 
 	public async destruct(): Promise<void> {
-		await this.#client.disconnect();
+		//
 	}
 
 	public async transfer(

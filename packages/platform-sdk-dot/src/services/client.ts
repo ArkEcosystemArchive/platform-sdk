@@ -1,8 +1,17 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { ApiPromise } from "@polkadot/api";
+
+import { createRpcClient } from "../helpers";
 
 export class ClientService implements Contracts.ClientService {
+	readonly #client: ApiPromise;
+
+	private constructor(client: ApiPromise) {
+		this.#client = client;
+	}
+
 	public static async construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService();
+		return new ClientService(await createRpcClient(config));
 	}
 
 	public async destruct(): Promise<void> {
@@ -46,7 +55,17 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
+		for (const transaction of transactions) {
+			throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+		}
+
+		return result;
 	}
 
 	public async broadcastSpread(
