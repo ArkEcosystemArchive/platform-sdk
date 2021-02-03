@@ -93,32 +93,36 @@ describe("ClientService", function () {
 	});
 
 	describe("#broadcast", () => {
-		const transactionPayload = new SignedTransactionData("id", {
-			msg: [
-				{
-					type: "cosmos-sdk/MsgSend",
-					value: {
-						amount: [{ amount: "1", denom: "umuon" }],
-						from_address: "cosmos1pnc559thh9ks4crsp5p3wta2f2m09t4gluyl2l",
-						to_address: "cosmos1xvt4e7xd0j9dwv2w83g50tpcltsl90h52003e2",
+		const transactionPayload = new SignedTransactionData(
+			"id",
+			{
+				msg: [
+					{
+						type: "cosmos-sdk/MsgSend",
+						value: {
+							amount: [{ amount: "1", denom: "umuon" }],
+							from_address: "cosmos1pnc559thh9ks4crsp5p3wta2f2m09t4gluyl2l",
+							to_address: "cosmos1xvt4e7xd0j9dwv2w83g50tpcltsl90h52003e2",
+						},
 					},
-				},
-			],
-			fee: { amount: [{ amount: "5000", denom: "umuon" }], gas: "200000" },
-			signatures: [
-				{
-					signature:
-						"naiy71Wa8hPC8wMj2/J4CwnqtR8RThv9Cy3y1EGJVowVtDWJQoUmy3KfYneA2wwLQUlgI/UWgNMClCzbJdD8Ew==",
-					account_number: "58976",
-					sequence: "16",
-					pub_key: {
-						type: "tendermint/PubKeySecp256k1",
-						value: "A1wiLscFDRRdEuWx5WmXbXVbMszN2cBHaJFWfJm399Yy",
+				],
+				fee: { amount: [{ amount: "5000", denom: "umuon" }], gas: "200000" },
+				signatures: [
+					{
+						signature:
+							"naiy71Wa8hPC8wMj2/J4CwnqtR8RThv9Cy3y1EGJVowVtDWJQoUmy3KfYneA2wwLQUlgI/UWgNMClCzbJdD8Ew==",
+						account_number: "58976",
+						sequence: "16",
+						pub_key: {
+							type: "tendermint/PubKeySecp256k1",
+							value: "A1wiLscFDRRdEuWx5WmXbXVbMszN2cBHaJFWfJm399Yy",
+						},
 					},
-				},
-			],
-			memo: "",
-		}, "");
+				],
+				memo: "",
+			},
+			"",
+		);
 
 		it("should pass", async () => {
 			nock("https://stargate.cosmos.network")

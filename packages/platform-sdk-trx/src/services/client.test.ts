@@ -49,7 +49,7 @@ describe("ClientService", function () {
 				new SignedTransactionData(
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`).txID,
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
-					""
+					"",
 				),
 			]);
 
@@ -69,7 +69,7 @@ describe("ClientService", function () {
 				new SignedTransactionData(
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`).txID,
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
-					""
+					"",
 				),
 			]);
 
