@@ -509,10 +509,6 @@ it("should return the entity aggregate", () => {
 	expect(subject.entityAggregate()).toBeInstanceOf(EntityAggregate);
 });
 
-it("should return the entity history aggregate", () => {
-	expect(subject.entityHistoryAggregate()).toBeInstanceOf(EntityHistoryAggregate);
-});
-
 it("should sync", async () => {
 	await expect(subject.sync()).toResolve();
 });

@@ -59,8 +59,5 @@ describe("ClientService", function () {
 		it("#broadcastSpread", async () => {
 			await expect(subject.broadcastSpread([], [])).rejects.toThrow(/is not implemented./);
 		});
-		it("#entityHistory", async () => {
-			await expect(subject.entityHistory("")).rejects.toThrow(/is not implemented./);
-		});
 	});
 });
