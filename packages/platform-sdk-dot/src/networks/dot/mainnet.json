@@ -16,7 +16,7 @@
 		}
 	},
 	"networking": {
-		"hosts": ["wss://rpc.polkadot.io"],
+		"hosts": ["https://rpc.polkadot.io/"],
 		"hostsMultiSignature": []
 	},
 	"governance": {
