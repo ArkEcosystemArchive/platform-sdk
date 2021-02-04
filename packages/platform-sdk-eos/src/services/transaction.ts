@@ -89,7 +89,7 @@ export class TransactionService implements Contracts.TransactionService {
 			return new SignedTransactionData(
 				createHash("sha256").update(transaction.serializedTransaction).digest("hex"),
 				transaction,
-				JSON.stringify(transaction),
+				transaction,
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

@@ -6,7 +6,7 @@ export abstract class AbstractSignedTransactionData {
 	public constructor(
 		protected readonly identifier: string,
 		protected readonly signedData: RawTransactionData,
-		protected readonly broadcastData: string,
+		protected readonly broadcastData: any,
 	) {}
 
 	public id(): string {
@@ -37,7 +37,7 @@ export abstract class AbstractSignedTransactionData {
 		return JSON.stringify(this.signedData);
 	}
 
-	public toBroadcast(): string {
+	public toBroadcast(): any {
 		return this.broadcastData;
 	}
 
@@ -48,7 +48,7 @@ export abstract class AbstractSignedTransactionData {
 		amount: string;
 		fee: string;
 		data: RawTransactionData;
-		broadcast: string;
+		broadcast: any;
 	} {
 		return {
 			id: this.id(),
