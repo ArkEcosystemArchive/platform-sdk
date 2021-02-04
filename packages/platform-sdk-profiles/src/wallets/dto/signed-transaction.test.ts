@@ -7,14 +7,18 @@ import { SignedTransactionData } from "./signed-transaction";
 let subject: SignedTransactionData;
 beforeEach(
 	() =>
-		(subject = new SignedTransactionData("id", {
-			sender: "sender",
-			recipient: "recipient",
-			amount: BigNumber.ONE,
-			fee: BigNumber.ONE,
-			isMultiSignature: false,
-			isMultiSignatureRegistration: false,
-		})),
+		(subject = new SignedTransactionData(
+			"id",
+			{
+				sender: "sender",
+				recipient: "recipient",
+				amount: BigNumber.ONE,
+				fee: BigNumber.ONE,
+				isMultiSignature: false,
+				isMultiSignatureRegistration: false,
+			},
+			"",
+		)),
 );
 
 it("#sender", async () => {

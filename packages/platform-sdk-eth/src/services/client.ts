@@ -99,7 +99,7 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			const transactionId: string | null = Web3.utils.sha3(transaction.data());
+			const transactionId: string | null = Web3.utils.sha3(transaction.toBroadcast());
 
 			if (!transactionId) {
 				throw new Error("Failed to compute the transaction ID.");

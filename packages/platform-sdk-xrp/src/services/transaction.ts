@@ -69,7 +69,7 @@ export class TransactionService implements Contracts.TransactionService {
 				BIP39.normalize(input.sign.mnemonic),
 			);
 
-			return new SignedTransactionData(id, signedTransaction);
+			return new SignedTransactionData(id, signedTransaction, signedTransaction);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

@@ -89,7 +89,7 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			const response = await this.#connection.trx.sendRawTransaction(transaction.data());
+			const response = await this.#connection.trx.sendRawTransaction(transaction.toBroadcast());
 
 			if (response.result) {
 				result.accepted.push(transaction.id());

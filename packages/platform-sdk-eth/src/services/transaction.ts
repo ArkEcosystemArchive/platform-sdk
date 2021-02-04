@@ -78,6 +78,7 @@ export class TransactionService implements Contracts.TransactionService {
 			return new SignedTransactionData(
 				transaction.hash().toString("hex"),
 				"0x" + transaction.serialize().toString("hex"),
+				"0x" + transaction.serialize().toString("hex"),
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

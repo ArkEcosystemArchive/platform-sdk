@@ -43,42 +43,45 @@ export class TransactionService implements Contracts.TransactionService {
 
 			const { account_number, sequence } = (await this.#client.wallet(senderAddress)).raw();
 
+			const signedTransaction = createSignedTransactionData(
+				{
+					msgs: [
+						{
+							type: "cosmos-sdk/MsgSend",
+							value: {
+								amount: [
+									{
+										amount: `${input.data.amount}`,
+										denom: "umuon", // todo: make this configurable
+									},
+								],
+								from_address: senderAddress,
+								to_address: input.data.to,
+							},
+						},
+					],
+					chain_id: this.#networkId,
+					fee: {
+						amount: [
+							{
+								amount: String(5000), // todo: make this configurable or estimate it
+								denom: "umuon", // todo: make this configurable
+							},
+						],
+						gas: String(200000), // todo: make this configurable or estimate it
+					},
+					memo: "",
+					account_number: String(account_number),
+					sequence: String(sequence),
+				},
+				keyPair,
+			);
+
 			return new SignedTransactionData(
 				// TODO: compute the ID
 				uuidv4(),
-				createSignedTransactionData(
-					{
-						msgs: [
-							{
-								type: "cosmos-sdk/MsgSend",
-								value: {
-									amount: [
-										{
-											amount: `${input.data.amount}`,
-											denom: "umuon", // todo: make this configurable
-										},
-									],
-									from_address: senderAddress,
-									to_address: input.data.to,
-								},
-							},
-						],
-						chain_id: this.#networkId,
-						fee: {
-							amount: [
-								{
-									amount: String(5000), // todo: make this configurable or estimate it
-									denom: "umuon", // todo: make this configurable
-								},
-							],
-							gas: String(200000), // todo: make this configurable or estimate it
-						},
-						memo: "",
-						account_number: String(account_number),
-						sequence: String(sequence),
-					},
-					keyPair,
-				),
+				signedTransaction,
+				signedTransaction,
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

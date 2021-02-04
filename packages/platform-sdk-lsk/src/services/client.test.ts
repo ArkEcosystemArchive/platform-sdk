@@ -107,20 +107,24 @@ describe("ClientService", function () {
 	});
 
 	describe("#broadcast", () => {
-		const transactionPayload = new SignedTransactionData("5961193224963457718", {
-			id: "5961193224963457718",
-			amount: "1",
-			type: 0,
-			timestamp: 125068043,
-			senderPublicKey: "ceb7bb7475a14b729eba069dfb27715331727a910acf5773a950ed4f863c89ed",
-			senderId: "15957226662510576840L",
-			recipientId: "15957226662510576840L",
-			fee: "10000000",
-			signature:
-				"48580d51e30a177b854ef35771a62911140085808bf2299828202ce439faaf96dc677822279caf1bdddf99d01867cba119e9b1cd5bb7f65cbc531f6c1ce93705",
-			signatures: [],
-			asset: {},
-		});
+		const transactionPayload = new SignedTransactionData(
+			"5961193224963457718",
+			{
+				id: "5961193224963457718",
+				amount: "1",
+				type: 0,
+				timestamp: 125068043,
+				senderPublicKey: "ceb7bb7475a14b729eba069dfb27715331727a910acf5773a950ed4f863c89ed",
+				senderId: "15957226662510576840L",
+				recipientId: "15957226662510576840L",
+				fee: "10000000",
+				signature:
+					"48580d51e30a177b854ef35771a62911140085808bf2299828202ce439faaf96dc677822279caf1bdddf99d01867cba119e9b1cd5bb7f65cbc531f6c1ce93705",
+				signatures: [],
+				asset: {},
+			},
+			"",
+		);
 
 		it("should pass", async () => {
 			nock(/.+/)

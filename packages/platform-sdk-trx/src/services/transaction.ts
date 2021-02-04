@@ -44,7 +44,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			const response = await this.#connection.trx.sign(transaction, BIP39.normalize(input.sign.mnemonic));
 
-			return new SignedTransactionData(response.txId, response);
+			return new SignedTransactionData(response.txId, response, response);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

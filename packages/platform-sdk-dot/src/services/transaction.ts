@@ -38,8 +38,11 @@ export class TransactionService implements Contracts.TransactionService {
 			.transfer(input.data.to, input.data.amount)
 			.signAsync(keypair);
 
-		// @TODO: implement SignedTransactionData#toBroadcast because some coins require JSON and others Hex
-		return new SignedTransactionData(transaction.hash.toHex(), transaction.toHex());
+		return new SignedTransactionData(
+			transaction.hash.toHex(),
+			JSON.parse(transaction.toString()),
+			transaction.toHex(),
+		);
 	}
 
 	public async secondSignature(
