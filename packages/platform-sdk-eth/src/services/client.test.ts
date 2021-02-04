@@ -90,7 +90,7 @@ describe("ClientService", function () {
 				.post("/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
-			const result = await subject.broadcast([new SignedTransactionData("id", "transactionPayload", "")]);
+			const result = await subject.broadcast([new SignedTransactionData("id", "transactionPayload", "transactionPayload")]);
 
 			expect(result).toEqual({
 				accepted: ["0x227cff6fc8990fecd43cc9c7768f2c98cc5ee8e7c98c67c11161e008cce2b172"],
@@ -104,7 +104,7 @@ describe("ClientService", function () {
 				.post("/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
-			const result = await subject.broadcast([new SignedTransactionData("id", "transactionPayload", "")]);
+			const result = await subject.broadcast([new SignedTransactionData("id", "transactionPayload", "transactionPayload")]);
 
 			expect(result).toEqual({
 				accepted: [],
