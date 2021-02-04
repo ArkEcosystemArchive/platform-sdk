@@ -43,6 +43,7 @@ test("#toObject", () => {
 	expect(new Transaction("id", { key: "value" }, "").toObject()).toMatchInlineSnapshot(`
 		Object {
 		  "amount": "0",
+		  "broadcast": "",
 		  "data": Object {
 		    "key": "value",
 		  },
