@@ -1,7 +1,7 @@
-# ARK Platform SDK - Polkadot
+# ARK Platform SDK - Polkadot Indexer
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-dot/banner.png" />
+    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-dot-indexer/banner.png" />
 </p>
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)
@@ -9,12 +9,12 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-dot
+yarn add @arkecosystem/platform-sdk-dot-indexer
 ```
 
 ## Usage
 
-Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/dot).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/ada).
 
 ## Security
 

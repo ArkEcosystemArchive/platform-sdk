@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+
+const { Foreman } = require("@konceiver/foreman");
+const meow = require("meow");
+const { resolve } = require("path");
+const { subscribe } = require("../dist");
+
+const { flags, input } = meow(
+	`
+	Usage
+	  $ dot <input>
+
+	Options
+	Options
+	  --polkadot, -p  The Polkadot RPC host (defaults to wss://rpc.polkadot.io)
+	  --elasticsearch, -e  The ElasticSearch host (defaults to http://localhost:9200)
+`,
+	{
+		flags: {
+			coin: {
+				type: "string",
+				alias: "c",
+				default: "dot",
+			},
+			polkadot: {
+				type: "string",
+				alias: "p",
+				default: "wss://rpc.polkadot.io",
+			},
+			elasticsearch: {
+				type: "string",
+				alias: "e",
+				default: "http://localhost:9200",
+			},
+		},
+	},
+);
+
+const processName = `${flags.coin}-indexer`;
+
+if (input[0] === "run") {
+	(async () => subscribe(flags))();
+}
+
+if (input[0] === "start") {
+	new Foreman().start(
+		{
+			// eslint-disable-next-line no-undef
+			script: resolve(__dirname, "subscribe.js"),
+			args: flags,
+			env: {
+				NODE_ENV: "production",
+			},
+		},
+		{ name: processName },
+	);
+}
+
+if (input[0] === "stop") {
+	new Foreman().stop(processName);
+}
+
+if (input[0] === "restart") {
+	new Foreman().restart(processName);
+}
+
+if (input[0] === "delete") {
+	new Foreman().delete(processName);
+}
