@@ -1,6 +1,7 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { ApiPromise } from "@polkadot/api";
 
+import { WalletData } from "../dto";
 import { createRpcClient } from "../helpers";
 
 export class ClientService implements Contracts.ClientService {
@@ -27,7 +28,13 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
+		const { data: balances, nonce } = await this.#client.query.system.account(id);
+
+		return new WalletData({
+			address: id,
+			balance: balances.free.toString(),
+			nonce: nonce.toString(),
+		});
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
