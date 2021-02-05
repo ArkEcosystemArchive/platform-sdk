@@ -30,7 +30,7 @@ export class TransactionService implements Contracts.TransactionService {
 		return new TransactionService({
 			http: config.get<Contracts.HttpClient>("httpClient"),
 			peer: peer,
-			identity: await IdentityService.construct(config),
+			identity: await IdentityService.__construct(config),
 			multiSignatureSigner: new MultiSignatureSigner(crypto, status.height),
 			configCrypto: { crypto, status },
 		});

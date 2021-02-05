@@ -20,8 +20,8 @@ export class TransactionService implements Contracts.TransactionService {
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
 			...config.all(),
-			client: await ClientService.construct(config),
-			identity: await IdentityService.construct(config),
+			client: await ClientService.__construct(config),
+			identity: await IdentityService.__construct(config),
 		});
 	}
 

@@ -24,7 +24,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
 			...config.all(),
-			identity: await IdentityService.construct(config),
+			identity: await IdentityService.__construct(config),
 		});
 	}
 

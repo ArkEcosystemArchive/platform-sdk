@@ -32,7 +32,7 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 
 		return new TransactionService({
-			identity: await IdentityService.construct(config),
+			identity: await IdentityService.__construct(config),
 			unspent,
 		});
 	}

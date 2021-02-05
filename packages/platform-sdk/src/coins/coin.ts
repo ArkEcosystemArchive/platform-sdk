@@ -44,17 +44,17 @@ export class Coin {
 
 	public async __destruct(): Promise<void> {
 		await Promise.all([
-			this.#services.client.destruct(),
-			this.#services.dataTransferObject.destruct(),
-			this.#services.fee.destruct(),
-			this.#services.identity.destruct(),
-			this.#services.knownWallets.destruct(),
-			this.#services.ledger.destruct(),
-			this.#services.link.destruct(),
-			this.#services.message.destruct(),
-			this.#services.multiSignature.destruct(),
-			this.#services.peer.destruct(),
-			this.#services.transaction.destruct(),
+			this.#services.client.__destruct(),
+			this.#services.dataTransferObject.__destruct(),
+			this.#services.fee.__destruct(),
+			this.#services.identity.__destruct(),
+			this.#services.knownWallets.__destruct(),
+			this.#services.ledger.__destruct(),
+			this.#services.link.__destruct(),
+			this.#services.message.__destruct(),
+			this.#services.multiSignature.__destruct(),
+			this.#services.peer.__destruct(),
+			this.#services.transaction.__destruct(),
 		]);
 	}
 

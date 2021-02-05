@@ -13,7 +13,7 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
-		return new MessageService({ identityService: await IdentityService.construct(config) });
+		return new MessageService({ identityService: await IdentityService.__construct(config) });
 	}
 
 	public async __destruct(): Promise<void> {
