@@ -18,7 +18,7 @@ export class ServiceProvider {
 	public static async make(coin: Coins.CoinSpec, config: Coins.Config): Promise<Coins.CoinServices> {
 		config.set(Coins.ConfigKey.NetworkConfiguration, await ServiceProvider.retrieveNetworkConfiguration(config));
 
-		const multiSignature = await MultiSignatureService.construct(config);
+		const multiSignature = await MultiSignatureService.__construct(config);
 
 		const [
 			client,
@@ -32,16 +32,16 @@ export class ServiceProvider {
 			peer,
 			transaction,
 		] = await Promise.all([
-			ClientService.construct(config) as any,
-			DataTransferObjectService.construct(config),
-			FeeService.construct(config),
-			IdentityService.construct(config),
-			KnownWalletService.construct(config),
-			LedgerService.construct(config),
-			LinkService.construct(config),
-			MessageService.construct(config),
-			PeerService.construct(config),
-			TransactionService.construct(config),
+			ClientService.__construct(config) as any,
+			DataTransferObjectService.__construct(config),
+			FeeService.__construct(config),
+			IdentityService.__construct(config),
+			KnownWalletService.__construct(config),
+			LedgerService.__construct(config),
+			LinkService.__construct(config),
+			MessageService.__construct(config),
+			PeerService.__construct(config),
+			TransactionService.__construct(config),
 		]);
 
 		return {

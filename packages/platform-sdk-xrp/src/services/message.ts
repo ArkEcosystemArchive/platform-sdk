@@ -3,11 +3,11 @@ import { BIP39, Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import { deriveKeypair, sign, verify } from "ripple-keypairs";
 
 export class MessageService implements Contracts.MessageService {
-	public static async construct(config: Coins.Config): Promise<MessageService> {
+	public static async __construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService();
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

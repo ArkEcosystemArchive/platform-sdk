@@ -12,13 +12,13 @@ export class MessageService implements Contracts.MessageService {
 		this.#keyring.setSS58Format(config.get(Coins.ConfigKey.CryptoNetworkId));
 	}
 
-	public static async construct(config: Coins.Config): Promise<MessageService> {
+	public static async __construct(config: Coins.Config): Promise<MessageService> {
 		await waitReady();
 
 		return new MessageService(config);
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

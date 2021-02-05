@@ -5,11 +5,11 @@ import { v4 as uuidv4 } from "uuid";
 import { SignedTransactionData } from "../dto";
 
 export class TransactionService implements Contracts.TransactionService {
-	public static async construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService();
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

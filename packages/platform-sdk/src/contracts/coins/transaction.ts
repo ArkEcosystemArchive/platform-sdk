@@ -1,7 +1,7 @@
 import { RawTransactionData, SignedTransactionData } from "./data";
 
 export interface TransactionService {
-	destruct(): Promise<void>;
+	__destruct(): Promise<void>;
 
 	// Core
 	transfer(input: TransferInput, options?: TransactionOptions): Promise<SignedTransactionData>;

@@ -1,11 +1,11 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class LedgerService implements Contracts.LedgerService {
-	public static async construct(config: Coins.Config): Promise<LedgerService> {
+	public static async __construct(config: Coins.Config): Promise<LedgerService> {
 		return new LedgerService();
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		await this.disconnect();
 	}
 

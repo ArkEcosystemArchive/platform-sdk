@@ -7,11 +7,11 @@ export class LinkService implements Contracts.LinkService {
 		this.#baseUrl = network.explorer;
 	}
 
-	public static async construct(config: Coins.Config): Promise<LinkService> {
+	public static async __construct(config: Coins.Config): Promise<LinkService> {
 		return new LinkService(config.get<Coins.CoinNetwork>("network"));
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

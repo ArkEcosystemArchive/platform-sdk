@@ -21,14 +21,14 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#web3 = new Web3(""); // todo: provide a host?
 	}
 
-	public static async construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
 			...config.all(),
-			identity: await IdentityService.construct(config),
+			identity: await IdentityService.__construct(config),
 		});
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

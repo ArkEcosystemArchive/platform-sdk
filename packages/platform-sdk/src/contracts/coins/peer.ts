@@ -17,7 +17,7 @@ export interface PeerResponse {
 }
 
 export interface PeerService {
-	destruct(): Promise<void>;
+	__destruct(): Promise<void>;
 
 	getSeeds(): string[];
 

@@ -13,27 +13,27 @@ let subject: Coin;
 
 const services = {
 	// @ts-ignore
-	client: { destruct: jest.fn() },
+	client: { __destruct: jest.fn() },
 	// @ts-ignore
-	dataTransferObject: { destruct: jest.fn() },
+	dataTransferObject: { __destruct: jest.fn() },
 	// @ts-ignore
-	fee: { destruct: jest.fn() },
+	fee: { __destruct: jest.fn() },
 	// @ts-ignore
-	identity: { destruct: jest.fn() },
+	identity: { __destruct: jest.fn() },
 	// @ts-ignore
-	knownWallets: { destruct: jest.fn() },
+	knownWallets: { __destruct: jest.fn() },
 	// @ts-ignore
-	ledger: { destruct: jest.fn() },
+	ledger: { __destruct: jest.fn() },
 	// @ts-ignore
-	link: { destruct: jest.fn() },
+	link: { __destruct: jest.fn() },
 	// @ts-ignore
-	message: { destruct: jest.fn() },
+	message: { __destruct: jest.fn() },
 	// @ts-ignore
-	multiSignature: { destruct: jest.fn() },
+	multiSignature: { __destruct: jest.fn() },
 	// @ts-ignore
-	peer: { destruct: jest.fn() },
+	peer: { __destruct: jest.fn() },
 	// @ts-ignore
-	transaction: { destruct: jest.fn() },
+	transaction: { __destruct: jest.fn() },
 };
 
 beforeEach(
@@ -54,19 +54,19 @@ beforeEach(
 );
 
 test("#destruct", async () => {
-	await subject.destruct();
+	await subject.__destruct();
 
-	expect(services.client.destruct).toHaveBeenCalledTimes(1);
-	expect(services.dataTransferObject.destruct).toHaveBeenCalledTimes(1);
-	expect(services.fee.destruct).toHaveBeenCalledTimes(1);
-	expect(services.identity.destruct).toHaveBeenCalledTimes(1);
-	expect(services.knownWallets.destruct).toHaveBeenCalledTimes(1);
-	expect(services.ledger.destruct).toHaveBeenCalledTimes(1);
-	expect(services.link.destruct).toHaveBeenCalledTimes(1);
-	expect(services.message.destruct).toHaveBeenCalledTimes(1);
-	expect(services.multiSignature.destruct).toHaveBeenCalledTimes(1);
-	expect(services.peer.destruct).toHaveBeenCalledTimes(1);
-	expect(services.transaction.destruct).toHaveBeenCalledTimes(1);
+	expect(services.client.__destruct).toHaveBeenCalledTimes(1);
+	expect(services.dataTransferObject.__destruct).toHaveBeenCalledTimes(1);
+	expect(services.fee.__destruct).toHaveBeenCalledTimes(1);
+	expect(services.identity.__destruct).toHaveBeenCalledTimes(1);
+	expect(services.knownWallets.__destruct).toHaveBeenCalledTimes(1);
+	expect(services.ledger.__destruct).toHaveBeenCalledTimes(1);
+	expect(services.link.__destruct).toHaveBeenCalledTimes(1);
+	expect(services.message.__destruct).toHaveBeenCalledTimes(1);
+	expect(services.multiSignature.__destruct).toHaveBeenCalledTimes(1);
+	expect(services.peer.__destruct).toHaveBeenCalledTimes(1);
+	expect(services.transaction.__destruct).toHaveBeenCalledTimes(1);
 });
 
 test("#network", () => {

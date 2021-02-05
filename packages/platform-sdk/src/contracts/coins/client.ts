@@ -17,7 +17,7 @@ export interface BroadcastResponse {
 }
 
 export interface ClientService {
-	destruct(): Promise<void>;
+	__destruct(): Promise<void>;
 
 	transaction(id: string): Promise<TransactionDataType>;
 	transactions(query: ClientTransactionsInput): Promise<TransactionDataCollection>;

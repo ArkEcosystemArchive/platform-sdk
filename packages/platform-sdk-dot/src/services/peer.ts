@@ -1,11 +1,11 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class PeerService implements Contracts.PeerService {
-	public static async construct(config: Coins.Config): Promise<PeerService> {
+	public static async __construct(config: Coins.Config): Promise<PeerService> {
 		return new PeerService();
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

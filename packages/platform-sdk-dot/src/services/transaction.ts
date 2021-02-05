@@ -15,13 +15,13 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#keyring = new Keyring({ type: "sr25519" });
 	}
 
-	public static async construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		await waitReady();
 
 		return new TransactionService(await createRpcClient(config));
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		await this.#client.disconnect();
 	}
 

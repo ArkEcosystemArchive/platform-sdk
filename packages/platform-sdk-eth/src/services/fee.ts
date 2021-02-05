@@ -10,7 +10,7 @@ export class FeeService implements Contracts.FeeService {
 		this.#peer = peer;
 	}
 
-	public static async construct(config: Coins.Config): Promise<FeeService> {
+	public static async __construct(config: Coins.Config): Promise<FeeService> {
 		try {
 			return new FeeService({
 				http: config.get<Contracts.HttpClient>("httpClient"),
@@ -24,7 +24,7 @@ export class FeeService implements Contracts.FeeService {
 		}
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

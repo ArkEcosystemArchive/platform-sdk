@@ -133,7 +133,7 @@ export class ClientService implements Contracts.ClientService {
 		this.#connection = connection;
 	}
 
-	public static async construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		let connection: RippleAPI;
 		try {
 			connection = new RippleAPI({ server: config.get<string>("peer") });
@@ -148,7 +148,7 @@ export class ClientService implements Contracts.ClientService {
 		return new ClientService(connection);
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		await this.#connection.disconnect();
 	}
 

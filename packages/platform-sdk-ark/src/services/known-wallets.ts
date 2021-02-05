@@ -9,11 +9,11 @@ export class KnownWalletService implements Contracts.KnownWalletService {
 		this.#source = config.get<string>(Coins.ConfigKey.KnownWallets);
 	}
 
-	public static async construct(config: Coins.Config): Promise<KnownWalletService> {
+	public static async __construct(config: Coins.Config): Promise<KnownWalletService> {
 		return new KnownWalletService(config);
 	}
 
-	public async destruct(): Promise<void> {}
+	public async __destruct(): Promise<void> {}
 
 	public async all(): Promise<Contracts.KnownWallet[]> {
 		try {

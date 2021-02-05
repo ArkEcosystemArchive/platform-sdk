@@ -4,11 +4,11 @@ import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
 export class MessageService implements Contracts.MessageService {
-	public static async construct(config: Coins.Config): Promise<MessageService> {
+	public static async __construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService();
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

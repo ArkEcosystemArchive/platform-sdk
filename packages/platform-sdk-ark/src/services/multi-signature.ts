@@ -32,12 +32,12 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	}
 
 	/** @inheritdoc */
-	public static async construct(config: Coins.Config): Promise<MultiSignatureService> {
+	public static async __construct(config: Coins.Config): Promise<MultiSignatureService> {
 		return new MultiSignatureService(config);
 	}
 
 	/** @inheritdoc */
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

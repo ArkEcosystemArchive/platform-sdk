@@ -13,7 +13,7 @@ export class PeerService implements Contracts.PeerService {
 		this.#seeds = seeds;
 	}
 
-	public static async construct(config: Coins.Config): Promise<PeerService> {
+	public static async __construct(config: Coins.Config): Promise<PeerService> {
 		const { httpClient, network } = config.all();
 
 		let peer: string;
@@ -56,7 +56,7 @@ export class PeerService implements Contracts.PeerService {
 		return new PeerService({ http: httpClient, seeds });
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

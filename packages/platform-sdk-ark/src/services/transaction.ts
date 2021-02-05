@@ -24,19 +24,19 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#configCrypto = configCrypto;
 	}
 
-	public static async construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		const { crypto, peer, status }: any = config.get(Coins.ConfigKey.NetworkConfiguration);
 
 		return new TransactionService({
 			http: config.get<Contracts.HttpClient>("httpClient"),
 			peer: peer,
-			identity: await IdentityService.construct(config),
+			identity: await IdentityService.__construct(config),
 			multiSignatureSigner: new MultiSignatureSigner(crypto, status.height),
 			configCrypto: { crypto, status },
 		});
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

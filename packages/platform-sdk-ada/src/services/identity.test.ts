@@ -7,7 +7,7 @@ import { IdentityService } from "./identity";
 let subject: IdentityService;
 
 beforeEach(async () => {
-	subject = await IdentityService.construct(createConfig());
+	subject = await IdentityService.__construct(createConfig());
 });
 
 describe("IdentityService", () => {
@@ -112,6 +112,6 @@ describe("IdentityService", () => {
 	});
 
 	it("should do nothing on destruct", async () => {
-		await expect(subject.destruct()).resolves.toBeUndefined();
+		await expect(subject.__destruct()).resolves.toBeUndefined();
 	});
 });

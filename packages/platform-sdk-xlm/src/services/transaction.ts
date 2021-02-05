@@ -27,14 +27,14 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#identity = options.identity;
 	}
 
-	public static async construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
 			network: config.get<Coins.CoinNetwork>("network"),
-			identity: await IdentityService.construct(config),
+			identity: await IdentityService.__construct(config),
 		});
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

@@ -7,7 +7,7 @@ import { IdentityService } from "./identity";
 let subject: IdentityService;
 
 beforeEach(async () => {
-	subject = await IdentityService.construct(
+	subject = await IdentityService.__construct(
 		createConfig(undefined, {
 			networkConfiguration: {
 				crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,

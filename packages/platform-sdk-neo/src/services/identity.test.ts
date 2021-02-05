@@ -12,7 +12,7 @@ beforeAll(() => nock.disableNetConnect());
 
 let subject: IdentityService;
 
-beforeEach(async () => (subject = await IdentityService.construct(createConfig())));
+beforeEach(async () => (subject = await IdentityService.__construct(createConfig())));
 
 describe("IdentityService", () => {
 	describe("#address", () => {
@@ -46,7 +46,7 @@ describe("IdentityService", () => {
 				.thrice()
 				.reply(200, require(`${__dirname}/../../test/fixtures/identity/ark-duplicate.json`));
 
-			subject = await IdentityService.construct(createConfig({ network: "neo.mainnet" }));
+			subject = await IdentityService.__construct(createConfig({ network: "neo.mainnet" }));
 
 			await expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).rejects.toThrow(
 				"This address exists on the ARK Mainnet.",

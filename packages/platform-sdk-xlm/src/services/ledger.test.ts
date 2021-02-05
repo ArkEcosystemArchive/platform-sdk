@@ -7,7 +7,7 @@ import { createConfig } from "../../test/helpers";
 import { LedgerService } from "./ledger";
 
 const createMockService = async (record: string) => {
-	const transport = await LedgerService.construct(createConfig());
+	const transport = await LedgerService.__construct(createConfig());
 
 	await transport.connect(createTransportReplayer(RecordStore.fromString(record)));
 
@@ -18,7 +18,7 @@ describe("destruct", () => {
 	it("should pass with a resolved transport closure", async () => {
 		const trx = await createMockService("");
 
-		await expect(trx.destruct()).resolves.toBeUndefined();
+		await expect(trx.__destruct()).resolves.toBeUndefined();
 	});
 });
 

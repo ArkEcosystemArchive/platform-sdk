@@ -17,15 +17,15 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#networkId = opts.network.crypto.networkId;
 	}
 
-	public static async construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
 			...config.all(),
-			client: await ClientService.construct(config),
-			identity: await IdentityService.construct(config),
+			client: await ClientService.__construct(config),
+			identity: await IdentityService.__construct(config),
 		});
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

@@ -12,7 +12,7 @@ import { TransactionService } from "./transaction";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.construct(createConfig())));
+beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
 
 afterEach(() => nock.cleanAll());
 
@@ -102,7 +102,7 @@ describe("ClientService", function () {
 				.post("/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
-			const transactionService = await TransactionService.construct(createConfig());
+			const transactionService = await TransactionService.__construct(createConfig());
 
 			const result = await subject.broadcast([
 				await transactionService.transfer({
@@ -135,7 +135,7 @@ describe("ClientService", function () {
 				.post("/transactions")
 				.reply(400, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
-			const transactionService = await TransactionService.construct(createConfig());
+			const transactionService = await TransactionService.__construct(createConfig());
 
 			const result = await subject.broadcast([
 				await transactionService.transfer({

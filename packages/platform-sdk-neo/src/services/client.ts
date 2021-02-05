@@ -30,14 +30,14 @@ export class ClientService implements Contracts.ClientService {
 		this.#apiProvider = new api.neoscan.instance(network === "mainnet" ? "MainNet" : "TestNet");
 	}
 
-	public static async construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
 			http: config.get<Contracts.HttpClient>("httpClient"),
 			network: config.get<Coins.CoinNetwork>("network").id.split(".")[1],
 		});
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

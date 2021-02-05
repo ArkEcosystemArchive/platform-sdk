@@ -8,7 +8,7 @@ import { ClientService } from "./client";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.construct(createConfig())));
+beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
 
 beforeAll(() => nock.disableNetConnect());
 

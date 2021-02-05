@@ -13,11 +13,11 @@ export class IdentityService implements Contracts.IdentityService {
 		this.#network = network.id.split(".")[1];
 	}
 
-	public static async construct(config: Coins.Config): Promise<IdentityService> {
+	public static async __construct(config: Coins.Config): Promise<IdentityService> {
 		return new IdentityService(config.get<Coins.CoinNetwork>("network"));
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

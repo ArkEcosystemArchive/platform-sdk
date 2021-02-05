@@ -1,5 +1,5 @@
 export interface MessageService {
-	destruct(): Promise<void>;
+	__destruct(): Promise<void>;
 
 	sign(input: MessageInput): Promise<SignedMessage>;
 

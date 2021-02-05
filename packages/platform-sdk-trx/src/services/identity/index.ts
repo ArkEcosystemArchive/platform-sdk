@@ -7,11 +7,11 @@ import { PublicKey } from "./public-key";
 import { WIF } from "./wif";
 
 export class IdentityService implements Contracts.IdentityService {
-	public static async construct(config: Coins.Config): Promise<IdentityService> {
+	public static async __construct(config: Coins.Config): Promise<IdentityService> {
 		return new IdentityService();
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

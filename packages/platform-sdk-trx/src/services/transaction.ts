@@ -14,7 +14,7 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public static async construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		try {
 			return new TransactionService(config.get<string>("peer"));
 		} catch {
@@ -22,7 +22,7 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 
