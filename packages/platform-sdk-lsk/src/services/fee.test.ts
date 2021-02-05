@@ -5,7 +5,7 @@ import { FeeService } from "./fee";
 
 let subject: FeeService;
 
-beforeEach(async () => (subject = await FeeService.construct(createConfig())));
+beforeEach(async () => (subject = await FeeService.__construct(createConfig())));
 
 describe("FeeService", function () {
 	describe("#all", () => {

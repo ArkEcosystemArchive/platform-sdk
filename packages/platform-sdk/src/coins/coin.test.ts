@@ -13,27 +13,27 @@ let subject: Coin;
 
 const services = {
 	// @ts-ignore
-	client: { destruct: jest.fn() },
+	client: { __destruct: jest.fn() },
 	// @ts-ignore
-	dataTransferObject: { destruct: jest.fn() },
+	dataTransferObject: { __destruct: jest.fn() },
 	// @ts-ignore
-	fee: { destruct: jest.fn() },
+	fee: { __destruct: jest.fn() },
 	// @ts-ignore
-	identity: { destruct: jest.fn() },
+	identity: { __destruct: jest.fn() },
 	// @ts-ignore
-	knownWallets: { destruct: jest.fn() },
+	knownWallets: { __destruct: jest.fn() },
 	// @ts-ignore
-	ledger: { destruct: jest.fn() },
+	ledger: { __destruct: jest.fn() },
 	// @ts-ignore
-	link: { destruct: jest.fn() },
+	link: { __destruct: jest.fn() },
 	// @ts-ignore
-	message: { destruct: jest.fn() },
+	message: { __destruct: jest.fn() },
 	// @ts-ignore
-	multiSignature: { destruct: jest.fn() },
+	multiSignature: { __destruct: jest.fn() },
 	// @ts-ignore
-	peer: { destruct: jest.fn() },
+	peer: { __destruct: jest.fn() },
 	// @ts-ignore
-	transaction: { destruct: jest.fn() },
+	transaction: { __destruct: jest.fn() },
 };
 
 beforeEach(
@@ -54,7 +54,7 @@ beforeEach(
 );
 
 test("#destruct", async () => {
-	await subject.destruct();
+	await subject.__destruct();
 
 	expect(services.client.destruct).toHaveBeenCalledTimes(1);
 	expect(services.dataTransferObject.destruct).toHaveBeenCalledTimes(1);

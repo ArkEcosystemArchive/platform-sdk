@@ -7,7 +7,7 @@ import { createConfig } from "../../test/helpers";
 import { LedgerService } from "./ledger";
 
 const createMockService = async (record: string) => {
-	const transport = await LedgerService.construct(createConfig());
+	const transport = await LedgerService.__construct(createConfig());
 
 	await transport.connect(createTransportReplayer(RecordStore.fromString(record)));
 
@@ -16,7 +16,7 @@ const createMockService = async (record: string) => {
 
 describe("constructor", () => {
 	it("should pass with an empty configuration", async () => {
-		const transport = await LedgerService.construct(
+		const transport = await LedgerService.__construct(
 			createConfig({
 				services: {
 					ledger: {},
@@ -32,7 +32,7 @@ describe("destruct", () => {
 	it("should pass with a resolved transport closure", async () => {
 		const subject = await createMockService("");
 
-		await expect(subject.destruct()).resolves.toBeUndefined();
+		await expect(subject.__destruct()).resolves.toBeUndefined();
 	});
 });
 

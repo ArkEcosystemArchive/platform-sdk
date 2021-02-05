@@ -8,7 +8,7 @@ import { TransactionService } from "./transaction";
 let subject: TransactionService;
 
 beforeEach(async () => {
-	subject = await TransactionService.construct(createConfig());
+	subject = await TransactionService.__construct(createConfig());
 });
 
 jest.setTimeout(10000);

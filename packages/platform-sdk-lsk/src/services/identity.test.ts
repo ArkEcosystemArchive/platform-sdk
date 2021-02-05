@@ -6,7 +6,7 @@ import { IdentityService } from "./identity";
 
 let subject: IdentityService;
 
-beforeEach(async () => (subject = await IdentityService.construct(createConfig())));
+beforeEach(async () => (subject = await IdentityService.__construct(createConfig())));
 
 describe("IdentityService", () => {
 	describe("#address", () => {

@@ -9,7 +9,7 @@ let subject: KnownWalletService;
 
 beforeAll(() => nock.disableNetConnect());
 
-beforeEach(async () => (subject = await KnownWalletService.construct(createConfig())));
+beforeEach(async () => (subject = await KnownWalletService.__construct(createConfig())));
 
 afterEach(() => nock.cleanAll());
 

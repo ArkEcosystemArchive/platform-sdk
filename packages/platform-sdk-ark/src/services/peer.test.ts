@@ -21,7 +21,7 @@ describe("PeerService", () => {
 					data: dummyPeersWalletApi,
 				});
 
-				const peerService: PeerService = await PeerService.construct(
+				const peerService: PeerService = await PeerService.__construct(
 					createConfig({
 						peer: "http://127.0.0.1/api",
 					}),
@@ -35,7 +35,7 @@ describe("PeerService", () => {
 					data: dummyPeersPublicApi,
 				});
 
-				const peerService: PeerService = await PeerService.construct(
+				const peerService: PeerService = await PeerService.__construct(
 					createConfig({
 						peer: "http://127.0.0.1/api",
 					}),
@@ -50,7 +50,7 @@ describe("PeerService", () => {
 				});
 
 				await expect(
-					PeerService.construct(
+					PeerService.__construct(
 						createConfig({
 							peer: "http://127.0.0.1/api",
 						}),
@@ -67,7 +67,7 @@ describe("PeerService", () => {
 				data: dummyPeersWalletApi,
 			});
 
-			peerService = await PeerService.construct(createConfig({ peer: "http://127.0.0.1/api" }));
+			peerService = await PeerService.__construct(createConfig({ peer: "http://127.0.0.1/api" }));
 		});
 
 		it("should find peers", async () => {

@@ -7,7 +7,7 @@ import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 
-beforeEach(async () => (subject = await TransactionService.construct(createConfig())));
+beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
 
 beforeAll(() => nock.disableNetConnect());
 

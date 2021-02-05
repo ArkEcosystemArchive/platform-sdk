@@ -81,7 +81,7 @@ beforeAll(async () => {
 		});
 	});
 
-	subject = await ClientService.construct(createConfig());
+	subject = await ClientService.__construct(createConfig());
 });
 
 afterAll(() => wss.close());

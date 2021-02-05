@@ -9,7 +9,7 @@ import { TransactionService } from "./transaction";
 let subject: TransactionService;
 
 beforeEach(async () => {
-	subject = await TransactionService.construct(
+	subject = await TransactionService.__construct(
 		createConfig(undefined, {
 			networkConfiguration: {
 				crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,

@@ -6,12 +6,12 @@ import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 
-beforeEach(async () => (subject = await TransactionService.construct(createConfig())));
+beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
 
 describe("TransactionService", () => {
 	describe("#transfer", () => {
 		it.each(["lsk.mainnet", "lsk.testnet"])("should create for %s", async (network) => {
-			const service = await TransactionService.construct(createConfig({ network }));
+			const service = await TransactionService.__construct(createConfig({ network }));
 
 			const result: any = await service.transfer({
 				from: "15957226662510576840L",

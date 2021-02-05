@@ -8,7 +8,7 @@ import { ClientService } from "./client";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.construct(createConfig())));
+beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
 
 afterEach(() => nock.cleanAll());
 
@@ -31,7 +31,7 @@ describe("ClientService", function () {
 
 	describe("#transactions", () => {
 		it("should work with Core 2.0", async () => {
-			subject = await ClientService.construct(createConfig({ network: "ark.mainnet" }));
+			subject = await ClientService.__construct(createConfig({ network: "ark.mainnet" }));
 
 			nock(/.+/)
 				.post("/api/transactions/search")
@@ -44,7 +44,7 @@ describe("ClientService", function () {
 		});
 
 		it("should work with Core 3.0", async () => {
-			subject = await ClientService.construct(createConfig({ network: "ark.devnet" }));
+			subject = await ClientService.__construct(createConfig({ network: "ark.devnet" }));
 
 			nock(/.+/)
 				.get("/api/transactions")
@@ -58,7 +58,7 @@ describe("ClientService", function () {
 		});
 
 		it("should work with Core 3.0 for advanced search", async () => {
-			subject = await ClientService.construct(createConfig({ network: "ark.devnet" }));
+			subject = await ClientService.__construct(createConfig({ network: "ark.devnet" }));
 
 			nock(/.+/)
 				.get("/api/transactions")
@@ -97,7 +97,7 @@ describe("ClientService", function () {
 
 	describe("#wallets", () => {
 		it("should work with Core 2.0", async () => {
-			subject = await ClientService.construct(createConfig({ network: "ark.mainnet" }));
+			subject = await ClientService.__construct(createConfig({ network: "ark.mainnet" }));
 
 			nock(/.+/)
 				.post("/api/wallets/search")
@@ -110,7 +110,7 @@ describe("ClientService", function () {
 		});
 
 		it("should work with Core 3.0", async () => {
-			subject = await ClientService.construct(createConfig({ network: "ark.devnet" }));
+			subject = await ClientService.__construct(createConfig({ network: "ark.devnet" }));
 
 			nock(/.+/)
 				.get("/api/wallets")
