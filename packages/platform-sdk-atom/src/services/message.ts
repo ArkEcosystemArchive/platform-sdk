@@ -12,11 +12,11 @@ export class MessageService implements Contracts.MessageService {
 		this.#identityService = opts.identityService;
 	}
 
-	public static async construct(config: Coins.Config): Promise<MessageService> {
+	public static async __construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService({ identityService: await IdentityService.construct(config) });
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

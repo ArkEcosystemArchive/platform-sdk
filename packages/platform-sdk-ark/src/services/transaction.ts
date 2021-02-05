@@ -24,7 +24,7 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#configCrypto = configCrypto;
 	}
 
-	public static async construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		const { crypto, peer, status }: any = config.get(Coins.ConfigKey.NetworkConfiguration);
 
 		return new TransactionService({
@@ -36,7 +36,7 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

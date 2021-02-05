@@ -16,11 +16,11 @@ export class ClientService implements Contracts.ClientService {
 		this.#network = config.get<string>("network.id");
 	}
 
-	public static async construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService(config);
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

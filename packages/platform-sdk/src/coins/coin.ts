@@ -42,7 +42,7 @@ export class Coin {
 		this.#network = new Network(manifest.get("name"), config.get(ConfigKey.Network));
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		await Promise.all([
 			this.#services.client.destruct(),
 			this.#services.dataTransferObject.destruct(),

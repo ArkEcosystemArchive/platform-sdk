@@ -13,11 +13,11 @@ export class IdentityService implements Contracts.IdentityService {
 		this.#config = config;
 	}
 
-	public static async construct(config: Coins.Config): Promise<IdentityService> {
+	public static async __construct(config: Coins.Config): Promise<IdentityService> {
 		return new IdentityService(config);
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

@@ -17,7 +17,7 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#unspent = opts.unspent;
 	}
 
-	public static async construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		let unspent: UnspentAggregator;
 		try {
 			unspent = new UnspentAggregator({
@@ -37,7 +37,7 @@ export class TransactionService implements Contracts.TransactionService {
 		});
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

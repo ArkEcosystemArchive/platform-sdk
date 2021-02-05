@@ -29,7 +29,7 @@ export class ClientService implements Contracts.ClientService {
 		});
 	}
 
-	public static async construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		try {
 			return new ClientService(config.get<string>("peer"));
 		} catch {
@@ -37,7 +37,7 @@ export class ClientService implements Contracts.ClientService {
 		}
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

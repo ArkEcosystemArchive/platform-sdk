@@ -10,11 +10,11 @@ export class ClientService implements Contracts.ClientService {
 		this.#client = client;
 	}
 
-	public static async construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService(await createRpcClient(config));
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		await this.#client.disconnect();
 	}
 

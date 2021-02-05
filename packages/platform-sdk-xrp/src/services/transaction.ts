@@ -13,7 +13,7 @@ export class TransactionService implements Contracts.TransactionService {
 		this.#connection = connection;
 	}
 
-	public static async construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		let connection: RippleAPI;
 		try {
 			connection = new RippleAPI({ server: config.get<string>("peer") });
@@ -28,7 +28,7 @@ export class TransactionService implements Contracts.TransactionService {
 		return new TransactionService(connection);
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

@@ -7,11 +7,11 @@ export class PeerService implements Contracts.PeerService {
 		this.#seeds = network.networking.hosts;
 	}
 
-	public static async construct(config: Coins.Config): Promise<PeerService> {
+	public static async __construct(config: Coins.Config): Promise<PeerService> {
 		return new PeerService(config.get<Coins.CoinNetwork>("network"));
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 

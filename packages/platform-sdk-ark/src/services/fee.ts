@@ -10,11 +10,11 @@ export class FeeService implements Contracts.FeeService {
 		this.#http = config.get<Contracts.HttpClient>("httpClient");
 	}
 
-	public static async construct(config: Coins.Config): Promise<FeeService> {
+	public static async __construct(config: Coins.Config): Promise<FeeService> {
 		return new FeeService(config);
 	}
 
-	public async destruct(): Promise<void> {
+	public async __destruct(): Promise<void> {
 		//
 	}
 
