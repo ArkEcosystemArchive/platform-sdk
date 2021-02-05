@@ -6,7 +6,7 @@ export interface LedgerOptions {
 export type LedgerTransport = any;
 
 export interface LedgerService {
-	destruct(): Promise<void>;
+	__destruct(): Promise<void>;
 
 	connect(transport: LedgerTransport): Promise<void>;
 

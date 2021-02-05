@@ -15,7 +15,7 @@ export interface MultiSignatureService {
 	 * @returns {Promise<void>}
 	 * @memberof MultiSignatureService
 	 */
-	destruct(): Promise<void>;
+	__destruct(): Promise<void>;
 
 	/**
 	 * Retrieve all multi-signature transactions that are awaiting for a signature from the given public key.

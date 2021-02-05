@@ -1,5 +1,5 @@
 export interface IdentityService {
-	destruct(): Promise<void>;
+	__destruct(): Promise<void>;
 
 	address(): Address;
 

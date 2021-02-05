@@ -1,5 +1,5 @@
 export interface LinkService {
-	destruct(): Promise<void>;
+	__destruct(): Promise<void>;
 
 	block(id: string): string;
 
