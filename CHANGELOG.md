@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.7.13 - 2020-02-05
+
+### Added
+
+-   **[ADA]** Retrieve wallet information from network (8063e3ca, @marianogoldman)
+-   **[DOT]** Implement ledger transaction signing (9b9cba49, @sleepdefic1t)
+-   **[DOT]** Implement transaction broadcasting (1a92b410, @faustbrian)
+-   Implement `SignedTransactionData#toBroadcast` (534d630f, @faustbrian)
+
+### Changed
+
+-   **[DOT]** Replace `WsProvider` with `HttpProvider` (99ee9b96, @faustbrian)
+-   Drop AIP36 entity related code (95995fea, @faustbrian)
+-   Prefix lifecycle methods with `__` (6e16114d, @faustbrian)
+
 ## 2.7.6 - 2020-02-02
 
 ### Added
