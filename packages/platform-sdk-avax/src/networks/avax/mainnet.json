@@ -9,8 +9,8 @@
 	},
 	"crypto": {
 		"networkId": 1,
-		"blockchainId": "2JVSBoinj9C2J33VntvzYtVJNZdN2NKiwwKjcumHUWEb5DbBrm",
-		"assetId": "U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK",
+		"blockchainId": "2oYMBNV4eNHyqk2fjjV5nVQLDbtmNJzq5s3qs3Lo6ftnC6FByM",
+		"assetId": "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z",
 		"signingMethods": {
 			"mnemonic": false,
 			"privateKey": true,
