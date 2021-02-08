@@ -20,11 +20,11 @@ describe("IdentityService", () => {
 			await expect(subject.address().fromMultiSignature(0, [])).rejects.toThrow(/is not supported/);
 		});
 
-		it("shouto generate an output from a privateKey", async () => {
+		it("should fail to generate an output from a privateKey", async () => {
 			await expect(subject.address().fromPrivateKey(identity.privateKey)).rejects.toThrow(/is not supported/);
 		});
 
-		it("should generate an output from a publicKey", async () => {
+		it("should fail to generate an output from a publicKey", async () => {
 			await expect(subject.address().fromPublicKey(identity.publicKey)).rejects.toThrow(/is not supported/);
 		});
 
@@ -32,7 +32,7 @@ describe("IdentityService", () => {
 			await expect(subject.address().fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
 		});
 
-		it("should validate an address", async () => {
+		it("should fail to validate an address", async () => {
 			await expect(subject.address().validate(identity.address)).rejects.toThrow(/is not supported/);
 		});
 	});
@@ -56,7 +56,7 @@ describe("IdentityService", () => {
 
 	describe("#privateKey", () => {
 		it("should generate an output from a mnemonic", async () => {
-			await expect(subject.privateKey().fromMnemonic(identity.mnemonic)).rejects.toThrow(/is not supported/);
+			await expect(subject.privateKey().fromMnemonic(identity.mnemonic)).resolves.toBe("PrivateKey-rC7DsPL1zKuPnwnqHSnShdXxeMReKWLBJgKcuJ1ZLUCUrzRni");
 		});
 
 		it("should fail to generate an output from a wif", async () => {
@@ -65,8 +65,8 @@ describe("IdentityService", () => {
 	});
 
 	describe("#publicKey", () => {
-		it("should fail to generate an output from a mnemonic", async () => {
-			await expect(subject.publicKey().fromMnemonic(identity.mnemonic)).rejects.toThrow(/is not supported/);
+		it("should generate an output from a mnemonic", async () => {
+			await expect(subject.publicKey().fromMnemonic(identity.mnemonic)).resolves.toBe("7qobgTQPiy3mH4tvjabDjapPVrh9Tnkb3tpn2yY37hsEyxaSjW");
 		});
 
 		it("should fail to generate an output from a multiSignature", async () => {
