@@ -22,7 +22,9 @@
 		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
 		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"avalanche": "^3.2.0"
+		"avalanche": "^3.2.0",
+		"hdkey": "^2.0.1",
+		"url-parse-lax": "^4.0.0"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
@@ -32,6 +34,7 @@
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/hapi__joi": "17.1.6",
+		"@types/hdkey": "0.7.1",
 		"@types/is-url-superb": "3.0.0",
 		"@types/jest": "^26.0.15",
 		"@types/lodash.orderby": "4.6.6",

@@ -1,14 +1,14 @@
 {
-	"id": "avax.mainnet",
+	"id": "avax.testnet",
 	"type": "live",
-	"name": "AVAX Mainnet",
-	"explorer": "https://explorer.avax.network/",
+	"name": "AVAX Testnet",
+	"explorer": "https://explorer.avax-test.network/",
 	"currency": {
-		"ticker": "AVAX",
-		"symbol": "AVAX"
+		"ticker": "FUJI",
+		"symbol": "FUJI"
 	},
 	"crypto": {
-		"networkId": 1,
+		"networkId": 5,
 		"blockchainId": "2JVSBoinj9C2J33VntvzYtVJNZdN2NKiwwKjcumHUWEb5DbBrm",
 		"assetId": "U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK",
 		"signingMethods": {
@@ -19,7 +19,7 @@
 	},
 	"networking": {
 		"hosts": [
-			"https://api.avax.network:443"
+			"https://api.avax-test.network:443"
 		],
 		"hostsMultiSignature": []
 	},

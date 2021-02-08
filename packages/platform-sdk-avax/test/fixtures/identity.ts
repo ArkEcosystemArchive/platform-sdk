@@ -2,9 +2,10 @@ export const identity = {
 	// Standard
 	privateKey: "24jUJ9vZexUM6expyMcT48LBx27k1m7xpraoV62oSQAHdziao5",
 	publicKey: "7i8kVz6d6FsACnGUEbjyivaULARjmXaaJDzTFUpPjuBwecpmtF",
-	address: "2oYMBNV4eNHyqk2fjjV5nVQLDbtmNJzq5s3qs3Lo6ftnC6FByM-denali1lnk637g0edwnqc2tn8tel39652fswa3xxznt2k",
+	address: "X-fuji1rusf9c2uwlqxg5crfrqr8xrt4r49yk6rskehvm",
 	wif: "",
-	mnemonic: "",
+	mnemonic:
+		"mushroom crew fluid nephew movie roof guess gas intact actor off race guilt genuine solar move save quarter impact great stove print tourist damp",
 	// Multi Signature
 	multiSignature: {},
 	multiSignatureAddress: "",

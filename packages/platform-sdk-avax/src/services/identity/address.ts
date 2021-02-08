@@ -1,17 +1,16 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BinTools } from "avalanche";
 
-import { useKeychain } from "../helpers";
+import { keyPairFromMnemonic } from "../helpers";
 
 export class Address implements Contracts.Address {
-	readonly #keychain;
+	readonly #config: Coins.Config;
 
 	public constructor(config: Coins.Config) {
-		this.#keychain = useKeychain(config);
+		this.#config = config;
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
+		return keyPairFromMnemonic(this.#config, mnemonic).getAddressString();
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -23,7 +22,7 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<string> {
-		return this.#keychain.importKey(BinTools.getInstance().cb58Decode(privateKey)).getAddressString();
+		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

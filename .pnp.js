@@ -638,6 +638,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint", "npm:7.2.4"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/hapi__joi", "npm:17.1.6"],
+            ["@types/hdkey", "npm:0.7.1"],
             ["@types/is-url-superb", "npm:3.0.0"],
             ["@types/jest", "npm:26.0.15"],
             ["@types/lodash.orderby", "npm:4.6.6"],
@@ -656,6 +657,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.4"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.0.0"],
             ["got", "npm:11.8.0"],
+            ["hdkey", "npm:2.0.1"],
             ["jest", "npm:26.6.3"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.3"],
@@ -664,7 +666,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.1.2"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
-            ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"]
+            ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"],
+            ["url-parse-lax", "npm:4.0.0"]
           ],
           "linkType": "SOFT",
         }]
@@ -5242,6 +5245,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-hapi__shot-npm-4.1.0-40b54a45fd-2.zip/node_modules/@types/hapi__shot/",
           "packageDependencies": [
             ["@types/hapi__shot", "npm:4.1.0"],
+            ["@types/node", "npm:13.13.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/hdkey", [
+        ["npm:0.7.1", {
+          "packageLocation": "./.yarn/cache/@types-hdkey-npm-0.7.1-1eb8a91907-2.zip/node_modules/@types/hdkey/",
+          "packageDependencies": [
+            ["@types/hdkey", "npm:0.7.1"],
             ["@types/node", "npm:13.13.4"]
           ],
           "linkType": "HARD",
@@ -11958,6 +11971,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["hdkey", [
+        ["npm:2.0.1", {
+          "packageLocation": "./.yarn/cache/hdkey-npm-2.0.1-2def4c58eb-2.zip/node_modules/hdkey/",
+          "packageDependencies": [
+            ["hdkey", "npm:2.0.1"],
+            ["bs58check", "npm:2.1.2"],
+            ["safe-buffer", "npm:5.2.0"],
+            ["secp256k1", "npm:4.0.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["hmac-drbg", [
         ["npm:1.0.1", {
           "packageLocation": "./.yarn/cache/hmac-drbg-npm-1.0.1-3499ad31cd-2.zip/node_modules/hmac-drbg/",
@@ -16282,6 +16307,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prepend-http", "npm:2.0.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:3.0.1", {
+          "packageLocation": "./.yarn/cache/prepend-http-npm-3.0.1-6286338d8a-2.zip/node_modules/prepend-http/",
+          "packageDependencies": [
+            ["prepend-http", "npm:3.0.1"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["prettier", [
@@ -19319,6 +19351,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["url-parse-lax", "npm:3.0.0"],
             ["prepend-http", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:4.0.0", {
+          "packageLocation": "./.yarn/cache/url-parse-lax-npm-4.0.0-3308bd8cd5-2.zip/node_modules/url-parse-lax/",
+          "packageDependencies": [
+            ["url-parse-lax", "npm:4.0.0"],
+            ["prepend-http", "npm:3.0.1"]
           ],
           "linkType": "HARD",
         }]

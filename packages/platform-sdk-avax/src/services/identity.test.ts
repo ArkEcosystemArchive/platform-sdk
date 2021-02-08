@@ -13,15 +13,15 @@ beforeEach(async () => {
 describe("IdentityService", () => {
 	describe("#address", () => {
 		it("should generate an output from a mnemonic", async () => {
-			await expect(subject.address().fromMnemonic(identity.mnemonic)).rejects.toThrow(/is not supported/);
+			await expect(subject.address().fromMnemonic(identity.mnemonic)).resolves.toBe(identity.address);
 		});
 
 		it("should fail to generate an output from a multiSignature", async () => {
 			await expect(subject.address().fromMultiSignature(0, [])).rejects.toThrow(/is not supported/);
 		});
 
-		it("should fail to generate an output from a privateKey", async () => {
-			await expect(subject.address().fromPrivateKey(identity.privateKey)).resolves.toBe(identity.address);
+		it("shouto generate an output from a privateKey", async () => {
+			await expect(subject.address().fromPrivateKey(identity.privateKey)).rejects.toThrow(/is not supported/);
 		});
 
 		it("should generate an output from a publicKey", async () => {

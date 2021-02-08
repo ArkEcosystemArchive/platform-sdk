@@ -12,9 +12,9 @@ describe("MessageService", () => {
 	it("should sign and verify a message", async () => {
 		const result: any = await subject.sign({
 			message: "Hello World",
-			mnemonic: identity.privateKey,
+			mnemonic: identity.mnemonic,
 		});
 
-		await expect(subject.verify({ ...result, mnemonic: identity.privateKey })).resolves.toBeTrue();
+		await expect(subject.verify({ ...result, mnemonic: identity.mnemonic })).resolves.toBeTrue();
 	});
 });

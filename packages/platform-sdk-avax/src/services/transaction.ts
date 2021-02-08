@@ -1,8 +1,23 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BN, Buffer } from "avalanche";
+import { AVMAPI } from "avalanche/dist/apis/avm";
+
+import { SignedTransactionData } from "../dto";
+import { keyPairFromMnemonic, useChain, useKeychain } from "./helpers";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #config: Coins.Config;
+	readonly #chain: AVMAPI;
+	readonly #keychain;
+
+	public constructor(config: Coins.Config) {
+		this.#config = config;
+		this.#chain = useChain(config);
+		this.#keychain = useKeychain(config);
+	}
+
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService();
+		return new TransactionService(config);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -13,7 +28,32 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transfer");
+		if (input.sign.mnemonic === undefined) {
+			throw new Exceptions.InvalidArguments(this.constructor.name, "transfer");
+		}
+
+		try {
+			const keyPair = this.#keychain.importKey(keyPairFromMnemonic(this.#config, input.sign.mnemonic).getPrivateKey());
+			const keyPairAddresses = this.#keychain.getAddressStrings();
+			const { utxos } = await this.#chain.getUTXOs(keyPair.getAddressString());
+
+			const signedTx = (
+				await this.#chain.buildBaseTx(
+					utxos,
+					new BN(input.data.amount),
+					this.#config.get("network.crypto.assetId"),
+					[input.data.to],
+					keyPairAddresses,
+					keyPairAddresses,
+					input.data.memo === undefined ? undefined : Buffer.from(input.data.memo),
+				)
+			).sign(this.#keychain);
+
+			// @TODO: compute the ID and set raw data for UI purposes
+			return new SignedTransactionData("@TODO", signedTx.toString(), signedTx.toString());
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async secondSignature(
