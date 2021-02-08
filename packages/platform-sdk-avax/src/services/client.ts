@@ -1,27 +1,20 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { AVMAPI } from "avalanche/dist/apis/avm";
+import { WalletData } from "../dto";
+
+import { useChain } from "./helpers";
 
 export class ClientService implements Contracts.ClientService {
-	readonly #http: Contracts.HttpClient;
-	readonly #peer: string;
+	readonly #config: Coins.Config;
+	readonly #chain: AVMAPI;
 
-	private constructor({ http, peer }) {
-		this.#http = http;
-		this.#peer = peer;
+	private constructor(config: Coins.Config) {
+		this.#config = config;
+		this.#chain = useChain(config);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		try {
-			return new ClientService({
-				http: config.get<Contracts.HttpClient>("httpClient"),
-				peer: config.get<string>("peer"),
-			});
-		} catch {
-			return new ClientService({
-				http: config.get<Contracts.HttpClient>("httpClient"),
-				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
-			});
-		}
+		return new ClientService(config);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -37,7 +30,12 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
+		const { balance }: any = await this.#chain.getBalance(id, this.#config.get("network.crypto.assetId"));
+
+		return new WalletData({
+			address: id,
+			balance: balance,
+		});
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
@@ -73,11 +71,5 @@ export class ClientService implements Contracts.ClientService {
 		hosts: string[],
 	): Promise<Contracts.BroadcastResponse> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
-	}
-
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.get(`${this.#peer}/${path}`, query);
-
-		return response.json();
 	}
 }
