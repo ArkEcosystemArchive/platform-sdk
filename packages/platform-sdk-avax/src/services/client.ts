@@ -27,7 +27,6 @@ export class ClientService implements Contracts.ClientService {
 
 		const unsignedTransaction = transaction.getUnsignedTx();
 		const baseTransaction = unsignedTransaction.getTransaction();
-		const displayTransaction: any = unsignedTransaction.serialize("display");
 
 		const assetId = cb58Decode(this.#config.get("network.crypto.assetId"));
 
@@ -41,7 +40,11 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
+		return new Coins.TransactionDataCollection([], {
+			prev: undefined,
+			self: undefined,
+			next: undefined,
+		});
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
