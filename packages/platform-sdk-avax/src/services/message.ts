@@ -1,13 +1,13 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BinTools, Buffer } from "avalanche";
+import { Buffer } from "avalanche";
 
-import { useKeychain } from "./helpers";
+import { keyPairFromMnemonic } from "./helpers";
 
 export class MessageService implements Contracts.MessageService {
-	readonly #keychain;
+	readonly #config: Coins.Config;
 
 	public constructor(config: Coins.Config) {
-		this.#keychain = useKeychain(config);
+		this.#config = config;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
@@ -20,7 +20,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const keypair = this.#keychain.importKey(BinTools.getInstance().cb58Decode(input.mnemonic));
+			const keypair = keyPairFromMnemonic(this.#config, input.mnemonic);
 
 			return {
 				message: input.message,
@@ -37,8 +37,9 @@ export class MessageService implements Contracts.MessageService {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "verify");
 		}
 
-		return this.#keychain
-			.importKey(BinTools.getInstance().cb58Decode(input.mnemonic))
-			.verify(Buffer.from(input.message), Buffer.from(input.signature, "hex"));
+		return keyPairFromMnemonic(this.#config, input.mnemonic).verify(
+			Buffer.from(input.message),
+			Buffer.from(input.signature, "hex"),
+		);
 	}
 }

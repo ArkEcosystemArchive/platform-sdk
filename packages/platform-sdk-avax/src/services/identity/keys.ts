@@ -4,10 +4,10 @@ import { BinTools } from "avalanche";
 import { useKeychain } from "../helpers";
 
 export class Keys implements Contracts.Keys {
-	readonly #keychain;
+	readonly #config: Coins.Config;
 
 	public constructor(config: Coins.Config) {
-		this.#keychain = useKeychain(config);
+		this.#config = config;
 	}
 
 	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
@@ -16,7 +16,9 @@ export class Keys implements Contracts.Keys {
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {
 		return {
-			publicKey: this.#keychain.importKey(BinTools.getInstance().cb58Decode(privateKey)).getPublicKeyString(),
+			publicKey: useKeychain(this.#config)
+				.importKey(BinTools.getInstance().cb58Decode(privateKey))
+				.getPublicKeyString(),
 			privateKey,
 		};
 	}

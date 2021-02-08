@@ -258,6 +258,7 @@ __metadata:
     "@types/eslint": ^7.2.4
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/hapi__joi": 17.1.6
+    "@types/hdkey": 0.7.1
     "@types/is-url-superb": 3.0.0
     "@types/jest": ^26.0.15
     "@types/lodash.orderby": 4.6.6
@@ -276,6 +277,7 @@ __metadata:
     eslint-plugin-prettier: ^3.1.4
     eslint-plugin-simple-import-sort: ^6.0.0
     got: ^11.8.0
+    hdkey: ^2.0.1
     jest: ^26.6.3
     jest-extended: ^0.11.5
     jest-localstorage-mock: ^2.4.3
@@ -285,6 +287,7 @@ __metadata:
     rimraf: ^3.0.2
     ts-jest: ^26.4.4
     typescript: ^4.0.5
+    url-parse-lax: ^4.0.0
   languageName: unknown
   linkType: soft
 
@@ -4624,6 +4627,15 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 2/856d2bb3851041243ff5cf2a908eb3b1c1fe465f39a7f5d5df7c3729065b17f0c8f327e840be7dd8c57b293e8e5859169c47e6111859eb97a55d958460a2926c
+  languageName: node
+  linkType: hard
+
+"@types/hdkey@npm:0.7.1":
+  version: 0.7.1
+  resolution: "@types/hdkey@npm:0.7.1"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2/db1b558633aa3f265c1f8918cf326856cd8e9e9de2d6e68b06842ff96f007f0c967d5c33974e3fc27dad1941eb9b344ac56177855bc795dd19c580d71e0053d8
   languageName: node
   linkType: hard
 
@@ -10049,6 +10061,17 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"hdkey@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "hdkey@npm:2.0.1"
+  dependencies:
+    bs58check: ^2.1.2
+    safe-buffer: ^5.1.1
+    secp256k1: ^4.0.0
+  checksum: 2/ddf2d16515e460902bfcbe43da312afbcb97fdbbf356a34c465440cf19a467aad05575da9f6dd621f78093164bab59809e6255fdf02630d75fa7aa15bba3058f
+  languageName: node
+  linkType: hard
+
 "hmac-drbg@npm:^1.0.0":
   version: 1.0.1
   resolution: "hmac-drbg@npm:1.0.1"
@@ -13994,6 +14017,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"prepend-http@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "prepend-http@npm:3.0.1"
+  checksum: 2/463e7ea31ed7cc6eb2a533779cbf06e72ea6d3443b39a1c82a9202d1ea9ec247450513eaa9c166deb7a70770bcad9a4e79e2200811d34864b7296965f4df99f8
+  languageName: node
+  linkType: hard
+
 "prettier-linter-helpers@npm:^1.0.0":
   version: 1.0.0
   resolution: "prettier-linter-helpers@npm:1.0.0"
@@ -15112,7 +15142,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"secp256k1@npm:4.0.2":
+"secp256k1@npm:4.0.2, secp256k1@npm:^4.0.0":
   version: 4.0.2
   resolution: "secp256k1@npm:4.0.2"
   dependencies:
@@ -16789,6 +16819,15 @@ fsevents@^2.1.2:
   dependencies:
     prepend-http: ^2.0.0
   checksum: 2/334817036b300c35023798b8ceac23ea61b51f231a867112e3a85778d65191a3ccb67e7b69b608d45433d55da392cf0d72cd3c85f2542f6ec34733e455c229d5
+  languageName: node
+  linkType: hard
+
+"url-parse-lax@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "url-parse-lax@npm:4.0.0"
+  dependencies:
+    prepend-http: ^3.0.1
+  checksum: 2/14f2c825e9b3dd400984be217008a857a2b0e66237b2be39a70c490936ef2124594d21ea7548225291cb2d2a9e0a1dc2f71beeb5b94a4063570001a08336c6ff
   languageName: node
   linkType: hard
 
