@@ -9,12 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **[DOT]** Initial implementation (1785a7f5, @faustbrian)
-- **[DOT]** Retrieve wallet balance and nonce (f62f943f, @faustbrian)
-- **[AVAX]** Initial implementation (51b531cf, @faustbrian)
-- **[AVAX]** Implement `TransactionService#transfer` (f5eb510f, @faustbrian)
-- **[AVAX]** Implement `ClientService#wallet` (78eea95a, @faustbrian)
-- **[AVAX]** Implement `ClientService#transaction` (f3c72ca4, @faustbrian)
+-   **[DOT]** Initial implementation (1785a7f5, @faustbrian)
+-   **[DOT]** Retrieve wallet balance and nonce (f62f943f, @faustbrian)
+-   **[AVAX]** Initial implementation (51b531cf, @faustbrian)
+-   **[AVAX]** Implement `TransactionService#transfer` (f5eb510f, @faustbrian)
+-   **[AVAX]** Implement `ClientService#wallet` (78eea95a, @faustbrian)
+-   **[AVAX]** Implement `ClientService#transaction` (f3c72ca4, @faustbrian)
 
 ## 2.7.13 - 2020-02-05
 
