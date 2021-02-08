@@ -1,8 +1,8 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { AVMAPI } from "avalanche/dist/apis/avm";
-import { WalletData } from "../dto";
+import { AVMAPI, Tx } from "avalanche/dist/apis/avm";
 
-import { useChain } from "./helpers";
+import { TransactionData, WalletData } from "../dto";
+import { cb58Decode, useChain } from "./helpers";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
@@ -22,7 +22,22 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transaction(id: string): Promise<Contracts.TransactionDataType> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
+		const transaction = new Tx();
+		transaction.fromString(await this.#chain.getTx(id));
+
+		const unsignedTransaction = transaction.getUnsignedTx();
+		const baseTransaction = unsignedTransaction.getTransaction();
+		const displayTransaction: any = unsignedTransaction.serialize("display");
+
+		const assetId = cb58Decode(this.#config.get("network.crypto.assetId"));
+
+		// @TODO: get block ID it was included in
+		return new TransactionData({
+			id,
+			amount: unsignedTransaction.getOutputTotal(assetId).toString(),
+			fee: unsignedTransaction.getBurn(assetId).toString(),
+			memo: baseTransaction.getMemo().toString("utf-8"),
+		});
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {

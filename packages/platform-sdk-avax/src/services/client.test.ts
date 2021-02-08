@@ -1,5 +1,5 @@
 import { createConfig } from "../../test/helpers";
-import { WalletData } from "../dto";
+import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 
 let subject: ClientService;
@@ -7,6 +7,14 @@ let subject: ClientService;
 beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
 
 describe("ClientService", function () {
+	describe("#transaction", () => {
+		it("should succeed", async () => {
+			const result = await subject.transaction("2qwe2tsgBZ5yqq6Qg2eTDPJ1tVVZZ9KoPLMDwurLTGTNpGMFr9");
+
+			expect(result).toBeInstanceOf(TransactionData);
+		});
+	});
+
 	describe("#wallet", () => {
 		it("should succeed", async () => {
 			const result = await subject.wallet("X-fuji1my5kqjufcshudkzu4xdt5rlqk99j9nwseclkwq");
