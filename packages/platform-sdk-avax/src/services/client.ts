@@ -47,6 +47,7 @@ export class ClientService implements Contracts.ClientService {
 		const { transactions } = await this.get("v2/transactions", {
 			chainID: this.#config.get("network.crypto.blockchainId"),
 			limit: 100,
+			offset: query.cursor || 0,
 			address: query.address,
 		});
 
