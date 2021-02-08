@@ -18,9 +18,7 @@
 		}
 	},
 	"networking": {
-		"hosts": [
-			"https://api.avax.network:443"
-		],
+		"hosts": ["https://api.avax.network:443"],
 		"hostsMultiSignature": []
 	},
 	"governance": {

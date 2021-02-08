@@ -33,7 +33,9 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 
 		try {
-			const keyPair = this.#keychain.importKey(keyPairFromMnemonic(this.#config, input.sign.mnemonic).getPrivateKey());
+			const keyPair = this.#keychain.importKey(
+				keyPairFromMnemonic(this.#config, input.sign.mnemonic).getPrivateKey(),
+			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
 			const { utxos } = await this.#chain.getUTXOs(keyPair.getAddressString());
 
