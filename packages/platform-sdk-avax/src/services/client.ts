@@ -8,12 +8,10 @@ import { cb58Decode, useChain } from "./helpers";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
-	readonly #http: Contracts.HttpClient;
 	readonly #chain: AVMAPI;
 
 	private constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#http = config.get<Contracts.HttpClient>("httpClient");
 		this.#chain = useChain(config);
 	}
 
@@ -110,7 +108,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.host()}/${path}`, query?.searchParams)).json();
+		return (await this.#config.get<Contracts.HttpClient>("httpClient").get(`${this.host()}/${path}`, query?.searchParams)).json();
 	}
 
 	private host(): string {
