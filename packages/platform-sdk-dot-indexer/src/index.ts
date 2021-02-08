@@ -63,8 +63,8 @@ export const subscribe = async (flags: Record<string, string>): Promise<void> =>
 
 			polkadot = await usePolkadot(flags.polkadot);
 
-			if (i > 250) {
-				i -= 250;
+			if (i > 500) {
+				i -= 500;
 			} else {
 				i = 1;
 			}
