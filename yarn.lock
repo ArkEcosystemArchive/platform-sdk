@@ -243,6 +243,51 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@arkecosystem/platform-sdk-avax@workspace:packages/platform-sdk-avax":
+  version: 0.0.0-use.local
+  resolution: "@arkecosystem/platform-sdk-avax@workspace:packages/platform-sdk-avax"
+  dependencies:
+    "@arkecosystem/platform-sdk": "workspace:packages/platform-sdk"
+    "@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto"
+    "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
+    "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
+    "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
+    "@ledgerhq/hw-transport-mocker": ^5.29.0
+    "@sindresorhus/tsconfig": ^0.7.0
+    "@types/dot-prop": 5.0.1
+    "@types/eslint": ^7.2.4
+    "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/hapi__joi": 17.1.6
+    "@types/is-url-superb": 3.0.0
+    "@types/jest": ^26.0.15
+    "@types/lodash.orderby": 4.6.6
+    "@types/node": ^14.14.7
+    "@types/prettier": ^2.1.5
+    "@types/rimraf": ^3.0.0
+    "@types/semver": 7.3.4
+    "@types/uuid": ^8.3.0
+    "@typescript-eslint/eslint-plugin": ^4.7.0
+    "@typescript-eslint/parser": ^4.7.0
+    avalanche: ^3.2.0
+    cross-env: ^7.0.2
+    eslint: ^7.13.0
+    eslint-config-prettier: ^6.15.0
+    eslint-plugin-jest: ^24.1.3
+    eslint-plugin-prettier: ^3.1.4
+    eslint-plugin-simple-import-sort: ^6.0.0
+    got: ^11.8.0
+    jest: ^26.6.3
+    jest-extended: ^0.11.5
+    jest-localstorage-mock: ^2.4.3
+    nock: ^13.0.5
+    npm-check-updates: ^10.1.1
+    prettier: ^2.1.2
+    rimraf: ^3.0.2
+    ts-jest: ^26.4.4
+    typescript: ^4.0.5
+  languageName: unknown
+  linkType: soft
+
 "@arkecosystem/platform-sdk-btc@workspace:packages/platform-sdk-btc":
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-btc@workspace:packages/platform-sdk-btc"
@@ -5902,6 +5947,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"avalanche@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "avalanche@npm:3.2.0"
+  dependencies:
+    axios: 0.19.2
+    bech32: 1.1.4
+    bn.js: 4.11.8
+    buffer: 5.5.0
+    create-hash: 1.2.0
+    elliptic: 6.5.3
+    node-forge: ^0.10.0
+    secp256k1: 4.0.2
+    store2: 2.11.0
+    web3-utils: 1.2.11
+    webcrypto: 0.1.1
+  checksum: 2/4f971e99d30044e1e328304eaaef4f95bcc03b0bac0d6dac76859fbb5b0da5b30faf93db20b02f0e5e428a4cd88444a7721728ddbf44d19c1834f4dd699de75e
+  languageName: node
+  linkType: hard
+
 "aws-sign2@npm:~0.7.0":
   version: 0.7.0
   resolution: "aws-sign2@npm:0.7.0"
@@ -6422,6 +6486,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bn.js@npm:4.11.8, bn.js@npm:=4.11.8, bn.js@npm:^4.0.0, bn.js@npm:^4.1.0, bn.js@npm:^4.1.1, bn.js@npm:^4.11.0, bn.js@npm:^4.11.1, bn.js@npm:^4.11.6, bn.js@npm:^4.11.8, bn.js@npm:^4.4.0":
+  version: 4.11.8
+  resolution: "bn.js@npm:4.11.8"
+  checksum: 2/c1c20812fc35367c13d5d4387b88b6b1f60dd685006d928fe7710d2b4c95ace661b7c4e400f484e189874481a813965ca32f12e9cbb31c3ced465d96fab5bcd8
+  languageName: node
+  linkType: hard
+
 "bn.js@npm:5.1.1, bn.js@npm:^5.1.1":
   version: 5.1.1
   resolution: "bn.js@npm:5.1.1"
@@ -6433,13 +6504,6 @@ __metadata:
   version: 5.1.3
   resolution: "bn.js@npm:5.1.3"
   checksum: 2/991c1fefb03bd69315297d454b379d5a5dd4834ab97db3ec985714f00ff7d3cc19642e1ac6bdf0d9f04946cc9f1ad26a5b497b7f4e7fa1230caf68af46fbefe6
-  languageName: node
-  linkType: hard
-
-"bn.js@npm:=4.11.8, bn.js@npm:^4.0.0, bn.js@npm:^4.1.0, bn.js@npm:^4.1.1, bn.js@npm:^4.11.0, bn.js@npm:^4.11.1, bn.js@npm:^4.11.6, bn.js@npm:^4.11.8, bn.js@npm:^4.4.0":
-  version: 4.11.8
-  resolution: "bn.js@npm:4.11.8"
-  checksum: 2/c1c20812fc35367c13d5d4387b88b6b1f60dd685006d928fe7710d2b4c95ace661b7c4e400f484e189874481a813965ca32f12e9cbb31c3ced465d96fab5bcd8
   languageName: node
   linkType: hard
 
@@ -6748,6 +6812,16 @@ __metadata:
   dependencies:
     safe-buffer: ^5.1.1
   checksum: 2/06ab1b0ebdcf27b49268cbc82b91c6db555b041b72f7db110760e0ea77be300fd534b198e7bb8c091c77a477f9c833d3e44cd26ec06f50049efceb7ce2a45849
+  languageName: node
+  linkType: hard
+
+"buffer@npm:5.5.0":
+  version: 5.5.0
+  resolution: "buffer@npm:5.5.0"
+  dependencies:
+    base64-js: ^1.0.2
+    ieee754: ^1.1.4
+  checksum: 2/2aad1b2b530a45c131988d91a59b96e11f72ccb03945940e39b5e5c73d75a5230c2f1c8fc36c529fd9ceff72d474cfb60c0ad309e29a083e3a2535886eedf971
   languageName: node
   linkType: hard
 
@@ -7442,7 +7516,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-hash@npm:^1.1.0, create-hash@npm:^1.1.1, create-hash@npm:^1.1.2, create-hash@npm:^1.2.0":
+"create-hash@npm:1.2.0, create-hash@npm:^1.1.0, create-hash@npm:^1.1.1, create-hash@npm:^1.1.2, create-hash@npm:^1.2.0":
   version: 1.2.0
   resolution: "create-hash@npm:1.2.0"
   dependencies:
@@ -7516,7 +7590,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"crypto-browserify@npm:3.12.0":
+"crypto-browserify@npm:3.12.0, crypto-browserify@npm:^3.10.0":
   version: 3.12.0
   resolution: "crypto-browserify@npm:3.12.0"
   dependencies:
@@ -7897,7 +7971,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detect-node@npm:^2.0.4":
+"detect-node@npm:^2.0.3, detect-node@npm:^2.0.4":
   version: 2.0.4
   resolution: "detect-node@npm:2.0.4"
   checksum: 2/e7648a5a91dd5e91838d14f0e9631f2adf0117cc271ea86d8ce394a8fbe8fc7545755c8261faaf4b1e196795a10da99e5d5f1013163ba0f6260a57b0ba29cc60
@@ -15038,6 +15112,18 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"secp256k1@npm:4.0.2":
+  version: 4.0.2
+  resolution: "secp256k1@npm:4.0.2"
+  dependencies:
+    elliptic: ^6.5.2
+    node-addon-api: ^2.0.0
+    node-gyp: latest
+    node-gyp-build: ^4.2.0
+  checksum: 2/5bf0e0aa119602c96fb26c87b4707d314e6e85d5b6aca8b6286e781b3c573775cabd68e4e6d90dcabe915a4795743e2f208dcc556e7c11b1a89b19dc5c64434e
+  languageName: node
+  linkType: hard
+
 "secp256k1@npm:^3.0.1":
   version: 3.8.0
   resolution: "secp256k1@npm:3.8.0"
@@ -15677,6 +15763,13 @@ fsevents@^2.1.2:
     urijs: ^1.19.1
     utility-types: ^3.7.0
   checksum: 2/910f802e1159c43a0f05d34cff82ad3d4318a78c96e6ecfd88a44e4851fb2a4706ae3cfbb1cb7951a044857d5bf3db8e14d9581663fd4bc5b44f8ca1763ee216
+  languageName: node
+  linkType: hard
+
+"store2@npm:2.11.0":
+  version: 2.11.0
+  resolution: "store2@npm:2.11.0"
+  checksum: 2/3faf4d3ede0d164d56e5a91dffe9231dcffa37905fb34a8f7917b8f7f0c061278bcb993f5fff865fc2f46ef79a89c092e3a68f0d6fb72977e60f72a4ec35fc6b
   languageName: node
   linkType: hard
 
@@ -17237,6 +17330,22 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"web3-utils@npm:1.2.11":
+  version: 1.2.11
+  resolution: "web3-utils@npm:1.2.11"
+  dependencies:
+    bn.js: ^4.11.9
+    eth-lib: 0.2.8
+    ethereum-bloom-filters: ^1.0.6
+    ethjs-unit: 0.1.6
+    number-to-bn: 1.7.0
+    randombytes: ^2.1.0
+    underscore: 1.9.1
+    utf8: 3.0.0
+  checksum: 2/8ac5e73959c15ec058b2b2dad9dd541a72414fd76712398ef74f9b675410443361c2d8c40dcf7e5feea3295be1a533e18448bed2fe0dba444c02604a2aedc4dc
+  languageName: node
+  linkType: hard
+
 "web3-utils@npm:1.3.0":
   version: 1.3.0
   resolution: "web3-utils@npm:1.3.0"
@@ -17265,6 +17374,16 @@ fsevents@^2.1.2:
     web3-shh: 1.3.0
     web3-utils: 1.3.0
   checksum: 2/78929162b776a46bcf97ae9f066c3de060468512ab56ed18adae6cda9bdc87fe946019333aa16a016539112bb92e111ab08c3043ee040c5f826c2880660a16d0
+  languageName: node
+  linkType: hard
+
+"webcrypto@npm:0.1.1":
+  version: 0.1.1
+  resolution: "webcrypto@npm:0.1.1"
+  dependencies:
+    crypto-browserify: ^3.10.0
+    detect-node: ^2.0.3
+  checksum: 2/fdbab816cda9e19a4d03fc8f4f5c5fee0e3ba4736dbe9b7ee7878d00009f24b7bee7de1cc9ea328ac4bacb8ede068010af85cbd7b30cdef91cd1b9b5cea59ecd
   languageName: node
   linkType: hard
 
