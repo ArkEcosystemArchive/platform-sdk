@@ -9,6 +9,7 @@ export interface CoinNetwork {
 	};
 	crypto: {
 		networkId?: string;
+		blockchainId?: string;
 		slip44: number;
 		bech32?: string;
 		signingMethods: {
