@@ -2,7 +2,7 @@ import PQueue from "p-queue";
 import retry from "p-retry";
 import pino from "pino";
 
-import { indexBlock, useElasticSearch, usePolkadot } from "./helpers";
+import { indexBlock, indexNewBlocks, useElasticSearch, usePolkadot } from "./helpers";
 
 export const subscribe = async (flags: Record<string, string>): Promise<void> => {
 	// Logging
