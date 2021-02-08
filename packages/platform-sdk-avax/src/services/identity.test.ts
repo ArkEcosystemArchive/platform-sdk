@@ -17,9 +17,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should fail to generate an output from a multiSignature", async () => {
-			await expect(
-				subject.address().fromMultiSignature(0, []),
-			).rejects.toThrow(/is not supported/);
+			await expect(subject.address().fromMultiSignature(0, [])).rejects.toThrow(/is not supported/);
 		});
 
 		it("should fail to generate an output from a privateKey", async () => {
@@ -45,7 +43,10 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a privateKey", async () => {
-			await expect(subject.keys().fromPrivateKey(identity.privateKey)).resolves.toEqual({"privateKey": "24jUJ9vZexUM6expyMcT48LBx27k1m7xpraoV62oSQAHdziao5", "publicKey": "7i8kVz6d6FsACnGUEbjyivaULARjmXaaJDzTFUpPjuBwecpmtF"});
+			await expect(subject.keys().fromPrivateKey(identity.privateKey)).resolves.toEqual({
+				privateKey: "24jUJ9vZexUM6expyMcT48LBx27k1m7xpraoV62oSQAHdziao5",
+				publicKey: "7i8kVz6d6FsACnGUEbjyivaULARjmXaaJDzTFUpPjuBwecpmtF",
+			});
 		});
 
 		it("should generate an output from a wif", async () => {
@@ -69,9 +70,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should fail to generate an output from a multiSignature", async () => {
-			await expect(
-				subject.publicKey().fromMultiSignature(0, []),
-			).rejects.toThrow(/is not supported/);
+			await expect(subject.publicKey().fromMultiSignature(0, [])).rejects.toThrow(/is not supported/);
 		});
 
 		it("should fail to generate an output from a wif", async () => {

@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BinTools, Buffer } from "avalanche"
+import { BinTools, Buffer } from "avalanche";
 
 import { useKeychain } from "./helpers";
 
@@ -37,6 +37,8 @@ export class MessageService implements Contracts.MessageService {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "verify");
 		}
 
-		return this.#keychain.importKey(BinTools.getInstance().cb58Decode(input.mnemonic)).verify(Buffer.from(input.message), Buffer.from(input.signature, "hex"));
+		return this.#keychain
+			.importKey(BinTools.getInstance().cb58Decode(input.mnemonic))
+			.verify(Buffer.from(input.message), Buffer.from(input.signature, "hex"));
 	}
 }

@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BinTools } from "avalanche"
+import { BinTools } from "avalanche";
 
 import { useKeychain } from "../helpers";
 

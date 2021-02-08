@@ -1,5 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Coins } from "@arkecosystem/platform-sdk";
 
 import { ClientService } from "./services/client";
 import { DataTransferObjectService } from "./services/data-transfer-object";
