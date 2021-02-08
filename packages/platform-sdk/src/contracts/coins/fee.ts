@@ -1,3 +1,5 @@
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
+
 export interface TransactionFee {
 	static: string;
 	max: string;
@@ -24,4 +26,5 @@ export interface FeeService {
 	__destruct(): Promise<void>;
 
 	all(days: number): Promise<TransactionFees>;
+	estimate(transaction: any, speed: "slow" | "average" | "fast"): Promise<BigNumber>;
 }
