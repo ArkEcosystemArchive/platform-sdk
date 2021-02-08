@@ -102,6 +102,7 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
+				// @TODO: use the transaction ID that we get from the network
 				await this.#chain.issueTx(transaction.toBroadcast());
 
 				result.accepted.push(transaction.id());
