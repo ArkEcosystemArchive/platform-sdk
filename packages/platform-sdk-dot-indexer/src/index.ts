@@ -49,7 +49,7 @@ export const subscribe = async (flags: Record<string, string>): Promise<void> =>
 				}),
 			);
 		} catch (error) {
-			console.log(error);
+			logger.log(error);
 
 			// Connections can randomly be dropped so we should try to reconnect but
 			// also terminate when the connection drops too often which means a human
@@ -63,11 +63,14 @@ export const subscribe = async (flags: Record<string, string>): Promise<void> =>
 
 			polkadot = await usePolkadot(flags.polkadot);
 
-			// Reduce the count to go back a block before we continue to loop
-			i--;
-		} finally {
-			// // Once we have indexed all blocks we will listen for new blocks
-			// await indexNewBlocks(polkadot, elastic, logger);
+			if (i >= 250) {
+				i -= 250;
+			} else {
+				i = 1;
+			}
 		}
 	}
+
+	// Once we have indexed all blocks we will listen for new blocks
+	await indexNewBlocks(polkadot, elastic, logger);
 };
