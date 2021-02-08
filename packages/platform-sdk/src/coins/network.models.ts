@@ -108,6 +108,7 @@ export interface CoinNetwork {
 		};
 		Miscellaneous: {
 			memo: boolean;
+			utxo: boolean;
 		};
 	};
 }
