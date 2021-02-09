@@ -109,6 +109,7 @@ export interface CoinNetwork {
 		};
 		Miscellaneous: {
 			memo: boolean;
+			dynamicFees: boolean;
 		};
 	};
 }
