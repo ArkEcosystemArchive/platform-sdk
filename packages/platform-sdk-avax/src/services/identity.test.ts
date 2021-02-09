@@ -33,7 +33,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should fail to validate an address", async () => {
-			await expect(subject.address().validate(identity.address)).rejects.toThrow(/is not supported/);
+			await expect(subject.address().validate(identity.address)).resolves.toBeTrue();
 		});
 	});
 
