@@ -1,4 +1,4 @@
-import ArkDevnet from "./networks/ark/devnet.json";
+import ArkDevnet from "./networks/ark/devnet";
 import ArkMainnet from "./networks/ark/mainnet";
 import CompendiaMainnet from "./networks/compendia/mainnet";
 
