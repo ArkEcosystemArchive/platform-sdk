@@ -10,6 +10,10 @@ import { ProfileContract } from "../profile.models";
 type HistoryMethod = string;
 type HistoryWallet = ExtendedTransactionDataCollection;
 
+type AggregateQuery = {
+	addresses?: string[];
+} & Contracts.ClientPagination;
+
 export class TransactionAggregate {
 	readonly #profile: ProfileContract;
 
@@ -19,17 +23,15 @@ export class TransactionAggregate {
 		this.#profile = profile;
 	}
 
-	public async transactions(query: Contracts.ClientPagination = {}): Promise<ExtendedTransactionDataCollection> {
+	public async transactions(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
 		return this.aggregate("transactions", query);
 	}
 
-	public async sentTransactions(query: Contracts.ClientPagination = {}): Promise<ExtendedTransactionDataCollection> {
+	public async sentTransactions(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
 		return this.aggregate("sentTransactions", query);
 	}
 
-	public async receivedTransactions(
-		query: Contracts.ClientPagination = {},
-	): Promise<ExtendedTransactionDataCollection> {
+	public async receivedTransactions(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
 		return this.aggregate("receivedTransactions", query);
 	}
 
@@ -48,15 +50,12 @@ export class TransactionAggregate {
 		this.#history = {};
 	}
 
-	private async aggregate(
-		method: string,
-		query: Contracts.ClientPagination,
-	): Promise<ExtendedTransactionDataCollection> {
+	private async aggregate(method: string, query: AggregateQuery): Promise<ExtendedTransactionDataCollection> {
 		if (!this.#history[method]) {
 			this.#history[method] = {};
 		}
 
-		const syncedWallets: ReadWriteWallet[] = this.getWallets();
+		const syncedWallets: ReadWriteWallet[] = this.getWallets(query.addresses);
 
 		const requests: Record<string, Promise<Coins.TransactionDataCollection>> = {};
 
@@ -108,10 +107,13 @@ export class TransactionAggregate {
 		return this.#profile.wallets().findById(id);
 	}
 
-	private getWallets(): ReadWriteWallet[] {
+	private getWallets(addresses: string[] = []): ReadWriteWallet[] {
 		return this.#profile
 			.wallets()
 			.values()
-			.filter((wallet: ReadWriteWallet) => wallet.hasSyncedWithNetwork());
+			.filter((wallet: ReadWriteWallet) => {
+				const matchesAddress = addresses.length > 0 ? addresses.includes(wallet.address()) : true;
+				return matchesAddress && wallet.hasSyncedWithNetwork();
+			});
 	}
 }
