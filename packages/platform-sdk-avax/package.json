@@ -24,7 +24,8 @@
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"avalanche": "^3.2.0",
 		"hdkey": "^2.0.1",
-		"url-parse-lax": "^4.0.0"
+		"url-parse-lax": "^4.0.0",
+		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
@@ -42,7 +43,7 @@
 		"@types/prettier": "^2.1.5",
 		"@types/rimraf": "^3.0.0",
 		"@types/semver": "7.3.4",
-		"@types/uuid": "^8.3.0",
+		"@types/uuid": "8.3.0",
 		"@typescript-eslint/eslint-plugin": "^4.7.0",
 		"@typescript-eslint/parser": "^4.7.0",
 		"cross-env": "^7.0.2",

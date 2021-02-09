@@ -108,9 +108,9 @@ export interface CoinNetwork {
 			htlcRefund: boolean;
 		};
 		Miscellaneous: {
-			memo: boolean;
-			utxo: boolean;
-			dynamicFees: boolean;
+			memo?: boolean;
+			utxo?: boolean;
+			dynamicFees?: boolean;
 		};
 	};
 }
