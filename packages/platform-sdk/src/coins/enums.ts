@@ -48,5 +48,6 @@ export enum FeatureFlag {
 	TransactionHtlcClaim = "Transaction.htlcClaim",
 	TransactionHtlcRefund = "Transaction.htlcRefund",
 	MiscellaneousMemo = "Miscellaneous.memo",
+	MiscellaneousUTXO = "Miscellaneous.utxo",
 	MiscellaneousDynamicFees = "Miscellaneous.dynamicFees",
 }
