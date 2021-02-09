@@ -94,10 +94,25 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		// @TODO
-		// const transactionId: string = await this.#chain.issueTx(transaction.toBroadcast());
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
 
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+		for (const transaction of transactions) {
+			try {
+				// @TODO: this is the real ID that will be used but we somehow need to find
+				// out this ID before we broadcast it
+				result.accepted.push(await this.#chain.issueTx(transaction.toBroadcast()));
+			} catch (error) {
+				result.rejected.push(transaction.id());
+
+				result.errors[transaction.id()] = error.message;
+			}
+		}
+
+		return result;
 	}
 
 	public async broadcastSpread(
