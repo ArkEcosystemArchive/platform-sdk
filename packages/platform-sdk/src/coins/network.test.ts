@@ -1,7 +1,6 @@
 import "jest-extended";
 
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-
+import { ARK } from "../../../platform-sdk-ark/src";
 import { FeatureFlag } from "./enums";
 import { Network } from "./network";
 

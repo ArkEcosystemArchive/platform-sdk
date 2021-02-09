@@ -1,8 +1,8 @@
 import "jest-extended";
 
-import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
+import { ARK } from "../../../platform-sdk-ark/src";
 import { Coin } from "./coin";
 import { Config } from "./config";
 import { Manifest } from "./manifest";
