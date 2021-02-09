@@ -1,4 +1,4 @@
-import DotMainnet from "./networks/dot/mainnet.json";
+import DotMainnet from "./networks/dot/mainnet";
 
 export const manifest = {
 	name: "Polkadot",

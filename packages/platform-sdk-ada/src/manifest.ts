@@ -1,5 +1,5 @@
-import AdaMainnet from "./networks/ada/mainnet.json";
-import AdaTestnet from "./networks/ada/testnet.json";
+import AdaMainnet from "./networks/ada/mainnet";
+import AdaTestnet from "./networks/ada/testnet";
 
 export const manifest = {
 	name: "Cardano",

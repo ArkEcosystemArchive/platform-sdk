@@ -10,9 +10,7 @@ const network: Coins.CoinNetwork = {
 		symbol: "DOT",
 	},
 	crypto: {
-		networkId: 0,
-		signingMethods: {
-		},
+		networkId: "0",
 	},
 	networking: {
 		hosts: ["https://rpc.polkadot.io/"],

@@ -10,9 +10,7 @@ const network: Coins.CoinNetwork = {
 		symbol: "ADA",
 	},
 	crypto: {
-		networkId: 0,
-		signingMethods: {
-		},
+		networkId: "0",
 	},
 	networking: {
 		hosts: ["http://localhost:8090"],

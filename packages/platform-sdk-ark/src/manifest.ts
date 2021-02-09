@@ -1,6 +1,6 @@
 import ArkDevnet from "./networks/ark/devnet.json";
-import ArkMainnet from "./networks/ark/mainnet.json";
-import CompendiaMainnet from "./networks/compendia/mainnet.json";
+import ArkMainnet from "./networks/ark/mainnet";
+import CompendiaMainnet from "./networks/compendia/mainnet";
 
 export const manifest = {
 	name: "ARK",

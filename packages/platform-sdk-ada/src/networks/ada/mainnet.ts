@@ -10,9 +10,7 @@ const network: Coins.CoinNetwork = {
 		symbol: "ADA",
 	},
 	crypto: {
-		networkId: 1,
-		signingMethods: {
-		},
+		networkId: "1",
 	},
 	networking: {
 		hosts: [],
