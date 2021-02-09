@@ -187,10 +187,7 @@ describe("TransactionAggregate", () => {
 		nock(/.+/)
 			.get("/api/transactions")
 			.query(true)
-			.reply(200, (params) => {
-				console.log("params", params);
-				return require("../../../test/fixtures/client/transactions.json");
-			});
+			.reply(200, require("../../../test/fixtures/client/transactions.json"));
 
 		const result = await subject.transactions({ addresses: ["D8rr7B1d6TL6pf14LgMz4sKp1VBMs6YUYD"] });
 		expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
