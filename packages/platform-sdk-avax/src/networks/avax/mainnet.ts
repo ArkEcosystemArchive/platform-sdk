@@ -19,7 +19,7 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://api.avax.network:443"],
-		hostsArchival: [],
+		hostsArchival: ["https://api.avax.network:8080"],
 	},
 	governance: {
 		voting: {
