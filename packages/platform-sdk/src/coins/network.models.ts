@@ -21,7 +21,7 @@ export interface CoinNetwork {
 	};
 	networking: {
 		hosts: string[];
-		hostsMultiSignature: string[];
+		hostsMultiSignature?: string[];
 		hostsArchival?: string[];
 	};
 	governance: {
@@ -34,83 +34,83 @@ export interface CoinNetwork {
 	};
 	featureFlags: {
 		Client: {
-			transaction: boolean;
-			transactions: boolean;
-			wallet: boolean;
-			wallets: boolean;
-			delegate: boolean;
-			delegates: boolean;
-			votes: boolean;
-			voters: boolean;
-			configuration: boolean;
-			fees: boolean;
-			syncing: boolean;
-			broadcast: boolean;
+			transaction?: boolean;
+			transactions?: boolean;
+			wallet?: boolean;
+			wallets?: boolean;
+			delegate?: boolean;
+			delegates?: boolean;
+			votes?: boolean;
+			voters?: boolean;
+			configuration?: boolean;
+			fees?: boolean;
+			syncing?: boolean;
+			broadcast?: boolean;
 		};
 		Fee: {
-			all: boolean;
+			all?: boolean;
 		};
 		Identity: {
 			address: {
-				mnemonic: boolean;
-				multiSignature: boolean;
-				publicKey: boolean;
-				privateKey: boolean;
-				wif: boolean;
+				mnemonic?: boolean;
+				multiSignature?: boolean;
+				publicKey?: boolean;
+				privateKey?: boolean;
+				wif?: boolean;
 			};
 			publicKey: {
-				mnemonic: boolean;
-				multiSignature: boolean;
-				wif: boolean;
+				mnemonic?: boolean;
+				multiSignature?: boolean;
+				wif?: boolean;
 			};
 			privateKey: {
-				mnemonic: boolean;
-				wif: boolean;
+				mnemonic?: boolean;
+				wif?: boolean;
 			};
 			wif: {
-				mnemonic: boolean;
+				mnemonic?: boolean;
 			};
 			keyPair: {
-				mnemonic: boolean;
-				privateKey: boolean;
-				wif: boolean;
+				mnemonic?: boolean;
+				privateKey?: boolean;
+				wif?: boolean;
 			};
 		};
 		Ledger: {
-			getVersion: boolean;
-			getPublicKey: boolean;
-			signTransaction: boolean;
-			signMessage: boolean;
+			getVersion?: boolean;
+			getPublicKey?: boolean;
+			signTransaction?: boolean;
+			signMessage?: boolean;
 		};
 		Link: {
-			block: boolean;
-			transaction: boolean;
-			wallet: boolean;
+			block?: boolean;
+			transaction?: boolean;
+			wallet?: boolean;
 		};
 		Message: {
-			sign: boolean;
-			verify: boolean;
+			sign?: boolean;
+			verify?: boolean;
 		};
 		Peer: {
-			search: boolean;
+			search?: boolean;
 		};
 		Transaction: {
-			transfer: boolean;
-			secondSignature: boolean;
-			delegateRegistration: boolean;
-			vote: boolean;
-			multiSignature: boolean;
-			ipfs: boolean;
-			multiPayment: boolean;
-			delegateResignation: boolean;
-			htlcLock: boolean;
-			htlcClaim: boolean;
-			htlcRefund: boolean;
+			transfer?: boolean;
+			secondSignature?: boolean;
+			delegateRegistration?: boolean;
+			vote?: boolean;
+			multiSignature?: boolean;
+			ipfs?: boolean;
+			multiPayment?: boolean;
+			delegateResignation?: boolean;
+			htlcLock?: boolean;
+			htlcClaim?: boolean;
+			htlcRefund?: boolean;
 		};
 		Miscellaneous: {
-			memo: boolean;
-			utxo: boolean;
-			dynamicFees: boolean;
+			memo?: boolean;
+			utxo?: boolean;
+			dynamicFees?: boolean;
 		};
 	};
 }
