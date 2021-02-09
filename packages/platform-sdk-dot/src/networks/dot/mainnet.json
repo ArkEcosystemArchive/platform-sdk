@@ -28,82 +28,25 @@
 		}
 	},
 	"featureFlags": {
-		"Client": {
-			"transaction": false,
-			"transactions": false,
-			"wallet": false,
-			"wallets": false,
-			"delegate": false,
-			"delegates": false,
-			"votes": false,
-			"voters": false,
-			"configuration": false,
-			"fees": false,
-			"syncing": false,
-			"broadcast": false
-		},
-		"Fee": {
-			"all": false
-		},
 		"Identity": {
 			"address": {
 				"mnemonic": true,
-				"multiSignature": true,
-				"publicKey": false,
-				"privateKey": false,
-				"wif": false
+				"multiSignature": true
 			},
 			"publicKey": {
-				"mnemonic": true,
-				"multiSignature": false,
-				"wif": false
+				"mnemonic": true
 			},
 			"privateKey": {
-				"mnemonic": true,
-				"wif": false
-			},
-			"wif": {
-				"mnemonic": false
+				"mnemonic": true
 			},
 			"keyPair": {
-				"mnemonic": true,
-				"privateKey": false,
-				"wif": false
+				"mnemonic": true
 			}
 		},
 		"Ledger": {
 			"getVersion": true,
 			"getPublicKey": true,
-			"signTransaction": true,
-			"signMessage": false
-		},
-		"Link": {
-			"block": false,
-			"transaction": false,
-			"wallet": false
-		},
-		"Message": {
-			"sign": false,
-			"verify": false
-		},
-		"Peer": {
-			"search": false
-		},
-		"Transaction": {
-			"transfer": false,
-			"secondSignature": false,
-			"delegateRegistration": false,
-			"vote": false,
-			"multiSignature": false,
-			"ipfs": false,
-			"multiPayment": false,
-			"delegateResignation": false,
-			"htlcLock": false,
-			"htlcClaim": false,
-			"htlcRefund": false
-		},
-		"Miscellaneous": {
-			"memo": false
+			"signTransaction": true
 		}
 	}
 }
