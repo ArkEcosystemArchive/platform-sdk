@@ -15,8 +15,6 @@ const network: Coins.CoinNetwork = {
 		bech32: "cosmos",
 		signingMethods: {
 			mnemonic: true,
-			privateKey: false,
-			wif: false,
 		},
 	},
 	networking: {

@@ -13,7 +13,6 @@ const network: Coins.CoinNetwork = {
 		slip44: 543,
 		signingMethods: {
 			mnemonic: true,
-			privateKey: false,
 			wif: true,
 		},
 	},

@@ -14,7 +14,6 @@ const network: Coins.CoinNetwork = {
 		signingMethods: {
 			mnemonic: true,
 			privateKey: true,
-			wif: false,
 		},
 	},
 	networking: {
