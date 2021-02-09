@@ -492,6 +492,7 @@ export class Profile implements ProfileContract {
 						networking: Joi.object({
 							hosts: Joi.array().items(Joi.string()).required(),
 							hostsMultiSignature: Joi.array().items(Joi.string()),
+							hostsArchival: Joi.array().items(Joi.string()),
 						}).required(),
 					}),
 					address: Joi.string().required(),

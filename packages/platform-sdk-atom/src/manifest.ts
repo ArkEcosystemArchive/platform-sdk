@@ -1,7 +1,7 @@
-import CosmosMainnet from "./networks/cosmos/mainnet.json";
-import CosmosTestnet from "./networks/cosmos/testnet.json";
-import TerraMainnet from "./networks/terra/mainnet.json";
-import TerraTestnet from "./networks/terra/testnet.json";
+import CosmosMainnet from "./networks/cosmos/mainnet";
+import CosmosTestnet from "./networks/cosmos/testnet";
+import TerraMainnet from "./networks/terra/mainnet";
+import TerraTestnet from "./networks/terra/testnet";
 
 export const manifest = {
 	name: "ATOM",

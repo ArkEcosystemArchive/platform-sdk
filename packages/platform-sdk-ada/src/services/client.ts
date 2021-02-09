@@ -76,10 +76,7 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
 	}
 
-	// @TODO
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		// const transactionId: string = await this.#chain.issueTx(transaction.toBroadcast());
-
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
 	}
 

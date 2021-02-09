@@ -243,7 +243,8 @@ export class Wallet implements ReadWriteWallet {
 				},
 				networking: {
 					hosts: network.networking.hosts,
-					hostsMultiSignature: network.networking.hostsMultiSignature,
+					hostsMultiSignature: network.networking.hostsMultiSignature || [],
+					hostsArchival: network.networking.hostsArchival || [],
 				},
 			},
 			address: this.address(),
@@ -265,7 +266,7 @@ export class Wallet implements ReadWriteWallet {
 					[],
 				),
 				[WalletData.LedgerPath]: this.data().get(WalletData.LedgerPath),
-				...(this.isStarred() && { [WalletFlag.Starred]: true }),
+				[WalletFlag.Starred]: this.isStarred(),
 			},
 			settings: this.settings().all(),
 		};

@@ -1,10 +1,10 @@
-import ArkMainnet from "./networks/avax/mainnet.json";
-import ArkTestnet from "./networks/avax/testnet.json";
+import AvaxMainnet from "./networks/avax/mainnet";
+import AvaxTestnet from "./networks/avax/testnet";
 
 export const manifest = {
-	name: "ARK",
+	name: "AVAX",
 	networks: {
-		"avax.mainnet": ArkMainnet,
-		"avax.testnet": ArkTestnet,
+		"avax.mainnet": AvaxMainnet,
+		"avax.testnet": AvaxTestnet,
 	},
 };

@@ -1,5 +1,5 @@
-import LskMainnet from "./networks/lsk/mainnet.json";
-import LskTestnet from "./networks/lsk/testnet.json";
+import LskMainnet from "./networks/lsk/mainnet";
+import LskTestnet from "./networks/lsk/testnet";
 
 export const manifest = {
 	name: "LSK",

@@ -267,7 +267,7 @@ __metadata:
     "@types/prettier": ^2.1.5
     "@types/rimraf": ^3.0.0
     "@types/semver": 7.3.4
-    "@types/uuid": ^8.3.0
+    "@types/uuid": 8.3.0
     "@typescript-eslint/eslint-plugin": ^4.7.0
     "@typescript-eslint/parser": ^4.7.0
     avalanche: ^3.2.0
@@ -289,6 +289,7 @@ __metadata:
     ts-jest: ^26.4.4
     typescript: ^4.0.5
     url-parse-lax: ^4.0.0
+    uuid: ^8.3.2
   languageName: unknown
   linkType: soft
 
@@ -1325,7 +1326,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk@workspace:packages/platform-sdk"
   dependencies:
-    "@arkecosystem/platform-sdk-ark": "workspace:packages/platform-sdk-ark"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
     "@sindresorhus/tsconfig": ^0.7.0

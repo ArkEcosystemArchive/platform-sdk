@@ -182,4 +182,18 @@ describe("TransactionAggregate", () => {
 		expect(results).toBeInstanceOf(ExtendedTransactionDataCollection);
 		promiseAllSettledByKeyMock.mockRestore();
 	});
+
+	it("should aggregate and filter transactions based on provided addresses", async () => {
+		nock(/.+/)
+			.get("/api/transactions")
+			.query(true)
+			.reply(200, require("../../../test/fixtures/client/transactions.json"));
+
+		const result = await subject.transactions({ addresses: ["D8rr7B1d6TL6pf14LgMz4sKp1VBMs6YUYD"] });
+		expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
+		//@ts-ignore
+		expect(result.items()).toHaveLength(0);
+
+		subject.flush();
+	});
 });

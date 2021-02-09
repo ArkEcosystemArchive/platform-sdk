@@ -51,9 +51,9 @@ export class FeeService implements Contracts.FeeService {
 
 		return {
 			static: staticFees[typeGroup][type],
-			max: dynamicFee ? dynamicFee.max : 0,
-			min: dynamicFee ? dynamicFee.min : 0,
-			avg: dynamicFee ? dynamicFee.avg : 0,
+			max: dynamicFee?.max || "0",
+			min: dynamicFee?.min || "0",
+			avg: dynamicFee?.avg || "0",
 		};
 	}
 

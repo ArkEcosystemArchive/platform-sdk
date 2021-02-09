@@ -88,28 +88,28 @@ export class Network {
 	 * Determine if voting is supported on this network.
 	 */
 	public allowsVoting(): boolean {
-		return this.#network.governance.voting.enabled;
+		return this.#network.governance?.voting?.enabled || false;
 	}
 
 	/**
 	 * Get the number of delegates that forge blocks.
 	 */
 	public delegateCount(): number {
-		return this.#network.governance.voting.delegateCount;
+		return this.#network.governance?.voting?.delegateCount || 0;
 	}
 
 	/**
 	 * Get the maximum number of votes per wallet.
 	 */
 	public maximumVotesPerWallet(): number {
-		return this.#network.governance.voting.maximumPerWallet;
+		return this.#network.governance?.voting?.maximumPerWallet || 0;
 	}
 
 	/**
 	 * Get the maximum number of votes per transaction.
 	 */
 	public maximumVotesPerTransaction(): number {
-		return this.#network.governance.voting.maximumPerTransaction;
+		return this.#network.governance?.voting?.maximumPerTransaction || 0;
 	}
 
 	/**

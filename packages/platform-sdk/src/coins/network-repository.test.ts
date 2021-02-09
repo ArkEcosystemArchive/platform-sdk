@@ -1,7 +1,6 @@
 import "jest-extended";
 
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-
+import { ARK } from "../../../platform-sdk-ark/src";
 import { NetworkRepository } from "./network-repository";
 
 let subject: NetworkRepository;
@@ -15,7 +14,6 @@ test("#all", () => {
 		    "crypto": Object {
 		      "signingMethods": Object {
 		        "mnemonic": true,
-		        "privateKey": false,
 		        "wif": true,
 		      },
 		      "slip44": 1,
@@ -129,7 +127,6 @@ test("#all", () => {
 		    "crypto": Object {
 		      "signingMethods": Object {
 		        "mnemonic": true,
-		        "privateKey": false,
 		        "wif": true,
 		      },
 		      "slip44": 111,
@@ -243,7 +240,6 @@ test("#all", () => {
 		    "crypto": Object {
 		      "signingMethods": Object {
 		        "mnemonic": true,
-		        "privateKey": false,
 		        "wif": true,
 		      },
 		      "slip44": 543,
@@ -341,13 +337,11 @@ test("#all", () => {
 		      },
 		    },
 		    "id": "compendia.mainnet",
-		    "knownWallets": null,
 		    "name": "Compendia - Mainnet",
 		    "networking": Object {
 		      "hosts": Array [
 		        "https://apis.compendia.org",
 		      ],
-		      "hostsMultiSignature": Array [],
 		    },
 		    "type": "live",
 		  },
