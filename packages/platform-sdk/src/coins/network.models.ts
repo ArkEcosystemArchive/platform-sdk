@@ -21,7 +21,7 @@ export interface CoinNetwork {
 	};
 	networking: {
 		hosts: string[];
-		hostsMultiSignature: string[];
+		hostsMultiSignature?: string[];
 		hostsArchival?: string[];
 	};
 	governance: {
