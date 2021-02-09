@@ -1,7 +1,6 @@
 import "jest-extended";
 
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-
+import { ARK } from "../../../platform-sdk-ark/src";
 import { NetworkRepository } from "./network-repository";
 
 let subject: NetworkRepository;

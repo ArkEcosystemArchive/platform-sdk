@@ -33,7 +33,6 @@
 		"type-fest": "^0.18.1"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-ark": "workspace:packages/platform-sdk-ark",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/dot-prop": "5.0.1",
 		"@types/eslint": "^7.2.4",
