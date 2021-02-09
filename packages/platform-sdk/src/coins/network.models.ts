@@ -11,12 +11,12 @@ export interface CoinNetwork {
 		networkId?: string;
 		blockchainId?: string;
 		assetId?: string;
-		slip44: number;
+		slip44?: number;
 		bech32?: string;
-		signingMethods: {
-			mnemonic: boolean;
-			privateKey: boolean;
-			wif: boolean;
+		signingMethods?: {
+			mnemonic?: boolean;
+			privateKey?: boolean;
+			wif?: boolean;
 		};
 	};
 	networking: {
@@ -24,8 +24,8 @@ export interface CoinNetwork {
 		hostsMultiSignature?: string[];
 		hostsArchival?: string[];
 	};
-	governance: {
-		voting: {
+	governance?: {
+		voting?: {
 			enabled: boolean;
 			delegateCount: number;
 			maximumPerWallet: number;
@@ -33,7 +33,7 @@ export interface CoinNetwork {
 		};
 	};
 	featureFlags: {
-		Client: {
+		Client?: {
 			transaction?: boolean;
 			transactions?: boolean;
 			wallet?: boolean;
@@ -47,54 +47,54 @@ export interface CoinNetwork {
 			syncing?: boolean;
 			broadcast?: boolean;
 		};
-		Fee: {
+		Fee?: {
 			all?: boolean;
 		};
-		Identity: {
-			address: {
+		Identity?: {
+			address?: {
 				mnemonic?: boolean;
 				multiSignature?: boolean;
 				publicKey?: boolean;
 				privateKey?: boolean;
 				wif?: boolean;
 			};
-			publicKey: {
+			publicKey?: {
 				mnemonic?: boolean;
 				multiSignature?: boolean;
 				wif?: boolean;
 			};
-			privateKey: {
+			privateKey?: {
 				mnemonic?: boolean;
 				wif?: boolean;
 			};
-			wif: {
+			wif?: {
 				mnemonic?: boolean;
 			};
-			keyPair: {
+			keyPair?: {
 				mnemonic?: boolean;
 				privateKey?: boolean;
 				wif?: boolean;
 			};
 		};
-		Ledger: {
+		Ledger?: {
 			getVersion?: boolean;
 			getPublicKey?: boolean;
 			signTransaction?: boolean;
 			signMessage?: boolean;
 		};
-		Link: {
+		Link?: {
 			block?: boolean;
 			transaction?: boolean;
 			wallet?: boolean;
 		};
-		Message: {
+		Message?: {
 			sign?: boolean;
 			verify?: boolean;
 		};
-		Peer: {
+		Peer?: {
 			search?: boolean;
 		};
-		Transaction: {
+		Transaction?: {
 			transfer?: boolean;
 			secondSignature?: boolean;
 			delegateRegistration?: boolean;
@@ -107,7 +107,7 @@ export interface CoinNetwork {
 			htlcClaim?: boolean;
 			htlcRefund?: boolean;
 		};
-		Miscellaneous: {
+		Miscellaneous?: {
 			memo?: boolean;
 			utxo?: boolean;
 			dynamicFees?: boolean;
