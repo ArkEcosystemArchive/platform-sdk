@@ -1,56 +1,56 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
 const network: Coins.CoinNetwork = {
-	"id": "worbli.mainnet",
-	"type": "live",
-	"name": "WORBLI Mainnet",
-	"explorer": "https://worbli.bloks.io/",
-	"currency": {
-		"ticker": "WBI",
-		"symbol": "WBI"
+	id: "worbli.mainnet",
+	type: "live",
+	name: "WORBLI Mainnet",
+	explorer: "https://worbli.bloks.io/",
+	currency: {
+		ticker: "WBI",
+		symbol: "WBI",
 	},
-	"crypto": {
-		"networkId": "73647cde120091e0a4b85bced2f3cfdb3041e266cbbe95cee59b73235a1b3b6f",
-		"slip44": 194,
-		"bech32": "WBI",
-		"signingMethods": {
-			"mnemonic": false,
-			"privateKey": true,
-			"wif": false
-		}
-	},
-	"networking": {
-		"hosts": ["https://api.worbli.io", "https://worbli-mainnet.eosblocksmith.io"],
-		"hostsMultiSignature": []
-	},
-	"governance": {
-		"voting": {
-			"enabled": false,
-			"delegateCount": 0,
-			"maximumPerWallet": 0,
-			"maximumPerTransaction": 0
-		}
-	},
-	"featureFlags": {
-		"Client": {
-			"wallet": true,
-			"broadcast": true
+	crypto: {
+		networkId: "73647cde120091e0a4b85bced2f3cfdb3041e266cbbe95cee59b73235a1b3b6f",
+		slip44: 194,
+		bech32: "WBI",
+		signingMethods: {
+			mnemonic: false,
+			privateKey: true,
+			wif: false,
 		},
-		"Identity": {
-			"publicKey": {
-				"mnemonic": true
-			}
+	},
+	networking: {
+		hosts: ["https://api.worbli.io", "https://worbli-mainnet.eosblocksmith.io"],
+		hostsMultiSignature: [],
+	},
+	governance: {
+		voting: {
+			enabled: false,
+			delegateCount: 0,
+			maximumPerWallet: 0,
+			maximumPerTransaction: 0,
 		},
-		"Link": {
-			"block": true,
-			"transaction": true,
-			"wallet": true
+	},
+	featureFlags: {
+		Client: {
+			wallet: true,
+			broadcast: true,
 		},
-		"Message": {
-			"sign": true,
-			"verify": true
-		}
-	}
+		Identity: {
+			publicKey: {
+				mnemonic: true,
+			},
+		},
+		Link: {
+			block: true,
+			transaction: true,
+			wallet: true,
+		},
+		Message: {
+			sign: true,
+			verify: true,
+		},
+	},
 };
 
 export default network;

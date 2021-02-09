@@ -1,56 +1,56 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
 const network: Coins.CoinNetwork = {
-	"id": "eos.mainnet",
-	"type": "live",
-	"name": "EOS Mainnet",
-	"explorer": "https://eos.bloks.io/",
-	"currency": {
-		"ticker": "EOS",
-		"symbol": "EOS"
+	id: "eos.mainnet",
+	type: "live",
+	name: "EOS Mainnet",
+	explorer: "https://eos.bloks.io/",
+	currency: {
+		ticker: "EOS",
+		symbol: "EOS",
 	},
-	"crypto": {
-		"networkId": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
-		"slip44": 194,
-		"bech32": "EOS",
-		"signingMethods": {
-			"mnemonic": false,
-			"privateKey": true,
-			"wif": false
-		}
-	},
-	"networking": {
-		"hosts": ["https://eos.greymass.com", "https://api.eosn.io", "https://mainnet.genereos.io"],
-		"hostsMultiSignature": []
-	},
-	"governance": {
-		"voting": {
-			"enabled": false,
-			"delegateCount": 0,
-			"maximumPerWallet": 0,
-			"maximumPerTransaction": 0
-		}
-	},
-	"featureFlags": {
-		"Client": {
-			"wallet": true,
-			"broadcast": true
+	crypto: {
+		networkId: "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
+		slip44: 194,
+		bech32: "EOS",
+		signingMethods: {
+			mnemonic: false,
+			privateKey: true,
+			wif: false,
 		},
-		"Identity": {
-			"publicKey": {
-				"mnemonic": true
-			}
+	},
+	networking: {
+		hosts: ["https://eos.greymass.com", "https://api.eosn.io", "https://mainnet.genereos.io"],
+		hostsMultiSignature: [],
+	},
+	governance: {
+		voting: {
+			enabled: false,
+			delegateCount: 0,
+			maximumPerWallet: 0,
+			maximumPerTransaction: 0,
 		},
-		"Link": {
-			"block": true,
-			"transaction": true,
-			"wallet": true
+	},
+	featureFlags: {
+		Client: {
+			wallet: true,
+			broadcast: true,
 		},
-		"Message": {
-			"sign": true,
-			"verify": true
-		}
-	}
-}
+		Identity: {
+			publicKey: {
+				mnemonic: true,
+			},
+		},
+		Link: {
+			block: true,
+			transaction: true,
+			wallet: true,
+		},
+		Message: {
+			sign: true,
+			verify: true,
+		},
+	},
+};
 
 export default network;

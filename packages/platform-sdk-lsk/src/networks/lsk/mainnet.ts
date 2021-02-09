@@ -1,25 +1,25 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
 const network: Coins.CoinNetwork = {
-	"id": "lsk.mainnet",
-	"type": "live",
-	"name": "Mainnet",
-	"explorer": "https://explorer.lisk.io/",
-	"currency": {
-		"ticker": "LSK",
-		"symbol": "LSK"
+	id: "lsk.mainnet",
+	type: "live",
+	name: "Mainnet",
+	explorer: "https://explorer.lisk.io/",
+	currency: {
+		ticker: "LSK",
+		symbol: "LSK",
 	},
-	"crypto": {
-		"networkId": "ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511",
-		"slip44": 134,
-		"signingMethods": {
-			"mnemonic": true,
-			"privateKey": false,
-			"wif": false
-		}
+	crypto: {
+		networkId: "ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511",
+		slip44: 134,
+		signingMethods: {
+			mnemonic: true,
+			privateKey: false,
+			wif: false,
+		},
 	},
-	"networking": {
-		"hosts": [
+	networking: {
+		hosts: [
 			"https://hub21.lisk.io",
 			"https://hub22.lisk.io",
 			"https://hub23.lisk.io",
@@ -35,60 +35,60 @@ const network: Coins.CoinNetwork = {
 			"https://hub35.lisk.io",
 			"https://hub36.lisk.io",
 			"https://hub37.lisk.io",
-			"https://hub38.lisk.io"
+			"https://hub38.lisk.io",
 		],
-		"hostsMultiSignature": []
+		hostsMultiSignature: [],
 	},
-	"governance": {
-		"voting": {
-			"enabled": true,
-			"delegateCount": 101,
-			"maximumPerWallet": 101,
-			"maximumPerTransaction": 33
-		}
+	governance: {
+		voting: {
+			enabled: true,
+			delegateCount: 101,
+			maximumPerWallet: 101,
+			maximumPerTransaction: 33,
+		},
 	},
-	"featureFlags": {
-		"Client": {
-			"transaction": true,
-			"transactions": true,
-			"wallet": true,
-			"wallets": true,
-			"delegate": true,
-			"delegates": true,
-			"broadcast": true
+	featureFlags: {
+		Client: {
+			transaction: true,
+			transactions: true,
+			wallet: true,
+			wallets: true,
+			delegate: true,
+			delegates: true,
+			broadcast: true,
 		},
-		"Identity": {
-			"address": {
-				"mnemonic": true,
-				"publicKey": true
+		Identity: {
+			address: {
+				mnemonic: true,
+				publicKey: true,
 			},
-			"publicKey": {
-				"mnemonic": true
+			publicKey: {
+				mnemonic: true,
 			},
-			"privateKey": {
-				"mnemonic": true
+			privateKey: {
+				mnemonic: true,
 			},
-			"keyPair": {
-				"mnemonic": true
-			}
+			keyPair: {
+				mnemonic: true,
+			},
 		},
-		"Link": {
-			"block": true,
-			"transaction": true,
-			"wallet": true
+		Link: {
+			block: true,
+			transaction: true,
+			wallet: true,
 		},
-		"Message": {
-			"sign": true,
-			"verify": true
+		Message: {
+			sign: true,
+			verify: true,
 		},
-		"Transaction": {
-			"transfer": true,
-			"secondSignature": true,
-			"delegateRegistration": true,
-			"vote": true,
-			"multiSignature": true
-		}
-	}
-}
+		Transaction: {
+			transfer: true,
+			secondSignature: true,
+			delegateRegistration: true,
+			vote: true,
+			multiSignature: true,
+		},
+	},
+};
 
 export default network;
