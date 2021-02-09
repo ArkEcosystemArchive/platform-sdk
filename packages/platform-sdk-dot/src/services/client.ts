@@ -73,8 +73,10 @@ export class ClientService implements Contracts.ClientService {
 				await this.#client.rpc.author.submitExtrinsic(transaction.toBroadcast() as any);
 
 				result.accepted.push(transaction.id());
-			} catch {
+			} catch (error) {
 				result.rejected.push(transaction.id());
+
+				result.errors[transaction.id()] = error.message;
 			}
 		}
 

@@ -1,6 +1,7 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BN, Buffer } from "avalanche";
 import { AVMAPI } from "avalanche/dist/apis/avm";
+import { v4 as uuidv4 } from "uuid";
 
 import { SignedTransactionData } from "../dto";
 import { keyPairFromMnemonic, useChain, useKeychain } from "./helpers";
@@ -52,7 +53,7 @@ export class TransactionService implements Contracts.TransactionService {
 			).sign(this.#keychain);
 
 			// @TODO: compute the ID and set raw data for UI purposes
-			return new SignedTransactionData("@TODO", signedTx.toString(), signedTx.toString());
+			return new SignedTransactionData(uuidv4(), signedTx.toString(), signedTx.toString());
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
