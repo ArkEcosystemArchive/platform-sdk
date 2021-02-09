@@ -22,6 +22,7 @@ export interface CoinNetwork {
 	networking: {
 		hosts: string[];
 		hostsMultiSignature: string[];
+		hostsArchival?: string[];
 	};
 	governance: {
 		voting: {
@@ -109,6 +110,7 @@ export interface CoinNetwork {
 		Miscellaneous: {
 			memo: boolean;
 			utxo: boolean;
+			dynamicFees: boolean;
 		};
 	};
 }
