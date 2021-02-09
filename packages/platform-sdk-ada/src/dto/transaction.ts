@@ -48,11 +48,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isSent(): boolean {
-		return this.data.direction === 'outgoing';
+		return this.data.direction === "outgoing";
 	}
 
 	public isReceived(): boolean {
-		return this.data.direction === 'incoming';
+		return this.data.direction === "incoming";
 	}
 
 	public isTransfer(): boolean {

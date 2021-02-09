@@ -36,7 +36,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		let transactions: object[] = await this.get(`v2/wallets/${query.address}/transactions`) as object[];
+		const transactions: object[] = (await this.get(`v2/wallets/${query.address}/transactions`)) as object[];
 		return Helpers.createTransactionDataCollectionWithType(
 			transactions,
 			{

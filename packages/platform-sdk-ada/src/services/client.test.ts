@@ -1,12 +1,12 @@
 import "jest-extended";
 
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 let subject: ClientService;
 
@@ -38,13 +38,13 @@ describe("ClientService", function () {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({
-				address: "98c83431e94407bc0889e09953461fe5cecfdf18"
+				address: "98c83431e94407bc0889e09953461fe5cecfdf18",
 			});
 
 			expect(result).toBeObject();
 			expect(result.items()).toBeArrayOfSize(5);
 			expect(result.items()[0]).toBeInstanceOf(TransactionData);
-			expect(result.items()[0].id()).toBe('35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d');
+			expect(result.items()[0].id()).toBe("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d");
 			expect(result.items()[0].amount()).toEqual(BigNumber.make(25168801));
 			expect(result.items()[0].fee()).toEqual(BigNumber.make(168801));
 			expect(result.items()[0].timestamp()).toEqual(DateTime.make("2021-02-05T15:04:16.000Z"));
