@@ -12,7 +12,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public timestamp(): DateTime | undefined {
-		return undefined;
+		return DateTime.make(this.data.timestamp);
 	}
 
 	public confirmations(): BigNumber {
@@ -20,11 +20,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		return "@TODO";
+		return Object.keys(this.data.inputTotals)[0];
 	}
 
 	public recipient(): string {
-		return "@TODO";
+		return Object.keys(this.data.outputTotals)[0];
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
@@ -32,11 +32,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.data.amount);
+		return BigNumber.make(Object.values(this.data.outputTotals)[0] as string);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.fee);
+		return BigNumber.make(this.data.txFee);
 	}
 
 	public asset(): Record<string, unknown> {
@@ -44,7 +44,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isConfirmed(): boolean {
-		return false;
+		return true;
 	}
 
 	public isSent(): boolean {
@@ -56,7 +56,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isTransfer(): boolean {
-		return false;
+		return this.data.type === "base";
 	}
 
 	public isSecondSignature(): boolean {
