@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.8.11 - 2020-02-09
+
+### Added
+
+-   Implement dynamic fee feature flag (82dbe987, @faustbrian)
+-   Implement UTXO feature flag (632e0661, @faustbrian)
+-   **[AVAX]** Implement `ClientService#transactions` (0555b2ba, @faustbrian)
+-   **[AVAX]** Implement `ClientService#broadcast` (f6db06a1, @faustbrian)
+
+### Changed
+
+-   **[ARK]** Return strings in fee transform method (83b2d9c5, @dated)
+-   Make unsupported feature flags optional (2f8df212, @faustbrian)
+-   Remove extraneous properties from feature flags in manifests (048eceb0, @faustbrian)
+-   Treat manifests as code to make use of typing (058436ec, @faustbrian)
+
+### Fixed
+
+-   **[AVAX]** Access correct transaction data properties (5bd318c1, @faustbrian)
+-   **[AVAX]** Normalise wallet balance to `1e8` notation (34769e8f, @faustbrian)
+
 ## 2.8.1 - 2020-02-08
 
 ### Fixed
