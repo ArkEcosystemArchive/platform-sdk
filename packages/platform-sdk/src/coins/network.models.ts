@@ -113,4 +113,5 @@ export interface CoinNetwork {
 			dynamicFees?: boolean;
 		};
 	};
+	knownWallets?: string;
 }
