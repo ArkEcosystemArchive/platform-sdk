@@ -21,7 +21,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://wax.eosphere.io"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

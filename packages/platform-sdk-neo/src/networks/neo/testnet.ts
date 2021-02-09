@@ -33,7 +33,6 @@ const network: Coins.CoinNetwork = {
 			"http://seed9.ngd.network:20332",
 			"http://seed10.ngd.network:20332",
 		],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

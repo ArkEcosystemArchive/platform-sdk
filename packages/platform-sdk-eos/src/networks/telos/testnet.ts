@@ -26,7 +26,6 @@ const network: Coins.CoinNetwork = {
 			"https://testnet.telos.caleos.io",
 			"https://api-test.telosfoundation.io",
 		],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

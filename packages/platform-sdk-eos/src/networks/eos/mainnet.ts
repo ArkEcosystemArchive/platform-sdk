@@ -21,7 +21,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://eos.greymass.com", "https://api.eosn.io", "https://mainnet.genereos.io"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

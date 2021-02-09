@@ -20,7 +20,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://coins.com/api/eth"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

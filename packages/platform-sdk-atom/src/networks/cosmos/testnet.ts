@@ -21,7 +21,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://stargate.cosmos.network"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

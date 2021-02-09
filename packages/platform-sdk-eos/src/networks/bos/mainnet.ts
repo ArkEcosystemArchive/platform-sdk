@@ -21,7 +21,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://api.boscore.io"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

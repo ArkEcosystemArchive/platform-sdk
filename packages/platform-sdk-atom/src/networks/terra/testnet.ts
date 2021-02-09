@@ -21,7 +21,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: [],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

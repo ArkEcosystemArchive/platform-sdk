@@ -37,7 +37,6 @@ const network: Coins.CoinNetwork = {
 			"https://hub37.lisk.io",
 			"https://hub38.lisk.io",
 		],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

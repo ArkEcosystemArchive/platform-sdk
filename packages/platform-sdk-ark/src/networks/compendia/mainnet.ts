@@ -19,7 +19,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://apis.compendia.org"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

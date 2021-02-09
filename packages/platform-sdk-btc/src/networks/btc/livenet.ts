@@ -19,7 +19,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://coins.com/api/btc"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

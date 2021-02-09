@@ -20,7 +20,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://testnet.lisk.io"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

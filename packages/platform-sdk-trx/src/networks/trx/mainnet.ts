@@ -19,7 +19,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://api.trongrid.io"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

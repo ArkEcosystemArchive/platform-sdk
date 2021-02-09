@@ -19,7 +19,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["http://localhost:8090"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

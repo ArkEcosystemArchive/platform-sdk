@@ -19,7 +19,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://rpc.polkadot.io/"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

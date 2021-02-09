@@ -19,7 +19,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://api.avax.network:443"],
-		hostsMultiSignature: [],
 		hostsArchival: [],
 	},
 	governance: {

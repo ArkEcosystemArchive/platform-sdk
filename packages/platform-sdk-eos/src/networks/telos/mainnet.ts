@@ -26,7 +26,6 @@ const network: Coins.CoinNetwork = {
 			"https://telos-mainnet.eosblocksmith.io",
 			"https://telos.caleos.io",
 		],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

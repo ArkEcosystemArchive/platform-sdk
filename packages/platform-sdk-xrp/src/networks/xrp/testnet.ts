@@ -19,7 +19,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["wss://s.altnet.rippletest.net/"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

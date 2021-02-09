@@ -19,7 +19,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://horizon.stellar.org"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

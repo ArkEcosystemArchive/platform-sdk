@@ -40,7 +40,6 @@ const network: Coins.CoinNetwork = {
 			"https://seed8.cityofzion.io:443",
 			"https://seed9.cityofzion.io:443",
 		],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

@@ -21,7 +21,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://api.worbli.io", "https://worbli-mainnet.eosblocksmith.io"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

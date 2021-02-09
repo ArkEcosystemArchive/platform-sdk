@@ -19,7 +19,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["wss://s2.ripple.com/"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {

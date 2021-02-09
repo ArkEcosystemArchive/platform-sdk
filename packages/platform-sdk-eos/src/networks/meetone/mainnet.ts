@@ -21,7 +21,6 @@ const network: Coins.CoinNetwork = {
 	},
 	networking: {
 		hosts: ["https://fullnode.meet.one"],
-		hostsMultiSignature: [],
 	},
 	governance: {
 		voting: {
