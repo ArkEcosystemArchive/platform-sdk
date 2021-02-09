@@ -15,7 +15,7 @@ export interface WalletStruct {
 	network: string;
 	networkConfig: {
 		crypto: {
-			slip44: number;
+			slip44?: number;
 		};
 		networking: {
 			hosts: string[];

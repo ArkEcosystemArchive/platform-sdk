@@ -3,11 +3,11 @@ import lib from "cardano-crypto.js";
 import { SHELLEY_DERIVATION_SCHEME } from "./constants";
 import { derivePrivateNode, derivePublicNode, shelleyPath, shelleyStakeAccountPath } from "./hdpath";
 
-const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: number): string => {
+const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: string): string => {
 	const addrBuffer = lib.packBaseAddress(
 		lib.getPubKeyBlake2b224Hash(spendXpub.slice(0, 32)),
 		lib.getPubKeyBlake2b224Hash(stakeXpub.slice(0, 32)),
-		networkId,
+		parseInt(networkId),
 	);
 	return lib.bech32.encode("addr", addrBuffer);
 };
@@ -16,7 +16,7 @@ const generateAddress = async (
 	seed: Buffer,
 	accountIdx: number,
 	isChange: boolean,
-	networkId: number,
+	networkId: string,
 	addressIdx: number,
 ) => {
 	const spendPath = shelleyPath(accountIdx, isChange, addressIdx);
@@ -36,7 +36,7 @@ export const addressFromMnemonic = async (
 	accountIdx: number,
 	isChange: boolean,
 	addressIdx: number,
-	networkId: number,
+	networkId: string,
 ): Promise<string> => {
 	const seed = await lib.mnemonicToRootKeypair(mnemonic, SHELLEY_DERIVATION_SCHEME);
 	const { address } = await generateAddress(seed, accountIdx, isChange, networkId, addressIdx);
@@ -48,7 +48,7 @@ export const addressFromAccountExtPublicKey = async (
 	extPubKey: Buffer,
 	isChange: boolean,
 	addressIdx: number,
-	networkId: number,
+	networkId: string,
 ): Promise<string> => {
 	const spendPath = shelleyPath(0, isChange, addressIdx).slice(3);
 	const spendXpub = derivePublicNode(spendPath, extPubKey);

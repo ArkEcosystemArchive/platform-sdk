@@ -1,12 +1,12 @@
-import BosMainnet from "./networks/bos/mainnet.json";
-import EosMainnet from "./networks/eos/mainnet.json";
-import EosTestnet from "./networks/eos/testnet.json";
-import MeetoneMainnet from "./networks/meetone/mainnet.json";
-import TelosMainnet from "./networks/telos/mainnet.json";
-import TelosTestnet from "./networks/telos/testnet.json";
-import WaxMainnet from "./networks/wax/mainnet.json";
-import WorbliMainnet from "./networks/worbli/mainnet.json";
-import WorbliTestnet from "./networks/worbli/testnet.json";
+import BosMainnet from "./networks/bos/mainnet";
+import EosMainnet from "./networks/eos/mainnet";
+import EosTestnet from "./networks/eos/testnet";
+import MeetoneMainnet from "./networks/meetone/mainnet";
+import TelosMainnet from "./networks/telos/mainnet";
+import TelosTestnet from "./networks/telos/testnet";
+import WaxMainnet from "./networks/wax/mainnet";
+import WorbliMainnet from "./networks/worbli/mainnet";
+import WorbliTestnet from "./networks/worbli/testnet";
 
 export const manifest = {
 	name: "EOS",

@@ -16,7 +16,7 @@ export const useAvalanche = (config: Coins.Config): Avalanche => {
 		host,
 		port,
 		protocol.replace(":", ""),
-		config.get("network.crypto.networkId"),
+		parseInt(config.get("network.crypto.networkId")),
 		config.get("network.crypto.blockchainId"),
 	);
 };
@@ -34,7 +34,7 @@ export const cb58Encode = (value: Buffer): string => BinTools.getInstance().cb58
 
 // Crypto
 export const keyPairFromMnemonic = (config: Coins.Config, mnemonic: string): KeyPair =>
-	new KeyChain(utils.getPreferredHRP(config.get("network.crypto.networkId")), "X").importKey(
+	new KeyChain(utils.getPreferredHRP(parseInt(config.get("network.crypto.networkId"))), "X").importKey(
 		new Buffer(
 			HDKey.fromMasterSeed(BIP39.toSeed(mnemonic)).derive(`m/44'/9000'/0'/0/0`).privateKey.toString("hex"),
 			"hex",
