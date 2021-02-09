@@ -1,7 +1,9 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import { AVMAPI, Tx } from "avalanche/dist/apis/avm";
 
 import { TransactionData, WalletData } from "../dto";
+import * as TransactionDTO from "../dto";
 import { cb58Decode, useChain } from "./helpers";
 
 export class ClientService implements Contracts.ClientService {
@@ -40,11 +42,22 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		return new Coins.TransactionDataCollection([], {
-			prev: undefined,
-			self: undefined,
-			next: undefined,
+		const { transactions } = await this.get("v2/transactions", {
+			chainID: this.#config.get("network.crypto.blockchainId"),
+			limit: 100,
+			offset: query.cursor || 0,
+			address: query.address,
 		});
+
+		return Helpers.createTransactionDataCollectionWithType(
+			transactions,
+			{
+				prev: undefined,
+				self: undefined,
+				next: undefined,
+			},
+			TransactionDTO,
+		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -81,6 +94,9 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
+		// @TODO
+		// const transactionId: string = await this.#chain.issueTx(transaction.toBroadcast());
+
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
 	}
 
@@ -89,5 +105,21 @@ export class ClientService implements Contracts.ClientService {
 		hosts: string[],
 	): Promise<Contracts.BroadcastResponse> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
+	}
+
+	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+		return (
+			await this.#config
+				.get<Contracts.HttpClient>("httpClient")
+				.get(`${this.host()}/${path}`, query?.searchParams)
+		).json();
+	}
+
+	private host(): string {
+		try {
+			return this.#config.get<string>("peer");
+		} catch {
+			return `${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}:8080`;
+		}
 	}
 }
