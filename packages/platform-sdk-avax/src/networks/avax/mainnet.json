@@ -19,7 +19,8 @@
 	},
 	"networking": {
 		"hosts": ["https://api.avax.network:443"],
-		"hostsMultiSignature": []
+		"hostsMultiSignature": [],
+		"hostsArchival": []
 	},
 	"governance": {
 		"voting": {
@@ -31,81 +32,28 @@
 	},
 	"featureFlags": {
 		"Client": {
-			"transaction": false,
-			"transactions": false,
-			"wallet": false,
-			"wallets": false,
-			"delegate": false,
-			"delegates": false,
-			"votes": false,
-			"voters": false,
-			"configuration": false,
-			"fees": false,
-			"syncing": false,
-			"broadcast": false
-		},
-		"Fee": {
-			"all": false
+			"transactions": true,
+			"wallet": true,
+			"broadcast": true
 		},
 		"Identity": {
 			"address": {
-				"mnemonic": false,
-				"multiSignature": false,
-				"publicKey": false,
-				"privateKey": false,
-				"wif": false
+				"mnemonic": true
 			},
 			"publicKey": {
-				"mnemonic": false,
-				"multiSignature": false,
-				"wif": false
+				"mnemonic": true
 			},
 			"privateKey": {
-				"mnemonic": false,
-				"wif": false
-			},
-			"wif": {
-				"mnemonic": false
+				"mnemonic": true
 			},
 			"keyPair": {
-				"mnemonic": false,
-				"privateKey": false,
-				"wif": false
+				"mnemonic": true,
+				"privateKey": true
 			}
-		},
-		"Ledger": {
-			"getVersion": false,
-			"getPublicKey": false,
-			"signTransaction": false,
-			"signMessage": false
-		},
-		"Link": {
-			"block": false,
-			"transaction": false,
-			"wallet": false
 		},
 		"Message": {
 			"sign": true,
 			"verify": true
-		},
-		"Peer": {
-			"search": false
-		},
-		"Transaction": {
-			"transfer": false,
-			"secondSignature": false,
-			"delegateRegistration": false,
-			"vote": false,
-			"multiSignature": false,
-			"ipfs": false,
-			"multiPayment": false,
-			"delegateResignation": false,
-			"htlcLock": false,
-			"htlcClaim": false,
-			"htlcRefund": false
-		},
-		"Miscellaneous": {
-			"memo": false
 		}
 	}
 }
