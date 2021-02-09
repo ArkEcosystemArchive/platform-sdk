@@ -28,7 +28,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async __destruct(): Promise<void> {
-		throw new Error("Method not implemented.");
+		//
 	}
 
 	public async transaction(id: string): Promise<Contracts.TransactionDataType> {
@@ -88,10 +88,6 @@ export class ClientService implements Contracts.ClientService {
 		hosts: string[],
 	): Promise<Contracts.BroadcastResponse> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
-	}
-
-	entityHistory(id: string, query?: Record<string, any>): Promise<Coins.TransactionDataCollection> {
-		throw new Error("Method not implemented.");
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
