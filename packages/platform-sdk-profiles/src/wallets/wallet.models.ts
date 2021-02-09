@@ -20,6 +20,7 @@ export interface WalletStruct {
 		networking: {
 			hosts: string[];
 			hostsMultiSignature: string[];
+			hostsArchival: string[];
 		};
 	};
 	address: string;
