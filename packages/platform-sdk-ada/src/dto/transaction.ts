@@ -11,12 +11,12 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return undefined;
 	}
 
-	public timestamp(): DateTime | undefined {
+	public timestamp(): DateTime {
 		return DateTime.make(this.data.inserted_at.time);
 	}
 
 	public confirmations(): BigNumber {
-		return BigNumber.make(this.data.confirmations);
+		return BigNumber.make(NaN);
 	}
 
 	public sender(): string {
