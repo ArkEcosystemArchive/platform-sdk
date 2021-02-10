@@ -47,6 +47,14 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return {};
 	}
 
+	public inputs(): Contracts.UnspentTransactionData[] {
+		return [];
+	}
+
+	public outputs(): Contracts.UnspentTransactionData[] {
+		return [];
+	}
+
 	public isConfirmed(): boolean {
 		return false;
 	}

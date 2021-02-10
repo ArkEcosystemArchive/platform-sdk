@@ -59,6 +59,14 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.asset;
 	}
 
+	public inputs(): Contracts.UnspentTransactionData[] {
+		return [];
+	}
+
+	public outputs(): Contracts.UnspentTransactionData[] {
+		return [];
+	}
+
 	public isConfirmed(): boolean {
 		return this.confirmations().isGreaterThanOrEqualTo(51);
 	}

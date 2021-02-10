@@ -54,6 +54,9 @@ const network: Coins.CoinNetwork = {
 			sign: true,
 			verify: true,
 		},
+		Miscellaneous: {
+			utxo: true,
+		},
 	},
 };
 

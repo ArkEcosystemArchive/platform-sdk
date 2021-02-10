@@ -18,14 +18,18 @@ export class Config {
 		return this.#config;
 	}
 
-	public get<T>(key: string): T {
-		const value: T | undefined = get(this.#config, key);
+	public get<T>(key: string, defaultValue?: T): T {
+		const value: T | undefined = get(this.#config, key, defaultValue);
 
 		if (value === undefined) {
 			throw new Error(`The [${key}] is an unknown configuration value.`);
 		}
 
 		return value;
+	}
+
+	public getLoose<T>(key: string, defaultValue?: T): T | undefined {
+		return get(this.#config, key, defaultValue);
 	}
 
 	public set(key: string, value: unknown): void {

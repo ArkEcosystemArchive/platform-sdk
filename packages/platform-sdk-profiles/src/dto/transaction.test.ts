@@ -54,6 +54,8 @@ const createSubject = (wallet, properties, klass) => {
 		amount: () => BigNumber.make(18).times(1e8),
 		fee: () => BigNumber.make(2).times(1e8),
 		asset: () => ({}),
+		inputs: () => [],
+		outputs: () => [],
 		isSent: () => true,
 		toObject: () => ({}),
 		getMeta: (): Contracts.TransactionDataMeta => meta,
@@ -245,6 +247,30 @@ describe("Transaction", () => {
 		);
 
 		expect(subject.memo()).toBe("memo");
+	});
+
+	test("#inputs", () => {
+		subject = createSubject(
+			wallet,
+			{
+				inputs: () => [{}, {}, {}],
+			},
+			TransactionData,
+		);
+
+		expect(subject.inputs()).toHaveLength(3);
+	});
+
+	test("#outputs", () => {
+		subject = createSubject(
+			wallet,
+			{
+				outputs: () => [{}, {}, {}],
+			},
+			TransactionData,
+		);
+
+		expect(subject.outputs()).toHaveLength(3);
 	});
 
 	test("should not throw if transaction type does not have memo", () => {

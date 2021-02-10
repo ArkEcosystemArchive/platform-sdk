@@ -43,6 +43,30 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return {};
 	}
 
+	public inputs(): Contracts.UnspentTransactionData[] {
+		return this.data.inputs.map(
+			(input: Contracts.KeyValuePair) =>
+				new DTO.UnspentTransactionData({
+					id: input.transactionID,
+					timestamp: DateTime.make(input.timestamp),
+					amount: BigNumber.make(input.amount),
+					addresses: input.addresses,
+				}),
+		);
+	}
+
+	public outputs(): Contracts.UnspentTransactionData[] {
+		return this.data.outputs.map(
+			(output: Contracts.KeyValuePair) =>
+				new DTO.UnspentTransactionData({
+					id: output.transactionID,
+					timestamp: DateTime.make(output.timestamp),
+					amount: BigNumber.make(output.amount),
+					addresses: output.addresses,
+				}),
+		);
+	}
+
 	public isConfirmed(): boolean {
 		return true;
 	}

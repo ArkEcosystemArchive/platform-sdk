@@ -50,4 +50,10 @@ describe("KnownWalletService", () => {
 
 		await expect(subject.all()).resolves.toEqual([]);
 	});
+
+	it("should return an empty list if the source is empty", async () => {
+		subject = await KnownWalletService.__construct(createConfig(undefined, { knownWallets: undefined }));
+
+		await expect(subject.all()).resolves.toEqual([]);
+	});
 });

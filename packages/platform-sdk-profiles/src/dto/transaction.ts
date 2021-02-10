@@ -79,6 +79,14 @@ export class TransactionData {
 		return this.#data.isConfirmed();
 	}
 
+	public inputs(): Contracts.UnspentTransactionData[] {
+		return this.#data.inputs();
+	}
+
+	public outputs(): Contracts.UnspentTransactionData[] {
+		return this.#data.outputs();
+	}
+
 	public isSent(): boolean {
 		return this.#data.isSent();
 	}
