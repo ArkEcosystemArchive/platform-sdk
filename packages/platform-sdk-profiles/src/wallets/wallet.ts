@@ -2,6 +2,7 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { decrypt } from "bip38";
+import dot from "dot-prop";
 
 import { ExtendedTransactionData } from "../dto/transaction";
 import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
@@ -243,8 +244,8 @@ export class Wallet implements ReadWriteWallet {
 				},
 				networking: {
 					hosts: network.networking.hosts,
-					hostsMultiSignature: network.networking.hostsMultiSignature || [],
-					hostsArchival: network.networking.hostsArchival || [],
+					hostsMultiSignature: dot.get(network, "networking.hostsMultiSignature", []),
+					hostsArchival: dot.get(network, "networking.hostsArchival", []),
 				},
 			},
 			address: this.address(),

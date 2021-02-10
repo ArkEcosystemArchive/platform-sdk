@@ -100,6 +100,10 @@ export interface TransactionData {
 
 	asset(): Record<string, unknown>;
 
+	inputs(): Record<string, unknown>[];
+
+	outputs(): Record<string, unknown>[];
+
 	isConfirmed(): boolean;
 
 	isSent(): boolean;
