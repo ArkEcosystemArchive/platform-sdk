@@ -44,11 +44,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public inputs(): Record<string, unknown>[] {
-		return [];
+		return this.data.inputs;
 	}
 
 	public outputs(): Record<string, unknown>[] {
-		return [];
+		return this.data.outputs;
 	}
 
 	public isConfirmed(): boolean {
