@@ -1,8 +1,8 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
-import { TransactionData, WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
+import { TransactionData, WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #http: Contracts.HttpClient;
