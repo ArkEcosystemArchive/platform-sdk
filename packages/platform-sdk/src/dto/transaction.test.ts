@@ -317,6 +317,14 @@ class Transaction extends AbstractTransactionData {
 		return {};
 	}
 
+	public inputs(): Record<string, unknown>[] {
+		return [];
+	}
+
+	public outputs(): Record<string, unknown>[] {
+		return [];
+	}
+
 	public isConfirmed(): boolean {
 		return false;
 	}
