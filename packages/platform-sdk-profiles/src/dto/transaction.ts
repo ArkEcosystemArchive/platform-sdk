@@ -79,6 +79,14 @@ export class TransactionData {
 		return this.#data.isConfirmed();
 	}
 
+	public inputs(): Record<string, unknown>[] {
+		return this.#data.inputs();
+	}
+
+	public outputs(): Record<string, unknown>[] {
+		return this.#data.outputs();
+	}
+
 	public isSent(): boolean {
 		return this.#data.isSent();
 	}
