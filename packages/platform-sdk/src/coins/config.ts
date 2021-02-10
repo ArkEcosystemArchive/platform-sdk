@@ -28,6 +28,10 @@ export class Config {
 		return value;
 	}
 
+	public getLoose<T>(key: string, defaultValue?: T): T | undefined {
+		return get(this.#config, key, defaultValue);
+	}
+
 	public set(key: string, value: unknown): void {
 		set(this.#config, key, value);
 	}
