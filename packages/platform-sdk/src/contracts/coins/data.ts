@@ -77,6 +77,16 @@ export interface MultiPaymentRecipient {
 // These types and interfaces are responsible for transaction-specific methods.
 export type TransactionDataMeta = string | number | boolean | undefined;
 
+export interface UnspentTransactionData {
+	id(): string;
+
+	timestamp(): DateTime;
+
+	amount(): BigNumber;
+
+	addresses(): string[];
+}
+
 export interface TransactionData {
 	id(): string;
 
@@ -100,9 +110,9 @@ export interface TransactionData {
 
 	asset(): Record<string, unknown>;
 
-	inputs(): Record<string, unknown>[];
+	inputs(): UnspentTransactionData[];
 
-	outputs(): Record<string, unknown>[];
+	outputs(): UnspentTransactionData[];
 
 	isConfirmed(): boolean;
 

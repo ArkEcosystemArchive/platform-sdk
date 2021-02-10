@@ -2,7 +2,7 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber, Censor } from "@arkecosystem/platform-sdk-support";
 import emoji from "node-emoji";
 
-import { MultiPaymentRecipient, TransactionDataMeta } from "../contracts/coins/data";
+import { MultiPaymentRecipient, TransactionDataMeta, UnspentTransactionData } from "../contracts/coins/data";
 import { KeyValuePair } from "../contracts/types";
 
 export abstract class AbstractTransactionData {
@@ -89,9 +89,9 @@ export abstract class AbstractTransactionData {
 
 	abstract asset(): Record<string, unknown>;
 
-	abstract inputs(): Record<string, unknown>[];
+	abstract inputs(): UnspentTransactionData[];
 
-	abstract outputs(): Record<string, unknown>[];
+	abstract outputs(): UnspentTransactionData[];
 
 	abstract isConfirmed(): boolean;
 

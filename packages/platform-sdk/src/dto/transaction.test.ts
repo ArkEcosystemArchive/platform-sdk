@@ -3,7 +3,7 @@ import "jest-extended";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { MultiPaymentRecipient } from "../contracts/coins/data";
+import { MultiPaymentRecipient, UnspentTransactionData } from "../contracts/coins/data";
 import { AbstractTransactionData } from "./transaction";
 
 test("#id", () => {
@@ -317,11 +317,11 @@ class Transaction extends AbstractTransactionData {
 		return {};
 	}
 
-	public inputs(): Record<string, unknown>[] {
+	public inputs(): UnspentTransactionData[] {
 		return [];
 	}
 
-	public outputs(): Record<string, unknown>[] {
+	public outputs(): UnspentTransactionData[] {
 		return [];
 	}
 
