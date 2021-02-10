@@ -32,14 +32,16 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transaction(id: string): Promise<Contracts.TransactionDataType> {
+		const walletId = `98c83431e94407bc0889e09953461fe5cecfdf18`; // FIXME
 		const data: object = (await this.get(
-			`v2/wallets/98c83431e94407bc0889e09953461fe5cecfdf18/transactions/${id}`,
+			`v2/wallets/${walletId}/transactions/${id}`,
 		)) as object[];
 		return new TransactionData(data);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const transactions: object[] = (await this.get(`v2/wallets/${query.address}/transactions`)) as object[];
+		const walletId = query.address; // FIXME
+		const transactions: object[] = (await this.get(`v2/wallets/${walletId}/transactions`)) as object[];
 		return Helpers.createTransactionDataCollectionWithType(
 			transactions,
 			{
