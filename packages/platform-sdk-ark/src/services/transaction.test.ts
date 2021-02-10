@@ -82,6 +82,23 @@ describe("Core", () => {
 				"ff021e0100000000000100000000000000039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f228096980000000000000100000000000000000000001ec10f500ee29157df2248e26cbe7fae0da06042b4",
 			);
 		});
+
+		it("should sign with a custom expiration", async () => {
+			const result = await subject.transfer({
+				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				sign: {
+					mnemonic: "this is a top secret passphrase",
+				},
+				data: {
+					amount: "1",
+					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+					expiration: 102
+				},
+			});
+
+			expect(result.id()).toBe("b2822f8bbaaff112f4fbdc949cd204e457d6a10be52444704820178ef71bddf0");
+		});
 	});
 
 	describe("#secondSignature", () => {
