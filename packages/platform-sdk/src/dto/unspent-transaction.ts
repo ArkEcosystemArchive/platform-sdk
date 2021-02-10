@@ -15,7 +15,7 @@ export class UnspentTransactionData implements Contract {
 		return this.#data.id;
 	}
 
-	public timestamp(): DateTime | undefined {
+	public timestamp(): DateTime {
 		return this.#data.timestamp;
 	}
 

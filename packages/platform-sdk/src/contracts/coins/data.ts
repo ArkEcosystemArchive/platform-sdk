@@ -80,7 +80,7 @@ export type TransactionDataMeta = string | number | boolean | undefined;
 export interface UnspentTransactionData {
 	id(): string;
 
-	timestamp(): DateTime | undefined;
+	timestamp(): DateTime;
 
 	amount(): BigNumber;
 
