@@ -50,6 +50,12 @@ describe("ClientService", function () {
 			expect(result.items()[0].timestamp()).toEqual(DateTime.make("2021-02-05T15:04:16.000Z"));
 			expect(result.items()[0].isSent()).toBe(true);
 			expect(result.items()[0].isReceived()).toBe(false);
+			expect(result.items()[0].sender()).toBe('addr_test1qrhvwtn8sa3duzkm93v5kjjxlv5lvg67j530wyeumngu23lk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s4s8xvh');
+			expect(result.items()[0].recipient()).toBe('addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th');
+			expect(result.items()[0].recipients()).toEqual([
+				'addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th',
+				'addr_test1qzfjfm724nv9qz6nfyagmj0j2uppr35gzv5qee8s7489wxlk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33scc4thv',
+			]);
 			expect(result.items()[1].isSent()).toBe(false);
 			expect(result.items()[1].isReceived()).toBe(true);
 		});

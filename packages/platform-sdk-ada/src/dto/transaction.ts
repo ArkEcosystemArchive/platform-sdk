@@ -20,15 +20,15 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "sender");
+		return this.data.inputs[0].address;
 	}
 
 	public recipient(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "recipient");
+		return this.data.outputs[0].address;
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
-		return [];
+		return this.data.outputs.map(out => out.address);
 	}
 
 	public amount(): BigNumber {
