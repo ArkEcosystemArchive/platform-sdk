@@ -70,6 +70,9 @@ const network: Coins.CoinNetwork = {
 		Transaction: {
 			transfer: true,
 		},
+        Miscellaneous: {
+            utxo: true,
+        },
 	},
 };
 
