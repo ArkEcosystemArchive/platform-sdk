@@ -52,25 +52,35 @@ describe("ClientService", function () {
 			expect(tx1.timestamp()).toEqual(DateTime.make("2021-02-05T15:04:16.000Z"));
 			expect(tx1.isSent()).toBe(true);
 			expect(tx1.isReceived()).toBe(false);
-			expect(tx1.sender()).toBe('addr_test1qrhvwtn8sa3duzkm93v5kjjxlv5lvg67j530wyeumngu23lk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s4s8xvh');
-			expect(tx1.recipient()).toBe('addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th');
+			expect(tx1.sender()).toBe(
+				"addr_test1qrhvwtn8sa3duzkm93v5kjjxlv5lvg67j530wyeumngu23lk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s4s8xvh",
+			);
+			expect(tx1.recipient()).toBe(
+				"addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th",
+			);
 			expect(tx1.recipients()).toEqual([
-				'addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th',
-				'addr_test1qzfjfm724nv9qz6nfyagmj0j2uppr35gzv5qee8s7489wxlk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33scc4thv',
+				"addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th",
+				"addr_test1qzfjfm724nv9qz6nfyagmj0j2uppr35gzv5qee8s7489wxlk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33scc4thv",
 			]);
 			expect(tx1.inputs()).toBeArrayOfSize(1);
 			expect(tx1.inputs()[0]).toBeInstanceOf(DTO.UnspentTransactionData);
-			expect(tx1.inputs()[0].id()).toBe('6bf76f4380da8a389ae0a7ecccf1922b74ae11d773ba8b1b761d84a1b4474a4f');
+			expect(tx1.inputs()[0].id()).toBe("6bf76f4380da8a389ae0a7ecccf1922b74ae11d773ba8b1b761d84a1b4474a4f");
 			expect(tx1.inputs()[0].amount()).toEqual(BigNumber.make(30000000));
-			expect(tx1.inputs()[0].addresses()).toEqual(['addr_test1qrhvwtn8sa3duzkm93v5kjjxlv5lvg67j530wyeumngu23lk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s4s8xvh']);
+			expect(tx1.inputs()[0].addresses()).toEqual([
+				"addr_test1qrhvwtn8sa3duzkm93v5kjjxlv5lvg67j530wyeumngu23lk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s4s8xvh",
+			]);
 
 			expect(tx1.outputs()).toBeArrayOfSize(2);
 			expect(tx1.outputs()[0]).toBeInstanceOf(DTO.UnspentTransactionData);
 			expect(tx1.outputs()[0].amount().toString()).toBe("25000000");
-			expect(tx1.outputs()[0].addresses()).toEqual(['addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th']);
+			expect(tx1.outputs()[0].addresses()).toEqual([
+				"addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th",
+			]);
 			expect(tx1.outputs()[1]).toBeInstanceOf(DTO.UnspentTransactionData);
 			expect(tx1.outputs()[1].amount().toString()).toBe("4831199");
-			expect(tx1.outputs()[1].addresses()).toEqual(['addr_test1qzfjfm724nv9qz6nfyagmj0j2uppr35gzv5qee8s7489wxlk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33scc4thv']);
+			expect(tx1.outputs()[1].addresses()).toEqual([
+				"addr_test1qzfjfm724nv9qz6nfyagmj0j2uppr35gzv5qee8s7489wxlk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33scc4thv",
+			]);
 
 			const tx2 = result.items()[1];
 			expect(tx2.isSent()).toBe(false);

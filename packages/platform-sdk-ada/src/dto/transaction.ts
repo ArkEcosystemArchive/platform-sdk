@@ -1,4 +1,4 @@
-import { Contracts, DTO} from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
@@ -28,25 +28,27 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
-		return this.data.outputs.map(out => out.address);
+		return this.data.outputs.map((out) => out.address);
 	}
 
 	public inputs(): Contracts.UnspentTransactionData[] {
-		return this.data.inputs.map((input: Contracts.KeyValuePair) =>
-			new DTO.UnspentTransactionData({
-				id: input.id,
-				amount: BigNumber.make(input.amount.quantity),
-				addresses: [input.address],
-			})
+		return this.data.inputs.map(
+			(input: Contracts.KeyValuePair) =>
+				new DTO.UnspentTransactionData({
+					id: input.id,
+					amount: BigNumber.make(input.amount.quantity),
+					addresses: [input.address],
+				}),
 		);
 	}
 
 	public outputs(): Contracts.UnspentTransactionData[] {
-		return this.data.outputs.map((output: Contracts.KeyValuePair) =>
-			new DTO.UnspentTransactionData({
-				amount: BigNumber.make(output.amount.quantity),
-				addresses: [output.address],
-			})
+		return this.data.outputs.map(
+			(output: Contracts.KeyValuePair) =>
+				new DTO.UnspentTransactionData({
+					amount: BigNumber.make(output.amount.quantity),
+					addresses: [output.address],
+				}),
 		);
 	}
 
