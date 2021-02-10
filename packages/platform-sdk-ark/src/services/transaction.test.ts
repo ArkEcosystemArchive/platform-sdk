@@ -93,7 +93,7 @@ describe("Core", () => {
 				data: {
 					amount: "1",
 					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
-					expiration: 102
+					expiration: 102,
 				},
 			});
 
