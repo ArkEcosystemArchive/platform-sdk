@@ -2,9 +2,8 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber, Censor } from "@arkecosystem/platform-sdk-support";
 import emoji from "node-emoji";
 
-import { MultiPaymentRecipient, TransactionDataMeta } from "../contracts/coins/data";
+import { MultiPaymentRecipient, TransactionDataMeta, UnspentTransactionData } from "../contracts/coins/data";
 import { KeyValuePair } from "../contracts/types";
-import { UnspentTransactionData } from "./unspent-transaction";
 
 export abstract class AbstractTransactionData {
 	/**
