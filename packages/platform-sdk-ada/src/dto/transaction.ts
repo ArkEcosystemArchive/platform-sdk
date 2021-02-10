@@ -16,7 +16,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public confirmations(): BigNumber {
-		return BigNumber.make(NaN);
+		return BigNumber.ZERO;
 	}
 
 	public sender(): string {
