@@ -89,6 +89,10 @@ export abstract class AbstractTransactionData {
 
 	abstract asset(): Record<string, unknown>;
 
+	abstract inputs(): Record<string, unknown>[];
+
+	abstract outputs(): Record<string, unknown>[];
+
 	abstract isConfirmed(): boolean;
 
 	abstract isSent(): boolean;
