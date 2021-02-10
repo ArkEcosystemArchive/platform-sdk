@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.8.16 - 2020-02-10
+
+### Added
+
+-   Implement `Config#getLoose` (65bd6876, @faustbrian)
+
+### Changed
+
+-   Add `dynamicFees` property to network configs (f25db102, @dated)
+-   Support default value for `Config#get` (3cbb2d3a, @faustbrian)
+-   Add UTXO feature flags (05af7399, @faustbrian)
+
 ## 2.8.12 - 2020-02-09
 
 ### Added
