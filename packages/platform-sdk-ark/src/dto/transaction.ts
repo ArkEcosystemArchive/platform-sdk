@@ -59,11 +59,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.asset;
 	}
 
-	public inputs(): Record<string, unknown>[] {
+	public inputs(): Contracts.UnspentTransactionData[] {
 		return [];
 	}
 
-	public outputs(): Record<string, unknown>[] {
+	public outputs(): Contracts.UnspentTransactionData[] {
 		return [];
 	}
 

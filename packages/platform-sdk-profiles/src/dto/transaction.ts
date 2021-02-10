@@ -79,11 +79,11 @@ export class TransactionData {
 		return this.#data.isConfirmed();
 	}
 
-	public inputs(): Record<string, unknown>[] {
+	public inputs(): Contracts.UnspentTransactionData[] {
 		return this.#data.inputs();
 	}
 
-	public outputs(): Record<string, unknown>[] {
+	public outputs(): Contracts.UnspentTransactionData[] {
 		return this.#data.outputs();
 	}
 

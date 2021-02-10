@@ -43,7 +43,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return {};
 	}
 
-	public inputs(): Record<string, unknown>[] {
+	public inputs(): Contracts.UnspentTransactionData[] {
 		return this.data.inputs.map(
 			(input: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
@@ -55,7 +55,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		);
 	}
 
-	public outputs(): Record<string, unknown>[] {
+	public outputs(): Contracts.UnspentTransactionData[] {
 		return this.data.outputs.map(
 			(output: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({

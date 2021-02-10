@@ -89,9 +89,9 @@ export abstract class AbstractTransactionData {
 
 	abstract asset(): Record<string, unknown>;
 
-	abstract inputs(): Record<string, unknown>[];
+	abstract inputs(): Contracts.UnspentTransactionData[];
 
-	abstract outputs(): Record<string, unknown>[];
+	abstract outputs(): Contracts.UnspentTransactionData[];
 
 	abstract isConfirmed(): boolean;
 
