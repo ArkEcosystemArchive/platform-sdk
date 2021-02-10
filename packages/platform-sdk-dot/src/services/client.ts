@@ -70,7 +70,7 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				await this.#client.rpc.author.submitExtrinsic(transaction.toBroadcast() as any);
+				await this.#client.rpc.author.submitExtrinsic(transaction.toBroadcast());
 
 				result.accepted.push(transaction.id());
 			} catch (error) {

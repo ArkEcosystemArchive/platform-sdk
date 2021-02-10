@@ -1,4 +1,4 @@
-// export * from "./client";
+export * from "./client";
 // export * from "./fee";
 export * from "./identity";
 export * from "./known-wallets";

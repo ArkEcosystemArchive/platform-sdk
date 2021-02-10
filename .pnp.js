@@ -487,6 +487,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
+            ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.4"],
