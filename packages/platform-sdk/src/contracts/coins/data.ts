@@ -110,9 +110,9 @@ export interface TransactionData {
 
 	asset(): Record<string, unknown>;
 
-	inputs(): Contracts.UnspentTransactionData[];
+	inputs(): UnspentTransactionData[];
 
-	outputs(): Contracts.UnspentTransactionData[];
+	outputs(): UnspentTransactionData[];
 
 	isConfirmed(): boolean;
 

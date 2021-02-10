@@ -4,6 +4,7 @@ import emoji from "node-emoji";
 
 import { MultiPaymentRecipient, TransactionDataMeta } from "../contracts/coins/data";
 import { KeyValuePair } from "../contracts/types";
+import { UnspentTransactionData } from "./unspent-transaction";
 
 export abstract class AbstractTransactionData {
 	/**
@@ -89,9 +90,9 @@ export abstract class AbstractTransactionData {
 
 	abstract asset(): Record<string, unknown>;
 
-	abstract inputs(): Contracts.UnspentTransactionData[];
+	abstract inputs(): UnspentTransactionData[];
 
-	abstract outputs(): Contracts.UnspentTransactionData[];
+	abstract outputs(): UnspentTransactionData[];
 
 	abstract isConfirmed(): boolean;
 
