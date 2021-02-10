@@ -83,6 +83,7 @@ test("#all", () => {
 		        "verify": true,
 		      },
 		      "Miscellaneous": Object {
+		        "dynamicFees": true,
 		        "memo": true,
 		      },
 		      "Peer": Object {
@@ -196,6 +197,7 @@ test("#all", () => {
 		        "verify": true,
 		      },
 		      "Miscellaneous": Object {
+		        "dynamicFees": true,
 		        "memo": true,
 		      },
 		      "Peer": Object {
@@ -309,6 +311,7 @@ test("#all", () => {
 		        "verify": true,
 		      },
 		      "Miscellaneous": Object {
+		        "dynamicFees": true,
 		        "memo": true,
 		      },
 		      "Peer": Object {

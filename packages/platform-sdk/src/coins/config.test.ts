@@ -50,6 +50,10 @@ test("#get | #set", () => {
 	expect(() => subject.get("key")).toThrow("The [key] is an unknown configuration value.");
 });
 
+test("#getLoose", () => {
+	expect(() => subject.getLoose("hello.world")).not.toThrow("The [key] is an unknown configuration value.");
+});
+
 test("#has", () => {
 	expect(subject.has("key")).toBeFalse();
 
