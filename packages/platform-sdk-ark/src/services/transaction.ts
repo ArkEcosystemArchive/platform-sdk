@@ -50,6 +50,10 @@ export class TransactionService implements Contracts.TransactionService {
 			if (data.memo) {
 				transaction.vendorField(data.memo);
 			}
+
+			if (data.expiration) {
+				transaction.expiration(data.expiration);
+			}
 		});
 	}
 

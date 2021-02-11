@@ -58,6 +58,7 @@ export interface TransferInput extends TransactionInput {
 		amount: string;
 		to: string;
 		memo?: string;
+		expiration?: number;
 	};
 }
 
