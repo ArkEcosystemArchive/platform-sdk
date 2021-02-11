@@ -192,15 +192,22 @@ export class ClientService implements Contracts.ClientService {
 			searchParams: {},
 		};
 
-		for (const [alias, original] of Object.entries({
-			address: "address",
+		const mappings: Record<string, string> = {
 			cursor: "page",
 			limit: "limit",
 			orderBy: "orderBy",
-			recipientId: "recipientId",
-			senderId: "senderId",
-			senderPublicKey: "senderPublicKey",
-		})) {
+		};
+
+		if (this.isUpcoming()) {
+			Object.assign(mappings, {
+				address: "address",
+				recipientId: "recipientId",
+				senderId: "senderId",
+				senderPublicKey: "senderPublicKey",
+			});
+		}
+
+		for (const [alias, original] of Object.entries(mappings)) {
 			if (body[alias]) {
 				result.searchParams[original] = body[alias];
 
