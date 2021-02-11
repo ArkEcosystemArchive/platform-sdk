@@ -50,6 +50,7 @@ export interface ClientTransactionsInput extends ClientPagination {
 	addresses?: string[];
 	senderId?: string;
 	recipientId?: string;
+	walletId?: string;
 	// Public Keys
 	senderPublicKey?: string;
 	recipientPublicKey?: string;
