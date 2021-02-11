@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-dot-indexer",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "2.8.16",
+	"version": "2.8.24",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
