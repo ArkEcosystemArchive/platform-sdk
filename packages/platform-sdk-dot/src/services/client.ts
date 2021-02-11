@@ -19,7 +19,7 @@ export class ClientService implements Contracts.ClientService {
 		await this.#client.disconnect();
 	}
 
-	public async transaction(id: string, opts?: Contracts.TransactionDetailOptions): Promise<Contracts.TransactionDataType> {
+	public async transaction(id: string, input?: Contracts.TransactionDetailInput): Promise<Contracts.TransactionDataType> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
 	}
 

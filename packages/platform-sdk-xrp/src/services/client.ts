@@ -152,7 +152,7 @@ export class ClientService implements Contracts.ClientService {
 		await this.#connection.disconnect();
 	}
 
-	public async transaction(id: string, opts?: Contracts.TransactionDetailOptions): Promise<Contracts.TransactionDataType> {
+	public async transaction(id: string, input?: Contracts.TransactionDetailInput): Promise<Contracts.TransactionDataType> {
 		const transaction = await this.#connection.getTransaction(id);
 
 		return Helpers.createTransactionDataWithType(transaction, TransactionDTO);

@@ -78,6 +78,6 @@ export interface VoteReport {
 	publicKeys: string[];
 }
 
-export interface TransactionDetailOptions {
+export interface TransactionDetailInput {
 	walletId?: string;
 }
