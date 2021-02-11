@@ -104,6 +104,7 @@ const network: Coins.CoinNetwork = {
 			htlcRefund: true,
 		},
 		Miscellaneous: {
+			customPeer: true,
 			dynamicFees: true,
 			memo: true,
 		},

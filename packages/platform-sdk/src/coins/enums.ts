@@ -50,4 +50,5 @@ export enum FeatureFlag {
 	MiscellaneousMemo = "Miscellaneous.memo",
 	MiscellaneousUTXO = "Miscellaneous.utxo",
 	MiscellaneousDynamicFees = "Miscellaneous.dynamicFees",
+	MiscellaneousCustomPeer = "Miscellaneous.customPeer",
 }
