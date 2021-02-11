@@ -35,9 +35,9 @@ export class ClientService implements Contracts.ClientService {
 		id: string,
 		input?: Contracts.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-        if (input?.walletId === undefined) {
-            throw new Exceptions.InvalidArguments(this.constructor.name, "transaction");
-        }
+		if (input?.walletId === undefined) {
+			throw new Exceptions.InvalidArguments(this.constructor.name, "transaction");
+		}
 
 		return new TransactionData((await this.get(`v2/wallets/${input.walletId}/transactions/${id}`)) as object);
 	}
