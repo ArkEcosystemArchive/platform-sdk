@@ -15,7 +15,7 @@ export class FeeService {
 
 		if (result === undefined) {
 			throw new Error(
-				`The delegates for [${coin}.${network}.fees] have not been synchronized yet. Please call [syncFees] before using this method.`,
+				`The fees for [${coin}.${network}] have not been synchronized yet. Please call [syncFees] before using this method.`,
 			);
 		}
 
