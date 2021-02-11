@@ -4,7 +4,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		return this.data.id;
+		return this.data.hash;
 	}
 
 	public blockId(): string | undefined {
@@ -12,7 +12,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public timestamp(): DateTime {
-		return DateTime.make(this.data.inserted_at.time);
+		return DateTime.make(this.data.includedAt);
 	}
 
 	public confirmations(): BigNumber {
@@ -24,21 +24,26 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public recipient(): string {
-		return this.data.outputs[0].address;
+		return this.recipients()[0].address;
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
-		return this.data.outputs.map((out) => out.address);
+		return this.data.outputs
+			.sort((a, b) => a.index - b.index)
+			.map((out) => ({
+				address: out.address,
+				amount: BigNumber.make(out.value)
+			}));
 	}
 
 	public inputs(): Contracts.UnspentTransactionData[] {
 		return this.data.inputs.map(
 			(input: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
-					id: input.id,
-					amount: BigNumber.make(input.amount.quantity),
-					addresses: [input.address],
-				}),
+					id: input.sourceTransaction.hash,
+					amount: BigNumber.make(input.value),
+					addresses: [input.address]
+				})
 		);
 	}
 
@@ -46,18 +51,37 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.outputs.map(
 			(output: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
-					amount: BigNumber.make(output.amount.quantity),
-					addresses: [output.address],
-				}),
+					amount: BigNumber.make(output.value),
+					addresses: [output.address]
+				})
 		);
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.data.amount.quantity);
+		/*
+		 * TODO
+		 *  OMG. Not very proud of this. I couldn't find any other way to determine
+		 *  the actually spent amount. So I'm guessing the last one of the outputs
+		 *  will be the change (of course this is not necessarily true).
+		 *  I'm out of ideas for the day
+		 */
+		const totalInput = this.data.inputs.map(
+			(input: Contracts.KeyValuePair) => BigNumber.make(input.value)
+		).reduce((a, b) => a.plus(b), BigNumber.ZERO);
+		// console.log("totalInput", totalInput.toString());
+
+		const changeOutput = this.data.outputs <= 1 ?
+			BigNumber.ZERO :
+			BigNumber.make(this.data.outputs
+				.sort((a, b) => a.index - b.index)
+				[this.data.outputs.length - 1].value)
+		// console.log("changeOutput", changeOutput.toString());
+
+		return totalInput.minus(changeOutput).minus(this.fee());
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.fee.quantity);
+		return BigNumber.make(this.data.fee);
 	}
 
 	public asset(): Record<string, unknown> {
@@ -69,10 +93,12 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isSent(): boolean {
+		// FIXME Need to find a way to determine this
 		return this.data.direction === "outgoing";
 	}
 
 	public isReceived(): boolean {
+		// FIXME Need to find a way to determine this
 		return this.data.direction === "incoming";
 	}
 

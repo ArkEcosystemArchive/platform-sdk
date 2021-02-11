@@ -35,6 +35,7 @@ export class Request extends Http.Request {
 		try {
 			return new Http.Response(await got[method.toLowerCase()](url.replace(/^\/+/g, ""), options));
 		} catch (error) {
+			console.log(error);
 			return new Http.Response(error.response, error);
 		}
 	}

@@ -35,16 +35,41 @@ export class ClientService implements Contracts.ClientService {
 		id: string,
 		input?: Contracts.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		if (input?.walletId === undefined) {
-			throw new Exceptions.InvalidArguments(this.constructor.name, "transaction");
-		}
-
-		return new TransactionData((await this.get(`v2/wallets/${input.walletId}/transactions/${id}`)) as object);
+		const result = (await this.post("/", {
+			query: `
+				{
+					transactions(
+						where: {
+							hash: {
+								_eq: "${id}"
+							}
+						}
+					) {
+						hash
+						includedAt
+						inputs {
+							sourceTransaction {
+       					hash
+      				}
+						  value
+							address
+						}
+						outputs {
+						  index
+						  value
+							address
+						}
+						includedAt
+					}
+				}
+          `,
+		})) as any;
+		return new TransactionData(result.data.transactions[0]);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		if (query?.walletId === undefined) {
-			throw new Exceptions.InvalidArguments(this.constructor.name, "transaction");
+			throw new Exceptions.InvalidArguments(this.constructor.name, "transactions");
 		}
 
 		const transactions: object[] = (await this.get(`v2/wallets/${query.walletId}/transactions`)) as object[];
@@ -100,5 +125,9 @@ export class ClientService implements Contracts.ClientService {
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (await this.#http.get(`${this.#peer}/${path}`, query)).json();
+	}
+
+	private async post(path: string, body: object): Promise<Contracts.KeyValuePair> {
+		return (await this.#http.post(`${this.#peer}/${path}`, body)).json();
 	}
 }
