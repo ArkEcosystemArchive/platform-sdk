@@ -111,6 +111,7 @@ export interface CoinNetwork {
 			memo?: boolean;
 			utxo?: boolean;
 			dynamicFees?: boolean;
+			customPeer?: boolean;
 		};
 	};
 	knownWallets?: string;
