@@ -9,20 +9,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
--    Only use page, limit, orderBy as searchParams in v2 requests (c87ebd4f, @dated)
+-   Only use page, limit, orderBy as searchParams in v2 requests (c87ebd4f, @dated)
 
 ### Changed
 
--    Fix syncFees error message (7421b381, @dated)
--    Support additional input for `ClientService#transaction` (5cb3ded4, @faustbrian)
+-   Fix syncFees error message (7421b381, @dated)
+-   Support additional input for `ClientService#transaction` (5cb3ded4, @faustbrian)
 
 ### Added
 
--    Implement `TransactionData#inputs/outputs` (d63d3489, @faustbrian)
--    Implement `UnspentTransactionData` (2daf1884, @faustbrian)
--    **[ADA]** Implement `ClientService#transactions` (235fd064, @marianogoldman)
--    **[ARK]** Sign transfer with custom expiration (58218267, @luciorubeens)
--    **[ADA]** Implement `ClientService#transaction` (86b79179, @marianogoldman)
+-   Implement `TransactionData#inputs/outputs` (d63d3489, @faustbrian)
+-   Implement `UnspentTransactionData` (2daf1884, @faustbrian)
+-   **[ADA]** Implement `ClientService#transactions` (235fd064, @marianogoldman)
+-   **[ARK]** Sign transfer with custom expiration (58218267, @luciorubeens)
+-   **[ADA]** Implement `ClientService#transaction` (86b79179, @marianogoldman)
 
 ## 2.8.16 - 2020-02-10
 
