@@ -43,8 +43,11 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const walletId = query.address; // FIXME
-		const transactions: object[] = (await this.get(`v2/wallets/${walletId}/transactions`)) as object[];
+		if (query?.walletId === undefined) {
+			throw new Exceptions.InvalidArguments(this.constructor.name, "transaction");
+		}
+
+		const transactions: object[] = (await this.get(`v2/wallets/${query.walletId}/transactions`)) as object[];
 		return Helpers.createTransactionDataCollectionWithType(
 			transactions,
 			{
