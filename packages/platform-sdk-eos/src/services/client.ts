@@ -37,7 +37,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-transaction-information
-	public async transaction(id: string): Promise<Contracts.TransactionDataType> {
+	public async transaction(id: string, opts?: Contracts.TransactionDetailOptions): Promise<Contracts.TransactionDataType> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
 	}
 

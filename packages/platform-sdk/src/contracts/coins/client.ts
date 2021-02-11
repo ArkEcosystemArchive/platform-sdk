@@ -77,3 +77,7 @@ export interface VoteReport {
 	available: number;
 	publicKeys: string[];
 }
+
+export interface TransactionDetailOptions {
+	walletId?: string;
+}
