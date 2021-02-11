@@ -23,7 +23,10 @@ export class ClientService implements Contracts.ClientService {
 		//
 	}
 
-	public async transaction(id: string, input?: Contracts.TransactionDetailInput): Promise<Contracts.TransactionDataType> {
+	public async transaction(
+		id: string,
+		input?: Contracts.TransactionDetailInput,
+	): Promise<Contracts.TransactionDataType> {
 		const transaction = new Tx();
 		transaction.fromString(await this.#chain.getTx(id));
 
