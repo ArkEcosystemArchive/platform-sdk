@@ -31,10 +31,15 @@ export class ClientService implements Contracts.ClientService {
 		//
 	}
 
-	public async transaction(id: string): Promise<Contracts.TransactionDataType> {
-		const walletId = `98c83431e94407bc0889e09953461fe5cecfdf18`; // FIXME
-		const data: object = (await this.get(`v2/wallets/${walletId}/transactions/${id}`)) as object[];
-		return new TransactionData(data);
+	public async transaction(
+		id: string,
+		input?: Contracts.TransactionDetailInput,
+	): Promise<Contracts.TransactionDataType> {
+        if (input?.walletId === undefined) {
+            throw new Exceptions.InvalidArguments(this.constructor.name, "transaction");
+        }
+
+		return new TransactionData((await this.get(`v2/wallets/${input.walletId}/transactions/${id}`)) as object);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {

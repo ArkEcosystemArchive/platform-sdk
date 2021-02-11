@@ -61,7 +61,10 @@ export class ClientService implements Contracts.ClientService {
 		//
 	}
 
-	public async transaction(id: string): Promise<Contracts.TransactionDataType> {
+	public async transaction(
+		id: string,
+		input?: Contracts.TransactionDetailInput,
+	): Promise<Contracts.TransactionDataType> {
 		const response = await this.get(`txs/${id}`);
 
 		return Helpers.createTransactionDataWithType(response, TransactionDTO);

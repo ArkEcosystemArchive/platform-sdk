@@ -42,7 +42,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	// get_transaction/{txid}
-	public async transaction(id: string): Promise<Contracts.TransactionDataType> {
+	public async transaction(
+		id: string,
+		input?: Contracts.TransactionDetailInput,
+	): Promise<Contracts.TransactionDataType> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
 	}
 
