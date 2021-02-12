@@ -222,7 +222,9 @@ export class TransactionService implements Contracts.TransactionService {
 	public async estimateExpiration(value?: string): Promise<string> {
 		const { data } = (await this.#http.get(`${this.#peer}/blockchain`)).json();
 
-		return BigNumber.make(data.block.height).plus(value || 255).toString();
+		return BigNumber.make(data.block.height)
+			.plus(value || 255)
+			.toString();
 	}
 
 	private async createFromData(
