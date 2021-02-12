@@ -4,7 +4,7 @@ import { AVMAPI, Tx } from "avalanche/dist/apis/avm";
 
 import { TransactionData, WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
-import { cb58Decode, useChain } from "./helpers";
+import { cb58Decode, useXChain } from "./helpers";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
@@ -12,7 +12,7 @@ export class ClientService implements Contracts.ClientService {
 
 	private constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#chain = useChain(config);
+		this.#chain = useXChain(config);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {

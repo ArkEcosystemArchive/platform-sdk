@@ -1,19 +1,22 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BN, Buffer } from "avalanche";
 import { AVMAPI } from "avalanche/dist/apis/avm";
+import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
 import { v4 as uuidv4 } from "uuid";
 
 import { SignedTransactionData } from "../dto";
-import { keyPairFromMnemonic, useChain, useKeychain } from "./helpers";
+import { keyPairFromMnemonic, useAvalanche, useXChain, useKeychain, usePChain } from "./helpers";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
-	readonly #chain: AVMAPI;
+	readonly #xchain: AVMAPI;
+	readonly #pchain: PlatformVMAPI;
 	readonly #keychain;
 
 	public constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#chain = useChain(config);
+		this.#xchain = useXChain(config);
+		this.#pchain = usePChain(config);
 		this.#keychain = useKeychain(config);
 	}
 
@@ -38,10 +41,10 @@ export class TransactionService implements Contracts.TransactionService {
 				keyPairFromMnemonic(this.#config, input.sign.mnemonic).getPrivateKey(),
 			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
-			const { utxos } = await this.#chain.getUTXOs(keyPair.getAddressString());
+			const { utxos } = await this.#xchain.getUTXOs(keyPair.getAddressString());
 
 			const signedTx = (
-				await this.#chain.buildBaseTx(
+				await this.#xchain.buildBaseTx(
 					utxos,
 					new BN(input.data.amount),
 					this.#config.get("network.crypto.assetId"),
@@ -77,7 +80,38 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.VoteInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "vote");
+		if (input.sign.mnemonic === undefined) {
+			throw new Exceptions.InvalidArguments(this.constructor.name, "vote");
+		}
+
+		try {
+			const keyPair = this.#keychain.importKey(
+				keyPairFromMnemonic(this.#config, input.sign.mnemonic).getPrivateKey(),
+			);
+			const keyPairAddresses = this.#keychain.getAddressStrings();
+			const { utxos } = await this.#pchain.getUTXOs(keyPair.getAddressString());
+
+			const signedTx = (
+				await this.#pchain.buildAddDelegatorTx(
+					utxos,
+					input.data.votes, // @TODO: handle unvotes
+					keyPairAddresses,
+					keyPairAddresses,
+					"NODE-ID",
+					"START-TIME",
+					"END-TIME",
+					"STAKE-AMOUNT",
+					["REWARD-ADDRESSES"],
+					"REWARD-LOCKTIME",
+					"REWARD-THRESHOLD",
+				)
+			).sign(this.#keychain);
+
+			// @TODO: compute the ID and set raw data for UI purposes
+			return new SignedTransactionData(uuidv4(), signedTx.toString(), signedTx.toString());
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async multiSignature(

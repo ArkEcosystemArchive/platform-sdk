@@ -4,6 +4,7 @@ import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Avalanche, BinTools, Buffer, utils } from "avalanche";
 import { AVMAPI, KeyChain, KeyPair } from "avalanche/dist/apis/avm";
 import { InfoAPI } from "avalanche/dist/apis/info";
+import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
 import HDKey from "hdkey";
 import urlParseLax from "url-parse-lax";
 
@@ -23,10 +24,12 @@ export const useAvalanche = (config: Coins.Config): Avalanche => {
 
 export const useInfo = (config: Coins.Config): InfoAPI => useAvalanche(config).Info();
 
-export const useChain = (config: Coins.Config): AVMAPI => useAvalanche(config).XChain();
+export const useXChain = (config: Coins.Config): AVMAPI => useAvalanche(config).XChain();
+
+export const usePChain = (config: Coins.Config): PlatformVMAPI => useAvalanche(config).PChain();
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const useKeychain = (config: Coins.Config) => useChain(config).keyChain();
+export const useKeychain = (config: Coins.Config) => useXChain(config).keyChain();
 
 export const cb58Decode = (value: string): Buffer => BinTools.getInstance().cb58Decode(value);
 
