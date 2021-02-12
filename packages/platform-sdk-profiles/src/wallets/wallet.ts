@@ -36,6 +36,7 @@ export class Wallet implements ReadWriteWallet {
 	#address!: string;
 	#publicKey!: string | undefined;
 	#avatar!: string;
+	readonly #restorationState = { full: false, partial: false };
 
 	public constructor(id: string, profile: Profile) {
 		this.#id = id;
@@ -106,16 +107,23 @@ export class Wallet implements ReadWriteWallet {
 	 * Think about how to remove this method. We need async methods instead of a
 	 * constructor because of the network requests and different ways to import wallets.
 	 */
-	public async setAddress(address: string): Promise<Wallet> {
-		const isValidAddress: boolean = await this.coin().identity().address().validate(address);
+	public async setAddress(
+		address: string,
+		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
+	): Promise<Wallet> {
+		if (options.validate) {
+			const isValidAddress: boolean = await this.coin().identity().address().validate(address);
 
-		if (!isValidAddress) {
-			throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
+			if (!isValidAddress) {
+				throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
+			}
 		}
 
 		this.#address = address;
 
-		await this.syncIdentity();
+		if (options.syncIdentity) {
+			await this.syncIdentity();
+		}
 
 		this.setAvatar(Avatar.make(this.address()));
 
@@ -627,6 +635,22 @@ export class Wallet implements ReadWriteWallet {
 
 	public usesWIF(): boolean {
 		return this.data().has(WalletData.Bip38EncryptedKey);
+	}
+
+	public markAsFullyRestored(): void {
+		this.#restorationState.full = true;
+	}
+
+	public hasBeenFullyRestored(): boolean {
+		return this.#restorationState.full;
+	}
+
+	public markAsPartiallyRestored(): void {
+		this.#restorationState.partial = true;
+	}
+
+	public hasBeenPartiallyRestored(): boolean {
+		return this.#restorationState.partial;
 	}
 
 	private async fetchTransactions(

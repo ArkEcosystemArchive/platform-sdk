@@ -1,5 +1,6 @@
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { sortBy, sortByDesc } from "@arkecosystem/utils";
+import retry from "p-retry";
 
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
@@ -89,23 +90,38 @@ export class WalletRepository {
 	}
 
 	public async restore({ id, coin, network, networkConfig, address, data, settings }): Promise<ReadWriteWallet> {
-		const wallet = new Wallet(id, this.#profile);
+		const previousWallet: ReadWriteWallet | undefined = this.findByAddress(address);
 
-		await wallet.setCoin(coin, network);
-		await wallet.setAddress(address);
-
-		// @TODO: support coin configs besides network?
-		if (networkConfig) {
-			for (const [key, value] of Object.entries(networkConfig)) {
-				wallet.coin().config().set(`network.${key}`, value);
+		if (previousWallet !== undefined) {
+			if (previousWallet.hasBeenPartiallyRestored()) {
+				try {
+					await this.syncWalletWithNetwork({ address, coin, network, networkConfig, wallet: previousWallet });
+				} catch {
+					// If we end up here the wallet had previously been
+					// partially restored but we again failed to fully
+					// restore it which means we will just return the
+					// instance again and let the consumer try again.
+				}
 			}
+
+			return previousWallet;
 		}
+
+		const wallet = new Wallet(id, this.#profile);
 
 		wallet.data().fill(data);
 
 		wallet.settings().fill(settings);
 
-		return this.storeWallet(wallet as ReadWriteWallet);
+		try {
+			await this.syncWalletWithNetwork({ address, coin, network, networkConfig, wallet });
+		} catch {
+			await wallet.setAddress(address, { syncIdentity: false, validate: false });
+
+			wallet.markAsPartiallyRestored();
+		}
+
+		return this.storeWallet(wallet, { force: wallet.hasBeenPartiallyRestored() });
 	}
 
 	public findById(id: string): ReadWriteWallet {
@@ -216,13 +232,53 @@ export class WalletRepository {
 		return sortByDesc(this.values(), sortFunction);
 	}
 
-	private storeWallet(wallet: ReadWriteWallet): ReadWriteWallet {
-		if (this.findByAddress(wallet.address())) {
-			throw new Error(`The wallet [${wallet.address()}] already exists.`);
+	private storeWallet(wallet: ReadWriteWallet, options: { force: boolean } = { force: false }): ReadWriteWallet {
+		if (!options.force) {
+			if (this.findByAddress(wallet.address())) {
+				throw new Error(`The wallet [${wallet.address()}] already exists.`);
+			}
 		}
 
 		this.#data.set(wallet.id(), wallet);
 
 		return wallet;
+	}
+
+	private async syncWalletWithNetwork({
+		address,
+		coin,
+		network,
+		networkConfig,
+		wallet,
+	}: {
+		wallet: ReadWriteWallet;
+		coin: string;
+		network: string;
+		address: string;
+		networkConfig: any;
+	}): Promise<void> {
+		await retry(
+			async () => {
+				await wallet.setCoin(coin, network);
+
+				await wallet.setAddress(address);
+
+				// @TODO: support coin configs besides network?
+				if (networkConfig) {
+					for (const [key, value] of Object.entries(networkConfig)) {
+						wallet.coin().config().set(`network.${key}`, value);
+					}
+				}
+
+				wallet.markAsFullyRestored();
+			},
+			{
+				onFailedAttempt: (error) =>
+					console.log(
+						`Attempt #${error.attemptNumber} to restore [${address}] failed. There are ${error.retriesLeft} retries left.`,
+					),
+				retries: 3,
+			},
+		);
 	}
 }
