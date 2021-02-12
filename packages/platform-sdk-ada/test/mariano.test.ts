@@ -6,7 +6,7 @@ import {
 	HARDENED_THRESHOLD,
 	SHELLEY_COIN_PURPOSE,
 	SHELLEY_COIN_TYPE,
-	SHELLEY_DERIVATION_SCHEME
+	SHELLEY_DERIVATION_SCHEME,
 } from "../src/crypto/shelley/constants";
 import lib from "cardano-crypto.js";
 import { Buffer } from "buffer";
@@ -21,8 +21,10 @@ const data = [
 			"989c07d00e8d3d187c1855f25468e013fb1bcad93430fc5a298a259802118f451e846b73a627c54ab13d49f5995b8563b32ad860c019a28b0b953209cd11bc18",
 		rootPublicKey:
 			"909dfcc8c2c338fc5aeac5aacbbc2c6c5743b38236dbcb3939059fe26f18129e43548a19d62a34d1714b1ac21903524efffaba00c4f4fcb203649661b61e2ca6",
-		purposeKey: "b84aa8ba6ac296e76641049863df87ddac6fa1d5f7e8056846892d9f03118f45b994db7de3bf5ad1bb0ebacaee0528037ea72d4d6261c49b89d19c72f83f841471da9dfc41bd00e395ac9afcde05fe55f810eadafa20c519612de09d0428042518ad1211fa89b233759a76c14a3d3aed01751a69b52dfd2381e6632ccab4cf3a",
-		coinTypeKey: "a8143599e15fbd2125dfddb35f575fad241a457aa4c06071e922dda303118f450ddb88850e8c54cf94f15d5239a66736989cc646fe3e25d57520c276fc6af35b14e35820dc5714fe7990f6963b3815b840fcbce2878910079126a0b19f151c7b98e3aafc8c8ecefa379d88b6fd7463f3883b3c400fe171c36cc9fb464afc6f18",
+		purposeKey:
+			"b84aa8ba6ac296e76641049863df87ddac6fa1d5f7e8056846892d9f03118f45b994db7de3bf5ad1bb0ebacaee0528037ea72d4d6261c49b89d19c72f83f841471da9dfc41bd00e395ac9afcde05fe55f810eadafa20c519612de09d0428042518ad1211fa89b233759a76c14a3d3aed01751a69b52dfd2381e6632ccab4cf3a",
+		coinTypeKey:
+			"a8143599e15fbd2125dfddb35f575fad241a457aa4c06071e922dda303118f450ddb88850e8c54cf94f15d5239a66736989cc646fe3e25d57520c276fc6af35b14e35820dc5714fe7990f6963b3815b840fcbce2878910079126a0b19f151c7b98e3aafc8c8ecefa379d88b6fd7463f3883b3c400fe171c36cc9fb464afc6f18",
 		accountKeyPair:
 			"40f6e71f05225766ea7fdf2fe71026ae9bcb9fa2f40c441ce91d6d1007118f4563a3149afff5f06616734449426d1a4a9d2fcdc3af838db399dc1a42988f27ecaec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
 		accountPublicKey:
@@ -51,7 +53,7 @@ const data = [
 					"addr_test1qzxzfv4c7n30np5yv34sywv6vz095r3sd98a4f7nkfqqrk0k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s30txsp",
 					"addr_test1qrta0j6hx8ajchhzje9qg033940llyku5h83k5ttckar3jhk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sym3tvw",
 					"addr_test1qqchxm32j5pr7a758kzv462tuvdx8nxlwas7wzt83u7gt9hk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33suvg52n",
-					"addr_test1qqxgjqsmcgc8h47pk63u33976pdsgdcej0eeyztkn6ygve8k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s9dqqr4"
+					"addr_test1qqxgjqsmcgc8h47pk63u33976pdsgdcej0eeyztkn6ygve8k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s9dqqr4",
 				],
 				change: [
 					"addr_test1qzfjfm724nv9qz6nfyagmj0j2uppr35gzv5qee8s7489wxlk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33scc4thv",
@@ -73,8 +75,8 @@ const data = [
 					"addr_test1qqguca5n5u9vc8lqk8utketux84q7hlrecnj9s9c04246y0k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sgwdwxs",
 					"addr_test1qrn2qj4wu67csfmfzfkk2kawql42qsgz4kzsfr8hqdtvtg8k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s2k7z3s",
 					"addr_test1qq7ua3j55nzsz5wvhhga77nkcxx2x93rztlcehzdq9ssqshk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sq7qer4",
-					"addr_test1qr5yfvk0wf3ccfwld3psnaxht9lyne6wdv3r92cxd8tx8rhk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33syxyqc9"
-				]
+					"addr_test1qr5yfvk0wf3ccfwld3psnaxht9lyne6wdv3r92cxd8tx8rhk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33syxyqc9",
+				],
 			},
 			mainnet: {
 				spend: [
@@ -97,7 +99,7 @@ const data = [
 					"addr1qxxzfv4c7n30np5yv34sywv6vz095r3sd98a4f7nkfqqrk0k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sjekxu7",
 					"addr1q8ta0j6hx8ajchhzje9qg033940llyku5h83k5ttckar3jhk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s8dvtq3",
 					"addr1qychxm32j5pr7a758kzv462tuvdx8nxlwas7wzt83u7gt9hk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sl645xv",
-					"addr1qyxgjqsmcgc8h47pk63u33976pdsgdcej0eeyztkn6ygve8k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sxmaq02"
+					"addr1qyxgjqsmcgc8h47pk63u33976pdsgdcej0eeyztkn6ygve8k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sxmaq02",
 				],
 				change: [
 					"addr1qxfjfm724nv9qz6nfyagmj0j2uppr35gzv5qee8s7489wxlk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33smwgtmn",
@@ -119,7 +121,7 @@ const data = [
 					"addr1qyguca5n5u9vc8lqk8utketux84q7hlrecnj9s9c04246y0k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33stcsw20",
 					"addr1q8n2qj4wu67csfmfzfkk2kawql42qsgz4kzsfr8hqdtvtg8k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sfqrza0",
 					"addr1qy7ua3j55nzsz5wvhhga77nkcxx2x93rztlcehzdq9ssqshk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33srgae02",
-					"addr1q85yfvk0wf3ccfwld3psnaxht9lyne6wdv3r92cxd8tx8rhk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s8seq56"
+					"addr1q85yfvk0wf3ccfwld3psnaxht9lyne6wdv3r92cxd8tx8rhk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s8seq56",
 				],
 			},
 		},
@@ -135,8 +137,10 @@ const data = [
 			"c85efc2a10e5c4543c445bfd38a2b1566f2f38d2cbeab02fe290fb92722df85bf137b29b1f7b7d736b24cce3971a2f2a3931cbac730949804463d628f60029a1",
 		rootPublicKey:
 			"52f79be32364ecd0846652a749a876e4eb550889273404991a92007ac88773f2a21d47deda83a49cb435a2adfd0fb6945efc5b07f384db06d27c69cc4f586805",
-		purposeKey: "008a3f7e77fb2d0c4ffcba88f6c8ec70f68bf6156816fc903829567c742df85b3667d09d3b7fad77786174d63814ab7a1fd253525ba63762dd2df81974a8b70e6d8221173be66dd84e3de9dcd8c6e86c52849329dbde184b2fd7f5ba1278d6d0bc6659a37d58940f61b7c4aa0ad62b41a2f6009d0e5464f4b0776023e5e499c3",
-		coinTypeKey: "b8e3df9ee1417a90fb88fe6f5e6850326b12d0d33c51eb8b0e750ad27b2df85b457fd4afd66a14c32a1177327f384d4a5051849753fc910316791c7cb2289490aac110eaac57635af252793e0fc75a2d869e3f716c6b13c8d266f2d67772e9b05e0a7cf90597976453166f5351925c7e6da18cc6eb0a397a84902b7ca3337936",
+		purposeKey:
+			"008a3f7e77fb2d0c4ffcba88f6c8ec70f68bf6156816fc903829567c742df85b3667d09d3b7fad77786174d63814ab7a1fd253525ba63762dd2df81974a8b70e6d8221173be66dd84e3de9dcd8c6e86c52849329dbde184b2fd7f5ba1278d6d0bc6659a37d58940f61b7c4aa0ad62b41a2f6009d0e5464f4b0776023e5e499c3",
+		coinTypeKey:
+			"b8e3df9ee1417a90fb88fe6f5e6850326b12d0d33c51eb8b0e750ad27b2df85b457fd4afd66a14c32a1177327f384d4a5051849753fc910316791c7cb2289490aac110eaac57635af252793e0fc75a2d869e3f716c6b13c8d266f2d67772e9b05e0a7cf90597976453166f5351925c7e6da18cc6eb0a397a84902b7ca3337936",
 		accountKeyPair:
 			"3899f3c5227cecf4baaee2865af7591b094e46bf92670217f1fdd2c2822df85be98a95f6454283b893b10b2ddeb4aa24068a1716450850daad5677b568ff6d5398abc2190ee1c207d6e210d3db1a09d33e62978e31140d7f1b0ba945f67707e489a20787ade9e802837741df511c773163372530e2cdaf1f8b0d37f360c4c31c",
 		accountPublicKey:
@@ -165,7 +169,7 @@ const data = [
 					"addr_test1qphkyjeht7shje9rcclsalgrxzpanq60r2xq6h76p6fglyau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsnvazwa",
 					"addr_test1qpkmpxy5ru8ntl5c4kuszjvuze8vhxw9qccqq65n7tk5nlau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs6rkdah",
 					"addr_test1qpux4pydcgh8t7eg4dfezyp5tqv83vt9cs7qm9apgj5094au9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsutqthv",
-					"addr_test1qr7kmk8k5qnrrak4ma372ydjur8lrxwd5puhyacm0fv8pedu9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsxnkukt"
+					"addr_test1qr7kmk8k5qnrrak4ma372ydjur8lrxwd5puhyacm0fv8pedu9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsxnkukt",
 				],
 				change: [
 					"addr_test1qrnfqqs0hp8wttld5camurccgwgwh4pk4w4lk3aped8spz9u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsg05ap6",
@@ -187,8 +191,8 @@ const data = [
 					"addr_test1qpg0yrkg8g4z43axj3wn2gqad4082yztjxssaqp0upcawl9u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs0p4u3l",
 					"addr_test1qq5ngmtn6y3tyhj66qzf5pzadpykpnzfseqrd3dyh7nlnwau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsfn4xtx",
 					"addr_test1qqxjemkct5lg6r77h2nwelg5ckq0jn0wdusx6j750sld7j4u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqstxk63x",
-					"addr_test1qzuq9algg3rerg6tmmqg55zljahsac25898tqjesp8vmm0du9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsaywqx4"
-				]
+					"addr_test1qzuq9algg3rerg6tmmqg55zljahsac25898tqjesp8vmm0du9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsaywqx4",
+				],
 			},
 			mainnet: {
 				spend: [
@@ -211,7 +215,7 @@ const data = [
 					"addr1q9hkyjeht7shje9rcclsalgrxzpanq60r2xq6h76p6fglyau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqss6qzzz",
 					"addr1q9kmpxy5ru8ntl5c4kuszjvuze8vhxw9qccqq65n7tk5nlau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqse4td3g",
 					"addr1q9ux4pydcgh8t7eg4dfezyp5tqv83vt9cs7qm9apgj5094au9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqslaatmn",
-					"addr1q87kmk8k5qnrrak4ma372ydjur8lrxwd5puhyacm0fv8pedu9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs99tu65"
+					"addr1q87kmk8k5qnrrak4ma372ydjur8lrxwd5puhyacm0fv8pedu9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs99tu65",
 				],
 				change: [
 					"addr1q8nfqqs0hp8wttld5camurccgwgwh4pk4w4lk3aped8spz9u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqstefad9",
@@ -233,9 +237,9 @@ const data = [
 					"addr1q9g0yrkg8g4z43axj3wn2gqad4082yztjxssaqp0upcawl9u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsvhguaq",
 					"addr1qy5ngmtn6y3tyhj66qzf5pzadpykpnzfseqrd3dyh7nlnwau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs29gx8e",
 					"addr1qyxjemkct5lg6r77h2nwelg5ckq0jn0wdusx6j750sld7j4u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsgst6ae",
-					"addr1qxuq9algg3rerg6tmmqg55zljahsac25898tqjesp8vmm0du9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs7jnq22"
-				]
-			}
+					"addr1qxuq9algg3rerg6tmmqg55zljahsac25898tqjesp8vmm0du9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs7jnq22",
+				],
+			},
 		},
 		spendAddresses: [
 			"addr_test1qq254lk4kl4zpfmr7wsz6qapn7qywks2f6spdhlsx2f7azdu9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsq7n2ck",
@@ -243,10 +247,10 @@ const data = [
 			"addr_test1qrwrstd7wkn9lmfcru9ckn23f32maja6y4cd4vqrn0qwsyau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs64rzts",
 			"addr_test1qz39tdwlmz3zu9pe7xzpnac98u95e6un24qyardmrm6qnk4u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsgtex72",
 			"addr_test1qzt6zp2uf2p3zwdvvdtv4vsh8wrvc7sj92ymj27nnemct84u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs54c0av",
-			"addr_test1qqlx0yh88k4q0yxzrfmr2fn373hw98v4x2jv82f7tz82ysau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsnudj6x"
+			"addr_test1qqlx0yh88k4q0yxzrfmr2fn373hw98v4x2jv82f7tz82ysau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsnudj6x",
 		],
-		walletId: "82d63879d8914699da73edbb65b091da16e21964"
-	}
+		walletId: "82d63879d8914699da73edbb65b091da16e21964",
+	},
 ];
 
 const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: string): string => {
@@ -254,13 +258,13 @@ const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: st
 	const addrBuffer = lib.packBaseAddress(
 		lib.getPubKeyBlake2b224Hash(spendXpub.slice(0, 32)),
 		lib.getPubKeyBlake2b224Hash(stakeXpub.slice(0, 32)),
-		network
+		network,
 	);
 	return lib.bech32.encode(network === 1 ? "addr" : "addr_test", addrBuffer);
 };
 
 describe.each(data)("Addresses from", (wallet) => {
-	it(`Identity Service ${wallet.from}"s Wallet`, async function() {
+	it(`Identity Service ${wallet.from}"s Wallet`, async function () {
 		const config = createConfig();
 		const identityService = await IdentityService.__construct(config);
 
@@ -274,7 +278,7 @@ describe.each(data)("Addresses from", (wallet) => {
 		expect(keys).toStrictEqual({ publicKey: wallet.rootPublicKey, privateKey: wallet.rootPrivateKey });
 	});
 
-	it.skip(`Client Service ${wallet.from}"s Wallet`, async function() {
+	it.skip(`Client Service ${wallet.from}"s Wallet`, async function () {
 		const config = createConfig();
 		const client = await ClientService.__construct(config);
 
@@ -285,7 +289,7 @@ describe.each(data)("Addresses from", (wallet) => {
 	it(`${wallet.from}"s Private Key`, async () => {
 		const mnemonic = wallet.mnemonic;
 
-		let addresses: { [key: string]: string[] } = { "testnet": [], "mainnet": [] };
+		let addresses: { [key: string]: string[] } = { testnet: [], mainnet: [] };
 		for (let i = 0; i < 20; ++i) {
 			addresses.testnet.push(await addressFromMnemonic(mnemonic, 0, false, i, "0"));
 			addresses.mainnet.push(await addressFromMnemonic(mnemonic, 0, false, i, "1"));
@@ -297,8 +301,8 @@ describe.each(data)("Addresses from", (wallet) => {
 	it(`${wallet.from}"s Public Key`, async () => {
 		const publicKey = Buffer.from(wallet.accountPublicKey, "hex");
 		let addresses: { [key: string]: { [key: string]: string[] } } = {
-			"testnet": { spend: [], change: [] },
-			"mainnet": { spend: [], change: [] }
+			testnet: { spend: [], change: [] },
+			mainnet: { spend: [], change: [] },
 		};
 		for (let i = 0; i < 20; ++i) {
 			addresses.testnet.spend.push(await addressFromAccountExtPublicKey(publicKey, false, i, "0"));
@@ -313,7 +317,6 @@ describe.each(data)("Addresses from", (wallet) => {
 	});
 });
 
-
 it(`spend addresses ${data[1].from}"s Wallet`, async () => {
 	function checkExpected(
 		spendChangeExtPublicKey,
@@ -321,7 +324,7 @@ it(`spend addresses ${data[1].from}"s Wallet`, async () => {
 		addressIdx: number,
 		stakeAddressIdx: number,
 		expectedSpendAddress: string,
-		expectedStakeAddress: string
+		expectedStakeAddress: string,
 	) {
 		let stakeAddressPublicKey = lib.derivePublic(stakeChainPublicKey, stakeAddressIdx, SHELLEY_DERIVATION_SCHEME);
 		expect(stakeAddressPublicKey.toString("hex")).toBe(expectedStakeAddress);
@@ -348,7 +351,7 @@ it(`spend addresses ${data[1].from}"s Wallet`, async () => {
 	const purposeKeyPair = await lib.derivePrivate(
 		walletKeyPair,
 		HARDENED_THRESHOLD + SHELLEY_COIN_PURPOSE,
-		SHELLEY_DERIVATION_SCHEME
+		SHELLEY_DERIVATION_SCHEME,
 	);
 	expect(purposeKeyPair.toString("hex")).toBe(wallet.purposeKey);
 	// console.log(purposeKeyPair.toString("hex"));
@@ -357,7 +360,7 @@ it(`spend addresses ${data[1].from}"s Wallet`, async () => {
 	const coinTypeKeyPair = lib.derivePrivate(
 		purposeKeyPair,
 		HARDENED_THRESHOLD + SHELLEY_COIN_TYPE,
-		SHELLEY_DERIVATION_SCHEME
+		SHELLEY_DERIVATION_SCHEME,
 	);
 	expect(coinTypeKeyPair.toString("hex")).toBe(wallet.coinTypeKey);
 	// console.log(coinTypeKeyPair.toString("hex"));
@@ -372,14 +375,14 @@ it(`spend addresses ${data[1].from}"s Wallet`, async () => {
 	// depth = 4  Change: m/1852"/1815"/0"/0 -> is not change
 	const spendPublicKey: Buffer = lib.derivePublic(accountPublicKey, 0, SHELLEY_DERIVATION_SCHEME);
 	expect(spendPublicKey.toString("hex")).toBe(
-		"64962ed96961290241bccfaef04099f9d515f5592225db2c82d7ddd810883a024e6ff09bb2a11a4d2be26011fec47c955b44187331429316672568e73d0c46cf"
+		"64962ed96961290241bccfaef04099f9d515f5592225db2c82d7ddd810883a024e6ff09bb2a11a4d2be26011fec47c955b44187331429316672568e73d0c46cf",
 	);
 	console.log(accountKeyPair.toString("hex"));
 
 	// depth = 4  Change: m/1852"/1815"/0"/1 -> is change
 	const changeSpendPublicKey: Buffer = lib.derivePublic(accountPublicKey, 1, SHELLEY_DERIVATION_SCHEME);
 	expect(changeSpendPublicKey.toString("hex")).toBe(
-		"7d1c569689a9941cbf1037dd92b5b5288979f19b99596d3cd20a6457030196c29d4bf45d10d88c9c28d8bbe2d7761d1932ec64642779488289e1822f637e6bfe"
+		"7d1c569689a9941cbf1037dd92b5b5288979f19b99596d3cd20a6457030196c29d4bf45d10d88c9c28d8bbe2d7761d1932ec64642779488289e1822f637e6bfe",
 	);
 
 	// depth = 4  Stake: m/1852"/1815"/0"/2
@@ -389,7 +392,6 @@ it(`spend addresses ${data[1].from}"s Wallet`, async () => {
 	const baseAddressForAccount = baseAddressFromXpub(spendPublicKey, stakeChainPublicKey, "0");
 	console.log("baseAddressForAccount", baseAddressForAccount);
 
-
 	// depth = 5  Address: m/1852"/1815"/0"/0/0
 	checkExpected(
 		spendPublicKey,
@@ -397,7 +399,7 @@ it(`spend addresses ${data[1].from}"s Wallet`, async () => {
 		0,
 		0,
 		"addr_test1qq254lk4kl4zpfmr7wsz6qapn7qywks2f6spdhlsx2f7azdu9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsq7n2ck",
-		"b2243ba449ec290aa578dd3cc8c4a618d6648e69b5c71f7ab6f88dc7e1b0bffb6b661596c8c0413bd202c33dc9bc4fc3ee6e30a4a0f9c7edff638b04ffa228b2"
+		"b2243ba449ec290aa578dd3cc8c4a618d6648e69b5c71f7ab6f88dc7e1b0bffb6b661596c8c0413bd202c33dc9bc4fc3ee6e30a4a0f9c7edff638b04ffa228b2",
 	);
 	// depth = 5  Address: m/1852'/1815'/0'/1/0
 	checkExpected(
@@ -406,7 +408,7 @@ it(`spend addresses ${data[1].from}"s Wallet`, async () => {
 		0,
 		0,
 		"addr_test1qrnfqqs0hp8wttld5camurccgwgwh4pk4w4lk3aped8spz9u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsg05ap6",
-		"b2243ba449ec290aa578dd3cc8c4a618d6648e69b5c71f7ab6f88dc7e1b0bffb6b661596c8c0413bd202c33dc9bc4fc3ee6e30a4a0f9c7edff638b04ffa228b2"
+		"b2243ba449ec290aa578dd3cc8c4a618d6648e69b5c71f7ab6f88dc7e1b0bffb6b661596c8c0413bd202c33dc9bc4fc3ee6e30a4a0f9c7edff638b04ffa228b2",
 	);
 
 	// depth = 5  Address: m/1852'/1815'/0'/0/1
@@ -416,7 +418,7 @@ it(`spend addresses ${data[1].from}"s Wallet`, async () => {
 		1,
 		0,
 		"addr_test1qrwrstd7wkn9lmfcru9ckn23f32maja6y4cd4vqrn0qwsyau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs64rzts",
-		"b2243ba449ec290aa578dd3cc8c4a618d6648e69b5c71f7ab6f88dc7e1b0bffb6b661596c8c0413bd202c33dc9bc4fc3ee6e30a4a0f9c7edff638b04ffa228b2"
+		"b2243ba449ec290aa578dd3cc8c4a618d6648e69b5c71f7ab6f88dc7e1b0bffb6b661596c8c0413bd202c33dc9bc4fc3ee6e30a4a0f9c7edff638b04ffa228b2",
 	);
 	// depth = 5  Address: m/1852'/1815'/0'/1/1
 	checkExpected(
@@ -425,6 +427,6 @@ it(`spend addresses ${data[1].from}"s Wallet`, async () => {
 		1,
 		0,
 		"addr_test1qz39tdwlmz3zu9pe7xzpnac98u95e6un24qyardmrm6qnk4u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsgtex72",
-		"b2243ba449ec290aa578dd3cc8c4a618d6648e69b5c71f7ab6f88dc7e1b0bffb6b661596c8c0413bd202c33dc9bc4fc3ee6e30a4a0f9c7edff638b04ffa228b2"
+		"b2243ba449ec290aa578dd3cc8c4a618d6648e69b5c71f7ab6f88dc7e1b0bffb6b661596c8c0413bd202c33dc9bc4fc3ee6e30a4a0f9c7edff638b04ffa228b2",
 	);
 });

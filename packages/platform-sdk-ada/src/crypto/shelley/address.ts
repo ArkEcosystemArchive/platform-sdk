@@ -10,7 +10,7 @@ const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: st
 		lib.getPubKeyBlake2b224Hash(stakeXpub.slice(0, 32)),
 		network,
 	);
-	return lib.bech32.encode(network === 1 ? "addr": "addr_test", addrBuffer);
+	return lib.bech32.encode(network === 1 ? "addr" : "addr_test", addrBuffer);
 };
 
 const generateAddress = async (
