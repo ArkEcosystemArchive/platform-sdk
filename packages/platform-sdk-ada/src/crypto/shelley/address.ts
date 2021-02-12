@@ -4,12 +4,13 @@ import { SHELLEY_DERIVATION_SCHEME } from "./constants";
 import { derivePrivateNode, derivePublicNode, shelleyPath, shelleyStakeAccountPath } from "./hdpath";
 
 const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: string): string => {
+	const network = parseInt(networkId);
 	const addrBuffer = lib.packBaseAddress(
 		lib.getPubKeyBlake2b224Hash(spendXpub.slice(0, 32)),
 		lib.getPubKeyBlake2b224Hash(stakeXpub.slice(0, 32)),
-		parseInt(networkId),
+		network,
 	);
-	return lib.bech32.encode("addr", addrBuffer);
+	return lib.bech32.encode(network === 1 ? "addr": "addr_test", addrBuffer);
 };
 
 const generateAddress = async (
