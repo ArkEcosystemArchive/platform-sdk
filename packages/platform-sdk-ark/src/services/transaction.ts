@@ -29,7 +29,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 		return new TransactionService({
 			http: config.get<Contracts.HttpClient>("httpClient"),
-			peer: peer,
+			peer,
 			identity: await IdentityService.__construct(config),
 			multiSignatureSigner: new MultiSignatureSigner(crypto, status.height),
 			configCrypto: { crypto, status },
@@ -220,10 +220,11 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public async estimateExpiration(value?: string): Promise<string> {
-		const { data } = (await this.#http.get(`${this.#peer}/blockchain`)).json();
+		const { data: blockchain } = (await this.#http.get(`${this.#peer}/blockchain`)).json();
+		const { data: configuration } = (await this.#http.get(`${this.#peer}/node/configuration`)).json();
 
-		return BigNumber.make(data.block.height)
-			.plus(value || 255)
+		return BigNumber.make(blockchain.block.height)
+			.plus(value || 5 * configuration.constants.activeDelegates)
 			.toString();
 	}
 
