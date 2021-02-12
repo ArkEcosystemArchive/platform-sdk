@@ -11,6 +11,7 @@ const network: Coins.CoinNetwork = {
 	},
 	crypto: {
 		networkId: "0",
+		slip44: 1815,
 	},
 	networking: {
 		hosts: ["http://localhost:8090"],
