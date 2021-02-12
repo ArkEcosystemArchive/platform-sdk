@@ -5,7 +5,7 @@ import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
 import { v4 as uuidv4 } from "uuid";
 
 import { SignedTransactionData } from "../dto";
-import { keyPairFromMnemonic, useAvalanche, useXChain, useKeychain, usePChain } from "./helpers";
+import { keyPairFromMnemonic, useKeychain, usePChain, useXChain } from "./helpers";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
