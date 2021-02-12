@@ -102,8 +102,6 @@ export class TransactionService implements Contracts.TransactionService {
 					"END-TIME",
 					"STAKE-AMOUNT",
 					["REWARD-ADDRESSES"],
-					"REWARD-LOCKTIME",
-					"REWARD-THRESHOLD",
 				)
 			).sign(this.#keychain);
 
