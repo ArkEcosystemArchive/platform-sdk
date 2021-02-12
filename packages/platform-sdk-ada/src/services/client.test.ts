@@ -1,9 +1,8 @@
 import "jest-extended";
 
-import nock from "nock";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
-
 import { DTO } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
 import { TransactionData, WalletData } from "../dto";
@@ -17,7 +16,7 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("ClientService", function() {
+describe("ClientService", function () {
 	it("#wallet should succeed", async () => {
 		nock("http://51.75.183.27:3100")
 			.get("/v2/wallets/98c83431e94407bc0889e09953461fe5cecfdf18")
@@ -36,7 +35,7 @@ describe("ClientService", function() {
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 		const result = await subject.transactions({
-			walletId: "98c83431e94407bc0889e09953461fe5cecfdf18"
+			walletId: "98c83431e94407bc0889e09953461fe5cecfdf18",
 		});
 
 		expect(result).toBeObject();
@@ -60,11 +59,11 @@ describe("ClientService", function() {
 		expect(result.confirmations().toString()).toBe("0");
 
 		expect(result.sender()).toBe(
-			"addr_test1qrhvwtn8sa3duzkm93v5kjjxlv5lvg67j530wyeumngu23lk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s4s8xvh"
+			"addr_test1qrhvwtn8sa3duzkm93v5kjjxlv5lvg67j530wyeumngu23lk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s4s8xvh",
 		);
 
 		expect(result.recipient()).toBe(
-			"addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th"
+			"addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th",
 		);
 
 		const actual = result.recipients();
@@ -83,7 +82,7 @@ describe("ClientService", function() {
 		expect(inputs[0].id()).toBe("6bf76f4380da8a389ae0a7ecccf1922b74ae11d773ba8b1b761d84a1b4474a4f");
 		expect(inputs[0].amount()).toEqual(BigNumber.make(30000000));
 		expect(inputs[0].addresses()).toEqual([
-			"addr_test1qrhvwtn8sa3duzkm93v5kjjxlv5lvg67j530wyeumngu23lk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s4s8xvh"
+			"addr_test1qrhvwtn8sa3duzkm93v5kjjxlv5lvg67j530wyeumngu23lk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s4s8xvh",
 		]);
 
 		const outputs = result.outputs();
@@ -91,18 +90,17 @@ describe("ClientService", function() {
 		expect(outputs[0]).toBeInstanceOf(DTO.UnspentTransactionData);
 		expect(outputs[0].amount().toString()).toBe("25000000");
 		expect(outputs[0].addresses()).toEqual([
-			"addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th"
+			"addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th",
 		]);
 		expect(outputs[1]).toBeInstanceOf(DTO.UnspentTransactionData);
 		expect(outputs[1].amount().toString()).toBe("4831199");
 		expect(outputs[1].addresses()).toEqual([
-			"addr_test1qzfjfm724nv9qz6nfyagmj0j2uppr35gzv5qee8s7489wxlk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33scc4thv"
+			"addr_test1qzfjfm724nv9qz6nfyagmj0j2uppr35gzv5qee8s7489wxlk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33scc4thv",
 		]);
 
 		expect(result.amount().toString()).toBe("25000000");
 
 		expect(result.fee().toString()).toBe("168801");
-
 	});
 
 	describe("unimplemented methods", () => {

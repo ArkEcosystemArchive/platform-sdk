@@ -32,7 +32,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			.sort((a, b) => a.index - b.index)
 			.map((out) => ({
 				address: out.address,
-				amount: BigNumber.make(out.value)
+				amount: BigNumber.make(out.value),
 			}));
 	}
 
@@ -42,8 +42,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 				new DTO.UnspentTransactionData({
 					id: input.sourceTransaction.hash,
 					amount: BigNumber.make(input.value),
-					addresses: [input.address]
-				})
+					addresses: [input.address],
+				}),
 		);
 	}
 
@@ -52,8 +52,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			(output: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
 					amount: BigNumber.make(output.value),
-					addresses: [output.address]
-				})
+					addresses: [output.address],
+				}),
 		);
 	}
 
@@ -65,16 +65,17 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		 *  will be the change (of course this is not necessarily true).
 		 *  I'm out of ideas for the day
 		 */
-		const totalInput = this.data.inputs.map(
-			(input: Contracts.KeyValuePair) => BigNumber.make(input.value)
-		).reduce((a, b) => a.plus(b), BigNumber.ZERO);
+		const totalInput = this.data.inputs
+			.map((input: Contracts.KeyValuePair) => BigNumber.make(input.value))
+			.reduce((a, b) => a.plus(b), BigNumber.ZERO);
 		// console.log("totalInput", totalInput.toString());
 
-		const changeOutput = this.data.outputs <= 1 ?
-			BigNumber.ZERO :
-			BigNumber.make(this.data.outputs
-				.sort((a, b) => a.index - b.index)
-				[this.data.outputs.length - 1].value)
+		const changeOutput =
+			this.data.outputs <= 1
+				? BigNumber.ZERO
+				: BigNumber.make(
+						this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value,
+				  );
 		// console.log("changeOutput", changeOutput.toString());
 
 		return totalInput.minus(changeOutput).minus(this.fee());
