@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.8.26 - 2020-02-12
+
+### Added
+
+-   Implement custom peer feature flag (9ab9134d, @faustbrian)
+-   Implement `TransactionService#estimateExpiration` (67bce003, @faustbrian)
+
 ## 2.8.24 - 2020-02-11
 
 ### Fixed
