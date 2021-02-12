@@ -21,6 +21,9 @@ export interface TransactionService {
 
 	// Multi-Signature
 	multiSign(transaction: RawTransactionData, input: TransactionInputs): Promise<SignedTransactionData>;
+
+	// Estimations
+	estimateExpiration(value?: string): Promise<string>;
 }
 
 // Transaction Signing

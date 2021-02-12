@@ -13,6 +13,7 @@ beforeEach(async () => {
 		createConfig(undefined, {
 			networkConfiguration: {
 				crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
+				peer: "http://127.0.0.1/api",
 				status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
 			},
 		}),
@@ -287,5 +288,16 @@ describe("Core", () => {
 
 			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
+	});
+
+	test("#estimateExpiration", async () => {
+		nock("http://127.0.0.1")
+			.get("/api/blockchain")
+			.reply(200, require("../../test/fixtures/client/blockchain.json"))
+			.get("/api/node/configuration")
+			.reply(200, require("../../test/fixtures/client/configuration.json"))
+			.persist();
+
+		await expect(subject.estimateExpiration()).resolves.toBe("6795392");
 	});
 });

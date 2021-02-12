@@ -210,6 +210,7 @@
 				"htlcRefund": true
 			},
 			"Miscellaneous": {
+				"customPeer": true,
 				"dynamicFees": true,
 				"memo": true
 			}
