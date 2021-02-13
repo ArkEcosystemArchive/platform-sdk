@@ -69,17 +69,11 @@ export class TransactionService implements Contracts.TransactionService {
 			),
 		);
 
-		if (input.data.expiration) {
-			// @TODO: estimate this based on block/slot time and some multiplier
-			txBuilder.set_ttl(input.data.expiration);
-		}
+		// @TODO: estimate this based on block/slot time and some multiplier
+		txBuilder.set_ttl(input.data.expiration);
 
 		// calculate the min fee required and send any change to an address
-		txBuilder.add_change_if_needed(
-			CardanoWasm.ByronAddress.from_base58(
-				"Ae2tdPwUPEYxiWbAt3hUCJsZ9knze88qNhuTQ1MGCKqsVFo5ddNyoTDBymr",
-			).to_address(),
-		);
+		txBuilder.add_change_if_needed(CardanoWasm.Address.from_bech32(input.from));
 
 		const txBody = txBuilder.build();
 		const txHash = CardanoWasm.hash_transaction(txBody);
