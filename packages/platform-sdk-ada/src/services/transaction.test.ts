@@ -21,13 +21,15 @@ jest.setTimeout(10000);
 describe("Core", () => {
 	it("#transfer", async () => {
 		const result = await subject.transfer({
-			from: "addr_test1qpz03ezdyda8ag724zp3n5fqulay02dp7j9mweyeylcaapsxu2hyfhlkwuxupa9d5085eunq2qywy7hvmvej456flknscw3xw7",
+			from:
+				"addr_test1qpz03ezdyda8ag724zp3n5fqulay02dp7j9mweyeylcaapsxu2hyfhlkwuxupa9d5085eunq2qywy7hvmvej456flknscw3xw7",
 			sign: {
 				mnemonic: "test walk nut penalty hip pave soap entry language right filter choice",
 			},
 			data: {
 				amount: "1000000",
-				to: "addr_test1qpz03ezdyda8ag724zp3n5fqulay02dp7j9mweyeylcaapsxu2hyfhlkwuxupa9d5085eunq2qywy7hvmvej456flknscw3xw7",
+				to:
+					"addr_test1qpz03ezdyda8ag724zp3n5fqulay02dp7j9mweyeylcaapsxu2hyfhlkwuxupa9d5085eunq2qywy7hvmvej456flknscw3xw7",
 				expiration: 410021,
 			},
 		});

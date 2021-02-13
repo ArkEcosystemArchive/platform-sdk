@@ -37,7 +37,10 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// This is the transaction builder that uses values from the genesis block of the configured network.
 		const txBuilder = CardanoWasm.TransactionBuilder.new(
-			CardanoWasm.LinearFee.new(CardanoWasm.BigNum.from_str(minFeeA.toString()), CardanoWasm.BigNum.from_str(minFeeB.toString())),
+			CardanoWasm.LinearFee.new(
+				CardanoWasm.BigNum.from_str(minFeeA.toString()),
+				CardanoWasm.BigNum.from_str(minFeeB.toString()),
+			),
 			CardanoWasm.BigNum.from_str(minUTxOValue.toString()),
 			CardanoWasm.BigNum.from_str(poolDeposit.toString()),
 			CardanoWasm.BigNum.from_str(keyDeposit.toString()),
@@ -46,10 +49,12 @@ export class TransactionService implements Contracts.TransactionService {
 		const recipient = CardanoWasm.Address.from_bech32(input.data.to);
 
 		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transfered back to the sender
-		const utxos: { hash: string; amount: string }[] = [{
-			hash: "488afed67b342d41ec08561258e210352fba2ac030c98a8199bc22ec7a27ccf1",
-			amount: "3000000",
-		}];
+		const utxos: { hash: string; amount: string }[] = [
+			{
+				hash: "488afed67b342d41ec08561258e210352fba2ac030c98a8199bc22ec7a27ccf1",
+				amount: "3000000",
+			},
+		];
 
 		for (let i = 0; i < utxos.length; i++) {
 			txBuilder.add_input(
