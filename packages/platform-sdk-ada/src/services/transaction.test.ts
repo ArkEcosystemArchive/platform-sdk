@@ -3,6 +3,7 @@ import "jest-extended";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
+import { SignedTransactionData } from "../dto";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
@@ -20,16 +21,17 @@ jest.setTimeout(10000);
 describe("Core", () => {
 	it("#transfer", async () => {
 		const result = await subject.transfer({
-			nonce: "1",
-			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			from: "addr_test1qpz03ezdyda8ag724zp3n5fqulay02dp7j9mweyeylcaapsxu2hyfhlkwuxupa9d5085eunq2qywy7hvmvej456flknscw3xw7",
 			sign: {
 				mnemonic: "test walk nut penalty hip pave soap entry language right filter choice",
 			},
 			data: {
-				amount: "1",
-				to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
-				expiration: 1,
+				amount: "1000000",
+				to: "addr_test1qpz03ezdyda8ag724zp3n5fqulay02dp7j9mweyeylcaapsxu2hyfhlkwuxupa9d5085eunq2qywy7hvmvej456flknscw3xw7",
+				expiration: 410021,
 			},
 		});
+
+		expect(result).toBeInstanceOf(SignedTransactionData);
 	});
 });

@@ -22,7 +22,6 @@ export class TransactionService implements Contracts.TransactionService {
 	public async transfer(
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
-		// @ts-ignore
 	): Promise<Contracts.SignedTransactionData> {
 		if (input.sign.mnemonic === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "sign.mnemonic");
@@ -36,36 +35,37 @@ export class TransactionService implements Contracts.TransactionService {
 			"network.meta",
 		);
 
+		// This is the transaction builder that uses values from the genesis block of the configured network.
 		const txBuilder = CardanoWasm.TransactionBuilder.new(
-			CardanoWasm.LinearFee.new(CardanoWasm.BigNum.from_str(minFeeA), CardanoWasm.BigNum.from_str(minFeeB)),
-			CardanoWasm.BigNum.from_str(minUTxOValue),
-			CardanoWasm.BigNum.from_str(poolDeposit),
-			CardanoWasm.BigNum.from_str(keyDeposit),
+			CardanoWasm.LinearFee.new(CardanoWasm.BigNum.from_str(minFeeA.toString()), CardanoWasm.BigNum.from_str(minFeeB.toString())),
+			CardanoWasm.BigNum.from_str(minUTxOValue.toString()),
+			CardanoWasm.BigNum.from_str(poolDeposit.toString()),
+			CardanoWasm.BigNum.from_str(keyDeposit.toString()),
 		);
 
 		const recipient = CardanoWasm.Address.from_bech32(input.data.to);
 
-		// These are the inputs (UTXO)
-		txBuilder.add_input(
-			recipient,
-			CardanoWasm.TransactionInput.new(
-				CardanoWasm.TransactionHash.from_bytes(
-					Buffer.from("488afed67b342d41ec08561258e210352fba2ac030c98a8199bc22ec7a27ccf1", "hex"),
+		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transfered back to the sender
+		const utxos: { hash: string; amount: string }[] = [{
+			hash: "488afed67b342d41ec08561258e210352fba2ac030c98a8199bc22ec7a27ccf1",
+			amount: "3000000",
+		}];
+
+		for (let i = 0; i < utxos.length; i++) {
+			txBuilder.add_input(
+				recipient,
+				CardanoWasm.TransactionInput.new(
+					CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxos[i].hash, "hex")),
+					i,
 				),
-				0, // index
-			),
-			createValue("3000000"),
-		);
+				createValue(utxos[i].amount),
+			);
+		}
 
 		// These are the outputs that will be transfered to other wallets. For now we only support a single output.
-		txBuilder.add_output(
-			CardanoWasm.TransactionOutput.new(
-				recipient,
-				createValue(input.data.amount),
-			),
-		);
+		txBuilder.add_output(CardanoWasm.TransactionOutput.new(recipient, createValue(input.data.amount)));
 
-		// @TODO: estimate this based on block/slot time and some multiplier
+		// This is the expiration slot which should be estimated with #estimateExpiration
 		txBuilder.set_ttl(input.data.expiration);
 
 		// calculate the min fee required and send any change to an address
@@ -77,21 +77,23 @@ export class TransactionService implements Contracts.TransactionService {
 		const bootstrapWitnesses = CardanoWasm.BootstrapWitnesses.new();
 		const bootstrapWitness = CardanoWasm.make_icarus_bootstrap_witness(
 			txHash,
-			address,
+			// @FIXME: expected instance of ByronAddress
+			recipient,
 			getCip1852Account(input.sign.mnemonic, this.#config.get<number>("network.crypto.slip44")),
 		);
 		bootstrapWitnesses.add(bootstrapWitness);
 		witnesses.set_bootstraps(bootstrapWitnesses);
-		const transaction = CardanoWasm.Transaction.new(
-			txBody,
-			witnesses,
-			undefined, // transaction metadata
+
+		return new SignedTransactionData(
+			Buffer.from(txHash.to_bytes()).toString("hex"),
+			{
+				sender: input.from,
+				recipient: input.data.to,
+				amount: input.data.amount,
+				fee: txBody.fee().to_str(),
+			},
+			Buffer.from(CardanoWasm.Transaction.new(txBody, witnesses).to_bytes()).toString("hex"),
 		);
-
-		const txHex = Buffer.from(transaction.to_bytes()).toString("hex");
-		console.log(txHex);
-
-		return new SignedTransactionData("@TODO-ID", "@TODO-DATA", txHex);
 	}
 
 	public async secondSignature(
