@@ -1,7 +1,7 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import CardanoWasm from "@emurgo/cardano-serialization-lib-nodejs";
-import { SignedTransactionData } from "../dto";
 
+import { SignedTransactionData } from "../dto";
 import { createValue, getCip1852Account } from "./transaction.helpers";
 
 export class TransactionService implements Contracts.TransactionService {
@@ -32,13 +32,9 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "data.expiration");
 		}
 
-		const {
-			minFeeA,
-			minFeeB,
-			minUTxOValue,
-			poolDeposit,
-			keyDeposit,
-		} = this.#config.get<Contracts.KeyValuePair>("network.meta");
+		const { minFeeA, minFeeB, minUTxOValue, poolDeposit, keyDeposit } = this.#config.get<Contracts.KeyValuePair>(
+			"network.meta",
+		);
 
 		const txBuilder = CardanoWasm.TransactionBuilder.new(
 			CardanoWasm.LinearFee.new(CardanoWasm.BigNum.from_str(minFeeA), CardanoWasm.BigNum.from_str(minFeeB)),
