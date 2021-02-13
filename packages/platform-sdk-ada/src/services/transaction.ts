@@ -47,11 +47,11 @@ export class TransactionService implements Contracts.TransactionService {
 			CardanoWasm.BigNum.from_str(keyDeposit),
 		);
 
-		const address = CardanoWasm.ByronAddress.from_base58(
-			"Ae2tdPwUPEZLs4HtbuNey7tK4hTKrwNwYtGqp7bDfCy2WdR3P6735W5Yfpe",
-		);
-		txBuilder.add_bootstrap_input(
-			address,
+		const recipient = CardanoWasm.Address.from_bech32(input.data.to);
+
+		// These are the inputs (UTXO)
+		txBuilder.add_input(
+			recipient,
 			CardanoWasm.TransactionInput.new(
 				CardanoWasm.TransactionHash.from_bytes(
 					Buffer.from("488afed67b342d41ec08561258e210352fba2ac030c98a8199bc22ec7a27ccf1", "hex"),
@@ -61,11 +61,11 @@ export class TransactionService implements Contracts.TransactionService {
 			createValue("3000000"),
 		);
 
+		// These are the outputs that will be transfered to other wallets. For now we only support a single output.
 		txBuilder.add_output(
 			CardanoWasm.TransactionOutput.new(
-				address.to_address(),
-				// we can construct BigNum (Coin) from both a js BigInt (here) or from a string (below in fee)
-				createValue("1000000"),
+				recipient,
+				createValue(input.data.amount),
 			),
 		);
 
