@@ -20,7 +20,6 @@ export interface CoinNetwork {
 			privateKey?: boolean;
 			wif?: boolean;
 		};
-		meta?: KeyValuePair;
 	};
 	networking: {
 		hosts: string[];
@@ -118,4 +117,5 @@ export interface CoinNetwork {
 		};
 	};
 	knownWallets?: string;
+	meta?: KeyValuePair;
 }

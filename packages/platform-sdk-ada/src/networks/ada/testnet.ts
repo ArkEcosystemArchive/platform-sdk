@@ -12,13 +12,6 @@ const network: Coins.CoinNetwork = {
 	crypto: {
 		networkId: "0",
 		slip44: 1815,
-		meta: {
-			minFeeA: 44,
-			minFeeB: 155381,
-			minUTxOValue: 1000000,
-			poolDeposit: 500000000,
-			keyDeposit: 2000000,
-		},
 	},
 	networking: {
 		hosts: ["http://localhost:8090"],
@@ -50,6 +43,13 @@ const network: Coins.CoinNetwork = {
 				mnemonic: true,
 			},
 		},
+	},
+	meta: {
+		minFeeA: 44,
+		minFeeB: 155381,
+		minUTxOValue: 1000000,
+		poolDeposit: 500000000,
+		keyDeposit: 2000000,
 	},
 };
 

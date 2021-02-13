@@ -38,7 +38,7 @@ export class TransactionService implements Contracts.TransactionService {
 			minUTxOValue,
 			poolDeposit,
 			keyDeposit,
-		} = this.#config.get<Contracts.KeyValuePair>("network.crypto.meta");
+		} = this.#config.get<Contracts.KeyValuePair>("network.meta");
 
 		const txBuilder = CardanoWasm.TransactionBuilder.new(
 			CardanoWasm.LinearFee.new(CardanoWasm.BigNum.from_str(minFeeA), CardanoWasm.BigNum.from_str(minFeeB)),
