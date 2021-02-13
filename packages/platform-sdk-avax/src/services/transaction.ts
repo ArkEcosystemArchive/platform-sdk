@@ -30,7 +30,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		if (input.sign.mnemonic === undefined) {
-			throw new Exceptions.InvalidArguments(this.constructor.name, "transfer");
+			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "sign.mnemonic");
 		}
 
 		try {

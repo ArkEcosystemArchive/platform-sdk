@@ -34,6 +34,12 @@ export class InvalidArguments extends Exception {
 	}
 }
 
+export class MissingArgument extends Exception {
+	public constructor(klass: string, method: string, arg: string) {
+		super(`Method ${klass}#${method} expects the argument [${arg}] but it was not given.`);
+	}
+}
+
 export class CryptoException extends Exception {
 	public constructor(error: Error) {
 		super(error.message);

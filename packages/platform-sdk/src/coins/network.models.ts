@@ -1,3 +1,5 @@
+import { KeyValuePair } from "../contracts";
+
 export interface CoinNetwork {
 	id: string;
 	type: string;
@@ -18,6 +20,7 @@ export interface CoinNetwork {
 			privateKey?: boolean;
 			wif?: boolean;
 		};
+		meta?: KeyValuePair;
 	};
 	networking: {
 		hosts: string[];

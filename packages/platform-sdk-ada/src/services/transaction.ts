@@ -1,11 +1,18 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import CardanoWasm from "@emurgo/cardano-serialization-lib-nodejs";
+import { SignedTransactionData } from "../dto";
 
 import { createValue, getCip1852Account } from "./transaction.helpers";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #config: Coins.Config;
+
+	public constructor(config: Coins.Config) {
+		this.#config = config;
+	}
+
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService();
+		return new TransactionService(config);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -18,19 +25,26 @@ export class TransactionService implements Contracts.TransactionService {
 		// @ts-ignore
 	): Promise<Contracts.SignedTransactionData> {
 		if (input.sign.mnemonic === undefined) {
-			throw new Exceptions.InvalidArguments(this.constructor.name, "transfer");
+			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "sign.mnemonic");
 		}
 
 		if (input.data.expiration === undefined) {
-			throw new Exceptions.InvalidArguments(this.constructor.name, "transfer");
+			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "data.expiration");
 		}
 
+		const {
+			minFeeA,
+			minFeeB,
+			minUTxOValue,
+			poolDeposit,
+			keyDeposit,
+		} = this.#config.get<Contracts.KeyValuePair>("network.crypto.meta");
+
 		const txBuilder = CardanoWasm.TransactionBuilder.new(
-			// all of these are taken from the mainnet genesis settings
-			CardanoWasm.LinearFee.new(CardanoWasm.BigNum.from_str("44"), CardanoWasm.BigNum.from_str("155381")),
-			CardanoWasm.BigNum.from_str("1000000"),
-			CardanoWasm.BigNum.from_str("500000000"),
-			CardanoWasm.BigNum.from_str("2000000"),
+			CardanoWasm.LinearFee.new(CardanoWasm.BigNum.from_str(minFeeA), CardanoWasm.BigNum.from_str(minFeeB)),
+			CardanoWasm.BigNum.from_str(minUTxOValue),
+			CardanoWasm.BigNum.from_str(poolDeposit),
+			CardanoWasm.BigNum.from_str(keyDeposit),
 		);
 
 		const address = CardanoWasm.ByronAddress.from_base58(
@@ -56,7 +70,7 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 
 		if (input.data.expiration) {
-			// @TODO: estimate this
+			// @TODO: estimate this based on block/slot time and some multiplier
 			txBuilder.set_ttl(input.data.expiration);
 		}
 
@@ -74,7 +88,7 @@ export class TransactionService implements Contracts.TransactionService {
 		const bootstrapWitness = CardanoWasm.make_icarus_bootstrap_witness(
 			txHash,
 			address,
-			getCip1852Account(input.sign.mnemonic),
+			getCip1852Account(input.sign.mnemonic, this.#config.get<number>("network.crypto.slip44")),
 		);
 		bootstrapWitnesses.add(bootstrapWitness);
 		witnesses.set_bootstraps(bootstrapWitnesses);
@@ -86,6 +100,8 @@ export class TransactionService implements Contracts.TransactionService {
 
 		const txHex = Buffer.from(transaction.to_bytes()).toString("hex");
 		console.log(txHex);
+
+		return new SignedTransactionData("@TODO-ID", "@TODO-DATA", txHex);
 	}
 
 	public async secondSignature(
