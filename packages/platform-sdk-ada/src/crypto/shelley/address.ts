@@ -3,11 +3,15 @@ import lib from "cardano-crypto.js";
 import { SHELLEY_DERIVATION_SCHEME } from "./constants";
 import { derivePrivateNode, derivePublicNode, shelleyPath, shelleyStakeAccountPath } from "./hdpath";
 
-const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: string): string => lib.bech32.encode("addr", lib.packBaseAddress(
-		lib.getPubKeyBlake2b224Hash(spendXpub.slice(0, 32)),
-		lib.getPubKeyBlake2b224Hash(stakeXpub.slice(0, 32)),
-		parseInt(networkId),
-	));
+const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: string): string =>
+	lib.bech32.encode(
+		"addr",
+		lib.packBaseAddress(
+			lib.getPubKeyBlake2b224Hash(spendXpub.slice(0, 32)),
+			lib.getPubKeyBlake2b224Hash(stakeXpub.slice(0, 32)),
+			parseInt(networkId),
+		),
+	);
 
 const generateAddress = async (
 	seed: Buffer,
