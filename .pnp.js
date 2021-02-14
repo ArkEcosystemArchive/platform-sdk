@@ -511,6 +511,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.3"],
             ["jest-extended", "npm:0.11.5"],
             ["jest-localstorage-mock", "npm:2.4.3"],
+            ["noble-ed25519", "npm:1.0.3"],
             ["nock", "npm:13.0.5"],
             ["npm-check-updates", "npm:10.1.1"],
             ["prettier", "npm:2.1.2"],
@@ -15101,6 +15102,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/nice-try-npm-1.0.5-963856b16f-2.zip/node_modules/nice-try/",
           "packageDependencies": [
             ["nice-try", "npm:1.0.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["noble-ed25519", [
+        ["npm:1.0.3", {
+          "packageLocation": "./.yarn/cache/noble-ed25519-npm-1.0.3-59cc4f38b8-2.zip/node_modules/noble-ed25519/",
+          "packageDependencies": [
+            ["noble-ed25519", "npm:1.0.3"]
           ],
           "linkType": "HARD",
         }]

@@ -2,7 +2,7 @@ import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import CardanoWasm from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
-import { createValue, getCip1852Account } from "./transaction.helpers";
+import { createValue } from "./transaction.helpers";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
@@ -46,7 +46,9 @@ export class TransactionService implements Contracts.TransactionService {
 			CardanoWasm.BigNum.from_str(keyDeposit.toString()),
 		);
 
-		const recipient = CardanoWasm.Address.from_bech32(input.data.to);
+		// @TODO: the "from_bech32" method does not exist even though it is used in docs
+		// so need to figure out how to turn an mnemonic into a private key with this
+		const privateKey = CardanoWasm.PrivateKey.generate_ed25519();
 
 		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transfered back to the sender
 		const utxos: { hash: string; amount: string }[] = [
@@ -57,8 +59,8 @@ export class TransactionService implements Contracts.TransactionService {
 		];
 
 		for (let i = 0; i < utxos.length; i++) {
-			txBuilder.add_input(
-				recipient,
+			txBuilder.add_key_input(
+				privateKey.to_public().hash(),
 				CardanoWasm.TransactionInput.new(
 					CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxos[i].hash, "hex")),
 					i,
@@ -68,7 +70,12 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 
 		// These are the outputs that will be transfered to other wallets. For now we only support a single output.
-		txBuilder.add_output(CardanoWasm.TransactionOutput.new(recipient, createValue(input.data.amount)));
+		txBuilder.add_output(
+			CardanoWasm.TransactionOutput.new(
+				CardanoWasm.Address.from_bech32(input.data.to),
+				createValue(input.data.amount),
+			),
+		);
 
 		// This is the expiration slot which should be estimated with #estimateExpiration
 		txBuilder.set_ttl(input.data.expiration);
@@ -76,18 +83,16 @@ export class TransactionService implements Contracts.TransactionService {
 		// calculate the min fee required and send any change to an address
 		txBuilder.add_change_if_needed(CardanoWasm.Address.from_bech32(input.from));
 
+		// once the transaction is ready, we build it to get the tx body without witnesses
 		const txBody = txBuilder.build();
 		const txHash = CardanoWasm.hash_transaction(txBody);
 		const witnesses = CardanoWasm.TransactionWitnessSet.new();
-		const bootstrapWitnesses = CardanoWasm.BootstrapWitnesses.new();
-		const bootstrapWitness = CardanoWasm.make_icarus_bootstrap_witness(
-			txHash,
-			// @FIXME: expected instance of ByronAddress
-			recipient,
-			getCip1852Account(input.sign.mnemonic, this.#config.get<number>("network.crypto.slip44")),
-		);
-		bootstrapWitnesses.add(bootstrapWitness);
-		witnesses.set_bootstraps(bootstrapWitnesses);
+
+		// add keyhash witnesses
+		const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
+		const vkeyWitness = CardanoWasm.make_vkey_witness(txHash, privateKey);
+		vkeyWitnesses.add(vkeyWitness);
+		witnesses.set_vkeys(vkeyWitnesses);
 
 		return new SignedTransactionData(
 			Buffer.from(txHash.to_bytes()).toString("hex"),
