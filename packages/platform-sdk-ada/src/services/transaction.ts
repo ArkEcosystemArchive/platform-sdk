@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import CardanoWasm, { Ed25519KeyHash } from "@emurgo/cardano-serialization-lib-nodejs";
+import CardanoWasm from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
 import { createValue, getCip1852Account } from "./transaction.helpers";
