@@ -1,8 +1,8 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import CardanoWasm from "@emurgo/cardano-serialization-lib-nodejs";
+import CardanoWasm, { Ed25519KeyHash } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
-import { createValue } from "./transaction.helpers";
+import { createValue, getCip1852Account } from "./transaction.helpers";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
@@ -48,7 +48,10 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// @TODO: the "from_bech32" method does not exist even though it is used in docs
 		// so need to figure out how to turn an mnemonic into a private key with this
-		const privateKey = CardanoWasm.PrivateKey.generate_ed25519();
+		const privateKey = getCip1852Account(
+			input.sign.mnemonic,
+			this.#config.get<number>("network.crypto.slip44"),
+		).to_raw_key();
 
 		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transfered back to the sender
 		const utxos: { hash: string; amount: string }[] = [
