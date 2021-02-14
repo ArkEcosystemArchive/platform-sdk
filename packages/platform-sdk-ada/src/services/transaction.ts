@@ -46,14 +46,14 @@ export class TransactionService implements Contracts.TransactionService {
 			CardanoWasm.BigNum.from_str(keyDeposit.toString()),
 		);
 
-		// @TODO: the "from_bech32" method does not exist even though it is used in docs
-		// so need to figure out how to turn an mnemonic into a private key with this
+		// Get a `Bip32PrivateKey` instance according to `CIP1852` and turn it into a `PrivateKey` instance
 		const privateKey = getCip1852Account(
 			input.sign.mnemonic,
 			this.#config.get<number>("network.crypto.slip44"),
 		).to_raw_key();
 
 		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transfered back to the sender
+		// @TODO: get all UTXO from cardano-graphql and store them here so we can consume them
 		const utxos: { hash: string; amount: string }[] = [
 			{
 				hash: "488afed67b342d41ec08561258e210352fba2ac030c98a8199bc22ec7a27ccf1",
