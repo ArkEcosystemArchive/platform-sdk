@@ -186,8 +186,11 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private async listUnspentTransactions(address: string): Promise<any> {
-		return (await this.#config.get<Contracts.HttpClient>("httpClient").post(Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival")), {
-			query: `{
+		return (
+			await this.#config
+				.get<Contracts.HttpClient>("httpClient")
+				.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival")), {
+					query: `{
 				utxos(
 				  order_by: { value: desc }
 				  where: {
@@ -203,6 +206,7 @@ export class TransactionService implements Contracts.TransactionService {
 				  value
 				}
 			  }`,
-		})).json().data.utxos;
+				})
+		).json().data.utxos;
 	}
 }
