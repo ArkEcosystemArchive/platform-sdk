@@ -30,11 +30,19 @@ export class Request extends Http.Request {
 					options.body.append(key, value);
 				}
 			}
+
+			if (this._bodyFormat === "octet") {
+				options.body = Buffer.from(data.data, "hex");
+			}
 		}
 
 		try {
 			return new Http.Response(await got[method.toLowerCase()](url.replace(/^\/+/g, ""), options));
 		} catch (error) {
+			console.log(error);
+			if (error.response) {
+				console.log(error.response);
+			}
 			return new Http.Response(error.response, error);
 		}
 	}

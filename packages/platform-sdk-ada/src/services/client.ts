@@ -88,7 +88,31 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
+		for (const transaction of transactions) {
+			try {
+				const broadcast = (
+					await this.#http
+						.bodyFormat("octet")
+						.contentType("application/octet-stream")
+						.post(`${this.#peer}/v2/proxy/transactions`, transaction.toBroadcast())
+				).json();
+				console.log(broadcast);
+
+				result.accepted.push(transaction.id());
+			} catch (error) {
+				result.rejected.push(transaction.id());
+
+				result.errors[transaction.id()] = error.message;
+			}
+		}
+
+		return result;
 	}
 
 	public async broadcastSpread(

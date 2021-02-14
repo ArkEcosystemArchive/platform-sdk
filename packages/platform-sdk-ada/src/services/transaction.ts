@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import CardanoWasm from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
@@ -53,22 +54,16 @@ export class TransactionService implements Contracts.TransactionService {
 		).to_raw_key();
 
 		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transfered back to the sender
-		// @TODO: get all UTXO from cardano-graphql and store them here so we can consume them
-		const utxos: { hash: string; amount: string }[] = [
-			{
-				hash: "488afed67b342d41ec08561258e210352fba2ac030c98a8199bc22ec7a27ccf1",
-				amount: "3000000",
-			},
-		];
+		const utxos: any = await this.listUnspentTransactions(input.from);
 
 		for (let i = 0; i < utxos.length; i++) {
 			txBuilder.add_key_input(
 				privateKey.to_public().hash(),
 				CardanoWasm.TransactionInput.new(
-					CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxos[i].hash, "hex")),
+					CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxos[i].transaction.hash, "hex")),
 					i,
 				),
-				createValue(utxos[i].amount),
+				createValue(utxos[i].value),
 			);
 		}
 
@@ -188,5 +183,26 @@ export class TransactionService implements Contracts.TransactionService {
 
 	public async estimateExpiration(value?: string): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "estimateExpiration");
+	}
+
+	private async listUnspentTransactions(address: string): Promise<any> {
+		return (await this.#config.get<Contracts.HttpClient>("httpClient").post(Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival")), {
+			query: `{
+				utxos(
+				  order_by: { value: desc }
+				  where: {
+					address: {
+					  _eq: "${address}"
+					}
+				  }
+				) {
+				  address
+				  transaction {
+					hash
+				  }
+				  value
+				}
+			  }`,
+		})).json().data.utxos;
 	}
 }

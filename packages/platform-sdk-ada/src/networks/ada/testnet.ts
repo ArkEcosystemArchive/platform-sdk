@@ -14,7 +14,8 @@ const network: Coins.CoinNetwork = {
 		slip44: 1815,
 	},
 	networking: {
-		hosts: ["http://localhost:8090"],
+		hosts: ["http://51.75.183.28:8090"],
+		hostsArchival: ["http://51.75.183.27:3100"],
 	},
 	governance: {
 		voting: {
