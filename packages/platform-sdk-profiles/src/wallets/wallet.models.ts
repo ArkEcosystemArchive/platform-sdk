@@ -63,7 +63,7 @@ export interface ReadWriteWallet {
 
 	setCoin(coin: string, network: string): Promise<ReadWriteWallet>;
 	setIdentity(mnemonic: string): Promise<ReadWriteWallet>;
-	setAddress(address: string): Promise<ReadWriteWallet>;
+	setAddress(address: string, options?: { syncIdentity: boolean; validate: boolean }): Promise<ReadWriteWallet>;
 	setAlias(alias: string): ReadWriteWallet;
 	setAvatar(value: string): ReadWriteWallet;
 
@@ -140,4 +140,9 @@ export interface ReadWriteWallet {
 	syncIdentity(): Promise<void>;
 	syncMultiSignature(): Promise<void>;
 	syncVotes(): Promise<void>;
+
+	markAsFullyRestored(): void;
+	hasBeenFullyRestored(): boolean;
+	markAsPartiallyRestored(): void;
+	hasBeenPartiallyRestored(): boolean;
 }
