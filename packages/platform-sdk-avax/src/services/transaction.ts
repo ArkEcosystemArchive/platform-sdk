@@ -94,7 +94,7 @@ export class TransactionService implements Contracts.TransactionService {
 			const signedTx = (
 				await this.#pchain.buildAddDelegatorTx(
 					utxos,
-					keyPairAddresses, // @TODO: handle unvotes
+					keyPairAddresses,
 					keyPairAddresses,
 					keyPairAddresses,
 					input.data.votes[0],
