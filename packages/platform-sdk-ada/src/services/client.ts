@@ -35,16 +35,41 @@ export class ClientService implements Contracts.ClientService {
 		id: string,
 		input?: Contracts.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		if (input?.walletId === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transaction", "query.walletId");
-		}
-
-		return new TransactionData((await this.get(`v2/wallets/${input.walletId}/transactions/${id}`)) as object);
+		const result = (await this.post("/", {
+			query: `
+				{
+					transactions(
+						where: {
+							hash: {
+								_eq: "${id}"
+							}
+						}
+					) {
+						hash
+						includedAt
+						inputs {
+							sourceTransaction {
+       					hash
+      				}
+						  value
+							address
+						}
+						outputs {
+						  index
+						  value
+							address
+						}
+						includedAt
+					}
+				}
+          `,
+		})) as any;
+		return new TransactionData(result.data.transactions[0]);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		if (query?.walletId === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transaction", "query.walletId");
+			throw new Exceptions.InvalidArguments(this.constructor.name, "transactions");
 		}
 
 		const transactions: object[] = (await this.get(`v2/wallets/${query.walletId}/transactions`)) as object[];
@@ -88,7 +113,31 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
+		for (const transaction of transactions) {
+			try {
+				const broadcast = (
+					await this.#http
+						.bodyFormat("octet")
+						.contentType("application/octet-stream")
+						.post(`${this.#peer}/v2/proxy/transactions`, transaction.toBroadcast())
+				).json();
+				console.log(broadcast);
+
+				result.accepted.push(transaction.id());
+			} catch (error) {
+				result.rejected.push(transaction.id());
+
+				result.errors[transaction.id()] = error.message;
+			}
+		}
+
+		return result;
 	}
 
 	public async broadcastSpread(
@@ -100,5 +149,9 @@ export class ClientService implements Contracts.ClientService {
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (await this.#http.get(`${this.#peer}/${path}`, query)).json();
+	}
+
+	private async post(path: string, body: object): Promise<Contracts.KeyValuePair> {
+		return (await this.#http.post(`${this.#peer}/${path}`, body)).json();
 	}
 }

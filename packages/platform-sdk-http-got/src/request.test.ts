@@ -104,6 +104,28 @@ describe("Request", () => {
 		expect(response.json()).toEqual(responseBody);
 	});
 
+	it("should post with octet", async () => {
+		const responseBody = {
+			args: {},
+			data: '{"key":"value"}',
+			files: {},
+			form: {
+				key: "value",
+			},
+			json: {},
+			origin: "87.95.132.111,10.100.91.201",
+			url: "http://httpbin.org/post",
+		};
+
+		nock("http://httpbin.org/").post("/post").reply(200, responseBody);
+
+		const response = await subject
+			.bodyFormat("octet")
+			.post("http://httpbin.org/post", Buffer.from(JSON.stringify({ key: "value" })));
+
+		expect(response.json()).toEqual(responseBody);
+	});
+
 	it("should handle 404s", async () => {
 		nock("http://httpbin.org/").get("/get").reply(404);
 

@@ -13,7 +13,7 @@ const network: Coins.CoinNetwork = {
 		networkId: "0",
 	},
 	networking: {
-		hosts: ["http://localhost:8090"],
+		hosts: ["http://51.75.183.27:3100"],
 	},
 	governance: {
 		voting: {
