@@ -58,25 +58,14 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		/*
-		 * TODO
-		 *  OMG. Not very proud of this. I couldn't find any other way to determine
-		 *  the actually spent amount. So I'm guessing the last one of the outputs
-		 *  will be the change (of course this is not necessarily true).
-		 *  I'm out of ideas for the day
-		 */
 		const totalInput = this.data.inputs
 			.map((input: Contracts.KeyValuePair) => BigNumber.make(input.value))
 			.reduce((a, b) => a.plus(b), BigNumber.ZERO);
-		// console.log("totalInput", totalInput.toString());
 
 		const changeOutput =
 			this.data.outputs <= 1
 				? BigNumber.ZERO
-				: BigNumber.make(
-						this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value,
-				  );
-		// console.log("changeOutput", changeOutput.toString());
+				: BigNumber.make(this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value);
 
 		return totalInput.minus(changeOutput).minus(this.fee());
 	}
