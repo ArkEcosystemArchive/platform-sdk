@@ -30,6 +30,10 @@ export class Request extends Http.Request {
 					options.body.append(key, value);
 				}
 			}
+
+			if (this._bodyFormat === "octet") {
+				options.body = Buffer.from(data.data, "hex");
+			}
 		}
 
 		try {
