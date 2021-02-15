@@ -3,7 +3,7 @@ import "jest-extended";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
-import { SignedTransactionData, TransactionData, WalletData } from "../dto";
+import { SignedTransactionData, TransactionData, ValidatorData, WalletData } from "../dto";
 import { ClientService } from "./client";
 
 let subject: ClientService;
@@ -72,7 +72,7 @@ describe("ClientService", function () {
 
 			const result = await subject.delegate("cc001");
 
-			expect(result).toBeInstanceOf(WalletData);
+			expect(result).toBeInstanceOf(ValidatorData);
 		});
 	});
 
@@ -86,7 +86,7 @@ describe("ClientService", function () {
 			const result = await subject.delegates();
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(WalletData);
+			expect(result.items()[0]).toBeInstanceOf(ValidatorData);
 		});
 	});
 
