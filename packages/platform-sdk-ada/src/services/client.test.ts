@@ -18,7 +18,7 @@ beforeAll(() => nock.disableNetConnect());
 
 describe("ClientService", function () {
 	it("#wallet should succeed", async () => {
-		nock("http://51.75.183.27:3100")
+		nock(/.+/)
 			.get("/v2/wallets/98c83431e94407bc0889e09953461fe5cecfdf18")
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
@@ -30,7 +30,7 @@ describe("ClientService", function () {
 	});
 
 	it("#transactions", async () => {
-		nock("http://51.75.183.27:3100")
+		nock(/.+/)
 			.get("/v2/wallets/98c83431e94407bc0889e09953461fe5cecfdf18/transactions")
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
@@ -44,7 +44,7 @@ describe("ClientService", function () {
 	});
 
 	it("#transaction", async () => {
-		nock("http://51.75.183.27:3100")
+		nock(/.+/)
 			.post(/.*/)
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction.json`));
 
