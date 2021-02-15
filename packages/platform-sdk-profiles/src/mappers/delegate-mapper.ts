@@ -15,7 +15,7 @@ export class DelegateMapper {
 				try {
 					const delegate = container
 						.get<DelegateService>(Identifiers.DelegateService)
-						.findByPublicKey(wallet.coinId(), wallet.networkId(), publicKey);
+						.findById(wallet.coinId(), wallet.networkId(), publicKey);
 
 					return new ReadOnlyWallet({
 						address: delegate.address(),

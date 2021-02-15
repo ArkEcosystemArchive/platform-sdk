@@ -23,12 +23,8 @@ export class DelegateService {
 		return result.map((delegate) => this.mapDelegate(delegate));
 	}
 
-	public findByAddress(coin: string, network: string, address: string): ReadOnlyWallet {
-		return this.findDelegateByAttribute(coin, network, "address", address);
-	}
-
-	public findByPublicKey(coin: string, network: string, publicKey: string): ReadOnlyWallet {
-		return this.findDelegateByAttribute(coin, network, "publicKey", publicKey);
+	public findById(coin: string, network: string, address: string): ReadOnlyWallet {
+		return this.findDelegateByAttribute(coin, network, "id", address);
 	}
 
 	public async sync(coin: string, network: string): Promise<void> {

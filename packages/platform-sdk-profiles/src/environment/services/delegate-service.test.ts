@@ -51,21 +51,15 @@ describe("DelegateService", () => {
 		expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
 	});
 
-	it("#findByAddress", async () => {
-		await subject.syncAll();
-		expect(subject.findByAddress("ARK", "ark.devnet", "DSyG9hK9CE8eyfddUoEvsga4kNVQLdw2ve")).toBeTruthy();
-		expect(() => subject.findByAddress("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
-	});
-
 	it("#findByPublicKey", async () => {
 		await subject.syncAll();
 		expect(
-			subject.findByPublicKey(
+			subject.findById(
 				"ARK",
 				"ark.devnet",
 				"033a5474f68f92f254691e93c06a2f22efaf7d66b543a53efcece021819653a200",
 			),
 		).toBeTruthy();
-		expect(() => subject.findByPublicKey("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
+		expect(() => subject.findById("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
 	});
 });
