@@ -18,7 +18,7 @@ beforeAll(() => nock.disableNetConnect());
 
 jest.setTimeout(10000);
 
-describe("Core", () => {
+describe("TransactionService", () => {
 	it("#transfer", async () => {
 		nock(/.+/)
 			.post("/")
