@@ -84,7 +84,7 @@ export class ClientService implements Contracts.ClientService {
 		const result = await this.get("delegates", this.createSearchParams({ limit: 101, ...query }));
 
 		return new Coins.ValidatorDataCollection(
-			result.data.map((wallet) => new WalletData(wallet)),
+			result.data.map((wallet) => new ValidatorData(wallet)),
 			this.createPagination(result.data, result.meta),
 		);
 	}
