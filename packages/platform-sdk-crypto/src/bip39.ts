@@ -1,4 +1,4 @@
-import { generateMnemonic, mnemonicToSeedSync, validateMnemonic, wordlists } from "bip39";
+import { generateMnemonic, mnemonicToEntropy, mnemonicToSeedSync, validateMnemonic, wordlists } from "bip39";
 
 export class BIP39 {
 	public static generate(locale = "english"): string {
@@ -11,6 +11,10 @@ export class BIP39 {
 
 	public static toSeed(mnemonic: string): Buffer {
 		return mnemonicToSeedSync(BIP39.normalize(mnemonic));
+	}
+
+	public static toEntropy(mnemonic: string): string {
+		return mnemonicToEntropy(BIP39.normalize(mnemonic));
 	}
 
 	public static normalize(mnemonic: string): string {
