@@ -23,8 +23,7 @@
 		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
 		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
 		"@emurgo/cardano-serialization-lib-nodejs": "^6.0.0",
-		"cardano-crypto.js": "^6.0.0",
-		"noble-ed25519": "^1.0.3"
+		"cardano-crypto.js": "^6.0.0"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
