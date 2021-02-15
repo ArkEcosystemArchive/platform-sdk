@@ -7,6 +7,10 @@ export class ValidatorData extends DTO.AbstractValidatorData implements Contract
 		return this.data.nodeID;
 	}
 
+	public alias(): string {
+		return this.id();
+	}
+
 	public rank(): number {
 		return 0;
 	}

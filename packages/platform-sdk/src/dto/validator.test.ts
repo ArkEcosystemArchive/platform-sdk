@@ -9,6 +9,10 @@ test("#id", () => {
 	expect(new Validator({ key: "value" }).id()).toBeString();
 });
 
+test("#alias", () => {
+	expect(new Validator({ key: "value" }).alias()).toBeString();
+});
+
 test("#rank", () => {
 	expect(new Validator({ key: "value" }).rank()).toBeNumber();
 });
@@ -45,6 +49,10 @@ test("#toObject", () => {
 class Validator extends AbstractValidatorData {
 	public id(): string {
 		return "public-key";
+	}
+
+	public alias(): string {
+		return "alias";
 	}
 
 	public rank(): number {

@@ -8,6 +8,8 @@ export abstract class AbstractValidatorData {
 
 	abstract id(): string;
 
+	abstract alias(): string;
+
 	abstract rank(): number;
 
 	abstract stake(): BigNumber | undefined;

@@ -8,6 +8,10 @@ export class ValidatorData extends DTO.AbstractValidatorData implements Contract
 		return this.data.publicKey;
 	}
 
+	public alias(): string {
+		return this.data.username;
+	}
+
 	public rank(): number {
 		return this.getProperty(["rank", "attributes.delegate.rank"]) || 0;
 	}

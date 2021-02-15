@@ -7,6 +7,10 @@ export class ValidatorData extends DTO.AbstractValidatorData implements Contract
 		return this.data.publicKey || this.data.account?.publicKey;
 	}
 
+	public alias(): string {
+		return this.data.username || this.data.delegate?.username;
+	}
+
 	public rank(): number {
 		return this.data.rank || this.data.delegate?.rank;
 	}

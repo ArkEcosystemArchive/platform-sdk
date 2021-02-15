@@ -391,6 +391,8 @@ export interface SignedTransactionData {
 export interface ValidatorData {
 	id(): string;
 
+	alias(): string;
+
 	rank(): number;
 
 	stake(): BigNumber | undefined;
