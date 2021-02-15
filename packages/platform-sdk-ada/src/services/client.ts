@@ -79,9 +79,9 @@ export class ClientService implements Contracts.ClientService {
 
 		const { usedSpendAddresses, usedChangeAddresses } = await this.usedAddressesForAccount(query?.walletId);
 
-		const transactions = await this.fetchTransactions(
+		const transactions = (await this.fetchTransactions(
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
-		) as any;
+		)) as any;
 
 		return Helpers.createTransactionDataCollectionWithType(
 			transactions,
