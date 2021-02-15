@@ -254,6 +254,7 @@ __metadata:
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
+    "@arkecosystem/utils": ^1.2.1
     "@ledgerhq/hw-transport-mocker": ^5.29.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/dot-prop": 5.0.1

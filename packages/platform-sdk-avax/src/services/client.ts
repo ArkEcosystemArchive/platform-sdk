@@ -1,18 +1,22 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
+import { uniq } from "@arkecosystem/utils";
 import { AVMAPI, Tx } from "avalanche/dist/apis/avm";
+import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
 
 import { TransactionData, WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
-import { cb58Decode, useXChain } from "./helpers";
+import { cb58Decode, usePChain, useXChain } from "./helpers";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
-	readonly #chain: AVMAPI;
+	readonly #xchain: AVMAPI;
+	readonly #pchain: PlatformVMAPI;
 
 	private constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#chain = useXChain(config);
+		this.#xchain = useXChain(config);
+		this.#pchain = usePChain(config);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -28,7 +32,7 @@ export class ClientService implements Contracts.ClientService {
 		input?: Contracts.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
 		const transaction = new Tx();
-		transaction.fromString(await this.#chain.getTx(id));
+		transaction.fromString(await this.#xchain.getTx(id));
 
 		const unsignedTransaction = transaction.getUnsignedTx();
 		const baseTransaction = unsignedTransaction.getTransaction();
@@ -64,7 +68,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { balance }: any = await this.#chain.getBalance(id, this.#config.get("network.crypto.assetId"));
+		const { balance }: any = await this.#xchain.getBalance(id, this.#config.get("network.crypto.assetId"));
 
 		return new WalletData({
 			address: id,
@@ -81,7 +85,16 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
+		const validators: string[] = await this.#pchain.sampleValidators(10000);
+
+		return new Coins.WalletDataCollection(
+			uniq(validators).map((validator: string) => new WalletData({ address: validator, balance: 0 })),
+			{
+				prev: undefined,
+				self: undefined,
+				next: undefined,
+			},
+		);
 	}
 
 	public async votes(id: string): Promise<Contracts.VoteReport> {
@@ -107,7 +120,7 @@ export class ClientService implements Contracts.ClientService {
 			try {
 				// @TODO: this is the real ID that will be used but we somehow need to find
 				// out this ID before we broadcast it
-				result.accepted.push(await this.#chain.issueTx(transaction.toBroadcast()));
+				result.accepted.push(await this.#xchain.issueTx(transaction.toBroadcast()));
 			} catch (error) {
 				result.rejected.push(transaction.id());
 

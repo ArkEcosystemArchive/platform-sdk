@@ -633,6 +633,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
+            ["@arkecosystem/utils", "npm:1.2.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/dot-prop", "npm:5.0.1"],
