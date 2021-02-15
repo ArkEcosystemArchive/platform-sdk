@@ -400,4 +400,6 @@ export interface ValidatorData {
 	startTime(): DateTime | undefined;
 
 	endTime(): DateTime | undefined;
+
+	toObject(): KeyValuePair;
 }
