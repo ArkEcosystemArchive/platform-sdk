@@ -34,7 +34,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		if (input.mnemonic === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "input.mnemonic");
+			throw new Exceptions.MissingArgument(this.constructor.name, "verify", "input.mnemonic");
 		}
 
 		return keyPairFromMnemonic(this.#config, input.mnemonic).verify(

@@ -11,6 +11,7 @@ const network: Coins.CoinNetwork = {
 	},
 	crypto: {
 		networkId: "1",
+		slip44: 1815,
 	},
 	networking: {
 		hosts: [],
@@ -43,6 +44,13 @@ const network: Coins.CoinNetwork = {
 				privateKey: true,
 			},
 		},
+	},
+	meta: {
+		minFeeA: 44,
+		minFeeB: 155381,
+		minUTxOValue: 1000000,
+		poolDeposit: 500000000,
+		keyDeposit: 2000000,
 	},
 };
 

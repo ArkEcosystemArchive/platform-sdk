@@ -69,7 +69,7 @@ export class ClientService implements Contracts.ClientService {
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		if (query?.walletId === undefined) {
-			throw new Exceptions.InvalidArguments(this.constructor.name, "transactions");
+			throw new Exceptions.MissingArgument(this.constructor.name, "transaction", "walletId");
 		}
 
 		const transactions: object[] = (await this.get(`v2/wallets/${query.walletId}/transactions`)) as object[];

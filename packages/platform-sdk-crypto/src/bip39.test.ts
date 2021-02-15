@@ -46,12 +46,6 @@ test("#toSeed", async () => {
 
 test("#toEntropy", async () => {
 	expect(BIP39.toEntropy(english)).toBeString();
-	expect(BIP39.toEntropy(japanese)).toBeString();
-	expect(BIP39.toEntropy(korean)).toBeString();
-	expect(BIP39.toEntropy(chinese_simplified)).toBeString();
-	expect(BIP39.toEntropy(chinese_traditional)).toBeString();
-	expect(BIP39.toEntropy(french)).toBeString();
-	expect(BIP39.toEntropy(random)).toBeString();
 });
 
 test("#normalize", async () => {

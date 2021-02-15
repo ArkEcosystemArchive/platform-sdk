@@ -11,9 +11,11 @@ const network: Coins.CoinNetwork = {
 	},
 	crypto: {
 		networkId: "0",
+		slip44: 1815,
 	},
 	networking: {
-		hosts: ["http://51.75.183.27:3100"],
+		hosts: ["http://51.75.183.28:8090"],
+		hostsArchival: ["http://51.75.183.27:3100"],
 	},
 	governance: {
 		voting: {
@@ -42,6 +44,13 @@ const network: Coins.CoinNetwork = {
 				mnemonic: true,
 			},
 		},
+	},
+	meta: {
+		minFeeA: 44,
+		minFeeB: 155381,
+		minUTxOValue: 1000000,
+		poolDeposit: 500000000,
+		keyDeposit: 2000000,
 	},
 };
 

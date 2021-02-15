@@ -116,6 +116,7 @@ __metadata:
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
+    "@emurgo/cardano-serialization-lib-nodejs": ^6.0.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.4
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -1890,6 +1891,13 @@ __metadata:
     pump: ^3.0.0
     secure-json-parse: ^2.1.0
   checksum: 2/197801d015e57501b1953ad5cded7c138c74087feb1df93111084ee7730563e86a22db0a8f184d19fa4dfbf39e2b4da16dbff18a2c33e2c87be3140c2fe79add
+  languageName: node
+  linkType: hard
+
+"@emurgo/cardano-serialization-lib-nodejs@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@emurgo/cardano-serialization-lib-nodejs@npm:6.0.0"
+  checksum: 2/fc6e5bfc420277d347777804df378ddc9b6f167b01f662d7287c2d6f1c249ed3576e04c511a58c6a6e909e25e4d0475ba46a4356dba24b58a27c47eb34f849bd
   languageName: node
   linkType: hard
 

@@ -1,3 +1,5 @@
+import { KeyValuePair } from "../contracts";
+
 export interface CoinNetwork {
 	id: string;
 	type: string;
@@ -115,4 +117,5 @@ export interface CoinNetwork {
 		};
 	};
 	knownWallets?: string;
+	meta?: KeyValuePair;
 }
