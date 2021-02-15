@@ -28,10 +28,6 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "sign.mnemonic");
 		}
 
-		if (input.data.expiration === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "data.expiration");
-		}
-
 		const { minFeeA, minFeeB, minUTxOValue, poolDeposit, keyDeposit } = this.#config.get<Contracts.KeyValuePair>(
 			"network.meta",
 		);
@@ -76,7 +72,11 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 
 		// This is the expiration slot which should be estimated with #estimateExpiration
-		txBuilder.set_ttl(input.data.expiration);
+		if (input.data.expiration === undefined) {
+			txBuilder.set_ttl(parseInt(await this.estimateExpiration()));
+		} else {
+			txBuilder.set_ttl(input.data.expiration);
+		}
 
 		// calculate the min fee required and send any change to an address
 		txBuilder.add_change_if_needed(CardanoWasm.Address.from_bech32(input.from));
@@ -182,14 +182,18 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public async estimateExpiration(value?: string): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "estimateExpiration");
+		return (
+			await this.#config
+				.get<Contracts.HttpClient>("httpClient")
+				.post(this.host(), { query: `{ cardano { tip { slotNo } } }` })
+		).json().data.cardano.tip.slotNo + parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 	}
 
 	private async listUnspentTransactions(address: string): Promise<any> {
 		return (
 			await this.#config
 				.get<Contracts.HttpClient>("httpClient")
-				.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival")), {
+				.post(this.host(), {
 					query: `{
 				utxos(
 				  order_by: { value: desc }
@@ -209,4 +213,6 @@ export class TransactionService implements Contracts.TransactionService {
 				})
 		).json().data.utxos;
 	}
+
+	private host(): string { return Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival")); }
 }
