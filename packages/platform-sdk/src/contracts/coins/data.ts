@@ -387,3 +387,15 @@ export interface SignedTransactionData {
 	toBroadcast(): any;
 	toObject(): { id: string; sender: string; recipient: string; amount: string; data: any };
 }
+
+export interface ValidatorData {
+	id(): string;
+
+	rank(): number;
+
+	stake(): BigNumber | undefined;
+
+	startTime(): DateTime | undefined;
+
+	endTime(): DateTime | undefined;
+}

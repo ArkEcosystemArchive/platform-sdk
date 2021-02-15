@@ -98,9 +98,9 @@ export class TransactionService implements Contracts.TransactionService {
 					keyPairAddresses,
 					keyPairAddresses,
 					input.data.votes[0],
-					"START-TIME",
-					"END-TIME",
-					"STAKE-AMOUNT",
+					"START-TIME", // @TODO: we need to grab this from a Validator DTO or alike
+					"END-TIME", // @TODO: we need to grab this from a Validator DTO or alike
+					"STAKE-AMOUNT", // @TODO: we need to grab this from a Validator DTO or alike
 					keyPairAddresses,
 				)
 			).sign(this.#keychain);

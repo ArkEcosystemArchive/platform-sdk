@@ -1,7 +1,7 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
-import { WalletData } from "../dto";
+import { ValidatorData, WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
@@ -74,16 +74,16 @@ export class ClientService implements Contracts.ClientService {
 		);
 	}
 
-	public async delegate(id: string): Promise<Contracts.WalletData> {
+	public async delegate(id: string): Promise<Contracts.ValidatorData> {
 		const result = await this.get("delegates", { username: id });
 
-		return new WalletData(result.data[0]);
+		return new ValidatorData(result.data[0]);
 	}
 
-	public async delegates(query?: any): Promise<Coins.WalletDataCollection> {
+	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.ValidatorDataCollection> {
 		const result = await this.get("delegates", this.createSearchParams({ limit: 101, ...query }));
 
-		return new Coins.WalletDataCollection(
+		return new Coins.ValidatorDataCollection(
 			result.data.map((wallet) => new WalletData(wallet)),
 			this.createPagination(result.data, result.meta),
 		);

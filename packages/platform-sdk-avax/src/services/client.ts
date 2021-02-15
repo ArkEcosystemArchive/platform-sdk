@@ -1,10 +1,9 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import { uniq } from "@arkecosystem/utils";
 import { AVMAPI, Tx } from "avalanche/dist/apis/avm";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
 
-import { TransactionData, WalletData } from "../dto";
+import { TransactionData, ValidatorData, WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 import { cb58Decode, usePChain, useXChain } from "./helpers";
 
@@ -80,15 +79,16 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
-	public async delegate(id: string): Promise<Contracts.WalletData> {
+	public async delegate(id: string): Promise<Contracts.ValidatorData> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
 	}
 
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		const validators: string[] = await this.#pchain.sampleValidators(10000);
+	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.ValidatorDataCollection> {
+		const { validators }: any = await this.#pchain.getCurrentValidators();
 
-		return new Coins.WalletDataCollection(
-			uniq(validators).map((validator: string) => new WalletData({ address: validator, balance: 0 })),
+		return new Coins.ValidatorDataCollection(
+			// @ts-ignore
+			Object.values(validators).map((validator: object) => new ValidatorData(validator)),
 			{
 				prev: undefined,
 				self: undefined,

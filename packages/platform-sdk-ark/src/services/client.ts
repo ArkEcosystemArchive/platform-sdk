@@ -2,7 +2,7 @@ import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import dotify from "node-dotify";
 
-import { WalletData } from "../dto";
+import { ValidatorData, WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
@@ -62,16 +62,16 @@ export class ClientService implements Contracts.ClientService {
 		);
 	}
 
-	public async delegate(id: string): Promise<Contracts.WalletData> {
+	public async delegate(id: string): Promise<Contracts.ValidatorData> {
 		const body = await this.get(`delegates/${id}`);
 
-		return new WalletData(body.data);
+		return new ValidatorData(body.data);
 	}
 
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
+	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.ValidatorDataCollection> {
 		const body = await this.get("delegates", this.createSearchParams(query || {}));
 
-		return new Coins.WalletDataCollection(
+		return new Coins.ValidatorDataCollection(
 			body.data.map((wallet) => new WalletData(wallet)),
 			this.createMetaPagination(body),
 		);

@@ -27,7 +27,7 @@ describe("ClientService", function () {
 
 	describe("#delegates", () => {
 		it("should succeed", async () => {
-			await expect(subject.delegates()).resolves.toBeInstanceOf(Coins.WalletDataCollection);
+			await expect(subject.delegates()).resolves.toBeInstanceOf(Coins.ValidatorDataCollection);
 		});
 	});
 });

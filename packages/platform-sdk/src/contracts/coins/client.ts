@@ -1,6 +1,6 @@
-import { TransactionDataCollection, WalletDataCollection } from "../../coins";
+import { TransactionDataCollection, ValidatorDataCollection, WalletDataCollection } from "../../coins";
 import { KeyValuePair } from "../types";
-import { SignedTransactionData, TransactionDataType, WalletData } from "./data";
+import { SignedTransactionData, TransactionDataType, ValidatorData, WalletData } from "./data";
 
 export type ClientPaginatorCursor = string | number | undefined;
 
@@ -25,8 +25,8 @@ export interface ClientService {
 	wallet(id: string): Promise<WalletData>;
 	wallets(query: ClientWalletsInput): Promise<WalletDataCollection>;
 
-	delegate(id: string): Promise<WalletData>;
-	delegates(query?: ClientWalletsInput): Promise<WalletDataCollection>;
+	delegate(id: string): Promise<ValidatorData>;
+	delegates(query?: ClientWalletsInput): Promise<ValidatorDataCollection>;
 
 	votes(id: string): Promise<VoteReport>;
 	// TODO: return struct like VoteReport

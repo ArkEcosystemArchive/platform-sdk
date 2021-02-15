@@ -69,11 +69,11 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
 	}
 
-	public async delegate(id: string): Promise<Contracts.WalletData> {
+	public async delegate(id: string): Promise<Contracts.ValidatorData> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
 	}
 
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
+	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.ValidatorDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
 	}
 
