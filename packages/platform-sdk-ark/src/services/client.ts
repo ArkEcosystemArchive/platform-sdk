@@ -72,7 +72,7 @@ export class ClientService implements Contracts.ClientService {
 		const body = await this.get("delegates", this.createSearchParams(query || {}));
 
 		return new Coins.ValidatorDataCollection(
-			body.data.map((wallet) => new WalletData(wallet)),
+			body.data.map((wallet) => new ValidatorData(wallet)),
 			this.createMetaPagination(body),
 		);
 	}
