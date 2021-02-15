@@ -85,13 +85,13 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isSent(): boolean {
-		// FIXME Need to find a way to determine this
-		return this.data.direction === "outgoing";
+		// @TODO: Need to find a way to determine this
+		return false;
 	}
 
 	public isReceived(): boolean {
-		// FIXME Need to find a way to determine this
-		return this.data.direction === "incoming";
+		// @TODO: Need to find a way to determine this
+		return false;
 	}
 
 	public isTransfer(): boolean {
