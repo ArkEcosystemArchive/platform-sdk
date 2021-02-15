@@ -489,6 +489,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
+            ["@emurgo/cardano-serialization-lib-nodejs", "npm:6.0.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.4"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -632,6 +633,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
+            ["@arkecosystem/utils", "npm:1.2.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/dot-prop", "npm:5.0.1"],
@@ -2334,6 +2336,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ms", "npm:2.1.2"],
             ["pump", "npm:3.0.0"],
             ["secure-json-parse", "npm:2.3.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@emurgo/cardano-serialization-lib-nodejs", [
+        ["npm:6.0.0", {
+          "packageLocation": "./.yarn/cache/@emurgo-cardano-serialization-lib-nodejs-npm-6.0.0-2b2031a8d3-2.zip/node_modules/@emurgo/cardano-serialization-lib-nodejs/",
+          "packageDependencies": [
+            ["@emurgo/cardano-serialization-lib-nodejs", "npm:6.0.0"]
           ],
           "linkType": "HARD",
         }]

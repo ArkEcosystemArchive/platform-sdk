@@ -58,17 +58,9 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		/*
-		 * TODO
-		 *  OMG. Not very proud of this. I couldn't find any other way to determine
-		 *  the actually spent amount. So I'm guessing the last one of the outputs
-		 *  will be the change (of course this is not necessarily true).
-		 *  I'm out of ideas for the day
-		 */
 		const totalInput = this.data.inputs
 			.map((input: Contracts.KeyValuePair) => BigNumber.make(input.value))
 			.reduce((a, b) => a.plus(b), BigNumber.ZERO);
-		// console.log("totalInput", totalInput.toString());
 
 		const changeOutput =
 			this.data.outputs <= 1
@@ -76,7 +68,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 				: BigNumber.make(
 						this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value,
 				  );
-		// console.log("changeOutput", changeOutput.toString());
 
 		return totalInput.minus(changeOutput).minus(this.fee());
 	}
@@ -94,13 +85,13 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isSent(): boolean {
-		// FIXME Need to find a way to determine this
-		return this.data.direction === "outgoing";
+		// @TODO: Need to find a way to determine this
+		return false;
 	}
 
 	public isReceived(): boolean {
-		// FIXME Need to find a way to determine this
-		return this.data.direction === "incoming";
+		// @TODO: Need to find a way to determine this
+		return false;
 	}
 
 	public isTransfer(): boolean {

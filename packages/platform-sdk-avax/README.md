@@ -1,4 +1,4 @@
-# ARK Platform SDK - ARK
+# ARK Platform SDK - Avalanche
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-avax/banner.png" />

@@ -5,9 +5,9 @@ import { DTO } from "@arkecosystem/platform-sdk";
 import Fixture from "../../test/fixtures/client/transaction.json";
 import { TransactionData } from "./transaction";
 
-describe("TransactionData", function () {
-	const subject = new TransactionData(Fixture);
+const subject = new TransactionData(Fixture.data.transactions[0]);
 
+describe("TransactionData", function () {
 	it("#id", () => {
 		expect(subject.id()).toEqual("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d");
 	});
@@ -91,7 +91,7 @@ describe("TransactionData", function () {
 	});
 
 	it("#isSent", () => {
-		expect(subject.isSent()).toBeTrue();
+		expect(subject.isSent()).toBeFalse();
 	});
 
 	it("#isReceived", () => {

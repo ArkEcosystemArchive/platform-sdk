@@ -44,6 +44,10 @@ test("#toSeed", async () => {
 	expect(BIP39.toSeed(random)).toBeInstanceOf(Buffer);
 });
 
+test("#toEntropy", async () => {
+	expect(BIP39.toEntropy(english)).toBeString();
+});
+
 test("#normalize", async () => {
 	expect(BIP39.normalize(english)).toBe(english);
 	expect(BIP39.normalize(japanese)).toBe(japanese);

@@ -18,7 +18,7 @@ export class MessageService implements Contracts.MessageService {
 			return {
 				message: input.message,
 				signatory: walletSecret.slice(64, 96).toString("hex"),
-				signature: sign(new Buffer(input.message), walletSecret).toString("hex"),
+				signature: sign(Buffer.from(input.message, "utf8"), walletSecret).toString("hex"),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

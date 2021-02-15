@@ -1,3 +1,5 @@
+import { Coins } from "@arkecosystem/platform-sdk";
+
 import { createConfig } from "../../test/helpers";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
@@ -20,6 +22,12 @@ describe("ClientService", function () {
 			const result = await subject.wallet("X-fuji1my5kqjufcshudkzu4xdt5rlqk99j9nwseclkwq");
 
 			expect(result).toBeInstanceOf(WalletData);
+		});
+	});
+
+	describe("#delegates", () => {
+		it("should succeed", async () => {
+			await expect(subject.delegates()).resolves.toBeInstanceOf(Coins.WalletDataCollection);
 		});
 	});
 });
