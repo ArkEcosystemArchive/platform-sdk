@@ -58,6 +58,16 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.VoteInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
+		if (input.data.votes !== undefined) {
+			// @ts-ignore
+			input.data.votes = input.data.votes.map((validator: Contracts.ValidatorData) => validator.id());
+		}
+
+		if (input.data.unvotes !== undefined) {
+			// @ts-ignore
+			input.data.unvotes = input.data.unvotes.map((validator: Contracts.ValidatorData) => validator.id());
+		}
+
 		return this.createFromData("castVotes", input);
 	}
 

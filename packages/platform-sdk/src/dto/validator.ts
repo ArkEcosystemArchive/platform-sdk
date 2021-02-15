@@ -12,6 +12,8 @@ export abstract class AbstractValidatorData {
 
 	abstract stake(): BigNumber | undefined;
 
+	abstract delegationFee(): BigNumber | undefined;
+
 	abstract startTime(): DateTime | undefined;
 
 	abstract endTime(): DateTime | undefined;

@@ -15,6 +15,10 @@ export class ValidatorData extends DTO.AbstractValidatorData implements Contract
 		return BigNumber.make(this.data.stakeAmount);
 	}
 
+	public delegationFee(): BigNumber | undefined {
+		return BigNumber.make(this.data.delegationFee);
+	}
+
 	public startTime(): DateTime | undefined {
 		return DateTime.make(this.data.startTime);
 	}

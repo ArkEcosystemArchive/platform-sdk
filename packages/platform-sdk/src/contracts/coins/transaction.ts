@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import { RawTransactionData, SignedTransactionData, ValidatorData } from "./data";
 
 export interface TransactionService {
@@ -74,7 +75,7 @@ export interface DelegateRegistrationInput extends TransactionInput {
 }
 
 export interface VoteInput extends TransactionInput {
-	data: { votes: ValidatorData[]; unvotes: ValidatorData[] };
+	data: { votes: ValidatorData[]; unvotes: ValidatorData[]; stake?: BigNumber };
 }
 
 export interface MultiSignatureInput extends TransactionInput {

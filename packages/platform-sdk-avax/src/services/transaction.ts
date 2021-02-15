@@ -84,6 +84,10 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, "vote", "input.sign.mnemonic");
 		}
 
+		if (input.data.stake === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "vote", "input.data.stake");
+		}
+
 		try {
 			const keyPair = this.#keychain.importKey(
 				keyPairFromMnemonic(this.#config, input.sign.mnemonic).getPrivateKey(),
@@ -91,17 +95,20 @@ export class TransactionService implements Contracts.TransactionService {
 			const keyPairAddresses = this.#keychain.getAddressStrings();
 			const { utxos } = await this.#pchain.getUTXOs(keyPair.getAddressString());
 
+			const vote: Contracts.ValidatorData = input.data.votes[0];
+
 			const signedTx = (
 				await this.#pchain.buildAddDelegatorTx(
-					utxos,
-					keyPairAddresses,
-					keyPairAddresses,
-					keyPairAddresses,
-					input.data.votes[0],
-					"START-TIME", // @TODO: we need to grab this from a Validator DTO or alike
-					"END-TIME", // @TODO: we need to grab this from a Validator DTO or alike
-					"STAKE-AMOUNT", // @TODO: we need to grab this from a Validator DTO or alike
-					keyPairAddresses,
+					utxos, // utxoset
+					keyPairAddresses, // toAddresses
+					keyPairAddresses, // fromAddresses
+					keyPairAddresses, // changeAddresses
+					vote.id(), // nodeID
+					vote.startTime(), // startTime
+					vote.endTime(), // endTime
+					input.data.stake.toString(), // stakeAmount
+					keyPairAddresses, // rewardAddresses
+					vote.delegationFee(), // delegationFee
 				)
 			).sign(this.#keychain);
 

@@ -395,6 +395,8 @@ export interface ValidatorData {
 
 	stake(): BigNumber | undefined;
 
+	delegationFee(): BigNumber | undefined;
+
 	startTime(): DateTime | undefined;
 
 	endTime(): DateTime | undefined;
