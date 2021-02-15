@@ -171,7 +171,7 @@ export class ClientService implements Contracts.ClientService {
 		const usedChangeAddresses: Set<string> = new Set<string>();
 
 		let offset = 0;
-		let exhausted: boolean = false;
+		let exhausted = false;
 		do {
 			const spendAddresses: string[] = await this.addressesChunk(id, false, offset);
 			const changeAddresses: string[] = await this.addressesChunk(id, true, offset);
