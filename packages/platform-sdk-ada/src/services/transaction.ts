@@ -184,7 +184,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public async estimateExpiration(value?: string): Promise<string> {
 		return (
 			await this.post(`{ cardano { tip { slotNo } } }`)
-		).data.cardano.tip.slotNo + parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
+		).cardano.tip.slotNo + parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 	}
 
 	private async listUnspentTransactions(address: string): Promise<any> {
@@ -204,12 +204,12 @@ export class TransactionService implements Contracts.TransactionService {
 				  value
 				}
 			  }`,
-		)).data.utxos;
+		)).utxos;
 	}
 
 	private async post(query: string): Promise<Record<string, any>> {
 		return (await this.#config
 			.get<Contracts.HttpClient>("httpClient")
 			.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival")), { query })
-	).json(); }
+	).json().data; }
 }
