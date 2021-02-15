@@ -31,10 +31,6 @@ export class DelegateService {
 		return this.findDelegateByAttribute(coin, network, "publicKey", publicKey);
 	}
 
-	public findByUsername(coin: string, network: string, username: string): ReadOnlyWallet {
-		return this.findDelegateByAttribute(coin, network, "username", username);
-	}
-
 	public async sync(coin: string, network: string): Promise<void> {
 		const instance: Coins.Coin = await makeCoin(coin, network);
 		const instanceKey = `${coin}.${network}.delegates`;

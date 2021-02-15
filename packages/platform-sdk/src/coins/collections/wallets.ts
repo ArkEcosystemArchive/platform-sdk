@@ -10,10 +10,6 @@ export class WalletDataCollection extends Paginator<WalletData> {
 		return this.find("publicKey", publicKey);
 	}
 
-	public findByUsername(username: string): WalletData | undefined {
-		return this.find("username", username);
-	}
-
 	private find(key: string, value: string): WalletData | undefined {
 		return this.items().find((wallet: WalletData) => wallet[key]() === value);
 	}

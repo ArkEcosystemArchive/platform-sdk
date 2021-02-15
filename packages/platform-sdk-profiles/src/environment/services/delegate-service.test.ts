@@ -68,10 +68,4 @@ describe("DelegateService", () => {
 		).toBeTruthy();
 		expect(() => subject.findByPublicKey("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
 	});
-
-	it("#findByUsername", async () => {
-		await subject.syncAll();
-		expect(subject.findByUsername("ARK", "ark.devnet", "alessio")).toBeTruthy();
-		expect(() => subject.findByUsername("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
-	});
 });

@@ -38,13 +38,3 @@ test("#findByPublicKey", () => {
 		}
 	`);
 });
-
-test("#findByUsername", () => {
-	expect(subject.findByUsername("username")).toMatchInlineSnapshot(`
-		Object {
-		  "address": [Function],
-		  "publicKey": [Function],
-		  "username": [Function],
-		}
-	`);
-});
