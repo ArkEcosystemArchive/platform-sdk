@@ -146,7 +146,11 @@ describe("Core", () => {
 					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
-					votes: [new ValidatorData({ publicKey: "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec" })],
+					votes: [
+						new ValidatorData({
+							publicKey: "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
+						}),
+					],
 					unvotes: [],
 				},
 			});
