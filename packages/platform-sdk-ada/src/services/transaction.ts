@@ -1,8 +1,15 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #config: Coins.Config;
+
+	public constructor(config: Coins.Config) {
+		this.#config = config;
+	}
+
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService();
+		return new TransactionService(config);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -94,6 +101,18 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public async estimateExpiration(value?: string): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "estimateExpiration");
+		const tip: number = parseInt((await this.post(`{ cardano { tip { slotNo } } }`)).cardano.tip.slotNo);
+		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
+
+		return (tip + ttl).toString();
+	}
+
+
+	private async post(query: string): Promise<Record<string, any>> {
+		return (
+			await this.#config
+				.get<Contracts.HttpClient>("httpClient")
+				.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival")), { query })
+		).json().data;
 	}
 }
