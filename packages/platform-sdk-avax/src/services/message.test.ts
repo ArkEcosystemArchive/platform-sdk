@@ -15,6 +15,6 @@ describe("MessageService", () => {
 			mnemonic: identity.mnemonic,
 		});
 
-		await expect(subject.verify({ ...result, mnemonic: identity.mnemonic })).resolves.toBeTrue();
+		await expect(subject.verify(result)).resolves.toBeTrue();
 	});
 });
