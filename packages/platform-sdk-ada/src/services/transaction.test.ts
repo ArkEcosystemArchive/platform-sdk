@@ -20,6 +20,12 @@ jest.setTimeout(10000);
 
 describe("Core", () => {
 	it("#transfer", async () => {
+		nock(/.+/)
+			.post("/")
+			.reply(200, require(`${__dirname}/../../test/fixtures/transaction/utxos.json`))
+			.post("/")
+			.reply(200, require(`${__dirname}/../../test/fixtures/transaction/expiration.json`));
+
 		const result = await subject.transfer({
 			from:
 				"addr_test1qpz03ezdyda8ag724zp3n5fqulay02dp7j9mweyeylcaapsxu2hyfhlkwuxupa9d5085eunq2qywy7hvmvej456flknscw3xw7",
