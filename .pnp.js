@@ -637,7 +637,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/dot-prop", "npm:5.0.1"],
-            ["@types/elliptic", "npm:6.4.12"],
             ["@types/eslint", "npm:7.2.4"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/hapi__joi", "npm:17.1.6"],
