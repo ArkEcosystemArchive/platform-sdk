@@ -1,10 +1,10 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Buffer } from "buffer";
 
+import { addressFromAccountExtPublicKey } from "../crypto/shelley/address";
 import * as TransactionDTO from "../dto";
 import { TransactionData, WalletData } from "../dto";
-import { Buffer } from "buffer";
-import { addressFromAccountExtPublicKey } from "../crypto/shelley/address";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
@@ -95,7 +95,7 @@ export class ClientService implements Contracts.ClientService {
 		const usedChangeAddresses: Set<string> = new Set<string>();
 
 		let offset = 0;
-		let exhausted: boolean = false;
+		let exhausted = false;
 		do {
 			const spendAddresses: string[] = await this.addressesChunk(id, false, offset);
 			const changeAddresses: string[] = await this.addressesChunk(id, true, offset);
@@ -187,7 +187,7 @@ export class ClientService implements Contracts.ClientService {
 		const publicKey = Buffer.from(accountPublicKey, "hex");
 		const networkId = this.#config.get<string>("network.crypto.networkId");
 
-		let addresses: string[] = [];
+		const addresses: string[] = [];
 		for (let i = offset; i < offset + 20; ++i) {
 			addresses.push(await addressFromAccountExtPublicKey(publicKey, isChange, i, networkId));
 		}
