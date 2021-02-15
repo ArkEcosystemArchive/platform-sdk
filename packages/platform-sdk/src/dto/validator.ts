@@ -16,18 +16,12 @@ export abstract class AbstractValidatorData {
 
 	abstract delegationFee(): BigNumber | undefined;
 
-	abstract startTime(): DateTime | undefined;
-
-	abstract endTime(): DateTime | undefined;
-
 	public toObject(): KeyValuePair {
 		return {
 			id: this.id(),
 			rank: this.rank(),
 			stake: this.stake(),
 			delegationFee: this.delegationFee(),
-			startTime: this.startTime(),
-			endTime: this.endTime(),
 		};
 	}
 }

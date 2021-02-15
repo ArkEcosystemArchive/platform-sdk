@@ -1,4 +1,5 @@
-import BigNumber from "bignumber.js";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { RawTransactionData, SignedTransactionData, ValidatorData } from "./data";
 
@@ -76,7 +77,13 @@ export interface DelegateRegistrationInput extends TransactionInput {
 }
 
 export interface VoteInput extends TransactionInput {
-	data: { votes: ValidatorData[]; unvotes: ValidatorData[]; stake?: BigNumber };
+	data: {
+		votes: ValidatorData[];
+		unvotes: ValidatorData[];
+		stake?: BigNumber;
+		startTime?: DateTime;
+		endTime?: DateTime;
+	};
 }
 
 export interface MultiSignatureInput extends TransactionInput {

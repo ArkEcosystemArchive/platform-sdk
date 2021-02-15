@@ -30,14 +30,6 @@ export class ValidatorData extends DTO.AbstractValidatorData implements Contract
 		return BigNumber.ZERO;
 	}
 
-	public startTime(): DateTime | undefined {
-		return undefined;
-	}
-
-	public endTime(): DateTime | undefined {
-		return undefined;
-	}
-
 	private getProperty<T>(keys: string[]): T | undefined {
 		for (const key of keys) {
 			if (has(this.data, key)) {

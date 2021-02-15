@@ -88,6 +88,14 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, "vote", "input.data.stake");
 		}
 
+		if (input.data.startTime === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "vote", "input.data.startTime");
+		}
+
+		if (input.data.endTime === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "vote", "input.data.endTime");
+		}
+
 		try {
 			const keyPair = this.#keychain.importKey(
 				keyPairFromMnemonic(this.#config, input.sign.mnemonic).getPrivateKey(),
@@ -104,8 +112,8 @@ export class TransactionService implements Contracts.TransactionService {
 					keyPairAddresses, // fromAddresses
 					keyPairAddresses, // changeAddresses
 					vote.id(), // nodeID
-					vote.startTime(), // startTime
-					vote.endTime(), // endTime
+					input.data.startTime, // startTime
+					input.data.endTime, // endTime
 					input.data.stake.toString(), // stakeAmount
 					keyPairAddresses, // rewardAddresses
 					vote.delegationFee(), // delegationFee

@@ -22,12 +22,4 @@ export class ValidatorData extends DTO.AbstractValidatorData implements Contract
 	public delegationFee(): BigNumber | undefined {
 		return BigNumber.ZERO;
 	}
-
-	public startTime(): DateTime | undefined {
-		return undefined;
-	}
-
-	public endTime(): DateTime | undefined {
-		return undefined;
-	}
 }

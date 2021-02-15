@@ -399,9 +399,5 @@ export interface ValidatorData {
 
 	delegationFee(): BigNumber | undefined;
 
-	startTime(): DateTime | undefined;
-
-	endTime(): DateTime | undefined;
-
 	toObject(): KeyValuePair;
 }
