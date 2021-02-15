@@ -65,7 +65,9 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		const changeOutput =
 			this.data.outputs <= 1
 				? BigNumber.ZERO
-				: BigNumber.make(this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value);
+				: BigNumber.make(
+						this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value,
+				  );
 
 		return totalInput.minus(changeOutput).minus(this.fee());
 	}
@@ -83,13 +85,13 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isSent(): boolean {
-		// FIXME Need to find a way to determine this
-		return this.data.direction === "outgoing";
+		// @TODO: Need to find a way to determine this
+		return false;
 	}
 
 	public isReceived(): boolean {
-		// FIXME Need to find a way to determine this
-		return this.data.direction === "incoming";
+		// @TODO: Need to find a way to determine this
+		return false;
 	}
 
 	public isTransfer(): boolean {
