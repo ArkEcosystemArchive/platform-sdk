@@ -1,4 +1,5 @@
 import BigNumber from "bignumber.js";
+
 import { RawTransactionData, SignedTransactionData, ValidatorData } from "./data";
 
 export interface TransactionService {
