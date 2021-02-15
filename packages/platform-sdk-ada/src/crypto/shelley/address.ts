@@ -5,12 +5,12 @@ import { derivePrivateNode, derivePublicNode, shelleyPath, shelleyStakeAccountPa
 
 const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: string): string => {
 	const network = parseInt(networkId);
-	const addrBuffer = lib.packBaseAddress(
+
+	return lib.bech32.encode(network === 1 ? "addr" : "addr_test", lib.packBaseAddress(
 		lib.getPubKeyBlake2b224Hash(spendXpub.slice(0, 32)),
 		lib.getPubKeyBlake2b224Hash(stakeXpub.slice(0, 32)),
 		network,
-	);
-	return lib.bech32.encode(network === 1 ? "addr" : "addr_test", addrBuffer);
+	));
 };
 
 const generateAddress = async (
