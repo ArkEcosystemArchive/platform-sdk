@@ -39,9 +39,9 @@ export class DelegateService {
 		const instance: Coins.Coin = await makeCoin(coin, network);
 		const instanceKey = `${coin}.${network}.delegates`;
 
-		const result: Contracts.WalletData[] = [];
+		const result: Contracts.ValidatorData[] = [];
 		let hasMore = true;
-		let lastResponse: Coins.WalletDataCollection | undefined = undefined;
+		let lastResponse: Coins.ValidatorDataCollection | undefined = undefined;
 
 		while (hasMore) {
 			if (lastResponse && lastResponse.hasMorePages()) {
@@ -59,7 +59,7 @@ export class DelegateService {
 
 		this.#dataRepository.set(
 			instanceKey,
-			result.map((delegate: Contracts.WalletData) => delegate.toObject()),
+			result.map((delegate: Contracts.ValidatorData) => delegate.toObject()),
 		);
 	}
 
