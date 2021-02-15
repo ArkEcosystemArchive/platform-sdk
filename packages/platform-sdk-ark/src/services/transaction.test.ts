@@ -4,6 +4,7 @@ import { Transactions } from "@arkecosystem/crypto";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
+import { ValidatorData } from "../dto/validator";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
@@ -145,7 +146,7 @@ describe("Core", () => {
 					mnemonic: "this is a top secret passphrase",
 				},
 				data: {
-					votes: ["03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec"],
+					votes: [new ValidatorData({ publicKey: "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec" })],
 					unvotes: [],
 				},
 			});

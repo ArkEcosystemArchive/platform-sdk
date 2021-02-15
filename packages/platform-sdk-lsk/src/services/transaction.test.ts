@@ -2,6 +2,7 @@ import "jest-extended";
 
 import { identity } from "../../test/fixtures/identity";
 import { createConfig } from "../../test/helpers";
+import { ValidatorData } from "../dto/validator";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
@@ -69,7 +70,7 @@ describe("TransactionService", () => {
 					mnemonic: identity.mnemonic,
 				},
 				data: {
-					votes: ["9d3058175acab969f41ad9b86f7a2926c74258670fe56b37c429c01fca9f2f0f"],
+					votes: [new ValidatorData({publicKey:"9d3058175acab969f41ad9b86f7a2926c74258670fe56b37c429c01fca9f2f0f"})],
 					unvotes: [],
 				},
 			});

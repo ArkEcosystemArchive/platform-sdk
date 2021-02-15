@@ -30,7 +30,16 @@ test("#endTime", () => {
 });
 
 test("#toObject", () => {
-	expect(new Validator({ key: "value" }).toObject()).toMatchInlineSnapshot();
+	expect(new Validator({ key: "value" }).toObject()).toMatchInlineSnapshot(`
+		Object {
+		  "delegationFee": BigNumber {},
+		  "endTime": "2021-01-01T12:00:00.000Z",
+		  "id": "public-key",
+		  "rank": 0,
+		  "stake": BigNumber {},
+		  "startTime": "2021-01-01T12:00:00.000Z",
+		}
+	`);
 });
 
 class Validator extends AbstractValidatorData {
