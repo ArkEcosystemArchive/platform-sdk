@@ -5,6 +5,8 @@ export interface HttpClient {
 
 	asForm(): HttpClient;
 
+	asOctet(): HttpClient;
+
 	bodyFormat(format: string): HttpClient;
 
 	contentType(contentType: string): HttpClient;
