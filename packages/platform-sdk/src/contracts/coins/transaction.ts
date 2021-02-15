@@ -1,4 +1,4 @@
-import { RawTransactionData, SignedTransactionData } from "./data";
+import { RawTransactionData, SignedTransactionData, ValidatorData } from "./data";
 
 export interface TransactionService {
 	__destruct(): Promise<void>;
@@ -74,7 +74,7 @@ export interface DelegateRegistrationInput extends TransactionInput {
 }
 
 export interface VoteInput extends TransactionInput {
-	data: { votes: string[]; unvotes: string[] };
+	data: { votes: ValidatorData[]; unvotes: ValidatorData[] };
 }
 
 export interface MultiSignatureInput extends TransactionInput {
