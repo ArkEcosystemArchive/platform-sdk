@@ -33,7 +33,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		if (input.sign.mnemonic === undefined) {
-			throw new Exceptions.InvalidArguments(this.constructor.name, "transfer");
+			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "input.sign.mnemonic");
 		}
 
 		try {
@@ -81,7 +81,7 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		if (input.sign.mnemonic === undefined) {
-			throw new Exceptions.InvalidArguments(this.constructor.name, "vote");
+			throw new Exceptions.MissingArgument(this.constructor.name, "vote", "input.sign.mnemonic");
 		}
 
 		try {
