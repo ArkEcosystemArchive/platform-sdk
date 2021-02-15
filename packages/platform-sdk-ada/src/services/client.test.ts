@@ -1,5 +1,7 @@
 import "jest-extended";
 
+import { DTO } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
@@ -16,7 +18,7 @@ beforeAll(() => nock.disableNetConnect());
 
 describe("ClientService", function () {
 	it("#wallet should succeed", async () => {
-		nock("http://localhost:8090")
+		nock(/.+/)
 			.get("/v2/wallets/98c83431e94407bc0889e09953461fe5cecfdf18")
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
@@ -28,7 +30,7 @@ describe("ClientService", function () {
 	});
 
 	it("#transactions", async () => {
-		nock("http://localhost:8090")
+		nock(/.+/)
 			.get("/v2/wallets/98c83431e94407bc0889e09953461fe5cecfdf18/transactions")
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
@@ -42,16 +44,63 @@ describe("ClientService", function () {
 	});
 
 	it("#transaction", async () => {
-		nock("http://localhost:8090")
-			.get(
-				"/v2/wallets/98c83431e94407bc0889e09953461fe5cecfdf18/transactions/35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d",
-			)
+		nock(/.+/)
+			.post(/.*/)
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction.json`));
 
-		const result = await subject.transaction("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d", {
-			walletId: "98c83431e94407bc0889e09953461fe5cecfdf18",
-		});
+		const result = await subject.transaction("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d");
 		expect(result).toBeInstanceOf(TransactionData);
+		expect(result.id()).toBe("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d");
+
+		expect(result.blockId()).toBeUndefined();
+
+		expect(result.timestamp()?.toISOString()).toBe("2021-02-05T15:04:16.000Z");
+
+		expect(result.confirmations().toString()).toBe("0");
+
+		expect(result.sender()).toBe(
+			"addr_test1qrhvwtn8sa3duzkm93v5kjjxlv5lvg67j530wyeumngu23lk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s4s8xvh",
+		);
+
+		expect(result.recipient()).toBe(
+			"addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th",
+		);
+
+		const actual = result.recipients();
+		expect(actual[0].address).toBe(
+			"addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th",
+		);
+		expect(actual[0].amount.toString()).toBe("25000000");
+		expect(actual[1].address).toBe(
+			"addr_test1qzfjfm724nv9qz6nfyagmj0j2uppr35gzv5qee8s7489wxlk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33scc4thv",
+		);
+		expect(actual[1].amount.toString()).toBe("4831199");
+
+		const inputs = result.inputs();
+		expect(inputs).toBeArrayOfSize(1);
+		expect(inputs[0]).toBeInstanceOf(DTO.UnspentTransactionData);
+		expect(inputs[0].id()).toBe("6bf76f4380da8a389ae0a7ecccf1922b74ae11d773ba8b1b761d84a1b4474a4f");
+		expect(inputs[0].amount()).toEqual(BigNumber.make(30000000));
+		expect(inputs[0].addresses()).toEqual([
+			"addr_test1qrhvwtn8sa3duzkm93v5kjjxlv5lvg67j530wyeumngu23lk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s4s8xvh",
+		]);
+
+		const outputs = result.outputs();
+		expect(outputs).toBeArrayOfSize(2);
+		expect(outputs[0]).toBeInstanceOf(DTO.UnspentTransactionData);
+		expect(outputs[0].amount().toString()).toBe("25000000");
+		expect(outputs[0].addresses()).toEqual([
+			"addr_test1qzct2hsralem3fqn8fupu90v3jkelpg4rfp4zqx06zgevpachk6az8jcydma5a6vgsuw5c37v0c8j6rlclpqajn2vxsq3rz4th",
+		]);
+		expect(outputs[1]).toBeInstanceOf(DTO.UnspentTransactionData);
+		expect(outputs[1].amount().toString()).toBe("4831199");
+		expect(outputs[1].addresses()).toEqual([
+			"addr_test1qzfjfm724nv9qz6nfyagmj0j2uppr35gzv5qee8s7489wxlk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33scc4thv",
+		]);
+
+		expect(result.amount().toString()).toBe("25000000");
+
+		expect(result.fee().toString()).toBe("168801");
 	});
 
 	describe("unimplemented methods", () => {

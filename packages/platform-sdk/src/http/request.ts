@@ -25,6 +25,10 @@ export abstract class Request implements HttpClient {
 		return this.bodyFormat("form_params").contentType("application/x-www-form-urlencoded");
 	}
 
+	public asOctet(): HttpClient {
+		return this.bodyFormat("octet").contentType("application/octet-stream");
+	}
+
 	public bodyFormat(format: string): HttpClient {
 		this._bodyFormat = format;
 

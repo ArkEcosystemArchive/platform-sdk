@@ -1,4 +1,4 @@
-import { CryptoException, InvalidArguments, NotImplemented, NotSupported } from "./exceptions";
+import { CryptoException, InvalidArguments, MissingArgument, NotImplemented, NotSupported } from "./exceptions";
 
 test("NotImplemented", () => {
 	expect(() => {
@@ -16,6 +16,12 @@ test("InvalidArguments", () => {
 	expect(() => {
 		throw new InvalidArguments("klass", "method");
 	}).toThrow(`Method klass#method does not accept the given arguments.`);
+});
+
+test("MissingArgument", () => {
+	expect(() => {
+		throw new MissingArgument("klass", "method", "argument");
+	}).toThrow(`Method klass#method expects the argument [argument] but it was not given.`);
 });
 
 test("CryptoException", () => {
