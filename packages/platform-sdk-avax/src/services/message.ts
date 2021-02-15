@@ -42,10 +42,8 @@ export class MessageService implements Contracts.MessageService {
 		const keypair = new KeyPair(hrp, "X");
 		const signedBuff = cb58Decode(input.signature);
 		const pubKey = keypair.recover(this.digestMessage(input.message), signedBuff);
-		const addressBuff = keypair.addressFromPublicKey(pubKey);
-		const address = bintools.addressToString(hrp, "X", addressBuff);
 
-		return address === input.signatory;
+		return bintools.addressToString(hrp, "X", keypair.addressFromPublicKey(pubKey)) === input.signatory;
 	}
 
 	private digestMessage(msgStr: string): Buffer {
