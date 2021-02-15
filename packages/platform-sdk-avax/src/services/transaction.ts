@@ -101,7 +101,7 @@ export class TransactionService implements Contracts.TransactionService {
 					"START-TIME",
 					"END-TIME",
 					"STAKE-AMOUNT",
-					["REWARD-ADDRESSES"],
+					keyPairAddresses,
 				)
 			).sign(this.#keychain);
 
