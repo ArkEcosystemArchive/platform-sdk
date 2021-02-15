@@ -4,7 +4,7 @@ import { KeyPair } from "avalanche/dist/apis/avm";
 import { getPreferredHRP } from "avalanche/dist/utils";
 import { createHash } from "crypto";
 
-import { cb58Encode, keyPairFromMnemonic } from "./helpers";
+import { cb58Decode, cb58Encode, keyPairFromMnemonic } from "./helpers";
 
 export class MessageService implements Contracts.MessageService {
 	readonly #config: Coins.Config;
@@ -40,7 +40,7 @@ export class MessageService implements Contracts.MessageService {
 
 		const hrp = getPreferredHRP(parseInt(this.#config.get("network.crypto.networkId")));
 		const keypair = new KeyPair(hrp, "X");
-		const signedBuff = bintools.cb58Decode(input.signature);
+		const signedBuff = cb58Decode(input.signature);
 		const pubKey = keypair.recover(this.digestMessage(input.message), signedBuff);
 		const addressBuff = keypair.addressFromPublicKey(pubKey);
 		const address = bintools.addressToString(hrp, "X", addressBuff);
