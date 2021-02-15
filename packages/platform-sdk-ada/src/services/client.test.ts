@@ -39,11 +39,16 @@ describe("ClientService", function () {
 
 	it("#transactions", async () => {
 		nock(/.+/)
-			.get("/v2/wallets/98c83431e94407bc0889e09953461fe5cecfdf18/transactions")
-			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
+			.post("/")
+			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions-0.json`))
+			.post("/")
+			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions-20.json`))
+			.post("/")
+			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`))
+		;
 
 		const result = await subject.transactions({
-			walletId: "98c83431e94407bc0889e09953461fe5cecfdf18",
+			walletId: "aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
 		});
 
 		expect(result).toBeObject();

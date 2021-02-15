@@ -65,7 +65,6 @@ export class ClientService implements Contracts.ClientService {
 						  value
 							address
 						}
-						includedAt
 					}
 				}
           `,
@@ -78,7 +77,12 @@ export class ClientService implements Contracts.ClientService {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transaction", "walletId");
 		}
 
-		const transactions: object[] = (await this.get(`v2/wallets/${query.walletId}/transactions`)) as object[];
+		const { usedSpendAddresses, usedChangeAddresses } = await this.usedAddressesForAccount(query?.walletId);
+
+		const transactions = await this.fetchTransactions(
+			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
+		) as any;
+
 		return Helpers.createTransactionDataCollectionWithType(
 			transactions,
 			{
@@ -91,28 +95,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const usedSpendAddresses: Set<string> = new Set<string>();
-		const usedChangeAddresses: Set<string> = new Set<string>();
-
-		let offset = 0;
-		let exhausted = false;
-		do {
-			const spendAddresses: string[] = await this.addressesChunk(id, false, offset);
-			const changeAddresses: string[] = await this.addressesChunk(id, true, offset);
-
-			const allAddresses = spendAddresses.concat(changeAddresses);
-			const usedAddresses: string[] = await this.fetchUsedAddressesData(allAddresses);
-
-			spendAddresses
-				.filter((sa) => usedAddresses.find((ua) => ua === sa) !== undefined)
-				.forEach((sa) => usedSpendAddresses.add(sa));
-			changeAddresses
-				.filter((sa) => usedAddresses.find((ua) => ua === sa) !== undefined)
-				.forEach((sa) => usedChangeAddresses.add(sa));
-
-			exhausted = usedAddresses.length === 0;
-			offset += 20;
-		} while (!exhausted);
+		const { usedSpendAddresses, usedChangeAddresses } = await this.usedAddressesForAccount(id);
 
 		const balance = await this.fetchUtxosAggregate(
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
@@ -181,6 +164,32 @@ export class ClientService implements Contracts.ClientService {
 		hosts: string[],
 	): Promise<Contracts.BroadcastResponse> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
+	}
+
+	private async usedAddressesForAccount(id: string) {
+		const usedSpendAddresses: Set<string> = new Set<string>();
+		const usedChangeAddresses: Set<string> = new Set<string>();
+
+		let offset = 0;
+		let exhausted: boolean = false;
+		do {
+			const spendAddresses: string[] = await this.addressesChunk(id, false, offset);
+			const changeAddresses: string[] = await this.addressesChunk(id, true, offset);
+
+			const allAddresses = spendAddresses.concat(changeAddresses);
+			const usedAddresses: string[] = await this.fetchUsedAddressesData(allAddresses);
+
+			spendAddresses
+				.filter((sa) => usedAddresses.find((ua) => ua === sa) !== undefined)
+				.forEach((sa) => usedSpendAddresses.add(sa));
+			changeAddresses
+				.filter((sa) => usedAddresses.find((ua) => ua === sa) !== undefined)
+				.forEach((sa) => usedChangeAddresses.add(sa));
+
+			exhausted = usedAddresses.length === 0;
+			offset += 20;
+		} while (!exhausted);
+		return { usedSpendAddresses, usedChangeAddresses };
 	}
 
 	private async addressesChunk(accountPublicKey: string, isChange: boolean, offset: number): Promise<string[]> {
@@ -256,8 +265,52 @@ export class ClientService implements Contracts.ClientService {
 		return ((await this.postGraphql({ query })) as any).utxos_aggregate.aggregate.sum.value;
 	}
 
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.#peer}/${path}`, query)).json();
+	private async fetchTransactions(addresses: string[]): Promise<object[]> {
+		const query = `
+			{
+				transactions(
+					where: {
+						_or: [
+							{
+								inputs: {
+									address: {
+										_in: [
+											${addresses.map((a) => '"' + a + '"').join("\n")}
+										]
+									}
+								}
+							}
+							{
+							outputs: {
+								address: {
+										_in: [
+											${addresses.map((a) => '"' + a + '"').join("\n")}
+										]
+									}
+								}
+							}
+						]
+					}
+					) {
+						hash
+						includedAt
+						inputs {
+							sourceTransaction {
+       					hash
+      				}
+						  value
+							address
+						}
+						outputs {
+						  index
+						  value
+							address
+						}
+					}
+				}
+			}`;
+
+		return ((await this.postGraphql({ query })) as any).transactions;
 	}
 
 	private async postGraphql(query: object): Promise<Record<string, any>> {
