@@ -55,6 +55,30 @@ test("#fromAddress", async () => {
 	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 });
 
+test("#fromPublicKey", async () => {
+	const wallet = await WalletFactory.fromPublicKey(
+		new Profile({ id: "id", name: "name", avatar: "avatar", data: "" }),
+		"ARK",
+		"ark.devnet",
+		"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+	);
+
+	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+});
+
+test("#fromPrivateKey", async () => {
+	const wallet = await WalletFactory.fromPrivateKey(
+		new Profile({ id: "id", name: "name", avatar: "avatar", data: "" }),
+		"ARK",
+		"ark.devnet",
+		"d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
+	);
+
+	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+});
+
 test("#fromAddressWithLedgerPath", async () => {
 	const wallet = await WalletFactory.fromAddressWithLedgerPath(
 		new Profile({ id: "id", name: "name", avatar: "avatar", data: "" }),
