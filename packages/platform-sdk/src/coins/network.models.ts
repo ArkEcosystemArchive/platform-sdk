@@ -1,5 +1,27 @@
 import { KeyValuePair } from "../contracts";
 
+export type CoinTransactionTypes =
+	| "bridgechain-registration"
+	| "bridgechain-resignation"
+	| "bridgechain-update"
+	| "business-registration"
+	| "business-resignation"
+	| "business-update"
+	| "delegate-registration"
+	| "delegate-resignation"
+	| "entity-registration"
+	| "entity-resignation"
+	| "entity-update"
+	| "htlc-claim"
+	| "htlc-lock"
+	| "htlc-refund"
+	| "ipfs"
+	| "multi-payment"
+	| "multi-signature"
+	| "second-signature"
+	| "transfer"
+	| "vote";
+
 export interface CoinNetwork {
 	id: string;
 	type: string;
@@ -116,28 +138,7 @@ export interface CoinNetwork {
 			customPeer?: boolean;
 		};
 	};
-	transactionTypes: (
-		| "bridgechain-registration"
-		| "bridgechain-resignation"
-		| "bridgechain-update"
-		| "business-registration"
-		| "business-resignation"
-		| "business-update"
-		| "delegate-registration"
-		| "delegate-resignation"
-		| "entity-registration"
-		| "entity-resignation"
-		| "entity-update"
-		| "htlc-claim"
-		| "htlc-lock"
-		| "htlc-refund"
-		| "ipfs"
-		| "multi-payment"
-		| "multi-signature"
-		| "second-signature"
-		| "transfer"
-		| "vote"
-	)[];
+	transactionTypes: CoinTransactionTypes[];
 	knownWallets?: string;
 	meta?: KeyValuePair;
 }

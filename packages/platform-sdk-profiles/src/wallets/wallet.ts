@@ -423,6 +423,10 @@ export class Wallet implements ReadWriteWallet {
 		return this.#transactionService;
 	}
 
+	public transactionTypes(): Coins.CoinTransactionTypes {
+		return this.coin().manifest().get<Coins.CoinTransactionTypes>("transactionTypes");
+	}
+
 	/**
 	 * These methods serve as helpers to interact with the underlying coin.
 	 */
