@@ -74,6 +74,7 @@ const network: Coins.CoinNetwork = {
 			utxo: true,
 		},
 	},
+	transactionTypes: ["transfer"],
 };
 
 export default network;

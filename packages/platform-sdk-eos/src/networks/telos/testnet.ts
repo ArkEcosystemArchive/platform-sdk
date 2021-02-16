@@ -53,6 +53,7 @@ const network: Coins.CoinNetwork = {
 			verify: true,
 		},
 	},
+	transactionTypes: ["transfer"],
 };
 
 export default network;
