@@ -141,7 +141,7 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				let query = `
+				const query = `
 					mutation {
   					submitTransaction(
     					transaction: "${transaction.toBroadcast()}"
@@ -149,7 +149,7 @@ export class ClientService implements Contracts.ClientService {
     					hash
   					}
 					}`;
-				const broadcast = await postGraphql(this.#config, query) as any;
+				const broadcast = (await postGraphql(this.#config, query)) as any;
 				console.log(broadcast);
 
 				result.accepted.push(transaction.id());
