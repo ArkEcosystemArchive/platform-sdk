@@ -141,12 +141,15 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				const broadcast = (
-					await this.#http
-						.bodyFormat("octet")
-						.contentType("application/octet-stream")
-						.post(`${this.#peer}/v2/proxy/transactions`, transaction.toBroadcast())
-				).json();
+				let query = `
+					mutation {
+  					submitTransaction(
+    					transaction: "${transaction.toBroadcast()}"
+  					) {
+    					hash
+  					}
+					}`;
+				const broadcast = await postGraphql(this.#config, query) as any;
 				console.log(broadcast);
 
 				result.accepted.push(transaction.id());
