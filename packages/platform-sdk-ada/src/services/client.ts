@@ -5,6 +5,7 @@ import { Buffer } from "buffer";
 import { addressFromAccountExtPublicKey } from "../crypto/shelley/address";
 import * as TransactionDTO from "../dto";
 import { TransactionData, WalletData } from "../dto";
+import { postGraphql } from "./helpers";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
@@ -238,7 +239,7 @@ export class ClientService implements Contracts.ClientService {
 					}
 				}
 			}`;
-		return ((await this.postGraphql({ query })) as any).transactions
+		return ((await postGraphql(this.#config, query)) as any).transactions
 			.flatMap((tx) => tx.inputs.map((i) => i.address).concat(tx.outputs.map((o) => o.address)))
 			.sort();
 	}
@@ -262,7 +263,7 @@ export class ClientService implements Contracts.ClientService {
 					}
 				}
 			}`;
-		return ((await this.postGraphql({ query })) as any).utxos_aggregate.aggregate.sum.value;
+		return ((await postGraphql(this.#config, query)) as any).utxos_aggregate.aggregate.sum.value;
 	}
 
 	private async fetchTransactions(addresses: string[]): Promise<object[]> {
@@ -310,15 +311,7 @@ export class ClientService implements Contracts.ClientService {
 				}
 			}`;
 
-		return ((await this.postGraphql({ query })) as any).transactions;
-	}
-
-	private async postGraphql(query: object): Promise<Record<string, any>> {
-		return (
-			await this.#config
-				.get<Contracts.HttpClient>("httpClient")
-				.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival")), query)
-		).json().data;
+		return ((await postGraphql(this.#config, query)) as any).transactions;
 	}
 
 	private async post(path: string, body: object): Promise<Contracts.KeyValuePair> {
