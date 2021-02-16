@@ -45,7 +45,6 @@ const network: Coins.CoinNetwork = {
 			},
 		},
 	},
-	transactionTypes: ["transfer"],
 	meta: {
 		minFeeA: 44,
 		minFeeB: 155381,
@@ -53,6 +52,7 @@ const network: Coins.CoinNetwork = {
 		poolDeposit: 500000000,
 		keyDeposit: 2000000,
 	},
+	transactionTypes: ["transfer"],
 };
 
 export default network;
