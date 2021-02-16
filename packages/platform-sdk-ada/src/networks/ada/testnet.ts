@@ -45,7 +45,6 @@ const network: Coins.CoinNetwork = {
 			},
 		},
 	},
-	transactionTypes: ["transfer"],
 	meta: {
 		minFeeA: 44,
 		minFeeB: 155381,
