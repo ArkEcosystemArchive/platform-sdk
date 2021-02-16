@@ -1,5 +1,4 @@
-import { Address as BaseAddress } from "@arkecosystem/crypto-identities";
-import { Keys } from "@arkecosystem/crypto/dist/identities";
+import { Address as BaseAddress, Keys } from "@arkecosystem/crypto-identities";
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { CryptoConfig } from "../../contracts";
