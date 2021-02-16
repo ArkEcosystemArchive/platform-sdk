@@ -69,13 +69,7 @@ const network: Coins.CoinNetwork = {
 			multiSignature: true,
 		},
 	},
-	transactionTypes: [
-		"delegate-registration",
-		"multi-signature",
-		"second-signature",
-		"transfer",
-		"vote",
-	],
+	transactionTypes: ["delegate-registration", "multi-signature", "second-signature", "transfer", "vote"],
 };
 
 export default network;
