@@ -1,4 +1,5 @@
 import { Address as BaseAddress } from "@arkecosystem/crypto-identities";
+import { Keys } from "@arkecosystem/crypto/dist/identities";
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { CryptoConfig } from "../../contracts";
@@ -37,7 +38,11 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
+		try {
+			return BaseAddress.fromPrivateKey(Keys.fromPrivateKey(privateKey), this.#configCrypto);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

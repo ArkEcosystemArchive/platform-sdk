@@ -35,6 +35,34 @@ export class WalletFactory {
 		return wallet;
 	}
 
+	public static async fromPublicKey(
+		profile: Profile,
+		coin: string,
+		network: string,
+		publicKey: string,
+	): Promise<ReadWriteWallet> {
+		const wallet: ReadWriteWallet = new Wallet(uuidv4(), profile);
+
+		await wallet.setCoin(coin, network);
+		await wallet.setAddress(await wallet.coin().identity().address().fromPublicKey(publicKey));
+
+		return wallet;
+	}
+
+	public static async fromPrivateKey(
+		profile: Profile,
+		coin: string,
+		network: string,
+		privateKey: string,
+	): Promise<ReadWriteWallet> {
+		const wallet: ReadWriteWallet = new Wallet(uuidv4(), profile);
+
+		await wallet.setCoin(coin, network);
+		await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
+
+		return wallet;
+	}
+
 	public static async fromAddressWithLedgerPath(
 		profile: Profile,
 		coin: string,
