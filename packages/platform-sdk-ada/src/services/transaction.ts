@@ -1,8 +1,8 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 import CardanoWasm from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
+import { postGraphql } from "./helpers";
 import { createValue, getCip1852Account } from "./transaction.helpers";
 
 export class TransactionService implements Contracts.TransactionService {
@@ -182,7 +182,9 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public async estimateExpiration(value?: string): Promise<string> {
-		const tip: number = parseInt((await this.post(`{ cardano { tip { slotNo } } }`)).cardano.tip.slotNo);
+		const tip: number = parseInt(
+			(await postGraphql(this.#config, `{ cardano { tip { slotNo } } }`)).cardano.tip.slotNo,
+		);
 		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 
 		return (tip + ttl).toString();
@@ -190,7 +192,9 @@ export class TransactionService implements Contracts.TransactionService {
 
 	private async listUnspentTransactions(address: string): Promise<any> {
 		return (
-			await this.post(`{
+			await postGraphql(
+				this.#config,
+				`{
 				utxos(
 				  order_by: { value: desc }
 				  where: {
@@ -205,15 +209,8 @@ export class TransactionService implements Contracts.TransactionService {
 				  }
 				  value
 				}
-			  }`)
+			  }`,
+			)
 		).utxos;
-	}
-
-	private async post(query: string): Promise<Record<string, any>> {
-		return (
-			await this.#config
-				.get<Contracts.HttpClient>("httpClient")
-				.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival")), { query })
-		).json().data;
 	}
 }
