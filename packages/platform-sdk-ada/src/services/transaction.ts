@@ -49,7 +49,7 @@ export class TransactionService implements Contracts.TransactionService {
 			this.#config.get<number>("network.crypto.slip44"),
 		).to_raw_key();
 
-		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transfered back to the sender
+		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transferred back to the sender
 		const utxos: any = await this.listUnspentTransactions(input.from);
 
 		for (let i = 0; i < utxos.length; i++) {
@@ -61,9 +61,10 @@ export class TransactionService implements Contracts.TransactionService {
 				),
 				createValue(utxos[i].value),
 			);
+			break;
 		}
 
-		// These are the outputs that will be transfered to other wallets. For now we only support a single output.
+		// These are the outputs that will be transferred to other wallets. For now we only support a single output.
 		txBuilder.add_output(
 			CardanoWasm.TransactionOutput.new(
 				CardanoWasm.Address.from_bech32(input.data.to),

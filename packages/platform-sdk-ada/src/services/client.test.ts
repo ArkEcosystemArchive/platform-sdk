@@ -5,8 +5,9 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
-import { TransactionData, WalletData } from "../dto";
+import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
+import { TransactionService } from "./transaction";
 
 let subject: ClientService;
 
@@ -14,7 +15,7 @@ beforeEach(async () => (subject = await ClientService.__construct(createConfig()
 
 afterEach(() => nock.cleanAll());
 
-beforeAll(() => nock.disableNetConnect());
+// beforeAll(() => nock.disableNetConnect());
 
 describe("ClientService", function () {
 	it("#wallet should succeed", async () => {
@@ -116,6 +117,68 @@ describe("ClientService", function () {
 		expect(result.fee().toString()).toBe("168801");
 	});
 
+	describe("#broadcast", () => {
+		it("#accepted", async () => {
+			// nock(/.*/)
+			// 	.post("/v2/proxy/transactions")
+			// 	.reply(201);
+
+			const txService = await TransactionService.__construct(createConfig());
+
+			const transfer = await txService.transfer({
+				from:
+					"addr_test1qqy6nhfyks7wdu3dudslys37v252w2nwhv0fw2nfawemmn8k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sw96paj",
+				sign: {
+					mnemonic:
+						"excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress",
+				},
+				data: {
+					amount: "1000000",
+					to:
+						"addr_test1qrunat98cnyld0t9xrw6k8y0rlyc4fl6afcfe42x6j8ndwau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs7dva6t",
+				},
+			});
+
+			const transactions = [transfer];
+			const result = await subject.broadcast(transactions);
+			expect(result).toMatchObject({
+				accepted: [],
+				rejected: ["35e95e8851fb6cc2fadb988d0a6e514386ac7a82a0d40baca34d345740e9657f"],
+				errors: {
+					"35e95e8851fb6cc2fadb988d0a6e514386ac7a82a0d40baca34d345740e9657f":
+						"HTTP request returned status code 400: Response code 400 (Bad Request)",
+				},
+			});
+		});
+		it("#rejected", async () => {
+			nock(/.*/).post("/v2/proxy/transactions").reply(400);
+
+			const transactions = [
+				new SignedTransactionData(
+					"35e95e8851fb6cc2fadb988d0a6e514386ac7a82a0d40baca34d345740e9657f",
+					{
+						sender:
+							"addr_test1qpz03ezdyda8ag724zp3n5fqulay02dp7j9mweyeylcaapsxu2hyfhlkwuxupa9d5085eunq2qywy7hvmvej456flknscw3xw7",
+						recipient:
+							"addr_test1qpz03ezdyda8ag724zp3n5fqulay02dp7j9mweyeylcaapsxu2hyfhlkwuxupa9d5085eunq2qywy7hvmvej456flknscw3xw7",
+						amount: "1000000",
+						fee: "168273",
+					},
+					"83a4008182582022e6ff48fc1ed9d8ed87eb416b1c45e93b5945a3dc31d7d14ccdeb93174251f40001828258390044f8e44d237a7ea3caa88319d120e7fa47a9a1f48bb7649927f1de8606e2ae44dff6770dc0f4ada3cf4cf2605008e27aecdb332ad349fda71a000f42408258390044f8e44d237a7ea3caa88319d120e7fa47a9a1f48bb7649927f1de8606e2ae44dff6770dc0f4ada3cf4cf2605008e27aecdb332ad349fda71a3888e035021a00029151031a0121e3e0a10081825820cf779aa32f35083707808532471cb64ee41426c9bbd46134dac2ac5b2a0ec0e95840fecc6f5e8fbe05a00c60998476a9102463311ffeea5b890b3bbbb0a3c933a420ff50d9a951b11ca36a491eef32d164abf21fde26d53421ce68aff2d17372a20cf6",
+				),
+			];
+			const result = await subject.broadcast(transactions);
+			expect(result).toMatchObject({
+				accepted: [],
+				rejected: ["35e95e8851fb6cc2fadb988d0a6e514386ac7a82a0d40baca34d345740e9657f"],
+				errors: {
+					"35e95e8851fb6cc2fadb988d0a6e514386ac7a82a0d40baca34d345740e9657f":
+						"HTTP request returned status code 400: Response code 400 (Bad Request)",
+				},
+			});
+		});
+	});
+
 	describe("unimplemented methods", () => {
 		it("#wallets", async () => {
 			await expect(subject.wallets({})).rejects.toThrow(/is not implemented./);
@@ -139,10 +202,6 @@ describe("ClientService", function () {
 
 		it("#syncing", async () => {
 			await expect(subject.syncing()).rejects.toThrow(/is not implemented./);
-		});
-
-		it.skip("#broadcast", async () => {
-			await expect(subject.broadcast([])).rejects.toThrow(/is not implemented./);
 		});
 
 		it("#broadcastSpread", async () => {
