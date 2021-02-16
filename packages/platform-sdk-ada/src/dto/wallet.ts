@@ -11,7 +11,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public balance(): BigNumber {
-		return BigNumber.make(this.data.balance.total.quantity);
+		return BigNumber.make(this.data.balance);
 	}
 
 	public nonce(): BigNumber {

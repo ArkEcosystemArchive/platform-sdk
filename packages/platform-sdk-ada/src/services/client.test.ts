@@ -19,23 +19,36 @@ beforeAll(() => nock.disableNetConnect());
 describe("ClientService", function () {
 	it("#wallet should succeed", async () => {
 		nock(/.+/)
-			.get("/v2/wallets/98c83431e94407bc0889e09953461fe5cecfdf18")
-			.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
+			.post("/")
+			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions-0.json`))
+			.post("/")
+			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions-20.json`))
+			.post("/")
+			.reply(200, require(`${__dirname}/../../test/fixtures/client/utxos-aggregate.json`));
 
-		const result = await subject.wallet("98c83431e94407bc0889e09953461fe5cecfdf18");
+		const result = await subject.wallet(
+			"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
+		);
 
 		expect(result).toBeInstanceOf(WalletData);
-		expect(result.address()).toBe("98c83431e94407bc0889e09953461fe5cecfdf18");
-		expect(result.balance().toString()).toEqual("2000000000");
+		expect(result.address()).toBe(
+			"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
+		);
+		expect(result.balance().toString()).toEqual("2024831199");
 	});
 
 	it("#transactions", async () => {
 		nock(/.+/)
-			.get("/v2/wallets/98c83431e94407bc0889e09953461fe5cecfdf18/transactions")
+			.post("/")
+			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions-0.json`))
+			.post("/")
+			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions-20.json`))
+			.post("/")
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 		const result = await subject.transactions({
-			walletId: "98c83431e94407bc0889e09953461fe5cecfdf18",
+			walletId:
+				"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
 		});
 
 		expect(result).toBeObject();
