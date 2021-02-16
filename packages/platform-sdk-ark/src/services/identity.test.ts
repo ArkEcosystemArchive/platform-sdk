@@ -39,6 +39,12 @@ describe("IdentityService", () => {
 			expect(result).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 		});
 
+		it("should generate an output from a privateKey", async () => {
+			const result: any = await subject.address().fromPrivateKey(identity.privateKey);
+
+			expect(result).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+		});
+
 		it("should generate an output from a wif", async () => {
 			const result: any = await subject.address().fromWIF(identity.wif);
 

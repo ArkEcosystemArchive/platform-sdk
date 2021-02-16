@@ -108,6 +108,28 @@ const network: Coins.CoinNetwork = {
 			memo: true,
 		},
 	},
+	transactionTypes: [
+		"bridgechain-registration",
+		"bridgechain-resignation",
+		"bridgechain-update",
+		"business-registration",
+		"business-resignation",
+		"business-update",
+		"delegate-registration",
+		"delegate-resignation",
+		"entity-registration",
+		"entity-resignation",
+		"entity-update",
+		"htlc-claim",
+		"htlc-lock",
+		"htlc-refund",
+		"ipfs",
+		"multi-payment",
+		"multi-signature",
+		"second-signature",
+		"transfer",
+		"vote",
+	],
 };
 
 export default network;

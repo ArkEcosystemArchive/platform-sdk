@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.8.39 - 2020-02-16
+
+### Added
+
+-   Expose what transaction types a network supports (#1030) (26f1279e, @faustbrian)
+
+## 2.8.38 - 2020-02-16
+
+### Changed
+
+-   **[AVAX]** Drop `avalanchejs` for message signing (a4b86fa5, @faustbrian)
+
+### Added
+
+-   **[AVAX]** Draft implement `TransactionService#vote` (d15e7428, @faustbrian)
+-   **[ADA]** Migrate from `cardano-rest` to `cardano-graphql` (483fd6bd, @marianogoldman)
+-   **[ADA]** Implement `ClientService#broadcast` (c4daff65, @faustbrian)
+-   **[ADA]** Implement `TransactionService#estimateExpiration` (cd2135ec, @faustbrian)
+-   Implement `BIP39#toEntropy` (e4eef1f9, @faustbrian)
+-   Implement `HttpClient#asOctet` (e908eba7, @faustbrian)
+-   Implement `MissingArgument` exception (082b4993, @faustbrian)
+-   **[ADA]** Draft implement `TransactionService#transfer` (25d828b1, @faustbrian)
+-   **[AVAX]** Implement `ClientService#delegates` (dfff356e, @faustbrian)
+-   Implement `WalletFactory#from(Public|Private)Key` (a909f5f6, @faustbrian)
+
 ## 2.8.27 - 2020-02-12
 
 ### Changed

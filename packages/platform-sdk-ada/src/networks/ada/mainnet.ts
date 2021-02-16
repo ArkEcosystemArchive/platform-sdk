@@ -52,6 +52,7 @@ const network: Coins.CoinNetwork = {
 		poolDeposit: 500000000,
 		keyDeposit: 2000000,
 	},
+	transactionTypes: ["transfer"],
 };
 
 export default network;
