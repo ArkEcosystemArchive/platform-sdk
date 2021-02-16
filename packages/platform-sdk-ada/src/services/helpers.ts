@@ -1,7 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
-export const postGraphql = (config: Coins.Config, query: string): Promise<Record<string, any>> =>
+export const postGraphql = async (config: Coins.Config, query: string): Promise<Record<string, any>> =>
 	(
 		await config
 			.get<Contracts.HttpClient>("httpClient")
