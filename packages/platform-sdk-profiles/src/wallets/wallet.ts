@@ -375,8 +375,7 @@ export class Wallet implements ReadWriteWallet {
 	 */
 
 	public coinId(): string {
-		// TODO: make this non-nullable
-		return this.manifest().get<string>("name")!;
+		return this.manifest().get<string>("name");
 	}
 
 	public networkId(): string {
@@ -424,7 +423,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public transactionTypes(): Coins.CoinTransactionTypes {
-		return this.coin().manifest().get<Coins.CoinTransactionTypes>("transactionTypes");
+		return this.coin().manifest().get<object>("networks")[this.networkId()].transactionTypes;
 	}
 
 	/**
