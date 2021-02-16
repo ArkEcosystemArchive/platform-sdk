@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-http-node-fetch",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "2.8.27",
+	"version": "2.8.38",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
