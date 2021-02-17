@@ -192,7 +192,7 @@ export class Profile implements ProfileContract {
 			data: this.data().all(),
 			notifications: this.notifications().all(),
 			peers: this.peers().toObject(),
-			plugins: this.plugins().toObject(),
+			plugins: this.plugins().all(),
 			settings: this.settings().all(),
 			wallets: this.wallets().toObject(),
 		};

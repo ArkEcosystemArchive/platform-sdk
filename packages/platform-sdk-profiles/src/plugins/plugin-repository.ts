@@ -72,8 +72,4 @@ export class PluginRepository {
 	public registry(): PluginRegistry {
 		return this.#registry;
 	}
-
-	public toObject(): object {
-		return this.all();
-	}
 }
