@@ -197,6 +197,7 @@ it("should migrate profiles from JSON to Base64", async () => {
 			plugins: {
 				data: {},
 				blacklist: [],
+				whitelist: [],
 			},
 			settings: {
 				ADVANCED_MODE: "value",
@@ -264,6 +265,7 @@ it("should migrate profiles from JSON to Base64", async () => {
 		  "plugins": Object {
 		    "blacklist": Array [],
 		    "data": Object {},
+		    "whitelist": Array [],
 		  },
 		  "settings": Object {
 		    "ADVANCED_MODE": "value",

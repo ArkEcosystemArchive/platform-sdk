@@ -151,6 +151,7 @@ it("should turn into an object", () => {
 		  "plugins": Object {
 		    "blacklist": Array [],
 		    "data": Object {},
+		    "whitelist": Array [],
 		  },
 		  "settings": Object {
 		    "NAME": "John Doe",
@@ -220,7 +221,7 @@ describe("#restore", () => {
 			data: {},
 			notifications: {},
 			peers: {},
-			plugins: { data: {}, blacklist: [] },
+			plugins: { data: {}, blacklist: [], whitelist: [] },
 			settings: { NAME: "John Doe" },
 			wallets: {},
 		};
@@ -253,6 +254,7 @@ describe("#restore", () => {
 		  "plugins": Object {
 		    "blacklist": Array [],
 		    "data": Object {},
+		    "whitelist": Array [],
 		  },
 		  "settings": Object {
 		    "NAME": "John Doe",
@@ -300,6 +302,7 @@ describe("#restore", () => {
 			plugins: {
 				data: {},
 				blacklist: [],
+				whitelist: [],
 			},
 			settings: {
 				THEME: "dark",

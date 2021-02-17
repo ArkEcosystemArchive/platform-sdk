@@ -65,6 +65,7 @@ describe("ProfileRepository", () => {
 				plugins: {
 					data: {},
 					blacklist: [],
+					whitelist: [],
 				},
 				settings: {
 					ADVANCED_MODE: "value",
