@@ -194,10 +194,7 @@ it("should migrate profiles from JSON to Base64", async () => {
 				},
 			},
 			peers: {},
-			plugins: {
-				data: {},
-				blacklist: [],
-			},
+			plugins: {},
 			settings: {
 				ADVANCED_MODE: "value",
 				NAME: "John Doe",
@@ -261,10 +258,7 @@ it("should migrate profiles from JSON to Base64", async () => {
 		    },
 		  },
 		  "peers": Object {},
-		  "plugins": Object {
-		    "blacklist": Array [],
-		    "data": Object {},
-		  },
+		  "plugins": Object {},
 		  "settings": Object {
 		    "ADVANCED_MODE": "value",
 		    "NAME": "John Doe",

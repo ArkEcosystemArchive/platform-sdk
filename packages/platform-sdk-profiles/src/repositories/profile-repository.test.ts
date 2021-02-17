@@ -62,10 +62,7 @@ describe("ProfileRepository", () => {
 					},
 				},
 				peers: {},
-				plugins: {
-					data: {},
-					blacklist: [],
-				},
+				plugins: {},
 				settings: {
 					ADVANCED_MODE: "value",
 					NAME: "John Doe",

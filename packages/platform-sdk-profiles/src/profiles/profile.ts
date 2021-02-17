@@ -192,7 +192,7 @@ export class Profile implements ProfileContract {
 			data: this.data().all(),
 			notifications: this.notifications().all(),
 			peers: this.peers().toObject(),
-			plugins: this.plugins().toObject(),
+			plugins: this.plugins().all(),
 			settings: this.settings().all(),
 			wallets: this.wallets().toObject(),
 		};
@@ -473,10 +473,7 @@ export class Profile implements ProfileContract {
 			// TODO: stricter validation to avoid unknown keys or values
 			peers: Joi.object().required(),
 			// TODO: stricter validation to avoid unknown keys or values
-			plugins: Joi.object({
-				data: Joi.object(),
-				blacklist: Joi.array().items(Joi.number()),
-			}).default({ data: {}, blacklist: [] }),
+			plugins: Joi.object().required(),
 			// TODO: stricter validation to avoid unknown keys or values
 			settings: Joi.object().required(),
 			wallets: Joi.object().pattern(

@@ -148,10 +148,7 @@ it("should turn into an object", () => {
 		  "id": "uuid",
 		  "notifications": Object {},
 		  "peers": Object {},
-		  "plugins": Object {
-		    "blacklist": Array [],
-		    "data": Object {},
-		  },
+		  "plugins": Object {},
 		  "settings": Object {
 		    "NAME": "John Doe",
 		  },
@@ -220,7 +217,7 @@ describe("#restore", () => {
 			data: {},
 			notifications: {},
 			peers: {},
-			plugins: { data: {}, blacklist: [] },
+			plugins: {},
 			settings: { NAME: "John Doe" },
 			wallets: {},
 		};
@@ -250,10 +247,7 @@ describe("#restore", () => {
 		  "id": "uuid",
 		  "notifications": Object {},
 		  "peers": Object {},
-		  "plugins": Object {
-		    "blacklist": Array [],
-		    "data": Object {},
-		  },
+		  "plugins": Object {},
 		  "settings": Object {
 		    "NAME": "John Doe",
 		  },
@@ -297,10 +291,7 @@ describe("#restore", () => {
 			data: { key: "value" },
 			notifications: {},
 			peers: {},
-			plugins: {
-				data: {},
-				blacklist: [],
-			},
+			plugins: {},
 			settings: {
 				THEME: "dark",
 			},
