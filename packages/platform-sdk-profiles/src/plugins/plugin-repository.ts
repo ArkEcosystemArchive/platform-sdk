@@ -13,7 +13,6 @@ interface Plugin {
 export class PluginRepository {
 	readonly #data: DataRepository;
 	readonly #registry: PluginRegistry;
-	readonly #blacklist: Set<string> = new Set<string>();
 
 	public constructor() {
 		this.#data = new DataRepository();
@@ -44,12 +43,8 @@ export class PluginRepository {
 		this.#data.set(`${plugin.id}`, plugin);
 	}
 
-	public fill({ data, blacklist }: { data: object; blacklist: string[] }): void {
+	public fill({ data }: { data: object }): void {
 		this.#data.fill(data);
-
-		for (const blacklistValue of blacklist) {
-			this.#blacklist.add(blacklistValue);
-		}
 	}
 
 	public findById(id: string): Plugin {
@@ -74,14 +69,6 @@ export class PluginRepository {
 		return this.keys().length;
 	}
 
-	public blacklist(): Set<string> {
-		return this.#blacklist;
-	}
-
-	public isBlacklisted(id: string): boolean {
-		return this.#blacklist.has(id);
-	}
-
 	public registry(): PluginRegistry {
 		return this.#registry;
 	}
@@ -89,7 +76,6 @@ export class PluginRepository {
 	public toObject(): object {
 		return {
 			data: this.all(),
-			blacklist: [...this.#blacklist.values()],
 		};
 	}
 }
