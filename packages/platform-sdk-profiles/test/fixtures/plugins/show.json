@@ -35,19 +35,10 @@
 					"ALERTS",
 					"UI_COMPONENTS"
 				],
-				"urls": [
-					"https://api.switchain.com/rest/v1/"
-				],
+				"urls": ["https://api.switchain.com/rest/v1/"],
 				"minVersion": "2.6"
 			},
-			"keywords": [
-				"@arkecosystem",
-				"desktop-wallet",
-				"plugin",
-				"switchain",
-				"exchange",
-				"swap"
-			],
+			"keywords": ["@arkecosystem", "desktop-wallet", "plugin", "switchain", "exchange", "swap"],
 			"bugs": {
 				"url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
 			},
@@ -150,14 +141,7 @@
 				],
 				"minVersion": "2.6"
 			},
-			"keywords": [
-				"@arkecosystem",
-				"desktop-wallet",
-				"plugin",
-				"switchain",
-				"exchange",
-				"swap"
-			],
+			"keywords": ["@arkecosystem", "desktop-wallet", "plugin", "switchain", "exchange", "swap"],
 			"bugs": {
 				"url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
 			},
@@ -260,14 +244,7 @@
 				],
 				"minVersion": "2.6"
 			},
-			"keywords": [
-				"@arkecosystem",
-				"desktop-wallet",
-				"plugin",
-				"switchain",
-				"exchange",
-				"swap"
-			],
+			"keywords": ["@arkecosystem", "desktop-wallet", "plugin", "switchain", "exchange", "swap"],
 			"bugs": {
 				"url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
 			},
@@ -370,14 +347,7 @@
 				],
 				"minVersion": "2.6"
 			},
-			"keywords": [
-				"@arkecosystem",
-				"desktop-wallet",
-				"plugin",
-				"switchain",
-				"exchange",
-				"swap"
-			],
+			"keywords": ["@arkecosystem", "desktop-wallet", "plugin", "switchain", "exchange", "swap"],
 			"bugs": {
 				"url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
 			},
@@ -484,14 +454,7 @@
 	],
 	"description": "Switchain plugin on Ark Desktop Wallet",
 	"homepage": "http://URL",
-	"keywords": [
-		"@arkecosystem",
-		"desktop-wallet",
-		"plugin",
-		"switchain",
-		"exchange",
-		"swap"
-	],
+	"keywords": ["@arkecosystem", "desktop-wallet", "plugin", "switchain", "exchange", "swap"],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/elevenyellow/ark-switchain-plugin.git"
