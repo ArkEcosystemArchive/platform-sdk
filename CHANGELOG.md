@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.8.41 - 2020-02-17
+
+### Added
+
+-   **[ADA]** Aggregate the wallet balance through `cardano-graphql` (219abbcf, @marianogoldman)
+
+### Fixed
+
+-   Expose `ReadWriteWallet#transactionTypes` method from wallet model (2f4bec7f, @goga-m)
+
 ## 2.8.39 - 2020-02-16
 
 ### Added
