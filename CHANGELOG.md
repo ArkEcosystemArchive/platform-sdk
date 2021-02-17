@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.8.43 - 2020-02-17
+
+### Added
+
+-   Apply managed whitelist to plugins (e515ba11, @faustbrian)
+
+### Changed
+
+-   Remove blacklist plugins implementation (8fb867db, @goga-m)
+
 ## 2.8.41 - 2020-02-17
 
 ### Added
