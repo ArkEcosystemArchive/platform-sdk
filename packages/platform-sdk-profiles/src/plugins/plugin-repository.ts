@@ -14,6 +14,7 @@ export class PluginRepository {
 	readonly #data: DataRepository;
 	readonly #registry: PluginRegistry;
 	readonly #blacklist: Set<string> = new Set<string>();
+	readonly #whitelist: Set<string> = new Set<string>();
 
 	public constructor() {
 		this.#data = new DataRepository();
@@ -44,11 +45,23 @@ export class PluginRepository {
 		this.#data.set(`${plugin.id}`, plugin);
 	}
 
-	public fill({ data, blacklist }: { data: object; blacklist: string[] }): void {
+	public fill({
+		data,
+		blacklist = [],
+		whitelist = [],
+	}: {
+		data: object;
+		blacklist?: string[];
+		whitelist?: string[];
+	}): void {
 		this.#data.fill(data);
 
 		for (const blacklistValue of blacklist) {
 			this.#blacklist.add(blacklistValue);
+		}
+
+		for (const whiteListValue of whitelist) {
+			this.#whitelist.add(whiteListValue);
 		}
 	}
 
@@ -82,6 +95,14 @@ export class PluginRepository {
 		return this.#blacklist.has(id);
 	}
 
+	public whitelist(): Set<string> {
+		return this.#whitelist;
+	}
+
+	public isWhitelisted(id: string): boolean {
+		return this.#whitelist.has(id);
+	}
+
 	public registry(): PluginRegistry {
 		return this.#registry;
 	}
@@ -90,6 +111,7 @@ export class PluginRepository {
 		return {
 			data: this.all(),
 			blacklist: [...this.#blacklist.values()],
+			whitelist: [...this.#whitelist.values()],
 		};
 	}
 }
