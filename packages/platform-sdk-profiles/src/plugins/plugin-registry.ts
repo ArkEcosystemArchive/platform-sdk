@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
 import { Contracts } from "@arkecosystem/platform-sdk";
+import semver from "semver";
 
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
@@ -48,7 +49,7 @@ export class PluginRegistry {
 			i++;
 		}
 
-		return Promise.all(results);
+		return this.applyWhitelist(await Promise.all(results));
 	}
 
 	public async size(pkg: RegistryPlugin): Promise<number> {
@@ -66,6 +67,30 @@ export class PluginRegistry {
 
 		for (const { downloads } of response.json().downloads) {
 			result += downloads;
+		}
+
+		return result;
+	}
+
+	private async applyWhitelist(plugins: RegistryPlugin[]): Promise<RegistryPlugin[]> {
+		const whitelist: Record<string, string> = (
+			await this.#httpClient.get(
+				"https://raw.githubusercontent.com/ArkEcosystem/common/master/desktop-wallet/whitelist.json",
+			)
+		).json();
+
+		const result: RegistryPlugin[] = [];
+
+		for (const plugin of plugins) {
+			const range: string | undefined = whitelist[plugin.name()];
+
+			if (range === undefined) {
+				continue;
+			}
+
+			if (semver.satisfies(plugin.version(), range)) {
+				result.push(plugin);
+			}
 		}
 
 		return result;

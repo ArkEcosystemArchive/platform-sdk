@@ -1149,7 +1149,7 @@ __metadata:
     p-retry: ^4.3.0
     prettier: ^2.1.2
     rimraf: ^3.0.2
-    semver: ^7.3.2
+    semver: ^7.3.4
     ts-jest: ^26.4.4
     type-fest: ^0.18.1
     typescript: ^4.0.5
