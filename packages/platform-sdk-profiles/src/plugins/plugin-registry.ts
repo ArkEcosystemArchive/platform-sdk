@@ -97,8 +97,6 @@ export class PluginRegistry {
 	}
 
 	private async expand(pkg: any): Promise<RegistryPlugin> {
-		// https://raw.githubusercontent.com/ArkEcosystem/common/master/desktop-wallet/plugins.json
-
 		return new RegistryPlugin(
 			pkg,
 			(
