@@ -52,7 +52,7 @@ it("should throw if a plugin cannot be found by its ID", () => {
 });
 
 it("should restore previously created data", () => {
-	subject.fill({ data: { [stubPlugin.id]: stubPlugin } });
+	subject.fill({ [stubPlugin.id]: stubPlugin });
 
 	expect(subject.findById(stubPlugin.id)).toEqual(stubPlugin);
 });

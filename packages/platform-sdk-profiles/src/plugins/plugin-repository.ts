@@ -43,7 +43,7 @@ export class PluginRepository {
 		this.#data.set(`${plugin.id}`, plugin);
 	}
 
-	public fill({ data }: { data: object }): void {
+	public fill(data: object): void {
 		this.#data.fill(data);
 	}
 
@@ -74,8 +74,6 @@ export class PluginRepository {
 	}
 
 	public toObject(): object {
-		return {
-			data: this.all(),
-		};
+		return this.all();
 	}
 }
