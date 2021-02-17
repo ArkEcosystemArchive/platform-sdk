@@ -52,20 +52,9 @@ it("should throw if a plugin cannot be found by its ID", () => {
 });
 
 it("should restore previously created data", () => {
-	subject.fill({ data: { [stubPlugin.id]: stubPlugin }, blacklist: [] });
+	subject.fill({ data: { [stubPlugin.id]: stubPlugin } });
 
 	expect(subject.findById(stubPlugin.id)).toEqual(stubPlugin);
-});
-
-it("should restore the blacklist", () => {
-	subject.fill({ data: { stubPlugin }, blacklist: [stubPlugin.id] });
-
-	expect(subject.blacklist()).toMatchInlineSnapshot(`
-		Set {
-		  "@hello/world",
-		}
-	`);
-	expect(subject.isBlacklisted(stubPlugin.id)).toBeTrue();
 });
 
 it("should forget specific data", () => {
@@ -90,20 +79,6 @@ it("should flush the data", () => {
 
 it("should count the data", () => {
 	expect(subject.count()).toBe(0);
-});
-
-it("should add an item to the blacklist", () => {
-	const blacklist = subject.blacklist();
-
-	expect(blacklist.size).toBe(0);
-
-	blacklist.add(stubPlugin.id);
-
-	expect(blacklist.size).toBe(1);
-
-	blacklist.delete(stubPlugin.id);
-
-	expect(blacklist.size).toBe(0);
 });
 
 it("should access the plugin registry", () => {

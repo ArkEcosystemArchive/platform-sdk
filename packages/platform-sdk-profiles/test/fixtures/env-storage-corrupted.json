@@ -22,8 +22,7 @@
 			},
 			"peers": {},
 			"plugins": {
-				"data": {},
-				"blacklist": []
+				"data": {}
 			},
 			"settings": {
 				"ADVANCED_MODE": "value",
