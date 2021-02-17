@@ -6,6 +6,11 @@ import { bootContainer } from "../../test/helpers";
 import { PluginRegistry } from "./plugin-registry";
 
 const createNetworkMocks = () => {
+	nock("https://raw.githubusercontent.com")
+		.get("/ArkEcosystem/common/master/desktop-wallet/whitelist.json")
+		.once()
+		.reply(200, require("../../test/fixtures/plugins/whitelist.json"));
+
 	nock("https://registry.npmjs.com")
 		.get("/-/v1/search")
 		.query(true)
@@ -49,21 +54,19 @@ describe("PluginRegistry", () => {
 
 		const result = await subject.all();
 
-		expect(result).toHaveLength(22);
+		expect(result).toHaveLength(17);
 		expect(result[0].toObject()).toMatchInlineSnapshot(`
 		Object {
 		  "alias": "Transaction Export",
 		  "author": Object {
-		    "email": "hello@dated.fun",
-		    "name": "Edgar Goetzendorff",
-		    "username": "dated",
+		    "name": "Switchain",
 		  },
 		  "categories": Array [
 		    "utility",
 		  ],
-		  "date": "2020-11-26T21:18:44.681Z",
-		  "description": "Export your wallet transaction history",
-		  "id": "@dated/transaction-export-plugin",
+		  "date": "2020-03-17T08:27:19.488Z",
+		  "description": "Switchain plugin on Ark Desktop Wallet",
+		  "id": "@elevenyellow.com/ark-switchain-plugin",
 		  "images": Array [
 		    "https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-1.png",
 		    "https://raw.githubusercontent.com/dated/transaction-export-plugin/master/images/preview-2.png",
@@ -71,7 +74,7 @@ describe("PluginRegistry", () => {
 		  ],
 		  "logo": "https://raw.githubusercontent.com/dated/transaction-export-plugin/master/logo.png",
 		  "minimumVersion": "2.9.1",
-		  "name": "@dated/transaction-export-plugin",
+		  "name": "@elevenyellow.com/ark-switchain-plugin",
 		  "permissions": Array [
 		    "COMPONENTS",
 		    "ROUTES",
@@ -87,12 +90,12 @@ describe("PluginRegistry", () => {
 		  ],
 		  "sourceProvider": Object {
 		    "name": "github",
-		    "url": "https://github.com/dated/transaction-export-plugin",
+		    "url": "https://github.com/elevenyellow/ark-switchain-plugin",
 		  },
 		  "urls": Array [
 		    "^",
 		  ],
-		  "version": "1.0.3",
+		  "version": "1.2.0",
 		}
 	`);
 	});
@@ -101,17 +104,21 @@ describe("PluginRegistry", () => {
 		createNetworkMocks();
 
 		nock("https://registry.npmjs.com")
-			.get("/@dated/transaction-export-plugin")
+			.get("/@elevenyellow.com/ark-switchain-plugin")
 			.reply(200, require("../../test/fixtures/plugins/show.json"));
 
-		await expect(subject.size((await subject.all())[0])).resolves.toBe(304275);
+		await expect(subject.size((await subject.all())[0])).resolves.toMatchInlineSnapshot(`605882`);
 	});
 
 	it("should get the download count of the given plugin", async () => {
 		createNetworkMocks();
 
 		nock("https://api.npmjs.org")
-			.get(`/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/@dated/transaction-export-plugin`)
+			.get(
+				`/downloads/range/2005-01-01:${
+					new Date().getFullYear() + 1
+				}-01-01/@elevenyellow.com/ark-switchain-plugin`,
+			)
 			.reply(200, require("../../test/fixtures/plugins/downloads.json"));
 
 		await expect(subject.downloads((await subject.all())[0])).resolves.toBe(446);
