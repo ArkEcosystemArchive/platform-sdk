@@ -1,9 +1,18 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import CardanoWasm from "@emurgo/cardano-serialization-lib-nodejs";
+import CardanoWasm, { Address } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
 import { postGraphql } from "./helpers";
-import { createValue, getCip1852Account } from "./transaction.helpers";
+import { createValue, deriveAccountKey, deriveRootKey } from "./transaction.helpers";
+
+interface UnspentTransaction {
+	address: string;
+	index: string;
+	transaction: {
+		hash: string;
+	};
+	value: string;
+}
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
@@ -44,23 +53,25 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 
 		// Get a `Bip32PrivateKey` instance according to `CIP1852` and turn it into a `PrivateKey` instance
-		const privateKey = getCip1852Account(
-			input.sign.mnemonic,
-			this.#config.get<number>("network.crypto.slip44"),
-		).to_raw_key();
+		const rootKey = deriveRootKey(input.sign.mnemonic);
+		const accountKey = deriveAccountKey(rootKey, this.#config.get<number>("network.crypto.slip44"), 0);
+		const privateKey = accountKey.to_raw_key();
 
 		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transferred back to the sender
-		const utxos: any = await this.listUnspentTransactions(input.from);
+		const utxos: UnspentTransaction[] = await this.listUnspentTransactions(input.from);
 
 		for (let i = 0; i < utxos.length; i++) {
-			txBuilder.add_key_input(
-				privateKey.to_public().hash(),
+			const utxo: UnspentTransaction = utxos[i];
+
+			txBuilder.add_input(
+				Address.from_bech32(utxo.address),
 				CardanoWasm.TransactionInput.new(
-					CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxos[i].transaction.hash, "hex")),
-					i,
+					CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
+					parseInt(utxo.index),
 				),
-				createValue(utxos[i].value),
+				createValue(utxo.value),
 			);
+
 			break;
 		}
 
@@ -191,7 +202,7 @@ export class TransactionService implements Contracts.TransactionService {
 		return (tip + ttl).toString();
 	}
 
-	private async listUnspentTransactions(address: string): Promise<any> {
+	private async listUnspentTransactions(address: string): Promise<UnspentTransaction[]> {
 		return (
 			await postGraphql(
 				this.#config,
@@ -205,6 +216,7 @@ export class TransactionService implements Contracts.TransactionService {
 				  }
 				) {
 				  address
+				  index
 				  transaction {
 					hash
 				  }

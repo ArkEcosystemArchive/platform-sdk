@@ -118,7 +118,7 @@ describe("ClientService", function () {
 	});
 
 	describe("#broadcast", () => {
-		it("#accepted", async () => {
+		it.only("#accepted", async () => {
 			// nock(/.*/)
 			// 	.post("/v2/proxy/transactions")
 			// 	.reply(201);
