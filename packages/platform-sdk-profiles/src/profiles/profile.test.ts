@@ -148,9 +148,7 @@ it("should turn into an object", () => {
 		  "id": "uuid",
 		  "notifications": Object {},
 		  "peers": Object {},
-		  "plugins": Object {
-		    "data": Object {},
-		  },
+		  "plugins": Object {},
 		  "settings": Object {
 		    "NAME": "John Doe",
 		  },
@@ -249,9 +247,7 @@ describe("#restore", () => {
 		  "id": "uuid",
 		  "notifications": Object {},
 		  "peers": Object {},
-		  "plugins": Object {
-		    "data": Object {},
-		  },
+		  "plugins": Object {},
 		  "settings": Object {
 		    "NAME": "John Doe",
 		  },
