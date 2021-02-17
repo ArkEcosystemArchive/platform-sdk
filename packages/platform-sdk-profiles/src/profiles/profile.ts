@@ -476,7 +476,8 @@ export class Profile implements ProfileContract {
 			plugins: Joi.object({
 				data: Joi.object(),
 				blacklist: Joi.array().items(Joi.number()),
-			}).default({ data: {}, blacklist: [] }),
+				whitelist: Joi.array().items(Joi.number()),
+			}).default({ data: {}, blacklist: [], whitelist: [] }),
 			// TODO: stricter validation to avoid unknown keys or values
 			settings: Joi.object().required(),
 			wallets: Joi.object().pattern(
