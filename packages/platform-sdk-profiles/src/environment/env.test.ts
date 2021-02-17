@@ -191,7 +191,7 @@ it("should boot the environment from fixed data", async () => {
 	await env.verify(storageData);
 	await env.boot();
 
-	const newProfile = env.profiles().findById("b999d134-7a24-481e-a95d-bc47c543bfc9");
+	const newProfile = env.profiles().findById("8101538b-b13a-4b8d-b3d8-e710ccffd385");
 
 	await newProfile.restore();
 
@@ -200,15 +200,30 @@ it("should boot the environment from fixed data", async () => {
 	expect(newProfile.contacts().keys()).toHaveLength(1);
 	expect(newProfile.notifications().keys()).toHaveLength(1);
 	expect(newProfile.data().all()).toEqual({ key: "value" });
-	expect(newProfile.settings().all()).toEqual({ ADVANCED_MODE: "value", NAME: "John Doe" });
+	expect(newProfile.settings().all()).toEqual({
+		ADVANCED_MODE: "value",
+		AUTOMATIC_SIGN_OUT_PERIOD: 15,
+		BIP39_LOCALE: "english",
+		EXCHANGE_CURRENCY: "BTC",
+		LEDGER_UPDATE_METHOD: false,
+		LOCALE: "en-US",
+		MARKET_PROVIDER: "cryptocompare",
+		NAME: "John Doe",
+		SCREENSHOT_PROTECTION: true,
+		THEME: "light",
+		TIME_FORMAT: "h:mm A",
+		USE_CUSTOM_PEER: false,
+		USE_MULTI_PEER_BROADCAST: false,
+		USE_TEST_NETWORKS: false,
+	});
 
-	const restoredWallet = newProfile.wallets().findById("ac38fe6d-4b67-4ef1-85be-17c5f6841129");
+	const restoredWallet = newProfile.wallets().first();
 	expect(restoredWallet.settings().all()).toEqual({
-		ALIAS: "Johnathan Doe",
 		AVATAR:
 			'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="picasso" width="100" height="100" viewBox="0 0 100 100"><style>.picasso circle{mix-blend-mode:soft-light;}</style><rect fill="rgb(233, 30, 99)" width="100" height="100"/><circle r="50" cx="60" cy="40" fill="rgb(139, 195, 74)"/><circle r="45" cx="0" cy="30" fill="rgb(0, 188, 212)"/><circle r="40" cx="90" cy="50" fill="rgb(255, 193, 7)"/></svg>',
 	});
-	expect(restoredWallet.alias()).toBe("Johnathan Doe");
+
+	expect(restoredWallet.alias()).toBe(undefined);
 });
 
 it("should boot with empty storage data", async () => {
