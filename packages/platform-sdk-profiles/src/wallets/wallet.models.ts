@@ -113,6 +113,7 @@ export interface ReadWriteWallet {
 	peer(): Contracts.PeerService;
 	transaction(): TransactionService;
 
+	transactionTypes(): Coins.CoinTransactionTypes;
 	transactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	sentTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	receivedTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
