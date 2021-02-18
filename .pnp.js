@@ -79,6 +79,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/platform-sdk-eth"
       },
       {
+        "name": "@arkecosystem/platform-sdk-eth-indexer",
+        "reference": "workspace:packages/platform-sdk-eth-indexer"
+      },
+      {
         "name": "@arkecosystem/platform-sdk-http-axios",
         "reference": "workspace:packages/platform-sdk-http-axios"
       },
@@ -160,6 +164,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@arkecosystem/platform-sdk-dot-indexer", ["workspace:packages/platform-sdk-dot-indexer"]],
       ["@arkecosystem/platform-sdk-eos", ["workspace:packages/platform-sdk-eos"]],
       ["@arkecosystem/platform-sdk-eth", ["workspace:packages/platform-sdk-eth"]],
+      ["@arkecosystem/platform-sdk-eth-indexer", ["workspace:packages/platform-sdk-eth-indexer"]],
       ["@arkecosystem/platform-sdk-http-axios", ["workspace:packages/platform-sdk-http-axios"]],
       ["@arkecosystem/platform-sdk-http-bent", ["workspace:packages/platform-sdk-http-bent"]],
       ["@arkecosystem/platform-sdk-http-got", ["workspace:packages/platform-sdk-http-got"]],
@@ -1074,6 +1079,54 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
             ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"],
             ["web3", "npm:1.3.0"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@arkecosystem/platform-sdk-eth-indexer", [
+        ["workspace:packages/platform-sdk-eth-indexer", {
+          "packageLocation": "./packages/platform-sdk-eth-indexer/",
+          "packageDependencies": [
+            ["@arkecosystem/platform-sdk-eth-indexer", "workspace:packages/platform-sdk-eth-indexer"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
+            ["@konceiver/foreman", "npm:1.0.0"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
+            ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/eslint", "npm:7.2.4"],
+            ["@types/eslint-plugin-prettier", "npm:3.1.0"],
+            ["@types/hapi__joi", "npm:17.1.6"],
+            ["@types/jest", "npm:26.0.15"],
+            ["@types/meow", "npm:5.0.0"],
+            ["@types/node", "npm:14.14.25"],
+            ["@types/p-retry", "npm:3.0.1"],
+            ["@types/pino", "npm:6.3.5"],
+            ["@types/prettier", "npm:2.1.5"],
+            ["@types/rimraf", "npm:3.0.0"],
+            ["@types/uuid", "npm:8.3.0"],
+            ["@typescript-eslint/eslint-plugin", "virtual:9707c0591469b75116f3a8e83255399c0c3186339e3aad1c52940e101b2fbe9a821a69c22a2f280b57ff592dd05e0707d880ed58c5d1c75cb0e688b07b7e518e#npm:4.7.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["cross-env", "npm:7.0.2"],
+            ["eslint", "npm:7.13.0"],
+            ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.15.0"],
+            ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:24.1.3"],
+            ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.4"],
+            ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.0.0"],
+            ["got", "npm:11.8.0"],
+            ["jest", "npm:26.6.3"],
+            ["jest-extended", "npm:0.11.5"],
+            ["jest-localstorage-mock", "npm:2.4.3"],
+            ["meow", "npm:9.0.0"],
+            ["nock", "npm:13.0.5"],
+            ["npm-check-updates", "npm:10.1.1"],
+            ["p-queue", "npm:6.6.2"],
+            ["p-retry", "npm:4.3.0"],
+            ["pino", "npm:6.11.0"],
+            ["pino-pretty", "npm:4.5.0"],
+            ["prettier", "npm:2.1.2"],
+            ["rimraf", "npm:3.0.2"],
+            ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
+            ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"],
+            ["uuid", "npm:8.3.2"]
           ],
           "linkType": "SOFT",
         }]
@@ -6227,6 +6280,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-0eaf39c615/0/cache/@typescript-eslint-eslint-plugin-npm-4.7.0-19037dfb47-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
           "packageDependencies": [
             ["@typescript-eslint/eslint-plugin", "virtual:889e3d03d0998594ffdf10428c5829cd2081e0748c7c3495539d86601ec3b3c6d3e90362e2157e2b1b852dfec03b4a6a87578df8ca007458bbe1cb97609c909d#npm:4.7.0"],
+            ["@typescript-eslint/experimental-utils", "virtual:f0adb372351ee870f0bd9705221d1af55cbfed51326fcb5df9a8d7b0b6c95ce0475cb1c0f77ed4eb18fcbecaecdc91325aeaf120f52f8eb8c869d212b5c1ce9b#npm:4.7.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["@typescript-eslint/scope-manager", "npm:4.7.0"],
+            ["debug", "virtual:88318143fb6d80d1f55c54ae799fe6cfcf29c86ca9b9dae7a485ec5bdb22c3a20f79119854bb9696c57b5a03879e8671e3e9d39fcd8ca2cec3e6655f73233a79#npm:4.1.1"],
+            ["eslint", "npm:7.13.0"],
+            ["functional-red-black-tree", "npm:1.0.1"],
+            ["regexpp", "npm:3.1.0"],
+            ["semver", "npm:7.3.2"],
+            ["tsutils", "virtual:f0adb372351ee870f0bd9705221d1af55cbfed51326fcb5df9a8d7b0b6c95ce0475cb1c0f77ed4eb18fcbecaecdc91325aeaf120f52f8eb8c869d212b5c1ce9b#npm:3.17.1"],
+            ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"]
+          ],
+          "packagePeers": [
+            "eslint",
+            "@typescript-eslint/parser",
+            "typescript"
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:9707c0591469b75116f3a8e83255399c0c3186339e3aad1c52940e101b2fbe9a821a69c22a2f280b57ff592dd05e0707d880ed58c5d1c75cb0e688b07b7e518e#npm:4.7.0", {
+          "packageLocation": "./.yarn/$$virtual/@typescript-eslint-eslint-plugin-virtual-ea2f09bd91/0/cache/@typescript-eslint-eslint-plugin-npm-4.7.0-19037dfb47-2.zip/node_modules/@typescript-eslint/eslint-plugin/",
+          "packageDependencies": [
+            ["@typescript-eslint/eslint-plugin", "virtual:9707c0591469b75116f3a8e83255399c0c3186339e3aad1c52940e101b2fbe9a821a69c22a2f280b57ff592dd05e0707d880ed58c5d1c75cb0e688b07b7e518e#npm:4.7.0"],
             ["@typescript-eslint/experimental-utils", "virtual:f0adb372351ee870f0bd9705221d1af55cbfed51326fcb5df9a8d7b0b6c95ce0475cb1c0f77ed4eb18fcbecaecdc91325aeaf120f52f8eb8c869d212b5c1ce9b#npm:4.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
             ["@typescript-eslint/scope-manager", "npm:4.7.0"],
