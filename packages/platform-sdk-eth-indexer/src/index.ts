@@ -105,15 +105,15 @@ export const subscribe = async (
 			// eslint-disable-next-line @typescript-eslint/no-floating-promises
 			queue.add(() =>
 				retry(async () => {
-                    const block = await web3.eth.getBlock(i, false); // set this to true
+                    const block = await web3.eth.getBlock(i, true);
 
 					storeBlock(database, block);
 
-                    // if (block.transactions.length) {
-					// 	for (const transaction of block.transactions) {
-					// 		storeTransaction(database, transaction);
-					// 	}
-                    // }
+                    if (block.transactions.length) {
+						for (const transaction of block.transactions) {
+							storeTransaction(database, transaction);
+						}
+                    }
                 }, {
 					onFailedAttempt: (error) => {
 						console.log(error);
