@@ -22,7 +22,7 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
-		"@konceiver/foreman": "^1.0.0",
+		"@konceiver/foreman": "^2.0.1",
 		"meow": "^9.0.0",
 		"p-queue": "^6.6.2",
 		"p-retry": "^4.3.0",
