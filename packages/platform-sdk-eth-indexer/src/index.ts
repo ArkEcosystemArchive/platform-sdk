@@ -6,10 +6,10 @@ import PQueue from "p-queue";
 import retry from "p-retry";
 import Web3 from "web3";
 
-import { storeBlock, storeTransaction } from "./database";
+import { storeBlockWithTransactions } from "./database";
 
 export const subscribe = async (
-	flags: { coin: string; network: string; host: string },
+	flags: { coin: string; network: string; rpc: string; wss: string },
 	input: Record<string, string>,
 ): Promise<void> => {
 	const { name } = require("../package.json");
@@ -81,12 +81,25 @@ export const subscribe = async (
 	`);
 
 	// API
-	const web3 = new Web3(flags.host);
+	const wss = new Web3(new Web3.providers.WebsocketProvider(flags.wss));
+	const rpc = new Web3(flags.rpc);
+
+	// Listen for new block headers and retrieve the full block with transactions
+	wss.eth
+		.subscribe("newBlockHeaders")
+		.on("data", async (blockHeader) =>
+			storeBlockWithTransactions({
+				block: await rpc.eth.getBlock(blockHeader.number, true),
+				database,
+				logger,
+			}),
+		)
+		.on("error", (error: Error) => logger.error(error.message));
 
 	// Get the last block we stored in the database and grab the latest block
 	// on the network so that we can sync the missing blocks to complete our
 	// copy of the blockchain to avoid holes in the historical data of users.
-	const blockHeights = { local: 1, remote: await web3.eth.getBlockNumber() };
+	const blockHeights = { local: 1, remote: await rpc.eth.getBlockNumber() };
 	const lastBlock = database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
 
 	if (lastBlock !== undefined) {
@@ -109,15 +122,11 @@ export const subscribe = async (
 			queue.add(() =>
 				retry(
 					async () => {
-						const block = await web3.eth.getBlock(i, true);
-
-						storeBlock(database, block);
-
-						if (block.transactions.length) {
-							for (const transaction of block.transactions) {
-								storeTransaction(database, transaction);
-							}
-						}
+						storeBlockWithTransactions({
+							block: await rpc.eth.getBlock(i, true),
+							database,
+							logger,
+						});
 					},
 					{
 						onFailedAttempt: (error) => {
@@ -131,11 +140,9 @@ export const subscribe = async (
 				),
 			);
 		} catch (error) {
-			logger.info(error);
+			logger.error(error);
 
 			process.exit();
 		}
 	}
-
-	// @TODO: Once we have indexed all blocks we will listen for new blocks
 };

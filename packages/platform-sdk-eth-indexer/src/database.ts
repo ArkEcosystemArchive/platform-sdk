@@ -1,4 +1,7 @@
-export const storeBlock = (database, block) =>
+import Logger from "@ptkdev/logger";
+import sqlite3 from "better-sqlite3";
+
+const storeBlock = (database, block) =>
 	database
 		.prepare(
 			`INSERT OR IGNORE INTO blocks (
@@ -68,7 +71,7 @@ export const storeBlock = (database, block) =>
 			uncles: JSON.stringify(block.uncles),
 		});
 
-export const storeTransaction = (database, transaction) =>
+const storeTransaction = (database, transaction) =>
 	database
 		.prepare(
 			`INSERT OR IGNORE INTO transactions (
@@ -119,3 +122,25 @@ export const storeTransaction = (database, transaction) =>
 			v: transaction.v,
 			value: transaction.value,
 		});
+
+export const storeBlockWithTransactions = ({
+	block,
+	database,
+	logger,
+}: {
+	block: { hash: string; transactions: { hash: string }[] };
+	database: sqlite3.Database;
+	logger: Logger;
+}) => {
+	logger.info(`Storing block [${block.hash}] with [${block.transactions.length}] transaction(s)`);
+
+	storeBlock(database, block);
+
+	if (block.transactions.length) {
+		for (const transaction of block.transactions) {
+			logger.info(`Storing transaction [${transaction.hash}]`);
+
+			storeTransaction(database, transaction);
+		}
+	}
+};
