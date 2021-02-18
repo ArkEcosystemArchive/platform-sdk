@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.8.49 - 2020-02-18
+
+### Fixed
+
+-   Pass arguments as string to pm2 (10eaca13, @faustbrian)
+
 ## 2.8.48 - 2020-02-18
 
 ### Changed
