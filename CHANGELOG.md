@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- **[ETH-INDEXER]** set up skeleton (3cf42679, @faustbrian)
-- **[BTC-INDEXER]** set up skeleton (e2282ce4, @faustbrian)
+-   **[ETH-INDEXER]** set up skeleton (3cf42679, @faustbrian)
+-   **[BTC-INDEXER]** set up skeleton (e2282ce4, @faustbrian)
 
 ### Added
 
