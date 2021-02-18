@@ -1,4 +1,4 @@
-# ARK Platform SDK - Polkadot Indexer
+# ARK Platform SDK - Ethereum Indexer
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-eth-indexer/banner.png" />
