@@ -180,6 +180,14 @@ export class Wallet implements ReadWriteWallet {
 		return this.settings().get(WalletSetting.Alias);
 	}
 
+	public primaryKey(): string {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
+		return this.#wallet.primaryKey();
+	}
+
 	public address(): string {
 		return this.#address;
 	}
@@ -234,6 +242,14 @@ export class Wallet implements ReadWriteWallet {
 
 	public settings(): SettingRepository {
 		return this.#settingRepository;
+	}
+
+	public toData(): Contracts.WalletData {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
+		return this.#wallet;
 	}
 
 	public toObject(): WalletStruct {
