@@ -86,6 +86,10 @@ test("#hasFailed", () => {
 });
 
 class Wallet extends AbstractWalletData {
+	public primaryKey(): string {
+		return "address";
+	}
+
 	public address(): string {
 		return "address";
 	}

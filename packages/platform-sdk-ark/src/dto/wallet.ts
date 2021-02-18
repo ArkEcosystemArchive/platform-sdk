@@ -3,6 +3,10 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { get, has } from "dot-prop";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
+	public primaryKey(): string {
+		return this.address();
+	}
+
 	public address(): string {
 		return this.data.address;
 	}
