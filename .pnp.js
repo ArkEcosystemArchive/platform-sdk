@@ -1144,6 +1144,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@konceiver/foreman", "npm:1.0.0"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
+            ["@ptkdev/logger", "npm:1.7.2"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/better-sqlite3", "npm:5.4.1"],
             ["@types/env-paths", "npm:2.1.0"],
@@ -1179,8 +1180,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["npm-check-updates", "npm:10.1.1"],
             ["p-queue", "npm:6.6.2"],
             ["p-retry", "npm:4.3.0"],
-            ["pino", "npm:6.11.0"],
-            ["pino-pretty", "npm:4.5.0"],
             ["prettier", "npm:2.1.2"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
@@ -4853,6 +4852,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@polkadot/x-global", "npm:5.5.2"],
             ["@types/websocket", "npm:1.0.1"],
             ["websocket", "npm:1.0.33"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@ptkdev/logger", [
+        ["npm:1.7.2", {
+          "packageLocation": "./.yarn/cache/@ptkdev-logger-npm-1.7.2-1a27f721e9-2.zip/node_modules/@ptkdev/logger/",
+          "packageDependencies": [
+            ["@ptkdev/logger", "npm:1.7.2"],
+            ["chalk", "npm:4.1.0"],
+            ["fs-extra", "npm:9.1.0"],
+            ["lowdb", "npm:1.0.0"],
+            ["rotating-file-stream", "npm:2.1.4"],
+            ["strip-ansi", "npm:6.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -13067,6 +13080,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["is-promise", [
+        ["npm:2.2.2", {
+          "packageLocation": "./.yarn/cache/is-promise-npm-2.2.2-afbf94db67-2.zip/node_modules/is-promise/",
+          "packageDependencies": [
+            ["is-promise", "npm:2.2.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["is-regex", [
         ["npm:1.0.5", {
           "packageLocation": "./.yarn/cache/is-regex-npm-1.0.5-5bb6a707e2-2.zip/node_modules/is-regex/",
@@ -14688,6 +14710,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["loose-envify", "npm:1.4.0"],
             ["js-tokens", "npm:4.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["lowdb", [
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/lowdb-npm-1.0.0-5f300eaaff-2.zip/node_modules/lowdb/",
+          "packageDependencies": [
+            ["lowdb", "npm:1.0.0"],
+            ["graceful-fs", "npm:4.2.4"],
+            ["is-promise", "npm:2.2.2"],
+            ["lodash", "npm:4.17.20"],
+            ["pify", "npm:3.0.0"],
+            ["steno", "npm:0.4.4"]
           ],
           "linkType": "HARD",
         }]
@@ -16536,6 +16572,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["pify", [
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/pify-npm-3.0.0-679ee405c8-2.zip/node_modules/pify/",
+          "packageDependencies": [
+            ["pify", "npm:3.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["pino", [
         ["npm:6.11.0", {
           "packageLocation": "./.yarn/cache/pino-npm-6.11.0-451cdb4c5e-2.zip/node_modules/pino/",
@@ -17787,6 +17832,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["rotating-file-stream", [
+        ["npm:2.1.4", {
+          "packageLocation": "./.yarn/cache/rotating-file-stream-npm-2.1.4-37121bb40e-2.zip/node_modules/rotating-file-stream/",
+          "packageDependencies": [
+            ["rotating-file-stream", "npm:2.1.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["rss-parser", [
         ["npm:3.9.0", {
           "packageLocation": "./.yarn/cache/rss-parser-npm-3.9.0-ba27c67a88-2.zip/node_modules/rss-parser/",
@@ -18636,6 +18690,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["tslib", "npm:1.11.2"],
             ["urijs", "npm:1.19.2"],
             ["utility-types", "npm:3.10.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["steno", [
+        ["npm:0.4.4", {
+          "packageLocation": "./.yarn/cache/steno-npm-0.4.4-f4d2cb31bb-2.zip/node_modules/steno/",
+          "packageDependencies": [
+            ["steno", "npm:0.4.4"],
+            ["graceful-fs", "npm:4.2.4"]
           ],
           "linkType": "HARD",
         }]
