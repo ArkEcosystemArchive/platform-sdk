@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-dot",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "2.8.43",
+	"version": "2.8.48",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
