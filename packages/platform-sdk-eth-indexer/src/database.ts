@@ -1,6 +1,5 @@
 import Logger from "@ptkdev/logger";
 import sqlite3 from "better-sqlite3";
-import Web3 from "web3";
 
 const storeBlock = (database, block) =>
 	database
@@ -124,10 +123,14 @@ const storeTransaction = (database, transaction) =>
 			value: transaction.value,
 		});
 
-export const storeBlockWithTransactions = ({ block, database, logger }: {
-	block: { hash: string, transactions: { hash: string }[] },
-	database: sqlite3.Database,
-	logger: Logger,
+export const storeBlockWithTransactions = ({
+	block,
+	database,
+	logger,
+}: {
+	block: { hash: string; transactions: { hash: string }[] };
+	database: sqlite3.Database;
+	logger: Logger;
 }) => {
 	logger.info(`Storing block [${block.hash}] with [${block.transactions.length}] transaction(s)`);
 

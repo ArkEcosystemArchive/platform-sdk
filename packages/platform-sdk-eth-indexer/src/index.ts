@@ -81,16 +81,20 @@ export const subscribe = async (
 	`);
 
 	// API
-	const web3 = flags.host.startsWith("ws") ? new Web3(new Web3.providers.WebsocketProvider(flags.host)) : new Web3(flags.host);
+	const web3 = flags.host.startsWith("ws")
+		? new Web3(new Web3.providers.WebsocketProvider(flags.host))
+		: new Web3(flags.host);
 
 	// Listen for new block headers and retrieve the full block with transactions
 	web3.eth
 		.subscribe("newBlockHeaders")
-		.on("data", async (blockHeader) => storeBlockWithTransactions({
-			block: await web3.eth.getBlock(blockHeader.number, true),
-			database,
-			logger,
-		}))
+		.on("data", async (blockHeader) =>
+			storeBlockWithTransactions({
+				block: await web3.eth.getBlock(blockHeader.number, true),
+				database,
+				logger,
+			}),
+		)
 		.on("error", (error: Error) => logger.error(error.message));
 
 	// Get the last block we stored in the database and grab the latest block
