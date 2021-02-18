@@ -7,6 +7,8 @@ export abstract class AbstractWalletData {
 	public constructor(protected readonly data: KeyValuePair) {}
 
 	// Wallet
+	abstract primaryKey(): string;
+
 	abstract address(): string;
 
 	abstract publicKey(): string | undefined;

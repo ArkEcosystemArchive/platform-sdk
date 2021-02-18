@@ -2,6 +2,10 @@ import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
+	public primaryKey(): string {
+		return this.address();
+	}
+
 	public address(): string {
 		return this.data.id;
 	}

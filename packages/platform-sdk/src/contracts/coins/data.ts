@@ -12,6 +12,8 @@ export interface WalletMultiSignature {
 
 export interface WalletData {
 	// Wallet
+	primaryKey(): string;
+
 	address(): string;
 
 	publicKey(): string | undefined;

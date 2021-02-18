@@ -3,6 +3,10 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Web3 from "web3";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
+	public primaryKey(): string {
+		return this.address();
+	}
+
 	public address(): string {
 		return this.data.address;
 	}
