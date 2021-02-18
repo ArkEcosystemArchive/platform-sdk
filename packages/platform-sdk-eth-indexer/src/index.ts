@@ -9,7 +9,7 @@ import Web3 from "web3";
 import { storeBlockWithTransactions } from "./database";
 
 export const subscribe = async (
-	flags: { coin: string; network: string; host: string },
+	flags: { coin: string; network: string; rpc: string; wss: string },
 	input: Record<string, string>,
 ): Promise<void> => {
 	const { name } = require("../package.json");
@@ -81,16 +81,15 @@ export const subscribe = async (
 	`);
 
 	// API
-	const web3 = flags.host.startsWith("ws")
-		? new Web3(new Web3.providers.WebsocketProvider(flags.host))
-		: new Web3(flags.host);
+	const wss = new Web3(new Web3.providers.WebsocketProvider(flags.wss));
+	const rpc = new Web3(flags.rpc);
 
 	// Listen for new block headers and retrieve the full block with transactions
-	web3.eth
+	wss.eth
 		.subscribe("newBlockHeaders")
 		.on("data", async (blockHeader) =>
 			storeBlockWithTransactions({
-				block: await web3.eth.getBlock(blockHeader.number, true),
+				block: await rpc.eth.getBlock(blockHeader.number, true),
 				database,
 				logger,
 			}),
@@ -100,7 +99,7 @@ export const subscribe = async (
 	// Get the last block we stored in the database and grab the latest block
 	// on the network so that we can sync the missing blocks to complete our
 	// copy of the blockchain to avoid holes in the historical data of users.
-	const blockHeights = { local: 1, remote: await web3.eth.getBlockNumber() };
+	const blockHeights = { local: 1, remote: await rpc.eth.getBlockNumber() };
 	const lastBlock = database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
 
 	if (lastBlock !== undefined) {
@@ -124,7 +123,7 @@ export const subscribe = async (
 				retry(
 					async () => {
 						storeBlockWithTransactions({
-							block: await web3.eth.getBlock(i, true),
+							block: await rpc.eth.getBlock(i, true),
 							database,
 							logger,
 						});

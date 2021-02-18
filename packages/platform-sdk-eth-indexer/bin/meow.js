@@ -9,7 +9,10 @@ module.exports = meow(
 `,
 	{
 		flags: {
-			host: {
+			rpc: {
+				type: "string",
+			},
+			wss: {
 				type: "string",
 			},
 			coin: {
