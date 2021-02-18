@@ -693,6 +693,7 @@ __metadata:
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@konceiver/foreman": ^1.0.0
     "@ledgerhq/hw-transport-mocker": ^5.29.0
+    "@ptkdev/logger": ^1.7.2
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/better-sqlite3": 5.4.1
     "@types/env-paths": 2.1.0
@@ -731,7 +732,6 @@ __metadata:
     prettier: ^2.1.2
     rimraf: ^3.0.2
     ts-jest: ^26.4.4
-    tslog: ^3.1.1
     typescript: ^4.0.5
     uuid: ^8.3.2
     web3: ^1.3.4
@@ -4286,6 +4286,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ptkdev/logger@npm:^1.7.2":
+  version: 1.7.2
+  resolution: "@ptkdev/logger@npm:1.7.2"
+  dependencies:
+    chalk: latest
+    fs-extra: latest
+    lowdb: latest
+    rotating-file-stream: latest
+    strip-ansi: latest
+  checksum: 2/3471c22aa453037c106a19eac1e35bec1bcc07f82b38fdd461c0d3fa760a80dbcdeab7f0e2a55111aef4827cbe6a41b47304b9645c2ea00c123315200c436c89
+  languageName: node
+  linkType: hard
+
 "@shiftkey/node-abi@npm:2.19.2-pre":
   version: 2.19.2-pre
   resolution: "@shiftkey/node-abi@npm:2.19.2-pre"
@@ -7315,7 +7328,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.1.0":
+"chalk@npm:^4.1.0, chalk@npm:latest":
   version: 4.1.0
   resolution: "chalk@npm:4.1.0"
   dependencies:
@@ -9797,7 +9810,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^9.1.0":
+"fs-extra@npm:^9.1.0, fs-extra@npm:latest":
   version: 9.1.0
   resolution: "fs-extra@npm:9.1.0"
   dependencies:
@@ -10135,7 +10148,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.1.15, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.2, graceful-fs@npm:^4.2.4":
+"graceful-fs@npm:^4.1.15, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.3, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.2, graceful-fs@npm:^4.2.4":
   version: 4.2.4
   resolution: "graceful-fs@npm:4.2.4"
   checksum: 2/d095ee4dc6eacc76814cd52d5d185b860119378a6fd4888e7d4e94983095c54d4f6369942a5e3d759cdbdd4e3ee7eaeb27a39ff938c6ee4610894fd9de46b6cb
@@ -10989,6 +11002,13 @@ fsevents@^2.1.2:
   version: 1.0.0
   resolution: "is-potential-custom-element-name@npm:1.0.0"
   checksum: 2/55b1ae44cf9241ea5b08414318d12a4d2eb157cb5722908fc7ef268c6d175894cb59d298092a87f9ed54af5b60fc572fa7f6b34b8633120dbe6edaa6c5169d0b
+  languageName: node
+  linkType: hard
+
+"is-promise@npm:^2.1.0":
+  version: 2.2.2
+  resolution: "is-promise@npm:2.2.2"
+  checksum: 2/6fe84293b8750d3604a909979a7517a38b1618817f1fbbfdaf4d6138642117c85fbee12927b4d51349a5bcd9bdf8d1bf181f09145ede2d7eb41f4b394ab2ce7d
   languageName: node
   linkType: hard
 
@@ -12431,6 +12451,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"lodash@npm:4, lodash@npm:^4.17.20":
+  version: 4.17.20
+  resolution: "lodash@npm:4.17.20"
+  checksum: 2/c62101d2500c383b5f174a7e9e6fe8098149ddd6e9ccfa85f36d4789446195f5c4afd3cfba433026bcaf3da271256566b04a2bf2618e5a39f6e67f8c12030cb6
+  languageName: node
+  linkType: hard
+
 "lodash@npm:^4.17.11, lodash@npm:^4.17.13, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.4, lodash@npm:^4.17.5":
   version: 4.17.15
   resolution: "lodash@npm:4.17.15"
@@ -12442,13 +12469,6 @@ fsevents@^2.1.2:
   version: 4.17.19
   resolution: "lodash@npm:4.17.19"
   checksum: 2/ff2b7a95f0129dba9101e346d44e0eda0f159d76bbbf23721eec1969b87a32bde3de0cfef0733218c64620e9be08040a973278d46a686540233b356115f3527c
-  languageName: node
-  linkType: hard
-
-"lodash@npm:^4.17.20":
-  version: 4.17.20
-  resolution: "lodash@npm:4.17.20"
-  checksum: 2/c62101d2500c383b5f174a7e9e6fe8098149ddd6e9ccfa85f36d4789446195f5c4afd3cfba433026bcaf3da271256566b04a2bf2618e5a39f6e67f8c12030cb6
   languageName: node
   linkType: hard
 
@@ -12497,6 +12517,19 @@ fsevents@^2.1.2:
   bin:
     loose-envify: cli.js
   checksum: 2/5c3b47bbe5f597a3889fb001a3a98aaea2a3fafa48089c19034de1e0121bf57dbee609d184478514d74d5c5a7e9cfa3d846343455e5123b060040d46c39e91dc
+  languageName: node
+  linkType: hard
+
+"lowdb@npm:latest":
+  version: 1.0.0
+  resolution: "lowdb@npm:1.0.0"
+  dependencies:
+    graceful-fs: ^4.1.3
+    is-promise: ^2.1.0
+    lodash: 4
+    pify: ^3.0.0
+    steno: ^0.4.1
+  checksum: 2/264b01846c1c76b92637fc0f37e1650f634a817bec71706b1f2c933a95191e1b6c2b5d097d0cab8ba77545d64cd38f6371c842a9111d5da5b5e3aec2f839cccf
   languageName: node
   linkType: hard
 
@@ -14187,6 +14220,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"pify@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "pify@npm:3.0.0"
+  checksum: 2/18af2b29148c4d6fd4c7741dbd953ff76beea17d1b4a6d5792d7ff1d7202f43671c3f29313aa5ec01a66d050dbdbb0cf23f17de69531da8dc8bda42d327cf960
+  languageName: node
+  linkType: hard
+
 "pino-pretty@npm:^4.5.0":
   version: 4.5.0
   resolution: "pino-pretty@npm:4.5.0"
@@ -15369,6 +15409,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"rotating-file-stream@npm:latest":
+  version: 2.1.4
+  resolution: "rotating-file-stream@npm:2.1.4"
+  checksum: 2/1fef9779594314cff472c4e1e42c33162b6742f4458e1665f34bbb1123eac2721c4a9508faf6808f1e2b52d19244af0fea014603244a2a79652f871e2400212a
+  languageName: node
+  linkType: hard
+
 "rss-parser@npm:^3.9.0":
   version: 3.9.0
   resolution: "rss-parser@npm:3.9.0"
@@ -15910,7 +15957,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"source-map-support@npm:^0.5.19, source-map-support@npm:^0.5.6":
+"source-map-support@npm:^0.5.6":
   version: 0.5.19
   resolution: "source-map-support@npm:0.5.19"
   dependencies:
@@ -16158,6 +16205,15 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"steno@npm:^0.4.1":
+  version: 0.4.4
+  resolution: "steno@npm:0.4.4"
+  dependencies:
+    graceful-fs: ^4.1.3
+  checksum: 2/5bcef265d5702bf55e47292ddc20ec408e2b85811ded9bbcb5618b2cadcb3f0450f1f43a8805e30c9c5734fa24c14726a9e317963d1d192ceb413eec630c8cd6
+  languageName: node
+  linkType: hard
+
 "store2@npm:2.11.0":
   version: 2.11.0
   resolution: "store2@npm:2.11.0"
@@ -16341,7 +16397,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"strip-ansi@npm:^6.0.0":
+"strip-ansi@npm:^6.0.0, strip-ansi@npm:latest":
   version: 6.0.0
   resolution: "strip-ansi@npm:6.0.0"
   dependencies:
@@ -16846,15 +16902,6 @@ fsevents@^2.1.2:
   version: 1.11.1
   resolution: "tslib@npm:1.11.1"
   checksum: 2/d40eba08de267b2d3c458ddbf51f9010a45b8e752d3bf8c0fed63e266afc9277c6a26e65e51223335b8753f9f106aeb600e704f2a6eae05729160671a97c52e7
-  languageName: node
-  linkType: hard
-
-"tslog@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "tslog@npm:3.1.1"
-  dependencies:
-    source-map-support: ^0.5.19
-  checksum: 2/5438ac1a930daf00ab70886d4ac9ac6b317e72ea8e1723cc892518dbfbf1a3977628b3a9967b7f92e4d19d0540521f97de0189e6ef84bc5f5be2201d751e171f
   languageName: node
   linkType: hard
 

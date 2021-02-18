@@ -1,9 +1,9 @@
+import Logger from "@ptkdev/logger";
 import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 import PQueue from "p-queue";
 import retry from "p-retry";
-import { Logger } from "tslog";
 import Web3 from "web3";
 
 import { storeBlock, storeTransaction } from "./database";
@@ -15,7 +15,7 @@ export const subscribe = async (
 	const { name } = require("../package.json");
 
 	// Logging
-	const logger: Logger = new Logger({ name });
+	const logger: Logger = new Logger();
 
 	// Queue
 	const queue = new PQueue({ autoStart: false, concurrency: 10 });
