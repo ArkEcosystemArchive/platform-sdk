@@ -76,8 +76,8 @@ export const subscribe = async (
 		);
 
 		CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
-		CREATE UNIQUE INDEX IF NOT EXISTS transactions_from ON transactions ("from");
-		CREATE UNIQUE INDEX IF NOT EXISTS transactions_to ON transactions ("to");
+		CREATE INDEX IF NOT EXISTS transactions_from ON transactions ("from");
+		CREATE INDEX IF NOT EXISTS transactions_to ON transactions ("to");
 	`);
 
 	// API - @TODO: get this value from the CLI
