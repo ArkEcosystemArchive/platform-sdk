@@ -56,6 +56,8 @@ export const subscribe = async (
 			uncles             TEXT          NOT NULL
 		);
 
+		CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
+
 		CREATE TABLE IF NOT EXISTS transactions(
 			hash               VARCHAR(66)   PRIMARY KEY,
 			blockHash          VARCHAR(66)   NOT NULL,
@@ -73,8 +75,9 @@ export const subscribe = async (
 			value              VARCHAR(66)   NOT NULL
 		);
 
-		CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
 		CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
+		CREATE UNIQUE INDEX IF NOT EXISTS transactions_from ON transactions ("from");
+		CREATE UNIQUE INDEX IF NOT EXISTS transactions_to ON transactions ("to");
 	`);
 
 	// API - @TODO: get this value from the CLI
@@ -92,7 +95,7 @@ export const subscribe = async (
 
 	for (let i = blockHeights.local; i <= blockHeights.remote; i++) {
 		try {
-			if (queue.size === 250) {
+			if (queue.size === 1000) {
 				logger.info("Draining Queue...");
 
 				await queue.start().onIdle();
