@@ -180,6 +180,10 @@ export class Wallet implements ReadWriteWallet {
 		return this.settings().get(WalletSetting.Alias);
 	}
 
+	public primaryKey(): string {
+		return this.#wallet.primaryKey();
+	}
+
 	public address(): string {
 		return this.#address;
 	}

@@ -75,6 +75,7 @@ export interface ReadWriteWallet {
 	currency(): string;
 	exchangeCurrency(): string;
 	alias(): string | undefined;
+	primaryKey(): string;
 	address(): string;
 	publicKey(): string | undefined;
 	balance(): BigNumber;
