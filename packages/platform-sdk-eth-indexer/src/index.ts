@@ -1,13 +1,15 @@
 import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
-import { mkdirSync } from "fs";
 import { ensureFileSync } from "fs-extra";
 import PQueue from "p-queue";
 import retry from "p-retry";
 import pino from "pino";
 import Web3 from "web3";
 
-export const subscribe = async (flags: { coin: string; host: string }, input: Record<string, string>): Promise<void> => {
+export const subscribe = async (
+	flags: { coin: string; host: string },
+	input: Record<string, string>,
+): Promise<void> => {
 	const { name } = require("../package.json");
 
 	// Logging
@@ -21,8 +23,8 @@ export const subscribe = async (flags: { coin: string; host: string }, input: Re
 	// queue.on("next", () => logger.debug(`Task is completed. Size: ${queue.size} | Pending: ${queue.pending}`));
 
 	// Storage
-    const databaseFile = `${envPaths(name).data}/peth/${flags.coin}.db`;
-    ensureFileSync(databaseFile);
+	const databaseFile = `${envPaths(name).data}/peth/${flags.coin}.db`;
+	ensureFileSync(databaseFile);
 	const database = sqlite3(databaseFile);
 
 	// @TODO: create database tables for blocks and transactions
