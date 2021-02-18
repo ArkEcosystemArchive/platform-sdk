@@ -5,29 +5,22 @@ const meow = require("meow");
 module.exports = meow(
 	`
 	Usage
-	  $ dot <input>
-
-	Options
-	Options
-	  --polkadot, -p  The BTC RPC host (defaults to wss://rpc.polkadot.io)
-	  --elasticsearch, -e  The ElasticSearch host (defaults to http://localhost:9200)
+	  $ peth <input>
 `,
 	{
 		flags: {
+			host: {
+				type: "string",
+			},
 			coin: {
 				type: "string",
 				alias: "c",
-				default: "dot",
+				default: "eth",
 			},
-			polkadot: {
+			network: {
 				type: "string",
-				alias: "p",
-				default: "wss://rpc.polkadot.io",
-			},
-			elasticsearch: {
-				type: "string",
-				alias: "e",
-				default: "http://localhost:9200",
+				alias: "c",
+				default: "mainnet",
 			},
 		},
 	},
