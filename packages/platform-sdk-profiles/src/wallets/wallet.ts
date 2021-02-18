@@ -236,6 +236,14 @@ export class Wallet implements ReadWriteWallet {
 		return this.#settingRepository;
 	}
 
+	public toData(): Contracts.WalletData {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
+		return this.#wallet;
+	}
+
 	public toObject(): WalletStruct {
 		this.#transactionService.dump();
 

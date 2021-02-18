@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { encrypt } from "bip38";
 import nock from "nock";
@@ -638,4 +638,8 @@ describe("#setCoin", () => {
 
 		expect(subject.usesWIF()).toBeTrue();
 	});
+});
+
+it("should have an underlying `WalletData` instance", () => {
+	expect(subject.toData().primaryKey()).toBe(subject.address());
 });
