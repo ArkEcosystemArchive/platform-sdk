@@ -22,7 +22,7 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
-		"@konceiver/foreman": "^1.0.0",
+		"@konceiver/foreman": "^2.0.1",
 		"@ptkdev/logger": "^1.7.2",
 		"better-sqlite3": "^7.1.2",
 		"env-paths": "^2.2.0",

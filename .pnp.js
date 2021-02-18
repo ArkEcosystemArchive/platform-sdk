@@ -736,7 +736,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-btc-indexer", "workspace:packages/platform-sdk-btc-indexer"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
-            ["@konceiver/foreman", "npm:1.0.0"],
+            ["@konceiver/foreman", "npm:2.0.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.4"],
@@ -1002,7 +1002,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-dot-indexer", "workspace:packages/platform-sdk-dot-indexer"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@elastic/elasticsearch", "npm:7.10.0"],
-            ["@konceiver/foreman", "npm:1.0.0"],
+            ["@konceiver/foreman", "npm:2.0.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@polkadot/api", "npm:3.6.4"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -1142,7 +1142,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-eth-indexer", "workspace:packages/platform-sdk-eth-indexer"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
-            ["@konceiver/foreman", "npm:1.0.0"],
+            ["@konceiver/foreman", "npm:2.0.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@ptkdev/logger", "npm:1.7.2"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -3904,11 +3904,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@konceiver/foreman", [
-        ["npm:1.0.0", {
-          "packageLocation": "./.yarn/cache/@konceiver-foreman-npm-1.0.0-f1012a4655-2.zip/node_modules/@konceiver/foreman/",
+        ["npm:2.0.1", {
+          "packageLocation": "./.yarn/cache/@konceiver-foreman-npm-2.0.1-81f2c585f4-2.zip/node_modules/@konceiver/foreman/",
           "packageDependencies": [
-            ["@konceiver/foreman", "npm:1.0.0"],
-            ["execa", "npm:4.1.0"]
+            ["@konceiver/foreman", "npm:2.0.1"],
+            ["execa", "npm:5.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -11103,17 +11103,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:4.1.0", {
-          "packageLocation": "./.yarn/cache/execa-npm-4.1.0-cc675b4189-2.zip/node_modules/execa/",
+        ["npm:5.0.0", {
+          "packageLocation": "./.yarn/cache/execa-npm-5.0.0-4ee568fb49-2.zip/node_modules/execa/",
           "packageDependencies": [
-            ["execa", "npm:4.1.0"],
-            ["cross-spawn", "npm:7.0.2"],
-            ["get-stream", "npm:5.1.0"],
-            ["human-signals", "npm:1.1.1"],
+            ["execa", "npm:5.0.0"],
+            ["cross-spawn", "npm:7.0.3"],
+            ["get-stream", "npm:6.0.0"],
+            ["human-signals", "npm:2.1.0"],
             ["is-stream", "npm:2.0.0"],
             ["merge-stream", "npm:2.0.0"],
             ["npm-run-path", "npm:4.0.1"],
-            ["onetime", "npm:5.1.0"],
+            ["onetime", "npm:5.1.2"],
             ["signal-exit", "npm:3.0.3"],
             ["strip-final-newline", "npm:2.0.0"]
           ],
@@ -11886,6 +11886,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["pump", "npm:3.0.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:6.0.0", {
+          "packageLocation": "./.yarn/cache/get-stream-npm-6.0.0-ca30041dff-2.zip/node_modules/get-stream/",
+          "packageDependencies": [
+            ["get-stream", "npm:6.0.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["get-value", [
@@ -12473,6 +12480,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/human-signals-npm-1.1.1-616b2586c2-2.zip/node_modules/human-signals/",
           "packageDependencies": [
             ["human-signals", "npm:1.1.1"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:2.1.0", {
+          "packageLocation": "./.yarn/cache/human-signals-npm-2.1.0-f75815481d-2.zip/node_modules/human-signals/",
+          "packageDependencies": [
+            ["human-signals", "npm:2.1.0"]
           ],
           "linkType": "HARD",
         }]
@@ -16081,6 +16095,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/onetime-npm-5.1.0-8d9e23c1e0-2.zip/node_modules/onetime/",
           "packageDependencies": [
             ["onetime", "npm:5.1.0"],
+            ["mimic-fn", "npm:2.1.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.1.2", {
+          "packageLocation": "./.yarn/cache/onetime-npm-5.1.2-3ed148fa42-2.zip/node_modules/onetime/",
+          "packageDependencies": [
+            ["onetime", "npm:5.1.2"],
             ["mimic-fn", "npm:2.1.0"]
           ],
           "linkType": "HARD",
