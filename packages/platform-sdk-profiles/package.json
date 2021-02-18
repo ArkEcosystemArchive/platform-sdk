@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-profiles",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "2.8.41",
+	"version": "2.8.43",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -35,7 +35,7 @@
 		"node-cache": "^5.1.2",
 		"p-queue": "^6.6.2",
 		"p-retry": "^4.3.0",
-		"semver": "^7.3.2",
+		"semver": "^7.3.4",
 		"type-fest": "^0.18.1",
 		"uuid": "^8.3.1",
 		"wif": "^2.0.6"
