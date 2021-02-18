@@ -17,6 +17,11 @@ module.exports = meow(
 				alias: "c",
 				default: "eth",
 			},
+			network: {
+				type: "string",
+				alias: "c",
+				default: "mainnet",
+			},
 		},
 	},
 );

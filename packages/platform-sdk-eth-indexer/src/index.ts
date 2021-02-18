@@ -9,7 +9,7 @@ import Web3 from "web3";
 import { storeBlock, storeTransaction } from "./database";
 
 export const subscribe = async (
-	flags: { coin: string; host: string },
+	flags: { coin: string; network: string; host: string },
 	input: Record<string, string>,
 ): Promise<void> => {
 	const { name } = require("../package.json");
@@ -25,12 +25,12 @@ export const subscribe = async (
 	// queue.on("next", () => logger.debug(`Task is completed. Size: ${queue.size} | Pending: ${queue.pending}`));
 
 	// Storage
-	const databaseFile = `${envPaths(name).data}/peth/${flags.coin}.db`;
+	const databaseFile = `${envPaths(name).data}/peth/${flags.coin}/${flags.network}.db`;
 	ensureFileSync(databaseFile);
 
 	logger.debug(`Using [${databaseFile}] as database`);
 
-	const database = sqlite3(databaseFile, { verbose: console.log });
+	const database = sqlite3(databaseFile);
 	database.exec(`
 		PRAGMA journal_mode = WAL;
 
@@ -105,15 +105,15 @@ export const subscribe = async (
 			// eslint-disable-next-line @typescript-eslint/no-floating-promises
 			queue.add(() =>
 				retry(async () => {
-                    const block = await web3.eth.getBlock(i, true);
+                    const block = await web3.eth.getBlock(i, false); // set this to true
 
 					storeBlock(database, block);
 
-                    if (block.transactions.length) {
-						for (const transaction of block.transactions) {
-							storeTransaction(database, transaction);
-						}
-                    }
+                    // if (block.transactions.length) {
+					// 	for (const transaction of block.transactions) {
+					// 		storeTransaction(database, transaction);
+					// 	}
+                    // }
                 }, {
 					onFailedAttempt: (error) => {
 						console.log(error);
