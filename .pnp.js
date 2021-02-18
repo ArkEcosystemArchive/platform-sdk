@@ -1179,11 +1179,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["npm-check-updates", "npm:10.1.1"],
             ["p-queue", "npm:6.6.2"],
             ["p-retry", "npm:4.3.0"],
-            ["pino", "npm:6.11.0"],
-            ["pino-pretty", "npm:4.5.0"],
             ["prettier", "npm:2.1.2"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
+            ["tslog", "npm:3.1.1"],
             ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"],
             ["uuid", "npm:8.3.2"],
             ["web3", "npm:1.3.4"]
@@ -19389,6 +19388,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/tslib-npm-1.13.0-f5e9ea9b66-2.zip/node_modules/tslib/",
           "packageDependencies": [
             ["tslib", "npm:1.13.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["tslog", [
+        ["npm:3.1.1", {
+          "packageLocation": "./.yarn/cache/tslog-npm-3.1.1-12a391a575-2.zip/node_modules/tslog/",
+          "packageDependencies": [
+            ["tslog", "npm:3.1.1"],
+            ["source-map-support", "npm:0.5.19"]
           ],
           "linkType": "HARD",
         }]

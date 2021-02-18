@@ -3,7 +3,7 @@ import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 import PQueue from "p-queue";
 import retry from "p-retry";
-import pino from "pino";
+import { Logger } from "tslog";
 import Web3 from "web3";
 
 import { storeBlock, storeTransaction } from "./database";
@@ -15,7 +15,7 @@ export const subscribe = async (
 	const { name } = require("../package.json");
 
 	// Logging
-	const logger = pino({ name, level: "debug" });
+	const logger: Logger = new Logger({ name });
 
 	// Queue
 	const queue = new PQueue({ autoStart: false, concurrency: 10 });
@@ -131,7 +131,7 @@ export const subscribe = async (
 				),
 			);
 		} catch (error) {
-			logger.log(error);
+			logger.info(error);
 
 			process.exit();
 		}
