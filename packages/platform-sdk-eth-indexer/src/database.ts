@@ -1,4 +1,7 @@
-export const storeBlock = (database, block) => database.prepare(`INSERT OR IGNORE INTO blocks (
+export const storeBlock = (database, block) =>
+	database
+		.prepare(
+			`INSERT OR IGNORE INTO blocks (
 	hash,
 	difficulty,
 	extraData,
@@ -38,32 +41,37 @@ export const storeBlock = (database, block) => database.prepare(`INSERT OR IGNOR
 	:totalDifficulty,
 	:transactionsRoot,
 	:uncles
-)`).run({
-	hash: block.hash,
-	difficulty: block.difficulty,
-	extraData: block.extraData,
-	gasLimit: block.gasLimit,
-	gasUsed: block.gasUsed,
-	logsBloom: block.logsBloom,
-	miner: block.miner,
-	// @ts-ignore - This property exists but the typings are wrong.
-	mixHash: block.mixHash,
-	nonce: block.nonce,
-	number: block.number,
-	parentHash: block.parentHash,
-	// @ts-ignore - This property exists but the typings are wrong.
-	receiptsRoot: block.receiptsRoot,
-	sha3Uncles: block.sha3Uncles,
-	size: block.size,
-	stateRoot: block.stateRoot,
-	timestamp: block.timestamp,
-	totalDifficulty: block.totalDifficulty,
-	// @ts-ignore - This property exists but the typings are wrong.
-	transactionsRoot: block.transactionsRoot,
-	uncles: JSON.stringify(block.uncles),
-});
+)`,
+		)
+		.run({
+			hash: block.hash,
+			difficulty: block.difficulty,
+			extraData: block.extraData,
+			gasLimit: block.gasLimit,
+			gasUsed: block.gasUsed,
+			logsBloom: block.logsBloom,
+			miner: block.miner,
+			// @ts-ignore - This property exists but the typings are wrong.
+			mixHash: block.mixHash,
+			nonce: block.nonce,
+			number: block.number,
+			parentHash: block.parentHash,
+			// @ts-ignore - This property exists but the typings are wrong.
+			receiptsRoot: block.receiptsRoot,
+			sha3Uncles: block.sha3Uncles,
+			size: block.size,
+			stateRoot: block.stateRoot,
+			timestamp: block.timestamp,
+			totalDifficulty: block.totalDifficulty,
+			// @ts-ignore - This property exists but the typings are wrong.
+			transactionsRoot: block.transactionsRoot,
+			uncles: JSON.stringify(block.uncles),
+		});
 
-export const storeTransaction = (database, transaction) => database.prepare(`INSERT OR IGNORE INTO transactions (
+export const storeTransaction = (database, transaction) =>
+	database
+		.prepare(
+			`INSERT OR IGNORE INTO transactions (
 	hash,
 	blockHash,
 	blockNumber,
@@ -93,19 +101,21 @@ export const storeTransaction = (database, transaction) => database.prepare(`INS
 	:transactionIndex,
 	:v,
 	:value
-)`).run({
-	hash: transaction.hash,
-	blockHash: transaction.blockHash,
-	blockNumber: transaction.blockNumber,
-	from: transaction.from,
-	gas: transaction.gas,
-	gasPrice: transaction.gasPrice,
-	input: transaction.input,
-	nonce: transaction.nonce,
-	r: transaction.r,
-	s: transaction.s,
-	to: transaction.to,
-	transactionIndex: transaction.transactionIndex,
-	v: transaction.v,
-	value: transaction.value,
-});
+)`,
+		)
+		.run({
+			hash: transaction.hash,
+			blockHash: transaction.blockHash,
+			blockNumber: transaction.blockNumber,
+			from: transaction.from,
+			gas: transaction.gas,
+			gasPrice: transaction.gasPrice,
+			input: transaction.input,
+			nonce: transaction.nonce,
+			r: transaction.r,
+			s: transaction.s,
+			to: transaction.to,
+			transactionIndex: transaction.transactionIndex,
+			v: transaction.v,
+			value: transaction.value,
+		});

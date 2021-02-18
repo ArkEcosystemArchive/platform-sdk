@@ -104,25 +104,28 @@ export const subscribe = async (
 			// @ts-ignore
 			// eslint-disable-next-line @typescript-eslint/no-floating-promises
 			queue.add(() =>
-				retry(async () => {
-                    const block = await web3.eth.getBlock(i, true);
+				retry(
+					async () => {
+						const block = await web3.eth.getBlock(i, true);
 
-					storeBlock(database, block);
+						storeBlock(database, block);
 
-                    if (block.transactions.length) {
-						for (const transaction of block.transactions) {
-							storeTransaction(database, transaction);
+						if (block.transactions.length) {
+							for (const transaction of block.transactions) {
+								storeTransaction(database, transaction);
+							}
 						}
-                    }
-                }, {
-					onFailedAttempt: (error) => {
-						console.log(error);
-						logger.error(
-							`Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`,
-						);
 					},
-					retries: 5,
-				}),
+					{
+						onFailedAttempt: (error) => {
+							console.log(error);
+							logger.error(
+								`Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`,
+							);
+						},
+						retries: 5,
+					},
+				),
 			);
 		} catch (error) {
 			logger.log(error);
