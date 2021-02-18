@@ -137,7 +137,7 @@ export const subscribe = async (
 				),
 			);
 		} catch (error) {
-			logger.info(error);
+			logger.error(error);
 
 			process.exit();
 		}
