@@ -83,7 +83,7 @@ export const subscribe = async (
 	// API
 	const web3 = flags.host.startsWith("ws") ? new Web3(new Web3.providers.WebsocketProvider(flags.host)) : new Web3(flags.host);
 
-	// Listen for new blocks
+	// Listen for new block headers and retrieve the full block with transactions
 	web3.eth
 		.subscribe("newBlockHeaders")
 		.on("data", async (blockHeader) => storeBlockWithTransactions({
