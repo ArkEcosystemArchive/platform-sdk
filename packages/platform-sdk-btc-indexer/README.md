@@ -1,7 +1,7 @@
-# ARK Platform SDK - Ethereum Indexer
+# ARK Platform SDK - Bitcoin Indexer
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-eth-indexer/banner.png" />
+    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-btc-indexer/banner.png" />
 </p>
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)
@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-eth-indexer
+yarn add @arkecosystem/platform-sdk-btc-indexer
 ```
 
 ## Usage
