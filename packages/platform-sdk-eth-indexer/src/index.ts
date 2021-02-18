@@ -9,7 +9,7 @@ import Web3 from "web3";
 import { storeBlockWithTransactions } from "./database";
 
 export const subscribe = async (
-	flags: { coin: string; network: string; rpc: string; wss: string },
+	flags: { coin: string; network: string; rpc: string; wss: string; database: string },
 	input: Record<string, string>,
 ): Promise<void> => {
 	const { name } = require("../package.json");
@@ -25,7 +25,7 @@ export const subscribe = async (
 	// queue.on("next", () => logger.debug(`Task is completed. Size: ${queue.size} | Pending: ${queue.pending}`));
 
 	// Storage
-	const databaseFile = `${envPaths(name).data}/peth/${flags.coin}/${flags.network}.db`;
+	const databaseFile = flags.database || `${envPaths(name).data}/peth/${flags.coin}/${flags.network}.db`;
 	ensureFileSync(databaseFile);
 
 	logger.debug(`Using [${databaseFile}] as database`);

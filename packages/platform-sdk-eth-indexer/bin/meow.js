@@ -9,12 +9,6 @@ module.exports = meow(
 `,
 	{
 		flags: {
-			rpc: {
-				type: "string",
-			},
-			wss: {
-				type: "string",
-			},
 			coin: {
 				type: "string",
 				alias: "c",
@@ -24,6 +18,15 @@ module.exports = meow(
 				type: "string",
 				alias: "c",
 				default: "mainnet",
+			},
+			rpc: {
+				type: "string",
+			},
+			wss: {
+				type: "string",
+			},
+			database: {
+				type: "string",
 			},
 		},
 	},
