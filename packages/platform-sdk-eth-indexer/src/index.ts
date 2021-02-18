@@ -80,7 +80,7 @@ export const subscribe = async (
 		CREATE INDEX IF NOT EXISTS transactions_to ON transactions ("to");
 	`);
 
-	// API - @TODO: get this value from the CLI
+	// API
 	const web3 = new Web3(flags.host);
 
 	// Get the last block we stored in the database and grab the latest block
