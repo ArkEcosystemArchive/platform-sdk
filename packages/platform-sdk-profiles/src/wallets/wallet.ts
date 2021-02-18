@@ -181,6 +181,10 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public primaryKey(): string {
+		if (!this.#wallet) {
+			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+		}
+
 		return this.#wallet.primaryKey();
 	}
 
