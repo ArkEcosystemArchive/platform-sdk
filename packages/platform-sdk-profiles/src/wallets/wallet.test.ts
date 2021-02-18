@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { encrypt } from "bip38";
 import nock from "nock";
