@@ -6,7 +6,7 @@ import PQueue from "p-queue";
 import retry from "p-retry";
 import Web3 from "web3";
 
-import { storeBlock, storeTransaction } from "./database";
+import { storeBlockWithTransactions } from "./database";
 
 export const subscribe = async (
 	flags: { coin: string; network: string; host: string },
@@ -81,7 +81,17 @@ export const subscribe = async (
 	`);
 
 	// API
-	const web3 = new Web3(flags.host);
+	const web3 = new Web3(new Web3.providers.WebsocketProvider(flags.host));
+
+	// Listen for new blocks
+	web3.eth
+		.subscribe("newBlockHeaders")
+		.on("data", async (blockHeader) => storeBlockWithTransactions({
+			block: await web3.eth.getBlock(blockHeader.number, true),
+			database,
+			logger,
+		}))
+		.on("error", (error: Error) => logger.error(error.message));
 
 	// Get the last block we stored in the database and grab the latest block
 	// on the network so that we can sync the missing blocks to complete our
@@ -109,15 +119,11 @@ export const subscribe = async (
 			queue.add(() =>
 				retry(
 					async () => {
-						const block = await web3.eth.getBlock(i, true);
-
-						storeBlock(database, block);
-
-						if (block.transactions.length) {
-							for (const transaction of block.transactions) {
-								storeTransaction(database, transaction);
-							}
-						}
+						storeBlockWithTransactions({
+							block: await web3.eth.getBlock(i, true),
+							database,
+							logger,
+						});
 					},
 					{
 						onFailedAttempt: (error) => {
@@ -136,6 +142,4 @@ export const subscribe = async (
 			process.exit();
 		}
 	}
-
-	// @TODO: Once we have indexed all blocks we will listen for new blocks
 };
