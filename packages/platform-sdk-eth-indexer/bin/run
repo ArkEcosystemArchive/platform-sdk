@@ -2,6 +2,7 @@
 
 const { Foreman } = require("@konceiver/foreman");
 const { resolve } = require("path");
+const { flagsToString } = require("./helpers");
 const { subscribe } = require("../dist");
 
 const { flags, input } = require("./meow");
@@ -17,7 +18,7 @@ if (input[0] === "start") {
 		{
 			// eslint-disable-next-line no-undef
 			script: resolve(__dirname, "subscribe.js"),
-			args: flags,
+			args: flagsToString(flags),
 			env: {
 				NODE_ENV: "production",
 			},
