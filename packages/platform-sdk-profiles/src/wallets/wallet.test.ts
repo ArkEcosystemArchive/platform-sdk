@@ -643,3 +643,7 @@ describe("#setCoin", () => {
 it("should have an underlying `WalletData` instance", () => {
 	expect(subject.toData().primaryKey()).toBe(subject.address());
 });
+
+it("should have an underlying `WalletData` instance", () => {
+	expect(subject.toData().primaryKey()).toBe(subject.address());
+});
