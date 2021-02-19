@@ -172,7 +172,7 @@ export class Database {
 				blocktime: transaction.blocktime,
 			});
 	}
-	z;
+
 	private migrate(): void {
 		this.#database.exec(`
 			PRAGMA journal_mode = WAL;
