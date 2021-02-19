@@ -8,7 +8,6 @@ export class SQLite {
 	readonly #logger: Logger;
 
 	public constructor(flags: Record<string, string>, logger: Logger) {
-		// Storage
 		const databaseFile = flags.database || `${envPaths(name).data}/peth/${flags.coin}/${flags.network}.db`;
 		ensureFileSync(databaseFile);
 
