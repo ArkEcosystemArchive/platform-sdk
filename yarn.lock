@@ -305,7 +305,6 @@ __metadata:
     "@ptkdev/logger": ^1.7.2
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/better-sqlite3": 5.4.1
-    "@types/bitcore-lib": 0.15.2
     "@types/env-paths": 2.1.0
     "@types/eslint": ^7.2.4
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -4558,15 +4557,6 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 2/7efccf8a15409a9ff02453c3690cb4cbd5d40b6f9cc303df3736c0284422ea0f87ea533c1c1cf8ef3ed8cedc5276dc1b5ca0502b10c9dcd2b1a26a9c10c63665
-  languageName: node
-  linkType: hard
-
-"@types/bitcore-lib@npm:0.15.2":
-  version: 0.15.2
-  resolution: "@types/bitcore-lib@npm:0.15.2"
-  dependencies:
-    "@types/node": "*"
-  checksum: 2/16664b56b3af16849af09a542d4863169e641fc0a1147ac6cbc943bf6d09c579a5e7f7b034ab45a7e6944bd458d47aa3a3bfd225dd3ffaa18a15c1460730412a
   languageName: node
   linkType: hard
 

@@ -38,7 +38,6 @@
 		"@ledgerhq/hw-transport-mocker": "^5.29.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/better-sqlite3": "5.4.1",
-		"@types/bitcore-lib": "0.15.2",
 		"@types/env-paths": "2.1.0",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",

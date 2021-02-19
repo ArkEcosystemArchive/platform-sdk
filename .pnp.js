@@ -741,7 +741,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@ptkdev/logger", "npm:1.7.2"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/better-sqlite3", "npm:5.4.1"],
-            ["@types/bitcore-lib", "npm:0.15.2"],
             ["@types/env-paths", "npm:2.1.0"],
             ["@types/eslint", "npm:7.2.4"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -5155,16 +5154,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-bip39-npm-2.4.1-2eefadffcc-2.zip/node_modules/@types/bip39/",
           "packageDependencies": [
             ["@types/bip39", "npm:2.4.1"],
-            ["@types/node", "npm:13.13.4"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@types/bitcore-lib", [
-        ["npm:0.15.2", {
-          "packageLocation": "./.yarn/cache/@types-bitcore-lib-npm-0.15.2-74a4d7881c-2.zip/node_modules/@types/bitcore-lib/",
-          "packageDependencies": [
-            ["@types/bitcore-lib", "npm:0.15.2"],
             ["@types/node", "npm:13.13.4"]
           ],
           "linkType": "HARD",
