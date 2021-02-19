@@ -5,6 +5,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.8.54 - 2020-02-19
+
+### Added
+
+-   **[ETH-INDEXER]** make database configurable (c454186d, @faustbrian)
+-   **[BTC-INDEXER]** Implement block and transaction indexing (c6877927, @faustbrian)
+-   Add `ProfileSetting.DoNotShowFeeWarning` (dda4bda3, @dated)
+
+## 2.8.51 - 2020-02-18
+
+### Added
+
+-   Listen for new block headers (be146da9, @faustbrian)
+
+### Changed
+
+-   Use prettier logger (5fcc9742, @faustbrian)
+
+## 2.8.49 - 2020-02-18
+
+### Fixed
+
+-   Pass arguments as string to pm2 (10eaca13, @faustbrian)
+
+## 2.8.48 - 2020-02-18
+
+### Changed
+
+-   **[ETH-INDEXER]** set up skeleton (3cf42679, @faustbrian)
+-   **[BTC-INDEXER]** set up skeleton (e2282ce4, @faustbrian)
+
+### Added
+
+-   Implement primary key for wallets (61f6de3f, @faustbrian)
+-   Implement `Wallet#toData` (c3820a43, @faustbrian)
+-   **[ETH-INDEXER]** Implement block and transaction indexing (e10dcc9c, @faustbrian)
+
 ## 2.8.43 - 2020-02-17
 
 ### Added

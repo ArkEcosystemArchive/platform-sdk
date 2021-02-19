@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-dot-indexer",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "2.8.43",
+	"version": "2.8.54",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -11,7 +11,7 @@
 	"main": "dist/index",
 	"types": "dist/index",
 	"bin": {
-		"polkadot": "./bin/run"
+		"pdot": "./bin/run"
 	},
 	"scripts": {
 		"build": "yarn clean && tsc",
@@ -23,7 +23,7 @@
 	},
 	"dependencies": {
 		"@elastic/elasticsearch": "^7.10.0",
-		"@konceiver/foreman": "^1.0.0",
+		"@konceiver/foreman": "^2.0.1",
 		"@polkadot/api": "^3.6.4",
 		"meow": "^9.0.0",
 		"p-queue": "^6.6.2",

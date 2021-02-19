@@ -639,3 +639,11 @@ describe("#setCoin", () => {
 		expect(subject.usesWIF()).toBeTrue();
 	});
 });
+
+it("should have a primary key", () => {
+	expect(subject.primaryKey()).toBe(subject.address());
+});
+
+it("should have an underlying `WalletData` instance", () => {
+	expect(subject.toData().primaryKey()).toBe(subject.address());
+});
