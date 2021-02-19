@@ -20,8 +20,14 @@ export class SQLite {
 		this.migrate();
 	}
 
-	public lastBlock(): { number: number } | undefined {
-		return this.#database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
+	public lastBlockNumber(): number | undefined {
+		const lastBlock = this.#database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
+
+		if (lastBlock === undefined) {
+			return undefined;
+		}
+
+		return lastBlock.number;
 	}
 
 	public storeBlockWithTransactions (block: { hash: string; transactions: { hash: string }[] }): void {
