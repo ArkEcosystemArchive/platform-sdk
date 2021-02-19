@@ -1,11 +1,9 @@
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import Logger from "@ptkdev/logger";
-import retry from "p-retry";
 // @ts-ignore
 import urlParseLax from "url-parse-lax";
 import { v4 as uuidv4 } from "uuid";
 
-import { useQueue } from "./helpers";
 import { Flags } from "./types";
 
 export class Client {
@@ -31,22 +29,12 @@ export class Client {
 		const block = await this.block(id);
 
 		if (block.tx) {
-			const queue = useQueue({ autoStart: true, concurrency: 5 });
-
 			block.transactions = [];
 
 			for (const transaction of block.tx) {
-				// eslint-disable-next-line @typescript-eslint/no-floating-promises
-				queue.add(() =>
-					retry(async () => this.transaction(transaction), {
-						onFailedAttempt: (error) => {
-							this.#logger.error(
-								`[blockWithTransactions] Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`,
-							);
-						},
-						retries: 10,
-					}),
-				);
+				this.#logger.info(`Processing transaction [${transaction}]`);
+
+				block.transactions.push(await this.transaction(transaction));
 			}
 		}
 
