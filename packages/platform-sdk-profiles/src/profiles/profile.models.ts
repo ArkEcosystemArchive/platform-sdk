@@ -64,13 +64,14 @@ export enum ProfileSetting {
 	UseMultiPeerBroadcast = "USE_MULTI_PEER_BROADCAST",
 
 	// UI
-	UseTestNetworks = "USE_TEST_NETWORKS",
 	DashboardConfiguration = "DASHBOARD_CONFIGURATION",
 	DateFormat = "DATE_FORMAT",
+	DoNotShowFeeWarning = "DO_NOT_SHOW_FEE_WARNING",
 	Locale = "LOCALE",
 	NewsFilters = "NEWS_FILTERS",
 	Theme = "THEME",
 	TimeFormat = "TIME_FORMAT",
+	UseTestNetworks = "USE_TEST_NETWORKS",
 }
 
 export enum ProfileData {
