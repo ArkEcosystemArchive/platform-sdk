@@ -41,7 +41,6 @@ export class Client {
 				try {
 					block.transactions.push(await this.transaction(transaction));
 				} catch (error) {
-					// @TODO: we need the block hash here
 					this.#database.storeError("transaction", transaction, error.message);
 				}
 			}
