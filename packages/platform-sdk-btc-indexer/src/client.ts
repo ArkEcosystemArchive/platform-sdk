@@ -4,17 +4,20 @@ import Logger from "@ptkdev/logger";
 import urlParseLax from "url-parse-lax";
 import { v4 as uuidv4 } from "uuid";
 
+import { Database } from "./database";
 import { Flags } from "./types";
 
 export class Client {
 	readonly #client;
 	readonly #logger: Logger;
+	readonly #database: Database;
 
-	public constructor(flags: Flags, logger: Logger) {
+	public constructor(flags: Flags, logger: Logger, database: Database) {
 		const { hostname: host, port, protocol } = urlParseLax(flags.host);
 
 		this.#client = new Request().baseUrl(`${protocol}//${flags.username}:${flags.password}@${host}:${port}`);
 		this.#logger = logger;
+		this.#database = database;
 	}
 
 	public async height(): Promise<number> {
@@ -35,7 +38,12 @@ export class Client {
 				this.#logger.info(`Processing transaction [${transaction}]`);
 
 				// @TODO: implement a retry mechanism and store the IDs of transactions that failed to be retrieved
-				block.transactions.push(await this.transaction(transaction));
+				try {
+					block.transactions.push(await this.transaction(transaction));
+				} catch (error) {
+					// @TODO: we need the block hash here
+					this.#database.storeError("transaction", transaction, error.message);
+				}
 			}
 		}
 

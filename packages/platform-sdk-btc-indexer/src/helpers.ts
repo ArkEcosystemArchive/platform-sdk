@@ -19,4 +19,4 @@ export const useQueue = (options = { autoStart: false, concurrency: 10 }): PQueu
 	return queue;
 };
 
-export const useClient = (flags: Flags, logger: Logger): Client => new Client(flags, logger);
+export const useClient = (flags: Flags, logger: Logger, database: Database): Client => new Client(flags, logger, database);
