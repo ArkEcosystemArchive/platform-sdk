@@ -36,7 +36,10 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 						database.storeBlockWithTransactions(await client.blockWithTransactions(i));
 					},
 					{
-						onFailedAttempt: (error) => logger.error(`Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`),
+						onFailedAttempt: (error) =>
+							logger.error(
+								`Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`,
+							),
 						retries: 5,
 					},
 				),

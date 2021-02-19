@@ -38,15 +38,14 @@ export class Client {
 			for (const transaction of block.tx) {
 				// eslint-disable-next-line @typescript-eslint/no-floating-promises
 				queue.add(() =>
-					retry(
-						async () => this.transaction(transaction),
-						{
-							onFailedAttempt: (error) => {
-								this.#logger.error(`[blockWithTransactions] Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`)
-							},
-							retries: 5,
+					retry(async () => this.transaction(transaction), {
+						onFailedAttempt: (error) => {
+							this.#logger.error(
+								`[blockWithTransactions] Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`,
+							);
 						},
-					),
+						retries: 5,
+					}),
 				);
 			}
 		}
