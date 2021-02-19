@@ -1,110 +1,32 @@
 import Logger from "@ptkdev/logger";
-import sqlite3 from "better-sqlite3";
-import envPaths from "env-paths";
-import { ensureFileSync } from "fs-extra";
-import PQueue from "p-queue";
 import retry from "p-retry";
-import Web3 from "web3";
 
-import { storeBlockWithTransactions } from "./database";
+import { useClient, useDatabase, useLogger, useQueue } from "./helpers";
 
-export const subscribe = async (
-	flags: { coin: string; network: string; rpc: string; wss: string; database: string },
-	input: Record<string, string>,
-): Promise<void> => {
-	const { name } = require("../package.json");
-
-	// Logging
-	const logger: Logger = new Logger();
-
-	// Queue
-	const queue = new PQueue({ autoStart: false, concurrency: 10 });
-	// queue.on("active", () => logger.debug(`Size: ${queue.size}  Pending: ${queue.pending}`));
-	// queue.on("idle", () => logger.debug(`Queue is idle. Size: ${queue.size} | Pending: ${queue.pending}`));
-	// queue.on("add", () => logger.debug(`Task is added. Size: ${queue.size} | Pending: ${queue.pending}`));
-	// queue.on("next", () => logger.debug(`Task is completed. Size: ${queue.size} | Pending: ${queue.pending}`));
-
-	// Storage
-	const databaseFile = flags.database || `${envPaths(name).data}/peth/${flags.coin}/${flags.network}.db`;
-	ensureFileSync(databaseFile);
-
-	logger.debug(`Using [${databaseFile}] as database`);
-
-	const database = sqlite3(databaseFile);
-	database.exec(`
-		PRAGMA journal_mode = WAL;
-
-		CREATE TABLE IF NOT EXISTS blocks(
-			hash               VARCHAR(66)   PRIMARY KEY,
-			difficulty         INTEGER       NOT NULL,
-			extraData          VARCHAR(66)   NOT NULL,
-			gasLimit           INTEGER       NOT NULL,
-			gasUsed            INTEGER       NOT NULL,
-			logsBloom          TEXT          NOT NULL,
-			miner              VARCHAR(66)   NOT NULL,
-			mixHash            VARCHAR(66)   NOT NULL,
-			nonce              VARCHAR(66)   NOT NULL,
-			number             INTEGER       NOT NULL,
-			parentHash         VARCHAR(66)   NOT NULL,
-			receiptsRoot       VARCHAR(66)   NOT NULL,
-			sha3Uncles         VARCHAR(66)   NOT NULL,
-			size               INTEGER       NOT NULL,
-			stateRoot          VARCHAR(66)   NOT NULL,
-			timestamp          INTEGER       NOT NULL,
-			totalDifficulty    INTEGER       NOT NULL,
-			transactionsRoot   VARCHAR(66)   NOT NULL,
-			uncles             TEXT          NOT NULL
-		);
-
-		CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
-
-		CREATE TABLE IF NOT EXISTS transactions(
-			hash               VARCHAR(66)   PRIMARY KEY,
-			blockHash          VARCHAR(66)   NOT NULL,
-			blockNumber        INTEGER       NOT NULL,
-			"from"             VARCHAR(66)   NOT NULL,
-			gas                INTEGER       NOT NULL,
-			gasPrice           INTEGER       NOT NULL,
-			input              VARCHAR(66)   NOT NULL,
-			nonce              INTEGER       NOT NULL,
-			r                  VARCHAR(66)   NOT NULL,
-			s                  VARCHAR(66)   NOT NULL,
-			"to"               VARCHAR(66)   NOT NULL,
-			transactionIndex   INTEGER       NOT NULL,
-			v                  VARCHAR(66)   NOT NULL,
-			value              VARCHAR(66)   NOT NULL
-		);
-
-		CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
-		CREATE INDEX IF NOT EXISTS transactions_from ON transactions ("from");
-		CREATE INDEX IF NOT EXISTS transactions_to ON transactions ("to");
-	`);
-
-	// API
-	const wss = new Web3(new Web3.providers.WebsocketProvider(flags.wss));
-	const rpc = new Web3(flags.rpc);
+export const subscribe = async (flags: {
+	coin: string;
+	network: string;
+	rpc: string;
+	wss: string;
+	database: string;
+}): Promise<void> => {
+	const logger: Logger = useLogger();
+	const queue = useQueue();
+	const database = useDatabase(flags, logger);
+	const { rpc, wss } = useClient(flags.rpc, flags.wss);
 
 	// Listen for new block headers and retrieve the full block with transactions
 	wss.eth
 		.subscribe("newBlockHeaders")
 		.on("data", async (blockHeader) =>
-			storeBlockWithTransactions({
-				block: await rpc.eth.getBlock(blockHeader.number, true),
-				database,
-				logger,
-			}),
+			database.storeBlockWithTransactions(await rpc.eth.getBlock(blockHeader.number, true)),
 		)
 		.on("error", (error: Error) => logger.error(error.message));
 
 	// Get the last block we stored in the database and grab the latest block
 	// on the network so that we can sync the missing blocks to complete our
 	// copy of the blockchain to avoid holes in the historical data of users.
-	const blockHeights = { local: 1, remote: await rpc.eth.getBlockNumber() };
-	const lastBlock = database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
-
-	if (lastBlock !== undefined) {
-		blockHeights.local = lastBlock.number;
-	}
+	const blockHeights = { local: database.lastBlockNumber() || 1, remote: await rpc.eth.getBlockNumber() };
 
 	for (let i = blockHeights.local; i <= blockHeights.remote; i++) {
 		try {
@@ -122,11 +44,7 @@ export const subscribe = async (
 			queue.add(() =>
 				retry(
 					async () => {
-						storeBlockWithTransactions({
-							block: await rpc.eth.getBlock(i, true),
-							database,
-							logger,
-						});
+						database.storeBlockWithTransactions(await rpc.eth.getBlock(i, true));
 					},
 					{
 						onFailedAttempt: (error) => {
