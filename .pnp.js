@@ -738,9 +738,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@konceiver/foreman", "npm:2.0.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
+            ["@ptkdev/logger", "npm:1.7.2"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/better-sqlite3", "npm:5.4.1"],
+            ["@types/bitcore-lib", "npm:0.15.2"],
+            ["@types/env-paths", "npm:2.1.0"],
             ["@types/eslint", "npm:7.2.4"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
+            ["@types/fs-extra", "npm:9.0.7"],
             ["@types/hapi__joi", "npm:17.1.6"],
             ["@types/jest", "npm:26.0.15"],
             ["@types/meow", "npm:5.0.0"],
@@ -752,12 +757,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/uuid", "npm:8.3.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:3ec2aa132cdd75e47a2ebc24a044303c828475bc4f5972d5340e8a1c59a2287ec3580fd3c81a87f98d0ab033e4a10a6903ea9ccac5c6ecd7a2be3338f079961c#npm:4.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["better-sqlite3", "npm:7.1.2"],
             ["cross-env", "npm:7.0.2"],
+            ["env-paths", "npm:2.2.0"],
             ["eslint", "npm:7.13.0"],
             ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.15.0"],
             ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:24.1.3"],
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.4"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.0.0"],
+            ["fs-extra", "npm:9.1.0"],
             ["got", "npm:11.8.0"],
             ["jest", "npm:26.6.3"],
             ["jest-extended", "npm:0.11.5"],
@@ -767,12 +775,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["npm-check-updates", "npm:10.1.1"],
             ["p-queue", "npm:6.6.2"],
             ["p-retry", "npm:4.3.0"],
-            ["pino", "npm:6.11.0"],
-            ["pino-pretty", "npm:4.5.0"],
             ["prettier", "npm:2.1.2"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
             ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=c79188"],
+            ["url-parse-lax", "npm:4.0.0"],
             ["uuid", "npm:8.3.2"]
           ],
           "linkType": "SOFT",
@@ -5148,6 +5155,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-bip39-npm-2.4.1-2eefadffcc-2.zip/node_modules/@types/bip39/",
           "packageDependencies": [
             ["@types/bip39", "npm:2.4.1"],
+            ["@types/node", "npm:13.13.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/bitcore-lib", [
+        ["npm:0.15.2", {
+          "packageLocation": "./.yarn/cache/@types-bitcore-lib-npm-0.15.2-74a4d7881c-2.zip/node_modules/@types/bitcore-lib/",
+          "packageDependencies": [
+            ["@types/bitcore-lib", "npm:0.15.2"],
             ["@types/node", "npm:13.13.4"]
           ],
           "linkType": "HARD",
