@@ -1,4 +1,5 @@
 import { Request } from "@arkecosystem/platform-sdk-http-got";
+import { chunk } from "@arkecosystem/utils";
 // @ts-ignore
 import urlParseLax from "url-parse-lax";
 import { v4 as uuidv4 } from "uuid";
@@ -25,12 +26,19 @@ export class Client {
 	public async blockWithTransactions(id: number): Promise<Record<string, any>> {
 		const block = await this.block(id);
 
-		// // @TODO: should we do this separately? During testing there have been blocks with thousands of transactions.
-		// if (block.tx) {
-		// 	block.transactions = await Promise.all(
-		// 		block.tx.map((transaction: string) => this.transaction(transaction)),
-		// 	);
-		// }
+		// @TODO: should we do this separately? During testing there have been blocks with thousands of transactions.
+		if (block.tx) {
+			block.transactions = [];
+
+			const chunks = chunk(
+				block.tx.map((transaction: string) => this.transaction(transaction)),
+				10,
+			);
+
+			for (const chunk of chunks) {
+				block.transactions = block.transactions.concat(await Promise.all(chunk));
+			}
+		}
 
 		return block;
 	}

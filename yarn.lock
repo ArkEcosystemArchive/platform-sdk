@@ -300,6 +300,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-btc-indexer@workspace:packages/platform-sdk-btc-indexer"
   dependencies:
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
+    "@arkecosystem/utils": ^1.3.0
     "@konceiver/foreman": ^2.0.1
     "@ledgerhq/hw-transport-mocker": ^5.29.0
     "@ptkdev/logger": ^1.7.2
@@ -1520,6 +1521,20 @@ __metadata:
     fast-sort: ^2.2.0
     type-fest: ^0.17.0
   checksum: 2/0946b8a7f971ab4555c065472e021f175b33b904f81a32b8210bddfe1c43607aebae23f8b23f6c49573d29715e9979cfb27243ffbb23ef31f0dbad6c37ff5b97
+  languageName: node
+  linkType: hard
+
+"@arkecosystem/utils@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "@arkecosystem/utils@npm:1.3.0"
+  dependencies:
+    "@hapi/bourne": ^2.0.0
+    deepmerge: ^4.2.2
+    fast-copy: ^2.1.0
+    fast-deep-equal: ^3.1.3
+    fast-sort: ^2.2.0
+    type-fest: ^0.17.0
+  checksum: 2/76fb693d392b52747f7a7cb0aa926659137000205a0ddb4873428d2f6b48e25968401a1fcb53bb2d5570261221bf8abdedd65e648eb84907545abccc55a77ddf
   languageName: node
   linkType: hard
 

@@ -736,6 +736,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-btc-indexer", "workspace:packages/platform-sdk-btc-indexer"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
+            ["@arkecosystem/utils", "npm:1.3.0"],
             ["@konceiver/foreman", "npm:2.0.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@ptkdev/logger", "npm:1.7.2"],
@@ -1903,6 +1904,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@arkecosystem-utils-npm-1.2.1-cd80c58e4e-2.zip/node_modules/@arkecosystem/utils/",
           "packageDependencies": [
             ["@arkecosystem/utils", "npm:1.2.1"],
+            ["@hapi/bourne", "npm:2.0.0"],
+            ["deepmerge", "npm:4.2.2"],
+            ["fast-copy", "npm:2.1.0"],
+            ["fast-deep-equal", "npm:3.1.3"],
+            ["fast-sort", "npm:2.2.0"],
+            ["type-fest", "npm:0.17.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:1.3.0", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-utils-npm-1.3.0-124035fc05-2.zip/node_modules/@arkecosystem/utils/",
+          "packageDependencies": [
+            ["@arkecosystem/utils", "npm:1.3.0"],
             ["@hapi/bourne", "npm:2.0.0"],
             ["deepmerge", "npm:4.2.2"],
             ["fast-copy", "npm:2.1.0"],

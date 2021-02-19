@@ -10,7 +10,7 @@ export const useDatabase = (flags: Flags, logger: Logger): Database => new Datab
 export const useLogger = (): Logger => new Logger();
 
 export const useQueue = (): PQueue => {
-	const queue = new PQueue({ autoStart: false, concurrency: 10 });
+	const queue = new PQueue({ autoStart: false, concurrency: 100 });
 	// queue.on("active", () => logger.debug(`Size: ${queue.size}  Pending: ${queue.pending}`));
 	// queue.on("idle", () => logger.debug(`Queue is idle. Size: ${queue.size} | Pending: ${queue.pending}`));
 	// queue.on("add", () => logger.debug(`Task is added. Size: ${queue.size} | Pending: ${queue.pending}`));

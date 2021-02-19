@@ -127,7 +127,11 @@ export class Database {
 	locktime,
 	vin,
 	vout,
-	hex
+	hex,
+	blockhash,
+	confirmations,
+	time,
+	blocktime
 ) VALUES (
 	:txid,
 	:hash,
@@ -138,7 +142,11 @@ export class Database {
 	:locktime,
 	:vin,
 	:vout,
-	:hex
+	:hex,
+	:blockhash,
+	:confirmations,
+	:time,
+	:blocktime
 )`,
 			)
 			.run({
@@ -152,6 +160,10 @@ export class Database {
 				vin: JSON.stringify(transaction.vin),
 				vout: JSON.stringify(transaction.vout),
 				hex: transaction.hex,
+				blockhash: transaction.blockhash,
+				confirmations: transaction.confirmations,
+				time: transaction.time,
+				blocktime: transaction.blocktime,
 			});
 	}
 
@@ -184,8 +196,8 @@ export class Database {
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
 
 			CREATE TABLE IF NOT EXISTS transactions(
-				hash            VARCHAR(64)   PRIMARY KEY,
-				txid            VARCHAR(64)   NOT NULL,
+				txid            VARCHAR(64)   PRIMARY KEY,
+				hash            VARCHAR(64)   NOT NULL,
 				version         INTEGER       NOT NULL,
 				size            INTEGER       NOT NULL,
 				vsize           INTEGER       NOT NULL,
