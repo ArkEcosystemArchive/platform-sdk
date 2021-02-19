@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
--   **[ETH-INDEXER]** make database configurable (#1054) (c454186d, @faustbrian)
--   **[BTC-INDEXER]** Implement block and transaction indexing (#1057) (c6877927, @faustbrian)
--   Add `ProfileSetting.DoNotShowFeeWarning` (#1058) (dda4bda3, @dated)
+-   **[ETH-INDEXER]** make database configurable (c454186d, @faustbrian)
+-   **[BTC-INDEXER]** Implement block and transaction indexing (c6877927, @faustbrian)
+-   Add `ProfileSetting.DoNotShowFeeWarning` (dda4bda3, @dated)
 
 ## 2.8.51 - 2020-02-18
 
