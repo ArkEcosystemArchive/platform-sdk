@@ -38,11 +38,13 @@ export class Client {
 	}
 
 	private async post<T = Record<string, any>>(method: string, params: any): Promise<T> {
-		return (await this.#client.post("/", {
-			jsonrpc: "1.0",
-			id: uuidv4(),
-			method,
-			params,
-		})).json().result;
+		return (
+			await this.#client.post("/", {
+				jsonrpc: "1.0",
+				id: uuidv4(),
+				method,
+				params,
+			})
+		).json().result;
 	}
 }
