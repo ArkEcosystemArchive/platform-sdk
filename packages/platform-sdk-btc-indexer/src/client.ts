@@ -27,7 +27,7 @@ export class Client {
 
 		// @TODO: should we do this separately? During testing there have been blocks with thousands of transactions.
 		if (block.tx) {
-			block.tx = await Promise.all(block.tx.map((transaction: string) => this.transaction(transaction)));
+			block.transaction = await Promise.all(block.tx.map((transaction: string) => this.transaction(transaction)));
 		}
 
 		return block;

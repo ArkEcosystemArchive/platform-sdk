@@ -37,8 +37,8 @@ export class Database {
 
 		this.storeBlock(block);
 
-		if (block.tx.length) {
-			for (const transaction of block.tx) {
+		if (block.transaction) {
+			for (const transaction of block.transaction) {
 				this.#logger.info(`Storing transaction [${transaction.hash}]`);
 
 				this.storeTransaction(transaction);
