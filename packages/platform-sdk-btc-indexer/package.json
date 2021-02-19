@@ -22,6 +22,7 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
+		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
 		"@konceiver/foreman": "^2.0.1",
 		"@ptkdev/logger": "^1.7.2",
 		"better-sqlite3": "^7.1.2",
@@ -34,7 +35,6 @@
 		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
 		"@ledgerhq/hw-transport-mocker": "^5.29.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/better-sqlite3": "5.4.1",
