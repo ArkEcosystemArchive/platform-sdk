@@ -40,7 +40,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 							logger.error(
 								`Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`,
 							),
-						retries: 5,
+						retries: 10,
 					},
 				),
 			);

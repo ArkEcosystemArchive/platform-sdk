@@ -44,7 +44,7 @@ export class Client {
 								`[blockWithTransactions] Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`,
 							);
 						},
-						retries: 5,
+						retries: 10,
 					}),
 				);
 			}
