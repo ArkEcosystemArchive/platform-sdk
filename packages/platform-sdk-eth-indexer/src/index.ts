@@ -1,29 +1,21 @@
 import Logger from "@ptkdev/logger";
 import PQueue from "p-queue";
 import retry from "p-retry";
-import Web3 from "web3";
 
-import { SQLite } from "./drivers/sqlite";
+import { useLogger, usePQueue, useSQLite, useWeb3 } from "./helpers";
 
 export const subscribe = async (flags: { coin: string; network: string; rpc: string; wss: string; database: string }): Promise<void> => {
-	const { name } = require("../package.json");
-
 	// Logging
-	const logger: Logger = new Logger();
+	const logger: Logger = useLogger();
 
 	// Queue
-	const queue = new PQueue({ autoStart: false, concurrency: 10 });
-	// queue.on("active", () => logger.debug(`Size: ${queue.size}  Pending: ${queue.pending}`));
-	// queue.on("idle", () => logger.debug(`Queue is idle. Size: ${queue.size} | Pending: ${queue.pending}`));
-	// queue.on("add", () => logger.debug(`Task is added. Size: ${queue.size} | Pending: ${queue.pending}`));
-	// queue.on("next", () => logger.debug(`Task is completed. Size: ${queue.size} | Pending: ${queue.pending}`));
+	const queue = usePQueue();
 
 	// Storage
-	const database = new SQLite(flags, logger);
+	const database = useSQLite(flags, logger);
 
 	// API
-	const wss = new Web3(new Web3.providers.WebsocketProvider(flags.wss));
-	const rpc = new Web3(flags.rpc);
+	const { rpc, wss } = useWeb3(flags.rpc, flags.wss);
 
 	// Listen for new block headers and retrieve the full block with transactions
 	wss.eth
