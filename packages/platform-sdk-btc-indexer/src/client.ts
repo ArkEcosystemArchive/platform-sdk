@@ -38,6 +38,9 @@ export class Client {
 				this.#logger.info(`Processing transaction [${transaction}]`);
 
 				// @TODO: implement a retry mechanism and store the IDs of transactions that failed to be retrieved
+				// @TODO: we need to somehow batch or chunk this because there are blocks that contain 3000+
+				// transactions which will result in a large amount of requests that most likely will cause
+				// bitcoind to choke and potentially crash because of how poorly it handles concurrent requests
 				try {
 					block.transactions.push(await this.transaction(transaction));
 				} catch (error) {
