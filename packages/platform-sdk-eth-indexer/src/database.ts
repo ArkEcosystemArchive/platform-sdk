@@ -3,7 +3,7 @@ import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
-export class SQLite {
+export class Database {
 	readonly #database: sqlite3.Database;
 	readonly #logger: Logger;
 

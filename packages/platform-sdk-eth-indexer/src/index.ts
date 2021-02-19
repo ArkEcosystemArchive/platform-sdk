@@ -1,7 +1,7 @@
 import Logger from "@ptkdev/logger";
 import retry from "p-retry";
 
-import { useClient, useLogger, useQueue, useSQLite } from "./helpers";
+import { useClient, useDatabase, useLogger, useQueue } from "./helpers";
 
 export const subscribe = async (flags: {
 	coin: string;
@@ -12,7 +12,7 @@ export const subscribe = async (flags: {
 }): Promise<void> => {
 	const logger: Logger = useLogger();
 	const queue = useQueue();
-	const database = useSQLite(flags, logger);
+	const database = useDatabase(flags, logger);
 	const { rpc, wss } = useClient(flags.rpc, flags.wss);
 
 	// Listen for new block headers and retrieve the full block with transactions

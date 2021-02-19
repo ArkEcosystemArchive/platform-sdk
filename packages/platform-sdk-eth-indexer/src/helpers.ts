@@ -2,9 +2,9 @@ import Logger from "@ptkdev/logger";
 import PQueue from "p-queue";
 import Web3 from "web3";
 
-import { SQLite } from "./drivers/sqlite";
+import { Database } from "./database";
 
-export const useSQLite = (flags, logger): SQLite => new SQLite(flags, logger);
+export const useDatabase = (flags, logger): Database => new Database(flags, logger);
 
 export const useLogger = (): Logger => new Logger();
 
