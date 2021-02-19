@@ -1,13 +1,13 @@
 import Logger from "@ptkdev/logger";
 import retry from "p-retry";
 
-import { useLogger, usePQueue, useSQLite, useWeb3 } from "./helpers";
+import { useLogger, useQueue, useSQLite, useClient } from "./helpers";
 
 export const subscribe = async (flags: { coin: string; network: string; rpc: string; wss: string; database: string }): Promise<void> => {
 	const logger: Logger = useLogger();
-	const queue = usePQueue();
+	const queue = useQueue();
 	const database = useSQLite(flags, logger);
-	const { rpc, wss } = useWeb3(flags.rpc, flags.wss);
+	const { rpc, wss } = useClient(flags.rpc, flags.wss);
 
 	// Listen for new block headers and retrieve the full block with transactions
 	wss.eth
