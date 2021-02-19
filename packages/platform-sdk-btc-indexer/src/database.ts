@@ -48,7 +48,7 @@ export class Database {
 
 	public storeError(type: string, hash: string, body: string): void {
 		this.#database
-			.prepare(`INSERT OR IGNORE INTO errors (type, hash, body) VALUES (:type, :hash, :body)`)
+			.prepare(`INSERT INTO errors (type, hash, body) VALUES (:type, :hash, :body)`)
 			.run({ type, hash, body });
 	}
 
