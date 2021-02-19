@@ -18,7 +18,7 @@ export const useQueue = (): PQueue => {
 	return queue;
 };
 
-export const useClient = (rpc: string, wss: string): { rpc: Web3, wss: Web3 } => ({
+export const useClient = (rpc: string, wss: string): { rpc: Web3; wss: Web3 } => ({
 	wss: new Web3(new Web3.providers.WebsocketProvider(wss)),
 	rpc: new Web3(rpc),
-})
+});

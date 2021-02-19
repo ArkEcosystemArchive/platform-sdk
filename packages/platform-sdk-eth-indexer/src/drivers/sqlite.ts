@@ -1,7 +1,7 @@
 import Logger from "@ptkdev/logger";
 import sqlite3 from "better-sqlite3";
-import { ensureFileSync } from "fs-extra";
 import envPaths from "env-paths";
+import { ensureFileSync } from "fs-extra";
 
 export class SQLite {
 	readonly #database: sqlite3.Database;
@@ -29,7 +29,7 @@ export class SQLite {
 		return lastBlock.number;
 	}
 
-	public storeBlockWithTransactions (block: { hash: string; transactions: { hash: string }[] }): void {
+	public storeBlockWithTransactions(block: { hash: string; transactions: { hash: string }[] }): void {
 		this.#logger.info(`Storing block [${block.hash}] with [${block.transactions.length}] transaction(s)`);
 
 		this.storeBlock(block);
@@ -43,11 +43,10 @@ export class SQLite {
 		}
 	}
 
-
-	private storeBlock (block): void {
+	private storeBlock(block): void {
 		this.#database
-		.prepare(
-			`INSERT OR IGNORE INTO blocks (
+			.prepare(
+				`INSERT OR IGNORE INTO blocks (
 	hash,
 	difficulty,
 	extraData,
@@ -88,37 +87,37 @@ export class SQLite {
 	:transactionsRoot,
 	:uncles
 )`,
-		)
-		.run({
-			hash: block.hash,
-			difficulty: block.difficulty,
-			extraData: block.extraData,
-			gasLimit: block.gasLimit,
-			gasUsed: block.gasUsed,
-			logsBloom: block.logsBloom,
-			miner: block.miner,
-			// @ts-ignore - This property exists but the typings are wrong.
-			mixHash: block.mixHash,
-			nonce: block.nonce,
-			number: block.number,
-			parentHash: block.parentHash,
-			// @ts-ignore - This property exists but the typings are wrong.
-			receiptsRoot: block.receiptsRoot,
-			sha3Uncles: block.sha3Uncles,
-			size: block.size,
-			stateRoot: block.stateRoot,
-			timestamp: block.timestamp,
-			totalDifficulty: block.totalDifficulty,
-			// @ts-ignore - This property exists but the typings are wrong.
-			transactionsRoot: block.transactionsRoot,
-			uncles: JSON.stringify(block.uncles),
-		});
+			)
+			.run({
+				hash: block.hash,
+				difficulty: block.difficulty,
+				extraData: block.extraData,
+				gasLimit: block.gasLimit,
+				gasUsed: block.gasUsed,
+				logsBloom: block.logsBloom,
+				miner: block.miner,
+				// @ts-ignore - This property exists but the typings are wrong.
+				mixHash: block.mixHash,
+				nonce: block.nonce,
+				number: block.number,
+				parentHash: block.parentHash,
+				// @ts-ignore - This property exists but the typings are wrong.
+				receiptsRoot: block.receiptsRoot,
+				sha3Uncles: block.sha3Uncles,
+				size: block.size,
+				stateRoot: block.stateRoot,
+				timestamp: block.timestamp,
+				totalDifficulty: block.totalDifficulty,
+				// @ts-ignore - This property exists but the typings are wrong.
+				transactionsRoot: block.transactionsRoot,
+				uncles: JSON.stringify(block.uncles),
+			});
 	}
 
-	private storeTransaction (transaction): void {
+	private storeTransaction(transaction): void {
 		this.#database
-		.prepare(
-			`INSERT OR IGNORE INTO transactions (
+			.prepare(
+				`INSERT OR IGNORE INTO transactions (
 	hash,
 	blockHash,
 	blockNumber,
@@ -149,25 +148,24 @@ export class SQLite {
 	:v,
 	:value
 )`,
-		)
-		.run({
-			hash: transaction.hash,
-			blockHash: transaction.blockHash,
-			blockNumber: transaction.blockNumber,
-			from: transaction.from,
-			gas: transaction.gas,
-			gasPrice: transaction.gasPrice,
-			input: transaction.input,
-			nonce: transaction.nonce,
-			r: transaction.r,
-			s: transaction.s,
-			to: transaction.to,
-			transactionIndex: transaction.transactionIndex,
-			v: transaction.v,
-			value: transaction.value,
-		});
+			)
+			.run({
+				hash: transaction.hash,
+				blockHash: transaction.blockHash,
+				blockNumber: transaction.blockNumber,
+				from: transaction.from,
+				gas: transaction.gas,
+				gasPrice: transaction.gasPrice,
+				input: transaction.input,
+				nonce: transaction.nonce,
+				r: transaction.r,
+				s: transaction.s,
+				to: transaction.to,
+				transactionIndex: transaction.transactionIndex,
+				v: transaction.v,
+				value: transaction.value,
+			});
 	}
-
 
 	private migrate(): void {
 		this.#database.exec(`
@@ -218,6 +216,5 @@ export class SQLite {
 			CREATE INDEX IF NOT EXISTS transactions_from ON transactions ("from");
 			CREATE INDEX IF NOT EXISTS transactions_to ON transactions ("to");
 		`);
-		}
-
+	}
 }

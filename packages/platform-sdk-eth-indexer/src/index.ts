@@ -1,9 +1,15 @@
 import Logger from "@ptkdev/logger";
 import retry from "p-retry";
 
-import { useLogger, useQueue, useSQLite, useClient } from "./helpers";
+import { useClient, useLogger, useQueue, useSQLite } from "./helpers";
 
-export const subscribe = async (flags: { coin: string; network: string; rpc: string; wss: string; database: string }): Promise<void> => {
+export const subscribe = async (flags: {
+	coin: string;
+	network: string;
+	rpc: string;
+	wss: string;
+	database: string;
+}): Promise<void> => {
 	const logger: Logger = useLogger();
 	const queue = useQueue();
 	const database = useSQLite(flags, logger);
