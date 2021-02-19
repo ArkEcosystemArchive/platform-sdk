@@ -34,6 +34,7 @@ export class Client {
 			for (const transaction of block.tx) {
 				this.#logger.info(`Processing transaction [${transaction}]`);
 
+				// @TODO: implement a retry mechanism and store the IDs of transactions that failed to be retrieved
 				block.transactions.push(await this.transaction(transaction));
 			}
 		}
