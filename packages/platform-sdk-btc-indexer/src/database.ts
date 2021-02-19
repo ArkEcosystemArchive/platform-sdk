@@ -22,11 +22,11 @@ export class Database {
 		this.migrate();
 	}
 
-	public lastBlockNumber(): number | undefined {
+	public lastBlockNumber(): number {
 		const lastBlock = this.#database.prepare("SELECT height FROM blocks ORDER BY height DESC LIMIT 1").get();
 
 		if (lastBlock === undefined) {
-			return undefined;
+			return 1;
 		}
 
 		return lastBlock.height;

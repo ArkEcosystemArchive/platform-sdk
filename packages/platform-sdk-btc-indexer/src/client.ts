@@ -25,12 +25,12 @@ export class Client {
 	public async blockWithTransactions(id: number): Promise<Record<string, any>> {
 		const block = await this.block(id);
 
-		// @TODO: should we do this separately? During testing there have been blocks with thousands of transactions.
-		if (block.tx) {
-			block.transactions = await Promise.all(
-				block.tx.map((transaction: string) => this.transaction(transaction)),
-			);
-		}
+		// // @TODO: should we do this separately? During testing there have been blocks with thousands of transactions.
+		// if (block.tx) {
+		// 	block.transactions = await Promise.all(
+		// 		block.tx.map((transaction: string) => this.transaction(transaction)),
+		// 	);
+		// }
 
 		return block;
 	}

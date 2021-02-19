@@ -20,11 +20,11 @@ export class Database {
 		this.migrate();
 	}
 
-	public lastBlockNumber(): number | undefined {
+	public lastBlockNumber(): number {
 		const lastBlock = this.#database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
 
 		if (lastBlock === undefined) {
-			return undefined;
+			return 1;
 		}
 
 		return lastBlock.number;
