@@ -13,9 +13,9 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	// Get the last block we stored in the database and grab the latest block
 	// on the network so that we can sync the missing blocks to complete our
 	// copy of the blockchain to avoid holes in the historical data of users.
-	const blockHeights = { local: database.lastBlockNumber() || 1, remote: await client.height() };
+	const [localHeight, remoteHeight] = [database.lastBlockNumber() || 1, await client.height()];
 
-	for (let i = blockHeights.local; i <= blockHeights.remote; i++) {
+	for (let i = localHeight; i <= remoteHeight; i++) {
 		try {
 			if (queue.size === 1000) {
 				logger.info("Draining Queue...");
