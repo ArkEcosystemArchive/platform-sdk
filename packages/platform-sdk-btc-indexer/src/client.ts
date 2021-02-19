@@ -1,18 +1,22 @@
 import { Request } from "@arkecosystem/platform-sdk-http-got";
-import { chunk } from "@arkecosystem/utils";
+import Logger from "@ptkdev/logger";
+import retry from "p-retry";
 // @ts-ignore
 import urlParseLax from "url-parse-lax";
 import { v4 as uuidv4 } from "uuid";
 
+import { useQueue } from "./helpers";
 import { Flags } from "./types";
 
 export class Client {
 	readonly #client;
+	readonly #logger: Logger;
 
-	public constructor(flags: Flags) {
+	public constructor(flags: Flags, logger: Logger) {
 		const { hostname: host, port, protocol } = urlParseLax(flags.host);
 
 		this.#client = new Request().baseUrl(`${protocol}//${flags.username}:${flags.password}@${host}:${port}`);
+		this.#logger = logger;
 	}
 
 	public async height(): Promise<number> {
@@ -26,17 +30,24 @@ export class Client {
 	public async blockWithTransactions(id: number): Promise<Record<string, any>> {
 		const block = await this.block(id);
 
-		// @TODO: should we do this separately? During testing there have been blocks with thousands of transactions.
 		if (block.tx) {
+			const queue = useQueue({ autoStart: true, concurrency: 5 });
+
 			block.transactions = [];
 
-			const chunks = chunk(
-				block.tx.map((transaction: string) => this.transaction(transaction)),
-				10,
-			);
-
-			for (const chunk of chunks) {
-				block.transactions = block.transactions.concat(await Promise.all(chunk));
+			for (const transaction of block.tx) {
+				// eslint-disable-next-line @typescript-eslint/no-floating-promises
+				queue.add(() =>
+					retry(
+						async () => this.transaction(transaction),
+						{
+							onFailedAttempt: (error) => {
+								this.#logger.error(`[blockWithTransactions] Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`)
+							},
+							retries: 5,
+						},
+					),
+				);
 			}
 		}
 
