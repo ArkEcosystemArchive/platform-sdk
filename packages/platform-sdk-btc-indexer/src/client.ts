@@ -1,18 +1,23 @@
 import { Request } from "@arkecosystem/platform-sdk-http-got";
-import { chunk } from "@arkecosystem/utils";
+import Logger from "@ptkdev/logger";
 // @ts-ignore
 import urlParseLax from "url-parse-lax";
 import { v4 as uuidv4 } from "uuid";
 
+import { Database } from "./database";
 import { Flags } from "./types";
 
 export class Client {
 	readonly #client;
+	readonly #logger: Logger;
+	readonly #database: Database;
 
-	public constructor(flags: Flags) {
+	public constructor(flags: Flags, logger: Logger, database: Database) {
 		const { hostname: host, port, protocol } = urlParseLax(flags.host);
 
 		this.#client = new Request().baseUrl(`${protocol}//${flags.username}:${flags.password}@${host}:${port}`);
+		this.#logger = logger;
+		this.#database = database;
 	}
 
 	public async height(): Promise<number> {
@@ -26,17 +31,21 @@ export class Client {
 	public async blockWithTransactions(id: number): Promise<Record<string, any>> {
 		const block = await this.block(id);
 
-		// @TODO: should we do this separately? During testing there have been blocks with thousands of transactions.
 		if (block.tx) {
 			block.transactions = [];
 
-			const chunks = chunk(
-				block.tx.map((transaction: string) => this.transaction(transaction)),
-				10,
-			);
+			for (const transaction of block.tx) {
+				this.#logger.info(`Processing transaction [${transaction}]`);
 
-			for (const chunk of chunks) {
-				block.transactions = block.transactions.concat(await Promise.all(chunk));
+				// @TODO: implement a retry mechanism and store the IDs of transactions that failed to be retrieved
+				// @TODO: we need to somehow batch or chunk this because there are blocks that contain 3000+
+				// transactions which will result in a large amount of requests that most likely will cause
+				// bitcoind to choke and potentially crash because of how poorly it handles concurrent requests
+				try {
+					block.transactions.push(await this.transaction(transaction));
+				} catch (error) {
+					this.#database.storeError("transaction", transaction, error.message);
+				}
 			}
 		}
 

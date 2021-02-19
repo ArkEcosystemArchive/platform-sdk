@@ -9,8 +9,8 @@ export const useDatabase = (flags: Flags, logger: Logger): Database => new Datab
 
 export const useLogger = (): Logger => new Logger();
 
-export const useQueue = (): PQueue => {
-	const queue = new PQueue({ autoStart: false, concurrency: 100 });
+export const useQueue = (options = { autoStart: false, concurrency: 10 }): PQueue => {
+	const queue = new PQueue(options);
 	// queue.on("active", () => logger.debug(`Size: ${queue.size}  Pending: ${queue.pending}`));
 	// queue.on("idle", () => logger.debug(`Queue is idle. Size: ${queue.size} | Pending: ${queue.pending}`));
 	// queue.on("add", () => logger.debug(`Task is added. Size: ${queue.size} | Pending: ${queue.pending}`));
@@ -19,4 +19,5 @@ export const useQueue = (): PQueue => {
 	return queue;
 };
 
-export const useClient = (flags: Flags): Client => new Client(flags);
+export const useClient = (flags: Flags, logger: Logger, database: Database): Client =>
+	new Client(flags, logger, database);

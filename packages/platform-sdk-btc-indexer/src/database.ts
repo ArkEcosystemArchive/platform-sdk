@@ -46,6 +46,12 @@ export class Database {
 		}
 	}
 
+	public storeError(type: string, hash: string, body: string): void {
+		this.#database
+			.prepare(`INSERT INTO errors (type, hash, body) VALUES (:type, :hash, :body)`)
+			.run({ type, hash, body });
+	}
+
 	private storeBlock(block): void {
 		this.#database
 			.prepare(
@@ -213,6 +219,13 @@ export class Database {
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
+
+			CREATE TABLE IF NOT EXISTS errors(
+				id     INTEGER        PRIMARY KEY AUTOINCREMENT,
+				type   VARCHAR(64)    NOT NULL,
+				hash   VARCHAR(64)    NOT NULL,
+				body   TEXT           NOT NULL
+			);
 		`);
 	}
 }

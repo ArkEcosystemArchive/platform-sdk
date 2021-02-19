@@ -8,7 +8,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	const logger: Logger = useLogger();
 	const queue = useQueue();
 	const database = useDatabase(flags, logger);
-	const client = useClient(flags);
+	const client = useClient(flags, logger, database);
 
 	// Get the last block we stored in the database and grab the latest block
 	// on the network so that we can sync the missing blocks to complete our
@@ -37,19 +37,20 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 					},
 					{
 						onFailedAttempt: (error) => {
-							console.log(error);
+							// @TODO: we need the block hash here
+							database.storeError("block", i.toString(), error.message);
+
 							logger.error(
 								`Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`,
 							);
 						},
-						retries: 5,
+						retries: 10,
 					},
 				),
 			);
 		} catch (error) {
+			// @TODO: log what failed, why it failed and if possible try to fix it
 			logger.error(error);
-
-			process.exit();
 		}
 	}
 };
