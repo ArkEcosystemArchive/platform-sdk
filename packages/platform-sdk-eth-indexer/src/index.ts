@@ -26,9 +26,9 @@ export const subscribe = async (flags: {
 	// Get the last block we stored in the database and grab the latest block
 	// on the network so that we can sync the missing blocks to complete our
 	// copy of the blockchain to avoid holes in the historical data of users.
-	const blockHeights = { local: database.lastBlockNumber() || 1, remote: await rpc.eth.getBlockNumber() };
+	const [localHeight, remoteHeight] = [database.lastBlockNumber(), await rpc.eth.getBlockNumber()];
 
-	for (let i = blockHeights.local; i <= blockHeights.remote; i++) {
+	for (let i = localHeight; i <= remoteHeight; i++) {
 		try {
 			if (queue.size === 1000) {
 				logger.info("Draining Queue...");

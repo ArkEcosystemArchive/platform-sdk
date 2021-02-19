@@ -8,7 +8,8 @@ export class Database {
 	readonly #logger: Logger;
 
 	public constructor(flags: Record<string, string>, logger: Logger) {
-		const databaseFile = flags.database || `${envPaths(name).data}/peth/${flags.coin}/${flags.network}.db`;
+		const databaseFile =
+			flags.database || `${envPaths(require("../package.json").name).data}/${flags.coin}/${flags.network}.db`;
 		ensureFileSync(databaseFile);
 
 		logger.debug(`Using [${databaseFile}] as database`);
@@ -19,11 +20,11 @@ export class Database {
 		this.migrate();
 	}
 
-	public lastBlockNumber(): number | undefined {
+	public lastBlockNumber(): number {
 		const lastBlock = this.#database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
 
 		if (lastBlock === undefined) {
-			return undefined;
+			return 1;
 		}
 
 		return lastBlock.number;
