@@ -1,0 +1,11 @@
+{
+	"data": {
+		"utxos_aggregate": {
+			"aggregate": {
+				"sum": {
+					"value": "2024831199"
+				}
+			}
+		}
+	}
+}
