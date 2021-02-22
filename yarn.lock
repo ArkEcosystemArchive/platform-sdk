@@ -508,7 +508,7 @@ __metadata:
     prettier: ^2.1.2
     rimraf: ^3.0.2
     safe-buffer: ^5.2.1
-    string-crypto: ^1.0.4
+    string-crypto: ^2.0.0
     ts-jest: ^26.4.4
     typescript: ^4.0.5
     wif: ^2.0.6
@@ -5777,7 +5777,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aes-js@npm:^3.1.1, aes-js@npm:^3.1.2":
+"aes-js@npm:^3.1.1":
   version: 3.1.2
   resolution: "aes-js@npm:3.1.2"
   checksum: 2/ab4633f4054e3d32d69af61bb941e47e188629c7e038d898600f3bd55674739c043b0811225fe4b58c00224f9a027a432f65e5c88681d2e49cbaa5d51f6ea941
@@ -14237,19 +14237,6 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"pbkdf2@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "pbkdf2@npm:3.1.1"
-  dependencies:
-    create-hash: ^1.1.2
-    create-hmac: ^1.1.4
-    ripemd160: ^2.0.1
-    safe-buffer: ^5.0.1
-    sha.js: ^2.4.8
-  checksum: 2/780dd6d50e750d302651638ff1edfe899d3a345e702f6c36fbdbdef3cfefd12d3d76698565022f4cd97d3f8ced5098f4ae2fdd067d3e1fca2849a70eb60e7620
-  languageName: node
-  linkType: hard
-
 "performance-now@npm:^2.1.0":
   version: 2.1.0
   resolution: "performance-now@npm:2.1.0"
@@ -16299,13 +16286,10 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"string-crypto@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "string-crypto@npm:1.0.4"
-  dependencies:
-    aes-js: ^3.1.2
-    pbkdf2: ^3.1.1
-  checksum: 2/5d72d16b5b46f0df9f269b2cc2dd38c8ad72c538ab3de70e626ba1335b6c66f5572f34da8ddc736f41907b93cd2a1e0ce3ad871be847377f9e37eb0413fd2853
+"string-crypto@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "string-crypto@npm:2.0.0"
+  checksum: 2/cbcd8fb5f1a6c74d9fd674c075521444e46c7fd4e23d2180ea287c45947e3f695bdadb54cb9ca27c6393dbbfceafbfab3e3c85d29065299939eb1d2b42874247
   languageName: node
   linkType: hard
 
