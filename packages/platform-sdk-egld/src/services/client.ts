@@ -1,15 +1,14 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-// @ts-ignore
 import { ProxyProvider } from "elrondjs";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
-	readonly #http: ProxyProvider;
+	readonly #provider: ProxyProvider;
 
 	private constructor({ config, peer }) {
 		this.#config = config;
-		this.#http = new ProxyProvider(peer);
+		this.#provider = new ProxyProvider(peer);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -70,7 +69,27 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
+		for (const transaction of transactions) {
+			try {
+				const hash = await this.#provider.sendSignedTransaction(transaction.toBroadcast());
+
+				await this.#provider.waitForTransaction(hash);
+
+				result.accepted.push(transaction.id());
+			} catch (error) {
+				result.rejected.push(transaction.id());
+
+				result.errors[transaction.id()] = error.message;
+			}
+		}
+
+		return result;
 	}
 
 	public async broadcastSpread(

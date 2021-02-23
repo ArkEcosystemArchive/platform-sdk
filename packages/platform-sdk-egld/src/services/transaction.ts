@@ -1,11 +1,22 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
+import { BasicWallet, BigVal, ProxyProvider } from "elrondjs";
 
 import { SignedTransactionData } from "../dto";
-import { makeAccount, makeTransaction } from "./helpers";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #provider: ProxyProvider;
+
+	private constructor(peer: string) {
+		this.#provider = new ProxyProvider(peer);
+	}
+
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService();
+		try {
+			return new TransactionService(config.get<string>("peer"));
+		} catch {
+			return new TransactionService(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
+		}
 	}
 
 	public async __destruct(): Promise<void> {
@@ -16,24 +27,33 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		const account = makeAccount();
-		account.fromMnemonic(input.sign.mnemonic);
+		if (input.sign.mnemonic === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "sign.mnemonic");
+		}
 
-		const rawTransaction = JSON.parse(
-			makeTransaction({
-				nonce: input.nonce,
-				from: input.from,
-				to: input.data.to,
-				value: input.data.amount,
-				gasPrice: input.fee,
-				gasLimit: input.feeLimit,
-				data: input.data.memo,
-			})
-				.prepareForSigning()
-				.toString(),
+		if (input.fee === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "fee");
+		}
+
+		if (input.feeLimit === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "feeLimit");
+		}
+
+		const unsignedTransaction = {
+			sender: input.from,
+			receiver: input.data.to,
+			value: new BigVal(input.data.amount, "coins"),
+			gasPrice: (input.fee as unknown) as number,
+			gasLimit: (input.feeLimit as unknown) as number,
+			data: input.data.memo,
+		};
+
+		const signedTransaction = await BasicWallet.fromMnemonic(input.sign.mnemonic).signTransaction(
+			unsignedTransaction,
+			this.#provider,
 		);
 
-		return new SignedTransactionData("@TODO", rawTransaction, account.sign(rawTransaction));
+		return new SignedTransactionData(signedTransaction.signature, unsignedTransaction, signedTransaction);
 	}
 
 	public async secondSignature(
