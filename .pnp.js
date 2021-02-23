@@ -1078,6 +1078,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rimraf", "npm:3.0.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:2564b0c42297b274bb5e15df7cbadd49daed1159eb1dd4a47dae041a4b16e1b5fdf958514a0b6deae24ebb4dc31283f23aa00da69ecc3fe30ebd7ed5c1ccf278#npm:4.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["bech32", "npm:2.0.0"],
             ["cross-env", "npm:7.0.2"],
             ["eslint", "npm:7.13.0"],
             ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.15.0"],
@@ -8115,6 +8116,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/bech32-npm-1.1.4-87b69922f7-2.zip/node_modules/bech32/",
           "packageDependencies": [
             ["bech32", "npm:1.1.4"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:2.0.0", {
+          "packageLocation": "./.yarn/cache/bech32-npm-2.0.0-ad98b7dd79-2.zip/node_modules/bech32/",
+          "packageDependencies": [
+            ["bech32", "npm:2.0.0"]
           ],
           "linkType": "HARD",
         }]

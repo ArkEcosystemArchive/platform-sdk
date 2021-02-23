@@ -1,4 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { decode } from "bech32";
 
 import { makeAccount } from "../helpers";
 
@@ -30,6 +31,12 @@ export class Address implements Contracts.Address {
 	}
 
 	public async validate(address: string): Promise<boolean> {
-		return true;
+		try {
+			decode(address);
+
+			return true;
+		  } catch {
+			return false;
+		  }
 	}
 }

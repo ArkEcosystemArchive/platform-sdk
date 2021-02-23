@@ -670,6 +670,7 @@ __metadata:
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^4.7.0
     "@typescript-eslint/parser": ^4.7.0
+    bech32: ^2.0.0
     cross-env: ^7.0.2
     eslint: ^7.13.0
     eslint-config-prettier: ^6.15.0
@@ -6530,6 +6531,13 @@ __metadata:
   version: 1.1.3
   resolution: "bech32@npm:1.1.3"
   checksum: 2/c05abbd5153ab78208239f050a30684103e23ef223ff734d6fbbf119af38de5840b823664859a77f41f72516779f613fbb399e0965c92e7c3d6db47807fc840d
+  languageName: node
+  linkType: hard
+
+"bech32@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "bech32@npm:2.0.0"
+  checksum: 2/0d68c58f528cb7fb5289d834ad50388eb30f9d8288ae7292ea1c9eaa4dd5364a974ad01ba443f2744590b3f6d662c427daf36bd6378b267bf6109d5b91458ef0
   languageName: node
   linkType: hard
 
