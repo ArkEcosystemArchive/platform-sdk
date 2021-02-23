@@ -141,13 +141,10 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				const broadcast = (
-					await this.#http
-						.bodyFormat("octet")
-						.contentType("application/octet-stream")
-						.post(`${this.#peer}/v2/proxy/transactions`, transaction.toBroadcast())
-				).json();
-				console.log(broadcast);
+				await this.#http
+					.bodyFormat("octet")
+					.contentType("application/octet-stream")
+					.post(`${this.#peer}/v2/proxy/transactions`, transaction.toBroadcast());
 
 				result.accepted.push(transaction.id());
 			} catch (error) {
