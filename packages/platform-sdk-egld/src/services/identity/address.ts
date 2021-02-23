@@ -35,8 +35,8 @@ export class Address implements Contracts.Address {
 			decode(address);
 
 			return true;
-		  } catch {
+		} catch {
 			return false;
-		  }
+		}
 	}
 }

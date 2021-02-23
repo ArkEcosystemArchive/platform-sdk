@@ -19,15 +19,19 @@ export class TransactionService implements Contracts.TransactionService {
 		const account = makeAccount();
 		account.fromMnemonic(input.sign.mnemonic);
 
-		const rawTransaction = JSON.parse(makeTransaction({
-			nonce: input.nonce,
-			from: input.from,
-			to: input.data.to,
-			value: input.data.amount,
-			gasPrice: input.fee,
-			gasLimit: input.feeLimit,
-			data: input.data.memo,
-		}).prepareForSigning().toString());
+		const rawTransaction = JSON.parse(
+			makeTransaction({
+				nonce: input.nonce,
+				from: input.from,
+				to: input.data.to,
+				value: input.data.amount,
+				gasPrice: input.fee,
+				gasLimit: input.feeLimit,
+				data: input.data.memo,
+			})
+				.prepareForSigning()
+				.toString(),
+		);
 
 		return new SignedTransactionData("@TODO", rawTransaction, account.sign(rawTransaction));
 	}
