@@ -1,10 +1,13 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-// @ts-ignore
-import { BasicWallet } from "elrondjs";
+
+import { makeAccount } from "../helpers";
 
 export class Address implements Contracts.Address {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return BasicWallet.fromMnemonic(mnemonic).address();
+		const account = makeAccount();
+		account.loadFromMnemonic(mnemonic);
+
+		return account.address();
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -16,7 +19,10 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
+		const account = makeAccount();
+		account.loadFromHexPrivateKey(privateKey);
+
+		return account.address();
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

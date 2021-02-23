@@ -1,8 +1,13 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
+import { makeAccount } from "../helpers";
+
 export class PrivateKey implements Contracts.PrivateKey {
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
+		const account = makeAccount();
+		account.loadFromMnemonic(mnemonic);
+
+		return account.privateKeyAsString();
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

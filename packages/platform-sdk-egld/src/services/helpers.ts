@@ -1,9 +1,3 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { account } from "@elrondnetwork/elrond-core-js";
 
-export const postGraphql = async (config: Coins.Config, query: string): Promise<Record<string, any>> =>
-	(
-		await config
-			.get<Contracts.HttpClient>("httpClient")
-			.post(Arr.randomElement(config.get<string[]>("network.networking.hostsArchival")), { query })
-	).json().data;
+export const makeAccount = () => new account();

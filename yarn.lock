@@ -659,6 +659,7 @@ __metadata:
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl"
     "@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support"
+    "@elrondnetwork/elrond-core-js": ^2.1.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.4
     "@types/eslint-plugin-prettier": ^3.1.0
@@ -1898,6 +1899,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:*":
+  version: 7.13.2
+  resolution: "@babel/runtime@npm:7.13.2"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 2/08f1f4989d8af176058384f022eb74ee7152badd99cf0502e85f1607ba06f6eff1696400b78e7de349d0b7a94ee15faf9f176f223451f6e4dfc356a009585974
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.0.0":
   version: 7.9.2
   resolution: "@babel/runtime@npm:7.9.2"
@@ -2053,6 +2063,35 @@ __metadata:
     pump: ^3.0.0
     secure-json-parse: ^2.1.0
   checksum: 2/197801d015e57501b1953ad5cded7c138c74087feb1df93111084ee7730563e86a22db0a8f184d19fa4dfbf39e2b4da16dbff18a2c33e2c87be3140c2fe79add
+  languageName: node
+  linkType: hard
+
+"@elrondnetwork/bls-wasm@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "@elrondnetwork/bls-wasm@npm:0.3.3"
+  dependencies:
+    assert: ^2.0.0
+    perf_hooks: 0.0.1
+  checksum: 2/c7759de9977c0aaf3e4fcd3eb7b5e0990d721e79f6aa30a084032c18ad81d4423fbdab31a8ac2c71ba68b4610070dfd70cfaf09e8cc1396cd3a7adf00880b8a3
+  languageName: node
+  linkType: hard
+
+"@elrondnetwork/elrond-core-js@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@elrondnetwork/elrond-core-js@npm:2.1.0"
+  dependencies:
+    "@elrondnetwork/bls-wasm": ^0.3.3
+    bech32: ^1.1.3
+    bignumber.js: ^9.0.0
+    bip39: ^3.0.2
+    bls-signatures: ^0.2.4
+    ed25519-hd-key: ^1.1.2
+    jssha: ^2.3.1
+    scryptsy: ^2.1.0
+    tweetnacl: ^1.0.3
+    tweetnacl-util: ^0.15.1
+    uuid: ^3.4.0
+  checksum: 2/4407da5072222bc58e21923262600cd8d12bb5dffc1265d8b30ff725204bff7a375cdc7c94fa27a43f4833e382fe480eeef407edbd9ff0bc3d0b452f3ac5fbf3
   languageName: node
   linkType: hard
 
@@ -6143,6 +6182,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"assert@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "assert@npm:2.0.0"
+  dependencies:
+    es6-object-assign: ^1.1.0
+    is-nan: ^1.2.1
+    object-is: ^1.0.1
+    util: ^0.12.0
+  checksum: 2/c3593bcc4c63c1e6fd3b62a7c788cf7337118d79b827d79b0ed60e596d4968b80b2f8aa8e41bc5742621596bd60aa9de62ea166d85a584a6db177d7087e907f3
+  languageName: node
+  linkType: hard
+
 "assign-symbols@npm:^1.0.0":
   version: 1.0.0
   resolution: "assign-symbols@npm:1.0.0"
@@ -6468,7 +6519,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bech32@npm:1.1.4, bech32@npm:^1.1.2, bech32@npm:^1.1.4":
+"bech32@npm:1.1.4, bech32@npm:^1.1.2, bech32@npm:^1.1.3, bech32@npm:^1.1.4":
   version: 1.1.4
   resolution: "bech32@npm:1.1.4"
   checksum: 2/2a3391395cc0f1a1bef76afc5fbb10bfaf26a21094c4eee109080185b3fc1fb0e8eca7d9145dbe92b6bac300b0b5eed16b1570a4ca665b40e1def5bacea50c4b
@@ -6640,6 +6691,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bip39@npm:3.0.2, bip39@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "bip39@npm:3.0.2"
+  dependencies:
+    "@types/node": 11.11.6
+    create-hash: ^1.1.0
+    pbkdf2: ^3.0.9
+    randombytes: ^2.0.1
+  checksum: 2/24c59dafc6c3b5c4ff0b8d0861509c0007bc0301b217125d1f1de6a39e84d21c9cfc1df743d472237c2ec4116387a46389843b36c95585b0eacebb6f5be6ecbd
+  languageName: node
+  linkType: hard
+
 "bip39@npm:^2.5.0":
   version: 2.6.0
   resolution: "bip39@npm:2.6.0"
@@ -6650,18 +6713,6 @@ __metadata:
     safe-buffer: ^5.0.1
     unorm: ^1.3.3
   checksum: 2/4ec18f56b4c3939ac3b79ce22aee592ed8685498fdd0e52b42494725a0fd5b27e10ba96cb6c26eca13af741df24bb4b542837b9cd2872dc254ab7f07cc37be23
-  languageName: node
-  linkType: hard
-
-"bip39@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "bip39@npm:3.0.2"
-  dependencies:
-    "@types/node": 11.11.6
-    create-hash: ^1.1.0
-    pbkdf2: ^3.0.9
-    randombytes: ^2.0.1
-  checksum: 2/24c59dafc6c3b5c4ff0b8d0861509c0007bc0301b217125d1f1de6a39e84d21c9cfc1df743d472237c2ec4116387a46389843b36c95585b0eacebb6f5be6ecbd
   languageName: node
   linkType: hard
 
@@ -6746,6 +6797,13 @@ __metadata:
   version: 1.1.0
   resolution: "blakejs@npm:1.1.0"
   checksum: 2/007d68a909d94cea612294bbab0cb2c26440c3a59eb340dfca046f1913cf4aa917da56088ad762f13921883ccc81c6eed2924ceac27f4ebbf9b4d25981a85fcd
+  languageName: node
+  linkType: hard
+
+"bls-signatures@npm:^0.2.4":
+  version: 0.2.5
+  resolution: "bls-signatures@npm:0.2.5"
+  checksum: 2/e2c34f65f033d6eb3753585f60e3605dc1603847c5b0296985c4c6a1a17088ad47fb84bfd77a1992b700fe47093a887b9803a83243dbc27eb63bc895fbf7f295
   languageName: node
   linkType: hard
 
@@ -7816,7 +7874,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-hmac@npm:^1.1.0, create-hmac@npm:^1.1.2, create-hmac@npm:^1.1.3, create-hmac@npm:^1.1.4, create-hmac@npm:^1.1.7":
+"create-hmac@npm:1.1.7, create-hmac@npm:^1.1.0, create-hmac@npm:^1.1.2, create-hmac@npm:^1.1.3, create-hmac@npm:^1.1.4, create-hmac@npm:^1.1.7":
   version: 1.1.7
   resolution: "create-hmac@npm:1.1.7"
   dependencies:
@@ -8451,6 +8509,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ed25519-hd-key@npm:^1.1.2":
+  version: 1.2.0
+  resolution: "ed25519-hd-key@npm:1.2.0"
+  dependencies:
+    bip39: 3.0.2
+    create-hmac: 1.1.7
+    tweetnacl: 1.0.3
+  checksum: 2/36fc2c8e71a0987a25fb64097b30ccc2dd81b81161945b28b1236217b3c32382d6f8bd1e6fcb790024f4ae2f94a5476e22b7c5c726272a22d965b0e1a0959116
+  languageName: node
+  linkType: hard
+
 "ed2curve@npm:0.2.1":
   version: 0.2.1
   resolution: "ed2curve@npm:0.2.1"
@@ -8682,6 +8751,13 @@ __metadata:
     es5-ext: ^0.10.35
     es6-symbol: ^3.1.1
   checksum: 2/1880ce31210da874cbb92b404c3128bdf68f616f3a902b2ca1d12f268aaedb11c5e6a2d9d364cde762de0130652a0474ba91abc09fa35f4abf6a8f22a592265e
+  languageName: node
+  linkType: hard
+
+"es6-object-assign@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "es6-object-assign@npm:1.1.0"
+  checksum: 2/18f01190b46b15a5fd6275dfc37c1c10bb331be4e392362785f63a141aa33edd0d8fbd2d5150c4b0a524aa14b8c4f825a559274cbc765bce59331e015923b4d8
   languageName: node
   linkType: hard
 
@@ -11004,6 +11080,16 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"is-nan@npm:^1.2.1":
+  version: 1.3.2
+  resolution: "is-nan@npm:1.3.2"
+  dependencies:
+    call-bind: ^1.0.0
+    define-properties: ^1.1.3
+  checksum: 2/258ecdd2c149c4e073a3c7dff0ee1316950509d9a507c6f8e8ccce8c4ef73e9f29cdf7836cc1037bbbada283ac9fe189c0451016a9aca6c27eb12eaa900452f8
+  languageName: node
+  linkType: hard
+
 "is-negative-zero@npm:^2.0.1":
   version: 2.0.1
   resolution: "is-negative-zero@npm:2.0.1"
@@ -12201,6 +12287,13 @@ fsevents@^2.1.2:
     json-schema: 0.2.3
     verror: 1.10.0
   checksum: 2/ee0177b7ef39e6becf18c586d31fabe15d62be88e7867d3aff86466e4a3de9a2cd47b6e597417aebc1cd3c2d43bc662e79ab5eecdadf3ce0643e909432ed6d2c
+  languageName: node
+  linkType: hard
+
+"jssha@npm:^2.3.1":
+  version: 2.4.2
+  resolution: "jssha@npm:2.4.2"
+  checksum: 2/815d1029402e09bd51c1c5a5dcd1892b7e13234a3ecfcf5157c1f8fce729fda00ef9b88aee4d9bca5e5570afd21e289c137fd8fb927353420ba51450269de90b
   languageName: node
   linkType: hard
 
@@ -14272,6 +14365,13 @@ fsevents@^2.1.2:
     safe-buffer: ^5.0.1
     sha.js: ^2.4.8
   checksum: 2/6a5ad5bb8f70d3d1f7f9a022afdc39809e20562c1f4aed424881c1a9fddf3ff15073c9d952000f13cdee885e04b0f2b4b748abac6b813a36717641ef4993cdf0
+  languageName: node
+  linkType: hard
+
+"perf_hooks@npm:0.0.1":
+  version: 0.0.1
+  resolution: "perf_hooks@npm:0.0.1"
+  checksum: 2/a7e7b5fe4250635c21af74e2fa5e1634563b31b1dc99c0ac4a751bc79855f8ab509da6e54b08a7bf2027f66950fdf175f78592ae63e3b7ff9da3c938cbf7c94d
   languageName: node
   linkType: hard
 
@@ -16998,6 +17098,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"tweetnacl-util@npm:^0.15.1":
+  version: 0.15.1
+  resolution: "tweetnacl-util@npm:0.15.1"
+  checksum: 2/d4d40600eca66561c6cb73fdce5f2927876526e8cae4dea12b4b6f19a32f8e9e66f308d24cd131e850c83e00e1be5cdb0c65660806d9bf0d2d80ffb4c7cb0c55
+  languageName: node
+  linkType: hard
+
 "tweetnacl@npm:0.x.x, tweetnacl@npm:^0.14.3, tweetnacl@npm:~0.14.0":
   version: 0.14.5
   resolution: "tweetnacl@npm:0.14.5"
@@ -17458,7 +17565,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"uuid@npm:^3.3.2":
+"uuid@npm:^3.3.2, uuid@npm:^3.4.0":
   version: 3.4.0
   resolution: "uuid@npm:3.4.0"
   bin:

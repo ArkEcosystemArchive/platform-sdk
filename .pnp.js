@@ -1067,6 +1067,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@arkecosystem/platform-sdk-intl", "workspace:packages/platform-sdk-intl"],
             ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
+            ["@elrondnetwork/elrond-core-js", "npm:2.1.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.4"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
@@ -2365,6 +2366,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
+        ["npm:7.13.2", {
+          "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.13.2-372de9fc27-2.zip/node_modules/@babel/runtime/",
+          "packageDependencies": [
+            ["@babel/runtime", "npm:7.13.2"],
+            ["regenerator-runtime", "npm:0.13.5"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:7.9.2", {
           "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.9.2-68b4224984-2.zip/node_modules/@babel/runtime/",
           "packageDependencies": [
@@ -2513,6 +2522,38 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ms", "npm:2.1.2"],
             ["pump", "npm:3.0.0"],
             ["secure-json-parse", "npm:2.3.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@elrondnetwork/bls-wasm", [
+        ["npm:0.3.3", {
+          "packageLocation": "./.yarn/cache/@elrondnetwork-bls-wasm-npm-0.3.3-751df142ad-2.zip/node_modules/@elrondnetwork/bls-wasm/",
+          "packageDependencies": [
+            ["@elrondnetwork/bls-wasm", "npm:0.3.3"],
+            ["assert", "npm:2.0.0"],
+            ["perf_hooks", "npm:0.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@elrondnetwork/elrond-core-js", [
+        ["npm:2.1.0", {
+          "packageLocation": "./.yarn/cache/@elrondnetwork-elrond-core-js-npm-2.1.0-1ccc11aa8f-2.zip/node_modules/@elrondnetwork/elrond-core-js/",
+          "packageDependencies": [
+            ["@elrondnetwork/elrond-core-js", "npm:2.1.0"],
+            ["@babel/runtime", "npm:7.13.2"],
+            ["@elrondnetwork/bls-wasm", "npm:0.3.3"],
+            ["bech32", "npm:1.1.4"],
+            ["bignumber.js", "npm:9.0.0"],
+            ["bip39", "npm:3.0.2"],
+            ["bls-signatures", "npm:0.2.5"],
+            ["ed25519-hd-key", "npm:1.2.0"],
+            ["jssha", "npm:2.4.2"],
+            ["scryptsy", "npm:2.1.0"],
+            ["tweetnacl", "npm:1.0.3"],
+            ["tweetnacl-util", "npm:0.15.1"],
+            ["uuid", "npm:3.4.0"]
           ],
           "linkType": "HARD",
         }]
@@ -7672,6 +7713,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["assert", [
+        ["npm:2.0.0", {
+          "packageLocation": "./.yarn/cache/assert-npm-2.0.0-ef73bc19f5-2.zip/node_modules/assert/",
+          "packageDependencies": [
+            ["assert", "npm:2.0.0"],
+            ["es6-object-assign", "npm:1.1.0"],
+            ["is-nan", "npm:1.3.2"],
+            ["object-is", "npm:1.1.2"],
+            ["util", "npm:0.12.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["assert-plus", [
         ["npm:1.0.0", {
           "packageLocation": "./.yarn/cache/assert-plus-npm-1.0.0-cac95ef098-2.zip/node_modules/assert-plus/",
@@ -8347,6 +8401,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/blakejs-npm-1.1.0-b189e40bb9-2.zip/node_modules/blakejs/",
           "packageDependencies": [
             ["blakejs", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["bls-signatures", [
+        ["npm:0.2.5", {
+          "packageLocation": "./.yarn/cache/bls-signatures-npm-0.2.5-2b4387e166-2.zip/node_modules/bls-signatures/",
+          "packageDependencies": [
+            ["bls-signatures", "npm:0.2.5"]
           ],
           "linkType": "HARD",
         }]
@@ -10274,6 +10337,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["ed25519-hd-key", [
+        ["npm:1.2.0", {
+          "packageLocation": "./.yarn/cache/ed25519-hd-key-npm-1.2.0-6456d8d35b-2.zip/node_modules/ed25519-hd-key/",
+          "packageDependencies": [
+            ["ed25519-hd-key", "npm:1.2.0"],
+            ["bip39", "npm:3.0.2"],
+            ["create-hmac", "npm:1.1.7"],
+            ["tweetnacl", "npm:1.0.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["ed2curve", [
         ["npm:0.2.1", {
           "packageLocation": "./.yarn/cache/ed2curve-npm-0.2.1-27f5ade2eb-2.zip/node_modules/ed2curve/",
@@ -10526,6 +10601,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["d", "npm:1.0.1"],
             ["es5-ext", "npm:0.10.53"],
             ["es6-symbol", "npm:3.1.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["es6-object-assign", [
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/es6-object-assign-npm-1.1.0-0565318480-2.zip/node_modules/es6-object-assign/",
+          "packageDependencies": [
+            ["es6-object-assign", "npm:1.1.0"]
           ],
           "linkType": "HARD",
         }]
@@ -13091,6 +13175,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["is-nan", [
+        ["npm:1.3.2", {
+          "packageLocation": "./.yarn/cache/is-nan-npm-1.3.2-a087d31a28-2.zip/node_modules/is-nan/",
+          "packageDependencies": [
+            ["is-nan", "npm:1.3.2"],
+            ["call-bind", "npm:1.0.2"],
+            ["define-properties", "npm:1.1.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["is-negative-zero", [
         ["npm:2.0.1", {
           "packageLocation": "./.yarn/cache/is-negative-zero-npm-2.0.1-d8f3dbcfe1-2.zip/node_modules/is-negative-zero/",
@@ -14379,6 +14474,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["extsprintf", "npm:1.3.0"],
             ["json-schema", "npm:0.2.3"],
             ["verror", "npm:1.10.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["jssha", [
+        ["npm:2.4.2", {
+          "packageLocation": "./.yarn/cache/jssha-npm-2.4.2-9a91eba44b-2.zip/node_modules/jssha/",
+          "packageDependencies": [
+            ["jssha", "npm:2.4.2"]
           ],
           "linkType": "HARD",
         }]
@@ -16647,6 +16751,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ripemd160", "npm:2.0.2"],
             ["safe-buffer", "npm:5.2.0"],
             ["sha.js", "npm:2.4.11"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["perf_hooks", [
+        ["npm:0.0.1", {
+          "packageLocation": "./.yarn/cache/perf_hooks-npm-0.0.1-414363b18d-2.zip/node_modules/perf_hooks/",
+          "packageDependencies": [
+            ["perf_hooks", "npm:0.0.1"]
           ],
           "linkType": "HARD",
         }]
@@ -19616,6 +19729,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/tweetnacl-npm-1.0.3-b7eef04660-2.zip/node_modules/tweetnacl/",
           "packageDependencies": [
             ["tweetnacl", "npm:1.0.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["tweetnacl-util", [
+        ["npm:0.15.1", {
+          "packageLocation": "./.yarn/cache/tweetnacl-util-npm-0.15.1-1a24bc512a-2.zip/node_modules/tweetnacl-util/",
+          "packageDependencies": [
+            ["tweetnacl-util", "npm:0.15.1"]
           ],
           "linkType": "HARD",
         }]

@@ -7,14 +7,8 @@ import { PublicKey } from "./public-key";
 import { WIF } from "./wif";
 
 export class IdentityService implements Contracts.IdentityService {
-	readonly #config: Coins.Config;
-
-	private constructor(config: Coins.Config) {
-		this.#config = config;
-	}
-
 	public static async __construct(config: Coins.Config): Promise<IdentityService> {
-		return new IdentityService(config);
+		return new IdentityService();
 	}
 
 	public async __destruct(): Promise<void> {
@@ -22,7 +16,7 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public address(): Address {
-		return new Address(this.#config);
+		return new Address();
 	}
 
 	public publicKey(): PublicKey {
