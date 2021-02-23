@@ -31,7 +31,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 		const signedTransaction = account.sign(JSON.parse(transaction.prepareForSigning().toString()));
 
-		return new SignedTransactionData('@TODO',  '@TODO', signedTransaction);
+		return new SignedTransactionData("@TODO",  "@TODO", signedTransaction);
 	}
 
 	public async secondSignature(
