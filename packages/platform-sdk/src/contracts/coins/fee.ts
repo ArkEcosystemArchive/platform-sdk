@@ -23,5 +23,5 @@ export interface TransactionFees {
 export interface FeeService {
 	__destruct(): Promise<void>;
 
-	all(days: number): Promise<TransactionFees>;
+	all(): Promise<TransactionFees>;
 }

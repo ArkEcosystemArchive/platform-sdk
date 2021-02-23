@@ -9,7 +9,7 @@ export class FeeService implements Contracts.FeeService {
 		//
 	}
 
-	public async all(days: number): Promise<Contracts.TransactionFees> {
+	public async all(): Promise<Contracts.TransactionFees> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "all");
 	}
 }

@@ -19,7 +19,7 @@ describe("FeeService", function () {
 			.get("/fees")
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/fees.json`));
 
-		const result = await subject.all(30);
+		const result = await subject.all();
 
 		expect(result).toContainAllKeys([
 			"transfer",
