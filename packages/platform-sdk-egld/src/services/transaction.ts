@@ -29,7 +29,9 @@ export class TransactionService implements Contracts.TransactionService {
 		const account = makeAccount();
 		account.fromMnemonic(input.sign.mnemonic);
 
-		return new SignedTransactionData("@TODO",  "@TODO", account.sign(JSON.parse(transaction.prepareForSigning().toString())));
+		const rawTransaction = JSON.parse(transaction.prepareForSigning().toString());
+
+		return new SignedTransactionData("@TODO", rawTransaction, account.sign(rawTransaction));
 	}
 
 	public async secondSignature(
