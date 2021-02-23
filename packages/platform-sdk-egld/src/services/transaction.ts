@@ -1,5 +1,8 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
+import { SignedTransactionData } from "../dto";
+import { makeTransaction } from "./helpers";
+
 export class TransactionService implements Contracts.TransactionService {
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService();
@@ -13,7 +16,17 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transfer");
+		const transaction = makeTransaction({
+			nonce: input.nonce,
+			from: input.from,
+			to: input.data.to,
+			value: input.data.amount,
+			gasPrice: input.fee,
+			gasLimit: input.feeLimit,
+			data: input.data.memo,
+		});
+
+		return new SignedTransactionData('@TODO',  '@TODO', '@TODO');
 	}
 
 	public async secondSignature(
