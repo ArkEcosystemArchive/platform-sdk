@@ -1,7 +1,7 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { SignedTransactionData } from "../dto";
-import { makeTransaction } from "./helpers";
+import { makeAccount, makeTransaction } from "./helpers";
 
 export class TransactionService implements Contracts.TransactionService {
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
@@ -26,7 +26,12 @@ export class TransactionService implements Contracts.TransactionService {
 			data: input.data.memo,
 		});
 
-		return new SignedTransactionData('@TODO',  '@TODO', '@TODO');
+		const account = makeAccount();
+		account.fromMnemonic(input.sign.mnemonic);
+
+		const signedTransaction = account.sign(JSON.parse(transaction.prepareForSigning().toString()));
+
+		return new SignedTransactionData('@TODO',  '@TODO', signedTransaction);
 	}
 
 	public async secondSignature(
