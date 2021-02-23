@@ -19,7 +19,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public nonce(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "nonce");
+		return BigNumber.make(this.data.nonce);
 	}
 
 	public secondPublicKey(): string | undefined {
@@ -27,7 +27,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public username(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "username");
+		return this.data.username;
 	}
 
 	public rank(): number | undefined {

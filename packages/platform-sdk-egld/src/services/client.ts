@@ -1,6 +1,7 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { ProxyProvider } from "elrondjs";
+import { WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
@@ -41,7 +42,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
+		return new WalletData(await this.#provider.getAddress(id));
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
