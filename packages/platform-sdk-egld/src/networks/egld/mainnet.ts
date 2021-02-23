@@ -1,28 +1,19 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
 const network: Coins.CoinNetwork = {
-	id: "ada.mainnet",
+	id: "egld.mainnet",
 	type: "live",
 	name: "Mainnet",
-	explorer: "https://explorer.cardano.org/",
+	explorer: "https://explorer.elrond.com/",
 	currency: {
-		ticker: "ADA",
-		symbol: "ADA",
+		ticker: "EGLD",
+		symbol: "EGLD",
 	},
 	crypto: {
-		networkId: "1",
-		slip44: 1815,
+		slip44: 508,
 	},
 	networking: {
-		hosts: [],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
+		hosts: ["https://gateway.elrond.com"],
 	},
 	featureFlags: {
 		Client: {
@@ -31,7 +22,6 @@ const network: Coins.CoinNetwork = {
 		Identity: {
 			address: {
 				mnemonic: true,
-				publicKey: true,
 			},
 			publicKey: {
 				mnemonic: true,
@@ -41,16 +31,8 @@ const network: Coins.CoinNetwork = {
 			},
 			keyPair: {
 				mnemonic: true,
-				privateKey: true,
 			},
 		},
-	},
-	meta: {
-		minFeeA: 44,
-		minFeeB: 155381,
-		minUTxOValue: 1000000,
-		poolDeposit: 500000000,
-		keyDeposit: 2000000,
 	},
 	transactionTypes: ["transfer"],
 };
