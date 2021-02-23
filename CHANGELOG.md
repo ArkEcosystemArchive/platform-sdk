@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.0.0 - 2020-02-23
+
+See https://github.com/jeanlescure/string-crypto#v2-breaking-changes for breaking change details.
+
+### Added
+
+-   Add `ProfileSetting.ErrorReporting` (6ebbdb13, @luciorubeens)
+-   **[EGLD]** Initial implementation (70dc816f, @faustbrian)
+-   **[EGLD]** Implement transfer signing and broadcasting (0aa5dc2a, @faustbrian)
+
+### Changed
+
+-   **[BREAKING]** Update `string-crypto` dependency (7f323131, @faustbrian)
+-   **[ARK]** Omit days from fee requests (de260f67, @faustbrian)
+
 ## 2.8.54 - 2020-02-19
 
 ### Added
