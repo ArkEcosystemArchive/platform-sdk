@@ -49,7 +49,7 @@ export class TransactionService implements Contracts.TransactionService {
 				data = {
 					nonce: Web3.utils.toHex(Web3.utils.toBN(nonce).add(Web3.utils.toBN("1"))),
 					gasPrice: Web3.utils.toHex(input.fee),
-					gasLimit: Web3.utils.toHex(input.feeLimit),
+					gasLimit: Web3.utils.toHex(input.feeLimit || 21000),
 					to: input.contract.address,
 					value: "0x0",
 					data: this.createContract(input.contract.address)

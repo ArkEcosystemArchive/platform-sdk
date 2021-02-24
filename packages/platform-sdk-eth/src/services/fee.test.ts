@@ -15,8 +15,8 @@ beforeAll(() => nock.disableNetConnect());
 
 describe("FeeService", function () {
 	it("should fetch all available fees", async () => {
-		nock("https://ethgas.watch")
-			.get("/api/gas")
+		nock("https://ethgasstation.info")
+			.get("/json/ethgasAPI.json")
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/fees.json`));
 
 		const result = await subject.all();
@@ -36,10 +36,10 @@ describe("FeeService", function () {
 		]);
 
 		expect(result.transfer).toEqual({
-			min: "148",
-			avg: "175",
-			max: "199",
-			static: "216",
+			min: "1210",
+			avg: "1330",
+			max: "1760",
+			static: "0",
 		});
 	});
 });

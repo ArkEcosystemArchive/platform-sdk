@@ -16,13 +16,13 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	public async all(): Promise<Contracts.TransactionFees> {
-		const { slow, normal, fast, instant } = (await this.#http.get("https://ethgas.watch/api/gas")).json();
+		const { safeLow, average, fast } = (await this.#http.get("https://ethgasstation.info/json/ethgasAPI.json")).json();
 
 		const fees = {
-			static: instant.gwei.toString(),
-			min: slow.gwei.toString(),
-			avg: normal.gwei.toString(),
-			max: fast.gwei.toString(),
+			static: "0",
+			min: safeLow.toString(),
+			avg: average.toString(),
+			max: fast.toString(),
 		};
 
 		return {
