@@ -17,8 +17,7 @@ export class SignedTransactionData
 	}
 
 	public fee(): BigNumber {
-		// @TODO: calculate fee from gasLimit, gasPrice and gasUsed
-		return BigNumber.ZERO;
+		return BigNumber.make(this.signedData.gasUsed).times(this.signedData.gasPrice).divide(1e18).times(1e8);
 	}
 
 	public isMultiSignature(): boolean {
