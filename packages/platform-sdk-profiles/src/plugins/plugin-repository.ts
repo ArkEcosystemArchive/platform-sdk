@@ -41,8 +41,12 @@ export class PluginRepository {
 		return this.#data.values();
 	}
 
-	public push(plugin: Plugin): void {
-		this.#data.set(uuidv4(), plugin);
+	public push(plugin: Plugin): string {
+		const uuid: string = uuidv4();
+
+		this.#data.set(uuid, plugin);
+
+		return uuid;
 	}
 
 	public fill(data: object): void {
