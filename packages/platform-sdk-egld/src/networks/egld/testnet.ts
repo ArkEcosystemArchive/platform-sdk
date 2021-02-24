@@ -6,8 +6,8 @@ const network: Coins.CoinNetwork = {
 	name: "Testnet",
 	explorer: "https://testnet-explorer.elrond.com/",
 	currency: {
-		ticker: "EGLD",
-		symbol: "EGLD",
+		ticker: "XeGLD",
+		symbol: "XeGLD",
 	},
 	crypto: {
 		slip44: 508,
