@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-btc",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "3.0.3",
+	"version": "3.0.6",
 	"contributors": [],
 	"license": "MIT",
 	"files": [

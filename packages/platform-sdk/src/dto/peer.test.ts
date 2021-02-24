@@ -9,7 +9,7 @@ test("#toObject", () => {
 		  "ip": "127.0.0.1",
 		  "latency": 23,
 		  "port": 4003,
-		  "version": "3.0.3",
+		  "version": "3.0.0",
 		}
 	`);
 });

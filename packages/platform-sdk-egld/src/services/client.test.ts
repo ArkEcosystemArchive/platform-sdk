@@ -30,7 +30,9 @@ describe("ClientService", function () {
 			.get("/v1.0/address/erd17uy64y9zw8zd4xz5d2deqmxfxkk3zfuj0jh24k0s5jqhet3pz0esng60j7/transactions")
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
-		const result = await subject.transactions({ addresses: ["erd17uy64y9zw8zd4xz5d2deqmxfxkk3zfuj0jh24k0s5jqhet3pz0esng60j7"] });
+		const result = await subject.transactions({
+			addresses: ["erd17uy64y9zw8zd4xz5d2deqmxfxkk3zfuj0jh24k0s5jqhet3pz0esng60j7"],
+		});
 
 		expect(result).toBeObject();
 		expect(result.items()[0]).toBeInstanceOf(TransactionData);
