@@ -3,6 +3,7 @@ import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
+import { Console } from "console";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
@@ -89,7 +90,7 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				const { txHash } = await this.post("transaction/send", { body: transaction.toBroadcast() });
+				const { txHash } = await this.post("transaction/send", transaction.toBroadcast());
 
 				result.accepted.push(transaction.id());
 			} catch (error) {
@@ -109,12 +110,12 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
 	}
 
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.host()}/v1.0/${path}`, query?.searchParams)).json();
+	private async get(path: string): Promise<Contracts.KeyValuePair> {
+		return (await this.#http.get(`${this.host()}/v1.0/${path}`)).json();
 	}
 
-	private async post(path: string, { body, searchParams }: { body; searchParams? }): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.post(`${this.host()}/v1.0/${path}`, body, searchParams || undefined)).json();
+	private async post(path: string, data: object): Promise<Contracts.KeyValuePair> {
+		return (await this.#http.post(`${this.host()}/v1.0/${path}`, data)).json();
 	}
 
 	private host(): string {

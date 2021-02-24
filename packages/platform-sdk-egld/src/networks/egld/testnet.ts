@@ -2,8 +2,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 
 const network: Coins.CoinNetwork = {
 	id: "egld.testnet",
-	type: "live",
-	name: "Mainnet",
+	type: "test",
+	name: "Testnet",
 	explorer: "https://testnet-explorer.elrond.com/",
 	currency: {
 		ticker: "EGLD",
