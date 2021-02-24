@@ -10,7 +10,7 @@ module.exports = meow(
 	Options
 	Options
 	  --polkadot, -p  The Polkadot RPC host (defaults to wss://rpc.polkadot.io)
-	  --elasticsearch, -e  The ElasticSearch host (defaults to http://localhost:9200)
+	  --database, -d  The file for the sqlite database (defaults to 'dot')
 `,
 	{
 		flags: {
@@ -28,11 +28,6 @@ module.exports = meow(
 				type: "string",
 				alias: "d",
 				default: "dot",
-			},
-			elasticsearch: {
-				type: "string",
-				alias: "e",
-				default: "http://localhost:9200",
 			},
 		},
 	},
