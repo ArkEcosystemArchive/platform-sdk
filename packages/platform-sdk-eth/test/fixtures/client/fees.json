@@ -1,3 +1,84 @@
 {
-	"transfer": 105000000000
+	"slow": {
+		"gwei": 148,
+		"usd": 5.12
+	},
+	"normal": {
+		"gwei": 175,
+		"usd": 6.06
+	},
+	"fast": {
+		"gwei": 199,
+		"usd": 6.89
+	},
+	"instant": {
+		"gwei": 216,
+		"usd": 7.48
+	},
+	"ethPrice": 1648.63,
+	"lastUpdated": 1614143082235,
+	"sources": [
+		{
+			"name": "Etherscan",
+			"source": "https://etherscan.io/gastracker",
+			"fast": 218,
+			"standard": 179,
+			"slow": 158,
+			"lastBlock": 11917875
+		},
+		{
+			"name": "Etherchain",
+			"source": "https://etherchain.org/tools/gasPriceOracle",
+			"instant": 216,
+			"fast": 199,
+			"standard": 175,
+			"slow": 146,
+			"lastUpdate": 1614143081053
+		},
+		{
+			"name": "Gas station",
+			"source": "https://ethgasstation.info/",
+			"instant": 213,
+			"fast": 202,
+			"standard": 179,
+			"slow": 179,
+			"lastBlock": 11917872
+		},
+		{
+			"name": "GAS Now",
+			"source": "https://www.gasnow.org/",
+			"instant": 220,
+			"fast": 180,
+			"standard": 155,
+			"slow": 130,
+			"lastUpdate": 1614143078129
+		},
+		{
+			"name": "MyCrypto",
+			"source": "https://gas.mycryptoapi.com/",
+			"instant": 216,
+			"fast": 198,
+			"standard": 175,
+			"slow": 148,
+			"lastBlock": 11917870
+		},
+		{
+			"name": "POA Network",
+			"source": "https://gasprice.poa.network/",
+			"instant": 216,
+			"fast": 194,
+			"standard": 164,
+			"slow": 136,
+			"lastBlock": 11917876
+		},
+		{
+			"name": "Upvest",
+			"source": "https://doc.upvest.co/reference#ethereum-fees",
+			"instant": 237,
+			"fast": 223,
+			"standard": 178,
+			"slow": 148,
+			"lastUpdate": 1614143082234
+		}
+	]
 }

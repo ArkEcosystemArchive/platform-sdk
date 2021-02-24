@@ -2,12 +2,12 @@ import { Coins } from "@arkecosystem/platform-sdk";
 
 const network: Coins.CoinNetwork = {
 	id: "egld.testnet",
-	type: "live",
-	name: "Mainnet",
-	explorer: "https://testnet-explorer.elrond.com/",
+	type: "test",
+	name: "Testnet",
+	explorer: "https://testnet-explorer.elrond.com",
 	currency: {
-		ticker: "EGLD",
-		symbol: "EGLD",
+		ticker: "XeGLD",
+		symbol: "XeGLD",
 	},
 	crypto: {
 		slip44: 508,
@@ -17,7 +17,10 @@ const network: Coins.CoinNetwork = {
 	},
 	featureFlags: {
 		Client: {
+			transaction: true,
+			transactions: true,
 			wallet: true,
+			broadcast: true,
 		},
 		Identity: {
 			address: {
@@ -32,6 +35,11 @@ const network: Coins.CoinNetwork = {
 			keyPair: {
 				mnemonic: true,
 			},
+		},
+		Link: {
+			block: true,
+			transaction: true,
+			wallet: true,
 		},
 	},
 	transactionTypes: ["transfer"],

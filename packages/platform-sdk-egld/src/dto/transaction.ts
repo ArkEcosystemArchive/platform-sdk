@@ -8,11 +8,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public blockId(): string | undefined {
-		return undefined;
+		return this.data.miniBlockHash;
 	}
 
 	public timestamp(): DateTime {
-		return DateTime.make(this.data.includedAt);
+		return DateTime.fromUnix(this.data.timestamp);
 	}
 
 	public confirmations(): BigNumber {
@@ -20,60 +20,31 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		return this.data.inputs[0].address;
+		return this.data.sender;
 	}
 
 	public recipient(): string {
-		return this.recipients()[0].address;
+		return this.data.receiver;
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
-		return this.data.outputs
-			.sort((a, b) => a.index - b.index)
-			.map((out) => ({
-				address: out.address,
-				amount: BigNumber.make(out.value),
-			}));
+		return [];
 	}
 
 	public inputs(): Contracts.UnspentTransactionData[] {
-		return this.data.inputs.map(
-			(input: Contracts.KeyValuePair) =>
-				new DTO.UnspentTransactionData({
-					id: input.sourceTransaction.hash,
-					amount: BigNumber.make(input.value),
-					addresses: [input.address],
-				}),
-		);
+		return [];
 	}
 
 	public outputs(): Contracts.UnspentTransactionData[] {
-		return this.data.outputs.map(
-			(output: Contracts.KeyValuePair) =>
-				new DTO.UnspentTransactionData({
-					amount: BigNumber.make(output.value),
-					addresses: [output.address],
-				}),
-		);
+		return [];
 	}
 
 	public amount(): BigNumber {
-		const totalInput = this.data.inputs
-			.map((input: Contracts.KeyValuePair) => BigNumber.make(input.value))
-			.reduce((a, b) => a.plus(b), BigNumber.ZERO);
-
-		const changeOutput =
-			this.data.outputs <= 1
-				? BigNumber.ZERO
-				: BigNumber.make(
-						this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value,
-				  );
-
-		return totalInput.minus(changeOutput).minus(this.fee());
+		return BigNumber.make(this.data.value).divide(1e21).times(1e8);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.fee);
+		return BigNumber.make(this.data.gasUsed).times(this.data.gasPrice).divide(1e18).times(1e8);
 	}
 
 	public asset(): Record<string, unknown> {
@@ -81,7 +52,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isConfirmed(): boolean {
-		return false;
+		return this.data.status === "success";
 	}
 
 	public isSent(): boolean {
