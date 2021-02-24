@@ -13,7 +13,7 @@ export class SignedTransactionData
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.signedData.value.toString());
+		return BigNumber.make(this.signedData.value.toString()).divide(1e21).times(1e8);
 	}
 
 	public fee(): BigNumber {

@@ -40,11 +40,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.data.value);
+		return BigNumber.make(this.data.value).divide(1e21).times(1e8);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.gasUsed).times(this.data.gasPrice);
+		return BigNumber.make(this.data.gasUsed).times(this.data.gasPrice).divide(1e21).times(1e8);
 	}
 
 	public asset(): Record<string, unknown> {
