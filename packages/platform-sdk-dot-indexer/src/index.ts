@@ -22,10 +22,12 @@ export const subscribe = async (flags: Record<string, string>): Promise<void> =>
 	// API
 	let polkadot = await usePolkadot(flags.polkadot);
 
-	// @TODO: get last block stored in the DB and set `i` to that value to prevent full reindexing
+	const localHeight = database.lastBlockNumber();
 	const latestBlockHeight = parseInt((await polkadot.derive.chain.bestNumberFinalized()).toString());
 
-	for (let i = 1; i <= latestBlockHeight; i++) {
+	logger.debug(`Start indexing from block ${localHeight}`);
+
+	for (let i = localHeight; i <= latestBlockHeight; i++) {
 		try {
 			if (queue.size === 250) {
 				logger.info("Draining Queue...");
