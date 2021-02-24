@@ -4,7 +4,6 @@ import { DataRepository } from "../repositories/data-repository";
 import { PluginRegistry } from "./plugin-registry";
 
 interface Plugin {
-	id: string;
 	name: string;
 	version: string;
 	isEnabled: boolean;
@@ -41,12 +40,12 @@ export class PluginRepository {
 		return this.#data.values();
 	}
 
-	public push(plugin: Plugin): string {
-		const uuid: string = uuidv4();
+	public push(plugin: Plugin): Plugin {
+		const id: string = uuidv4();
 
-		this.#data.set(uuid, plugin);
+		this.#data.set(id, { id, ...plugin });
 
-		return uuid;
+		return this.findById(id);
 	}
 
 	public fill(data: object): void {
