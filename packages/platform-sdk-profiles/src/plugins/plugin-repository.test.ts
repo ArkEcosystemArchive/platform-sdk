@@ -43,20 +43,7 @@ it("should return all data values", () => {
 it("should find a plugin by its ID", () => {
 	const { id } = subject.push(stubPlugin);
 
-	expect(subject.findById(id)).toMatchInlineSnapshot(`
-		Object {
-		  "id": "5971d313-7e46-49cf-aaee-7bc592e139f0",
-		  "isEnabled": true,
-		  "name": "@hello/world",
-		  "permissions": Array [
-		    "something",
-		  ],
-		  "urls": Array [
-		    "https://google.com",
-		  ],
-		  "version": "1.0.0",
-		}
-	`);
+	expect(subject.findById(id).name).toBe(stubPlugin.name);
 });
 
 it("should throw if a plugin cannot be found by its ID", () => {
