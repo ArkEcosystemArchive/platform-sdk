@@ -170,15 +170,15 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
 	}
 
-	private async usedAddressesForAccount(id: string) {
+	private async usedAddressesForAccount(accountPublicKey: string) {
 		const usedSpendAddresses: Set<string> = new Set<string>();
 		const usedChangeAddresses: Set<string> = new Set<string>();
 
 		let offset = 0;
 		let exhausted = false;
 		do {
-			const spendAddresses: string[] = await this.addressesChunk(id, false, offset);
-			const changeAddresses: string[] = await this.addressesChunk(id, true, offset);
+			const spendAddresses: string[] = await this.addressesChunk(accountPublicKey, false, offset);
+			const changeAddresses: string[] = await this.addressesChunk(accountPublicKey, true, offset);
 
 			const allAddresses = spendAddresses.concat(changeAddresses);
 			const usedAddresses: string[] = await this.fetchUsedAddressesData(allAddresses);

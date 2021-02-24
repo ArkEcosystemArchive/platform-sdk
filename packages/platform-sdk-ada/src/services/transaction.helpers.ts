@@ -14,12 +14,17 @@ export const deriveAccountKey = (rootKey: Bip32PrivateKey, slip44: number, index
 		.derive(harden(slip44))
 		.derive(harden(index));
 
-export const deriveUtxoKey = (accountKey: Bip32PrivateKey): Bip32PrivateKey =>
+export const deriveUtxoKey = (accountKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
 	accountKey
 		.derive(harden(0)) // External
-		.derive(harden(0));
+		.derive(harden(index));
 
-export const deriveStakeKey = (accountKey: Bip32PrivateKey): Bip32PrivateKey =>
+export const deriveChangeKey = (accountKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
+	accountKey
+		.derive(harden(1)) // Change
+		.derive(harden(index));
+
+export const deriveStakeKey = (accountKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
 	accountKey
 		.derive(harden(2)) // Chimeric
-		.derive(harden(0));
+		.derive(harden(index));

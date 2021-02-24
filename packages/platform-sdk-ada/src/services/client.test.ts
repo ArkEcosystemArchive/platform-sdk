@@ -127,19 +127,20 @@ describe("ClientService", function () {
 
 			const transfer = await txService.transfer({
 				from:
-					"addr_test1qqy6nhfyks7wdu3dudslys37v252w2nwhv0fw2nfawemmn8k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sw96paj",
+					"addr_test1qrhvwtn8sa3duzkm93v5kjjxlv5lvg67j530wyeumngu23lk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s4s8xvh",
 				sign: {
 					mnemonic:
 						"excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress",
 				},
 				data: {
-					amount: "1000000",
+					amount: "9615699",
 					to:
-						"addr_test1qrunat98cnyld0t9xrw6k8y0rlyc4fl6afcfe42x6j8ndwau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs7dva6t",
+						"addr_test1qpgs3nex8wvaggzx9pnwjgh946e7zk3k8vc9lnf4jrk5fs4u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsnfunm6",
 				},
 			});
 
 			const transactions = [transfer];
+			console.log('transactions', JSON.stringify(transactions, null, 2));
 			const result = await subject.broadcast(transactions);
 			expect(result).toMatchObject({
 				accepted: [],

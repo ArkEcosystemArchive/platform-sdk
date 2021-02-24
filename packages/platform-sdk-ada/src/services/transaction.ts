@@ -3,9 +3,16 @@ import CardanoWasm, { Address } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
 import { postGraphql } from "./helpers";
-import { createValue, deriveAccountKey, deriveRootKey } from "./transaction.helpers";
+import {
+	createValue,
+	deriveAccountKey,
+	deriveChangeKey,
+	deriveRootKey,
+	deriveStakeKey,
+	deriveUtxoKey
+} from "./transaction.helpers";
 
-interface UnspentTransaction {
+export interface UnspentTransaction {
 	address: string;
 	index: string;
 	transaction: {
@@ -55,12 +62,18 @@ export class TransactionService implements Contracts.TransactionService {
 		// Get a `Bip32PrivateKey` instance according to `CIP1852` and turn it into a `PrivateKey` instance
 		const rootKey = deriveRootKey(input.sign.mnemonic);
 		const accountKey = deriveAccountKey(rootKey, this.#config.get<number>("network.crypto.slip44"), 0);
-		const privateKey = accountKey.to_raw_key();
-
+		// const privateKey = accountKey.to_raw_key();
+		// console.log(
+		// 	"privateKey",
+		// 	Buffer.from(privateKey.as_bytes()).toString("hex"),
+		// 	"publicKey",
+		// 	Buffer.from(privateKey.to_public().as_bytes()).toString("hex"),
+		// );
 		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transferred back to the sender
 		const utxos: UnspentTransaction[] = await this.listUnspentTransactions(input.from);
 
-		for (let i = 0; i < utxos.length; i++) {
+		// for (let i = 0; i < utxos.length; i++) {
+			let i = 0;
 			const utxo: UnspentTransaction = utxos[i];
 
 			txBuilder.add_input(
@@ -72,8 +85,9 @@ export class TransactionService implements Contracts.TransactionService {
 				createValue(utxo.value),
 			);
 
-			break;
-		}
+			console.log("utxo", utxo);
+			// break;
+		// }
 
 		// These are the outputs that will be transferred to other wallets. For now we only support a single output.
 		txBuilder.add_output(
@@ -100,10 +114,14 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// add keyhash witnesses
 		const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
-		const vkeyWitness = CardanoWasm.make_vkey_witness(txHash, privateKey);
-		vkeyWitnesses.add(vkeyWitness);
+		vkeyWitnesses.add(CardanoWasm.make_vkey_witness(CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")), deriveUtxoKey(accountKey, 0).to_raw_key()));
+		vkeyWitnesses.add(CardanoWasm.make_vkey_witness(CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")), deriveChangeKey(accountKey, 0).to_raw_key()));
+		// vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveStakeKey(accountKey, 0).to_raw_key()));
+		// vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveChangeKey(accountKey, 0).to_raw_key()));
+		vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, accountKey.to_raw_key()));
 		witnesses.set_vkeys(vkeyWitnesses);
 
+		console.log('hash', Buffer.from(txHash.to_bytes()).toString("hex"));
 		return new SignedTransactionData(
 			Buffer.from(txHash.to_bytes()).toString("hex"),
 			{

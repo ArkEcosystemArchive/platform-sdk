@@ -1,16 +1,16 @@
 import "jest-extended";
-
 import { createConfig } from "./helpers";
 import { ClientService, IdentityService } from "../src/services";
 import {
 	HARDENED_THRESHOLD,
 	SHELLEY_COIN_PURPOSE,
 	SHELLEY_COIN_TYPE,
-	SHELLEY_DERIVATION_SCHEME,
+	SHELLEY_DERIVATION_SCHEME
 } from "../src/crypto/shelley/constants";
 import lib from "cardano-crypto.js";
 import { Buffer } from "buffer";
 import { addressFromAccountExtPublicKey, addressFromMnemonic } from "../src/crypto/shelley/address";
+import { AddressesHelper } from "../src/services/addresses-helper";
 
 const data = [
 	{
@@ -264,7 +264,7 @@ const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: st
 };
 
 describe.each(data)("Addresses from", (wallet) => {
-	it(`Identity Service ${wallet.from}"s Wallet`, async function () {
+	it(`Identity Service ${wallet.from}'s Wallet`, async function () {
 		const config = createConfig();
 		const identityService = await IdentityService.__construct(config);
 
@@ -278,7 +278,7 @@ describe.each(data)("Addresses from", (wallet) => {
 		expect(keys).toStrictEqual({ publicKey: wallet.rootPublicKey, privateKey: wallet.rootPrivateKey });
 	});
 
-	it.skip(`Client Service ${wallet.from}"s Wallet`, async function () {
+	it.skip(`Client Service ${wallet.from}'s Wallet`, async function () {
 		const config = createConfig();
 		const client = await ClientService.__construct(config);
 
@@ -286,7 +286,7 @@ describe.each(data)("Addresses from", (wallet) => {
 		expect(walletData).toBe(wallet.address);
 	});
 
-	it(`${wallet.from}"s Private Key`, async () => {
+	it(`${wallet.from}'s Private Key`, async () => {
 		const mnemonic = wallet.mnemonic;
 
 		let addresses: { [key: string]: string[] } = { testnet: [], mainnet: [] };
@@ -298,7 +298,7 @@ describe.each(data)("Addresses from", (wallet) => {
 		expect(addresses.mainnet).toEqual(wallet.addresses.mainnet.spend);
 	});
 
-	it(`${wallet.from}"s Public Key`, async () => {
+	it(`${wallet.from}'s Public Key`, async () => {
 		const publicKey = Buffer.from(wallet.accountPublicKey, "hex");
 		let addresses: { [key: string]: { [key: string]: string[] } } = {
 			testnet: { spend: [], change: [] },
@@ -315,9 +315,16 @@ describe.each(data)("Addresses from", (wallet) => {
 		expect(addresses.testnet.change).toEqual(wallet.addresses.testnet.change);
 		expect(addresses.mainnet.change).toEqual(wallet.addresses.mainnet.change);
 	});
+
+	it(`Addresses Helper for ${wallet.from}'s`, async () => {
+		const ah = new AddressesHelper(wallet.mnemonic);
+
+		expect(ah.account(0).key).toBe(wallet.accountKeyPair);
+		console.log(ah.account(0).key)
+	});
 });
 
-it(`spend addresses ${data[1].from}"s Wallet`, async () => {
+it(`spend addresses ${data[1].from}'s Wallet`, async () => {
 	function checkExpected(
 		spendChangeExtPublicKey,
 		stakeChainPublicKey,
