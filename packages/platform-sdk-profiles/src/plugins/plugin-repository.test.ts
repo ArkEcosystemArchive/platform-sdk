@@ -5,7 +5,6 @@ import { PluginRegistry } from "./plugin-registry";
 import { PluginRepository } from "./plugin-repository";
 
 const stubPlugin = {
-	id: "@hello/world",
 	name: "@hello/world",
 	version: "1.0.0",
 	isEnabled: true,
@@ -42,27 +41,40 @@ it("should return all data values", () => {
 });
 
 it("should find a plugin by its ID", () => {
-	const uuid: string = subject.push(stubPlugin);
+	const { id } = subject.push(stubPlugin);
 
-	expect(subject.findById(uuid)).toEqual(stubPlugin);
+	expect(subject.findById(id)).toMatchInlineSnapshot(`
+		Object {
+		  "id": "5971d313-7e46-49cf-aaee-7bc592e139f0",
+		  "isEnabled": true,
+		  "name": "@hello/world",
+		  "permissions": Array [
+		    "something",
+		  ],
+		  "urls": Array [
+		    "https://google.com",
+		  ],
+		  "version": "1.0.0",
+		}
+	`);
 });
 
 it("should throw if a plugin cannot be found by its ID", () => {
-	expect(() => subject.findById(stubPlugin.id)).toThrow(`Failed to find a plugin for [${stubPlugin.id}].`);
+	expect(() => subject.findById("fake")).toThrow(`Failed to find a plugin for [fake].`);
 });
 
 it("should restore previously created data", () => {
-	subject.fill({ [stubPlugin.id]: stubPlugin });
+	subject.fill({ ["fake"]: stubPlugin });
 
-	expect(subject.findById(stubPlugin.id)).toEqual(stubPlugin);
+	expect(subject.findById("fake")).toEqual(stubPlugin);
 });
 
 it("should forget specific data", () => {
-	const uuid: string = subject.push(stubPlugin);
+	const { id } = subject.push(stubPlugin);
 
 	expect(subject.count()).toBe(1);
 
-	subject.forget(uuid);
+	subject.forget(id);
 
 	expect(subject.count()).toBe(0);
 });
