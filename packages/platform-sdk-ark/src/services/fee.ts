@@ -18,8 +18,8 @@ export class FeeService implements Contracts.FeeService {
 		//
 	}
 
-	public async all(days: number): Promise<Contracts.TransactionFees> {
-		const node = await this.get("node/fees", { days });
+	public async all(): Promise<Contracts.TransactionFees> {
+		const node = await this.get("node/fees");
 		const type = await this.get("transactions/fees");
 
 		const staticFees: object = type.data;

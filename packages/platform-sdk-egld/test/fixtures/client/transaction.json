@@ -1,0 +1,32 @@
+{
+	"data": {
+		"transaction": {
+			"type": "normal",
+			"nonce": 38,
+			"round": 9729,
+			"epoch": 4,
+			"value": "2505000000000000000000",
+			"receiver": "erd17uy64y9zw8zd4xz5d2deqmxfxkk3zfuj0jh24k0s5jqhet3pz0esng60j7",
+			"sender": "erd1xkmduha0sn4k3yx9fsapavlxrnh2e4fxm8qlafgdgmy6pg4y4zkqav9tdk",
+			"gasPrice": 1000000000,
+			"gasLimit": 500000000,
+			"data": "U2VudCBmcm9tIGh0dHBzOi8vcjNkNC5mci9lbHJvbmQvdGVzdG5ldA==",
+			"signature": "3c1db5a4e4bf559c8ef104d9e2a844595a310d8c47888737e4a3214ab61dded62c85c614b6160a541ffa55341e7145de82148b88b291023a132865d8aa69720f",
+			"sourceShard": 0,
+			"destinationShard": 1,
+			"blockNonce": 9103,
+			"blockHash": "2ed886ce39252958c6efc1539e7dd6b1f68c34c30d4363b38b1438f95482cbae",
+			"notarizedAtSourceInMetaNonce": 9441,
+			"NotarizedAtSourceInMetaHash": "da87a302643569e72497a29bae340197348ed32abded769b01ee56e245d1c565",
+			"notarizedAtDestinationInMetaNonce": 9445,
+			"notarizedAtDestinationInMetaHash": "b00930b7a2c841bce5a4bded34cd5d67d76ee2a9c837e331fb0c53eccb74d785",
+			"miniblockType": "TxBlock",
+			"miniblockHash": "be1c2b442f1cd96c5900ed8c186b2c11a1d57ed9ed1d0602fc0e537114f5ccb7",
+			"status": "success",
+			"hyperblockNonce": 9445,
+			"hyperblockHash": "b00930b7a2c841bce5a4bded34cd5d67d76ee2a9c837e331fb0c53eccb74d785"
+		}
+	},
+	"error": "",
+	"code": "successful"
+}

@@ -1,0 +1,28 @@
+{
+	"data": {
+		"transactions": [
+			{
+				"hash": "c2e6e2c75357b7d69d735d5ce7d7e9a77291477d0a11ba158b5cf39317398f66",
+				"fee": "110000000000000",
+				"miniBlockHash": "be1c2b442f1cd96c5900ed8c186b2c11a1d57ed9ed1d0602fc0e537114f5ccb7",
+				"nonce": 38,
+				"round": 9724,
+				"value": "2505000000000000000000",
+				"receiver": "erd17uy64y9zw8zd4xz5d2deqmxfxkk3zfuj0jh24k0s5jqhet3pz0esng60j7",
+				"sender": "erd1xkmduha0sn4k3yx9fsapavlxrnh2e4fxm8qlafgdgmy6pg4y4zkqav9tdk",
+				"receiverShard": 1,
+				"senderShard": 0,
+				"gasPrice": 1000000000,
+				"gasLimit": 500000000,
+				"gasUsed": 110000,
+				"data": "U2VudCBmcm9tIGh0dHBzOi8vcjNkNC5mci9lbHJvbmQvdGVzdG5ldA==",
+				"signature": "3c1db5a4e4bf559c8ef104d9e2a844595a310d8c47888737e4a3214ab61dded62c85c614b6160a541ffa55341e7145de82148b88b291023a132865d8aa69720f",
+				"timestamp": 1614089574,
+				"status": "success",
+				"searchOrder": 0
+			}
+		]
+	},
+	"error": "",
+	"code": "successful"
+}

@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 import { DataRepository } from "../repositories/data-repository";
 import { PluginRegistry } from "./plugin-registry";
 
@@ -39,8 +41,12 @@ export class PluginRepository {
 		return this.#data.values();
 	}
 
-	public push(plugin: Plugin): void {
-		this.#data.set(`${plugin.id}`, plugin);
+	public push(plugin: Plugin): string {
+		const uuid: string = uuidv4();
+
+		this.#data.set(uuid, plugin);
+
+		return uuid;
 	}
 
 	public fill(data: object): void {

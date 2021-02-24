@@ -16,7 +16,7 @@ export class FeeService implements Contracts.FeeService {
 		//
 	}
 
-	public async all(days: number): Promise<Contracts.TransactionFees> {
+	public async all(): Promise<Contracts.TransactionFees> {
 		return {
 			// Core
 			transfer: this.transform("TRANSFER_FEE"),
