@@ -42,9 +42,9 @@ it("should return all data values", () => {
 });
 
 it("should find a plugin by its ID", () => {
-	subject.push(stubPlugin);
+	const uuid: string = subject.push(stubPlugin);
 
-	expect(subject.findById(stubPlugin.id)).toEqual(stubPlugin);
+	expect(subject.findById(uuid)).toEqual(stubPlugin);
 });
 
 it("should throw if a plugin cannot be found by its ID", () => {
@@ -58,11 +58,11 @@ it("should restore previously created data", () => {
 });
 
 it("should forget specific data", () => {
-	subject.push(stubPlugin);
+	const uuid: string = subject.push(stubPlugin);
 
 	expect(subject.count()).toBe(1);
 
-	subject.forget(stubPlugin.id);
+	subject.forget(uuid);
 
 	expect(subject.count()).toBe(0);
 });
