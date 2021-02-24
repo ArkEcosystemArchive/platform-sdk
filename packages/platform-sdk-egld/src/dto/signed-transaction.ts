@@ -17,7 +17,7 @@ export class SignedTransactionData
 	}
 
 	public fee(): BigNumber {
-		// @TODO
+		// @TODO: calculate fee from gasLimit, gasPrice and gasUsed
 		return BigNumber.ZERO;
 	}
 
