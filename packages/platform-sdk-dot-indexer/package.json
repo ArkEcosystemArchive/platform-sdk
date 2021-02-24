@@ -22,7 +22,6 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
-		"@elastic/elasticsearch": "^7.10.0",
 		"@konceiver/foreman": "^2.0.1",
 		"@polkadot/api": "^3.6.4",
 		"better-sqlite3": "^7.1.2",

@@ -557,7 +557,6 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-dot-indexer@workspace:packages/platform-sdk-dot-indexer"
   dependencies:
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
-    "@elastic/elasticsearch": ^7.10.0
     "@konceiver/foreman": ^2.0.1
     "@ledgerhq/hw-transport-mocker": ^5.29.0
     "@polkadot/api": ^3.6.4
@@ -2083,19 +2082,6 @@ __metadata:
   bin:
     watch: cli.js
   checksum: 7909f89bbee917b2a5932fd178b48b5291f417293538b1e8e68a5fa5815b3d6d4873c591d965f84559cd3e7b669c42a749ab706ef792368de39b95541ae4627d
-  languageName: node
-  linkType: hard
-
-"@elastic/elasticsearch@npm:^7.10.0":
-  version: 7.10.0
-  resolution: "@elastic/elasticsearch@npm:7.10.0"
-  dependencies:
-    debug: ^4.1.1
-    hpagent: ^0.1.1
-    ms: ^2.1.1
-    pump: ^3.0.0
-    secure-json-parse: ^2.1.0
-  checksum: 197801d015e57501b1953ad5cded7c138c74087feb1df93111084ee7730563e86a22db0a8f184d19fa4dfbf39e2b4da16dbff18a2c33e2c87be3140c2fe79add
   languageName: node
   linkType: hard
 
@@ -11104,13 +11090,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"hpagent@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "hpagent@npm:0.1.1"
-  checksum: c68850c445e6679525e395122ff77e17a81574939178aab25ecd51a49fa84a53d76d9d0ecbe727f38e0ecd4a3c16cfb933979a1620ee3c73398c68cd9a38dbb6
-  languageName: node
-  linkType: hard
-
 "html-encoding-sniffer@npm:^2.0.1":
   version: 2.0.1
   resolution: "html-encoding-sniffer@npm:2.0.1"
@@ -16572,13 +16551,6 @@ resolve@^1.1.6:
     node-gyp: latest
     node-gyp-build: ^4.2.0
   checksum: 6afc1da3dc1b1fc6bd025f457cc6b2b37ff77308500193930808a0d483c4418da4c6591c3e8827a6491c933bfa6a2f0332ac5f4ad6f2ed5bca8bf939b9a0a6dc
-  languageName: node
-  linkType: hard
-
-"secure-json-parse@npm:^2.1.0":
-  version: 2.3.0
-  resolution: "secure-json-parse@npm:2.3.0"
-  checksum: 412ba056130341e40983b78df6da36a87c93b9600bc919c486f3ca7c3876164c8eda2c2a34bec9106dfa868ee586b5bc6778127b65bcf51a890675c0ca0329e1
   languageName: node
   linkType: hard
 

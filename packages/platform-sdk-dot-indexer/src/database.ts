@@ -30,17 +30,13 @@ export class Database {
 		return lastBlock.number;
 	}
 
-	public storeBlockWithTransactions(block: { hash: string; transactions: { hash: string }[] }): void {
+	public storeBlockWithTransactions(block: { hash: string; transactions: { id: string }[] }): void {
 		this.#logger.info(`Storing block [${block.hash}] with [${block.transactions.length}] transaction(s)`);
-
 		this.storeBlock(block);
 
-		if (block.transactions.length) {
-			for (const transaction of block.transactions) {
-				this.#logger.info(`Storing transaction [${transaction.hash}]`);
-
-				this.storeTransaction(transaction);
-			}
+		for (const transaction of block.transactions) {
+			this.#logger.info(`Storing transaction [${transaction.id}]`);
+			this.storeTransaction(block, transaction);
 		}
 	}
 
@@ -48,123 +44,57 @@ export class Database {
 		this.#database
 			.prepare(
 				`INSERT OR IGNORE INTO blocks (
-	hash,
-	difficulty,
-	extraData,
-	gasLimit,
-	gasUsed,
-	logsBloom,
-	miner,
-	mixHash,
-	nonce,
-	number,
-	parentHash,
-	receiptsRoot,
-	sha3Uncles,
-	size,
-	stateRoot,
-	timestamp,
-	totalDifficulty,
-	transactionsRoot,
-	uncles
-) VALUES (
-	:hash,
-	:difficulty,
-	:extraData,
-	:gasLimit,
-	:gasUsed,
-	:logsBloom,
-	:miner,
-	:mixHash,
-	:nonce,
-	:number,
-	:parentHash,
-	:receiptsRoot,
-	:sha3Uncles,
-	:size,
-	:stateRoot,
-	:timestamp,
-	:totalDifficulty,
-	:transactionsRoot,
-	:uncles
-)`,
+					id,
+					digest,
+					extrinsicsRoot,
+					number,
+					parentHash,
+					stateRoot
+				) VALUES (
+					:id,
+					:digest,
+					:extrinsicsRoot,
+					:number,
+					:parentHash,
+					:stateRoot
+				 )`,
 			)
 			.run({
-				hash: block.hash,
-				difficulty: block.difficulty,
-				extraData: block.extraData,
-				gasLimit: block.gasLimit,
-				gasUsed: block.gasUsed,
-				logsBloom: block.logsBloom,
-				miner: block.miner,
-				// @ts-ignore - This property exists but the typings are wrong.
-				mixHash: block.mixHash,
-				nonce: block.nonce,
+				id: block.id,
+				digest: JSON.stringify(block.digest),
+				extrinsicsRoot: block.extrinsicsRoot,
 				number: block.number,
 				parentHash: block.parentHash,
-				// @ts-ignore - This property exists but the typings are wrong.
-				receiptsRoot: block.receiptsRoot,
-				sha3Uncles: block.sha3Uncles,
-				size: block.size,
-				stateRoot: block.stateRoot,
-				timestamp: block.timestamp,
-				totalDifficulty: block.totalDifficulty,
-				// @ts-ignore - This property exists but the typings are wrong.
-				transactionsRoot: block.transactionsRoot,
-				uncles: JSON.stringify(block.uncles),
+				stateRoot: block.stateRoot
 			});
 	}
 
-	private storeTransaction(transaction): void {
+	private storeTransaction(block, transaction): void {
 		this.#database
 			.prepare(
-				`INSERT OR IGNORE INTO transactions (
-	hash,
-	blockHash,
-	blockNumber,
-	"from",
-	gas,
-	gasPrice,
-	input,
-	nonce,
-	r,
-	s,
-	"to",
-	transactionIndex,
-	v,
-	value
-) VALUES (
-	:hash,
-	:blockHash,
-	:blockNumber,
-	:from,
-	:gas,
-	:gasPrice,
-	:input,
-	:nonce,
-	:r,
-	:s,
-	:to,
-	:transactionIndex,
-	:v,
-	:value
-)`,
+				`INSERT INTO transactions (
+					id,
+					eraPeriod,
+					eraPhase,
+					isSigned,
+					"method",
+					blockNumber
+				) VALUES (
+					:id,
+					:eraPeriod,
+					:eraPhase,
+					:isSigned,
+					:method,
+					:blockNumber
+				)`,
 			)
 			.run({
-				hash: transaction.hash,
-				blockHash: transaction.blockHash,
-				blockNumber: transaction.blockNumber,
-				from: transaction.from,
-				gas: transaction.gas,
-				gasPrice: transaction.gasPrice,
-				input: transaction.input,
-				nonce: transaction.nonce,
-				r: transaction.r,
-				s: transaction.s,
-				to: transaction.to,
-				transactionIndex: transaction.transactionIndex,
-				v: transaction.v,
-				value: transaction.value,
+				id: transaction.id,
+				eraPeriod: transaction.era?.period,
+				eraPhase: transaction.era?.phase,
+				isSigned: transaction.isSigned ? 1 : 0,
+				method: JSON.stringify(transaction.method),
+				blockNumber: block.number,
 			});
 	}
 
@@ -174,7 +104,7 @@ export class Database {
 
 			CREATE TABLE IF NOT EXISTS blocks(
 				id                 VARCHAR(66)   PRIMARY KEY,
-				digest             JSON          NOT NULL,
+				digest             TEXT          NOT NULL,
 				extrinsicsRoot     VARCHAR(66)   NOT NULL,
 				number             INTEGER       NOT NULL,
 				parentHash         VARCHAR(66)   NOT NULL,
@@ -185,19 +115,14 @@ export class Database {
 
 			CREATE TABLE IF NOT EXISTS transactions(
 				id                 VARCHAR(66)   PRIMARY KEY,
-				era                JSON          NOT NULL,
+				eraPeriod          VARCHAR(255),
+				eraPhase           VARCHAR(255),
 				isSigned           BOOLEAN       NOT NULL,
-				method             JSON          NOT NULL,
-				nonce              VARCHAR(255)  NOT NULL,
-				blockNumber        INTEGER       NOT NULL,
-				signature          VARCHAR(255)  NOT NULL,
-				signer             VARCHAR(255)  NOT NULL,
-				tip                VARCHAR(255)  NOT NULL
+				"method"           TEXT,
+				blockNumber        INTEGER       NOT NULL
 			);
 
-			-- CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
-			-- CREATE INDEX IF NOT EXISTS transactions_from ON transactions ("from");
-			-- CREATE INDEX IF NOT EXISTS transactions_to ON transactions ("to");
+			CREATE INDEX IF NOT EXISTS transactions_block_number ON transactions (blockNumber);
 		`);
 	}
 }
