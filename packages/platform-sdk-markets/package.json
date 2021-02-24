@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-markets",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "3.0.12",
+	"version": "3.0.15",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
