@@ -16,7 +16,9 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	public async all(): Promise<Contracts.TransactionFees> {
-		const { safeLow, average, fast } = (await this.#http.get("https://ethgasstation.info/json/ethgasAPI.json")).json();
+		const { safeLow, average, fast } = (
+			await this.#http.get("https://ethgasstation.info/json/ethgasAPI.json")
+		).json();
 
 		const fees = {
 			static: "0",
