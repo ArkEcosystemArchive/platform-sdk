@@ -1,9 +1,11 @@
+import { Except } from "type-fest";
 import { v4 as uuidv4 } from "uuid";
 
 import { DataRepository } from "../repositories/data-repository";
 import { PluginRegistry } from "./plugin-registry";
 
 interface Plugin {
+	id: string;
 	name: string;
 	version: string;
 	isEnabled: boolean;
@@ -40,7 +42,7 @@ export class PluginRepository {
 		return this.#data.values();
 	}
 
-	public push(plugin: Plugin): Plugin {
+	public push(plugin: Except<Plugin, "id">): Plugin {
 		const id: string = uuidv4();
 
 		this.#data.set(id, { id, ...plugin });
