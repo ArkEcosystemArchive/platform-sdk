@@ -66,6 +66,7 @@ export enum ProfileSetting {
 
 	// UI
 	DashboardConfiguration = "DASHBOARD_CONFIGURATION",
+	DashboardTransactionHistory = "DASHBOARD_TRANSACTION_HISTORY",
 	DateFormat = "DATE_FORMAT",
 	DoNotShowFeeWarning = "DO_NOT_SHOW_FEE_WARNING",
 	Locale = "LOCALE",
