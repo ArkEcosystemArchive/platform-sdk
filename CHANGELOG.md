@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.0.12 - 2020-02-24
+
+### Added
+
+-   **[ETH]** Retrieve fees from `ethgas.watch` (c259a012, @faustbrian)
+
+### Changed
+
+-   Store plugins with an internal UUID (5fd0f0ec, @faustbrian)
+
 ## 3.0.10 - 2020-02-24
 
 ### Fixed
