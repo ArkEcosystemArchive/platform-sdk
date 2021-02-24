@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 import { Database } from "./database";
 
 const persistBlock = async (blockHash, block, database: Database, logger: pino.Logger): Promise<void> => {
-
 	const transactions: Array<any> = [];
 	for (const extrinsic of block.extrinsics) {
 		let body;

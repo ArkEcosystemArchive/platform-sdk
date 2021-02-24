@@ -2,7 +2,7 @@
 
 const meow = require("meow");
 
-module.exports =  meow(
+module.exports = meow(
 	`
 	Usage
 	  $ dot <input>

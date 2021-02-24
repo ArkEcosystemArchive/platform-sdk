@@ -65,7 +65,7 @@ export class Database {
 				extrinsicsRoot: block.extrinsicsRoot,
 				number: block.number,
 				parentHash: block.parentHash,
-				stateRoot: block.stateRoot
+				stateRoot: block.stateRoot,
 			});
 	}
 
