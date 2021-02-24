@@ -4,7 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "egld.testnet",
 	type: "test",
 	name: "Testnet",
-	explorer: "https://testnet-explorer.elrond.com/",
+	explorer: "https://testnet-explorer.elrond.com",
 	currency: {
 		ticker: "XeGLD",
 		symbol: "XeGLD",

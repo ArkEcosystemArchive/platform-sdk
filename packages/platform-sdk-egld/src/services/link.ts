@@ -16,7 +16,7 @@ export class LinkService implements Contracts.LinkService {
 	}
 
 	public block(id: string): string {
-		return `${this.#baseUrl}/blocks/${id}`;
+		return `${this.#baseUrl}/miniblocks/${id}`;
 	}
 
 	public transaction(id: string): string {
