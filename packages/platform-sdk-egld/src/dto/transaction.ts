@@ -12,7 +12,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public timestamp(): DateTime {
-		return DateTime.make(this.data.timestamp);
+		return DateTime.fromUnix(this.data.timestamp);
 	}
 
 	public confirmations(): BigNumber {
