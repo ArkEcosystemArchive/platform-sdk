@@ -215,8 +215,8 @@ export class Database {
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
-			CREATE INDEX IF NOT EXISTS transactions_blockHash ON transactions ("blockHash");
-			CREATE INDEX IF NOT EXISTS transactions_blockNumber ON transactions ("blockNumber");
+			CREATE INDEX IF NOT EXISTS transactions_block_hash ON transactions ("blockHash");
+			CREATE INDEX IF NOT EXISTS transactions_block_number ON transactions ("blockNumber");
 			CREATE INDEX IF NOT EXISTS transactions_from ON transactions ("from");
 			CREATE INDEX IF NOT EXISTS transactions_to ON transactions ("to");
 		`);
