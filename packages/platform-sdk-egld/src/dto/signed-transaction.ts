@@ -9,15 +9,16 @@ export class SignedTransactionData
 	}
 
 	public recipient(): string {
-		return this.signedData.recipient;
+		return this.signedData.receiver;
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.signedData.amount);
+		return BigNumber.make(this.signedData.value.toString());
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.signedData.fee);
+		// @TODO: calculate fee from gasLimit, gasPrice and gasUsed
+		return BigNumber.ZERO;
 	}
 
 	public isMultiSignature(): boolean {
