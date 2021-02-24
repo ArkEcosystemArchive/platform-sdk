@@ -473,9 +473,7 @@ export class Profile implements ProfileContract {
 			// TODO: stricter validation to avoid unknown keys or values
 			peers: Joi.object().required(),
 			// TODO: stricter validation to avoid unknown keys or values
-			plugins: Joi.object({
-				data: Joi.object(),
-			}).default({ data: {} }),
+			plugins: Joi.object().required(),
 			// TODO: stricter validation to avoid unknown keys or values
 			settings: Joi.object().required(),
 			wallets: Joi.object().pattern(
