@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.0.3 - 2020-02-24
+
+### Added
+
+-   **[EGLD]** Implement `ClientService#wallet` (6d7a0b15, @faustbrian)
+
+### Changed
+
+-   **[EGLD]** Adjust DTOs and some API paths (756ff46c, @faustbrian)
+
+### Fixed
+
+-   Use `EGLD` as export name (003c67e1, @faustbrian)
+
 ## 3.0.0 - 2020-02-23
 
 See https://github.com/jeanlescure/string-crypto#v2-breaking-changes for breaking change details.

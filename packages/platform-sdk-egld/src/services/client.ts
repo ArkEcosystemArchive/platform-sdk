@@ -1,29 +1,21 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import { ProxyProvider } from "elrondjs";
+
 import { WalletData } from "../dto";
+import * as TransactionDTO from "../dto";
+import { Console } from "console";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
-	readonly #provider: ProxyProvider;
+	readonly #http: Contracts.HttpClient;
 
-	private constructor({ config, peer }) {
+	private constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#provider = new ProxyProvider(peer);
+		this.#http = config.get<Contracts.HttpClient>("httpClient");
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		try {
-			return new ClientService({
-				config,
-				peer: config.get<string>("peer"),
-			});
-		} catch {
-			return new ClientService({
-				config,
-				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
-			});
-		}
+		return new ClientService(config);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -34,15 +26,35 @@ export class ClientService implements Contracts.ClientService {
 		id: string,
 		input?: Contracts.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
+		const { data } = await this.get(`transaction/${id}`);
+
+		return Helpers.createTransactionDataWithType({ hash: id, ...data.transaction }, TransactionDTO);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
+		const address: string | undefined = query.addresses ? query.addresses[0] : query.address;
+
+		if (address === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "transactions", "address");
+		}
+
+		const { data } = await this.get(`address/${address}/transactions`);
+
+		return Helpers.createTransactionDataCollectionWithType(
+			data.transactions,
+			{
+				prev: undefined,
+				self: undefined,
+				next: undefined,
+			},
+			TransactionDTO,
+		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		return new WalletData(await this.#provider.getAddress(id));
+		const { data } = await this.get(`address/${id}`);
+
+		return new WalletData(data.account);
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
@@ -78,9 +90,7 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				const hash = await this.#provider.sendSignedTransaction(transaction.toBroadcast());
-
-				await this.#provider.waitForTransaction(hash);
+				const { txHash } = await this.post("transaction/send", transaction.toBroadcast());
 
 				result.accepted.push(transaction.id());
 			} catch (error) {
@@ -98,5 +108,21 @@ export class ClientService implements Contracts.ClientService {
 		hosts: string[],
 	): Promise<Contracts.BroadcastResponse> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
+	}
+
+	private async get(path: string): Promise<Contracts.KeyValuePair> {
+		return (await this.#http.get(`${this.host()}/v1.0/${path}`)).json();
+	}
+
+	private async post(path: string, data: object): Promise<Contracts.KeyValuePair> {
+		return (await this.#http.post(`${this.host()}/v1.0/${path}`, data)).json();
+	}
+
+	private host(): string {
+		try {
+			return this.#config.get<string>("peer");
+		} catch {
+			return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
+		}
 	}
 }

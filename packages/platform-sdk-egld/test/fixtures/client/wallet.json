@@ -1,0 +1,15 @@
+{
+	"data": {
+		"account": {
+			"address": "erd17uy64y9zw8zd4xz5d2deqmxfxkk3zfuj0jh24k0s5jqhet3pz0esng60j7",
+			"nonce": 0,
+			"balance": "2505000000000000000000",
+			"username": "",
+			"code": "",
+			"codeHash": null,
+			"rootHash": null
+		}
+	},
+	"error": "",
+	"code": "successful"
+}

@@ -17,7 +17,10 @@ const network: Coins.CoinNetwork = {
 	},
 	featureFlags: {
 		Client: {
+			transaction: true,
+			transactions: true,
 			wallet: true,
+			broadcast: true,
 		},
 		Identity: {
 			address: {
@@ -32,6 +35,11 @@ const network: Coins.CoinNetwork = {
 			keyPair: {
 				mnemonic: true,
 			},
+		},
+		Link: {
+			block: true,
+			transaction: true,
+			wallet: true,
 		},
 	},
 	transactionTypes: ["transfer"],
