@@ -46,6 +46,7 @@ module.exports = meow(
 			},
 			rpc: {
 				type: "string",
+				isRequired: true,
 			},
 		},
 	},
