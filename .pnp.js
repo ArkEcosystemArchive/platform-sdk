@@ -1154,6 +1154,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-eth-server", "workspace:packages/platform-sdk-eth-server"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
+            ["@hapi/hapi", "npm:20.0.2"],
             ["@konceiver/foreman", "npm:2.0.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@ptkdev/logger", "npm:1.7.2"],

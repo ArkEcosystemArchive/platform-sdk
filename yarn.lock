@@ -796,6 +796,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eth-server@workspace:packages/platform-sdk-eth-server"
   dependencies:
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
+    "@hapi/hapi": ^20.0.2
     "@konceiver/foreman": ^2.0.1
     "@ledgerhq/hw-transport-mocker": ^5.29.0
     "@ptkdev/logger": ^1.7.2
