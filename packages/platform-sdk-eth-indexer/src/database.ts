@@ -45,126 +45,26 @@ export class Database {
 	}
 
 	private storeBlock(block): void {
-		this.#database
-			.prepare(
-				`INSERT OR IGNORE INTO blocks (
-	hash,
-	difficulty,
-	extraData,
-	gasLimit,
-	gasUsed,
-	logsBloom,
-	miner,
-	mixHash,
-	nonce,
-	number,
-	parentHash,
-	receiptsRoot,
-	sha3Uncles,
-	size,
-	stateRoot,
-	timestamp,
-	totalDifficulty,
-	transactionsRoot,
-	uncles
-) VALUES (
-	:hash,
-	:difficulty,
-	:extraData,
-	:gasLimit,
-	:gasUsed,
-	:logsBloom,
-	:miner,
-	:mixHash,
-	:nonce,
-	:number,
-	:parentHash,
-	:receiptsRoot,
-	:sha3Uncles,
-	:size,
-	:stateRoot,
-	:timestamp,
-	:totalDifficulty,
-	:transactionsRoot,
-	:uncles
-)`,
-			)
-			.run({
-				hash: block.hash,
-				difficulty: block.difficulty,
-				extraData: block.extraData,
-				gasLimit: block.gasLimit,
-				gasUsed: block.gasUsed,
-				logsBloom: block.logsBloom,
-				miner: block.miner,
-				// @ts-ignore - This property exists but the typings are wrong.
-				mixHash: block.mixHash,
-				nonce: block.nonce,
-				number: block.number,
-				parentHash: block.parentHash,
-				// @ts-ignore - This property exists but the typings are wrong.
-				receiptsRoot: block.receiptsRoot,
-				sha3Uncles: block.sha3Uncles,
-				size: block.size,
-				stateRoot: block.stateRoot,
-				timestamp: block.timestamp,
-				totalDifficulty: block.totalDifficulty,
-				// @ts-ignore - This property exists but the typings are wrong.
-				transactionsRoot: block.transactionsRoot,
-				uncles: JSON.stringify(block.uncles),
-			});
+		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, number) VALUES (:hash, :number)`).run({
+			hash: block.hash,
+			number: block.number,
+		});
 	}
 
 	private storeTransaction(transaction): void {
 		this.#database
 			.prepare(
-				`INSERT OR IGNORE INTO transactions (
-	hash,
-	blockHash,
-	blockNumber,
-	"from",
-	gas,
-	gasPrice,
-	input,
-	nonce,
-	r,
-	s,
-	"to",
-	transactionIndex,
-	v,
-	value
-) VALUES (
-	:hash,
-	:blockHash,
-	:blockNumber,
-	:from,
-	:gas,
-	:gasPrice,
-	:input,
-	:nonce,
-	:r,
-	:s,
-	:to,
-	:transactionIndex,
-	:v,
-	:value
-)`,
+				`INSERT OR IGNORE INTO transactions (hash, sender, recipient, amount, gas, gasPrice, input, nonce) VALUES (:hash, :sender, :recipient, :amount, :gas, :gasPrice, :input, :nonce)`,
 			)
 			.run({
 				hash: transaction.hash,
-				blockHash: transaction.blockHash,
-				blockNumber: transaction.blockNumber,
-				from: transaction.from,
+				sender: transaction.from,
+				recipient: transaction.to,
+				amount: transaction.value,
 				gas: transaction.gas,
 				gasPrice: transaction.gasPrice,
 				input: transaction.input,
 				nonce: transaction.nonce,
-				r: transaction.r,
-				s: transaction.s,
-				to: transaction.to,
-				transactionIndex: transaction.transactionIndex,
-				v: transaction.v,
-				value: transaction.value,
 			});
 	}
 
@@ -173,52 +73,27 @@ export class Database {
 			PRAGMA journal_mode = WAL;
 
 			CREATE TABLE IF NOT EXISTS blocks(
-				hash               VARCHAR(66)   PRIMARY KEY,
-				difficulty         INTEGER       NOT NULL,
-				extraData          VARCHAR(66)   NOT NULL,
-				gasLimit           INTEGER       NOT NULL,
-				gasUsed            INTEGER       NOT NULL,
-				logsBloom          TEXT          NOT NULL,
-				miner              VARCHAR(66)   NOT NULL,
-				mixHash            VARCHAR(66)   NOT NULL,
-				nonce              VARCHAR(66)   NOT NULL,
-				number             INTEGER       NOT NULL,
-				parentHash         VARCHAR(66)   NOT NULL,
-				receiptsRoot       VARCHAR(66)   NOT NULL,
-				sha3Uncles         VARCHAR(66)   NOT NULL,
-				size               INTEGER       NOT NULL,
-				stateRoot          VARCHAR(66)   NOT NULL,
-				timestamp          INTEGER       NOT NULL,
-				totalDifficulty    INTEGER       NOT NULL,
-				transactionsRoot   VARCHAR(66)   NOT NULL,
-				uncles             TEXT          NOT NULL
+				hash     VARCHAR(66)   PRIMARY KEY,
+				number   INTEGER       NOT NULL,
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_number ON blocks (number);
 
 			CREATE TABLE IF NOT EXISTS transactions(
-				hash               VARCHAR(66)   PRIMARY KEY,
-				blockHash          VARCHAR(66)   NOT NULL,
-				blockNumber        INTEGER       NOT NULL,
-				"from"             VARCHAR(66)   NOT NULL,
-				gas                INTEGER       NOT NULL,
-				gasPrice           INTEGER       NOT NULL,
-				input              VARCHAR(66)   NOT NULL,
-				nonce              INTEGER       NOT NULL,
-				r                  VARCHAR(66)   NOT NULL,
-				s                  VARCHAR(66)   NOT NULL,
-				"to"               VARCHAR(66)   NOT NULL,
-				transactionIndex   INTEGER       NOT NULL,
-				v                  VARCHAR(66)   NOT NULL,
-				value              VARCHAR(66)   NOT NULL
+				hash        VARCHAR(66)   PRIMARY KEY,
+				sender      VARCHAR(66)   NOT NULL,
+				recipient   VARCHAR(66)   NOT NULL,
+				amount      INTEGER       NOT NULL,
+				gas         INTEGER       NOT NULL,
+				gasPrice    INTEGER       NOT NULL,
+				input       VARCHAR(66)   NOT NULL,
+				nonce       INTEGER       NOT NULL,
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
-			CREATE INDEX IF NOT EXISTS transactions_block_hash ON transactions ("blockHash");
-			CREATE INDEX IF NOT EXISTS transactions_block_number ON transactions ("blockNumber");
-			CREATE INDEX IF NOT EXISTS transactions_from ON transactions ("from");
-			CREATE INDEX IF NOT EXISTS transactions_to ON transactions ("to");
+			CREATE INDEX IF NOT EXISTS transactions_sender ON transactions ("sender");
+			CREATE INDEX IF NOT EXISTS transactions_recipient ON transactions ("recipient");
 		`);
 	}
 }
