@@ -45,12 +45,10 @@ export class Database {
 	}
 
 	private storeBlock(block): void {
-		this.#database
-			.prepare(`INSERT OR IGNORE INTO blocks (hash, number) VALUES (:hash, :number)`)
-			.run({
-				hash: block.hash,
-				number: block.number,
-			});
+		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, number) VALUES (:hash, :number)`).run({
+			hash: block.hash,
+			number: block.number,
+		});
 	}
 
 	private storeTransaction(transaction): void {
