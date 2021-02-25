@@ -56,25 +56,7 @@ export class Database {
 	private storeTransaction(transaction): void {
 		this.#database
 			.prepare(
-				`INSERT OR IGNORE INTO transactions (
-	hash,
-	sender,
-	recipient,
-	amount,
-	gas,
-	gasPrice,
-	input,
-	nonce,
-) VALUES (
-	:hash,
-	:sender,
-	:recipient,
-	:amount,
-	:gas,
-	:gasPrice,
-	:input,
-	:nonce
-)`,
+				`INSERT OR IGNORE INTO transactions (hash, sender, recipient, amount, gas, gasPrice, input, nonce) VALUES (:hash, :sender, :recipient, :amount, :gas, :gasPrice, :input, :nonce)`,
 			)
 			.run({
 				hash: transaction.hash,
