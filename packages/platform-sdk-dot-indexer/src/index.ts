@@ -3,7 +3,7 @@ import retry from "p-retry";
 import pino from "pino";
 
 import { indexBlock, indexNewBlocks, useDatabase, usePolkadot } from "./helpers";
-import Database from "better-sqlite3";
+import { Database } from "./database";
 
 export const subscribe = async (flags: Record<string, string>): Promise<void> => {
 	// Logging
