@@ -1,40 +1,10 @@
 #!/usr/bin/env node
 
 const { Foreman } = require("@konceiver/foreman");
-const meow = require("meow");
 const { resolve } = require("path");
 const { subscribe } = require("../dist");
 
-const { flags, input } = meow(
-	`
-	Usage
-	  $ dot <input>
-
-	Options
-	Options
-	  --polkadot, -p  The Polkadot RPC host (defaults to wss://rpc.polkadot.io)
-	  --elasticsearch, -e  The ElasticSearch host (defaults to http://localhost:9200)
-`,
-	{
-		flags: {
-			coin: {
-				type: "string",
-				alias: "c",
-				default: "dot",
-			},
-			polkadot: {
-				type: "string",
-				alias: "p",
-				default: "wss://rpc.polkadot.io",
-			},
-			elasticsearch: {
-				type: "string",
-				alias: "e",
-				default: "http://localhost:9200",
-			},
-		},
-	},
-);
+const { flags, input } = require("./meow");
 
 const processName = `${flags.coin}-indexer`;
 
