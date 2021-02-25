@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.0.26 - 2020-02-25
+
+### Fixed
+
+-   **[ETH-SERVER]** Strip out unknown parameters (baefe131, @faustbrian)
+
+### Added
+
+-   **[ETH-SERVER]** Set up rate limiting (56e17b04, @faustbrian)
+-   **[ETH-SERVER]** Implement wallet endpoint (2b529c55, @faustbrian)
+-   **[ETH-SERVER]** Implement transaction broadcasting (10292e30, @faustbrian)
+-   **[ETH-SERVER]** Return state information from root path (b0f94396, @faustbrian)
+-   **[ETH-SERVER]** Validate path parameters (164151a7, @faustbrian)
+
 ## 3.0.20 - 2020-02-25
 
 ### Added
