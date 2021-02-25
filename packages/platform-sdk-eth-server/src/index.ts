@@ -41,10 +41,7 @@ export const subscribe = async (flags: {
 		method: "GET",
 		path: "/",
 		handler: async (request) => {
-			const [height, syncing] = await Promise.all([
-				client.eth.getBlockNumber(),
-				client.eth.isSyncing(),
-			]);
+			const [height, syncing] = await Promise.all([client.eth.getBlockNumber(), client.eth.isSyncing()]);
 
 			return {
 				height,
@@ -70,7 +67,7 @@ export const subscribe = async (flags: {
 		options: {
 			validate: {
 				payload: Joi.object({
-                    transaction: Joi.string().hex().max(1024),
+					transaction: Joi.string().hex().max(1024),
 				}),
 			},
 		},
