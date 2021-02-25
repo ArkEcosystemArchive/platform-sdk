@@ -44,6 +44,10 @@ module.exports = meow(
 			database: {
 				type: "string",
 			},
+			rpc: {
+				type: "string",
+				isRequired: true,
+			},
 		},
 	},
 );
