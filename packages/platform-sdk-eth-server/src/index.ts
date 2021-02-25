@@ -19,6 +19,28 @@ export const subscribe = async (flags: {
 
 	server.route({
 		method: "GET",
+		path: "/blocks/{block}",
+		handler: (request) =>
+			database
+				.prepare(
+					`SELECT * FROM blocks WHERE hash = '${request.params.block}';`,
+				)
+				.all(),
+	});
+
+	server.route({
+		method: "GET",
+		path: "/transactions/{transaction}",
+		handler: (request) =>
+			database
+				.prepare(
+					`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`,
+				)
+				.all(),
+	});
+
+	server.route({
+		method: "GET",
 		path: "/wallets/{wallet}/transactions",
 		handler: (request) =>
 			database
