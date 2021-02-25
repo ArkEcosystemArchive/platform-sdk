@@ -5,14 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 3.0.18 - 2020-02-24
+## 3.0.20 - 2020-02-25
+
+### Added
+
+-   **[ETH-SERVER]** initial implementation (adf51935, @faustbrian)
+
+### Fixed
+
+-   **[ETH-INDEXER]** Remove trailing commas from SQL migration (969160e4, @faustbrian)
+
+## 3.0.18 - 2020-02-25
 
 ### Changed
 
 -   Use SQLite as database engine (62202ba9, @marianogoldman)
 -   Only store data that is required for API consumption (f6ee2e28, @faustbrian)
 
-## 3.0.16 - 2020-02-25
+## 3.0.16 - 2020-02-24
 
 ### Fixed
 
