@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.0.18 - 2020-02-24
+
+### Changed
+
+-   Use SQLite as database engine (62202ba9, @marianogoldman)
+-   Only store data that is required for API consumption (f6ee2e28, @faustbrian)
+
+## 3.0.16 - 2020-02-25
+
+### Fixed
+
+-   Include ID in plugin data (4864c8b5, @faustbrian)
+
 ## 3.0.15 - 2020-02-24
 
 ### Added
