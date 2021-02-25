@@ -1156,7 +1156,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@hapi/hapi", "npm:20.1.0"],
             ["@konceiver/foreman", "npm:2.0.1"],
-            ["@konceiver/hapi-rate-limiter-flexible", "npm:1.0.0"],
+            ["@konceiver/hapi-rate-limiter-flexible", "npm:1.0.3"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@ptkdev/logger", "npm:1.7.2"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -3799,6 +3799,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@hapi/topo", "npm:5.0.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:1.1.3", {
+          "packageLocation": "./.yarn/cache/@hapi-validate-npm-1.1.3-213070131c-35bfbee6e5.zip/node_modules/@hapi/validate/",
+          "packageDependencies": [
+            ["@hapi/validate", "npm:1.1.3"],
+            ["@hapi/hoek", "npm:9.0.4"],
+            ["@hapi/topo", "npm:5.0.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@hapi/vise", [
@@ -4126,12 +4135,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@konceiver/hapi-rate-limiter-flexible", [
-        ["npm:1.0.0", {
-          "packageLocation": "./.yarn/cache/@konceiver-hapi-rate-limiter-flexible-npm-1.0.0-7e61b54cea-d2f0df1a35.zip/node_modules/@konceiver/hapi-rate-limiter-flexible/",
+        ["npm:1.0.3", {
+          "packageLocation": "./.yarn/cache/@konceiver-hapi-rate-limiter-flexible-npm-1.0.3-6431df5f96-023b9326e5.zip/node_modules/@konceiver/hapi-rate-limiter-flexible/",
           "packageDependencies": [
-            ["@konceiver/hapi-rate-limiter-flexible", "npm:1.0.0"],
+            ["@konceiver/hapi-rate-limiter-flexible", "npm:1.0.3"],
             ["@hapi/boom", "npm:9.1.1"],
             ["@hapi/hapi", "npm:20.1.0"],
+            ["@hapi/validate", "npm:1.1.3"],
+            ["joi", "npm:17.4.0"],
+            ["lodash", "npm:4.17.21"],
             ["micromatch", "npm:4.0.2"],
             ["rate-limiter-flexible", "npm:2.2.1"]
           ],
@@ -14411,6 +14423,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@sideway/pinpoint", "npm:2.0.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:17.4.0", {
+          "packageLocation": "./.yarn/cache/joi-npm-17.4.0-cfd6f2d54c-2f6203d451.zip/node_modules/joi/",
+          "packageDependencies": [
+            ["joi", "npm:17.4.0"],
+            ["@hapi/hoek", "npm:9.0.4"],
+            ["@hapi/topo", "npm:5.0.0"],
+            ["@sideway/address", "npm:4.1.0"],
+            ["@sideway/formula", "npm:3.0.0"],
+            ["@sideway/pinpoint", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["joycon", [
@@ -15060,6 +15084,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lodash-npm-4.17.20-c0db62021c-c62101d250.zip/node_modules/lodash/",
           "packageDependencies": [
             ["lodash", "npm:4.17.20"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:4.17.21", {
+          "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-4983720b9a.zip/node_modules/lodash/",
+          "packageDependencies": [
+            ["lodash", "npm:4.17.21"]
           ],
           "linkType": "HARD",
         }]

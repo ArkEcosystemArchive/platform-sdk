@@ -28,8 +28,8 @@ export const subscribe = async (flags: {
 			enabled: true,
 			points: flags.points,
 			duration: flags.duration,
-			whitelist: flags.whitelist.split(","),
-			blacklist: flags.blacklist.split(","),
+			whitelist: flags.whitelist.split(",").filter(Boolean),
+			blacklist: flags.blacklist.split(",").filter(Boolean),
 		},
 	});
 

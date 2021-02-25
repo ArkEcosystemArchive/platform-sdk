@@ -798,7 +798,7 @@ __metadata:
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
     "@hapi/hapi": ^20.1.0
     "@konceiver/foreman": ^2.0.1
-    "@konceiver/hapi-rate-limiter-flexible": ^1.0.0
+    "@konceiver/hapi-rate-limiter-flexible": ^1.0.3
     "@ledgerhq/hw-transport-mocker": ^5.29.0
     "@ptkdev/logger": ^1.7.2
     "@sindresorhus/tsconfig": ^0.7.0
@@ -3269,6 +3269,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hapi/validate@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "@hapi/validate@npm:1.1.3"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+    "@hapi/topo": ^5.0.0
+  checksum: 35bfbee6e503be2262ede3bf9865a68ef5e03e39d9bea895b1ae38a0fc0c82fc24cc7fcca2661dbabe222030b613770c22aafc01e26453bfcf016cf874c19f3d
+  languageName: node
+  linkType: hard
+
 "@hapi/vise@npm:4.x.x":
   version: 4.0.0
   resolution: "@hapi/vise@npm:4.0.0"
@@ -3595,15 +3605,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@konceiver/hapi-rate-limiter-flexible@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@konceiver/hapi-rate-limiter-flexible@npm:1.0.0"
+"@konceiver/hapi-rate-limiter-flexible@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@konceiver/hapi-rate-limiter-flexible@npm:1.0.3"
   dependencies:
     "@hapi/boom": ^9.1.1
     "@hapi/hapi": ^20.1.0
+    "@hapi/validate": ^1.1.3
+    joi: ^17.4.0
+    lodash: ^4.17.21
     micromatch: ^4.0.2
     rate-limiter-flexible: ^2.2.1
-  checksum: d2f0df1a35306dfca0451050cfe8c5ff5c7d5bbbffe86897b9464f10a3679a57ef86663e688f77240c2069dee0e88437d23c747a0a8eaf5479b5b3b9eda991a1
+  checksum: 023b9326e57cbacbca81cc7bdf74cb61c93b03d7a38026deab4df840cafc9db21ed0b6a7e2c750868296c875a9a363d9816436ab92c0f2783b214e52a7976d49
   languageName: node
   linkType: hard
 
@@ -12696,6 +12709,19 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"joi@npm:^17.4.0":
+  version: 17.4.0
+  resolution: "joi@npm:17.4.0"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+    "@hapi/topo": ^5.0.0
+    "@sideway/address": ^4.1.0
+    "@sideway/formula": ^3.0.0
+    "@sideway/pinpoint": ^2.0.0
+  checksum: 2f6203d4513c063d457a935dab5e8060413479880d55af2c4fada987c7fe1bedff46d46eec36b14cf433ecc4df3b580fe1c0a0fed5b73a265b78011f97ff5c2d
+  languageName: node
+  linkType: hard
+
 "joycon@npm:^2.2.5":
   version: 2.2.5
   resolution: "joycon@npm:2.2.5"
@@ -13344,6 +13370,13 @@ fsevents@~2.3.1:
   version: 4.17.19
   resolution: "lodash@npm:4.17.19"
   checksum: ff2b7a95f0129dba9101e346d44e0eda0f159d76bbbf23721eec1969b87a32bde3de0cfef0733218c64620e9be08040a973278d46a686540233b356115f3527c
+  languageName: node
+  linkType: hard
+
+"lodash@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash@npm:4.17.21"
+  checksum: 4983720b9abca930a4a46f18db163d7dad8dd00dbed6db0cc7b499b33b717cce69f80928b27bbb1ff2cbd3b19d251ee90669a8b5ea466072ca81c2ebe91e7468
   languageName: node
   linkType: hard
 
