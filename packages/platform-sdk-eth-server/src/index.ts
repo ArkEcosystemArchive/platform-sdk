@@ -1,4 +1,5 @@
 import Hapi from "@hapi/hapi";
+import Joi from "joi";
 
 import { useClient, useDatabase, useLogger } from "./helpers";
 
@@ -45,6 +46,17 @@ export const subscribe = async (flags: {
 					`SELECT * FROM blocks WHERE hash = '${request.params.block}' OR number = '${request.params.block}';`,
 				)
 				.get(),
+	});
+
+	server.route({
+		method: "POST",
+		path: "/transactions",
+		options: {
+			validate: {
+				transaction: Joi.string().hex().max(1024),
+			},
+		},
+		handler: async (request) => client.eth.sendSignedTransaction(request.payload.transaction),
 	});
 
 	server.route({
