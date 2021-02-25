@@ -180,6 +180,10 @@ export class Wallet implements ReadWriteWallet {
 		return this.settings().get(WalletSetting.Alias);
 	}
 
+	public displayName(): string | undefined {
+		return this.alias() || this.username() || this.knownName();
+	}
+
 	public primaryKey(): string {
 		if (!this.#wallet) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");

@@ -2,7 +2,8 @@ import PQueue from "p-queue";
 import retry from "p-retry";
 import pino from "pino";
 
-import { indexBlock, indexNewBlocks, useElasticSearch, usePolkadot } from "./helpers";
+import { indexBlock, indexNewBlocks, useDatabase, usePolkadot } from "./helpers";
+import Database from "better-sqlite3";
 
 export const subscribe = async (flags: Record<string, string>): Promise<void> => {
 	// Logging
@@ -16,15 +17,17 @@ export const subscribe = async (flags: Record<string, string>): Promise<void> =>
 	// queue.on("next", () => logger.debug(`Task is completed. Size: ${queue.size} | Pending: ${queue.pending}`));
 
 	// Storage
-	const elastic = useElasticSearch(flags.elasticsearch);
+	const database: Database = useDatabase(flags, logger);
 
 	// API
 	let polkadot = await usePolkadot(flags.polkadot);
 
-	// @TODO: get last block stored in elasticsearch and set `i` to that value to prevent full reindexing
+	const localHeight = database.lastBlockNumber();
 	const latestBlockHeight = parseInt((await polkadot.derive.chain.bestNumberFinalized()).toString());
 
-	for (let i = 1; i <= latestBlockHeight; i++) {
+	logger.debug(`Start indexing from block ${localHeight}`);
+
+	for (let i = localHeight; i <= latestBlockHeight; i++) {
 		try {
 			if (queue.size === 250) {
 				logger.info("Draining Queue...");
@@ -38,7 +41,7 @@ export const subscribe = async (flags: Record<string, string>): Promise<void> =>
 			// @ts-ignore
 			// eslint-disable-next-line @typescript-eslint/no-floating-promises
 			queue.add(() =>
-				retry(() => indexBlock(i, polkadot, elastic, logger), {
+				retry(() => indexBlock(i, polkadot, database, logger), {
 					onFailedAttempt: (error) => {
 						console.log(error);
 						logger.error(
@@ -72,5 +75,5 @@ export const subscribe = async (flags: Record<string, string>): Promise<void> =>
 	}
 
 	// Once we have indexed all blocks we will listen for new blocks
-	await indexNewBlocks(polkadot, elastic, logger);
+	await indexNewBlocks(polkadot, database, logger);
 };

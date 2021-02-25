@@ -909,7 +909,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-dot-indexer", "workspace:packages/platform-sdk-dot-indexer"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
-            ["@elastic/elasticsearch", "npm:7.10.0"],
             ["@konceiver/foreman", "npm:2.0.1"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@polkadot/api", "npm:3.6.4"],
@@ -927,12 +926,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/uuid", "npm:8.3.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["better-sqlite3", "npm:7.1.2"],
             ["cross-env", "npm:7.0.2"],
+            ["env-paths", "npm:2.2.0"],
             ["eslint", "npm:7.13.0"],
             ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.15.0"],
             ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:24.1.3"],
             ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.4"],
             ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.0.0"],
+            ["fs-extra", "npm:9.1.0"],
             ["got", "npm:11.8.0"],
             ["jest", "npm:26.6.3"],
             ["jest-extended", "npm:0.11.5"],
@@ -2558,20 +2560,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@cnakazawa/watch", "npm:1.0.4"],
             ["exec-sh", "npm:0.3.4"],
             ["minimist", "npm:1.2.5"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@elastic/elasticsearch", [
-        ["npm:7.10.0", {
-          "packageLocation": "./.yarn/cache/@elastic-elasticsearch-npm-7.10.0-74c9a2bc6d-197801d015.zip/node_modules/@elastic/elasticsearch/",
-          "packageDependencies": [
-            ["@elastic/elasticsearch", "npm:7.10.0"],
-            ["debug", "virtual:88318143fb6d80d1f55c54ae799fe6cfcf29c86ca9b9dae7a485ec5bdb22c3a20f79119854bb9696c57b5a03879e8671e3e9d39fcd8ca2cec3e6655f73233a79#npm:4.1.1"],
-            ["hpagent", "npm:0.1.1"],
-            ["ms", "npm:2.1.2"],
-            ["pump", "npm:3.0.0"],
-            ["secure-json-parse", "npm:2.3.0"]
           ],
           "linkType": "HARD",
         }]
@@ -12656,15 +12644,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["hpagent", [
-        ["npm:0.1.1", {
-          "packageLocation": "./.yarn/cache/hpagent-npm-0.1.1-6e908aa2dd-c68850c445.zip/node_modules/hpagent/",
-          "packageDependencies": [
-            ["hpagent", "npm:0.1.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["html-encoding-sniffer", [
         ["npm:2.0.1", {
           "packageLocation": "./.yarn/cache/html-encoding-sniffer-npm-2.0.1-381bf15a76-6f49e83a2e.zip/node_modules/html-encoding-sniffer/",
@@ -18633,15 +18612,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["node-addon-api", "npm:2.0.1"],
             ["node-gyp", "npm:6.1.0"],
             ["node-gyp-build", "npm:4.2.2"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["secure-json-parse", [
-        ["npm:2.3.0", {
-          "packageLocation": "./.yarn/cache/secure-json-parse-npm-2.3.0-a73199914c-412ba05613.zip/node_modules/secure-json-parse/",
-          "packageDependencies": [
-            ["secure-json-parse", "npm:2.3.0"]
           ],
           "linkType": "HARD",
         }]

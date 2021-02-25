@@ -1,18 +1,10 @@
-import { Client } from "@elastic/elasticsearch";
 import { ApiPromise, WsProvider } from "@polkadot/api";
 import pino from "pino";
 import { v4 as uuidv4 } from "uuid";
+import { Database } from "./database";
 
-const persistBlock = async (blockHash, block, elastic: Client, logger: pino.Logger): Promise<void> => {
-	await elastic.update({
-		index: "blocks",
-		id: blockHash,
-		body: {
-			doc: JSON.parse(JSON.stringify(block.header)),
-			doc_as_upsert: true,
-		},
-	});
-
+const persistBlock = async (blockHash, block, database: Database, logger: pino.Logger): Promise<void> => {
+	const transactions: Array<any> = [];
 	for (const extrinsic of block.extrinsics) {
 		let body;
 
@@ -30,22 +22,17 @@ const persistBlock = async (blockHash, block, elastic: Client, logger: pino.Logg
 		// mappings in ElasticSearch so we force it to be a string for now.
 		body.method.signature = JSON.stringify(body.method.signature);
 
-		try {
-			await elastic.update({
-				index: "transactions",
-				id: uuidv4(),
-				body: {
-					doc: body,
-					doc_as_upsert: true,
-				},
-			});
-		} catch (error) {
-			// @TODO: remove everything below this line
-			console.log(body);
-			console.log(error.meta.body.error);
-			process.exit();
-		}
+		transactions.push({
+			id: uuidv4(),
+			...body,
+		});
 	}
+
+	await database.storeBlockWithTransactions({
+		hash: blockHash,
+		...block.header,
+		transactions,
+	});
 
 	logger.info(`Processed Block [${block.header.number}]...`);
 };
@@ -65,7 +52,7 @@ const getBlockHash = async (height: number, polkadot: ApiPromise, logger: pino.L
 export const indexBlock = async (
 	height: number,
 	polkadot: ApiPromise,
-	elastic: Client,
+	database: Database,
 	logger: pino.Logger,
 ): Promise<void> => {
 	// Get hash for the given height
@@ -84,10 +71,10 @@ export const indexBlock = async (
 		return;
 	}
 
-	await persistBlock(blockHash, blockResponse.toHuman().block, elastic, logger);
+	await persistBlock(blockHash, blockResponse.toHuman().block, database, logger);
 };
 
-export const indexNewBlocks = async (polkadot: ApiPromise, elastic: Client, logger: pino.Logger): Promise<void> => {
+export const indexNewBlocks = async (polkadot: ApiPromise, database: Database, logger: pino.Logger): Promise<void> => {
 	await polkadot.derive.chain.subscribeNewBlocks(async ({ block }) => {
 		const blockHash = await getBlockHash(block.header.number.toNumber(), polkadot, logger);
 
@@ -95,11 +82,11 @@ export const indexNewBlocks = async (polkadot: ApiPromise, elastic: Client, logg
 			return;
 		}
 
-		await persistBlock(blockHash, block, elastic, logger);
+		await persistBlock(blockHash, block, database, logger);
 	});
 };
 
 export const usePolkadot = async (host: string): Promise<ApiPromise> =>
 	ApiPromise.create({ provider: new WsProvider(host) });
 
-export const useElasticSearch = (host: string): Client => new Client({ node: host });
+export const useDatabase = (flags, logger): Database => new Database(flags, logger);
