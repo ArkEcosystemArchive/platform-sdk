@@ -74,7 +74,7 @@ export class Database {
 
 			CREATE TABLE IF NOT EXISTS blocks(
 				hash     VARCHAR(66)   PRIMARY KEY,
-				number   INTEGER       NOT NULL,
+				number   INTEGER       NOT NULL
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
@@ -88,7 +88,7 @@ export class Database {
 				gas         INTEGER       NOT NULL,
 				gasPrice    INTEGER       NOT NULL,
 				input       VARCHAR(66)   NOT NULL,
-				nonce       INTEGER       NOT NULL,
+				nonce       INTEGER       NOT NULL
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
