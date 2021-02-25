@@ -53,6 +53,13 @@ export const subscribe = async (flags: {
 	server.route({
 		method: "GET",
 		path: "/blocks/{block}",
+		options: {
+			validate: {
+				params: Joi.object({
+					block: Joi.string().hex().length(66),
+				}),
+			},
+		},
 		handler: (request) =>
 			database
 				.prepare(
@@ -77,6 +84,13 @@ export const subscribe = async (flags: {
 	server.route({
 		method: "GET",
 		path: "/transactions/{transaction}",
+		options: {
+			validate: {
+				params: Joi.object({
+					transaction: Joi.string().hex().length(66),
+				}),
+			},
+		},
 		handler: (request) =>
 			database.prepare(`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`).get(),
 	});
@@ -84,6 +98,13 @@ export const subscribe = async (flags: {
 	server.route({
 		method: "GET",
 		path: "/wallets/{wallet}",
+		options: {
+			validate: {
+				params: Joi.object({
+					wallet: Joi.string().hex().length(42),
+				}),
+			},
+		},
 		handler: async (request) => {
 			const address: string = request.params.wallet;
 
