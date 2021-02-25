@@ -23,23 +23,9 @@ export const subscribe = async (flags: {
 		handler: (request) =>
 			database
 				.prepare(
-					`SELECT * FROM transactions WHERE "from" = '${request.params.wallet}' OR "to" = '${request.params.wallet}';`,
+					`SELECT * FROM transactions WHERE sender = '${request.params.wallet}' OR recipient = '${request.params.wallet}';`,
 				)
 				.all(),
-	});
-
-	server.route({
-		method: "GET",
-		path: "/wallets/{wallet}/transactions/sent",
-		handler: (request) =>
-			database.prepare(`SELECT * FROM transactions WHERE "from" = '${request.params.wallet}';`).all(),
-	});
-
-	server.route({
-		method: "GET",
-		path: "/wallets/{wallet}/transactions/received",
-		handler: (request) =>
-			database.prepare(`SELECT * FROM transactions WHERE "to" = '${request.params.wallet}';`).all(),
 	});
 
 	await server.start();
