@@ -19,11 +19,13 @@ module.exports = meow(
 				alias: "c",
 				default: "mainnet",
 			},
-			rpc: {
+			host: {
 				type: "string",
+				default: "0.0.0.0",
 			},
-			wss: {
-				type: "string",
+			port: {
+				type: "number",
+				default: 3000,
 			},
 			database: {
 				type: "string",
