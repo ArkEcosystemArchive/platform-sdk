@@ -1,6 +1,6 @@
 import Hapi from "@hapi/hapi";
 
-import { useDatabase, useLogger } from "./helpers";
+import { useClient, useDatabase, useLogger } from "./helpers";
 
 export const subscribe = async (flags: {
 	coin: string;
@@ -8,6 +8,8 @@ export const subscribe = async (flags: {
 	host: string;
 	port: string;
 	database: string;
+	// JSON-RPC
+	rpc: string;
 	// Rate Limit
 	points: string;
 	duration: string;
@@ -16,6 +18,7 @@ export const subscribe = async (flags: {
 }): Promise<void> => {
 	const logger = useLogger();
 	const database = useDatabase(flags, logger);
+	const client = useClient(flags.rpc);
 
 	const server = Hapi.server({
 		host: flags.host || "0.0.0.0",
@@ -49,6 +52,27 @@ export const subscribe = async (flags: {
 		path: "/transactions/{transaction}",
 		handler: (request) =>
 			database.prepare(`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`).get(),
+	});
+
+	server.route({
+		method: "GET",
+		path: "/wallets/{wallet}",
+		handler: async (request) => {
+			const address: string = request.params.wallet;
+
+			const [balance, nonce, code] = await Promise.all([
+				client.eth.getBalance(address),
+				client.eth.getTransactionCount(address),
+				client.eth.getCode(address),
+			]);
+
+			return {
+				address,
+				balance,
+				nonce,
+				code,
+			};
+		},
 	});
 
 	server.route({

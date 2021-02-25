@@ -1,6 +1,7 @@
 import Logger from "@ptkdev/logger";
 import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
+import Web3 from "web3";
 
 export const useDatabase = (
 	flags: {
@@ -16,3 +17,5 @@ export const useDatabase = (
 	);
 
 export const useLogger = (): Logger => new Logger();
+
+export const useClient = (rpc: string): Web3 => new Web3(rpc);
