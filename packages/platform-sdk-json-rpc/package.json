@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-json-rpc",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "3.0.15",
+	"version": "3.0.26",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -18,7 +18,7 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
-		"@hapi/hapi": "^20.0.2",
+		"@hapi/hapi": "^20.1.0",
 		"@kodekeep/hapi-json-rpc": "^1.0.0",
 		"pino": "^6.7.0"
 	},

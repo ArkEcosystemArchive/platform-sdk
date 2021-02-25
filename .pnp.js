@@ -91,6 +91,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/platform-sdk-eth-indexer"
       },
       {
+        "name": "@arkecosystem/platform-sdk-eth-server",
+        "reference": "workspace:packages/platform-sdk-eth-server"
+      },
+      {
         "name": "@arkecosystem/platform-sdk-http-axios",
         "reference": "workspace:packages/platform-sdk-http-axios"
       },
@@ -175,6 +179,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@arkecosystem/platform-sdk-eos", ["workspace:packages/platform-sdk-eos"]],
       ["@arkecosystem/platform-sdk-eth", ["workspace:packages/platform-sdk-eth"]],
       ["@arkecosystem/platform-sdk-eth-indexer", ["workspace:packages/platform-sdk-eth-indexer"]],
+      ["@arkecosystem/platform-sdk-eth-server", ["workspace:packages/platform-sdk-eth-server"]],
       ["@arkecosystem/platform-sdk-http-axios", ["workspace:packages/platform-sdk-http-axios"]],
       ["@arkecosystem/platform-sdk-http-bent", ["workspace:packages/platform-sdk-http-bent"]],
       ["@arkecosystem/platform-sdk-http-got", ["workspace:packages/platform-sdk-http-got"]],
@@ -1143,6 +1148,60 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT",
         }]
       ]],
+      ["@arkecosystem/platform-sdk-eth-server", [
+        ["workspace:packages/platform-sdk-eth-server", {
+          "packageLocation": "./packages/platform-sdk-eth-server/",
+          "packageDependencies": [
+            ["@arkecosystem/platform-sdk-eth-server", "workspace:packages/platform-sdk-eth-server"],
+            ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
+            ["@hapi/hapi", "npm:20.1.0"],
+            ["@konceiver/foreman", "npm:2.0.1"],
+            ["@konceiver/hapi-rate-limiter-flexible", "npm:1.0.3"],
+            ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
+            ["@ptkdev/logger", "npm:1.7.2"],
+            ["@sindresorhus/tsconfig", "npm:0.7.0"],
+            ["@types/better-sqlite3", "npm:5.4.1"],
+            ["@types/env-paths", "npm:2.1.0"],
+            ["@types/eslint", "npm:7.2.4"],
+            ["@types/eslint-plugin-prettier", "npm:3.1.0"],
+            ["@types/fs-extra", "npm:9.0.7"],
+            ["@types/hapi__joi", "npm:17.1.6"],
+            ["@types/jest", "npm:26.0.15"],
+            ["@types/meow", "npm:5.0.0"],
+            ["@types/node", "npm:14.14.25"],
+            ["@types/p-retry", "npm:3.0.1"],
+            ["@types/pino", "npm:6.3.5"],
+            ["@types/prettier", "npm:2.1.5"],
+            ["@types/rimraf", "npm:3.0.0"],
+            ["@types/uuid", "npm:8.3.0"],
+            ["@typescript-eslint/eslint-plugin", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
+            ["better-sqlite3", "npm:7.1.2"],
+            ["cross-env", "npm:7.0.2"],
+            ["env-paths", "npm:2.2.0"],
+            ["eslint", "npm:7.13.0"],
+            ["eslint-config-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.15.0"],
+            ["eslint-plugin-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:24.1.3"],
+            ["eslint-plugin-prettier", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:3.1.4"],
+            ["eslint-plugin-simple-import-sort", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:6.0.0"],
+            ["got", "npm:11.8.0"],
+            ["jest", "npm:26.6.3"],
+            ["jest-extended", "npm:0.11.5"],
+            ["jest-localstorage-mock", "npm:2.4.3"],
+            ["joi", "npm:17.4.0"],
+            ["meow", "npm:9.0.0"],
+            ["nock", "npm:13.0.5"],
+            ["npm-check-updates", "npm:10.1.1"],
+            ["prettier", "npm:2.1.2"],
+            ["rimraf", "npm:3.0.2"],
+            ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
+            ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=cc6730"],
+            ["uuid", "npm:8.3.2"],
+            ["web3", "npm:1.3.4"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
       ["@arkecosystem/platform-sdk-http-axios", [
         ["workspace:packages/platform-sdk-http-axios", {
           "packageLocation": "./packages/platform-sdk-http-axios/",
@@ -1375,7 +1434,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/platform-sdk-json-rpc/",
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-json-rpc", "workspace:packages/platform-sdk-json-rpc"],
-            ["@hapi/hapi", "npm:20.0.2"],
+            ["@hapi/hapi", "npm:20.1.0"],
             ["@kodekeep/hapi-json-rpc", "npm:1.0.0"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
             ["@types/eslint", "npm:7.2.4"],
@@ -3337,6 +3396,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@hapi/hoek", "npm:9.0.4"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:9.1.1", {
+          "packageLocation": "./.yarn/cache/@hapi-boom-npm-9.1.1-2708d3a133-8c5fd50f41.zip/node_modules/@hapi/boom/",
+          "packageDependencies": [
+            ["@hapi/boom", "npm:9.1.1"],
+            ["@hapi/hoek", "npm:9.0.4"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@hapi/bounce", [
@@ -3470,10 +3537,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:20.0.2", {
-          "packageLocation": "./.yarn/cache/@hapi-hapi-npm-20.0.2-9fe4a67fa2-68b187e1bd.zip/node_modules/@hapi/hapi/",
+        ["npm:20.1.0", {
+          "packageLocation": "./.yarn/cache/@hapi-hapi-npm-20.1.0-8ec86754aa-9258c20f54.zip/node_modules/@hapi/hapi/",
           "packageDependencies": [
-            ["@hapi/hapi", "npm:20.0.2"],
+            ["@hapi/hapi", "npm:20.1.0"],
             ["@hapi/accept", "npm:5.0.1"],
             ["@hapi/ammo", "npm:5.0.1"],
             ["@hapi/boom", "npm:9.1.0"],
@@ -3730,6 +3797,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@hapi-validate-npm-1.1.2-6656afd7f3-cc2ba0ae8f.zip/node_modules/@hapi/validate/",
           "packageDependencies": [
             ["@hapi/validate", "npm:1.1.2"],
+            ["@hapi/hoek", "npm:9.0.4"],
+            ["@hapi/topo", "npm:5.0.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:1.1.3", {
+          "packageLocation": "./.yarn/cache/@hapi-validate-npm-1.1.3-213070131c-35bfbee6e5.zip/node_modules/@hapi/validate/",
+          "packageDependencies": [
+            ["@hapi/validate", "npm:1.1.3"],
             ["@hapi/hoek", "npm:9.0.4"],
             ["@hapi/topo", "npm:5.0.0"]
           ],
@@ -4056,6 +4132,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@konceiver/foreman", "npm:2.0.1"],
             ["execa", "npm:5.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@konceiver/hapi-rate-limiter-flexible", [
+        ["npm:1.0.3", {
+          "packageLocation": "./.yarn/cache/@konceiver-hapi-rate-limiter-flexible-npm-1.0.3-6431df5f96-023b9326e5.zip/node_modules/@konceiver/hapi-rate-limiter-flexible/",
+          "packageDependencies": [
+            ["@konceiver/hapi-rate-limiter-flexible", "npm:1.0.3"],
+            ["@hapi/boom", "npm:9.1.1"],
+            ["@hapi/hapi", "npm:20.1.0"],
+            ["@hapi/validate", "npm:1.1.3"],
+            ["joi", "npm:17.4.0"],
+            ["lodash", "npm:4.17.21"],
+            ["micromatch", "npm:4.0.2"],
+            ["rate-limiter-flexible", "npm:2.2.1"]
           ],
           "linkType": "HARD",
         }]
@@ -14333,6 +14425,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@sideway/pinpoint", "npm:2.0.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:17.4.0", {
+          "packageLocation": "./.yarn/cache/joi-npm-17.4.0-cfd6f2d54c-2f6203d451.zip/node_modules/joi/",
+          "packageDependencies": [
+            ["joi", "npm:17.4.0"],
+            ["@hapi/hoek", "npm:9.0.4"],
+            ["@hapi/topo", "npm:5.0.0"],
+            ["@sideway/address", "npm:4.1.0"],
+            ["@sideway/formula", "npm:3.0.0"],
+            ["@sideway/pinpoint", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["joycon", [
@@ -14982,6 +15086,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lodash-npm-4.17.20-c0db62021c-c62101d250.zip/node_modules/lodash/",
           "packageDependencies": [
             ["lodash", "npm:4.17.20"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:4.17.21", {
+          "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-4983720b9a.zip/node_modules/lodash/",
+          "packageDependencies": [
+            ["lodash", "npm:4.17.21"]
           ],
           "linkType": "HARD",
         }]
@@ -17706,6 +17817,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/range-parser-npm-1.2.1-1a470fa390-05074f5b23.zip/node_modules/range-parser/",
           "packageDependencies": [
             ["range-parser", "npm:1.2.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["rate-limiter-flexible", [
+        ["npm:2.2.1", {
+          "packageLocation": "./.yarn/cache/rate-limiter-flexible-npm-2.2.1-24c4a648c7-a1ec42fe3e.zip/node_modules/rate-limiter-flexible/",
+          "packageDependencies": [
+            ["rate-limiter-flexible", "npm:2.2.1"]
           ],
           "linkType": "HARD",
         }]
