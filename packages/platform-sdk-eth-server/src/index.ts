@@ -101,7 +101,7 @@ export const subscribe = async (flags: {
 		options: {
 			validate: {
 				params: Joi.object({
-					wallet: Joi.string().max(42),
+					wallet: Joi.string().length(42),
 				}).options({ stripUnknown: true }),
 			},
 		},
