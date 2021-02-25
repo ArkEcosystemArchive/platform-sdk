@@ -796,8 +796,9 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eth-server@workspace:packages/platform-sdk-eth-server"
   dependencies:
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
-    "@hapi/hapi": ^20.0.2
+    "@hapi/hapi": ^20.1.0
     "@konceiver/foreman": ^2.0.1
+    "@konceiver/hapi-rate-limiter-flexible": ^1.0.3
     "@ledgerhq/hw-transport-mocker": ^5.29.0
     "@ptkdev/logger": ^1.7.2
     "@sindresorhus/tsconfig": ^0.7.0
@@ -1105,7 +1106,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-json-rpc@workspace:packages/platform-sdk-json-rpc"
   dependencies:
-    "@hapi/hapi": ^20.0.2
+    "@hapi/hapi": ^20.1.0
     "@kodekeep/hapi-json-rpc": ^1.0.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.4
@@ -2888,6 +2889,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hapi/boom@npm:^9.1.1":
+  version: 9.1.1
+  resolution: "@hapi/boom@npm:9.1.1"
+  dependencies:
+    "@hapi/hoek": 9.x.x
+  checksum: 8c5fd50f41e72df55f576cc41df4738e507893a6f8c573034e5c90d183a1475485742338615170802fb5e8c4d44ccbba1f59b150450250be032ff9b689365f35
+  languageName: node
+  linkType: hard
+
 "@hapi/bounce@npm:2.x.x":
   version: 2.0.0
   resolution: "@hapi/bounce@npm:2.0.0"
@@ -3008,9 +3018,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/hapi@npm:^20.0.2":
-  version: 20.0.2
-  resolution: "@hapi/hapi@npm:20.0.2"
+"@hapi/hapi@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@hapi/hapi@npm:20.1.0"
   dependencies:
     "@hapi/accept": ^5.0.1
     "@hapi/ammo": ^5.0.1
@@ -3030,7 +3040,7 @@ __metadata:
     "@hapi/teamwork": 5.x.x
     "@hapi/topo": 5.x.x
     "@hapi/validate": ^1.1.0
-  checksum: 68b187e1bdf31ead1c074f483f32857f22fd0602157a84809fd7168365ccd89759327b271577c3148a2789cdf1371abc7dcc5c17df2746e54b620687f48e2a87
+  checksum: 9258c20f547afbfb144a32b2de6b9e427205adf7f7c540690b9be02b87ecca5f3598321026473dfc44cbaf3789e8a5298b65e73384a927f34a5c0f4fb0adb5e8
   languageName: node
   linkType: hard
 
@@ -3256,6 +3266,16 @@ __metadata:
     "@hapi/hoek": ^9.0.0
     "@hapi/topo": ^5.0.0
   checksum: cc2ba0ae8f1b86fafddfbb2444322851f569e36ab6bddd82bd5c2441ab572b9f18534e6329cb0fc0f2a2c1b97d20710c8d0071833f26842f21a643132e2d8960
+  languageName: node
+  linkType: hard
+
+"@hapi/validate@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "@hapi/validate@npm:1.1.3"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+    "@hapi/topo": ^5.0.0
+  checksum: 35bfbee6e503be2262ede3bf9865a68ef5e03e39d9bea895b1ae38a0fc0c82fc24cc7fcca2661dbabe222030b613770c22aafc01e26453bfcf016cf874c19f3d
   languageName: node
   linkType: hard
 
@@ -3582,6 +3602,21 @@ __metadata:
   dependencies:
     execa: ^5.0.0
   checksum: f32aefe3d3140790e95016272157b9f0aa93bde62fa4e134cd651c3ef297e66ddce668e2fac1cb2a229972b89ce3f390e25f53bee2cf97a579b43e90b68566f0
+  languageName: node
+  linkType: hard
+
+"@konceiver/hapi-rate-limiter-flexible@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@konceiver/hapi-rate-limiter-flexible@npm:1.0.3"
+  dependencies:
+    "@hapi/boom": ^9.1.1
+    "@hapi/hapi": ^20.1.0
+    "@hapi/validate": ^1.1.3
+    joi: ^17.4.0
+    lodash: ^4.17.21
+    micromatch: ^4.0.2
+    rate-limiter-flexible: ^2.2.1
+  checksum: 023b9326e57cbacbca81cc7bdf74cb61c93b03d7a38026deab4df840cafc9db21ed0b6a7e2c750868296c875a9a363d9816436ab92c0f2783b214e52a7976d49
   languageName: node
   linkType: hard
 
@@ -12674,6 +12709,19 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"joi@npm:^17.4.0":
+  version: 17.4.0
+  resolution: "joi@npm:17.4.0"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+    "@hapi/topo": ^5.0.0
+    "@sideway/address": ^4.1.0
+    "@sideway/formula": ^3.0.0
+    "@sideway/pinpoint": ^2.0.0
+  checksum: 2f6203d4513c063d457a935dab5e8060413479880d55af2c4fada987c7fe1bedff46d46eec36b14cf433ecc4df3b580fe1c0a0fed5b73a265b78011f97ff5c2d
+  languageName: node
+  linkType: hard
+
 "joycon@npm:^2.2.5":
   version: 2.2.5
   resolution: "joycon@npm:2.2.5"
@@ -13322,6 +13370,13 @@ fsevents@~2.3.1:
   version: 4.17.19
   resolution: "lodash@npm:4.17.19"
   checksum: ff2b7a95f0129dba9101e346d44e0eda0f159d76bbbf23721eec1969b87a32bde3de0cfef0733218c64620e9be08040a973278d46a686540233b356115f3527c
+  languageName: node
+  linkType: hard
+
+"lodash@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash@npm:4.17.21"
+  checksum: 4983720b9abca930a4a46f18db163d7dad8dd00dbed6db0cc7b499b33b717cce69f80928b27bbb1ff2cbd3b19d251ee90669a8b5ea466072ca81c2ebe91e7468
   languageName: node
   linkType: hard
 
@@ -15745,6 +15800,13 @@ fsevents@~2.3.1:
   version: 1.2.1
   resolution: "range-parser@npm:1.2.1"
   checksum: 05074f5b23dbdc24acdae9821dd684fbc9c0d770cdaa4469ab529d8e0fc1338aa33561a4c7c14a1f9bdcb3b5e9a3770e5a80318258a72289a7ef05fcda72a707
+  languageName: node
+  linkType: hard
+
+"rate-limiter-flexible@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "rate-limiter-flexible@npm:2.2.1"
+  checksum: a1ec42fe3e7d726fc355ecac16755f142520d32a4862cbc0b237af9c552235e400797e4cf843da8d27e5c874566bfd7ac8a0e67e1088dc4b6dccaf931bc37e61
   languageName: node
   linkType: hard
 
