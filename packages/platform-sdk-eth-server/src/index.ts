@@ -39,6 +39,22 @@ export const subscribe = async (flags: {
 
 	server.route({
 		method: "GET",
+		path: "/",
+		handler: async (request) => {
+			const [height, syncing] = await Promise.all([
+				client.eth.getBlockNumber(),
+				client.eth.isSyncing(),
+			]);
+
+			return {
+				height,
+				syncing,
+			};
+		},
+	});
+
+	server.route({
+		method: "GET",
 		path: "/blocks/{block}",
 		handler: (request) =>
 			database
@@ -53,7 +69,9 @@ export const subscribe = async (flags: {
 		path: "/transactions",
 		options: {
 			validate: {
-				transaction: Joi.string().hex().max(1024),
+				payload: Joi.object({
+                    transaction: Joi.string().hex().max(1024),
+				}),
 			},
 		},
 		handler: async (request) => client.eth.sendSignedTransaction(request.payload.transaction),
