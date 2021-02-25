@@ -1156,6 +1156,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@hapi/hapi", "npm:20.0.2"],
             ["@konceiver/foreman", "npm:2.0.1"],
+            ["@konceiver/hapi-rate-limiter-flexible", "npm:1.0.0"],
             ["@ledgerhq/hw-transport-mocker", "npm:5.29.0"],
             ["@ptkdev/logger", "npm:1.7.2"],
             ["@sindresorhus/tsconfig", "npm:0.7.0"],
@@ -3393,6 +3394,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@hapi/hoek", "npm:9.0.4"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:9.1.1", {
+          "packageLocation": "./.yarn/cache/@hapi-boom-npm-9.1.1-2708d3a133-8c5fd50f41.zip/node_modules/@hapi/boom/",
+          "packageDependencies": [
+            ["@hapi/boom", "npm:9.1.1"],
+            ["@hapi/hoek", "npm:9.0.4"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@hapi/bounce", [
@@ -3530,6 +3539,31 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@hapi-hapi-npm-20.0.2-9fe4a67fa2-68b187e1bd.zip/node_modules/@hapi/hapi/",
           "packageDependencies": [
             ["@hapi/hapi", "npm:20.0.2"],
+            ["@hapi/accept", "npm:5.0.1"],
+            ["@hapi/ammo", "npm:5.0.1"],
+            ["@hapi/boom", "npm:9.1.0"],
+            ["@hapi/bounce", "npm:2.0.0"],
+            ["@hapi/call", "npm:8.0.0"],
+            ["@hapi/catbox", "npm:11.1.1"],
+            ["@hapi/catbox-memory", "npm:5.0.0"],
+            ["@hapi/heavy", "npm:7.0.1"],
+            ["@hapi/hoek", "npm:9.0.4"],
+            ["@hapi/mimos", "npm:5.0.0"],
+            ["@hapi/podium", "npm:4.1.1"],
+            ["@hapi/shot", "npm:5.0.1"],
+            ["@hapi/somever", "npm:3.0.0"],
+            ["@hapi/statehood", "npm:7.0.3"],
+            ["@hapi/subtext", "npm:7.0.3"],
+            ["@hapi/teamwork", "npm:5.1.0"],
+            ["@hapi/topo", "npm:5.0.0"],
+            ["@hapi/validate", "npm:1.1.2"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:20.1.0", {
+          "packageLocation": "./.yarn/cache/@hapi-hapi-npm-20.1.0-8ec86754aa-9258c20f54.zip/node_modules/@hapi/hapi/",
+          "packageDependencies": [
+            ["@hapi/hapi", "npm:20.1.0"],
             ["@hapi/accept", "npm:5.0.1"],
             ["@hapi/ammo", "npm:5.0.1"],
             ["@hapi/boom", "npm:9.1.0"],
@@ -4112,6 +4146,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@konceiver/foreman", "npm:2.0.1"],
             ["execa", "npm:5.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@konceiver/hapi-rate-limiter-flexible", [
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/@konceiver-hapi-rate-limiter-flexible-npm-1.0.0-7e61b54cea-d2f0df1a35.zip/node_modules/@konceiver/hapi-rate-limiter-flexible/",
+          "packageDependencies": [
+            ["@konceiver/hapi-rate-limiter-flexible", "npm:1.0.0"],
+            ["@hapi/boom", "npm:9.1.1"],
+            ["@hapi/hapi", "npm:20.1.0"],
+            ["micromatch", "npm:4.0.2"],
+            ["rate-limiter-flexible", "npm:2.2.1"]
           ],
           "linkType": "HARD",
         }]
@@ -17762,6 +17809,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/range-parser-npm-1.2.1-1a470fa390-05074f5b23.zip/node_modules/range-parser/",
           "packageDependencies": [
             ["range-parser", "npm:1.2.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["rate-limiter-flexible", [
+        ["npm:2.2.1", {
+          "packageLocation": "./.yarn/cache/rate-limiter-flexible-npm-2.2.1-24c4a648c7-a1ec42fe3e.zip/node_modules/rate-limiter-flexible/",
+          "packageDependencies": [
+            ["rate-limiter-flexible", "npm:2.2.1"]
           ],
           "linkType": "HARD",
         }]

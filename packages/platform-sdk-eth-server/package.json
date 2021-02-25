@@ -24,6 +24,7 @@
 	"dependencies": {
 		"@hapi/hapi": "^20.0.2",
 		"@konceiver/foreman": "^2.0.1",
+		"@konceiver/hapi-rate-limiter-flexible": "^1.0.0",
 		"@ptkdev/logger": "^1.7.2",
 		"better-sqlite3": "^7.1.2",
 		"env-paths": "^2.2.0",

@@ -8,6 +8,11 @@ export const subscribe = async (flags: {
 	host: string;
 	port: string;
 	database: string;
+	// Rate Limit
+	points: string;
+	duration: string;
+	whitelist: string;
+	blacklist: string;
 }): Promise<void> => {
 	const logger = useLogger();
 	const database = useDatabase(flags, logger);
@@ -15,6 +20,17 @@ export const subscribe = async (flags: {
 	const server = Hapi.server({
 		host: flags.host || "0.0.0.0",
 		port: flags.port || 3000,
+	});
+
+	await server.register({
+		plugin: require("@konceiver/hapi-rate-limiter-flexible"),
+		options: {
+			enabled: true,
+			points: flags.points,
+			duration: flags.duration,
+			whitelist: flags.whitelist.split(","),
+			blacklist: flags.blacklist.split(","),
+		},
 	});
 
 	server.route({
