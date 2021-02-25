@@ -1,7 +1,10 @@
 import Logger from "@ptkdev/logger";
 import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
-import Web3 from "web3";
+// @ts-ignore
+import urlParseLax from "url-parse-lax";
+import { Request } from "@arkecosystem/platform-sdk-http-got";
+import { Contracts } from "@arkecosystem/platform-sdk";
 
 export const useDatabase = (
 	flags: {
@@ -18,4 +21,12 @@ export const useDatabase = (
 
 export const useLogger = (): Logger => new Logger();
 
-export const useClient = (rpc: string): Web3 => new Web3(rpc);
+export const useClient = (flags: {
+	rpc: string;
+	username: string;
+	password: string;
+}): Contracts.HttpClient => {
+	const { hostname: host, port, protocol } = urlParseLax(flags.rpc);
+
+	return new Request().baseUrl(`${protocol}//${flags.username}:${flags.password}@${host}:${port}`);
+};

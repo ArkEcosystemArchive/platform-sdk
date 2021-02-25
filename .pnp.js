@@ -237,7 +237,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
             ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=cc6730"],
-            ["typescript-language-server", "npm:0.4.0"]
+            ["typescript-language-server", "npm:0.4.0"],
+            ["url-parse-lax", "npm:4.0.0"]
           ],
           "linkType": "SOFT",
         }]
@@ -701,6 +702,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/platform-sdk-btc-server/",
           "packageDependencies": [
             ["@arkecosystem/platform-sdk-btc-server", "workspace:packages/platform-sdk-btc-server"],
+            ["@arkecosystem/platform-sdk", "workspace:packages/platform-sdk"],
             ["@arkecosystem/platform-sdk-http-got", "workspace:packages/platform-sdk-http-got"],
             ["@hapi/hapi", "npm:20.1.0"],
             ["@konceiver/foreman", "npm:2.0.1"],
@@ -744,8 +746,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
             ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=cc6730"],
-            ["uuid", "npm:8.3.2"],
-            ["web3", "npm:1.3.4"]
+            ["url-parse-lax", "npm:4.0.0"],
+            ["uuid", "npm:8.3.2"]
           ],
           "linkType": "SOFT",
         }]
@@ -17366,7 +17368,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
             ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=cc6730"],
-            ["typescript-language-server", "npm:0.4.0"]
+            ["typescript-language-server", "npm:0.4.0"],
+            ["url-parse-lax", "npm:4.0.0"]
           ],
           "linkType": "SOFT",
         }]

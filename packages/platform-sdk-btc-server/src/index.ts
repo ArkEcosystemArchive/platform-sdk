@@ -2,6 +2,8 @@ import Hapi from "@hapi/hapi";
 import Joi from "joi";
 
 import { useClient, useDatabase, useLogger } from "./helpers";
+import { Contracts } from "@arkecosystem/platform-sdk";
+import { v4 as uuidv4 } from "uuid";
 
 export const subscribe = async (flags: {
 	coin: string;
@@ -11,6 +13,8 @@ export const subscribe = async (flags: {
 	database: string;
 	// JSON-RPC
 	rpc: string;
+	username: string;
+	password: string;
 	// Rate Limit
 	points: string;
 	duration: string;
@@ -19,7 +23,7 @@ export const subscribe = async (flags: {
 }): Promise<void> => {
 	const logger = useLogger();
 	const database = useDatabase(flags, logger);
-	const client = useClient(flags.rpc);
+	const client: Contracts.HttpClient = useClient(flags);
 
 	const server = Hapi.server({
 		host: flags.host || "0.0.0.0",
@@ -41,98 +45,106 @@ export const subscribe = async (flags: {
 		method: "GET",
 		path: "/",
 		handler: async () => {
-			const [height, syncing] = await Promise.all([client.btc.getBlockNumber(), client.btc.isSyncing()]);
+			const height = (
+				await client.post("/", {
+					jsonrpc: "1.0",
+					id: uuidv4(),
+					method: "getblockcount",
+				})
+			).json().result;
+
+			const indexedHeight = database.prepare("SELECT height FROM blocks ORDER BY height DESC LIMIT 1").get();
 
 			return {
 				height,
-				syncing,
+				syncing: height !== indexedHeight,
 			};
 		},
 	});
 
-	server.route({
-		method: "GET",
-		path: "/blocks/{block}",
-		options: {
-			validate: {
-				params: Joi.object({
-					block: Joi.string().length(66),
-				}).options({ stripUnknown: true }),
-			},
-		},
-		handler: (request) =>
-			database
-				.prepare(
-					`SELECT * FROM blocks WHERE hash = '${request.params.block}' OR number = '${request.params.block}';`,
-				)
-				.get(),
-	});
-
-	server.route({
-		method: "POST",
-		path: "/transactions",
-		options: {
-			validate: {
-				payload: Joi.object({
-					transaction: Joi.string().max(1024),
-				}).options({ stripUnknown: true }),
-			},
-		},
-		handler: async (request) => client.btc.sendSignedTransaction(request.payload.transaction),
-	});
-
-	server.route({
-		method: "GET",
-		path: "/transactions/{transaction}",
-		options: {
-			validate: {
-				params: Joi.object({
-					transaction: Joi.string().length(66),
-				}).options({ stripUnknown: true }),
-			},
-		},
-		handler: (request) =>
-			database.prepare(`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`).get(),
-	});
-
-	server.route({
-		method: "GET",
-		path: "/wallets/{wallet}",
-		options: {
-			validate: {
-				params: Joi.object({
-					wallet: Joi.string().length(42),
-				}).options({ stripUnknown: true }),
-			},
-		},
-		handler: async (request) => {
-			const address: string = request.params.wallet;
-
-			const [balance, nonce, code] = await Promise.all([
-				client.btc.getBalance(address),
-				client.btc.getTransactionCount(address),
-				client.btc.getCode(address),
-			]);
-
-			return {
-				address,
-				balance,
-				nonce,
-				code,
-			};
-		},
-	});
-
-	server.route({
-		method: "GET",
-		path: "/wallets/{wallet}/transactions",
-		handler: (request) =>
-			database
-				.prepare(
-					`SELECT * FROM transactions WHERE sender = '${request.params.wallet}' OR recipient = '${request.params.wallet}';`,
-				)
-				.all(),
-	});
+	// server.route({
+	// 	method: "GET",
+	// 	path: "/blocks/{block}",
+	// 	options: {
+	// 		validate: {
+	// 			params: Joi.object({
+	// 				block: Joi.string().length(66),
+	// 			}).options({ stripUnknown: true }),
+	// 		},
+	// 	},
+	// 	handler: (request) =>
+	// 		database
+	// 			.prepare(
+	// 				`SELECT * FROM blocks WHERE hash = '${request.params.block}' OR number = '${request.params.block}';`,
+	// 			)
+	// 			.get(),
+	// });
+	//
+	// server.route({
+	// 	method: "POST",
+	// 	path: "/transactions",
+	// 	options: {
+	// 		validate: {
+	// 			payload: Joi.object({
+	// 				transaction: Joi.string().max(1024),
+	// 			}).options({ stripUnknown: true }),
+	// 		},
+	// 	},
+	// 	handler: async (request) => client.btc.sendSignedTransaction(request.payload.transaction),
+	// });
+	//
+	// server.route({
+	// 	method: "GET",
+	// 	path: "/transactions/{transaction}",
+	// 	options: {
+	// 		validate: {
+	// 			params: Joi.object({
+	// 				transaction: Joi.string().length(66),
+	// 			}).options({ stripUnknown: true }),
+	// 		},
+	// 	},
+	// 	handler: (request) =>
+	// 		database.prepare(`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`).get(),
+	// });
+	//
+	// server.route({
+	// 	method: "GET",
+	// 	path: "/wallets/{wallet}",
+	// 	options: {
+	// 		validate: {
+	// 			params: Joi.object({
+	// 				wallet: Joi.string().length(42),
+	// 			}).options({ stripUnknown: true }),
+	// 		},
+	// 	},
+	// 	handler: async (request) => {
+	// 		const address: string = request.params.wallet;
+	//
+	// 		const [balance, nonce, code] = await Promise.all([
+	// 			client.btc.getBalance(address),
+	// 			client.btc.getTransactionCount(address),
+	// 			client.btc.getCode(address),
+	// 		]);
+	//
+	// 		return {
+	// 			address,
+	// 			balance,
+	// 			nonce,
+	// 			code,
+	// 		};
+	// 	},
+	// });
+	//
+	// server.route({
+	// 	method: "GET",
+	// 	path: "/wallets/{wallet}/transactions",
+	// 	handler: (request) =>
+	// 		database
+	// 			.prepare(
+	// 				`SELECT * FROM transactions WHERE sender = '${request.params.wallet}' OR recipient = '${request.params.wallet}';`,
+	// 			)
+	// 			.all(),
+	// });
 
 	await server.start();
 

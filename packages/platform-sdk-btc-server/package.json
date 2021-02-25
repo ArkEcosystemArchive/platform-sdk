@@ -22,6 +22,8 @@
 		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
+		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
+		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
 		"@hapi/hapi": "^20.1.0",
 		"@konceiver/foreman": "^2.0.1",
 		"@konceiver/hapi-rate-limiter-flexible": "^1.0.3",
@@ -30,11 +32,10 @@
 		"env-paths": "^2.2.0",
 		"joi": "^17.4.0",
 		"meow": "^9.0.0",
-		"uuid": "^8.3.2",
-		"web3": "^1.3.4"
+		"url-parse-lax": "^4.0.0",
+		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
 		"@ledgerhq/hw-transport-mocker": "^5.29.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/better-sqlite3": "5.4.1",

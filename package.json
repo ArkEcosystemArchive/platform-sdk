@@ -51,5 +51,8 @@
 	},
 	"workspaces": [
 		"packages/*"
-	]
+	],
+	"dependencies": {
+		"url-parse-lax": "^4.0.0"
+	}
 }
