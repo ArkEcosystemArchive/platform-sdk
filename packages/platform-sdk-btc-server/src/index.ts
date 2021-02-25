@@ -62,24 +62,27 @@ export const subscribe = async (flags: {
 		},
 	});
 
-	// server.route({
-	// 	method: "GET",
-	// 	path: "/blocks/{block}",
-	// 	options: {
-	// 		validate: {
-	// 			params: Joi.object({
-	// 				block: Joi.string().length(66),
-	// 			}).options({ stripUnknown: true }),
-	// 		},
-	// 	},
-	// 	handler: (request) =>
-	// 		database
-	// 			.prepare(
-	// 				`SELECT * FROM blocks WHERE hash = '${request.params.block}' OR number = '${request.params.block}';`,
-	// 			)
-	// 			.get(),
-	// });
-	//
+	server.route({
+		method: "GET",
+		path: "/blocks/{block}",
+		options: {
+			validate: {
+				params: Joi.object({
+					block:  [
+						Joi.number().integer(),
+						Joi.string().length(64),
+					]
+				}).options({ stripUnknown: true }),
+			},
+		},
+		handler: (request) =>
+			database
+				.prepare(
+					`SELECT * FROM blocks WHERE hash = '${request.params.block}' OR height = '${request.params.block}';`,
+				)
+				.get(),
+	});
+
 	// server.route({
 	// 	method: "POST",
 	// 	path: "/transactions",
