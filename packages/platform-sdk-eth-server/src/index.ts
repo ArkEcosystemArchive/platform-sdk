@@ -32,11 +32,7 @@ export const subscribe = async (flags: {
 		method: "GET",
 		path: "/transactions/{transaction}",
 		handler: (request) =>
-			database
-				.prepare(
-					`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`,
-				)
-				.get(),
+			database.prepare(`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`).get(),
 	});
 
 	server.route({
