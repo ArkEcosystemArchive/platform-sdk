@@ -40,7 +40,7 @@ export const subscribe = async (flags: {
 	server.route({
 		method: "GET",
 		path: "/",
-		handler: async (request) => {
+		handler: async () => {
 			const [height, syncing] = await Promise.all([client.eth.getBlockNumber(), client.eth.isSyncing()]);
 
 			return {
@@ -56,8 +56,8 @@ export const subscribe = async (flags: {
 		options: {
 			validate: {
 				params: Joi.object({
-					block: Joi.string().hex().length(66),
-				}),
+					block: Joi.string().length(66),
+				}).options({ stripUnknown: true }),
 			},
 		},
 		handler: (request) =>
@@ -74,8 +74,8 @@ export const subscribe = async (flags: {
 		options: {
 			validate: {
 				payload: Joi.object({
-					transaction: Joi.string().hex().max(1024),
-				}),
+					transaction: Joi.string().max(1024),
+				}).options({ stripUnknown: true }),
 			},
 		},
 		handler: async (request) => client.eth.sendSignedTransaction(request.payload.transaction),
@@ -87,8 +87,8 @@ export const subscribe = async (flags: {
 		options: {
 			validate: {
 				params: Joi.object({
-					transaction: Joi.string().hex().length(66),
-				}),
+					transaction: Joi.string().length(66),
+				}).options({ stripUnknown: true }),
 			},
 		},
 		handler: (request) =>
@@ -101,8 +101,8 @@ export const subscribe = async (flags: {
 		options: {
 			validate: {
 				params: Joi.object({
-					wallet: Joi.string().hex().length(42),
-				}),
+					wallet: Joi.string().length(42),
+				}).options({ stripUnknown: true }),
 			},
 		},
 		handler: async (request) => {
