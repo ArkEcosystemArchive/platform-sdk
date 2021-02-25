@@ -5,7 +5,7 @@ import {
 	HARDENED_THRESHOLD,
 	SHELLEY_COIN_PURPOSE,
 	SHELLEY_COIN_TYPE,
-	SHELLEY_DERIVATION_SCHEME
+	SHELLEY_DERIVATION_SCHEME,
 } from "../src/crypto/shelley/constants";
 import lib from "cardano-crypto.js";
 import { Buffer } from "buffer";
@@ -320,7 +320,7 @@ describe.each(data)("Addresses from", (wallet) => {
 		const ah = new AddressesHelper(wallet.mnemonic);
 
 		expect(ah.account(0).key).toBe(wallet.accountKeyPair);
-		console.log(ah.account(0).key)
+		console.log(ah.account(0).key);
 	});
 });
 

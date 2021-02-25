@@ -9,7 +9,7 @@ import {
 	deriveChangeKey,
 	deriveRootKey,
 	deriveStakeKey,
-	deriveUtxoKey
+	deriveUtxoKey,
 } from "./transaction.helpers";
 
 export interface UnspentTransaction {
@@ -73,20 +73,20 @@ export class TransactionService implements Contracts.TransactionService {
 		const utxos: UnspentTransaction[] = await this.listUnspentTransactions(input.from);
 
 		// for (let i = 0; i < utxos.length; i++) {
-			let i = 0;
-			const utxo: UnspentTransaction = utxos[i];
+		let i = 0;
+		const utxo: UnspentTransaction = utxos[i];
 
-			txBuilder.add_input(
-				Address.from_bech32(utxo.address),
-				CardanoWasm.TransactionInput.new(
-					CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
-					parseInt(utxo.index),
-				),
-				createValue(utxo.value),
-			);
+		txBuilder.add_input(
+			Address.from_bech32(utxo.address),
+			CardanoWasm.TransactionInput.new(
+				CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
+				parseInt(utxo.index),
+			),
+			createValue(utxo.value),
+		);
 
-			console.log("utxo", utxo);
-			// break;
+		console.log("utxo", utxo);
+		// break;
 		// }
 
 		// These are the outputs that will be transferred to other wallets. For now we only support a single output.
@@ -114,14 +114,24 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// add keyhash witnesses
 		const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
-		vkeyWitnesses.add(CardanoWasm.make_vkey_witness(CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")), deriveUtxoKey(accountKey, 0).to_raw_key()));
-		vkeyWitnesses.add(CardanoWasm.make_vkey_witness(CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")), deriveChangeKey(accountKey, 0).to_raw_key()));
+		vkeyWitnesses.add(
+			CardanoWasm.make_vkey_witness(
+				CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
+				deriveUtxoKey(accountKey, 0).to_raw_key(),
+			),
+		);
+		vkeyWitnesses.add(
+			CardanoWasm.make_vkey_witness(
+				CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
+				deriveChangeKey(accountKey, 0).to_raw_key(),
+			),
+		);
 		// vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveStakeKey(accountKey, 0).to_raw_key()));
 		// vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveChangeKey(accountKey, 0).to_raw_key()));
 		vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, accountKey.to_raw_key()));
 		witnesses.set_vkeys(vkeyWitnesses);
 
-		console.log('hash', Buffer.from(txHash.to_bytes()).toString("hex"));
+		console.log("hash", Buffer.from(txHash.to_bytes()).toString("hex"));
 		return new SignedTransactionData(
 			Buffer.from(txHash.to_bytes()).toString("hex"),
 			{

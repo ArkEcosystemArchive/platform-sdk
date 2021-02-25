@@ -36,7 +36,7 @@ export class AddressesHelper {
 
 		const account0: Account = {
 			key: Buffer.from(account0Key.as_bytes()).toString("hex"),
-			addresses: []
+			addresses: [],
 		};
 		this.#addressesForAccount.push(account0);
 
@@ -46,7 +46,7 @@ export class AddressesHelper {
 				spendAddress: deriveUtxoKey(account0Key, i).to_public().to_bech32(),
 				changeAddress: deriveChangeKey(account0Key, i).to_bech32(),
 				stakeAddress: deriveStakeKey(account0Key, i).to_bech32(),
-				used: false
+				used: false,
 			};
 			account0.addresses.push(address);
 		}
@@ -55,5 +55,4 @@ export class AddressesHelper {
 	account(accountIndex: number): Account {
 		return this.#addressesForAccount[accountIndex];
 	}
-
 }

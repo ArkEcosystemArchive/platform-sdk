@@ -140,7 +140,7 @@ describe("ClientService", function () {
 			});
 
 			const transactions = [transfer];
-			console.log('transactions', JSON.stringify(transactions, null, 2));
+			console.log("transactions", JSON.stringify(transactions, null, 2));
 			const result = await subject.broadcast(transactions);
 			expect(result).toMatchObject({
 				accepted: [],

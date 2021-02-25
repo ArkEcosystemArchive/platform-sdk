@@ -10,12 +10,11 @@ import {
 	deriveAccountKey,
 	deriveChangeKey,
 	deriveRootKey,
-	deriveUtxoKey
+	deriveUtxoKey,
 } from "../src/services/transaction.helpers";
 import { SignedTransactionData } from "../src/dto";
 import { UnspentTransaction } from "../src/services/transaction";
 import { postGraphql } from "../src/services/helpers";
-
 
 const data = [
 	{
@@ -57,7 +56,7 @@ const data = [
 				"addr_test1qzxzfv4c7n30np5yv34sywv6vz095r3sd98a4f7nkfqqrk0k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s30txsp",
 				"addr_test1qrta0j6hx8ajchhzje9qg033940llyku5h83k5ttckar3jhk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sym3tvw",
 				"addr_test1qqchxm32j5pr7a758kzv462tuvdx8nxlwas7wzt83u7gt9hk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33suvg52n",
-				"addr_test1qqxgjqsmcgc8h47pk63u33976pdsgdcej0eeyztkn6ygve8k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s9dqqr4"
+				"addr_test1qqxgjqsmcgc8h47pk63u33976pdsgdcej0eeyztkn6ygve8k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s9dqqr4",
 			],
 			change: [
 				"addr_test1qzfjfm724nv9qz6nfyagmj0j2uppr35gzv5qee8s7489wxlk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33scc4thv",
@@ -79,9 +78,9 @@ const data = [
 				"addr_test1qqguca5n5u9vc8lqk8utketux84q7hlrecnj9s9c04246y0k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sgwdwxs",
 				"addr_test1qrn2qj4wu67csfmfzfkk2kawql42qsgz4kzsfr8hqdtvtg8k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33s2k7z3s",
 				"addr_test1qq7ua3j55nzsz5wvhhga77nkcxx2x93rztlcehzdq9ssqshk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sq7qer4",
-				"addr_test1qr5yfvk0wf3ccfwld3psnaxht9lyne6wdv3r92cxd8tx8rhk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33syxyqc9"
-			]
-		}
+				"addr_test1qr5yfvk0wf3ccfwld3psnaxht9lyne6wdv3r92cxd8tx8rhk8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33syxyqc9",
+			],
+		},
 	},
 	{
 		from: "Mariano",
@@ -124,7 +123,7 @@ const data = [
 				"addr_test1qphkyjeht7shje9rcclsalgrxzpanq60r2xq6h76p6fglyau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsnvazwa",
 				"addr_test1qpkmpxy5ru8ntl5c4kuszjvuze8vhxw9qccqq65n7tk5nlau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs6rkdah",
 				"addr_test1qpux4pydcgh8t7eg4dfezyp5tqv83vt9cs7qm9apgj5094au9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsutqthv",
-				"addr_test1qr7kmk8k5qnrrak4ma372ydjur8lrxwd5puhyacm0fv8pedu9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsxnkukt"
+				"addr_test1qr7kmk8k5qnrrak4ma372ydjur8lrxwd5puhyacm0fv8pedu9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsxnkukt",
 			],
 			change: [
 				"addr_test1qrnfqqs0hp8wttld5camurccgwgwh4pk4w4lk3aped8spz9u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsg05ap6",
@@ -146,20 +145,18 @@ const data = [
 				"addr_test1qpg0yrkg8g4z43axj3wn2gqad4082yztjxssaqp0upcawl9u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs0p4u3l",
 				"addr_test1qq5ngmtn6y3tyhj66qzf5pzadpykpnzfseqrd3dyh7nlnwau9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsfn4xtx",
 				"addr_test1qqxjemkct5lg6r77h2nwelg5ckq0jn0wdusx6j750sld7j4u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqstxk63x",
-				"addr_test1qzuq9algg3rerg6tmmqg55zljahsac25898tqjesp8vmm0du9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsaywqx4"
-			]
-		}
-	}
+				"addr_test1qzuq9algg3rerg6tmmqg55zljahsac25898tqjesp8vmm0du9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsaywqx4",
+			],
+		},
+	},
 ];
 
-it(`can send a transfer`, async function() {
+it(`can send a transfer`, async function () {
 	const config = createConfig();
 	const client = await ClientService.__construct(config);
 
 	async function estimateExpiration(value?: string): Promise<string> {
-		const tip: number = parseInt(
-			(await postGraphql(config, `{ cardano { tip { slotNo } } }`)).cardano.tip.slotNo
-		);
+		const tip: number = parseInt((await postGraphql(config, `{ cardano { tip { slotNo } } }`)).cardano.tip.slotNo);
 		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 
 		return (tip + ttl).toString();
@@ -175,18 +172,18 @@ it(`can send a transfer`, async function() {
 	const amount: string = "9615699";
 
 	const { minFeeA, minFeeB, minUTxOValue, poolDeposit, keyDeposit } = config.get<Contracts.KeyValuePair>(
-		"network.meta"
+		"network.meta",
 	);
 
 	// This is the transaction builder that uses values from the genesis block of the configured network.
 	const txBuilder = CardanoWasm.TransactionBuilder.new(
 		CardanoWasm.LinearFee.new(
 			CardanoWasm.BigNum.from_str(minFeeA.toString()),
-			CardanoWasm.BigNum.from_str(minFeeB.toString())
+			CardanoWasm.BigNum.from_str(minFeeB.toString()),
 		),
 		CardanoWasm.BigNum.from_str(minUTxOValue.toString()),
 		CardanoWasm.BigNum.from_str(poolDeposit.toString()),
-		CardanoWasm.BigNum.from_str(keyDeposit.toString())
+		CardanoWasm.BigNum.from_str(keyDeposit.toString()),
 	);
 
 	// Get a `Bip32PrivateKey` instance according to `CIP1852` and turn it into a `PrivateKey` instance
@@ -204,27 +201,22 @@ it(`can send a transfer`, async function() {
 		address: to,
 		index: "0",
 		transaction: {
-			hash: "22e6ff48fc1ed9d8ed87eb416b1c45e93b5945a3dc31d7d14ccdeb93174251f4"
+			hash: "22e6ff48fc1ed9d8ed87eb416b1c45e93b5945a3dc31d7d14ccdeb93174251f4",
 		},
-		value: "20000000"
+		value: "20000000",
 	};
 
 	txBuilder.add_input(
 		Address.from_bech32(utxo.address),
 		CardanoWasm.TransactionInput.new(
 			CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
-			parseInt(utxo.index)
+			parseInt(utxo.index),
 		),
-		createValue(utxo.value)
+		createValue(utxo.value),
 	);
 
 	// These are the outputs that will be transferred to other wallets. For now we only support a single output.
-	txBuilder.add_output(
-		CardanoWasm.TransactionOutput.new(
-			CardanoWasm.Address.from_bech32(to),
-			createValue(amount)
-		)
-	);
+	txBuilder.add_output(CardanoWasm.TransactionOutput.new(CardanoWasm.Address.from_bech32(to), createValue(amount)));
 
 	// This is the expiration slot which should be estimated with #estimateExpiration
 	txBuilder.set_ttl(parseInt(await estimateExpiration()));
@@ -239,8 +231,18 @@ it(`can send a transfer`, async function() {
 
 	// add keyhash witnesses
 	const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
-	vkeyWitnesses.add(CardanoWasm.make_vkey_witness(CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")), deriveUtxoKey(accountKey, 0).to_raw_key()));
-	vkeyWitnesses.add(CardanoWasm.make_vkey_witness(CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")), deriveChangeKey(accountKey, 0).to_raw_key()));
+	vkeyWitnesses.add(
+		CardanoWasm.make_vkey_witness(
+			CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
+			deriveUtxoKey(accountKey, 0).to_raw_key(),
+		),
+	);
+	vkeyWitnesses.add(
+		CardanoWasm.make_vkey_witness(
+			CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
+			deriveChangeKey(accountKey, 0).to_raw_key(),
+		),
+	);
 	// vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveStakeKey(accountKey, 0).to_raw_key()));
 	// vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveChangeKey(accountKey, 0).to_raw_key()));
 	vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, accountKey.to_raw_key()));
@@ -252,9 +254,9 @@ it(`can send a transfer`, async function() {
 			sender: from,
 			recipient: to,
 			amount: amount,
-			fee: txBody.fee().to_str()
+			fee: txBody.fee().to_str(),
 		},
-		Buffer.from(CardanoWasm.Transaction.new(txBody, witnesses).to_bytes()).toString("hex")
+		Buffer.from(CardanoWasm.Transaction.new(txBody, witnesses).to_bytes()).toString("hex"),
 	);
 
 	const result = await client.broadcast([tx]);
