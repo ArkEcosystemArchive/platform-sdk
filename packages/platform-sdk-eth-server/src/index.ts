@@ -23,7 +23,7 @@ export const subscribe = async (flags: {
 		handler: (request) =>
 			database
 				.prepare(
-					`SELECT * FROM blocks WHERE hash = '${request.params.block}';`,
+					`SELECT * FROM blocks WHERE hash = '${request.params.block}' OR number = '${request.params.block}';`,
 				)
 				.get(),
 	});
