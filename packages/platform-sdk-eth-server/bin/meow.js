@@ -5,7 +5,7 @@ const meow = require("meow");
 module.exports = meow(
 	`
 	Usage
-	  $ peth <input>
+	  $ seth <input>
 `,
 	{
 		flags: {
