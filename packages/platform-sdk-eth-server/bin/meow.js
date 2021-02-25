@@ -11,12 +11,10 @@ module.exports = meow(
 		flags: {
 			coin: {
 				type: "string",
-				alias: "c",
 				default: "eth",
 			},
 			network: {
 				type: "string",
-				alias: "c",
 				default: "mainnet",
 			},
 			host: {
