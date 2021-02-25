@@ -796,7 +796,7 @@ __metadata:
   resolution: "@arkecosystem/platform-sdk-eth-server@workspace:packages/platform-sdk-eth-server"
   dependencies:
     "@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got"
-    "@hapi/hapi": ^20.0.2
+    "@hapi/hapi": ^20.1.0
     "@konceiver/foreman": ^2.0.1
     "@konceiver/hapi-rate-limiter-flexible": ^1.0.0
     "@ledgerhq/hw-transport-mocker": ^5.29.0
@@ -1106,7 +1106,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arkecosystem/platform-sdk-json-rpc@workspace:packages/platform-sdk-json-rpc"
   dependencies:
-    "@hapi/hapi": ^20.0.2
+    "@hapi/hapi": ^20.1.0
     "@kodekeep/hapi-json-rpc": ^1.0.0
     "@sindresorhus/tsconfig": ^0.7.0
     "@types/eslint": ^7.2.4
@@ -3015,32 +3015,6 @@ __metadata:
     "@hapi/teamwork": 4.x.x
     "@hapi/topo": 5.x.x
   checksum: f2314905a0d52bc0cdfee92793cc06ce646b68fafcdb10094ccbb92349100dc9980cd0a8aadd2d00e5ca0d1337c263d325684292df0749b2426b044315651c0a
-  languageName: node
-  linkType: hard
-
-"@hapi/hapi@npm:^20.0.2":
-  version: 20.0.2
-  resolution: "@hapi/hapi@npm:20.0.2"
-  dependencies:
-    "@hapi/accept": ^5.0.1
-    "@hapi/ammo": ^5.0.1
-    "@hapi/boom": 9.x.x
-    "@hapi/bounce": 2.x.x
-    "@hapi/call": 8.x.x
-    "@hapi/catbox": ^11.1.1
-    "@hapi/catbox-memory": 5.x.x
-    "@hapi/heavy": ^7.0.1
-    "@hapi/hoek": 9.x.x
-    "@hapi/mimos": 5.x.x
-    "@hapi/podium": ^4.1.1
-    "@hapi/shot": ^5.0.1
-    "@hapi/somever": 3.x.x
-    "@hapi/statehood": ^7.0.3
-    "@hapi/subtext": ^7.0.3
-    "@hapi/teamwork": 5.x.x
-    "@hapi/topo": 5.x.x
-    "@hapi/validate": ^1.1.0
-  checksum: 68b187e1bdf31ead1c074f483f32857f22fd0602157a84809fd7168365ccd89759327b271577c3148a2789cdf1371abc7dcc5c17df2746e54b620687f48e2a87
   languageName: node
   linkType: hard
 
