@@ -25,7 +25,7 @@ export const subscribe = async (flags: {
 				.prepare(
 					`SELECT * FROM blocks WHERE hash = '${request.params.block}';`,
 				)
-				.all(),
+				.get(),
 	});
 
 	server.route({
@@ -36,7 +36,7 @@ export const subscribe = async (flags: {
 				.prepare(
 					`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`,
 				)
-				.all(),
+				.get(),
 	});
 
 	server.route({
