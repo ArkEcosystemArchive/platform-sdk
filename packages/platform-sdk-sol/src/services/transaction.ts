@@ -1,6 +1,7 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Account, Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
+import { v4 as uuidv4 } from "uuid";
 
 import { SignedTransactionData } from "../dto";
 import { derivePrivateKey, derivePublicKey } from "./identity/helpers";
@@ -45,7 +46,7 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 
 		return new SignedTransactionData(
-			"@TODO",
+			uuidv4(),
 			{
 				from: input.from,
 				to: input.data.to,
