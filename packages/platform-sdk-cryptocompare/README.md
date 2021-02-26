@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-cryptocompare
+npm install @arkecosystem/platform-sdk-cryptocompare
 ```
 
 ## Usage

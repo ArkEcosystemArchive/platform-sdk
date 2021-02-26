@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-avax
+npm install @arkecosystem/platform-sdk-avax
 ```
 
 ## Usage

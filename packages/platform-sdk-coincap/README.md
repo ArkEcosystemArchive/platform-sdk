@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-coincap
+npm install @arkecosystem/platform-sdk-coincap
 ```
 
 ## Usage

@@ -39,13 +39,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk/ && yarn run test --coverage
+              run: cd packages/platform-sdk/ && npm run test --coverage
 
     ada:
         needs: [conflicts]
@@ -65,13 +65,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-ada/ && yarn run test --coverage
+              run: cd packages/platform-sdk-ada/ && npm run test --coverage
 
     ark:
         needs: [conflicts]
@@ -91,13 +91,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-ark/ && yarn run test --coverage
+              run: cd packages/platform-sdk-ark/ && npm run test --coverage
 
     atom:
         needs: [conflicts]
@@ -117,13 +117,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-atom/ && yarn run test --coverage
+              run: cd packages/platform-sdk-atom/ && npm run test --coverage
 
     avax:
         needs: [conflicts]
@@ -143,13 +143,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-avax/ && yarn run test --coverage
+              run: cd packages/platform-sdk-avax/ && npm run test --coverage
 
     btc:
         needs: [conflicts]
@@ -169,13 +169,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-btc/ && yarn run test --coverage
+              run: cd packages/platform-sdk-btc/ && npm run test --coverage
 
     coincap:
         needs: [conflicts]
@@ -195,13 +195,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-coincap/ && yarn run test --coverage
+              run: cd packages/platform-sdk-coincap/ && npm run test --coverage
 
     coingecko:
         needs: [conflicts]
@@ -221,13 +221,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-coingecko/ && yarn run test --coverage
+              run: cd packages/platform-sdk-coingecko/ && npm run test --coverage
 
     crypto:
         needs: [conflicts]
@@ -247,13 +247,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-crypto/ && yarn run test --coverage
+              run: cd packages/platform-sdk-crypto/ && npm run test --coverage
 
     cryptocompare:
         needs: [conflicts]
@@ -273,13 +273,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-cryptocompare/ && yarn run test --coverage
+              run: cd packages/platform-sdk-cryptocompare/ && npm run test --coverage
 
     dot:
         needs: [conflicts]
@@ -299,13 +299,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-dot/ && yarn run test --coverage --forceExit
+              run: cd packages/platform-sdk-dot/ && npm run test --coverage --forceExit
 
     egld:
         needs: [conflicts]
@@ -325,13 +325,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-egld/ && yarn run test --coverage
+              run: cd packages/platform-sdk-egld/ && npm run test --coverage
 
     eos:
         needs: [conflicts]
@@ -351,13 +351,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-eos/ && yarn run test --coverage
+              run: cd packages/platform-sdk-eos/ && npm run test --coverage
 
     eth:
         needs: [conflicts]
@@ -377,13 +377,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-eth/ && yarn run test --coverage
+              run: cd packages/platform-sdk-eth/ && npm run test --coverage
 
     http-axios:
         needs: [conflicts]
@@ -403,13 +403,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-http-axios/ && yarn run test --coverage
+              run: cd packages/platform-sdk-http-axios/ && npm run test --coverage
 
     http-bent:
         needs: [conflicts]
@@ -429,13 +429,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-http-bent/ && yarn run test --coverage
+              run: cd packages/platform-sdk-http-bent/ && npm run test --coverage
 
     http-got:
         needs: [conflicts]
@@ -455,13 +455,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-http-got/ && yarn run test --coverage
+              run: cd packages/platform-sdk-http-got/ && npm run test --coverage
 
     http-ky:
         needs: [conflicts]
@@ -481,13 +481,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-http-ky/ && yarn run test --coverage
+              run: cd packages/platform-sdk-http-ky/ && npm run test --coverage
 
     http-node-fetch:
         needs: [conflicts]
@@ -507,13 +507,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-http-node-fetch/ && yarn run test --coverage
+              run: cd packages/platform-sdk-http-node-fetch/ && npm run test --coverage
 
     intl:
         needs: [conflicts]
@@ -533,13 +533,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-intl/ && yarn run test --coverage
+              run: cd packages/platform-sdk-intl/ && npm run test --coverage
 
     lsk:
         needs: [conflicts]
@@ -559,13 +559,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-lsk/ && yarn run test --coverage
+              run: cd packages/platform-sdk-lsk/ && npm run test --coverage
 
     markets:
         needs: [conflicts]
@@ -585,13 +585,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-markets/ && yarn run test --coverage
+              run: cd packages/platform-sdk-markets/ && npm run test --coverage
 
     neo:
         needs: [conflicts]
@@ -611,13 +611,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-neo/ && yarn run test --coverage
+              run: cd packages/platform-sdk-neo/ && npm run test --coverage
 
     news:
         needs: [conflicts]
@@ -637,13 +637,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-news/ && yarn run test --coverage
+              run: cd packages/platform-sdk-news/ && npm run test --coverage
 
     profiles:
         needs: [conflicts]
@@ -663,13 +663,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-profiles/ && yarn run test --coverage
+              run: cd packages/platform-sdk-profiles/ && npm run test --coverage
 
     sol:
         needs: [conflicts]
@@ -689,13 +689,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-sol/ && yarn run test --coverage
+              run: cd packages/platform-sdk-sol/ && npm run test --coverage
 
     support:
         needs: [conflicts]
@@ -715,13 +715,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-support/ && yarn run test --coverage
+              run: cd packages/platform-sdk-support/ && npm run test --coverage
 
     trx:
         needs: [conflicts]
@@ -741,13 +741,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-trx/ && yarn run test --coverage
+              run: cd packages/platform-sdk-trx/ && npm run test --coverage
 
     xlm:
         needs: [conflicts]
@@ -767,13 +767,13 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-xlm/ && yarn run test --coverage
+              run: cd packages/platform-sdk-xlm/ && npm run test --coverage
 
     xrp:
         needs: [conflicts]
@@ -793,10 +793,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Build
-              run: yarn run build
+              run: npm run build
 
             - name: Test
-              run: cd packages/platform-sdk-xrp/ && yarn run test --coverage
+              run: cd packages/platform-sdk-xrp/ && npm run test --coverage

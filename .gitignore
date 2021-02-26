@@ -55,6 +55,3 @@ dist
 # Environment
 .env
 env.json
-
-# Yarn
-.yarn/sdks/**

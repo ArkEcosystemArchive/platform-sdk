@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-json-rpc
+npm install @arkecosystem/platform-sdk-json-rpc
 ```
 
 ## Usage

@@ -24,10 +24,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: yarn install --immutable --immutable-cache
+              run: npm ci
 
             - name: Apply Formatting
-              run: yarn prettier
+              run: npm run prettier
 
             - uses: stefanzweifel/git-auto-commit-action@v4
               with:
