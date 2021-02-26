@@ -93,9 +93,10 @@ export class LedgerService implements Contracts.LedgerService {
 		const chunks: string[] = payload.toString().match(/.{1,510}/g) || [];
 
 		for (let i = 0; i < chunks.length - 1; i++) {
-			await this.#ledger.send(0x80, 0x02, 0x00, 0x00, Buffer.from(chunks[i], "hex"));
+			await this.#ledger.send(0x80, 0x02, 0x00, 0x00, Buffer.from(chunks[i]!, "hex"));
 		}
 
+		// @ts-ignore
 		const result = await this.#ledger.send(0x80, 0x02, 0x80, 0x00, Buffer.from(chunks[chunks.length - 1], "hex"));
 
 		return result.toString("hex").match(new RegExp(".*[^9000]", "g")).toString();

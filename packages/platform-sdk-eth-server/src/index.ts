@@ -63,7 +63,7 @@ export const subscribe = async (flags: {
 		handler: (request) =>
 			database
 				.prepare(
-					`SELECT * FROM blocks WHERE hash = '${request.params.block}' OR number = '${request.params.block}';`,
+					`SELECT * FROM blocks WHERE hash = '${request.params['block']}' OR number = '${request.params['block']}';`,
 				)
 				.get(),
 	});
@@ -78,7 +78,7 @@ export const subscribe = async (flags: {
 				}).options({ stripUnknown: true }),
 			},
 		},
-		handler: async (request) => client.eth.sendSignedTransaction(request.payload.transaction),
+		handler: async (request) => client.eth.sendSignedTransaction(request.payload['transaction']),
 	});
 
 	server.route({
@@ -92,7 +92,7 @@ export const subscribe = async (flags: {
 			},
 		},
 		handler: (request) =>
-			database.prepare(`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`).get(),
+			database.prepare(`SELECT * FROM transactions WHERE hash = '${request.params['transaction']}';`).get(),
 	});
 
 	server.route({
@@ -106,7 +106,7 @@ export const subscribe = async (flags: {
 			},
 		},
 		handler: async (request) => {
-			const address: string = request.params.wallet;
+			const address: string = request.params['wallet'];
 
 			const [balance, nonce, code] = await Promise.all([
 				client.eth.getBalance(address),
@@ -129,7 +129,7 @@ export const subscribe = async (flags: {
 		handler: (request) =>
 			database
 				.prepare(
-					`SELECT * FROM transactions WHERE sender = '${request.params.wallet}' OR recipient = '${request.params.wallet}';`,
+					`SELECT * FROM transactions WHERE sender = '${request.params['wallet']}' OR recipient = '${request.params['wallet']}';`,
 				)
 				.all(),
 	});
