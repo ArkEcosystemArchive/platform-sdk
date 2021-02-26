@@ -30,7 +30,6 @@
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got",
-		"@types/dot-prop": "5.0.1",
 		"@types/hdkey": "0.7.1",
 		"@types/is-url-superb": "3.0.0",
 		"@types/lodash.orderby": "4.6.6",

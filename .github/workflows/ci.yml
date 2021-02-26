@@ -1,802 +1,802 @@
 name: CI
 
 on:
-    push:
-        branches:
-            - "master"
-            - "develop"
-    pull_request:
-        types: [ready_for_review, synchronize, opened]
+  push:
+    branches:
+      - "master"
+      - "develop"
+  pull_request:
+    types: [ready_for_review, synchronize, opened]
 
 jobs:
-    conflicts:
-        runs-on: ubuntu-latest
+  conflicts:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
-              with:
-                  ref: ${{ github.head_ref }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
 
-            - name: Merge Conflict finder
-              uses: olivernybroe/action-conflict-finder@v1.1
+      - name: Merge Conflict finder
+        uses: olivernybroe/action-conflict-finder@v1.1
 
-    sdk:
-        needs: [conflicts]
+  sdk:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk/ && npm run test -- --coverage
 
-    ada:
-        needs: [conflicts]
+  ada:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-ada/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-ada/ && npm run test -- --coverage
 
-    ark:
-        needs: [conflicts]
+  ark:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-ark/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-ark/ && npm run test -- --coverage
 
-    atom:
-        needs: [conflicts]
+  atom:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-atom/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-atom/ && npm run test -- --coverage
 
-    avax:
-        needs: [conflicts]
+  avax:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-avax/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-avax/ && npm run test -- --coverage
 
-    btc:
-        needs: [conflicts]
+  btc:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-btc/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-btc/ && npm run test -- --coverage
 
-    coincap:
-        needs: [conflicts]
+  coincap:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-coincap/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-coincap/ && npm run test -- --coverage
 
-    coingecko:
-        needs: [conflicts]
+  coingecko:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-coingecko/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-coingecko/ && npm run test -- --coverage
 
-    crypto:
-        needs: [conflicts]
+  crypto:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-crypto/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-crypto/ && npm run test -- --coverage
 
-    cryptocompare:
-        needs: [conflicts]
+  cryptocompare:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-cryptocompare/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-cryptocompare/ && npm run test -- --coverage
 
-    dot:
-        needs: [conflicts]
+  dot:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-dot/ && npm run test -- --coverage --forceExit
+      - name: Test
+        run: cd packages/platform-sdk-dot/ && npm run test -- --coverage --forceExit
 
-    egld:
-        needs: [conflicts]
+  egld:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-egld/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-egld/ && npm run test -- --coverage
 
-    eos:
-        needs: [conflicts]
+  eos:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-eos/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-eos/ && npm run test -- --coverage
 
-    eth:
-        needs: [conflicts]
+  eth:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-eth/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-eth/ && npm run test -- --coverage
 
-    http-axios:
-        needs: [conflicts]
+  http-axios:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-http-axios/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-http-axios/ && npm run test -- --coverage
 
-    http-bent:
-        needs: [conflicts]
+  http-bent:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-http-bent/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-http-bent/ && npm run test -- --coverage
 
-    http-got:
-        needs: [conflicts]
+  http-got:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-http-got/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-http-got/ && npm run test -- --coverage
 
-    http-ky:
-        needs: [conflicts]
+  http-ky:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-http-ky/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-http-ky/ && npm run test -- --coverage
 
-    http-node-fetch:
-        needs: [conflicts]
+  http-node-fetch:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-http-node-fetch/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-http-node-fetch/ && npm run test -- --coverage
 
-    intl:
-        needs: [conflicts]
+  intl:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-intl/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-intl/ && npm run test -- --coverage
 
-    lsk:
-        needs: [conflicts]
+  lsk:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-lsk/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-lsk/ && npm run test -- --coverage
 
-    markets:
-        needs: [conflicts]
+  markets:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-markets/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-markets/ && npm run test -- --coverage
 
-    neo:
-        needs: [conflicts]
+  neo:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-neo/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-neo/ && npm run test -- --coverage
 
-    news:
-        needs: [conflicts]
+  news:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-news/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-news/ && npm run test -- --coverage
 
-    profiles:
-        needs: [conflicts]
+  profiles:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-profiles/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-profiles/ && npm run test -- --coverage
 
-    sol:
-        needs: [conflicts]
+  sol:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-sol/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-sol/ && npm run test -- --coverage
 
-    support:
-        needs: [conflicts]
+  support:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-support/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-support/ && npm run test -- --coverage
 
-    trx:
-        needs: [conflicts]
+  trx:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-trx/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-trx/ && npm run test -- --coverage
 
-    xlm:
-        needs: [conflicts]
+  xlm:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-xlm/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-xlm/ && npm run test -- --coverage
 
-    xrp:
-        needs: [conflicts]
+  xrp:
+    needs: [conflicts]
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install
-              run: npx lerna bootstrap
+      - name: Install
+        run: npx lerna bootstrap --no-ci
 
-            - name: Build
-              run: npx lerna run build
+      - name: Build
+        run: npx lerna run build
 
-            - name: Test
-              run: cd packages/platform-sdk-xrp/ && npm run test -- --coverage
+      - name: Test
+        run: cd packages/platform-sdk-xrp/ && npm run test -- --coverage
