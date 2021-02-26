@@ -22,8 +22,8 @@
 		"bent": "^7.3.12"
 	},
 	"devDependencies": {
-		"@types/bent": "7.3.2",
-		"@types/fs-extra": "9.0.4",
+		"@types/bent": "^7.3.2",
+		"@types/fs-extra": "^9.0.4",
 		"fs-extra": "^9.0.1"
 	},
 	"engines": {

@@ -22,7 +22,7 @@
 		"dinero.js": "^1.8.1"
 	},
 	"devDependencies": {
-		"@types/dinero.js": "1.6.5"
+		"@types/dinero.js": "^1.6.5"
 	},
 	"engines": {
 		"node": ">=12.x"

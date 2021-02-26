@@ -22,7 +22,7 @@
 		"axios": "^0.21.0"
 	},
 	"devDependencies": {
-		"@types/fs-extra": "9.0.4",
+		"@types/fs-extra": "^9.0.4",
 		"fs-extra": "^9.0.1"
 	},
 	"engines": {
