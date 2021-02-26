@@ -31,6 +31,7 @@ const network: Coins.CoinNetwork = {
 			address: {
 				mnemonic: true,
 				publicKey: true,
+				privateKey: true,
 			},
 			publicKey: {
 				mnemonic: true,

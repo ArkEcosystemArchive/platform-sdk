@@ -55,7 +55,12 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a privateKey", async () => {
-			await expect(subject.keys().fromPrivateKey(identity.privateKey)).rejects.toThrow(/is not supported/);
+			const result: any = await subject.keys().fromPrivateKey(identity.privateKey);
+
+			expect(result).toEqual({
+				privateKey: identity.privateKey,
+				publicKey: identity.publicKey,
+			});
 		});
 
 		it("should generate an output from a wif", async () => {

@@ -24,7 +24,12 @@ export class Keys implements Contracts.Keys {
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
+		const privateBuffer: Buffer = Buffer.from(privateKey, "hex");
+
+		return {
+			publicKey: derivePublicKey(privateBuffer).toString("hex"),
+			privateKey: privateBuffer.toString("hex"),
+		};
 	}
 
 	public async fromWIF(wif: string): Promise<Contracts.KeyPair> {
