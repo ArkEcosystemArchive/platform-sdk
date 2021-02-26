@@ -94,11 +94,11 @@ export class ClientService implements Contracts.ClientService {
 
 			const response = await this.post("transactions", { transactions: [transaction.toBroadcast()] });
 
-			if (response.result) {
+			if (response['result']) {
 				result.accepted.push(transactionId);
 			}
 
-			if (response.error) {
+			if (response['error']) {
 				result.rejected.push(transactionId);
 
 				if (!Array.isArray(result.errors[transactionId])) {
@@ -106,7 +106,7 @@ export class ClientService implements Contracts.ClientService {
 				}
 
 				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
-					if (response.error.message.includes(key)) {
+					if (response['error'].message.includes(key)) {
 						// @ts-ignore
 						result.errors[transactionId].push(value);
 					}
