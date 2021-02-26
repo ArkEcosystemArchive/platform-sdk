@@ -20,10 +20,6 @@
 		"toc:coins": "npx doctoc docs/coins/index.md"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-ark": "file:../platform-sdk-ark",
-		"@arkecosystem/platform-sdk-btc": "file:../platform-sdk-btc",
-		"@arkecosystem/platform-sdk-eth": "file:../platform-sdk-eth",
-		"@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got",
 		"@ledgerhq/hw-transport-mocker": "^5.29.0",
 		"@sindresorhus/tsconfig": "^0.9.0",
 		"@types/argon2-browser": "1.12.0",
