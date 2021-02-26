@@ -1,34 +1,34 @@
 {
-    "name": "@arkecosystem/platform-sdk-coingecko",
-    "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "3.0.26",
-    "contributors": [],
-    "license": "MIT",
-    "files": [
-        "/dist"
-    ],
-    "main": "dist/index",
-    "types": "dist/index",
-    "scripts": {
-        "build": "npm run clean && tsc",
-        "build:watch": "npm run build -w",
-        "clean": "rimraf .coverage dist tmp",
-        "test": "jest",
-        "test:watch": "jest --watchAll",
-        "publish": "npm run build && npm run publish --access public --tolerate-republish"
-    },
-    "dependencies": {
-        "@arkecosystem/platform-sdk": "file:../platform-sdk",
-        "@arkecosystem/platform-sdk-intl": "file:../platform-sdk-intl",
-        "@arkecosystem/platform-sdk-support": "file:../platform-sdk-support"
-    },
-    "devDependencies": {
-        "@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got"
-    },
-    "engines": {
-        "node": ">=12.x"
-    },
-    "jest": {
-        "preset": "../../jest.coverage.js"
-    }
+	"name": "@arkecosystem/platform-sdk-coingecko",
+	"description": "Cross-Platform Utilities for ARK Applications",
+	"version": "3.0.26",
+	"contributors": [],
+	"license": "MIT",
+	"files": [
+		"/dist"
+	],
+	"main": "dist/index",
+	"types": "dist/index",
+	"scripts": {
+		"build": "npm run clean && tsc",
+		"build:watch": "npm run build -w",
+		"clean": "rimraf .coverage dist tmp",
+		"test": "jest",
+		"test:watch": "jest --watchAll",
+		"publish": "npm run build && npm run publish --access public --tolerate-republish"
+	},
+	"dependencies": {
+		"@arkecosystem/platform-sdk": "file:../platform-sdk",
+		"@arkecosystem/platform-sdk-intl": "file:../platform-sdk-intl",
+		"@arkecosystem/platform-sdk-support": "file:../platform-sdk-support"
+	},
+	"devDependencies": {
+		"@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got"
+	},
+	"engines": {
+		"node": ">=12.x"
+	},
+	"jest": {
+		"preset": "../../jest.coverage.js"
+	}
 }

@@ -1,36 +1,36 @@
 {
-    "name": "@arkecosystem/platform-sdk-lsk",
-    "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "3.0.26",
-    "contributors": [],
-    "license": "MIT",
-    "files": [
-        "/dist"
-    ],
-    "main": "dist/index",
-    "types": "dist/index",
-    "scripts": {
-        "build": "npm run clean && tsc",
-        "build:watch": "npm run build -w",
-        "clean": "rimraf .coverage dist tmp",
-        "test": "jest",
-        "test:watch": "jest --watchAll",
-        "publish": "npm run build && npm run publish --access public --tolerate-republish"
-    },
-    "dependencies": {
-        "@arkecosystem/platform-sdk": "file:../platform-sdk",
-        "@arkecosystem/platform-sdk-crypto": "file:../platform-sdk-crypto",
-        "@arkecosystem/platform-sdk-intl": "file:../platform-sdk-intl",
-        "@arkecosystem/platform-sdk-support": "file:../platform-sdk-support",
-        "@liskhq/lisk-client": "^2.0",
-        "@liskhq/lisk-cryptography": "^2.5",
-        "@liskhq/lisk-transactions": "^2.0",
-        "dpos-ledger-api": "^3.0.1"
-    },
-    "engines": {
-        "node": ">=12.x"
-    },
-    "jest": {
-        "preset": "../../jest.config.js"
-    }
+	"name": "@arkecosystem/platform-sdk-lsk",
+	"description": "Cross-Platform Utilities for ARK Applications",
+	"version": "3.0.26",
+	"contributors": [],
+	"license": "MIT",
+	"files": [
+		"/dist"
+	],
+	"main": "dist/index",
+	"types": "dist/index",
+	"scripts": {
+		"build": "npm run clean && tsc",
+		"build:watch": "npm run build -w",
+		"clean": "rimraf .coverage dist tmp",
+		"test": "jest",
+		"test:watch": "jest --watchAll",
+		"publish": "npm run build && npm run publish --access public --tolerate-republish"
+	},
+	"dependencies": {
+		"@arkecosystem/platform-sdk": "file:../platform-sdk",
+		"@arkecosystem/platform-sdk-crypto": "file:../platform-sdk-crypto",
+		"@arkecosystem/platform-sdk-intl": "file:../platform-sdk-intl",
+		"@arkecosystem/platform-sdk-support": "file:../platform-sdk-support",
+		"@liskhq/lisk-client": "^2.0",
+		"@liskhq/lisk-cryptography": "^2.5",
+		"@liskhq/lisk-transactions": "^2.0",
+		"dpos-ledger-api": "^3.0.1"
+	},
+	"engines": {
+		"node": ">=12.x"
+	},
+	"jest": {
+		"preset": "../../jest.config.js"
+	}
 }
