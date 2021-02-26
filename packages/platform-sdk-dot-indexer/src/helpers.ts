@@ -71,7 +71,7 @@ export const indexBlock = async (
 		return;
 	}
 
-	await persistBlock(blockHash, blockResponse.toHuman().block, database, logger);
+	await persistBlock(blockHash, blockResponse.toHuman()['block'], database, logger);
 };
 
 export const indexNewBlocks = async (polkadot: ApiPromise, database: Database, logger: pino.Logger): Promise<void> => {
