@@ -1,17 +1,21 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
-import { Keys } from "./keys";
+import { derivePrivateKey, derivePublicKey } from "./helpers";
 
 export class PublicKey implements Contracts.PublicKey {
-	public async fromMnemonic(mnemonic: string): Promise<string> {
-		try {
-			// root extended publicKey
-			const { publicKey } = await new Keys().fromMnemonic(mnemonic);
+	readonly #slip44: number;
 
-			return publicKey;
-		} catch (error) {
-			throw new Exceptions.CryptoException(error);
+	public constructor(config: Coins.Config) {
+		this.#slip44 = config.get<number>("network.crypto.slip44");
+	}
+
+	public async fromMnemonic(mnemonic: string): Promise<string> {
+		if (!BIP39.validate(mnemonic)) {
+			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
 		}
+
+		return derivePublicKey(derivePrivateKey(mnemonic, 0, 0, this.#slip44)).toString("hex");
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

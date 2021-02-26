@@ -1,21 +1,19 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
 const network: Coins.CoinNetwork = {
-	id: "ada.testnet",
+	id: "sol.testnet",
 	type: "test",
 	name: "Testnet",
-	explorer: "https://shelleyexplorer.cardano.org/",
+	explorer: "https://explorer.solana.com/?cluster=testnet",
 	currency: {
-		ticker: "ADA",
-		symbol: "ADA",
+		ticker: "SOL",
+		symbol: "SOL",
 	},
 	crypto: {
-		networkId: "0",
-		slip44: 1815,
+		slip44: 501,
 	},
 	networking: {
-		hosts: ["http://51.75.183.28:8090"],
-		hostsArchival: ["http://51.75.183.27:3100"],
+		hosts: ["https://testnet.solana.com"],
 	},
 	governance: {
 		voting: {
@@ -44,13 +42,6 @@ const network: Coins.CoinNetwork = {
 				mnemonic: true,
 			},
 		},
-	},
-	meta: {
-		minFeeA: 44,
-		minFeeB: 155381,
-		minUTxOValue: 1000000,
-		poolDeposit: 500000000,
-		keyDeposit: 2000000,
 	},
 	transactionTypes: ["transfer"],
 };

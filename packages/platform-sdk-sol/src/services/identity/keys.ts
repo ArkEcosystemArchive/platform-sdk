@@ -1,20 +1,26 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import lib from "cardano-crypto.js";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
-import { SHELLEY_DERIVATION_SCHEME } from "../../crypto/shelley/constants";
+import { derivePrivateKey, derivePublicKey } from "./helpers";
 
 export class Keys implements Contracts.Keys {
-	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
-		try {
-			const rootKeyPair = await lib.mnemonicToRootKeypair(mnemonic, SHELLEY_DERIVATION_SCHEME);
+	readonly #slip44: number;
 
-			return {
-				publicKey: rootKeyPair.slice(64, 128).toString("hex"),
-				privateKey: rootKeyPair.slice(0, 64).toString("hex"),
-			};
-		} catch (error) {
-			throw new Exceptions.CryptoException(error);
+	public constructor(config: Coins.Config) {
+		this.#slip44 = config.get<number>("network.crypto.slip44");
+	}
+
+	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
+		if (!BIP39.validate(mnemonic)) {
+			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
 		}
+
+		const privateBuffer: Buffer = derivePrivateKey(mnemonic, 0, 0, this.#slip44);
+
+		return {
+			publicKey: derivePublicKey(privateBuffer).toString("hex"),
+			privateKey: privateBuffer.toString("hex"),
+		};
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {

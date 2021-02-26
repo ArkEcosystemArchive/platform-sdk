@@ -1,6 +1,4 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { mnemonicToRootKeypair, sign, verify } from "cardano-crypto.js";
 
 export class MessageService implements Contracts.MessageService {
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
@@ -12,28 +10,10 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		try {
-			const walletSecret = await mnemonicToRootKeypair(BIP39.normalize(input.mnemonic), 1);
-
-			return {
-				message: input.message,
-				signatory: walletSecret.slice(64, 96).toString("hex"),
-				signature: sign(Buffer.from(input.message, "utf8"), walletSecret).toString("hex"),
-			};
-		} catch (error) {
-			throw new Exceptions.CryptoException(error);
-		}
+		throw new Exceptions.NotSupported(this.constructor.name, "sign");
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
-		try {
-			return verify(
-				Buffer.from(input.message, "utf8"),
-				Buffer.from(input.signatory, "hex"),
-				Buffer.from(input.signature, "hex"),
-			);
-		} catch (error) {
-			throw new Exceptions.CryptoException(error);
-		}
+		throw new Exceptions.NotSupported(this.constructor.name, "verify");
 	}
 }

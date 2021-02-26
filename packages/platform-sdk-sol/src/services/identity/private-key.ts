@@ -1,20 +1,21 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
-import { Keys } from "./keys";
+import { derivePrivateKey } from "./helpers";
 
 export class PrivateKey implements Contracts.PrivateKey {
+	readonly #slip44: number;
+
+	public constructor(config: Coins.Config) {
+		this.#slip44 = config.get<number>("network.crypto.slip44");
+	}
+
 	public async fromMnemonic(mnemonic: string): Promise<string> {
-		try {
-			const { privateKey } = await new Keys().fromMnemonic(mnemonic);
-
-			if (!privateKey) {
-				throw new Error("Failed to derive the private key.");
-			}
-
-			return privateKey;
-		} catch (error) {
-			throw new Exceptions.CryptoException(error);
+		if (!BIP39.validate(mnemonic)) {
+			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
 		}
+
+		return derivePrivateKey(mnemonic, 0, 0, this.#slip44).toString("hex");
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

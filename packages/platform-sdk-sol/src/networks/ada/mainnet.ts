@@ -1,20 +1,19 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
 const network: Coins.CoinNetwork = {
-	id: "ada.mainnet",
+	id: "sol.mainnet",
 	type: "live",
 	name: "Mainnet",
-	explorer: "https://explorer.cardano.org/",
+	explorer: "https://explorer.solana.com/",
 	currency: {
-		ticker: "ADA",
-		symbol: "ADA",
+		ticker: "SOL",
+		symbol: "SOL",
 	},
 	crypto: {
-		networkId: "1",
-		slip44: 1815,
+		slip44: 501,
 	},
 	networking: {
-		hosts: [],
+		hosts: ["https://api.mainnet-beta.solana.com"],
 	},
 	governance: {
 		voting: {
@@ -44,13 +43,6 @@ const network: Coins.CoinNetwork = {
 				privateKey: true,
 			},
 		},
-	},
-	meta: {
-		minFeeA: 44,
-		minFeeB: 155381,
-		minUTxOValue: 1000000,
-		poolDeposit: 500000000,
-		keyDeposit: 2000000,
 	},
 	transactionTypes: ["transfer"],
 };
