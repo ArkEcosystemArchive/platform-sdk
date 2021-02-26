@@ -10,12 +10,12 @@
     "main": "dist/index",
     "types": "dist/index",
     "scripts": {
-        "build": "yarn clean && tsc",
-        "build:watch": "yarn build -w",
+        "build": "npm run clean && tsc",
+        "build:watch": "npm run build -w",
         "clean": "rimraf .coverage dist tmp",
         "test": "jest",
         "test:watch": "jest --watchAll",
-        "publish": "yarn build && yarn npm publish --access public --tolerate-republish"
+        "publish": "npm run build && npm run publish --access public --tolerate-republish"
     },
     "dependencies": {
         "@arkecosystem/platform-sdk": "file:../platform-sdk",

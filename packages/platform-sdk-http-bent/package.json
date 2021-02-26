@@ -1,35 +1,35 @@
 {
-	"name": "@arkecosystem/platform-sdk-http-bent",
-	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "3.0.26",
-	"contributors": [],
-	"license": "MIT",
-	"files": [
-		"/dist"
-	],
-	"main": "dist/index",
-	"types": "dist/index",
-	"scripts": {
-		"build": "yarn clean && tsc",
-		"build:watch": "yarn build -w",
-		"clean": "rimraf .coverage dist tmp",
-		"test": "jest",
-		"test:watch": "jest --watchAll",
-		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
-	},
-	"dependencies": {
-		"@arkecosystem/platform-sdk": "file:../platform-sdk",
-		"bent": "^7.3.12"
-	},
-	"devDependencies": {
-		"@types/bent": "7.3.2",
-		"@types/fs-extra": "9.0.4",
-		"fs-extra": "^9.0.1"
-	},
-	"engines": {
-		"node": ">=12.x"
-	},
-	"jest": {
-		"preset": "../../jest.coverage.js"
-	}
+    "name": "@arkecosystem/platform-sdk-http-bent",
+    "description": "Cross-Platform Utilities for ARK Applications",
+    "version": "3.0.26",
+    "contributors": [],
+    "license": "MIT",
+    "files": [
+        "/dist"
+    ],
+    "main": "dist/index",
+    "types": "dist/index",
+    "scripts": {
+        "build": "npm run clean && tsc",
+        "build:watch": "npm run build -w",
+        "clean": "rimraf .coverage dist tmp",
+        "test": "jest",
+        "test:watch": "jest --watchAll",
+        "publish": "npm run build && npm run publish --access public --tolerate-republish"
+    },
+    "dependencies": {
+        "@arkecosystem/platform-sdk": "file:../platform-sdk",
+        "bent": "^7.3.12"
+    },
+    "devDependencies": {
+        "@types/bent": "7.3.2",
+        "@types/fs-extra": "9.0.4",
+        "fs-extra": "^9.0.1"
+    },
+    "engines": {
+        "node": ">=12.x"
+    },
+    "jest": {
+        "preset": "../../jest.coverage.js"
+    }
 }

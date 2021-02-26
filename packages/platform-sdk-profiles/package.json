@@ -1,68 +1,68 @@
 {
-	"name": "@arkecosystem/platform-sdk-profiles",
-	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "3.0.26",
-	"contributors": [],
-	"license": "MIT",
-	"files": [
-		"/dist"
-	],
-	"main": "dist/index",
-	"types": "dist/index",
-	"scripts": {
-		"build": "yarn clean && tsc",
-		"build:watch": "yarn build -w",
-		"clean": "rimraf .coverage dist tmp",
-		"test": "jest",
-		"test:watch": "jest --watchAll",
-		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
-	},
-	"dependencies": {
-		"@arkecosystem/platform-sdk": "file:../platform-sdk",
-		"@arkecosystem/platform-sdk-crypto": "file:../platform-sdk-crypto",
-		"@arkecosystem/platform-sdk-intl": "file:../platform-sdk-intl",
-		"@arkecosystem/platform-sdk-markets": "file:../platform-sdk-markets",
-		"@arkecosystem/platform-sdk-support": "file:../platform-sdk-support",
-		"@arkecosystem/utils": "^1.2.0",
-		"@sindresorhus/slugify": "^1.1.0",
-		"@vechain/picasso": "^2.1.1",
-		"bcrypto": "^5.3.0",
-		"bip38": "^3.1.1",
-		"dot-prop": "^5.0.0",
-		"joi": "^17.3.0",
-		"localforage": "^1.9.0",
-		"mem": "^8.0.0",
-		"node-cache": "^5.1.2",
-		"p-queue": "^6.6.2",
-		"p-retry": "^4.3.0",
-		"semver": "^7.3.4",
-		"type-fest": "^0.18.1",
-		"uuid": "^8.3.1",
-		"wif": "^2.0.6"
-	},
-	"devDependencies": {
-		"@arkecosystem/platform-sdk-ark": "file:../platform-sdk-ark",
-		"@arkecosystem/platform-sdk-btc": "file:../platform-sdk-btc",
-		"@arkecosystem/platform-sdk-eth": "file:../platform-sdk-eth",
-		"@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got",
-		"@types/async": "3.2.4",
-		"@types/bip38": "2.0.1",
-		"@types/dot-prop": "5.0.1",
-		"@types/fs-extra": "9.0.4",
-		"@types/mersenne-twister": "1.1.2",
-		"@types/node": "^14.14.7",
-		"@types/p-retry": "3.0.1",
-		"@types/semver": "7.3.4",
-		"@types/sindresorhus__slugify": "0.9.3",
-		"@types/uuid": "8.3.0",
-		"@types/wif": "2.0.2",
-		"fs-extra": "^9.0.1",
-		"got": "^11.8.0"
-	},
-	"engines": {
-		"node": ">=12.x"
-	},
-	"jest": {
-		"preset": "../../jest.coverage.js"
-	}
+    "name": "@arkecosystem/platform-sdk-profiles",
+    "description": "Cross-Platform Utilities for ARK Applications",
+    "version": "3.0.26",
+    "contributors": [],
+    "license": "MIT",
+    "files": [
+        "/dist"
+    ],
+    "main": "dist/index",
+    "types": "dist/index",
+    "scripts": {
+        "build": "npm run clean && tsc",
+        "build:watch": "npm run build -w",
+        "clean": "rimraf .coverage dist tmp",
+        "test": "jest",
+        "test:watch": "jest --watchAll",
+        "publish": "npm run build && npm run publish --access public --tolerate-republish"
+    },
+    "dependencies": {
+        "@arkecosystem/platform-sdk": "file:../platform-sdk",
+        "@arkecosystem/platform-sdk-crypto": "file:../platform-sdk-crypto",
+        "@arkecosystem/platform-sdk-intl": "file:../platform-sdk-intl",
+        "@arkecosystem/platform-sdk-markets": "file:../platform-sdk-markets",
+        "@arkecosystem/platform-sdk-support": "file:../platform-sdk-support",
+        "@arkecosystem/utils": "^1.2.0",
+        "@sindresorhus/slugify": "^1.1.0",
+        "@vechain/picasso": "^2.1.1",
+        "bcrypto": "^5.3.0",
+        "bip38": "^3.1.1",
+        "dot-prop": "^5.0.0",
+        "joi": "^17.3.0",
+        "localforage": "^1.9.0",
+        "mem": "^8.0.0",
+        "node-cache": "^5.1.2",
+        "p-queue": "^6.6.2",
+        "p-retry": "^4.3.0",
+        "semver": "^7.3.4",
+        "type-fest": "^0.18.1",
+        "uuid": "^8.3.1",
+        "wif": "^2.0.6"
+    },
+    "devDependencies": {
+        "@arkecosystem/platform-sdk-ark": "file:../platform-sdk-ark",
+        "@arkecosystem/platform-sdk-btc": "file:../platform-sdk-btc",
+        "@arkecosystem/platform-sdk-eth": "file:../platform-sdk-eth",
+        "@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got",
+        "@types/async": "3.2.4",
+        "@types/bip38": "2.0.1",
+        "@types/dot-prop": "5.0.1",
+        "@types/fs-extra": "9.0.4",
+        "@types/mersenne-twister": "1.1.2",
+        "@types/node": "^14.14.7",
+        "@types/p-retry": "3.0.1",
+        "@types/semver": "7.3.4",
+        "@types/sindresorhus__slugify": "0.9.3",
+        "@types/uuid": "8.3.0",
+        "@types/wif": "2.0.2",
+        "fs-extra": "^9.0.1",
+        "got": "^11.8.0"
+    },
+    "engines": {
+        "node": ">=12.x"
+    },
+    "jest": {
+        "preset": "../../jest.coverage.js"
+    }
 }
