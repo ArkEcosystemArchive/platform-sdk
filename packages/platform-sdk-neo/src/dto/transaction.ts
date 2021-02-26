@@ -4,7 +4,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		return this.data.txid;
+		return this.data['txid'];
 	}
 
 	public blockId(): string | undefined {
@@ -12,7 +12,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public timestamp(): DateTime | undefined {
-		return DateTime.fromUnix(this.data.time);
+		return DateTime.fromUnix(this.data['time']);
 	}
 
 	public confirmations(): BigNumber {
@@ -20,11 +20,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		return this.data.address_from;
+		return this.data['address_from'];
 	}
 
 	public recipient(): string {
-		return this.data.address_to;
+		return this.data['address_to'];
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
@@ -32,7 +32,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.data.amount);
+		return BigNumber.make(this.data['amount']);
 	}
 
 	public fee(): BigNumber {

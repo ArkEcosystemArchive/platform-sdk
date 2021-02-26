@@ -7,7 +7,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public address(): string {
-		return this.data.id;
+		return this.data['id'];
 	}
 
 	public publicKey(): string | undefined {
@@ -15,11 +15,11 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public balance(): BigNumber {
-		return BigNumber.make(this.data.balance).divide(1e21).times(1e8);
+		return BigNumber.make(this.data['balance']).divide(1e21).times(1e8);
 	}
 
 	public nonce(): BigNumber {
-		return BigNumber.make(this.data.nonce);
+		return BigNumber.make(this.data['nonce']);
 	}
 
 	public secondPublicKey(): string | undefined {
@@ -27,7 +27,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public username(): string | undefined {
-		return this.data.username;
+		return this.data['username'];
 	}
 
 	public rank(): number | undefined {

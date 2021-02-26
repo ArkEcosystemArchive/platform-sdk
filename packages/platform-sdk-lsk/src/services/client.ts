@@ -45,7 +45,7 @@ export class ClientService implements Contracts.ClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const result = await this.get("transactions", { id });
 
-		return Helpers.createTransactionDataWithType(result.data[0], TransactionDTO);
+		return Helpers.createTransactionDataWithType(result['data'][0], TransactionDTO);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
@@ -53,8 +53,8 @@ export class ClientService implements Contracts.ClientService {
 		const result = await this.get("transactions", this.createSearchParams({ sort: "timestamp:desc", ...query }));
 
 		return Helpers.createTransactionDataCollectionWithType(
-			result.data,
-			this.createPagination(result.data, result.meta),
+			result['data'],
+			this.createPagination(result['data'], result['meta']),
 			TransactionDTO,
 		);
 	}
@@ -62,30 +62,30 @@ export class ClientService implements Contracts.ClientService {
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		const result = await this.get("accounts", { address: id });
 
-		return new WalletData(result.data[0]);
+		return new WalletData(result['data'][0]);
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
 		const result = await this.get("accounts", query);
 
 		return new Coins.WalletDataCollection(
-			result.data.map((wallet) => new WalletData(wallet)),
-			this.createPagination(result.data, result.meta),
+			result['data'].map((wallet) => new WalletData(wallet)),
+			this.createPagination(result['data'], result['meta']),
 		);
 	}
 
 	public async delegate(id: string): Promise<Contracts.WalletData> {
 		const result = await this.get("delegates", { username: id });
 
-		return new WalletData(result.data[0]);
+		return new WalletData(result['data'][0]);
 	}
 
 	public async delegates(query?: any): Promise<Coins.WalletDataCollection> {
 		const result = await this.get("delegates", this.createSearchParams({ limit: 101, ...query }));
 
 		return new Coins.WalletDataCollection(
-			result.data.map((wallet) => new WalletData(wallet)),
-			this.createPagination(result.data, result.meta),
+			result['data'].map((wallet) => new WalletData(wallet)),
+			this.createPagination(result['data'], result['meta']),
 		);
 	}
 
@@ -130,6 +130,7 @@ export class ClientService implements Contracts.ClientService {
 
 				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
 					if (errors[0].message.includes(key)) {
+						// @ts-ignore
 						result.errors[transaction.id()].push(value);
 					}
 				}

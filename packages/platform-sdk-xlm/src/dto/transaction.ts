@@ -4,7 +4,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		return this.data.transaction_hash || this.data.id;
+		return this.data['transaction_hash'] || this.data['id'];
 	}
 
 	public blockId(): string | undefined {
@@ -12,7 +12,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public timestamp(): DateTime | undefined {
-		return DateTime.make(this.data.created_at);
+		return DateTime.make(this.data['created_at']);
 	}
 
 	public confirmations(): BigNumber {
@@ -20,11 +20,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		return this.data.from || this.data.operation.from;
+		return this.data['from'] || this.data['operation'].from;
 	}
 
 	public recipient(): string {
-		return this.data.to || this.data.operation.to;
+		return this.data['to'] || this.data['operation'].to;
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
@@ -32,12 +32,12 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make((this.data.amount || this.data.operation.amount) * 1e8);
+		return BigNumber.make((this.data['amount'] || this.data['operation'].amount) * 1e8);
 	}
 
 	// todo: with the "transaction" method we get a nonce but with "transactions" it isn't available
 	public fee(): BigNumber {
-		return BigNumber.make((this.data.fee_charged || 0) * 1e8);
+		return BigNumber.make((this.data['fee_charged'] || 0) * 1e8);
 	}
 
 	public memo(): string | undefined {

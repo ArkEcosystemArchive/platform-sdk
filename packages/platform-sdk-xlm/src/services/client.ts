@@ -18,7 +18,7 @@ export class ClientService implements Contracts.ClientService {
 	private constructor(network: string) {
 		this.#client = new Stellar.Server(
 			{ mainnet: "https://horizon.stellar.org", testnet: "https://horizon-testnet.stellar.org" }[
-				network.split(".")[1]
+				network.split(".")[1]!
 			],
 		);
 	}
@@ -114,6 +114,7 @@ export class ClientService implements Contracts.ClientService {
 				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
 					for (const operation of extras.result_codes.operations) {
 						if (operation.includes(key)) {
+							// @ts-ignore
 							result.errors[transactionId].push(value);
 						}
 					}

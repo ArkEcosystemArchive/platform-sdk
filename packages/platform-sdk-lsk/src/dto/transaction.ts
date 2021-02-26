@@ -4,28 +4,28 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		return this.data.id;
+		return this.data['id'];
 	}
 
 	public blockId(): string | undefined {
-		return this.data.blockId;
+		return this.data['blockId'];
 	}
 
 	public timestamp(): DateTime | undefined {
 		// TODO: use a genesis timestamp that matches the network
-		return DateTime.make("2016-05-24T17:00:00.000Z").addSeconds(this.data.timestamp);
+		return DateTime.make("2016-05-24T17:00:00.000Z").addSeconds(this.data['timestamp']);
 	}
 
 	public confirmations(): BigNumber {
-		return BigNumber.make(this.data.confirmations);
+		return BigNumber.make(this.data['confirmations']);
 	}
 
 	public sender(): string {
-		return this.data.senderId;
+		return this.data['senderId'];
 	}
 
 	public recipient(): string {
-		return this.data.recipientId;
+		return this.data['recipientId'];
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
@@ -33,15 +33,15 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.data.amount);
+		return BigNumber.make(this.data['amount']);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.fee);
+		return BigNumber.make(this.data['fee']);
 	}
 
 	public memo(): string | undefined {
-		return this.data.asset.data;
+		return this.data['asset'].data;
 	}
 
 	public asset(): Record<string, unknown> {
@@ -69,15 +69,15 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isTransfer(): boolean {
-		return this.data.type === 8;
+		return this.data['type'] === 8;
 	}
 
 	public isSecondSignature(): boolean {
-		return this.data.type === 9;
+		return this.data['type'] === 9;
 	}
 
 	public isDelegateRegistration(): boolean {
-		return this.data.type === 10;
+		return this.data['type'] === 10;
 	}
 
 	public isVoteCombination(): boolean {
@@ -85,23 +85,23 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isVote(): boolean {
-		if (this.data.type !== 11) {
+		if (this.data["type"] !== 11) {
 			return false;
 		}
 
-		return (this.asset().votes as string[]).some((vote) => vote.startsWith("+"));
+		return (this.asset()['votes'] as string[]).some((vote) => vote.startsWith("+"));
 	}
 
 	public isUnvote(): boolean {
-		if (this.data.type !== 11) {
+		if (this.data['type'] !== 11) {
 			return false;
 		}
 
-		return (this.asset().votes as string[]).some((vote) => vote.startsWith("-"));
+		return (this.asset()['votes'] as string[]).some((vote) => vote.startsWith("-"));
 	}
 
 	public isMultiSignature(): boolean {
-		return this.data.type === 12;
+		return this.data['type'] === 12;
 	}
 
 	public isIpfs(): boolean {

@@ -7,19 +7,19 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public address(): string {
-		return this.data.address;
+		return this.data['address'];
 	}
 
 	public publicKey(): string | undefined {
-		return this.data.public_key.value;
+		return this.data['public_key'].value;
 	}
 
 	public balance(): BigNumber {
-		return BigNumber.make(this.data.coins[0].amount.replace(/\D/g, ""));
+		return BigNumber.make(this.data['coins'][0].amount.replace(/\D/g, ""));
 	}
 
 	public nonce(): BigNumber {
-		return BigNumber.make(this.data.sequence);
+		return BigNumber.make(this.data['sequence']);
 	}
 
 	public secondPublicKey(): string | undefined {

@@ -7,15 +7,15 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public address(): string {
-		return this.data.address || this.data.account?.address;
+		return this.data['address'] || this.data['account']?.address;
 	}
 
 	public publicKey(): string {
-		return this.data.publicKey || this.data.account?.publicKey;
+		return this.data['publicKey'] || this.data['account']?.publicKey;
 	}
 
 	public balance(): BigNumber {
-		return BigNumber.make(this.data.balance);
+		return BigNumber.make(this.data['balance']);
 	}
 
 	public nonce(): BigNumber {
@@ -23,19 +23,19 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public secondPublicKey(): string | undefined {
-		return this.data.secondPublicKey;
+		return this.data['secondPublicKey'];
 	}
 
 	public username(): string | undefined {
-		return this.data.username || this.data.delegate?.username;
+		return this.data['username'] || this.data['delegate']?.username;
 	}
 
 	public rank(): number | undefined {
-		return this.data.rank || this.data.delegate?.rank;
+		return this.data['rank'] || this.data['delegate']?.rank;
 	}
 
 	public votes(): BigNumber | undefined {
-		return BigNumber.make(this.data.vote || this.data.delegate?.vote);
+		return BigNumber.make(this.data['vote'] || this.data['delegate']?.vote);
 	}
 
 	public entities(): Contracts.Entity[] {
@@ -47,11 +47,11 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 			throw new Error("This wallet does not have a multi-signature registered.");
 		}
 
-		return this.data.multiSignature;
+		return this.data['multiSignature'];
 	}
 
 	public isDelegate(): boolean {
-		return !!this.data.delegate;
+		return !!this.data['delegate'];
 	}
 
 	public isResignedDelegate(): boolean {
@@ -63,6 +63,6 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public isSecondSignature(): boolean {
-		return !!this.data.secondPublicKey;
+		return !!this.data['secondPublicKey'];
 	}
 }

@@ -1,31 +1,7 @@
 import { TransactionDataCollection } from "./coins";
 import { MetaPagination, TransactionDataType } from "./contracts";
 
-interface DataTransferObjects {
-	TransactionData: any;
-	BridgechainRegistrationData: any;
-	BridgechainResignationData: any;
-	BridgechainUpdateData: any;
-	BusinessRegistrationData: any;
-	BusinessResignationData: any;
-	BusinessUpdateData: any;
-	DelegateRegistrationData: any;
-	DelegateResignationData: any;
-	EntityRegistrationData: any;
-	EntityResignationData: any;
-	EntityUpdateData: any;
-	HtlcClaimData: any;
-	HtlcLockData: any;
-	HtlcRefundData: any;
-	IpfsData: any;
-	MultiPaymentData: any;
-	MultiSignatureData: any;
-	SecondSignatureData: any;
-	TransferData: any;
-	VoteData: any;
-}
-
-export const createTransactionDataWithType = (transaction: unknown, dtos: DataTransferObjects): TransactionDataType => {
+export const createTransactionDataWithType = (transaction: unknown, dtos: any): TransactionDataType => {
 	const instance: TransactionDataType = new dtos.TransactionData(transaction);
 
 	if (instance.isLegacyBridgechainRegistration()) {
@@ -118,7 +94,7 @@ export const createTransactionDataWithType = (transaction: unknown, dtos: DataTr
 export const createTransactionDataCollectionWithType = (
 	transactions: unknown[],
 	meta: MetaPagination,
-	classes: DataTransferObjects,
+	classes: any,
 ): TransactionDataCollection =>
 	new TransactionDataCollection(
 		transactions.map((transaction) => createTransactionDataWithType(transaction, classes)),

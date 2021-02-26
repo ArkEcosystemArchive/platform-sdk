@@ -241,6 +241,7 @@ export class ClientService implements Contracts.ClientService {
 						result.errors[transactionId] = [];
 					}
 
+					// @ts-ignore
 					result.errors[transactionId].push(this.#broadcastErrors[engine_result]);
 				}
 			}

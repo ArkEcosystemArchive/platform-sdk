@@ -3,17 +3,10 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { UnspentTransactionData as Contract } from "../contracts/coins/data";
 
-interface RawData {
-	id: string;
-	timestamp: DateTime;
-	amount: BigNumber;
-	addresses: string[];
-};
-
 export class UnspentTransactionData implements Contract {
-	readonly #data: RawData;
+	readonly #data: any;
 
-	public constructor(data: RawData) {
+	public constructor(data: any) {
 		this.#data = data;
 	}
 

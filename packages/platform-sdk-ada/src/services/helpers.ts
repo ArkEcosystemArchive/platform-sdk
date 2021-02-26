@@ -6,4 +6,4 @@ export const postGraphql = async (config: Coins.Config, query: string): Promise<
 		await config
 			.get<Contracts.HttpClient>("httpClient")
 			.post(Arr.randomElement(config.get<string[]>("network.networking.hostsArchival")), { query })
-	).json().data;
+	).json()['data'];

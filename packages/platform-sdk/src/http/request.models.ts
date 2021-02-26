@@ -1,5 +1,6 @@
 export interface RequestOptions {
 	prefixUrl?: string;
+	method?: string;
 	headers?: Record<string, string>;
 	cache?: object;
 	timeout?: number;
@@ -7,4 +8,9 @@ export interface RequestOptions {
 		limit: number,
 		maxRetryAfter?: number,
 	};
+	// Payload
+	params?: object;
+	searchParams?: any;
+	body?: any;
+	json?: any;
 };
