@@ -473,7 +473,7 @@ export class TransactionService {
 		}
 
 		if (result.accepted.includes(id)) {
-			this.#broadcasted[id] = this.#signed[id];
+			this.#broadcasted[id] = this.#signed[id]!;
 		}
 
 		return result;
@@ -628,7 +628,7 @@ export class TransactionService {
 		this.#waitingForOtherSignatures = {};
 
 		for (const transaction of transactions) {
-			const transactionId: string = transaction.id;
+			const transactionId: string = transaction['id'];
 			const signedTransaction = new SignedTransactionData(
 				transactionId,
 				transaction,
