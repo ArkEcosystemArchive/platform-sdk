@@ -21,11 +21,7 @@ export const useDatabase = (
 
 export const useLogger = (): Logger => new Logger();
 
-export const useClient = (flags: {
-	rpc: string;
-	username: string;
-	password: string;
-}): Contracts.HttpClient => {
+export const useClient = (flags: { rpc: string; username: string; password: string }): Contracts.HttpClient => {
 	const { hostname: host, port, protocol } = urlParseLax(flags.rpc);
 
 	return new Request().baseUrl(`${protocol}//${flags.username}:${flags.password}@${host}:${port}`);
