@@ -1,10 +1,10 @@
-import AdaMainnet from "./networks/ada/mainnet";
-import AdaTestnet from "./networks/ada/testnet";
+import SolMainnet from "./networks/sol/mainnet";
+import SolTestnet from "./networks/sol/testnet";
 
 export const manifest = {
-	name: "Cardano",
+	name: "Solana",
 	networks: {
-		"ada.mainnet": AdaMainnet,
-		"ada.testnet": AdaTestnet,
+		"sol.mainnet": SolMainnet,
+		"sol.testnet": SolTestnet,
 	},
 };
