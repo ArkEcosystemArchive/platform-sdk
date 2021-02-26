@@ -23,7 +23,8 @@ describe("TransactionService", () => {
 		const result = await subject.transfer({
 			from: "7yihWKb3LfvKEcjgTSW5vZruU6wmpR5WB224FyU5DzLW",
 			sign: {
-				mnemonic: "point clown obvious suspect saddle coffee cancel frame ask spy skull maid hybrid faint stumble ball alone mutual planet kick decade twist age salmon",
+				mnemonic:
+					"point clown obvious suspect saddle coffee cancel frame ask spy skull maid hybrid faint stumble ball alone mutual planet kick decade twist age salmon",
 			},
 			data: {
 				amount: "1",

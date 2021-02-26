@@ -1,41 +1,41 @@
 {
-    "name": "@arkecosystem/platform-sdk-xrp",
-    "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "3.0.26",
-    "contributors": [],
-    "license": "MIT",
-    "files": [
-        "/dist"
-    ],
-    "main": "dist/index",
-    "types": "dist/index",
-    "scripts": {
-        "build": "npm run clean && tsc",
-        "build:watch": "npm run build -w",
-        "clean": "rimraf .coverage dist tmp",
-        "test": "jest",
-        "test:watch": "jest --watchAll",
-        "publish": "npm run build && npm run publish --access public --tolerate-republish"
-    },
-    "dependencies": {
-        "@arkecosystem/platform-sdk": "file:../platform-sdk",
-        "@arkecosystem/platform-sdk-crypto": "file:../platform-sdk-crypto",
-        "@arkecosystem/platform-sdk-intl": "file:../platform-sdk-intl",
-        "@arkecosystem/platform-sdk-support": "file:../platform-sdk-support",
-        "@ledgerhq/hw-app-xrp": "^5.29.0",
-        "bignumber.js": "^9.0.1",
-        "ripple-keypairs": "^1.0.2",
-        "ripple-lib": "^1.8.2"
-    },
-    "devDependencies": {
-        "@types/ws": "7.4.0",
-        "ripple-binary-codec": "^1.0.2",
-        "ws": "^7.4.0"
-    },
-    "engines": {
-        "node": ">=12.x"
-    },
-    "jest": {
-        "preset": "../../jest.config.js"
-    }
+	"name": "@arkecosystem/platform-sdk-xrp",
+	"description": "Cross-Platform Utilities for ARK Applications",
+	"version": "3.0.26",
+	"contributors": [],
+	"license": "MIT",
+	"files": [
+		"/dist"
+	],
+	"main": "dist/index",
+	"types": "dist/index",
+	"scripts": {
+		"build": "npm run clean && tsc",
+		"build:watch": "npm run build -w",
+		"clean": "rimraf .coverage dist tmp",
+		"test": "jest",
+		"test:watch": "jest --watchAll",
+		"publish": "npm run build && npm run publish --access public --tolerate-republish"
+	},
+	"dependencies": {
+		"@arkecosystem/platform-sdk": "file:../platform-sdk",
+		"@arkecosystem/platform-sdk-crypto": "file:../platform-sdk-crypto",
+		"@arkecosystem/platform-sdk-intl": "file:../platform-sdk-intl",
+		"@arkecosystem/platform-sdk-support": "file:../platform-sdk-support",
+		"@ledgerhq/hw-app-xrp": "^5.29.0",
+		"bignumber.js": "^9.0.1",
+		"ripple-keypairs": "^1.0.2",
+		"ripple-lib": "^1.8.2"
+	},
+	"devDependencies": {
+		"@types/ws": "7.4.0",
+		"ripple-binary-codec": "^1.0.2",
+		"ws": "^7.4.0"
+	},
+	"engines": {
+		"node": ">=12.x"
+	},
+	"jest": {
+		"preset": "../../jest.config.js"
+	}
 }

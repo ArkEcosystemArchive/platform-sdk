@@ -1,35 +1,35 @@
 {
-    "name": "@arkecosystem/platform-sdk-json-rpc",
-    "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "3.0.26",
-    "contributors": [],
-    "license": "MIT",
-    "files": [
-        "/dist"
-    ],
-    "main": "dist/index",
-    "types": "dist/index",
-    "scripts": {
-        "build": "npm run clean && tsc",
-        "build:watch": "npm run build -w",
-        "clean": "rimraf .coverage dist tmp",
-        "test": "jest",
-        "test:watch": "jest --watchAll",
-        "publish": "npm run build && npm run publish --access public --tolerate-republish"
-    },
-    "dependencies": {
-        "@hapi/hapi": "^20.1.0",
-        "@kodekeep/hapi-json-rpc": "^1.0.0",
-        "pino": "^6.7.0"
-    },
-    "devDependencies": {
-        "@types/hapi__hapi": "20.0.2",
-        "@types/pino": "6.3.3"
-    },
-    "engines": {
-        "node": ">=12.x"
-    },
-    "jest": {
-        "preset": "../../jest.config.js"
-    }
+	"name": "@arkecosystem/platform-sdk-json-rpc",
+	"description": "Cross-Platform Utilities for ARK Applications",
+	"version": "3.0.26",
+	"contributors": [],
+	"license": "MIT",
+	"files": [
+		"/dist"
+	],
+	"main": "dist/index",
+	"types": "dist/index",
+	"scripts": {
+		"build": "npm run clean && tsc",
+		"build:watch": "npm run build -w",
+		"clean": "rimraf .coverage dist tmp",
+		"test": "jest",
+		"test:watch": "jest --watchAll",
+		"publish": "npm run build && npm run publish --access public --tolerate-republish"
+	},
+	"dependencies": {
+		"@hapi/hapi": "^20.1.0",
+		"@kodekeep/hapi-json-rpc": "^1.0.0",
+		"pino": "^6.7.0"
+	},
+	"devDependencies": {
+		"@types/hapi__hapi": "20.0.2",
+		"@types/pino": "6.3.3"
+	},
+	"engines": {
+		"node": ">=12.x"
+	},
+	"jest": {
+		"preset": "../../jest.config.js"
+	}
 }

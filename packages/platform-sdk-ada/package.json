@@ -1,37 +1,37 @@
 {
-    "name": "@arkecosystem/platform-sdk-ada",
-    "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "3.0.26",
-    "contributors": [],
-    "license": "MIT",
-    "files": [
-        "/dist"
-    ],
-    "main": "dist/index",
-    "types": "dist/index",
-    "scripts": {
-        "build": "npm run clean && tsc",
-        "build:watch": "npm run build -w",
-        "clean": "rimraf .coverage dist tmp",
-        "test": "jest",
-        "test:watch": "jest --watchAll",
-        "publish": "npm run build && npm run publish --access public --tolerate-republish"
-    },
-    "dependencies": {
-        "@arkecosystem/platform-sdk": "file:../platform-sdk",
-        "@arkecosystem/platform-sdk-crypto": "file:../platform-sdk-crypto",
-        "@arkecosystem/platform-sdk-intl": "file:../platform-sdk-intl",
-        "@arkecosystem/platform-sdk-support": "file:../platform-sdk-support",
-        "@emurgo/cardano-serialization-lib-nodejs": "^6.0.0",
-        "cardano-crypto.js": "^6.0.0"
-    },
-    "devDependencies": {
-        "@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got"
-    },
-    "engines": {
-        "node": ">=12.x"
-    },
-    "jest": {
-        "preset": "../../jest.config.js"
-    }
+	"name": "@arkecosystem/platform-sdk-ada",
+	"description": "Cross-Platform Utilities for ARK Applications",
+	"version": "3.0.26",
+	"contributors": [],
+	"license": "MIT",
+	"files": [
+		"/dist"
+	],
+	"main": "dist/index",
+	"types": "dist/index",
+	"scripts": {
+		"build": "npm run clean && tsc",
+		"build:watch": "npm run build -w",
+		"clean": "rimraf .coverage dist tmp",
+		"test": "jest",
+		"test:watch": "jest --watchAll",
+		"publish": "npm run build && npm run publish --access public --tolerate-republish"
+	},
+	"dependencies": {
+		"@arkecosystem/platform-sdk": "file:../platform-sdk",
+		"@arkecosystem/platform-sdk-crypto": "file:../platform-sdk-crypto",
+		"@arkecosystem/platform-sdk-intl": "file:../platform-sdk-intl",
+		"@arkecosystem/platform-sdk-support": "file:../platform-sdk-support",
+		"@emurgo/cardano-serialization-lib-nodejs": "^6.0.0",
+		"cardano-crypto.js": "^6.0.0"
+	},
+	"devDependencies": {
+		"@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got"
+	},
+	"engines": {
+		"node": ">=12.x"
+	},
+	"jest": {
+		"preset": "../../jest.config.js"
+	}
 }

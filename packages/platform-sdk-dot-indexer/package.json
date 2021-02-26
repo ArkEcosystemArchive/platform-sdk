@@ -1,50 +1,50 @@
 {
-    "name": "@arkecosystem/platform-sdk-dot-indexer",
-    "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "3.0.26",
-    "contributors": [],
-    "license": "MIT",
-    "files": [
-        "/bin",
-        "/dist"
-    ],
-    "main": "dist/index",
-    "types": "dist/index",
-    "bin": {
-        "pdot": "./bin/run"
-    },
-    "scripts": {
-        "build": "npm run clean && tsc",
-        "build:watch": "npm run build -w",
-        "clean": "rimraf .coverage dist tmp",
-        "test": "jest",
-        "test:watch": "jest --watchAll",
-        "publish": "npm run build && npm run publish --access public --tolerate-republish"
-    },
-    "dependencies": {
-        "@konceiver/foreman": "^2.0.1",
-        "@polkadot/api": "^3.6.4",
-        "better-sqlite3": "^7.1.2",
-        "env-paths": "^2.2.0",
-        "fs-extra": "^9.1.0",
-        "meow": "^9.0.0",
-        "p-queue": "^6.6.2",
-        "p-retry": "^4.3.0",
-        "pino": "^6.11.0",
-        "pino-pretty": "^4.5.0",
-        "uuid": "^8.3.2"
-    },
-    "devDependencies": {
-        "@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got",
-        "@types/meow": "5.0.0",
-        "@types/p-retry": "3.0.1",
-        "@types/pino": "^6.3.5",
-        "@types/uuid": "8.3.0"
-    },
-    "engines": {
-        "node": ">=12.x"
-    },
-    "jest": {
-        "preset": "../../jest.config.js"
-    }
+	"name": "@arkecosystem/platform-sdk-dot-indexer",
+	"description": "Cross-Platform Utilities for ARK Applications",
+	"version": "3.0.26",
+	"contributors": [],
+	"license": "MIT",
+	"files": [
+		"/bin",
+		"/dist"
+	],
+	"main": "dist/index",
+	"types": "dist/index",
+	"bin": {
+		"pdot": "./bin/run"
+	},
+	"scripts": {
+		"build": "npm run clean && tsc",
+		"build:watch": "npm run build -w",
+		"clean": "rimraf .coverage dist tmp",
+		"test": "jest",
+		"test:watch": "jest --watchAll",
+		"publish": "npm run build && npm run publish --access public --tolerate-republish"
+	},
+	"dependencies": {
+		"@konceiver/foreman": "^2.0.1",
+		"@polkadot/api": "^3.6.4",
+		"better-sqlite3": "^7.1.2",
+		"env-paths": "^2.2.0",
+		"fs-extra": "^9.1.0",
+		"meow": "^9.0.0",
+		"p-queue": "^6.6.2",
+		"p-retry": "^4.3.0",
+		"pino": "^6.11.0",
+		"pino-pretty": "^4.5.0",
+		"uuid": "^8.3.2"
+	},
+	"devDependencies": {
+		"@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got",
+		"@types/meow": "5.0.0",
+		"@types/p-retry": "3.0.1",
+		"@types/pino": "^6.3.5",
+		"@types/uuid": "8.3.0"
+	},
+	"engines": {
+		"node": ">=12.x"
+	},
+	"jest": {
+		"preset": "../../jest.config.js"
+	}
 }

@@ -1,33 +1,33 @@
 {
-    "name": "@arkecosystem/platform-sdk-intl",
-    "description": "Cross-Platform Utilities for ARK Applications",
-    "version": "3.0.26",
-    "contributors": [],
-    "license": "MIT",
-    "files": [
-        "/dist"
-    ],
-    "main": "dist/index",
-    "types": "dist/index",
-    "scripts": {
-        "build": "npm run clean && tsc",
-        "build:watch": "npm run build -w",
-        "clean": "rimraf .coverage dist tmp",
-        "test": "jest",
-        "test:watch": "jest --watchAll",
-        "publish": "npm run build && npm run publish --access public --tolerate-republish"
-    },
-    "dependencies": {
-        "dayjs": "^1.9.6",
-        "dinero.js": "^1.8.1"
-    },
-    "devDependencies": {
-        "@types/dinero.js": "1.6.5"
-    },
-    "engines": {
-        "node": ">=12.x"
-    },
-    "jest": {
-        "preset": "../../jest.coverage.js"
-    }
+	"name": "@arkecosystem/platform-sdk-intl",
+	"description": "Cross-Platform Utilities for ARK Applications",
+	"version": "3.0.26",
+	"contributors": [],
+	"license": "MIT",
+	"files": [
+		"/dist"
+	],
+	"main": "dist/index",
+	"types": "dist/index",
+	"scripts": {
+		"build": "npm run clean && tsc",
+		"build:watch": "npm run build -w",
+		"clean": "rimraf .coverage dist tmp",
+		"test": "jest",
+		"test:watch": "jest --watchAll",
+		"publish": "npm run build && npm run publish --access public --tolerate-republish"
+	},
+	"dependencies": {
+		"dayjs": "^1.9.6",
+		"dinero.js": "^1.8.1"
+	},
+	"devDependencies": {
+		"@types/dinero.js": "1.6.5"
+	},
+	"engines": {
+		"node": ">=12.x"
+	},
+	"jest": {
+		"preset": "../../jest.coverage.js"
+	}
 }
