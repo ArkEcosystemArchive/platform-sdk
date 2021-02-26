@@ -75,20 +75,20 @@ export class PeerService implements Contracts.PeerService {
 
 		let peers: Contracts.PeerResponse[] = body.data;
 
-		if (options['filters'] && options['filters'].version !== undefined) {
+		if (options["filters"] && options["filters"].version !== undefined) {
 			peers = peers.filter((peer: Contracts.PeerResponse) =>
-				semver.satisfies(peer.version, options['filters'].version),
+				semver.satisfies(peer.version, options["filters"].version),
 			);
 		}
 
-		if (options['filters'] && options['filters'].latency !== undefined) {
-			peers = peers.filter((peer: Contracts.PeerResponse) => peer.latency <= options['filters'].latency);
+		if (options["filters"] && options["filters"].latency !== undefined) {
+			peers = peers.filter((peer: Contracts.PeerResponse) => peer.latency <= options["filters"].latency);
 		}
 
-		if (!options['orderBy']) {
-			options['orderBy'] = ["latency", "desc"];
+		if (!options["orderBy"]) {
+			options["orderBy"] = ["latency", "desc"];
 		}
 
-		return orderBy(peers, [options['orderBy'][0]], [options['orderBy'][1]]);
+		return orderBy(peers, [options["orderBy"][0]], [options["orderBy"][1]]);
 	}
 }

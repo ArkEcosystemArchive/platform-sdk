@@ -7,7 +7,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public address(): string {
-		return this.data['account_name'];
+		return this.data["account_name"];
 	}
 
 	public publicKey(): string | undefined {
@@ -15,7 +15,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public balance(): BigNumber {
-		return BigNumber.make(this.data['net_weight']);
+		return BigNumber.make(this.data["net_weight"]);
 	}
 
 	public nonce(): BigNumber {

@@ -81,11 +81,11 @@ export class ClientService implements Contracts.ClientService {
 		});
 
 		return Helpers.createTransactionDataCollectionWithType(
-			response['txs'],
+			response["txs"],
 			{
 				prev: page <= 1 ? undefined : page - 1,
-				self: Number(response['page_number']),
-				next: page >= Number(response['page_total']) ? undefined : page,
+				self: Number(response["page_number"]),
+				next: page >= Number(response["page_total"]) ? undefined : page,
 			},
 			TransactionDTO,
 		);

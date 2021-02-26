@@ -97,7 +97,7 @@ export class TransactionService implements Contracts.TransactionService {
 					keyPairAddresses,
 					keyPairAddresses,
 					keyPairAddresses,
-					input['data'].votes[0]!,
+					input["data"].votes[0]!,
 					// @ts-ignore
 					"START-TIME",
 					// @ts-ignore

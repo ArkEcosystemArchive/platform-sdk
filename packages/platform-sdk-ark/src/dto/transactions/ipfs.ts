@@ -4,6 +4,6 @@ import { TransactionData } from "../transaction";
 
 export class IpfsData extends TransactionData implements Contracts.IpfsData {
 	public hash(): string {
-		return this.data['asset'].ipfs;
+		return this.data["asset"].ipfs;
 	}
 }

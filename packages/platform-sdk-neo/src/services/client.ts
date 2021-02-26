@@ -120,7 +120,7 @@ export class ClientService implements Contracts.ClientService {
 				result.accepted.push(transaction.id());
 			}
 
-			if (response?.result['error']) {
+			if (response?.result["error"]) {
 				result.rejected.push(transaction.id());
 
 				if (!Array.isArray(result.errors[transaction.id()])) {
@@ -128,7 +128,7 @@ export class ClientService implements Contracts.ClientService {
 				}
 
 				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
-					if (response.result['error'].message.includes(key)) {
+					if (response.result["error"].message.includes(key)) {
 						// @ts-ignore
 						result.errors[transaction.id()].push(value);
 					}

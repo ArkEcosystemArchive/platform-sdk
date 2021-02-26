@@ -5,12 +5,12 @@ export interface RequestOptions {
 	cache?: object;
 	timeout?: number;
 	retry?: {
-		limit: number,
-		maxRetryAfter?: number,
+		limit: number;
+		maxRetryAfter?: number;
 	};
 	// Payload
 	params?: object;
 	searchParams?: any;
 	body?: any;
 	json?: any;
-};
+}

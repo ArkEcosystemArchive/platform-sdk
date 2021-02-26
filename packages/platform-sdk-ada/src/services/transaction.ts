@@ -183,7 +183,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 	public async estimateExpiration(value?: string): Promise<string> {
 		const tip: number = parseInt(
-			(await postGraphql(this.#config, `{ cardano { tip { slotNo } } }`))['cardano'].tip.slotNo,
+			(await postGraphql(this.#config, `{ cardano { tip { slotNo } } }`))["cardano"].tip.slotNo,
 		);
 		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 
@@ -211,6 +211,6 @@ export class TransactionService implements Contracts.TransactionService {
 				}
 			  }`,
 			)
-		)['utxos'];
+		)["utxos"];
 	}
 }

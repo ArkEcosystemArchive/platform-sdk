@@ -4,7 +4,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		return this.data['id'];
+		return this.data["id"];
 	}
 
 	public blockId(): string | undefined {
@@ -12,7 +12,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public timestamp(): DateTime | undefined {
-		return DateTime.make(this.data['timestamp']);
+		return DateTime.make(this.data["timestamp"]);
 	}
 
 	public confirmations(): BigNumber {
@@ -20,11 +20,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		return Object.keys(this.data['inputTotals'])[0]!;
+		return Object.keys(this.data["inputTotals"])[0]!;
 	}
 
 	public recipient(): string {
-		return Object.keys(this.data['outputTotals'])[0]!;
+		return Object.keys(this.data["outputTotals"])[0]!;
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
@@ -32,11 +32,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(Object.values(this.data['outputTotals'])[0] as string);
+		return BigNumber.make(Object.values(this.data["outputTotals"])[0] as string);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data['txFee']);
+		return BigNumber.make(this.data["txFee"]);
 	}
 
 	public asset(): Record<string, unknown> {
@@ -44,25 +44,25 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public inputs(): Contracts.UnspentTransactionData[] {
-		return this.data['inputs'].map(
+		return this.data["inputs"].map(
 			(input: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
-					id: input['transactionID'],
-					timestamp: DateTime.make(input['timestamp']),
-					amount: BigNumber.make(input['amount']),
-					addresses: input['addresses'],
+					id: input["transactionID"],
+					timestamp: DateTime.make(input["timestamp"]),
+					amount: BigNumber.make(input["amount"]),
+					addresses: input["addresses"],
 				}),
 		);
 	}
 
 	public outputs(): Contracts.UnspentTransactionData[] {
-		return this.data['outputs'].map(
+		return this.data["outputs"].map(
 			(output: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
-					id: output['transactionID'],
-					timestamp: DateTime.make(output['timestamp']),
-					amount: BigNumber.make(output['amount']),
-					addresses: output['addresses'],
+					id: output["transactionID"],
+					timestamp: DateTime.make(output["timestamp"]),
+					amount: BigNumber.make(output["amount"]),
+					addresses: output["addresses"],
 				}),
 		);
 	}
@@ -80,7 +80,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isTransfer(): boolean {
-		return this.data['type'] === "base";
+		return this.data["type"] === "base";
 	}
 
 	public isSecondSignature(): boolean {

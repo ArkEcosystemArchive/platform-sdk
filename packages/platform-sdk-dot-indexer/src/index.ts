@@ -20,7 +20,7 @@ export const subscribe = async (flags: Record<string, string>): Promise<void> =>
 	const database: Database = useDatabase(flags, logger);
 
 	// API
-	let polkadot = await usePolkadot(flags['polkadot']!);
+	let polkadot = await usePolkadot(flags["polkadot"]!);
 
 	const localHeight = database.lastBlockNumber();
 	const latestBlockHeight = parseInt((await polkadot.derive.chain.bestNumberFinalized()).toString());
@@ -65,7 +65,7 @@ export const subscribe = async (flags: Record<string, string>): Promise<void> =>
 
 			logger.info("Reconnecting...");
 
-			polkadot = await usePolkadot(flags['polkadot']!);
+			polkadot = await usePolkadot(flags["polkadot"]!);
 
 			if (i > 500) {
 				i -= 500;

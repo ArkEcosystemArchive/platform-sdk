@@ -6,27 +6,27 @@ import { EntityAction, EntityType } from "../enums";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		return this.data['id'];
+		return this.data["id"];
 	}
 
 	public blockId(): string | undefined {
-		return this.data['blockId'];
+		return this.data["blockId"];
 	}
 
 	public timestamp(): DateTime | undefined {
-		return DateTime.fromUnix(this.data['timestamp'].unix);
+		return DateTime.fromUnix(this.data["timestamp"].unix);
 	}
 
 	public confirmations(): BigNumber {
-		return BigNumber.make(this.data['confirmations']);
+		return BigNumber.make(this.data["confirmations"]);
 	}
 
 	public sender(): string {
-		return this.data['sender'];
+		return this.data["sender"];
 	}
 
 	public recipient(): string {
-		return this.data['recipient'];
+		return this.data["recipient"];
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
@@ -34,7 +34,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			return [];
 		}
 
-		return this.data['asset'].payments.map((payment: { recipientId: string; amount: string }) => ({
+		return this.data["asset"].payments.map((payment: { recipientId: string; amount: string }) => ({
 			address: payment.recipientId,
 			amount: BigNumber.make(payment.amount),
 		}));
@@ -42,21 +42,21 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 	public amount(): BigNumber {
 		if (this.isMultiPayment()) {
-			return this.data['asset'].payments.reduce(
+			return this.data["asset"].payments.reduce(
 				(sum: BigNumber, { amount }: { amount: string }) => sum.plus(amount),
 				BigNumber.ZERO,
 			);
 		}
 
-		return BigNumber.make(this.data['amount']);
+		return BigNumber.make(this.data["amount"]);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data['fee']);
+		return BigNumber.make(this.data["fee"]);
 	}
 
 	public asset(): Record<string, unknown> {
-		return this.data['asset'];
+		return this.data["asset"];
 	}
 
 	public inputs(): Contracts.UnspentTransactionData[] {
@@ -80,15 +80,15 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isTransfer(): boolean {
-		return this.data['typeGroup'] === 1 && this.data['type'] === 0;
+		return this.data["typeGroup"] === 1 && this.data["type"] === 0;
 	}
 
 	public isSecondSignature(): boolean {
-		return this.data['typeGroup'] === 1 && this.data['type'] === 1;
+		return this.data["typeGroup"] === 1 && this.data["type"] === 1;
 	}
 
 	public isDelegateRegistration(): boolean {
-		return this.data['typeGroup'] === 1 && this.data['type'] === 2;
+		return this.data["typeGroup"] === 1 && this.data["type"] === 2;
 	}
 
 	public isVoteCombination(): boolean {
@@ -96,146 +96,154 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isVote(): boolean {
-		const isVote = this.data['typeGroup'] === 1 && this.data['type'] === 3;
+		const isVote = this.data["typeGroup"] === 1 && this.data["type"] === 3;
 
 		if (!isVote) {
 			return false;
 		}
 
-		return (this.asset()['votes'] as string[]).some((vote) => vote.startsWith("+"));
+		return (this.asset()["votes"] as string[]).some((vote) => vote.startsWith("+"));
 	}
 
 	public isUnvote(): boolean {
-		const isVote = this.data['typeGroup'] === 1 && this.data['type'] === 3;
+		const isVote = this.data["typeGroup"] === 1 && this.data["type"] === 3;
 
 		if (!isVote) {
 			return false;
 		}
 
-		return (this.asset()['votes'] as string[]).some((vote) => vote.startsWith("-"));
+		return (this.asset()["votes"] as string[]).some((vote) => vote.startsWith("-"));
 	}
 
 	public isMultiSignature(): boolean {
-		return this.data['typeGroup'] === 1 && this.data['type'] === 4;
+		return this.data["typeGroup"] === 1 && this.data["type"] === 4;
 	}
 
 	public isIpfs(): boolean {
-		return this.data['typeGroup'] === 1 && this.data['type'] === 5;
+		return this.data["typeGroup"] === 1 && this.data["type"] === 5;
 	}
 
 	public isMultiPayment(): boolean {
-		return this.data['typeGroup'] === 1 && this.data['type'] === 6;
+		return this.data["typeGroup"] === 1 && this.data["type"] === 6;
 	}
 
 	public isDelegateResignation(): boolean {
-		return this.data['typeGroup'] === 1 && this.data['type'] === 7;
+		return this.data["typeGroup"] === 1 && this.data["type"] === 7;
 	}
 
 	public isHtlcLock(): boolean {
-		return this.data['typeGroup'] === 1 && this.data['type'] === 8;
+		return this.data["typeGroup"] === 1 && this.data["type"] === 8;
 	}
 
 	public isHtlcClaim(): boolean {
-		return this.data['typeGroup'] === 1 && this.data['type'] === 9;
+		return this.data["typeGroup"] === 1 && this.data["type"] === 9;
 	}
 
 	public isHtlcRefund(): boolean {
-		return this.data['typeGroup'] === 1 && this.data['type'] === 10;
+		return this.data["typeGroup"] === 1 && this.data["type"] === 10;
 	}
 
 	public isEntityRegistration(): boolean {
-		return this.data['typeGroup'] === 2 && this.data['type'] === 6 && this.data['asset'].action === EntityAction.Register;
+		return (
+			this.data["typeGroup"] === 2 &&
+			this.data["type"] === 6 &&
+			this.data["asset"].action === EntityAction.Register
+		);
 	}
 
 	public isEntityResignation(): boolean {
-		return this.data['typeGroup'] === 2 && this.data['type'] === 6 && this.data['asset'].action === EntityAction.Resign;
+		return (
+			this.data["typeGroup"] === 2 && this.data["type"] === 6 && this.data["asset"].action === EntityAction.Resign
+		);
 	}
 
 	public isEntityUpdate(): boolean {
-		return this.data['typeGroup'] === 2 && this.data['type'] === 6 && this.data['asset'].action === EntityAction.Update;
+		return (
+			this.data["typeGroup"] === 2 && this.data["type"] === 6 && this.data["asset"].action === EntityAction.Update
+		);
 	}
 
 	public isBusinessEntityRegistration(): boolean {
-		return this.isEntityRegistration() && this.data['asset'].type === EntityType.Business;
+		return this.isEntityRegistration() && this.data["asset"].type === EntityType.Business;
 	}
 
 	public isBusinessEntityResignation(): boolean {
-		return this.isEntityResignation() && this.data['asset'].type === EntityType.Business;
+		return this.isEntityResignation() && this.data["asset"].type === EntityType.Business;
 	}
 
 	public isBusinessEntityUpdate(): boolean {
-		return this.isEntityUpdate() && this.data['asset'].type === EntityType.Business;
+		return this.isEntityUpdate() && this.data["asset"].type === EntityType.Business;
 	}
 
 	public isProductEntityRegistration(): boolean {
-		return this.isEntityRegistration() && this.data['asset'].type === EntityType.Product;
+		return this.isEntityRegistration() && this.data["asset"].type === EntityType.Product;
 	}
 
 	public isProductEntityResignation(): boolean {
-		return this.isEntityResignation() && this.data['asset'].type === EntityType.Product;
+		return this.isEntityResignation() && this.data["asset"].type === EntityType.Product;
 	}
 
 	public isProductEntityUpdate(): boolean {
-		return this.isEntityUpdate() && this.data['asset'].type === EntityType.Product;
+		return this.isEntityUpdate() && this.data["asset"].type === EntityType.Product;
 	}
 
 	public isPluginEntityRegistration(): boolean {
-		return this.isEntityRegistration() && this.data['asset'].type === EntityType.Plugin;
+		return this.isEntityRegistration() && this.data["asset"].type === EntityType.Plugin;
 	}
 
 	public isPluginEntityResignation(): boolean {
-		return this.isEntityResignation() && this.data['asset'].type === EntityType.Plugin;
+		return this.isEntityResignation() && this.data["asset"].type === EntityType.Plugin;
 	}
 
 	public isPluginEntityUpdate(): boolean {
-		return this.isEntityUpdate() && this.data['asset'].type === EntityType.Plugin;
+		return this.isEntityUpdate() && this.data["asset"].type === EntityType.Plugin;
 	}
 
 	public isModuleEntityRegistration(): boolean {
-		return this.isEntityRegistration() && this.data['asset'].type === EntityType.Module;
+		return this.isEntityRegistration() && this.data["asset"].type === EntityType.Module;
 	}
 
 	public isModuleEntityResignation(): boolean {
-		return this.isEntityResignation() && this.data['asset'].type === EntityType.Module;
+		return this.isEntityResignation() && this.data["asset"].type === EntityType.Module;
 	}
 
 	public isModuleEntityUpdate(): boolean {
-		return this.isEntityUpdate() && this.data['asset'].type === EntityType.Module;
+		return this.isEntityUpdate() && this.data["asset"].type === EntityType.Module;
 	}
 
 	public isDelegateEntityRegistration(): boolean {
-		return this.isEntityRegistration() && this.data['asset'].type === EntityType.Delegate;
+		return this.isEntityRegistration() && this.data["asset"].type === EntityType.Delegate;
 	}
 
 	public isDelegateEntityResignation(): boolean {
-		return this.isEntityResignation() && this.data['asset'].type === EntityType.Delegate;
+		return this.isEntityResignation() && this.data["asset"].type === EntityType.Delegate;
 	}
 
 	public isDelegateEntityUpdate(): boolean {
-		return this.isEntityUpdate() && this.data['asset'].type === EntityType.Delegate;
+		return this.isEntityUpdate() && this.data["asset"].type === EntityType.Delegate;
 	}
 
 	public isLegacyBusinessRegistration(): boolean {
-		return this.data['typeGroup'] === 2 && this.data['type'] === 0;
+		return this.data["typeGroup"] === 2 && this.data["type"] === 0;
 	}
 
 	public isLegacyBusinessResignation(): boolean {
-		return this.data['typeGroup'] === 2 && this.data['type'] === 1;
+		return this.data["typeGroup"] === 2 && this.data["type"] === 1;
 	}
 
 	public isLegacyBusinessUpdate(): boolean {
-		return this.data['typeGroup'] === 2 && this.data['type'] === 2;
+		return this.data["typeGroup"] === 2 && this.data["type"] === 2;
 	}
 
 	public isLegacyBridgechainRegistration(): boolean {
-		return this.data['typeGroup'] === 2 && this.data['type'] === 3;
+		return this.data["typeGroup"] === 2 && this.data["type"] === 3;
 	}
 
 	public isLegacyBridgechainResignation(): boolean {
-		return this.data['typeGroup'] === 2 && this.data['type'] === 4;
+		return this.data["typeGroup"] === 2 && this.data["type"] === 4;
 	}
 
 	public isLegacyBridgechainUpdate(): boolean {
-		return this.data['typeGroup'] === 2 && this.data['type'] === 5;
+		return this.data["typeGroup"] === 2 && this.data["type"] === 5;
 	}
 }

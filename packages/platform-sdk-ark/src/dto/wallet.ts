@@ -8,19 +8,19 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public address(): string {
-		return this.data['address'];
+		return this.data["address"];
 	}
 
 	public publicKey(): string | undefined {
-		return this.data['publicKey'];
+		return this.data["publicKey"];
 	}
 
 	public balance(): BigNumber {
-		return BigNumber.make(this.data['balance']);
+		return BigNumber.make(this.data["balance"]);
 	}
 
 	public nonce(): BigNumber {
-		return BigNumber.make(this.data['nonce']);
+		return BigNumber.make(this.data["nonce"]);
 	}
 
 	public secondPublicKey(): string | undefined {
@@ -46,7 +46,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public entities(): Contracts.Entity[] {
-		return Object.entries(this.data['attributes']?.entities || {}).map(([id, entity]: [string, any]) => ({
+		return Object.entries(this.data["attributes"]?.entities || {}).map(([id, entity]: [string, any]) => ({
 			id,
 			type: entity.type,
 			subType: entity.subType,

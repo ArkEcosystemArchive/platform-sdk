@@ -140,11 +140,13 @@ export class ClientService implements Contracts.ClientService {
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (
-			await this.#config
-				.get<Contracts.HttpClient>("httpClient")
-				// @ts-ignore
-				.get(`${this.host()}/${path}`, query?.searchParams)
-		).json();
+			(
+				await this.#config
+					.get<Contracts.HttpClient>("httpClient")
+					// @ts-ignore
+					.get(`${this.host()}/${path}`, query?.searchParams)
+			).json()
+		);
 	}
 
 	private host(): string {

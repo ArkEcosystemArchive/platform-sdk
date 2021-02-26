@@ -9,7 +9,7 @@ export class MessageService implements Contracts.MessageService {
 	readonly #identityService: IdentityService;
 
 	public constructor(opts: Contracts.KeyValuePair) {
-		this.#identityService = opts['identityService'];
+		this.#identityService = opts["identityService"];
 	}
 
 	public static async __construct(config: Coins.Config): Promise<MessageService> {

@@ -22,8 +22,8 @@ export class FeeService implements Contracts.FeeService {
 		const node = await this.get("node/fees");
 		const type = await this.get("transactions/fees");
 
-		const staticFees: object = type['data'];
-		const dynamicFees: object = node['data'];
+		const staticFees: object = type["data"];
+		const dynamicFees: object = node["data"];
 
 		return {
 			// Core

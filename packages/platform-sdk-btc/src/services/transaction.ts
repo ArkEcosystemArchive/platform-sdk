@@ -13,8 +13,8 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #unspent;
 
 	private constructor(opts: Contracts.KeyValuePair) {
-		this.#identity = opts['identity'];
-		this.#unspent = opts['unspent'];
+		this.#identity = opts["identity"];
+		this.#unspent = opts["unspent"];
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {

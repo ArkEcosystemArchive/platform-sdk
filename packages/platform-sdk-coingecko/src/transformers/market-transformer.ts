@@ -6,20 +6,20 @@ export class MarketTransformer implements Contracts.MarketTransformer {
 	public transform(options: Contracts.KeyValuePair): Contracts.MarketDataCollection {
 		const result = {};
 
-		for (const currency of Object.keys(options['currencies'] || Data.CURRENCIES)) {
+		for (const currency of Object.keys(options["currencies"] || Data.CURRENCIES)) {
 			const currencyLowerCase = currency.toLowerCase();
 
-			if (!this.data['current_price'][currencyLowerCase]) {
+			if (!this.data["current_price"][currencyLowerCase]) {
 				continue;
 			}
 
 			result[currency] = {
 				currency,
-				price: this.data['current_price'][currencyLowerCase],
-				marketCap: this.data['market_cap'][currencyLowerCase],
-				volume: this.data['total_volume'][currencyLowerCase],
-				date: new Date(this.data['last_updated']),
-				change24h: this.data['market_cap_change_percentage_24h_in_currency'][currencyLowerCase],
+				price: this.data["current_price"][currencyLowerCase],
+				marketCap: this.data["market_cap"][currencyLowerCase],
+				volume: this.data["total_volume"][currencyLowerCase],
+				date: new Date(this.data["last_updated"]),
+				change24h: this.data["market_cap_change_percentage_24h_in_currency"][currencyLowerCase],
 			};
 		}
 

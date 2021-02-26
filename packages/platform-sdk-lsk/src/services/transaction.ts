@@ -137,9 +137,9 @@ export class TransactionService implements Contracts.TransactionService {
 		callback?: Function,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			const struct: Contracts.KeyValuePair = { ...input['data'] };
+			const struct: Contracts.KeyValuePair = { ...input["data"] };
 
-			struct['networkIdentifier'] = this.#network;
+			struct["networkIdentifier"] = this.#network;
 
 			if (callback) {
 				callback({ struct });
@@ -147,12 +147,12 @@ export class TransactionService implements Contracts.TransactionService {
 
 			// todo: support multisignature
 
-			if (input['sign']['mnemonic']) {
-				struct['passphrase'] = BIP39.normalize(input['sign']['mnemonic']);
+			if (input["sign"]["mnemonic"]) {
+				struct["passphrase"] = BIP39.normalize(input["sign"]["mnemonic"]);
 			}
 
-			if (input['sign']['secondMnemonic']) {
-				struct['secondPassphrase'] = BIP39.normalize(input['sign']['secondMnemonic']);
+			if (input["sign"]["secondMnemonic"]) {
+				struct["secondPassphrase"] = BIP39.normalize(input["sign"]["secondMnemonic"]);
 			}
 
 			return transactions[type](struct);

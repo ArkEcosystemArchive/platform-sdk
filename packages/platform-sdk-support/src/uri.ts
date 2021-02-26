@@ -32,13 +32,13 @@ export class URI {
 	 * @memberof URI
 	 */
 	public serialize(input: Record<string, string>): string {
-		const method: string | undefined = input['method'];
+		const method: string | undefined = input["method"];
 
-		if(method === undefined) {
+		if (method === undefined) {
 			throw new Error("Missing a method argument.");
 		}
 
-		delete input['method'];
+		delete input["method"];
 
 		return `ark:${method}?${querystring.stringify(input)}`;
 	}
@@ -66,13 +66,13 @@ export class URI {
 		try {
 			let method: string | undefined = parsed[1];
 
-			if(method === undefined) {
+			if (method === undefined) {
 				throw new Error("Missing a method argument.");
 			}
 
 			let parameters: string | undefined = parsed[2];
 
-			if(parameters === undefined) {
+			if (parameters === undefined) {
 				throw new Error("Missing a parameters argument.");
 			}
 

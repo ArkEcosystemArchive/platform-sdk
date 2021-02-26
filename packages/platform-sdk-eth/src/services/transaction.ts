@@ -14,10 +14,10 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #web3;
 
 	private constructor(opts: Contracts.KeyValuePair) {
-		this.#http = opts['http'];
-		this.#peer = opts['peer'];
-		this.#chain = opts['network'];
-		this.#identity = opts['identity'];
+		this.#http = opts["http"];
+		this.#peer = opts["peer"];
+		this.#chain = opts["network"];
+		this.#identity = opts["identity"];
 		this.#web3 = new Web3(""); // todo: provide a host?
 	}
 
