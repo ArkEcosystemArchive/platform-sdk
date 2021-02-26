@@ -26,11 +26,13 @@ const network: Coins.CoinNetwork = {
 	featureFlags: {
 		Client: {
 			wallet: true,
+			broadcast: true,
 		},
 		Identity: {
 			address: {
 				mnemonic: true,
 				publicKey: true,
+				privateKey: true,
 			},
 			publicKey: {
 				mnemonic: true,
