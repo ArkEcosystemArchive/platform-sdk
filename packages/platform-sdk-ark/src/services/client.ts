@@ -30,7 +30,7 @@ export class ClientService implements Contracts.ClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const body = await this.get(`transactions/${id}`);
 
-		return Helpers.createTransactionDataWithType(body.data, TransactionDTO);
+		return Helpers.createTransactionDataWithType(body['data'], TransactionDTO);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
@@ -39,7 +39,7 @@ export class ClientService implements Contracts.ClientService {
 			: await this.post("transactions/search", this.createSearchParams(query));
 
 		return Helpers.createTransactionDataCollectionWithType(
-			response.data,
+			response['data'],
 			this.createMetaPagination(response),
 			TransactionDTO,
 		);
@@ -48,7 +48,7 @@ export class ClientService implements Contracts.ClientService {
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		const body = await this.get(`wallets/${id}`);
 
-		return new WalletData(body.data);
+		return new WalletData(body['data']);
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
@@ -57,7 +57,7 @@ export class ClientService implements Contracts.ClientService {
 			: await this.post("wallets/search", this.createSearchParams(query));
 
 		return new Coins.WalletDataCollection(
-			response.data.map((wallet) => new WalletData(wallet)),
+			response['data'].map((wallet) => new WalletData(wallet)),
 			this.createMetaPagination(response),
 		);
 	}
@@ -65,14 +65,14 @@ export class ClientService implements Contracts.ClientService {
 	public async delegate(id: string): Promise<Contracts.WalletData> {
 		const body = await this.get(`delegates/${id}`);
 
-		return new WalletData(body.data);
+		return new WalletData(body['data']);
 	}
 
 	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
 		const body = await this.get("delegates", this.createSearchParams(query || {}));
 
 		return new Coins.WalletDataCollection(
-			body.data.map((wallet) => new WalletData(wallet)),
+			body['data'].map((wallet) => new WalletData(wallet)),
 			this.createMetaPagination(body),
 		);
 	}
@@ -93,7 +93,7 @@ export class ClientService implements Contracts.ClientService {
 		const body = await this.get(`delegates/${id}/voters`, this.createSearchParams(query || {}));
 
 		return new Coins.WalletDataCollection(
-			body.data.map((wallet) => new WalletData(wallet)),
+			body['data'].map((wallet) => new WalletData(wallet)),
 			this.createMetaPagination(body),
 		);
 	}
@@ -101,7 +101,7 @@ export class ClientService implements Contracts.ClientService {
 	public async syncing(): Promise<boolean> {
 		const body = await this.get("node/syncing");
 
-		return body.data.syncing;
+		return body['data'].syncing;
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
@@ -164,7 +164,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.host()}/${path}`, query?.searchParams)).json();
+		return (await this.#http.get(`${this.host()}/${path}`, query?['searchParams'])).json();
 	}
 
 	private async post(path: string, { body, searchParams }: { body; searchParams? }): Promise<Contracts.KeyValuePair> {

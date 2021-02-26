@@ -4,14 +4,14 @@ import { TransactionData } from "../transaction";
 
 export class HtlcLockData extends TransactionData implements Contracts.HtlcLockData {
 	public secretHash(): string {
-		return this.data.asset.lock.secretHash;
+		return this.data['asset'].lock.secretHash;
 	}
 
 	public expirationType(): number {
-		return this.data.asset.lock.expiration.type;
+		return this.data['asset'].lock.expiration.type;
 	}
 
 	public expirationValue(): number {
-		return this.data.asset.lock.expiration.value;
+		return this.data['asset'].lock.expiration.value;
 	}
 }

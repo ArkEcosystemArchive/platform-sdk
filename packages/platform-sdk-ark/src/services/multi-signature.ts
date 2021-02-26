@@ -58,10 +58,10 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 
 	/** @inheritdoc */
 	public async broadcast(transaction: Contracts.MultiSignatureTransaction): Promise<string> {
-		let multiSignature = transaction.multiSignature;
+		let multiSignature = transaction['multiSignature'];
 
-		if (transaction.asset && transaction.asset.multiSignature) {
-			multiSignature = transaction.asset.multiSignature;
+		if (transaction['asset'] && transaction['asset'].multiSignature) {
+			multiSignature = transaction['asset'].multiSignature;
 		}
 
 		const { id } = await this.post("transaction", {

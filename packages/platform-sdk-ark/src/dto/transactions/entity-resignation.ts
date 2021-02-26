@@ -4,18 +4,18 @@ import { TransactionData } from "../transaction";
 
 export class EntityResignationData extends TransactionData implements Contracts.EntityResignationData {
 	public entityType(): number {
-		return this.data.asset.type;
+		return this.data['asset'].type;
 	}
 
 	public entitySubType(): number {
-		return this.data.asset.subType;
+		return this.data['asset'].subType;
 	}
 
 	public entityAction(): number {
-		return this.data.asset.action;
+		return this.data['asset'].action;
 	}
 
 	public registrationId(): string {
-		return this.data.asset.registrationId;
+		return this.data['asset'].registrationId;
 	}
 }
