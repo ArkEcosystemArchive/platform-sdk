@@ -77,7 +77,6 @@
 		"@arkecosystem/platform-sdk-http-ky": "file:packages/platform-sdk-http-ky",
 		"@arkecosystem/platform-sdk-http-node-fetch": "file:packages/platform-sdk-http-node-fetch",
 		"@arkecosystem/platform-sdk-intl": "file:packages/platform-sdk-intl",
-		"@arkecosystem/platform-sdk-json-rpc": "file:packages/platform-sdk-json-rpc",
 		"@arkecosystem/platform-sdk-lsk": "file:packages/platform-sdk-lsk",
 		"@arkecosystem/platform-sdk-markets": "file:packages/platform-sdk-markets",
 		"@arkecosystem/platform-sdk-neo": "file:packages/platform-sdk-neo",
