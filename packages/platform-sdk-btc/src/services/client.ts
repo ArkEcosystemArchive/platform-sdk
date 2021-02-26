@@ -107,6 +107,7 @@ export class ClientService implements Contracts.ClientService {
 
 				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
 					if (response.error.message.includes(key)) {
+						// @ts-ignore
 						result.errors[transactionId].push(value);
 					}
 				}

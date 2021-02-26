@@ -12,7 +12,7 @@ export class Address implements Contracts.Address {
 
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
-			return (await p2pkh(mnemonic, this.#network.name)).address!;
+			return (await p2pkh(mnemonic, this.#network['name'])).address!;
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
