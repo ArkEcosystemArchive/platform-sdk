@@ -39,7 +39,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -65,7 +65,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -91,7 +91,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -117,7 +117,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -143,7 +143,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -169,7 +169,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -195,7 +195,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -221,7 +221,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -247,7 +247,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -273,7 +273,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -299,7 +299,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -325,7 +325,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -351,7 +351,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -377,7 +377,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -403,7 +403,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -429,7 +429,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -455,7 +455,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -481,7 +481,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -507,7 +507,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -533,7 +533,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -559,7 +559,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -585,7 +585,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -611,7 +611,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -637,7 +637,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -663,7 +663,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -689,7 +689,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -715,7 +715,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -741,7 +741,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -767,7 +767,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
@@ -793,7 +793,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm ci
+              run: npm install
 
             - name: Build
               run: npx lerna run build
