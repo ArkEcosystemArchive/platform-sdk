@@ -1,1 +1,1 @@
-export type KeyValuePair = Record<string, any>;
+export type KeyValuePair = any;

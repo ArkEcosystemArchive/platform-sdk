@@ -9,7 +9,7 @@ export class Database {
 
 	public constructor(flags: Record<string, string>, logger: Logger) {
 		const databaseFile =
-			flags.database || `${envPaths(require("../package.json").name).data}/${flags.coin}/${flags.network}.db`;
+			flags['database'] || `${envPaths(require("../package.json").name).data}/${flags['coin']}/${flags['network']}.db`;
 		ensureFileSync(databaseFile);
 
 		logger.debug(`Using [${databaseFile}] as database`);
