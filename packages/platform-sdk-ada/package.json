@@ -26,7 +26,9 @@
 		"cardano-crypto.js": "^6.0.0"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got"
+		"@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got",
+		"jest": "^26.6.3",
+		"rimraf": "^3.0.2"
 	},
 	"engines": {
 		"node": ">=12.x"
