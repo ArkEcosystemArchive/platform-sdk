@@ -6,14 +6,14 @@ export class HistoricalPriceTransformer implements Contracts.HistoricalTransform
 
 	public transform(options: Contracts.KeyValuePair): Contracts.HistoricalData {
 		const datasets = {};
-		for (let i = 0; i < this.data.prices.length; i += 24) {
-			datasets[this.data.prices[i][0]] = this.data.prices[i][1];
+		for (let i = 0; i < this.data['prices'].length; i += 24) {
+			datasets[this.data['prices'][i][0]] = this.data['prices'][i][1];
 		}
 
 		const datasetValues: number[] = Object.values(datasets);
 
 		return {
-			labels: Object.keys(datasets).map((time) => DateTime.make(time).format(options.dateFormat)),
+			labels: Object.keys(datasets).map((time) => DateTime.make(time).format(options['dateFormat'])),
 			datasets: datasetValues,
 			min: Math.min(...datasetValues),
 			max: Math.max(...datasetValues),

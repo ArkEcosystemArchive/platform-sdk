@@ -9,10 +9,10 @@ export class MarketTransformer implements Contracts.MarketTransformer {
 	public constructor(private readonly data: Contracts.KeyValuePair) {}
 
 	public transform(options: Contracts.KeyValuePair): Contracts.MarketDataCollection {
-		const tokenId = options.token.toUpperCase();
+		const tokenId = options['token'].toUpperCase();
 		const result = {};
 
-		for (const currency of Object.keys(options.currencies || Data.CURRENCIES)) {
+		for (const currency of Object.keys(options['currencies'] || Data.CURRENCIES)) {
 			const { assets, rates } = this.data;
 
 			if (!assets[currency]) {
@@ -29,7 +29,7 @@ export class MarketTransformer implements Contracts.MarketTransformer {
 				}),
 				marketCap: this.normalise(assets[tokenId].marketCapUsd, rates, currency),
 				volume: this.normalise(assets[tokenId].volumeUsd24Hr, rates, currency),
-				date: new Date(this.data.timestamp),
+				date: new Date(this.data['timestamp']),
 				change24h: null,
 			};
 		}

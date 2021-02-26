@@ -18,7 +18,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		try {
 			const tokenData = await this.fetchTokenData(token);
 
-			return !!tokenData.id;
+			return !!tokenData['id'];
 		} catch {
 			return false;
 		}
@@ -114,8 +114,8 @@ export class PriceTracker implements Contracts.PriceTracker {
 		const tokenData = await this.fetchTokenData(token);
 
 		const response = {
-			assets: { [tokenData.symbol.toUpperCase()]: tokenData },
-			rates: { [tokenData.symbol.toUpperCase()]: tokenData.priceUsd },
+			assets: { [tokenData['symbol'].toUpperCase()]: tokenData },
+			rates: { [tokenData['symbol'].toUpperCase()]: tokenData['priceUsd'] },
 			timestamp,
 		};
 
