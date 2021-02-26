@@ -95,21 +95,28 @@ export const subscribe = async (flags: {
 	// 	},
 	// 	handler: async (request) => client.btc.sendSignedTransaction(request.payload.transaction),
 	// });
-	//
-	// server.route({
-	// 	method: "GET",
-	// 	path: "/transactions/{transaction}",
-	// 	options: {
-	// 		validate: {
-	// 			params: Joi.object({
-	// 				transaction: Joi.string().length(66),
-	// 			}).options({ stripUnknown: true }),
-	// 		},
-	// 	},
-	// 	handler: (request) =>
-	// 		database.prepare(`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`).get(),
-	// });
-	//
+
+	server.route({
+		method: "GET",
+		path: "/transactions/{transaction}",
+		options: {
+			validate: {
+				params: Joi.object({
+					transaction: Joi.string().length(64),
+				}).options({ stripUnknown: true }),
+			},
+		},
+		handler: (request) => {
+
+			const tx = database.prepare(`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`).get();
+			return {
+				...tx,
+				vin:  JSON.parse(tx.vin),
+				vout:  JSON.parse(tx.vout),
+			};
+		},
+	});
+
 	// server.route({
 	// 	method: "GET",
 	// 	path: "/wallets/{wallet}",
