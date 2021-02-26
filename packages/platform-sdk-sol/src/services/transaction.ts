@@ -45,14 +45,16 @@ export class TransactionService implements Contracts.TransactionService {
 			}),
 		);
 
+		const signedTransaction = this.sign(transaction, derivePrivateKey(input.sign.mnemonic, 0, 0, this.#slip44));
+
 		return new SignedTransactionData(
-			uuidv4(),
+			transaction.signature,
 			{
 				from: input.from,
 				to: input.data.to,
 				amount: input.data.amount,
 			},
-			this.sign(transaction, derivePrivateKey(input.sign.mnemonic, 0, 0, this.#slip44)).toString("hex"),
+			signedTransaction.toString("hex"),
 		);
 	}
 
@@ -138,7 +140,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private sign(transaction: Transaction, privateKey: Buffer): Buffer {
-		transaction.sign(new Account(Buffer.from([...privateKey, ...derivePublicKey(privateKey)])));
+		transaction.sign(new Account(derivePublicKey(privateKey)));
 
 		return transaction.serialize({ requireAllSignatures: false, verifySignatures: false });
 	}
