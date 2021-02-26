@@ -68,10 +68,7 @@ export const subscribe = async (flags: {
 		options: {
 			validate: {
 				params: Joi.object({
-					block:  [
-						Joi.number().integer(),
-						Joi.string().length(64),
-					]
+					block: [Joi.number().integer(), Joi.string().length(64)],
 				}).options({ stripUnknown: true }),
 			},
 		},
@@ -83,18 +80,26 @@ export const subscribe = async (flags: {
 				.get(),
 	});
 
-	// server.route({
-	// 	method: "POST",
-	// 	path: "/transactions",
-	// 	options: {
-	// 		validate: {
-	// 			payload: Joi.object({
-	// 				transaction: Joi.string().max(1024),
-	// 			}).options({ stripUnknown: true }),
-	// 		},
-	// 	},
-	// 	handler: async (request) => client.btc.sendSignedTransaction(request.payload.transaction),
-	// });
+	server.route({
+		method: "POST",
+		path: "/transactions",
+		options: {
+			validate: {
+				payload: Joi.object({
+					transaction: Joi.string().max(1024),
+				}).options({ stripUnknown: true }),
+			},
+		},
+		handler: async (request) =>
+			(
+				await client.post("/", {
+					jsonrpc: "1.0",
+					id: uuidv4(),
+					method: "sendrawtransaction",
+					params: [`${request.params.transaction}`],
+				})
+			).json().result,
+	});
 
 	server.route({
 		method: "GET",
@@ -107,12 +112,13 @@ export const subscribe = async (flags: {
 			},
 		},
 		handler: (request) => {
-
-			const tx = database.prepare(`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`).get();
+			const tx = database
+				.prepare(`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`)
+				.get();
 			return {
 				...tx,
-				vin:  JSON.parse(tx.vin),
-				vout:  JSON.parse(tx.vout),
+				vin: JSON.parse(tx.vin),
+				vout: JSON.parse(tx.vout),
 			};
 		},
 	});
