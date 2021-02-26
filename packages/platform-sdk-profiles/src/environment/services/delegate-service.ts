@@ -87,10 +87,10 @@ export class DelegateService {
 
 	private mapDelegate(delegate: Record<string, string>): ReadOnlyWallet {
 		return new ReadOnlyWallet({
-			address: delegate.address,
-			publicKey: delegate.publicKey,
-			username: delegate.username,
-			rank: (delegate.rank as unknown) as number,
+			address: delegate['address']!,
+			publicKey: delegate['publicKey'],
+			username: delegate['username'],
+			rank: (delegate['rank'] as unknown) as number,
 			explorerLink: "",
 		});
 	}

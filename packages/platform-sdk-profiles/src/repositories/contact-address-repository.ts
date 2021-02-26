@@ -68,12 +68,12 @@ export class ContactAddressRepository {
 	public update(id: string, data: Record<string, string>): void {
 		const address = this.findById(id);
 
-		if (data.name) {
-			address.setName(data.name);
+		if (data['name']) {
+			address.setName(data['name']);
 		}
 
-		if (data.address) {
-			address.setAddress(data.address);
+		if (data['address']) {
+			address.setAddress(data['address']);
 		}
 
 		this.#data.set(id, address);

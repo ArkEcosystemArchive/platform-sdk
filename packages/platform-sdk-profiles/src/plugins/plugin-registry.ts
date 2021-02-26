@@ -55,7 +55,7 @@ export class PluginRegistry {
 	public async size(pkg: RegistryPlugin): Promise<number> {
 		const response = (await this.#httpClient.get(`https://registry.npmjs.com/${pkg.id()}`)).json();
 
-		return response.versions[pkg.version()].dist?.unpackedSize;
+		return response['versions'][pkg.version()].dist?.unpackedSize;
 	}
 
 	public async downloads(pkg: RegistryPlugin): Promise<number> {
@@ -65,7 +65,7 @@ export class PluginRegistry {
 
 		let result = 0;
 
-		for (const { downloads } of response.json().downloads) {
+		for (const { downloads } of response.json()['downloads']) {
 			result += downloads;
 		}
 

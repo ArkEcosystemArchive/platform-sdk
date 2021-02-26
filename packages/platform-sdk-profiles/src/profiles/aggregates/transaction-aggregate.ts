@@ -61,6 +61,7 @@ export class TransactionAggregate {
 
 		for (const syncedWallet of syncedWallets) {
 			requests[syncedWallet.id()] = new Promise((resolve, reject) => {
+				// @ts-ignore
 				const lastResponse: HistoryWallet = this.#history[method][syncedWallet.id()];
 
 				if (lastResponse && !lastResponse.hasMorePages()) {
@@ -93,6 +94,7 @@ export class TransactionAggregate {
 				result.push(transformTransactionData(this.getWallet(id), transaction));
 			}
 
+			// @ts-ignore
 			this.#history[method][id] = request.value;
 		}
 

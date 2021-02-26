@@ -78,7 +78,7 @@ export class RegistryPlugin {
 	}
 
 	public id(): string {
-		return this.#data.name;
+		return this.#data['name'];
 	}
 
 	public name(): string {
@@ -90,19 +90,19 @@ export class RegistryPlugin {
 	}
 
 	public date(): string {
-		return this.#data.date;
+		return this.#data['date'];
 	}
 
 	public version(): string {
-		return this.#data.version;
+		return this.#data['version'];
 	}
 
 	public description(): string {
-		return this.#data.description;
+		return this.#data['description'];
 	}
 
 	public author(): RegistryPluginAuthor {
-		return this.#data.author;
+		return this.#data['author'];
 	}
 
 	public sourceProvider(): any {
@@ -111,10 +111,10 @@ export class RegistryPlugin {
 			gitlab: /http(?:s)?:\/\/(?:www\.)?gitlab\.com(\/[a-z\d](?:[a-z\d]|-(?=[a-z\d])){1,39}){2}/,
 			bitbucket: /http(?:s)?:\/\/(?:www\.)?bitbucket\.com(\/[a-z\d](?:[a-z\d]|-(?=[a-z\d])){1,39}){2}/,
 		})) {
-			if (new RegExp(pattern).test(this.#data.links.repository)) {
+			if (new RegExp(pattern).test(this.#data['links'].repository)) {
 				return {
 					name: provider,
-					url: this.#data.links.repository,
+					url: this.#data['links'].repository,
 				};
 			}
 		}

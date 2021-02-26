@@ -49,7 +49,7 @@ export class KnownWalletService {
 	}
 
 	private findByAddress(network: string, address: string): Contracts.KnownWallet | undefined {
-		const registry: Contracts.KnownWallet[] = this.registry[network];
+		const registry: Contracts.KnownWallet[] | undefined = this.registry[network];
 
 		if (registry === undefined) {
 			return undefined;

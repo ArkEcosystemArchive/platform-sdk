@@ -24,10 +24,10 @@ export class CoinService {
 			for (const [network, children] of Object.entries(networks)) {
 				if (children !== undefined) {
 					for (const child of Object.keys(children)) {
-						result[coin].push(`${network}.${child}`);
+						result[coin]!.push(`${network}.${child}`);
 					}
 				} else {
-					result[coin].push(network);
+					result[coin]!.push(network);
 				}
 			}
 		}

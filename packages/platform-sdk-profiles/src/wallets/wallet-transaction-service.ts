@@ -248,19 +248,19 @@ export class TransactionService {
 		this.assertHasValidIdentifier(id);
 
 		if (this.hasBeenBroadcasted(id)) {
-			return this.#broadcasted[id];
+			return this.#broadcasted[id]!;
 		}
 
 		if (this.hasBeenSigned(id)) {
-			return this.#signed[id];
+			return this.#signed[id]!;
 		}
 
 		if (this.isAwaitingOurSignature(id)) {
-			return this.#waitingForOurSignature[id];
+			return this.#waitingForOurSignature[id]!;
 		}
 
 		if (this.isAwaitingOtherSignatures(id)) {
-			return this.#waitingForOtherSignatures[id];
+			return this.#waitingForOtherSignatures[id]!;
 		}
 
 		throw new Error(`Transaction [${id}] could not be found.`);
@@ -648,8 +648,8 @@ export class TransactionService {
 		const transactions = await this.#wallet.coin().multiSignature().allWithReadyState(this.getPublicKey());
 
 		for (const transaction of transactions) {
-			this.#signed[transaction.id] = new SignedTransactionData(
-				transaction.id,
+			this.#signed[transaction['id']] = new SignedTransactionData(
+				transaction['id'],
 				transaction,
 				JSON.stringify(transaction),
 			);
