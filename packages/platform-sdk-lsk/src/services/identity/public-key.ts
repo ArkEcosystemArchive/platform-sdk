@@ -2,7 +2,7 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import * as cryptography from "@liskhq/lisk-cryptography";
 
 export class PublicKey implements Contracts.PublicKey {
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return cryptography.getPrivateAndPublicKeyFromPassphrase(mnemonic).publicKey;
 		} catch (error) {

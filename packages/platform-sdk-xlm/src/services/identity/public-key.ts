@@ -2,7 +2,7 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import StellarHDWallet from "stellar-hd-wallet";
 
 export class PublicKey implements Contracts.PublicKey {
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(0);
 		} catch (error) {

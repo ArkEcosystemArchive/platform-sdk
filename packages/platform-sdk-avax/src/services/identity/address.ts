@@ -9,7 +9,7 @@ export class Address implements Contracts.Address {
 		this.#config = config;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		return keyPairFromMnemonic(this.#config, mnemonic).getAddressString();
 	}
 
@@ -17,11 +17,11 @@ export class Address implements Contracts.Address {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
-	public async fromPublicKey(publicKey: string): Promise<string> {
+	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromPublicKey");
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<string> {
+	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
 	}
 

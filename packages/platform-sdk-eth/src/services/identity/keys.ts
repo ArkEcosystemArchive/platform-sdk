@@ -11,9 +11,15 @@ export class Keys implements Contracts.Keys {
 		this.#config = config;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
 		try {
-			const wallet: Wallet = createWallet(mnemonic, this.#config.get(Coins.ConfigKey.Slip44));
+			const wallet: Wallet = createWallet(
+				mnemonic,
+				this.#config.get(Coins.ConfigKey.Slip44),
+				options?.bip44.account || 0,
+				options?.bip44.change || 0,
+				options?.bip44.addressIndex || 0,
+			);
 
 			return {
 				publicKey: wallet.getPublicKey().toString("hex"),

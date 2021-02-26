@@ -10,12 +10,17 @@ export class Keys implements Contracts.Keys {
 		this.#slip44 = config.get<number>("network.crypto.slip44");
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
 		if (!BIP39.validate(mnemonic)) {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
 		}
 
-		const privateBuffer: Buffer = derivePrivateKey(mnemonic, 0, 0, this.#slip44);
+		const privateBuffer: Buffer = derivePrivateKey(
+			mnemonic,
+			options?.bip44.account || 0,
+			options?.bip44.addressIndex || 0,
+			this.#slip44,
+		);
 
 		return {
 			publicKey: derivePublicKey(privateBuffer).toString("hex"),

@@ -11,23 +11,27 @@ export class Address implements Contracts.Address {
 		this.#slip44 = config.get<number>("network.crypto.slip44");
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		if (!BIP39.validate(mnemonic)) {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
 		}
 
-		return base58.encode(derivePublicKey(derivePrivateKey(mnemonic, 0, 0, this.#slip44)));
+		return base58.encode(
+			derivePublicKey(
+				derivePrivateKey(mnemonic, options?.bip44.account || 0, options?.bip44.addressIndex || 0, this.#slip44),
+			),
+		);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
-	public async fromPublicKey(publicKey: string): Promise<string> {
+	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		return base58.encode(Buffer.from(publicKey, "hex"));
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<string> {
+	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		return base58.encode(derivePublicKey(Buffer.from(privateKey, "hex")));
 	}
 

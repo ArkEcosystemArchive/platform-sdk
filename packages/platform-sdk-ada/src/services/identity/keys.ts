@@ -4,7 +4,7 @@ import lib from "cardano-crypto.js";
 import { SHELLEY_DERIVATION_SCHEME } from "../../crypto/shelley/constants";
 
 export class Keys implements Contracts.Keys {
-	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
 		try {
 			const rootKeyPair = await lib.mnemonicToRootKeypair(mnemonic, SHELLEY_DERIVATION_SCHEME);
 

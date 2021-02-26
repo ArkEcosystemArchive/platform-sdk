@@ -3,7 +3,7 @@ import { u8aToHex } from "@polkadot/util";
 import { mnemonicToMiniSecret, naclKeypairFromSeed } from "@polkadot/util-crypto";
 
 export class Keys implements Contracts.Keys {
-	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
 		const { publicKey, secretKey } = naclKeypairFromSeed(mnemonicToMiniSecret(mnemonic));
 
 		return { publicKey: u8aToHex(publicKey), privateKey: u8aToHex(secretKey) };

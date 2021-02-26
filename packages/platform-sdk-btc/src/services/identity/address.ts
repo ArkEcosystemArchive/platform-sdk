@@ -10,7 +10,7 @@ export class Address implements Contracts.Address {
 		this.#network = Bitcoin.Networks[network];
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return (await p2pkh(mnemonic, this.#network.name)).address!;
 		} catch (error) {
@@ -32,7 +32,7 @@ export class Address implements Contracts.Address {
 		}
 	}
 
-	public async fromPublicKey(publicKey: string): Promise<string> {
+	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			const address = Bitcoin.Address.fromPublicKey(new Bitcoin.PublicKey(publicKey), this.#network);
 
@@ -46,7 +46,7 @@ export class Address implements Contracts.Address {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<string> {
+	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			const address = new Bitcoin.PrivateKey(privateKey).toAddress(this.#network);
 
