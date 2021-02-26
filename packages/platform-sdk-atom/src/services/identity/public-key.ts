@@ -9,7 +9,7 @@ export class PublicKey implements Contracts.PublicKey {
 		this.#config = config;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			const keys = new Keys(this.#config);
 			const { publicKey } = await keys.fromMnemonic(mnemonic);

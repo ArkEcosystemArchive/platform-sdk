@@ -1,7 +1,7 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 export class PublicKey implements Contracts.PublicKey {
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
 	}
 

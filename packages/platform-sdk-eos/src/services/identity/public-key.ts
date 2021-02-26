@@ -3,7 +3,7 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { privateToPublic } from "../../crypto";
 
 export class PublicKey implements Contracts.PublicKey {
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return privateToPublic(mnemonic);
 		} catch (error) {

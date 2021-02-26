@@ -10,12 +10,12 @@ export class PublicKey implements Contracts.PublicKey {
 		this.#slip44 = config.get<number>("network.crypto.slip44");
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		if (!BIP39.validate(mnemonic)) {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
 		}
 
-		return derivePublicKey(derivePrivateKey(mnemonic, 0, 0, this.#slip44)).toString("hex");
+		return derivePublicKey(derivePrivateKey(mnemonic, options?.bip44.account || 0, options?.bip44.addressIndex || 0, this.#slip44)).toString("hex");
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
