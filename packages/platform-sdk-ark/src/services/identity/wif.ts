@@ -10,7 +10,7 @@ export class WIF implements Contracts.WIF {
 		this.#configCrypto = configCrypto;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return BaseWIF.fromPassphrase(mnemonic, this.#configCrypto);
 		} catch (error) {

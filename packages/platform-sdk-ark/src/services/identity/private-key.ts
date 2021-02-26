@@ -10,7 +10,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 		this.#configCrypto = configCrypto;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return BasePrivateKey.fromPassphrase(mnemonic);
 		} catch (error) {
