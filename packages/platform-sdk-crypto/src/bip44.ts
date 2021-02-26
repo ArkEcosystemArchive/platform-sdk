@@ -58,11 +58,11 @@ export class BIP44 {
 		}
 
 		return {
-			purpose: result[0],
-			coinType: result[1],
-			account: result[2],
-			change: result[3],
-			addressIndex: result[4],
+			purpose: result[0]!,
+			coinType: result[1]!,
+			account: result[2]!,
+			change: result[3]!,
+			addressIndex: result[4]!,
 		};
 	}
 }

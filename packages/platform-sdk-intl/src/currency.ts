@@ -61,6 +61,10 @@ export class Currency {
 		for (let i = 0; i < valueString.length; i++) {
 			const c = valueString[i];
 
+			if (c === undefined) {
+				throw new Error("Trying to access element with an illegal index.");
+			}
+
 			if ("0123456789".indexOf(c) !== -1) {
 				if (decimals >= 0) {
 					decimals++;
@@ -92,6 +96,7 @@ export class Currency {
 				display += dot;
 			}
 		}
+
 		for (let i = Math.max(0, decimals); i < magnitude; ++i) {
 			value += "0";
 		}

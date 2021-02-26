@@ -15,6 +15,12 @@ export class Arr {
 	 * @memberof Arr
 	 */
 	public static randomElement<T>(items: T[]): T {
-		return items[Math.floor(Math.random() * items.length)];
+		const item = items[Math.floor(Math.random() * items.length)];
+
+		if (item === undefined) {
+			throw new Error("Trying to access element with an illegal index.");
+		}
+
+		return item;
 	}
 }

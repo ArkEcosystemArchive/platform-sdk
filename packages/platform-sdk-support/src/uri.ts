@@ -32,9 +32,13 @@ export class URI {
 	 * @memberof URI
 	 */
 	public serialize(input: Record<string, string>): string {
-		const method: string = input.method;
+		const method: string | undefined = input['method'];
 
-		delete input.method;
+		if(method === undefined) {
+			throw new Error("Missing a method argument.");
+		}
+
+		delete input['method'];
 
 		return `ark:${method}?${querystring.stringify(input)}`;
 	}
@@ -60,8 +64,19 @@ export class URI {
 		}
 
 		try {
-			let method: string = parsed[1];
-			const params: any = querystring.parse(parsed[2].substring(1));
+			let method: string | undefined = parsed[1];
+
+			if(method === undefined) {
+				throw new Error("Missing a method argument.");
+			}
+
+			let parameters: string | undefined = parsed[2];
+
+			if(parameters === undefined) {
+				throw new Error("Missing a parameters argument.");
+			}
+
+			const params: any = querystring.parse(parameters.substring(1));
 
 			// When this is false we just have to assume that we are handling AIP13
 			// unless we integrate the parsing more tightly to specific coins which

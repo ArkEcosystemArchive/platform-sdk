@@ -13,11 +13,11 @@ export abstract class Paginator<T> {
 		return this.#data;
 	}
 
-	public first(): T {
+	public first(): T | undefined {
 		return this.#data[0];
 	}
 
-	public last(): T {
+	public last(): T | undefined {
 		return this.#data.reverse()[0];
 	}
 

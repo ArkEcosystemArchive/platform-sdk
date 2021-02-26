@@ -1,13 +1,19 @@
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { KeyValuePair } from "../contracts";
 import { UnspentTransactionData as Contract } from "../contracts/coins/data";
 
-export class UnspentTransactionData implements Contract {
-	readonly #data: KeyValuePair;
+interface RawData {
+	id: string;
+	timestamp: DateTime;
+	amount: BigNumber;
+	addresses: string[];
+};
 
-	public constructor(data: KeyValuePair) {
+export class UnspentTransactionData implements Contract {
+	readonly #data: RawData;
+
+	public constructor(data: RawData) {
 		this.#data = data;
 	}
 
