@@ -12,7 +12,7 @@ export class Address implements Contracts.Address {
 		this.#configCrypto = configCrypto;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return BaseAddress.fromPassphrase(mnemonic, this.#configCrypto);
 		} catch (error) {
@@ -28,7 +28,7 @@ export class Address implements Contracts.Address {
 		}
 	}
 
-	public async fromPublicKey(publicKey: string): Promise<string> {
+	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return BaseAddress.fromPublicKey(publicKey, this.#configCrypto);
 		} catch (error) {
@@ -36,7 +36,7 @@ export class Address implements Contracts.Address {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<string> {
+	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return BaseAddress.fromPrivateKey(Keys.fromPrivateKey(privateKey), this.#configCrypto);
 		} catch (error) {

@@ -3,7 +3,7 @@ import * as cryptography from "@liskhq/lisk-cryptography";
 import * as transactions from "@liskhq/lisk-transactions";
 
 export class Address implements Contracts.Address {
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return cryptography.getAddressFromPassphrase(mnemonic);
 		} catch (error) {
@@ -15,7 +15,7 @@ export class Address implements Contracts.Address {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
-	public async fromPublicKey(publicKey: string): Promise<string> {
+	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return cryptography.getAddressFromPublicKey(publicKey);
 		} catch (error) {
@@ -23,7 +23,7 @@ export class Address implements Contracts.Address {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<string> {
+	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
 	}
 
