@@ -16,7 +16,11 @@ export class Address implements Contracts.Address {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
 		}
 
-		return base58.encode(derivePublicKey(derivePrivateKey(mnemonic, options?.bip44.account || 0, options?.bip44.addressIndex || 0, this.#slip44)));
+		return base58.encode(
+			derivePublicKey(
+				derivePrivateKey(mnemonic, options?.bip44.account || 0, options?.bip44.addressIndex || 0, this.#slip44),
+			),
+		);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

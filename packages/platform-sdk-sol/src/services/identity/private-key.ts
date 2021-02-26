@@ -15,7 +15,12 @@ export class PrivateKey implements Contracts.PrivateKey {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
 		}
 
-		return derivePrivateKey(mnemonic, options?.bip44.account || 0, options?.bip44.addressIndex || 0, this.#slip44).toString("hex");
+		return derivePrivateKey(
+			mnemonic,
+			options?.bip44.account || 0,
+			options?.bip44.addressIndex || 0,
+			this.#slip44,
+		).toString("hex");
 	}
 
 	public async fromWIF(wif: string): Promise<string> {

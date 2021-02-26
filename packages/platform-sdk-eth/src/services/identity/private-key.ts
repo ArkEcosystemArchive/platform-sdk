@@ -11,10 +11,13 @@ export class PrivateKey implements Contracts.PrivateKey {
 
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
-			return createWallet(mnemonic, this.#config.get(Coins.ConfigKey.Slip44),
-			options?.bip44.account || 0,
-			options?.bip44.change || 0,
-			options?.bip44.addressIndex || 0,)
+			return createWallet(
+				mnemonic,
+				this.#config.get(Coins.ConfigKey.Slip44),
+				options?.bip44.account || 0,
+				options?.bip44.change || 0,
+				options?.bip44.addressIndex || 0,
+			)
 				.getPrivateKey()
 				.toString("hex");
 		} catch (error) {

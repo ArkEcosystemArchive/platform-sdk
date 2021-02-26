@@ -15,7 +15,12 @@ export class Keys implements Contracts.Keys {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
 		}
 
-		const privateBuffer: Buffer = derivePrivateKey(mnemonic, options?.bip44.account || 0, options?.bip44.addressIndex || 0, this.#slip44);
+		const privateBuffer: Buffer = derivePrivateKey(
+			mnemonic,
+			options?.bip44.account || 0,
+			options?.bip44.addressIndex || 0,
+			this.#slip44,
+		);
 
 		return {
 			publicKey: derivePublicKey(privateBuffer).toString("hex"),

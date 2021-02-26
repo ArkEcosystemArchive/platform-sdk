@@ -15,7 +15,9 @@ export class PublicKey implements Contracts.PublicKey {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
 		}
 
-		return derivePublicKey(derivePrivateKey(mnemonic, options?.bip44.account || 0, options?.bip44.addressIndex || 0, this.#slip44)).toString("hex");
+		return derivePublicKey(
+			derivePrivateKey(mnemonic, options?.bip44.account || 0, options?.bip44.addressIndex || 0, this.#slip44),
+		).toString("hex");
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

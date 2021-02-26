@@ -22,7 +22,7 @@ export interface IdentityOptions {
 		account: number;
 		change: number;
 		addressIndex: number;
-	}
+	};
 }
 
 export interface Address {
