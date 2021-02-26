@@ -39,10 +39,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk/ && npm run test --coverage
@@ -65,10 +65,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-ada/ && npm run test --coverage
@@ -91,10 +91,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-ark/ && npm run test --coverage
@@ -117,10 +117,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-atom/ && npm run test --coverage
@@ -143,10 +143,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-avax/ && npm run test --coverage
@@ -169,10 +169,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-btc/ && npm run test --coverage
@@ -195,10 +195,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-coincap/ && npm run test --coverage
@@ -221,10 +221,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-coingecko/ && npm run test --coverage
@@ -247,10 +247,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-crypto/ && npm run test --coverage
@@ -273,10 +273,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-cryptocompare/ && npm run test --coverage
@@ -299,10 +299,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-dot/ && npm run test --coverage --forceExit
@@ -325,10 +325,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-egld/ && npm run test --coverage
@@ -351,10 +351,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-eos/ && npm run test --coverage
@@ -377,10 +377,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-eth/ && npm run test --coverage
@@ -403,10 +403,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-http-axios/ && npm run test --coverage
@@ -429,10 +429,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-http-bent/ && npm run test --coverage
@@ -455,10 +455,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-http-got/ && npm run test --coverage
@@ -481,10 +481,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-http-ky/ && npm run test --coverage
@@ -507,10 +507,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-http-node-fetch/ && npm run test --coverage
@@ -533,10 +533,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-intl/ && npm run test --coverage
@@ -559,10 +559,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-lsk/ && npm run test --coverage
@@ -585,10 +585,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-markets/ && npm run test --coverage
@@ -611,10 +611,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-neo/ && npm run test --coverage
@@ -637,10 +637,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-news/ && npm run test --coverage
@@ -663,10 +663,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-profiles/ && npm run test --coverage
@@ -689,10 +689,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-sol/ && npm run test --coverage
@@ -715,10 +715,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-support/ && npm run test --coverage
@@ -741,10 +741,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-trx/ && npm run test --coverage
@@ -767,10 +767,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-xlm/ && npm run test --coverage
@@ -793,10 +793,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Install
-              run: npm install -g lerna && lerna bootstrap
+              run: npx lerna bootstrap
 
             - name: Build
-              run: lerna run build
+              run: npx lerna run build
 
             - name: Test
               run: cd packages/platform-sdk-xrp/ && npm run test --coverage
