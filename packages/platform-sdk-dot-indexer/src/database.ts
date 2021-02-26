@@ -89,7 +89,7 @@ export class Database {
 				)`,
 			)
 			.run({
-				id: transaction.id,
+				id: transaction.id!,
 				eraPeriod: transaction.era?.period,
 				eraPhase: transaction.era?.phase,
 				isSigned: transaction.isSigned ? 1 : 0,
