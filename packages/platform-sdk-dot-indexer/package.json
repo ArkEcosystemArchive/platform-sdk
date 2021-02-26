@@ -35,11 +35,7 @@
 		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got",
-		"@types/meow": "^5.0.0",
-		"@types/p-retry": "^3.0.1",
-		"@types/pino": "^6.3.5",
-		"@types/uuid": "^8.3.0"
+		"@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got"
 	},
 	"engines": {
 		"node": ">=12.x"

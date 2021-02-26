@@ -27,10 +27,6 @@
         "ed25519-hd-key": "^1.2.0",
         "uuid": "^8.3.2"
     },
-    "devDependencies": {
-        "@arkecosystem/platform-sdk-http-got": "file:../platform-sdk-http-got",
-        "@types/uuid": "^8.3.0"
-    },
     "engines": {
         "node": ">=12.x"
     },

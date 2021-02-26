@@ -27,10 +27,6 @@
 		"eosjs": "^21.0.3",
 		"node-fetch": "^2.6.1"
 	},
-	"devDependencies": {
-		"@types/bn.js": "^4.11.6",
-		"@types/elliptic": "^6.4.12"
-	},
 	"engines": {
 		"node": ">=12.x"
 	},

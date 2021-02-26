@@ -21,10 +21,6 @@
 		"@arkecosystem/platform-sdk": "file:../platform-sdk",
 		"axios": "^0.21.0"
 	},
-	"devDependencies": {
-		"@types/fs-extra": "^9.0.4",
-		"fs-extra": "^9.0.1"
-	},
 	"engines": {
 		"node": ">=12.x"
 	},

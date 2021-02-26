@@ -32,10 +32,6 @@
 		"node-emoji": "^1.10.0",
 		"type-fest": "^0.18.1"
 	},
-	"devDependencies": {
-		"@types/dot-prop": "^5.0.1",
-		"@types/node-emoji": "^1.8.1"
-	},
 	"engines": {
 		"node": ">=12.x"
 	},

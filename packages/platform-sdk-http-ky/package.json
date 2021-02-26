@@ -22,11 +22,6 @@
 		"ky": "^0.25.0",
 		"ky-universal": "^0.8.2"
 	},
-	"devDependencies": {
-		"@types/fs-extra": "^9.0.4",
-		"@types/node-fetch": "^2.5.7",
-		"fs-extra": "^9.0.1"
-	},
 	"engines": {
 		"node": ">=12.x"
 	},

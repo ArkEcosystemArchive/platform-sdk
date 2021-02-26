@@ -27,11 +27,6 @@
 		"ripple-keypairs": "^1.0.2",
 		"ripple-lib": "^1.8.2"
 	},
-	"devDependencies": {
-		"@types/ws": "^7.4.0",
-		"ripple-binary-codec": "^1.0.2",
-		"ws": "^7.4.0"
-	},
 	"engines": {
 		"node": ">=12.x"
 	},
