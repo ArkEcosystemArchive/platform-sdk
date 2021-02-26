@@ -1,31 +1,19 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Connection, PublicKey } from "@solana/web3.js";
+import { WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
-	readonly #http: Contracts.HttpClient;
-	readonly #peer: string;
+	readonly #client: Connection;
 
-	private constructor({ config, http, peer }) {
+	public constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#http = http;
-		this.#peer = peer;
+		this.#client = new Connection(this.host());
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		try {
-			return new ClientService({
-				config,
-				http: config.get<Contracts.HttpClient>("httpClient"),
-				peer: config.get<string>("peer"),
-			});
-		} catch {
-			return new ClientService({
-				config,
-				http: config.get<Contracts.HttpClient>("httpClient"),
-				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
-			});
-		}
+		return new ClientService(config);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -44,7 +32,16 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
+		const response = await this.#client.getAccountInfo(new PublicKey(id));
+
+		if (!response) {
+			throw new Exceptions.Exception("Received an invalid response.");
+		}
+
+		return new WalletData({
+			address: id,
+			balance: response.lamports,
+		});
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
@@ -72,7 +69,25 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcast");
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
+		for (const transaction of transactions) {
+			try {
+				await this.#client.sendEncodedTransaction(transaction.toBroadcast());
+
+				result.accepted.push(transaction.id());
+			} catch (error) {
+				result.rejected.push(transaction.id());
+
+				result.errors[transaction.id()] = error.message;
+			}
+		}
+
+		return result;
 	}
 
 	public async broadcastSpread(
@@ -80,5 +95,13 @@ export class ClientService implements Contracts.ClientService {
 		hosts: string[],
 	): Promise<Contracts.BroadcastResponse> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
+	}
+
+	private host(): string {
+		try {
+			return this.#config.get<string>("peer");
+		} catch {
+			return `${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`;
+		}
 	}
 }

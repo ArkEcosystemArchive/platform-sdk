@@ -1,14 +1,17 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Account, Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 
 import { SignedTransactionData } from "../dto";
 import { derivePrivateKey, derivePublicKey } from "./identity/helpers";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #config: Coins.Config;
 	readonly #client: Connection;
 	readonly #slip44: number;
 
 	public constructor(config: Coins.Config) {
+		this.#config = config;
 		this.#client = new Connection(this.host());
 		this.#slip44 = config.get<number>("network.crypto.slip44");
 	}
@@ -29,14 +32,13 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "sign.mnemonic");
 		}
 
-		const sender = new PublicKey(input.from);
 		const transaction = new Transaction();
 		transaction.recentBlockhash = (await this.#client.getRecentBlockhash()).blockhash;
-		transaction.feePayer = sender;
+		transaction.feePayer = new PublicKey(input.from);
 
 		transaction.add(
 			SystemProgram.transfer({
-				fromPubkey: sender,
+				fromPubkey: transaction.feePayer,
 				toPubkey: new PublicKey(input.data.to),
 				lamports: parseInt(input.data.amount),
 			}),
