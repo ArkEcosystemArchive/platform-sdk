@@ -164,7 +164,8 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.host()}/${path}`, query?['searchParams'])).json();
+		// @ts-ignore
+		return (await this.#http.get(`${this.host()}/${path}`, query?.searchParams)).json();
 	}
 
 	private async post(path: string, { body, searchParams }: { body; searchParams? }): Promise<Contracts.KeyValuePair> {

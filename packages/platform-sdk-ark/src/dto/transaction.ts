@@ -102,7 +102,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			return false;
 		}
 
-		return (this.asset().votes as string[]).some((vote) => vote.startsWith("+"));
+		return (this.asset()['votes'] as string[]).some((vote) => vote.startsWith("+"));
 	}
 
 	public isUnvote(): boolean {
@@ -112,7 +112,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			return false;
 		}
 
-		return (this.asset().votes as string[]).some((vote) => vote.startsWith("-"));
+		return (this.asset()['votes'] as string[]).some((vote) => vote.startsWith("-"));
 	}
 
 	public isMultiSignature(): boolean {
