@@ -31,10 +31,10 @@ export class Client {
 	public async blockWithTransactions(id: number): Promise<Record<string, any>> {
 		const block = await this.block(id);
 
-		if (block.tx) {
-			block.transactions = [];
+		if (block['tx']) {
+			block['transactions'] = [];
 
-			for (const transaction of block.tx) {
+			for (const transaction of block['tx']) {
 				this.#logger.info(`Processing transaction [${transaction}]`);
 
 				// @TODO: implement a retry mechanism and store the IDs of transactions that failed to be retrieved
@@ -42,7 +42,7 @@ export class Client {
 				// transactions which will result in a large amount of requests that most likely will cause
 				// bitcoind to choke and potentially crash because of how poorly it handles concurrent requests
 				try {
-					block.transactions.push(await this.transaction(transaction));
+					block['transactions'].push(await this.transaction(transaction));
 				} catch (error) {
 					this.#database.storeError("transaction", transaction, error.message);
 				}

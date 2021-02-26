@@ -4,7 +4,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		return this.data.txhash;
+		return this.data['txhash'];
 	}
 
 	public blockId(): string | undefined {
@@ -12,7 +12,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public timestamp(): DateTime | undefined {
-		return DateTime.make(this.data.timestamp);
+		return DateTime.make(this.data['timestamp']);
 	}
 
 	public confirmations(): BigNumber {
@@ -20,14 +20,14 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		const event = this.data.events.find((event) => event.type === "message");
+		const event = this.data['events'].find((event) => event.type === "message");
 		const attribute = event.attributes.find((attribute) => attribute.key === "sender");
 
 		return attribute.value;
 	}
 
 	public recipient(): string {
-		const event = this.data.events.find((event) => event.type === "transfer");
+		const event = this.data['events'].find((event) => event.type === "transfer");
 		const attribute = event.attributes.find((attribute) => attribute.key === "recipient");
 
 		return attribute.value;
@@ -39,18 +39,18 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 	// @ts-ignore
 	public amount(): BigNumber {
-		const event = this.data.events.find((event) => event.type === "transfer");
+		const event = this.data['events'].find((event) => event.type === "transfer");
 		const attribute = event.attributes.find((attribute) => attribute.key === "amount");
 
 		return BigNumber.make(attribute.value.replace(/\D/g, ""));
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.gas_used);
+		return BigNumber.make(this.data['gas_used']);
 	}
 
 	public memo(): string | undefined {
-		return this.data.tx.value.memo;
+		return this.data['tx'].value.memo;
 	}
 
 	public asset(): Record<string, unknown> {

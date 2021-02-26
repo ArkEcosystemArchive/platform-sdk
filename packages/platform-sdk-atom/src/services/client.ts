@@ -81,11 +81,11 @@ export class ClientService implements Contracts.ClientService {
 		});
 
 		return Helpers.createTransactionDataCollectionWithType(
-			response.txs,
+			response['txs'],
 			{
 				prev: page <= 1 ? undefined : page - 1,
-				self: Number(response.page_number),
-				next: page >= Number(response.page_total) ? undefined : page,
+				self: Number(response['page_number']),
+				next: page >= Number(response['page_total']) ? undefined : page,
 			},
 			TransactionDTO,
 		);
@@ -147,6 +147,7 @@ export class ClientService implements Contracts.ClientService {
 
 					for (const [key, value] of Object.entries(this.#broadcastErrors)) {
 						if (message.includes(key)) {
+							// @ts-ignore
 							result.errors[txhash].push(value);
 						}
 					}

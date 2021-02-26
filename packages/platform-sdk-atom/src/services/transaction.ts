@@ -12,9 +12,9 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #networkId;
 
 	private constructor(opts: Contracts.KeyValuePair) {
-		this.#client = opts.client;
-		this.#identity = opts.identity;
-		this.#networkId = opts.network.crypto.networkId;
+		this.#client = opts['client'];
+		this.#identity = opts['identity'];
+		this.#networkId = opts['network'].crypto.networkId;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {

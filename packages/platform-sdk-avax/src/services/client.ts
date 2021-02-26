@@ -142,6 +142,7 @@ export class ClientService implements Contracts.ClientService {
 		return (
 			await this.#config
 				.get<Contracts.HttpClient>("httpClient")
+				// @ts-ignore
 				.get(`${this.host()}/${path}`, query?.searchParams)
 		).json();
 	}
