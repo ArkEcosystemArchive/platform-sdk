@@ -26,8 +26,8 @@ export const createWallet = async (profile: Profile): Promise<void> => {
 			choices: [
 				{ title: "ARK (Production)", value: ["ARK", "ark.mainnet"] },
 				{ title: "ARK (Development)", value: ["ARK", "ark.devnet"] },
-				{ title: "AVAX (Production)", value: ["AVAX", "avax.mainnet"] },
-				{ title: "AVAX (Development)", value: ["AVAX", "avax.testnet"] },
+				// { title: "AVAX (Production)", value: ["AVAX", "avax.mainnet"] },
+				// { title: "AVAX (Development)", value: ["AVAX", "avax.testnet"] },
 				{ title: "LSK (Production)", value: ["LSK", "lsk.mainnet"] },
 				{ title: "LSK (Development)", value: ["LSK", "lsk.testnet"] },
 				{ title: "Exit", value: "exit" },
