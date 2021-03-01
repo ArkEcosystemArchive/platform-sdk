@@ -7,23 +7,26 @@ import { validatePassword } from "./change-password";
 export const createProfile = async (env: Environment): Promise<void> => {
 	renderLogo();
 
-	const { name, password } = await prompts([{
-		type: "text",
-		name: "name",
-		message: "What is your name?",
-		validate: (value: string) => value !== undefined,
-	}, {
-		type: "password",
-		name: "password",
-		message: "What is your password? (Optional)",
-		validate: async (value: string) => {
-			if (value === undefined) {
-				return true;
-			}
-
-			return validatePassword(value);
+	const { name, password } = await prompts([
+		{
+			type: "text",
+			name: "name",
+			message: "What is your name?",
+			validate: (value: string) => value !== undefined,
 		},
-	}]);
+		{
+			type: "password",
+			name: "password",
+			message: "What is your password? (Optional)",
+			validate: async (value: string) => {
+				if (value === undefined) {
+					return true;
+				}
+
+				return validatePassword(value);
+			},
+		},
+	]);
 
 	if (name === undefined) {
 		return;
