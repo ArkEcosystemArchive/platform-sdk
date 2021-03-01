@@ -1,3 +1,4 @@
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Profile } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
@@ -56,7 +57,12 @@ export const createWallet = async (profile: Profile): Promise<void> => {
 			type: "password",
 			name: "mnemonic",
 			message: "Please enter your mnemonic:",
+			validate: (value: string) => BIP39.validate(value),
 		});
+
+		if (mnemonic === undefined) {
+			return;
+		}
 
 		await profile.wallets().importByMnemonic(mnemonic, asset[0], asset[1]);
 	}

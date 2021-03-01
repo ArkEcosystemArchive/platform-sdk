@@ -783,6 +783,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-atom", "workspace:packages/platform-sdk-atom"],
             ["@arkecosystem/platform-sdk-avax", "workspace:packages/platform-sdk-avax"],
             ["@arkecosystem/platform-sdk-btc", "workspace:packages/platform-sdk-btc"],
+            ["@arkecosystem/platform-sdk-crypto", "workspace:packages/platform-sdk-crypto"],
             ["@arkecosystem/platform-sdk-dot", "workspace:packages/platform-sdk-dot"],
             ["@arkecosystem/platform-sdk-egld", "workspace:packages/platform-sdk-egld"],
             ["@arkecosystem/platform-sdk-eos", "workspace:packages/platform-sdk-eos"],
