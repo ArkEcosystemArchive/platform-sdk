@@ -524,6 +524,7 @@ __metadata:
     nodejs-tail: ^1.1.1
     npm-check-updates: ^10.1.1
     ora: ^5.3.0
+    password-pwnd: ^1.0.5
     prettier: ^2.1.2
     prompts: ^2.4.0
     read-last-lines: ^1.8.0
@@ -15946,6 +15947,15 @@ fsevents@~2.3.1:
   version: 0.1.1
   resolution: "pascalcase@npm:0.1.1"
   checksum: 268a9dbf9cd934fcd0ba02733b7d6176834b13a608bbcd295550636b3c6371a6047875175b457e705b283e81ec171884c9cd86d1fd6c49f70f66fbc3783dc0c1
+  languageName: node
+  linkType: hard
+
+"password-pwnd@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "password-pwnd@npm:1.0.5"
+  dependencies:
+    node-fetch: ^2.6.1
+  checksum: 724ce2ee8e8c7e453184da6e956fbcf6070c9543abd07ec90afa15efc22e3adc45259a73015f7e4d6aaa409d1634ad76d94a0636950382aa44bb5635eac855d6
   languageName: node
   linkType: hard
 

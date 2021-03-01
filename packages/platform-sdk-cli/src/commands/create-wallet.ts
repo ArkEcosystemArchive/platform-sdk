@@ -47,6 +47,7 @@ export const createWallet = async (profile: Profile): Promise<void> => {
 			type: "text",
 			name: "address",
 			message: "Please enter your address:",
+			validate: (value: string) => value !== undefined,
 		});
 
 		await profile.wallets().importByAddress(address, asset[0], asset[1]);

@@ -838,6 +838,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["nodejs-tail", "npm:1.1.1"],
             ["npm-check-updates", "npm:10.1.1"],
             ["ora", "npm:5.3.0"],
+            ["password-pwnd", "npm:1.0.5"],
             ["prettier", "npm:2.1.2"],
             ["prompts", "npm:2.4.0"],
             ["read-last-lines", "npm:1.8.0"],
@@ -17986,6 +17987,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/pascalcase-npm-0.1.1-d04964fcda-268a9dbf9c.zip/node_modules/pascalcase/",
           "packageDependencies": [
             ["pascalcase", "npm:0.1.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["password-pwnd", [
+        ["npm:1.0.5", {
+          "packageLocation": "./.yarn/cache/password-pwnd-npm-1.0.5-bb33d45ad8-724ce2ee8e.zip/node_modules/password-pwnd/",
+          "packageDependencies": [
+            ["password-pwnd", "npm:1.0.5"],
+            ["node-fetch", "npm:2.6.1"]
           ],
           "linkType": "HARD",
         }]

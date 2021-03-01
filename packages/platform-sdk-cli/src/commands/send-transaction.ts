@@ -13,16 +13,19 @@ export const sendTransaction = async (wallet: ReadWriteWallet): Promise<void> =>
 			type: "text",
 			name: "to",
 			message: "Please enter the recipient:",
+			validate: (value: string) => value !== undefined,
 		},
 		{
 			type: "text",
 			name: "amount",
 			message: "Please enter the amount:",
+			validate: (value: string) => Number.isFinite(value),
 		},
 		{
 			type: "text",
 			name: "memo",
 			message: "Please enter the memo:",
+			validate: (value: string) => value !== undefined,
 		},
 		{
 			type: "password",
