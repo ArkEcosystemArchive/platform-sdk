@@ -2,7 +2,7 @@ import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Profile } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
-import { renderLogo, useLogger } from "../helpers";
+import { renderLogo } from "../helpers";
 
 export const createWallet = async (profile: Profile): Promise<void> => {
 	renderLogo();
@@ -26,8 +26,8 @@ export const createWallet = async (profile: Profile): Promise<void> => {
 			choices: [
 				{ title: "ARK (Production)", value: ["ARK", "ark.mainnet"] },
 				{ title: "ARK (Development)", value: ["ARK", "ark.devnet"] },
-				{ title: "AVAX (Production)", value: ["AVAX", "avax.mainnet"] },
-				{ title: "AVAX (Development)", value: ["AVAX", "avax.testnet"] },
+				// { title: "AVAX (Production)", value: ["AVAX", "avax.mainnet"] },
+				// { title: "AVAX (Development)", value: ["AVAX", "avax.testnet"] },
 				{ title: "LSK (Production)", value: ["LSK", "lsk.mainnet"] },
 				{ title: "LSK (Development)", value: ["LSK", "lsk.testnet"] },
 				{ title: "Exit", value: "exit" },
@@ -37,9 +37,7 @@ export const createWallet = async (profile: Profile): Promise<void> => {
 	]);
 
 	if (command === "exit") {
-		useLogger().warning("Terminating...");
-
-		process.exit(0);
+		return;
 	}
 
 	if (command === "address") {

@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/platform-sdk-cli",
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"version": "3.0.26",
+	"version": "3.0.31",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
@@ -10,7 +10,7 @@
 	"main": "dist/index",
 	"types": "dist/index",
 	"bin": {
-		"psdk": "./bin/run"
+		"plutus": "./bin/run"
 	},
 	"scripts": {
 		"build": "yarn clean && tsc",
@@ -45,6 +45,7 @@
 		"boxen": "^5.0.0",
 		"cfonts": "^2.9.0",
 		"cli-table3": "^0.6.0",
+		"conf": "^9.0.2",
 		"dayjs": "^1.10.4",
 		"env-paths": "^2.2.0",
 		"envfile": "^6.14.0",

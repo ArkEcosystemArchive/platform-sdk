@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.0.31 - 2020-03-01
+
+### Added
+
+-   **[SOL]** Initial implementation (d209018f, @faustbrian)
+-   **[BTC-SERVER]** Initial implementation (95567eb4, @marianogoldman)
+-   **[CLI]** Initial implementation (c705cde9, @faustbrian)
+
+### Changed
+
+-   Support BIP44 options for identity derivation (acf7651f, @faustbrian)
+
+### Fixed
+
+-   **[ETH-INDEXER]** Allow block identifier to be number or hash (84182619, @marianogoldman)
+
 ## 3.0.26 - 2020-02-25
 
 ### Fixed

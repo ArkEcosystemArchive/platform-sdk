@@ -2,20 +2,38 @@ import { Environment } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
 import { renderLogo } from "../helpers";
+import { validatePassword } from "./change-password";
 
 export const createProfile = async (env: Environment): Promise<void> => {
 	renderLogo();
 
-	const { name } = await prompts({
+	const { name, password } = await prompts([{
 		type: "text",
 		name: "name",
 		message: "What is your name?",
 		validate: (value: string) => value !== undefined,
-	});
+	}, {
+		type: "password",
+		name: "password",
+		message: "What is your password? (Optional)",
+		validate: async (value: string) => {
+			if (value === undefined) {
+				return true;
+			}
+
+			return validatePassword(value);
+		},
+	}]);
 
 	if (name === undefined) {
 		return;
 	}
 
-	env.profiles().create(name);
+	const profile = env.profiles().create(name);
+
+	if (password !== undefined) {
+		profile.auth().setPassword(password);
+	}
+
+	await env.persist();
 };
