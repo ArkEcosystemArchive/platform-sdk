@@ -23,13 +23,7 @@ export const changePassword = async (profile: Profile): Promise<void> => {
 		type: "password",
 		name: "password",
 		message: "Please enter your current password:",
-		validate: async (value: string) => {
-			if (value === undefined) {
-				return false;
-			}
-
-			return validatePassword(value);
-		},
+		validate: async (value: string) => value !== undefined,
 	}, {
 		type: "password",
 		name: "password",
