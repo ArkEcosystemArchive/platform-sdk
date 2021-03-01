@@ -24,7 +24,7 @@ export const changePassword = async (profile: Profile): Promise<void> => {
 				return true;
 			}
 
-			return "Your password is insecure and would be cracked.";
+			return "The password must contain at least 1 lowercase character, 1 uppercase character, 1 numeric character, 1 special character and must be 8 characters or longer.";
 		},
 	});
 
