@@ -811,6 +811,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["boxen", "npm:5.0.0"],
             ["cfonts", "npm:2.9.1"],
             ["cli-table3", "npm:0.6.0"],
+            ["conf", "npm:9.0.2"],
             ["cross-env", "npm:7.0.2"],
             ["dayjs", "npm:1.10.4"],
             ["env-paths", "npm:2.2.0"],
@@ -7495,6 +7496,27 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["uri-js", "npm:4.2.2"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:7.1.1", {
+          "packageLocation": "./.yarn/cache/ajv-npm-7.1.1-2207905505-fe4e138529.zip/node_modules/ajv/",
+          "packageDependencies": [
+            ["ajv", "npm:7.1.1"],
+            ["fast-deep-equal", "npm:3.1.1"],
+            ["json-schema-traverse", "npm:1.0.0"],
+            ["require-from-string", "npm:2.0.2"],
+            ["uri-js", "npm:4.2.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["ajv-formats", [
+        ["npm:1.5.1", {
+          "packageLocation": "./.yarn/cache/ajv-formats-npm-1.5.1-f058cf5c41-0c13847af1.zip/node_modules/ajv-formats/",
+          "packageDependencies": [
+            ["ajv-formats", "npm:1.5.1"],
+            ["ajv", "npm:7.1.1"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["ajv-keywords", [
@@ -7946,6 +7968,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/atomic-sleep-npm-1.0.0-17d8a762a3-2c6fa68caf.zip/node_modules/atomic-sleep/",
           "packageDependencies": [
             ["atomic-sleep", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["atomically", [
+        ["npm:1.7.0", {
+          "packageLocation": "./.yarn/cache/atomically-npm-1.7.0-e742e5293b-a1e519d531.zip/node_modules/atomically/",
+          "packageDependencies": [
+            ["atomically", "npm:1.7.0"]
           ],
           "linkType": "HARD",
         }]
@@ -9975,6 +10006,26 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["conf", [
+        ["npm:9.0.2", {
+          "packageLocation": "./.yarn/cache/conf-npm-9.0.2-e327d2389b-da16e2eb26.zip/node_modules/conf/",
+          "packageDependencies": [
+            ["conf", "npm:9.0.2"],
+            ["ajv", "npm:7.1.1"],
+            ["ajv-formats", "npm:1.5.1"],
+            ["atomically", "npm:1.7.0"],
+            ["debounce-fn", "npm:4.0.0"],
+            ["dot-prop", "npm:6.0.1"],
+            ["env-paths", "npm:2.2.0"],
+            ["json-schema-typed", "npm:7.0.3"],
+            ["make-dir", "npm:3.1.0"],
+            ["onetime", "npm:5.1.2"],
+            ["pkg-up", "npm:3.1.0"],
+            ["semver", "npm:7.3.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["configstore", [
         ["npm:5.0.1", {
           "packageLocation": "./.yarn/cache/configstore-npm-5.0.1-739433cdc5-81dd877bf7.zip/node_modules/configstore/",
@@ -10392,6 +10443,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/dayjs-npm-1.9.6-bcf8341f4c-aaf343022d.zip/node_modules/dayjs/",
           "packageDependencies": [
             ["dayjs", "npm:1.9.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["debounce-fn", [
+        ["npm:4.0.0", {
+          "packageLocation": "./.yarn/cache/debounce-fn-npm-4.0.0-fc4e97bcb1-290c4ac231.zip/node_modules/debounce-fn/",
+          "packageDependencies": [
+            ["debounce-fn", "npm:4.0.0"],
+            ["mimic-fn", "npm:3.1.0"]
           ],
           "linkType": "HARD",
         }]
@@ -10885,6 +10946,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/dot-prop-npm-6.0.0-e91c0e6710-015f2effc9.zip/node_modules/dot-prop/",
           "packageDependencies": [
             ["dot-prop", "npm:6.0.0"],
+            ["is-obj", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:6.0.1", {
+          "packageLocation": "./.yarn/cache/dot-prop-npm-6.0.1-de66211710-06793b8680.zip/node_modules/dot-prop/",
+          "packageDependencies": [
+            ["dot-prop", "npm:6.0.1"],
             ["is-obj", "npm:2.0.0"]
           ],
           "linkType": "HARD",
@@ -15406,6 +15475,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["json-schema-traverse", "npm:0.4.1"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/json-schema-traverse-npm-1.0.0-fb3684f4f0-7a230bcd92.zip/node_modules/json-schema-traverse/",
+          "packageDependencies": [
+            ["json-schema-traverse", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["json-schema-typed", [
+        ["npm:7.0.3", {
+          "packageLocation": "./.yarn/cache/json-schema-typed-npm-7.0.3-b2c25a2ec3-0b7e77f321.zip/node_modules/json-schema-typed/",
+          "packageDependencies": [
+            ["json-schema-typed", "npm:7.0.3"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["json-stable-stringify-without-jsonify", [
@@ -18211,6 +18296,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["pkg-dir", "npm:4.2.0"],
             ["find-up", "npm:4.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["pkg-up", [
+        ["npm:3.1.0", {
+          "packageLocation": "./.yarn/cache/pkg-up-npm-3.1.0-1eebe033b7-df82763250.zip/node_modules/pkg-up/",
+          "packageDependencies": [
+            ["pkg-up", "npm:3.1.0"],
+            ["find-up", "npm:3.0.0"]
           ],
           "linkType": "HARD",
         }]

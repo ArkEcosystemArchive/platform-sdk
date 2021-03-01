@@ -1,7 +1,7 @@
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
-import { renderLogo } from "../helpers";
 
+import { renderLogo } from "../helpers";
 import { accessWallet } from "./access-wallet";
 import { changePassword } from "./change-password";
 import { createWallet } from "./create-wallet";
@@ -57,13 +57,22 @@ export const accessProfile = async (env: Environment): Promise<void> => {
 
 	if (command === "access-wallet") {
 		await accessWallet(profile);
+
+		profile.save();
+		await env.persist();
 	}
 
 	if (command === "create-wallet") {
 		await createWallet(profile);
+
+		profile.save();
+		await env.persist();
 	}
 
 	if (command === "change-password") {
 		await changePassword(profile);
+
+		profile.save();
+		await env.persist();
 	}
 };

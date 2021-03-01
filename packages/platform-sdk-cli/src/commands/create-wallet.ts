@@ -2,7 +2,7 @@ import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Profile } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
-import { renderLogo, useLogger } from "../helpers";
+import { renderLogo } from "../helpers";
 
 export const createWallet = async (profile: Profile): Promise<void> => {
 	renderLogo();
@@ -37,9 +37,7 @@ export const createWallet = async (profile: Profile): Promise<void> => {
 	]);
 
 	if (command === "exit") {
-		useLogger().warning("Terminating...");
-
-		process.exit(0);
+		return;
 	}
 
 	if (command === "address") {
