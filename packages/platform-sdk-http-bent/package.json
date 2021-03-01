@@ -21,6 +21,10 @@
 		"@arkecosystem/platform-sdk": "file:../platform-sdk",
 		"bent": "^7.3.12"
 	},
+	"devDependencies": {
+		"jest": "^26.6.3",
+		"rimraf": "^3.0.2"
+	},
 	"engines": {
 		"node": ">=12.x"
 	},

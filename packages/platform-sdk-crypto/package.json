@@ -29,6 +29,10 @@
 		"safe-buffer": "^5.2.1",
 		"string-crypto": "^2.0.1"
 	},
+	"devDependencies": {
+		"jest": "^26.6.3",
+		"rimraf": "^3.0.2"
+	},
 	"engines": {
 		"node": ">=12.x"
 	},

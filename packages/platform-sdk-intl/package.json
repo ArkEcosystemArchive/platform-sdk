@@ -21,6 +21,10 @@
 		"dayjs": "^1.9.6",
 		"dinero.js": "^1.8.1"
 	},
+	"devDependencies": {
+		"jest": "^26.6.3",
+		"rimraf": "^3.0.2"
+	},
 	"engines": {
 		"node": ">=12.x"
 	},

@@ -27,6 +27,10 @@
 		"@liskhq/lisk-transactions": "^2.0",
 		"dpos-ledger-api": "^3.0.1"
 	},
+	"devDependencies": {
+		"jest": "^26.6.3",
+		"rimraf": "^3.0.2"
+	},
 	"engines": {
 		"node": ">=12.x"
 	},
