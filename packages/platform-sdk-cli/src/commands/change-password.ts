@@ -1,5 +1,5 @@
 import { Profile } from "@arkecosystem/platform-sdk-profiles";
-import { pwnd } from "password-pwnd";
+import { pwnd, strong } from "password-pwnd";
 import prompts from "prompts";
 
 import { renderLogo } from "../helpers";
@@ -16,11 +16,15 @@ export const changePassword = async (profile: Profile): Promise<void> => {
 				return false;
 			}
 
-			if (!(await pwnd(value))) {
+			if (await pwnd(value)) {
+				return "Please change your password, it has been found in a previous breach";
+			}
+
+			if (await strong(value)) {
 				return true;
 			}
 
-			return "Please change your password, it has been found in a previous breach";
+			return "Your password is insecure and would be cracked.";
 		},
 	});
 
