@@ -37,9 +37,7 @@ export const accessWallet = async (profile: Profile): Promise<void> => {
 	});
 
 	if (command === "exit") {
-		useLogger().warning("Terminating...");
-
-		process.exit(0);
+		return;
 	}
 
 	if (command === "balance") {

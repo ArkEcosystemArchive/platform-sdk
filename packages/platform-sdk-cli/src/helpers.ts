@@ -17,6 +17,7 @@ import { LSK } from "@arkecosystem/platform-sdk-lsk";
 // import { XRP } from "@arkecosystem/platform-sdk-xrp";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import cfonts from "cfonts";
+import { ConfStorage } from "./storage";
 
 export const useLogger = (): Logger => new Logger();
 
@@ -39,7 +40,7 @@ export const useEnvironment = async (): Promise<Environment> => {
 			// XLM,
 			// XRP,
 		},
-		storage: "memory", // @TODO: Use an SQLite database
+		storage: new ConfStorage(),
 		httpClient: new Request(),
 	});
 

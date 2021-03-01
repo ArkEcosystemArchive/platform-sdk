@@ -18,4 +18,6 @@ export const createProfile = async (env: Environment): Promise<void> => {
 	}
 
 	env.profiles().create(name);
+
+	await env.persist();
 };
