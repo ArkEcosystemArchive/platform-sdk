@@ -1,8 +1,14 @@
 import { Storage } from "@arkecosystem/platform-sdk-profiles";
 import Conf from "conf";
 
+import { useLogger } from "./helpers";
+
 export class ConfStorage implements Storage {
 	readonly #storage: Conf = new Conf();
+
+	public constructor() {
+		useLogger().debug(this.#storage.path);
+	}
 
 	public async all<T = Record<string, unknown>>(): Promise<T> {
 		return this.#storage.store as T;
