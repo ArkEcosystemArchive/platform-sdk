@@ -41,6 +41,9 @@
 		"wif": "^2.0.6"
 	},
 	"devDependencies": {
+		"@arkecosystem/platform-sdk-ark": "file:../platform-sdk-ark",
+		"@arkecosystem/platform-sdk-btc": "file:../platform-sdk-btc",
+		"@arkecosystem/platform-sdk-eth": "file:../platform-sdk-eth",
 		"jest": "^26.6.3",
 		"rimraf": "^3.0.2"
 	},
