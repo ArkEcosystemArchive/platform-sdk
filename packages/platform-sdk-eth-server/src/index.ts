@@ -3,7 +3,7 @@ import Joi from "joi";
 
 import { useClient, useDatabase, useLogger } from "./helpers";
 
-const PAGE_SIZE = 25; // TODO Do we support customizing this by the user? Like a param pageSize or limit?
+const PAGE_SIZE = 25;
 
 export const subscribe = async (flags: {
 	coin: string;
@@ -139,7 +139,7 @@ export const subscribe = async (flags: {
 			},
 		},
 		handler: (request) => {
-			const offset = (request.query.page - 1) * PAGE_SIZE; // TODO Do we start page numbers at 1 or at 0?
+			const offset = (request.query.page - 1) * PAGE_SIZE;
 			return database
 				.prepare(
 					`SELECT * FROM transactions WHERE sender = '${request.params.wallet}' OR recipient = '${request.params.wallet}' ORDER BY nonce LIMIT ${PAGE_SIZE} OFFSET ${offset};`,
