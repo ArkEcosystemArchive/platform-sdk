@@ -536,7 +536,7 @@ __metadata:
     typescript: ^4.0.5
     yargs-parser: ^20.2.6
   bin:
-    psdk: ./bin/run
+    plutus: ./bin/run
   languageName: unknown
   linkType: soft
 
