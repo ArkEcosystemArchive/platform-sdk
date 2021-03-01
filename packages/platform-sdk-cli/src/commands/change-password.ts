@@ -6,7 +6,7 @@ import { renderLogo, useLogger } from "../helpers";
 
 export const validatePassword = async (value: string): Promise<boolean | string> => {
 	if (await pwnd(value)) {
-		return "Please change your password, it has been found in a previous breach";
+		return "Please change your password, it has been found in a previous breach.";
 	}
 
 	if (await strong(value)) {
