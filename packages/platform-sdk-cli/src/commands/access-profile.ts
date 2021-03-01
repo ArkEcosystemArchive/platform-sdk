@@ -1,4 +1,4 @@
-import { Environment } from "@arkecosystem/platform-sdk-profiles";
+import { Environment, MemoryPassword } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
 import { renderLogo } from "../helpers";
@@ -27,11 +27,18 @@ export const accessProfile = async (env: Environment): Promise<void> => {
 	if (profile.usesPassword()) {
 		const { password } = await prompts({
 			type: "password",
-			name: "value",
+			name: "password",
 			message: "Please enter your password:",
+			validate: (value: string) => value !== undefined,
 		});
 
+		if (password === undefined) {
+			return;
+		}
+
 		await profile.restore(password);
+
+		MemoryPassword.set(profile, password);
 	} else {
 		await profile.restore();
 	}
