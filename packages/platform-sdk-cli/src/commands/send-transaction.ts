@@ -19,7 +19,7 @@ export const sendTransaction = async (wallet: ReadWriteWallet): Promise<void> =>
 			type: "text",
 			name: "amount",
 			message: "Please enter the amount:",
-			validate: (value: string) => Number.isFinite(value),
+			validate: (value: string) => BigNumber.make(value).isGreaterThan(0),
 		},
 		{
 			type: "text",
