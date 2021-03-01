@@ -64,6 +64,6 @@ export class Client {
 				method,
 				params,
 			})
-		).json().result;
+		).json();
 	}
 }
