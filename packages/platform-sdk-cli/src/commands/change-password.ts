@@ -2,7 +2,7 @@ import { Profile } from "@arkecosystem/platform-sdk-profiles";
 import { pwnd, strong } from "password-pwnd";
 import prompts from "prompts";
 
-import { renderLogo } from "../helpers";
+import { renderLogo, useLogger } from "../helpers";
 
 export const validatePassword = async (value: string): Promise<boolean | string> => {
 	if (await pwnd(value)) {
@@ -51,5 +51,9 @@ export const changePassword = async (profile: Profile): Promise<void> => {
 		return;
 	}
 
-	profile.auth().changePassword(oldPassword, newPassword);
+	try {
+		profile.auth().changePassword(oldPassword, newPassword);
+	} catch (error) {
+		useLogger().error(error.message);
+	}
 };
