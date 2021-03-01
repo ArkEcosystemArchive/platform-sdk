@@ -111,7 +111,7 @@
 		"prettier": "^2.1.2",
 		"ripple-binary-codec": "^1.0.2",
 		"ts-jest": "^26.4.4",
-		"typescript": "4.0.5",
+		"typescript": "^4.2.2",
 		"typescript-language-server": "^0.4.0",
 		"wif": "^2.0.6",
 		"ws": "^7.4.0"
