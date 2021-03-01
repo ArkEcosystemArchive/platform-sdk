@@ -2,6 +2,8 @@ import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import * as transactions from "@liskhq/lisk-transactions";
 
+import { SignedTransactionData } from "../dto/signed-transaction";
+
 export class TransactionService implements Contracts.TransactionService {
 	readonly #network;
 
@@ -155,7 +157,9 @@ export class TransactionService implements Contracts.TransactionService {
 				struct["secondPassphrase"] = BIP39.normalize(input["sign"]["secondMnemonic"]);
 			}
 
-			return transactions[type](struct);
+			const signedTransaction = transactions[type](struct);
+
+			return new SignedTransactionData(signedTransaction.id, signedTransaction, signedTransaction);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

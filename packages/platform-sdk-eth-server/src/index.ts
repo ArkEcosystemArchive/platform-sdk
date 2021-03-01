@@ -56,7 +56,7 @@ export const subscribe = async (flags: {
 		options: {
 			validate: {
 				params: Joi.object({
-					block: Joi.string().length(66),
+					block: [Joi.number().integer(), Joi.string().length(66)],
 				}).options({ stripUnknown: true }),
 			},
 		},

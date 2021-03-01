@@ -1,7 +1,7 @@
-# ARK Platform SDK - Ethereum Server
+# ARK Platform SDK - Bitcoin Server
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-eth-server/banner.png" />
+    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-btc-server/banner.png" />
 </p>
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)
@@ -9,12 +9,12 @@
 ## Installation
 
 ```bash
-npm install @arkecosystem/platform-sdk-eth-server
+yarn add @arkecosystem/platform-sdk-btc-server
 ```
 
 ## Usage
 
-Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/eth).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/btc).
 
 ## Security
 

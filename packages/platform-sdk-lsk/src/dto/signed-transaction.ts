@@ -1,4 +1,4 @@
-import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class SignedTransactionData
@@ -21,10 +21,10 @@ export class SignedTransactionData
 	}
 
 	public isMultiSignature(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignature");
+		return false;
 	}
 
 	public isMultiSignatureRegistration(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignatureRegistration");
+		return false;
 	}
 }
