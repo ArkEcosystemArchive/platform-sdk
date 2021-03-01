@@ -19,23 +19,26 @@ export const validatePassword = async (value: string): Promise<boolean | string>
 export const changePassword = async (profile: Profile): Promise<void> => {
 	renderLogo();
 
-	const { oldPassword, newPassword } = await prompts([{
-		type: "password",
-		name: "password",
-		message: "Please enter your current password:",
-		validate: async (value: string) => value !== undefined,
-	}, {
-		type: "password",
-		name: "password",
-		message: "Please enter your new password:",
-		validate: async (value: string) => {
-			if (value === undefined) {
-				return false;
-			}
-
-			return validatePassword(value);
+	const { oldPassword, newPassword } = await prompts([
+		{
+			type: "password",
+			name: "password",
+			message: "Please enter your current password:",
+			validate: async (value: string) => value !== undefined,
 		},
-	}]);
+		{
+			type: "password",
+			name: "password",
+			message: "Please enter your new password:",
+			validate: async (value: string) => {
+				if (value === undefined) {
+					return false;
+				}
+
+				return validatePassword(value);
+			},
+		},
+	]);
 
 	if (oldPassword === undefined) {
 		return;

@@ -13,7 +13,7 @@ const pushTransactions = (table: Table.Table, transactions): void => {
 			transaction.fee().toHuman(),
 		]);
 	}
-}
+};
 
 export const listTransactions = async (wallet: ReadWriteWallet): Promise<void> => {
 	renderLogo();
