@@ -16,6 +16,7 @@ import { LSK } from "@arkecosystem/platform-sdk-lsk";
 // import { XLM } from "@arkecosystem/platform-sdk-xlm";
 // import { XRP } from "@arkecosystem/platform-sdk-xrp";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
+import cfonts from "cfonts";
 
 export const useLogger = (): Logger => new Logger();
 
@@ -46,4 +47,14 @@ export const useEnvironment = async (): Promise<Environment> => {
 	await env.boot();
 
 	return env;
+};
+
+export const renderLogo = (): void => {
+	console.clear();
+
+	cfonts.say("Plutus", {
+		gradient: ["#14b8a6", "#0891b2"],
+		independentGradient: true,
+		transitionGradient: true,
+	});
 };

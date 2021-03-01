@@ -493,6 +493,7 @@ __metadata:
     "@typescript-eslint/parser": ^4.7.0
     better-sqlite3: ^7.1.2
     boxen: ^5.0.0
+    cfonts: ^2.9.0
     cli-table3: ^0.6.0
     cross-env: ^7.0.2
     dayjs: ^1.10.4
@@ -8217,6 +8218,18 @@ __metadata:
   dependencies:
     linkify-it: ^3.0.2
   checksum: d235723cdb093b97fdae9592c9395028d0af5c72983cdf7ca8e8933c038bf911807cd2fc8c43bc2469bfc18c5f3f3816eb1b4d6902ac6e184c953a6f06386500
+  languageName: node
+  linkType: hard
+
+"cfonts@npm:^2.9.0":
+  version: 2.9.1
+  resolution: "cfonts@npm:2.9.1"
+  dependencies:
+    chalk: ^4.1.0
+    window-size: ^1.1.1
+  bin:
+    cfonts: bin/index.js
+  checksum: 2264fb740b5636ab60c8778179b6256b3e6348fa05a71868749fd6c8ca7412fb1ada5332696ffed3d967baa3b711ad94d51f80f1572c368d2ca5bfc6175f8e13
   languageName: node
   linkType: hard
 
@@ -20505,6 +20518,18 @@ typescript@^4.0.2:
   dependencies:
     bs58check: <3.0.0
   checksum: 0880ce99c8490be97ee1bff1d984a95b2b7a1d6f73824086da278f49bf68d1373f9af89c093d2514cf3dc08cd11ff60c3787f494e25326aa30f9ff81e34757a8
+  languageName: node
+  linkType: hard
+
+"window-size@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "window-size@npm:1.1.1"
+  dependencies:
+    define-property: ^1.0.0
+    is-number: ^3.0.0
+  bin:
+    window-size: cli.js
+  checksum: f6b8658372125b66d6acf6b3651c1198beeb01d74383bb733f3538eae8a0af14ef691e02e5517437207839035b77952673ce34d93bbb6929a0c754be910f3e2e
   languageName: node
   linkType: hard
 

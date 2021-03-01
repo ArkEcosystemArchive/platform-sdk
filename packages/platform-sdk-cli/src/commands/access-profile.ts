@@ -1,12 +1,13 @@
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
+import { renderLogo } from "../helpers";
 
 import { accessWallet } from "./access-wallet";
 import { changePassword } from "./change-password";
 import { createWallet } from "./create-wallet";
 
 export const accessProfile = async (env: Environment): Promise<void> => {
-	console.clear();
+	renderLogo();
 
 	// Prompt
 	const { id } = await prompts({

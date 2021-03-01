@@ -1,9 +1,11 @@
 import prompts from "prompts";
 
 import { createProfile, accessProfile } from "./commands";
-import { useEnvironment, useLogger } from "./helpers";
+import { useEnvironment, useLogger, renderLogo } from "./helpers";
 
 export const main = async (): Promise<void> => {
+	renderLogo();
+
 	const logger = useLogger();
 	const env = await useEnvironment();
 

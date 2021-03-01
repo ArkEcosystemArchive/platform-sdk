@@ -1,8 +1,9 @@
 import { Profile } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
+import { renderLogo } from "../helpers";
 
 export const changePassword = async (profile: Profile): Promise<void> => {
-	console.clear();
+	renderLogo();
 
 	const { password } = await prompts({
 		type: "password",

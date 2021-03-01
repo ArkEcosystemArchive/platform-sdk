@@ -807,6 +807,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:4.7.0"],
             ["better-sqlite3", "npm:7.1.2"],
             ["boxen", "npm:5.0.0"],
+            ["cfonts", "npm:2.9.1"],
             ["cli-table3", "npm:0.6.0"],
             ["cross-env", "npm:7.0.2"],
             ["dayjs", "npm:1.10.4"],
@@ -9427,6 +9428,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["censorify-it", "npm:3.0.2"],
             ["linkify-it", "npm:3.0.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["cfonts", [
+        ["npm:2.9.1", {
+          "packageLocation": "./.yarn/cache/cfonts-npm-2.9.1-4657c24e66-2264fb740b.zip/node_modules/cfonts/",
+          "packageDependencies": [
+            ["cfonts", "npm:2.9.1"],
+            ["chalk", "npm:4.1.0"],
+            ["window-size", "npm:1.1.1"]
           ],
           "linkType": "HARD",
         }]
@@ -22873,6 +22885,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["wif", "npm:2.0.6"],
             ["bs58check", "npm:2.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["window-size", [
+        ["npm:1.1.1", {
+          "packageLocation": "./.yarn/cache/window-size-npm-1.1.1-a99332127b-f6b8658372.zip/node_modules/window-size/",
+          "packageDependencies": [
+            ["window-size", "npm:1.1.1"],
+            ["define-property", "npm:1.0.0"],
+            ["is-number", "npm:3.0.0"]
           ],
           "linkType": "HARD",
         }]

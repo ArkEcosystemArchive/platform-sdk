@@ -1,10 +1,10 @@
 import { ReadWriteWallet } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
-import { useLogger } from "../helpers";
+import { renderLogo, useLogger } from "../helpers";
 
 export const sendTransaction = async (wallet: ReadWriteWallet): Promise<void> => {
-	console.clear();
+	renderLogo();
 
 	const { mnemonic, amount, to, memo } = await prompts([
 		{

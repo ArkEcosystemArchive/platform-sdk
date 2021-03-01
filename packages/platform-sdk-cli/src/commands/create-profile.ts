@@ -1,8 +1,9 @@
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
+import { renderLogo } from "../helpers";
 
 export const createProfile = async (env: Environment): Promise<void> => {
-	console.clear();
+	renderLogo();
 
 	const { name } = await prompts({
 		type: "text",

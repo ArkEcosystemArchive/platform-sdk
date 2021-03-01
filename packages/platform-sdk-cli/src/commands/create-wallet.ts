@@ -1,10 +1,10 @@
 import { Profile } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
-import { useLogger } from "../helpers";
+import { renderLogo, useLogger } from "../helpers";
 
 export const createWallet = async (profile: Profile): Promise<void> => {
-	console.clear();
+	renderLogo();
 
 	const { command, asset } = await prompts([
 		{
