@@ -25,7 +25,7 @@ export const listTransactions = async (wallet: ReadWriteWallet): Promise<void> =
 	pushTransactions(table, transactions.items());
 
 	// Gather all remaining transactions by looping over all pages...
-	while (transactions.hasMorePages()) {
+	while (transactions.isNotEmpty()) {
 		transactions = await wallet.transactions({ cursor: transactions.nextPage() });
 		pushTransactions(table, transactions.items());
 	}
