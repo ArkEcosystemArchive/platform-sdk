@@ -1,4 +1,6 @@
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { ReadWriteWallet } from "@arkecosystem/platform-sdk-profiles";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import prompts from "prompts";
 
 import { renderLogo, useLogger } from "../helpers";
@@ -26,13 +28,26 @@ export const sendTransaction = async (wallet: ReadWriteWallet): Promise<void> =>
 			type: "password",
 			name: "mnemonic",
 			message: "Please enter your mnemonic:",
+			validate: (value: string) => BIP39.validate(value),
 		},
 	]);
+
+	if (to === undefined) {
+		return;
+	}
+
+	if (amount === undefined) {
+		return;
+	}
+
+	if (mnemonic === undefined) {
+		return;
+	}
 
 	const transactionID = await wallet.transaction().signTransfer({
 		from: wallet.address(),
 		data: {
-			amount,
+			amount: BigNumber.make(amount).toSatoshi().toString(),
 			to,
 			memo,
 		},

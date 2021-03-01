@@ -793,6 +793,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/platform-sdk-neo", "workspace:packages/platform-sdk-neo"],
             ["@arkecosystem/platform-sdk-profiles", "workspace:packages/platform-sdk-profiles"],
             ["@arkecosystem/platform-sdk-sol", "workspace:packages/platform-sdk-sol"],
+            ["@arkecosystem/platform-sdk-support", "workspace:packages/platform-sdk-support"],
             ["@arkecosystem/platform-sdk-trx", "workspace:packages/platform-sdk-trx"],
             ["@arkecosystem/platform-sdk-xlm", "workspace:packages/platform-sdk-xlm"],
             ["@arkecosystem/platform-sdk-xrp", "workspace:packages/platform-sdk-xrp"],
