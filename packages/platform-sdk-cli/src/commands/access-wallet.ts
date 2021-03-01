@@ -2,6 +2,7 @@ import { Profile } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
 import { renderLogo, useLogger } from "../helpers";
+import { listTransactions } from "./list-transactions";
 import { sendTransaction } from "./send-transaction";
 
 export const accessWallet = async (profile: Profile): Promise<void> => {
@@ -30,6 +31,7 @@ export const accessWallet = async (profile: Profile): Promise<void> => {
 		message: "Please choose an action:",
 		choices: [
 			{ title: "Show Balance", value: "balance" },
+			{ title: "List Transaction", value: "list-transactions" },
 			{ title: "Send Transaction", value: "send-transaction" },
 			{ title: "Exit", value: "exit" },
 		],
@@ -42,6 +44,10 @@ export const accessWallet = async (profile: Profile): Promise<void> => {
 
 	if (command === "balance") {
 		useLogger().info(wallet.balance().toHuman());
+	}
+
+	if (command === "list-transactions") {
+		await listTransactions(wallet);
 	}
 
 	if (command === "send-transaction") {
