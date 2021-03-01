@@ -26,6 +26,7 @@
 		"@arkecosystem/platform-sdk-avax": "file:packages/platform-sdk-avax",
 		"@arkecosystem/platform-sdk-btc": "file:packages/platform-sdk-btc",
 		"@arkecosystem/platform-sdk-btc-indexer": "file:packages/platform-sdk-btc-indexer",
+		"@arkecosystem/platform-sdk-cli": "file:packages/platform-sdk-cli",
 		"@arkecosystem/platform-sdk-coincap": "file:packages/platform-sdk-coincap",
 		"@arkecosystem/platform-sdk-coingecko": "file:packages/platform-sdk-coingecko",
 		"@arkecosystem/platform-sdk-crypto": "file:packages/platform-sdk-crypto",
