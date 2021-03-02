@@ -532,6 +532,7 @@ __metadata:
     reflect-metadata: ^0.1.13
     rimraf: ^3.0.2
     semver: ^7.3.4
+    terminal-link: ^2.1.1
     ts-jest: ^26.4.4
     type-fest: ^0.21.2
     typescript: ^4.0.5
@@ -18769,7 +18770,7 @@ resolve@^1.1.6:
   languageName: node
   linkType: hard
 
-"terminal-link@npm:^2.0.0":
+"terminal-link@npm:^2.0.0, terminal-link@npm:^2.1.1":
   version: 2.1.1
   resolution: "terminal-link@npm:2.1.1"
   dependencies:

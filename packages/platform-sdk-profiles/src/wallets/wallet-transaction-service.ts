@@ -45,6 +45,13 @@ export class TransactionService {
 	#broadcasted: SignedTransactionDataDictionary = {};
 
 	/**
+	 * The transactions that have been signed, broadcasted and confirmed.
+	 *
+	 * @memberof TransactionService
+	 */
+	#confirmed: SignedTransactionDataDictionary = {};
+
+	/**
 	 * The transactions that are waiting for the signatures of the wallet.
 	 *
 	 * @memberof TransactionService
@@ -263,6 +270,10 @@ export class TransactionService {
 	public transaction(id: string): Contracts.SignedTransactionData {
 		this.assertHasValidIdentifier(id);
 
+		if (this.hasBeenConfirmed(id)) {
+			return this.#confirmed[id];
+		}
+
 		if (this.hasBeenBroadcasted(id)) {
 			return this.#broadcasted[id];
 		}
@@ -361,6 +372,19 @@ export class TransactionService {
 		this.assertHasValidIdentifier(id);
 
 		return this.#broadcasted[id] !== undefined;
+	}
+
+	/**
+	 * Check if the given ID has been confirmed.
+	 *
+	 * @param {string} id
+	 * @returns {boolean}
+	 * @memberof TransactionService
+	 */
+	public hasBeenConfirmed(id: string): boolean {
+		this.assertHasValidIdentifier(id);
+
+		return this.#confirmed[id] !== undefined;
 	}
 
 	/**
@@ -510,15 +534,19 @@ export class TransactionService {
 		}
 
 		try {
+			const transactionLocal: Contracts.SignedTransactionData = this.transaction(id);
 			const transaction: Contracts.TransactionData = await this.#wallet
 				.client()
-				.transaction(this.transaction(id).id());
+				.transaction(transactionLocal.id());
 
 			if (transaction.isConfirmed()) {
 				delete this.#signed[id];
 				delete this.#broadcasted[id];
 				delete this.#waitingForOtherSignatures[id];
 				delete this.#waitingForOurSignature[id];
+
+				// We store the transaction here to be able to access it.
+				this.#confirmed[id] = transactionLocal;
 			}
 
 			return transaction.isConfirmed();
