@@ -196,7 +196,7 @@ test("#restore", async () => {
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	const newWallet = new Wallet(uuidv4(), profile);
+	const newWallet = new Wallet(uuidv4(), {}, profile);
 	await newWallet.setCoin("ARK", "ark.devnet");
 	await newWallet.setIdentity("this is another top secret passphrase");
 

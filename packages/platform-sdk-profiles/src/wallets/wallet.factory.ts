@@ -13,7 +13,7 @@ export class WalletFactory {
 		network: string,
 		mnemonic: string,
 	): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = new Wallet(uuidv4(), profile);
+		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, profile);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setIdentity(mnemonic);
@@ -27,7 +27,7 @@ export class WalletFactory {
 		network: string,
 		address: string,
 	): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = new Wallet(uuidv4(), profile);
+		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, profile);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(address);
@@ -41,7 +41,7 @@ export class WalletFactory {
 		network: string,
 		publicKey: string,
 	): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = new Wallet(uuidv4(), profile);
+		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, profile);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(await wallet.coin().identity().address().fromPublicKey(publicKey));
@@ -55,7 +55,7 @@ export class WalletFactory {
 		network: string,
 		privateKey: string,
 	): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = new Wallet(uuidv4(), profile);
+		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, profile);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
