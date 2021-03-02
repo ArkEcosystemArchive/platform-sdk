@@ -1,0 +1,146 @@
+{
+	"npmScope": "platform-sdk",
+	"implicitDependencies": {
+		"workspace.json": "*",
+		"package.json": {
+			"dependencies": "*",
+			"devDependencies": "*"
+		},
+		"nx.json": "*"
+	},
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "@nrwl/workspace/tasks-runners/default",
+			"options": {
+				"cacheableOperations": [
+					"build",
+					"test",
+					"lint",
+					"package",
+					"prepare"
+				],
+				"strictlyOrderedTargets": [
+					"build",
+					"package",
+					"prepare"
+				]
+			}
+		}
+	},
+	"projects": {
+		"@arkecosystem/platform-sdk": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-ada": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-ark": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-atom": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-avax": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-btc": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-btc-indexer": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-btc-server": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-cli": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-coincap": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-coingecko": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-crypto": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-cryptocompare": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-dot": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-dot-indexer": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-egld": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-eos": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-eth": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-eth-indexer": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-eth-server": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-http-axios": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-http-bent": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-http-got": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-http-ky": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-http-node-fetch": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-intl": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-json-rpc": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-lsk": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-markets": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-neo": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-news": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-profiles": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-sol": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-support": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-trx": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-xlm": {
+			"implicitDependencies": []
+		},
+		"@arkecosystem/platform-sdk-xrp": {
+			"implicitDependencies": []
+		}
+	},
+	"affected": {
+		"defaultBase": "master"
+	}
+}

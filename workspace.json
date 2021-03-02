@@ -1,0 +1,153 @@
+{
+	"version": 2,
+	"projects": {
+		"@arkecosystem/platform-sdk": {
+			"root": "packages/platform-sdk",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-ada": {
+			"root": "packages/platform-sdk-ada",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-ark": {
+			"root": "packages/platform-sdk-ark",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-atom": {
+			"root": "packages/platform-sdk-atom",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-avax": {
+			"root": "packages/platform-sdk-avax",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-btc": {
+			"root": "packages/platform-sdk-btc",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-btc-indexer": {
+			"root": "packages/platform-sdk-btc-indexer",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-btc-server": {
+			"root": "packages/platform-sdk-btc-server",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-cli": {
+			"root": "packages/platform-sdk-cli",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-coincap": {
+			"root": "packages/platform-sdk-coincap",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-coingecko": {
+			"root": "packages/platform-sdk-coingecko",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-crypto": {
+			"root": "packages/platform-sdk-crypto",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-cryptocompare": {
+			"root": "packages/platform-sdk-cryptocompare",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-dot": {
+			"root": "packages/platform-sdk-dot",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-dot-indexer": {
+			"root": "packages/platform-sdk-dot-indexer",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-egld": {
+			"root": "packages/platform-sdk-egld",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-eos": {
+			"root": "packages/platform-sdk-eos",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-eth": {
+			"root": "packages/platform-sdk-eth",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-eth-indexer": {
+			"root": "packages/platform-sdk-eth-indexer",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-eth-server": {
+			"root": "packages/platform-sdk-eth-server",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-http-axios": {
+			"root": "packages/platform-sdk-http-axios",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-http-bent": {
+			"root": "packages/platform-sdk-http-bent",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-http-got": {
+			"root": "packages/platform-sdk-http-got",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-http-ky": {
+			"root": "packages/platform-sdk-http-ky",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-http-node-fetch": {
+			"root": "packages/platform-sdk-http-node-fetch",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-intl": {
+			"root": "packages/platform-sdk-intl",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-json-rpc": {
+			"root": "packages/platform-sdk-json-rpc",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-lsk": {
+			"root": "packages/platform-sdk-lsk",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-markets": {
+			"root": "packages/platform-sdk-markets",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-neo": {
+			"root": "packages/platform-sdk-neo",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-news": {
+			"root": "packages/platform-sdk-news",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-profiles": {
+			"root": "packages/platform-sdk-profiles",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-sol": {
+			"root": "packages/platform-sdk-sol",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-support": {
+			"root": "packages/platform-sdk-support",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-trx": {
+			"root": "packages/platform-sdk-trx",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-xlm": {
+			"root": "packages/platform-sdk-xlm",
+			"type": "library"
+		},
+		"@arkecosystem/platform-sdk-xrp": {
+			"root": "packages/platform-sdk-xrp",
+			"type": "library"
+		}
+	}
+}
