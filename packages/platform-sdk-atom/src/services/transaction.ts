@@ -77,12 +77,7 @@ export class TransactionService implements Contracts.TransactionService {
 				keyPair,
 			);
 
-			return new SignedTransactionData(
-				// TODO: compute the ID
-				uuidv4(),
-				signedTransaction,
-				signedTransaction,
-			);
+			return new SignedTransactionData(uuidv4(), signedTransaction, signedTransaction);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

@@ -98,7 +98,9 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				const { id } = await this.#client.submitTransaction(transaction);
+				const { id } = await this.#client.submitTransaction(transaction.toBroadcast());
+
+				transaction.setAttributes({ identifier: id });
 
 				result.accepted.push(id);
 			} catch (err) {

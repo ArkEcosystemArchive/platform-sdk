@@ -141,8 +141,7 @@ describe("signatures", () => {
 		const id = await subject.signTransfer(input);
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.transaction(id)).toMatchInlineSnapshot(
-			`
+		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
 		    "amount": "1",
@@ -172,8 +171,7 @@ describe("signatures", () => {
 		    "version": 2,
 		  },
 		}
-	`,
-		);
+	`);
 	});
 
 	it("should sign second signature", async () => {
@@ -191,8 +189,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.transaction(id)).toMatchInlineSnapshot(
-			`
+		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
 		    "amount": "0",
@@ -228,8 +225,7 @@ describe("signatures", () => {
 		    "version": 2,
 		  },
 		}
-	`,
-		);
+	`);
 	});
 
 	it("should sign delegate registration", async () => {
@@ -247,8 +243,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.transaction(id)).toMatchInlineSnapshot(
-			`
+		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
 		    "amount": "0",
@@ -284,8 +279,7 @@ describe("signatures", () => {
 		    "version": 2,
 		  },
 		}
-	`,
-		);
+	`);
 	});
 
 	it("should sign vote", async () => {
@@ -304,8 +298,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.transaction(id)).toMatchInlineSnapshot(
-			`
+		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
 		    "amount": "0",
@@ -341,8 +334,7 @@ describe("signatures", () => {
 		    "version": 2,
 		  },
 		}
-	`,
-		);
+	`);
 	});
 
 	it("should sign multi signature registration", async () => {
@@ -371,8 +363,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.waitingForOtherSignatures()).toContainKey(id);
-		expect(subject.waitingForOtherSignatures()[id]).toMatchInlineSnapshot(
-			`
+		expect(subject.waitingForOtherSignatures()[id]).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
 		    "amount": "0",
@@ -426,8 +417,7 @@ describe("signatures", () => {
 		    "version": 2,
 		  },
 		}
-	`,
-		);
+	`);
 		expect(subject.canBeSigned(id)).toBeFalse();
 	});
 
@@ -446,8 +436,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.transaction(id)).toMatchInlineSnapshot(
-			`
+		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
 		    "amount": "0",
@@ -479,8 +468,7 @@ describe("signatures", () => {
 		    "version": 2,
 		  },
 		}
-	`,
-		);
+	`);
 	});
 
 	it("should sign multi payment", async () => {
@@ -502,8 +490,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.transaction(id)).toMatchInlineSnapshot(
-			`
+		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
 		    "amount": "0",
@@ -561,8 +548,7 @@ describe("signatures", () => {
 		    "version": 2,
 		  },
 		}
-	`,
-		);
+	`);
 	});
 
 	it("should sign delegate resignation", async () => {
@@ -577,8 +563,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.transaction(id)).toMatchInlineSnapshot(
-			`
+		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
 		    "amount": "0",
@@ -604,8 +589,7 @@ describe("signatures", () => {
 		    "version": 2,
 		  },
 		}
-	`,
-		);
+	`);
 	});
 
 	it("should sign htlc lock", async () => {
@@ -629,8 +613,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.transaction(id)).toMatchInlineSnapshot(
-			`
+		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
 		    "amount": "1",
@@ -676,8 +659,7 @@ describe("signatures", () => {
 		    "version": 2,
 		  },
 		}
-	`,
-		);
+	`);
 	});
 
 	it("should sign htlc claim", async () => {
@@ -696,8 +678,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.transaction(id)).toMatchInlineSnapshot(
-			`
+		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
 		    "amount": "0",
@@ -735,8 +716,7 @@ describe("signatures", () => {
 		    "version": 2,
 		  },
 		}
-	`,
-		);
+	`);
 	});
 
 	it("should sign htlc refund", async () => {
@@ -754,8 +734,7 @@ describe("signatures", () => {
 
 		expect(id).toBeString();
 		expect(subject.signed()).toContainKey(id);
-		expect(subject.transaction(id)).toMatchInlineSnapshot(
-			`
+		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
 		    "amount": "0",
@@ -791,12 +770,13 @@ describe("signatures", () => {
 		    "version": 2,
 		  },
 		}
-	`,
-		);
+	`);
 	});
 });
 
 it("#transaction lifecycle", async () => {
+	const realHash = "7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50";
+
 	const input = {
 		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		sign: {
@@ -822,25 +802,21 @@ it("#transaction lifecycle", async () => {
 		.post("/api/transactions")
 		.reply(201, {
 			data: {
-				accept: [id],
+				accept: [realHash],
 				broadcast: [],
 				excess: [],
 				invalid: [],
 			},
 			errors: {},
 		})
-		.get("/api/transactions/7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50")
+		.get(`/api/transactions/${realHash}`)
 		.reply(200, { data: { confirmations: 51 } });
 
-	await expect(subject.broadcast(id)).resolves.toMatchInlineSnapshot(`
-					Object {
-					  "accepted": Array [
-					    "7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50",
-					  ],
-					  "errors": Object {},
-					  "rejected": Array [],
-					}
-				`);
+	await expect(subject.broadcast(id)).resolves.toEqual({
+		accepted: [realHash],
+		rejected: [],
+		errors: {},
+	});
 
 	expect(subject.signed()).toContainKey(id);
 	expect(subject.broadcasted()).toContainKey(id);
@@ -857,9 +833,7 @@ it("#transaction lifecycle", async () => {
 	expect(subject.signed()).not.toContainKey(id);
 	expect(subject.broadcasted()).not.toContainKey(id);
 	expect(subject.isAwaitingConfirmation(id)).toBeFalse();
-	expect(() => subject.transaction(id)).toThrow(
-		"Transaction [7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50] could not be found.",
-	);
+	expect(() => subject.transaction(id)).toThrow(`Transaction [${id}] could not be found.`);
 });
 
 it("#pending", async () => {
@@ -876,8 +850,7 @@ it("#pending", async () => {
 	const id = await subject.signTransfer(input);
 	expect(id).toBeString();
 	expect(subject.signed()).toContainKey(id);
-	expect(subject.transaction(id)).toMatchInlineSnapshot(
-		`
+	expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
 		    "amount": "1",
@@ -907,26 +880,8 @@ it("#pending", async () => {
 		    "version": 2,
 		  },
 		}
-	`,
-	);
+	`);
 	expect(subject.pending()).toContainKey(id);
-});
-
-it("should throw when already signed", async () => {
-	const input = {
-		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		sign: {
-			mnemonic: "this is a top secret passphrase",
-		},
-		data: {
-			amount: "1",
-			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		},
-	};
-
-	await subject.signTransfer(input);
-
-	await expect(subject.signTransfer(input)).toReject();
 });
 
 it("should fail when using malformed transaction ID", async () => {

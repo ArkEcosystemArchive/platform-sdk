@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/utils";
 import { BN, Buffer } from "avalanche";
 import { AVMAPI } from "avalanche/dist/apis/avm";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
@@ -55,8 +56,16 @@ export class TransactionService implements Contracts.TransactionService {
 				)
 			).sign(this.#keychain);
 
-			// @TODO: compute the ID and set raw data for UI purposes
-			return new SignedTransactionData(uuidv4(), signedTx.toString(), signedTx.toString());
+			return new SignedTransactionData(
+				uuidv4(),
+				{
+					sender: input.from,
+					recipient: input.data.to,
+					amount: input.data.amount,
+					fee: BigNumber.make(0.001).times(1e8),
+				},
+				signedTx.toString(),
+			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -105,8 +114,16 @@ export class TransactionService implements Contracts.TransactionService {
 				)
 			).sign(this.#keychain);
 
-			// @TODO: compute the ID and set raw data for UI purposes
-			return new SignedTransactionData(uuidv4(), signedTx.toString(), signedTx.toString());
+			return new SignedTransactionData(
+				uuidv4(),
+				{
+					sender: input.from,
+					recipient: input.from,
+					amount: 0,
+					fee: 0,
+				},
+				signedTx.toString(),
+			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
