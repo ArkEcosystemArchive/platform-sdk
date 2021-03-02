@@ -133,6 +133,8 @@ export class ClientService implements Contracts.ClientService {
 		for (const transaction of transactions) {
 			const { logs, txhash } = await this.post("txs", { mode: "block", tx: transaction });
 
+			transaction.setAttributes({ identifier: txhash });
+
 			if (logs[0].success === true) {
 				result.accepted.push(txhash);
 			} else {

@@ -116,6 +116,8 @@ export class ClientService implements Contracts.ClientService {
 				intents: transaction.get("intents"),
 			});
 
+			transaction.setAttributes({ identifier: response.txid });
+
 			if (response.txid) {
 				result.accepted.push(transaction.id());
 			}

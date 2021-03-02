@@ -118,9 +118,11 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				// @TODO: this is the real ID that will be used but we somehow need to find
-				// out this ID before we broadcast it
-				result.accepted.push(await this.#xchain.issueTx(transaction.toBroadcast()));
+				const hash: string = await this.#xchain.issueTx(transaction.toBroadcast());
+
+				transaction.setAttributes({ identifier: hash });
+
+				result.accepted.push(hash);
 			} catch (error) {
 				result.rejected.push(transaction.id());
 

@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
-import { keyPairFromMnemonic } from "../helpers";
+import { cb58Encode, keyPairFromMnemonic } from "../helpers";
 
 export class PrivateKey implements Contracts.PrivateKey {
 	readonly #config: Coins.Config;
@@ -10,7 +10,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 	}
 
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		return keyPairFromMnemonic(this.#config, mnemonic).getPrivateKeyString();
+		return cb58Encode(keyPairFromMnemonic(this.#config, mnemonic).getPrivateKey());
 	}
 
 	public async fromWIF(wif: string): Promise<string> {
