@@ -545,7 +545,9 @@ export class TransactionService {
 				delete this.#waitingForOtherSignatures[id];
 				delete this.#waitingForOurSignature[id];
 
-				// We store the transaction here to be able to access it.
+				// We store the transaction here to be able to access it after it
+				// has been confirmed. This list won't be persisted which means
+				// it will be gone after a reboot of the consumer application.
 				this.#confirmed[id] = transactionLocal;
 			}
 
