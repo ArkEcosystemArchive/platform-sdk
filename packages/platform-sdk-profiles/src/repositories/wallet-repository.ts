@@ -89,7 +89,8 @@ export class WalletRepository {
 		return { mnemonic, wallet: await this.importByMnemonic(mnemonic, coin, network) };
 	}
 
-	public async restore({ id, coin, network, networkConfig, address, data, settings }): Promise<ReadWriteWallet> {
+	public async restore(struct: Record<string, any>): Promise<ReadWriteWallet> {
+		const { id, coin, network, networkConfig, address, data, settings } = struct;
 		const previousWallet: ReadWriteWallet | undefined = this.findByAddress(address);
 
 		if (previousWallet !== undefined) {
