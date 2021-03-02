@@ -263,7 +263,6 @@ export class WalletRepository {
 
 				await wallet.setAddress(address);
 
-				// @TODO: support coin configs besides network?
 				if (networkConfig) {
 					for (const [key, value] of Object.entries(networkConfig)) {
 						wallet.coin().config().set(`network.${key}`, value);

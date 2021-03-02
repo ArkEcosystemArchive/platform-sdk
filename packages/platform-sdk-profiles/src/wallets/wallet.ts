@@ -88,12 +88,6 @@ export class Wallet implements ReadWriteWallet {
 		return this;
 	}
 
-	/**
-	 * @TODO
-	 *
-	 * Think about how to remove this method. We need async methods instead of a
-	 * constructor because of the network requests and different ways to import wallets.
-	 */
 	public async setIdentity(mnemonic: string): Promise<Wallet> {
 		this.#address = await this.#coin.identity().address().fromMnemonic(mnemonic);
 		this.#publicKey = await this.#coin.identity().publicKey().fromMnemonic(mnemonic);
@@ -101,12 +95,6 @@ export class Wallet implements ReadWriteWallet {
 		return this.setAddress(this.#address);
 	}
 
-	/**
-	 * @TODO
-	 *
-	 * Think about how to remove this method. We need async methods instead of a
-	 * constructor because of the network requests and different ways to import wallets.
-	 */
 	public async setAddress(
 		address: string,
 		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
