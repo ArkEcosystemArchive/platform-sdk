@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.0.40 - 2020-03-02
+
+### Changed
+
+- **[PROFILES]** Use internal and external transaction ID (1c3e4938, @faustbrian)
+
+### Added
+
+- **[CLI]** Implement storage persistence (ae697a38, @faustbrian)
+- **[CLI]** List transactions for active wallet (abb58895, @faustbrian)
+- **[CLI]** Ask for an optional password during profile creation (b8628e9c, @faustbrian)
+- **[ETH-SERVER]** Pagination for wallet transactions (cd547e75, @marianogoldman)
+- **[AVAX]** Implement `Address#fromPrivateKey` and `Keys#fromMnemonic` (86e7f5b2, @faustbrian)
+- **[CLI]** Show explorer link for confirmed transaction (f5ff4312, @faustbrian)
+
+### Fixed
+
+- **[PROFILES]** Dump stale wallet state if it has been partially restored (26b1c6da, @faustbrian)
+- **[EGLD]** Fix coin name in manifest (f4f36fcb, @marianogoldman)
+
 ## 3.0.31 - 2020-03-01
 
 ### Added
