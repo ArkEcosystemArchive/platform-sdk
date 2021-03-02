@@ -795,6 +795,7 @@ it("#transaction lifecycle", async () => {
 	expect(subject.waitingForOtherSignatures()).not.toContainKey(id);
 	expect(subject.hasBeenSigned(id)).toBeTrue();
 	expect(subject.hasBeenBroadcasted(id)).toBeFalse();
+	expect(subject.hasBeenConfirmed(id)).toBeFalse();
 	expect(subject.isAwaitingOurSignature(id)).toBeFalse();
 	expect(subject.isAwaitingOtherSignatures(id)).toBeFalse();
 
@@ -823,6 +824,7 @@ it("#transaction lifecycle", async () => {
 	expect(subject.isAwaitingConfirmation(id)).toBeTrue();
 	expect(subject.hasBeenSigned(id)).toBeTrue();
 	expect(subject.hasBeenBroadcasted(id)).toBeTrue();
+	expect(subject.hasBeenConfirmed(id)).toBeFalse();
 	expect(subject.transaction(id)).toBeDefined();
 
 	await subject.confirm(id);
@@ -833,7 +835,6 @@ it("#transaction lifecycle", async () => {
 	expect(subject.signed()).not.toContainKey(id);
 	expect(subject.broadcasted()).not.toContainKey(id);
 	expect(subject.isAwaitingConfirmation(id)).toBeFalse();
-	expect(() => subject.transaction(id)).toThrow(`Transaction [${id}] could not be found.`);
 });
 
 it("#pending", async () => {

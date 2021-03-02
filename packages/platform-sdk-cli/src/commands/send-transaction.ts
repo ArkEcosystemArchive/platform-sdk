@@ -2,6 +2,7 @@ import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { ReadWriteWallet } from "@arkecosystem/platform-sdk-profiles";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import prompts from "prompts";
+import terminalLink from "terminal-link";
 
 import { renderLogo, useLogger } from "../helpers";
 
@@ -75,5 +76,8 @@ export const sendTransaction = async (wallet: ReadWriteWallet): Promise<void> =>
 		}
 	}
 
-	useLogger().info(`Transaction [${transactionID}] has been confirmed.`);
+	const transaction = wallet.transaction().transaction(transactionID);
+	const transactionLink = terminalLink("here", wallet.link().transaction(transaction.id()));
+
+	useLogger().info(`Transaction [${transaction.id()}] has been confirmed. Click ${transactionLink} to view it.`);
 };

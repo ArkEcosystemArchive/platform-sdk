@@ -29,7 +29,7 @@ export const createWallet = async (profile: Profile): Promise<void> => {
 				{ title: "DOT (Development)", value: ["DOT", "dot.testnet"] },
 				{ title: "EGLD (Development)", value: ["EGLD", "egld.testnet"] },
 				{ title: "LSK (Development)", value: ["LSK", "lsk.testnet"] },
-				{ title: "SOL (Development)", value: ["SOL", "sol.testnet"] },
+				// { title: "SOL (Development)", value: ["SOL", "sol.testnet"] },
 				{ title: "Exit", value: "exit" },
 			],
 			initial: 0,
