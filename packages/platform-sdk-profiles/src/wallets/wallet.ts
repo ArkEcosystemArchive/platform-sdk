@@ -39,7 +39,7 @@ export class Wallet implements ReadWriteWallet {
 	#avatar!: string;
 	readonly #restorationState = { full: false, partial: false };
 
-	public constructor(id: string, state: WalletStruct, profile: Profile) {
+	public constructor(id: string, state: any, profile: Profile) {
 		this.#id = id;
 		this.#state = state;
 		this.#profile = profile;

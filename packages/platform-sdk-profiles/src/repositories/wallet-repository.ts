@@ -108,7 +108,7 @@ export class WalletRepository {
 			return previousWallet;
 		}
 
-		const wallet = new Wallet(id, this.#profile);
+		const wallet = new Wallet(id, struct, this.#profile);
 
 		wallet.data().fill(data);
 

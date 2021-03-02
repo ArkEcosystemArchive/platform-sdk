@@ -62,4 +62,4 @@ export const knock = (): void => {
 export const makeProfile = (data: object = {}): Profile =>
 	new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "", ...data });
 export const makeContact = (data: ContactStruct, profile: Profile): Contact => new Contact(data, profile);
-export const makeWallet = (id: string, profile: Profile): Wallet => new Wallet(id, profile);
+export const makeWallet = (id: string, profile: Profile): Wallet => new Wallet(id, {}, profile);
