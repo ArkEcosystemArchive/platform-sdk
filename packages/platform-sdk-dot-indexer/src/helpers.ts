@@ -28,7 +28,7 @@ const persistBlock = async (blockHash, block, database: Database, logger: pino.L
 		});
 	}
 
-	await database.storeBlockWithTransactions({
+	database.storeBlockWithTransactions({
 		hash: blockHash,
 		...block.header,
 		transactions,
