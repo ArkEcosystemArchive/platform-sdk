@@ -1,7 +1,7 @@
 import prompts from "prompts";
 
-import { createProfile, accessProfile } from "./commands";
-import { useEnvironment, useLogger, renderLogo } from "./helpers";
+import { accessProfile, createProfile } from "./commands";
+import { renderLogo, useEnvironment, useLogger } from "./helpers";
 
 export const main = async (): Promise<void> => {
 	renderLogo();

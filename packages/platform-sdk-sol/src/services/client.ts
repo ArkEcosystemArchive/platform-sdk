@@ -1,6 +1,7 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Connection, PublicKey } from "@solana/web3.js";
+
 import { WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
