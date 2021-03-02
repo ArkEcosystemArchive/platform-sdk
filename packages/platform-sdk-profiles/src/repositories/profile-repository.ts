@@ -1,8 +1,8 @@
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
-import { DataRepository } from "./data-repository";
-import { ProfileImportExport } from "../services/profile-import-export";
 import { ProfileExportOptions } from "../profiles/profile.models";
+import { ProfileImportExport } from "../services/profile-import-export";
+import { DataRepository } from "./data-repository";
 
 export class ProfileRepository {
 	readonly #data: DataRepository;
