@@ -66,7 +66,7 @@ export class ProfileRepository {
 	}
 
 	public export(profile: Profile, options: ProfileExportOptions): string {
-		return ProfileImportExport.export(profile, options);
+		return ProfileImportExport.export(profile, options).data;
 	}
 
 	public has(id: string): boolean {

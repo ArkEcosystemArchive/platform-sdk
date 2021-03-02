@@ -25,18 +25,18 @@ import { ProfileContract, ProfileInput, ProfileSetting, ProfileStruct } from "./
 export class Profile implements ProfileContract {
 	#data: ProfileInput;
 
-	#contactRepository: ContactRepository;
-	#dataRepository: DataRepository;
-	#notificationRepository: NotificationRepository;
-	#peerRepository: PeerRepository;
-	#pluginRepository: PluginRepository;
-	#settingRepository: SettingRepository;
-	#walletRepository: WalletRepository;
+	readonly #contactRepository: ContactRepository;
+	readonly #dataRepository: DataRepository;
+	readonly #notificationRepository: NotificationRepository;
+	readonly #peerRepository: PeerRepository;
+	readonly #pluginRepository: PluginRepository;
+	readonly #settingRepository: SettingRepository;
+	readonly #walletRepository: WalletRepository;
 
-	#countAggregate: CountAggregate;
-	#registrationAggregate: RegistrationAggregate;
-	#transactionAggregate: TransactionAggregate;
-	#walletAggregate: WalletAggregate;
+	readonly #countAggregate: CountAggregate;
+	readonly #registrationAggregate: RegistrationAggregate;
+	readonly #transactionAggregate: TransactionAggregate;
+	readonly #walletAggregate: WalletAggregate;
 
 	public constructor(data: ProfileInput) {
 		this.#data = data;
@@ -53,6 +53,10 @@ export class Profile implements ProfileContract {
 		this.#registrationAggregate = new RegistrationAggregate(this);
 		this.#transactionAggregate = new TransactionAggregate(this);
 		this.#walletAggregate = new WalletAggregate(this);
+	}
+
+	public clone(): Profile {
+		return new Profile({ ...this.#data });
 	}
 
 	public id(): string {

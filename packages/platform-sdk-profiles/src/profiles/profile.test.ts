@@ -42,6 +42,11 @@ beforeEach(() => {
 	subject.settings().set(ProfileSetting.Name, "John Doe");
 });
 
+it("should clone correctly", () => {
+	const clone: Profile = subject.clone()
+	expect(clone.toObject()).toMatchObject(subject.toObject());
+});
+
 it("should have an id", () => {
 	expect(subject.id()).toBe("uuid");
 });
@@ -164,6 +169,8 @@ describe("#dump", () => {
 
 		const { id, password, data } = subject.dump();
 
+		console.log(id, password, data);
+
 		expect(id).toBeString();
 		expect(password).toBeString();
 		expect(data).toBeString();
@@ -172,6 +179,8 @@ describe("#dump", () => {
 	it("should dump the profile without a password", () => {
 		subject.save();
 		const { id, password, data } = subject.dump();
+
+		console.log(id, password, data);
 
 		expect(id).toBeString();
 		expect(password).toBeUndefined();
