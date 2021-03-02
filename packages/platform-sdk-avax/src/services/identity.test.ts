@@ -21,7 +21,7 @@ describe("IdentityService", () => {
 		});
 
 		it("should fail to generate an output from a privateKey", async () => {
-			await expect(subject.address().fromPrivateKey(identity.privateKey)).rejects.toThrow(/is not supported/);
+			await expect(subject.address().fromPrivateKey(identity.privateKey)).resolves.toBe(identity.address);
 		});
 
 		it("should fail to generate an output from a publicKey", async () => {
@@ -59,9 +59,7 @@ describe("IdentityService", () => {
 
 	describe("#privateKey", () => {
 		it("should generate an output from a mnemonic", async () => {
-			await expect(subject.privateKey().fromMnemonic(identity.mnemonic)).resolves.toBe(
-				"PrivateKey-rC7DsPL1zKuPnwnqHSnShdXxeMReKWLBJgKcuJ1ZLUCUrzRni",
-			);
+			await expect(subject.privateKey().fromMnemonic(identity.mnemonic)).resolves.toBe(identity.privateKey);
 		});
 
 		it("should fail to generate an output from a wif", async () => {
@@ -71,9 +69,7 @@ describe("IdentityService", () => {
 
 	describe("#publicKey", () => {
 		it("should generate an output from a mnemonic", async () => {
-			await expect(subject.publicKey().fromMnemonic(identity.mnemonic)).resolves.toBe(
-				"7qobgTQPiy3mH4tvjabDjapPVrh9Tnkb3tpn2yY37hsEyxaSjW",
-			);
+			await expect(subject.publicKey().fromMnemonic(identity.mnemonic)).resolves.toBe(identity.publicKey);
 		});
 
 		it("should fail to generate an output from a multiSignature", async () => {
