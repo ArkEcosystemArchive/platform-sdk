@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/utils";
 import { BN, Buffer } from "avalanche";
 import { AVMAPI } from "avalanche/dist/apis/avm";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
@@ -61,7 +62,7 @@ export class TransactionService implements Contracts.TransactionService {
 					sender: input.from,
 					recipient: input.data.to,
 					amount: input.data.amount,
-					fee: input.fee,
+					fee: BigNumber.make(0.001).times(1e8),
 				},
 				signedTx.toString(),
 			);
