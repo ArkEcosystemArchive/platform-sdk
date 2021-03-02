@@ -33,10 +33,10 @@ jobs:
                   version: 5.18.1
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
-            - name: ESLint
-              run: pnpm run lint
-            - name: Prettier
-              run: pnpm run prettier
+            # - name: ESLint
+            #   run: pnpm run lint
+            # - name: Prettier
+            #   run: pnpm run prettier
             - uses: stefanzweifel/git-auto-commit-action@v4
               with:
                   commit_message: "style: resolve style guide violations"
