@@ -3,7 +3,6 @@ import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
-import { Console } from "console";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;

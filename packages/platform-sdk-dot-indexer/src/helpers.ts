@@ -1,6 +1,7 @@
 import { ApiPromise, WsProvider } from "@polkadot/api";
 import pino from "pino";
 import { v4 as uuidv4 } from "uuid";
+
 import { Database } from "./database";
 
 const persistBlock = async (blockHash, block, database: Database, logger: pino.Logger): Promise<void> => {
@@ -28,7 +29,7 @@ const persistBlock = async (blockHash, block, database: Database, logger: pino.L
 		});
 	}
 
-	await database.storeBlockWithTransactions({
+	database.storeBlockWithTransactions({
 		hash: blockHash,
 		...block.header,
 		transactions,

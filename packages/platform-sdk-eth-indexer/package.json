@@ -1,25 +1,32 @@
 {
 	"name": "@arkecosystem/platform-sdk-eth-indexer",
-	"description": "Cross-Platform Utilities for ARK Applications",
 	"version": "3.0.31",
-	"contributors": [],
+	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
-	"files": [
-		"/bin",
-		"/dist"
-	],
+	"contributors": [],
 	"main": "dist/index",
 	"types": "dist/index",
 	"bin": {
 		"peth": "./bin/run"
 	},
+	"files": [
+		"/bin",
+		"/dist"
+	],
 	"scripts": {
 		"build": "yarn clean && tsc",
 		"build:watch": "yarn build -w",
 		"clean": "rimraf .coverage dist tmp",
 		"test": "jest",
 		"test:watch": "jest --watchAll",
-		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
+		"publish": "yarn build && yarn npm publish --access public --tolerate-republish",
+		"format": "yarn lint && yarn prettier",
+		"lint": "eslint src/**/*.ts --fix",
+		"lint:tests": "eslint src/**/*.test.ts --fix",
+		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\""
+	},
+	"jest": {
+		"preset": "../../jest.config.js"
 	},
 	"dependencies": {
 		"@konceiver/foreman": "^2.0.1",
@@ -72,8 +79,5 @@
 	},
 	"engines": {
 		"node": ">=12.x"
-	},
-	"jest": {
-		"preset": "../../jest.config.js"
 	}
 }

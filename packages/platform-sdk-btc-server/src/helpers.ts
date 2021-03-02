@@ -1,10 +1,10 @@
+import { Contracts } from "@arkecosystem/platform-sdk";
+import { Request } from "@arkecosystem/platform-sdk-http-got";
 import Logger from "@ptkdev/logger";
 import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 // @ts-ignore
 import urlParseLax from "url-parse-lax";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
-import { Contracts } from "@arkecosystem/platform-sdk";
 
 export const useDatabase = (
 	flags: {

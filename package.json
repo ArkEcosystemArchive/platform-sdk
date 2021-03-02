@@ -1,12 +1,10 @@
 {
-	"private": true,
 	"name": "platform-sdk",
+	"private": true,
 	"description": "Cross-Platform Utilities for ARK Applications",
-	"engineStrict": true,
-	"engines": {
-		"node": "^12 || ^14",
-		"yarn": "^2"
-	},
+	"workspaces": [
+		"packages/*"
+	],
 	"scripts": {
 		"publish": "yarn workspaces foreach -pt run publish",
 		"build": "yarn workspaces foreach -pt run build",
@@ -14,10 +12,10 @@
 		"version": "yarn workspaces foreach version",
 		"version:apply": "yarn workspaces foreach version apply",
 		"version:check": "yarn version check --interactive",
-		"format": "yarn lint && yarn prettier",
-		"lint": "eslint packages/**/src/** --ext .ts --fix",
-		"lint:tests": "eslint packages/**/src/** --ext .test.ts --fix",
-		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\"",
+		"format": "yarn workspaces foreach -pt run format",
+		"lint": "yarn workspaces foreach -pt run lint",
+		"lint:tests": "yarn workspaces foreach -pt run lint:tests",
+		"prettier": "yarn workspaces foreach -pt run prettier",
 		"test": "yarn workspaces foreach -pt run test",
 		"toc:coins": "yarn dlx doctoc docs/coins/index.md"
 	},
@@ -49,7 +47,9 @@
 		"typescript": "^4.0.5",
 		"typescript-language-server": "^0.5.1"
 	},
-	"workspaces": [
-		"packages/*"
-	]
+	"engines": {
+		"node": "^12 || ^14",
+		"yarn": "^2"
+	},
+	"engineStrict": true
 }

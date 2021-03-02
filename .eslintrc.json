@@ -1,7 +1,7 @@
 {
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
-		"project": "./tsconfig.eslint.json",
+		"project": "../../tsconfig.eslint.json",
 		"extraFileExtensions": [".json"]
 	},
 	"plugins": ["@typescript-eslint", "jest", "prettier", "simple-import-sort", "unused-imports"],
@@ -17,11 +17,13 @@
 	"rules": {
 		"@typescript-eslint/ban-ts-comment": "off",
 		"@typescript-eslint/ban-types": "off",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"@typescript-eslint/naming-convention": "off",
 		"@typescript-eslint/no-empty-function": "off",
 		"@typescript-eslint/no-empty-interface": "off",
 		"@typescript-eslint/no-explicit-any": "off",
 		"@typescript-eslint/no-misused-promises": "off",
+		"@typescript-eslint/no-non-null-assertion": "off",
 		"@typescript-eslint/no-unsafe-assignment": "off",
 		"@typescript-eslint/no-unsafe-call": "off",
 		"@typescript-eslint/no-unsafe-member-access": "off",

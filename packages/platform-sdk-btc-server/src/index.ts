@@ -1,9 +1,9 @@
+import { Contracts } from "@arkecosystem/platform-sdk";
 import Hapi from "@hapi/hapi";
 import Joi from "joi";
+import { v4 as uuidv4 } from "uuid";
 
 import { useClient, useDatabase, useLogger } from "./helpers";
-import { Contracts } from "@arkecosystem/platform-sdk";
-import { v4 as uuidv4 } from "uuid";
 
 export const subscribe = async (flags: {
 	coin: string;
