@@ -1,5 +1,4 @@
 {
-	"extends": "@sindresorhus/tsconfig",
 	"compilerOptions": {
 		"declaration": true,
 		"emitDecoratorMetadata": true,
@@ -23,7 +22,8 @@
 		"sourceMap": true,
 		"strict": true,
 		"stripInternal": true,
-		"target": "es2019"
+		"target": "es2019",
+		"useDefineForClassFields": true
 	},
 	"exclude": ["dist", "**/*.spec.ts", "**/*.test.ts"]
 }

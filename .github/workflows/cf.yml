@@ -7,31 +7,36 @@ on:
 jobs:
     prettier:
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [12.x]
-
         steps:
             - uses: actions/checkout@v2
               with:
                   ref: ${{ github.head_ref }}
                   token: ${{ secrets.GH_TOKEN }}
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: ESLint
-              run: yarn lint
-
+              run: pnpm run lint
             - name: Prettier
-              run: yarn prettier
-
+              run: pnpm run prettier
             - uses: stefanzweifel/git-auto-commit-action@v4
               with:
                   commit_message: "style: resolve style guide violations"

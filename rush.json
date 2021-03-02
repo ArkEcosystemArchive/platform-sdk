@@ -1,0 +1,156 @@
+{
+	"$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+	"rushVersion": "5.40.6",
+	"pnpmVersion": "5.18.1",
+	"nodeSupportedVersionRange": ">=12.13.0 <13.0.0 || >=14.15.0 <15.0.0",
+	"projects": [
+		{
+			"packageName": "@arkecosystem/platform-sdk",
+			"projectFolder": "packages/platform-sdk"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-ada",
+			"projectFolder": "packages/platform-sdk-ada"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-ark",
+			"projectFolder": "packages/platform-sdk-ark"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-atom",
+			"projectFolder": "packages/platform-sdk-atom"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-avax",
+			"projectFolder": "packages/platform-sdk-avax"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-btc",
+			"projectFolder": "packages/platform-sdk-btc"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-btc-indexer",
+			"projectFolder": "packages/platform-sdk-btc-indexer"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-btc-server",
+			"projectFolder": "packages/platform-sdk-btc-server"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-cli",
+			"projectFolder": "packages/platform-sdk-cli"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-coincap",
+			"projectFolder": "packages/platform-sdk-coincap"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-coingecko",
+			"projectFolder": "packages/platform-sdk-coingecko"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-crypto",
+			"projectFolder": "packages/platform-sdk-crypto"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-cryptocompare",
+			"projectFolder": "packages/platform-sdk-cryptocompare"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-dot",
+			"projectFolder": "packages/platform-sdk-dot"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-dot-indexer",
+			"projectFolder": "packages/platform-sdk-dot-indexer"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-egld",
+			"projectFolder": "packages/platform-sdk-egld"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-eos",
+			"projectFolder": "packages/platform-sdk-eos"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-eth",
+			"projectFolder": "packages/platform-sdk-eth"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-eth-indexer",
+			"projectFolder": "packages/platform-sdk-eth-indexer"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-eth-server",
+			"projectFolder": "packages/platform-sdk-eth-server"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-http-axios",
+			"projectFolder": "packages/platform-sdk-http-axios"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-http-bent",
+			"projectFolder": "packages/platform-sdk-http-bent"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-http-got",
+			"projectFolder": "packages/platform-sdk-http-got"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-http-ky",
+			"projectFolder": "packages/platform-sdk-http-ky"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-http-node-fetch",
+			"projectFolder": "packages/platform-sdk-http-node-fetch"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-intl",
+			"projectFolder": "packages/platform-sdk-intl"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-json-rpc",
+			"projectFolder": "packages/platform-sdk-json-rpc"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-lsk",
+			"projectFolder": "packages/platform-sdk-lsk"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-markets",
+			"projectFolder": "packages/platform-sdk-markets"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-neo",
+			"projectFolder": "packages/platform-sdk-neo"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-news",
+			"projectFolder": "packages/platform-sdk-news"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-profiles",
+			"projectFolder": "packages/platform-sdk-profiles"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-sol",
+			"projectFolder": "packages/platform-sdk-sol"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-support",
+			"projectFolder": "packages/platform-sdk-support"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-trx",
+			"projectFolder": "packages/platform-sdk-trx"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-xlm",
+			"projectFolder": "packages/platform-sdk-xlm"
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-xrp",
+			"projectFolder": "packages/platform-sdk-xrp"
+		}
+	]
+}
