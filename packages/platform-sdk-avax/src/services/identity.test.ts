@@ -40,15 +40,15 @@ describe("IdentityService", () => {
 	describe("#keys", () => {
 		it("should generate an output from a mnemonic", async () => {
 			await expect(subject.keys().fromMnemonic(identity.mnemonic)).resolves.toEqual({
-				privateKey: "24jUJ9vZexUM6expyMcT48LBx27k1m7xpraoV62oSQAHdziao5",
-				publicKey: "7i8kVz6d6FsACnGUEbjyivaULARjmXaaJDzTFUpPjuBwecpmtF",
+				publicKey: identity.publicKey,
+				privateKey: identity.privateKey,
 			});
 		});
 
 		it("should generate an output from a privateKey", async () => {
 			await expect(subject.keys().fromPrivateKey(identity.privateKey)).resolves.toEqual({
-				privateKey: "24jUJ9vZexUM6expyMcT48LBx27k1m7xpraoV62oSQAHdziao5",
-				publicKey: "7i8kVz6d6FsACnGUEbjyivaULARjmXaaJDzTFUpPjuBwecpmtF",
+				publicKey: identity.publicKey,
+				privateKey: identity.privateKey,
 			});
 		});
 
