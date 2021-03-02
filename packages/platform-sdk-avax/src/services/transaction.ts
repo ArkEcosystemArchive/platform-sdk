@@ -55,12 +55,16 @@ export class TransactionService implements Contracts.TransactionService {
 				)
 			).sign(this.#keychain);
 
-			return new SignedTransactionData(uuidv4(), {
-				sender: input.from,
-				recipient: input.data.to,
-				amount: input.data.amount,
-				fee: input.fee,
-			}, signedTx.toString());
+			return new SignedTransactionData(
+				uuidv4(),
+				{
+					sender: input.from,
+					recipient: input.data.to,
+					amount: input.data.amount,
+					fee: input.fee,
+				},
+				signedTx.toString(),
+			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -109,12 +113,16 @@ export class TransactionService implements Contracts.TransactionService {
 				)
 			).sign(this.#keychain);
 
-			return new SignedTransactionData(uuidv4(), {
-				sender: input.from,
-				recipient: input.from,
-				amount: 0,
-				fee: 0,
-			}, signedTx.toString());
+			return new SignedTransactionData(
+				uuidv4(),
+				{
+					sender: input.from,
+					recipient: input.from,
+					amount: 0,
+					fee: 0,
+				},
+				signedTx.toString(),
+			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
