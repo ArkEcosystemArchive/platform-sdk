@@ -1,7 +1,7 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BinTools } from "avalanche";
 
-import { useKeychain } from "../helpers";
+import { keyPairFromMnemonic, useKeychain } from "../helpers";
 
 export class Keys implements Contracts.Keys {
 	readonly #config: Coins.Config;
@@ -11,7 +11,12 @@ export class Keys implements Contracts.Keys {
 	}
 
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
+		const keyPair = keyPairFromMnemonic(this.#config, mnemonic);
+
+		return {
+			publicKey: keyPair.getPublicKeyString(),
+			privateKey: keyPair.getPrivateKeyString(),
+		};
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {
