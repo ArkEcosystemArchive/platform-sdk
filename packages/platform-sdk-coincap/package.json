@@ -15,7 +15,11 @@
 		"clean": "rimraf .coverage dist tmp",
 		"test": "jest",
 		"test:watch": "jest --watchAll",
-		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
+		"publish": "yarn build && yarn npm publish --access public --tolerate-republish",
+		"format": "yarn lint && yarn prettier",
+		"lint": "eslint src/**/*.ts --fix",
+		"lint:tests": "eslint src/**/*.test.ts --fix",
+		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\""
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",

@@ -1,7 +1,7 @@
 {
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
-		"project": "./tsconfig.eslint.json",
+		"project": "../../tsconfig.eslint.json",
 		"extraFileExtensions": [".json"]
 	},
 	"plugins": ["@typescript-eslint", "jest", "prettier", "simple-import-sort", "unused-imports"],
