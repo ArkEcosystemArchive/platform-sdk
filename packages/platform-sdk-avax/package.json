@@ -1,14 +1,14 @@
 {
 	"name": "@arkecosystem/platform-sdk-avax",
-	"description": "Cross-Platform Utilities for ARK Applications",
 	"version": "3.0.31",
-	"contributors": [],
+	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
+	"contributors": [],
+	"main": "dist/index",
+	"types": "dist/index",
 	"files": [
 		"/dist"
 	],
-	"main": "dist/index",
-	"types": "dist/index",
 	"scripts": {
 		"build": "yarn clean && tsc",
 		"build:watch": "yarn build -w",
@@ -20,6 +20,9 @@
 		"lint": "eslint src/**/*.ts --fix",
 		"lint:tests": "eslint src/**/*.test.ts --fix",
 		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\""
+	},
+	"jest": {
+		"preset": "../../jest.config.js"
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
@@ -70,8 +73,5 @@
 	},
 	"engines": {
 		"node": ">=12.x"
-	},
-	"jest": {
-		"preset": "../../jest.config.js"
 	}
 }
