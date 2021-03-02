@@ -1,6 +1,8 @@
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
 import { DataRepository } from "./data-repository";
+import { ProfileImportExport } from "../services/profile-import-export";
+import { ProfileExportOptions } from "../profiles/profile.models";
 
 export class ProfileRepository {
 	readonly #data: DataRepository;
@@ -57,6 +59,14 @@ export class ProfileRepository {
 		this.#data.set(result.id(), result);
 
 		return result;
+	}
+
+	public import(data: string): void {
+		ProfileImportExport.import(data);
+	}
+
+	public export(profile: Profile, options: ProfileExportOptions): string {
+		return ProfileImportExport.export(profile, options);
 	}
 
 	public has(id: string): boolean {
