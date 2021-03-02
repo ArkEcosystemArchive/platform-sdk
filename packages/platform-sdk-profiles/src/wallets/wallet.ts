@@ -28,7 +28,7 @@ export class Wallet implements ReadWriteWallet {
 	readonly #settingRepository: SettingRepository;
 	readonly #transactionService: TransactionService;
 
-	readonly #state: WalletStruct;
+	readonly #initialState: WalletStruct;
 	readonly #id: string;
 	#coin!: Coins.Coin;
 	#profile!: Profile;
@@ -39,9 +39,9 @@ export class Wallet implements ReadWriteWallet {
 	#avatar!: string;
 	readonly #restorationState = { full: false, partial: false };
 
-	public constructor(id: string, state: any, profile: Profile) {
+	public constructor(id: string, initialState: any, profile: Profile) {
 		this.#id = id;
-		this.#state = state;
+		this.#initialState = initialState;
 		this.#profile = profile;
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
@@ -248,7 +248,7 @@ export class Wallet implements ReadWriteWallet {
 
 	public toObject(): WalletStruct {
 		if (this.hasBeenPartiallyRestored()) {
-			return this.#state;
+			return this.#initialState;
 		}
 
 		this.#transactionService.dump();
