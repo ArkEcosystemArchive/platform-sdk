@@ -39,7 +39,6 @@ export class ClientService implements Contracts.ClientService {
 
 		const assetId = cb58Decode(this.#config.get("network.crypto.assetId"));
 
-		// @TODO: get block ID it was included in
 		return new TransactionData({
 			id,
 			amount: unsignedTransaction.getOutputTotal(assetId).toString(),

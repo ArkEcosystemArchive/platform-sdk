@@ -37,7 +37,6 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 					},
 					{
 						onFailedAttempt: (error) => {
-							// @TODO: we need the block hash here
 							database.storeError("block", i.toString(), error.message);
 
 							logger.error(
@@ -49,7 +48,6 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 				),
 			);
 		} catch (error) {
-			// @TODO: log what failed, why it failed and if possible try to fix it
 			logger.error(error);
 		}
 	}
