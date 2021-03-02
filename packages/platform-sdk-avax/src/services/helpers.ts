@@ -1,8 +1,8 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import { Avalanche, BinTools, Buffer, utils } from "avalanche";
-import { AVMAPI, KeyChain, KeyPair } from "avalanche/dist/apis/avm";
+import { Avalanche, BinTools, Buffer } from "avalanche";
+import { AVMAPI, KeyPair } from "avalanche/dist/apis/avm";
 import { InfoAPI } from "avalanche/dist/apis/info";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
 import HDKey from "hdkey";
