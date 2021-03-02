@@ -20,7 +20,10 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 			if (queue.size === 1000) {
 				logger.info("Draining Queue...");
 
-				await queue.start().onIdle();
+				queue.start();
+
+				await queue.onIdle();
+
 				queue.pause();
 
 				logger.info("Drained Queue...");

@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
-import bech32 from "bech32";
+import { bech32 } from "bech32";
 
 export class Address implements Contracts.Address {
 	readonly #config: Coins.Config;

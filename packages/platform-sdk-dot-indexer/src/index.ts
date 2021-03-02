@@ -32,7 +32,10 @@ export const subscribe = async (flags: Record<string, string>): Promise<void> =>
 			if (queue.size === 250) {
 				logger.info("Draining Queue...");
 
-				await queue.start().onIdle();
+				queue.start();
+
+				await queue.onIdle();
+
 				queue.pause();
 
 				logger.info("Drained Queue...");
