@@ -3,6 +3,7 @@ dependencies:
   '@arkecosystem/crypto-identities': 1.1.1
   '@arkecosystem/ledger-transport': 1.1.3
   '@arkecosystem/multi-signature': 0.1.5
+  '@arkecosystem/utils': 1.3.0
   '@cityofzion/neon-js': 4.8.3
   '@elrondnetwork/elrond-core-js': 2.1.0
   '@emurgo/cardano-serialization-lib-nodejs': 6.0.0
@@ -81,6 +82,7 @@ dependencies:
   '@types/env-paths': 2.1.0
   '@types/eslint': 7.2.6
   '@types/eslint-plugin-prettier': 3.1.0
+  '@types/fs-extra': 9.0.7
   '@types/hapi__hapi': 20.0.2
   '@types/hapi__joi': 17.1.6
   '@types/hdkey': 0.7.1
@@ -90,15 +92,18 @@ dependencies:
   '@types/lodash.orderby': 4.6.6
   '@types/meow': 5.0.0
   '@types/mersenne-twister': 1.1.2
+  '@types/node': 14.14.31
   '@types/node-emoji': 1.8.1
   '@types/node-fetch': 2.5.7
   '@types/node-forge': 0.9.5
   '@types/p-retry': 3.0.1
+  '@types/pino': 6.3.6
   '@types/prettier': 2.2.1
   '@types/qrcode': 1.3.5
   '@types/rimraf': 3.0.0
   '@types/semver': 7.3.4
   '@types/sindresorhus__slugify': 0.9.3
+  '@types/uuid': 8.3.0
   '@types/wif': 2.0.2
   '@types/ws': 7.4.0
   '@typescript-eslint/eslint-plugin': 4.16.1_f5195153d6684055bba9a67a140ba316
@@ -111,6 +116,8 @@ dependencies:
   bad-words: 3.0.4
   bcryptjs: 2.4.3
   bcrypto: 5.4.0
+  bech32: 2.0.0
+  bent: 7.3.12
   better-sqlite3: 7.1.2
   bignumber.js: 9.0.1
   bip32: 2.0.6
@@ -127,7 +134,9 @@ dependencies:
   cli-table3: 0.6.0
   conf: 9.0.2
   cross-env: 7.0.3
+  dayjs: 1.10.4
   dinero.js: 1.8.1
+  dot-prop: 5.3.0
   dpos-ledger-api: 3.0.1
   ed25519-hd-key: 1.2.0
   elliptic: 6.5.4
@@ -147,6 +156,7 @@ dependencies:
   fast-levenshtein: 3.0.0
   form-data: 3.0.1
   front-matter: 4.0.2
+  fs-extra: 9.1.0
   got: 11.8.2
   hdkey: 2.0.1
   inversify: 5.0.5
@@ -155,6 +165,7 @@ dependencies:
   jest: 26.6.3
   jest-extended: 0.11.5
   jest-localstorage-mock: 2.4.7
+  joi: 17.4.0
   keytar: 7.4.0
   kleur: 4.1.4
   ky: 0.25.1
@@ -179,6 +190,7 @@ dependencies:
   p-queue: 6.6.2
   p-retry: 4.4.0
   password-pwnd: 1.0.5
+  pino: 6.11.1
   pino-pretty: 4.5.0
   prettier: 2.2.1
   prompts: 2.4.0
@@ -192,15 +204,19 @@ dependencies:
   ripple-lib: 1.9.1
   rss-parser: 3.12.0
   safe-buffer: 5.2.1
+  semver: 7.3.4
   stellar-hd-wallet: 0.0.10
   stellar-sdk: 7.0.0
   string-crypto: 2.0.1
   terminal-link: 2.1.1
   tronweb: 3.2.6
   ts-jest: 26.5.2_jest@26.6.3+typescript@4.0.5
+  type-fest: 0.21.2
   typescript: 4.0.5
   typescript-language-server: 0.5.1
   url-parse-lax: 4.0.0
+  uuid: 8.3.2
+  web3: 1.3.4
   wif: 2.0.6
   ws: 7.4.3
   yargs-parser: 20.2.6
@@ -2501,12 +2517,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-m4JTwx5RUBNZvky/JJ8swEJPKFd8si08pPF2PfizYjGZOKr/svUWPcoUmLow6MmPzhasphB7gSTINY67xn3JNA==
-  /@types/fs-extra/9.0.4:
-    dependencies:
-      '@types/node': 14.14.31
-    dev: false
-    resolution:
-      integrity: sha512-50GO5ez44lxK5MDH90DYHFFfqxH7+fTqEEnvguQRzJ/tY9qFrMSHLiYHite+F3SNmf7+LHC1eMXojuD+E3Qcyg==
   /@types/fs-extra/9.0.7:
     dependencies:
       '@types/node': 14.14.31
@@ -2748,14 +2758,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-17XcksO47M24IVTVKPeAByWUd3Oez7EbIjXpSbzMPhXVzgjGtrOa49gKBwxH9hb8dKv58OelsWQ+A1G1l9S3wQ==
-  /@types/pino/6.3.3:
-    dependencies:
-      '@types/node': 14.14.31
-      '@types/pino-std-serializers': 2.4.1
-      '@types/sonic-boom': 0.7.0
-    dev: false
-    resolution:
-      integrity: sha512-YtT58N7Tt7B7f5B/upuq694p4eT4icM9TuhgYeKhm+dnF0Ahm7q5YJp1i7vC2mBMdWgH1IvOa2XK6rhUjBv0GQ==
   /@types/pino/6.3.6:
     dependencies:
       '@types/node': 14.14.31
@@ -13660,7 +13662,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-ada'
     resolution:
-      integrity: sha512-DksyEQS34GdhNEbFzpfpl/LcDM5oZZuVwH2P29GKGC7sfkUPxbq+Smb6JgypvgjTA7zeYhIElcfb9EYUvWVciA==
+      integrity: sha512-9+Kxj0W1z04gDfjzIyVAwkBV5/qwgyxsek1fcDkFFy0GDSC+1UeqZ21tExLeltVgA19lmigCc/+NBu6cvcBfEA==
       tarball: file:projects/platform-sdk-ada.tgz
     version: 0.0.0
   file:projects/platform-sdk-ark.tgz:
@@ -13686,7 +13688,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 4.16.1_f5195153d6684055bba9a67a140ba316
       '@typescript-eslint/parser': 4.16.1_eslint@7.21.0+typescript@4.0.5
       cross-env: 7.0.3
-      dot-prop: 6.0.1
+      dot-prop: 5.3.0
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
@@ -13710,7 +13712,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-ark'
     resolution:
-      integrity: sha512-KSpRT2b+LXFfP61sEeb0LjsAlIF+70HGXUWxRwf9iFd/BdU7aAMJt1PIwrDyQ7QBw9U30pO/MF4VO1KJ/VjzNw==
+      integrity: sha512-W+FnDoQPsrbMnGOx9tnf6Pg9WnfQR2E6v0tdLFsL9SozE52JXuTWgcYugWICSwmNai2qJckw9ejgtuKkg4qlCA==
       tarball: file:projects/platform-sdk-ark.tgz
     version: 0.0.0
   file:projects/platform-sdk-atom.tgz:
@@ -13728,7 +13730,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 4.16.1_f5195153d6684055bba9a67a140ba316
       '@typescript-eslint/parser': 4.16.1_eslint@7.21.0+typescript@4.0.5
       bcrypto: 5.4.0
-      bech32: 1.1.4
+      bech32: 2.0.0
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
@@ -13750,7 +13752,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-atom'
     resolution:
-      integrity: sha512-LLR5u1Hs2iHsbQ/QAYWoweJ5MgK7aQoa8geKrSSLmARCb2hvE+mkynqhwsApLqlhCXKvS8QXq4SI47oH8Jo7Gw==
+      integrity: sha512-DX4UbvilokuxlkbBDykZGSrJ3LbOPg/DSwjzfC4tYqZfG24RWGF6bTwrCtnxCiIfAJwXTKcTVKxxAXFF/VCX4w==
       tarball: file:projects/platform-sdk-atom.tgz
     version: 0.0.0
   file:projects/platform-sdk-avax.tgz:
@@ -13796,7 +13798,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-avax'
     resolution:
-      integrity: sha512-arivQpxaHHyD+gfx2DX8P5zptbdY8kl2a7PjaD4pIs0HQ2R4MwaVgVIBVJLduULATOfvoUxanckheYjUaA0yxg==
+      integrity: sha512-b8VFpT6fJIIbWX/uXKNQ11v9Wmsbdu0gtZMixtJPojvJxQJ32ozvmBSggO08ErZaP5wRZEAaf/wHHy/hPFpHBQ==
       tarball: file:projects/platform-sdk-avax.tgz
     version: 0.0.0
   file:projects/platform-sdk-btc-indexer.tgz:
@@ -13849,7 +13851,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-btc-indexer'
     resolution:
-      integrity: sha512-sEMlj3UY4Lt8wQtKWRsRpa3CuAd3JJtgXxjE8yFdpo9uzzJH8g06lau1EtX65m9mBZ9qkQnKDUc+0LbqmhgwEA==
+      integrity: sha512-QSwRwU6p/l45KUeev77SWjtVbhvBcpPenrwWOWhgYMLSFrFoEz0YLV7F+ex6QXSPM/M5pD7AwmeMy5EI9aVLKQ==
       tarball: file:projects/platform-sdk-btc-indexer.tgz
     version: 0.0.0
   file:projects/platform-sdk-btc-server.tgz:
@@ -13901,7 +13903,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-btc-server'
     resolution:
-      integrity: sha512-2GpAiLOLUx3qz/OT8hZqPPXwMKUqB0+Y2PlXN881v3gWcJ8R5G2CFkNFeIIWgAC0M1yKUPooCzTmm3VfoDRyXw==
+      integrity: sha512-1t7SFXbHCl/ilf/DszwsnQBlXAbx9KUS+ARrAi/40vtccFtaZUDCbc094b4MpGDFIfIEZ5Daya+kExN7ErsDng==
       tarball: file:projects/platform-sdk-btc-server.tgz
     version: 0.0.0
   file:projects/platform-sdk-btc.tgz:
@@ -13940,7 +13942,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-btc'
     resolution:
-      integrity: sha512-4tGL0A//E62Kcr3ihDK7RugUVE8/hmZ44ARrTvlQgoyllXzru3gQbClK4fubZX0mN5iCfEBeyHocaAoG+FEmKA==
+      integrity: sha512-HCKLYlNDwKRhO1qUrw8ag4v162+EPPrbxpsacqaWZ/r6Z4KffvN5mPgNMxtCbp5+6RqcJI8U+2+0NfX95nuK1A==
       tarball: file:projects/platform-sdk-btc.tgz
     version: 0.0.0
   file:projects/platform-sdk-cli.tgz:
@@ -14002,7 +14004,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-cli'
     resolution:
-      integrity: sha512-+aeSkWVpOsy0JtRBUzNizblbgeME8+HJ45kLqFLXhU3S6iO7nYHwvKdtJheyikH/RIRFTHPz7z1nBFsvqznlLQ==
+      integrity: sha512-vNy+eC89qxPJFMnOtLmWwZPHE5Kp2JrHt491oHyds9IrMGUahEW5mlTX02CxJkLrFkbUNMp4ptAuWLuVgVXtJQ==
       tarball: file:projects/platform-sdk-cli.tgz
     version: 0.0.0
   file:projects/platform-sdk-coincap.tgz:
@@ -14035,7 +14037,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-coincap'
     resolution:
-      integrity: sha512-Sh5yK3vkBrwVOUtI7FkAQto5HlWbfiE6veyHG6DygBbiLiCqsJAPlhr/9YAC45Vui6LxPlfzcJEdj40b8Vfe5A==
+      integrity: sha512-9eIASUA37X1GmWwUqX0JV7f0L3DBeCaS9aRLdSqkZBhCzkz1vkLWs2jQndta3fQ8Ng7HbpKga+0gQHKxew2Jnw==
       tarball: file:projects/platform-sdk-coincap.tgz
     version: 0.0.0
   file:projects/platform-sdk-coingecko.tgz:
@@ -14068,7 +14070,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-coingecko'
     resolution:
-      integrity: sha512-dJd2+UmKAKwXZ6E8v0dQaVfKUqmu6pOxmMD+qWSBDokp5d4mjw7cXehWJEKxwDQDLOSspIfXyqonYOYg9S9Kcw==
+      integrity: sha512-rIRpqcDy+suxYtvJMfLRq+RYJ47kjEy8qlb7hEQtSWapEz2Kf+ivj6cFXl98gadOFYKBjF/kOclItH+PSTYvbA==
       tarball: file:projects/platform-sdk-coingecko.tgz
     version: 0.0.0
   file:projects/platform-sdk-crypto.tgz:
@@ -14119,7 +14121,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-crypto'
     resolution:
-      integrity: sha512-NqF6VjY3HH3jq2pUHSwQoXMX9U7WERqTKz/H7S3ROT6wzHdCYS+UCtGRIziDDldk1OfajN5NdC7SIAijAtyspw==
+      integrity: sha512-119yT9Jp8e11o3qOdACd4EosfV+SC7htfHGt651elIzLCkU4zV4/ELC9JmSovTOY8fIvKkioE94qqY3//tfXxw==
       tarball: file:projects/platform-sdk-crypto.tgz
     version: 0.0.0
   file:projects/platform-sdk-cryptocompare.tgz:
@@ -14152,7 +14154,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-cryptocompare'
     resolution:
-      integrity: sha512-pxBIOjPl2Q9cMXnAH0ryCH+cliuyNFRL3dt1Xk2y5NgElzyYGtD6rNLvYz8nOtsbV+r1pquk+3l1o6hzRc11GA==
+      integrity: sha512-td+j4R8kPam8i48kBvsX1Wq52GZCI/LvwzVYJq/O8ovc8EYGRiJZkN1NeihiqgwhcSUofoCrWdvzJZ+580ns+g==
       tarball: file:projects/platform-sdk-cryptocompare.tgz
     version: 0.0.0
   file:projects/platform-sdk-dot-indexer.tgz:
@@ -14203,7 +14205,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-dot-indexer'
     resolution:
-      integrity: sha512-kKergQd5H702HULMcQ2K2785ChYSBGDDFLpfOAOliqo3gn72J/2Y/kAoPloPfTV9z8vnAB/L7gR8/PKIxpD/4Q==
+      integrity: sha512-6DowtsHxNkLsLhpmEMdecXxOsykboj3alx+yDHWGBPtO+Jm185WlMEKMkXrG4iPSt86WPE+PiZy8jUaFrus0BQ==
       tarball: file:projects/platform-sdk-dot-indexer.tgz
     version: 0.0.0
   file:projects/platform-sdk-dot.tgz:
@@ -14249,7 +14251,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-dot'
     resolution:
-      integrity: sha512-IbSlb+RTxopAf7zEYn5rHO7tULaAmcfRcme/lU1ovjZqr6VncX2wOdtk5Jin8ELMffgP3l8+PNe8n/WmrugivA==
+      integrity: sha512-BVhvLduO0UdgGhSqd5aRr0YP0mFs/p+sdsdask4+dWm2B9ZBQ7E1ptAM8iWufBpYm2JZEUOJJvUuZmU8/HbroA==
       tarball: file:projects/platform-sdk-dot.tgz
     version: 0.0.0
   file:projects/platform-sdk-egld.tgz:
@@ -14286,7 +14288,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-egld'
     resolution:
-      integrity: sha512-hvh1+qOFYxqlv2+RLZO4jAxaYvzbba3bxXz5M9hqatyfj3ATqzvy+jpUCuNoPnppJlipWZR1MuluHhgOUqilhA==
+      integrity: sha512-GBEwQjnJQRnhyQyZ+BVvsqu97xdG9Zq956c5xVUZ+bO2efLhWAKqblfKv/RKMPpqfpSUogJjOOteqORXemvjXQ==
       tarball: file:projects/platform-sdk-egld.tgz
     version: 0.0.0
   file:projects/platform-sdk-eos.tgz:
@@ -14326,7 +14328,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-eos'
     resolution:
-      integrity: sha512-15j5xSPPdMk4Lk2VGnXkMLZXX8fB0eLGHNDkiz7vy5H87W5wbWnGmXtsjlcmpY4rjV64FBsJ9HOLda1thwJ32w==
+      integrity: sha512-MzzIuk5fsRL/Fr4PaTGzCS4nZOJtChwbuwNfJILqlhLYGFsbNIpIk8aMKhdRlQt2bQDNfAxE4T7Dwqrfhl+Mnw==
       tarball: file:projects/platform-sdk-eos.tgz
     version: 0.0.0
   file:projects/platform-sdk-eth-indexer.tgz:
@@ -14378,7 +14380,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-eth-indexer'
     resolution:
-      integrity: sha512-YfJAau9GEnA8mWyhGwcjuUe78VqhtJ3jalst9QwhbsUvNs/zVJqyG3Tj4sTS0x8y8Mi275wLdKRhiR/IO3Vnjw==
+      integrity: sha512-E/+knbyu+ga9+bloH6pTUkAJOV6fD/bd/PYe3jbYFIy+hEMReKiNoKlHM+rEJ/yDD4lCGq2fZD5WdO1TztWg/A==
       tarball: file:projects/platform-sdk-eth-indexer.tgz
     version: 0.0.0
   file:projects/platform-sdk-eth-server.tgz:
@@ -14430,7 +14432,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-eth-server'
     resolution:
-      integrity: sha512-8Sfn06NvcYhpkwV0I669lo1niochGxPfgbPiNdEjNBiNIh3IDNcWYs97hDDAcnowmW+ScOAC+G7h85iJkdmljg==
+      integrity: sha512-Dha7BEAmsRfEOm30WuvShulwUbPn9+IJgdwJVEEX3r75ocSVrpQq7b3YnF+clTYxp7yDCe4n49+PPs4jnKctig==
       tarball: file:projects/platform-sdk-eth-server.tgz
     version: 0.0.0
   file:projects/platform-sdk-eth.tgz:
@@ -14470,7 +14472,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-eth'
     resolution:
-      integrity: sha512-EUbQ3XggJAtG+3Aw3dWNnhJM69t95A98ioLbvpQe8ldfKE3aaGRIkOhzdeXed3dbKhVRXWncOknssjXLHrztHQ==
+      integrity: sha512-B/upeBEvEJZATIs3GEyQIxmK2H2UsqnhFtien5SeUEEQ6Ow1aRDs5ww/OzI22gnMejuu4k6PhqJgitd6Aa10Aw==
       tarball: file:projects/platform-sdk-eth.tgz
     version: 0.0.0
   file:projects/platform-sdk-http-axios.tgz:
@@ -14478,7 +14480,7 @@ packages:
       '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
-      '@types/fs-extra': 9.0.4
+      '@types/fs-extra': 9.0.7
       '@types/jest': 26.0.20
       '@types/node': 14.14.31
       '@types/prettier': 2.2.1
@@ -14505,7 +14507,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-http-axios'
     resolution:
-      integrity: sha512-9xt1FzXc7ncc/2MbiWAercqOdsOFH6EyoTMvMjiNRuyHq+9XHvfW2mT7+aii2kNfHJIjo9ECBALKdDcAzjLa9g==
+      integrity: sha512-FsPM7L9Vj6hACizuccTqEdzLLM26vcFo5dex5rTbC0+JztdkRKq6FYKh7lBFYAezMLK3qJuN+Tfe3A3KYxe8wg==
       tarball: file:projects/platform-sdk-http-axios.tgz
     version: 0.0.0
   file:projects/platform-sdk-http-bent.tgz:
@@ -14514,7 +14516,7 @@ packages:
       '@types/bent': 7.3.2
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
-      '@types/fs-extra': 9.0.4
+      '@types/fs-extra': 9.0.7
       '@types/jest': 26.0.20
       '@types/node': 14.14.31
       '@types/prettier': 2.2.1
@@ -14541,7 +14543,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-http-bent'
     resolution:
-      integrity: sha512-EuFKpbeWDbmXfVkge3EP9+vBASGYwdJ806tAIA0MvsRQcDGe5Wzz+U1CALml2ptBugGo/KynPvvYnCpdDJkAPg==
+      integrity: sha512-hv7kARM+npFUQ31VL63/0YbaEMHN84l4qGOV2L3pdfNbWVFkPECCf/fWpbZ19lQMmqEWusa2B6/pefZrQTRycQ==
       tarball: file:projects/platform-sdk-http-bent.tgz
     version: 0.0.0
   file:projects/platform-sdk-http-got.tgz:
@@ -14549,7 +14551,7 @@ packages:
       '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
-      '@types/fs-extra': 9.0.4
+      '@types/fs-extra': 9.0.7
       '@types/jest': 26.0.20
       '@types/node': 14.14.31
       '@types/node-fetch': 2.5.7
@@ -14578,7 +14580,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-http-got'
     resolution:
-      integrity: sha512-92BDsEo8jaOGE2cGP18AjfjE6S56F6o0KIwGrXyM9ULZr0S7MKblgio9qZRPsYj8HceJcPdvIzQPo3uyynLwdA==
+      integrity: sha512-Mr7pP/H6WBmUoGDPXIVDBNUEDJvSCiGsLXlB7QfDPWz0vXWwM58PiwkzXZAXQs+wNujnb2oTLuqUPTd+yOdVhw==
       tarball: file:projects/platform-sdk-http-got.tgz
     version: 0.0.0
   file:projects/platform-sdk-http-ky.tgz:
@@ -14586,7 +14588,7 @@ packages:
       '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
-      '@types/fs-extra': 9.0.4
+      '@types/fs-extra': 9.0.7
       '@types/jest': 26.0.20
       '@types/node': 14.14.31
       '@types/node-fetch': 2.5.7
@@ -14615,7 +14617,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-http-ky'
     resolution:
-      integrity: sha512-hYcIlLWgBQm0AuEPOm5YaKVHNwOtUt7svuxxTXwYkb635LQc0Ryym5+dStY6/cvsJet/43bjb8N+WZdhFf7o1A==
+      integrity: sha512-yDWK05SesH8j+IuZAgIR7B+A5pKIjmmU9vhrXTi5Vm138OWRNMYdRjdMtke044YpzliqKHhE4A1mokiqkV2TMA==
       tarball: file:projects/platform-sdk-http-ky.tgz
     version: 0.0.0
   file:projects/platform-sdk-http-node-fetch.tgz:
@@ -14623,7 +14625,7 @@ packages:
       '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
-      '@types/fs-extra': 9.0.4
+      '@types/fs-extra': 9.0.7
       '@types/jest': 26.0.20
       '@types/node': 14.14.31
       '@types/node-fetch': 2.5.7
@@ -14651,7 +14653,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-http-node-fetch'
     resolution:
-      integrity: sha512-cyKYQ2GTjqOpQdatigYz9DoZKj1Q3ShGFz6IKWhhRrAhiiTEvPFIOsCb0fuZoVZzwChobnv7QWs/VR9T+xLwAw==
+      integrity: sha512-DbMtnOOgDQPn9usZeqg51EUBiZLEw7Rt2MqrgN6yE+Oi8JcuMmzgmPDoKznVpWOLMHmsY0X51kAIz9yxATJj0A==
       tarball: file:projects/platform-sdk-http-node-fetch.tgz
     version: 0.0.0
   file:projects/platform-sdk-intl.tgz:
@@ -14686,7 +14688,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-intl'
     resolution:
-      integrity: sha512-t/ecU7qjd3YI/aI9Gnj/rGqKQfsg3ZNZaExBVpDooUttbSLUs2fa9PIjnHLwODfaLRX9TZz9oPdG+yzziDC58g==
+      integrity: sha512-ZtBSjCJGtTAb9/MWzEOclHvSB3wRxGdZQ/n4FHu1Fj6d9TlngCwCHXirhGvRfKvXRbsqInFb4hYJImAh2SKpeQ==
       tarball: file:projects/platform-sdk-intl.tgz
     version: 0.0.0
   file:projects/platform-sdk-json-rpc.tgz:
@@ -14698,7 +14700,7 @@ packages:
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__hapi': 20.0.2
       '@types/jest': 26.0.20
-      '@types/pino': 6.3.3
+      '@types/pino': 6.3.6
       '@types/prettier': 2.2.1
       '@types/rimraf': 3.0.0
       '@typescript-eslint/eslint-plugin': 4.16.1_f5195153d6684055bba9a67a140ba316
@@ -14722,7 +14724,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-json-rpc'
     resolution:
-      integrity: sha512-cyIwEtlT0P7U+ZCajDJz1W9oOZ3G5Pfq8dLlNXXyjTRxFx1slfRUzZjZzejJjaUc9a3jqlIoZJV9N/yqDWezLw==
+      integrity: sha512-FIS/BBluAyaq4si5iI2nSbZpa+kX4aKjv8jcMnUP2qy4ueIfd7xuwn16qxC4bJ5glcYuSB0IJQ23g+poRIcUtA==
       tarball: file:projects/platform-sdk-json-rpc.tgz
     version: 0.0.0
   file:projects/platform-sdk-lsk.tgz:
@@ -14761,7 +14763,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-lsk'
     resolution:
-      integrity: sha512-kYOiOl4vgQKUTA87kpjZeGPPBP4aFaG6CZqZHxweVdwwfyP9PezWao2qoSCUgsmdMTNrALK+VKbhrel6pHRX6w==
+      integrity: sha512-PDlx2EQqjdV6PftZJjQA7bRfZLlCtBznXo0PdHrB+7ctNHQNTW6u4jC7JPcIzl6gejDDGyok61UjyJWrgkIMEA==
       tarball: file:projects/platform-sdk-lsk.tgz
     version: 0.0.0
   file:projects/platform-sdk-markets.tgz:
@@ -14794,7 +14796,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-markets'
     resolution:
-      integrity: sha512-UkEe0xM6vLbNgXu582GXUvWe54eGIwOaznqQpvg7zX+dOqPGhEvrxTm6Ft5CpMBQrGv03M/2y5Z27mSkZ0ahwg==
+      integrity: sha512-pbb7tQJ8t1rlXBl/cBLTbWkerq5TjVWLUJbvFggDkKN81wce/VdbEM4zqeYfcQJycyLK0S7E8hmqBf87/lJcLQ==
       tarball: file:projects/platform-sdk-markets.tgz
     version: 0.0.0
   file:projects/platform-sdk-neo.tgz:
@@ -14832,7 +14834,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-neo'
     resolution:
-      integrity: sha512-oZCngSlpG/t3haAbdp8gFsPYCWyJILNDLGcPkVZAOXNmfk4G7I4xcvGhcS8Y3W3Qo0CPOBGctI4JJY04EYCDkQ==
+      integrity: sha512-T68U4GIXTB9oZZVQubicjlZsWNGaN87OEYxT84yiDIe2Q/7Lj5GlkiUfFFp0kNtoOV/nI8ao0+8nHXCBFF1gFw==
       tarball: file:projects/platform-sdk-neo.tgz
     version: 0.0.0
   file:projects/platform-sdk-news.tgz:
@@ -14840,7 +14842,7 @@ packages:
       '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
-      '@types/fs-extra': 9.0.4
+      '@types/fs-extra': 9.0.7
       '@types/jest': 26.0.20
       '@types/node': 14.14.31
       '@types/prettier': 2.2.1
@@ -14867,7 +14869,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-news'
     resolution:
-      integrity: sha512-2lr5KCzKW7Ee+OQDAbgyWcTI3gq/9c19IqlDMDKyoAVHPLDRB2hUPuxlUrVRlGh8VNY/K9rK062gjS/aq440jQ==
+      integrity: sha512-1Y/3T/GSRvujW9cKXq/pPeLt0D7OYJvT++fjtWrd+8vQK99WTJ7TY1S+i/t15sZfD0JpZTww+Haxq4wkUVZjgg==
       tarball: file:projects/platform-sdk-news.tgz
     version: 0.0.0
   file:projects/platform-sdk-profiles.tgz:
@@ -14880,7 +14882,7 @@ packages:
       '@types/dot-prop': 5.0.1
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
-      '@types/fs-extra': 9.0.4
+      '@types/fs-extra': 9.0.7
       '@types/jest': 26.0.20
       '@types/mersenne-twister': 1.1.2
       '@types/node': 14.14.31
@@ -14920,14 +14922,14 @@ packages:
       rimraf: 3.0.2
       semver: 7.3.4
       ts-jest: 26.5.2_jest@26.6.3+typescript@4.0.5
-      type-fest: 0.18.1
+      type-fest: 0.21.2
       typescript: 4.0.5
       uuid: 8.3.2
       wif: 2.0.6
     dev: false
     name: '@rush-temp/platform-sdk-profiles'
     resolution:
-      integrity: sha512-sUxVzl4rxqHX7OCldBh6HENLjxVQYpbMSHVD7otD1B0JNwB/MHf+/+CjX0S8VUbI8xlQ3nOndRAuism2av+YIA==
+      integrity: sha512-NDKZ7RC5Qy5v/RpECuSpjXHkbiwj6wk1SXcIS1JbqSCgltzhN6SxjXasijmWIpFW/SLeiBIFbyORDI0dZq3nDQ==
       tarball: file:projects/platform-sdk-profiles.tgz
     version: 0.0.0
   file:projects/platform-sdk-sol.tgz:
@@ -14966,7 +14968,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-sol'
     resolution:
-      integrity: sha512-aHHWMo2SJVNnAWG6LDXRsgfNr8/GnV88Zkh7CM4lnT2FPhYdIkNDbXkMold7DwzWrh39bvTODRk5YG83+aV5dQ==
+      integrity: sha512-kFIznbgIEZtvIVvj41ViEisLnQK7bHv32QUnFeAIAiX4oNcjV+Bj7gp+zjhhztNw9CwpMcJ7mSTYu2dE2CbaRA==
       tarball: file:projects/platform-sdk-sol.tgz
     version: 0.0.0
   file:projects/platform-sdk-support.tgz:
@@ -15010,7 +15012,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-support'
     resolution:
-      integrity: sha512-k6Jx4/HOFMlG/1ACXl80sOi1s+nhrxxqp+vRChVxEVUZGhJiK8epiBVj3x0U3hkgDnLsolXqQ0qf8E+Gnve8HQ==
+      integrity: sha512-Xjup0PaB6nABw7vc794+29emczLQXWr1qStbzk/fEHw6ps2sBWeCw919/f2eG+gnjrtSwnkvS4UP3w9d2mRkRA==
       tarball: file:projects/platform-sdk-support.tgz
     version: 0.0.0
   file:projects/platform-sdk-trx.tgz:
@@ -15046,7 +15048,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-trx'
     resolution:
-      integrity: sha512-H2Df3tHDCah4Q18FZDj6e9F/7R7qgJjuPu3G8jZzNjiQo5YLX8IG7OK+GifWnDuA0vgs7qxh+NVYMiG4EQPXwA==
+      integrity: sha512-gr/fVT7ETi9sbyc5KOoLq93/Ox0LVm5wTbEKTI4Bq0UjMgAiiwqowDpq9GaV0Y1/PwxF38WAhj4i0W9qgWUYDg==
       tarball: file:projects/platform-sdk-trx.tgz
     version: 0.0.0
   file:projects/platform-sdk-xlm.tgz:
@@ -15084,7 +15086,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-xlm'
     resolution:
-      integrity: sha512-QyIOjajfcPoIbiH+ack0PVHj/bqu0NT6L+NtSIHAEhpCfEeDkOwms/0oW94ZUMyj5WNUnUI075iHPAElg73oYw==
+      integrity: sha512-6u3vQ9JWF4VnlpRIi3K0uzNcdBGi7BdmsPBqjCaf4cg+yjbMvGHgL+2i6TmFglzuxyiLeS6WdBDDLwUtSgTy4A==
       tarball: file:projects/platform-sdk-xlm.tgz
     version: 0.0.0
   file:projects/platform-sdk-xrp.tgz:
@@ -15129,7 +15131,7 @@ packages:
     dev: false
     name: '@rush-temp/platform-sdk-xrp'
     resolution:
-      integrity: sha512-37haBXWyn0VXBve9vEMyoQpS7SBUfaJZoaooWD+k09SPDg7BV5g16Sz9a2te4RoCzfIRib3rvOX9VUvoRGKBMA==
+      integrity: sha512-R/5xq2N9oX4vmXcqlTtaJHH44mvztCoKMM34cfQ0hB5AlIWOZo6Qow2RTORfidvY3/fqz/bFFGloixLRNcWgLQ==
       tarball: file:projects/platform-sdk-xrp.tgz
     version: 0.0.0
   file:projects/platform-sdk.tgz:
@@ -15154,7 +15156,7 @@ packages:
       censorify-it: 3.0.2
       cross-env: 7.0.3
       dayjs: 1.10.4
-      dot-prop: 6.0.1
+      dot-prop: 5.3.0
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
@@ -15170,12 +15172,12 @@ packages:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.2_jest@26.6.3+typescript@4.0.5
-      type-fest: 0.18.1
+      type-fest: 0.21.2
       typescript: 4.0.5
     dev: false
     name: '@rush-temp/platform-sdk'
     resolution:
-      integrity: sha512-C2ndTARG2z8ET/5pynaP07hBhREWwknJ2bn3od80Z3cc8jK34Magi4QoMIYV4U732cRrUfQZP4VC79r4U3eQ2w==
+      integrity: sha512-taEuD9WyQO338Xc/r7PfFbfFCOQL2AjYr2GOsbo+gvSb08OinVYL0Bex37WSG4ypLKEL63lwiXvsK8Ie6OWShw==
       tarball: file:projects/platform-sdk.tgz
     version: 0.0.0
 registry: ''
@@ -15184,6 +15186,7 @@ specifiers:
   '@arkecosystem/crypto-identities': ^1.1.1
   '@arkecosystem/ledger-transport': ^1.1.3
   '@arkecosystem/multi-signature': ^0.1.5
+  '@arkecosystem/utils': ^1.3.0
   '@cityofzion/neon-js': ^4.8.2
   '@elrondnetwork/elrond-core-js': ^2.1.0
   '@emurgo/cardano-serialization-lib-nodejs': ^6.0.0
@@ -15262,6 +15265,7 @@ specifiers:
   '@types/env-paths': 2.1.0
   '@types/eslint': ^7.2.4
   '@types/eslint-plugin-prettier': ^3.1.0
+  '@types/fs-extra': 9.0.7
   '@types/hapi__hapi': 20.0.2
   '@types/hapi__joi': 17.1.6
   '@types/hdkey': 0.7.1
@@ -15271,15 +15275,18 @@ specifiers:
   '@types/lodash.orderby': 4.6.6
   '@types/meow': 5.0.0
   '@types/mersenne-twister': 1.1.2
+  '@types/node': ^14.14.25
   '@types/node-emoji': 1.8.1
   '@types/node-fetch': 2.5.7
   '@types/node-forge': 0.9.5
   '@types/p-retry': 3.0.1
+  '@types/pino': ^6.3.5
   '@types/prettier': ^2.1.5
   '@types/qrcode': 1.3.5
   '@types/rimraf': ^3.0.0
   '@types/semver': 7.3.4
   '@types/sindresorhus__slugify': 0.9.3
+  '@types/uuid': ^8.3.0
   '@types/wif': 2.0.2
   '@types/ws': 7.4.0
   '@typescript-eslint/eslint-plugin': ^4.7.0
@@ -15292,6 +15299,8 @@ specifiers:
   bad-words: ^3.0.3
   bcryptjs: ^2.4.3
   bcrypto: ^5.3.0
+  bech32: ^2.0.0
+  bent: ^7.3
   better-sqlite3: ^7.1.2
   bignumber.js: ^9.0.1
   bip32: ^2.0.6
@@ -15308,7 +15317,9 @@ specifiers:
   cli-table3: ^0.6.0
   conf: ^9.0.2
   cross-env: ^7.0.2
+  dayjs: ^1.10.4
   dinero.js: ^1.8.1
+  dot-prop: ^5.0.0
   dpos-ledger-api: ^3.0.1
   ed25519-hd-key: ^1.2.0
   elliptic: ^6.5.3
@@ -15328,6 +15339,7 @@ specifiers:
   fast-levenshtein: ^3.0.0
   form-data: ^3.0.0
   front-matter: ^4.0.2
+  fs-extra: ^9.1.0
   got: ^11.8.0
   hdkey: ^2.0.1
   inversify: ^5.0.5
@@ -15336,6 +15348,7 @@ specifiers:
   jest: ^26.6.3
   jest-extended: ^0.11.5
   jest-localstorage-mock: ^2.4.3
+  joi: ^17.4.0
   keytar: ^7.1.0
   kleur: ^4.1.4
   ky: ^0.25.0
@@ -15360,6 +15373,7 @@ specifiers:
   p-queue: ^6.6.2
   p-retry: ^4.3.0
   password-pwnd: ^1.0.5
+  pino: ^6.11.0
   pino-pretty: ^4.5.0
   prettier: ^2.1.2
   prompts: ^2.4.0
@@ -15373,15 +15387,19 @@ specifiers:
   ripple-lib: ^1.8.2
   rss-parser: ^3.9.0
   safe-buffer: ^5.2.1
+  semver: ^7.3.4
   stellar-hd-wallet: ^0.0.10
   stellar-sdk: ^7.0.0
   string-crypto: ^2.0.1
   terminal-link: ^2.1.1
   tronweb: ^3.1.0
   ts-jest: ^26.4.4
+  type-fest: ^0.21.2
   typescript: 4.0.5
   typescript-language-server: ^0.5.1
   url-parse-lax: ^4.0.0
+  uuid: ^8.3.2
+  web3: ^1.3.4
   wif: ^2.0.6
   ws: ^7.4.0
   yargs-parser: ^20.2.6
