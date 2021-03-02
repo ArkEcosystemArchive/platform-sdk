@@ -37,9 +37,7 @@ export const cb58Encode = (value: Buffer): string => BinTools.getInstance().cb58
 
 // Crypto
 export const keyPairFromMnemonic = (config: Coins.Config, mnemonic: string): KeyPair =>
-	new KeyChain(utils.getPreferredHRP(parseInt(config.get("network.crypto.networkId"))), "X").importKey(
-		new Buffer(
-			HDKey.fromMasterSeed(BIP39.toSeed(mnemonic)).derive(`m/44'/9000'/0'/0/0`).privateKey.toString("hex"),
-			"hex",
-		),
+	useKeychain(config).importKey(
+		// @ts-ignore
+		HDKey.fromMasterSeed(BIP39.toSeed(mnemonic)).derive(`m/44'/9000'/0'/0/0`).privateKey,
 	);
