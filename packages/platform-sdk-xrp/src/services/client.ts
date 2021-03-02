@@ -226,6 +226,8 @@ export class ClientService implements Contracts.ClientService {
 
 				const transactionId: string = tx_json.hash;
 
+				transaction.setAttributes({ identifier: transactionId });
+
 				if (engine_result === "tesSUCCESS") {
 					result.accepted.push(transactionId);
 				}

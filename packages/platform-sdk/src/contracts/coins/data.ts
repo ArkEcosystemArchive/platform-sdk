@@ -371,6 +371,8 @@ export type TransactionDataTypeCollection = TransactionDataType[];
 export type RawTransactionData = any;
 
 export interface SignedTransactionData {
+	setAttributes(attributes: { identifier: string }): void;
+
 	// All
 	id(): string;
 	data(): RawTransactionData;

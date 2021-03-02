@@ -55,8 +55,12 @@ export class TransactionService implements Contracts.TransactionService {
 				)
 			).sign(this.#keychain);
 
-			// @TODO: compute the ID and set raw data for UI purposes
-			return new SignedTransactionData(uuidv4(), signedTx.toString(), signedTx.toString());
+			return new SignedTransactionData(uuidv4(), {
+				sender: input.from,
+				recipient: input.data.to,
+				amount: input.data.amount,
+				fee: input.fee,
+			}, signedTx.toString());
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -105,7 +109,7 @@ export class TransactionService implements Contracts.TransactionService {
 				)
 			).sign(this.#keychain);
 
-			// @TODO: compute the ID and set raw data for UI purposes
+			// @TODO: set raw data for UI purposes
 			return new SignedTransactionData(uuidv4(), signedTx.toString(), signedTx.toString());
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

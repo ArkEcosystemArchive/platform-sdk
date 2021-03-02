@@ -284,12 +284,7 @@ export class TransactionService implements Contracts.TransactionService {
 					excludeSecondSignature: true,
 				}).toString("hex");
 
-				return new SignedTransactionData(
-					// TODO: compute ID
-					uuidv4(),
-					signedTransaction,
-					signedTransaction,
-				);
+				return new SignedTransactionData(uuidv4(), signedTransaction, signedTransaction);
 			}
 
 			if (input.sign.multiSignature) {

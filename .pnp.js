@@ -2034,7 +2034,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["stellar-hd-wallet", "npm:0.0.10"],
             ["stellar-sdk", "npm:7.0.0"],
             ["ts-jest", "virtual:224c5da29f02e93388dd8c0fa002cf6df425366a8d555525b605c1f625380c332b0f71de9b116196809ff055ee6a3bb0f18f917f8cc4b98caf0efaee1c88e947#npm:26.4.4"],
-            ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=cc6730"]
+            ["typescript", "patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=cc6730"],
+            ["uuid", "npm:8.3.2"]
           ],
           "linkType": "SOFT",
         }]

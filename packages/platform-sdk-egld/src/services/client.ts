@@ -92,6 +92,8 @@ export class ClientService implements Contracts.ClientService {
 			try {
 				const { txHash } = await this.post("transaction/send", transaction.toBroadcast());
 
+				transaction.setAttributes({ identifier: txHash });
+
 				result.accepted.push(transaction.id());
 			} catch (error) {
 				result.rejected.push(transaction.id());

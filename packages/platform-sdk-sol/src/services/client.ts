@@ -77,7 +77,9 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				await this.#client.sendEncodedTransaction(transaction.toBroadcast());
+				const hash: string = await this.#client.sendEncodedTransaction(transaction.toBroadcast());
+
+				transaction.setAttributes({ identifier: hash });
 
 				result.accepted.push(transaction.id());
 			} catch (error) {
