@@ -17,6 +17,10 @@ export class WalletFactory {
 
 		await wallet.setCoin(coin, network);
 		await wallet.setIdentity(mnemonic);
+
+		// @TODO: there are 2 types of addresses that we could derive here
+		// 1. Directly from the seed (ARK/LSK/etc.)
+		// 2. Derive many addresses (spend for example with ADA)
 		// await wallet.addresses().fromMnemonic({ mnemonic });
 
 		return wallet;
