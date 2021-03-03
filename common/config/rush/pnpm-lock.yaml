@@ -983,6 +983,7 @@ importers:
       node-forge: 0.10.0
       safe-buffer: 5.2.1
       string-crypto: 2.0.1
+      uuid: 8.3.2
     devDependencies:
       '@sindresorhus/tsconfig': 0.7.0
       '@types/argon2-browser': 1.12.0
@@ -1062,6 +1063,7 @@ importers:
       string-crypto: ^2.0.1
       ts-jest: ^26.4.4
       typescript: 4.0.5
+      uuid: ^8.3.2
       wif: ^2.0.6
   ../../packages/platform-sdk-cryptocompare:
     dependencies:

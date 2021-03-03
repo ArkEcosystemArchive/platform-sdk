@@ -19,11 +19,13 @@ import { DataRepository } from "../repositories/data-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
+import { AddressRepository } from "./address.repository";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
 
 export class Wallet implements ReadWriteWallet {
+	readonly #addresses: AddressRepository;
 	readonly #dataRepository: DataRepository;
 	readonly #settingRepository: SettingRepository;
 	readonly #transactionService: TransactionService;
@@ -43,6 +45,7 @@ export class Wallet implements ReadWriteWallet {
 		this.#id = id;
 		this.#initialState = initialState;
 		this.#profile = profile;
+		this.#addresses = new AddressRepository(); // @TODO: restore addresses
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
@@ -191,13 +194,7 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public balance(): BigNumber {
-		const value: string | undefined = this.data().get(WalletData.Balance);
-
-		if (value === undefined) {
-			return BigNumber.ZERO;
-		}
-
-		return BigNumber.make(value);
+		return this.#addresses.balance();
 	}
 
 	public convertedBalance(): BigNumber {
