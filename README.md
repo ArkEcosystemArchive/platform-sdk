@@ -44,6 +44,13 @@ rush prettier
 rush test
 ```
 
+### Bump the version of all packages and publish them
+
+```bash
+bash scripts/version.sh ${VERSION}
+rush publish --publish --set-access-level=public --include-all
+```
+
 ## Security
 
 If you discover a security vulnerability within this package, please send an e-mail to security@ark.io. All security vulnerabilities will be promptly addressed.
