@@ -25,11 +25,11 @@
 		"preset": "../../jest.coverage.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "^3.0.40",
+		"@arkecosystem/platform-sdk": "workspace:*",
 		"rss-parser": "^3.9.0"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "^3.0.40",
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",

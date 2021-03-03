@@ -25,17 +25,17 @@
 		"preset": "../../jest.config.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "^3.0.40",
-		"@arkecosystem/platform-sdk-crypto": "^3.0.40",
-		"@arkecosystem/platform-sdk-intl": "^3.0.40",
-		"@arkecosystem/platform-sdk-support": "^3.0.40",
+		"@arkecosystem/platform-sdk": "workspace:*",
+		"@arkecosystem/platform-sdk-crypto": "workspace:*",
+		"@arkecosystem/platform-sdk-intl": "workspace:*",
+		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@ledgerhq/hw-app-btc": "^5.29.0",
 		"bignumber.js": "^9.0.1",
 		"bitcoinjs-lib": "^5.2.0",
 		"bitcore-lib": "^8.23.1"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "^3.0.40",
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@ledgerhq/hw-transport-mocker": "^5.29.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^7.2.4",

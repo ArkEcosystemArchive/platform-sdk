@@ -29,8 +29,8 @@
 		"preset": "../../jest.config.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "^3.0.40",
-		"@arkecosystem/platform-sdk-http-got": "^3.0.40",
+		"@arkecosystem/platform-sdk": "workspace:*",
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@hapi/hapi": "^20.1.0",
 		"@konceiver/foreman": "^2.0.1",
 		"@konceiver/hapi-rate-limiter-flexible": "^1.0.3",

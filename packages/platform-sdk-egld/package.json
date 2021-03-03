@@ -25,16 +25,16 @@
 		"preset": "../../jest.config.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "^3.0.40",
-		"@arkecosystem/platform-sdk-crypto": "^3.0.40",
-		"@arkecosystem/platform-sdk-intl": "^3.0.40",
-		"@arkecosystem/platform-sdk-support": "^3.0.40",
+		"@arkecosystem/platform-sdk": "workspace:*",
+		"@arkecosystem/platform-sdk-crypto": "workspace:*",
+		"@arkecosystem/platform-sdk-intl": "workspace:*",
+		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@elrondnetwork/elrond-core-js": "^2.1.0",
 		"bech32": "^2.0.0",
 		"elrondjs": "^2.7.0"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "^3.0.40",
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",

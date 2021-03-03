@@ -25,10 +25,10 @@
 		"preset": "../../jest.config.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "^3.0.40",
-		"@arkecosystem/platform-sdk-crypto": "^3.0.40",
-		"@arkecosystem/platform-sdk-intl": "^3.0.40",
-		"@arkecosystem/platform-sdk-support": "^3.0.40",
+		"@arkecosystem/platform-sdk": "workspace:*",
+		"@arkecosystem/platform-sdk-crypto": "workspace:*",
+		"@arkecosystem/platform-sdk-intl": "workspace:*",
+		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@ledgerhq/hw-app-eth": "^5.29.0",
 		"bip39": "^3.0.3",
 		"ethereumjs-tx": "^2.1.2",
@@ -36,7 +36,7 @@
 		"web3": "^1.3.4"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "^3.0.40",
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@ledgerhq/hw-transport-mocker": "^5.29.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^7.2.4",

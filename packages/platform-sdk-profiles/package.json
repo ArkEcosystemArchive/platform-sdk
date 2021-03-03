@@ -25,11 +25,11 @@
 		"preset": "../../jest.coverage.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "^3.0.40",
-		"@arkecosystem/platform-sdk-crypto": "^3.0.40",
-		"@arkecosystem/platform-sdk-intl": "^3.0.40",
-		"@arkecosystem/platform-sdk-markets": "^3.0.40",
-		"@arkecosystem/platform-sdk-support": "^3.0.40",
+		"@arkecosystem/platform-sdk": "workspace:*",
+		"@arkecosystem/platform-sdk-crypto": "workspace:*",
+		"@arkecosystem/platform-sdk-intl": "workspace:*",
+		"@arkecosystem/platform-sdk-markets": "workspace:*",
+		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@arkecosystem/utils": "^1.3.0",
 		"@sindresorhus/slugify": "^1.1.0",
 		"@vechain/picasso": "^2.1.1",
@@ -48,10 +48,10 @@
 		"wif": "^2.0.6"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-ark": "^3.0.40",
-		"@arkecosystem/platform-sdk-btc": "^3.0.40",
-		"@arkecosystem/platform-sdk-eth": "^3.0.40",
-		"@arkecosystem/platform-sdk-http-got": "^3.0.40",
+		"@arkecosystem/platform-sdk-ark": "workspace:*",
+		"@arkecosystem/platform-sdk-btc": "workspace:*",
+		"@arkecosystem/platform-sdk-eth": "workspace:*",
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/async": "3.2.4",
 		"@types/bip38": "2.0.1",

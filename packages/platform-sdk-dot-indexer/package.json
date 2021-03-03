@@ -42,7 +42,7 @@
 		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "^3.0.40",
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@ledgerhq/hw-transport-mocker": "^5.29.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/better-sqlite3": "5.4.1",

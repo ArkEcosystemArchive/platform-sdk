@@ -25,17 +25,17 @@
 		"preset": "../../jest.config.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "^3.0.40",
-		"@arkecosystem/platform-sdk-crypto": "^3.0.40",
-		"@arkecosystem/platform-sdk-intl": "^3.0.40",
-		"@arkecosystem/platform-sdk-support": "^3.0.40",
+		"@arkecosystem/platform-sdk": "workspace:*",
+		"@arkecosystem/platform-sdk-crypto": "workspace:*",
+		"@arkecosystem/platform-sdk-intl": "workspace:*",
+		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@solana/web3.js": "^0.92.2",
 		"bstring": "^0.3.9",
 		"ed25519-hd-key": "^1.2.0",
 		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "^3.0.40",
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",

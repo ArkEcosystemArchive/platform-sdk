@@ -29,7 +29,7 @@
 		"preset": "../../jest.config.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk-http-got": "^3.0.40",
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@arkecosystem/utils": "^1.3.0",
 		"@konceiver/foreman": "^2.0.1",
 		"@ptkdev/logger": "^1.7.2",
