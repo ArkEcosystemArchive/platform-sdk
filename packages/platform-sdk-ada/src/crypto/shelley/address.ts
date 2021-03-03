@@ -1,39 +1,14 @@
-import lib from "cardano-crypto.js";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import CardanoWasm from "@emurgo/cardano-serialization-lib-nodejs";
 
-import { SHELLEY_DERIVATION_SCHEME } from "./constants";
-import { derivePrivateNode, derivePublicNode, shelleyPath, shelleyStakeAccountPath } from "./hdpath";
+import { SHELLEY_COIN_PURPOSE, SHELLEY_COIN_TYPE } from "./constants";
 
-const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: string): string => {
-	const network = parseInt(networkId);
+const harden = (value: number): number => 0x80000000 + value;
 
-	return lib.bech32.encode(
-		network === 1 ? "addr" : "addr_test",
-		lib.packBaseAddress(
-			lib.getPubKeyBlake2b224Hash(spendXpub.slice(0, 32)),
-			lib.getPubKeyBlake2b224Hash(stakeXpub.slice(0, 32)),
-			network,
-		),
-	);
-};
-
-const generateAddress = async (
-	seed: Buffer,
-	accountIdx: number,
-	isChange: boolean,
-	networkId: string,
-	addressIdx: number,
-) => {
-	const spendPath = shelleyPath(accountIdx, isChange, addressIdx);
-	const spendXpub = derivePrivateNode(spendPath, seed).slice(64, 128);
-
-	const stakePath = shelleyStakeAccountPath(accountIdx);
-	const stakeXpub = derivePrivateNode(stakePath, seed).slice(64, 128);
-
-	return {
-		path: spendPath,
-		address: baseAddressFromXpub(spendXpub, stakeXpub, networkId),
-	};
-};
+export const generateRootKey = (mnemonic: string): CardanoWasm.Bip32PrivateKey => CardanoWasm.Bip32PrivateKey.from_bip39_entropy(
+	  Buffer.from(BIP39.toEntropy(mnemonic), 'hex'),
+	  Buffer.from('') // empty password
+);
 
 export const addressFromMnemonic = async (
 	mnemonic: string,
@@ -42,10 +17,19 @@ export const addressFromMnemonic = async (
 	addressIdx: number,
 	networkId: string,
 ): Promise<string> => {
-	const seed = await lib.mnemonicToRootKeypair(mnemonic, SHELLEY_DERIVATION_SCHEME);
-	const { address } = await generateAddress(seed, accountIdx, isChange, networkId, addressIdx);
+	const accountKey = generateRootKey(mnemonic)
+		.derive(harden(SHELLEY_COIN_PURPOSE))
+		.derive(harden(SHELLEY_COIN_TYPE))
+		.derive(harden(accountIdx));
 
-	return address;
+	const spendKey = accountKey.derive(isChange ? 1 : 0).derive(addressIdx).to_public();
+	const stakeKey = accountKey.derive(2).derive(0).to_public();
+
+	return CardanoWasm.BaseAddress.new(
+		parseInt(networkId),
+		CardanoWasm.StakeCredential.from_keyhash(spendKey.to_raw_key().hash()),
+		CardanoWasm.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash()),
+	).to_address().to_bech32();
 };
 
 export const addressFromAccountExtPublicKey = async (
@@ -54,13 +38,14 @@ export const addressFromAccountExtPublicKey = async (
 	addressIdx: number,
 	networkId: string,
 ): Promise<string> => {
-	const spendPath = shelleyPath(0, isChange, addressIdx).slice(3);
-	const spendXpub = derivePublicNode(spendPath, extPubKey);
+	const accountKey = CardanoWasm.Bip32PublicKey.from_bytes(extPubKey);
 
-	const stakePath = shelleyStakeAccountPath(0).slice(3);
-	const stakeXpub = derivePublicNode(stakePath, extPubKey);
+	const spendKey = accountKey.derive(isChange ? 1 : 0).derive(addressIdx);
+	const stakeKey = accountKey.derive(2).derive(0);
 
-	return baseAddressFromXpub(spendXpub, stakeXpub, networkId);
+	return CardanoWasm.BaseAddress.new(
+		parseInt(networkId),
+		CardanoWasm.StakeCredential.from_keyhash(spendKey.to_raw_key().hash()),
+		CardanoWasm.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash()),
+	).to_address().to_bech32();
 };
-
-export const isValidShelleyAddress = (address: string): boolean => lib.isValidShelleyAddress(address);

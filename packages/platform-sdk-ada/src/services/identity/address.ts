@@ -1,9 +1,9 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { isValidShelleyAddress } from "cardano-crypto.js";
 
 import {
 	addressFromAccountExtPublicKey,
 	addressFromMnemonic,
-	isValidShelleyAddress,
 } from "../../crypto/shelley/address";
 
 export class Address implements Contracts.Address {
