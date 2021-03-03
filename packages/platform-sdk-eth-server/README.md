@@ -14,7 +14,7 @@ yarn add @arkecosystem/platform-sdk-eth-server
 
 ## Usage
 
-Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/ada).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/eth).
 
 ## Security
 

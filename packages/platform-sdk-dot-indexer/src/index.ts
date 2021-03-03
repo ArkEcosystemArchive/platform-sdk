@@ -2,8 +2,8 @@ import PQueue from "p-queue";
 import retry from "p-retry";
 import pino from "pino";
 
+import { Database } from "./database";
 import { indexBlock, indexNewBlocks, useDatabase, usePolkadot } from "./helpers";
-import Database from "better-sqlite3";
 
 export const subscribe = async (flags: Record<string, string>): Promise<void> => {
 	// Logging

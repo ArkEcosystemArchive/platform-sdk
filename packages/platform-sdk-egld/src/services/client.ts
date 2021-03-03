@@ -3,7 +3,6 @@ import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
-import { Console } from "console";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
@@ -91,6 +90,8 @@ export class ClientService implements Contracts.ClientService {
 		for (const transaction of transactions) {
 			try {
 				const { txHash } = await this.post("transaction/send", transaction.toBroadcast());
+
+				transaction.setAttributes({ identifier: txHash });
 
 				result.accepted.push(transaction.id());
 			} catch (error) {

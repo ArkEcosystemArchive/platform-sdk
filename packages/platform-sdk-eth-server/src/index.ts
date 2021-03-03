@@ -3,6 +3,8 @@ import Joi from "joi";
 
 import { useClient, useDatabase, useLogger } from "./helpers";
 
+const PAGE_SIZE = 25;
+
 export const subscribe = async (flags: {
 	coin: string;
 	network: string;
@@ -56,7 +58,7 @@ export const subscribe = async (flags: {
 		options: {
 			validate: {
 				params: Joi.object({
-					block: Joi.string().length(66),
+					block: [Joi.number().integer(), Joi.string().length(66)],
 				}).options({ stripUnknown: true }),
 			},
 		},
@@ -126,12 +128,24 @@ export const subscribe = async (flags: {
 	server.route({
 		method: "GET",
 		path: "/wallets/{wallet}/transactions",
-		handler: (request) =>
-			database
+		options: {
+			validate: {
+				params: Joi.object({
+					wallet: Joi.string().length(42),
+				}).options({ stripUnknown: true }),
+				query: Joi.object({
+					page: Joi.number().optional().min(1).default(1),
+				}).options({ stripUnknown: true }),
+			},
+		},
+		handler: (request) => {
+			const offset = (request.query.page - 1) * PAGE_SIZE;
+			return database
 				.prepare(
-					`SELECT * FROM transactions WHERE sender = '${request.params.wallet}' OR recipient = '${request.params.wallet}';`,
+					`SELECT * FROM transactions WHERE sender = '${request.params.wallet}' OR recipient = '${request.params.wallet}' ORDER BY nonce LIMIT ${PAGE_SIZE} OFFSET ${offset};`,
 				)
-				.all(),
+				.all();
+		},
 	});
 
 	await server.start();

@@ -9,7 +9,7 @@ export class PrivateKey implements Contracts.PrivateKey {
 		this.#config = config;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			const keys = new Keys(this.#config);
 			const { privateKey } = await keys.fromMnemonic(mnemonic);

@@ -11,9 +11,17 @@ export class Address implements Contracts.Address {
 		this.#config = config;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
-			return getAddress(createWallet(mnemonic, this.#config.get(Coins.ConfigKey.Slip44)));
+			return getAddress(
+				createWallet(
+					mnemonic,
+					this.#config.get(Coins.ConfigKey.Slip44),
+					options?.bip44.account || 0,
+					options?.bip44.change || 0,
+					options?.bip44.addressIndex || 0,
+				),
+			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -23,7 +31,7 @@ export class Address implements Contracts.Address {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
-	public async fromPublicKey(publicKey: string): Promise<string> {
+	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return getAddress(Wallet.fromPublicKey(Buffoon.fromHex(publicKey)));
 		} catch (error) {
@@ -31,7 +39,7 @@ export class Address implements Contracts.Address {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<string> {
+	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			return getAddress(Wallet.fromPrivateKey(Buffoon.fromHex(privateKey)));
 		} catch (error) {

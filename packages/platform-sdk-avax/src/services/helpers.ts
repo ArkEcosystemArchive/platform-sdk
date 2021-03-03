@@ -1,8 +1,8 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import { Avalanche, BinTools, Buffer, utils } from "avalanche";
-import { AVMAPI, KeyChain, KeyPair } from "avalanche/dist/apis/avm";
+import { Avalanche, BinTools, Buffer } from "avalanche";
+import { AVMAPI, KeyPair } from "avalanche/dist/apis/avm";
 import { InfoAPI } from "avalanche/dist/apis/info";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
 import HDKey from "hdkey";
@@ -37,9 +37,7 @@ export const cb58Encode = (value: Buffer): string => BinTools.getInstance().cb58
 
 // Crypto
 export const keyPairFromMnemonic = (config: Coins.Config, mnemonic: string): KeyPair =>
-	new KeyChain(utils.getPreferredHRP(parseInt(config.get("network.crypto.networkId"))), "X").importKey(
-		new Buffer(
-			HDKey.fromMasterSeed(BIP39.toSeed(mnemonic)).derive(`m/44'/9000'/0'/0/0`).privateKey.toString("hex"),
-			"hex",
-		),
+	useKeychain(config).importKey(
+		// @ts-ignore
+		HDKey.fromMasterSeed(BIP39.toSeed(mnemonic)).derive(`m/44'/9000'/0'/0/0`).privateKey,
 	);

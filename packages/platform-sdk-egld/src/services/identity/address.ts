@@ -4,7 +4,7 @@ import { bech32 } from "bech32";
 import { makeAccount } from "../helpers";
 
 export class Address implements Contracts.Address {
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		const account = makeAccount();
 		account.loadFromMnemonic(mnemonic);
 
@@ -15,11 +15,11 @@ export class Address implements Contracts.Address {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
-	public async fromPublicKey(publicKey: string): Promise<string> {
+	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromPublicKey");
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<string> {
+	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		const account = makeAccount();
 		account.loadFromHexPrivateKey(privateKey);
 

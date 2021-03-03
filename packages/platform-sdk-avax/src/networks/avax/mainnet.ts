@@ -13,6 +13,7 @@ const network: Coins.CoinNetwork = {
 		networkId: "1",
 		blockchainId: "2oYMBNV4eNHyqk2fjjV5nVQLDbtmNJzq5s3qs3Lo6ftnC6FByM",
 		assetId: "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z",
+		slip44: 9000,
 		signingMethods: {
 			privateKey: true,
 		},
@@ -38,6 +39,7 @@ const network: Coins.CoinNetwork = {
 		Identity: {
 			address: {
 				mnemonic: true,
+				privateKey: true,
 			},
 			publicKey: {
 				mnemonic: true,

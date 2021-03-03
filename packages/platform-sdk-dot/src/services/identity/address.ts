@@ -11,7 +11,7 @@ export class Address implements Contracts.Address {
 		this.#keyring.setSS58Format(config.get(Coins.ConfigKey.CryptoNetworkId));
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		return this.#keyring.addFromMnemonic(mnemonic).address;
 	}
 
@@ -19,11 +19,11 @@ export class Address implements Contracts.Address {
 		return encodeAddress(createKeyMulti(publicKeys, min), 0);
 	}
 
-	public async fromPublicKey(publicKey: string): Promise<string> {
+	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromPublicKey");
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<string> {
+	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
 	}
 

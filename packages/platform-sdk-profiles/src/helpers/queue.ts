@@ -4,6 +4,5 @@ import PQueue from "p-queue";
 export const pqueue = async <T>(promises: (() => Promise<T>)[], concurrency = 100): Promise<any> =>
 	new PQueue({ concurrency }).addAll(promises);
 
-// @TODO: Map promises so that the exception gets swallowed if they do throw one.
 export const pqueueSettled = async <T>(promises: (() => Promise<T>)[], concurrency = 100): Promise<any> =>
 	Promise.allSettled(promises.map((promise: () => Promise<T>) => promise()));

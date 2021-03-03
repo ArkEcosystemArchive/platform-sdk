@@ -1,6 +1,8 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
+import { v4 as uuidv4 } from "uuid";
 
+import { SignedTransactionData } from "../dto";
 import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
@@ -69,7 +71,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			transaction.sign(Stellar.Keypair.fromSecret(privateKey));
 
-			return transaction;
+			return new SignedTransactionData(uuidv4(), transaction, transaction);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

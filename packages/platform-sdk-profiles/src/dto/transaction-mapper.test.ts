@@ -103,7 +103,7 @@ describe("transaction-mapper", () => {
 		profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 		profile.settings().set(ProfileSetting.Name, "John Doe");
 
-		wallet = new Wallet(uuidv4(), profile);
+		wallet = new Wallet(uuidv4(), {}, profile);
 
 		await wallet.setCoin("ARK", "ark.devnet");
 		await wallet.setIdentity(identity.mnemonic);

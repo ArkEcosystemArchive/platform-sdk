@@ -116,10 +116,19 @@ export class ClientService implements Contracts.ClientService {
 				intents: transaction.get("intents"),
 			});
 
+			if (response === undefined) {
+				result.rejected.push(transaction.id());
+
+				continue;
+			}
+
 			if (response.txid) {
+				transaction.setAttributes({ identifier: response.txid });
+
 				result.accepted.push(transaction.id());
 			}
 
+			// @ts-ignore
 			if (response.error) {
 				result.rejected.push(transaction.id());
 
@@ -128,6 +137,7 @@ export class ClientService implements Contracts.ClientService {
 				}
 
 				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
+					// @ts-ignore
 					if (response.error.message.includes(key)) {
 						result.errors[transaction.id()].push(value);
 					}

@@ -28,6 +28,7 @@ export class Wallet implements ReadWriteWallet {
 	readonly #settingRepository: SettingRepository;
 	readonly #transactionService: TransactionService;
 
+	readonly #initialState: WalletStruct;
 	readonly #id: string;
 	#coin!: Coins.Coin;
 	#profile!: Profile;
@@ -38,8 +39,9 @@ export class Wallet implements ReadWriteWallet {
 	#avatar!: string;
 	readonly #restorationState = { full: false, partial: false };
 
-	public constructor(id: string, profile: Profile) {
+	public constructor(id: string, initialState: any, profile: Profile) {
 		this.#id = id;
+		this.#initialState = initialState;
 		this.#profile = profile;
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
@@ -88,12 +90,6 @@ export class Wallet implements ReadWriteWallet {
 		return this;
 	}
 
-	/**
-	 * @TODO
-	 *
-	 * Think about how to remove this method. We need async methods instead of a
-	 * constructor because of the network requests and different ways to import wallets.
-	 */
 	public async setIdentity(mnemonic: string): Promise<Wallet> {
 		this.#address = await this.#coin.identity().address().fromMnemonic(mnemonic);
 		this.#publicKey = await this.#coin.identity().publicKey().fromMnemonic(mnemonic);
@@ -101,12 +97,6 @@ export class Wallet implements ReadWriteWallet {
 		return this.setAddress(this.#address);
 	}
 
-	/**
-	 * @TODO
-	 *
-	 * Think about how to remove this method. We need async methods instead of a
-	 * constructor because of the network requests and different ways to import wallets.
-	 */
 	public async setAddress(
 		address: string,
 		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
@@ -257,6 +247,10 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public toObject(): WalletStruct {
+		if (this.hasBeenPartiallyRestored()) {
+			return this.#initialState;
+		}
+
 		this.#transactionService.dump();
 
 		const network: Coins.CoinNetwork = this.coin().network().toObject();

@@ -13,24 +13,30 @@ export class Address implements Contracts.Address {
 		this.#config = config;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return addressFromMnemonic(mnemonic, 0, false, 0, this.#config.get(Coins.ConfigKey.CryptoNetworkId));
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
+		return addressFromMnemonic(
+			mnemonic,
+			options?.bip44.account || 0,
+			false,
+			options?.bip44.addressIndex || 0,
+			this.#config.get(Coins.ConfigKey.CryptoNetworkId),
+		);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
-	public async fromPublicKey(publicKey: string): Promise<string> {
+	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		return addressFromAccountExtPublicKey(
 			Buffer.from(publicKey, "hex"),
 			false,
-			0,
+			options?.bip44.addressIndex || 0,
 			this.#config.get(Coins.ConfigKey.CryptoNetworkId),
 		);
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<string> {
+	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
 	}
 

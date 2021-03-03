@@ -9,11 +9,11 @@ export class Keys implements Contracts.Keys {
 		this.#config = config;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
 		try {
 			const privateKey: Buffer | undefined = BIP44.deriveChild(mnemonic, {
 				coinType: this.#config.get(Coins.ConfigKey.Slip44),
-				index: 0,
+				index: options?.bip44.addressIndex,
 			}).privateKey;
 
 			if (!privateKey) {

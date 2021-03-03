@@ -1,7 +1,7 @@
 export const identity = {
 	// Standard
-	privateKey: "24jUJ9vZexUM6expyMcT48LBx27k1m7xpraoV62oSQAHdziao5",
-	publicKey: "7i8kVz6d6FsACnGUEbjyivaULARjmXaaJDzTFUpPjuBwecpmtF",
+	privateKey: "rC7DsPL1zKuPnwnqHSnShdXxeMReKWLBJgKcuJ1ZLUCUrzRni",
+	publicKey: "7qobgTQPiy3mH4tvjabDjapPVrh9Tnkb3tpn2yY37hsEyxaSjW",
 	address: "X-fuji1rusf9c2uwlqxg5crfrqr8xrt4r49yk6rskehvm",
 	wif: "",
 	mnemonic:

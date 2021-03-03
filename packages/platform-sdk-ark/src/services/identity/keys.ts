@@ -10,7 +10,7 @@ export class Keys implements Contracts.Keys {
 		this.#configCrypto = configCrypto;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<Contracts.KeyPair> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
 		try {
 			const { publicKey, privateKey } = BaseKeys.fromPassphrase(mnemonic, true);
 

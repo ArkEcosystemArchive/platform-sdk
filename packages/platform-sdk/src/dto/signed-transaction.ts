@@ -4,10 +4,15 @@ import { RawTransactionData } from "../contracts";
 
 export abstract class AbstractSignedTransactionData {
 	public constructor(
-		protected readonly identifier: string,
+		protected identifier: string,
 		protected readonly signedData: RawTransactionData,
+		// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 		protected readonly broadcastData: any,
 	) {}
+
+	public setAttributes(attributes: { identifier: string }): void {
+		this.identifier = attributes.identifier;
+	}
 
 	public id(): string {
 		return this.identifier;

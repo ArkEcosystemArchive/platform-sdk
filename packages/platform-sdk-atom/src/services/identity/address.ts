@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
-import bech32 from "bech32";
+import { bech32 } from "bech32";
 
 export class Address implements Contracts.Address {
 	readonly #config: Coins.Config;
@@ -9,15 +9,14 @@ export class Address implements Contracts.Address {
 		this.#config = config;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			const child = BIP44.deriveChild(mnemonic, {
 				coinType: this.#config.get(Coins.ConfigKey.Slip44),
-				index: 0,
+				index: options?.bip44.addressIndex,
 			});
-			const words = bech32.toWords(child.identifier);
 
-			return bech32.encode(this.#config.get(Coins.ConfigKey.Bech32), words);
+			return bech32.encode(this.#config.get(Coins.ConfigKey.Bech32), bech32.toWords(child.identifier));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -27,11 +26,11 @@ export class Address implements Contracts.Address {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
-	public async fromPublicKey(publicKey: string): Promise<string> {
+	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromPublicKey");
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<string> {
+	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
 	}
 

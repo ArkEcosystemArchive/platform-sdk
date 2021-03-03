@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
-import { keyPairFromMnemonic } from "../helpers";
+import { cb58Encode, keyPairFromMnemonic } from "../helpers";
 
 export class PublicKey implements Contracts.PublicKey {
 	readonly #config: Coins.Config;
@@ -9,8 +9,8 @@ export class PublicKey implements Contracts.PublicKey {
 		this.#config = config;
 	}
 
-	public async fromMnemonic(mnemonic: string): Promise<string> {
-		return keyPairFromMnemonic(this.#config, mnemonic).getPublicKeyString();
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
+		return cb58Encode(keyPairFromMnemonic(this.#config, mnemonic).getPublicKey());
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
