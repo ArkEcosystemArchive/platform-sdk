@@ -37,7 +37,7 @@ export class ClientService implements Contracts.ClientService {
 		const unsignedTransaction = transaction.getUnsignedTx();
 		const baseTransaction = unsignedTransaction.getTransaction();
 
-		const assetId = cb58Decode(this.#config.get(Coins.ConfigKey.CryptoNetworkId));
+		const assetId = cb58Decode(this.#config.get(Coins.ConfigKey.CryptoAssetId));
 
 		return new TransactionData({
 			id,
@@ -67,7 +67,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { balance }: any = await this.#xchain.getBalance(id, this.#config.get(Coins.ConfigKey.CryptoNetworkId));
+		const { balance }: any = await this.#xchain.getBalance(id, this.#config.get(Coins.ConfigKey.CryptoAssetId));
 
 		return new WalletData({
 			address: id,
