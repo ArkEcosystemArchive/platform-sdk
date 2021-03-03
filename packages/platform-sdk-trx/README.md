@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-trx
+npm install @arkecosystem/platform-sdk-trx
 ```
 
 ## Usage

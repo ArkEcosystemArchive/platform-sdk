@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-http-ky
+npm install @arkecosystem/platform-sdk-http-ky
 ```
 
 ## Usage

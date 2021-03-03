@@ -10,13 +10,13 @@
         "/dist"
     ],
     "scripts": {
-        "build": "yarn clean && tsc",
-        "build:watch": "yarn build -w",
+        "build": "pnpm run clean && tsc",
+        "build:watch": "pnpm run build -- -w",
         "clean": "rimraf .coverage dist tmp",
-        "test": "jest",
-        "test:watch": "jest --watchAll",
-        "publish": "yarn build && yarn npm publish --access public --tolerate-republish",
-        "format": "yarn lint && yarn prettier",
+        "test": "jest --forceExit",
+        "test:watch": "jest --forceExit --watchAll",
+        "publish": "pnpm run build && pnpm run npm publish --access public --force",
+        "format": "pnpm run lint && pnpm run prettier",
         "lint": "eslint src/**/*.ts --fix",
         "lint:tests": "eslint src/**/*.test.ts --fix",
         "prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\""

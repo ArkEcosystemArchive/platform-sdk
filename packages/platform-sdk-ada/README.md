@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-ada
+npm install @arkecosystem/platform-sdk-ada
 ```
 
 ## Usage

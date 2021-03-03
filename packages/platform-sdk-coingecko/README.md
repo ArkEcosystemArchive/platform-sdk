@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-coingecko
+npm install @arkecosystem/platform-sdk-coingecko
 ```
 
 ## Usage

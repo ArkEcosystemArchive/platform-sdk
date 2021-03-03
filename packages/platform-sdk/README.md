@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk
+npm install @arkecosystem/platform-sdk
 ```
 
 ## Usage

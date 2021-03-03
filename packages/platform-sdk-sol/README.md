@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-sol
+npm install @arkecosystem/platform-sdk-sol
 ```
 
 ## Usage

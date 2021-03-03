@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-news
+npm install @arkecosystem/platform-sdk-news
 ```
 
 ## Usage

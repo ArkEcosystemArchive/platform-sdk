@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-xrp
+npm install @arkecosystem/platform-sdk-xrp
 ```
 
 ## Usage

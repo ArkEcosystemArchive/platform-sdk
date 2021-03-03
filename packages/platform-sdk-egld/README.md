@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-egld
+npm install @arkecosystem/platform-sdk-egld
 ```
 
 ## Usage
