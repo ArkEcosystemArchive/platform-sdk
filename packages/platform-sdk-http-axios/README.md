@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-http-axios
+npm install @arkecosystem/platform-sdk-http-axios
 ```
 
 ## Usage

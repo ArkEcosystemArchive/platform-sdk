@@ -20,12 +20,12 @@ export class TransactionService implements Contracts.TransactionService {
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		try {
 			return new TransactionService({
-				networkId: config.get<string>("network.crypto.networkId"),
+				networkId: config.get<string>(Coins.ConfigKey.CryptoNetworkId),
 				peer: config.get<string>("peer"),
 			});
 		} catch {
 			return new TransactionService({
-				networkId: config.get<string>("network.crypto.networkId"),
+				networkId: config.get<string>(Coins.ConfigKey.CryptoNetworkId),
 				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
 			});
 		}

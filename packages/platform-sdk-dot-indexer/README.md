@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-dot-indexer
+npm install @arkecosystem/platform-sdk-dot-indexer
 ```
 
 ## Usage

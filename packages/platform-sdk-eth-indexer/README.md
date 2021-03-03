@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-eth-indexer
+npm install @arkecosystem/platform-sdk-eth-indexer
 ```
 
 ## Usage

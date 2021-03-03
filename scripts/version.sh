@@ -3,6 +3,8 @@
 for dir in `find packages -mindepth 1 -maxdepth 1 -type d | sort -nr`; do
     cd $dir
     echo $PWD
-    pnpm run format
+    npm version $1
     cd ../..
 done
+
+rush update

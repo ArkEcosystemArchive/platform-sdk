@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-http-node-fetch
+npm install @arkecosystem/platform-sdk-http-node-fetch
 ```
 
 ## Usage

@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-btc
+npm install @arkecosystem/platform-sdk-btc
 ```
 
 ## Usage

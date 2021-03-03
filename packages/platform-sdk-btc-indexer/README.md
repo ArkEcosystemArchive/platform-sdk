@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-btc-indexer
+npm install @arkecosystem/platform-sdk-btc-indexer
 ```
 
 ## Usage

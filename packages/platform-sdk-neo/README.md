@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-neo
+npm install @arkecosystem/platform-sdk-neo
 ```
 
 ## Usage

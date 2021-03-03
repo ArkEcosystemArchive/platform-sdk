@@ -28,13 +28,13 @@ export const createProfile = async (env: Environment): Promise<void> => {
 		},
 	]);
 
-	if (name === undefined) {
+	if (!name) {
 		return;
 	}
 
 	const profile = env.profiles().create(name);
 
-	if (password !== undefined) {
+	if (password) {
 		profile.auth().setPassword(password);
 	}
 

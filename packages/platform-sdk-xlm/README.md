@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-xlm
+npm install @arkecosystem/platform-sdk-xlm
 ```
 
 ## Usage
