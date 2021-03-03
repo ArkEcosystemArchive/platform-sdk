@@ -4,9 +4,8 @@
 		"project": "../../tsconfig.eslint.json",
 		"extraFileExtensions": [".json"]
 	},
-	"plugins": ["@typescript-eslint", "jest", "prettier", "simple-import-sort", "unused-imports"],
+	"plugins": ["@typescript-eslint", "jest", "prettier", "simple-import-sort", "unused-imports",  "eslint-plugin-tsdoc"],
 	"extends": [
-		"eslint-plugin-tsdoc",
 		"eslint:recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
