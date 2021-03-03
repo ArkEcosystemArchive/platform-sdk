@@ -6,6 +6,7 @@
 	},
 	"plugins": ["@typescript-eslint", "jest", "prettier", "simple-import-sort", "unused-imports"],
 	"extends": [
+		"eslint-plugin-tsdoc",
 		"eslint:recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
@@ -69,6 +70,7 @@
 		],
 		"prettier/prettier": "error",
 		"simple-import-sort/imports": "error",
+		"tsdoc/syntax": "error",
 		"unused-imports/no-unused-imports-ts": "error"
 	}
 }

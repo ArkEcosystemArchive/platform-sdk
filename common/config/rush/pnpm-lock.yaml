@@ -35,6 +35,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       jest: 26.6.3
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.7
@@ -73,6 +74,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
@@ -111,6 +113,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -145,6 +148,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -194,6 +198,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -236,6 +241,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       is-url-superb: ^4.0.0
       jest: ^26.6.3
@@ -281,6 +287,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -317,6 +324,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -363,6 +371,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -402,6 +411,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       hdkey: ^2.0.1
       jest: ^26.6.3
@@ -444,6 +454,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -481,6 +492,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -528,6 +540,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -567,6 +580,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       fs-extra: ^9.1.0
       got: ^11.8.0
       jest: ^26.6.3
@@ -620,6 +634,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -661,6 +676,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -741,6 +757,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -795,6 +812,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       execa: ^5.0.0
       fast-levenshtein: ^3.0.0
       fs-extra: ^9.1.0
@@ -847,6 +865,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -877,6 +896,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -909,6 +929,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -939,6 +960,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -985,6 +1007,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       jest: 26.6.3
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.7
@@ -1025,6 +1048,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
@@ -1061,6 +1085,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1091,6 +1116,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1136,6 +1162,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1178,6 +1205,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1225,6 +1253,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1262,6 +1291,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       fs-extra: ^9.1.0
       got: ^11.8.0
       jest: ^26.6.3
@@ -1306,6 +1336,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1341,6 +1372,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1381,6 +1413,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       jest: 26.6.3
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.7
@@ -1417,6 +1450,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
@@ -1457,6 +1491,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1492,6 +1527,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       ethereumjs-tx: ^2.1.2
       ethereumjs-wallet: ^1.0.1
       got: ^11.8.0
@@ -1541,6 +1577,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1579,6 +1616,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       fs-extra: ^9.1.0
       got: ^11.8.0
       jest: ^26.6.3
@@ -1631,6 +1669,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1671,6 +1710,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1706,6 +1746,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       fs-extra: 9.1.0
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1735,6 +1776,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1767,6 +1809,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       fs-extra: 9.1.0
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1797,6 +1840,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1830,6 +1874,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       fs-extra: 9.1.0
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1859,6 +1904,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       form-data: ^3.0.0
       fs-extra: ^9.1.0
       got: ^11.8.0
@@ -1894,6 +1940,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       fs-extra: 9.1.0
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1923,6 +1970,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1957,6 +2005,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       fs-extra: 9.1.0
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1986,6 +2035,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2018,6 +2068,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       jest: 26.6.3
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.7
@@ -2046,6 +2097,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
@@ -2084,6 +2136,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -2121,6 +2174,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2154,6 +2208,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -2185,6 +2240,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2223,6 +2279,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -2258,6 +2315,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2291,6 +2349,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       fs-extra: 9.1.0
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -2320,6 +2379,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2382,6 +2442,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       fs-extra: 9.1.0
       got: 11.8.2
       jest: 26.6.3
@@ -2432,6 +2493,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       fs-extra: ^9.1.0
       got: ^11.8.0
       jest: ^26.6.3
@@ -2482,6 +2544,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       got: 11.8.2
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -2518,6 +2581,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       got: ^11.8.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2559,6 +2623,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       jest: 26.6.3
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.7
@@ -2592,6 +2657,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       front-matter: ^4.0.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2631,6 +2697,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       jest: 26.6.3
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.7
@@ -2663,6 +2730,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
@@ -2701,6 +2769,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       jest: 26.6.3
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.7
@@ -2733,6 +2802,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
@@ -2775,6 +2845,7 @@ importers:
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
       eslint-plugin-unused-imports: 1.1.0
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -2815,6 +2886,7 @@ importers:
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
       eslint-plugin-unused-imports: ^1.0.1
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -4353,6 +4425,19 @@ packages:
       npm: '>=5'
     resolution:
       integrity: sha512-RnB/FMgPOOl/C1QJ7ii71JpmRFTMD2hoWKQfwU5wYBjnXIiwgU6YvjXDIjoh+OfNYwv8frGlI5nq6qmPb0FhUQ==
+  /@microsoft/tsdoc-config/0.14.0:
+    dependencies:
+      '@microsoft/tsdoc': 0.13.0
+      ajv: 6.12.6
+      jju: 1.4.0
+      resolve: 1.19.0
+    dev: true
+    resolution:
+      integrity: sha512-KSj15FwyaxMCGJkC320rvNXxuJNCOVO02pNqIEdf5cbLakvHK8afoHTmcjdBEWl0cfBFZlMu/1DhL4VCzZq0rQ==
+  /@microsoft/tsdoc/0.13.0:
+    dev: true
+    resolution:
+      integrity: sha512-/8J+4DdvexBH1Qh1yR8VZ6bPay2DL/TDdmSIypAa3dAghJzsdaiZG8COvzpYIML6HV2UVN0g4qbuqzjG4YKgWg==
   /@nodelib/fs.scandir/2.1.4:
     dependencies:
       '@nodelib/fs.stat': 2.0.4
@@ -8067,6 +8152,13 @@ packages:
       eslint: '>=5.0.0'
     resolution:
       integrity: sha512-RfFnoi7fQtv7z9sZNJidIcZgWc0ZJe8uOPC3ldmatai4Igr5iDpzTmSUDEZKYm4TnrR01N0X32kfKvax7bivHQ==
+  /eslint-plugin-tsdoc/0.2.11:
+    dependencies:
+      '@microsoft/tsdoc': 0.13.0
+      '@microsoft/tsdoc-config': 0.14.0
+    dev: true
+    resolution:
+      integrity: sha512-vEjGANpmBfrvpKj9rwePGhA+gIe1mp+dhDZsrkxlHqPVOZvzVdFSV9fxu/o3eppmxhybI8brD88jOrLEAIB9Gw==
   /eslint-plugin-unused-imports/1.1.0:
     dependencies:
       eslint-rule-composer: 0.3.0
@@ -13395,6 +13487,13 @@ packages:
     dev: true
     resolution:
       integrity: sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
+  /resolve/1.19.0:
+    dependencies:
+      is-core-module: 2.2.0
+      path-parse: 1.0.6
+    dev: true
+    resolution:
+      integrity: sha512-rArEXAgsBG4UgRGcynxWIWKFvh/XZCcS8UJdHhwy91zwAvCZIbcs+vAbflgBnNjYMs/i/i+/Ux6IZhML1yPvxg==
   /resolve/1.20.0:
     dependencies:
       is-core-module: 2.2.0
