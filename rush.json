@@ -176,12 +176,6 @@
 			"shouldPublish": true
 		},
 		{
-			"packageName": "@arkecosystem/platform-sdk-json-rpc",
-			"projectFolder": "packages/platform-sdk-json-rpc",
-			"reviewCategory": "libraries",
-			"shouldPublish": true
-		},
-		{
 			"packageName": "@arkecosystem/platform-sdk-lsk",
 			"projectFolder": "packages/platform-sdk-lsk",
 			"reviewCategory": "libraries",
