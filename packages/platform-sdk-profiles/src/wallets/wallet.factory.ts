@@ -17,6 +17,7 @@ export class WalletFactory {
 
 		await wallet.setCoin(coin, network);
 		await wallet.setIdentity(mnemonic);
+		// await wallet.addresses().fromMnemonic({ mnemonic });
 
 		return wallet;
 	}

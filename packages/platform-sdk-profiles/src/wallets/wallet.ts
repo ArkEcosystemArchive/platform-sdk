@@ -45,7 +45,7 @@ export class Wallet implements ReadWriteWallet {
 		this.#id = id;
 		this.#initialState = initialState;
 		this.#profile = profile;
-		this.#addresses = new AddressRepository(); // @TODO: restore addresses
+		this.#addresses = new AddressRepository(this); // @TODO: restore addresses
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
@@ -225,6 +225,10 @@ export class Wallet implements ReadWriteWallet {
 		}
 
 		return this.#avatar;
+	}
+
+	public addresses(): AddressRepository {
+		return this.#addresses;
 	}
 
 	public data(): DataRepository {
