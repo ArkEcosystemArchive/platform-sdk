@@ -3,14 +3,15 @@ import "jest-extended";
 import { createConfig } from "./helpers";
 import { ClientService, IdentityService } from "../src/services";
 import {
+	addressFromAccountExtPublicKey,
+	addressFromMnemonic,
 	HARDENED_THRESHOLD,
 	SHELLEY_COIN_PURPOSE,
 	SHELLEY_COIN_TYPE,
 	SHELLEY_DERIVATION_SCHEME,
-} from "../src/crypto/shelley/constants";
+} from "../src/services/identity/shelley";
 import lib from "cardano-crypto.js";
 import { Buffer } from "buffer";
-import { addressFromAccountExtPublicKey, addressFromMnemonic } from "../src/crypto/shelley/address";
 
 const data = [
 	{
