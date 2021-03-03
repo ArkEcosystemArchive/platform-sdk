@@ -1,5 +1,4 @@
 {
-	"extends": "@sindresorhus/tsconfig",
 	"compilerOptions": {
 		"declaration": true,
 		"emitDecoratorMetadata": true,

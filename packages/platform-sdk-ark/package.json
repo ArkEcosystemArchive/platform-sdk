@@ -29,19 +29,19 @@
 		"@arkecosystem/crypto-identities": "^1.1.1",
 		"@arkecosystem/ledger-transport": "^1.1.3",
 		"@arkecosystem/multi-signature": "^0.1.5",
-		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
-		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
-		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
-		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
-		"dot-prop": "^6.0.0",
+		"@arkecosystem/platform-sdk": "^3.0.40",
+		"@arkecosystem/platform-sdk-crypto": "^3.0.40",
+		"@arkecosystem/platform-sdk-intl": "^3.0.40",
+		"@arkecosystem/platform-sdk-support": "^3.0.40",
+		"dot-prop": "^5.0.0",
 		"is-url-superb": "^4.0.0",
 		"lodash.orderby": "^4.6.0",
 		"node-dotify": "^1.0.2",
-		"semver": "^7.3.2",
-		"uuid": "^8.3.1"
+		"semver": "^7.3.4",
+		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
+		"@arkecosystem/platform-sdk-http-got": "^3.0.40",
 		"@ledgerhq/hw-transport-mocker": "^5.29.0",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/dot-prop": "5.0.1",
@@ -51,7 +51,7 @@
 		"@types/is-url-superb": "3.0.0",
 		"@types/jest": "^26.0.15",
 		"@types/lodash.orderby": "4.6.6",
-		"@types/node": "^14.14.7",
+		"@types/node": "^14.14.25",
 		"@types/prettier": "^2.1.5",
 		"@types/rimraf": "^3.0.0",
 		"@types/semver": "7.3.4",
@@ -73,7 +73,7 @@
 		"prettier": "^2.1.2",
 		"rimraf": "^3.0.2",
 		"ts-jest": "^26.4.4",
-		"typescript": "^4.0.5"
+		"typescript": "4.0.5"
 	},
 	"engines": {
 		"node": ">=12.x"

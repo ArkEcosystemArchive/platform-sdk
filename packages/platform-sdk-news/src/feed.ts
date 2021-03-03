@@ -7,7 +7,7 @@ export class FeedService {
 		this.#parser = new RssParser();
 	}
 
-	public async parse(url: string): Promise<RssParser.Output> {
+	public async parse(url: string): Promise<RssParser.Output<any>> {
 		return this.#parser.parseURL(url);
 	}
 
