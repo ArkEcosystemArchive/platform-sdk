@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-eos",
-	"version": "3.0.40",
+	"version": "3.0.41",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -15,7 +15,7 @@
 		"clean": "rimraf .coverage dist tmp",
 		"test": "jest --forceExit",
 		"test:watch": "jest --forceExit --watchAll",
-		"publish": "pnpm run build && pnpm run npm publish --access public --force",
+		"prepublishOnly": "pnpm run build",
 		"format": "pnpm run lint && pnpm run prettier",
 		"lint": "eslint src/**/*.ts --fix",
 		"lint:tests": "eslint src/**/*.test.ts --fix",
