@@ -17,8 +17,8 @@ export const useAvalanche = (config: Coins.Config): Avalanche => {
 		host,
 		port,
 		protocol.replace(":", ""),
-		parseInt(config.get("network.crypto.networkId")),
-		config.get("network.crypto.blockchainId"),
+		parseInt(config.get(Coins.ConfigKey.CryptoNetworkId)),
+		config.get(Coins.ConfigKey.CryptoBlockchainId),
 	);
 };
 
