@@ -10,7 +10,7 @@ export class Address {
 	#balance: BigNumber | undefined;
 	#transactions: Coins.TransactionDataCollection | undefined;
 
-	public constructor({ id, address, wallet }: { id: string; address: string; wallet: ReadWriteWallet; }) {
+	public constructor({ id, address, wallet }: { id: string; address: string; wallet: ReadWriteWallet }) {
 		this.#id = id;
 		this.#address = address;
 		this.#wallet = wallet;

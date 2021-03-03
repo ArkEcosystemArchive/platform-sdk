@@ -35,7 +35,12 @@ export class AddressRepository {
 		return AddressFactory.fromPrivateKey(this.#wallet, options);
 	}
 
-	public async fromMnemonicWithHierarchy(options: { mnemonic: string; account: number; change: number; addressIndex: number; }): Promise<Address> {
+	public async fromMnemonicWithHierarchy(options: {
+		mnemonic: string;
+		account: number;
+		change: number;
+		addressIndex: number;
+	}): Promise<Address> {
 		return AddressFactory.fromMnemonicWithHierarchy(this.#wallet, options);
 	}
 }

@@ -4,10 +4,7 @@ import { Address } from "./address";
 import { ReadWriteWallet } from "./wallet.models";
 
 export class AddressFactory {
-	public static async fromMnemonic(
-		wallet: ReadWriteWallet,
-		options: { mnemonic: string },
-	): Promise<Address> {
+	public static async fromMnemonic(wallet: ReadWriteWallet, options: { mnemonic: string }): Promise<Address> {
 		return new Address({
 			id: UUID.make(),
 			address: await wallet.coin().identity().address().fromMnemonic(options.mnemonic),
@@ -15,10 +12,7 @@ export class AddressFactory {
 		});
 	}
 
-	public static async fromAddress(
-		wallet: ReadWriteWallet,
-		options: { address: string },
-	): Promise<Address> {
+	public static async fromAddress(wallet: ReadWriteWallet, options: { address: string }): Promise<Address> {
 		return new Address({
 			id: UUID.make(),
 			address: options.address,
@@ -26,10 +20,7 @@ export class AddressFactory {
 		});
 	}
 
-	public static async fromPublicKey(
-		wallet: ReadWriteWallet,
-		options: { publicKey: string },
-	): Promise<Address> {
+	public static async fromPublicKey(wallet: ReadWriteWallet, options: { publicKey: string }): Promise<Address> {
 		return new Address({
 			id: UUID.make(),
 			address: await wallet.coin().identity().address().fromPublicKey(options.publicKey),
@@ -37,10 +28,7 @@ export class AddressFactory {
 		});
 	}
 
-	public static async fromPrivateKey(
-		wallet: ReadWriteWallet,
-		options: { privateKey: string },
-	): Promise<Address> {
+	public static async fromPrivateKey(wallet: ReadWriteWallet, options: { privateKey: string }): Promise<Address> {
 		return new Address({
 			id: UUID.make(),
 			address: await wallet.coin().identity().address().fromPrivateKey(options.privateKey),
@@ -50,11 +38,17 @@ export class AddressFactory {
 
 	public static async fromMnemonicWithHierarchy(
 		wallet: ReadWriteWallet,
-		options: { mnemonic: string; account: number; change: number; addressIndex: number; },
+		options: { mnemonic: string; account: number; change: number; addressIndex: number },
 	): Promise<Address> {
 		return new Address({
 			id: UUID.make(),
-			address: await wallet.coin().identity().address().fromMnemonic(options.mnemonic, { bip44: { account: options.account, change: options.change, addressIndex: options.addressIndex } }),
+			address: await wallet
+				.coin()
+				.identity()
+				.address()
+				.fromMnemonic(options.mnemonic, {
+					bip44: { account: options.account, change: options.change, addressIndex: options.addressIndex },
+				}),
 			wallet,
 		});
 	}
