@@ -25,21 +25,21 @@
 		"preset": "../../jest.config.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "workspace:packages/platform-sdk",
-		"@arkecosystem/platform-sdk-crypto": "workspace:packages/platform-sdk-crypto",
-		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
-		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
+		"@arkecosystem/platform-sdk": "^3.0.40",
+		"@arkecosystem/platform-sdk-crypto": "^3.0.40",
+		"@arkecosystem/platform-sdk-intl": "^3.0.40",
+		"@arkecosystem/platform-sdk-support": "^3.0.40",
 		"@emurgo/cardano-serialization-lib-nodejs": "^6.0.0",
 		"cardano-crypto.js": "^6.0.0"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "workspace:packages/platform-sdk-http-got",
+		"@arkecosystem/platform-sdk-http-got": "^3.0.40",
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/hapi__joi": "17.1.6",
 		"@types/jest": "^26.0.15",
-		"@types/node": "^14.14.7",
+		"@types/node": "^14.14.25",
 		"@types/prettier": "^2.1.5",
 		"@types/rimraf": "^3.0.0",
 		"@typescript-eslint/eslint-plugin": "^4.7.0",
@@ -59,7 +59,7 @@
 		"prettier": "^2.1.2",
 		"rimraf": "^3.0.2",
 		"ts-jest": "^26.4.4",
-		"typescript": "^4.0.5"
+		"typescript": "4.0.5"
 	},
 	"engines": {
 		"node": ">=12.x"

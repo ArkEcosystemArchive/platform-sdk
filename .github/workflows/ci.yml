@@ -11,792 +11,910 @@ on:
 jobs:
     conflicts:
         runs-on: ubuntu-latest
-
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
               with:
                   ref: ${{ github.head_ref }}
-
             - name: Merge Conflict finder
               uses: olivernybroe/action-conflict-finder@v1.1
-
     sdk:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk/ && pnpm run test -- --coverage
     ada:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-ada/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-ada/ && pnpm run test -- --coverage
     ark:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-ark/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-ark/ && pnpm run test -- --coverage
     atom:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-atom/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-atom/ && pnpm run test -- --coverage
     avax:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-avax/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-avax/ && pnpm run test -- --coverage
     btc:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-btc/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-btc/ && pnpm run test -- --coverage
     coincap:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-coincap/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-coincap/ && pnpm run test -- --coverage
     coingecko:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-coingecko/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-coingecko/ && pnpm run test -- --coverage
     crypto:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-crypto/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-crypto/ && pnpm run test -- --coverage
     cryptocompare:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-cryptocompare/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-cryptocompare/ && pnpm run test -- --coverage
     dot:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-dot/ && yarn run test --coverage --forceExit
-
+              run: cd packages/platform-sdk-dot/ && pnpm run test -- --coverage --forceExit
     egld:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-egld/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-egld/ && pnpm run test -- --coverage
     eos:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-eos/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-eos/ && pnpm run test -- --coverage
     eth:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-eth/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-eth/ && pnpm run test -- --coverage
     http-axios:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-http-axios/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-http-axios/ && pnpm run test -- --coverage
     http-bent:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-http-bent/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-http-bent/ && pnpm run test -- --coverage
     http-got:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-http-got/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-http-got/ && pnpm run test -- --coverage
     http-ky:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-http-ky/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-http-ky/ && pnpm run test -- --coverage
     http-node-fetch:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-http-node-fetch/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-http-node-fetch/ && pnpm run test -- --coverage
     intl:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-intl/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-intl/ && pnpm run test -- --coverage
     lsk:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-lsk/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-lsk/ && pnpm run test -- --coverage
     markets:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-markets/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-markets/ && pnpm run test -- --coverage
     neo:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-neo/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-neo/ && pnpm run test -- --coverage
     news:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-news/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-news/ && pnpm run test -- --coverage
     profiles:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-profiles/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-profiles/ && pnpm run test -- --coverage
     sol:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-sol/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-sol/ && pnpm run test -- --coverage
     support:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-support/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-support/ && pnpm run test -- --coverage
     trx:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-trx/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-trx/ && pnpm run test -- --coverage
     xlm:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-xlm/ && yarn run test --coverage
-
+              run: cd packages/platform-sdk-xlm/ && pnpm run test -- --coverage
     xrp:
         needs: [conflicts]
-
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         steps:
             - uses: actions/checkout@v2
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Install
-              run: yarn install --immutable --immutable-cache
-
+            - name: Cache pnpm modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-pnpm-modules
+              with:
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            - name: Install pnpm
+              uses: pnpm/action-setup@v1.2.1
+              with:
+                  version: 5.18.1
+            - name: Install dependencies
+              run: node common/scripts/install-run-rush.js install
             - name: Build
-              run: yarn run build
-
+              run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
-              run: cd packages/platform-sdk-xrp/ && yarn run test --coverage
+              run: cd packages/platform-sdk-xrp/ && pnpm run test -- --coverage

@@ -721,7 +721,11 @@ export class Censor {
 		const badwords = new BadWords();
 		badwords.addWords("pedo", "pedophile");
 
-		return badwords.clean(value);
+		try {
+			return badwords.clean(value);
+		} catch {
+			return value;
+		}
 	}
 
 	/**

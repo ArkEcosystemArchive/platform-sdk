@@ -25,19 +25,19 @@
 		"preset": "../../jest.coverage.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk-intl": "workspace:packages/platform-sdk-intl",
-		"@arkecosystem/platform-sdk-support": "workspace:packages/platform-sdk-support",
+		"@arkecosystem/platform-sdk-intl": "^3.0.40",
+		"@arkecosystem/platform-sdk-support": "^3.0.40",
 		"bad-words": "^3.0.3",
 		"bent": "^7.3",
 		"bignumber.js": "^9.0.1",
 		"bip32": "^2.0.6",
 		"bip39": "^3.0.3",
 		"censorify-it": "^3.0.2",
-		"dayjs": "^1.9",
-		"dot-prop": "^6.0.0",
-		"joi": "^17.3.0",
+		"dayjs": "^1.10.4",
+		"dot-prop": "^5.0.0",
+		"joi": "^17.4.0",
 		"node-emoji": "^1.10.0",
-		"type-fest": "^0.18.1"
+		"type-fest": "^0.21.2"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
@@ -46,7 +46,7 @@
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/hapi__joi": "17.1.6",
 		"@types/jest": "^26.0.15",
-		"@types/node": "^14.14.7",
+		"@types/node": "^14.14.25",
 		"@types/node-emoji": "1.8.1",
 		"@types/prettier": "^2.1.5",
 		"@types/rimraf": "^3.0.0",
@@ -66,7 +66,7 @@
 		"prettier": "^2.1.2",
 		"rimraf": "^3.0.2",
 		"ts-jest": "^26.4.4",
-		"typescript": "^4.0.5"
+		"typescript": "4.0.5"
 	},
 	"engines": {
 		"node": ">=12.x"
