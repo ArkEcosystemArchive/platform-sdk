@@ -321,17 +321,17 @@ it(`spend addresses ${data[1].from}"s Wallet`, async () => {
 	function checkExpected(
 		spendChangeExtPublicKey,
 		stakeChainPublicKey,
-		addressIdx: number,
-		stakeAddressIdx: number,
+		addressIndex: number,
+		stakeAddressIndex: number,
 		expectedSpendAddress: string,
 		expectedStakeAddress: string,
 	) {
-		let stakeAddressPublicKey = lib.derivePublic(stakeChainPublicKey, stakeAddressIdx, SHELLEY_DERIVATION_SCHEME);
+		let stakeAddressPublicKey = lib.derivePublic(stakeChainPublicKey, stakeAddressIndex, SHELLEY_DERIVATION_SCHEME);
 		expect(stakeAddressPublicKey.toString("hex")).toBe(expectedStakeAddress);
 
-		let spendAddressExtPublicKey = lib.derivePublic(spendChangeExtPublicKey, addressIdx, SHELLEY_DERIVATION_SCHEME);
+		let spendAddressExtPublicKey = lib.derivePublic(spendChangeExtPublicKey, addressIndex, SHELLEY_DERIVATION_SCHEME);
 		expect(baseAddressFromXpub(spendAddressExtPublicKey, stakeAddressPublicKey, "0")).toBe(expectedSpendAddress);
-		console.log(`Change: m/1852"/1815"/0"/0/${addressIdx}`, expectedSpendAddress);
+		console.log(`Change: m/1852"/1815"/0"/0/${addressIndex}`, expectedSpendAddress);
 	}
 
 	const wallet = data[1];

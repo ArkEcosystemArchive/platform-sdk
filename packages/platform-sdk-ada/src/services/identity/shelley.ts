@@ -11,10 +11,10 @@ const harden = (value: number): number => HARDENED_THRESHOLD + value;
 const deriveAddress = (
 	accountKey: CardanoWasm.Bip32PublicKey,
 	isChange: boolean,
-	addressIdx: number,
+	addressIndex: number,
 	networkId: string,
 ): string => {
-	const spendKey = accountKey.derive(isChange ? 1 : 0).derive(addressIdx);
+	const spendKey = accountKey.derive(isChange ? 1 : 0).derive(addressIndex);
 	const stakeKey = accountKey.derive(2).derive(0);
 
 	return CardanoWasm.BaseAddress.new(
@@ -31,15 +31,15 @@ export const generateRootKey = (mnemonic: string): CardanoWasm.Bip32PrivateKey =
 
 export const addressFromMnemonic = (
 	mnemonic: string,
-	accountIdx: number,
+	accountIndex: number,
 	isChange: boolean,
-	addressIdx: number,
+	addressIndex: number,
 	networkId: string,
-): string => deriveAddress(generateRootKey(mnemonic).derive(harden(SHELLEY_COIN_PURPOSE)).derive(harden(SHELLEY_COIN_TYPE)).derive(harden(accountIdx)).to_public(), isChange, addressIdx, networkId)
+): string => deriveAddress(generateRootKey(mnemonic).derive(harden(SHELLEY_COIN_PURPOSE)).derive(harden(SHELLEY_COIN_TYPE)).derive(harden(accountIndex)).to_public(), isChange, addressIndex, networkId)
 
 export const addressFromAccountExtPublicKey = (
 	extPubKey: Buffer,
 	isChange: boolean,
-	addressIdx: number,
+	addressIndex: number,
 	networkId: string,
-): string => deriveAddress(CardanoWasm.Bip32PublicKey.from_bytes(extPubKey), isChange, addressIdx, networkId);
+): string => deriveAddress(CardanoWasm.Bip32PublicKey.from_bytes(extPubKey), isChange, addressIndex, networkId);
