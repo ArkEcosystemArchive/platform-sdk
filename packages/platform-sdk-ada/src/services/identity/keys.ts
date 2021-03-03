@@ -4,7 +4,7 @@ import { generateRootKey } from "../../crypto/shelley/address";
 export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
 		try {
-			const rootKeyPair = await generateRootKey(mnemonic);
+			const rootKeyPair = generateRootKey(mnemonic);
 
 			return {
 				publicKey: Buffer.from(rootKeyPair.to_public().as_bytes()).toString("hex"),
