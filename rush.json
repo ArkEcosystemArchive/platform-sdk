@@ -18,6 +18,10 @@
 			"@types"
 		]
 	},
+	"pnpmOptions": {
+		"preventManualShrinkwrapChanges": true,
+		"useWorkspaces": true
+	},
 	"projects": [
 		{
 			"packageName": "@arkecosystem/platform-sdk",
