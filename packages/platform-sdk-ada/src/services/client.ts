@@ -192,7 +192,7 @@ export class ClientService implements Contracts.ClientService {
 
 	private async addressesChunk(accountPublicKey: string, isChange: boolean, offset: number): Promise<string[]> {
 		const publicKey = Buffer.from(accountPublicKey, "hex");
-		const networkId = this.#config.get<string>("network.crypto.networkId");
+		const networkId = this.#config.get<string>(Coins.ConfigKey.CryptoNetworkId);
 
 		const addresses: string[] = [];
 		for (let i = offset; i < offset + 20; ++i) {
