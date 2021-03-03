@@ -203,12 +203,14 @@ describe("ProfileRepository", () => {
 	it("should export ok", async () => {
 		const profile = subject.create("John");
 
-		expect(subject.export(profile, {
-			excludeEmptyWallets: false,
-			excludeLedgerWallets: false,
-			excludeWalletsWithoutName: false,
-			addNetworkInformation: true,
-			saveGeneralSettings: true,
-		})).toBeString();
+		expect(
+			subject.export(profile, {
+				excludeEmptyWallets: false,
+				excludeLedgerWallets: false,
+				excludeWalletsWithoutName: false,
+				addNetworkInformation: true,
+				saveGeneralSettings: true,
+			}),
+		).toBeString();
 	});
 });

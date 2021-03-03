@@ -185,13 +185,15 @@ export class Profile implements ProfileContract {
 	/**
 	 * Specify data which should be serialized to an object.
 	 */
-	public toObject(options: ProfileExportOptions = {
-		excludeEmptyWallets: false,
-		excludeLedgerWallets: false,
-		excludeWalletsWithoutName: false,
-		addNetworkInformation: true,
-		saveGeneralSettings: true,
-	}): ProfileStruct {
+	public toObject(
+		options: ProfileExportOptions = {
+			excludeEmptyWallets: false,
+			excludeLedgerWallets: false,
+			excludeWalletsWithoutName: false,
+			addNetworkInformation: true,
+			saveGeneralSettings: true,
+		},
+	): ProfileStruct {
 		if (!options.saveGeneralSettings) {
 			throw Error("This is not implemented yet");
 		}
@@ -360,25 +362,30 @@ export class Profile implements ProfileContract {
 		}
 	}
 
-	public export(password?: string, options: ProfileExportOptions = {
-		excludeEmptyWallets: false,
-		excludeLedgerWallets: false,
-		excludeWalletsWithoutName: false,
-		addNetworkInformation: true,
-		saveGeneralSettings: true,
-	}): string {
-
+	public export(
+		password?: string,
+		options: ProfileExportOptions = {
+			excludeEmptyWallets: false,
+			excludeLedgerWallets: false,
+			excludeWalletsWithoutName: false,
+			addNetworkInformation: true,
+			saveGeneralSettings: true,
+		},
+	): string {
 		const filtered = this.toObject(options);
-		const unencoded = this.usesPassword() ?
-			this.encrypt(JSON.stringify({
-				id: this.id(),
-				name: this.name(),
-				avatar: this.avatar(),
-				password: this.#data.password,
-				data: filtered
-			}), password) :
-			JSON.stringify(filtered);
-		return  Base64.encode(unencoded);
+		const unencoded = this.usesPassword()
+			? this.encrypt(
+					JSON.stringify({
+						id: this.id(),
+						name: this.name(),
+						avatar: this.avatar(),
+						password: this.#data.password,
+						data: filtered,
+					}),
+					password,
+			  )
+			: JSON.stringify(filtered);
+		return Base64.encode(unencoded);
 	}
 
 	/**

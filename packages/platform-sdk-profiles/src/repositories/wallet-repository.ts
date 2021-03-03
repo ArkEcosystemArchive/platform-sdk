@@ -3,11 +3,11 @@ import { sortBy, sortByDesc } from "@arkecosystem/utils";
 import retry from "p-retry";
 
 import { Profile } from "../profiles/profile";
+import { WalletExportOptions } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { ReadWriteWallet } from "../wallets/wallet.models";
 import { DataRepository } from "./data-repository";
-import { WalletExportOptions } from "../profiles/profile.models";
 
 export class WalletRepository {
 	#data: DataRepository;
@@ -198,12 +198,14 @@ export class WalletRepository {
 		return this.keys().length;
 	}
 
-	public toObject(options: WalletExportOptions = {
-		excludeWalletsWithoutName: false,
-		excludeEmptyWallets: false,
-		excludeLedgerWallets: false,
-		addNetworkInformation: true,
-	}): Record<string, object> {
+	public toObject(
+		options: WalletExportOptions = {
+			excludeWalletsWithoutName: false,
+			excludeEmptyWallets: false,
+			excludeLedgerWallets: false,
+			addNetworkInformation: true,
+		},
+	): Record<string, object> {
 		if (!options.addNetworkInformation) {
 			throw Error("This is not implemented yet");
 		}

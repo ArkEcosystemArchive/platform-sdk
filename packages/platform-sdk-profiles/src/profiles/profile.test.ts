@@ -384,7 +384,6 @@ it("should fail to save if encoding or encrypting fails", () => {
 });
 
 describe("#toObject with options", () => {
-
 	let profile: Profile;
 
 	beforeEach(() => {
@@ -408,7 +407,7 @@ describe("#toObject with options", () => {
 	});
 
 	it("should exclude empty wallets", async () => {
-		await profile.wallets().generate('ARK', 'ark.devnet');
+		await profile.wallets().generate("ARK", "ark.devnet");
 		profile.save();
 
 		const filtered = profile.toObject({
@@ -423,9 +422,7 @@ describe("#toObject with options", () => {
 	});
 
 	it("should exclude ledger wallets", async () => {
-		await profile.wallets().importByAddressWithLedgerPath(
-			identity.address, "ARK", "ark.devnet", "0"
-		);
+		await profile.wallets().importByAddressWithLedgerPath(identity.address, "ARK", "ark.devnet", "0");
 		profile.save();
 
 		const filtered = profile.toObject({
@@ -458,24 +455,28 @@ describe("#toObject with options", () => {
 		await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 		profile.save();
 
-		expect(() => profile.toObject({
-			excludeEmptyWallets: false,
-			excludeLedgerWallets: false,
-			excludeWalletsWithoutName: false,
-			addNetworkInformation: false,
-			saveGeneralSettings: true,
-		})).toThrow("This is not implemented yet");
+		expect(() =>
+			profile.toObject({
+				excludeEmptyWallets: false,
+				excludeLedgerWallets: false,
+				excludeWalletsWithoutName: false,
+				addNetworkInformation: false,
+				saveGeneralSettings: true,
+			}),
+		).toThrow("This is not implemented yet");
 	});
 
 	it("should not include general settings", async () => {
 		profile.save();
 
-		expect(() => profile.toObject({
-			excludeEmptyWallets: false,
-			excludeLedgerWallets: false,
-			excludeWalletsWithoutName: false,
-			addNetworkInformation: true,
-			saveGeneralSettings: false,
-		})).toThrow("This is not implemented yet");
+		expect(() =>
+			profile.toObject({
+				excludeEmptyWallets: false,
+				excludeLedgerWallets: false,
+				excludeWalletsWithoutName: false,
+				addNetworkInformation: true,
+				saveGeneralSettings: false,
+			}),
+		).toThrow("This is not implemented yet");
 	});
 });

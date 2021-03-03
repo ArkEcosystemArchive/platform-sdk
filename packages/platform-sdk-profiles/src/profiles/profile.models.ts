@@ -95,6 +95,6 @@ export interface WalletExportOptions {
 	addNetworkInformation: boolean;
 }
 
-export interface ProfileExportOptions extends WalletExportOptions{
+export interface ProfileExportOptions extends WalletExportOptions {
 	saveGeneralSettings: boolean;
 }
