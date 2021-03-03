@@ -1,6 +1,5 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
-import Neon from "@cityofzion/neon-js";
-import { api } from "@cityofzion/neon-js";
+import Neon, { api } from "@cityofzion/neon-js";
 
 import * as TransactionDTO from "../dto";
 import { WalletData } from "../dto";
