@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-crypto
+npm install @arkecosystem/platform-sdk-crypto
 ```
 
 ## Usage

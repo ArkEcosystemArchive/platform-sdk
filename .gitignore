@@ -56,9 +56,6 @@ dist
 .env
 env.json
 
-# Yarn
-.yarn/sdks/**
-
 # Rush temporary files
 common/deploy/
 common/temp/

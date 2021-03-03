@@ -9,12 +9,47 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-ada
+npm install @arkecosystem/platform-sdk-ada
 ```
 
 ## Usage
 
 Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/ada).
+
+## Development
+
+[Rush](https://rushjs.io/) and [pnpm](https://pnpm.js.org/en/) are required to be installed before starting. These tools are used to manage this monorepo.
+
+### Run `lint` and `prettier`
+
+```bash
+rush format
+```
+
+### Apply eslint rules to source
+
+```bash
+rush lint
+```
+
+### Apply eslint rules to tests
+
+```bash
+rush lint:tests
+```
+
+### Apply prettier formatting
+
+```bash
+rush prettier
+```
+
+### Run tests
+
+```bash
+rush test
+```
+
 
 ## Security
 
