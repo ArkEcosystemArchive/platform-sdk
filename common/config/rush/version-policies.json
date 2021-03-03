@@ -1,7 +1,7 @@
 [
 	{
 		"definitionName": "lockStepVersion",
-		"policyName": "psdk",
+		"policyName": "@arkecosystem/platform-sdk",
 		"version": "3.0.41",
 		"nextBump": "patch",
 		"mainProject": "@arkecosystem/platform-sdk"
