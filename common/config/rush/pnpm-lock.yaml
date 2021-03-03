@@ -18,7 +18,6 @@ importers:
       type-fest: 0.21.2
     devDependencies:
       '@sindresorhus/tsconfig': 0.7.0
-      '@types/dot-prop': 5.0.1
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -32,6 +31,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -48,7 +48,6 @@ importers:
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@sindresorhus/tsconfig': ^0.7.0
-      '@types/dot-prop': 5.0.1
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -70,6 +69,7 @@ importers:
       dot-prop: ^5.0.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -95,7 +95,6 @@ importers:
       cardano-crypto.js: 6.0.0
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -108,6 +107,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -128,7 +128,6 @@ importers:
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@emurgo/cardano-serialization-lib-nodejs': ^6.0.0
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -142,6 +141,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -175,11 +175,9 @@ importers:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.45.0
       '@sindresorhus/tsconfig': 0.7.0
-      '@types/dot-prop': 5.0.1
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/is-url-superb': 3.0.0
       '@types/jest': 26.0.20
       '@types/lodash.orderby': 4.6.6
       '@types/node': 14.14.31
@@ -192,6 +190,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -217,11 +216,9 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-transport-mocker': ^5.29.0
       '@sindresorhus/tsconfig': ^0.7.0
-      '@types/dot-prop': 5.0.1
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/is-url-superb': 3.0.0
       '@types/jest': ^26.0.15
       '@types/lodash.orderby': 4.6.6
       '@types/node': ^14.14.25
@@ -235,6 +232,7 @@ importers:
       dot-prop: ^5.0.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -266,7 +264,6 @@ importers:
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -280,6 +277,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -300,7 +298,6 @@ importers:
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-transport-mocker': ^5.29.0
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -316,6 +313,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -345,13 +343,10 @@ importers:
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
-      '@types/dot-prop': 5.0.1
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
       '@types/hdkey': 0.7.1
-      '@types/is-url-superb': 3.0.0
       '@types/jest': 26.0.20
       '@types/lodash.orderby': 4.6.6
       '@types/node': 14.14.31
@@ -364,6 +359,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -385,13 +381,10 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@arkecosystem/utils': ^1.3.0
       '@ledgerhq/hw-transport-mocker': ^5.29.0
-      '@sindresorhus/tsconfig': ^0.7.0
-      '@types/dot-prop': 5.0.1
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
       '@types/hdkey': 0.7.1
-      '@types/is-url-superb': 3.0.0
       '@types/jest': ^26.0.15
       '@types/lodash.orderby': 4.6.6
       '@types/node': ^14.14.25
@@ -405,6 +398,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -434,7 +428,6 @@ importers:
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -447,6 +440,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -468,7 +462,6 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-app-btc': ^5.29.0
       '@ledgerhq/hw-transport-mocker': ^5.29.0
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -484,6 +477,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -513,9 +507,7 @@ importers:
       uuid: 8.3.2
     devDependencies:
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/better-sqlite3': 5.4.1
-      '@types/env-paths': 2.1.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/fs-extra': 9.0.7
@@ -523,7 +515,6 @@ importers:
       '@types/jest': 26.0.20
       '@types/meow': 5.0.0
       '@types/node': 14.14.31
-      '@types/p-retry': 3.0.1
       '@types/pino': 6.3.6
       '@types/prettier': 2.2.2
       '@types/rimraf': 3.0.0
@@ -533,6 +524,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -552,9 +544,7 @@ importers:
       '@konceiver/foreman': ^2.0.1
       '@ledgerhq/hw-transport-mocker': ^5.29.0
       '@ptkdev/logger': ^1.7.2
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/better-sqlite3': 5.4.1
-      '@types/env-paths': 2.1.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': 9.0.7
@@ -562,7 +552,6 @@ importers:
       '@types/jest': ^26.0.15
       '@types/meow': 5.0.0
       '@types/node': ^14.14.25
-      '@types/p-retry': 3.0.1
       '@types/pino': ^6.3.5
       '@types/prettier': ^2.1.5
       '@types/rimraf': ^3.0.0
@@ -574,6 +563,7 @@ importers:
       env-paths: ^2.2.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -609,9 +599,7 @@ importers:
       uuid: 8.3.2
     devDependencies:
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/better-sqlite3': 5.4.1
-      '@types/env-paths': 2.1.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/fs-extra': 9.0.7
@@ -619,7 +607,6 @@ importers:
       '@types/jest': 26.0.20
       '@types/meow': 5.0.0
       '@types/node': 14.14.31
-      '@types/p-retry': 3.0.1
       '@types/pino': 6.3.6
       '@types/prettier': 2.2.2
       '@types/rimraf': 3.0.0
@@ -629,6 +616,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -650,9 +638,7 @@ importers:
       '@konceiver/hapi-rate-limiter-flexible': ^1.0.3
       '@ledgerhq/hw-transport-mocker': ^5.29.0
       '@ptkdev/logger': ^1.7.2
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/better-sqlite3': 5.4.1
-      '@types/env-paths': 2.1.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': 9.0.7
@@ -660,7 +646,6 @@ importers:
       '@types/jest': ^26.0.15
       '@types/meow': 5.0.0
       '@types/node': ^14.14.25
-      '@types/p-retry': 3.0.1
       '@types/pino': ^6.3.5
       '@types/prettier': ^2.1.5
       '@types/rimraf': ^3.0.0
@@ -672,6 +657,7 @@ importers:
       env-paths: ^2.2.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -740,7 +726,6 @@ importers:
       type-fest: 0.21.2
       yargs-parser: 20.2.6
     devDependencies:
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/jest': 26.0.20
@@ -752,6 +737,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -786,7 +772,6 @@ importers:
       '@arkecosystem/platform-sdk-xlm': workspace:*
       '@arkecosystem/platform-sdk-xrp': workspace:*
       '@ptkdev/logger': ^1.7.2
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/jest': ^26.0.15
@@ -806,6 +791,7 @@ importers:
       envfile: ^6.14.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -846,7 +832,6 @@ importers:
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/jest': 26.0.20
@@ -858,6 +843,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -876,7 +862,6 @@ importers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/jest': ^26.0.15
@@ -888,6 +873,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -908,7 +894,6 @@ importers:
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/jest': 26.0.20
@@ -920,6 +905,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -938,7 +924,6 @@ importers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/jest': ^26.0.15
@@ -950,6 +935,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -981,7 +967,6 @@ importers:
       '@types/bcryptjs': 2.4.2
       '@types/bent': 7.3.2
       '@types/bip38': 2.0.1
-      '@types/dot-prop': 5.0.1
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -996,6 +981,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1015,7 +1001,6 @@ importers:
       '@types/bcryptjs': 2.4.2
       '@types/bent': 7.3.2
       '@types/bip38': 2.0.1
-      '@types/dot-prop': 5.0.1
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -1036,6 +1021,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1060,7 +1046,6 @@ importers:
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/jest': 26.0.20
@@ -1072,6 +1057,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1090,7 +1076,6 @@ importers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/jest': ^26.0.15
@@ -1102,6 +1087,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1133,7 +1119,6 @@ importers:
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -1147,6 +1132,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1174,7 +1160,6 @@ importers:
       '@polkadot/wasm-crypto': ^3.2.2
       '@polkadot/x-global': ^5.5.1
       '@polkadot/x-randomvalues': ^5.5.1
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -1189,6 +1174,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1219,7 +1205,6 @@ importers:
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
@@ -1227,7 +1212,6 @@ importers:
       '@types/jest': 26.0.20
       '@types/meow': 5.0.0
       '@types/node': 14.14.31
-      '@types/p-retry': 3.0.1
       '@types/pino': 6.3.6
       '@types/prettier': 2.2.2
       '@types/rimraf': 3.0.0
@@ -1237,6 +1221,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1255,7 +1240,6 @@ importers:
       '@konceiver/foreman': ^2.0.1
       '@ledgerhq/hw-transport-mocker': ^5.29.0
       '@polkadot/api': ^3.6.4
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -1263,7 +1247,6 @@ importers:
       '@types/jest': ^26.0.15
       '@types/meow': 5.0.0
       '@types/node': ^14.14.25
-      '@types/p-retry': 3.0.1
       '@types/pino': ^6.3.5
       '@types/prettier': ^2.1.5
       '@types/rimraf': ^3.0.0
@@ -1275,6 +1258,7 @@ importers:
       env-paths: ^2.2.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1306,7 +1290,6 @@ importers:
       elrondjs: 2.7.0
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -1319,6 +1302,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1339,7 +1323,6 @@ importers:
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@elrondnetwork/elrond-core-js': ^2.1.0
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -1354,6 +1337,7 @@ importers:
       elrondjs: ^2.7.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1379,7 +1363,6 @@ importers:
       node-fetch: 2.6.1
     devDependencies:
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/bn.js': 4.11.6
       '@types/elliptic': 6.4.12
       '@types/eslint': 7.2.6
@@ -1394,6 +1377,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1412,7 +1396,6 @@ importers:
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-transport-mocker': ^5.29.0
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/bn.js': 4.11.6
       '@types/elliptic': 6.4.12
       '@types/eslint': ^7.2.4
@@ -1430,6 +1413,7 @@ importers:
       eosjs: ^21.0.3
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1457,7 +1441,6 @@ importers:
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -1470,6 +1453,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1491,7 +1475,6 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-app-eth': ^5.29.0
       '@ledgerhq/hw-transport-mocker': ^5.29.0
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -1505,6 +1488,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1536,9 +1520,7 @@ importers:
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/better-sqlite3': 5.4.1
-      '@types/env-paths': 2.1.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/fs-extra': 9.0.7
@@ -1546,7 +1528,6 @@ importers:
       '@types/jest': 26.0.20
       '@types/meow': 5.0.0
       '@types/node': 14.14.31
-      '@types/p-retry': 3.0.1
       '@types/pino': 6.3.6
       '@types/prettier': 2.2.2
       '@types/rimraf': 3.0.0
@@ -1556,6 +1537,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1574,9 +1556,7 @@ importers:
       '@konceiver/foreman': ^2.0.1
       '@ledgerhq/hw-transport-mocker': ^5.29.0
       '@ptkdev/logger': ^1.7.2
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/better-sqlite3': 5.4.1
-      '@types/env-paths': 2.1.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': 9.0.7
@@ -1584,7 +1564,6 @@ importers:
       '@types/jest': ^26.0.15
       '@types/meow': 5.0.0
       '@types/node': ^14.14.25
-      '@types/p-retry': 3.0.1
       '@types/pino': ^6.3.5
       '@types/prettier': ^2.1.5
       '@types/rimraf': ^3.0.0
@@ -1596,6 +1575,7 @@ importers:
       env-paths: ^2.2.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1630,9 +1610,7 @@ importers:
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/better-sqlite3': 5.4.1
-      '@types/env-paths': 2.1.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/fs-extra': 9.0.7
@@ -1640,7 +1618,6 @@ importers:
       '@types/jest': 26.0.20
       '@types/meow': 5.0.0
       '@types/node': 14.14.31
-      '@types/p-retry': 3.0.1
       '@types/pino': 6.3.6
       '@types/prettier': 2.2.2
       '@types/rimraf': 3.0.0
@@ -1650,6 +1627,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1670,9 +1648,7 @@ importers:
       '@konceiver/hapi-rate-limiter-flexible': ^1.0.3
       '@ledgerhq/hw-transport-mocker': ^5.29.0
       '@ptkdev/logger': ^1.7.2
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/better-sqlite3': 5.4.1
-      '@types/env-paths': 2.1.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': 9.0.7
@@ -1680,7 +1656,6 @@ importers:
       '@types/jest': ^26.0.15
       '@types/meow': 5.0.0
       '@types/node': ^14.14.25
-      '@types/p-retry': 3.0.1
       '@types/pino': ^6.3.5
       '@types/prettier': ^2.1.5
       '@types/rimraf': ^3.0.0
@@ -1692,6 +1667,7 @@ importers:
       env-paths: ^2.2.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1714,7 +1690,6 @@ importers:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       axios: 0.21.1
     devDependencies:
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/fs-extra': 9.0.7
@@ -1727,6 +1702,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1742,7 +1718,6 @@ importers:
       typescript: 4.0.5
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': 9.0.7
@@ -1756,6 +1731,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1774,7 +1750,6 @@ importers:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       bent: 7.3.12
     devDependencies:
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/bent': 7.3.2
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
@@ -1788,6 +1763,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1803,7 +1779,6 @@ importers:
       typescript: 4.0.5
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/bent': 7.3.2
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -1818,6 +1793,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1837,7 +1813,6 @@ importers:
       form-data: 3.0.1
       got: 11.8.2
     devDependencies:
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/fs-extra': 9.0.7
@@ -1851,6 +1826,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1866,7 +1842,6 @@ importers:
       typescript: 4.0.5
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': 9.0.7
@@ -1880,6 +1855,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1901,7 +1877,6 @@ importers:
       ky: 0.25.1
       ky-universal: 0.8.2_ky@0.25.1
     devDependencies:
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/fs-extra': 9.0.7
@@ -1915,6 +1890,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1930,7 +1906,6 @@ importers:
       typescript: 4.0.5
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': 9.0.7
@@ -1944,6 +1919,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -1964,7 +1940,6 @@ importers:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       node-fetch: 2.6.1
     devDependencies:
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/fs-extra': 9.0.7
@@ -1978,6 +1953,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -1993,7 +1969,6 @@ importers:
       typescript: 4.0.5
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': 9.0.7
@@ -2007,6 +1982,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -2026,7 +2002,6 @@ importers:
       dayjs: 1.10.4
       dinero.js: 1.8.1
     devDependencies:
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/dinero.js': 1.6.5
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
@@ -2039,6 +2014,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -2052,7 +2028,6 @@ importers:
       ts-jest: 26.5.2_jest@26.6.3+typescript@4.0.5
       typescript: 4.0.5
     specifiers:
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/dinero.js': 1.6.5
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -2067,6 +2042,7 @@ importers:
       dinero.js: ^1.8.1
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -2092,7 +2068,6 @@ importers:
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2105,6 +2080,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -2128,7 +2104,6 @@ importers:
       '@liskhq/lisk-client': ^2.0
       '@liskhq/lisk-cryptography': ^2.5
       '@liskhq/lisk-transactions': ^2.0
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2142,6 +2117,7 @@ importers:
       dpos-ledger-api: ^3.0.1
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -2163,7 +2139,6 @@ importers:
       '@arkecosystem/platform-sdk-cryptocompare': link:../platform-sdk-cryptocompare
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/jest': 26.0.20
@@ -2175,6 +2150,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -2194,7 +2170,6 @@ importers:
       '@arkecosystem/platform-sdk-coingecko': workspace:*
       '@arkecosystem/platform-sdk-cryptocompare': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/jest': ^26.0.15
@@ -2206,6 +2181,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -2230,7 +2206,6 @@ importers:
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2244,6 +2219,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -2265,7 +2241,6 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@cityofzion/neon-js': ^4.8.2
       '@ledgerhq/hw-transport-mocker': ^5.29.0
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2279,6 +2254,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -2299,7 +2275,6 @@ importers:
       rss-parser: 3.12.0
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/fs-extra': 9.0.7
@@ -2312,6 +2287,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -2328,7 +2304,6 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': 9.0.7
@@ -2341,6 +2316,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -2386,18 +2362,15 @@ importers:
       '@sindresorhus/tsconfig': 0.7.0
       '@types/async': 3.2.4
       '@types/bip38': 2.0.1
-      '@types/dot-prop': 5.0.1
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/fs-extra': 9.0.7
       '@types/jest': 26.0.20
       '@types/mersenne-twister': 1.1.2
       '@types/node': 14.14.31
-      '@types/p-retry': 3.0.1
       '@types/prettier': 2.2.2
       '@types/rimraf': 3.0.0
       '@types/semver': 7.3.4
-      '@types/sindresorhus__slugify': 0.9.3
       '@types/uuid': 8.3.0
       '@types/wif': 2.0.2
       '@typescript-eslint/eslint-plugin': 4.16.1_f5195153d6684055bba9a67a140ba316
@@ -2405,6 +2378,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -2434,18 +2408,15 @@ importers:
       '@sindresorhus/tsconfig': ^0.7.0
       '@types/async': 3.2.4
       '@types/bip38': 2.0.1
-      '@types/dot-prop': 5.0.1
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': 9.0.7
       '@types/jest': ^26.0.15
       '@types/mersenne-twister': 1.1.2
       '@types/node': ^14.14.25
-      '@types/p-retry': 3.0.1
       '@types/prettier': ^2.1.5
       '@types/rimraf': ^3.0.0
       '@types/semver': 7.3.4
-      '@types/sindresorhus__slugify': 0.9.3
       '@types/uuid': ^8.3.0
       '@types/wif': 2.0.2
       '@typescript-eslint/eslint-plugin': ^4.7.0
@@ -2457,6 +2428,7 @@ importers:
       dot-prop: ^5.0.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -2493,7 +2465,6 @@ importers:
       uuid: 8.3.2
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2507,6 +2478,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -2526,7 +2498,6 @@ importers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
-      '@sindresorhus/tsconfig': ^0.7.0
       '@solana/web3.js': ^0.92.2
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -2543,6 +2514,7 @@ importers:
       ed25519-hd-key: ^1.2.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -2570,7 +2542,6 @@ importers:
     devDependencies:
       '@sindresorhus/tsconfig': 0.7.0
       '@types/bent': 7.3.2
-      '@types/dot-prop': 5.0.1
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2584,6 +2555,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -2599,7 +2571,6 @@ importers:
     specifiers:
       '@sindresorhus/tsconfig': ^0.7.0
       '@types/bent': 7.3.2
-      '@types/dot-prop': 5.0.1
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2617,6 +2588,7 @@ importers:
       dot-prop: ^5.0.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -2643,7 +2615,6 @@ importers:
       tronweb: 3.2.6
     devDependencies:
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2656,6 +2627,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -2675,7 +2647,6 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-app-trx': ^5.29.0
       '@ledgerhq/hw-transport-mocker': ^5.29.0
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2688,6 +2659,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -2713,7 +2685,6 @@ importers:
       uuid: 8.3.2
     devDependencies:
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2726,6 +2697,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -2745,7 +2717,6 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-app-str': ^5.29.0
       '@ledgerhq/hw-transport-mocker': ^5.29.0
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2758,6 +2729,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -2785,7 +2757,6 @@ importers:
       ripple-lib: 1.9.1
     devDependencies:
       '@ledgerhq/hw-transport-mocker': 5.45.0
-      '@sindresorhus/tsconfig': 0.7.0
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2800,6 +2771,7 @@ importers:
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
       eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.0.5
       eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
       eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
@@ -2824,7 +2796,6 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-app-xrp': ^5.29.0
       '@ledgerhq/hw-transport-mocker': ^5.29.0
-      '@sindresorhus/tsconfig': ^0.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -2840,6 +2811,7 @@ importers:
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
       eslint-plugin-jest: ^24.1.3
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
@@ -4840,6 +4812,7 @@ packages:
     dependencies:
       '@sindresorhus/transliterate': 0.1.1
       escape-string-regexp: 4.0.0
+    dev: false
     engines:
       node: '>=10'
     resolution:
@@ -4848,6 +4821,7 @@ packages:
     dependencies:
       escape-string-regexp: 2.0.0
       lodash.deburr: 4.1.0
+    dev: false
     engines:
       node: '>=10'
     resolution:
@@ -5014,13 +4988,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-mDpUUr/PA68nrtb+ZnOa7kIPkbPVa7yCfB0EsFIWwcZrKYGlbp1F8roAHyQSehYNuaByjiBKU6B9iqPeRgUyiA==
-  /@types/dot-prop/5.0.1:
-    dependencies:
-      dot-prop: 6.0.1
-    deprecated: This is a stub types definition. dot-prop provides its own type definitions, so you do not need this installed.
-    dev: true
-    resolution:
-      integrity: sha512-JveEixxPnUkV1UtrlHeEIeLCq1G8xecqmjXkEKW0bYXLEEXb7nLywPrScVCimmvNBaXd2SHJbY0pGBObTI8AMA==
   /@types/ed2curve/0.2.2:
     dependencies:
       tweetnacl: 1.0.1
@@ -5032,13 +4999,6 @@ packages:
       '@types/bn.js': 4.11.6
     resolution:
       integrity: sha512-gP1KsqoouLJGH6IJa28x7PXb3cRqh83X8HCLezd2dF+XcAIMKYv53KV+9Zn6QA561E120uOqZBQ+Jy/cl+fviw==
-  /@types/env-paths/2.1.0:
-    dependencies:
-      env-paths: 2.2.0
-    deprecated: This is a stub types definition. env-paths provides its own type definitions, so you do not need this installed.
-    dev: true
-    resolution:
-      integrity: sha512-yq3kN22C5uYFNdj56dT6wp9dliB3994T04CE3KhqpnRaVxMRouJj46TRbfLV2ILGyrNkgA7o38M5R50HQ+BPog==
   /@types/eslint-plugin-prettier/3.1.0:
     dependencies:
       '@types/eslint': 7.2.6
@@ -5104,13 +5064,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-DmZDpSVnsuBrOhtHwE1oKmUJ3qVjHhhNQ7WnZy9/RhH3A24Ar+9o4SoaCWcTzQhalpRDIAMsfdoZLWNJtdBR7A==
-  /@types/is-url-superb/3.0.0:
-    dependencies:
-      is-url-superb: 4.0.0
-    deprecated: This is a stub types definition. is-url-superb provides its own type definitions, so you do not need this installed.
-    dev: true
-    resolution:
-      integrity: sha512-+nhGVHjrJkCkCOQ30MpTqxylxEsubto8gLJCXAHceA4mMjIZfUGKRcRBJ1DFIVff1YqsNaGY0ZmzXklaZrfIhA==
   /@types/istanbul-lib-coverage/2.0.3:
     dev: true
     resolution:
@@ -5145,6 +5098,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==
+  /@types/json5/0.0.29:
+    dev: true
+    resolution:
+      integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
   /@types/keyv/3.1.1:
     dependencies:
       '@types/node': 14.14.31
@@ -5240,13 +5197,6 @@ packages:
   /@types/normalize-package-data/2.4.0:
     resolution:
       integrity: sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
-  /@types/p-retry/3.0.1:
-    dependencies:
-      p-retry: 4.4.0
-    deprecated: This is a stub types definition. p-retry provides its own type definitions, so you do not need this installed.
-    dev: true
-    resolution:
-      integrity: sha512-LkZCWg4JxFdQR/nGNZcMiyKAbNG3DKBRS6nn6Hg4dLS82zxkdBJJcvf4zXFvDCEI+e4dZdQX6wreqs9RDGMRfw==
   /@types/pbkdf2/3.1.0:
     dependencies:
       '@types/node': 14.14.31
@@ -5297,6 +5247,7 @@ packages:
     resolution:
       integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==
   /@types/retry/0.12.0:
+    dev: false
     resolution:
       integrity: sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==
   /@types/rimraf/3.0.0:
@@ -5316,13 +5267,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-+nVsLKlcUCeMzD2ufHEYuJ9a2ovstb6Dp52A5VsoKxDXgvE051XgHI/33I1EymwkRGQkwnA0LkhnUzituGs4EQ==
-  /@types/sindresorhus__slugify/0.9.3:
-    dependencies:
-      '@sindresorhus/slugify': 1.1.0
-    deprecated: Deprecated
-    dev: true
-    resolution:
-      integrity: sha512-y8g6jSFoOZUBygXx7OPfb790f6r2kD1xe5jWcLXCa6akzTYB+lkJivylSS0ufFfRvTIekLY5YzG2NT00d1apcQ==
   /@types/sonic-boom/0.7.0:
     dependencies:
       '@types/node': 14.14.31
@@ -5787,6 +5731,18 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
+  /array-includes/3.1.3:
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.1.3
+      es-abstract: 1.18.0-next.3
+      get-intrinsic: 1.1.1
+      is-string: 1.0.5
+    dev: true
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-gcem1KlBU7c9rB+Rq8/3PPKsK2kjqeEBa3bD5kkQo4nYlOHQCJqIJFqBXDEfwaRuYTT4E+FxA9xez7Gf/e3Q7A==
   /array-union/2.1.0:
     dev: true
     engines:
@@ -5799,6 +5755,16 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-qJS3XUvE9s1nnvMkSp/Y9Gri1Cg=
+  /array.prototype.flat/1.2.4:
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.1.3
+      es-abstract: 1.18.0-next.3
+    dev: true
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-4470Xi3GAPAjZqFcljX2xzckv1qeKPizoNkiS0+O4IoPR2ZNpcjE0pkhdihlDouK+x6QOast26B4Q/O9DJnwSg==
   /arrify/1.0.1:
     dev: false
     engines:
@@ -7187,6 +7153,12 @@ packages:
   /console-control-strings/1.1.0:
     resolution:
       integrity: sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4=
+  /contains-path/0.1.0:
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-/ozxhP9mcLa67wGp1IYaXL7EEgo=
   /content-disposition/0.5.3:
     dependencies:
       safe-buffer: 5.1.2
@@ -7669,6 +7641,15 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==
+  /doctrine/1.5.0:
+    dependencies:
+      esutils: 2.0.3
+      isarray: 1.0.0
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-N53Ocw9hZvds76TmcHoVmwLFpvo=
   /doctrine/3.0.0:
     dependencies:
       esutils: 2.0.3
@@ -7699,6 +7680,7 @@ packages:
   /dot-prop/6.0.1:
     dependencies:
       is-obj: 2.0.0
+    dev: false
     engines:
       node: '>=10'
     resolution:
@@ -7979,6 +7961,7 @@ packages:
     resolution:
       integrity: sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
   /escape-string-regexp/4.0.0:
+    dev: false
     engines:
       node: '>=10'
     resolution:
@@ -8007,6 +7990,45 @@ packages:
       eslint: '>=3.14.1'
     resolution:
       integrity: sha512-a1+kOYLR8wMGustcgAjdydMsQ2A/2ipRPwRKUmfYaSxc9ZPcrku080Ctl6zrZzZNs/U82MjSv+qKREkoq3bJaw==
+  /eslint-import-resolver-node/0.3.4:
+    dependencies:
+      debug: 2.6.9
+      resolve: 1.20.0
+    dev: true
+    resolution:
+      integrity: sha512-ogtf+5AB/O+nM6DIeBUNr2fuT7ot9Qg/1harBfBtaP13ekEWFQEEMP94BCB7zaNW3gyY+8SHYF00rnqYwXKWOA==
+  /eslint-module-utils/2.6.0:
+    dependencies:
+      debug: 2.6.9
+      pkg-dir: 2.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-6j9xxegbqe8/kZY8cYpcp0xhbK0EgJlg3g9mib3/miLaExuuwc3n5UEfSnU6hWMbT0FAYVvDbL9RrRgpUeQIvA==
+  /eslint-plugin-import/2.22.1_eslint@7.21.0:
+    dependencies:
+      array-includes: 3.1.3
+      array.prototype.flat: 1.2.4
+      contains-path: 0.1.0
+      debug: 2.6.9
+      doctrine: 1.5.0
+      eslint: 7.21.0
+      eslint-import-resolver-node: 0.3.4
+      eslint-module-utils: 2.6.0
+      has: 1.0.3
+      minimatch: 3.0.4
+      object.values: 1.1.3
+      read-pkg-up: 2.0.0
+      resolve: 1.20.0
+      tsconfig-paths: 3.9.0
+    dev: true
+    engines:
+      node: '>=4'
+    peerDependencies:
+      eslint: ^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0
+    resolution:
+      integrity: sha512-8K7JjINHOpH64ozkAhpT3sd+FswIZTfMZTjdx052pnWrgRCVfp8op9tbjpAk3DdUeI/Ba4C8OjdC0r90erHEOw==
   /eslint-plugin-jest/24.1.5_eslint@7.21.0+typescript@4.0.5:
     dependencies:
       '@typescript-eslint/experimental-utils': 4.16.1_eslint@7.21.0+typescript@4.0.5
@@ -8729,6 +8751,14 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-aAWcW57uxVNrQZqFXjITpW3sIUQmHGG3qSb9mUah9MgMC4NeWhNOlNjXEYq3HjRAvL6arUviZGGJsBg6z0zsWA==
+  /find-up/2.1.0:
+    dependencies:
+      locate-path: 2.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-RdG35QbHF93UgndaK3eSCjwMV6c=
   /find-up/3.0.0:
     dependencies:
       locate-path: 3.0.0
@@ -10016,6 +10046,7 @@ packages:
     resolution:
       integrity: sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
   /is-url-superb/4.0.0:
+    dev: false
     engines:
       node: '>=10'
     resolution:
@@ -10799,6 +10830,13 @@ packages:
     dev: false
     resolution:
       integrity: sha1-py8hfcSvxGKf/1/rME3BvVGi89I=
+  /json5/1.0.1:
+    dependencies:
+      minimist: 1.2.5
+    dev: true
+    hasBin: true
+    resolution:
+      integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==
   /json5/2.2.0:
     dependencies:
       minimist: 1.2.5
@@ -11102,6 +11140,17 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-RmAl7su35BFd/xoMamRjpIE4j3v+L28o8CT5YhAXQJm1fD+1l9ngXY8JAQRJ+tFK2i5njvi0iRUKV09vPwA0iA==
+  /load-json-file/2.0.0:
+    dependencies:
+      graceful-fs: 4.2.6
+      parse-json: 2.2.0
+      pify: 2.3.0
+      strip-bom: 3.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-eUfkIUmvgNaWy/eXvKq8/h/inKg=
   /loady/0.0.5:
     dev: false
     engines:
@@ -11114,6 +11163,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-rR1oyNrKulpe+VM9cYmcFn6tsHuokyVHFaCM3+osEmxaHTbEk8oQu6eGDfS6DQLWi/N67XRmB8ECG37OES368g==
+  /locate-path/2.0.0:
+    dependencies:
+      p-locate: 2.0.0
+      path-exists: 3.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-K1aLJl7slExtnA3pw9u7ygNUzY4=
   /locate-path/3.0.0:
     dependencies:
       p-locate: 3.0.0
@@ -11138,6 +11196,7 @@ packages:
     resolution:
       integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==
   /lodash.deburr/4.1.0:
+    dev: false
     resolution:
       integrity: sha1-3bG7s+8HRYwBd7oH3hRCLLAz/5s=
   /lodash.get/4.4.2:
@@ -12180,6 +12239,17 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-h6EKxMFpS9Lhy/U1kaZhQftd10c=
+  /object.values/1.1.3:
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.1.3
+      es-abstract: 1.18.0-next.3
+      has: 1.0.3
+    dev: true
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-nkF6PfDB9alkOUxpf1HNm/QlkeW3SReqL5WXeBLpEJJnlPSvRaDQpW3gQTksTN3fgJX4hL42RzKyOin6ff3tyw==
   /oboe/2.1.5:
     dependencies:
       http-https: 1.0.0
@@ -12321,6 +12391,14 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-P7z7FbiZpEEjs0ttzBi3JDNqLK4=
+  /p-limit/1.3.0:
+    dependencies:
+      p-try: 1.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-vvcXsLAJ9Dr5rQOPk7toZQZJApBl2K4J6dANSsEuh6QI41JYcsS/qhTGa9ErIUUgK3WNQoJYvylxvjqmiqEA9Q==
   /p-limit/2.3.0:
     dependencies:
       p-try: 2.2.0
@@ -12336,6 +12414,14 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-TYOanM3wGwNGsZN2cVTYPArw454xnXj5qmWF1bEoAc4+cU/ol7GVh7odevjp1FNHduHc3KZMcFduxU5Xc6uJRQ==
+  /p-locate/2.0.0:
+    dependencies:
+      p-limit: 1.3.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-IKAQOyIqcMj9OcwuWAaA893l7EM=
   /p-locate/3.0.0:
     dependencies:
       p-limit: 2.3.0
@@ -12385,6 +12471,7 @@ packages:
     dependencies:
       '@types/retry': 0.12.0
       retry: 0.12.0
+    dev: false
     engines:
       node: '>=8'
     resolution:
@@ -12405,6 +12492,12 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-rhIwUycgwwKcP9yTOOFK/AKsAopjjCakVqLHePO3CC6Mir1Z99xT+R63jZxAT5lFZLa2inS5h+ZS2GvR99/FBg==
+  /p-try/1.0.0:
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-y8ec26+P1CKOE/Yh8rGiN8GyB7M=
   /p-try/2.2.0:
     engines:
       node: '>=6'
@@ -12480,6 +12573,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-QhhZ+DCCit2Coi2vmAKbq5RGTRcQUOE2+REgv8vdyu7MnYx2eZztegqtTx99TZ86GTIwqiy3+4nQTWZ2tgmdCA==
+  /parse-json/2.2.0:
+    dependencies:
+      error-ex: 1.3.2
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-9ID0BDTvgHQfhGkJn43qGPVaTck=
   /parse-json/5.2.0:
     dependencies:
       '@babel/code-frame': 7.12.13
@@ -12544,6 +12645,14 @@ packages:
     dev: false
     resolution:
       integrity: sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
+  /path-type/2.0.0:
+    dependencies:
+      pify: 2.3.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-8BLMuEFbcJb8LaoQVMPXI4lZTHM=
   /path-type/4.0.0:
     dev: true
     engines:
@@ -12574,6 +12683,12 @@ packages:
       node: '>=8.6'
     resolution:
       integrity: sha512-q0M/9eZHzmr0AulXyPwNfZjtwZ/RBZlbN3K3CErVrk50T2ASYI7Bye0EvekFY3IP1Nt2DHu0re+V2ZHIpMkuWg==
+  /pify/2.3.0:
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-7RQaasBDqEnqWISY59yosVMw6Qw=
   /pify/3.0.0:
     dev: false
     engines:
@@ -12621,6 +12736,14 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-WuNqLTbMI3tmfef2TKxlQmAiLHKtFhlsCZnPIpuv2Ow0RDVO8lfy1Opf4NUzlMXLjPl+Men7AuVdX6TA+s+uGA==
+  /pkg-dir/2.0.0:
+    dependencies:
+      find-up: 2.1.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-9tXREJ4Z1j7fQo4L1X4Sd3YVM0s=
   /pkg-dir/4.2.0:
     dependencies:
       find-up: 4.1.0
@@ -13010,6 +13133,15 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-5fyFUyO9B799foVk4n6ylcoAktG/FbE3jwRKxvwaeSrIunaoMc0u81dzXxjeAFKOce7O5KncdfwpGvvs6r5PsQ==
+  /read-pkg-up/2.0.0:
+    dependencies:
+      find-up: 2.1.0
+      read-pkg: 2.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-a3KoBImE4MQeeVEP1en6mbO1Sb4=
   /read-pkg-up/7.0.1:
     dependencies:
       find-up: 4.1.0
@@ -13019,6 +13151,16 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==
+  /read-pkg/2.0.0:
+    dependencies:
+      load-json-file: 2.0.0
+      normalize-package-data: 2.5.0
+      path-type: 2.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-jvHAYjxqbbDcZxPEv6xGMysjaPg=
   /read-pkg/5.2.0:
     dependencies:
       '@types/normalize-package-data': 2.4.0
@@ -14123,6 +14265,12 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-AuvKTrTfQNYNIctbR1K/YGTR1756GycPsg7b9bdV9Duqur4gv6aKqHXah67Z8ImS7WEz5QVcOtlfW2rZEugt6w==
+  /strip-bom/3.0.0:
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-IzTBjpx1n3vdVv3vfprj1YjmjtM=
   /strip-bom/4.0.0:
     dev: true
     engines:
@@ -14528,6 +14676,15 @@ packages:
       typescript: '>=3.8 <5.0'
     resolution:
       integrity: sha512-bwyJ2zJieSugf7RB+o8fgkMeoMVMM2KPDE0UklRLuACxjwJsOrZNo6chrcScmK33YavPSwhARffy8dZx5LJdUQ==
+  /tsconfig-paths/3.9.0:
+    dependencies:
+      '@types/json5': 0.0.29
+      json5: 1.0.1
+      minimist: 1.2.5
+      strip-bom: 3.0.0
+    dev: true
+    resolution:
+      integrity: sha512-dRcuzokWhajtZWkQsDVKbWyY+jgcLC5sqJhg2PSgf4ZkH2aHPvaOY8YWGhmjb68b5qqTfasSsDO9k7RUiEmZAw==
   /tslib/1.14.1:
     resolution:
       integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
@@ -15734,3 +15891,4 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+registry: ''
