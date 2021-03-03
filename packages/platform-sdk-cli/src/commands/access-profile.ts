@@ -32,7 +32,7 @@ export const accessProfile = async (env: Environment): Promise<void> => {
 			validate: (value: string) => value !== undefined,
 		});
 
-		if (password === undefined) {
+		if (!password) {
 			return;
 		}
 
