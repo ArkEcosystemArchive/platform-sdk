@@ -1,9 +1,9 @@
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import CardanoWasm from "@emurgo/cardano-serialization-lib-nodejs";
 
-import { SHELLEY_COIN_PURPOSE, SHELLEY_COIN_TYPE } from "./constants";
+import { HARDENED_THRESHOLD, SHELLEY_COIN_PURPOSE, SHELLEY_COIN_TYPE } from "./constants";
 
-const harden = (value: number): number => 0x80000000 + value;
+const harden = (value: number): number => HARDENED_THRESHOLD + value;
 
 export const generateRootKey = (mnemonic: string): CardanoWasm.Bip32PrivateKey => CardanoWasm.Bip32PrivateKey.from_bip39_entropy(
 	  Buffer.from(BIP39.toEntropy(mnemonic), 'hex'),
