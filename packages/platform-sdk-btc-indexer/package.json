@@ -44,9 +44,7 @@
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.29.0",
-		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/better-sqlite3": "5.4.1",
-		"@types/env-paths": "2.1.0",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/fs-extra": "9.0.7",
@@ -54,7 +52,6 @@
 		"@types/jest": "^26.0.15",
 		"@types/meow": "5.0.0",
 		"@types/node": "^14.14.25",
-		"@types/p-retry": "3.0.1",
 		"@types/pino": "^6.3.5",
 		"@types/prettier": "^2.1.5",
 		"@types/rimraf": "^3.0.0",

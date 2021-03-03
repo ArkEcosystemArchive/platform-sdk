@@ -36,7 +36,6 @@
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.29.0",
-		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/bn.js": "4.11.6",
 		"@types/elliptic": "6.4.12",
 		"@types/eslint": "^7.2.4",

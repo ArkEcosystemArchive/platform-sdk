@@ -30,7 +30,6 @@
 		"ky-universal": "^0.8.2"
 	},
 	"devDependencies": {
-		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/fs-extra": "9.0.7",

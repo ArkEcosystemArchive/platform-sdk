@@ -29,7 +29,6 @@
 		"bent": "^7.3"
 	},
 	"devDependencies": {
-		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/bent": "7.3.2",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",

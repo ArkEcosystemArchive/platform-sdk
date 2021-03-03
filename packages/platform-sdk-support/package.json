@@ -37,7 +37,6 @@
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/bent": "7.3.2",
-		"@types/dot-prop": "5.0.1",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/hapi__joi": "17.1.6",

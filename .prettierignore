@@ -1,3 +1,4 @@
 .coverage
-packages/**/dist
+dist
 docs
+packages/**/dist
