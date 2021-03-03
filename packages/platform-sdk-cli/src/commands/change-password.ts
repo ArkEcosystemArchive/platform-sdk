@@ -31,7 +31,7 @@ export const changePassword = async (profile: Profile): Promise<void> => {
 			name: "password",
 			message: "Please enter your new password:",
 			validate: async (value: string) => {
-				if (value === undefined) {
+				if (!value) {
 					return false;
 				}
 
@@ -40,11 +40,11 @@ export const changePassword = async (profile: Profile): Promise<void> => {
 		},
 	]);
 
-	if (oldPassword === undefined) {
+	if (!oldPassword) {
 		return;
 	}
 
-	if (newPassword === undefined) {
+	if (!newPassword) {
 		return;
 	}
 

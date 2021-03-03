@@ -36,15 +36,15 @@ export const sendTransaction = async (wallet: ReadWriteWallet): Promise<void> =>
 		},
 	]);
 
-	if (to === undefined) {
+	if (!to) {
 		return;
 	}
 
-	if (amount === undefined) {
+	if (!amount) {
 		return;
 	}
 
-	if (mnemonic === undefined) {
+	if (!mnemonic) {
 		return;
 	}
 
