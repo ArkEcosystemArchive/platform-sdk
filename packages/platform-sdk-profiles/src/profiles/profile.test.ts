@@ -25,6 +25,8 @@ let subject: Profile;
 beforeAll(() => {
 	bootContainer();
 
+	nock.disableNetConnect();
+
 	nock(/.+/)
 		.get("/api/node/configuration/crypto")
 		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
@@ -34,17 +36,14 @@ beforeAll(() => {
 		.reply(200, require("../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../test/fixtures/client/wallet.json"))
+		.get("/api/wallets/DNc92FQmYu8G9Xvo6YqhPtRxYsUxdsUn9w")
+		.reply(200, require("../../test/fixtures/client/wallet-2.json"))
 		.persist();
 });
 
 beforeEach(() => {
 	subject = new Profile({ id: "uuid", name: "name", data: "" });
 	subject.settings().set(ProfileSetting.Name, "John Doe");
-});
-
-it("should clone correctly", () => {
-	const clone: Profile = subject.clone()
-	expect(clone.toObject()).toMatchObject(subject.toObject());
 });
 
 it("should have an id", () => {
@@ -169,8 +168,6 @@ describe("#dump", () => {
 
 		const { id, password, data } = subject.dump();
 
-		console.log(id, password, data);
-
 		expect(id).toBeString();
 		expect(password).toBeString();
 		expect(data).toBeString();
@@ -179,8 +176,6 @@ describe("#dump", () => {
 	it("should dump the profile without a password", () => {
 		subject.save();
 		const { id, password, data } = subject.dump();
-
-		console.log(id, password, data);
 
 		expect(id).toBeString();
 		expect(password).toBeUndefined();
@@ -386,4 +381,101 @@ it("should fail to save if encoding or encrypting fails", () => {
 
 	expect(() => subject.save()).toThrow("Failed to encode or encrypt the profile");
 	encodingMock.mockRestore();
+});
+
+describe("#toObject with options", () => {
+
+	let profile: Profile;
+
+	beforeEach(() => {
+		profile = new Profile({ id: "uuid", name: "name", data: "" });
+		profile.settings().set(ProfileSetting.Name, "John Doe");
+	});
+
+	it("should not exclude anything", async () => {
+		await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+		profile.save();
+
+		const filtered = profile.toObject({
+			excludeEmptyWallets: false,
+			excludeLedgerWallets: false,
+			excludeWalletsWithoutName: false,
+			addNetworkInformation: true,
+			saveGeneralSettings: true,
+		});
+
+		expect(Object.keys(filtered.wallets)).toHaveLength(1);
+	});
+
+	it("should exclude empty wallets", async () => {
+		await profile.wallets().generate('ARK', 'ark.devnet');
+		profile.save();
+
+		const filtered = profile.toObject({
+			excludeEmptyWallets: true,
+			excludeLedgerWallets: false,
+			excludeWalletsWithoutName: false,
+			addNetworkInformation: true,
+			saveGeneralSettings: true,
+		});
+
+		expect(Object.keys(filtered.wallets)).toHaveLength(0);
+	});
+
+	it("should exclude ledger wallets", async () => {
+		await profile.wallets().importByAddressWithLedgerPath(
+			identity.address, "ARK", "ark.devnet", "0"
+		);
+		profile.save();
+
+		const filtered = profile.toObject({
+			excludeEmptyWallets: false,
+			excludeLedgerWallets: true,
+			excludeWalletsWithoutName: false,
+			addNetworkInformation: true,
+			saveGeneralSettings: true,
+		});
+
+		expect(Object.keys(filtered.wallets)).toHaveLength(0);
+	});
+
+	it("should exclude wallets without a name", async () => {
+		await profile.wallets().importByAddress("DNc92FQmYu8G9Xvo6YqhPtRxYsUxdsUn9w", "ARK", "ark.devnet");
+		profile.save();
+
+		const filtered = profile.toObject({
+			excludeEmptyWallets: false,
+			excludeLedgerWallets: false,
+			excludeWalletsWithoutName: true,
+			addNetworkInformation: true,
+			saveGeneralSettings: true,
+		});
+
+		expect(Object.keys(filtered.wallets)).toHaveLength(0);
+	});
+
+	it("should not include network information", async () => {
+		await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+		profile.save();
+
+		expect(() => profile.toObject({
+			excludeEmptyWallets: false,
+			excludeLedgerWallets: false,
+			excludeWalletsWithoutName: false,
+			addNetworkInformation: false,
+			saveGeneralSettings: true,
+		})).toThrow("This is not implemented yet");
+	});
+
+	it("should not include general settings", async () => {
+		profile.save();
+
+		expect(() => profile.toObject({
+			excludeEmptyWallets: false,
+			excludeLedgerWallets: false,
+			excludeWalletsWithoutName: false,
+			addNetworkInformation: true,
+			saveGeneralSettings: false,
+		})).toThrow("This is not implemented yet");
+	});
 });

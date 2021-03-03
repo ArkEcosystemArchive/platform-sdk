@@ -1,7 +1,6 @@
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
 import { ProfileExportOptions } from "../profiles/profile.models";
-import { ProfileImportExport } from "../services/profile-import-export";
 import { DataRepository } from "./data-repository";
 
 export class ProfileRepository {
@@ -61,12 +60,12 @@ export class ProfileRepository {
 		return result;
 	}
 
-	public import(data: string): void {
-		ProfileImportExport.import(data);
-	}
+	// public import(data: string): void {
+	// 	ProfileImportExport.import(data);
+	// }
 
-	public export(profile: Profile, options: ProfileExportOptions): string {
-		return ProfileImportExport.export(profile, options).data;
+	public export(profile: Profile, options: ProfileExportOptions, password?: string): string {
+		return profile.export(password, options);
 	}
 
 	public has(id: string): boolean {

@@ -20,7 +20,7 @@ import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Migrator } from "./migrator";
-import { ProfileContract, ProfileInput, ProfileSetting, ProfileStruct } from "./profile.models";
+import { ProfileContract, ProfileExportOptions, ProfileInput, ProfileSetting, ProfileStruct } from "./profile.models";
 
 export class Profile implements ProfileContract {
 	#data: ProfileInput;
@@ -53,10 +53,6 @@ export class Profile implements ProfileContract {
 		this.#registrationAggregate = new RegistrationAggregate(this);
 		this.#transactionAggregate = new TransactionAggregate(this);
 		this.#walletAggregate = new WalletAggregate(this);
-	}
-
-	public clone(): Profile {
-		return new Profile({ ...this.#data });
 	}
 
 	public id(): string {
@@ -189,7 +185,17 @@ export class Profile implements ProfileContract {
 	/**
 	 * Specify data which should be serialized to an object.
 	 */
-	public toObject(): ProfileStruct {
+	public toObject(options: ProfileExportOptions = {
+		excludeEmptyWallets: false,
+		excludeLedgerWallets: false,
+		excludeWalletsWithoutName: false,
+		addNetworkInformation: true,
+		saveGeneralSettings: true,
+	}): ProfileStruct {
+		if (!options.saveGeneralSettings) {
+			throw Error("This is not implemented yet");
+		}
+
 		return {
 			id: this.id(),
 			contacts: this.contacts().toObject(),
@@ -198,7 +204,7 @@ export class Profile implements ProfileContract {
 			peers: this.peers().toObject(),
 			plugins: this.plugins().all(),
 			settings: this.settings().all(),
-			wallets: this.wallets().toObject(),
+			wallets: this.wallets().toObject(options),
 		};
 	}
 
@@ -348,14 +354,31 @@ export class Profile implements ProfileContract {
 	 */
 	public save(password?: string): void {
 		try {
-			if (this.usesPassword()) {
-				this.#data.data = Base64.encode(this.encrypt(password));
-			} else {
-				this.#data.data = Base64.encode(JSON.stringify(this.toObject()));
-			}
+			this.#data.data = this.export(password);
 		} catch (error) {
 			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
 		}
+	}
+
+	public export(password?: string, options: ProfileExportOptions = {
+		excludeEmptyWallets: false,
+		excludeLedgerWallets: false,
+		excludeWalletsWithoutName: false,
+		addNetworkInformation: true,
+		saveGeneralSettings: true,
+	}): string {
+
+		const filtered = this.toObject(options);
+		const unencoded = this.usesPassword() ?
+			this.encrypt(JSON.stringify({
+				id: this.id(),
+				name: this.name(),
+				avatar: this.avatar(),
+				password: this.#data.password,
+				data: filtered
+			}), password) :
+			JSON.stringify(filtered);
+		return  Base64.encode(unencoded);
 	}
 
 	/**
@@ -412,9 +435,10 @@ export class Profile implements ProfileContract {
 	/**
 	 * Attempt to encrypt the profile data with the given password.
 	 *
-	 * @param password A hard-to-guess password to encrypt the contents.
+	 * @param unencrypted The JSON string to encrypt
+	 * @param password? A hard-to-guess password to encrypt the contents.
 	 */
-	private encrypt(password?: string): string {
+	private encrypt(unencrypted: string, password?: string): string {
 		if (typeof password !== "string") {
 			password = MemoryPassword.get(this);
 		}
@@ -423,16 +447,7 @@ export class Profile implements ProfileContract {
 			throw new Error("The password did not match our records.");
 		}
 
-		return PBKDF2.encrypt(
-			JSON.stringify({
-				id: this.id(),
-				name: this.name(),
-				avatar: this.avatar(),
-				password: this.#data.password,
-				data: this.toObject(),
-			}),
-			password,
-		);
+		return PBKDF2.encrypt(unencrypted, password);
 	}
 
 	/**

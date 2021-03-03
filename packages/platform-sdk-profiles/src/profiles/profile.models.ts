@@ -88,10 +88,13 @@ export interface ProfileInput {
 	data: string;
 }
 
-export interface ProfileExportOptions {
+export interface WalletExportOptions {
 	excludeWalletsWithoutName: boolean;
 	excludeEmptyWallets: boolean;
 	excludeLedgerWallets: boolean;
 	addNetworkInformation: boolean;
+}
+
+export interface ProfileExportOptions extends WalletExportOptions{
 	saveGeneralSettings: boolean;
 }
