@@ -20,25 +20,25 @@ Documentation can be found [here](https://ark.dev/docs/platform-sdk).
 rush format
 ```
 
-### Apply eslint rules to source
+### Apply `eslint` rules to source
 
 ```bash
 rush lint
 ```
 
-### Apply eslint rules to tests
+### Apply `eslint` rules to tests
 
 ```bash
 rush lint:tests
 ```
 
-### Apply prettier formatting
+### Apply `prettier` formatting
 
 ```bash
 rush prettier
 ```
 
-### Run tests
+### Run tests with `jest`
 
 ```bash
 rush test
