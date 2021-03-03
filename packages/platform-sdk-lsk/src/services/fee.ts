@@ -1,5 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import * as transactions from "@liskhq/lisk-transactions";
+import { constants } from "@liskhq/lisk-transactions";
 
 export class FeeService implements Contracts.FeeService {
 	readonly #network;
@@ -34,7 +34,7 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	private transform(type: string | number): Contracts.TransactionFee {
-		const fee: number = type === 0 ? 0 : transactions.constants[type];
+		const fee: number = type === 0 ? 0 : constants[type];
 
 		return {
 			static: `${fee}`,

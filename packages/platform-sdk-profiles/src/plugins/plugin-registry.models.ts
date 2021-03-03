@@ -1,5 +1,7 @@
 /* istanbul ignore file */
 
+type RegistryPluginAuthor = { [key: string]: any } | string;
+
 export interface RegistryPluginManifest {
 	logo?: string;
 	title?: string;
@@ -43,8 +45,6 @@ export interface RegistryPluginVersion {
 	released_at: Date;
 	is_verified: boolean;
 }
-
-type RegistryPluginAuthor = { [key: string]: any } | string;
 
 export interface RegistryPluginProperties {
 	name: string;

@@ -395,6 +395,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "eslint-plugin-import",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "eslint-plugin-jest",
       "allowedCategories": [ "libraries" ]
     },

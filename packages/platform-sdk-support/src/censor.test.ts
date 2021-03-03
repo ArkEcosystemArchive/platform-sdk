@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Censor } from "../src/censor";
+import { Censor } from "./censor";
 
 let subject: Censor;
 beforeEach(() => (subject = new Censor()));
