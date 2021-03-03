@@ -411,6 +411,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "eslint-plugin-tsdoc",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "eslint-plugin-unused-imports",
       "allowedCategories": [ "libraries" ]
     },

@@ -59,7 +59,7 @@ export const createWallet = async (profile: Profile): Promise<void> => {
 			validate: (value: string) => BIP39.validate(value),
 		});
 
-		if (mnemonic === undefined) {
+		if (!mnemonic) {
 			return;
 		}
 

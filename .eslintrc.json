@@ -4,7 +4,7 @@
 		"project": "../../tsconfig.eslint.json",
 		"extraFileExtensions": [".json"]
 	},
-	"plugins": ["@typescript-eslint", "jest", "prettier", "simple-import-sort", "unused-imports"],
+	"plugins": ["@typescript-eslint", "jest", "prettier", "simple-import-sort", "unused-imports",  "eslint-plugin-tsdoc"],
 	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
@@ -54,7 +54,7 @@
 		"import/no-namespace": "warn",
 		"import/no-restricted-paths": "error",
 		"import/no-self-import": "error",
-		"import/no-unresolved": "error",
+		"import/no-unresolved": "warn",
 		"import/no-unused-modules": "error",
 		"import/no-useless-path-segments": "error",
 		"import/no-webpack-loader-syntax": "error",
@@ -69,6 +69,7 @@
 		],
 		"prettier/prettier": "error",
 		"simple-import-sort/imports": "error",
+		"tsdoc/syntax": "warn",
 		"unused-imports/no-unused-imports-ts": "error"
 	}
 }
