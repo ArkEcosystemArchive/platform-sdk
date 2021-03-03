@@ -1,5 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { generateRootKey } from "../../crypto/shelley/address";
+import { generateRootKey } from "./shelley";
 
 export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {

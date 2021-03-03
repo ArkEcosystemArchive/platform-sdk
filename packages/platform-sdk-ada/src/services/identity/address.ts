@@ -4,7 +4,7 @@ import { isValidShelleyAddress } from "cardano-crypto.js";
 import {
 	addressFromAccountExtPublicKey,
 	addressFromMnemonic,
-} from "../../crypto/shelley/address";
+} from "./shelley";
 
 export class Address implements Contracts.Address {
 	readonly #config: Coins.Config;
