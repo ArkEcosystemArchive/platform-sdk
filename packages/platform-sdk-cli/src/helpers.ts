@@ -14,7 +14,7 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { LSK } from "@arkecosystem/platform-sdk-lsk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
 // import { NEO } from "@arkecosystem/platform-sdk-neo";
-// import { SOL } from "@arkecosystem/platform-sdk-sol";
+import { SOL } from "@arkecosystem/platform-sdk-sol";
 import Logger from "@ptkdev/logger";
 import cfonts from "cfonts";
 
@@ -36,7 +36,7 @@ export const useEnvironment = async (): Promise<Environment> => {
 			// ETH,
 			LSK,
 			// NEO,
-			// SOL,
+			SOL,
 			// TRX,
 			// XLM,
 			// XRP,
