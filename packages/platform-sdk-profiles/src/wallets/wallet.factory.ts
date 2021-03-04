@@ -7,7 +7,7 @@ import { Wallet } from "./wallet";
 import { ReadWriteWallet, WalletData } from "./wallet.models";
 
 export class WalletFactory {
-	#profile: Profile;
+	readonly #profile: Profile;
 
 	public constructor(profile: Profile) {
 		this.#profile = profile;
