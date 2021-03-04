@@ -52,7 +52,7 @@ export class Address implements Contracts.Address {
 				0b1110, // Reward
 			].includes(words[0] >> 4);
 		} catch {
-		  	return false;
+			return false;
 		}
 	}
 }
