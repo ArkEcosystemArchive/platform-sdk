@@ -3,18 +3,21 @@ import { sortBy, sortByDesc } from "@arkecosystem/utils";
 import retry from "p-retry";
 
 import { Profile } from "../profiles/profile";
+import { WalletExportOptions } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { ReadWriteWallet } from "../wallets/wallet.models";
 import { DataRepository } from "./data-repository";
 
 export class WalletRepository {
-	#data: DataRepository;
 	#profile: Profile;
+	#data: DataRepository;
+	#wallets: WalletFactory;
 
 	public constructor(profile: Profile) {
-		this.#data = new DataRepository();
 		this.#profile = profile;
+		this.#data = new DataRepository();
+		this.#wallets = new WalletFactory(profile);
 	}
 
 	public all(): Record<string, ReadWriteWallet> {
@@ -54,11 +57,11 @@ export class WalletRepository {
 	}
 
 	public async importByMnemonic(mnemonic: string, coin: string, network: string): Promise<ReadWriteWallet> {
-		return this.storeWallet(await WalletFactory.fromMnemonic(this.#profile, coin, network, mnemonic));
+		return this.storeWallet(await this.#wallets.fromMnemonic({ coin, network, mnemonic }));
 	}
 
 	public async importByAddress(address: string, coin: string, network: string): Promise<ReadWriteWallet> {
-		return this.storeWallet(await WalletFactory.fromAddress(this.#profile, coin, network, address));
+		return this.storeWallet(await this.#wallets.fromAddress({ coin, network, address }));
 	}
 
 	public async importByAddressWithLedgerPath(
@@ -67,9 +70,7 @@ export class WalletRepository {
 		network: string,
 		path: string,
 	): Promise<ReadWriteWallet> {
-		return this.storeWallet(
-			await WalletFactory.fromAddressWithLedgerPath(this.#profile, coin, network, address, path),
-		);
+		return this.storeWallet(await this.#wallets.fromAddressWithLedgerPath({ coin, network, address, path }));
 	}
 
 	public async importByMnemonicWithEncryption(
@@ -78,9 +79,7 @@ export class WalletRepository {
 		network: string,
 		password: string,
 	): Promise<ReadWriteWallet> {
-		return this.storeWallet(
-			await WalletFactory.fromMnemonicWithEncryption(this.#profile, coin, network, mnemonic, password),
-		);
+		return this.storeWallet(await this.#wallets.fromMnemonicWithEncryption({ coin, network, mnemonic, password }));
 	}
 
 	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: ReadWriteWallet }> {
@@ -197,10 +196,29 @@ export class WalletRepository {
 		return this.keys().length;
 	}
 
-	public toObject(): Record<string, object> {
+	public toObject(
+		options: WalletExportOptions = {
+			excludeWalletsWithoutName: false,
+			excludeEmptyWallets: false,
+			excludeLedgerWallets: false,
+			addNetworkInformation: true,
+		},
+	): Record<string, object> {
+		if (!options.addNetworkInformation) {
+			throw Error("This is not implemented yet");
+		}
 		const result: Record<string, object> = {};
 
 		for (const [id, wallet] of Object.entries(this.#data.all())) {
+			if (options.excludeLedgerWallets && wallet.isLedger()) {
+				continue;
+			}
+			if (options.excludeWalletsWithoutName && wallet.displayName() === undefined) {
+				continue;
+			}
+			if (options.excludeEmptyWallets && wallet.balance().isZero()) {
+				continue;
+			}
 			result[id] = wallet.toObject();
 		}
 

@@ -196,7 +196,7 @@ export class ClientService implements Contracts.ClientService {
 
 		const addresses: string[] = [];
 		for (let i = offset; i < offset + 20; ++i) {
-			addresses.push(await addressFromAccountExtPublicKey(publicKey, isChange, i, networkId));
+			addresses.push(addressFromAccountExtPublicKey(publicKey, isChange, i, networkId));
 		}
 		return addresses;
 	}
