@@ -34,7 +34,8 @@
 		"keytar": "^7.1.0",
 		"node-forge": "^0.10.0",
 		"safe-buffer": "^5.2.1",
-		"string-crypto": "^2.0.1"
+		"string-crypto": "^2.0.1",
+		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
