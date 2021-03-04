@@ -13,11 +13,15 @@ export class WalletFactory {
 		this.#profile = profile;
 	}
 
-	public async fromMnemonic(
-		{ coin, network, mnemonic}:{coin: string,
-		network: string,
-		mnemonic: string,}
-	): Promise<ReadWriteWallet> {
+	public async fromMnemonic({
+		coin,
+		network,
+		mnemonic,
+	}: {
+		coin: string;
+		network: string;
+		mnemonic: string;
+	}): Promise<ReadWriteWallet> {
 		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		await wallet.setCoin(coin, network);
@@ -25,7 +29,7 @@ export class WalletFactory {
 		if (wallet.canDeriveWithBIP39()) {
 			await wallet.setIdentity(mnemonic);
 		} else if (wallet.canDeriveWithBIP44()) {
-			const addresses = await wallet.coin().identity().addressList().fromMnemonic(mnemonic, 50);// @TODO: derive until we no longer find addresses on the network?
+			const addresses = await wallet.coin().identity().addressList().fromMnemonic(mnemonic, 50); // @TODO: derive until we no longer find addresses on the network?
 
 			for (const { spendAddress } of addresses) {
 				await wallet.addresses().fromAddress({ address: spendAddress });
@@ -35,11 +39,15 @@ export class WalletFactory {
 		return wallet;
 	}
 
-	public async fromAddress(
-		{ coin, network, address}:{coin: string,
-		network: string,
-		address: string,}
-	): Promise<ReadWriteWallet> {
+	public async fromAddress({
+		coin,
+		network,
+		address,
+	}: {
+		coin: string;
+		network: string;
+		address: string;
+	}): Promise<ReadWriteWallet> {
 		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		await wallet.setCoin(coin, network);
@@ -48,11 +56,15 @@ export class WalletFactory {
 		return wallet;
 	}
 
-	public async fromPublicKey(
-		{ coin, network, publicKey}:{	coin: string,
-		network: string,
-		publicKey: string,}
-	): Promise<ReadWriteWallet> {
+	public async fromPublicKey({
+		coin,
+		network,
+		publicKey,
+	}: {
+		coin: string;
+		network: string;
+		publicKey: string;
+	}): Promise<ReadWriteWallet> {
 		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		await wallet.setCoin(coin, network);
@@ -61,11 +73,15 @@ export class WalletFactory {
 		return wallet;
 	}
 
-	public async fromPrivateKey(
-		{ coin, network, privateKey}:{	coin: string,
-		network: string,
-		privateKey: string,}
-	): Promise<ReadWriteWallet> {
+	public async fromPrivateKey({
+		coin,
+		network,
+		privateKey,
+	}: {
+		coin: string;
+		network: string;
+		privateKey: string;
+	}): Promise<ReadWriteWallet> {
 		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		await wallet.setCoin(coin, network);
@@ -83,28 +99,38 @@ export class WalletFactory {
 		return wallet;
 	}
 
-	public async fromAddressWithLedgerPath(
-		{ coin, network, address, path}:{	coin: string,
-		network: string,
-		address: string,
-		path: string,}
-	): Promise<ReadWriteWallet> {
+	public async fromAddressWithLedgerPath({
+		coin,
+		network,
+		address,
+		path,
+	}: {
+		coin: string;
+		network: string;
+		address: string;
+		path: string;
+	}): Promise<ReadWriteWallet> {
 		// @TODO: eventually handle the whole process from slip44 path to public key to address
 
-		const wallet: ReadWriteWallet = await this.fromAddress({ coin, network, address});
+		const wallet: ReadWriteWallet = await this.fromAddress({ coin, network, address });
 
 		wallet.data().set(WalletData.LedgerPath, path);
 
 		return wallet;
 	}
 
-	public async fromMnemonicWithEncryption(
-		{ coin, network, mnemonic, password}:{	coin: string,
-		network: string,
-		mnemonic: string,
-		password: string,}
-	): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = await this.fromMnemonic({coin, network, mnemonic});
+	public async fromMnemonicWithEncryption({
+		coin,
+		network,
+		mnemonic,
+		password,
+	}: {
+		coin: string;
+		network: string;
+		mnemonic: string;
+		password: string;
+	}): Promise<ReadWriteWallet> {
+		const wallet: ReadWriteWallet = await this.fromMnemonic({ coin, network, mnemonic });
 
 		const { compressed, privateKey } = decode(await wallet.coin().identity().wif().fromMnemonic(mnemonic));
 
