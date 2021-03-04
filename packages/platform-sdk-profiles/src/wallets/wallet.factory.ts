@@ -1,3 +1,4 @@
+import { Coins } from "@arkecosystem/platform-sdk";
 import { encrypt } from "bip38";
 import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
@@ -26,9 +27,9 @@ export class WalletFactory {
 
 		await wallet.setCoin(coin, network);
 
-		if (wallet.canDeriveWithBIP39()) {
+		if (this.canDeriveWithBIP39(wallet)) {
 			await wallet.setAddress(await wallet.coin().identity().address().fromMnemonic(mnemonic));
-		} else if (wallet.canDeriveWithBIP44()) {
+		} else if (this.canDeriveWithBIP44(wallet)) {
 			// @ts-ignore - We currently require all bip44 parameters to be specified
 			await wallet.setAddress(await wallet.coin().identity().publicKey().fromMnemonic(mnemonic, { bip44: { account: 0 } }));
 		}
@@ -83,9 +84,9 @@ export class WalletFactory {
 
 		await wallet.setCoin(coin, network);
 
-		if (wallet.canDeriveWithBIP39()) {
+		if (this.canDeriveWithBIP39(wallet)) {
 			await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
-		} else if (wallet.canDeriveWithBIP44()) {
+		} else if (this.canDeriveWithBIP44(wallet)) {
 			// @ts-ignore - We currently require all bip44 parameters to be specified
 			await wallet.setAddress((await wallet.coin().identity().keys().fromMnemonic(mnemonic, { bip44: { account: 0 } })).publicKey);
 		}
@@ -131,5 +132,13 @@ export class WalletFactory {
 		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 
 		return wallet;
+	}
+
+	private canDeriveWithBIP39(wallet: ReadWriteWallet): boolean {
+		return wallet.can(Coins.FeatureFlag.DerivationBIP39);
+	}
+
+	private canDeriveWithBIP44(wallet: ReadWriteWallet): boolean {
+		return wallet.can(Coins.FeatureFlag.DerivationBIP44);
 	}
 }

@@ -148,7 +148,4 @@ export interface ReadWriteWallet {
 	hasBeenFullyRestored(): boolean;
 	markAsPartiallyRestored(): void;
 	hasBeenPartiallyRestored(): boolean;
-
-	canDeriveWithBIP39(): boolean;
-	canDeriveWithBIP44(): boolean;
 }
