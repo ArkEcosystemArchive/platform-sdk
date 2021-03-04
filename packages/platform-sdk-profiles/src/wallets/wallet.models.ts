@@ -6,7 +6,6 @@ import { ExtendedTransactionDataCollection } from "../dto/transaction-collection
 import { DataRepository } from "../repositories/data-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
-import { AddressRepository } from "./address.repository";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 
@@ -84,7 +83,6 @@ export interface ReadWriteWallet {
 	convertedBalance(): BigNumber;
 	nonce(): BigNumber;
 	avatar(): string;
-	addresses(): AddressRepository;
 	data(): DataRepository;
 	settings(): SettingRepository;
 	toObject(): WalletStruct;

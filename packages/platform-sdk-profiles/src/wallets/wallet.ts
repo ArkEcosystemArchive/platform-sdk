@@ -19,14 +19,11 @@ import { DataRepository } from "../repositories/data-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
-import { Address } from "./address";
-import { AddressRepository } from "./address.repository";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
 
 export class Wallet implements ReadWriteWallet {
-	readonly #addresses: AddressRepository;
 	readonly #dataRepository: DataRepository;
 	readonly #settingRepository: SettingRepository;
 	readonly #transactionService: TransactionService;
@@ -46,7 +43,6 @@ export class Wallet implements ReadWriteWallet {
 		this.#id = id;
 		this.#initialState = initialState;
 		this.#profile = profile;
-		this.#addresses = new AddressRepository(this); // @TODO: restore addresses
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
@@ -195,7 +191,13 @@ export class Wallet implements ReadWriteWallet {
 	}
 
 	public balance(): BigNumber {
-		return this.#addresses.balance();
+		const value: string | undefined = this.data().get(WalletData.Balance);
+
+		if (value === undefined) {
+			return BigNumber.ZERO;
+		}
+
+		return BigNumber.make(value);
 	}
 
 	public convertedBalance(): BigNumber {
@@ -226,10 +228,6 @@ export class Wallet implements ReadWriteWallet {
 		}
 
 		return this.#avatar;
-	}
-
-	public addresses(): AddressRepository {
-		return this.#addresses;
 	}
 
 	public data(): DataRepository {
@@ -568,8 +566,6 @@ export class Wallet implements ReadWriteWallet {
 
 	public async sync(): Promise<void> {
 		await this.setCoin(this.coinId(), this.networkId());
-
-		await Promise.allSettled(this.#addresses.all().map((address: Address) => address.sync()));
 	}
 
 	public async syncIdentity(): Promise<void> {

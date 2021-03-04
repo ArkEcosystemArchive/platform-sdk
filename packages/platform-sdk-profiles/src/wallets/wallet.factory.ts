@@ -27,12 +27,10 @@ export class WalletFactory {
 		await wallet.setCoin(coin, network);
 
 		if (wallet.canDeriveWithBIP39()) {
-			await wallet.addresses().fromMnemonic({ mnemonic });
+			await wallet.setAddress(await wallet.coin().identity().address().fromMnemonic(mnemonic));
 		} else if (wallet.canDeriveWithBIP44()) {
-			await wallet.addresses().fromPrimaryKey({
-				// @ts-ignore - We currently require all bip44 parameters to be specified
-				primaryKey: await wallet.coin().identity().publicKey().fromMnemonic(mnemonic, { bip44: { account: 0 } })
-			});
+			// @ts-ignore - We currently require all bip44 parameters to be specified
+			await wallet.setAddress(await wallet.coin().identity().publicKey().fromMnemonic(mnemonic, { bip44: { account: 0 } }));
 		}
 
 		return wallet;
@@ -88,10 +86,8 @@ export class WalletFactory {
 		if (wallet.canDeriveWithBIP39()) {
 			await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
 		} else if (wallet.canDeriveWithBIP44()) {
-			await wallet.addresses().fromPrimaryKey({
-				// @ts-ignore - We currently require all bip44 parameters to be specified
-				primaryKey: (await wallet.coin().identity().keys().fromMnemonic(mnemonic, { bip44: { account: 0 } })).publicKey
-			});
+			// @ts-ignore - We currently require all bip44 parameters to be specified
+			await wallet.setAddress((await wallet.coin().identity().keys().fromMnemonic(mnemonic, { bip44: { account: 0 } })).publicKey);
 		}
 
 		return wallet;
