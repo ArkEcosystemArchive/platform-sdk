@@ -31,7 +31,11 @@ export class WalletFactory {
 		} else if (wallet.canDeriveWithBIP44()) {
 			await wallet.addresses().fromPrimaryKey({
 				// @ts-ignore - We currently require all bip44 parameters to be specified
-				primaryKey: await wallet.coin().identity().publicKey().fromMnemonic(mnemonic, { bip44: { account: 0 } })
+				primaryKey: await wallet
+					.coin()
+					.identity()
+					.publicKey()
+					.fromMnemonic(mnemonic, { bip44: { account: 0 } }),
 			});
 		}
 
@@ -90,7 +94,13 @@ export class WalletFactory {
 		} else if (wallet.canDeriveWithBIP44()) {
 			await wallet.addresses().fromPrimaryKey({
 				// @ts-ignore - We currently require all bip44 parameters to be specified
-				primaryKey: (await wallet.coin().identity().keys().fromMnemonic(mnemonic, { bip44: { account: 0 } })).publicKey
+				primaryKey: (
+					await wallet
+						.coin()
+						.identity()
+						.keys()
+						.fromMnemonic(mnemonic, { bip44: { account: 0 } })
+				).publicKey,
 			});
 		}
 

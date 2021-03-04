@@ -1,8 +1,8 @@
 import "jest-extended";
 
 import { decrypt } from "bip38";
-// import nock from "nock";
 
+// import nock from "nock";
 import { bootContainer } from "../../test/helpers";
 import { Profile } from "../profiles/profile";
 import { WalletFactory } from "./wallet.factory";
@@ -40,7 +40,8 @@ test.only("#fromMnemonic", async () => {
 		coin: "ADA",
 		network: "ada.testnet",
 		// mnemonic: "this is a top secret passphrase",
-		mnemonic: "submit teach debate stool guilt pen problem inquiry horn tissue cradle ankle member quarter conduct obvious device ivory top wink globe tool rate tonight",
+		mnemonic:
+			"submit teach debate stool guilt pen problem inquiry horn tissue cradle ankle member quarter conduct obvious device ivory top wink globe tool rate tonight",
 	});
 
 	// expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
@@ -48,57 +49,57 @@ test.only("#fromMnemonic", async () => {
 });
 
 test("#fromAddress", async () => {
-	const wallet = await subject.fromAddress(
-		{coin: "ARK",
+	const wallet = await subject.fromAddress({
+		coin: "ARK",
 		network: "ark.devnet",
-		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",}
-	);
+		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+	});
 
 	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 });
 
 test("#fromPublicKey", async () => {
-	const wallet = await subject.fromPublicKey(
-	{	coin: "ARK",
+	const wallet = await subject.fromPublicKey({
+		coin: "ARK",
 		network: "ark.devnet",
-		publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",}
-	);
+		publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+	});
 
 	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 });
 
 test("#fromPrivateKey", async () => {
-	const wallet = await subject.fromPrivateKey(
-		{coin: "ARK",
+	const wallet = await subject.fromPrivateKey({
+		coin: "ARK",
 		network: "ark.devnet",
-		privateKey: "d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",}
-	);
+		privateKey: "d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
+	});
 
 	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 });
 
 test("#fromAddressWithLedgerPath", async () => {
-	const wallet = await subject.fromAddressWithLedgerPath(
-		{coin: "ARK",
+	const wallet = await subject.fromAddressWithLedgerPath({
+		coin: "ARK",
 		network: "ark.devnet",
 		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		path: "1",}
-	);
+		path: "1",
+	});
 
 	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 });
 
 test("#fromMnemonicWithEncryption", async () => {
-	const wallet = await subject.fromMnemonicWithEncryption(
-		{coin: "ARK",
+	const wallet = await subject.fromMnemonicWithEncryption({
+		coin: "ARK",
 		network: "ark.devnet",
 		mnemonic: "this is a top secret passphrase",
-		password: "password",}
-	);
+		password: "password",
+	});
 
 	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");

@@ -12,7 +12,10 @@ export class AddressList implements Contracts.AddressList {
 		return this.deriveAddresses(Bip32PrivateKey.from_bech32(privateKey), pageSize);
 	}
 
-	private async deriveAddresses(accountKey: Bip32PrivateKey, pageSize: number): Promise<Contracts.AddressListEntry[]> {
+	private async deriveAddresses(
+		accountKey: Bip32PrivateKey,
+		pageSize: number,
+	): Promise<Contracts.AddressListEntry[]> {
 		const addresses: Contracts.AddressListEntry[] = [];
 
 		for (let i = 0; i < pageSize; ++i) {

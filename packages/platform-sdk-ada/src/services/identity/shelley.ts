@@ -21,7 +21,9 @@ const deriveAddress = (
 		parseInt(networkId),
 		CardanoWasm.StakeCredential.from_keyhash(spendKey.to_raw_key().hash()),
 		CardanoWasm.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash()),
-	).to_address().to_bech32();
+	)
+		.to_address()
+		.to_bech32();
 };
 
 // Key Derivation
@@ -56,7 +58,17 @@ export const addressFromMnemonic = (
 	isChange: boolean,
 	addressIndex: number,
 	networkId: string,
-): string => deriveAddress(deriveRootKey(mnemonic).derive(harden(SHELLEY_COIN_PURPOSE)).derive(harden(SHELLEY_COIN_TYPE)).derive(harden(accountIndex)).to_public(), isChange, addressIndex, networkId)
+): string =>
+	deriveAddress(
+		deriveRootKey(mnemonic)
+			.derive(harden(SHELLEY_COIN_PURPOSE))
+			.derive(harden(SHELLEY_COIN_TYPE))
+			.derive(harden(accountIndex))
+			.to_public(),
+		isChange,
+		addressIndex,
+		networkId,
+	);
 
 export const addressFromAccountExtPublicKey = (
 	extPubKey: Buffer,
