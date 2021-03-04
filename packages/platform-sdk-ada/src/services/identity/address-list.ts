@@ -5,16 +5,15 @@ import { addressFromMnemonic, deriveAccountKey, deriveRootKey, deriveSpendKey, d
 
 export class AddressList implements Contracts.AddressList {
 	public make(mnemonic: string, pageSize: number): Contracts.AddressListEntry[] {
+		const accountKey = deriveAccountKey(deriveRootKey(mnemonic), 0);
 		const addresses: Contracts.AddressListEntry[] = [];
-
-		const account0Key = deriveAccountKey(deriveRootKey(mnemonic), 0);
 
 		for (let i = 0; i < pageSize; ++i) {
 			addresses.push({
 				index: i,
-				spendAddress: deriveSpendKey(account0Key, i).to_public().to_bech32(),
-				changeAddress: deriveChangeKey(account0Key, i).to_bech32(),
-				stakeAddress: deriveStakeKey(account0Key, i).to_bech32(),
+				spendAddress: deriveSpendKey(accountKey, i).to_public().to_bech32(),
+				changeAddress: deriveChangeKey(accountKey, i).to_bech32(),
+				stakeAddress: deriveStakeKey(accountKey, i).to_bech32(),
 				used: false,
 			});
 		}
