@@ -85,6 +85,9 @@ const network: Coins.CoinNetwork = {
 			vote: true,
 			multiSignature: true,
 		},
+		Derivation: {
+			bip39: true,
+		},
 	},
 	transactionTypes: ["delegate-registration", "multi-signature", "second-signature", "transfer", "vote"],
 };

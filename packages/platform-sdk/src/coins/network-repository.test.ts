@@ -38,6 +38,9 @@ test("#all", () => {
 		        "wallet": true,
 		        "wallets": true,
 		      },
+		      "Derivation": Object {
+		        "bip39": true,
+		      },
 		      "Fee": Object {
 		        "all": true,
 		      },
@@ -175,6 +178,9 @@ test("#all", () => {
 		        "wallet": true,
 		        "wallets": true,
 		      },
+		      "Derivation": Object {
+		        "bip39": true,
+		      },
 		      "Fee": Object {
 		        "all": true,
 		      },
@@ -311,6 +317,9 @@ test("#all", () => {
 		        "votes": true,
 		        "wallet": true,
 		        "wallets": true,
+		      },
+		      "Derivation": Object {
+		        "bip39": true,
 		      },
 		      "Fee": Object {
 		        "all": true,

@@ -137,6 +137,10 @@ export interface CoinNetwork {
 			dynamicFees?: boolean;
 			customPeer?: boolean;
 		};
+		Derivation?: {
+			bip32?: boolean;
+			bip39?: boolean;
+		};
 	};
 	transactionTypes: CoinTransactionTypes[];
 	knownWallets?: string;
