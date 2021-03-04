@@ -25,8 +25,8 @@ export class WalletFactory {
 			// @TODO: make this method async to support all coins
 			const addresses = wallet.coin().identity().addressList().fromMnemonic(mnemonic, 50);
 
-			for(const address of addresses) {
-				await wallet.addresses().fromAddress({ address: address.spendAddress });
+			for(const { spendAddress } of addresses) {
+				await wallet.addresses().fromAddress({ address: spendAddress });
 			}
 		}
 
