@@ -17,9 +17,9 @@ export class WalletFactory {
 
 		await wallet.setCoin(coin, network);
 
-		if (wallet.derivesWithBIP39()) {
+		if (wallet.canDeriveWithBIP39()) {
 			await wallet.setIdentity(mnemonic);
-		} else if (wallet.derivesWithBIP44()) {
+		} else if (wallet.canDeriveWithBIP44()) {
 			const addresses = await wallet.coin().identity().addressList().fromMnemonic(mnemonic, 50);// @TODO: derive until we no longer find addresses on the network?
 
 			for (const { spendAddress } of addresses) {
@@ -68,9 +68,9 @@ export class WalletFactory {
 
 		await wallet.setCoin(coin, network);
 
-		if (wallet.derivesWithBIP39()) {
+		if (wallet.canDeriveWithBIP39()) {
 			await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
-		} else if (wallet.derivesWithBIP44()) {
+		} else if (wallet.canDeriveWithBIP44()) {
 			const addresses = await wallet.coin().identity().addressList().fromPrivateKey(privateKey, 50); // @TODO: derive until we no longer find addresses on the network?
 
 			for (const { spendAddress } of addresses) {

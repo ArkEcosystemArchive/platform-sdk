@@ -674,11 +674,11 @@ export class Wallet implements ReadWriteWallet {
 		return this.#restorationState.partial;
 	}
 
-	public derivesWithBIP39(): boolean {
+	public canDeriveWithBIP39(): boolean {
 		return this.can(Coins.FeatureFlag.DerivationBIP39);
 	}
 
-	public derivesWithBIP44(): boolean {
+	public canDeriveWithBIP44(): boolean {
 		return this.can(Coins.FeatureFlag.DerivationBIP44);
 	}
 
