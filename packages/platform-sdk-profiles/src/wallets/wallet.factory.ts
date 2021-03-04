@@ -37,7 +37,13 @@ export class WalletFactory {
 
 		if (useBIP44 && this.canDeriveWithBIP44(wallet)) {
 			// @ts-ignore - We currently require all bip44 parameters to be specified but only need the account index to derive the account public key
-			await wallet.setAddress(await wallet.coin().identity().publicKey().fromMnemonic(mnemonic, { bip44: { account: 0 } }));
+			await wallet.setAddress(
+				await wallet
+					.coin()
+					.identity()
+					.publicKey()
+					.fromMnemonic(mnemonic, { bip44: { account: 0 } }),
+			);
 		}
 
 		return wallet;
