@@ -32,7 +32,7 @@ export class WalletFactory {
 		await wallet.setCoin(coin, network);
 
 		if (useBIP39 && this.canDeriveWithBIP39(wallet)) {
-			await wallet.setAddress(await wallet.coin().identity().address().fromMnemonic(mnemonic));
+			await wallet.setIdentity(mnemonic);
 		}
 
 		if (useBIP44 && this.canDeriveWithBIP44(wallet)) {

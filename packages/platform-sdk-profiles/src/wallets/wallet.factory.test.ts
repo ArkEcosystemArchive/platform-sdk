@@ -37,8 +37,8 @@ beforeEach(async () => {
 
 test("#fromMnemonic", async () => {
 	const wallet = await subject.fromMnemonic({
-		coin: "ADA",
-		network: "ada.testnet",
+		coin: "ARK",
+		network: "ark.devnet",
 		mnemonic: "this is a top secret passphrase",
 	});
 
