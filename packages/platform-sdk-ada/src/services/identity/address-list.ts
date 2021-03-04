@@ -1,7 +1,7 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 import { Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
-import { addressFromMnemonic, deriveAccountKey, deriveRootKey, deriveSpendKey, deriveChangeKey, deriveStakeKey, SHELLEY_COIN_TYPE } from "./shelley";
+import { deriveAccountKey, deriveRootKey, deriveSpendKey, deriveChangeKey, deriveStakeKey } from "./shelley";
 
 export class AddressList implements Contracts.AddressList {
 	public async fromMnemonic(mnemonic: string, pageSize: number): Promise<Contracts.AddressListEntry[]> {
@@ -12,7 +12,10 @@ export class AddressList implements Contracts.AddressList {
 		return this.deriveAddresses(Bip32PrivateKey.from_bech32(privateKey), pageSize);
 	}
 
-	private async deriveAddresses(accountKey: Bip32PrivateKey, pageSize: number): Promise<Contracts.AddressListEntry[]> {
+	private async deriveAddresses(
+		accountKey: Bip32PrivateKey,
+		pageSize: number,
+	): Promise<Contracts.AddressListEntry[]> {
 		const addresses: Contracts.AddressListEntry[] = [];
 
 		for (let i = 0; i < pageSize; ++i) {

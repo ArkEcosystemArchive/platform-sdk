@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { ADA } from "@arkecosystem/platform-sdk-ada";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
@@ -25,7 +26,7 @@ import { WalletService } from "../src/environment/services/wallet-service";
 export const bootContainer = (): void => {
 	container.bind(Identifiers.Storage, new StubStorage());
 	container.bind(Identifiers.AppData, new DataRepository());
-	container.bind(Identifiers.Coins, { ARK, BTC, ETH });
+	container.bind(Identifiers.Coins, { ADA, ARK, BTC, ETH });
 	container.bind(Identifiers.CoinService, new CoinService());
 	container.bind(Identifiers.DelegateService, new DelegateService());
 	container.bind(Identifiers.ExchangeRateService, new ExchangeRateService());

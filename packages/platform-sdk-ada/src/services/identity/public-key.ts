@@ -5,10 +5,7 @@ import { Keys } from "./keys";
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
-			// root extended publicKey
-			const { publicKey } = await new Keys().fromMnemonic(mnemonic);
-
-			return publicKey;
+			return (await new Keys().fromMnemonic(mnemonic, options)).publicKey;
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
