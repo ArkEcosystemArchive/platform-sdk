@@ -48,7 +48,7 @@ const network: Coins.CoinNetwork = {
 			utxo: true,
 		},
 		Derivation: {
-			bip32: true,
+			bip44: true,
 		},
 	},
 	meta: {

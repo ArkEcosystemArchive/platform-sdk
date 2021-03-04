@@ -138,8 +138,8 @@ export interface CoinNetwork {
 			customPeer?: boolean;
 		};
 		Derivation?: {
-			bip32?: boolean;
 			bip39?: boolean;
+			bip44?: boolean;
 		};
 	};
 	transactionTypes: CoinTransactionTypes[];
