@@ -373,19 +373,23 @@ export class Profile implements ProfileContract {
 		},
 	): string {
 		const filtered = this.toObject(options);
-		const unencoded = this.usesPassword()
-			? this.encrypt(
+
+		if (this.usesPassword()) {
+			return Base64.encode(
+				this.encrypt(
 					JSON.stringify({
 						id: this.id(),
 						name: this.name(),
 						avatar: this.avatar(),
 						password: this.#data.password,
-						data: filtered,
+						data: this.toObject(options),
 					}),
 					password,
 			  )
-			: JSON.stringify(filtered);
-		return Base64.encode(unencoded);
+			);
+		}
+
+		return Base64.encode(JSON.stringify(filtered));
 	}
 
 	/**
