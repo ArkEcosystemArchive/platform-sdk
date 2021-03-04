@@ -385,7 +385,7 @@ export class Profile implements ProfileContract {
 						data: this.toObject(options),
 					}),
 					password,
-			  )
+				),
 			);
 		}
 
