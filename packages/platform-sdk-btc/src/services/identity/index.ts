@@ -1,6 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { Address } from "./address";
+import { AddressList } from "./address-list";
 import { Keys } from "./keys";
 import { PrivateKey } from "./private-key";
 import { PublicKey } from "./public-key";
@@ -23,6 +24,10 @@ export class IdentityService implements Contracts.IdentityService {
 
 	public address(): Address {
 		return new Address(this.#network);
+	}
+
+	public addressList(): AddressList {
+		return new AddressList();
 	}
 
 	public publicKey(): PublicKey {
