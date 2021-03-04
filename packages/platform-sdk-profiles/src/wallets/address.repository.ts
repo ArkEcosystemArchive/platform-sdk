@@ -12,6 +12,10 @@ export class AddressRepository {
 		this.#wallet = wallet;
 	}
 
+	public all(): Address[] {
+		return [...this.#storage.values()];
+	}
+
 	public balance(): BigNumber {
 		return [...this.#storage.values()].reduce(
 			(accumulator: BigNumber, address: Address) => accumulator.plus(address.balance()),
