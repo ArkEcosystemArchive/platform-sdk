@@ -1,14 +1,14 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { generateRootKey } from "./shelley";
+import { deriveRootKey } from "./shelley";
 
 export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
 		try {
-			const rootKeyPair = generateRootKey(mnemonic);
+			const rootKey = deriveRootKey(mnemonic);
 
 			return {
-				publicKey: Buffer.from(rootKeyPair.to_public().as_bytes()).toString("hex"),
-				privateKey: Buffer.from(rootKeyPair.to_raw_key().as_bytes()).toString("hex"),
+				publicKey: Buffer.from(rootKey.to_public().as_bytes()).toString("hex"),
+				privateKey: Buffer.from(rootKey.to_raw_key().as_bytes()).toString("hex"),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

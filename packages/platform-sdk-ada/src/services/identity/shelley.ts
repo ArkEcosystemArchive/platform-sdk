@@ -1,5 +1,5 @@
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import CardanoWasm from "@emurgo/cardano-serialization-lib-nodejs";
+import CardanoWasm, { Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 export const HARDENED_THRESHOLD = 0x80000000;
 export const SHELLEY_COIN_PURPOSE = 1852;
@@ -24,18 +24,39 @@ const deriveAddress = (
 	).to_address().to_bech32();
 };
 
-export const generateRootKey = (mnemonic: string): CardanoWasm.Bip32PrivateKey => CardanoWasm.Bip32PrivateKey.from_bip39_entropy(
-	  Buffer.from(BIP39.toEntropy(mnemonic), 'hex'),
-	  Buffer.from('') // empty password
-);
+// Key Derivation
+export const deriveRootKey = (mnemonic: string): Bip32PrivateKey =>
+	Bip32PrivateKey.from_bip39_entropy(Buffer.from(BIP39.toEntropy(mnemonic), "hex"), Buffer.from(""));
 
+export const deriveAccountKey = (rootKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
+	rootKey
+		.derive(harden(SHELLEY_COIN_PURPOSE)) // CIP1852
+		.derive(harden(SHELLEY_COIN_TYPE))
+		.derive(harden(index));
+
+export const deriveSpendKey = (accountKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
+	accountKey
+		.derive(harden(0)) // External
+		.derive(harden(index));
+
+export const deriveChangeKey = (accountKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
+	accountKey
+		.derive(harden(1)) // Change
+		.derive(harden(index));
+
+export const deriveStakeKey = (accountKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
+	accountKey
+		.derive(harden(2)) // Chimeric
+		.derive(harden(index));
+
+// Address Derivation
 export const addressFromMnemonic = (
 	mnemonic: string,
 	accountIndex: number,
 	isChange: boolean,
 	addressIndex: number,
 	networkId: string,
-): string => deriveAddress(generateRootKey(mnemonic).derive(harden(SHELLEY_COIN_PURPOSE)).derive(harden(SHELLEY_COIN_TYPE)).derive(harden(accountIndex)).to_public(), isChange, addressIndex, networkId)
+): string => deriveAddress(deriveRootKey(mnemonic).derive(harden(SHELLEY_COIN_PURPOSE)).derive(harden(SHELLEY_COIN_TYPE)).derive(harden(accountIndex)).to_public(), isChange, addressIndex, networkId)
 
 export const addressFromAccountExtPublicKey = (
 	extPubKey: Buffer,
