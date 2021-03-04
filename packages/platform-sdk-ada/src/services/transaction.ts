@@ -3,14 +3,14 @@ import CardanoWasm, { Address } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
 import { postGraphql } from "./helpers";
+import { createValue } from "./transaction.helpers";
 import {
-	createValue,
 	deriveAccountKey,
 	deriveChangeKey,
 	deriveRootKey,
+	deriveSpendKey,
 	deriveStakeKey,
-	deriveUtxoKey,
-} from "./transaction.helpers";
+} from "./identity/shelley";
 
 export interface UnspentTransaction {
 	address: string;
@@ -61,7 +61,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// Get a `Bip32PrivateKey` instance according to `CIP1852` and turn it into a `PrivateKey` instance
 		const rootKey = deriveRootKey(input.sign.mnemonic);
-		const accountKey = deriveAccountKey(rootKey, this.#config.get<number>("network.crypto.slip44"), 0);
+		const accountKey = deriveAccountKey(rootKey, 0);
 		// const privateKey = accountKey.to_raw_key();
 		// console.log(
 		// 	"privateKey",
@@ -117,7 +117,7 @@ export class TransactionService implements Contracts.TransactionService {
 		vkeyWitnesses.add(
 			CardanoWasm.make_vkey_witness(
 				CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
-				deriveUtxoKey(accountKey, 0).to_raw_key(),
+				deriveSpendKey(accountKey, 0).to_raw_key(),
 			),
 		);
 		vkeyWitnesses.add(
