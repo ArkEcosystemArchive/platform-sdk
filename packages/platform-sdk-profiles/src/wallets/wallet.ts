@@ -19,11 +19,11 @@ import { DataRepository } from "../repositories/data-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
+import { Address } from "./address";
 import { AddressRepository } from "./address.repository";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
-import { Address } from "./address";
 
 export class Wallet implements ReadWriteWallet {
 	readonly #addresses: AddressRepository;
@@ -569,7 +569,7 @@ export class Wallet implements ReadWriteWallet {
 	public async sync(): Promise<void> {
 		await this.setCoin(this.coinId(), this.networkId());
 
-		await Promise.allSettled(this.#addresses.all().map((address: Address) => address.sync()))
+		await Promise.allSettled(this.#addresses.all().map((address: Address) => address.sync()));
 	}
 
 	public async syncIdentity(): Promise<void> {

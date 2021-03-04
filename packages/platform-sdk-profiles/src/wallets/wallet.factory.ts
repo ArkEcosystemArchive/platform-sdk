@@ -24,7 +24,7 @@ export class WalletFactory {
 		if (wallet.derivesWithBIP44()) {
 			const addresses = await wallet.coin().identity().addressList().fromMnemonic(mnemonic, 50);
 
-			for(const { spendAddress } of addresses) {
+			for (const { spendAddress } of addresses) {
 				await wallet.addresses().fromAddress({ address: spendAddress });
 			}
 		}
