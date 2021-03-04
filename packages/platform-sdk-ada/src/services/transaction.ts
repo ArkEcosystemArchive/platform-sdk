@@ -3,14 +3,8 @@ import CardanoWasm, { Address } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
 import { postGraphql } from "./helpers";
+import { deriveAccountKey, deriveChangeKey, deriveRootKey, deriveSpendKey } from "./identity/shelley";
 import { createValue } from "./transaction.helpers";
-import {
-	deriveAccountKey,
-	deriveChangeKey,
-	deriveRootKey,
-	deriveSpendKey,
-	deriveStakeKey,
-} from "./identity/shelley";
 
 export interface UnspentTransaction {
 	address: string;
@@ -73,7 +67,7 @@ export class TransactionService implements Contracts.TransactionService {
 		const utxos: UnspentTransaction[] = await this.listUnspentTransactions(input.from);
 
 		// for (let i = 0; i < utxos.length; i++) {
-		let i = 0;
+		const i = 0;
 		const utxo: UnspentTransaction = utxos[i];
 
 		txBuilder.add_input(
