@@ -17,6 +17,8 @@ test("FeatureFlag", () => {
 		  "ClientVotes": "Client.votes",
 		  "ClientWallet": "Client.wallet",
 		  "ClientWallets": "Client.wallets",
+		  "DerivationBIP39": "Derivation.bip39",
+		  "DerivationBIP44": "Derivation.bip44",
 		  "FeeAll": "Fee.all",
 		  "IdentityAddressMnemonic": "Identity.address.mnemonic",
 		  "IdentityAddressMultiSignature": "Identity.address.multiSignature",
