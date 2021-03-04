@@ -45,7 +45,7 @@ export interface Address {
 }
 
 export interface AddressList {
-	make(mnemonic: string, pageSize: number): AddressListEntry[];
+	fromMnemonic(mnemonic: string, pageSize: number): AddressListEntry[];
 }
 
 export interface PublicKey {
