@@ -104,7 +104,7 @@ export abstract class Request implements HttpClient {
 		return this.send("DELETE", url, { data, query });
 	}
 
-	protected abstract async send(
+	protected abstract send(
 		method: string,
 		url: string,
 		data?: { query?: object; data?: any },
