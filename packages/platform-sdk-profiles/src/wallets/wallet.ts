@@ -674,6 +674,14 @@ export class Wallet implements ReadWriteWallet {
 		return this.#restorationState.partial;
 	}
 
+	public derivesWithBIP39(): boolean {
+		return this.can(Coins.FeatureFlag.DerivationBIP39);
+	}
+
+	public derivesWithBIP44(): boolean {
+		return this.can(Coins.FeatureFlag.DerivationBIP44);
+	}
+
 	private async fetchTransactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<ExtendedTransactionDataCollection> {

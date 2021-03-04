@@ -16,12 +16,17 @@ export class WalletFactory {
 		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, profile);
 
 		await wallet.setCoin(coin, network);
-		await wallet.setIdentity(mnemonic);
 
-		// @TODO: there are 2 types of addresses that we could derive here
-		// 1. Directly from the seed (ARK/LSK/etc.)
-		// 2. Derive many addresses (spend for example with ADA)
-		// await wallet.addresses().fromMnemonic({ mnemonic });
+		if (wallet.derivesWithBIP39()) {
+			await wallet.setIdentity(mnemonic);
+		}
+
+		if (wallet.derivesWithBIP44()) {
+			// @TODO: make this method async to support all coins
+			wallet.coin().identity().addressList().fromMnemonic(mnemonic, 50);
+
+			// await wallet.addresses().fromMnemonic({ mnemonic });
+		}
 
 		return wallet;
 	}
