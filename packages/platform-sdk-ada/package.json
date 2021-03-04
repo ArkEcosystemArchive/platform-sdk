@@ -30,7 +30,7 @@
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@emurgo/cardano-serialization-lib-nodejs": "^6.0.0",
-		"cardano-crypto.js": "^6.0.0"
+		"bech32": "^2.0.0"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
@@ -43,6 +43,7 @@
 		"@types/rimraf": "^3.0.0",
 		"@typescript-eslint/eslint-plugin": "^4.7.0",
 		"@typescript-eslint/parser": "^4.7.0",
+		"cardano-crypto.js": "^6.0.0",
 		"cross-env": "^7.0.2",
 		"eslint": "^7.13.0",
 		"eslint-config-prettier": "^6.15.0",

@@ -29,9 +29,10 @@ export class MessageService implements Contracts.MessageService {
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		try {
-			return PublicKey
-				.from_bech32(input.signatory)
-				.verify(Buffer.from(input.message, "utf8"), Ed25519Signature.from_bech32(input.signature));
+			return PublicKey.from_bech32(input.signatory).verify(
+				Buffer.from(input.message, "utf8"),
+				Ed25519Signature.from_bech32(input.signature),
+			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

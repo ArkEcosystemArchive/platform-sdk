@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { isValidShelleyAddress } from "cardano-crypto.js";
+import { bech32 } from "bech32";
 
 import { addressFromAccountExtPublicKey, addressFromMnemonic } from "./shelley";
 
@@ -42,6 +42,17 @@ export class Address implements Contracts.Address {
 	}
 
 	public async validate(address: string): Promise<boolean> {
-		return isValidShelleyAddress(address);
+		try {
+			const { words } = bech32.decode(address, 1023);
+
+			return [
+				0b0000, // Base
+				0b0100, // Pointer
+				0b0110, // Enterprise
+				0b1110, // Reward
+			].includes(words[0] >> 4);
+		} catch {
+			return false;
+		}
 	}
 }
