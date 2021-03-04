@@ -4,6 +4,14 @@ import { Address } from "./address";
 import { ReadWriteWallet } from "./wallet.models";
 
 export class AddressFactory {
+	public static async fromPrimaryKey(wallet: ReadWriteWallet, options: { primaryKey: string }): Promise<Address> {
+		return new Address({
+			id: UUID.make(),
+			address: options.primaryKey,
+			wallet,
+		});
+	}
+
 	public static async fromMnemonic(wallet: ReadWriteWallet, options: { mnemonic: string }): Promise<Address> {
 		return new Address({
 			id: UUID.make(),

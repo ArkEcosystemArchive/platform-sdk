@@ -27,13 +27,12 @@ export class WalletFactory {
 		await wallet.setCoin(coin, network);
 
 		if (wallet.canDeriveWithBIP39()) {
-			await wallet.setIdentity(mnemonic);
+			await wallet.addresses().fromMnemonic({ mnemonic });
 		} else if (wallet.canDeriveWithBIP44()) {
-			const addresses = await wallet.coin().identity().addressList().fromMnemonic(mnemonic, 50); // @TODO: derive until we no longer find addresses on the network?
-
-			for (const { spendAddress } of addresses) {
-				await wallet.addresses().fromAddress({ address: spendAddress });
-			}
+			await wallet.addresses().fromPrimaryKey({
+				// @ts-ignore - We currently require all bip44 parameters to be specified
+				primaryKey: await wallet.coin().identity().publicKey().fromMnemonic(mnemonic, { bip44: { account: 0 } })
+			});
 		}
 
 		return wallet;

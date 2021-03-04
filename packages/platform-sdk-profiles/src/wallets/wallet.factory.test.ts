@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { decrypt } from "bip38";
-import nock from "nock";
+// import nock from "nock";
 
 import { bootContainer } from "../../test/helpers";
 import { Profile } from "../profiles/profile";
@@ -13,37 +13,38 @@ let subject: WalletFactory;
 beforeAll(() => {
 	bootContainer();
 
-	nock.disableNetConnect();
+	// nock.disableNetConnect();
 
 	subject = new WalletFactory(new Profile({ id: "id", name: "name", avatar: "avatar", data: "" }));
 });
 
-beforeEach(async () => {
-	nock.cleanAll();
+// beforeEach(async () => {
+// 	nock.cleanAll();
 
-	nock(/.+/)
-		.get("/api/node/configuration")
-		.reply(200, require("../../test/fixtures/client/configuration.json"))
-		.get("/api/peers")
-		.reply(200, require("../../test/fixtures/client/peers.json"))
-		.get("/api/node/configuration/crypto")
-		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
-		.get("/api/node/syncing")
-		.reply(200, require("../../test/fixtures/client/syncing.json"))
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../../test/fixtures/client/wallet.json"))
-		.persist();
-});
+// 	nock(/.+/)
+// 		.get("/api/node/configuration")
+// 		.reply(200, require("../../test/fixtures/client/configuration.json"))
+// 		.get("/api/peers")
+// 		.reply(200, require("../../test/fixtures/client/peers.json"))
+// 		.get("/api/node/configuration/crypto")
+// 		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
+// 		.get("/api/node/syncing")
+// 		.reply(200, require("../../test/fixtures/client/syncing.json"))
+// 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+// 		.reply(200, require("../../test/fixtures/client/wallet.json"))
+// 		.persist();
+// });
 
-test("#fromMnemonic", async () => {
-	const wallet = await subject.fromMnemonic(
-		{"ARK",
-		"ark.devnet",
-		"this is a top secret passphrase",}
-	);
+test.only("#fromMnemonic", async () => {
+	const wallet = await subject.fromMnemonic({
+		coin: "ADA",
+		network: "ada.testnet",
+		// mnemonic: "this is a top secret passphrase",
+		mnemonic: "submit teach debate stool guilt pen problem inquiry horn tissue cradle ankle member quarter conduct obvious device ivory top wink globe tool rate tonight",
+	});
 
-	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+	// expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+	// expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 });
 
 test("#fromAddress", async () => {

@@ -48,6 +48,7 @@
 		"wif": "^2.0.6"
 	},
 	"devDependencies": {
+		"@arkecosystem/platform-sdk-ada": "workspace:*",
 		"@arkecosystem/platform-sdk-ark": "workspace:*",
 		"@arkecosystem/platform-sdk-btc": "workspace:*",
 		"@arkecosystem/platform-sdk-eth": "workspace:*",

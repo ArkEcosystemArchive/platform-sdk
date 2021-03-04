@@ -1,7 +1,7 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 import { Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
-import { addressFromMnemonic, deriveAccountKey, deriveRootKey, deriveSpendKey, deriveChangeKey, deriveStakeKey, SHELLEY_COIN_TYPE } from "./shelley";
+import { deriveAccountKey, deriveRootKey, deriveSpendKey, deriveChangeKey, deriveStakeKey } from "./shelley";
 
 export class AddressList implements Contracts.AddressList {
 	public async fromMnemonic(mnemonic: string, pageSize: number): Promise<Contracts.AddressListEntry[]> {

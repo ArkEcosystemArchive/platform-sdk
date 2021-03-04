@@ -23,20 +23,24 @@ export class AddressRepository {
 		);
 	}
 
+	public async fromPrimaryKey(options: { primaryKey: string }): Promise<Address> {
+		return this.store(await AddressFactory.fromPrimaryKey(this.#wallet, options));
+	}
+
 	public async fromMnemonic(options: { mnemonic: string }): Promise<Address> {
-		return AddressFactory.fromMnemonic(this.#wallet, options);
+		return this.store(await AddressFactory.fromMnemonic(this.#wallet, options));
 	}
 
 	public async fromAddress(options: { address: string }): Promise<Address> {
-		return AddressFactory.fromAddress(this.#wallet, options);
+		return this.store(await AddressFactory.fromAddress(this.#wallet, options));
 	}
 
 	public async fromPublicKey(options: { publicKey: string }): Promise<Address> {
-		return AddressFactory.fromPublicKey(this.#wallet, options);
+		return this.store(await AddressFactory.fromPublicKey(this.#wallet, options));
 	}
 
 	public async fromPrivateKey(options: { privateKey: string }): Promise<Address> {
-		return AddressFactory.fromPrivateKey(this.#wallet, options);
+		return this.store(await AddressFactory.fromPrivateKey(this.#wallet, options));
 	}
 
 	public async fromMnemonicWithHierarchy(options: {
@@ -45,6 +49,12 @@ export class AddressRepository {
 		change: number;
 		addressIndex: number;
 	}): Promise<Address> {
-		return AddressFactory.fromMnemonicWithHierarchy(this.#wallet, options);
+		return this.store(await AddressFactory.fromMnemonicWithHierarchy(this.#wallet, options));
+	}
+
+	private store(address: Address): Address {
+		this.#storage.add(address);
+
+		return address;
 	}
 }
