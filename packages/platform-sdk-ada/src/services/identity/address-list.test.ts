@@ -6,6 +6,6 @@ describe("AddressList", function () {
 	test("#fromMnemonic", async () => {
 		const subject = new AddressList();
 
-		expect(subject.fromMnemonic(identity.mnemonic, 20)).toHaveLength(20);
+		await expect(subject.fromMnemonic(identity.mnemonic, 20)).resolves.toHaveLength(20);
 	});
 });
