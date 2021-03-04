@@ -37,8 +37,12 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://dwallets.ark.io"],
-		"hostsMultiSignature": ["https://dmusig1.ark.io"]
+		"hosts": [
+			"https://dwallets.ark.io"
+		],
+		"hostsMultiSignature": [
+			"https://dmusig1.ark.io"
+		]
 	},
 	"governance": {
 		"voting": {
@@ -62,6 +66,9 @@
 			"fees": true,
 			"syncing": true,
 			"broadcast": true
+		},
+		"Derivation": {
+			"bip39": true
 		},
 		"Fee": {
 			"all": true
@@ -167,8 +174,12 @@
 			}
 		},
 		"networking": {
-			"hosts": ["https://dwallets.ark.io"],
-			"hostsMultiSignature": ["https://dmusig1.ark.io"]
+			"hosts": [
+				"https://dwallets.ark.io"
+			],
+			"hostsMultiSignature": [
+				"https://dmusig1.ark.io"
+			]
 		},
 		"governance": {
 			"voting": {
@@ -192,6 +203,9 @@
 				"fees": true,
 				"syncing": true,
 				"broadcast": true
+			},
+			"Derivation": {
+				"bip39": true
 			},
 			"Fee": {
 				"all": true

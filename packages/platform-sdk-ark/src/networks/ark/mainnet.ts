@@ -108,6 +108,9 @@ const network: Coins.CoinNetwork = {
 			dynamicFees: true,
 			memo: true,
 		},
+		Derivation: {
+			bip39: true,
+		},
 	},
 	transactionTypes: [
 		"bridgechain-registration",
