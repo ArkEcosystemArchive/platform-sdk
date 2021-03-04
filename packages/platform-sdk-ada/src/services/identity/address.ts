@@ -43,7 +43,7 @@ export class Address implements Contracts.Address {
 
 	public async validate(address: string): Promise<boolean> {
 		try {
-			const { words } = bech32.decode(address, 1023)
+			const { words } = bech32.decode(address, 1023);
 
 			return [
 				0b0000, // Base
