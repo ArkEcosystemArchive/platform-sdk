@@ -46,6 +46,7 @@ export interface Address {
 
 export interface AddressList {
 	fromMnemonic(mnemonic: string, pageSize: number): Promise<AddressListEntry[]>;
+	fromPrivateKey(privateKey: string, pageSize: number): Promise<AddressListEntry[]>;
 }
 
 export interface PublicKey {
