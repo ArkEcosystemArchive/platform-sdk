@@ -23,7 +23,6 @@
 		"strict": true,
 		"stripInternal": true,
 		"target": "es2019",
-		"typeRoots": ["./node_modules/@types"],
 		"useDefineForClassFields": true
 	},
 	"exclude": ["dist", "**/*.spec.ts", "**/*.test.ts"]
