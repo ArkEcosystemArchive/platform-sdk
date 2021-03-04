@@ -18,7 +18,7 @@ export class WalletFactory {
 		coin,
 		network,
 		mnemonic,
-		useBIP39 = false,
+		useBIP39 = true,
 		useBIP44 = false,
 	}: {
 		coin: string;
