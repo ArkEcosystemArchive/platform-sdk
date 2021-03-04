@@ -1,5 +1,8 @@
+import { v4 as uuidv4 } from "uuid";
+
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
+import { ProfileExportOptions } from "../profiles/profile.models";
 import { DataRepository } from "./data-repository";
 
 export class ProfileRepository {
@@ -57,6 +60,21 @@ export class ProfileRepository {
 		this.#data.set(result.id(), result);
 
 		return result;
+	}
+
+	public async import(data: string, password?: string): Promise<Profile> {
+		const profile = new Profile({
+			id: uuidv4(),
+			name: "",
+			password,
+			data,
+		});
+		await profile.restore(password);
+		return profile;
+	}
+
+	public export(profile: Profile, options: ProfileExportOptions, password?: string): string {
+		return profile.export(password, options);
 	}
 
 	public has(id: string): boolean {

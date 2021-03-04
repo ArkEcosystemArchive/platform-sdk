@@ -3,6 +3,7 @@ import { sortBy, sortByDesc } from "@arkecosystem/utils";
 import retry from "p-retry";
 
 import { Profile } from "../profiles/profile";
+import { WalletExportOptions } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { ReadWriteWallet } from "../wallets/wallet.models";
@@ -195,10 +196,29 @@ export class WalletRepository {
 		return this.keys().length;
 	}
 
-	public toObject(): Record<string, object> {
+	public toObject(
+		options: WalletExportOptions = {
+			excludeWalletsWithoutName: false,
+			excludeEmptyWallets: false,
+			excludeLedgerWallets: false,
+			addNetworkInformation: true,
+		},
+	): Record<string, object> {
+		if (!options.addNetworkInformation) {
+			throw Error("This is not implemented yet");
+		}
 		const result: Record<string, object> = {};
 
 		for (const [id, wallet] of Object.entries(this.#data.all())) {
+			if (options.excludeLedgerWallets && wallet.isLedger()) {
+				continue;
+			}
+			if (options.excludeWalletsWithoutName && wallet.displayName() === undefined) {
+				continue;
+			}
+			if (options.excludeEmptyWallets && wallet.balance().isZero()) {
+				continue;
+			}
 			result[id] = wallet.toObject();
 		}
 
