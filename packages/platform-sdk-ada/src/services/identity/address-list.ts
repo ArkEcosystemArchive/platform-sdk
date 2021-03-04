@@ -4,7 +4,7 @@ import { Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 import { addressFromMnemonic, deriveAccountKey, deriveRootKey, deriveSpendKey, deriveChangeKey, deriveStakeKey, SHELLEY_COIN_TYPE } from "./shelley";
 
 export class AddressList implements Contracts.AddressList {
-	public make(mnemonic: string, pageSize: number) {
+	public make(mnemonic: string, pageSize: number): Contracts.AddressListEntry[] {
 		const addresses: Contracts.AddressListEntry[] = [];
 
 		const account0Key = deriveAccountKey(deriveRootKey(mnemonic), 0);

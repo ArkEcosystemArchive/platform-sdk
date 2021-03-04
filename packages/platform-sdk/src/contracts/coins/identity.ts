@@ -1,4 +1,4 @@
-interface AddressListEntry {
+export interface AddressListEntry {
 	index: number;
 	spendAddress: string;
 	changeAddress: string;
