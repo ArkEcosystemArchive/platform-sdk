@@ -18,19 +18,25 @@ export class WalletFactory {
 		coin,
 		network,
 		mnemonic,
+		useBIP39 = false,
+		useBIP44 = false,
 	}: {
 		coin: string;
 		network: string;
 		mnemonic: string;
+		useBIP39?: boolean;
+		useBIP44?: boolean;
 	}): Promise<ReadWriteWallet> {
 		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		await wallet.setCoin(coin, network);
 
-		if (this.canDeriveWithBIP39(wallet)) {
+		if (useBIP39 && this.canDeriveWithBIP39(wallet)) {
 			await wallet.setAddress(await wallet.coin().identity().address().fromMnemonic(mnemonic));
-		} else if (this.canDeriveWithBIP44(wallet)) {
-			// @ts-ignore - We currently require all bip44 parameters to be specified
+		}
+
+		if (useBIP44 && this.canDeriveWithBIP44(wallet)) {
+			// @ts-ignore - We currently require all bip44 parameters to be specified but only need the account index to derive the account public key
 			await wallet.setAddress(await wallet.coin().identity().publicKey().fromMnemonic(mnemonic, { bip44: { account: 0 } }));
 		}
 
@@ -83,13 +89,7 @@ export class WalletFactory {
 		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		await wallet.setCoin(coin, network);
-
-		if (this.canDeriveWithBIP39(wallet)) {
-			await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
-		} else if (this.canDeriveWithBIP44(wallet)) {
-			// @ts-ignore - We currently require all bip44 parameters to be specified
-			await wallet.setAddress((await wallet.coin().identity().keys().fromMnemonic(mnemonic, { bip44: { account: 0 } })).publicKey);
-		}
+		await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
 
 		return wallet;
 	}
