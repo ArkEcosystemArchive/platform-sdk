@@ -5,7 +5,14 @@ import { addressFromMnemonic, deriveAccountKey, deriveRootKey, deriveSpendKey, d
 
 export class AddressList implements Contracts.AddressList {
 	public async fromMnemonic(mnemonic: string, pageSize: number): Promise<Contracts.AddressListEntry[]> {
-		const accountKey = deriveAccountKey(deriveRootKey(mnemonic), 0);
+		return this.deriveAddresses(deriveAccountKey(deriveRootKey(mnemonic), 0), pageSize);
+	}
+
+	public async fromPrivateKey(privateKey: string, pageSize: number): Promise<Contracts.AddressListEntry[]> {
+		return this.deriveAddresses(Bip32PrivateKey.from_bech32(privateKey), pageSize);
+	}
+
+	private async deriveAddresses(accountKey: Bip32PrivateKey, pageSize: number): Promise<Contracts.AddressListEntry[]> {
 		const addresses: Contracts.AddressListEntry[] = [];
 
 		for (let i = 0; i < pageSize; ++i) {
