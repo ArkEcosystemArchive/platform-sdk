@@ -1,4 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+
 import { deriveAccountKey, deriveRootKey } from "./shelley";
 
 export class Keys implements Contracts.Keys {

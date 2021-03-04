@@ -1,6 +1,8 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { mnemonicToRootKeypair, sign, verify } from "cardano-crypto.js";
+import { Ed25519Signature, PublicKey } from "@emurgo/cardano-serialization-lib-nodejs";
+
+import { deriveRootKey } from "./identity/shelley";
 
 export class MessageService implements Contracts.MessageService {
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
@@ -13,12 +15,12 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const walletSecret = await mnemonicToRootKeypair(BIP39.normalize(input.mnemonic), 1);
+			const privateKey = deriveRootKey(BIP39.normalize(input.mnemonic));
 
 			return {
 				message: input.message,
-				signatory: walletSecret.slice(64, 96).toString("hex"),
-				signature: sign(Buffer.from(input.message, "utf8"), walletSecret).toString("hex"),
+				signatory: privateKey.to_public().to_raw_key().to_bech32(),
+				signature: privateKey.to_raw_key().sign(Buffer.from(input.message, "utf8")).to_bech32(),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -27,11 +29,9 @@ export class MessageService implements Contracts.MessageService {
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		try {
-			return verify(
-				Buffer.from(input.message, "utf8"),
-				Buffer.from(input.signatory, "hex"),
-				Buffer.from(input.signature, "hex"),
-			);
+			return PublicKey
+				.from_bech32(input.signatory)
+				.verify(Buffer.from(input.message, "utf8"), Ed25519Signature.from_bech32(input.signature));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
