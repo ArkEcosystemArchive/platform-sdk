@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-yarn add @arkecosystem/platform-sdk-eth-server
+npm install @arkecosystem/platform-sdk-eth-server
 ```
 
 ## Usage

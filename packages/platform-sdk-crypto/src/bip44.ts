@@ -5,26 +5,14 @@ import { BIP39 } from "./bip39";
 export class BIP44 {
 	public static deriveChild(
 		mnemonic: string,
-		options: { coinType: number; account?: number; change?: number; index?: number },
+		options: { purpose?: number; coinType: number; account?: number; change?: number; index?: number },
 	): bip32.BIP32Interface {
-		if (options.account === undefined) {
-			options.account = 0;
-		}
-
-		if (options.change === undefined) {
-			options.change = 0;
-		}
-
-		if (options.index === undefined) {
-			options.index = 0;
-		}
-
 		return BIP44.deriveMasterKey(BIP39.normalize(mnemonic))
-			.deriveHardened(44)
+			.deriveHardened(options.purpose || 44)
 			.deriveHardened(options.coinType)
-			.deriveHardened(options.account)
-			.derive(options.change)
-			.derive(options.index);
+			.deriveHardened(options.account || 0)
+			.derive(options.change || 0)
+			.derive(options.index || 0);
 	}
 
 	public static deriveChildFromPath(mnemonic: string, path: string, index = 0): bip32.BIP32Interface {

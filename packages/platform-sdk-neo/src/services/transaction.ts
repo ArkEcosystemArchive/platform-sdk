@@ -20,7 +20,10 @@ export class TransactionService implements Contracts.TransactionService {
 		try {
 			const signedTransaction = {
 				account: new wallet.Account(input.sign.privateKey),
-				intents: api.makeIntent({ NEO: parseFloat(input.data.amount), GAS: parseFloat(input.fee!) }, input.data.to),
+				intents: api.makeIntent(
+					{ NEO: parseFloat(input.data.amount), GAS: parseFloat(input.fee!) },
+					input.data.to,
+				),
 			};
 
 			return new SignedTransactionData(uuidv4(), signedTransaction, JSON.stringify(signedTransaction));

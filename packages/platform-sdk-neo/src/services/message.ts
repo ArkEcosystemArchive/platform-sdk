@@ -1,7 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import Neon from "@cityofzion/neon-js";
-import { wallet } from "@cityofzion/neon-js";
+import Neon, { wallet } from "@cityofzion/neon-js";
 
 export class MessageService implements Contracts.MessageService {
 	public static async __construct(config: Coins.Config): Promise<MessageService> {

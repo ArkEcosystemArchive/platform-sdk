@@ -37,7 +37,7 @@ export class ClientService implements Contracts.ClientService {
 		const unsignedTransaction = transaction.getUnsignedTx();
 		const baseTransaction = unsignedTransaction.getTransaction();
 
-		const assetId = cb58Decode(this.#config.get("network.crypto.assetId"));
+		const assetId = cb58Decode(this.#config.get(Coins.ConfigKey.CryptoAssetId));
 
 		return new TransactionData({
 			id,
@@ -49,7 +49,7 @@ export class ClientService implements Contracts.ClientService {
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const { transactions } = await this.get("v2/transactions", {
-			chainID: this.#config.get("network.crypto.blockchainId"),
+			chainID: this.#config.get(Coins.ConfigKey.CryptoBlockchainId),
 			limit: 100,
 			offset: query.cursor || 0,
 			address: query.address,
@@ -67,7 +67,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { balance }: any = await this.#xchain.getBalance(id, this.#config.get("network.crypto.assetId"));
+		const { balance }: any = await this.#xchain.getBalance(id, this.#config.get(Coins.ConfigKey.CryptoAssetId));
 
 		return new WalletData({
 			address: id,

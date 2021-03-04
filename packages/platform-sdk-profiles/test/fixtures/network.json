@@ -63,6 +63,9 @@
 			"syncing": true,
 			"broadcast": true
 		},
+		"Derivation": {
+			"bip39": true
+		},
 		"Fee": {
 			"all": true
 		},
@@ -192,6 +195,9 @@
 				"fees": true,
 				"syncing": true,
 				"broadcast": true
+			},
+			"Derivation": {
+				"bip39": true
 			},
 			"Fee": {
 				"all": true

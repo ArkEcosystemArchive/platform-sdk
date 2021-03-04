@@ -11,6 +11,6 @@ export class StorageFactory {
 			indexeddb: new LocalStorage("indexeddb"),
 			websql: new LocalStorage("websql"),
 			localstorage: new LocalStorage("localstorage"),
-		}[driver];
+		}[driver]!;
 	}
 }

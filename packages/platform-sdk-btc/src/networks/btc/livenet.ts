@@ -73,6 +73,10 @@ const network: Coins.CoinNetwork = {
 		Miscellaneous: {
 			utxo: true,
 		},
+		Derivation: {
+			bip39: true,
+			bip44: true,
+		},
 	},
 	transactionTypes: ["transfer"],
 };

@@ -10,6 +10,47 @@
 
 Documentation can be found [here](https://ark.dev/docs/platform-sdk).
 
+## Development
+
+[Rush](https://rushjs.io/) and [pnpm](https://pnpm.js.org/en/) are required to be installed before starting. These tools are used to manage this monorepo.
+
+### Run `lint` and `prettier`
+
+```bash
+rush format
+```
+
+### Apply `eslint` rules to source
+
+```bash
+rush lint
+```
+
+### Apply `eslint` rules to tests
+
+```bash
+rush lint:tests
+```
+
+### Apply `prettier` formatting
+
+```bash
+rush prettier
+```
+
+### Run tests with `jest`
+
+```bash
+rush test
+```
+
+### Bump the version of all packages and publish them
+
+```bash
+bash scripts/version.sh ${VERSION}
+rush publish --publish --set-access-level=public --include-all
+```
+
 ## Security
 
 If you discover a security vulnerability within this package, please send an e-mail to security@ark.io. All security vulnerabilities will be promptly addressed.

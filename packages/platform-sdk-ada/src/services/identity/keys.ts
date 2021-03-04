@@ -1,16 +1,18 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import lib from "cardano-crypto.js";
-
-import { SHELLEY_DERIVATION_SCHEME } from "../../crypto/shelley/constants";
+import { deriveAccountKey, deriveRootKey } from "./shelley";
 
 export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
 		try {
-			const rootKeyPair = await lib.mnemonicToRootKeypair(mnemonic, SHELLEY_DERIVATION_SCHEME);
+			let rootKey = deriveRootKey(mnemonic);
+
+			if (options?.bip44.account !== undefined) {
+				rootKey = deriveAccountKey(rootKey, options.bip44.account);
+			}
 
 			return {
-				publicKey: rootKeyPair.slice(64, 128).toString("hex"),
-				privateKey: rootKeyPair.slice(0, 64).toString("hex"),
+				publicKey: Buffer.from(rootKey.to_public().as_bytes()).toString("hex"),
+				privateKey: Buffer.from(rootKey.to_raw_key().as_bytes()).toString("hex"),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

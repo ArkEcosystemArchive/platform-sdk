@@ -2,15 +2,15 @@ import "jest-extended";
 import { createConfig } from "./helpers";
 import { ClientService, IdentityService } from "../src/services";
 import {
+	addressFromAccountExtPublicKey,
+	addressFromMnemonic,
 	HARDENED_THRESHOLD,
 	SHELLEY_COIN_PURPOSE,
 	SHELLEY_COIN_TYPE,
 	SHELLEY_DERIVATION_SCHEME,
-} from "../src/crypto/shelley/constants";
+} from "../src/services/identity/shelley";
 import lib from "cardano-crypto.js";
 import { Buffer } from "buffer";
-import { addressFromAccountExtPublicKey, addressFromMnemonic } from "../src/crypto/shelley/address";
-import { AddressesHelper } from "../src/services/addresses-helper";
 
 const data = [
 	{
@@ -328,17 +328,21 @@ it(`spend addresses ${data[1].from}'s Wallet`, async () => {
 	function checkExpected(
 		spendChangeExtPublicKey,
 		stakeChainPublicKey,
-		addressIdx: number,
-		stakeAddressIdx: number,
+		addressIndex: number,
+		stakeAddressIndex: number,
 		expectedSpendAddress: string,
 		expectedStakeAddress: string,
 	) {
-		let stakeAddressPublicKey = lib.derivePublic(stakeChainPublicKey, stakeAddressIdx, SHELLEY_DERIVATION_SCHEME);
+		let stakeAddressPublicKey = lib.derivePublic(stakeChainPublicKey, stakeAddressIndex, SHELLEY_DERIVATION_SCHEME);
 		expect(stakeAddressPublicKey.toString("hex")).toBe(expectedStakeAddress);
 
-		let spendAddressExtPublicKey = lib.derivePublic(spendChangeExtPublicKey, addressIdx, SHELLEY_DERIVATION_SCHEME);
+		let spendAddressExtPublicKey = lib.derivePublic(
+			spendChangeExtPublicKey,
+			addressIndex,
+			SHELLEY_DERIVATION_SCHEME,
+		);
 		expect(baseAddressFromXpub(spendAddressExtPublicKey, stakeAddressPublicKey, "0")).toBe(expectedSpendAddress);
-		console.log(`Change: m/1852"/1815"/0"/0/${addressIdx}`, expectedSpendAddress);
+		console.log(`Change: m/1852"/1815"/0"/0/${addressIndex}`, expectedSpendAddress);
 	}
 
 	const wallet = data[1];

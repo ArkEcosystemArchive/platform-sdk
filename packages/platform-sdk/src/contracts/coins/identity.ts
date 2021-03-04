@@ -1,7 +1,17 @@
+export interface AddressListEntry {
+	index: number;
+	spendAddress: string;
+	changeAddress: string;
+	stakeAddress: string;
+	used: boolean;
+}
+
 export interface IdentityService {
 	__destruct(): Promise<void>;
 
 	address(): Address;
+
+	addressList(): AddressList;
 
 	publicKey(): PublicKey;
 
@@ -32,6 +42,11 @@ export interface Address {
 	fromPrivateKey(privateKey: string, options?: IdentityOptions): Promise<string>;
 	fromWIF(wif: string): Promise<string>;
 	validate(address: string): Promise<boolean>;
+}
+
+export interface AddressList {
+	fromMnemonic(mnemonic: string, pageSize: number): Promise<AddressListEntry[]>;
+	fromPrivateKey(privateKey: string, pageSize: number): Promise<AddressListEntry[]>;
 }
 
 export interface PublicKey {

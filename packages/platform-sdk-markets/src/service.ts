@@ -16,7 +16,7 @@ export class MarketService {
 				coincap: new CoinCap(httpClient),
 				coingecko: new CoinGecko(httpClient),
 				cryptocompare: new CryptoCompare(httpClient),
-			}[name.toLowerCase()],
+			}[name.toLowerCase()]!,
 		);
 	}
 

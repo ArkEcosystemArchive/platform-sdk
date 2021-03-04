@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.0.41 - 2020-03-03
+
+### Changed
+
+-   Deprecate `platform-sdk-json-rpc` (6ef42d65, @faustbrian)
+
 ## 3.0.40 - 2020-03-02
 
 ### Changed

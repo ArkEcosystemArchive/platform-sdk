@@ -66,6 +66,8 @@ test("ConfigKey", () => {
 	expect(ConfigKey).toMatchInlineSnapshot(`
 		Object {
 		  "Bech32": "network.crypto.bech32",
+		  "CryptoAssetId": "network.crypto.assetId",
+		  "CryptoBlockchainId": "network.crypto.blockchainId",
 		  "CryptoNetworkId": "network.crypto.networkId",
 		  "CurrencyTicker": "network.currency.ticker",
 		  "HttpClient": "httpClient",

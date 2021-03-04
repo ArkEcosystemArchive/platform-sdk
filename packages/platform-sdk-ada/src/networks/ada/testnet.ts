@@ -44,6 +44,12 @@ const network: Coins.CoinNetwork = {
 				mnemonic: true,
 			},
 		},
+		Miscellaneous: {
+			utxo: true,
+		},
+		Derivation: {
+			bip44: true,
+		},
 	},
 	meta: {
 		minFeeA: 44,
