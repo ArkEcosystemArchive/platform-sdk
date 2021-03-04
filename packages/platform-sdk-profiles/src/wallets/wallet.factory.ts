@@ -23,9 +23,11 @@ export class WalletFactory {
 
 		if (wallet.derivesWithBIP44()) {
 			// @TODO: make this method async to support all coins
-			wallet.coin().identity().addressList().fromMnemonic(mnemonic, 50);
+			const addresses = wallet.coin().identity().addressList().fromMnemonic(mnemonic, 50);
 
-			// await wallet.addresses().fromMnemonic({ mnemonic });
+			for(const address of addresses) {
+				await wallet.addresses().fromAddress({ address: address.spendAddress });
+			}
 		}
 
 		return wallet;
