@@ -69,7 +69,18 @@ export class WalletFactory {
 		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, profile);
 
 		await wallet.setCoin(coin, network);
-		await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
+
+		if (wallet.derivesWithBIP39()) {
+			await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
+		}
+
+		if (wallet.derivesWithBIP44()) {
+			const addresses = await wallet.coin().identity().addressList().fromPrivateKey(privateKey, 50);
+
+			for (const { spendAddress } of addresses) {
+				await wallet.addresses().fromAddress({ address: spendAddress });
+			}
+		}
 
 		return wallet;
 	}
