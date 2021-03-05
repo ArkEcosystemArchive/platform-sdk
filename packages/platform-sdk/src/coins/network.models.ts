@@ -120,16 +120,38 @@ export interface CoinNetwork {
 		};
 		Transaction?: {
 			transfer?: boolean;
+			transferWithLedgerS?: boolean;
+			transferWithLedgerX?: boolean;
 			secondSignature?: boolean;
+			secondSignatureWithLedgerS?: boolean;
+			secondSignatureWithLedgerX?: boolean;
 			delegateRegistration?: boolean;
+			delegateRegistrationWithLedgerS?: boolean;
+			delegateRegistrationWithLedgerX?: boolean;
 			vote?: boolean;
+			voteWithLedgerS?: boolean;
+			voteWithLedgerX?: boolean;
 			multiSignature?: boolean;
+			multiSignatureWithLedgerS?: boolean;
+			multiSignatureWithLedgerX?: boolean;
 			ipfs?: boolean;
+			ipfsWithLedgerS?: boolean;
+			ipfsWithLedgerX?: boolean;
 			multiPayment?: boolean;
+			multiPaymentWithLedgerS?: boolean;
+			multiPaymentWithLedgerX?: boolean;
 			delegateResignation?: boolean;
+			delegateResignationWithLedgerS?: boolean;
+			delegateResignationWithLedgerX?: boolean;
 			htlcLock?: boolean;
+			htlcLockWithLedgerS?: boolean;
+			htlcLockWithLedgerX?: boolean;
 			htlcClaim?: boolean;
+			htlcClaimWithLedgerS?: boolean;
+			htlcClaimWithLedgerX?: boolean;
 			htlcRefund?: boolean;
+			htlcRefundWithLedgerS?: boolean;
+			htlcRefundWithLedgerX?: boolean;
 		};
 		Miscellaneous?: {
 			memo?: boolean;
