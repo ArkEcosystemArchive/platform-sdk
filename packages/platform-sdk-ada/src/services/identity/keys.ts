@@ -1,4 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+
 import { deriveAccountKey, deriveRootKey } from "./shelley";
 
 export class Keys implements Contracts.Keys {
@@ -6,7 +7,7 @@ export class Keys implements Contracts.Keys {
 		try {
 			let rootKey = deriveRootKey(mnemonic);
 
-			if (options?.bip44.account !== undefined) {
+			if (options?.bip44?.account !== undefined) {
 				rootKey = deriveAccountKey(rootKey, options.bip44.account);
 			}
 

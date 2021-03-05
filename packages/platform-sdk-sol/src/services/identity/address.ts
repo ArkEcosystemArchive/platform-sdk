@@ -18,7 +18,12 @@ export class Address implements Contracts.Address {
 
 		return base58.encode(
 			derivePublicKey(
-				derivePrivateKey(mnemonic, options?.bip44.account || 0, options?.bip44.addressIndex || 0, this.#slip44),
+				derivePrivateKey(
+					mnemonic,
+					options?.bip44?.account || 0,
+					options?.bip44?.addressIndex || 0,
+					this.#slip44,
+				),
 			),
 		);
 	}

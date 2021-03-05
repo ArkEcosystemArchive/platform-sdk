@@ -17,8 +17,8 @@ export class Keys implements Contracts.Keys {
 
 		const privateBuffer: Buffer = derivePrivateKey(
 			mnemonic,
-			options?.bip44.account || 0,
-			options?.bip44.addressIndex || 0,
+			options?.bip44?.account || 0,
+			options?.bip44?.addressIndex || 0,
 			this.#slip44,
 		);
 

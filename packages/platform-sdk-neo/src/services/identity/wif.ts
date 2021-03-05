@@ -14,9 +14,9 @@ export class WIF implements Contracts.WIF {
 			return deriveWallet(
 				mnemonic,
 				this.#config.get<number>("network.crypto.slip44"),
-				options?.bip44.account || 0,
-				options?.bip44.change || 0,
-				options?.bip44.addressIndex || 0,
+				options?.bip44?.account || 0,
+				options?.bip44?.change || 0,
+				options?.bip44?.addressIndex || 0,
 			).WIF;
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

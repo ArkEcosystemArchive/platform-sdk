@@ -1,7 +1,8 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Bitcoin from "bitcore-lib";
+import BIP84 from "bip84";
 
-import { p2pkh } from "./utils";
+import { bip44, bip49, bip84 } from "./utils";
 
 export class Address implements Contracts.Address {
 	readonly #network: Record<string, any>;
@@ -12,7 +13,15 @@ export class Address implements Contracts.Address {
 
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
-			return (await p2pkh(mnemonic, this.#network.name)).address!;
+			if (options?.bip49) {
+				return (await bip49(mnemonic, this.#network.name))!;
+			}
+
+			if (options?.bip84) {
+				return bip84(mnemonic, this.#network.name, options);
+			}
+
+			return (await bip44(mnemonic, this.#network.name))!;
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
