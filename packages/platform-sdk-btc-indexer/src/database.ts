@@ -55,121 +55,22 @@ export class Database {
 	private storeBlock(block): void {
 		this.#database
 			.prepare(
-				`INSERT OR IGNORE INTO blocks (
-	hash,
-	confirmations,
-	strippedsize,
-	size,
-	weight,
-	height,
-	version,
-	versionHex,
-	merkleroot,
-	tx,
-	time,
-	mediantime,
-	nonce,
-	bits,
-	difficulty,
-	chainwork,
-	nTx,
-	previousblockhash,
-	nextblockhash
-) VALUES (
-	:hash,
-	:confirmations,
-	:strippedsize,
-	:size,
-	:weight,
-	:height,
-	:version,
-	:versionHex,
-	:merkleroot,
-	:tx,
-	:time,
-	:mediantime,
-	:nonce,
-	:bits,
-	:difficulty,
-	:chainwork,
-	:nTx,
-	:previousblockhash,
-	:nextblockhash
-)`,
+				`INSERT OR IGNORE INTO blocks (hash, number) VALUES (:hash, :number)`,
 			)
 			.run({
 				hash: block.hash,
-				confirmations: block.confirmations,
-				strippedsize: block.strippedsize,
-				size: block.size,
-				weight: block.weight,
-				height: block.height,
-				version: block.version,
-				versionHex: block.versionHex,
-				merkleroot: block.merkleroot,
-				tx: JSON.stringify(block.tx),
-				time: block.time,
-				mediantime: block.mediantime,
-				nonce: block.nonce,
-				bits: block.bits,
-				difficulty: block.difficulty,
-				chainwork: block.chainwork,
-				nTx: block.nTx,
-				previousblockhash: block.previousblockhash,
-				nextblockhash: block.nextblockhash,
+				number: block.height,
 			});
 	}
 
 	private storeTransaction(transaction): void {
 		this.#database
-			.prepare(
-				`INSERT OR IGNORE INTO transactions (
-	txid,
-	hash,
-	version,
-	size,
-	vsize,
-	weight,
-	locktime,
-	vin,
-	vout,
-	hex,
-	blockhash,
-	confirmations,
-	time,
-	blocktime
-) VALUES (
-	:txid,
-	:hash,
-	:version,
-	:size,
-	:vsize,
-	:weight,
-	:locktime,
-	:vin,
-	:vout,
-	:hex,
-	:blockhash,
-	:confirmations,
-	:time,
-	:blocktime
-)`,
-			)
+			.prepare(`INSERT OR IGNORE INTO transactions (hash, inputs, outputs, time) VALUES (:hash, :inputs, :outputs, :time)`)
 			.run({
-				txid: transaction.txid,
 				hash: transaction.hash,
-				version: transaction.version,
-				size: transaction.size,
-				vsize: transaction.vsize,
-				weight: transaction.weight,
-				locktime: transaction.locktime,
-				vin: JSON.stringify(transaction.vin),
-				vout: JSON.stringify(transaction.vout),
-				hex: transaction.hex,
-				blockhash: transaction.blockhash,
-				confirmations: transaction.confirmations,
+				inputs: JSON.stringify(transaction.vin),
+				outputs: JSON.stringify(transaction.vout),
 				time: transaction.time,
-				blocktime: transaction.blocktime,
 			});
 	}
 
@@ -178,44 +79,18 @@ export class Database {
 			PRAGMA journal_mode = WAL;
 
 			CREATE TABLE IF NOT EXISTS blocks(
-				hash                VARCHAR(64)   PRIMARY KEY,
-				confirmations       INTEGER       NOT NULL,
-				strippedsize        INTEGER       NOT NULL,
-				size                INTEGER       NOT NULL,
-				weight              INTEGER       NOT NULL,
-				height              INTEGER       NOT NULL,
-				version             INTEGER       NOT NULL,
-				versionHex          VARCHAR(64)   NOT NULL,
-				merkleroot          VARCHAR(64)   NOT NULL,
-				tx                  TEXT          NOT NULL,
-				time                INTEGER       NOT NULL,
-				mediantime          INTEGER       NOT NULL,
-				nonce               INTEGER       NOT NULL,
-				bits                VARCHAR(64)   NOT NULL,
-				difficulty          INTEGER       NOT NULL,
-				chainwork           VARCHAR(64)   NOT NULL,
-				nTx                 INTEGER       NOT NULL,
-				previousblockhash   VARCHAR(64)   NOT NULL,
-				nextblockhash       VARCHAR(64)   NOT NULL
+				hash     VARCHAR(64)   PRIMARY KEY,
+				height   INTEGER       NOT NULL,
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
+			CREATE UNIQUE INDEX IF NOT EXISTS blocks_number ON blocks (number);
 
 			CREATE TABLE IF NOT EXISTS transactions(
-				txid            VARCHAR(64)   PRIMARY KEY,
-				hash            VARCHAR(64)   NOT NULL,
-				version         INTEGER       NOT NULL,
-				size            INTEGER       NOT NULL,
-				vsize           INTEGER       NOT NULL,
-				weight          INTEGER       NOT NULL,
-				locktime        INTEGER       NOT NULL,
-				vin             TEXT          NOT NULL,
-				vout            TEXT          NOT NULL,
-				hex             TEXT          NOT NULL,
-				blockhash       VARCHAR(64)   NOT NULL,
-				confirmations   INTEGER       NOT NULL,
-				time            INTEGER       NOT NULL,
-				blocktime       INTEGER       NOT NULL
+				hash     VARCHAR(64)   PRIMARY KEY,
+				inputs   TEXT          NOT NULL,
+				output   TEXT          NOT NULL,
+				time     INTEGER       NOT NULL
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
