@@ -1,13 +1,13 @@
 import * as bip32 from "bip32";
 
-import { BIP39 } from "./bip39";
+import { BIP32 } from "./bip32";
 
 export class BIP44 {
 	public static deriveChild(
 		mnemonic: string,
 		options: { purpose?: number; coinType: number; account?: number; change?: number; index?: number },
 	): bip32.BIP32Interface {
-		return BIP44.deriveMasterKey(BIP39.normalize(mnemonic))
+		return BIP32.fromMnemonic(mnemonic)
 			.deriveHardened(options.purpose || 44)
 			.deriveHardened(options.coinType)
 			.deriveHardened(options.account || 0)
@@ -15,16 +15,12 @@ export class BIP44 {
 			.derive(options.index || 0);
 	}
 
-	public static deriveChildFromPath(mnemonic: string, path: string, index = 0): bip32.BIP32Interface {
-		return BIP44.deriveMasterKey(mnemonic).derivePath(`${path}${index}`);
+	public static deriveChildFromPath(mnemonic: string, path: string, index?: number): bip32.BIP32Interface {
+		return BIP32.fromMnemonic(mnemonic).derivePath(`${path}${index || 0}`);
 	}
 
 	public static deriveMasterKey(mnemonic: string): bip32.BIP32Interface {
-		mnemonic = BIP39.normalize(mnemonic);
-
-		BIP39.validate(mnemonic);
-
-		return bip32.fromSeed(BIP39.toSeed(mnemonic));
+		return BIP32.fromMnemonic(mnemonic);
 	}
 
 	public static parse(
