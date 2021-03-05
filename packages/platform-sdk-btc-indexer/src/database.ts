@@ -53,19 +53,17 @@ export class Database {
 	}
 
 	private storeBlock(block): void {
-		this.#database
-			.prepare(
-				`INSERT OR IGNORE INTO blocks (hash, number) VALUES (:hash, :number)`,
-			)
-			.run({
-				hash: block.hash,
-				number: block.height,
-			});
+		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, number) VALUES (:hash, :number)`).run({
+			hash: block.hash,
+			number: block.height,
+		});
 	}
 
 	private storeTransaction(transaction): void {
 		this.#database
-			.prepare(`INSERT OR IGNORE INTO transactions (hash, inputs, outputs, time) VALUES (:hash, :inputs, :outputs, :time)`)
+			.prepare(
+				`INSERT OR IGNORE INTO transactions (hash, inputs, outputs, time) VALUES (:hash, :inputs, :outputs, :time)`,
+			)
 			.run({
 				hash: transaction.hash,
 				inputs: JSON.stringify(transaction.vin),
