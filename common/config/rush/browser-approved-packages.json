@@ -303,6 +303,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "bip84",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "bitcoinjs-lib",
       "allowedCategories": [ "libraries" ]
     },
