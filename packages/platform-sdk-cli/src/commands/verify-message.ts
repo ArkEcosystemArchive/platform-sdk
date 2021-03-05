@@ -18,7 +18,7 @@ export const verifyMessage = async (wallet: ReadWriteWallet): Promise<void> => {
 	}
 
 	if (await wallet.message().verify(JSON.parse(message))) {
-		useLogger().error("The transaction has been verified.")
+		useLogger().error("The transaction has been verified.");
 	} else {
 		useLogger().info("The transaction failed to verify.");
 	}
