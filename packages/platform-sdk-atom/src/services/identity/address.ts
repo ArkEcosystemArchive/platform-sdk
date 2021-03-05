@@ -13,7 +13,7 @@ export class Address implements Contracts.Address {
 		try {
 			const child = BIP44.deriveChild(mnemonic, {
 				coinType: this.#config.get(Coins.ConfigKey.Slip44),
-				index: options?.bip44.addressIndex,
+				index: options?.bip44?.addressIndex,
 			});
 
 			return bech32.encode(this.#config.get(Coins.ConfigKey.Bech32), bech32.toWords(child.identifier));

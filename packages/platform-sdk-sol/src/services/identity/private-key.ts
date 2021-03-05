@@ -17,8 +17,8 @@ export class PrivateKey implements Contracts.PrivateKey {
 
 		return derivePrivateKey(
 			mnemonic,
-			options?.bip44.account || 0,
-			options?.bip44.addressIndex || 0,
+			options?.bip44?.account || 0,
+			options?.bip44?.addressIndex || 0,
 			this.#slip44,
 		).toString("hex");
 	}

@@ -14,9 +14,9 @@ export class Address implements Contracts.Address {
 			return deriveWallet(
 				mnemonic,
 				this.#config.get<number>("network.crypto.slip44"),
-				options?.bip44.account || 0,
-				options?.bip44.change || 0,
-				options?.bip44.addressIndex || 0,
+				options?.bip44?.account || 0,
+				options?.bip44?.change || 0,
+				options?.bip44?.addressIndex || 0,
 			).address;
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

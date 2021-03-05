@@ -13,9 +13,9 @@ export class Address implements Contracts.Address {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		return addressFromMnemonic(
 			mnemonic,
-			options?.bip44.account || 0,
+			options?.bip44?.account || 0,
 			false,
-			options?.bip44.addressIndex || 0,
+			options?.bip44?.addressIndex || 0,
 			this.#config.get(Coins.ConfigKey.CryptoNetworkId),
 		);
 	}
@@ -28,7 +28,7 @@ export class Address implements Contracts.Address {
 		return addressFromAccountExtPublicKey(
 			Buffer.from(publicKey, "hex"),
 			false,
-			options?.bip44.addressIndex || 0,
+			options?.bip44?.addressIndex || 0,
 			this.#config.get(Coins.ConfigKey.CryptoNetworkId),
 		);
 	}
