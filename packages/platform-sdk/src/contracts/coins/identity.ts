@@ -28,11 +28,13 @@ export interface KeyPair {
 }
 
 export interface IdentityOptions {
-	bip44: {
+	bip44?: {
 		account: number;
 		change: number;
 		addressIndex: number;
 	};
+	bip49?: boolean;
+	bip84?: boolean;
 }
 
 export interface Address {

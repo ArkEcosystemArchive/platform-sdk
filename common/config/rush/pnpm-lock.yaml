@@ -95,7 +95,6 @@ importers:
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@emurgo/cardano-serialization-lib-nodejs': 6.0.0
       bech32: 2.0.0
-      cardano-crypto.js: 6.0.0
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@types/eslint': 7.2.6
@@ -107,6 +106,7 @@ importers:
       '@types/rimraf': 3.0.0
       '@typescript-eslint/eslint-plugin': 4.16.1_4fe32a7126aebc440d3400f14be2b917
       '@typescript-eslint/parser': 4.16.1_eslint@7.21.0+typescript@4.2.2
+      cardano-crypto.js: 6.0.0
       cross-env: 7.0.3
       eslint: 7.21.0
       eslint-config-prettier: 6.15.0_eslint@7.21.0
@@ -435,6 +435,8 @@ importers:
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@ledgerhq/hw-app-btc': 5.45.0
       bignumber.js: 9.0.1
+      bip32: 2.0.6
+      bip84: 0.2.4
       bitcoinjs-lib: 5.2.0
       bitcore-lib: 8.25.3
     devDependencies:
@@ -485,6 +487,8 @@ importers:
       '@typescript-eslint/eslint-plugin': ^4.7.0
       '@typescript-eslint/parser': ^4.7.0
       bignumber.js: ^9.0.1
+      bip32: ^2.0.6
+      bip84: ~0.2.4
       bitcoinjs-lib: ^5.2.0
       bitcore-lib: ^8.23.1
       cross-env: ^7.0.2
@@ -5271,7 +5275,6 @@ packages:
     resolution:
       integrity: sha512-iEaHiDNkHv4Jrm9O5T37OYEUwjJesiyt6ZlhLFK0sbo4CLD0jyCOB4Pc2F9iD3MbW2397SLNxZKdDGntGaBjQQ==
   /@types/node/11.11.6:
-    dev: false
     resolution:
       integrity: sha512-Exw4yUWMBXM3X+8oqzJNRqZSwUAaS4+7NdvHqQuFi/d+synz++xmX3QIf+BFqneW8N31R8Ky+sikfZUXq07ggQ==
   /@types/node/12.20.4:
@@ -6159,7 +6162,6 @@ packages:
     resolution:
       integrity: sha512-yuVFUvrNcoJi0sv5phmqc6P+Fl1HjRDRNOOkHY2X/3LBy2bIGNSFx4fZ95HMaXHupuS7cZR15AsvtmCIF4UEyg==
   /bech32/1.1.4:
-    dev: false
     resolution:
       integrity: sha512-s0IrSOzLlbvX7yp4WBfPITzpAU8sqQcpsmwXDiKwrG4r491vwCO/XpejasRNl0piBMe/DvP4Tz0mIS/X1DPJBQ==
   /bech32/2.0.0:
@@ -6205,7 +6207,6 @@ packages:
     resolution:
       integrity: sha512-S4XzBk5sMB+Rcb/LNcpzXr57VRTxgAvaAEDAl1AwRx27j00hT84O6OkteE7u8UB3NuaaygCRrEpqox4uDOrbdQ==
   /bignumber.js/9.0.1:
-    dev: false
     resolution:
       integrity: sha512-IdZR9mh6ahOBv/hYGiXyVuyCetmGJhtYkqLBpTStdhEGjegpPlUawydyaF3pbIOFynJTpllEs+NP+CS9jKFLjA==
   /bigval/1.4.0:
@@ -6305,7 +6306,6 @@ packages:
       create-hash: 1.2.0
       pbkdf2: 3.1.1
       randombytes: 2.1.0
-    dev: false
     resolution:
       integrity: sha512-P0dKrz4g0V0BjXfx7d9QNkJ/Txcz/k+hM9TnjqjUaXtuOfAvxXSw2rJw8DX0e3ZPwnK/IgDxoRqf0bvoVCqbMg==
   /bip66/1.1.5:
@@ -6314,6 +6314,14 @@ packages:
     dev: false
     resolution:
       integrity: sha1-AfqHSHhcpwlV1QESF9GzE5lpyiI=
+  /bip84/0.2.4:
+    dependencies:
+      bip39: 3.0.3
+      bitcoinjs-lib: 5.2.0
+      bs58check: 2.1.2
+    dev: false
+    resolution:
+      integrity: sha512-Bka30UByMHx6u+VIagUOKK5ydM5UeUbUiwEHmOQOe3a18urMSJhpbnhE+kJpz0gg5/dJQoTo0SXRYnWm7fIlVQ==
   /bitcoin-ops/1.4.1:
     dev: false
     resolution:
@@ -6422,7 +6430,7 @@ packages:
       iso-url: 0.4.7
       json-text-sequence: 0.1.1
       readable-stream: 3.6.0
-    dev: false
+    dev: true
     engines:
       node: '>=4'
     resolution:
@@ -6665,7 +6673,6 @@ packages:
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
-    dev: false
     resolution:
       integrity: sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==
   /buffer/6.0.1:
@@ -6865,7 +6872,7 @@ packages:
       bip39: 3.0.3
       borc: 2.1.2
       pbkdf2: 3.1.1
-    dev: false
+    dev: true
     resolution:
       integrity: sha512-r9wcFFfW+bq5+bn6ZBueMkLbUiySP901zHoyM8HNN8hfHEAkO3GHUMkzJutqpIG07qR84mQDqq0WjktMsqO8AA==
   /caseless/0.12.0:
@@ -7346,7 +7353,6 @@ packages:
       ripemd160: 2.0.2
       safe-buffer: 5.2.1
       sha.js: 2.4.11
-    dev: false
     resolution:
       integrity: sha512-MJG9liiZ+ogc4TzUwuvbER1JRdgvUFSB5+VR/g5h82fGaIRWMWddtKBHi7/sVhfjQZ6SehlyhvQYrcYkaUIpLg==
   /cross-env/7.0.3:
@@ -7656,7 +7662,7 @@ packages:
     resolution:
       integrity: sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=
   /delimit-stream/0.1.0:
-    dev: false
+    dev: true
     resolution:
       integrity: sha1-m4MZR3wOX4rrPONXrjBfwl6hzSs=
   /depd/1.1.2:
@@ -10179,7 +10185,7 @@ packages:
     resolution:
       integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
   /iso-url/0.4.7:
-    dev: false
+    dev: true
     engines:
       node: '>=10'
     resolution:
@@ -10925,7 +10931,7 @@ packages:
   /json-text-sequence/0.1.1:
     dependencies:
       delimit-stream: 0.1.0
-    dev: false
+    dev: true
     resolution:
       integrity: sha1-py8hfcSvxGKf/1/rME3BvVGi89I=
   /json5/1.0.1:
@@ -12764,7 +12770,6 @@ packages:
       ripemd160: 2.0.2
       safe-buffer: 5.2.1
       sha.js: 2.4.11
-    dev: false
     engines:
       node: '>=0.12'
     resolution:
@@ -13159,7 +13164,6 @@ packages:
   /randombytes/2.1.0:
     dependencies:
       safe-buffer: 5.2.1
-    dev: false
     resolution:
       integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==
   /randomfill/1.0.4:
