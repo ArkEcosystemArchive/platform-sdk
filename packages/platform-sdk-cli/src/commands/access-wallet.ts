@@ -4,6 +4,8 @@ import prompts from "prompts";
 import { renderLogo, useLogger } from "../helpers";
 import { listTransactions } from "./list-transactions";
 import { sendTransaction } from "./send-transaction";
+import { signMessage } from "./sign-message";
+import { verifyMessage } from "./verify-message";
 
 export const accessWallet = async (profile: Profile): Promise<void> => {
 	if (profile.wallets().count() === 0) {
@@ -37,6 +39,8 @@ export const accessWallet = async (profile: Profile): Promise<void> => {
 			{ title: "Show Balance", value: "balance" },
 			{ title: "List Transaction", value: "list-transactions" },
 			{ title: "Send Transaction", value: "send-transaction" },
+			{ title: "Sign Message", value: "sign-message" },
+			{ title: "Verify Message", value: "verify-message" },
 			{ title: "Exit", value: "exit" },
 		],
 		initial: 0,
@@ -56,5 +60,13 @@ export const accessWallet = async (profile: Profile): Promise<void> => {
 
 	if (command === "send-transaction") {
 		await sendTransaction(wallet);
+	}
+
+	if (command === "sign-message") {
+		await signMessage(wallet);
+	}
+
+	if (command === "verify-message") {
+		await verifyMessage(wallet);
 	}
 };
