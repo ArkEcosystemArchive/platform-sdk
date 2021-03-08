@@ -80,27 +80,16 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 					const path = `44'/111'/0'/0/${i}`;
 					const ledgerKey = await instance.ledger().getPublicKey(path);
 					const ledgerAddress = await instance.identity().address().fromPublicKey(ledgerKey);
-					const extendedKey = HDKey.fromSeed(extendedPublicKey).derive(`m/${path}`).publicKey.toString("hex");
-					const extendedAddress = await instance.identity().address().fromPublicKey(extendedKey);
-					const expected = confirmations[path];
-
-					const xpub = createXpub({
+					const extendedKey = HDKey.fromExtendedPublicKey(createXpub({
 						depth: 0,
 						childNumber: 2147483648,
 						chainCode: extendedPublicKey.slice(-64),
 						publicKey: extendedPublicKey.slice(0, 66),
-					});
+					})).derive(`m/0/${i}`).publicKey.toString("hex");
+					const extendedAddress = await instance.identity().address().fromPublicKey(extendedKey);
+					const expected = confirmations[path];
 
-					// https://github.com/cryptocoinjs/hdkey
-					console.log(
-						HDKey
-							.fromExtendedPublicKey(xpub)
-							.derive(`m/0/2147483648'/${i}`)
-							.publicKey
-							.toString("hex")
-					)
-
-					console.log({ path, expected, ledgerKey, ledgerAddress, extendedKey, extendedAddress, xpub });
+					console.log({ path, expected, ledgerKey, ledgerAddress, extendedKey, extendedAddress });
 				}
 
 				process.exit();
