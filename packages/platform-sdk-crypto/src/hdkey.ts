@@ -2,7 +2,7 @@ import Base, { fromExtendedKey, fromMasterSeed } from "hdkey";
 
 export class HDKey {
 	public static fromSeed(seed: string): Base {
-		return fromMasterSeed(seed);
+		return fromMasterSeed(Buffer.from(seed, 'hex'));
 	}
 
 	public static fromExtendedPublicKey(key: string): Base {
