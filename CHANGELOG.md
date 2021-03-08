@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.1.4 - 2020-03-08
+
+### Fixed
+
+-   **[BTC-INDEXER]** Rename output to outputs (6c22f5ec, @faustbrian)
+
+## 3.1.3 - 2020-03-08
+
+### Fixed
+
+-   **[BTC-INDEXER]** Query last block by number (f8dbadc5, @faustbrian)
+
+## 3.1.2 - 2020-03-08
+
+### Fixed
+
+-   **[BTC-INDEXER]** Rename height to number (0dedbf87, @faustbrian)
+
 ## 3.1.1 - 2020-03-08
 
 ### Fixed
