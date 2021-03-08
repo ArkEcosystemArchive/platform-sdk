@@ -23,13 +23,13 @@ export class Database {
 	}
 
 	public lastBlockNumber(): number {
-		const lastBlock = this.#database.prepare("SELECT height FROM blocks ORDER BY height DESC LIMIT 1").get();
+		const lastBlock = this.#database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
 
 		if (lastBlock === undefined) {
 			return 1;
 		}
 
-		return lastBlock.height;
+		return lastBlock.number;
 	}
 
 	public storeBlockWithTransactions(block: any): void {
@@ -78,17 +78,17 @@ export class Database {
 
 			CREATE TABLE IF NOT EXISTS blocks(
 				hash     VARCHAR(64)   PRIMARY KEY,
-				height   INTEGER       NOT NULL,
+				number   INTEGER       NOT NULL
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_number ON blocks (number);
 
 			CREATE TABLE IF NOT EXISTS transactions(
-				hash     VARCHAR(64)   PRIMARY KEY,
-				inputs   TEXT          NOT NULL,
-				output   TEXT          NOT NULL,
-				time     INTEGER       NOT NULL
+				hash      VARCHAR(64)   PRIMARY KEY,
+				inputs    TEXT          NOT NULL,
+				outputs   TEXT          NOT NULL,
+				time      INTEGER       NOT NULL
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
