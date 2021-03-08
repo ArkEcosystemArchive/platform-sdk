@@ -23,13 +23,13 @@ export class Database {
 	}
 
 	public lastBlockNumber(): number {
-		const lastBlock = this.#database.prepare("SELECT height FROM blocks ORDER BY height DESC LIMIT 1").get();
+		const lastBlock = this.#database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
 
 		if (lastBlock === undefined) {
 			return 1;
 		}
 
-		return lastBlock.height;
+		return lastBlock.number;
 	}
 
 	public storeBlockWithTransactions(block: any): void {
