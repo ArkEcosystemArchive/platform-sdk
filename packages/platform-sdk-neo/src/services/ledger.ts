@@ -38,6 +38,10 @@ export class LedgerService implements Contracts.LedgerService {
 		return result.toString("hex").substring(0, 130);
 	}
 
+	public async getExtendedPublicKey(path: string): Promise<string> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
+	}
+
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
 		if (this.#bip44SessionPath != path || this.#bip44SessionPath.length == 0) {
 			throw new Error(

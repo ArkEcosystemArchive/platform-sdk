@@ -25,6 +25,10 @@ export class LedgerService implements Contracts.LedgerService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
 	}
 
+	public async getExtendedPublicKey(path: string): Promise<string> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
+	}
+
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "signTransaction");
 	}
