@@ -1,6 +1,6 @@
 import Base, { fromExtendedKey, fromMasterSeed } from "hdkey";
 
-const normalise = (value: string | Buffer) => value instanceof Buffer ? value : Buffer.from(value, "hex")
+const normalise = (value: string | Buffer) => (value instanceof Buffer ? value : Buffer.from(value, "hex"));
 
 export class HDKey {
 	public static fromSeed(seed: string | Buffer): Base {

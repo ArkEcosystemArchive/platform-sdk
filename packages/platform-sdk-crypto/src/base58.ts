@@ -1,6 +1,6 @@
 import { base58 } from "bstring";
 
-const normalise = (value: string | Buffer) => value instanceof Buffer ? value : Buffer.from(value, "hex")
+const normalise = (value: string | Buffer) => (value instanceof Buffer ? value : Buffer.from(value, "hex"));
 
 export class Base58 {
 	public static encode(value: string | Buffer): string {

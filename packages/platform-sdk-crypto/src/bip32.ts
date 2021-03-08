@@ -1,4 +1,4 @@
-import { BIP32Interface, fromBase58, fromSeed, fromPublicKey, fromPrivateKey } from "bip32";
+import { BIP32Interface, fromBase58, fromPrivateKey, fromPublicKey, fromSeed } from "bip32";
 
 import { BIP39 } from "./bip39";
 

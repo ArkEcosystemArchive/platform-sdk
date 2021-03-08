@@ -1,5 +1,5 @@
-import { Environment, Profile } from "@arkecosystem/platform-sdk-profiles";
 import { HDKey } from "@arkecosystem/platform-sdk-crypto";
+import { Environment, Profile } from "@arkecosystem/platform-sdk-profiles";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 import prompts from "prompts";
 
@@ -47,7 +47,9 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 		// @ts-ignore
 		next: async ({ type, deviceModel }) => {
 			if (type === "add") {
-				useLogger().info(`Connected [${deviceModel.productName}] with version [${await instance.ledger().getVersion()}]`);
+				useLogger().info(
+					`Connected [${deviceModel.productName}] with version [${await instance.ledger().getVersion()}]`,
+				);
 
 				const extendedPublicKey = await instance.ledger().getExtendedPublicKey("m/44'/111'/0'");
 
@@ -55,9 +57,14 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 
 				for (let i = 0; i < 10; i++) {
 					console.log(
-						await instance.identity().address().fromPublicKey(
-							HDKey.fromSeed(extendedPublicKey).derive(`m/44'/111'/0'/0/${i}`).publicKey.toString("hex"),
-						),
+						await instance
+							.identity()
+							.address()
+							.fromPublicKey(
+								HDKey.fromSeed(extendedPublicKey)
+									.derive(`m/44'/111'/0'/0/${i}`)
+									.publicKey.toString("hex"),
+							),
 					);
 				}
 			}
@@ -70,10 +77,10 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 		complete: () => void 0,
 	});
 
-    // for (const { address, path } of wallets) {
-    //     const wallet = await profile
-    //         .wallets()
-    //         .importByAddress(address, coin.network().coin(), coin.network().id());
-    //     wallet.data().set(WalletData.LedgerPath, path);
-    // }
+	// for (const { address, path } of wallets) {
+	//     const wallet = await profile
+	//         .wallets()
+	//         .importByAddress(address, coin.network().coin(), coin.network().id());
+	//     wallet.data().set(WalletData.LedgerPath, path);
+	// }
 };
