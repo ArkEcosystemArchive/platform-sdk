@@ -85,10 +85,10 @@ export class Database {
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_number ON blocks (number);
 
 			CREATE TABLE IF NOT EXISTS transactions(
-				hash     VARCHAR(64)   PRIMARY KEY,
-				inputs   TEXT          NOT NULL,
-				output   TEXT          NOT NULL,
-				time     INTEGER       NOT NULL
+				hash      VARCHAR(64)   PRIMARY KEY,
+				inputs    TEXT          NOT NULL,
+				outputs   TEXT          NOT NULL,
+				time      INTEGER       NOT NULL
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
