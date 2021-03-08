@@ -78,7 +78,7 @@ export class Database {
 
 			CREATE TABLE IF NOT EXISTS blocks(
 				hash     VARCHAR(64)   PRIMARY KEY,
-				height   INTEGER       NOT NULL
+				number   INTEGER       NOT NULL
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
