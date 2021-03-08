@@ -2,6 +2,7 @@ import { HDKey } from "@arkecosystem/platform-sdk-crypto";
 import { Environment, Profile } from "@arkecosystem/platform-sdk-profiles";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 import prompts from "prompts";
+import ora from "ora";
 
 import { renderLogo, useLogger } from "../helpers";
 
@@ -30,11 +31,13 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 	await LedgerTransportNodeHID.create();
 
 	try {
-		useLogger().info("Trying to connect...");
+		const spinner = ora("Trying to connect...").start();
 
 		await instance.ledger().connect(LedgerTransportNodeHID);
 
 		await instance.ledger().getPublicKey("m/44'/111'/0'/0/0");
+
+		spinner.stop();
 	} catch (connectError) {
 		console.log(connectError.message);
 
