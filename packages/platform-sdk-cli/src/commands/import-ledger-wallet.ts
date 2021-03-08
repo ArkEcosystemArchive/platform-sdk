@@ -76,7 +76,7 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 					"44'/111'/0'/0/9": "AHWB5KGPs4i69Rkn1GXA9S7pgTifvz41AT",
 				};
 
-				for (let i = 0; i < 10; i++) {
+				for (let i = 0; i < 1; i++) {
 					const path = `44'/111'/0'/0/${i}`;
 					const ledgerKey = await instance.ledger().getPublicKey(path);
 					const ledgerAddress = await instance.identity().address().fromPublicKey(ledgerKey);
@@ -84,16 +84,23 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 					const extendedAddress = await instance.identity().address().fromPublicKey(extendedKey);
 					const expected = confirmations[path];
 
+					const xpub = createXpub({
+						depth: 0,
+						childNumber: 2147483648,
+						chainCode: extendedPublicKey.slice(-64),
+						publicKey: extendedPublicKey.slice(0, 66),
+					});
+
+					// https://github.com/cryptocoinjs/hdkey
 					console.log(
-						createXpub({
-							depth: i,
-							childNumber: 2147483648,
-							chainCode: '84cf7d9029cdd9fcadbb3717fd92ec0db7d7d9787c57c13c08fc887c389b566b',
-							publicKey: '048bcdcf59f046b13f1eb35b608d1211265fde8cc44fc7a5a7f7107c5cf238095328a0e0d7be17c7d3e48490e8c6433af6d2c3dacc687f3fecaa98a3d05f17de97'
-						}),
+						HDKey
+							.fromExtendedPublicKey(xpub)
+							.derive(`m/0/2147483648'/${i}`)
+							.publicKey
+							.toString("hex")
 					)
 
-					console.log({ path, expected, ledgerKey, ledgerAddress, extendedKey, extendedAddress });
+					console.log({ path, expected, ledgerKey, ledgerAddress, extendedKey, extendedAddress, xpub });
 				}
 
 				process.exit();
