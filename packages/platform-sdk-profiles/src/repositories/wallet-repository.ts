@@ -1,7 +1,12 @@
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { sortBy, sortByDesc } from "@arkecosystem/utils";
 import retry from "p-retry";
+import { v4 as uuidv4 } from "uuid";
 
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
+import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { WalletExportOptions } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
@@ -62,6 +67,39 @@ export class WalletRepository {
 
 	public async importByAddress(address: string, coin: string, network: string): Promise<ReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromAddress({ coin, network, address }));
+	}
+
+	public async importByAddressList(addresses: string[], coin: string, network: string): Promise<ReadWriteWallet[]> {
+		// Make sure we have an instance of the coin
+		const service = await container.get<CoinService>(Identifiers.CoinService).push(coin, network);
+
+		// Bulk request the addresses.
+		const wallets: ReadWriteWallet[] = [];
+
+		let hasMore = true;
+		let lastResponse: Coins.WalletDataCollection | undefined;
+		while (hasMore) {
+			if (lastResponse) {
+				lastResponse = await service.client().wallets({ addresses: addresses, cursor: lastResponse.nextPage() });
+			} else {
+				lastResponse = await service.client().wallets({ addresses: addresses });
+			}
+
+			for(const wallet of lastResponse.items()) {
+				const instance: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+				await instance.setCoin(coin, network);
+				await instance.setAddress(wallet.address());
+
+				// @TODO: set already existing coin instance without bootstrapping again
+				// @TODO: set address without hitting the network again
+
+				wallets.push(instance);
+			}
+
+			hasMore = lastResponse.hasMorePages();
+		}
+
+		return wallets;
 	}
 
 	public async importByAddressWithLedgerPath(
