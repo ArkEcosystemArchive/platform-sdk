@@ -355,6 +355,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "create-xpub",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "cross-env",
       "allowedCategories": [ "libraries" ]
     },

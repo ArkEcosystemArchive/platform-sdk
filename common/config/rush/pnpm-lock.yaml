@@ -726,6 +726,7 @@ importers:
       cfonts: 2.9.1
       cli-table3: 0.6.0
       conf: 9.0.2
+      create-xpub: 2.1.0
       dayjs: 1.10.4
       env-paths: 2.2.0
       envfile: 6.14.0
@@ -812,6 +813,7 @@ importers:
       cfonts: ^2.9.0
       cli-table3: ^0.6.0
       conf: ^9.0.2
+      create-xpub: ~2.1.0
       cross-env: ^7.0.2
       dayjs: ^1.10.4
       env-paths: ^2.2.0
@@ -7376,6 +7378,16 @@ packages:
       sha.js: 2.4.11
     resolution:
       integrity: sha512-MJG9liiZ+ogc4TzUwuvbER1JRdgvUFSB5+VR/g5h82fGaIRWMWddtKBHi7/sVhfjQZ6SehlyhvQYrcYkaUIpLg==
+  /create-xpub/2.1.0:
+    dependencies:
+      bs58check: 2.1.2
+      hash.js: 1.1.7
+      ow: 0.8.0
+    dev: false
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-Ngq2RBf90N3G7MfhaMGghdtKLSbJQFYAkWRpVXRRoxr1vLL2ArJo6RibcyAxKNz9N51tudljfobX6SCCcuXV1A==
   /cross-env/7.0.3:
     dependencies:
       cross-spawn: 7.0.3
@@ -12473,6 +12485,12 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-h8L+8aNjNcMpo/mAIBPn5PXCM16iyPGjHNWo6U1YO8sJTMHtEtyczI6QJnLoplswm6goopQkqc7OAnjhWcugVg==
+  /ow/0.8.0:
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-hYgYZNcRfIZ2JppSTqh6mxdU1zkUXsGlwy4eBsRG91R6CiZk7cB+AfHl+SVKBdynQvAnNHNfu0ZrtJN1jj7Mow==
   /p-cancelable/0.3.0:
     dev: false
     engines:
