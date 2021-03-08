@@ -1,8 +1,8 @@
 import { HDKey } from "@arkecosystem/platform-sdk-crypto";
 import { Environment, Profile } from "@arkecosystem/platform-sdk-profiles";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
-import prompts from "prompts";
 import ora from "ora";
+import prompts from "prompts";
 
 import { renderLogo, useLogger } from "../helpers";
 
