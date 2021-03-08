@@ -14,6 +14,8 @@ export interface LedgerService {
 
 	getVersion(): Promise<string>;
 
+	getPublicKey(path: string): Promise<string>;
+
 	getExtendedPublicKey(path: string): Promise<string>;
 
 	signTransaction(path: string, payload: Buffer): Promise<string>;
