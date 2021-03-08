@@ -165,7 +165,7 @@ importers:
     dependencies:
       '@arkecosystem/crypto': 3.0.0-next.22
       '@arkecosystem/crypto-identities': 1.1.1
-      '@arkecosystem/ledger-transport': 1.1.3
+      '@arkecosystem/ledger-transport': 2.0.0
       '@arkecosystem/multi-signature': 0.1.5
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
@@ -214,7 +214,7 @@ importers:
     specifiers:
       '@arkecosystem/crypto': ^3.0.0-next.20
       '@arkecosystem/crypto-identities': ^1.1.1
-      '@arkecosystem/ledger-transport': ^1.1.3
+      '@arkecosystem/ledger-transport': ^2.0.0
       '@arkecosystem/multi-signature': ^0.1.5
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -2986,13 +2986,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-jHvPnYrEjp+M6a/SGGpvSH4KsmAOl0rlqIW7wEanLl3S535gi/I9i4UmOWy74REUNzPl9JRqtNWc0HwQhx/sew==
-  /@arkecosystem/ledger-transport/1.1.3:
+  /@arkecosystem/ledger-transport/2.0.0:
     dependencies:
       '@ledgerhq/errors': 5.43.0
       '@ledgerhq/hw-transport': 5.45.0
     dev: false
     resolution:
-      integrity: sha512-Ew69SC4XImPiCNDRbhRs0Y0FqRsuYbRFFLm+rvR0TtG44VKcCxxC2pDZ06wOrV9y3paPhU95PzVZcAWnBookWA==
+      integrity: sha512-PeqzDwebeWvQf+j6/p84wO8aTdIP+YvBoGcJlFWibErxMf2v1AYSNu+yHSRCZPxF+Fz9SOHetnrrebWbHph8zg==
   /@arkecosystem/multi-signature/0.1.5:
     dependencies:
       '@arkecosystem/crypto': 2.7.25

@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Ethereum from "@ledgerhq/hw-app-eth";
 
 export class LedgerService implements Contracts.LedgerService {
@@ -32,6 +32,10 @@ export class LedgerService implements Contracts.LedgerService {
 		const { publicKey } = await this.#transport.getAddress(path);
 
 		return publicKey;
+	}
+
+	public async getExtendedPublicKey(path: string): Promise<string> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
 	}
 
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {

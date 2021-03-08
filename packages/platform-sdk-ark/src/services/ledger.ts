@@ -30,6 +30,10 @@ export class LedgerService implements Contracts.LedgerService {
 		return this.#transport.getPublicKey(path);
 	}
 
+	public async getExtendedPublicKey(path: string): Promise<string> {
+		return this.#transport.getExtPublicKey(path);
+	}
+
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
 		return this.#transport.signTransactionWithSchnorr(path, payload);
 	}

@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Bitcoin from "@ledgerhq/hw-app-btc";
 import { getAppAndVersion } from "@ledgerhq/hw-app-btc/lib/getAppAndVersion";
 import { serializeTransactionOutputs } from "@ledgerhq/hw-app-btc/lib/serializeTransaction";
@@ -34,6 +34,10 @@ export class LedgerService implements Contracts.LedgerService {
 		const { publicKey } = await this.#transport.getWalletPublicKey(path);
 
 		return publicKey;
+	}
+
+	public async getExtendedPublicKey(path: string): Promise<string> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
 	}
 
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
