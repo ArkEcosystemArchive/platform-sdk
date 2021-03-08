@@ -989,6 +989,7 @@ importers:
       bip32: 2.0.6
       bip38: 3.1.1
       bip39: 3.0.3
+      bstring: 0.3.9
       hdkey: 2.0.1
       keytar: 7.4.0
       node-forge: 0.10.0
@@ -1053,6 +1054,7 @@ importers:
       bip32: ^2.0.6
       bip38: ^3.1.1
       bip39: ^3.0.3
+      bstring: ^0.3.9
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0

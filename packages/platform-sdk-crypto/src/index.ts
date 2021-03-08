@@ -1,5 +1,6 @@
 // TODO: temporarly disabled because the export causes issues for environments like electron.
 // export * from "./argon2";
+export * from "./base58";
 export * from "./base64";
 export * from "./bcrypt";
 export * from "./bip32";

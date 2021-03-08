@@ -1,5 +1,5 @@
-import { HDKey } from "@arkecosystem/platform-sdk-crypto";
 import { Environment, Profile } from "@arkecosystem/platform-sdk-profiles";
+import { HDKey } from "@arkecosystem/platform-sdk-crypto";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 import prompts from "prompts";
 
@@ -8,35 +8,37 @@ import { renderLogo, useLogger } from "../helpers";
 export const importLedgerWallet = async (env: Environment, profile: Profile): Promise<void> => {
 	renderLogo();
 
-	// const { coin, network } = await prompts([
-	// 	{
-	// 		type: "text",
-	// 		name: "coin",
-	// 		message: "What is your coin?",
-	// 		validate: (value: string) => value !== undefined,
-	// 	},
-	// 	{
-	// 		type: "text",
-	// 		name: "network",
-	// 		message: "What is your network?",
-	// 		validate: (value: string) => value !== undefined,
-	// 	},
-	// ]);
+	const { coin, network } = await prompts([
+		{
+			type: "text",
+			name: "coin",
+			message: "What is your coin?",
+			validate: (value: string) => value !== undefined,
+			initial: "ARK",
+		},
+		{
+			type: "text",
+			name: "network",
+			message: "What is your network?",
+			validate: (value: string) => value !== undefined,
+			initial: "ark.mainnet",
+		},
+	]);
 
-	const coin = await env.coin("ARK", "ark.mainnet");
+	const instance = await env.coin(coin, network);
 
 	await LedgerTransportNodeHID.create();
 
 	try {
 		useLogger().info("Trying to connect...");
 
-		await coin.ledger().connect(LedgerTransportNodeHID);
+		await instance.ledger().connect(LedgerTransportNodeHID);
 
-		await coin.ledger().getPublicKey("m/44'/111'/0'/0/0");
+		await instance.ledger().getPublicKey("m/44'/111'/0'/0/0");
 	} catch (connectError) {
 		console.log(connectError.message);
 
-		await coin.ledger().disconnect();
+		await instance.ledger().disconnect();
 
 		throw connectError;
 	}
@@ -45,15 +47,15 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 		// @ts-ignore
 		next: async ({ type, deviceModel }) => {
 			if (type === "add") {
-				useLogger().info(`Connected [${deviceModel.productName}] with version [${await coin.ledger().getVersion()}]`);
+				useLogger().info(`Connected [${deviceModel.productName}] with version [${await instance.ledger().getVersion()}]`);
 
-				const extendedPublicKey = await coin.ledger().getExtendedPublicKey("m/44'/111'/0'");
+				const extendedPublicKey = await instance.ledger().getExtendedPublicKey("m/44'/111'/0'");
 
 				useLogger().info(`Extended Public Key: ${extendedPublicKey}`);
 
 				for (let i = 0; i < 10; i++) {
 					console.log(
-						await coin.identity().address().fromPublicKey(
+						await instance.identity().address().fromPublicKey(
 							HDKey.fromSeed(extendedPublicKey).derive(`m/44'/111'/0'/0/${i}`).publicKey.toString("hex"),
 						),
 					);
