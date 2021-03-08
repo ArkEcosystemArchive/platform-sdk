@@ -171,7 +171,15 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@ledgerhq/hw-transport",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@ledgerhq/hw-transport-mocker",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@ledgerhq/hw-transport-node-hid-singleton",
       "allowedCategories": [ "libraries" ]
     },
     {

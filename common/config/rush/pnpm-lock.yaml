@@ -718,6 +718,8 @@ importers:
       '@arkecosystem/platform-sdk-trx': link:../platform-sdk-trx
       '@arkecosystem/platform-sdk-xlm': link:../platform-sdk-xlm
       '@arkecosystem/platform-sdk-xrp': link:../platform-sdk-xrp
+      '@ledgerhq/hw-transport': 5.45.0
+      '@ledgerhq/hw-transport-node-hid-singleton': 5.45.0
       '@ptkdev/logger': 1.7.2
       better-sqlite3: 7.1.2
       boxen: 5.0.0
@@ -794,6 +796,8 @@ importers:
       '@arkecosystem/platform-sdk-trx': workspace:*
       '@arkecosystem/platform-sdk-xlm': workspace:*
       '@arkecosystem/platform-sdk-xrp': workspace:*
+      '@ledgerhq/hw-transport': ~5.45.0
+      '@ledgerhq/hw-transport-node-hid-singleton': ~5.45.0
       '@ptkdev/logger': ^1.7.2
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -985,6 +989,7 @@ importers:
       bip32: 2.0.6
       bip38: 3.1.1
       bip39: 3.0.3
+      hdkey: 2.0.1
       keytar: 7.4.0
       node-forge: 0.10.0
       safe-buffer: 5.2.1
@@ -1056,6 +1061,7 @@ importers:
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
       eslint-plugin-tsdoc: ~0.2.11
+      hdkey: ^2.0.1
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
@@ -4318,6 +4324,19 @@ packages:
     dev: false
     resolution:
       integrity: sha512-f0c1FKAo9r/bU8fbASAEP2uuU7hbbX7AfyrETu7Lx5yx6GmWzq/IL+FhnmWJyiwlwqH7HR71ivVYoEoM4veWCQ==
+  /@ledgerhq/hw-transport-node-hid-singleton/5.45.0:
+    dependencies:
+      '@ledgerhq/devices': 5.45.0
+      '@ledgerhq/errors': 5.43.0
+      '@ledgerhq/hw-transport': 5.45.0
+      '@ledgerhq/hw-transport-node-hid-noevents': 5.45.0
+      '@ledgerhq/logs': 5.43.0
+      lodash: 4.17.21
+      node-hid: 2.1.1
+      usb-detection: 4.10.0
+    dev: false
+    resolution:
+      integrity: sha512-nJgT4eMTevC2vz/RXOmLn9U0B9Wp2BNSxeM/Z0Sh3lRtSS6dBLia1mZNhVpH+AfwvEnZ3Ta0lWZinUYY+ARH5g==
   /@ledgerhq/hw-transport-node-hid/5.45.0:
     dependencies:
       '@ledgerhq/devices': 5.45.0
@@ -8477,6 +8496,10 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
+  /eventemitter2/5.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-YZegldX7a1folC9v1+qtY6CclFI=
   /eventemitter3/3.1.2:
     dev: false
     resolution:
@@ -14300,7 +14323,6 @@ packages:
     dependencies:
       is-fullwidth-code-point: 2.0.0
       strip-ansi: 4.0.0
-    dev: false
     engines:
       node: '>=4'
     resolution:
@@ -14355,7 +14377,6 @@ packages:
   /strip-ansi/4.0.0:
     dependencies:
       ansi-regex: 3.0.0
-    dev: false
     engines:
       node: '>=4'
     resolution:
@@ -15137,6 +15158,18 @@ packages:
       node: '>= 4'
     resolution:
       integrity: sha1-FQWgOiiaSMvXpDTvuu7FBV9WM6k=
+  /usb-detection/4.10.0:
+    dependencies:
+      bindings: 1.5.0
+      eventemitter2: 5.0.1
+      nan: 2.14.2
+      prebuild-install: 5.3.6
+    dev: false
+    engines:
+      node: '>=4'
+    requiresBuild: true
+    resolution:
+      integrity: sha512-YUzVWXwfSviE2pInXCKYXhR5heY9GUzlWsdZYxb/Br1Xela6P31A0KDHm7XW0Wsku1HwrokZx+/OD8cZSPHR3w==
   /usb/1.6.5:
     dependencies:
       bindings: 1.5.0
@@ -15698,7 +15731,7 @@ packages:
       integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==
   /wide-align/1.1.3:
     dependencies:
-      string-width: 1.0.2
+      string-width: 2.1.1
     resolution:
       integrity: sha512-QGkOQc8XL6Bt5PwnsExKBPuMKBxnGxWWW3fU55Xt4feHozMUhdUMaBCk290qpm/wG5u/RSKzwdAC4i51YigihA==
   /widest-line/3.1.0:

@@ -75,7 +75,9 @@
 		"semver": "^7.3.4",
 		"terminal-link": "^2.1.1",
 		"type-fest": "^0.21.2",
-		"yargs-parser": "^20.2.6"
+		"yargs-parser": "^20.2.6",
+		"@ledgerhq/hw-transport": "~5.45.0",
+		"@ledgerhq/hw-transport-node-hid-singleton": "~5.45.0"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
