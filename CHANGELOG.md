@@ -5,6 +5,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.1.0 - 2020-03-08
+
+### Added
+
+-   **[ADA]** Implement `AddressListFactory` (e787e6d0, @faustbrian)
+-   **[SDK]** Implement `AddressList` for every coin (073b2371, @faustbrian)
+-   **[SDK]** Implement derivation feature flags (df3c2210, @faustbrian)
+-   **[SDK]** Implement `AddressList#fromPrivateKey` (660591e0, @faustbrian)
+-   **[PROFILES]** Implement profile importing and exporting (a24b69e8, @marianogoldman)
+-   **[PROFILES]** Support BIP39/44 derivation (7805d94e, @faustbrian)
+-   **[BTC]** Implement BIP49 and BIP84 (6ad383bf, @faustbrian)
+-   **[SDK]** Implement ledger feature flags for transactions (e35cb267, @faustbrian)
+-   **[CLI]** Implement message signing and verifying (09bbcd1c, @faustbrian)
+-   **[SDK]** Implement `LedgerService#getExtendedPublicKey` (a45dd4b8, @faustbrian)
+
+### Changed
+
+-   **[ADA]** Use `@emurgo/cardano-serialization-lib-nodejs` for address derivation (02b09386, @faustbrian)
+-   **[CLI]** Enable SOL integration (afa7556f, @faustbrian)
+-   **[SDK]** Use enum to access configuration values (4a01069c, @faustbrian)
+-   **[SDK]** Make `AddressList#fromMnemonic` asynchronous (96080ccd, @faustbrian)
+-   **[SDK]** Allow passing in of a BIP44 purpose to support BIP49/84 (a9b639fa, @faustbrian)
+-   **[ADA]** Use `@emurgo/cardano-serialization-lib-nodejs` for message signing (97c3e8e1, @faustbrian)
+-   **[ADA]** Use `bech32` for address validation (e51cfc71, @faustbrian)
+-   **[CRYPTO]** Separate BIP32 from BIP44 (dbcb6ba2, @faustbrian)
+-   **[BTC-INDEXER]** Remove unnecessary database columns (bcf97398, @faustbrian)
+
+### Fixed
+
+-   **[CLI]** Skip actions if values are falsy (6c60fe40, @faustbrian)
+-   **[BTC-SERVER]** Add username and password flags (60ffbb35, @faustbrian)
+
 ## 3.0.41 - 2020-03-03
 
 ### Changed
