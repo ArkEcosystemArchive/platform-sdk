@@ -1,8 +1,8 @@
 import Base, { fromExtendedKey, fromMasterSeed } from "hdkey";
 
 export class HDKey {
-	public static fromSeed(seed: string): Base {
-		return fromMasterSeed(Buffer.from(seed, 'hex'));
+	public static fromSeed(seed: string | Buffer): Base {
+		return fromMasterSeed(value instanceof Buffer ? value : Buffer.from(value, "hex"));
 	}
 
 	public static fromExtendedPublicKey(key: string): Base {
