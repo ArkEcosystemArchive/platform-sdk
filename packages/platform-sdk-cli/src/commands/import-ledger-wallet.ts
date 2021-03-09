@@ -98,7 +98,7 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 
 				const table = new Table({ head: ["Path", "Address", "Public Key", "Balance"] });
 
-				const chunks = await Promise.all(chunk(Object.keys(addressMap), 20).map((addresses: string[]) => instance.client().wallets({ addresses })));
+				const chunks = await Promise.all(chunk(Object.keys(addressMap), 50).map((addresses: string[]) => instance.client().wallets({ addresses })));
 
 				for (const chunk of chunks) {
 					for (const identity of chunk.items()) {
