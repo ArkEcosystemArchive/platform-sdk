@@ -13797,7 +13797,7 @@ packages:
       integrity: sha512-1CdSqHQowJBnMAFyPEBRfqag/YP9OF394FV+4YREIJX4ljD7OxvQRDayyoyyCk+senRjSkP6VnUNQmVQqB6g7w==
   /secp256k1/4.0.2:
     dependencies:
-      elliptic: 6.5.3
+      elliptic: 6.5.4
       node-addon-api: 2.0.2
       node-gyp-build: 4.2.3
     dev: false
