@@ -231,6 +231,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@sindresorhus/chunkify",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@sindresorhus/slugify",
       "allowedCategories": [ "libraries" ]
     },

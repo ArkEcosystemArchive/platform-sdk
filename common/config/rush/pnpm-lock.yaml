@@ -721,6 +721,7 @@ importers:
       '@ledgerhq/hw-transport': 5.45.0
       '@ledgerhq/hw-transport-node-hid-singleton': 5.45.0
       '@ptkdev/logger': 1.7.2
+      '@sindresorhus/chunkify': 0.2.0
       better-sqlite3: 7.1.2
       boxen: 5.0.0
       cfonts: 2.9.1
@@ -800,6 +801,7 @@ importers:
       '@ledgerhq/hw-transport': ~5.45.0
       '@ledgerhq/hw-transport-node-hid-singleton': ~5.45.0
       '@ptkdev/logger': ^1.7.2
+      '@sindresorhus/chunkify': ~0.2.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/jest': ^26.0.15
@@ -4910,6 +4912,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
+  /@sindresorhus/chunkify/0.2.0:
+    dev: false
+    engines:
+      node: '>=12'
+    resolution:
+      integrity: sha512-mOAiwqu+bIIkNFDCXFJxZEmF9p9WHfSBbpLLmgysYnNkEs7aA0/AvU9+6zLHFqI7JnqdqwAuWu8CbGwGIszRdw==
   /@sindresorhus/is/0.14.0:
     engines:
       node: '>=6'

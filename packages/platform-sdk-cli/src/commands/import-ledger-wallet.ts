@@ -1,11 +1,14 @@
 import { HDKey } from "@arkecosystem/platform-sdk-crypto";
 import { Environment, Profile } from "@arkecosystem/platform-sdk-profiles";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
+import Table from "cli-table3";
 import createXpub from "create-xpub";
 import ora from "ora";
 import prompts from "prompts";
 
 import { renderLogo, useLogger } from "../helpers";
+
+const chunk = <T>(value: T[], size: number) => Array.from({ length: Math.ceil(value.length / size) }, (v, i) => value.slice(i * size, i * size + size));
 
 export const importLedgerWallet = async (env: Environment, profile: Profile): Promise<void> => {
 	renderLogo();
@@ -55,46 +58,51 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 					`Connected [${deviceModel.productName}] with version [${await instance.ledger().getVersion()}]`,
 				);
 
-				const extendedPublicKey = await instance.ledger().getExtendedPublicKey("m/44'/111'/0'");
+                const addressMap = {};
 
-				useLogger().info(`Extended Public Key: ${extendedPublicKey}`);
+                // 5 Accounts
+				for (let accountIndex = 0; accountIndex < 5; accountIndex++) {
+                    const extendedPublicKey = await instance.ledger().getExtendedPublicKey(`m/44'/111'/${accountIndex}'`);
 
-				const confirmations = {
-					"44'/111'/0'/0/0": "AYnmdEV3YUzcHWaANJxex8YiDwHG39oqCd",
-					"44'/111'/1'/0/0": "AYN58vVzfhuwz1KcWF5c7RgSmQydMj7AkW",
-					"44'/111'/2'/0/0": "ARiCq378UANqsYWdXHrdZPiFmD2sGATtJb",
-					"44'/111'/3'/0/0": "AUdAbG3NmjKJ3pmz55SDex8mTbhBmU4PST",
-					"44'/111'/4'/0/0": "AWZbSenUzVZ3FtbdvCcd1j56x2Hvht5EZU",
-					"44'/111'/0'/0/1": "AaCxeiExbhRbQaKhQGMYMfqjRawsA9Qzza",
-					"44'/111'/0'/0/2": "AeBoGCKrbfVghNi1TRvQdmdUYrbZ8KEUsn",
-					"44'/111'/0'/0/3": "AUiZ9oBi2NsbZC51zjNzSafbVynZGFVueT",
-					"44'/111'/0'/0/4": "AMF8hHxCnxzkGNzzh9bpnfgBk2DNgKBPUL",
-					"44'/111'/0'/0/5": "APpCDz9rFsZUf4XKTHApmUUhwvTrwfhjoC",
-					"44'/111'/0'/0/6": "ARyWiQ4L5w9cFCb5T9vUsSZsUkhHpbR8gK",
-					"44'/111'/0'/0/7": "AU81qEcvSadKpBq6auKNfDL1neaNqzaTbz",
-					"44'/111'/0'/0/8": "ANzRinSabrDtXb9H6eyTa2GUG6nMgEwJZ9",
-					"44'/111'/0'/0/9": "AHWB5KGPs4i69Rkn1GXA9S7pgTifvz41AT",
-				};
+                    useLogger().info(`Extended Public Key for account [${accountIndex}] >>> ${extendedPublicKey}`);
 
-				for (let i = 0; i < 1; i++) {
-					const path = `44'/111'/0'/0/${i}`;
-					const ledgerKey = await instance.ledger().getPublicKey(path);
-					const ledgerAddress = await instance.identity().address().fromPublicKey(ledgerKey);
-					const extendedKey = HDKey.fromExtendedPublicKey(
-						createXpub({
-							depth: 0,
-							childNumber: 2147483648,
-							chainCode: extendedPublicKey.slice(-64),
-							publicKey: extendedPublicKey.slice(0, 66),
-						}),
-					)
-						.derive(`m/0/${i}`)
-						.publicKey.toString("hex");
-					const extendedAddress = await instance.identity().address().fromPublicKey(extendedKey);
-					const expected = confirmations[path];
+                    // 50 Wallets per account
+                    for (let addressIndex = 0; addressIndex < 50; addressIndex++) {
+                        const path = `44'/111'/${accountIndex}'/0/${addressIndex}`;
+                        // const ledgerKey = await instance.ledger().getPublicKey(path);
+                        // const ledgerAddress = await instance.identity().address().fromPublicKey(ledgerKey);
+                        const extendedKey = HDKey.fromExtendedPublicKey(
+                            createXpub({
+                                depth: 0,
+                                childNumber: 2147483648, // Account 0 = 0 + 0x80000000
+                                chainCode: extendedPublicKey.slice(-64),
+                                publicKey: extendedPublicKey.slice(0, 66),
+                            }),
+                        )
+                            .derive(`m/0/${addressIndex}`)
+                            .publicKey.toString("hex");
+                        const extendedAddress = await instance.identity().address().fromPublicKey(extendedKey);
 
-					console.log({ path, expected, ledgerKey, ledgerAddress, extendedKey, extendedAddress });
+						addressMap[extendedAddress] = path;
+                    }
 				}
+
+				const table = new Table({ head: ["Path", "Address", "Public Key", "Balance"] });
+
+				for (const addresses of chunk(Object.keys(addressMap), 20)) {
+					const response = await instance.client().wallets({ addresses });
+
+					for (const identity of response.items()) {
+						table.push([
+							addressMap[identity.address()],
+							identity.address(),
+							identity.publicKey(),
+							identity.balance().toHuman(),
+						]);
+					}
+				}
+
+                console.log(table.toString());
 
 				process.exit();
 			}
@@ -106,11 +114,4 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 		error: (e) => console.log({ type: "failed", message: e.message }),
 		complete: () => void 0,
 	});
-
-	// for (const { address, path } of wallets) {
-	//     const wallet = await profile
-	//         .wallets()
-	//         .importByAddress(address, coin.network().coin(), coin.network().id());
-	//     wallet.data().set(WalletData.LedgerPath, path);
-	// }
 };
