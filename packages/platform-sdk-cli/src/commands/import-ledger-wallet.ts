@@ -66,7 +66,7 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 
                     useLogger().info(`Extended Public Key for account [${accountIndex}] >>> ${extendedPublicKey}`);
 
-                    // 50 Wallets per account
+                    // 100 Wallets per account
                     for (let addressIndex = 0; addressIndex < 100; addressIndex++) {
                         const path = `44'/111'/${accountIndex}'/0/${addressIndex}`;
                         // const ledgerKey = await instance.ledger().getPublicKey(path);
