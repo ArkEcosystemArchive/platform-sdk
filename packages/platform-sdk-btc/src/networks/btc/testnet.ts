@@ -76,6 +76,8 @@ const network: Coins.CoinNetwork = {
 		Derivation: {
 			bip39: true,
 			bip44: true,
+			bip49: true,
+			bip84: true,
 		},
 	},
 	transactionTypes: ["transfer"],
