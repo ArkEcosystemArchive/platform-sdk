@@ -31,6 +31,7 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 		},
 	]);
 
+	const slip44 = network === "ark.mainnet" ? 111 : 1;
 	const instance = await env.coin(coin, network);
 
 	await LedgerTransportNodeHID.create();
@@ -40,7 +41,7 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 
 		await instance.ledger().connect(LedgerTransportNodeHID);
 
-		await instance.ledger().getPublicKey("m/44'/111'/0'/0/0");
+		await instance.ledger().getPublicKey(`m/44'/${slip44}'/0'/0/0`);
 
 		spinner.stop();
 	} catch (connectError) {
@@ -67,13 +68,13 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 				for (let accountIndex = 0; accountIndex < 5; accountIndex++) {
 					const compressedPublicKey = await instance
 						.ledger()
-						.getExtendedPublicKey(`m/44'/111'/${accountIndex}'`);
+						.getExtendedPublicKey(`m/44'/${slip44}'/${accountIndex}'`);
 
 					useLogger().info(`Extended Public Key for account [${accountIndex}] >>> ${compressedPublicKey}`);
 
 					// 100 Wallets per account
 					for (let addressIndex = 0; addressIndex < 100; addressIndex++) {
-						const path = `44'/111'/${accountIndex}'/0/${addressIndex}`;
+						const path = `44'/${slip44}'/${accountIndex}'/0/${addressIndex}`;
 						// const ledgerKey = await instance.ledger().getPublicKey(path);
 						// const ledgerAddress = await instance.identity().address().fromPublicKey(ledgerKey);
 						const extendedKey = HDKey.fromExtendedPublicKey(
@@ -88,7 +89,7 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 							.publicKey.toString("hex");
 						const extendedAddress = await instance.identity().address().fromPublicKey(extendedKey);
 
-						addressMap[extendedAddress] = path;
+						addressMap[extendedAddress] = { path, extendedKey };
 					}
 				}
 
@@ -107,9 +108,9 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 				for (const chunk of chunks) {
 					for (const identity of chunk.items()) {
 						table.push([
-							addressMap[identity.address()],
+							addressMap[identity.address()].path,
 							identity.address(),
-							identity.publicKey(),
+							addressMap[identity.address()].extendedKey,
 							identity.balance().toHuman(),
 						]);
 					}
