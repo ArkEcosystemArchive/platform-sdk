@@ -64,7 +64,7 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 
 				const addressMap = {};
 
-				for (let accountIndex = 0; accountIndex < 5; accountIndex++) {
+				for (let accountIndex = 0; accountIndex < 50; accountIndex++) {
 					const compressedPublicKey = await instance
 						.ledger()
 						.getExtendedPublicKey(`m/44'/${slip44}'/${accountIndex}'`);
