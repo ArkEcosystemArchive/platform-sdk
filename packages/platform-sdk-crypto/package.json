@@ -37,7 +37,8 @@
 		"string-crypto": "^2.0.1",
 		"uuid": "^8.3.2",
 		"hdkey": "^2.0.1",
-		"bstring": "^0.3.9"
+		"bstring": "^0.3.9",
+		"create-xpub": "~2.1.0"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
