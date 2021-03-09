@@ -54,6 +54,8 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 		// @ts-ignore
 		next: async ({ type, deviceModel }) => {
 			if (type === "add") {
+				console.time("ledger")
+
 				useLogger().info(
 					`Connected [${deviceModel.productName}] with version [${await instance.ledger().getVersion()}]`,
 				);
@@ -87,6 +89,10 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
                     }
 				}
 
+				console.log(Object.keys(addressMap).length)
+
+				const networkSpinner = ora("Checking addresses on network...").start();
+
 				const table = new Table({ head: ["Path", "Address", "Public Key", "Balance"] });
 
 				for (const addresses of chunk(Object.keys(addressMap), 20)) {
@@ -102,7 +108,10 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 					}
 				}
 
+				networkSpinner.stop();
+
                 console.log(table.toString());
+				console.timeEnd("ledger")
 
 				process.exit();
 			}
