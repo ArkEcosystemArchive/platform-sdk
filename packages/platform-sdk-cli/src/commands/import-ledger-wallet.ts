@@ -74,7 +74,9 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 						const path = `44'/${slip44}'/${accountIndex}'/0/${addressIndex}`;
 						// const ledgerKey = await instance.ledger().getPublicKey(path);
 						// const ledgerAddress = await instance.identity().address().fromPublicKey(ledgerKey);
-						const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey).derive(`m/0/${addressIndex}`).publicKey.toString("hex");
+						const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey)
+							.derive(`m/0/${addressIndex}`)
+							.publicKey.toString("hex");
 						const extendedAddress = await instance.identity().address().fromPublicKey(extendedKey);
 
 						addressMap[extendedAddress] = { path, extendedKey };

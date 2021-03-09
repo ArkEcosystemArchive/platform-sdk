@@ -1,5 +1,5 @@
-import Base, { fromExtendedKey, fromMasterSeed } from "hdkey";
 import createXpub from "create-xpub";
+import Base, { fromExtendedKey, fromMasterSeed } from "hdkey";
 
 const normalise = (value: string | Buffer) => (value instanceof Buffer ? value : Buffer.from(value, "hex"));
 
@@ -24,7 +24,10 @@ export class HDKey {
 		return fromExtendedKey(privateKey);
 	}
 
-	public static fromCompressedPublicKey(publicKey: string, options: { depth: number; childNumber: number; } = { depth: 0, childNumber: 2147483648 }): Base {
+	public static fromCompressedPublicKey(
+		publicKey: string,
+		options: { depth: number; childNumber: number } = { depth: 0, childNumber: 2147483648 },
+	): Base {
 		return HDKey.fromExtendedPublicKey(
 			createXpub({
 				depth: options.depth,
