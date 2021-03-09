@@ -8,7 +8,8 @@ import prompts from "prompts";
 
 import { renderLogo, useLogger } from "../helpers";
 
-const chunk = <T>(value: T[], size: number) => Array.from({ length: Math.ceil(value.length / size) }, (v, i) => value.slice(i * size, i * size + size));
+const chunk = <T>(value: T[], size: number) =>
+	Array.from({ length: Math.ceil(value.length / size) }, (v, i) => value.slice(i * size, i * size + size));
 
 export const importLedgerWallet = async (env: Environment, profile: Profile): Promise<void> => {
 	renderLogo();
@@ -58,33 +59,35 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 					`Connected [${deviceModel.productName}] with version [${await instance.ledger().getVersion()}]`,
 				);
 
-                const addressMap = {};
+				const addressMap = {};
 
-                // 5 Accounts
+				// 5 Accounts
 				for (let accountIndex = 0; accountIndex < 5; accountIndex++) {
-                    const extendedPublicKey = await instance.ledger().getExtendedPublicKey(`m/44'/111'/${accountIndex}'`);
+					const extendedPublicKey = await instance
+						.ledger()
+						.getExtendedPublicKey(`m/44'/111'/${accountIndex}'`);
 
-                    useLogger().info(`Extended Public Key for account [${accountIndex}] >>> ${extendedPublicKey}`);
+					useLogger().info(`Extended Public Key for account [${accountIndex}] >>> ${extendedPublicKey}`);
 
-                    // 100 Wallets per account
-                    for (let addressIndex = 0; addressIndex < 100; addressIndex++) {
-                        const path = `44'/111'/${accountIndex}'/0/${addressIndex}`;
-                        // const ledgerKey = await instance.ledger().getPublicKey(path);
-                        // const ledgerAddress = await instance.identity().address().fromPublicKey(ledgerKey);
-                        const extendedKey = HDKey.fromExtendedPublicKey(
-                            createXpub({
-                                depth: 0,
-                                childNumber: 2147483648, // Account 0 = 0 + 0x80000000
-                                chainCode: extendedPublicKey.slice(-64),
-                                publicKey: extendedPublicKey.slice(0, 66),
-                            }),
-                        )
-                            .derive(`m/0/${addressIndex}`)
-                            .publicKey.toString("hex");
-                        const extendedAddress = await instance.identity().address().fromPublicKey(extendedKey);
+					// 100 Wallets per account
+					for (let addressIndex = 0; addressIndex < 100; addressIndex++) {
+						const path = `44'/111'/${accountIndex}'/0/${addressIndex}`;
+						// const ledgerKey = await instance.ledger().getPublicKey(path);
+						// const ledgerAddress = await instance.identity().address().fromPublicKey(ledgerKey);
+						const extendedKey = HDKey.fromExtendedPublicKey(
+							createXpub({
+								depth: 0,
+								childNumber: 2147483648, // Account 0 = 0 + 0x80000000
+								chainCode: extendedPublicKey.slice(-64),
+								publicKey: extendedPublicKey.slice(0, 66),
+							}),
+						)
+							.derive(`m/0/${addressIndex}`)
+							.publicKey.toString("hex");
+						const extendedAddress = await instance.identity().address().fromPublicKey(extendedKey);
 
 						addressMap[extendedAddress] = path;
-                    }
+					}
 				}
 
 				const table = new Table({ head: ["Path", "Address", "Public Key", "Balance"] });
@@ -102,7 +105,7 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 					}
 				}
 
-                console.log(table.toString());
+				console.log(table.toString());
 
 				process.exit();
 			}
