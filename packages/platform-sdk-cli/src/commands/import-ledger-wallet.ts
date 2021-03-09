@@ -2,6 +2,7 @@ import { HDKey } from "@arkecosystem/platform-sdk-crypto";
 import { Environment, Profile } from "@arkecosystem/platform-sdk-profiles";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 import Table from "cli-table3";
+import delay from "delay";
 import ora from "ora";
 import prompts from "prompts";
 
@@ -70,7 +71,7 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 
 					useLogger().info(`Extended Public Key for account [${accountIndex}] >>> ${compressedPublicKey}`);
 
-					for (let addressIndex = 0; addressIndex < 100; addressIndex++) {
+					for (let addressIndex = 0; addressIndex < 2048; addressIndex++) {
 						const path = `44'/${slip44}'/${accountIndex}'/0/${addressIndex}`;
 						// const ledgerKey = await instance.ledger().getPublicKey(path);
 						// const ledgerAddress = await instance.identity().address().fromPublicKey(ledgerKey);
@@ -83,7 +84,29 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 					}
 				}
 
-				console.log(Object.keys(addressMap).length);
+				// const mnemonic = "";
+				// const source = await profile.wallets().importByMnemonic(mnemonic, coin, network);
+
+				// for (const addresses of chunk(Object.keys(addressMap), 128)) {
+				// 	try {
+				// 		await source.transaction().broadcast(
+				// 			await source.transaction().signMultiPayment({
+				// 				from: source.address(),
+				// 				sign: { mnemonic },
+				// 				data: {
+				// 					payments: addresses.map((address: string) => ({
+				// 						amount: `${1e8}`,
+				// 						to: address,
+				// 					}))
+				// 				}
+				// 			})
+				// 		);
+				// 	} catch {
+				// 		//
+				// 	}
+
+				// 	await delay(10000);
+				// }
 
 				const networkSpinner = ora("Checking addresses on network...").start();
 

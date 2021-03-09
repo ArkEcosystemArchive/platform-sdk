@@ -725,6 +725,7 @@ importers:
       cfonts: 2.9.1
       cli-table3: 0.6.0
       conf: 9.0.2
+      delay: 5.0.0
       env-paths: 2.2.0
       fs-extra: 9.1.0
       joi: 17.4.0
@@ -799,6 +800,7 @@ importers:
       cli-table3: ^0.6.0
       conf: ^9.0.2
       cross-env: ^7.0.2
+      delay: ~5.0.0
       env-paths: ^2.2.0
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
@@ -7568,6 +7570,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-jwK2UV4cnPpbcG7+VRARKTZPUWowwXA8bzH5NP6ud0oeAxyYPuGZUAC7hMugpCdz4BeSZl2Dl9k66CHJ/46ZYQ==
+  /delay/5.0.0:
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-ReEBKkIfe4ya47wlPYf/gu5ib6yUG0/Aez0JQZQz94kiWtRQvZIQbTiehsnwHvLSWJnQdhVeqYue7Id1dKr0qw==
   /delayed-stream/1.0.0:
     engines:
       node: '>=0.4.0'

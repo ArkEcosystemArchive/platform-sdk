@@ -64,7 +64,8 @@
 		"prompts": "^2.4.0",
 		"semver": "^7.3.4",
 		"terminal-link": "^2.1.1",
-		"type-fest": "^0.21.2"
+		"type-fest": "^0.21.2",
+		"delay": "~5.0.0"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
