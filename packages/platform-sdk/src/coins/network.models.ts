@@ -81,6 +81,7 @@ export interface CoinNetwork {
 				publicKey?: boolean;
 				privateKey?: boolean;
 				wif?: boolean;
+				validate?: boolean;
 			};
 			publicKey?: {
 				mnemonic?: boolean;
@@ -162,8 +163,11 @@ export interface CoinNetwork {
 		Derivation?: {
 			bip39?: boolean;
 			bip44?: boolean;
+			bip49?: boolean;
+			bip84?: boolean;
 		};
 	};
+	// @TODO: we could replace this with kebabCase(Object.keys(FeatureFlags.Transaction))
 	transactionTypes: CoinTransactionTypes[];
 	knownWallets?: string;
 	meta?: KeyValuePair;

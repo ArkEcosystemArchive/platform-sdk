@@ -109,6 +109,7 @@ const network: Coins.CoinNetwork = {
 		},
 		Derivation: {
 			bip39: true,
+			bip44: true,
 		},
 	},
 	transactionTypes: [
