@@ -65,11 +65,11 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 
 				// 5 Accounts
 				for (let accountIndex = 0; accountIndex < 5; accountIndex++) {
-					const extendedPublicKey = await instance
+					const compressedPublicKey = await instance
 						.ledger()
 						.getExtendedPublicKey(`m/44'/111'/${accountIndex}'`);
 
-					useLogger().info(`Extended Public Key for account [${accountIndex}] >>> ${extendedPublicKey}`);
+					useLogger().info(`Extended Public Key for account [${accountIndex}] >>> ${compressedPublicKey}`);
 
 					// 100 Wallets per account
 					for (let addressIndex = 0; addressIndex < 100; addressIndex++) {
@@ -80,8 +80,8 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 							createXpub({
 								depth: 0,
 								childNumber: 2147483648, // Account 0 = 0 + 0x80000000
-								chainCode: extendedPublicKey.slice(-64),
-								publicKey: extendedPublicKey.slice(0, 66),
+								chainCode: compressedPublicKey.slice(-64),
+								publicKey: compressedPublicKey.slice(0, 66),
 							}),
 						)
 							.derive(`m/0/${addressIndex}`)
