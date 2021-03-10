@@ -60,7 +60,7 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 					`Connected [${deviceModel.productName}] with version [${await instance.ledger().getVersion()}]`,
 				);
 
-                // Derive
+				// Derive
 				const addressMap = {};
 
 				for (let accountIndex = 0; accountIndex < 5; accountIndex++) {
@@ -72,14 +72,16 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 
 					for (let addressIndex = 0; addressIndex < 50; addressIndex++) {
 						const path = `44'/${slip44}'/${accountIndex}'/0/${addressIndex}`;
-						const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey).derive(`m/0/${addressIndex}`).publicKey.toString("hex");
+						const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey)
+							.derive(`m/0/${addressIndex}`)
+							.publicKey.toString("hex");
 						const extendedAddress = await instance.identity().address().fromPublicKey(extendedKey);
 
 						addressMap[extendedAddress] = { path, extendedKey };
 					}
 				}
 
-                // Check
+				// Check
 				const networkSpinner = ora("Checking addresses on network...").start();
 
 				const table = new Table({ head: ["Path", "Address", "Public Key", "Balance"] });
@@ -90,10 +92,10 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 					),
 				);
 
-                const wallets: any[] = [];
+				const wallets: any[] = [];
 				for (const chunk of chunks) {
 					for (const identity of chunk.items()) {
-                        table.push([
+						table.push([
 							addressMap[identity.address()].path,
 							identity.address(),
 							addressMap[identity.address()].extendedKey,
@@ -101,11 +103,11 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 						]);
 
 						wallets.push({
-                            path: addressMap[identity.address()].path,
+							path: addressMap[identity.address()].path,
 							address: identity.address(),
 							extendedKey: addressMap[identity.address()].extendedKey,
 							balance: identity.balance().toHuman(),
-                        });
+						});
 					}
 				}
 
@@ -113,21 +115,28 @@ export const importLedgerWallet = async (env: Environment, profile: Profile): Pr
 
 				console.log(table.toString());
 
-                const { addresses } = await prompts([{
-                    type: 'multiselect',
-                    name: 'addresses',
-                    message: 'What addresses do you want to import?',
-                    choices: wallets.map(wallet => ({ title: `${wallet.address} [${wallet.balance}]`, value: wallet })),
-                }]);
+				const { addresses } = await prompts([
+					{
+						type: "multiselect",
+						name: "addresses",
+						message: "What addresses do you want to import?",
+						choices: wallets.map((wallet) => ({
+							title: `${wallet.address} [${wallet.balance}]`,
+							value: wallet,
+						})),
+					},
+				]);
 
-                const imports: any[] = [];
-                for (const address of addresses) {
-                    imports.push(profile.wallets().importByAddressWithLedgerPath(address.address, coin, network, address.path));
-                }
+				const imports: any[] = [];
+				for (const address of addresses) {
+					imports.push(
+						profile.wallets().importByAddressWithLedgerPath(address.address, coin, network, address.path),
+					);
+				}
 
-                await Promise.all(imports);
+				await Promise.all(imports);
 
-                // Import
+				// Import
 				process.exit();
 			}
 

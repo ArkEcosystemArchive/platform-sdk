@@ -54,6 +54,7 @@
 		"cfonts": "^2.9.0",
 		"cli-table3": "^0.6.0",
 		"conf": "^9.0.2",
+		"delay": "~5.0.0",
 		"env-paths": "^2.2.0",
 		"fs-extra": "^9.1.0",
 		"joi": "^17.4.0",
@@ -64,8 +65,7 @@
 		"prompts": "^2.4.0",
 		"semver": "^7.3.4",
 		"terminal-link": "^2.1.1",
-		"type-fest": "^0.21.2",
-		"delay": "~5.0.0"
+		"type-fest": "^0.21.2"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",

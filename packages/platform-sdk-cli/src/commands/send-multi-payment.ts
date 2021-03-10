@@ -9,7 +9,7 @@ import { finaliseTransaction } from "./helpers";
 export const sendMultiPayment = async (wallet: ReadWriteWallet): Promise<void> => {
 	renderLogo();
 
-	const payments: { amount: string; to: string; }[] = [];
+	const payments: { amount: string; to: string }[] = [];
 
 	while (true) {
 		const { amount, to, addMore } = await prompts([

@@ -3,7 +3,12 @@ import terminalLink from "terminal-link";
 
 import { useLogger } from "../helpers";
 
-export const finaliseTransaction = async (wallet: ReadWriteWallet, mnemonic: string, method: string, data = {}): Promise<void> => {
+export const finaliseTransaction = async (
+	wallet: ReadWriteWallet,
+	mnemonic: string,
+	method: string,
+	data = {},
+): Promise<void> => {
 	const transactionID = await wallet.transaction()[method]({
 		from: wallet.address(),
 		data,
