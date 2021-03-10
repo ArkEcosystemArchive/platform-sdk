@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-crypto",
-	"version": "3.0.41",
+	"version": "3.1.4",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -35,7 +35,10 @@
 		"node-forge": "^0.10.0",
 		"safe-buffer": "^5.2.1",
 		"string-crypto": "^2.0.1",
-		"uuid": "^8.3.2"
+		"uuid": "^8.3.2",
+		"hdkey": "^2.0.1",
+		"bstring": "^0.3.9",
+		"create-xpub": "~2.1.0"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",

@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { CommHandler, DposLedger, LedgerAccount, SupportedCoin } from "dpos-ledger-api";
 
@@ -34,6 +34,10 @@ export class LedgerService implements Contracts.LedgerService {
 		const { publicKey } = await this.#transport.getPubKey(this.getLedgerAccount(path));
 
 		return publicKey;
+	}
+
+	public async getExtendedPublicKey(path: string): Promise<string> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
 	}
 
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {

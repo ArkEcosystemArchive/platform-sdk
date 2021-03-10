@@ -41,6 +41,13 @@ const network: Coins.CoinNetwork = {
 			sign: true,
 			verify: true,
 		},
+		Transaction: {
+			transfer: true,
+		},
+		Derivation: {
+			bip39: true,
+			bip44: true,
+		},
 	},
 	transactionTypes: ["transfer"],
 };

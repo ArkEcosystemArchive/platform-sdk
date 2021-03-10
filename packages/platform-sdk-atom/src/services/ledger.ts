@@ -36,6 +36,10 @@ export class LedgerService implements Contracts.LedgerService {
 		return compressed_pk.toString("hex");
 	}
 
+	public async getExtendedPublicKey(path: string): Promise<string> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
+	}
+
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
 		const pathArray: number[] = Object.values(BIP44.parse(path));
 		const { signature } = await this.#transport.sign(pathArray, payload.toString());

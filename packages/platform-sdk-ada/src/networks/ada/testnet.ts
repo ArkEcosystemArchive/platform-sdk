@@ -33,6 +33,7 @@ const network: Coins.CoinNetwork = {
 			address: {
 				mnemonic: true,
 				publicKey: true,
+				validate: true,
 			},
 			publicKey: {
 				mnemonic: true,
@@ -44,10 +45,23 @@ const network: Coins.CoinNetwork = {
 				mnemonic: true,
 			},
 		},
+		Link: {
+			block: true,
+			transaction: true,
+			wallet: true,
+		},
+		Message: {
+			sign: true,
+			verify: true,
+		},
+		Transaction: {
+			transfer: true,
+		},
 		Miscellaneous: {
 			utxo: true,
 		},
 		Derivation: {
+			bip39: true,
 			bip44: true,
 		},
 	},

@@ -32,6 +32,10 @@ export class LedgerService implements Contracts.LedgerService {
 		return result.slice(1, 1 + result[0]).toString("hex");
 	}
 
+	public async getExtendedPublicKey(path: string): Promise<string> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
+	}
+
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
 		const signature = await this.eosSignTransaction(path, payload);
 

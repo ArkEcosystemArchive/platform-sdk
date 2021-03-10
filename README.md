@@ -48,7 +48,7 @@ rush test
 
 ```bash
 bash scripts/version.sh ${VERSION}
-rush publish --publish --set-access-level=public --include-all
+NPM_AUTH_TOKEN=YOUR_AUTH_TOKEN rush publish --publish --set-access-level=public --include-all
 ```
 
 ## Security
