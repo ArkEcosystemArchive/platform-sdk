@@ -11,9 +11,8 @@ export const sendMultiPayment = async (wallet: ReadWriteWallet): Promise<void> =
 
 	const payments: { amount: string; to: string; }[] = [];
 
-	let addMore = true;
-	while (addMore) {
-		const { amount, to, more } = await prompts([
+	while (true) {
+		const { amount, to, addMore } = await prompts([
 			{
 				type: "text",
 				name: "amount",
@@ -28,7 +27,7 @@ export const sendMultiPayment = async (wallet: ReadWriteWallet): Promise<void> =
 			},
 			{
 				type: "toggle",
-				name: "more",
+				name: "addMore",
 				message: "Do you want to add another recipient?",
 				initial: true,
 				active: "yes",
@@ -46,7 +45,9 @@ export const sendMultiPayment = async (wallet: ReadWriteWallet): Promise<void> =
 
 		payments.push({ amount, to });
 
-		addMore = more;
+		if (addMore) {
+			break;
+		}
 	}
 
 	const { mnemonic, memo } = await prompts([
