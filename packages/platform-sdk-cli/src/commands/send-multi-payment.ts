@@ -70,6 +70,10 @@ export const sendMultiPayment = async (wallet: ReadWriteWallet): Promise<void> =
 		},
 	]);
 
+	if (!payments.length) {
+		return;
+	}
+
 	if (!mnemonic) {
 		return;
 	}
