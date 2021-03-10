@@ -44,6 +44,22 @@ const network: Coins.CoinNetwork = {
 			getPublicKey: true,
 			signTransaction: true,
 		},
+		Link: {
+			block: true,
+			transaction: true,
+			wallet: true,
+		},
+		Message: {
+			sign: true,
+			verify: true,
+		},
+		Transaction: {
+			transfer: true,
+		},
+		Derivation: {
+			bip39: true,
+			bip44: true,
+		},
 	},
 	transactionTypes: ["transfer"],
 };

@@ -40,6 +40,7 @@ test("#all", () => {
 		      },
 		      "Derivation": Object {
 		        "bip39": true,
+		        "bip44": true,
 		      },
 		      "Fee": Object {
 		        "all": true,
@@ -180,6 +181,7 @@ test("#all", () => {
 		      },
 		      "Derivation": Object {
 		        "bip39": true,
+		        "bip44": true,
 		      },
 		      "Fee": Object {
 		        "all": true,
@@ -320,6 +322,7 @@ test("#all", () => {
 		      },
 		      "Derivation": Object {
 		        "bip39": true,
+		        "bip44": true,
 		      },
 		      "Fee": Object {
 		        "all": true,
