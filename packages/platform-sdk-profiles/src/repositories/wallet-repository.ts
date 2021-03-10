@@ -130,19 +130,11 @@ export class WalletRepository {
 		return this.storeWallet(await this.#wallets.fromMnemonicWithEncryption({ coin, network, mnemonic, password }));
 	}
 
-	public async importByPublicKey(
-		coin: string,
-		network: string,
-		publicKey: string,
-	): Promise<ReadWriteWallet> {
+	public async importByPublicKey(coin: string, network: string, publicKey: string): Promise<ReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromPublicKey({ coin, network, publicKey }));
 	}
 
-	public async importByPrivateKey(
-		coin: string,
-		network: string,
-		privateKey: string,
-	): Promise<ReadWriteWallet> {
+	public async importByPrivateKey(coin: string, network: string, privateKey: string): Promise<ReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromPrivateKey({ coin, network, privateKey }));
 	}
 
