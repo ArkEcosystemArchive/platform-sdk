@@ -61,6 +61,10 @@ export const sendMultiPayment = async (wallet: ReadWriteWallet): Promise<void> =
 		},
 	]);
 
+	if (!mnemonic) {
+		return;
+	}
+
 	await finaliseTransaction(wallet, mnemonic, "signMultiPayment", {
 		payments,
 		memo,
