@@ -80,9 +80,6 @@ export class WalletRepository {
 			await instance.setCoin(coin, network);
 			await instance.setAddress(address);
 
-			// @TODO: set already existing coin instance without bootstrapping again
-			// @TODO: set address without hitting the network again
-
 			wallets.push(instance);
 		};
 
