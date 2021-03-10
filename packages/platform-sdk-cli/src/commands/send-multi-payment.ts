@@ -45,7 +45,7 @@ export const sendMultiPayment = async (wallet: ReadWriteWallet): Promise<void> =
 
 		payments.push({ amount, to });
 
-		if (addMore) {
+		if (!addMore) {
 			break;
 		}
 	}
