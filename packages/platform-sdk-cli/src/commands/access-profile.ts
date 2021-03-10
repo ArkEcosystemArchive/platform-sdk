@@ -5,6 +5,7 @@ import { renderLogo } from "../helpers";
 import { accessWallet } from "./access-wallet";
 import { changePassword } from "./change-password";
 import { createWallet } from "./create-wallet";
+import { importLedgerWallet } from "./import-ledger-wallet";
 
 export const accessProfile = async (env: Environment): Promise<void> => {
 	renderLogo();
@@ -51,6 +52,7 @@ export const accessProfile = async (env: Environment): Promise<void> => {
 		choices: [
 			{ title: "Access Wallet", value: "access-wallet" },
 			{ title: "Create Wallet", value: "create-wallet" },
+			{ title: "Import Wallet from Ledger", value: "import-ledger-wallet" },
 			{ title: "Change Password", value: "change-password" },
 			{ title: "Exit", value: "exit" },
 		],
@@ -78,6 +80,13 @@ export const accessProfile = async (env: Environment): Promise<void> => {
 
 	if (command === "change-password") {
 		await changePassword(profile);
+
+		profile.save();
+		await env.persist();
+	}
+
+	if (command === "import-ledger-wallet") {
+		await importLedgerWallet(env, profile);
 
 		profile.save();
 		await env.persist();

@@ -171,7 +171,15 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@ledgerhq/hw-transport",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@ledgerhq/hw-transport-mocker",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@ledgerhq/hw-transport-node-hid-singleton",
       "allowedCategories": [ "libraries" ]
     },
     {
@@ -220,6 +228,10 @@
     },
     {
       "name": "@ptkdev/logger",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sindresorhus/chunkify",
       "allowedCategories": [ "libraries" ]
     },
     {
@@ -347,11 +359,19 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "create-xpub",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "cross-env",
       "allowedCategories": [ "libraries" ]
     },
     {
       "name": "dayjs",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "delay",
       "allowedCategories": [ "libraries" ]
     },
     {

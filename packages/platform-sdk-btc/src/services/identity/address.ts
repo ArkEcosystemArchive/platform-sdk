@@ -18,7 +18,7 @@ export class Address implements Contracts.Address {
 			}
 
 			if (options?.bip84) {
-				return bip84(mnemonic, this.#network.name, options);
+				return bip84(mnemonic, options);
 			}
 
 			return (await bip44(mnemonic, this.#network.name))!;

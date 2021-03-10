@@ -9,5 +9,6 @@ export * from "./bip44";
 export * from "./buffoon";
 export * from "./hash";
 export * from "./hdkey";
+export * from "./hdkey";
 export * from "./keychain";
 export * from "./pbkdf2";
