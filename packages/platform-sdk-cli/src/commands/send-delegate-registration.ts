@@ -1,6 +1,5 @@
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { ReadWriteWallet } from "@arkecosystem/platform-sdk-profiles";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import prompts from "prompts";
 
 import { renderLogo } from "../helpers";
