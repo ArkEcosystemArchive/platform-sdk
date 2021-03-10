@@ -1,7 +1,12 @@
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { sortBy, sortByDesc } from "@arkecosystem/utils";
 import retry from "p-retry";
+import { v4 as uuidv4 } from "uuid";
 
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
+import { CoinService } from "../environment/services/coin-service";
 import { Profile } from "../profiles/profile";
 import { WalletExportOptions } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
@@ -64,6 +69,49 @@ export class WalletRepository {
 		return this.storeWallet(await this.#wallets.fromAddress({ coin, network, address }));
 	}
 
+	public async importByAddressList(addresses: string[], coin: string, network: string): Promise<ReadWriteWallet[]> {
+		const createWallet = async (
+			coin: string,
+			network: string,
+			address: string,
+			wallets: ReadWriteWallet[],
+		): Promise<void> => {
+			const instance: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+			await instance.setCoin(coin, network);
+			await instance.setAddress(address);
+
+			wallets.push(instance);
+		};
+
+		// Make sure we have an instance of the coin
+		const service = await container.get<CoinService>(Identifiers.CoinService).push(coin, network);
+
+		// Bulk request the addresses.
+		const wallets: ReadWriteWallet[] = [];
+
+		let hasMore = true;
+		let lastResponse: Coins.WalletDataCollection | undefined;
+		while (hasMore) {
+			if (lastResponse) {
+				lastResponse = await service
+					.client()
+					.wallets({ addresses: addresses, cursor: lastResponse.nextPage() });
+			} else {
+				lastResponse = await service.client().wallets({ addresses: addresses });
+			}
+
+			await Promise.all(
+				lastResponse
+					.items()
+					.map((wallet: Contracts.WalletData) => createWallet(coin, network, wallet.address(), wallets)),
+			);
+
+			hasMore = lastResponse.hasMorePages();
+		}
+
+		return wallets;
+	}
+
 	public async importByAddressWithLedgerPath(
 		address: string,
 		coin: string,
@@ -80,6 +128,22 @@ export class WalletRepository {
 		password: string,
 	): Promise<ReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromMnemonicWithEncryption({ coin, network, mnemonic, password }));
+	}
+
+	public async importByPublicKey(
+		coin: string,
+		network: string,
+		publicKey: string,
+	): Promise<ReadWriteWallet> {
+		return this.storeWallet(await this.#wallets.fromPublicKey({ coin, network, publicKey }));
+	}
+
+	public async importByPrivateKey(
+		coin: string,
+		network: string,
+		privateKey: string,
+	): Promise<ReadWriteWallet> {
+		return this.storeWallet(await this.#wallets.fromPrivateKey({ coin, network, privateKey }));
 	}
 
 	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: ReadWriteWallet }> {

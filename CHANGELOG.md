@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.1.17 - 2020-03-10
+
+### Added
+
+-    **[CRYPTO]** Implement `HDKey` helper (9af92ebe, @faustbrian)
+-    **[CRYPTO]** Implement `Base58` helper (0e067913, @faustbrian)
+-    **[CRYPTO]** Implement more `BIP32` derivation methods (9071959f, @faustbrian)
+-    **[CLI]** Import wallets from ledger device (f8f17370, @faustbrian)
+-    **[CLI]** Implement IPFS (22c7348e, @faustbrian)
+-    **[CLI]** Implement voting (27c0e8fb, @faustbrian)
+-    **[CLI]** Implement second signature registration (66bfa9a1, @faustbrian)
+-    **[CLI]** Implement delegate resignation (15753daa, @faustbrian)
+-    **[CLI]** Implement delegate registration (1ffe1c33, @faustbrian)
+-    **[CLI]** Implement multi-payment (f48847a8, @faustbrian)
+-    **[PROFILES]** Implement bulk address import (ce7d965d, @faustbrian)
+-    **[PROFILES]** Expose public key and private key import for wallets (e83e5446, @faustbrian)
+
+### Changed
+
+-    **[PROFILES]** Add `ProfileSetting.DoNotShowAdvancedModeDisclaimer` (c65ffb90, @dated)
+
 ## 3.1.4 - 2020-03-08
 
 ### Fixed
