@@ -92,8 +92,11 @@ export class Currency {
 				display += dot;
 			}
 		}
-		for (let i = Math.max(0, decimals); i < magnitude; ++i) {
-			value += "0";
+
+		if (value && value !== "0") {
+			for (let i = Math.max(0, decimals); i < magnitude; ++i) {
+				value += "0";
+			}
 		}
 
 		if (!value) {
