@@ -70,6 +70,17 @@ export class WalletRepository {
 	}
 
 	public async importByAddressList(addresses: string[], coin: string, network: string): Promise<ReadWriteWallet[]> {
+        const createWallet = async (coin: string, network: string, address: string, wallets: ReadWriteWallet[]): Promise<void> => {
+            const instance: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+            await instance.setCoin(coin, network);
+            await instance.setAddress(address);
+
+            // @TODO: set already existing coin instance without bootstrapping again
+            // @TODO: set address without hitting the network again
+
+            wallets.push(instance);
+        }
+
 		// Make sure we have an instance of the coin
 		const service = await container.get<CoinService>(Identifiers.CoinService).push(coin, network);
 
@@ -85,16 +96,7 @@ export class WalletRepository {
 				lastResponse = await service.client().wallets({ addresses: addresses });
 			}
 
-			for(const wallet of lastResponse.items()) {
-				const instance: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
-				await instance.setCoin(coin, network);
-				await instance.setAddress(wallet.address());
-
-				// @TODO: set already existing coin instance without bootstrapping again
-				// @TODO: set address without hitting the network again
-
-				wallets.push(instance);
-			}
+			await Promise.all(lastResponse.items().map((wallet: Contracts.WalletData) => createWallet(coin, network, wallet.address(), wallets)));
 
 			hasMore = lastResponse.hasMorePages();
 		}
