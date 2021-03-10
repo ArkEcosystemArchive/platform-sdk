@@ -9,18 +9,58 @@ import { finaliseTransaction } from "./helpers";
 export const sendMultiPayment = async (wallet: ReadWriteWallet): Promise<void> => {
 	renderLogo();
 
-	// memo?: string;
-	// payments: {
-	// 	to: string;
-	// 	amount: string;
-	// }[];
+	const payments: { amount: string; to: string }[] = [];
 
-	const { mnemonic, amount, to, memo } = await prompts([
+	while (true) {
+		const { amount, to, addMore } = await prompts([
+			{
+				type: "text",
+				name: "amount",
+				message: "Please enter the amount:",
+				validate: (value: string) => BigNumber.make(value).isGreaterThan(0),
+			},
+			{
+				type: "text",
+				name: "to",
+				message: "Please enter the recipient:",
+				validate: (value: string) => value !== undefined,
+			},
+			{
+				type: "toggle",
+				name: "addMore",
+				message: "Do you want to add another recipient?",
+				initial: true,
+				active: "yes",
+				inactive: "no",
+			},
+		]);
+
+		if (!to) {
+			return;
+		}
+
+		if (!amount) {
+			return;
+		}
+
+		payments.push({ amount, to });
+
+		if (!addMore) {
+			break;
+		}
+	}
+
+	const { mnemonic, memo } = await prompts([
 		{
 			type: "text",
 			name: "to",
 			message: "Please enter the recipient:",
 			validate: (value: string) => value !== undefined,
+		},
+		{
+			type: "text",
+			name: "memo",
+			message: "Please enter the memo:",
 		},
 		{
 			type: "password",
@@ -30,11 +70,7 @@ export const sendMultiPayment = async (wallet: ReadWriteWallet): Promise<void> =
 		},
 	]);
 
-	if (!to) {
-		return;
-	}
-
-	if (!amount) {
+	if (!payments.length) {
 		return;
 	}
 
@@ -43,8 +79,7 @@ export const sendMultiPayment = async (wallet: ReadWriteWallet): Promise<void> =
 	}
 
 	await finaliseTransaction(wallet, mnemonic, "signMultiPayment", {
-		amount: BigNumber.make(amount).toSatoshi().toString(),
-		to,
+		payments,
 		memo,
 	});
 };
