@@ -1,7 +1,7 @@
 import { Currency } from "./currency";
 
 test("#fromString", () => {
-	expect(Currency.fromString("")).toEqual({ display: "", value: "0" });
+	expect(Currency.fromString("")).toEqual({ display: "", value: undefined });
 
 	expect(Currency.fromString("0")).toEqual({ display: "0", value: "0" });
 
