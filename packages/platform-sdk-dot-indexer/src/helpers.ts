@@ -4,6 +4,15 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Database } from "./database";
 
+/**
+ *
+ *
+ * @param {*} blockHash
+ * @param {*} block
+ * @param {Database} database
+ * @param {pino.Logger} logger
+ * @returns {Promise<void>}
+ */
 const persistBlock = async (blockHash, block, database: Database, logger: pino.Logger): Promise<void> => {
 	const transactions: Array<any> = [];
 	for (const extrinsic of block.extrinsics) {
@@ -38,6 +47,14 @@ const persistBlock = async (blockHash, block, database: Database, logger: pino.L
 	logger.info(`Processed Block [${block.header.number}]...`);
 };
 
+/**
+ *
+ *
+ * @param {number} height
+ * @param {ApiPromise} polkadot
+ * @param {pino.Logger} logger
+ * @returns {(Promise<string | undefined>)}
+ */
 const getBlockHash = async (height: number, polkadot: ApiPromise, logger: pino.Logger): Promise<string | undefined> => {
 	const blockHashResponse = await polkadot.rpc.chain.getBlockHash(height);
 
@@ -50,6 +67,15 @@ const getBlockHash = async (height: number, polkadot: ApiPromise, logger: pino.L
 	return blockHashResponse.toHex();
 };
 
+/**
+ *
+ *
+ * @param {number} height
+ * @param {ApiPromise} polkadot
+ * @param {Database} database
+ * @param {pino.Logger} logger
+ * @returns {Promise<void>}
+ */
 export const indexBlock = async (
 	height: number,
 	polkadot: ApiPromise,
@@ -75,6 +101,14 @@ export const indexBlock = async (
 	await persistBlock(blockHash, blockResponse.toHuman().block, database, logger);
 };
 
+/**
+ *
+ *
+ * @param {ApiPromise} polkadot
+ * @param {Database} database
+ * @param {pino.Logger} logger
+ * @returns {Promise<void>}
+ */
 export const indexNewBlocks = async (polkadot: ApiPromise, database: Database, logger: pino.Logger): Promise<void> => {
 	await polkadot.derive.chain.subscribeNewBlocks(async ({ block }) => {
 		const blockHash = await getBlockHash(block.header.number.toNumber(), polkadot, logger);
@@ -87,7 +121,20 @@ export const indexNewBlocks = async (polkadot: ApiPromise, database: Database, l
 	});
 };
 
+/**
+ *
+ *
+ * @param {string} host
+ * @returns {Promise<ApiPromise>}
+ */
 export const usePolkadot = async (host: string): Promise<ApiPromise> =>
 	ApiPromise.create({ provider: new WsProvider(host) });
 
+/**
+ *
+ *
+ * @param {*} flags
+ * @param {*} logger
+ * @returns {Database}
+ */
 export const useDatabase = (flags, logger): Database => new Database(flags, logger);
