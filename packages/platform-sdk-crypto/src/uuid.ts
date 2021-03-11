@@ -25,7 +25,7 @@ export class UUID {
 		return stringify(uuid);
 	}
 
-	public static validate(uuid: string): string {
+	public static validate(uuid: string): boolean {
 		return validate(uuid);
 	}
 }
