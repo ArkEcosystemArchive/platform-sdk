@@ -50,7 +50,7 @@ export class Currency {
 		locale?: string,
 	): {
 		display: string;
-		value: string;
+		value?: string;
 	} {
 		const seperator = getSeparators(locale || "en-US");
 		const dot = seperator.decimal || ".";
@@ -58,6 +58,11 @@ export class Currency {
 		let display = "";
 		let value = "";
 		let decimals = -1;
+
+		if (!valueString) {
+			return { display, value: undefined };
+		}
+
 		for (let i = 0; i < valueString.length; i++) {
 			const c = valueString[i];
 
@@ -92,8 +97,11 @@ export class Currency {
 				display += dot;
 			}
 		}
-		for (let i = Math.max(0, decimals); i < magnitude; ++i) {
-			value += "0";
+
+		if (value && value !== "0") {
+			for (let i = Math.max(0, decimals); i < magnitude; ++i) {
+				value += "0";
+			}
 		}
 
 		if (!value) {
