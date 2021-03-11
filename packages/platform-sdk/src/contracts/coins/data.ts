@@ -1294,7 +1294,7 @@ export interface MultiPaymentData extends TransactionData {
 	 */
 	payments(): {
 		recipientId: string;
-		amount: string
+		amount: string;
 	}[];
 }
 

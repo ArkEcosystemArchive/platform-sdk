@@ -18,11 +18,11 @@ export abstract class Paginator<T> {
 	readonly #data: T[];
 
 	/**
-	*
-	*
-	* @type {MetaPagination}
-	* @memberof Paginator
-	*/
+	 *
+	 *
+	 * @type {MetaPagination}
+	 * @memberof Paginator
+	 */
 	readonly #pagination: MetaPagination;
 
 	/**
