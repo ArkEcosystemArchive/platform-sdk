@@ -18,11 +18,11 @@ export class HistoricalPriceTransformer implements Contracts.HistoricalTransform
 
 	public transform(options: Contracts.KeyValuePair): Contracts.HistoricalData {
 		const /**
-		 *
-		 *
-		 * @param {*} value
-		 */
-		datasets = this.data.map((value) => value.close);
+			 *
+			 *
+			 * @param {*} value
+			 */
+			datasets = this.data.map((value) => value.close);
 
 		return {
 			labels: this.data.map((value) => DateTime.make(value.time * 1000).format(options.dateFormat)),

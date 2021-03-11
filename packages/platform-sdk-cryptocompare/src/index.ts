@@ -38,7 +38,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		this.#httpClient = httpClient;
 	}
 
-  	/** {@inheritDoc Contracts.PriceTracker.verifyToken} */
+	/** {@inheritDoc Contracts.PriceTracker.verifyToken} */
 	public async verifyToken(token: string): Promise<boolean> {
 		try {
 			const body = await this.get("data/price", {
@@ -52,7 +52,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		}
 	}
 
-  	/** {@inheritDoc Contracts.PriceTracker.marketData} */
+	/** {@inheritDoc Contracts.PriceTracker.marketData} */
 	public async marketData(token: string): Promise<Contracts.MarketDataCollection> {
 		const body = await this.get("data/pricemultifull", {
 			fsyms: token,
@@ -62,7 +62,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return new MarketTransformer(body.RAW && body.RAW[token] ? body.RAW[token] : {}).transform({});
 	}
 
-  	/** {@inheritDoc Contracts.PriceTracker.historicalPrice} */
+	/** {@inheritDoc Contracts.PriceTracker.historicalPrice} */
 	public async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
 		const body = await this.get(`data/histo${options.type}`, {
 			fsym: options.token,
@@ -74,7 +74,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return new HistoricalPriceTransformer(body.Data).transform(options);
 	}
 
-  	/** {@inheritDoc Contracts.PriceTracker.historicalVolume} */
+	/** {@inheritDoc Contracts.PriceTracker.historicalVolume} */
 	public async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
 		const body = await this.get(`data/histo${options.type}`, {
 			fsym: options.token,
@@ -86,7 +86,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return new HistoricalVolumeTransformer(body.Data).transform(options);
 	}
 
-  	/** {@inheritDoc Contracts.PriceTracker.dailyAverage} */
+	/** {@inheritDoc Contracts.PriceTracker.dailyAverage} */
 	public async dailyAverage(options: Contracts.DailyAverageOptions): Promise<number> {
 		const response = await this.get(`data/dayAvg`, {
 			fsym: options.token,
