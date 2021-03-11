@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.1.18 - 2020-03-11
+
+### Changed
+
+-   Append trailing zeros only if value is truthy (f30a82a2, @dated)
+
 ## 3.1.17 - 2020-03-10
 
 ### Added
