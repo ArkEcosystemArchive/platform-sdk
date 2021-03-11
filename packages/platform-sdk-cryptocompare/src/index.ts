@@ -5,14 +5,40 @@ import { HistoricalPriceTransformer } from "./transformers/historical-price-tran
 import { HistoricalVolumeTransformer } from "./transformers/historical-volume-transformer";
 import { MarketTransformer } from "./transformers/market-transformer";
 
+/**
+ *
+ *
+ * @export
+ * @class PriceTracker
+ * @implements {Contracts.PriceTracker}
+ */
 export class PriceTracker implements Contracts.PriceTracker {
+	/**
+	 *
+	 *
+	 * @type {Contracts.HttpClient}
+	 * @memberof PriceTracker
+	 */
 	readonly #httpClient: Contracts.HttpClient;
+
+	/**
+	 *
+	 *
+	 * @type {string}
+	 * @memberof PriceTracker
+	 */
 	readonly #host: string = "https://min-api.cryptocompare.com";
 
+	/**
+	 *Creates an instance of PriceTracker.
+	 * @param {Contracts.HttpClient} httpClient
+	 * @memberof PriceTracker
+	 */
 	public constructor(httpClient: Contracts.HttpClient) {
 		this.#httpClient = httpClient;
 	}
 
+  	/** {@inheritDoc Contracts.PriceTracker.verifyToken} */
 	public async verifyToken(token: string): Promise<boolean> {
 		try {
 			const body = await this.get("data/price", {
@@ -26,6 +52,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		}
 	}
 
+  	/** {@inheritDoc Contracts.PriceTracker.marketData} */
 	public async marketData(token: string): Promise<Contracts.MarketDataCollection> {
 		const body = await this.get("data/pricemultifull", {
 			fsyms: token,
@@ -35,6 +62,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return new MarketTransformer(body.RAW && body.RAW[token] ? body.RAW[token] : {}).transform({});
 	}
 
+  	/** {@inheritDoc Contracts.PriceTracker.historicalPrice} */
 	public async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
 		const body = await this.get(`data/histo${options.type}`, {
 			fsym: options.token,
@@ -46,6 +74,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return new HistoricalPriceTransformer(body.Data).transform(options);
 	}
 
+  	/** {@inheritDoc Contracts.PriceTracker.historicalVolume} */
 	public async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
 		const body = await this.get(`data/histo${options.type}`, {
 			fsym: options.token,
@@ -57,6 +86,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return new HistoricalVolumeTransformer(body.Data).transform(options);
 	}
 
+  	/** {@inheritDoc Contracts.PriceTracker.dailyAverage} */
 	public async dailyAverage(options: Contracts.DailyAverageOptions): Promise<number> {
 		const response = await this.get(`data/dayAvg`, {
 			fsym: options.token,
@@ -67,6 +97,15 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return response[options.currency.toUpperCase()];
 	}
 
+	/**
+	 *
+	 *
+	 * @private
+	 * @param {string} path
+	 * @param {*} [query={}]
+	 * @returns {Promise<any>}
+	 * @memberof PriceTracker
+	 */
 	private async get(path: string, query = {}): Promise<any> {
 		const response = await this.#httpClient.get(`${this.#host}/${path}`, query);
 
