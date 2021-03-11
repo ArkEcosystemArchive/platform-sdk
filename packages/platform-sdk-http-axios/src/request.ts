@@ -1,7 +1,15 @@
 import { Contracts, Http } from "@arkecosystem/platform-sdk";
 import axios from "axios";
 
+/**
+ *
+ *
+ * @export
+ * @class Request
+ * @extends {Http.Request}
+ */
 export class Request extends Http.Request {
+	/** {@inheritDoc Http.Request.send} */
 	protected async send(
 		method: string,
 		url: string,

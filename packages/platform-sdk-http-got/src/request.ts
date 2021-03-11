@@ -3,7 +3,15 @@ import FormData from "form-data";
 import got from "got";
 import { URLSearchParams } from "url";
 
+/**
+ *
+ *
+ * @export
+ * @class Request
+ * @extends {Http.Request}
+ */
 export class Request extends Http.Request {
+	/** {@inheritDoc Http.Request.send} */
 	protected async send(
 		method: string,
 		url: string,
