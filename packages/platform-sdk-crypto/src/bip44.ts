@@ -2,7 +2,22 @@ import { BIP32Interface } from "bip32";
 
 import { BIP32 } from "./bip32";
 
+/**
+ *
+ *
+ * @export
+ * @class BIP44
+ */
 export class BIP44 {
+	/**
+	 *
+	 *
+	 * @static
+	 * @param {string} mnemonic
+	 * @param {{ purpose?: number; coinType: number; account?: number; change?: number; index?: number }} options
+	 * @returns {BIP32Interface}
+	 * @memberof BIP44
+	 */
 	public static deriveChild(
 		mnemonic: string,
 		options: { purpose?: number; coinType: number; account?: number; change?: number; index?: number },
@@ -15,14 +30,46 @@ export class BIP44 {
 			.derive(options.index || 0);
 	}
 
+	/**
+	 *
+	 *
+	 * @static
+	 * @param {string} mnemonic
+	 * @param {string} path
+	 * @param {number} [index]
+	 * @returns {BIP32Interface}
+	 * @memberof BIP44
+	 */
 	public static deriveChildFromPath(mnemonic: string, path: string, index?: number): BIP32Interface {
 		return BIP32.fromMnemonic(mnemonic).derivePath(`${path}${index || 0}`);
 	}
 
+	/**
+	 *
+	 *
+	 * @static
+	 * @param {string} mnemonic
+	 * @returns {BIP32Interface}
+	 * @memberof BIP44
+	 */
 	public static deriveMasterKey(mnemonic: string): BIP32Interface {
 		return BIP32.fromMnemonic(mnemonic);
 	}
 
+	/**
+	 *
+	 *
+	 * @static
+	 * @param {string} path
+	 * @returns {{
+	 * 		purpose: number;
+	 * 		coinType: number;
+	 * 		account: number;
+	 * 		change: number;
+	 * 		addressIndex: number;
+	 * 	}}
+	 * @memberof BIP44
+	 */
 	public static parse(
 		path: string,
 	): {
