@@ -47,8 +47,7 @@ rush test
 ### Bump the version of all packages and publish them
 
 ```bash
-bash scripts/version.sh ${VERSION}
-NPM_AUTH_TOKEN=YOUR_AUTH_TOKEN rush publish --publish --set-access-level=public --include-all
+bash scripts/publish.sh VERSION YOUR_AUTH_TOKEN
 ```
 
 ## Security
