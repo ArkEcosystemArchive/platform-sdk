@@ -4,16 +4,36 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { HistoricalPriceTransformer } from "./transformers/historical-price-transformer";
 import { MarketTransformer } from "./transformers/market-transformer";
 
+/**
+ *
+ *
+ * @export
+ * @class PriceTracker
+ * @implements {Contracts.PriceTracker}
+ */
 export class PriceTracker implements Contracts.PriceTracker {
+	/**
+	 *
+	 *
+	 * @private
+	 * @type {Contracts.KeyValuePair}
+	 * @memberof PriceTracker
+	 */
 	private readonly tokenLookup: Contracts.KeyValuePair = {};
 
 	readonly #httpClient: Contracts.HttpClient;
 	readonly #host: string = "https://api.coincap.io/v2";
 
+	/**
+	 *Creates an instance of PriceTracker.
+	 * @param {Contracts.HttpClient} httpClient
+	 * @memberof PriceTracker
+	 */
 	public constructor(httpClient: Contracts.HttpClient) {
 		this.#httpClient = httpClient;
 	}
 
+  	/** {@inheritDoc Contracts.PriceTracker.verifyToken} */
 	public async verifyToken(token: string): Promise<boolean> {
 		try {
 			const tokenData = await this.fetchTokenData(token);
@@ -24,6 +44,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		}
 	}
 
+  	/** {@inheritDoc Contracts.PriceTracker.marketData} */
 	public async marketData(token: string): Promise<Contracts.MarketDataCollection> {
 		const tokenId = await this.getTokenId(token);
 
@@ -36,6 +57,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return new MarketTransformer(response).transform({ token: tokenId });
 	}
 
+  	/** {@inheritDoc Contracts.PriceTracker.historicalPrice} */
 	public async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
@@ -58,10 +80,12 @@ export class PriceTracker implements Contracts.PriceTracker {
 		});
 	}
 
+  	/** {@inheritDoc Contracts.PriceTracker.historicalVolume} */
 	public async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "historicalVolume");
 	}
 
+  	/** {@inheritDoc Contracts.PriceTracker.dailyAverage} */
 	public async dailyAverage(options: Contracts.DailyAverageOptions): Promise<number> {
 		const tokenId = await this.getTokenId(options.token);
 
@@ -85,6 +109,15 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return priceUsd * Number(data.find((rate: any) => rate.symbol === options.currency.toUpperCase()).rateUsd);
 	}
 
+	/**
+	 *
+	 *
+	 * @private
+	 * @param {string} token
+	 * @param {number} [limit=1000]
+	 * @returns {Promise<string>}
+	 * @memberof PriceTracker
+	 */
 	private async getTokenId(token: string, limit = 1000): Promise<string> {
 		if (Object.keys(this.tokenLookup).length > 0) {
 			return this.tokenLookup[token.toUpperCase()];
@@ -100,6 +133,14 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return this.tokenLookup[token.toUpperCase()];
 	}
 
+	/**
+	 *
+	 *
+	 * @private
+	 * @param {string} token
+	 * @returns {Promise<Contracts.KeyValuePair>}
+	 * @memberof PriceTracker
+	 */
 	private async fetchTokenData(token: string): Promise<Contracts.KeyValuePair> {
 		const tokenId = await this.getTokenId(token);
 
@@ -108,6 +149,14 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return body.data;
 	}
 
+	/**
+	 *
+	 *
+	 * @private
+	 * @param {string} token
+	 * @returns {Promise<Contracts.KeyValuePair>}
+	 * @memberof PriceTracker
+	 */
 	private async getCurrencyData(token: string): Promise<Contracts.KeyValuePair> {
 		const body = await this.get("rates");
 		const { data, timestamp } = body;
@@ -127,6 +176,15 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return response;
 	}
 
+	/**
+	 *
+	 *
+	 * @private
+	 * @param {string} path
+	 * @param {*} [query={}]
+	 * @returns {Promise<any>}
+	 * @memberof PriceTracker
+	 */
 	private async get(path: string, query = {}): Promise<any> {
 		const response = await this.#httpClient.get(`${this.#host}/${path}`, query);
 

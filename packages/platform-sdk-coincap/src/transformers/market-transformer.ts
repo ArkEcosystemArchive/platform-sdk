@@ -2,12 +2,38 @@ import { Contracts, Data } from "@arkecosystem/platform-sdk";
 
 import { convertToCurrency } from "../utils";
 
+/**
+ *
+ *
+ * @export
+ * @class MarketTransformer
+ * @implements {Contracts.MarketTransformer}
+ */
 export class MarketTransformer implements Contracts.MarketTransformer {
 	// All prices on the CoinCap API are standardized in USD (United States Dollar)
+	/**
+	 *
+	 *
+	 * @private
+	 * @type {string}
+	 * @memberof MarketTransformer
+	 */
 	private readonly baseCurrency: string = "USD";
 
+	/**
+	 *Creates an instance of MarketTransformer.
+	 * @param {Contracts.KeyValuePair} data
+	 * @memberof MarketTransformer
+	 */
 	public constructor(private readonly data: Contracts.KeyValuePair) {}
 
+	/**
+	 *
+	 *
+	 * @param {Contracts.KeyValuePair} options
+	 * @returns {Contracts.MarketDataCollection}
+	 * @memberof MarketTransformer
+	 */
 	public transform(options: Contracts.KeyValuePair): Contracts.MarketDataCollection {
 		const tokenId = options.token.toUpperCase();
 		const result = {};
