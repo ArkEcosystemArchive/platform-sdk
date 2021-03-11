@@ -3,6 +3,18 @@ import retry from "p-retry";
 
 import { useClient, useDatabase, useLogger, useQueue } from "./helpers";
 
+/**
+ *
+ *
+ * @param {{
+ * 	coin: string;
+ * 	network: string;
+ * 	rpc: string;
+ * 	wss: string;
+ * 	database: string;
+ * }} flags
+ * @returns {Promise<void>}
+ */
 export const subscribe = async (flags: {
 	coin: string;
 	network: string;
