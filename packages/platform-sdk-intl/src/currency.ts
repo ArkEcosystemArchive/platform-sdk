@@ -2,6 +2,12 @@
 
 // Based on https://github.com/LedgerHQ/ledger-live-common/blob/master/src/currencies/sanitizeValueString.js
 
+/**
+ *
+ *
+ * @param {string} locale
+ * @returns {{ decimal: number; thousands: number }}
+ */
 const getSeparators = (locale: string): { decimal: number; thousands: number } => {
 	const localeNotAvailable = (1.2).toLocaleString("en", { style: "currency", currency: "USD" }) !== "$1.20";
 
@@ -43,7 +49,26 @@ const getSeparators = (locale: string): { decimal: number; thousands: number } =
 	return { decimal, thousands };
 };
 
+/**
+ *
+ *
+ * @export
+ * @class Currency
+ */
 export class Currency {
+	/**
+	 *
+	 *
+	 * @static
+	 * @param {string} valueString
+	 * @param {number} [magnitude=8]
+	 * @param {string} [locale]
+	 * @returns {{
+	 * 		display: string;
+	 * 		value?: string;
+	 * 	}}
+	 * @memberof Currency
+	 */
 	public static fromString(
 		valueString: string,
 		magnitude = 8,
