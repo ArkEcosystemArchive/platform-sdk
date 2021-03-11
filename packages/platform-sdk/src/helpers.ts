@@ -1,6 +1,15 @@
 import { TransactionDataCollection } from "./coins";
 import { MetaPagination, TransactionDataType } from "./contracts";
 
+// @TODO: turn this into a class factory
+
+/**
+ *
+ *
+ * @param {unknown} transaction
+ * @param {Record<string, any>} dtos
+ * @returns {TransactionDataType}
+ */
 export const createTransactionDataWithType = (transaction: unknown, dtos: Record<string, any>): TransactionDataType => {
 	const instance: TransactionDataType = new dtos.TransactionData(transaction);
 
@@ -91,6 +100,14 @@ export const createTransactionDataWithType = (transaction: unknown, dtos: Record
 	return instance;
 };
 
+/**
+ *
+ *
+ * @param {unknown[]} transactions
+ * @param {MetaPagination} meta
+ * @param {Record<string, any>} classes
+ * @returns {TransactionDataCollection}
+ */
 export const createTransactionDataCollectionWithType = (
 	transactions: unknown[],
 	meta: MetaPagination,

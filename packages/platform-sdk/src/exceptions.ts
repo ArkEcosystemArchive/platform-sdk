@@ -1,3 +1,10 @@
+/**
+ *
+ *
+ * @export
+ * @class Exception
+ * @extends {Error}
+ */
 export class Exception extends Error {
 	public constructor(message: string) {
 		super(message);
@@ -16,30 +23,65 @@ export class Exception extends Error {
 	}
 }
 
+/**
+ *
+ *
+ * @export
+ * @class NotImplemented
+ * @extends {Exception}
+ */
 export class NotImplemented extends Exception {
 	public constructor(klass: string, method: string) {
 		super(`Method ${klass}#${method} is not implemented.`);
 	}
 }
 
+/**
+ *
+ *
+ * @export
+ * @class NotSupported
+ * @extends {Exception}
+ */
 export class NotSupported extends Exception {
 	public constructor(klass: string, method: string) {
 		super(`Method ${klass}#${method} is not supported.`);
 	}
 }
 
+/**
+ *
+ *
+ * @export
+ * @class InvalidArguments
+ * @extends {Exception}
+ */
 export class InvalidArguments extends Exception {
 	public constructor(klass: string, method: string) {
 		super(`Method ${klass}#${method} does not accept the given arguments.`);
 	}
 }
 
+/**
+ *
+ *
+ * @export
+ * @class MissingArgument
+ * @extends {Exception}
+ */
 export class MissingArgument extends Exception {
 	public constructor(klass: string, method: string, arg: string) {
 		super(`Method ${klass}#${method} expects the argument [${arg}] but it was not given.`);
 	}
 }
 
+/**
+ *
+ *
+ * @export
+ * @class CryptoException
+ * @extends {Exception}
+ */
 export class CryptoException extends Exception {
 	public constructor(error: Error) {
 		super(error.message);

@@ -1,6 +1,19 @@
 import { Response } from "./response";
 
+/**
+ *
+ *
+ * @export
+ * @class RequestException
+ * @extends {Error}
+ */
 export class RequestException extends Error {
+	/**
+	 *Creates an instance of RequestException.
+	 * @param {Response} response
+	 * @param {Error} [error]
+	 * @memberof RequestException
+	 */
 	public constructor(response: Response, error?: Error) {
 		const message = error
 			? `HTTP request returned status code ${response.status()}: ${error.message}`

@@ -4,7 +4,22 @@ import { CoinOptions, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
 import { NetworkRepository } from "./network-repository";
 
+/**
+ *
+ *
+ * @export
+ * @class CoinFactory
+ */
 export class CoinFactory {
+	/**
+	 *
+	 *
+	 * @static
+	 * @param {CoinSpec} coin
+	 * @param {CoinOptions} options
+	 * @returns {Promise<Coin>}
+	 * @memberof CoinFactory
+	 */
 	public static async make(coin: CoinSpec, options: CoinOptions): Promise<Coin> {
 		const networks: NetworkRepository = new NetworkRepository(coin.manifest.networks);
 

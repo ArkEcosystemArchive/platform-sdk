@@ -13,12 +13,24 @@ import {
 	TransactionService,
 } from "../contracts/coins";
 
+/**
+ *
+ *
+ * @export
+ * @interface CoinSpec
+ */
 export interface CoinSpec {
 	manifest: any;
 	schema: any;
 	ServiceProvider: any;
 }
 
+/**
+ *
+ *
+ * @export
+ * @interface CoinOptions
+ */
 export interface CoinOptions {
 	network: string;
 	peer?: string;
@@ -26,6 +38,12 @@ export interface CoinOptions {
 	httpClient: HttpClient;
 }
 
+/**
+ *
+ *
+ * @export
+ * @interface CoinServices
+ */
 export interface CoinServices {
 	client: ClientService;
 	dataTransferObject: DataTransferObjectService;

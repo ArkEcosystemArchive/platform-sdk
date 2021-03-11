@@ -1,3 +1,9 @@
+/**
+ *
+ *
+ * @export
+ * @enum {number}
+ */
 export enum FeatureFlag {
 	ClientBroadcast = "Client.broadcast",
 	ClientConfiguration = "Client.configuration",

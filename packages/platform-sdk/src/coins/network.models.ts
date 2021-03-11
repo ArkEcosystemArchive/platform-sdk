@@ -22,6 +22,12 @@ export type CoinTransactionTypes =
 	| "transfer"
 	| "vote";
 
+/**
+ *
+ *
+ * @export
+ * @interface CoinNetwork
+ */
 export interface CoinNetwork {
 	id: string;
 	type: string;
