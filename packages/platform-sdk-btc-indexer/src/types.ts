@@ -1,3 +1,9 @@
+/**
+ *
+ *
+ * @export
+ * @interface Flags
+ */
 export interface Flags {
 	coin: string;
 	network: string;
