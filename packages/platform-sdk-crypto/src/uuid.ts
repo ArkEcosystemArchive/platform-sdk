@@ -1,4 +1,4 @@
-import { v1, v2, v3, v4, v5, parse, stringify, validate } from "uuid";
+import { parse, stringify, v1, v3, v4, v5, validate } from "uuid";
 
 export class UUID {
 	public static timestamp(): string {
