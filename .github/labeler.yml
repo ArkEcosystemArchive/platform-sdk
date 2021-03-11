@@ -87,23 +87,23 @@ test:
     - packages/platform-sdk-eth-server/*
     - packages/platform-sdk-eth-server/**/*
 
-"domain/http-axios":
+"domain/http/axios":
     - packages/platform-sdk-http-axios/*
     - packages/platform-sdk-http-axios/**/*
 
-"domain/http-bent":
+"domain/http/bent":
     - packages/platform-sdk-http-bent/*
     - packages/platform-sdk-http-bent/**/*
 
-"domain/http-got":
+"domain/http/got":
     - packages/platform-sdk-http-got/*
     - packages/platform-sdk-http-got/**/*
 
-"domain/http-ky":
+"domain/http/ky":
     - packages/platform-sdk-http-ky/*
     - packages/platform-sdk-http-ky/**/*
 
-"domain/http-node-fetch":
+"domain/http/node-fetch":
     - packages/platform-sdk-http-node-fetch/*
     - packages/platform-sdk-http-node-fetch/**/*
 
