@@ -14,11 +14,11 @@ export class Numeral {
 	readonly #locale: string;
 
 	/**
-	*
-	*
-	* @type {Intl.NumberFormatOptions}
-	* @memberof Numeral
-	*/
+	 *
+	 *
+	 * @type {Intl.NumberFormatOptions}
+	 * @memberof Numeral
+	 */
 	readonly #options: Intl.NumberFormatOptions;
 
 	/**
