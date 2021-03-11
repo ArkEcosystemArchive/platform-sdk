@@ -47,7 +47,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		this.#httpClient = httpClient;
 	}
 
-  	/** {@inheritDoc Contracts.PriceTracker.verifyToken} */
+	/** {@inheritDoc Contracts.PriceTracker.verifyToken} */
 	public async verifyToken(token: string): Promise<boolean> {
 		const tokenId = await this.getTokenId(token);
 
@@ -63,7 +63,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		}
 	}
 
-  	/** {@inheritDoc Contracts.PriceTracker.marketData} */
+	/** {@inheritDoc Contracts.PriceTracker.marketData} */
 	public async marketData(token: string): Promise<Contracts.MarketDataCollection> {
 		const tokenId = await this.getTokenId(token);
 
@@ -72,7 +72,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return new MarketTransformer(body.market_data).transform({});
 	}
 
-  	/** {@inheritDoc Contracts.PriceTracker.historicalPrice} */
+	/** {@inheritDoc Contracts.PriceTracker.historicalPrice} */
 	public async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
@@ -84,7 +84,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return new HistoricalPriceTransformer(body).transform(options);
 	}
 
-  	/** {@inheritDoc Contracts.PriceTracker.historicalVolume} */
+	/** {@inheritDoc Contracts.PriceTracker.historicalVolume} */
 	public async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
 		const tokenId = await this.getTokenId(options.token);
 
@@ -98,7 +98,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 		return new HistoricalVolumeTransformer(body).transform(options);
 	}
 
-  	/** {@inheritDoc Contracts.PriceTracker.dailyAverage} */
+	/** {@inheritDoc Contracts.PriceTracker.dailyAverage} */
 	public async dailyAverage(options: Contracts.DailyAverageOptions): Promise<number> {
 		const tokenId = await this.getTokenId(options.token);
 
