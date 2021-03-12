@@ -1,5 +1,6 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { WalletData } from "../dto";
 
 export class LedgerService implements Contracts.LedgerService {
 	#ledger: Contracts.LedgerTransport;
@@ -40,5 +41,9 @@ export class LedgerService implements Contracts.LedgerService {
 
 	public async signMessage(path: string, payload: Buffer): Promise<string> {
 		return this.#transport.signMessageWithSchnorr(path, payload);
+	}
+
+	public async scan(path: string): Promise<Contracts.WalletData> {
+		return new WalletData({});
 	}
 }

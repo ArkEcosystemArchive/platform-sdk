@@ -59,4 +59,8 @@ export class LedgerService implements Contracts.LedgerService {
 
 		return JSON.stringify(signature);
 	}
+
+	public async scan(path: string): Promise<Contracts.WalletData> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "scan");
+	}
 }

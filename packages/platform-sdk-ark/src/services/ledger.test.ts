@@ -5,6 +5,7 @@ import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-moc
 import { ledger } from "../../test/fixtures/ledger";
 import { createConfig } from "../../test/helpers";
 import { LedgerService } from "./ledger";
+import { WalletData } from "../dto";
 
 const createMockService = async (record: string) => {
 	const transport = await LedgerService.__construct(createConfig());
@@ -69,5 +70,15 @@ describe("signMessage", () => {
 		await expect(
 			ark.signMessage(ledger.bip44.path, Buffer.from(ledger.message.schnorr.payload, "hex")),
 		).resolves.toEqual(ledger.message.schnorr.result);
+	});
+});
+
+describe("scan", () => {
+	it("should return scanned wallet", async () => {
+		const ark = await createMockService(ledger.message.schnorr.record);
+
+		await expect(
+			ark.scan(ledger.bip44.path),
+		).resolves.toBeInstanceOf(WalletData);
 	});
 });
