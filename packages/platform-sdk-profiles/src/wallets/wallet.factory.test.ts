@@ -125,12 +125,11 @@ test("#fromWIF", async () => {
 
 test("#fromWIFWithEncryption", async () => {
 	const { compressed, privateKey } = decode("SGq4xLgZKCGxs7bjmwnBrWcT4C1ADFEermj846KC97FSv1WFD1dA");
-	const encryptedWIF = encrypt(privateKey, compressed, "password");
 
 	const wallet = await subject.fromWIFWithEncryption({
 		coin: "ARK",
 		network: "ark.devnet",
-		wif: encryptedWIF,
+		wif: encrypt(privateKey, compressed, "password"),
 		password: "password",
 	});
 
