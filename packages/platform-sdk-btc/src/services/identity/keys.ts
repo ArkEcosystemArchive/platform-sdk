@@ -1,11 +1,11 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
+import { BIP32 } from "@arkecosystem/platform-sdk-crypto";
 import { PrivateKey, PublicKey } from "bitcore-lib";
 
 export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
 		try {
-			return this.normalize(new PrivateKey(BIP44.deriveMasterKey(mnemonic).privateKey!.toString("hex")));
+			return this.normalize(new PrivateKey(BIP32.fromMnemonic(mnemonic).privateKey!.toString("hex")));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

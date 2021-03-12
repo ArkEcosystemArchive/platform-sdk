@@ -1,12 +1,12 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
-import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
+import { BIP32 } from "@arkecosystem/platform-sdk-crypto";
 import * as bitcoin from "bitcoinjs-lib";
 import BIP84 from "bip84";
 
 export const bip44 = async (mnemonic: string, network: string) =>
 	(
 		await bitcoin.payments.p2pkh({
-			pubkey: BIP44.deriveMasterKey(mnemonic).publicKey,
+			pubkey: BIP32.fromMnemonic(mnemonic).publicKey,
 			network: network === "livenet" ? bitcoin.networks.bitcoin : bitcoin.networks.testnet,
 		})
 	).address;
@@ -14,7 +14,7 @@ export const bip44 = async (mnemonic: string, network: string) =>
 export const bip49 = async (mnemonic: string, network: string) =>
 	(
 		await bitcoin.payments.p2wpkh({
-			pubkey: BIP44.deriveMasterKey(mnemonic).publicKey,
+			pubkey: BIP32.fromMnemonic(mnemonic).publicKey,
 			network: network === "livenet" ? bitcoin.networks.bitcoin : bitcoin.networks.testnet,
 		})
 	).address;
