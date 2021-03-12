@@ -23,7 +23,11 @@ export class Argon2 {
 	}
 
 	/**
+	 * Verifies that the given hash and password match.
 	 *
+	 * @remarks
+	 * A match in the has and password should be interpreted as ownership
+	 * of whatever resource is protected by the given hash and password.
 	 *
 	 * @static
 	 * @param {string} hash
