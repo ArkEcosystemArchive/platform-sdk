@@ -4,6 +4,7 @@ import { BIP39 } from "./bip39";
 
 /**
  *
+ * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki}
  *
  * @export
  * @class BIP32

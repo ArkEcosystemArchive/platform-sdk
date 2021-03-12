@@ -2,15 +2,32 @@ import { BIP32Interface } from "bip32";
 
 import { BIP32 } from "./bip32";
 
+interface BIP44Levels {
+	purpose: number;
+	coinType: number;
+	account: number;
+	change: number;
+	addressIndex: number;
+};
+
 /**
+ * Implements all functionality that is required to create and parse BIP44
+ * compliant paths and hierarchical deterministic wallets that are derived
+ * from those.
  *
+ * @remarks
+ * BIP32 is the foundation of BIP44 and implemented in a separate class
+ * because it is required on its own for various coin implementations.
+ *
+ * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki}
+ * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki}
  *
  * @export
  * @class BIP44
  */
 export class BIP44 {
 	/**
-	 *
+	 * Derives a child from a BIP32 HDWallet hardened account, according to BIP44.
 	 *
 	 * @static
 	 * @param {string} mnemonic
@@ -31,7 +48,7 @@ export class BIP44 {
 	}
 
 	/**
-	 *
+	 * Derives a child from a BIP32 HDWallet, using a BIP44 compliant path.
 	 *
 	 * @static
 	 * @param {string} mnemonic
@@ -45,40 +62,14 @@ export class BIP44 {
 	}
 
 	/**
-	 *
-	 *
-	 * @static
-	 * @param {string} mnemonic
-	 * @returns {BIP32Interface}
-	 * @memberof BIP44
-	 */
-	public static deriveMasterKey(mnemonic: string): BIP32Interface {
-		return BIP32.fromMnemonic(mnemonic);
-	}
-
-	/**
-	 *
+	 * Parses a BIP44 compliant path and breaks it down into its levels.
 	 *
 	 * @static
 	 * @param {string} path
-	 * @returns {{
-	 * 		purpose: number;
-	 * 		coinType: number;
-	 * 		account: number;
-	 * 		change: number;
-	 * 		addressIndex: number;
-	 * 	}}
+	 * @returns {BIP44Levels}
 	 * @memberof BIP44
 	 */
-	public static parse(
-		path: string,
-	): {
-		purpose: number;
-		coinType: number;
-		account: number;
-		change: number;
-		addressIndex: number;
-	} {
+	public static parse(path: string): BIP44Levels {
 		if (!path.match(new RegExp("^((m/)?(44'?))(/[0-9]+'?){2}((/[0-9]+){2})?$", "g"))) {
 			throw new Error(path);
 		}

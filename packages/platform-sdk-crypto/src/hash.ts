@@ -9,6 +9,7 @@ import { Hash160, Hash256, RIPEMD160, SHA1, SHA256 } from "bcrypto";
 export class Hash {
 	/**
 	 *
+ 	 * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki}
 	 *
 	 * @static
 	 * @param {(Buffer | string)} buffer
@@ -21,6 +22,7 @@ export class Hash {
 
 	/**
 	 *
+ 	 * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki}
 	 *
 	 * @static
 	 * @param {(Buffer | string)} buffer
@@ -33,6 +35,7 @@ export class Hash {
 
 	/**
 	 *
+ 	 * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki}
 	 *
 	 * @static
 	 * @param {(Buffer | string | Buffer[])} buffer
@@ -57,6 +60,7 @@ export class Hash {
 
 	/**
 	 *
+ 	 * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki}
 	 *
 	 * @static
 	 * @param {(Buffer | string)} buffer
@@ -69,6 +73,7 @@ export class Hash {
 
 	/**
 	 *
+ 	 * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki}
 	 *
 	 * @static
 	 * @param {(Buffer | string)} buffer

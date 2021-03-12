@@ -2,6 +2,7 @@ import { decrypt, encrypt, verify } from "bip38";
 
 /**
  *
+ * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0038.mediawiki}
  *
  * @export
  * @class BIP38

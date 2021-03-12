@@ -13,6 +13,7 @@ type BufferEncoding =
 
 /**
  *
+ * @see {@link https://en.wikipedia.org/wiki/Base64}
  *
  * @export
  * @class Base64

@@ -2,6 +2,7 @@ import argon2 from "argon2-browser";
 
 /**
  *
+ * @see {@link https://en.wikipedia.org/wiki/Argon2}
  *
  * @export
  * @class Argon2

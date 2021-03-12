@@ -4,6 +4,7 @@ const normalise = (value: string | Buffer) => (value instanceof Buffer ? value :
 
 /**
  *
+ * @see {@link https://learnmeabitcoin.com/technical/base58}
  *
  * @export
  * @class Base58

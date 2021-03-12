@@ -2,6 +2,7 @@ import StringCrypto from "string-crypto";
 
 /**
  *
+ * @see {@link https://en.wikipedia.org/wiki/PBKDF2}
  *
  * @export
  * @class PBKDF2

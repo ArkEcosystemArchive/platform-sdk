@@ -2,6 +2,7 @@ import { generateMnemonic, mnemonicToEntropy, mnemonicToSeedSync, validateMnemon
 
 /**
  *
+ * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki}
  *
  * @export
  * @class BIP39
