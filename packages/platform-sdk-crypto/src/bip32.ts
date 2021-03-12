@@ -3,6 +3,8 @@ import { BIP32Interface, fromBase58, fromPrivateKey, fromPublicKey, fromSeed } f
 import { BIP39 } from "./bip39";
 
 /**
+ * Implements all functionality that is required to work with BIP32 to create
+ * hierarchical deterministic wallets in compliant with the specifications.
  *
  * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki}
  *
@@ -11,7 +13,12 @@ import { BIP39 } from "./bip39";
  */
 export class BIP32 {
 	/**
+	 * Derives a BIP32 key from a mnemonic passphrase.
 	 *
+	 * @remarks
+	 * Before deriving the BIP32 key the mnemonic passphrase will be
+	 * normalised and validated to ensure that no loss of funds is
+	 * possible due to importing false data which might confuse a users.
 	 *
 	 * @static
 	 * @param {string} mnemonic
@@ -27,7 +34,7 @@ export class BIP32 {
 	}
 
 	/**
-	 *
+	 * Derives a BIP32 key from a seed.
 	 *
 	 * @static
 	 * @param {string} seed
@@ -39,7 +46,7 @@ export class BIP32 {
 	}
 
 	/**
-	 *
+	 * Derives a BIP32 key from a base58 encoded private key.
 	 *
 	 * @static
 	 * @param {string} value
@@ -51,7 +58,7 @@ export class BIP32 {
 	}
 
 	/**
-	 *
+	 * Derives a BIP32 key from a hex public key.
 	 *
 	 * @static
 	 * @param {string} publicKey
@@ -64,7 +71,7 @@ export class BIP32 {
 	}
 
 	/**
-	 *
+	 * Derives a BIP32 key from a hex private key.
 	 *
 	 * @static
 	 * @param {string} privateKey
