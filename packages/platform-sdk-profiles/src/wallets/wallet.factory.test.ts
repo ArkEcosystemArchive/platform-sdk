@@ -1,12 +1,15 @@
 import "jest-extended";
 
-import { decrypt } from "bip38";
+import { encrypt, decrypt } from "bip38";
 import nock from "nock";
+import { decode } from "wif";
 
 import { bootContainer } from "../../test/helpers";
 import { Profile } from "../profiles/profile";
 import { WalletFactory } from "./wallet.factory";
 import { WalletData } from "./wallet.models";
+
+jest.setTimeout(60000);
 
 let subject: WalletFactory;
 
@@ -107,4 +110,30 @@ test("#fromMnemonicWithEncryption", async () => {
 	expect(decrypt(wallet.data().get(WalletData.Bip38EncryptedKey)!, "password").privateKey.toString("hex")).toBe(
 		"d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
 	);
+});
+
+test("#fromWIF", async () => {
+	const wallet = await subject.fromWIF({
+		coin: "ARK",
+		network: "ark.devnet",
+		wif: "SGq4xLgZKCGxs7bjmwnBrWcT4C1ADFEermj846KC97FSv1WFD1dA",
+	});
+
+	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+});
+
+test("#fromWIFWithEncryption", async () => {
+	const { compressed, privateKey } = decode("SGq4xLgZKCGxs7bjmwnBrWcT4C1ADFEermj846KC97FSv1WFD1dA");
+	const encryptedWIF = encrypt(privateKey, compressed, "password");
+
+	const wallet = await subject.fromWIFWithEncryption({
+		coin: "ARK",
+		network: "ark.devnet",
+		wif: encryptedWIF,
+		password: "password",
+	});
+
+	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 });
