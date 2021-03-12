@@ -1,15 +1,18 @@
 import { Hash160, Hash256, RIPEMD160, SHA1, SHA256 } from "bcrypto";
 
 /**
+ * Implements a variety of hashing functions that are required to work with
+ * most blockchains, especially ones that follow the Bitcoin security and
+ * hashing model for blocks and transactions.
  *
+ * @see {@link https://github.com/bcoin-org/bcrypto}
  *
  * @export
  * @class Hash
  */
 export class Hash {
 	/**
-	 *
- 	 * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki}
+	 * Hashes the given value using the RIPEMD160 algorithm.
 	 *
 	 * @static
 	 * @param {(Buffer | string)} buffer
@@ -21,8 +24,7 @@ export class Hash {
 	}
 
 	/**
-	 *
- 	 * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki}
+	 * Hashes the given value using the SHA1 algorithm.
 	 *
 	 * @static
 	 * @param {(Buffer | string)} buffer
@@ -34,8 +36,7 @@ export class Hash {
 	}
 
 	/**
-	 *
- 	 * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki}
+	 * Hashes the given value using the SHA256 algorithm.
 	 *
 	 * @static
 	 * @param {(Buffer | string | Buffer[])} buffer
@@ -59,8 +60,7 @@ export class Hash {
 	}
 
 	/**
-	 *
- 	 * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki}
+	 * Hashes the given value using the HASH160 algorithm.
 	 *
 	 * @static
 	 * @param {(Buffer | string)} buffer
@@ -72,9 +72,7 @@ export class Hash {
 	}
 
 	/**
-	 *
-	 *
- 	 * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki}
+	 * Hashes the given value using the HASH256 algorithm.
 	 *
 	 * @static
 	 * @param {(Buffer | string)} buffer
