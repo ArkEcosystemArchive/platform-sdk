@@ -12,6 +12,8 @@ type BufferEncoding =
 	| undefined;
 
 /**
+ * Implements all functionality that is required to work with the Base64
+ * binary-to-text encoding scheme as defined by the specifications.
  *
  * @see {@link https://en.wikipedia.org/wiki/Base64}
  *
@@ -19,12 +21,21 @@ type BufferEncoding =
  * @class Base64
  */
 export class Base64 {
+	/**
+	 * Encodes a string in compliance with the Base64 encoding scheme.
+	 *
+	 * @static
+	 * @param {string} value
+	 * @param {BufferEncoding} [encoding="utf8"]
+	 * @returns {string}
+	 * @memberof Base64
+	 */
 	public static encode(value: string, encoding: BufferEncoding = "utf8"): string {
 		return Buffer.from(value, encoding).toString("base64");
 	}
 
 	/**
-	 *
+	 * Decodes a string in compliance with the Base64 encoding scheme.
 	 *
 	 * @static
 	 * @param {string} value
@@ -37,7 +48,12 @@ export class Base64 {
 	}
 
 	/**
+	 * Validates that the given value has been encoded in compliance with
+	 * the Base64 encoding scheme to ensure that decoding it is possible.
 	 *
+	 * @remarks
+	 * This method should be called before attemtping to decode a value
+	 * to avoid any unhandled or unexpected exceptions.
 	 *
 	 * @static
 	 * @param {string} value
