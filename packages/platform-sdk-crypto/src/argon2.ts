@@ -1,6 +1,8 @@
 import argon2 from "argon2-browser";
 
 /**
+ * Implements all functionality that is required to work with the Argon2
+ * key derivation and password hashing algorithm as defined by the specs.
  *
  * @see {@link https://en.wikipedia.org/wiki/Argon2}
  *
@@ -9,7 +11,7 @@ import argon2 from "argon2-browser";
  */
 export class Argon2 {
 	/**
-	 *
+	 * Hashes the given value with a random salt.
 	 *
 	 * @static
 	 * @param {string} value
