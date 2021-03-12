@@ -20,7 +20,7 @@ export class BIP38 {
 	 * @returns {string}
 	 * @memberof BIP38
 	 */
-	public static encrypt(privateKey: Buffer, mnemonic: string, compressed: boolean = true): string {
+	public static encrypt(privateKey: Buffer, mnemonic: string, compressed = true): string {
 		return encrypt(privateKey, compressed, mnemonic);
 	}
 

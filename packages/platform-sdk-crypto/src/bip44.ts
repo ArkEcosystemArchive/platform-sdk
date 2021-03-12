@@ -8,7 +8,7 @@ interface BIP44Levels {
 	account: number;
 	change: number;
 	addressIndex: number;
-};
+}
 
 /**
  * Implements all functionality that is required to create and parse BIP44

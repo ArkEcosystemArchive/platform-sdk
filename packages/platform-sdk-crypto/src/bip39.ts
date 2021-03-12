@@ -24,7 +24,7 @@ export class BIP39 {
 	 * @returns {string}
 	 * @memberof BIP39
 	 */
-	public static generate(locale: string = "english"): string {
+	public static generate(locale = "english"): string {
 		return generateMnemonic(undefined, undefined, wordlists[locale]);
 	}
 
@@ -41,7 +41,7 @@ export class BIP39 {
 	 * @returns {boolean}
 	 * @memberof BIP39
 	 */
-	public static validate(mnemonic: string, locale: string = "english"): boolean {
+	public static validate(mnemonic: string, locale = "english"): boolean {
 		return validateMnemonic(BIP39.normalize(mnemonic), wordlists[locale]);
 	}
 
