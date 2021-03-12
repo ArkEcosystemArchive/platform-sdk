@@ -73,6 +73,7 @@ export class Hash {
 
 	/**
 	 *
+	 *
  	 * @see {@link https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki}
 	 *
 	 * @static
@@ -85,7 +86,7 @@ export class Hash {
 	}
 
 	/**
-	 *
+	 * Ensures that we are always working with a Buffer before hashing.
 	 *
 	 * @private
 	 * @static
