@@ -24,13 +24,3 @@ test("#deriveChildFromPath", async () => {
 		"xprv9wMjT6HUeJy2LQqk1GRdSkiJRBxxurasRZ8aU2wBktamDQ282PM9t1cmxCf5bhUoz19KNJAwAYeTEExUkxzinFSb7bRDdnWcytMGj53aKcH",
 	);
 });
-
-test("#deriveMasterKey", async () => {
-	expect(
-		BIP44.deriveMasterKey(
-			"praise you muffin lion enable neck grocery crumble super myself license ghost",
-		).toBase58(),
-	).toBe(
-		"xprv9s21ZrQH143K4DRBUU8Dp25M61mtjm9T3LsdLLFCXL2U6AiKEqs7dtCJWGFcDJ9DtHpdwwmoqLgzPrW7unpwUyL49FZvut9xUzpNB6wbEnz",
-	);
-});
