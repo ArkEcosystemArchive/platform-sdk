@@ -7,7 +7,6 @@ import { ledger } from "../../test/fixtures/ledger";
 import { createConfig } from "../../test/helpers";
 import { LedgerService } from "./ledger";
 import nock from "nock";
-import { WalletData } from "../dto";
 
 const createMockService = async (record: string) => {
 	const config = createConfig(undefined, {
@@ -18,7 +17,8 @@ const createMockService = async (record: string) => {
 	});
 	const transport = await LedgerService.__construct(config);
 
-	await transport.connect(createTransportReplayer(RecordStore.fromString(record)));
+	const fromString = RecordStore.fromString(record);
+	await transport.connect(createTransportReplayer(fromString));
 
 	return transport;
 };
@@ -94,13 +94,15 @@ describe("scan", () => {
 
 	it("should return scanned wallet", async () => {
 		nock(/.+/)
-			.get("/api/wallets/D9PbsdY8vyUYW2u6ih3QFyc7DftQ9WrhKL")
-			.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet-2.json`));
+			.get("/api/wallets?address=D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK%2CDFgggtreMXQNQKnxHddvkaPHcQbRdK3jyJ%2CDFr1CR81idSmfgQ19KXe4M6keqUEAuU8kF%2CDTYiNbvTKveMtJC8KPPdBrgRWxfPxGp1WV%2CDJyGFrZv4MYKrTMcjzEyhZzdTAJju2Rcjr")
+			.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets-page-0.json`))
+			.get("/api/wallets?address=DHnV81YdhYDkwCLD8pkxiXh53pGFw435GS%2CDGhLzafzQpBYjDAWP41U4cx5CKZ5BdSnS3%2CDLVXZyKFxLLdyuEtJRUvFoKcorSrnBnq48%2CDFZAfJ1i1LsvhkUk76Piw4v7oTgq12pX9Z%2CDGfNF9bGPss6YKLEqK5gwr4C1M7vgfenzn")
+			.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets-page-1.json`));
 
-		const ark = await createMockService(ledger.publicKey.record);
+		const ark = await createMockService(ledger.wallets.record);
 
-		const walletData: Contracts.WalletData = await ark.scan(ledger.bip44.path);
-		expect(walletData).toBeInstanceOf(WalletData);
-		expect(walletData.address()).toBe("D9PbsdY8vyUYW2u6ih3QFyc7DftQ9WrhKL");
+		const walletData: Contracts.WalletData[] = await ark.scan();
+		expect(walletData).toHaveLength(1);
+		expect(walletData[0].address()).toBe("D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK");
 	});
 });
