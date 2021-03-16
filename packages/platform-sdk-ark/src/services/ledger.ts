@@ -1,8 +1,9 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { IdentityService } from "./identity";
-import { ClientService } from "./client";
 import { WalletDataCollection } from "@arkecosystem/platform-sdk/dist/coins";
+
+import { ClientService } from "./client";
+import { IdentityService } from "./identity";
 
 export class LedgerService implements Contracts.LedgerService {
 	readonly #config: Coins.Config;
@@ -21,7 +22,7 @@ export class LedgerService implements Contracts.LedgerService {
 		return new LedgerService(
 			config,
 			await IdentityService.__construct(config),
-			await ClientService.__construct(config)
+			await ClientService.__construct(config),
 		);
 	}
 
@@ -59,9 +60,9 @@ export class LedgerService implements Contracts.LedgerService {
 	}
 
 	public async scan(): Promise<Contracts.WalletData[]> {
-		const pageSize: number = 5;
-		let page: number = 0;
-		let slip44 = this.#config.get<number>("network.crypto.slip44");
+		const pageSize = 5;
+		let page = 0;
+		const slip44 = this.#config.get<number>("network.crypto.slip44");
 
 		let wallets: Contracts.WalletData[] = [];
 		let collection: WalletDataCollection;
