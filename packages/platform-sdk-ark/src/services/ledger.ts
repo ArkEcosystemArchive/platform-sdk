@@ -68,7 +68,7 @@ export class LedgerService implements Contracts.LedgerService {
 		const slip44 = this.#config.get<number>("network.crypto.slip44");
 
 		let wallets: Contracts.WalletData[] = [];
-		let hasMore: boolean = true;
+		let hasMore = true;
 		do {
 			const addresses: string[] = [];
 
@@ -86,9 +86,9 @@ export class LedgerService implements Contracts.LedgerService {
 
 				const collection = await this.#client.wallets({ addresses });
 
-                wallets = wallets.concat(collection.items());
+				wallets = wallets.concat(collection.items());
 
-                hasMore = collection.isNotEmpty();
+				hasMore = collection.isNotEmpty();
 			} else {
 				/**
 				 * @remarks
@@ -114,7 +114,7 @@ export class LedgerService implements Contracts.LedgerService {
 				for (const chunk of chunks) {
 					wallets = wallets.concat(chunk.items());
 
-                    hasMore = chunk.isNotEmpty();
+					hasMore = chunk.isNotEmpty();
 				}
 			}
 
