@@ -94,6 +94,7 @@ export class LedgerService implements Contracts.LedgerService {
 				for (const accountIndex of createRange(page, pageSize)) {
 					const compressedPublicKey = await this.getExtendedPublicKey(`m/44'/${slip44}'/${accountIndex}'`);
 
+					// @TODO: keep deriving addresses until we hit a cold wallet.
 					for (let addressIndex = 0; addressIndex < 50; addressIndex++) {
 						const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey).derive(`m/0/${addressIndex}`).publicKey.toString("hex");
 
