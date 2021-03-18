@@ -68,7 +68,7 @@ export class LedgerService implements Contracts.LedgerService {
 		const slip44 = this.#config.get<number>("network.crypto.slip44");
 
 		let wallets: Contracts.WalletData[] = [];
-		let hasMore: boolean = false;
+		let hasMore: boolean = true;
 		do {
 			const addresses: string[] = [];
 
