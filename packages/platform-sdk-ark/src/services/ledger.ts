@@ -96,13 +96,17 @@ export class LedgerService implements Contracts.LedgerService {
 
 					// @TODO: keep deriving addresses until we hit a cold wallet.
 					for (let addressIndex = 0; addressIndex < 50; addressIndex++) {
-						const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey).derive(`m/0/${addressIndex}`).publicKey.toString("hex");
+						const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey)
+							.derive(`m/0/${addressIndex}`)
+							.publicKey.toString("hex");
 
 						addresses.push(await this.#identity.address().fromPublicKey(extendedKey));
 					}
 				}
 
-				const chunks = await Promise.all(chunk(addresses, 50).map((addresses: string[]) => this.#client.wallets({ addresses })));
+				const chunks = await Promise.all(
+					chunk(addresses, 50).map((addresses: string[]) => this.#client.wallets({ addresses })),
+				);
 
 				for (const chunk of chunks) {
 					wallets = wallets.concat(chunk.items());
