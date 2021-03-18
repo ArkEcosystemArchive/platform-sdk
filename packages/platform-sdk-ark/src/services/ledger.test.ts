@@ -107,7 +107,7 @@ describe("scan", () => {
 
 		const ark = await createMockService(ledger.wallets.record);
 
-		const walletData: Contracts.WalletData[] = await ark.scan();
+		const walletData: Contracts.WalletData[] = await ark.scan({ useLegacy: true });
 		expect(walletData).toHaveLength(1);
 		expect(walletData[0].address()).toBe("D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK");
 	});

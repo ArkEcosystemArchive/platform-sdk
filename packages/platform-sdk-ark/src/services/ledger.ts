@@ -1,9 +1,25 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { WalletDataCollection } from "@arkecosystem/platform-sdk/dist/coins";
+import { HDKey } from "@arkecosystem/platform-sdk-crypto";
 
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";
+
+const chunk = <T>(value: T[], size: number) =>
+	Array.from({ length: Math.ceil(value.length / size) }, (v, i) => value.slice(i * size, i * size + size));
+
+const formatLedgerDerivationPath = (scheme: LedgerDerivationScheme) =>
+	`${scheme.purpose || 44}'/${scheme.coinType}'/${scheme.account || 0}'/${scheme.change || 0}/${scheme.address || 0}`;
+
+export type LedgerDerivationScheme = {
+	coinType: number;
+	purpose?: number;
+	account?: number;
+	change?: number;
+	address?: number;
+};
+
+export const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
 
 export class LedgerService implements Contracts.LedgerService {
 	readonly #config: Coins.Config;
@@ -59,41 +75,66 @@ export class LedgerService implements Contracts.LedgerService {
 		return this.#transport.signMessageWithSchnorr(path, payload);
 	}
 
-	public async scan(): Promise<Contracts.WalletData[]> {
+	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.WalletData[]> {
 		const pageSize = 5;
 		let page = 0;
 		const slip44 = this.#config.get<number>("network.crypto.slip44");
 
 		let wallets: Contracts.WalletData[] = [];
-		let collection: WalletDataCollection;
+		let hasMore = true;
 		do {
 			const addresses: string[] = [];
 
-			for (const index of createRange(page, pageSize)) {
-				const path: string = formatLedgerDerivationPath({ coinType: slip44, account: index });
-				const publicKey = await this.getPublicKey(path);
-				addresses.push(await this.#identity.address().fromPublicKey(publicKey));
+			/**
+			 * @remarks
+			 * This needs to be used to support the borked BIP44 implementation from the v2 desktop wallet.
+			 */
+			if (options?.useLegacy) {
+				for (const accountIndex of createRange(page, pageSize)) {
+					const path: string = formatLedgerDerivationPath({ coinType: slip44, account: accountIndex });
+					const publicKey: string = await this.getPublicKey(path);
+
+					addresses.push(await this.#identity.address().fromPublicKey(publicKey));
+				}
+
+				const collection = await this.#client.wallets({ addresses });
+
+				wallets = wallets.concat(collection.items());
+
+				hasMore = collection.isNotEmpty();
+			} else {
+				/**
+				 * @remarks
+				 * This is the new BIP44 compliant derivation which will be used by default.
+				 */
+				const compressedPublicKey = await this.getExtendedPublicKey(`m/44'/${slip44}'/0'`);
+
+				for (const addressIndex of createRange(page, pageSize)) {
+					addresses.push(
+						await this.#identity
+							.address()
+							.fromPublicKey(
+								HDKey.fromCompressedPublicKey(compressedPublicKey)
+									.derive(`m/0/${addressIndex}`)
+									.publicKey.toString("hex"),
+							),
+					);
+				}
+
+				const collections = await Promise.all(
+					chunk(addresses, 50).map((addresses: string[]) => this.#client.wallets({ addresses })),
+				);
+
+				for (const collection of collections) {
+					wallets = wallets.concat(collection.items());
+
+					hasMore = collection.isNotEmpty();
+				}
 			}
 
-			collection = await this.#client.wallets({ addresses: addresses });
-			wallets = wallets.concat(collection.items());
-
 			page++;
-		} while (!collection.isEmpty());
+		} while (hasMore);
 
 		return wallets;
 	}
 }
-
-const formatLedgerDerivationPath = (scheme: LedgerDerivationScheme) =>
-	`${scheme.purpose || 44}'/${scheme.coinType}'/${scheme.account || 0}'/${scheme.change || 0}/${scheme.address || 0}`;
-
-export type LedgerDerivationScheme = {
-	coinType: number;
-	purpose?: number;
-	account?: number;
-	change?: number;
-	address?: number;
-};
-
-export const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
