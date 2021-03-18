@@ -72,32 +72,36 @@ export class LedgerService implements Contracts.LedgerService {
 		do {
 			const addresses: string[] = [];
 
-			for (const index of createRange(page, pageSize)) {
-				const path: string = formatLedgerDerivationPath({ coinType: slip44, account: index });
-				const publicKey = await this.getPublicKey(path);
-				addresses.push(await this.#identity.address().fromPublicKey(publicKey));
-			}
+			if (options.useLegacy) {
+				for (const accountIndex of createRange(page, pageSize)) {
+					const path: string = formatLedgerDerivationPath({ coinType: slip44, account: accountIndex });
+					const publicKey: string = await this.getPublicKey(path);
 
-			collection = await this.#client.wallets({ addresses: addresses });
-			wallets = wallets.concat(collection.items());
+					addresses.push(await this.#identity.address().fromPublicKey(publicKey));
+				}
+
+				collection = await this.#client.wallets({ addresses });
+				wallets = wallets.concat(collection.items());
+			} else {
+				for (const accountIndex of createRange(page, pageSize)) {
+					const compressedPublicKey = await this.getExtendedPublicKey(`m/44'/${slip44}'/${accountIndex}'`);
+
+					for (let addressIndex = 0; addressIndex < 50; addressIndex++) {
+						const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey).derive(`m/0/${addressIndex}`).publicKey.toString("hex");
+
+						addresses.push(await this.#identity.address().fromPublicKey(extendedKey));
+					}
+				}
+
+				const chunks = await Promise.all(chunk(addresses, 50).map((addresses: string[]) => this.#client.wallets({ addresses })));
+
+				for (const chunk of chunks) {
+					wallets = wallets.concat(chunk.items());
+				}
+			}
 
 			page++;
 		} while (!collection.isEmpty());
-
-		// NEW BIP44 COMPLIANT
-		// for (let accountIndex = 0; accountIndex < 5; accountIndex++) {
-		// 	const compressedPublicKey = await this.getExtendedPublicKey(`m/44'/${slip44}'/${accountIndex}'`);
-
-		// 	for (let addressIndex = 0; addressIndex < 50; addressIndex++) {
-		// 		const path = `44'/${slip44}'/${accountIndex}'/0/${addressIndex}`;
-		// 		const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey).derive(`m/0/${addressIndex}`).publicKey.toString("hex");
-		// 		const extendedAddress = await this.#identity.address().fromPublicKey(extendedKey);
-
-		// 		addressMap[extendedAddress] = { path, extendedKey };
-		// 	}
-		// }
-
-		// await Promise.all(chunk(Object.keys(addressMap), 50).map((addresses: string[]) => this.#client.wallets({ addresses })));
 
 		return wallets;
 	}
