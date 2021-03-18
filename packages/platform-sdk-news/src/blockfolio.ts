@@ -3,14 +3,14 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 import { BlockfolioResponse } from "./blockfolio.models";
 
 /**
- *
+ * Implements Blockfolio Signal retrieval from the Platform SDK API.
  *
  * @export
  * @class Blockfolio
  */
 export class Blockfolio {
 	/**
-	 *
+	 * The HTTP client used for communication.
 	 *
 	 * @type {Contracts.HttpClient}
 	 * @memberof Blockfolio
@@ -18,7 +18,8 @@ export class Blockfolio {
 	readonly #httpClient: Contracts.HttpClient;
 
 	/**
-	 *Creates an instance of Blockfolio.
+	 * Creates an instance of Blockfolio.
+	 *
 	 * @param {Contracts.HttpClient} httpClient
 	 * @memberof Blockfolio
 	 */
@@ -27,7 +28,7 @@ export class Blockfolio {
 	}
 
 	/**
-	 *
+	 * Retrieves signals for a given coin.
 	 *
 	 * @param {{
 	 * 		page?: number;
