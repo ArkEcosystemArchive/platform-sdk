@@ -10,7 +10,7 @@ export const ValidatorSchema = Joi;
  */
 export class Validator {
 	/**
-	 *
+	 * The latest validation error.
 	 *
 	 * @type {(Joi.ValidationError | undefined)}
 	 * @memberof Validator
@@ -18,7 +18,7 @@ export class Validator {
 	#error: Joi.ValidationError | undefined;
 
 	/**
-	 *
+	 * Compares the given data against the given schema.
 	 *
 	 * @param {object} data
 	 * @param {Joi.Schema} schema
@@ -34,7 +34,7 @@ export class Validator {
 	}
 
 	/**
-	 *
+	 * Indicates wheter the data has passed validation.
 	 *
 	 * @returns {boolean}
 	 * @memberof Validator
@@ -44,7 +44,7 @@ export class Validator {
 	}
 
 	/**
-	 *
+	 * Indicates wheter the data has failed validation.
 	 *
 	 * @returns {boolean}
 	 * @memberof Validator
@@ -54,7 +54,7 @@ export class Validator {
 	}
 
 	/**
-	 *
+	 * Returns the human-readable explanation for the latest occurred.
 	 *
 	 * @returns {(string[] | undefined)}
 	 * @memberof Validator
@@ -64,7 +64,7 @@ export class Validator {
 	}
 
 	/**
-	 *
+	 * Returns the latest error that has occurred.
 	 *
 	 * @returns {(Joi.ValidationError | undefined)}
 	 * @memberof Validator
