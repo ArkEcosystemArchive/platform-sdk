@@ -1,9 +1,9 @@
-import { encode, decode } from "wif";
+import { decode, encode } from "wif";
 
 export interface Structure {
-    readonly version: number;
-    readonly privateKey: string;
-    readonly compressed: boolean;
+	readonly version: number;
+	readonly privateKey: string;
+	readonly compressed: boolean;
 }
 
 export class WIF {

@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { encrypt, decrypt } from "bip38";
+import { decrypt, encrypt } from "bip38";
 import nock from "nock";
 import { decode } from "wif";
 

@@ -46,6 +46,10 @@ export class LedgerService implements Contracts.LedgerService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "signMessage");
 	}
 
+	public async scan(): Promise<Contracts.WalletData[]> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "scan");
+	}
+
 	/**
 	 * EOS-like Bip44 Parsing
 	 */
