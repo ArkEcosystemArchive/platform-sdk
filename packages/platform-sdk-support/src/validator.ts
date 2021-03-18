@@ -3,7 +3,7 @@ import Joi from "joi";
 export const ValidatorSchema = Joi;
 
 /**
- *
+ * Implements data validation functionality, powered by joi, formerly @hapi/joi.
  *
  * @export
  * @class Validator
