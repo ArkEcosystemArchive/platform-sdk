@@ -2,151 +2,151 @@ repo:
     - ./*
 
 ci:
-    - any: ['.github/**/*']
+    - any: [".github/**/*"]
 
 test:
     - src/**/*.test.ts
 
-"domain/sdk":
+"Domain: SDK":
     - packages/platform-sdk/*
     - packages/platform-sdk/**/*
 
-"domain/ada":
+"Domain: ADA":
     - packages/platform-sdk-ada/*
     - packages/platform-sdk-ada/**/*
 
-"domain/ark":
+"Domain: ARK":
     - packages/platform-sdk-ark/*
     - packages/platform-sdk-ark/**/*
 
-"domain/atom":
+"Domain: ATOM":
     - packages/platform-sdk-atom/*
     - packages/platform-sdk-atom/**/*
 
-"domain/avax":
+"Domain: AVAX":
     - packages/platform-sdk-avax/*
     - packages/platform-sdk-avax/**/*
 
-"domain/btc":
+"Domain: BTC":
     - packages/platform-sdk-btc/*
     - packages/platform-sdk-btc/**/*
 
-"domain/btc/indexer":
+"Domain: BTC/Indexer":
     - packages/platform-sdk-btc-indexer/*
     - packages/platform-sdk-btc-indexer/**/*
 
-"domain/btc/server":
+"Domain: BTC/Server":
     - packages/platform-sdk-btc-server/*
     - packages/platform-sdk-btc-server/**/*
 
-"domain/cli":
+"Domain: CLI":
     - packages/platform-sdk-cli/*
     - packages/platform-sdk-cli/**/*
 
-"domain/coincap":
+"Domain: CoinCap":
     - packages/platform-sdk-coincap/*
     - packages/platform-sdk-coincap/**/*
 
-"domain/coingecko":
+"Domain: CoinGecko":
     - packages/platform-sdk-coingecko/*
     - packages/platform-sdk-coingecko/**/*
 
-"domain/crypto":
+"Domain: Crypto":
     - packages/platform-sdk-crypto/*
     - packages/platform-sdk-crypto/**/*
 
-"domain/cryptocompare":
+"Domain: CryptoCompare":
     - packages/platform-sdk-cryptocompare/*
     - packages/platform-sdk-cryptocompare/**/*
 
-"domain/dot":
+"Domain: DOT":
     - packages/platform-sdk-dot/*
     - packages/platform-sdk-dot/**/*
 
-"domain/dot/indexer":
+"Domain: DOT/Indexer":
     - packages/platform-sdk-dot-indexer/*
     - packages/platform-sdk-dot-indexer/**/*
 
-"domain/egld":
+"Domain: EGLD":
     - packages/platform-sdk-egld/*
     - packages/platform-sdk-egld/**/*
 
-"domain/eos":
+"Domain: EOS":
     - packages/platform-sdk-eos/*
     - packages/platform-sdk-eos/**/*
 
-"domain/eth":
+"Domain: ETH":
     - packages/platform-sdk-eth/*
     - packages/platform-sdk-eth/**/*
 
-"domain/eth/indexer":
+"Domain: ETH/Indexer":
     - packages/platform-sdk-eth-indexer/*
     - packages/platform-sdk-eth-indexer/**/*
 
-"domain/eth/server":
+"Domain: ETH/Server":
     - packages/platform-sdk-eth-server/*
     - packages/platform-sdk-eth-server/**/*
 
-"domain/http/axios":
+"Domain: HTTP/axios":
     - packages/platform-sdk-http-axios/*
     - packages/platform-sdk-http-axios/**/*
 
-"domain/http/bent":
+"Domain: HTTP/bent":
     - packages/platform-sdk-http-bent/*
     - packages/platform-sdk-http-bent/**/*
 
-"domain/http/got":
+"Domain: HTTP/got":
     - packages/platform-sdk-http-got/*
     - packages/platform-sdk-http-got/**/*
 
-"domain/http/ky":
+"Domain: HTTP/ky":
     - packages/platform-sdk-http-ky/*
     - packages/platform-sdk-http-ky/**/*
 
-"domain/http/node-fetch":
+"Domain: HTTP/node-fetch":
     - packages/platform-sdk-http-node-fetch/*
     - packages/platform-sdk-http-node-fetch/**/*
 
-"domain/intl":
+"Domain: INTL":
     - packages/platform-sdk-intl/*
     - packages/platform-sdk-intl/**/*
 
-"domain/lsk":
+"Domain: LSK":
     - packages/platform-sdk-lsk/*
     - packages/platform-sdk-lsk/**/*
 
-"domain/markets":
+"Domain: Markets":
     - packages/platform-sdk-markets/*
     - packages/platform-sdk-markets/**/*
 
-"domain/neo":
+"Domain: NEO":
     - packages/platform-sdk-neo/*
     - packages/platform-sdk-neo/**/*
 
-"domain/news":
+"Domain: News":
     - packages/platform-sdk-news/*
     - packages/platform-sdk-news/**/*
 
-"domain/profiles":
+"Domain: Profiles":
     - packages/platform-sdk-profiles/*
     - packages/platform-sdk-profiles/**/*
 
-"domain/sol":
+"Domain: SOL":
     - packages/platform-sdk-sol/*
     - packages/platform-sdk-sol/**/*
 
-"domain/support":
+"Domain: Support":
     - packages/platform-sdk-support/*
     - packages/platform-sdk-support/**/*
 
-"domain/trx":
+"Domain: TRX":
     - packages/platform-sdk-trx/*
     - packages/platform-sdk-trx/**/*
 
-"domain/xlm":
+"Domain: XLM":
     - packages/platform-sdk-xlm/*
     - packages/platform-sdk-xlm/**/*
 
-"domain/xrp":
+"Domain: XRP":
     - packages/platform-sdk-xrp/*
     - packages/platform-sdk-xrp/**/*
