@@ -102,14 +102,14 @@ export class LedgerService implements Contracts.LedgerService {
                     .publicKey.toString("hex")));
 				}
 
-                const chunks = await Promise.all(
+                const collections = await Promise.all(
                     chunk(addresses, 50).map((addresses: string[]) => this.#client.wallets({ addresses })),
                 );
 
-                for (const chunk of chunks) {
-                    wallets = wallets.concat(chunk.items());
+                for (const collection of collections) {
+                    wallets = wallets.concat(collection.items());
 
-                    hasMore = chunk.isNotEmpty();
+                    hasMore = collection.isNotEmpty();
                 }
 			}
 
