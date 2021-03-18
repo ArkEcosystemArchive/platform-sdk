@@ -107,23 +107,29 @@ export class LedgerService implements Contracts.LedgerService {
 				 * @remarks
 				 * This is the new BIP44 compliant derivation which will be used by default.
 				 */
-                const compressedPublicKey = await this.getExtendedPublicKey(`m/44'/${slip44}'/0'`);
+				const compressedPublicKey = await this.getExtendedPublicKey(`m/44'/${slip44}'/0'`);
 
 				for (const addressIndex of createRange(page, pageSize)) {
-                    addresses.push(await this.#identity.address().fromPublicKey(HDKey.fromCompressedPublicKey(compressedPublicKey)
-                    .derive(`m/0/${addressIndex}`)
-                    .publicKey.toString("hex")));
+					addresses.push(
+						await this.#identity
+							.address()
+							.fromPublicKey(
+								HDKey.fromCompressedPublicKey(compressedPublicKey)
+									.derive(`m/0/${addressIndex}`)
+									.publicKey.toString("hex"),
+							),
+					);
 				}
 
-                const collections = await Promise.all(
-                    chunk(addresses, 50).map((addresses: string[]) => this.#client.wallets({ addresses })),
-                );
+				const collections = await Promise.all(
+					chunk(addresses, 50).map((addresses: string[]) => this.#client.wallets({ addresses })),
+				);
 
-                for (const collection of collections) {
-                    wallets = wallets.concat(collection.items());
+				for (const collection of collections) {
+					wallets = wallets.concat(collection.items());
 
-                    hasMore = collection.isNotEmpty();
-                }
+					hasMore = collection.isNotEmpty();
+				}
 			}
 
 			page++;
