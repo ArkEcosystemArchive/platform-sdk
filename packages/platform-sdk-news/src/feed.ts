@@ -1,14 +1,14 @@
 import RssParser from "rss-parser";
 
 /**
- *
+ * Implements the ability to retrieve any RSS Feed and parse it.
  *
  * @export
  * @class FeedService
  */
 export class FeedService {
 	/**
-	 *
+	 * The RSS Feed parser.
 	 *
 	 * @type {RssParser}
 	 * @memberof FeedService
@@ -16,7 +16,8 @@ export class FeedService {
 	readonly #parser: RssParser;
 
 	/**
-	 *Creates an instance of FeedService.
+	 * Creates an instance of FeedService.
+	 *
 	 * @memberof FeedService
 	 */
 	public constructor() {
@@ -24,7 +25,7 @@ export class FeedService {
 	}
 
 	/**
-	 *
+	 * Retrieves an RSS Feed and parses it according to specifications.
 	 *
 	 * @param {string} url
 	 * @returns {Promise<RssParser.Output<any>>}
@@ -35,7 +36,7 @@ export class FeedService {
 	}
 
 	/**
-	 *
+	 * Retrieves an RSS Feed and returns all items.
 	 *
 	 * @param {string} url
 	 * @returns {(Promise<RssParser.Item[] | undefined>)}
