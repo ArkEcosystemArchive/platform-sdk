@@ -8,6 +8,19 @@ import { IdentityService } from "./identity";
 const chunk = <T>(value: T[], size: number) =>
 	Array.from({ length: Math.ceil(value.length / size) }, (v, i) => value.slice(i * size, i * size + size));
 
+const formatLedgerDerivationPath = (scheme: LedgerDerivationScheme) =>
+	`${scheme.purpose || 44}'/${scheme.coinType}'/${scheme.account || 0}'/${scheme.change || 0}/${scheme.address || 0}`;
+
+export type LedgerDerivationScheme = {
+	coinType: number;
+	purpose?: number;
+	account?: number;
+	change?: number;
+	address?: number;
+};
+
+export const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
+
 export class LedgerService implements Contracts.LedgerService {
 	readonly #config: Coins.Config;
 	readonly #identity: IdentityService;
@@ -119,16 +132,3 @@ export class LedgerService implements Contracts.LedgerService {
 		return wallets;
 	}
 }
-
-const formatLedgerDerivationPath = (scheme: LedgerDerivationScheme) =>
-	`${scheme.purpose || 44}'/${scheme.coinType}'/${scheme.account || 0}'/${scheme.change || 0}/${scheme.address || 0}`;
-
-export type LedgerDerivationScheme = {
-	coinType: number;
-	purpose?: number;
-	account?: number;
-	change?: number;
-	address?: number;
-};
-
-export const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
