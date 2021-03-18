@@ -1,9 +1,12 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { WalletDataCollection } from "@arkecosystem/platform-sdk/dist/coins";
+import { HDKey } from "@arkecosystem/platform-sdk-crypto";
 
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";
+
+const chunk = <T>(value: T[], size: number) =>
+	Array.from({ length: Math.ceil(value.length / size) }, (v, i) => value.slice(i * size, i * size + size));
 
 export class LedgerService implements Contracts.LedgerService {
 	readonly #config: Coins.Config;
@@ -59,13 +62,13 @@ export class LedgerService implements Contracts.LedgerService {
 		return this.#transport.signMessageWithSchnorr(path, payload);
 	}
 
-	public async scan(): Promise<Contracts.WalletData[]> {
+	public async scan(options: { useLegacy: boolean } = { useLegacy: false }): Promise<Contracts.WalletData[]> {
 		const pageSize = 5;
 		let page = 0;
 		const slip44 = this.#config.get<number>("network.crypto.slip44");
 
 		let wallets: Contracts.WalletData[] = [];
-		let collection: WalletDataCollection;
+		let collection: Coins.WalletDataCollection;
 		do {
 			const addresses: string[] = [];
 
@@ -80,6 +83,21 @@ export class LedgerService implements Contracts.LedgerService {
 
 			page++;
 		} while (!collection.isEmpty());
+
+		// NEW BIP44 COMPLIANT
+		// for (let accountIndex = 0; accountIndex < 5; accountIndex++) {
+		// 	const compressedPublicKey = await this.getExtendedPublicKey(`m/44'/${slip44}'/${accountIndex}'`);
+
+		// 	for (let addressIndex = 0; addressIndex < 50; addressIndex++) {
+		// 		const path = `44'/${slip44}'/${accountIndex}'/0/${addressIndex}`;
+		// 		const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey).derive(`m/0/${addressIndex}`).publicKey.toString("hex");
+		// 		const extendedAddress = await this.#identity.address().fromPublicKey(extendedKey);
+
+		// 		addressMap[extendedAddress] = { path, extendedKey };
+		// 	}
+		// }
+
+		// await Promise.all(chunk(Object.keys(addressMap), 50).map((addresses: string[]) => this.#client.wallets({ addresses })));
 
 		return wallets;
 	}
