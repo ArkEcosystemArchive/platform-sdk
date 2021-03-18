@@ -62,7 +62,7 @@ export class LedgerService implements Contracts.LedgerService {
 		return this.#transport.signMessageWithSchnorr(path, payload);
 	}
 
-	public async scan(options: { useLegacy: boolean }): Promise<Contracts.WalletData[]> {
+	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.WalletData[]> {
 		const pageSize = 5;
 		let page = 0;
 		const slip44 = this.#config.get<number>("network.crypto.slip44");
@@ -72,8 +72,11 @@ export class LedgerService implements Contracts.LedgerService {
 		do {
 			const addresses: string[] = [];
 
-			// @README: This needs to be used to support the borked BIP44 implementation from the v2 desktop wallet.
-			if (options.useLegacy) {
+			/**
+			 * @remarks
+			 * This needs to be used to support the borked BIP44 implementation from the v2 desktop wallet.
+			 */
+			if (options?.useLegacy) {
 				for (const accountIndex of createRange(page, pageSize)) {
 					const path: string = formatLedgerDerivationPath({ coinType: slip44, account: accountIndex });
 					const publicKey: string = await this.getPublicKey(path);
@@ -84,6 +87,10 @@ export class LedgerService implements Contracts.LedgerService {
 				collection = await this.#client.wallets({ addresses });
 				wallets = wallets.concat(collection.items());
 			} else {
+				/**
+				 * @remarks
+				 * This is the new BIP44 compliant derivation which will be used by default.
+				 */
 				for (const accountIndex of createRange(page, pageSize)) {
 					const compressedPublicKey = await this.getExtendedPublicKey(`m/44'/${slip44}'/${accountIndex}'`);
 
