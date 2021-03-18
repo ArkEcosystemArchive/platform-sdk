@@ -94,28 +94,25 @@ export class LedgerService implements Contracts.LedgerService {
 				 * @remarks
 				 * This is the new BIP44 compliant derivation which will be used by default.
 				 */
-				for (const accountIndex of createRange(page, pageSize)) {
-					const compressedPublicKey = await this.getExtendedPublicKey(`m/44'/${slip44}'/${accountIndex}'`);
+                const compressedPublicKey = await this.getExtendedPublicKey(`m/44'/${slip44}'/0'`);
 
-					// @TODO: keep deriving addresses until we hit a cold wallet.
-					for (let addressIndex = 0; addressIndex < 50; addressIndex++) {
-						const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey)
-							.derive(`m/0/${addressIndex}`)
-							.publicKey.toString("hex");
+				for (const addressIndex of createRange(page, pageSize)) {
+                    const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey)
+                        .derive(`m/0/${addressIndex}`)
+                        .publicKey.toString("hex");
 
-						addresses.push(await this.#identity.address().fromPublicKey(extendedKey));
-					}
+                    addresses.push(await this.#identity.address().fromPublicKey(extendedKey));
 				}
 
-				const chunks = await Promise.all(
-					chunk(addresses, 50).map((addresses: string[]) => this.#client.wallets({ addresses })),
-				);
+                const chunks = await Promise.all(
+                    chunk(addresses, 50).map((addresses: string[]) => this.#client.wallets({ addresses })),
+                );
 
-				for (const chunk of chunks) {
-					wallets = wallets.concat(chunk.items());
+                for (const chunk of chunks) {
+                    wallets = wallets.concat(chunk.items());
 
                     hasMore = chunk.isNotEmpty();
-				}
+                }
 			}
 
 			page++;
