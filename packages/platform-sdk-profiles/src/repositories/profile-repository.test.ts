@@ -207,7 +207,6 @@ describe("ProfileRepository", () => {
 		const exported = subject.export(profile, {
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
-			excludeWalletsWithoutName: false,
 			addNetworkInformation: true,
 			saveGeneralSettings: true,
 		});
@@ -226,7 +225,6 @@ describe("ProfileRepository", () => {
 			{
 				excludeEmptyWallets: false,
 				excludeLedgerWallets: false,
-				excludeWalletsWithoutName: false,
 				addNetworkInformation: true,
 				saveGeneralSettings: true,
 			},

@@ -280,7 +280,6 @@ export class WalletRepository {
 
 	public toObject(
 		options: WalletExportOptions = {
-			excludeWalletsWithoutName: false,
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
@@ -293,9 +292,6 @@ export class WalletRepository {
 
 		for (const [id, wallet] of Object.entries(this.#data.all())) {
 			if (options.excludeLedgerWallets && wallet.isLedger()) {
-				continue;
-			}
-			if (options.excludeWalletsWithoutName && wallet.displayName() === undefined) {
 				continue;
 			}
 			if (options.excludeEmptyWallets && wallet.balance().isZero()) {
