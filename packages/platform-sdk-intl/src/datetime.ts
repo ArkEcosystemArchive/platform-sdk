@@ -20,14 +20,14 @@ dayjs.extend(relativeTime);
 type DateTimeLike = string | number | dayjs.Dayjs | DateTime;
 
 /**
- *
+ * Simplifies working with dates and times through day.js
  *
  * @export
  * @class DateTime
  */
 export class DateTime {
 	/**
-	 *
+	 * The date and time that is being represented.
 	 *
 	 * @type {dayjs.Dayjs}
 	 * @memberof DateTime
@@ -35,7 +35,7 @@ export class DateTime {
 	readonly #instance: dayjs.Dayjs;
 
 	/**
-	 *
+	 * The locale that should be used for formatting.
 	 *
 	 * @type {(string | undefined)}
 	 * @memberof DateTime
@@ -43,7 +43,8 @@ export class DateTime {
 	readonly #locale: string | undefined;
 
 	/**
-	 *Creates an instance of DateTime.
+	 * Creates an instance of DateTime.
+	 *
 	 * @param {DateTimeLike} [value]
 	 * @param {*} [locale]
 	 * @memberof DateTime
@@ -66,7 +67,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Creates an instance of DateTime.
 	 *
 	 * @static
 	 * @param {DateTimeLike} [value]
@@ -79,7 +80,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Creates an instance of DateTime from a UNIX timestamp.
 	 *
 	 * @static
 	 * @param {number} value
@@ -92,7 +93,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Sets th Set the locale of the current instance.e locale that should be used for formatting.
 	 *
 	 * @param {string} locale
 	 * @returns {DateTime}
@@ -103,7 +104,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Determines if the current instance is before the given value.
 	 *
 	 * @param {DateTimeLike} value
 	 * @returns {boolean}
@@ -114,7 +115,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Determines if the current instance is the same as the given value.
 	 *
 	 * @param {DateTimeLike} value
 	 * @returns {boolean}
@@ -125,7 +126,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Determines if the current instance is after the given value.
 	 *
 	 * @param {DateTimeLike} value
 	 * @returns {boolean}
@@ -136,7 +137,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the millisecond of the current instance.
 	 *
 	 * @returns {number}
 	 * @memberof DateTime
@@ -146,7 +147,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the second of the current instance.
 	 *
 	 * @returns {number}
 	 * @memberof DateTime
@@ -156,7 +157,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the minute of the current instance.
 	 *
 	 * @returns {number}
 	 * @memberof DateTime
@@ -166,7 +167,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the hour of the current instance.
 	 *
 	 * @returns {number}
 	 * @memberof DateTime
@@ -176,7 +177,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the dayofmonth of the current instance.
 	 *
 	 * @returns {number}
 	 * @memberof DateTime
@@ -186,7 +187,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the day of the current instance.
 	 *
 	 * @returns {number}
 	 * @memberof DateTime
@@ -196,7 +197,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the week of the current instance.
 	 *
 	 * @returns {number}
 	 * @memberof DateTime
@@ -206,7 +207,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the month of the current instance.
 	 *
 	 * @returns {number}
 	 * @memberof DateTime
@@ -216,7 +217,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the quarter of the current instance.
 	 *
 	 * @returns {number}
 	 * @memberof DateTime
@@ -226,7 +227,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the year of the current instance.
 	 *
 	 * @returns {number}
 	 * @memberof DateTime
@@ -236,7 +237,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Set the millisecond of the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -247,7 +248,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Set the second of the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -258,7 +259,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Set the minute of the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -269,7 +270,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Set the hour of the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -280,7 +281,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Set the dayofmonth of the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -291,7 +292,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Set the day of the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -302,7 +303,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Set the week of the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -313,7 +314,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Set the month of the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -324,7 +325,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Set the quarter of the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -335,7 +336,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Set the year of the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
