@@ -346,7 +346,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add millisecond to the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -356,7 +356,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add milliseconds to the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -367,7 +367,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add second to the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -377,7 +377,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add seconds to the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -388,7 +388,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add minute to the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -398,7 +398,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add minutes to the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -409,7 +409,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add hour to the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -419,7 +419,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add hours to the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -430,7 +430,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add day to the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -440,7 +440,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add days to the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -451,7 +451,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add week to the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -461,7 +461,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add weeks to the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -472,7 +472,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add month to the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -482,7 +482,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add months to the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -493,7 +493,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add quarter to the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -503,7 +503,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add quarters to the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -514,7 +514,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add year to the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -524,7 +524,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Add years to the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -535,7 +535,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract millisecond from the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -545,7 +545,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract milliseconds from the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -556,7 +556,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract second from the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -566,7 +566,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract seconds from the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -577,7 +577,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract minute from the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -587,7 +587,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract minutes from the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -598,7 +598,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract hour from the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -608,7 +608,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract hours from the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -619,7 +619,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract day from the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -629,7 +629,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract days from the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -640,7 +640,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract week from the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -650,7 +650,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract weeks from the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -661,7 +661,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract month from the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -671,7 +671,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract months from the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -682,7 +682,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract quarter from the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -692,7 +692,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract quarters from the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -703,7 +703,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract year from the current instance.
 	 *
 	 * @returns {DateTime}
 	 * @memberof DateTime
@@ -713,7 +713,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Subtract years from the current instance.
 	 *
 	 * @param {number} value
 	 * @returns {DateTime}
@@ -724,7 +724,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the difference between the given and current instance in milliseconds.
 	 *
 	 * @param {DateTimeLike} value
 	 * @returns {number}
@@ -735,7 +735,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the difference between the given and current instance in seconds.
 	 *
 	 * @param {DateTimeLike} value
 	 * @returns {number}
@@ -746,7 +746,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the difference between the given and current instance in minutes.
 	 *
 	 * @param {DateTimeLike} value
 	 * @returns {number}
@@ -757,7 +757,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the difference between the given and current instance in hours.
 	 *
 	 * @param {DateTimeLike} value
 	 * @returns {number}
@@ -768,7 +768,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the difference between the given and current instance in days.
 	 *
 	 * @param {DateTimeLike} value
 	 * @returns {number}
@@ -779,7 +779,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the difference between the given and current instance in weeks.
 	 *
 	 * @param {DateTimeLike} value
 	 * @returns {number}
@@ -790,7 +790,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the difference between the given and current instance in months.
 	 *
 	 * @param {DateTimeLike} value
 	 * @returns {number}
@@ -801,7 +801,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the difference between the given and current instance in quarters.
 	 *
 	 * @param {DateTimeLike} value
 	 * @returns {number}
@@ -812,7 +812,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Get the difference between the given and current instance in years.
 	 *
 	 * @param {DateTimeLike} value
 	 * @returns {number}
