@@ -148,4 +148,7 @@ export interface ReadWriteWallet {
 	hasBeenFullyRestored(): boolean;
 	markAsPartiallyRestored(): void;
 	hasBeenPartiallyRestored(): boolean;
+
+	usesWIF(): boolean;
+	wif(password: string): Promise<string>;
 }

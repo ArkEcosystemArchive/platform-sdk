@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.2.0 - 2020-03-19
+
+### Added
+
+-   **[JSON-RPC]** Initial implementation (5e86eb49, @faustbrian)
+
+### Changed
+
+-   **[PROFILES]** Remove excludeWalletsWithoutName export setting (27cd78aa, @dated)
+
+## 3.1.24 - 2020-03-18
+
+### Added
+
+-   **[CRYPTO]** Implement `WIF` helpers (a187a096, @faustbrian)
+-   **[ARK]** Implement `LedgerService#scan` (bac3e2eb, @marianogoldman)
+-   **[ARK]** Implement BIP44 compliant ledger derivation (dc24ea0f, @faustbrian)
+
+### Fixed
+
+-   **[PROFILES]** Expose `ReadWriteWallet#wif` and `ReadWriteWallet#usesWIF` methods (03247207, @goga-m)
+
+## 3.1.20 - 2020-03-12
+
+### Added
+
+-   Implement `UUID` helper (e23ad13d, @faustbrian)
+-   Implement WIF and encrypted WIF import (846c6f4a, @faustbrian)
+
 ## 3.1.18 - 2020-03-11
 
 ### Changed
