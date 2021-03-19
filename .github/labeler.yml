@@ -135,6 +135,10 @@ test:
     - packages/platform-sdk-sol/*
     - packages/platform-sdk-sol/**/*
 
+"Domain: JSPN-RPC":
+    - packages/platform-sdk-json-rpc/*
+    - packages/platform-sdk-json-rpc/**/*
+
 "Domain: Support":
     - packages/platform-sdk-support/*
     - packages/platform-sdk-support/**/*

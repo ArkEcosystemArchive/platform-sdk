@@ -147,6 +147,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@konceiver/hapi-json-rpc",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@konceiver/hapi-rate-limiter-flexible",
       "allowedCategories": [ "libraries" ]
     },
