@@ -846,7 +846,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Returns the string of relative time from X.
 	 *
 	 * @param {ConfigType} compared
 	 * @param {boolean} [withoutSuffix]
@@ -858,7 +858,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Returns the string of relative time from now.
 	 *
 	 * @param {boolean} [withoutSuffix]
 	 * @returns {string}
@@ -869,7 +869,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Returns an object containing all segments of the current instance.
 	 *
 	 * @returns {{
 	 * 		years: number;
