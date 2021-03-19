@@ -15,8 +15,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   **[PROFILES]** Remove excludeWalletsWithoutName export setting (27cd78aa, @dated)
 
-Thanks to @dated @faustbrian
-
 ## 3.1.24 - 2020-03-18
 
 ### Added
