@@ -1,12 +1,12 @@
 /**
- *
+ * Implements helpers for numerical formatting with currencies and unit.
  *
  * @export
  * @class Numeral
  */
 export class Numeral {
 	/**
-	 *
+	 * The locale that will be used for formatting.
 	 *
 	 * @type {string}
 	 * @memberof Numeral
@@ -14,7 +14,7 @@ export class Numeral {
 	readonly #locale: string;
 
 	/**
-	 *
+	 * The options that should be used for formatting.
 	 *
 	 * @type {Intl.NumberFormatOptions}
 	 * @memberof Numeral
@@ -22,7 +22,8 @@ export class Numeral {
 	readonly #options: Intl.NumberFormatOptions;
 
 	/**
-	 *Creates an instance of Numeral.
+	 * Creates an instance of Numeral.
+	 *
 	 * @param {string} locale
 	 * @param {Intl.NumberFormatOptions} [options]
 	 * @memberof Numeral
@@ -33,7 +34,7 @@ export class Numeral {
 	}
 
 	/**
-	 *
+	 * Creates an instance of Numeral.
 	 *
 	 * @static
 	 * @param {string} locale
@@ -46,7 +47,7 @@ export class Numeral {
 	}
 
 	/**
-	 *
+	 * Returns the formatted value.
 	 *
 	 * @param {number} value
 	 * @returns {string}
@@ -57,7 +58,7 @@ export class Numeral {
 	}
 
 	/**
-	 *
+	 * Returns the formatted value with the given currency as suffix.
 	 *
 	 * @param {number} value
 	 * @param {string} currency
@@ -72,7 +73,7 @@ export class Numeral {
 	}
 
 	/**
-	 *
+	 * Returns the formatted value with the given unit as suffix.
 	 *
 	 * @param {number} value
 	 * @param {string} unit
