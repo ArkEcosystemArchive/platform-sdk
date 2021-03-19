@@ -1,10 +1,3 @@
-/**
- *
- *
- * @param {*} amount
- * @param {*} { from, to, base, rates }
- * @returns {number}
- */
 export const convertToCurrency = (amount, { from, to, base, rates }): number => {
 	if (from && to) {
 		const baseAmount = amount * 100;
