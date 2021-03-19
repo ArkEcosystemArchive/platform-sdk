@@ -835,7 +835,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Returns a cloned instance and sets it to the start of a unit of time.
 	 *
 	 * @param {QUnitType} unit
 	 * @returns {DateTime}
