@@ -10,6 +10,7 @@ import { registerKeys } from "./methods/identity/keys";
 import { registerPrivateKey } from "./methods/identity/private-key";
 import { registerPublicKey } from "./methods/identity/public-key";
 import { registerWIF } from "./methods/identity/wif";
+import { registerTransaction } from "./methods/transaction";
 
 export const subscribe = async (flags: {
 	// Networking
@@ -55,9 +56,11 @@ export const subscribe = async (flags: {
 				...registerPrivateKey(ark),
 				...registerPublicKey(ark),
 				...registerWIF(ark),
+				// Transaction Service
+				...registerTransaction(ark),
 			],
 			processor: {
-				schema: Joi.object().keys({
+				schema: Joi.object({
 					id: Joi.alternatives().try(Joi.number(), Joi.string()).required(),
 					jsonrpc: Joi.string().allow("2.0").required(),
 					method: Joi.string().required(),

@@ -7,20 +7,20 @@ export const registerKeys = (coin: Coins.Coin) => [
 		async method({ mnemonic }) {
 			return coin.identity().keys().fromMnemonic(mnemonic);
 		},
-		schema: Joi.object().keys({ mnemonic: Joi.string().required() }).required(),
+		schema: Joi.object({ mnemonic: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.keys.fromPrivateKey",
 		async method({ privateKey }) {
 			return coin.identity().keys().fromPrivateKey(privateKey);
 		},
-		schema: Joi.object().keys({ privateKey: Joi.string().required() }).required(),
+		schema: Joi.object({ privateKey: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.keys.fromWIF",
 		async method({ wif }) {
 			return coin.identity().keys().fromWIF(wif);
 		},
-		schema: Joi.object().keys({ wif: Joi.string().required() }).required(),
+		schema: Joi.object({ wif: Joi.string().required() }).required(),
 	},
 ];
