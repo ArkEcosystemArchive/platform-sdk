@@ -5,6 +5,7 @@ import Hapi from "@hapi/hapi";
 import Joi from "joi";
 
 import { useLogger } from "./helpers";
+import { registerClient } from "./methods/client";
 import { registerAddress } from "./methods/identity/address";
 import { registerKeys } from "./methods/identity/keys";
 import { registerPrivateKey } from "./methods/identity/private-key";
@@ -50,6 +51,8 @@ export const subscribe = async (flags: {
 		plugin: require("@konceiver/hapi-json-rpc"),
 		options: {
 			methods: [
+				// Client Service
+				...registerClient(ark),
 				// Identity Service
 				...registerAddress(ark),
 				...registerKeys(ark),
