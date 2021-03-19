@@ -398,7 +398,6 @@ describe("#toObject with options", () => {
 		const filtered = profile.toObject({
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
-			excludeWalletsWithoutName: false,
 			addNetworkInformation: true,
 			saveGeneralSettings: true,
 		});
@@ -413,7 +412,6 @@ describe("#toObject with options", () => {
 		const filtered = profile.toObject({
 			excludeEmptyWallets: true,
 			excludeLedgerWallets: false,
-			excludeWalletsWithoutName: false,
 			addNetworkInformation: true,
 			saveGeneralSettings: true,
 		});
@@ -428,22 +426,6 @@ describe("#toObject with options", () => {
 		const filtered = profile.toObject({
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: true,
-			excludeWalletsWithoutName: false,
-			addNetworkInformation: true,
-			saveGeneralSettings: true,
-		});
-
-		expect(Object.keys(filtered.wallets)).toHaveLength(0);
-	});
-
-	it("should exclude wallets without a name", async () => {
-		await profile.wallets().importByAddress("DNc92FQmYu8G9Xvo6YqhPtRxYsUxdsUn9w", "ARK", "ark.devnet");
-		profile.save();
-
-		const filtered = profile.toObject({
-			excludeEmptyWallets: false,
-			excludeLedgerWallets: false,
-			excludeWalletsWithoutName: true,
 			addNetworkInformation: true,
 			saveGeneralSettings: true,
 		});
@@ -459,7 +441,6 @@ describe("#toObject with options", () => {
 			profile.toObject({
 				excludeEmptyWallets: false,
 				excludeLedgerWallets: false,
-				excludeWalletsWithoutName: false,
 				addNetworkInformation: false,
 				saveGeneralSettings: true,
 			}),
@@ -473,7 +454,6 @@ describe("#toObject with options", () => {
 			profile.toObject({
 				excludeEmptyWallets: false,
 				excludeLedgerWallets: false,
-				excludeWalletsWithoutName: false,
 				addNetworkInformation: true,
 				saveGeneralSettings: false,
 			}),
