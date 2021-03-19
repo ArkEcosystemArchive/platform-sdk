@@ -2,12 +2,6 @@
 
 // Based on https://github.com/LedgerHQ/ledger-live-common/blob/master/src/currencies/sanitizeValueString.js
 
-/**
- *
- *
- * @param {string} locale
- * @returns {{ decimal: number; thousands: number }}
- */
 const getSeparators = (locale: string): { decimal: number; thousands: number } => {
 	const localeNotAvailable = (1.2).toLocaleString("en", { style: "currency", currency: "USD" }) !== "$1.20";
 
@@ -50,14 +44,14 @@ const getSeparators = (locale: string): { decimal: number; thousands: number } =
 };
 
 /**
- *
+ * Implements the normalisation of any currency-like string.
  *
  * @export
  * @class Currency
  */
 export class Currency {
 	/**
-	 *
+	 * Normalise the given vallue using the given magnitude.
 	 *
 	 * @static
 	 * @param {string} valueString
