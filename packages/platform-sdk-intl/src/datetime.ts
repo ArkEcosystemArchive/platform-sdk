@@ -895,7 +895,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Returns an ISO 8601 string representation of the date.
 	 *
 	 * @returns {string}
 	 * @memberof DateTime
@@ -905,7 +905,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Returns an ISO 8601 string representation of the date.
 	 *
 	 * @returns {string}
 	 * @memberof DateTime
@@ -915,7 +915,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Returns a string representation of the date.
 	 *
 	 * @returns {string}
 	 * @memberof DateTime
@@ -925,7 +925,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Returns the the number of seconds since the Unix Epoch of the instance.
 	 *
 	 * @returns {number}
 	 * @memberof DateTime
@@ -935,7 +935,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Returns a native Date instance of the current instance.
 	 *
 	 * @returns {Date}
 	 * @memberof DateTime
@@ -945,7 +945,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Returns the number of milliseconds since the Unix Epoch of the instance.
 	 *
 	 * @returns {number}
 	 * @memberof DateTime
@@ -955,7 +955,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Normalises the given value to the UTC timezone.
 	 *
 	 * @private
 	 * @param {DateTimeLike} [value]
