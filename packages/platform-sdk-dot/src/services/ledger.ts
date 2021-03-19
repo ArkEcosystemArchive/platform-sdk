@@ -50,6 +50,10 @@ export class LedgerService implements Contracts.LedgerService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "signMessage");
 	}
 
+	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.WalletData[]> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "scan");
+	}
+
 	private parseDotPath(path: string): number[] {
 		const HARDENING = 0x80000000;
 		const elements: number[] = [];
