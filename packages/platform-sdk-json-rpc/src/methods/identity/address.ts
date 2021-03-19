@@ -7,7 +7,7 @@ export const registerAddress = (coin: Coins.Coin) => [
 		async method({ mnemonic }) {
 			return coin.identity().address().fromMnemonic(mnemonic);
 		},
-		schema: Joi.object().keys({ mnemonic: Joi.string().required() }).required(),
+		schema: Joi.object({ mnemonic: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.address.fromMultiSignature",
@@ -23,27 +23,27 @@ export const registerAddress = (coin: Coins.Coin) => [
 		async method({ publicKey }) {
 			return coin.identity().address().fromPublicKey(publicKey);
 		},
-		schema: Joi.object().keys({ publicKey: Joi.string().required() }).required(),
+		schema: Joi.object({ publicKey: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.address.fromPrivateKey",
 		async method({ privateKey }) {
 			return coin.identity().address().fromPrivateKey(privateKey);
 		},
-		schema: Joi.object().keys({ privateKey: Joi.string().required() }).required(),
+		schema: Joi.object({ privateKey: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.address.fromWIF",
 		async method({ wif }) {
 			return coin.identity().address().fromWIF(wif);
 		},
-		schema: Joi.object().keys({ wif: Joi.string().required() }).required(),
+		schema: Joi.object({ wif: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.address.validate",
 		async method({ address }) {
 			return coin.identity().address().validate(address);
 		},
-		schema: Joi.object().keys({ address: Joi.string().required() }).required(),
+		schema: Joi.object({ address: Joi.string().required() }).required(),
 	},
 ];

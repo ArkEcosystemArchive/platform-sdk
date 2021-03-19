@@ -5,11 +5,13 @@ import Hapi from "@hapi/hapi";
 import Joi from "joi";
 
 import { useLogger } from "./helpers";
+import { registerClient } from "./methods/client";
 import { registerAddress } from "./methods/identity/address";
 import { registerKeys } from "./methods/identity/keys";
 import { registerPrivateKey } from "./methods/identity/private-key";
 import { registerPublicKey } from "./methods/identity/public-key";
 import { registerWIF } from "./methods/identity/wif";
+import { registerTransaction } from "./methods/transaction";
 
 export const subscribe = async (flags: {
 	// Networking
@@ -49,15 +51,19 @@ export const subscribe = async (flags: {
 		plugin: require("@konceiver/hapi-json-rpc"),
 		options: {
 			methods: [
+				// Client Service
+				...registerClient(ark),
 				// Identity Service
 				...registerAddress(ark),
 				...registerKeys(ark),
 				...registerPrivateKey(ark),
 				...registerPublicKey(ark),
 				...registerWIF(ark),
+				// Transaction Service
+				...registerTransaction(ark),
 			],
 			processor: {
-				schema: Joi.object().keys({
+				schema: Joi.object({
 					id: Joi.alternatives().try(Joi.number(), Joi.string()).required(),
 					jsonrpc: Joi.string().allow("2.0").required(),
 					method: Joi.string().required(),

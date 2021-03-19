@@ -7,7 +7,7 @@ export const registerPublicKey = (coin: Coins.Coin) => [
 		async method({ mnemonic }) {
 			return coin.identity().publicKey().fromMnemonic(mnemonic);
 		},
-		schema: Joi.object().keys({ mnemonic: Joi.string().required() }).required(),
+		schema: Joi.object({ mnemonic: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.publicKey.fromMultiSignature",
@@ -23,6 +23,6 @@ export const registerPublicKey = (coin: Coins.Coin) => [
 		async method({ wif }) {
 			return coin.identity().publicKey().fromWIF(wif);
 		},
-		schema: Joi.object().keys({ wif: Joi.string().required() }).required(),
+		schema: Joi.object({ wif: Joi.string().required() }).required(),
 	},
 ];
