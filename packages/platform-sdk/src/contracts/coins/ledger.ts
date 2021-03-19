@@ -1,3 +1,5 @@
+import { WalletData } from "./data";
+
 export interface LedgerOptions {
 	transport: LedgerTransport;
 }
@@ -21,4 +23,6 @@ export interface LedgerService {
 	signTransaction(path: string, payload: Buffer): Promise<string>;
 
 	signMessage(path: string, payload: Buffer): Promise<string>;
+
+	scan(): Promise<WalletData[]>;
 }

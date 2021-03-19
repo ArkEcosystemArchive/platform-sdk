@@ -1,5 +1,5 @@
 import { Coins } from "@arkecosystem/platform-sdk";
-import { encrypt } from "bip38";
+import { decrypt, encrypt } from "bip38";
 import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
 
@@ -134,6 +134,47 @@ export class WalletFactory {
 		const wallet: ReadWriteWallet = await this.fromMnemonic({ coin, network, mnemonic });
 
 		const { compressed, privateKey } = decode(await wallet.coin().identity().wif().fromMnemonic(mnemonic));
+
+		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
+
+		return wallet;
+	}
+
+	public async fromWIF({
+		coin,
+		network,
+		wif,
+	}: {
+		coin: string;
+		network: string;
+		wif: string;
+	}): Promise<ReadWriteWallet> {
+		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+
+		await wallet.setCoin(coin, network);
+		await wallet.setAddress(await wallet.coin().identity().address().fromWIF(wif));
+
+		return wallet;
+	}
+
+	public async fromWIFWithEncryption({
+		coin,
+		network,
+		wif,
+		password,
+	}: {
+		coin: string;
+		network: string;
+		wif: string;
+		password: string;
+	}): Promise<ReadWriteWallet> {
+		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+
+		await wallet.setCoin(coin, network);
+
+		const { compressed, privateKey } = decrypt(wif, password);
+
+		await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
 
 		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 
