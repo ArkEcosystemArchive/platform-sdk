@@ -824,7 +824,7 @@ export class DateTime {
 	}
 
 	/**
-	 *
+	 * Format the current instance according to the given format.
 	 *
 	 * @param {string} value
 	 * @returns {string}
