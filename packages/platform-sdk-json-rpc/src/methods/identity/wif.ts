@@ -16,4 +16,4 @@ export const registerWIF = (coin: Coins.Coin) => [
 		},
 		schema: Joi.object().keys({ privateKey: Joi.string().required() }).required(),
 	},
-]
+];

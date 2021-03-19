@@ -14,7 +14,9 @@ export const registerPublicKey = (coin: Coins.Coin) => [
 		async method({ min, publicKeys }) {
 			return coin.identity().publicKey().fromMultiSignature(min, publicKeys);
 		},
-		schema: Joi.object().keys({ min: Joi.string().required(), publicKeys: Joi.array().items(Joi.string()) }).required(),
+		schema: Joi.object()
+			.keys({ min: Joi.string().required(), publicKeys: Joi.array().items(Joi.string()) })
+			.required(),
 	},
 	{
 		name: "identity.publicKey.fromWIF",
@@ -23,4 +25,4 @@ export const registerPublicKey = (coin: Coins.Coin) => [
 		},
 		schema: Joi.object().keys({ wif: Joi.string().required() }).required(),
 	},
-]
+];

@@ -14,7 +14,9 @@ export const registerAddress = (coin: Coins.Coin) => [
 		async method({ min, publicKeys }) {
 			return coin.identity().address().fromMultiSignature(min, publicKeys);
 		},
-		schema: Joi.object().keys({ min: Joi.string().required(), publicKeys: Joi.array().items(Joi.string()) }).required(),
+		schema: Joi.object()
+			.keys({ min: Joi.string().required(), publicKeys: Joi.array().items(Joi.string()) })
+			.required(),
 	},
 	{
 		name: "identity.address.fromPublicKey",
@@ -44,4 +46,4 @@ export const registerAddress = (coin: Coins.Coin) => [
 		},
 		schema: Joi.object().keys({ address: Joi.string().required() }).required(),
 	},
-]
+];

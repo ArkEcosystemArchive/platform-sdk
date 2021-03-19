@@ -23,4 +23,4 @@ export const registerKeys = (coin: Coins.Coin) => [
 		},
 		schema: Joi.object().keys({ wif: Joi.string().required() }).required(),
 	},
-]
+];
