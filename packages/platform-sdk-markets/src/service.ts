@@ -4,14 +4,14 @@ import { PriceTracker as CoinGecko } from "@arkecosystem/platform-sdk-coingecko"
 import { PriceTracker as CryptoCompare } from "@arkecosystem/platform-sdk-cryptocompare";
 
 /**
- *
+ * Normalises the communication with Market Data Providers.
  *
  * @export
  * @class MarketService
  */
 export class MarketService {
 	/**
-	 *
+	 * The adapter that is used to retrieve data.
 	 *
 	 * @type {Contracts.PriceTracker}
 	 * @memberof MarketService
@@ -19,7 +19,8 @@ export class MarketService {
 	#adapter: Contracts.PriceTracker;
 
 	/**
-	 *Creates an instance of MarketService.
+	 * Creates an instance of MarketService.
+	 *
 	 * @param {Contracts.PriceTracker} adapter
 	 * @memberof MarketService
 	 */
@@ -28,7 +29,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Creates an instance of MarketService.
 	 *
 	 * @static
 	 * @param {string} name
@@ -47,7 +48,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Set the adapter that is used to retrieve data.
 	 *
 	 * @param {Contracts.PriceTracker} adapter
 	 * @memberof MarketService
