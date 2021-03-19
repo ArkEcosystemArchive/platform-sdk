@@ -58,7 +58,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Verify that the given token exists on the market data provider.
 	 *
 	 * @param {string} token
 	 * @returns {Promise<boolean>}
@@ -69,7 +69,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Returns market data for the given token.
 	 *
 	 * @param {string} token
 	 * @returns {Promise<Contracts.MarketDataCollection>}
@@ -80,18 +80,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
-	 *
-	 * @param {Contracts.HistoricalPriceOptions} options
-	 * @returns {Promise<Contracts.HistoricalData>}
-	 * @memberof MarketService
-	 */
-	public async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
-		return this.#adapter.historicalPrice(options);
-	}
-
-	/**
-	 *
+	 * Returns historical prices with a daily interval.
 	 *
 	 * @param {string} token
 	 * @param {string} currency
@@ -103,7 +92,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Returns historical prices with a weekly interval.
 	 *
 	 * @param {string} token
 	 * @param {string} currency
@@ -115,7 +104,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Returns historical prices with a monthly interval.
 	 *
 	 * @param {string} token
 	 * @param {string} currency
@@ -127,7 +116,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Returns historical prices with a quarterly interval.
 	 *
 	 * @param {string} token
 	 * @param {string} currency
@@ -139,7 +128,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Returns historical prices with a yearly interval.
 	 *
 	 * @param {string} token
 	 * @param {string} currency
@@ -151,18 +140,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
-	 *
-	 * @param {Contracts.HistoricalVolumeOptions} options
-	 * @returns {Promise<Contracts.HistoricalData>}
-	 * @memberof MarketService
-	 */
-	public async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
-		return this.#adapter.historicalVolume(options);
-	}
-
-	/**
-	 *
+	 * Returns historical volumes with a daily interval.
 	 *
 	 * @param {string} token
 	 * @param {string} currency
@@ -174,7 +152,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Returns historical volumes with a weekly interval.
 	 *
 	 * @param {string} token
 	 * @param {string} currency
@@ -186,7 +164,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Returns historical volumes with a monthly interval.
 	 *
 	 * @param {string} token
 	 * @param {string} currency
@@ -198,7 +176,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Returns historical volumes with a quarterly interval.
 	 *
 	 * @param {string} token
 	 * @param {string} currency
@@ -210,7 +188,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Returns historical volumes with a yearly interval.
 	 *
 	 * @param {string} token
 	 * @param {string} currency
@@ -222,7 +200,7 @@ export class MarketService {
 	}
 
 	/**
-	 *
+	 * Returns the daily average price for the given token, currency and time.
 	 *
 	 * @param {string} token
 	 * @param {string} currency
@@ -232,5 +210,27 @@ export class MarketService {
 	 */
 	public async dailyAverage(token: string, currency: string, timestamp: number): Promise<number> {
 		return this.#adapter.dailyAverage({ token, currency, timestamp });
+	}
+
+	/**
+	 * Returns historical prices based on the given options.
+	 *
+	 * @param {Contracts.HistoricalPriceOptions} options
+	 * @returns {Promise<Contracts.HistoricalData>}
+	 * @memberof MarketService
+	 */
+	private async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
+		return this.#adapter.historicalPrice(options);
+	}
+
+	/**
+	 * Returns historical volumes based on the given options.
+	 *
+	 * @param {Contracts.HistoricalVolumeOptions} options
+	 * @returns {Promise<Contracts.HistoricalData>}
+	 * @memberof MarketService
+	 */
+	private async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
+		return this.#adapter.historicalVolume(options);
 	}
 }
