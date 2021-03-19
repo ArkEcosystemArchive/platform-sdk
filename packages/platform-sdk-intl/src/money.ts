@@ -1,14 +1,16 @@
 import Dinero from "dinero.js";
 
 /**
+ * Simplifies working with monetary values through Dinero.js
  *
+ * @see https://dinerojs.com/
  *
  * @export
  * @class Money
  */
 export class Money {
 	/**
-	 *
+	 * The value that is being represented.
 	 *
 	 * @type {Dinero.Dinero}
 	 * @memberof Money
@@ -16,7 +18,7 @@ export class Money {
 	readonly #value: Dinero.Dinero;
 
 	/**
-	 *
+	 * The currency that is used for formatting.
 	 *
 	 * @type {string}
 	 * @memberof Money
@@ -24,7 +26,8 @@ export class Money {
 	readonly #currency: string;
 
 	/**
-	 *Creates an instance of Money.
+	 * Creates an instance of Money.
+	 *
 	 * @param {*} options
 	 * @memberof Money
 	 */
@@ -38,7 +41,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Creates an instance of Money.
 	 *
 	 * @static
 	 * @param {(string | number | Dinero.Dinero)} amount
@@ -51,7 +54,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Returns a new instance with an embedded locale.
 	 *
 	 * @param {string} locale
 	 * @returns {Money}
@@ -62,7 +65,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Returns a new instance that represents the sum of this and another instance.
 	 *
 	 * @param {Money} value
 	 * @returns {Money}
@@ -73,7 +76,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Returns a new instance that represents the difference of this and another instance.
 	 *
 	 * @param {Money} value
 	 * @returns {Money}
@@ -84,7 +87,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Returns a new instance that represents the multiplied value by the given factor.
 	 *
 	 * @param {number} value
 	 * @returns {Money}
@@ -95,7 +98,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Returns a new instance that represents the divided value by the given factor.
 	 *
 	 * @param {number} value
 	 * @returns {Money}
@@ -106,7 +109,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Checks whether the value represented by this object equals to the other.
 	 *
 	 * @param {Money} value
 	 * @returns {boolean}
@@ -117,7 +120,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Checks whether the value represented by this object is less than the other.
 	 *
 	 * @param {Money} value
 	 * @returns {boolean}
@@ -128,7 +131,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Checks whether the value represented by this object is less than or equal to the other.
 	 *
 	 * @param {Money} value
 	 * @returns {boolean}
@@ -139,7 +142,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Checks whether the value represented by this object is greater than the other.
 	 *
 	 * @param {Money} value
 	 * @returns {boolean}
@@ -150,7 +153,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Checks whether the value represented by this object is greater than or equal to the other.
 	 *
 	 * @param {Money} value
 	 * @returns {boolean}
@@ -161,7 +164,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Checks if the value represented by this object is positive.
 	 *
 	 * @returns {boolean}
 	 * @memberof Money
@@ -171,7 +174,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Checks if the value represented by this object is negative.
 	 *
 	 * @returns {boolean}
 	 * @memberof Money
@@ -181,7 +184,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Returns the amount.
 	 *
 	 * @returns {number}
 	 * @memberof Money
@@ -191,7 +194,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Returns the currency.
 	 *
 	 * @returns {*}
 	 * @memberof Money
@@ -201,7 +204,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Returns this object formatted as a string.
 	 *
 	 * @param {(string | undefined)} [format]
 	 * @returns {string}
@@ -212,7 +215,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Returns the amount represented by this object in units.
 	 *
 	 * @returns {number}
 	 * @memberof Money
@@ -222,7 +225,7 @@ export class Money {
 	}
 
 	/**
-	 *
+	 * Returns the amount represented by this object as a Dinero instance.
 	 *
 	 * @private
 	 * @param {Money} value
