@@ -1,50 +1,57 @@
-import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
 
-export const registerClient = (coin: Coins.Coin) => [
+import { baseSchema, makeCoin } from "../helpers";
+
+export const registerClient = () => [
 	{
 		name: "client.transaction",
-		async method({ id }) {
-			return (await coin.client().transaction(id)).toObject();
+		async method({ coin, network, id }) {
+			return (await (await makeCoin(coin, network)).client().transaction(id)).toObject();
 		},
 		schema: Joi.object({
+			...baseSchema,
 			id: Joi.string().required(),
 		}).required(),
 	},
 	{
 		name: "client.wallet",
-		async method({ id }) {
-			return (await coin.client().wallet(id)).toObject();
+		async method({ coin, network, id }) {
+			return (await (await makeCoin(coin, network)).client().wallet(id)).toObject();
 		},
 		schema: Joi.object({
+			...baseSchema,
 			id: Joi.string().required(),
 		}).required(),
 	},
 	{
 		name: "client.delegate",
-		async method({ id }) {
-			return (await coin.client().delegate(id)).toObject();
+		async method({ coin, network, id }) {
+			return (await (await makeCoin(coin, network)).client().delegate(id)).toObject();
 		},
 		schema: Joi.object({
+			...baseSchema,
 			id: Joi.string().required(),
 		}).required(),
 	},
 	{
 		name: "client.syncing",
-		async method() {
-			return coin.client().syncing();
+		async method({ coin, network }) {
+			return (await makeCoin(coin, network)).client().syncing();
 		},
 	},
 	{
 		name: "client.broadcast",
-		async method({ id, data }) {
+		async method({ coin, network, id, data }) {
 			// @ts-ignore
-			return coin.client().broadcast([{
-				id: () => id,
-				toBroadcast: () => data,
-			}]);
+			return (await makeCoin(coin, network)).client().broadcast([
+				{
+					id: () => id,
+					toBroadcast: () => data,
+				},
+			]);
 		},
 		schema: Joi.object({
+			...baseSchema,
 			id: Joi.string().required(),
 			data: Joi.any().required(),
 		}).required(),

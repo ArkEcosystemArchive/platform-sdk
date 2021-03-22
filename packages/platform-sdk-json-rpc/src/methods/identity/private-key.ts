@@ -1,19 +1,20 @@
-import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
 
-export const registerPrivateKey = (coin: Coins.Coin) => [
+import { baseSchema, makeCoin } from "../../helpers";
+
+export const registerPrivateKey = () => [
 	{
 		name: "identity.privateKey.fromMnemonic",
-		async method({ mnemonic }) {
-			return coin.identity().privateKey().fromMnemonic(mnemonic);
+		async method({ coin, network, mnemonic }) {
+			return (await makeCoin(coin, network)).identity().privateKey().fromMnemonic(mnemonic);
 		},
-		schema: Joi.object({ mnemonic: Joi.string().required() }).required(),
+		schema: Joi.object({ ...baseSchema, mnemonic: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.privateKey.fromWIF",
-		async method({ wif }) {
-			return coin.identity().privateKey().fromWIF(wif);
+		async method({ coin, network, wif }) {
+			return (await makeCoin(coin, network)).identity().privateKey().fromWIF(wif);
 		},
-		schema: Joi.object({ wif: Joi.string().required() }).required(),
+		schema: Joi.object({ ...baseSchema, wif: Joi.string().required() }).required(),
 	},
 ];
