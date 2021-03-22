@@ -1,4 +1,3 @@
-import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
 
 import { baseSchema, makeCoin } from "../helpers";

@@ -15,8 +15,11 @@ export const registerPublicKey = () => [
 		async method({ coin, network, min, publicKeys }) {
 			return (await makeCoin(coin, network)).identity().publicKey().fromMultiSignature(min, publicKeys);
 		},
-		schema: Joi.object({ ...baseSchema, min: Joi.string().required(), publicKeys: Joi.array().items(Joi.string()) })
-			.required(),
+		schema: Joi.object({
+			...baseSchema,
+			min: Joi.string().required(),
+			publicKeys: Joi.array().items(Joi.string()),
+		}).required(),
 	},
 	{
 		name: "identity.publicKey.fromWIF",

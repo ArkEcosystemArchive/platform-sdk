@@ -1,5 +1,5 @@
-import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
+
 import { baseSchema, makeCoin } from "../helpers";
 
 export const registerClient = () => [
@@ -35,7 +35,7 @@ export const registerClient = () => [
 	},
 	{
 		name: "client.syncing",
-		async method({ coin, network}) {
+		async method({ coin, network }) {
 			return (await makeCoin(coin, network)).client().syncing();
 		},
 	},
@@ -43,10 +43,12 @@ export const registerClient = () => [
 		name: "client.broadcast",
 		async method({ coin, network, id, data }) {
 			// @ts-ignore
-			return (await makeCoin(coin, network)).client().broadcast([{
-				id: () => id,
-				toBroadcast: () => data,
-			}]);
+			return (await makeCoin(coin, network)).client().broadcast([
+				{
+					id: () => id,
+					toBroadcast: () => data,
+				},
+			]);
 		},
 		schema: Joi.object({
 			...baseSchema,

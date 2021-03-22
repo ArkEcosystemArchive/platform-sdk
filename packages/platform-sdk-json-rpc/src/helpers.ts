@@ -19,11 +19,11 @@ export const makeCoin = async (coin: string, network: string): Coins.Coin => {
 	});
 
 	return coins[cacheKey];
-}
+};
 
 export const useLogger = (): Logger => new Logger();
 
 export const baseSchema = {
 	coin: Joi.string().required(),
 	network: Joi.string().required(),
-}
+};
