@@ -2,8 +2,10 @@ import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import Logger from "@ptkdev/logger";
+import Joi from "joi";
 
 const coins: Record<string, Coins.Coin> = {};
+
 export const makeCoin = async (coin: string, network: string): Coins.Coin => {
 	if (coins[coin]) {
 		return coins[coin];
@@ -18,3 +20,8 @@ export const makeCoin = async (coin: string, network: string): Coins.Coin => {
 }
 
 export const useLogger = (): Logger => new Logger();
+
+export const baseSchema = {
+	coin: Joi.string().required(),
+	network: Joi.string().required(),
+}

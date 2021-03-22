@@ -1,7 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
 
-import { makeCoin } from "../helpers";
+import { baseSchema, makeCoin } from "../helpers";
 
 export const registerTransaction = () => [
 	{
@@ -15,6 +15,7 @@ export const registerTransaction = () => [
 			};
 		},
 		schema: Joi.object({
+			...baseSchema,
 			// Specific
 			data: Joi.object({
 				amount: Joi.string().required(),

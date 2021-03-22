@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-import { makeCoin } from "../../helpers";
+import { baseSchema, makeCoin } from "../../helpers";
 
 export const registerPublicKey = () => [
 	{
@@ -8,15 +8,14 @@ export const registerPublicKey = () => [
 		async method({ coin, network, mnemonic }) {
 			return (await makeCoin(coin, network)).identity().publicKey().fromMnemonic(mnemonic);
 		},
-		schema: Joi.object({ mnemonic: Joi.string().required() }).required(),
+		schema: Joi.object({ ...baseSchema, mnemonic: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.publicKey.fromMultiSignature",
 		async method({ coin, network, min, publicKeys }) {
 			return (await makeCoin(coin, network)).identity().publicKey().fromMultiSignature(min, publicKeys);
 		},
-		schema: Joi.object()
-			.keys({ min: Joi.string().required(), publicKeys: Joi.array().items(Joi.string()) })
+		schema: Joi.object({ ...baseSchema, min: Joi.string().required(), publicKeys: Joi.array().items(Joi.string()) })
 			.required(),
 	},
 	{
@@ -24,6 +23,6 @@ export const registerPublicKey = () => [
 		async method({ coin, network, wif }) {
 			return (await makeCoin(coin, network)).identity().publicKey().fromWIF(wif);
 		},
-		schema: Joi.object({ wif: Joi.string().required() }).required(),
+		schema: Joi.object({ ...baseSchema, wif: Joi.string().required() }).required(),
 	},
 ];

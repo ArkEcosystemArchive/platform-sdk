@@ -1,6 +1,6 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
-import { makeCoin } from "../helpers";
+import { baseSchema, makeCoin } from "../helpers";
 
 export const registerClient = () => [
 	{
@@ -9,6 +9,7 @@ export const registerClient = () => [
 			return (await (await makeCoin(coin, network)).client().transaction(id)).toObject();
 		},
 		schema: Joi.object({
+			...baseSchema,
 			id: Joi.string().required(),
 		}).required(),
 	},
@@ -18,6 +19,7 @@ export const registerClient = () => [
 			return (await (await makeCoin(coin, network)).client().wallet(id)).toObject();
 		},
 		schema: Joi.object({
+			...baseSchema,
 			id: Joi.string().required(),
 		}).required(),
 	},
@@ -27,6 +29,7 @@ export const registerClient = () => [
 			return (await (await makeCoin(coin, network)).client().delegate(id)).toObject();
 		},
 		schema: Joi.object({
+			...baseSchema,
 			id: Joi.string().required(),
 		}).required(),
 	},
@@ -46,6 +49,7 @@ export const registerClient = () => [
 			}]);
 		},
 		schema: Joi.object({
+			...baseSchema,
 			id: Joi.string().required(),
 			data: Joi.any().required(),
 		}).required(),
