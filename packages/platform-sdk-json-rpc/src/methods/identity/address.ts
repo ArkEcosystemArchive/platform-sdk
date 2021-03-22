@@ -1,18 +1,19 @@
-import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
 
-export const registerAddress = (coin: Coins.Coin) => [
+import { makeCoin } from "../../helpers";
+
+export const registerAddress = () => [
 	{
 		name: "identity.address.fromMnemonic",
-		async method({ mnemonic }) {
-			return coin.identity().address().fromMnemonic(mnemonic);
+		async method({ coin, network, mnemonic }) {
+			return (await makeCoin(coin, network)).identity().address().fromMnemonic(mnemonic);
 		},
 		schema: Joi.object({ mnemonic: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.address.fromMultiSignature",
-		async method({ min, publicKeys }) {
-			return coin.identity().address().fromMultiSignature(min, publicKeys);
+		async method({ coin, network, min, publicKeys }) {
+			return (await makeCoin(coin, network)).identity().address().fromMultiSignature(min, publicKeys);
 		},
 		schema: Joi.object()
 			.keys({ min: Joi.string().required(), publicKeys: Joi.array().items(Joi.string()) })
@@ -20,29 +21,29 @@ export const registerAddress = (coin: Coins.Coin) => [
 	},
 	{
 		name: "identity.address.fromPublicKey",
-		async method({ publicKey }) {
-			return coin.identity().address().fromPublicKey(publicKey);
+		async method({ coin, network, publicKey }) {
+			return (await makeCoin(coin, network)).identity().address().fromPublicKey(publicKey);
 		},
 		schema: Joi.object({ publicKey: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.address.fromPrivateKey",
-		async method({ privateKey }) {
-			return coin.identity().address().fromPrivateKey(privateKey);
+		async method({ coin, network, privateKey }) {
+			return (await makeCoin(coin, network)).identity().address().fromPrivateKey(privateKey);
 		},
 		schema: Joi.object({ privateKey: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.address.fromWIF",
-		async method({ wif }) {
-			return coin.identity().address().fromWIF(wif);
+		async method({ coin, network, wif }) {
+			return (await makeCoin(coin, network)).identity().address().fromWIF(wif);
 		},
 		schema: Joi.object({ wif: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.address.validate",
-		async method({ address }) {
-			return coin.identity().address().validate(address);
+		async method({ coin, network, address }) {
+			return (await makeCoin(coin, network)).identity().address().validate(address);
 		},
 		schema: Joi.object({ address: Joi.string().required() }).required(),
 	},

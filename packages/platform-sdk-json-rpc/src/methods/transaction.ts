@@ -1,11 +1,13 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
 
-export const registerTransaction = (coin: Coins.Coin) => [
+import { makeCoin } from "../helpers";
+
+export const registerTransaction = () => [
 	{
 		name: "transaction.transfer",
 		async method(input) {
-			const signedTransaction = await coin.transaction().transfer(input);
+			const signedTransaction = await (await makeCoin(input.coin, input.network)).transaction().transfer(input);
 
 			return {
 				id: signedTransaction.id(),

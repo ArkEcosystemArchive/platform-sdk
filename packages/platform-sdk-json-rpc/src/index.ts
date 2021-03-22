@@ -1,6 +1,3 @@
-import { Coins } from "@arkecosystem/platform-sdk";
-import { ARK } from "@arkecosystem/platform-sdk-ark";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
 import Hapi from "@hapi/hapi";
 import Joi from "joi";
 
@@ -41,26 +38,20 @@ export const subscribe = async (flags: {
 		},
 	});
 
-	// @TODO: bootstrap this based on request parameters and cache the instance
-	const ark = await Coins.CoinFactory.make(ARK, {
-		network: "ark.devnet",
-		httpClient: new Request(),
-	});
-
 	await server.register({
 		plugin: require("@konceiver/hapi-json-rpc"),
 		options: {
 			methods: [
 				// Client Service
-				...registerClient(ark),
+				...registerClient(),
 				// Identity Service
-				...registerAddress(ark),
-				...registerKeys(ark),
-				...registerPrivateKey(ark),
-				...registerPublicKey(ark),
-				...registerWIF(ark),
+				...registerAddress(),
+				...registerKeys(),
+				...registerPrivateKey(),
+				...registerPublicKey(),
+				...registerWIF(),
 				// Transaction Service
-				...registerTransaction(ark),
+				...registerTransaction(),
 			],
 			processor: {
 				schema: Joi.object({
