@@ -7,16 +7,18 @@ import Joi from "joi";
 const coins: Record<string, Coins.Coin> = {};
 
 export const makeCoin = async (coin: string, network: string): Coins.Coin => {
-	if (coins[coin]) {
-		return coins[coin];
+	const cacheKey = `${coin}.${network}`;
+
+	if (coins[cacheKey]) {
+		return coins[cacheKey];
 	}
 
-	coins[coin] = await Coins.CoinFactory.make({ ARK }[coin], {
+	coins[cacheKey] = await Coins.CoinFactory.make({ ARK }[coin], {
 		network,
 		httpClient: new Request(),
 	});
 
-	return coins[coin];
+	return coins[cacheKey];
 }
 
 export const useLogger = (): Logger => new Logger();
