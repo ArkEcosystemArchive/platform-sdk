@@ -2,7 +2,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 /**
- *
+ * Implements a transformer for historical volume data.
  *
  * @export
  * @class HistoricalVolumeTransformer
@@ -10,14 +10,15 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
  */
 export class HistoricalVolumeTransformer implements Contracts.HistoricalTransformer {
 	/**
-	 *Creates an instance of HistoricalVolumeTransformer.
+	 * Creates an instance of HistoricalVolumeTransformer.
+	 *
 	 * @param {Contracts.KeyValuePair} data
 	 * @memberof HistoricalVolumeTransformer
 	 */
 	public constructor(private readonly data: Contracts.KeyValuePair) {}
 
 	/**
-	 *
+	 * Transforms the given data into a normalised format.
 	 *
 	 * @param {Contracts.KeyValuePair} options
 	 * @returns {Contracts.HistoricalData}

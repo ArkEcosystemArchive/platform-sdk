@@ -6,7 +6,9 @@ import { HistoricalVolumeTransformer } from "./transformers/historical-volume-tr
 import { MarketTransformer } from "./transformers/market-transformer";
 
 /**
+ * Implements a price tracker through the CoinGecko API.
  *
+ * @see https://www.coingecko.com/en/api
  *
  * @export
  * @class PriceTracker
@@ -14,7 +16,7 @@ import { MarketTransformer } from "./transformers/market-transformer";
  */
 export class PriceTracker implements Contracts.PriceTracker {
 	/**
-	 *
+	 * The cache that holds the remote token identifiers.
 	 *
 	 * @private
 	 * @type {Contracts.KeyValuePair}
@@ -23,7 +25,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	private readonly tokenLookup: Contracts.KeyValuePair = {};
 
 	/**
-	 *
+	 * The HTTP client instance.
 	 *
 	 * @type {Contracts.HttpClient}
 	 * @memberof PriceTracker
@@ -31,7 +33,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	readonly #httpClient: Contracts.HttpClient;
 
 	/**
-	 *
+	 * The host of the CoinGecko API.
 	 *
 	 * @type {string}
 	 * @memberof PriceTracker
@@ -39,7 +41,8 @@ export class PriceTracker implements Contracts.PriceTracker {
 	readonly #host: string = "https://api.coingecko.com/api/v3";
 
 	/**
-	 *Creates an instance of PriceTracker.
+	 * Creates an instance of PriceTracker.
+	 *
 	 * @param {Contracts.HttpClient} httpClient
 	 * @memberof PriceTracker
 	 */
@@ -110,7 +113,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	/**
-	 *
+	 * Returns and/or caches the remote token identifier.
 	 *
 	 * @private
 	 * @param {*} token
@@ -134,7 +137,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	/**
-	 *
+	 * Sends an HTTP GET request to the CoinGecko API.
 	 *
 	 * @private
 	 * @param {string} path
