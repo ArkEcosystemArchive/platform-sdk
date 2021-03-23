@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.2.5 - 2020-03-23
+
+### Added
+
+-   **[JSON-RPC]** Implement wallet generation (d0ffc13a, @faustbrian)
+
+### Changed
+
+-   **[JSON-RPC]** Cache coin instance based on network (eed90c38, @faustbrian)
+
+### Fixed
+
+-   **[PROFILES]** Include bip38 data in ReadWriteWallet#toObject (2fef13e2, @goga-m)
+
 ## 3.2.2 - 2020-03-22
 
 ### Added
