@@ -9,6 +9,7 @@ import { registerPrivateKey } from "./methods/identity/private-key";
 import { registerPublicKey } from "./methods/identity/public-key";
 import { registerWIF } from "./methods/identity/wif";
 import { registerTransaction } from "./methods/transaction";
+import { registerWallet } from "./methods/wallet";
 
 export const subscribe = async (flags: {
 	// Networking
@@ -52,6 +53,8 @@ export const subscribe = async (flags: {
 				...registerWIF(),
 				// Transaction Service
 				...registerTransaction(),
+				// Wallet Service
+				...registerWallet(),
 			],
 			processor: {
 				schema: Joi.object({

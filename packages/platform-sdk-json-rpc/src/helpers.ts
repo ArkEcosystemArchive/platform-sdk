@@ -6,14 +6,14 @@ import Joi from "joi";
 
 const coins: Record<string, Coins.Coin> = {};
 
-export const makeCoin = async (coin: string, network: string): Coins.Coin => {
+export const makeCoin = async (coin: string, network: string): Promise<Coins.Coin> => {
 	const cacheKey = `${coin}.${network}`;
 
 	if (coins[cacheKey]) {
 		return coins[cacheKey];
 	}
 
-	coins[cacheKey] = await Coins.CoinFactory.make({ ARK }[coin], {
+	coins[cacheKey] = await Coins.CoinFactory.make({ ARK }[coin]!, {
 		network,
 		httpClient: new Request(),
 	});
