@@ -138,6 +138,32 @@ export class WalletRepository {
 		return this.storeWallet(await this.#wallets.fromPrivateKey({ coin, network, privateKey }));
 	}
 
+	public async importByWIF({
+		coin,
+		network,
+		wif,
+	}: {
+		coin: string;
+		network: string;
+		wif: string;
+	}): Promise<ReadWriteWallet> {
+		return this.storeWallet(await this.#wallets.fromWIF({ coin, network, wif }));
+	}
+
+	public async importByWIFWithEncryption({
+		coin,
+		network,
+		wif,
+		password,
+	}: {
+		coin: string;
+		network: string;
+		wif: string;
+		password: string;
+	}): Promise<ReadWriteWallet> {
+		return this.storeWallet(await this.#wallets.fromWIFWithEncryption({ coin, network, wif, password }));
+	}
+
 	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: ReadWriteWallet }> {
 		const mnemonic: string = BIP39.generate();
 
@@ -254,7 +280,6 @@ export class WalletRepository {
 
 	public toObject(
 		options: WalletExportOptions = {
-			excludeWalletsWithoutName: false,
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
@@ -267,9 +292,6 @@ export class WalletRepository {
 
 		for (const [id, wallet] of Object.entries(this.#data.all())) {
 			if (options.excludeLedgerWallets && wallet.isLedger()) {
-				continue;
-			}
-			if (options.excludeWalletsWithoutName && wallet.displayName() === undefined) {
 				continue;
 			}
 			if (options.excludeEmptyWallets && wallet.balance().isZero()) {

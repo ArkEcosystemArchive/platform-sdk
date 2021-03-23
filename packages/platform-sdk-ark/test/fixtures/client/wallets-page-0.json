@@ -1,0 +1,21 @@
+{
+	"meta": {
+		"totalCountIsEstimate": false,
+		"count": 1,
+		"pageCount": 1,
+		"totalCount": 1,
+		"next": null,
+		"previous": null,
+		"self": "/wallets?address=D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK&address=DFgggtreMXQNQKnxHddvkaPHcQbRdK3jyJ&address=DFr1CR81idSmfgQ19KXe4M6keqUEAuU8kF&address=DTYiNbvTKveMtJC8KPPdBrgRWxfPxGp1WV&address=DJyGFrZv4MYKrTMcjzEyhZzdTAJju2Rcjr&page=1&limit=100",
+		"first": "/wallets?address=D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK&address=DFgggtreMXQNQKnxHddvkaPHcQbRdK3jyJ&address=DFr1CR81idSmfgQ19KXe4M6keqUEAuU8kF&address=DTYiNbvTKveMtJC8KPPdBrgRWxfPxGp1WV&address=DJyGFrZv4MYKrTMcjzEyhZzdTAJju2Rcjr&page=1&limit=100",
+		"last": "/wallets?address=D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK&address=DFgggtreMXQNQKnxHddvkaPHcQbRdK3jyJ&address=DFr1CR81idSmfgQ19KXe4M6keqUEAuU8kF&address=DTYiNbvTKveMtJC8KPPdBrgRWxfPxGp1WV&address=DJyGFrZv4MYKrTMcjzEyhZzdTAJju2Rcjr&page=1&limit=100"
+	},
+	"data": [
+		{
+			"address": "D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK",
+			"balance": "15000000000",
+			"nonce": "0",
+			"attributes": {}
+		}
+	]
+}

@@ -90,7 +90,6 @@ export interface ProfileInput {
 }
 
 export interface WalletExportOptions {
-	excludeWalletsWithoutName: boolean;
 	excludeEmptyWallets: boolean;
 	excludeLedgerWallets: boolean;
 	addNetworkInformation: boolean;

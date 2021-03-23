@@ -13,3 +13,4 @@ export * from "./hdkey";
 export * from "./keychain";
 export * from "./pbkdf2";
 export * from "./uuid";
+export * from "./wif";
