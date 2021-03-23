@@ -42,8 +42,8 @@ export const registerClient = () => [
 	{
 		name: "client.broadcast",
 		async method({ coin, network, id, data }) {
-			// @ts-ignore
 			return (await makeCoin(coin, network)).client().broadcast([
+				// @ts-ignore
 				{
 					id: () => id,
 					toBroadcast: () => data,
