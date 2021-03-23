@@ -32,7 +32,8 @@ export class PriceTracker implements Contracts.PriceTracker {
 	readonly #host: string = "https://min-api.cryptocompare.com";
 
 	/**
-	 *Creates an instance of PriceTracker.
+	 * Creates an instance of PriceTracker.
+	 *
 	 * @param {Contracts.HttpClient} httpClient
 	 * @memberof PriceTracker
 	 */
