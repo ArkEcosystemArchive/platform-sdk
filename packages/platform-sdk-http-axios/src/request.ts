@@ -2,7 +2,9 @@ import { Contracts, Http } from "@arkecosystem/platform-sdk";
 import axios from "axios";
 
 /**
+ * Implements HTTP communication through axios/axios.
  *
+ * @see https://github.com/axios/axios
  *
  * @export
  * @class Request

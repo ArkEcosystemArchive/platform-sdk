@@ -4,7 +4,9 @@ import got from "got";
 import { URLSearchParams } from "url";
 
 /**
+ * Implements HTTP communication through sindresorhus/got.
  *
+ * @see https://github.com/sindresorhus/got
  *
  * @export
  * @class Request

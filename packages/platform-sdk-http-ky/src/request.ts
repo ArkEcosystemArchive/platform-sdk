@@ -2,7 +2,9 @@ import { Contracts, Http } from "@arkecosystem/platform-sdk";
 import ky from "ky-universal";
 
 /**
+ * Implements HTTP communication through sindresorhus/ky.
  *
+ * @see https://github.com/sindresorhus/ky
  *
  * @export
  * @class Request

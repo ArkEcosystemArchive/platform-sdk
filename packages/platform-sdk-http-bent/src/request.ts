@@ -3,7 +3,9 @@ import bent from "bent";
 import { URLSearchParams } from "url";
 
 /**
+ * Implements HTTP communication through mikeal/bent.
  *
+ * @see https://github.com/mikeal/bent
  *
  * @export
  * @class Request

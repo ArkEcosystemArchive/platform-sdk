@@ -3,7 +3,9 @@ import fetch from "node-fetch";
 import { URLSearchParams } from "url";
 
 /**
+ * Implements HTTP communication through node-fetch/node-fetch.
  *
+ * @see https://github.com/node-fetch/node-fetch
  *
  * @export
  * @class Request
