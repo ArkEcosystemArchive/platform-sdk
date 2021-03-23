@@ -1,13 +1,13 @@
 {
 	"name": "@arkecosystem/platform-sdk-json-rpc",
-	"version": "3.2.0",
+	"version": "3.2.2",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
 	"main": "dist/index",
 	"types": "dist/index",
 	"bin": {
-		"seth": "bin/run"
+		"prpc": "bin/run"
 	},
 	"files": [
 		"/bin",
@@ -31,6 +31,7 @@
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
 		"@arkecosystem/platform-sdk-ark": "workspace:*",
+		"@arkecosystem/platform-sdk-crypto": "workspace:*",
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@hapi/hapi": "^20.1.0",
 		"@konceiver/foreman": "^2.0.1",

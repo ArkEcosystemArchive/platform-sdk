@@ -3,7 +3,7 @@ import { Contracts, Data } from "@arkecosystem/platform-sdk";
 import { convertToCurrency } from "../utils";
 
 /**
- *
+ * Implements a transformer for historical market data.
  *
  * @export
  * @class MarketTransformer
@@ -21,14 +21,15 @@ export class MarketTransformer implements Contracts.MarketTransformer {
 	private readonly baseCurrency: string = "USD";
 
 	/**
-	 *Creates an instance of MarketTransformer.
+	 * Creates an instance of MarketTransformer.
+	 *
 	 * @param {Contracts.KeyValuePair} data
 	 * @memberof MarketTransformer
 	 */
 	public constructor(private readonly data: Contracts.KeyValuePair) {}
 
 	/**
-	 *
+	 * Transforms the given data into a normalised format.
 	 *
 	 * @param {Contracts.KeyValuePair} options
 	 * @returns {Contracts.MarketDataCollection}
