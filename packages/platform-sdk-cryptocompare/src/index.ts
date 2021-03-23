@@ -6,7 +6,9 @@ import { HistoricalVolumeTransformer } from "./transformers/historical-volume-tr
 import { MarketTransformer } from "./transformers/market-transformer";
 
 /**
+ * Implements a price tracker through the CryptoCompare API.
  *
+ * @see https://min-api.cryptocompare.com/
  *
  * @export
  * @class PriceTracker
@@ -14,7 +16,7 @@ import { MarketTransformer } from "./transformers/market-transformer";
  */
 export class PriceTracker implements Contracts.PriceTracker {
 	/**
-	 *
+	 * The HTTP client instance.
 	 *
 	 * @type {Contracts.HttpClient}
 	 * @memberof PriceTracker
@@ -22,7 +24,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	readonly #httpClient: Contracts.HttpClient;
 
 	/**
-	 *
+	 * The host of the CryptoCompare API.
 	 *
 	 * @type {string}
 	 * @memberof PriceTracker
@@ -98,7 +100,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	}
 
 	/**
-	 *
+	 * Sends an HTTP GET request to the CryptoCompare API.
 	 *
 	 * @private
 	 * @param {string} path
