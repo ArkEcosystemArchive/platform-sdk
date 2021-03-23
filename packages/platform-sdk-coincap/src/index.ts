@@ -8,6 +8,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	private readonly tokenLookup: Contracts.KeyValuePair = {};
 
 	readonly #httpClient: Contracts.HttpClient;
+
 	readonly #host: string = "https://api.coincap.io/v2";
 
 	public constructor(httpClient: Contracts.HttpClient) {

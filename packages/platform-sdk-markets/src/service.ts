@@ -80,6 +80,17 @@ export class MarketService {
 	}
 
 	/**
+	 * Returns historical prices based on the given options.
+	 *
+	 * @param {Contracts.HistoricalPriceOptions} options
+	 * @returns {Promise<Contracts.HistoricalData>}
+	 * @memberof MarketService
+	 */
+	public async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
+		return this.#adapter.historicalPrice(options);
+	}
+
+	/**
 	 * Returns historical prices with a daily interval.
 	 *
 	 * @param {string} token
@@ -137,6 +148,17 @@ export class MarketService {
 	 */
 	public async historicalPriceForYear(token: string, currency: string): Promise<Contracts.HistoricalData> {
 		return this.historicalPrice({ token, currency, days: 365, type: "day", dateFormat: "DD.MM" });
+	}
+
+	/**
+	 * Returns historical volumes based on the given options.
+	 *
+	 * @param {Contracts.HistoricalVolumeOptions} options
+	 * @returns {Promise<Contracts.HistoricalData>}
+	 * @memberof MarketService
+	 */
+	public async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
+		return this.#adapter.historicalVolume(options);
 	}
 
 	/**
@@ -210,27 +232,5 @@ export class MarketService {
 	 */
 	public async dailyAverage(token: string, currency: string, timestamp: number): Promise<number> {
 		return this.#adapter.dailyAverage({ token, currency, timestamp });
-	}
-
-	/**
-	 * Returns historical prices based on the given options.
-	 *
-	 * @param {Contracts.HistoricalPriceOptions} options
-	 * @returns {Promise<Contracts.HistoricalData>}
-	 * @memberof MarketService
-	 */
-	private async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
-		return this.#adapter.historicalPrice(options);
-	}
-
-	/**
-	 * Returns historical volumes based on the given options.
-	 *
-	 * @param {Contracts.HistoricalVolumeOptions} options
-	 * @returns {Promise<Contracts.HistoricalData>}
-	 * @memberof MarketService
-	 */
-	private async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
-		return this.#adapter.historicalVolume(options);
 	}
 }

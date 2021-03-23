@@ -3,7 +3,17 @@ import FormData from "form-data";
 import got from "got";
 import { URLSearchParams } from "url";
 
+/**
+ * Implements HTTP communication through sindresorhus/got.
+ *
+ * @see https://github.com/sindresorhus/got
+ *
+ * @export
+ * @class Request
+ * @extends {Http.Request}
+ */
 export class Request extends Http.Request {
+	/** {@inheritDoc Http.Request.send} */
 	protected async send(
 		method: string,
 		url: string,

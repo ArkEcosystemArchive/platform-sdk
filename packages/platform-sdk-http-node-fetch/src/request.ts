@@ -2,7 +2,17 @@ import { Contracts, Http } from "@arkecosystem/platform-sdk";
 import fetch from "node-fetch";
 import { URLSearchParams } from "url";
 
+/**
+ * Implements HTTP communication through node-fetch/node-fetch.
+ *
+ * @see https://github.com/node-fetch/node-fetch
+ *
+ * @export
+ * @class Request
+ * @extends {Http.Request}
+ */
 export class Request extends Http.Request {
+	/** {@inheritDoc Http.Request.send} */
 	protected async send(
 		method: string,
 		url: string,
