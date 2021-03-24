@@ -182,6 +182,7 @@ export class ClientService implements Contracts.ClientService {
 			prev: getPage(body.meta.previous) || undefined,
 			self: getPage(body.meta.self) || undefined,
 			next: getPage(body.meta.next) || undefined,
+			last: getPage(body.meta.last) || undefined,
 		};
 	}
 

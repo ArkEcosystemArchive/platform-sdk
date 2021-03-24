@@ -112,6 +112,9 @@ const network: Coins.CoinNetwork = {
 			bip39: true,
 			bip44: true,
 		},
+		Internal: {
+			fastDelegateSync: true,
+		},
 	},
 	transactionTypes: [
 		"bridgechain-registration",

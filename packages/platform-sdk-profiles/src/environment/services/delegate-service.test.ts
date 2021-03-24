@@ -33,7 +33,7 @@ beforeEach(async () => {
 });
 
 describe("DelegateService", () => {
-	it("should sync the delegates", async () => {
+	it.only("should sync the delegates", async () => {
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
 		await subject.sync("ARK", "ark.devnet");

@@ -90,6 +90,7 @@ export class ClientService implements Contracts.ClientService {
 				prev: undefined,
 				self: undefined,
 				next: undefined,
+				last: undefined,
 			},
 			TransactionDTO,
 		);
