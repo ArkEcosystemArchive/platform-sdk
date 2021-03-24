@@ -5,7 +5,7 @@ import { useClient, useDatabase, useLogger, useQueue } from "./helpers";
 import { Flags } from "./types";
 
 /**
- *
+ * Launch the indexer and subscribe to updates for new data.
  *
  * @param {Flags} flags
  * @returns {Promise<void>}
