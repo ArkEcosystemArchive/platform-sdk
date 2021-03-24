@@ -8,18 +8,39 @@ import { Database } from "./database";
 import { Flags } from "./types";
 
 /**
- *
+ * Implements a JSON-RPC client for bitcoind.
  *
  * @export
  * @class Client
  */
 export class Client {
+	/**
+	 * The HTTP client instance.
+	 *
+	 * @type {Request}
+	 * @memberof Client
+	 */
 	readonly #client;
+
+	/**
+	 * The logger instance.
+	 *
+	 * @type {Logger}
+	 * @memberof Client
+	 */
 	readonly #logger: Logger;
+
+	/**
+	 * The database instance.
+	 *
+	 * @type {Database}
+	 * @memberof Client
+	 */
 	readonly #database: Database;
 
 	/**
-	 *Creates an instance of Client.
+	 * Creates an instance of Client.
+	 *
 	 * @param {Flags} flags
 	 * @param {Logger} logger
 	 * @param {Database} database
@@ -34,7 +55,7 @@ export class Client {
 	}
 
 	/**
-	 *
+	 * Returns the latest height / block number.
 	 *
 	 * @returns {Promise<number>}
 	 * @memberof Client
@@ -44,7 +65,7 @@ export class Client {
 	}
 
 	/**
-	 *
+	 * Returns the block data for the given ID.
 	 *
 	 * @param {number} id
 	 * @returns {Promise<Record<string, any>>}
@@ -55,7 +76,7 @@ export class Client {
 	}
 
 	/**
-	 *
+	 * Returns the block data for the given ID, including transactions.
 	 *
 	 * @param {number} id
 	 * @returns {Promise<Record<string, any>>}
@@ -86,7 +107,7 @@ export class Client {
 	}
 
 	/**
-	 *
+	 * Returns JSON transaction data for the given ID.
 	 *
 	 * @private
 	 * @param {string} id
@@ -98,7 +119,7 @@ export class Client {
 	}
 
 	/**
-	 *
+	 * Sends a HTTP POST request to the bitcoind JSON-RPC.
 	 *
 	 * @private
 	 * @template T
