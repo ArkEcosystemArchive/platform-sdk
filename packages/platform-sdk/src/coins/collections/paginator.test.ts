@@ -25,7 +25,7 @@ beforeEach(
 					recipient: () => "recipient2",
 				},
 			],
-			{ prev: 1, self: 2, next: 4 },
+			{ prev: 1, self: 2, next: 4, last: 4 },
 		)),
 );
 
@@ -168,6 +168,7 @@ test("#getData", () => {
 test("#getPagination", () => {
 	expect(subject.getPagination()).toMatchInlineSnapshot(`
 		Object {
+		  "last": 4,
 		  "next": 4,
 		  "prev": 1,
 		  "self": 2,

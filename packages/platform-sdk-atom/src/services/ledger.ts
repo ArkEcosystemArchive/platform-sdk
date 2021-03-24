@@ -50,4 +50,8 @@ export class LedgerService implements Contracts.LedgerService {
 	public async signMessage(path: string, payload: Buffer): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "signMessage");
 	}
+
+	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.WalletData[]> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "scan");
+	}
 }

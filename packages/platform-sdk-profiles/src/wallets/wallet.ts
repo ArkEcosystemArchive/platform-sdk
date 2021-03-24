@@ -289,6 +289,7 @@ export class Wallet implements ReadWriteWallet {
 					[],
 				),
 				[WalletData.LedgerPath]: this.data().get(WalletData.LedgerPath),
+				[WalletData.Bip38EncryptedKey]: this.data().get(WalletData.Bip38EncryptedKey),
 				[WalletFlag.Starred]: this.isStarred(),
 			},
 			settings: this.settings().all(),

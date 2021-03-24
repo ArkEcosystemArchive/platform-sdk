@@ -189,7 +189,6 @@ export class Profile implements ProfileContract {
 		options: ProfileExportOptions = {
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
-			excludeWalletsWithoutName: false,
 			addNetworkInformation: true,
 			saveGeneralSettings: true,
 		},
@@ -367,7 +366,6 @@ export class Profile implements ProfileContract {
 		options: ProfileExportOptions = {
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
-			excludeWalletsWithoutName: false,
 			addNetworkInformation: true,
 			saveGeneralSettings: true,
 		},

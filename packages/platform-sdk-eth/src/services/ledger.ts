@@ -45,4 +45,8 @@ export class LedgerService implements Contracts.LedgerService {
 	public async signMessage(path: string, payload: Buffer): Promise<string> {
 		return JSON.stringify(await this.#transport.signPersonalMessage(path, payload));
 	}
+
+	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.WalletData[]> {
+		throw new Exceptions.NotImplemented(this.constructor.name, "scan");
+	}
 }

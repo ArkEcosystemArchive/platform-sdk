@@ -13,7 +13,7 @@ const dummy = {
 
 beforeEach(() => {
 	// @ts-ignore
-	subject = new ExtendedTransactionDataCollection([dummy], { prev: 1, self: 2, next: 3 });
+	subject = new ExtendedTransactionDataCollection([dummy], { prev: 1, self: 2, next: 3, last: 3 });
 });
 
 test("#findById", () => {
