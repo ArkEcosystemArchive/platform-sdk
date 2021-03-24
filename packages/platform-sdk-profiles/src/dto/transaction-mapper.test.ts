@@ -124,6 +124,7 @@ describe("transaction-mapper", () => {
 			prev: "before",
 			self: "now",
 			next: "after",
+			last: "last",
 		};
 
 		// @ts-ignore
