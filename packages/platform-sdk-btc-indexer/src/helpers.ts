@@ -6,7 +6,7 @@ import { Database } from "./database";
 import { Flags } from "./types";
 
 /**
- *
+ * Creates a new database instance.
  *
  * @param {Flags} flags
  * @param {Logger} logger
@@ -15,14 +15,14 @@ import { Flags } from "./types";
 export const useDatabase = (flags: Flags, logger: Logger): Database => new Database(flags, logger);
 
 /**
- *
+ * Creates a new logger instance.
  *
  * @returns {Logger}
  */
 export const useLogger = (): Logger => new Logger();
 
 /**
- *
+ * Creates a new queue instance.
  *
  * @param {boolean} [options={ autoStart: false, concurrency: 10 }]
  * @returns {PQueue}
@@ -38,7 +38,7 @@ export const useQueue = (options = { autoStart: false, concurrency: 10 }): PQueu
 };
 
 /**
- *
+ * Creates a new API client instance.
  *
  * @param {Flags} flags
  * @param {Logger} logger
