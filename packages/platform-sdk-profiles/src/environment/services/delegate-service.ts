@@ -87,6 +87,8 @@ export class DelegateService {
 			const lastPage: number = parseInt(lastResponse?.lastPage()! as string);
 
 			const promises: (() => Promise<void>)[] = [];
+
+			// Skip the first page and start from page 2 up to the last page.
 			for (let i = (currentPage + 1); i <= lastPage; i++) {
 				promises.push(() => sendRequest(i));
 			}
