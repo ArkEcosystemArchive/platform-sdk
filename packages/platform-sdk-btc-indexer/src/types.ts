@@ -1,5 +1,5 @@
 /**
- *
+ * The flags that can be passed in through the CLI.
  *
  * @export
  * @interface Flags
