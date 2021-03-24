@@ -63,9 +63,9 @@ export class DelegateService {
 			 * sequential requests for API's where we don't get back any last
 			 * page so we won't know when to stop except for not getting data.
 			 */
-            if (instanceCanFastSync) {
-                break;
-            }
+			if (instanceCanFastSync) {
+				break;
+			}
 		}
 
 		/**
@@ -85,12 +85,12 @@ export class DelegateService {
 					for (const item of response.items()) {
 						result.push(item);
 					}
-				}
+				};
 
 				const promises: (() => Promise<void>)[] = [];
 
 				// Skip the first page and start from page 2 up to the last page.
-				for (let i = (currentPage + 1); i <= lastPage; i++) {
+				for (let i = currentPage + 1; i <= lastPage; i++) {
 					promises.push(() => sendRequest(i));
 				}
 
