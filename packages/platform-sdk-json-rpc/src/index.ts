@@ -8,6 +8,7 @@ import { registerKeys } from "./methods/identity/keys";
 import { registerPrivateKey } from "./methods/identity/private-key";
 import { registerPublicKey } from "./methods/identity/public-key";
 import { registerWIF } from "./methods/identity/wif";
+import { registerMessage } from "./methods/message";
 import { registerTransaction } from "./methods/transaction";
 import { registerWallet } from "./methods/wallet";
 
@@ -51,6 +52,8 @@ export const subscribe = async (flags: {
 				...registerPrivateKey(),
 				...registerPublicKey(),
 				...registerWIF(),
+				// Message Service
+				...registerMessage(),
 				// Transaction Service
 				...registerTransaction(),
 				// Wallet Service
