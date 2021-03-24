@@ -2105,6 +2105,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-ark': link:../platform-sdk-ark
+      '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@hapi/hapi': 20.1.0
       '@konceiver/foreman': 2.0.2
@@ -2114,7 +2115,6 @@ importers:
       joi: 17.4.0
       meow: 9.0.0
     devDependencies:
-      '@types/better-sqlite3': 5.4.1
       '@types/eslint': 7.2.6
       '@types/eslint-plugin-prettier': 3.1.0
       '@types/fs-extra': 9.0.7
@@ -2146,13 +2146,13 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-ark': workspace:*
+      '@arkecosystem/platform-sdk-crypto': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@hapi/hapi': ^20.1.0
       '@konceiver/foreman': ^2.0.1
       '@konceiver/hapi-json-rpc': ^1.0.0
       '@konceiver/hapi-rate-limiter-flexible': ^1.0.3
       '@ptkdev/logger': ^1.7.2
-      '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': 9.0.7
@@ -2479,6 +2479,7 @@ importers:
       '@vechain/picasso': 2.1.1
       bcrypto: 5.4.0
       bip38: 3.1.1
+      conf: 9.0.2
       dot-prop: 5.3.0
       joi: 17.4.0
       localforage: 1.9.0
@@ -2563,6 +2564,7 @@ importers:
       '@vechain/picasso': ^2.1.1
       bcrypto: ^5.3.0
       bip38: ^3.1.1
+      conf: ^9.0.2
       cross-env: ^7.0.2
       dot-prop: ^5.0.0
       eslint: ^7.13.0
