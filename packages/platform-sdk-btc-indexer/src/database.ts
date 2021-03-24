@@ -6,14 +6,14 @@ import { ensureFileSync } from "fs-extra";
 import { Flags } from "./types";
 
 /**
- *
+ * Implements a database storage with SQLite.
  *
  * @export
  * @class Database
  */
 export class Database {
 	/**
-	 *
+	 * The database instance.
 	 *
 	 * @type {sqlite3.Database}
 	 * @memberof Database
@@ -21,7 +21,7 @@ export class Database {
 	readonly #database: sqlite3.Database;
 
 	/**
-	 *
+	 * The logger instance.
 	 *
 	 * @type {Logger}
 	 * @memberof Database
@@ -29,7 +29,8 @@ export class Database {
 	readonly #logger: Logger;
 
 	/**
-	 *Creates an instance of Database.
+	 * Creates an instance of Database.
+	 *
 	 * @param {Flags} flags
 	 * @param {Logger} logger
 	 * @memberof Database
@@ -48,7 +49,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Returns the height of the last block stored.
 	 *
 	 * @returns {number}
 	 * @memberof Database
@@ -64,7 +65,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Stores a block and all of its transactions.
 	 *
 	 * @param {*} block
 	 * @memberof Database
@@ -84,7 +85,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Stores an error with all of its details.
 	 *
 	 * @param {string} type
 	 * @param {string} hash
@@ -98,7 +99,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Stores a block with only the absolute minimum of data.
 	 *
 	 * @private
 	 * @param {*} block
@@ -112,7 +113,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Stores a transaction with only the absolute minimum of data.
 	 *
 	 * @private
 	 * @param {*} transaction
@@ -132,7 +133,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Migrates the database to prepare it for use.
 	 *
 	 * @private
 	 * @memberof Database
