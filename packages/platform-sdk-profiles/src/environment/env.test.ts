@@ -51,7 +51,7 @@ beforeAll(() => {
 		.reply(200, require("../../test/fixtures/client/transaction-fees.json"))
 		.get("/api/delegates")
 		.query(true)
-		.reply(200, require("../../test/fixtures/client/delegates-2.json"))
+		.reply(200, require("../../test/fixtures/client/delegates-1.json"))
 		.get("/ArkEcosystem/common/master/devnet/known-wallets-extended.json")
 		.reply(200, [
 			{
@@ -282,7 +282,7 @@ it("#delegates", async () => {
 	await makeSubject();
 
 	await subject.delegates().sync("ARK", "ark.devnet");
-	expect(subject.delegates().all("ARK", "ark.devnet")).toHaveLength(100);
+	expect(subject.delegates().all("ARK", "ark.devnet")).toHaveLength(200);
 });
 
 it("#knownWallets", async () => {

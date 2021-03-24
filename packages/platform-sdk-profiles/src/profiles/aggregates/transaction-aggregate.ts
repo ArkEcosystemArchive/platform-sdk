@@ -100,6 +100,7 @@ export class TransactionAggregate {
 			prev: undefined,
 			self: undefined,
 			next: Number(this.hasMore(method)),
+			last: undefined,
 		});
 	}
 

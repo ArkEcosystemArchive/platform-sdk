@@ -175,7 +175,7 @@ test.each([
 	expect(
 		createTransactionDataCollectionWithType(
 			[{}],
-			{ prev: 1, self: 2, next: 3 },
+			{ prev: 1, self: 2, next: 3, last: 3 },
 			{ [dtoName]: dtoClass, TransactionData },
 		),
 	).toBeInstanceOf(TransactionDataCollection);

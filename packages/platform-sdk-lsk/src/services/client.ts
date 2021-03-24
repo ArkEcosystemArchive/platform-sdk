@@ -194,6 +194,7 @@ export class ClientService implements Contracts.ClientService {
 			prev: hasPreviousPage ? Number(meta.offset) - Number(meta.limit) : undefined,
 			self: meta.offset,
 			next: hasNextPage ? Number(meta.offset) + Number(meta.limit) : undefined,
+			last: undefined,
 		};
 	}
 }

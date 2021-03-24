@@ -33,6 +33,10 @@ export abstract class Paginator<T> {
 		return this.#pagination.next;
 	}
 
+	public lastPage(): ClientPaginatorCursor {
+		return this.#pagination.last;
+	}
+
 	public hasMorePages(): boolean {
 		return Boolean(this.nextPage());
 	}

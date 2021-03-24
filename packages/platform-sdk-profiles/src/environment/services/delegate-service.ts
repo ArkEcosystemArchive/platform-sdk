@@ -37,14 +37,15 @@ export class DelegateService {
 
 	public async sync(coin: string, network: string): Promise<void> {
 		const instance: Coins.Coin = await makeCoin(coin, network);
-		const instanceKey = `${coin}.${network}.delegates`;
+		const instanceKey: string = `${coin}.${network}.delegates`;
+		const instanceCanFastSync: boolean = instance.network().can(Coins.FeatureFlag.InternalFastDelegateSync);
 
 		const result: Contracts.WalletData[] = [];
 		let hasMore = true;
 		let lastResponse: Coins.WalletDataCollection | undefined = undefined;
 
 		while (hasMore) {
-			if (lastResponse && lastResponse.hasMorePages()) {
+			if (lastResponse) {
 				lastResponse = await instance.client().delegates({ cursor: lastResponse.nextPage() });
 			} else {
 				lastResponse = await instance.client().delegates();
@@ -54,6 +55,46 @@ export class DelegateService {
 
 			for (const item of lastResponse.items()) {
 				result.push(item);
+			}
+
+			/**
+			 * If we know the specific last page we can execute requests with
+			 * `Promise.all` to speed up the process. We'll need to send many
+			 * sequential requests for API's where we don't get back any last
+			 * page so we won't know when to stop except for not getting data.
+			 */
+			if (instanceCanFastSync) {
+				break;
+			}
+		}
+
+		/**
+		 * If a coin supports fasy sync for delegates we can assume that the
+		 * page is numerical which means that we can simply keep incrementing
+		 * the page count and send many requests concurrently because we are
+		 * not relying on timestamps or hashes for pagination of the data.
+		 */
+		if (instanceCanFastSync) {
+			const currentPage: number = parseInt(lastResponse?.currentPage()! as string);
+			const lastPage: number = parseInt(lastResponse?.lastPage()! as string);
+
+			if (lastPage > currentPage) {
+				const sendRequest = async (i: number) => {
+					const response = await instance.client().delegates({ cursor: i });
+
+					for (const item of response.items()) {
+						result.push(item);
+					}
+				};
+
+				const promises: (() => Promise<void>)[] = [];
+
+				// Skip the first page and start from page 2 up to the last page.
+				for (let i = currentPage + 1; i <= lastPage; i++) {
+					promises.push(() => sendRequest(i));
+				}
+
+				await pqueueSettled(promises);
 			}
 		}
 
