@@ -75,25 +75,27 @@ export class DelegateService {
 		 * not relying on timestamps or hashes for pagination of the data.
 		 */
 		if (instanceCanFastSync) {
-			const sendRequest = async (i: number) => {
-				const response = await instance.client().delegates({ cursor: i });
-
-				for (const item of response.items()) {
-					result.push(item);
-				}
-			}
-
 			const currentPage: number = parseInt(lastResponse?.currentPage()! as string);
 			const lastPage: number = parseInt(lastResponse?.lastPage()! as string);
 
-			const promises: (() => Promise<void>)[] = [];
+			if (lastPage > currentPage) {
+				const sendRequest = async (i: number) => {
+					const response = await instance.client().delegates({ cursor: i });
 
-			// Skip the first page and start from page 2 up to the last page.
-			for (let i = (currentPage + 1); i <= lastPage; i++) {
-				promises.push(() => sendRequest(i));
+					for (const item of response.items()) {
+						result.push(item);
+					}
+				}
+
+				const promises: (() => Promise<void>)[] = [];
+
+				// Skip the first page and start from page 2 up to the last page.
+				for (let i = (currentPage + 1); i <= lastPage; i++) {
+					promises.push(() => sendRequest(i));
+				}
+
+				await pqueueSettled(promises);
 			}
-
-			await pqueueSettled(promises);
 		}
 
 		this.#dataRepository.set(
