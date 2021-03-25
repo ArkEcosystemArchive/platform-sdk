@@ -279,14 +279,18 @@ export class ClientService implements Contracts.ClientService {
 
 		if (errors) {
 			for (const [key, value] of Object.entries(errors)) {
-				if (!Array.isArray(result.errors[key])) {
-					result.errors[key] = [];
-				}
+				if (Array.isArray(value)) {
+					if (!Array.isArray(result.errors[key])) {
+						result.errors[key] = [];
+					}
 
-				// @ts-ignore
-				for (const error of value) {
 					// @ts-ignore
-					result.errors[key].push(error.type);
+					for (const error of value) {
+						// @ts-ignore
+						result.errors[key].push(error.type);
+					}
+				} else {
+					result.errors[key] = value;
 				}
 			}
 		}
