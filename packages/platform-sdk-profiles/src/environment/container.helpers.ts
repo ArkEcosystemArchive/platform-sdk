@@ -2,7 +2,7 @@ import { Coins } from "@arkecosystem/platform-sdk";
 
 import { container } from "./container";
 import { Identifiers } from "./container.models";
-import { CoinService } from "./services/coin-service";
+import { CoinService } from "../drivers/memory/services/coin-service";
 
 export const makeCoin = async (
 	coin: string,

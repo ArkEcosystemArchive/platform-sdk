@@ -1,4 +1,3 @@
-import { hasUncaughtExceptionCaptureCallback } from "process";
 import { AddressList } from "./address-list";
 import { identity } from "../../../test/fixtures/identity";
 
