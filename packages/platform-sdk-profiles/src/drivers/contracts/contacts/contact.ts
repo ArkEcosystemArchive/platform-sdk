@@ -1,4 +1,5 @@
 import { IContactAddressInput } from "./contact-address";
+import { IContactAddressRepository } from "../repositories/contact-address-repository";
 
 export interface IContact {
     restore(addresses: object[]): Promise<void>;
