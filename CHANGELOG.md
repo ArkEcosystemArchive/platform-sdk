@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 4.0.1 - 2020-03-25
+
+### Fixed
+
+-   **[PROFILES]** export Avatar helper (ec014811, @faustbrian)
+
 ## 4.0.0 - 2020-03-25
 
 This release contains internal breaking changes as well as external as a result. This mostly affects imports and type hinting of classes which should now use the exported `Contracts` to reference things instead of direct references of concrete implementations.
