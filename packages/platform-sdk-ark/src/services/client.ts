@@ -290,7 +290,8 @@ export class ClientService implements Contracts.ClientService {
 						result.errors[key].push(error.type);
 					}
 				} else {
-					result.errors[key] = value;
+					// @ts-ignore
+					result.errors[key] = value.type;
 				}
 			}
 		}
