@@ -1,5 +1,5 @@
-
+import { IProfile } from "./profile";
 
 export interface IProfileFactory {
-    fromName(name: string): Profile;
+    fromName(name: string): IProfile;
 }

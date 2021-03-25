@@ -1,11 +1,11 @@
 
 export interface IDataRepository {
     all(): object;
-    first(): T;
-    last(): T;
+    first<T>(): T;
+    last<T>(): T;
     keys(): string[];
-    values(): T[];
-    get(key: string, defaultValue: T | undefined): T | undefined;
+    values<T>(): T[];
+    get<T>(key: string, defaultValue: T | undefined): T | undefined;
     set(key: string, value: unknown): void;
     fill(entries: object): void;
     has(key: string): boolean;
