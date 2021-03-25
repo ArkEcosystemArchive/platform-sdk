@@ -1,8 +1,8 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { ExtendedTransactionData } from "../dto/transaction";
-import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
+import { ExtendedTransactionData } from "../../dto/transaction";
+import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
 import { DataRepository } from "../repositories/data-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";

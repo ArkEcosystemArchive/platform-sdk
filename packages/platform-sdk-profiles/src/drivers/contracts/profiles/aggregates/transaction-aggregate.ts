@@ -1,6 +1,6 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
-import { ExtendedTransactionDataCollection } from "../../../memory/dto/transaction-collection";
+import { ExtendedTransactionDataCollection } from "../../../dto/transaction-collection";
 
 type AggregateQuery = {
 	addresses?: string[];

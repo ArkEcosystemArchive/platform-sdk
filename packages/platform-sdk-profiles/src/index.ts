@@ -5,8 +5,8 @@ export * from "./drivers/memory/contacts/contact-address";
 export * from "./drivers/memory/contacts/contact.models";
 export * from "./drivers/memory/contacts/contact";
 
-export * from "./drivers/memory/dto/transaction";
-export * from "./drivers/memory/dto/transaction-collection";
+export * from "./drivers/dto/transaction";
+export * from "./drivers/dto/transaction-collection";
 
 export * from "./environment/container.models";
 export * from "./environment/env.models";

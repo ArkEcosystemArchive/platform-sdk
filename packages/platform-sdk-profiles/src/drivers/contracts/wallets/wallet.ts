@@ -1,7 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { ExtendedTransactionData } from "../../memory/dto/transaction";
-import { ExtendedTransactionDataCollection } from "../../memory/dto/transaction-collection";
+import { ExtendedTransactionData } from "../../dto/transaction";
+import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
 import { ReadOnlyWallet } from "../../memory/wallets/read-only-wallet";
 import { TransactionService } from "../../memory/wallets/wallet-transaction-service";
 import { IDataRepository } from "../repositories/data-repository";
