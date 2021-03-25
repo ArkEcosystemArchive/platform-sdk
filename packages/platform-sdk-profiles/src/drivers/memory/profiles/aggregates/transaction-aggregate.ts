@@ -1,11 +1,10 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { IProfile, IReadWriteWallet, ITransactionAggregate } from "../../../../contracts";
+import { ExtendedTransactionDataCollection } from "../../../../dto";
 
 import { ExtendedTransactionData } from "../../../../dto/transaction";
-import { ExtendedTransactionDataCollection } from "../../../../dto/transaction-collection";
 import { transformTransactionData } from "../../../../dto/transaction-mapper";
-import { promiseAllSettledByKey } from "../../helpers/promise";
-import { ReadWriteWallet } from "../../wallets/wallet.models";
-import { ProfileContract } from "../profile.models";
+import { promiseAllSettledByKey } from "../../../../helpers/promise";
 
 type HistoryMethod = string;
 type HistoryWallet = ExtendedTransactionDataCollection;
@@ -14,12 +13,12 @@ type AggregateQuery = {
 	addresses?: string[];
 } & Contracts.ClientPagination;
 
-export class TransactionAggregate {
-	readonly #profile: ProfileContract;
+export class TransactionAggregate implements ITransactionAggregate {
+	readonly #profile: IProfile;
 
 	#history: Record<HistoryMethod, Record<string, HistoryWallet>> = {};
 
-	public constructor(profile: ProfileContract) {
+	public constructor(profile: IProfile) {
 		this.#profile = profile;
 	}
 
@@ -55,7 +54,7 @@ export class TransactionAggregate {
 			this.#history[method] = {};
 		}
 
-		const syncedWallets: ReadWriteWallet[] = this.getWallets(query.addresses);
+		const syncedWallets: IReadWriteWallet[] = this.getWallets(query.addresses);
 
 		const requests: Record<string, Promise<Coins.TransactionDataCollection>> = {};
 
@@ -104,15 +103,15 @@ export class TransactionAggregate {
 		});
 	}
 
-	private getWallet(id: string): ReadWriteWallet {
+	private getWallet(id: string): IReadWriteWallet {
 		return this.#profile.wallets().findById(id);
 	}
 
-	private getWallets(addresses: string[] = []): ReadWriteWallet[] {
+	private getWallets(addresses: string[] = []): IReadWriteWallet[] {
 		return this.#profile
 			.wallets()
 			.values()
-			.filter((wallet: ReadWriteWallet) => {
+			.filter((wallet: IReadWriteWallet) => {
 				const matchesAddress = addresses.length > 0 ? addresses.includes(wallet.address()) : true;
 				return matchesAddress && wallet.hasSyncedWithNetwork();
 			});

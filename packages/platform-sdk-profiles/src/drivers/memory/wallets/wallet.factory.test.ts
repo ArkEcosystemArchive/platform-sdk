@@ -7,7 +7,7 @@ import { decode } from "wif";
 import { bootContainer } from "../../../../test/helpers";
 import { Profile } from "../profiles/profile";
 import { WalletFactory } from "./wallet.factory";
-import { WalletData } from "./wallet.models";
+import { WalletData } from "../../../contracts";
 
 jest.setTimeout(60000);
 

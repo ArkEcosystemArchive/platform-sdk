@@ -4,11 +4,12 @@ import nock from "nock";
 
 import { identity } from "../../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../../test/helpers";
+import { IProfile } from "../../../../contracts";
 import { Profile } from "../profile";
 import { RegistrationAggregate } from "./registration-aggregate";
 
 let subject: RegistrationAggregate;
-let profile: Profile;
+let profile: IProfile;
 
 beforeAll(() => {
 	bootContainer();

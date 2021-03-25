@@ -1,3 +1,4 @@
+import { IPeerRepository, IProfile } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { DataRepository } from "./data-repository";
 
@@ -7,7 +8,7 @@ interface Peer {
 	isMultiSignature: boolean;
 }
 
-export class PeerRepository {
+export class PeerRepository implements IPeerRepository {
 	readonly #data: DataRepository = new DataRepository();
 
 	public fill(peers: object): void {
@@ -24,7 +25,7 @@ export class PeerRepository {
 		return this.#data.keys();
 	}
 
-	public values(): Profile[] {
+	public values(): IProfile[] {
 		return this.#data.values();
 	}
 

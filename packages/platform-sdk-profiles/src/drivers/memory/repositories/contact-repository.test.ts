@@ -4,8 +4,8 @@ import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
+import { ProfileSetting } from "../../../contracts";
 import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
 import { ContactRepository } from "./contact-repository";
 
 let subject: ContactRepository;

@@ -1,4 +1,4 @@
-import { ReadWriteWallet } from "@arkecosystem/platform-sdk-profiles";
+import { Contracts } from "@arkecosystem/platform-sdk-profiles";
 import Table from "cli-table3";
 
 import { renderLogo } from "../helpers";
@@ -15,7 +15,7 @@ const pushTransactions = (table: Table.Table, transactions): void => {
 	}
 };
 
-export const listTransactions = async (wallet: ReadWriteWallet): Promise<void> => {
+export const listTransactions = async (wallet: Contracts.IReadWriteWallet): Promise<void> => {
 	renderLogo();
 
 	const table = new Table({ head: ["ID", "Sender", "Recipient", "Amount", "Fee"] });

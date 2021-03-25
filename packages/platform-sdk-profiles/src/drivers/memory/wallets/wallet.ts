@@ -5,7 +5,6 @@ import { decrypt } from "bip38";
 import dot from "dot-prop";
 
 import { ExtendedTransactionData } from "../../../dto/transaction";
-import { ExtendedTransactionDataCollection } from "../../../dto/transaction-collection";
 import { transformTransactionData, transformTransactionDataCollection } from "../../../dto/transaction-mapper";
 import { container } from "../../../environment/container";
 import { makeCoin } from "../../../environment/container.helpers";
@@ -14,24 +13,24 @@ import { ExchangeRateService } from "../services/exchange-rate-service";
 import { KnownWalletService } from "../services/known-wallet-service";
 import { DelegateMapper } from "../mappers/delegate-mapper";
 import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
 import { DataRepository } from "../repositories/data-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../services/avatar";
 import { ReadOnlyWallet } from "./read-only-wallet";
-import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
+import { IPeerRepository, IProfile, IReadWriteWallet, IWallet, IWalletStruct, ProfileSetting, WalletData, WalletFlag, WalletSetting } from "../../../contracts";
+import { ExtendedTransactionDataCollection } from "../../../dto";
 
-export class Wallet implements ReadWriteWallet {
+export class Wallet implements IReadWriteWallet {
 	readonly #dataRepository: DataRepository;
 	readonly #settingRepository: SettingRepository;
 	readonly #transactionService: TransactionService;
 
-	readonly #initialState: WalletStruct;
+	readonly #initialState: IWalletStruct;
 	readonly #id: string;
 	#coin!: Coins.Coin;
-	#profile!: Profile;
+	#profile!: IProfile;
 	#wallet: Contracts.WalletData | undefined;
 
 	#address!: string;
@@ -39,7 +38,7 @@ export class Wallet implements ReadWriteWallet {
 	#avatar!: string;
 	readonly #restorationState = { full: false, partial: false };
 
-	public constructor(id: string, initialState: any, profile: Profile) {
+	public constructor(id: string, initialState: any, profile: IProfile) {
 		this.#id = id;
 		this.#initialState = initialState;
 		this.#profile = profile;
@@ -58,7 +57,7 @@ export class Wallet implements ReadWriteWallet {
 		return this.#profile.usesMultiPeerBroadcasting();
 	}
 
-	public peers(): PeerRepository {
+	public peers(): IPeerRepository {
 		return this.#profile.peers();
 	}
 
@@ -72,7 +71,7 @@ export class Wallet implements ReadWriteWallet {
 	 * These methods allow to switch out the underlying implementation of certain things like the coin.
 	 */
 
-	public async setCoin(coin: string, network: string): Promise<Wallet> {
+	public async setCoin(coin: string, network: string): Promise<IWallet> {
 		if (this.peers().has(coin, network)) {
 			this.#coin = await makeCoin(
 				coin,
@@ -246,7 +245,7 @@ export class Wallet implements ReadWriteWallet {
 		return this.#wallet;
 	}
 
-	public toObject(): WalletStruct {
+	public toObject(): IWalletStruct {
 		if (this.hasBeenPartiallyRestored()) {
 			return this.#initialState;
 		}

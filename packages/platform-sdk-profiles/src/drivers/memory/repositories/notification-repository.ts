@@ -1,5 +1,6 @@
 import { Except } from "type-fest";
 import { v4 as uuidv4 } from "uuid";
+import { INotificationRepository } from "../../../contracts";
 
 import { DataRepository } from "./data-repository";
 
@@ -14,7 +15,7 @@ interface Notification {
 	meta?: Record<string, any>;
 }
 
-export class NotificationRepository {
+export class NotificationRepository implements INotificationRepository {
 	#data: DataRepository = new DataRepository();
 
 	public all(): Record<string, Notification> {

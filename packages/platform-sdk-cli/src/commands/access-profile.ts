@@ -1,4 +1,4 @@
-import { Environment, MemoryPassword } from "@arkecosystem/platform-sdk-profiles";
+import { Environment, Helpers } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
 import { renderLogo } from "../helpers";
@@ -39,7 +39,7 @@ export const accessProfile = async (env: Environment): Promise<void> => {
 
 		await profile.restore(password);
 
-		MemoryPassword.set(profile, password);
+		Helpers.MemoryPassword.set(profile, password);
 	} else {
 		await profile.restore();
 	}

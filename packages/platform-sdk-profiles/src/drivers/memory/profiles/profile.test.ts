@@ -18,9 +18,9 @@ import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
-import { ProfileSetting } from "./profile.models";
+import { IProfile, ProfileSetting } from "../../../contracts";
 
-let subject: Profile;
+let subject: IProfile;
 
 beforeAll(() => {
 	bootContainer();
@@ -196,7 +196,7 @@ describe("#restore", () => {
 		subject.auth().setPassword("password");
 		subject.save("password");
 
-		const profile: Profile = new Profile(subject.dump());
+		const profile: IProfile = new Profile(subject.dump());
 
 		await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
@@ -226,7 +226,7 @@ describe("#restore", () => {
 			wallets: {},
 		};
 
-		const profile: Profile = new Profile({
+		const profile: IProfile = new Profile({
 			id: "uuid",
 			name: "name",
 			avatar: "avatar",
@@ -240,7 +240,7 @@ describe("#restore", () => {
 	it("should restore a profile without a password", async () => {
 		subject.save();
 
-		const profile: Profile = new Profile(subject.dump());
+		const profile: IProfile = new Profile(subject.dump());
 
 		await profile.restore();
 
@@ -263,7 +263,7 @@ describe("#restore", () => {
 	it("should fail to restore if profile is not using password but password is passed", async () => {
 		subject.save();
 
-		const profile: Profile = new Profile(subject.dump());
+		const profile: IProfile = new Profile(subject.dump());
 
 		await expect(profile.restore("password")).rejects.toThrow(
 			"Failed to decode or decrypt the profile. Reason: This profile does not use a password but password was passed for decryption",
@@ -274,7 +274,7 @@ describe("#restore", () => {
 		subject.auth().setPassword("password");
 		subject.save("password");
 
-		const profile: Profile = new Profile(subject.dump());
+		const profile: IProfile = new Profile(subject.dump());
 
 		await expect(profile.restore()).rejects.toThrow("Failed to decode or decrypt the profile.");
 	});
@@ -283,7 +283,7 @@ describe("#restore", () => {
 		subject.auth().setPassword("password");
 		subject.save("password");
 
-		const profile: Profile = new Profile(subject.dump());
+		const profile: IProfile = new Profile(subject.dump());
 
 		await expect(profile.restore("invalid-password")).rejects.toThrow("Failed to decode or decrypt the profile.");
 	});
@@ -384,7 +384,7 @@ it("should fail to save if encoding or encrypting fails", () => {
 });
 
 describe("#toObject with options", () => {
-	let profile: Profile;
+	let profile: IProfile;
 
 	beforeEach(() => {
 		profile = new Profile({ id: "uuid", name: "name", data: "" });

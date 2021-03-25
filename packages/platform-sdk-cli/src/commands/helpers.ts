@@ -1,10 +1,10 @@
-import { ReadWriteWallet } from "@arkecosystem/platform-sdk-profiles";
+import { Contracts } from "@arkecosystem/platform-sdk-profiles";
 import terminalLink from "terminal-link";
 
 import { useLogger } from "../helpers";
 
 export const finaliseTransaction = async (
-	wallet: ReadWriteWallet,
+	wallet: Contracts.IReadWriteWallet,
 	mnemonic: string,
 	method: string,
 	data = {},

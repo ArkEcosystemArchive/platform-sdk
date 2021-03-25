@@ -2,20 +2,21 @@
 
 import { Contracts } from "@arkecosystem/platform-sdk";
 import semver from "semver";
+import { IPluginRegistry, IRegistryPlugin } from "../../../contracts";
 
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { RegistryPlugin } from "./plugin-registry.models";
+import { RegistryPlugin } from "./registry-plugin";
 
-export class PluginRegistry {
+export class PluginRegistry implements IPluginRegistry {
 	readonly #httpClient: Contracts.HttpClient;
 
 	public constructor() {
 		this.#httpClient = container.get<Contracts.HttpClient>(Identifiers.HttpClient);
 	}
 
-	public async all(): Promise<RegistryPlugin[]> {
-		const results: Promise<RegistryPlugin>[] = [];
+	public async all(): Promise<IRegistryPlugin[]> {
+		const results: Promise<IRegistryPlugin>[] = [];
 
 		let i = 0;
 		// eslint-disable-next-line no-constant-condition
@@ -52,13 +53,13 @@ export class PluginRegistry {
 		return this.applyWhitelist(await Promise.all(results));
 	}
 
-	public async size(pkg: RegistryPlugin): Promise<number> {
+	public async size(pkg: IRegistryPlugin): Promise<number> {
 		const response = (await this.#httpClient.get(`https://registry.npmjs.com/${pkg.id()}`)).json();
 
 		return response.versions[pkg.version()].dist?.unpackedSize;
 	}
 
-	public async downloads(pkg: RegistryPlugin): Promise<number> {
+	public async downloads(pkg: IRegistryPlugin): Promise<number> {
 		const response = await this.#httpClient.get(
 			`https://api.npmjs.org/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${pkg.id()}`,
 		);
@@ -72,14 +73,14 @@ export class PluginRegistry {
 		return result;
 	}
 
-	private async applyWhitelist(plugins: RegistryPlugin[]): Promise<RegistryPlugin[]> {
+	private async applyWhitelist(plugins: IRegistryPlugin[]): Promise<IRegistryPlugin[]> {
 		const whitelist: Record<string, string> = (
 			await this.#httpClient.get(
 				"https://raw.githubusercontent.com/ArkEcosystem/common/master/desktop-wallet/whitelist.json",
 			)
 		).json();
 
-		const result: RegistryPlugin[] = [];
+		const result: IRegistryPlugin[] = [];
 
 		for (const plugin of plugins) {
 			const range: string | undefined = whitelist[plugin.name()];
@@ -96,7 +97,7 @@ export class PluginRegistry {
 		return result;
 	}
 
-	private async expand(pkg: any): Promise<RegistryPlugin> {
+	private async expand(pkg: any): Promise<IRegistryPlugin> {
 		return new RegistryPlugin(
 			pkg,
 			(

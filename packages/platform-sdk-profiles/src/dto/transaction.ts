@@ -2,17 +2,17 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { IReadWriteWallet } from "../contracts";
+import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
-import { ReadWriteWallet } from "../drivers/memory/wallets/wallet.models";
 
 export class TransactionData {
-	readonly #wallet: ReadWriteWallet;
+	readonly #wallet: IReadWriteWallet;
 	readonly #coin: Coins.Coin;
 	readonly #data: Contracts.TransactionDataType;
 
-	public constructor(wallet: ReadWriteWallet, data: Contracts.TransactionDataType) {
+	public constructor(wallet: IReadWriteWallet, data: Contracts.TransactionDataType) {
 		this.#wallet = wallet;
 		this.#coin = wallet.coin();
 		this.#data = data;
@@ -298,7 +298,7 @@ export class TransactionData {
 	 * in the Desktop and Mobile Wallet. Use them at your own risk in your own applications.
 	 */
 
-	public wallet(): ReadWriteWallet {
+	public wallet(): IReadWriteWallet {
 		return this.#wallet;
 	}
 

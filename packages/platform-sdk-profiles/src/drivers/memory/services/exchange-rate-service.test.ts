@@ -5,16 +5,14 @@ import nock from "nock";
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
 import { StubStorage } from "../../../../test/stubs/storage";
+import { IProfile, IReadWriteWallet, ProfileSetting, WalletData } from "../../../contracts";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
 import { ProfileRepository } from "../repositories/profile-repository";
-import { ReadWriteWallet, WalletData } from "../wallets/wallet.models";
 import { ExchangeRateService } from "./exchange-rate-service";
 
-let profile: Profile;
-let wallet: ReadWriteWallet;
+let profile: IProfile;
+let wallet: IReadWriteWallet;
 let subject: ExchangeRateService;
 
 let liveSpy: jest.SpyInstance;

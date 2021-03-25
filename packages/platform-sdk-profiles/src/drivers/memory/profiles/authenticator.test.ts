@@ -1,13 +1,13 @@
 import "jest-extended";
 
 import { bootContainer } from "../../../../test/helpers";
-import { MemoryPassword } from "../helpers/password";
+import { IProfile, ProfileSetting } from "../../../contracts";
+import { MemoryPassword } from "../../../helpers/password";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
-import { ProfileSetting } from "./profile.models";
 
 let subject: Authenticator;
-let profile: Profile;
+let profile: IProfile;
 
 beforeAll(() => bootContainer());
 

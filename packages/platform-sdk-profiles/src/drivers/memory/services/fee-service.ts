@@ -1,13 +1,14 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
-import { pqueueSettled } from "../helpers/queue";
+import { pqueueSettled } from "../../../helpers/queue";
 import { DataRepository } from "../repositories/data-repository";
 import { container } from "../../../environment/container";
 import { makeCoin } from "../../../environment/container.helpers";
 import { Identifiers } from "../../../environment/container.models";
 import { CoinService } from "./coin-service";
+import { IFeeService } from "../../../contracts";
 
-export class FeeService {
+export class FeeService implements IFeeService {
 	readonly #dataRepository: DataRepository = new DataRepository();
 
 	public all(coin: string, network: string): Contracts.TransactionFees {

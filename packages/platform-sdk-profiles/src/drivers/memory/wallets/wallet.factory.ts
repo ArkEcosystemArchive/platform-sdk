@@ -2,15 +2,14 @@ import { Coins } from "@arkecosystem/platform-sdk";
 import { decrypt, encrypt } from "bip38";
 import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
+import { IProfile, IReadWriteWallet, IWalletFactory, WalletData } from "../../../contracts";
 
-import { Profile } from "../profiles/profile";
 import { Wallet } from "./wallet";
-import { ReadWriteWallet, WalletData } from "./wallet.models";
 
-export class WalletFactory {
-	readonly #profile: Profile;
+export class WalletFactory implements IWalletFactory {
+	readonly #profile: IProfile;
 
-	public constructor(profile: Profile) {
+	public constructor(profile: IProfile) {
 		this.#profile = profile;
 	}
 
@@ -26,8 +25,8 @@ export class WalletFactory {
 		mnemonic: string;
 		useBIP39?: boolean;
 		useBIP44?: boolean;
-	}): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+	}): Promise<IReadWriteWallet> {
+		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		await wallet.setCoin(coin, network);
 
@@ -57,8 +56,8 @@ export class WalletFactory {
 		coin: string;
 		network: string;
 		address: string;
-	}): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+	}): Promise<IReadWriteWallet> {
+		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(address);
@@ -74,8 +73,8 @@ export class WalletFactory {
 		coin: string;
 		network: string;
 		publicKey: string;
-	}): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+	}): Promise<IReadWriteWallet> {
+		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(await wallet.coin().identity().address().fromPublicKey(publicKey));
@@ -91,8 +90,8 @@ export class WalletFactory {
 		coin: string;
 		network: string;
 		privateKey: string;
-	}): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+	}): Promise<IReadWriteWallet> {
+		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
@@ -110,10 +109,10 @@ export class WalletFactory {
 		network: string;
 		address: string;
 		path: string;
-	}): Promise<ReadWriteWallet> {
+	}): Promise<IReadWriteWallet> {
 		// @TODO: eventually handle the whole process from slip44 path to public key to address
 
-		const wallet: ReadWriteWallet = await this.fromAddress({ coin, network, address });
+		const wallet: IReadWriteWallet = await this.fromAddress({ coin, network, address });
 
 		wallet.data().set(WalletData.LedgerPath, path);
 
@@ -130,8 +129,8 @@ export class WalletFactory {
 		network: string;
 		mnemonic: string;
 		password: string;
-	}): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = await this.fromMnemonic({ coin, network, mnemonic });
+	}): Promise<IReadWriteWallet> {
+		const wallet: IReadWriteWallet = await this.fromMnemonic({ coin, network, mnemonic });
 
 		const { compressed, privateKey } = decode(await wallet.coin().identity().wif().fromMnemonic(mnemonic));
 
@@ -148,8 +147,8 @@ export class WalletFactory {
 		coin: string;
 		network: string;
 		wif: string;
-	}): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+	}): Promise<IReadWriteWallet> {
+		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(await wallet.coin().identity().address().fromWIF(wif));
@@ -167,8 +166,8 @@ export class WalletFactory {
 		network: string;
 		wif: string;
 		password: string;
-	}): Promise<ReadWriteWallet> {
-		const wallet: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+	}): Promise<IReadWriteWallet> {
+		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		await wallet.setCoin(coin, network);
 
@@ -181,11 +180,11 @@ export class WalletFactory {
 		return wallet;
 	}
 
-	private canDeriveWithBIP39(wallet: ReadWriteWallet): boolean {
+	private canDeriveWithBIP39(wallet: IReadWriteWallet): boolean {
 		return wallet.can(Coins.FeatureFlag.DerivationBIP39);
 	}
 
-	private canDeriveWithBIP44(wallet: ReadWriteWallet): boolean {
+	private canDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
 		return wallet.can(Coins.FeatureFlag.DerivationBIP44);
 	}
 }

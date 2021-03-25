@@ -9,7 +9,6 @@ import nock from "nock";
 
 import { CoinService } from "../src/drivers/memory/services/coin-service";
 import { Contact } from "../src/drivers/memory/contacts/contact";
-import { ContactStruct } from "../src/drivers/memory/contacts/contact.models";
 import { container } from "../src/environment/container";
 import { DataRepository } from "../src/drivers/memory/repositories/data-repository";
 import { DelegateService } from "../src/drivers/memory/services/delegate-service";
@@ -22,6 +21,7 @@ import { ProfileRepository } from "../src/drivers/memory/repositories/profile-re
 import { StubStorage } from "./stubs/storage";
 import { Wallet } from "../src/drivers/memory/wallets/wallet";
 import { WalletService } from "../src/drivers/memory/services/wallet-service";
+import { IContactStruct, IProfile } from "../src/contracts";
 
 export const bootContainer = (): void => {
 	container.bind(Identifiers.Storage, new StubStorage());
@@ -60,7 +60,7 @@ export const knock = (): void => {
 		.reply(200, require("./fixtures/client/delegates-2.json"));
 };
 
-export const makeProfile = (data: object = {}): Profile =>
+export const makeProfile = (data: object = {}): IProfile =>
 	new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "", ...data });
-export const makeContact = (data: ContactStruct, profile: Profile): Contact => new Contact(data, profile);
-export const makeWallet = (id: string, profile: Profile): Wallet => new Wallet(id, {}, profile);
+export const makeContact = (data: IContactStruct, profile: IProfile): Contact => new Contact(data, profile);
+export const makeWallet = (id: string, profile: IProfile): Wallet => new Wallet(id, {}, profile);

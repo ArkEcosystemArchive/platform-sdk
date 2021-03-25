@@ -8,36 +8,35 @@ import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { CoinService } from "../services/coin-service";
 import { Profile } from "../profiles/profile";
-import { WalletExportOptions } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
 import { WalletFactory } from "../wallets/wallet.factory";
-import { ReadWriteWallet } from "../wallets/wallet.models";
 import { DataRepository } from "./data-repository";
+import { IDataRepository, IProfile, IReadWriteWallet, IWalletFactory, IWalletRepository, IWalletExportOptions } from "../../../contracts";
 
-export class WalletRepository {
-	#profile: Profile;
-	#data: DataRepository;
-	#wallets: WalletFactory;
+export class WalletRepository implements IWalletRepository {
+	#profile: IProfile;
+	#data: IDataRepository;
+	#wallets: IWalletFactory;
 
-	public constructor(profile: Profile) {
+	public constructor(profile: IProfile) {
 		this.#profile = profile;
 		this.#data = new DataRepository();
 		this.#wallets = new WalletFactory(profile);
 	}
 
-	public all(): Record<string, ReadWriteWallet> {
-		return this.#data.all() as Record<string, ReadWriteWallet>;
+	public all(): Record<string, IReadWriteWallet> {
+		return this.#data.all() as Record<string, IReadWriteWallet>;
 	}
 
-	public first(): ReadWriteWallet {
+	public first(): IReadWriteWallet {
 		return this.#data.first();
 	}
 
-	public last(): ReadWriteWallet {
+	public last(): IReadWriteWallet {
 		return this.#data.last();
 	}
 
-	public allByCoin(): Record<string, Record<string, ReadWriteWallet>> {
+	public allByCoin(): Record<string, Record<string, IReadWriteWallet>> {
 		const result = {};
 
 		for (const [id, wallet] of Object.entries(this.all())) {
@@ -57,26 +56,26 @@ export class WalletRepository {
 		return this.#data.keys();
 	}
 
-	public values(): ReadWriteWallet[] {
+	public values(): IReadWriteWallet[] {
 		return this.#data.values();
 	}
 
-	public async importByMnemonic(mnemonic: string, coin: string, network: string): Promise<ReadWriteWallet> {
+	public async importByMnemonic(mnemonic: string, coin: string, network: string): Promise<IReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromMnemonic({ coin, network, mnemonic }));
 	}
 
-	public async importByAddress(address: string, coin: string, network: string): Promise<ReadWriteWallet> {
+	public async importByAddress(address: string, coin: string, network: string): Promise<IReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromAddress({ coin, network, address }));
 	}
 
-	public async importByAddressList(addresses: string[], coin: string, network: string): Promise<ReadWriteWallet[]> {
+	public async importByAddressList(addresses: string[], coin: string, network: string): Promise<IReadWriteWallet[]> {
 		const createWallet = async (
 			coin: string,
 			network: string,
 			address: string,
-			wallets: ReadWriteWallet[],
+			wallets: IReadWriteWallet[],
 		): Promise<void> => {
-			const instance: ReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+			const instance: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 			await instance.setCoin(coin, network);
 			await instance.setAddress(address);
 
@@ -87,7 +86,7 @@ export class WalletRepository {
 		const service = await container.get<CoinService>(Identifiers.CoinService).push(coin, network);
 
 		// Bulk request the addresses.
-		const wallets: ReadWriteWallet[] = [];
+		const wallets: IReadWriteWallet[] = [];
 
 		let hasMore = true;
 		let lastResponse: Coins.WalletDataCollection | undefined;
@@ -117,7 +116,7 @@ export class WalletRepository {
 		coin: string,
 		network: string,
 		path: string,
-	): Promise<ReadWriteWallet> {
+	): Promise<IReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromAddressWithLedgerPath({ coin, network, address, path }));
 	}
 
@@ -126,15 +125,15 @@ export class WalletRepository {
 		coin: string,
 		network: string,
 		password: string,
-	): Promise<ReadWriteWallet> {
+	): Promise<IReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromMnemonicWithEncryption({ coin, network, mnemonic, password }));
 	}
 
-	public async importByPublicKey(coin: string, network: string, publicKey: string): Promise<ReadWriteWallet> {
+	public async importByPublicKey(coin: string, network: string, publicKey: string): Promise<IReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromPublicKey({ coin, network, publicKey }));
 	}
 
-	public async importByPrivateKey(coin: string, network: string, privateKey: string): Promise<ReadWriteWallet> {
+	public async importByPrivateKey(coin: string, network: string, privateKey: string): Promise<IReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromPrivateKey({ coin, network, privateKey }));
 	}
 
@@ -146,7 +145,7 @@ export class WalletRepository {
 		coin: string;
 		network: string;
 		wif: string;
-	}): Promise<ReadWriteWallet> {
+	}): Promise<IReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromWIF({ coin, network, wif }));
 	}
 
@@ -160,19 +159,19 @@ export class WalletRepository {
 		network: string;
 		wif: string;
 		password: string;
-	}): Promise<ReadWriteWallet> {
+	}): Promise<IReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromWIFWithEncryption({ coin, network, wif, password }));
 	}
 
-	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: ReadWriteWallet }> {
+	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: IReadWriteWallet }> {
 		const mnemonic: string = BIP39.generate();
 
 		return { mnemonic, wallet: await this.importByMnemonic(mnemonic, coin, network) };
 	}
 
-	public async restore(struct: Record<string, any>): Promise<ReadWriteWallet> {
+	public async restore(struct: Record<string, any>): Promise<IReadWriteWallet> {
 		const { id, coin, network, networkConfig, address, data, settings } = struct;
-		const previousWallet: ReadWriteWallet | undefined = this.findByAddress(address);
+		const previousWallet: IReadWriteWallet | undefined = this.findByAddress(address);
 
 		if (previousWallet !== undefined) {
 			if (previousWallet.hasBeenPartiallyRestored()) {
@@ -206,8 +205,8 @@ export class WalletRepository {
 		return this.storeWallet(wallet, { force: wallet.hasBeenPartiallyRestored() });
 	}
 
-	public findById(id: string): ReadWriteWallet {
-		const wallet: ReadWriteWallet | undefined = this.#data.get(id);
+	public findById(id: string): IReadWriteWallet {
+		const wallet: IReadWriteWallet | undefined = this.#data.get(id);
 
 		if (!wallet) {
 			throw new Error(`Failed to find a wallet for [${id}].`);
@@ -216,27 +215,27 @@ export class WalletRepository {
 		return wallet;
 	}
 
-	public findByAddress(address: string): ReadWriteWallet | undefined {
-		return this.values().find((wallet: ReadWriteWallet) => wallet.address() === address);
+	public findByAddress(address: string): IReadWriteWallet | undefined {
+		return this.values().find((wallet: IReadWriteWallet) => wallet.address() === address);
 	}
 
-	public findByPublicKey(publicKey: string): ReadWriteWallet | undefined {
-		return this.values().find((wallet: ReadWriteWallet) => wallet.publicKey() === publicKey);
+	public findByPublicKey(publicKey: string): IReadWriteWallet | undefined {
+		return this.values().find((wallet: IReadWriteWallet) => wallet.publicKey() === publicKey);
 	}
 
-	public findByCoin(coin: string): ReadWriteWallet[] {
-		return this.values().filter((wallet: ReadWriteWallet) => wallet.coin().manifest().get<string>("name") === coin);
+	public findByCoin(coin: string): IReadWriteWallet[] {
+		return this.values().filter((wallet: IReadWriteWallet) => wallet.coin().manifest().get<string>("name") === coin);
 	}
 
-	public findByCoinWithNetwork(coin: string, network: string): ReadWriteWallet[] {
+	public findByCoinWithNetwork(coin: string, network: string): IReadWriteWallet[] {
 		return this.values().filter(
-			(wallet: ReadWriteWallet) => wallet.coinId() === coin && wallet.networkId() === network,
+			(wallet: IReadWriteWallet) => wallet.coinId() === coin && wallet.networkId() === network,
 		);
 	}
 
-	public findByAlias(alias: string): ReadWriteWallet | undefined {
+	public findByAlias(alias: string): IReadWriteWallet | undefined {
 		return this.values().find(
-			(wallet: ReadWriteWallet) => (wallet.alias() || "").toLowerCase() === alias.toLowerCase(),
+			(wallet: IReadWriteWallet) => (wallet.alias() || "").toLowerCase() === alias.toLowerCase(),
 		);
 	}
 
@@ -244,7 +243,7 @@ export class WalletRepository {
 		const result = this.findById(id);
 
 		if (data.alias) {
-			const wallets: ReadWriteWallet[] = this.values();
+			const wallets: IReadWriteWallet[] = this.values();
 
 			for (const wallet of wallets) {
 				if (wallet.id() === id || !wallet.alias()) {
@@ -279,7 +278,7 @@ export class WalletRepository {
 	}
 
 	public toObject(
-		options: WalletExportOptions = {
+		options: IWalletExportOptions = {
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
@@ -303,10 +302,10 @@ export class WalletRepository {
 		return result;
 	}
 
-	public sortBy(column: string, direction: "asc" | "desc" = "asc"): ReadWriteWallet[] {
+	public sortBy(column: string, direction: "asc" | "desc" = "asc"): IReadWriteWallet[] {
 		// TODO: sort by balance as fiat (BigInt)
 
-		const sortFunction = (wallet: ReadWriteWallet) => {
+		const sortFunction = (wallet: IReadWriteWallet) => {
 			if (column === "coin") {
 				return wallet.currency();
 			}
@@ -329,7 +328,7 @@ export class WalletRepository {
 		return sortByDesc(this.values(), sortFunction);
 	}
 
-	private storeWallet(wallet: ReadWriteWallet, options: { force: boolean } = { force: false }): ReadWriteWallet {
+	private storeWallet(wallet: IReadWriteWallet, options: { force: boolean } = { force: false }): IReadWriteWallet {
 		if (!options.force) {
 			if (this.findByAddress(wallet.address())) {
 				throw new Error(`The wallet [${wallet.address()}] already exists.`);
@@ -348,7 +347,7 @@ export class WalletRepository {
 		networkConfig,
 		wallet,
 	}: {
-		wallet: ReadWriteWallet;
+		wallet: IReadWriteWallet;
 		coin: string;
 		network: string;
 		address: string;

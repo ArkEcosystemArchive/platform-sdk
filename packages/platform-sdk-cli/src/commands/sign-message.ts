@@ -1,10 +1,10 @@
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { ReadWriteWallet } from "@arkecosystem/platform-sdk-profiles";
+import { Contracts } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
 import { renderLogo, useLogger } from "../helpers";
 
-export const signMessage = async (wallet: ReadWriteWallet): Promise<void> => {
+export const signMessage = async (wallet: Contracts.IReadWriteWallet): Promise<void> => {
 	renderLogo();
 
 	const { mnemonic, message } = await prompts([

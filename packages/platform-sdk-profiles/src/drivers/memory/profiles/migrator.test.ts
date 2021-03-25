@@ -5,10 +5,10 @@ import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import { bootContainer } from "../../../../test/helpers";
 import { Migrator } from "./migrator";
 import { Profile } from "./profile";
-import { ProfileData } from "./profile.models";
+import { IProfile, ProfileData } from "../../../contracts";
 
 let subject: Migrator;
-let profile: Profile;
+let profile: IProfile;
 
 beforeAll(() => bootContainer());
 
@@ -211,7 +211,7 @@ it("should migrate profiles from JSON to Base64", async () => {
 
 	await subject.migrate(
 		{
-			"2.0.0": async ({ profile }: { profile: Profile }) => {
+			"2.0.0": async ({ profile }: { profile: IProfile }) => {
 				// @ts-ignore
 				const profileData: Record<string, any> = profile.getRawData();
 				profileData.data.contacts["0e147f96-049f-4d89-bad4-ad3341109907"].name = "John Doe";

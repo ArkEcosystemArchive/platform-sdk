@@ -1,3 +1,4 @@
+import { IReadOnlyWallet } from "../../../contracts";
 import { Avatar } from "../services/avatar";
 
 interface ROWallet {
@@ -8,7 +9,7 @@ interface ROWallet {
 	explorerLink: string;
 }
 
-export class ReadOnlyWallet {
+export class ReadOnlyWallet implements IReadOnlyWallet {
 	readonly #wallet: ROWallet;
 
 	public constructor(wallet: ROWallet) {

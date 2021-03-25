@@ -6,12 +6,11 @@ import { v4 as uuidv4 } from "uuid";
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
 import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "./wallet";
-import { WalletData } from "./wallet.models";
 import { TransactionService } from "./wallet-transaction-service";
+import { IProfile, ProfileSetting, WalletData } from "../../../contracts";
 
-let profile: Profile;
+let profile: IProfile;
 let wallet: Wallet;
 let subject: TransactionService;
 

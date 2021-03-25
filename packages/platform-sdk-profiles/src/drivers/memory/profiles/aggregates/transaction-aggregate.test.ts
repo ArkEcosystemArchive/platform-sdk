@@ -4,8 +4,8 @@ import nock from "nock";
 
 import { identity } from "../../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../../test/helpers";
-import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
-import * as promiseHelpers from "../../helpers/promise";
+import { ExtendedTransactionDataCollection } from "../../../../dto/transaction-collection";
+import * as promiseHelpers from "../../../../helpers/promise";
 import { Profile } from "../profile";
 import { TransactionAggregate } from "./transaction-aggregate";
 

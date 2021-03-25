@@ -1,9 +1,9 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 import { v4 as uuidv4 } from "uuid";
+import { IReadWriteWallet, ITransactionService, WalletData } from "../../../contracts";
 
-import { pqueueSettled } from "../helpers/queue";
+import { pqueueSettled } from "../../../helpers/queue";
 import { SignedTransactionData } from "./dto/signed-transaction";
-import { ReadWriteWallet, WalletData } from "./wallet.models";
 
 type SignedTransactionDataDictionary = Record<string, Contracts.SignedTransactionData>;
 
@@ -22,13 +22,13 @@ type SignedTransactionDataDictionary = Record<string, Contracts.SignedTransactio
  * will be used until the transaction has been broadcasted, at which point
  * we will swap out the UUID for the real transaction ID which we received.
  */
-export class TransactionService {
+export class TransactionService implements ITransactionService {
 	/**
 	 * The wallet that all transactions are signed with.
 	 *
 	 * @memberof TransactionService
 	 */
-	readonly #wallet: ReadWriteWallet;
+	readonly #wallet: IReadWriteWallet;
 
 	/**
 	 * The transactions that have been signed but not necessarily broadcasted.
@@ -71,7 +71,7 @@ export class TransactionService {
 	 * @param {ReadWriteWallet} wallet
 	 * @memberof TransactionService
 	 */
-	public constructor(wallet: ReadWriteWallet) {
+	public constructor(wallet: IReadWriteWallet) {
 		this.#wallet = wallet;
 
 		this.restore();

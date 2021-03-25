@@ -1,9 +1,9 @@
-import { ProfileContract } from "../profile.models";
+import { IProfile } from "../../../../contracts";
 
-export class CountAggregate {
-	readonly #profile: ProfileContract;
+export class CountAggregate implements CountAggregate {
+	readonly #profile: IProfile;
 
-	public constructor(profile: ProfileContract) {
+	public constructor(profile: IProfile) {
 		this.#profile = profile;
 	}
 

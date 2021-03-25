@@ -1,6 +1,6 @@
+import { Driver } from "../contracts";
 import { Container } from "../environment/container";
 import { EnvironmentOptions } from "../environment/env.models";
-import { Driver } from "./contracts";
 import { MemoryDriver } from "./memory";
 
 /**

@@ -9,7 +9,6 @@ import { decode } from "wif";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
-import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { ExchangeRateService } from "../services/exchange-rate-service";
@@ -17,9 +16,10 @@ import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
-import { WalletData, WalletFlag, WalletSetting } from "./wallet.models";
+import { IExchangeRateService, IProfile, WalletData, WalletFlag, WalletSetting } from "../../../contracts";
+import { ExtendedTransactionDataCollection } from "../../../dto";
 
-let profile: Profile;
+let profile: IProfile;
 let subject: Wallet;
 
 beforeAll(() => bootContainer());
@@ -134,7 +134,7 @@ it("should have a converted balance if it is a live wallet", async () => {
 	expect(wallet.convertedBalance()).toBeInstanceOf(BigNumber);
 	expect(wallet.convertedBalance().toNumber()).toBe(0);
 
-	await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
+	await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
 	expect(wallet.convertedBalance().toNumber()).toBe(0.0002524);
 
 	live.mockRestore();

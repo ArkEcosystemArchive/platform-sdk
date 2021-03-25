@@ -5,19 +5,19 @@ import { makeCoin } from "../../../environment/container.helpers";
 import { Identifiers } from "../../../environment/container.models";
 import { KnownWalletService } from "../services/known-wallet-service";
 import { Avatar } from "../services/avatar";
-import { ContactAddressProps } from "./contact-address.models";
+import { IContactAddress, IContactAddressProps } from "../../../contracts";
 
-export class ContactAddress {
+export class ContactAddress implements IContactAddress {
 	readonly #coin: Coins.Coin;
-	readonly #data: ContactAddressProps;
+	readonly #data: IContactAddressProps;
 	#wallet: Contracts.WalletData | undefined;
 
-	private constructor(data: ContactAddressProps, coin: Coins.Coin) {
+	private constructor(data: IContactAddressProps, coin: Coins.Coin) {
 		this.#data = data;
 		this.#coin = coin;
 	}
 
-	public static async make(data: ContactAddressProps): Promise<ContactAddress> {
+	public static async make(data: IContactAddressProps): Promise<ContactAddress> {
 		const result: ContactAddress = new ContactAddress(data, await makeCoin(data.coin, data.network));
 
 		await result.syncIdentity();
@@ -99,7 +99,7 @@ export class ContactAddress {
 		return this.#wallet.hasPassed();
 	}
 
-	public toObject(): ContactAddressProps {
+	public toObject(): IContactAddressProps {
 		return {
 			id: this.id(),
 			coin: this.coin(),

@@ -1,12 +1,12 @@
-import { pqueue } from "../helpers/queue";
+import { IContact, IContactAddressInput, IContactAddressRepository, IContactStruct } from "../../../contracts";
+import { IProfile } from "../../../contracts";
+import { pqueue } from "../../../helpers/queue";
 import { Profile } from "../profiles/profile";
 import { ContactAddressRepository } from "../repositories/contact-address-repository";
 import { Avatar } from "../services/avatar";
-import { ContactStruct } from "./contact.models";
-import { ContactAddressInput } from "./contact-address.models";
 
-export class Contact {
-	#profile: Profile;
+export class Contact implements IContact {
+	#profile: IProfile;
 
 	readonly #id: string;
 	#name: string;
@@ -15,7 +15,7 @@ export class Contact {
 
 	#avatar: string;
 
-	public constructor({ id, name, starred }: ContactStruct, profile: Profile) {
+	public constructor({ id, name, starred }: IContactStruct, profile: IProfile) {
 		this.#profile = profile;
 
 		this.#id = id;
@@ -37,7 +37,7 @@ export class Contact {
 		return this.#name;
 	}
 
-	public addresses(): ContactAddressRepository {
+	public addresses(): IContactAddressRepository {
 		return this.#addresses;
 	}
 
@@ -59,17 +59,17 @@ export class Contact {
 		this.setAvatar(Avatar.make(name));
 	}
 
-	public async setAddresses(addresses: ContactAddressInput[]): Promise<void> {
+	public async setAddresses(addresses: IContactAddressInput[]): Promise<void> {
 		this.#addresses.flush();
 
-		await pqueue(addresses.map((address: ContactAddressInput) => () => this.#addresses.create(address)));
+		await pqueue(addresses.map((address: IContactAddressInput) => () => this.#addresses.create(address)));
 	}
 
 	public avatar(): string {
 		return this.#avatar;
 	}
 
-	public toObject(): ContactStruct {
+	public toObject(): IContactStruct {
 		return {
 			id: this.id(),
 			name: this.name(),
