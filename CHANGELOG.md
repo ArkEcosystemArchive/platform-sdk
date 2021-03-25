@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 4.0.0 - 2020-03-25
+
+This release contains internal breaking changes as well as external as a result. This mostly affects imports and type hinting of classes which should now use the exported `Contracts` to reference things instead of direct references of concrete implementations.
+
+### Added
+
+-   **[PROFILES]** Implement storage that uses system configuration path (e06cd77c, @faustbrian)
+
+### Fixed
+
+-   **[ARK]** Handle different broadcast response error types (4a7a442e, @dated)
+
+### Changed
+
+-   **[PROFILES]** Move default implementation into drivers/memory (31d8951d, @faustbrian)
+-   **[PROFILES]** Extract environment configuration into drivers (c13b10ad, @faustbrian)
+-   **[PROFILES]** Extract implementation contracts (207944d8, @faustbrian)
+-   **[PROFILES]** Move DTO namespace into the root (09e4b8d9, @faustbrian)
+-   **[PROFILES]** Temporarily prefix all contracts with I (136c2a31, @faustbrian)
+-   **[PROFILES]** Use new implementation contracts (758e2999, @faustbrian)
+
 ## 3.2.7 - 2020-03-24
 
 ### Changed
