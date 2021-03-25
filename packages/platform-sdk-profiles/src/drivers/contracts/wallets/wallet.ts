@@ -8,6 +8,26 @@ import { IDataRepository } from "../repositories/data-repository";
 import { IPeerRepository } from "../repositories/peer-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
 
+export interface IWalletStruct {
+	id: string;
+	coin: string | undefined;
+	network: string;
+	networkConfig: {
+		crypto: {
+			slip44?: number;
+		};
+		networking: {
+			hosts: string[];
+			hostsMultiSignature: string[];
+			hostsArchival: string[];
+		};
+	};
+	address: string;
+	publicKey: string | undefined;
+	data: Record<string, any>;
+	settings: Record<string, any>;
+}
+
 export interface IWallet {
     usesMultiPeerBroadcasting(): boolean;
     peers(): IPeerRepository;
@@ -35,7 +55,7 @@ export interface IWallet {
     data(): IDataRepository;
     settings(): ISettingRepository;
     toData(): Contracts.WalletData;
-    toObject(): WalletStruct;
+    toObject(): IWalletStruct;
     knownName(): string | undefined;
     secondPublicKey(): string | undefined;
     username(): string | undefined;
@@ -91,63 +111,16 @@ export interface IWallet {
     hasBeenPartiallyRestored(): boolean;
 }
 
-export interface WalletStruct {
-	id: string;
-	coin: string | undefined;
-	network: string;
-	networkConfig: {
-		crypto: {
-			slip44?: number;
-		};
-		networking: {
-			hosts: string[];
-			hostsMultiSignature: string[];
-			hostsArchival: string[];
-		};
-	};
-	address: string;
-	publicKey: string | undefined;
-	data: Record<string, any>;
-	settings: Record<string, any>;
-}
-
-export enum WalletSetting {
-	Alias = "ALIAS",
-	Avatar = "AVATAR",
-	Peer = "PEER",
-}
-
-export enum WalletData {
-	Balance = "BALANCE",
-	Bip38EncryptedKey = "BIP38_ENCRYPTED_KEY",
-	BroadcastedTransactions = "BROADCASTED_TRANSACTIONS",
-	Delegates = "DELEGATES",
-	ExchangeCurrency = "EXCHANGE_CURRENCY",
-	LedgerPath = "LEDGER_PATH",
-	MultiSignatureParticipants = "MULTI_SIGNATURE_PARTICIPANTS",
-	Sequence = "SEQUENCE",
-	SignedTransactions = "SIGNED_TRANSACTIONS",
-	Votes = "VOTES",
-	VotesAvailable = "VOTES_AVAILABLE",
-	VotesUsed = "VOTES_USED",
-	WaitingForOtherSignaturesTransactions = "WAITING_FOR_OTHER_SIGNATURES_TRANSACTIONS",
-	WaitingForOurSignatureTransactions = "WAITING_FOR_OUR_SIGNATURE_TRANSACTIONS",
-}
-
-export enum WalletFlag {
-	Starred = "STARRED",
-}
-
-export interface ReadWriteWallet {
+export interface IReadWriteWallet {
 	usesMultiPeerBroadcasting(): boolean;
 	peers(): IPeerRepository;
 	getRelays(): string[];
 
-	setCoin(coin: string, network: string): Promise<ReadWriteWallet>;
-	setIdentity(mnemonic: string): Promise<ReadWriteWallet>;
-	setAddress(address: string, options?: { syncIdentity: boolean; validate: boolean }): Promise<ReadWriteWallet>;
-	setAlias(alias: string): ReadWriteWallet;
-	setAvatar(value: string): ReadWriteWallet;
+	setCoin(coin: string, network: string): Promise<IReadWriteWallet>;
+	setIdentity(mnemonic: string): Promise<IReadWriteWallet>;
+	setAddress(address: string, options?: { syncIdentity: boolean; validate: boolean }): Promise<IReadWriteWallet>;
+	setAlias(alias: string): IReadWriteWallet;
+	setAvatar(value: string): IReadWriteWallet;
 
 	hasSyncedWithNetwork(): boolean;
 
@@ -167,7 +140,7 @@ export interface ReadWriteWallet {
 	avatar(): string;
 	data(): IDataRepository;
 	settings(): ISettingRepository;
-	toObject(): WalletStruct;
+	toObject(): IWalletStruct;
 
 	knownName(): string | undefined;
 	secondPublicKey(): string | undefined;
