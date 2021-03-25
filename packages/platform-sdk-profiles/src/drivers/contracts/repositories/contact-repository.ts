@@ -1,11 +1,5 @@
-import { v4 as uuidv4 } from "uuid";
-
 import { Contact } from "../contacts/contact";
-import { ContactAddress } from "../contacts/contact-address";
 import { ContactAddressInput } from "../contacts/contact-address.models";
-import { pqueue } from "../helpers/queue";
-import { Profile } from "../profiles/profile";
-import { DataRepository } from "./data-repository";
 
 export interface IContactRepository {
     all(): Record<string, Contact>;

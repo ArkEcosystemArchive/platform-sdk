@@ -1,9 +1,5 @@
-import { v4 as uuidv4 } from "uuid";
-
 import { Profile } from "../profiles/profile";
-import { ProfileFactory } from "../profiles/profile.factory";
 import { ProfileExportOptions } from "../profiles/profile.models";
-import { DataRepository } from "./data-repository";
 
 export interface IProfileRepository {
     fill(profiles: object): void;

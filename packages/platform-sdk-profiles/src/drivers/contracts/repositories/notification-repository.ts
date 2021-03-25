@@ -1,7 +1,4 @@
 import { Except } from "type-fest";
-import { v4 as uuidv4 } from "uuid";
-
-import { DataRepository } from "./data-repository";
 
 interface Notification {
 	id: string;

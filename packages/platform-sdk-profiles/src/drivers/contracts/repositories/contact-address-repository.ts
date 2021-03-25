@@ -1,8 +1,5 @@
-import { v4 as uuidv4 } from "uuid";
-
 import { ContactAddress } from "../contacts/contact-address";
 import { ContactAddressInput } from "../contacts/contact-address.models";
-import { DataRepository } from "./data-repository";
 
 export interface IContactAddressRepository {
     all(): Record<string, ContactAddress>;

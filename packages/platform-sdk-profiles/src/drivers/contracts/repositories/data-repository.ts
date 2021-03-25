@@ -1,4 +1,3 @@
-import dot from "dot-prop";
 
 export interface IDataRepository {
     all(): object;

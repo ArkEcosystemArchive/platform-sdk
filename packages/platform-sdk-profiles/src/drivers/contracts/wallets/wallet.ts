@@ -1,38 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { decrypt } from "bip38";
-import dot from "dot-prop";
-
-import { ExtendedTransactionData } from "../dto/transaction";
-import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
-import { transformTransactionData, transformTransactionDataCollection } from "../dto/transaction-mapper";
-import { container } from "../../../environment/container";
-import { makeCoin } from "../../../environment/container.helpers";
-import { Identifiers } from "../../../environment/container.models";
-import { ExchangeRateService } from "../services/exchange-rate-service";
-import { KnownWalletService } from "../services/known-wallet-service";
-import { DelegateMapper } from "../mappers/delegate-mapper";
-import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
-import { DataRepository } from "../repositories/data-repository";
-import { PeerRepository } from "../repositories/peer-repository";
-import { SettingRepository } from "../repositories/setting-repository";
-import { Avatar } from "../services/avatar";
-import { ReadOnlyWallet } from "./read-only-wallet";
-import { ReadWriteWallet, WalletData, WalletFlag, WalletSetting, WalletStruct } from "./wallet.models";
-import { TransactionService } from "./wallet-transaction-service";
-
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
-
-import { ExtendedTransactionData } from "../dto/transaction";
-import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
-import { DataRepository } from "../repositories/data-repository";
-import { PeerRepository } from "../repositories/peer-repository";
-import { SettingRepository } from "../repositories/setting-repository";
-import { ReadOnlyWallet } from "./read-only-wallet";
-import { TransactionService } from "./wallet-transaction-service";
 
 export interface IWallet {
     usesMultiPeerBroadcasting(): boolean;

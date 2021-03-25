@@ -1,4 +1,3 @@
-import { DataRepository } from "./data-repository";
 
 export interface ISettingRepository {
     all(): object;

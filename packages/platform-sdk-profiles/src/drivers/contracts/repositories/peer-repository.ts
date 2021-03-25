@@ -1,5 +1,4 @@
 import { Profile } from "../profiles/profile";
-import { DataRepository } from "./data-repository";
 
 interface Peer {
 	name: string;

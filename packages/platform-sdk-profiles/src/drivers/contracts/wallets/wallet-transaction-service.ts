@@ -1,9 +1,4 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
-import { v4 as uuidv4 } from "uuid";
-
-import { pqueueSettled } from "../helpers/queue";
-import { SignedTransactionData } from "./dto/signed-transaction";
-import { ReadWriteWallet, WalletData } from "./wallet.models";
 
 type SignedTransactionDataDictionary = Record<string, Contracts.SignedTransactionData>;
 
