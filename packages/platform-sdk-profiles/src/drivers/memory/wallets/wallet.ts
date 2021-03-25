@@ -16,7 +16,7 @@ import { Profile } from "../profiles/profile";
 import { DataRepository } from "../repositories/data-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
-import { Avatar } from "../services/avatar";
+import { Avatar } from "../../../helpers/avatar";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { IPeerRepository, IProfile, IReadWriteWallet, IWallet, IWalletStruct, ProfileSetting, WalletData, WalletFlag, WalletSetting } from "../../../contracts";
