@@ -1,5 +1,5 @@
 import { IReadOnlyWallet } from "../../../contracts";
-import { Avatar } from "../services/avatar";
+import { Avatar } from "../../../helpers/avatar";
 
 interface ROWallet {
 	address: string;

@@ -1,9 +1,8 @@
 import { IContact, IContactAddressInput, IContactAddressRepository, IContactStruct } from "../../../contracts";
 import { IProfile } from "../../../contracts";
 import { pqueue } from "../../../helpers/queue";
-import { Profile } from "../profiles/profile";
 import { ContactAddressRepository } from "../repositories/contact-address-repository";
-import { Avatar } from "../services/avatar";
+import { Avatar } from "../../../helpers/avatar";
 
 export class Contact implements IContact {
 	#profile: IProfile;

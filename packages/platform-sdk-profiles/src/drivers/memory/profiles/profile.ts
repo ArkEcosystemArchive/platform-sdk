@@ -13,7 +13,7 @@ import { NotificationRepository } from "../repositories/notification-repository"
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
-import { Avatar } from "../services/avatar";
+import { Avatar } from "../../../helpers/avatar";
 import { CountAggregate } from "./aggregates/count-aggregate";
 import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";

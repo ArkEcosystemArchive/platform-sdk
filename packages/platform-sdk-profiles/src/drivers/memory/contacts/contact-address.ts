@@ -4,7 +4,7 @@ import { container } from "../../../environment/container";
 import { makeCoin } from "../../../environment/container.helpers";
 import { Identifiers } from "../../../environment/container.models";
 import { KnownWalletService } from "../services/known-wallet-service";
-import { Avatar } from "../services/avatar";
+import { Avatar } from "../../../helpers/avatar";
 import { IContactAddress, IContactAddressProps } from "../../../contracts";
 
 export class ContactAddress implements IContactAddress {
