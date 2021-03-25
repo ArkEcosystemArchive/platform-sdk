@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { resolve } from "path";
 import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
@@ -7,7 +8,6 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { removeSync } from "fs-extra";
 import nock from "nock";
-import { resolve } from "path";
 
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
@@ -15,11 +15,11 @@ import { StubStorage } from "../../test/stubs/storage";
 import { Profile } from "../drivers/memory/profiles/profile";
 import { DataRepository } from "../drivers/memory/repositories/data-repository";
 import { ProfileRepository } from "../drivers/memory/repositories/profile-repository";
+import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
+import { WalletService } from "../drivers/memory/services/wallet-service";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Environment } from "./env";
-import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
-import { WalletService } from "../drivers/memory/services/wallet-service";
 import { MemoryStorage } from "./storage/memory";
 
 let subject: Environment;

@@ -1,25 +1,26 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
 
+import { DriverFactory } from "../drivers/driver.factory";
 import { DataRepository } from "../drivers/memory/repositories/data-repository";
 import { ProfileRepository } from "../drivers/memory/repositories/profile-repository";
-import { container } from "./container";
-import { makeCoin } from "./container.helpers";
-import { Identifiers } from "./container.models";
-import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
 import { CoinService } from "../drivers/memory/services/coin-service";
 import { DelegateService } from "../drivers/memory/services/delegate-service";
 import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
 import { FeeService } from "../drivers/memory/services/fee-service";
 import { KnownWalletService } from "../drivers/memory/services/known-wallet-service";
 import { WalletService } from "../drivers/memory/services/wallet-service";
+import { container } from "./container";
+import { makeCoin } from "./container.helpers";
+import { Identifiers } from "./container.models";
+import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
 import { StorageFactory } from "./storage/factory";
 
 export class Environment {
 	private storage: StorageData | undefined;
 
 	public constructor(options: EnvironmentOptions) {
-		this.configure(options);
+		this.configureDriver(options);
 	}
 
 	/**
@@ -237,34 +238,35 @@ export class Environment {
 		container.flush();
 
 		if (options !== undefined) {
-			this.configure(options);
+			this.configureDriver(options);
 		}
 	}
 
 	/**
-	 * Create all necessary container bindings based on the given options.
+	 * Create a driver instance and all necessary container bindings.
 	 *
-	 * @private
-	 * @param {EnvironmentOptions} options
 	 * @memberof Environment
 	 */
-	private configure(options: EnvironmentOptions): void {
+	private configureDriver(options: EnvironmentOptions): void {
+		// These are driver implementation agnostic bindings.
 		if (typeof options.storage === "string") {
 			container.bind(Identifiers.Storage, StorageFactory.make(options.storage));
 		} else {
 			container.bind(Identifiers.Storage, options.storage);
 		}
 
-		container.bind(Identifiers.AppData, new DataRepository());
 		container.bind(Identifiers.HttpClient, options.httpClient);
-		container.bind(Identifiers.ProfileRepository, new ProfileRepository());
-		container.bind(Identifiers.CoinService, new CoinService());
-		container.bind(Identifiers.DelegateService, new DelegateService());
-		container.bind(Identifiers.ExchangeRateService, new ExchangeRateService());
-		container.bind(Identifiers.FeeService, new FeeService());
-		container.bind(Identifiers.KnownWalletService, new KnownWalletService());
-		container.bind(Identifiers.WalletService, new WalletService());
-
 		container.bind(Identifiers.Coins, options.coins);
+
+		// These are bindings that are specific to the driver implementation.
+		if (options.driver === undefined) {
+			return DriverFactory.make("memory", container, options);
+		}
+
+		if (typeof options.driver === "string") {
+			return DriverFactory.make(options.driver, container, options);
+		}
+
+		return options.driver?.make(container, options);
 	}
 }
