@@ -6,9 +6,9 @@ export interface IPluginRegistry {
 
 /* istanbul ignore file */
 
-type RegistryPluginAuthor = { [key: string]: any } | string;
+type IRegistryPluginAuthor = { [key: string]: any } | string;
 
-export interface RegistryPluginManifest {
+export interface IRegistryPluginManifest {
 	logo?: string;
 	title?: string;
 	images?: string[];
@@ -18,41 +18,41 @@ export interface RegistryPluginManifest {
 	minVersion?: string;
 }
 
-export interface RegistryPluginSourceControl {
+export interface IRegistryPluginSourceControl {
 	type: string;
 	value: string;
 }
 
-export interface RegistryPluginSocialMedia {
+export interface IRegistryPluginSocialMedia {
 	type: string;
 	value: string;
 }
 
-export interface RegistryPluginImage {
+export interface IRegistryPluginImage {
 	type: string;
 	value: string;
 }
 
-export interface RegistryPluginMeta {
+export interface IRegistryPluginMeta {
 	displayName?: string;
 	description?: string;
 }
 
 export interface RegistryPluginAip36 {
-	sourceControl?: RegistryPluginSourceControl[];
-	socialMedia?: RegistryPluginSocialMedia[];
-	images?: RegistryPluginImage[];
-	meta?: RegistryPluginMeta;
+	sourceControl?: IRegistryPluginSourceControl[];
+	socialMedia?: IRegistryPluginSocialMedia[];
+	images?: IRegistryPluginImage[];
+	meta?: IRegistryPluginMeta;
 }
 
-export interface RegistryPluginVersion {
+export interface IRegistryPluginVersion {
 	id: number;
 	name: string;
 	released_at: Date;
 	is_verified: boolean;
 }
 
-export interface RegistryPluginProperties {
+export interface IRegistryPluginProperties {
 	name: string;
 	version: string;
 	description?: string;
@@ -60,7 +60,7 @@ export interface RegistryPluginProperties {
 	homepage?: { [key: string]: any } | string;
 	bugs?: { [key: string]: any };
 	license?: string;
-	author?: RegistryPluginAuthor;
+	author?: IRegistryPluginAuthor;
 	contributors?: ({ [key: string]: any } | string)[];
 	maintainers?: ({ [key: string]: any } | string)[];
 	repository?: { [key: string]: any } | string;
@@ -70,7 +70,7 @@ export interface RegistryPluginProperties {
 		unpackedSize?: number;
 		[key: string]: any;
 	};
-	"desktop-wallet"?: RegistryPluginManifest;
+	"desktop-wallet"?: IRegistryPluginManifest;
 	[key: string]: any;
 }
 
@@ -81,7 +81,7 @@ export interface IRegistryPlugin {
     date(): string;
     version(): string;
     description(): string;
-    author(): RegistryPluginAuthor;
+    author(): IRegistryPluginAuthor;
     sourceProvider(): any;
     logo(): string;
     images(): string[];
@@ -96,7 +96,7 @@ export interface IRegistryPlugin {
 		date: string;
 		version: string;
 		description: string;
-		author: RegistryPluginAuthor;
+		author: IRegistryPluginAuthor;
 		sourceProvider: any;
 		logo: string;
 		images: string[];
