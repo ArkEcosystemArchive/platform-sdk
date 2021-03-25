@@ -7,21 +7,21 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { CoinService } from "../src/environment/services/coin-service";
-import { Contact } from "../src/contacts/contact";
-import { ContactStruct } from "../src/contacts/contact.models";
+import { CoinService } from "../src/drivers/memory/services/coin-service";
+import { Contact } from "../src/drivers/memory/contacts/contact";
+import { ContactStruct } from "../src/drivers/memory/contacts/contact.models";
 import { container } from "../src/environment/container";
-import { DataRepository } from "../src/repositories/data-repository";
-import { DelegateService } from "../src/environment/services/delegate-service";
-import { ExchangeRateService } from "../src/environment/services/exchange-rate-service";
-import { FeeService } from "../src/environment/services/fee-service";
+import { DataRepository } from "../src/drivers/memory/repositories/data-repository";
+import { DelegateService } from "../src/drivers/memory/services/delegate-service";
+import { ExchangeRateService } from "../src/drivers/memory/services/exchange-rate-service";
+import { FeeService } from "../src/drivers/memory/services/fee-service";
 import { Identifiers } from "../src/environment/container.models";
-import { KnownWalletService } from "../src/environment/services/known-wallet-service";
-import { Profile } from "../src/profiles/profile";
-import { ProfileRepository } from "../src/repositories/profile-repository";
+import { KnownWalletService } from "../src/drivers/memory/services/known-wallet-service";
+import { Profile } from "../src/drivers/memory/profiles/profile";
+import { ProfileRepository } from "../src/drivers/memory/repositories/profile-repository";
 import { StubStorage } from "./stubs/storage";
-import { Wallet } from "../src/wallets/wallet";
-import { WalletService } from "../src/environment/services/wallet-service";
+import { Wallet } from "../src/drivers/memory/wallets/wallet";
+import { WalletService } from "../src/drivers/memory/services/wallet-service";
 
 export const bootContainer = (): void => {
 	container.bind(Identifiers.Storage, new StubStorage());
