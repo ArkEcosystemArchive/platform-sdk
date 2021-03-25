@@ -1,18 +1,17 @@
-import { Profile } from "../profiles/profile";
-import { ProfileExportOptions } from "../profiles/profile.models";
+import { IProfile, ProfileExportOptions } from "../profiles/profile";
 
 export interface IProfileRepository {
     fill(profiles: object): void;
-    all(): Record<string, Profile>;
-    first(): Profile;
-    last(): Profile;
+    all(): Record<string, IProfile>;
+    first(): IProfile;
+    last(): IProfile;
     keys(): string[];
-    values(): Profile[];
-    findById(id: string): Profile;
-    findByName(name: string): Profile | undefined;
-    create(name: string): Profile;
-    import(data: string, password: string): Promise<Profile>;
-    export(profile: Profile, options: ProfileExportOptions, password: string): string;
+    values(): IProfile[];
+    findById(id: string): IProfile;
+    findByName(name: string): IProfile | undefined;
+    create(name: string): IProfile;
+    import(data: string, password: string): Promise<IProfile>;
+    export(profile: IProfile, options: ProfileExportOptions, password: string): string;
     has(id: string): boolean;
     forget(id: string): void;
     flush(): void;

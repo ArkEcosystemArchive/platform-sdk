@@ -1,5 +1,4 @@
-import { IContactAddress } from "../contacts/contact-address";
-import { ContactAddressInput } from "../contacts/contact-address.models";
+import { IContactAddress, IContactAddressInput } from "../contacts/contact-address";
 
 export interface IContactAddressRepository {
     all(): Record<string, IContactAddress>;
@@ -7,7 +6,7 @@ export interface IContactAddressRepository {
     last(): IContactAddress;
     keys(): string[];
     values(): IContactAddress[];
-    create(data: ContactAddressInput): Promise<IContactAddress>;
+    create(data: IContactAddressInput): Promise<IContactAddress>;
     fill(addresses: any[]): Promise<void>;
     findById(id: string): IContactAddress;
     findByAddress(value: string): IContactAddress[];

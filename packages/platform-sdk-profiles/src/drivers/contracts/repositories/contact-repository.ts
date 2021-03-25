@@ -1,5 +1,5 @@
 import { IContact } from "../contacts/contact";
-import { ContactAddressInput } from "../contacts/contact-address.models";
+import { IContactAddressInput } from "../contacts/contact-address";
 
 export interface IContactRepository {
     all(): Record<string, IContact>;
@@ -10,7 +10,7 @@ export interface IContactRepository {
     create(name: string): IContact;
     fill(contacts: object): Promise<void>;
     findById(id: string): IContact;
-    update(id: string, data: { name?: string; addresses?: ContactAddressInput[] }): Promise<void>;
+    update(id: string, data: { name?: string; addresses?: IContactAddressInput[] }): Promise<void>;
     forget(id: string): void;
     flush(): void;
     count(): number;

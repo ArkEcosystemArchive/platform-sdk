@@ -1,15 +1,22 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { ExtendedTransactionData } from "../../memory/dto/transaction";
+import { ExtendedTransactionDataCollection } from "../../memory/dto/transaction-collection";
+import { ReadOnlyWallet } from "../../memory/wallets/read-only-wallet";
+import { TransactionService } from "../../memory/wallets/wallet-transaction-service";
+import { IDataRepository } from "../repositories/data-repository";
+import { IPeerRepository } from "../repositories/peer-repository";
+import { ISettingRepository } from "../repositories/setting-repository";
 
 export interface IWallet {
     usesMultiPeerBroadcasting(): boolean;
-    peers(): PeerRepository;
+    peers(): IPeerRepository;
     getRelays(): string[];
-    setCoin(coin: string, network: string): Promise<Wallet>;
-    setIdentity(mnemonic: string): Promise<Wallet>;
-    setAddress(address: string, options: { syncIdentity: boolean; validate: boolean }): Promise<Wallet>;
-    setAvatar(value: string): Wallet;
-    setAlias(alias: string): Wallet;
+    setCoin(coin: string, network: string): Promise<IWallet>;
+    setIdentity(mnemonic: string): Promise<IWallet>;
+    setAddress(address: string, options: { syncIdentity: boolean; validate: boolean }): Promise<IWallet>;
+    setAvatar(value: string): IWallet;
+    setAlias(alias: string): IWallet;
     hasSyncedWithNetwork(): boolean;
     id(): string;
     coin(): Coins.Coin;
@@ -25,8 +32,8 @@ export interface IWallet {
     convertedBalance(): BigNumber;
     nonce(): BigNumber;
     avatar(): string;
-    data(): DataRepository;
-    settings(): SettingRepository;
+    data(): IDataRepository;
+    settings(): ISettingRepository;
     toData(): Contracts.WalletData;
     toObject(): WalletStruct;
     knownName(): string | undefined;
@@ -133,7 +140,7 @@ export enum WalletFlag {
 
 export interface ReadWriteWallet {
 	usesMultiPeerBroadcasting(): boolean;
-	peers(): PeerRepository;
+	peers(): IPeerRepository;
 	getRelays(): string[];
 
 	setCoin(coin: string, network: string): Promise<ReadWriteWallet>;
@@ -158,8 +165,8 @@ export interface ReadWriteWallet {
 	convertedBalance(): BigNumber;
 	nonce(): BigNumber;
 	avatar(): string;
-	data(): DataRepository;
-	settings(): SettingRepository;
+	data(): IDataRepository;
+	settings(): ISettingRepository;
 	toObject(): WalletStruct;
 
 	knownName(): string | undefined;
