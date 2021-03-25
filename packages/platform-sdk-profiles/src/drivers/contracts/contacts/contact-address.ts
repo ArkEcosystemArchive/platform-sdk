@@ -1,14 +1,20 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+export interface IContactAddressInput {
+	coin: string;
+	network: string;
+	name: string;
+	address: string;
+}
 
-import { container } from "../../../environment/container";
-import { makeCoin } from "../../../environment/container.helpers";
-import { Identifiers } from "../../../environment/container.models";
-import { KnownWalletService } from "../services/known-wallet-service";
-import { Avatar } from "../services/avatar";
-import { ContactAddressProps } from "./contact-address.models";
+export interface IContactAddressProps {
+	id: string;
+	coin: string;
+	network: string;
+	name: string;
+	address: string;
+}
 
 export interface IContactAddress {
-    make(data: ContactAddressProps): Promise<ContactAddress>;
+    make(data: IContactAddressProps): Promise<IContactAddress>;
     id(): string;
     coin(): string;
     network(): string;
@@ -22,7 +28,7 @@ export interface IContactAddress {
     isMultiSignature(): boolean;
     isSecondSignature(): boolean;
     hasSyncedWithNetwork(): boolean;
-    toObject(): ContactAddressProps;
+    toObject(): IContactAddressProps;
     setName(value: string): void;
     setAddress(name: string): void;
     syncIdentity(): Promise<void>;
