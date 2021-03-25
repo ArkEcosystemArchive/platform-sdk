@@ -13,13 +13,13 @@ import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-se
 import { FeeService } from "../drivers/memory/services/fee-service";
 import { KnownWalletService } from "../drivers/memory/services/known-wallet-service";
 import { WalletService } from "../drivers/memory/services/wallet-service";
-import { StorageFactory } from "./storage/factory";
+import { DriverFactory } from "../drivers/driver.factory";
 
 export class Environment {
 	private storage: StorageData | undefined;
 
 	public constructor(options: EnvironmentOptions) {
-		this.configure(options);
+		DriverFactory.make("memory", container, options);
 	}
 
 	/**
@@ -237,34 +237,7 @@ export class Environment {
 		container.flush();
 
 		if (options !== undefined) {
-			this.configure(options);
+			DriverFactory.make("memory", container, options);
 		}
-	}
-
-	/**
-	 * Create all necessary container bindings based on the given options.
-	 *
-	 * @private
-	 * @param {EnvironmentOptions} options
-	 * @memberof Environment
-	 */
-	private configure(options: EnvironmentOptions): void {
-		if (typeof options.storage === "string") {
-			container.bind(Identifiers.Storage, StorageFactory.make(options.storage));
-		} else {
-			container.bind(Identifiers.Storage, options.storage);
-		}
-
-		container.bind(Identifiers.AppData, new DataRepository());
-		container.bind(Identifiers.HttpClient, options.httpClient);
-		container.bind(Identifiers.ProfileRepository, new ProfileRepository());
-		container.bind(Identifiers.CoinService, new CoinService());
-		container.bind(Identifiers.DelegateService, new DelegateService());
-		container.bind(Identifiers.ExchangeRateService, new ExchangeRateService());
-		container.bind(Identifiers.FeeService, new FeeService());
-		container.bind(Identifiers.KnownWalletService, new KnownWalletService());
-		container.bind(Identifiers.WalletService, new WalletService());
-
-		container.bind(Identifiers.Coins, options.coins);
 	}
 }
