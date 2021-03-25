@@ -4,6 +4,7 @@ export * from "./environment/container.models";
 export * from "./environment/env.models";
 export * from "./environment/env";
 
-export * as DTO from "./dto";
 export * as Contracts from "./contracts";
+export * as DTO from "./dto";
 export * as Enums from "./enums";
+export * as Helpers from "./helpers";

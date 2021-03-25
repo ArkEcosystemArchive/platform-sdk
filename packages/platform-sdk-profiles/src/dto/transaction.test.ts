@@ -78,19 +78,19 @@ beforeAll(async () => {
 
 	nock(/.+/)
 		.get("/api/node/configuration")
-		.reply(200, require("../../../../test/fixtures/client/configuration.json"))
+		.reply(200, require("../../test/fixtures/client/configuration.json"))
 		.get("/api/peers")
-		.reply(200, require("../../../../test/fixtures/client/peers.json"))
+		.reply(200, require("../../test/fixtures/client/peers.json"))
 		.get("/api/node/configuration/crypto")
-		.reply(200, require("../../../../test/fixtures/client/cryptoConfiguration.json"))
+		.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
-		.reply(200, require("../../../../test/fixtures/client/syncing.json"))
+		.reply(200, require("../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../test/fixtures/client/wallet.json"))
 		.get("/api/delegates")
-		.reply(200, require("../../../../test/fixtures/client/delegates-1.json"))
+		.reply(200, require("../../test/fixtures/client/delegates-1.json"))
 		.get("/api/delegates?page=2")
-		.reply(200, require("../../../../test/fixtures/client/delegates-2.json"))
+		.reply(200, require("../../test/fixtures/client/delegates-2.json"))
 		.get("/api/ipfs/QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9c")
 		.reply(200, { data: "ipfs-content" })
 		// CryptoCompare
@@ -99,7 +99,7 @@ beforeAll(async () => {
 		.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
 		.get("/data/histoday")
 		.query(true)
-		.reply(200, require("../../../../test/fixtures/markets/cryptocompare/historical.json"))
+		.reply(200, require("../../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
 });
 

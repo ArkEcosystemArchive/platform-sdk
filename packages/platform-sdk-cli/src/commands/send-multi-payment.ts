@@ -1,12 +1,12 @@
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { ReadWriteWallet } from "@arkecosystem/platform-sdk-profiles";
+import { Contracts } from "@arkecosystem/platform-sdk-profiles";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import prompts from "prompts";
 
 import { renderLogo } from "../helpers";
 import { finaliseTransaction } from "./helpers";
 
-export const sendMultiPayment = async (wallet: ReadWriteWallet): Promise<void> => {
+export const sendMultiPayment = async (wallet: Contracts.IReadWriteWallet): Promise<void> => {
 	renderLogo();
 
 	const payments: { amount: string; to: string }[] = [];

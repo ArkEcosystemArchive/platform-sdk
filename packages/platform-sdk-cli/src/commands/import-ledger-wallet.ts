@@ -1,5 +1,5 @@
 import { HDKey } from "@arkecosystem/platform-sdk-crypto";
-import { Environment, IProfile } from "@arkecosystem/platform-sdk-profiles";
+import { Environment, Contracts } from "@arkecosystem/platform-sdk-profiles";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 import Table from "cli-table3";
 import ora from "ora";
@@ -11,7 +11,7 @@ const chunk = <T>(value: T[], size: number) =>
 	Array.from({ length: Math.ceil(value.length / size) }, (v, i) => value.slice(i * size, i * size + size));
 
 // @TODO: this currently only supports 5 accounts with 50 wallets. use the DW scanner once implemented
-export const importLedgerWallet = async (env: Environment, profile: IProfile): Promise<void> => {
+export const importLedgerWallet = async (env: Environment, profile: Contracts.IProfile): Promise<void> => {
 	renderLogo();
 
 	const { coin, network } = await prompts([
