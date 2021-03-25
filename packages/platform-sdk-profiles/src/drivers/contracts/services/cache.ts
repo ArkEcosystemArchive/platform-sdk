@@ -5,7 +5,7 @@ type CacheStore = Record<string, { expires_at: DateTime; value: unknown }>;
 export interface ICache {
     all(): CacheStore;
     keys(): string[];
-    get(key: string): T;
+    get<T>(key: string): T;
     set(key: string, value: unknown, ttl: number): void;
     has(key: string): boolean;
     forget(key: string): void;

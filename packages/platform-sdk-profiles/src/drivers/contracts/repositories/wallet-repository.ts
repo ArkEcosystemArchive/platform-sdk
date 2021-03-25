@@ -1,5 +1,5 @@
-import { WalletExportOptions } from "../profiles/profile.models";
-import { ReadWriteWallet } from "../wallets/wallet.models";
+import { WalletExportOptions } from "../profiles/profile";
+import { ReadWriteWallet } from "../wallets/wallet";
 
 export interface IWalletRepository {
     all(): Record<string, ReadWriteWallet>;

@@ -1,4 +1,4 @@
-import { ReadWriteWallet } from "./wallet.models";
+import { ReadWriteWallet } from "./wallet";
 
 export interface IWalletFactory {
     fromMnemonic(coin: undefined, network: undefined, mnemonic: undefined, useBIP39: undefined, useBIP44: undefined): Promise<ReadWriteWallet>;

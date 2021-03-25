@@ -1,4 +1,4 @@
-import { Profile } from "../profiles/profile";
+import { IProfile } from "../profiles/profile";
 
 interface Peer {
 	name: string;
@@ -10,7 +10,7 @@ export interface IPeerRepository {
     fill(peers: object): void;
     all(): Record<string, Peer>;
     keys(): string[];
-    values(): Profile[];
+    values(): IProfile[];
     get(coin: string, network: string): Peer[];
     create(coin: string, network: string, peer: Peer): void;
     has(coin: string, network: string): boolean;

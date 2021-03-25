@@ -1,6 +1,6 @@
-import { Profile } from "../profiles/profile";
+import { IProfile } from "../profiles/profile";
 
 export interface IWalletService {
     syncAll(): Promise<void>;
-    syncByProfile(profile: Profile): Promise<void>;
+    syncByProfile(profile: IProfile): Promise<void>;
 }
