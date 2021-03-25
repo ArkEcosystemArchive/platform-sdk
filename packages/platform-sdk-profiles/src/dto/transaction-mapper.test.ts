@@ -1,9 +1,9 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
+
 import { identity } from "../../test/fixtures/identity";
 import { bootContainer } from "../../test/helpers";
-
 import { IProfile, IWallet, ProfileSetting } from "../contracts";
 import { Profile } from "../drivers/memory/profiles/profile";
 import { Wallet } from "../drivers/memory/wallets/wallet";

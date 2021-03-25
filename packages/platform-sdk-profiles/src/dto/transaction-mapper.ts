@@ -1,6 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { IReadWriteWallet } from "../contracts";
 
+import { IReadWriteWallet } from "../contracts";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,

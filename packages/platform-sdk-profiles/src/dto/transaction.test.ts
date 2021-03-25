@@ -4,9 +4,13 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
+
 import { identity } from "../../test/fixtures/identity";
 import { bootContainer } from "../../test/helpers";
-
+import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting } from "../contracts";
+import { Profile } from "../drivers/memory/profiles/profile";
+import { container } from "../environment/container";
+import { Identifiers } from "../environment/container.models";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,
@@ -30,10 +34,6 @@ import {
 	TransferData,
 	VoteData,
 } from "./transaction";
-import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting } from "../contracts";
-import { Profile } from "../drivers/memory/profiles/profile";
-import { Identifiers } from "../environment/container.models";
-import { container } from "../environment/container";
 
 const createSubject = (wallet, properties, klass) => {
 	let meta: Contracts.TransactionDataMeta = "some meta";

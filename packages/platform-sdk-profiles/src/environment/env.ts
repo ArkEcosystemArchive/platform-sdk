@@ -1,7 +1,16 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
-import { ICoinService, IDataRepository, IDelegateService, IExchangeRateService, IFeeService, IKnownWalletService, IProfileRepository, IWalletService } from "../contracts";
 
+import {
+	ICoinService,
+	IDataRepository,
+	IDelegateService,
+	IExchangeRateService,
+	IFeeService,
+	IKnownWalletService,
+	IProfileRepository,
+	IWalletService,
+} from "../contracts";
 import { DriverFactory } from "../drivers/driver.factory";
 import { container } from "./container";
 import { makeCoin } from "./container.helpers";

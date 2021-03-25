@@ -1,4 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+
 import { Driver } from "../contracts";
 
 export type CoinList = Record<string, Coins.CoinSpec>;

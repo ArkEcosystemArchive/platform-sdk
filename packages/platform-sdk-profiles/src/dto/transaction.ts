@@ -2,10 +2,10 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { IReadWriteWallet } from "../contracts";
+import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
-import { IReadWriteWallet } from "../contracts";
 
 export class TransactionData {
 	readonly #wallet: IReadWriteWallet;
