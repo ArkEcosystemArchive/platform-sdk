@@ -4,7 +4,9 @@ import { IProfileRepository, IProfileExportOptions, IProfile } from "../../../co
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
 import { DataRepository } from "./data-repository";
+import { injectable } from "inversify";
 
+@injectable()
 export class ProfileRepository implements IProfileRepository {
 	readonly #data: DataRepository;
 

@@ -4,7 +4,9 @@ import { DataRepository } from "../repositories/data-repository";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { ICoinService } from "../../../contracts";
+import { injectable } from "inversify";
 
+@injectable()
 export class CoinService implements ICoinService {
 	readonly #dataRepository: DataRepository = new DataRepository();
 

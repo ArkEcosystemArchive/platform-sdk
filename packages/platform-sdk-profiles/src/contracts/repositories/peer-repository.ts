@@ -1,6 +1,6 @@
 import { IProfile } from "../profiles/profile";
 
-interface IPeer {
+export interface IPeer {
 	name: string;
 	host: string;
 	isMultiSignature: boolean;

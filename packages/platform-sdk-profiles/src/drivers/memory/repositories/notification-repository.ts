@@ -1,32 +1,23 @@
 import { Except } from "type-fest";
 import { v4 as uuidv4 } from "uuid";
-import { INotificationRepository } from "../../../contracts";
+import { INotification, INotificationRepository } from "../../../contracts";
+import { injectable } from "inversify";
 
 import { DataRepository } from "./data-repository";
 
-interface Notification {
-	id: string;
-	icon: string;
-	name: string;
-	body: string;
-	type: string;
-	action: string;
-	read_at?: number;
-	meta?: Record<string, any>;
-}
-
+@injectable()
 export class NotificationRepository implements INotificationRepository {
 	#data: DataRepository = new DataRepository();
 
-	public all(): Record<string, Notification> {
-		return this.#data.all() as Record<string, Notification>;
+	public all(): Record<string, INotification> {
+		return this.#data.all() as Record<string, INotification>;
 	}
 
-	public first(): Notification {
+	public first(): INotification {
 		return this.#data.first();
 	}
 
-	public last(): Notification {
+	public last(): INotification {
 		return this.#data.last();
 	}
 
@@ -34,12 +25,12 @@ export class NotificationRepository implements INotificationRepository {
 		return this.#data.keys();
 	}
 
-	public values(): Notification[] {
+	public values(): INotification[] {
 		return this.#data.values();
 	}
 
-	public get(key: string): Notification {
-		const notification: Notification | undefined = this.#data.get(key);
+	public get(key: string): INotification {
+		const notification: INotification | undefined = this.#data.get(key);
 
 		if (!notification) {
 			throw new Error(`Failed to find a notification that matches [${key}].`);
@@ -48,7 +39,7 @@ export class NotificationRepository implements INotificationRepository {
 		return notification;
 	}
 
-	public push(value: Except<Notification, "id">): Notification {
+	public push(value: Except<INotification, "id">): INotification {
 		const id: string = uuidv4();
 
 		this.#data.set(id, { id, ...value });
@@ -82,12 +73,12 @@ export class NotificationRepository implements INotificationRepository {
 	 * Convenience methods to interact with notifications states.
 	 */
 
-	public read(): Notification[] {
-		return this.values().filter((notification: Notification) => notification.read_at !== undefined);
+	public read(): INotification[] {
+		return this.values().filter((notification: INotification) => notification.read_at !== undefined);
 	}
 
-	public unread(): Notification[] {
-		return this.values().filter((notification: Notification) => notification.read_at === undefined);
+	public unread(): INotification[] {
+		return this.values().filter((notification: INotification) => notification.read_at === undefined);
 	}
 
 	public markAsRead(key: string): void {

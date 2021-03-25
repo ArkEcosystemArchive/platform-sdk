@@ -4,7 +4,9 @@ import { IContact, IContactAddress, IContactAddressInput, IContactRepository, IP
 import { Contact } from "../contacts/contact";
 import { pqueue } from "../../../helpers/queue";
 import { DataRepository } from "./data-repository";
+import { injectable } from "inversify";
 
+@injectable()
 export class ContactRepository implements IContactRepository {
 	#data: DataRepository;
 	#profile: IProfile;

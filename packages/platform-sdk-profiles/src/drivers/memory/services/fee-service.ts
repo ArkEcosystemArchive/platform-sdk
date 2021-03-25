@@ -7,7 +7,9 @@ import { makeCoin } from "../../../environment/container.helpers";
 import { Identifiers } from "../../../environment/container.models";
 import { CoinService } from "./coin-service";
 import { IFeeService } from "../../../contracts";
+import { injectable } from "inversify";
 
+@injectable()
 export class FeeService implements IFeeService {
 	readonly #dataRepository: DataRepository = new DataRepository();
 

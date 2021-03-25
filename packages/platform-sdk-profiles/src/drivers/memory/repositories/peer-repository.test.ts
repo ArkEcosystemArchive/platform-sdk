@@ -1,4 +1,5 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import { PeerRepository } from "./peer-repository";
 

@@ -8,7 +8,9 @@ import { makeCoin } from "../../../environment/container.helpers";
 import { Identifiers } from "../../../environment/container.models";
 import { CoinService } from "./coin-service";
 import { IDelegateService } from "../../../contracts";
+import { injectable } from "inversify";
 
+@injectable()
 export class DelegateService implements IDelegateService {
 	readonly #dataRepository: DataRepository = new DataRepository();
 

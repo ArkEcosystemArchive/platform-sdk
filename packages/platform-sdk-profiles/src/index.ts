@@ -1,4 +1,4 @@
-// @TODO: replace those exports with contracts
+import "reflect-metadata";
 
 export * from "./environment/container.models";
 export * from "./environment/env.models";

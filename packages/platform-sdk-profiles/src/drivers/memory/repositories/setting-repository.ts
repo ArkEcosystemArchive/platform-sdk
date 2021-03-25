@@ -1,6 +1,8 @@
 import { ISettingRepository } from "../../../contracts";
 import { DataRepository } from "./data-repository";
+import { injectable } from "inversify";
 
+@injectable()
 export class SettingRepository implements ISettingRepository {
 	#data: DataRepository;
 	#allowedKeys: string[];

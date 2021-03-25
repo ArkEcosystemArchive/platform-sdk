@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 import { Coins } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";

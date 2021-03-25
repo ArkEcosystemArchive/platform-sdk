@@ -1,18 +1,9 @@
 import { Except } from "type-fest";
 import { v4 as uuidv4 } from "uuid";
-import { IPluginRepository } from "../../../contracts";
+import { IPlugin, IPluginRepository } from "../../../contracts";
 
 import { DataRepository } from "../repositories/data-repository";
 import { PluginRegistry } from "./plugin-registry";
-
-interface Plugin {
-	id: string;
-	name: string;
-	version: string;
-	isEnabled: boolean;
-	permissions: string[];
-	urls: string[];
-}
 
 export class PluginRepository implements IPluginRepository {
 	readonly #data: DataRepository;
@@ -23,15 +14,15 @@ export class PluginRepository implements IPluginRepository {
 		this.#registry = new PluginRegistry();
 	}
 
-	public all(): Record<string, Plugin> {
-		return this.#data.all() as Record<string, Plugin>;
+	public all(): Record<string, IPlugin> {
+		return this.#data.all() as Record<string, IPlugin>;
 	}
 
-	public first(): Plugin {
+	public first(): IPlugin {
 		return this.#data.first();
 	}
 
-	public last(): Plugin {
+	public last(): IPlugin {
 		return this.#data.last();
 	}
 
@@ -39,11 +30,11 @@ export class PluginRepository implements IPluginRepository {
 		return this.#data.keys();
 	}
 
-	public values(): Plugin[] {
+	public values(): IPlugin[] {
 		return this.#data.values();
 	}
 
-	public push(plugin: Except<Plugin, "id">): Plugin {
+	public push(plugin: Except<IPlugin, "id">): IPlugin {
 		const id: string = uuidv4();
 
 		this.#data.set(id, { id, ...plugin });
@@ -55,8 +46,8 @@ export class PluginRepository implements IPluginRepository {
 		this.#data.fill(data);
 	}
 
-	public findById(id: string): Plugin {
-		const plugin: Plugin | undefined = this.#data.get(id);
+	public findById(id: string): IPlugin {
+		const plugin: IPlugin | undefined = this.#data.get(id);
 
 		if (!plugin) {
 			throw new Error(`Failed to find a plugin for [${id}].`);

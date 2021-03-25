@@ -20,13 +20,13 @@ export class MemoryDriver implements Driver {
 	 * @memberof MemoryDriver
 	 */
 	public make(container: Container, options: EnvironmentOptions): void {
-		container.bind(Identifiers.AppData, new DataRepository());
-		container.bind(Identifiers.ProfileRepository, new ProfileRepository());
-		container.bind(Identifiers.CoinService, new CoinService());
-		container.bind(Identifiers.DelegateService, new DelegateService());
-		container.bind(Identifiers.ExchangeRateService, new ExchangeRateService());
-		container.bind(Identifiers.FeeService, new FeeService());
-		container.bind(Identifiers.KnownWalletService, new KnownWalletService());
-		container.bind(Identifiers.WalletService, new WalletService());
+		container.singleton(Identifiers.AppData, DataRepository);
+		container.singleton(Identifiers.ProfileRepository, ProfileRepository);
+		container.singleton(Identifiers.CoinService, CoinService);
+		container.singleton(Identifiers.DelegateService, DelegateService);
+		container.singleton(Identifiers.ExchangeRateService, ExchangeRateService);
+		container.singleton(Identifiers.FeeService, FeeService);
+		container.singleton(Identifiers.KnownWalletService, KnownWalletService);
+		container.singleton(Identifiers.WalletService, WalletService);
 	}
 }

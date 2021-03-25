@@ -8,7 +8,9 @@ import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Storage } from "../../../environment/env.models";
 import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting } from "../../../contracts";
+import { injectable } from "inversify";
 
+@injectable()
 export class ExchangeRateService implements IExchangeRateService {
 	readonly #storageKey: string = "EXCHANGE_RATE_SERVICE";
 	readonly #dataRepository: DataRepository = new DataRepository();
