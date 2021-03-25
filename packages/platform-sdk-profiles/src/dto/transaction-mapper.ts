@@ -1,6 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
-import { ReadWriteWallet } from "../wallets/wallet.models";
+import { ReadWriteWallet } from "../drivers/memory/wallets/wallet.models";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,

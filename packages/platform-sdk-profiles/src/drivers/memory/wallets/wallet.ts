@@ -4,9 +4,9 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { decrypt } from "bip38";
 import dot from "dot-prop";
 
-import { ExtendedTransactionData } from "../dto/transaction";
-import { ExtendedTransactionDataCollection } from "../dto/transaction-collection";
-import { transformTransactionData, transformTransactionDataCollection } from "../dto/transaction-mapper";
+import { ExtendedTransactionData } from "../../../dto/transaction";
+import { ExtendedTransactionDataCollection } from "../../../dto/transaction-collection";
+import { transformTransactionData, transformTransactionDataCollection } from "../../../dto/transaction-mapper";
 import { container } from "../../../environment/container";
 import { makeCoin } from "../../../environment/container.helpers";
 import { Identifiers } from "../../../environment/container.models";
