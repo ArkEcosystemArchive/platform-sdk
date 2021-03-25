@@ -1,4 +1,5 @@
 import { Except } from "type-fest";
+import { IPluginRegistry } from "./plugin-registry";
 
 interface Plugin {
 	id: string;
@@ -21,5 +22,5 @@ export interface IPluginRepository {
     forget(id: string): void;
     flush(): void;
     count(): number;
-    registry(): PluginRegistry;
+    registry(): IPluginRegistry;
 }

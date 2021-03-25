@@ -1,14 +1,6 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
 
-import { ExtendedTransactionData } from "../../dto/transaction";
-import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
-import { transformTransactionData } from "../../dto/transaction-mapper";
-import { promiseAllSettledByKey } from "../../helpers/promise";
-import { ReadWriteWallet } from "../../wallets/wallet.models";
-import { ProfileContract } from "../profile.models";
-
-type HistoryMethod = string;
-type HistoryWallet = ExtendedTransactionDataCollection;
+import { ExtendedTransactionDataCollection } from "../../../memory/dto/transaction-collection";
 
 type AggregateQuery = {
 	addresses?: string[];
