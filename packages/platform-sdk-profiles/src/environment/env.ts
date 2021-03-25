@@ -1,19 +1,19 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
 
+import { DriverFactory } from "../drivers/driver.factory";
 import { DataRepository } from "../drivers/memory/repositories/data-repository";
 import { ProfileRepository } from "../drivers/memory/repositories/profile-repository";
-import { container } from "./container";
-import { makeCoin } from "./container.helpers";
-import { Identifiers } from "./container.models";
-import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
 import { CoinService } from "../drivers/memory/services/coin-service";
 import { DelegateService } from "../drivers/memory/services/delegate-service";
 import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
 import { FeeService } from "../drivers/memory/services/fee-service";
 import { KnownWalletService } from "../drivers/memory/services/known-wallet-service";
 import { WalletService } from "../drivers/memory/services/wallet-service";
-import { DriverFactory } from "../drivers/driver.factory";
+import { container } from "./container";
+import { makeCoin } from "./container.helpers";
+import { Identifiers } from "./container.models";
+import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
 import { StorageFactory } from "./storage/factory";
 
 export class Environment {
