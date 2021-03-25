@@ -1,5 +1,5 @@
-import { ReadWriteWallet } from "../../wallets/wallet";
+import { IReadWriteWallet } from "../../wallets/wallet";
 
 export interface IRegistrationAggregate {
-    delegates(): ReadWriteWallet[];
+    delegates(): IReadWriteWallet[];
 }

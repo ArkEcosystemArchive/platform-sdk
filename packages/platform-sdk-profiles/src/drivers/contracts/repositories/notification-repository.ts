@@ -1,6 +1,6 @@
 import { Except } from "type-fest";
 
-interface Notification {
+interface INotification {
 	id: string;
 	icon: string;
 	name: string;
@@ -12,19 +12,19 @@ interface Notification {
 }
 
 export interface INotificationRepository {
-    all(): Record<string, Notification>;
-    first(): Notification;
-    last(): Notification;
+    all(): Record<string, INotification>;
+    first(): INotification;
+    last(): INotification;
     keys(): string[];
-    values(): Notification[];
-    get(key: string): Notification;
-    push(value: Except<Notification, "id">): Notification;
+    values(): INotification[];
+    get(key: string): INotification;
+    push(value: Except<INotification, "id">): INotification;
     fill(entries: object): void;
     has(key: string): boolean;
     forget(key: string): void;
     flush(): void;
     count(): number;
-    read(): Notification[];
-    unread(): Notification[];
+    read(): INotification[];
+    unread(): INotification[];
     markAsRead(key: string): void;
 }

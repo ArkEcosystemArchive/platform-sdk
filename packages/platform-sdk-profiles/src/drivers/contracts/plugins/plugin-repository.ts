@@ -1,7 +1,7 @@
 import { Except } from "type-fest";
 import { IPluginRegistry } from "./plugin-registry";
 
-interface Plugin {
+interface IPlugin {
 	id: string;
 	name: string;
 	version: string;
@@ -11,14 +11,14 @@ interface Plugin {
 }
 
 export interface IPluginRepository {
-    all(): Record<string, Plugin>;
-    first(): Plugin;
-    last(): Plugin;
+    all(): Record<string, IPlugin>;
+    first(): IPlugin;
+    last(): IPlugin;
     keys(): string[];
-    values(): Plugin[];
-    push(plugin: Except<Plugin, "id">): Plugin;
+    values(): IPlugin[];
+    push(plugin: Except<IPlugin, "id">): IPlugin;
     fill(data: object): void;
-    findById(id: string): Plugin;
+    findById(id: string): IPlugin;
     forget(id: string): void;
     flush(): void;
     count(): number;

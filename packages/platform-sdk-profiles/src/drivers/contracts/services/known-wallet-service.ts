@@ -1,4 +1,3 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
 
 export interface IKnownWalletService {
     syncAll(): Promise<void>;
