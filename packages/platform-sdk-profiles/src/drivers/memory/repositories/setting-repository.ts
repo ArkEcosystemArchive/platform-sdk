@@ -1,6 +1,7 @@
+import { ISettingRepository } from "../../../contracts";
 import { DataRepository } from "./data-repository";
 
-export class SettingRepository {
+export class SettingRepository implements ISettingRepository {
 	#data: DataRepository;
 	#allowedKeys: string[];
 

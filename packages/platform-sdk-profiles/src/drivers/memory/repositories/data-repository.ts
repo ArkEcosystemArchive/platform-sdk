@@ -1,6 +1,7 @@
 import dot from "dot-prop";
+import { IDataRepository } from "../../../contracts";
 
-export class DataRepository {
+export class DataRepository implements IDataRepository {
 	#storage: object = {};
 	#snapshot: object | undefined;
 

@@ -1,12 +1,12 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
+import { identity } from "../../test/fixtures/identity";
+import { bootContainer } from "../../test/helpers";
 
-import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../test/helpers";
-import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
-import { Wallet } from "../wallets/wallet";
+import { IProfile, IWallet, ProfileSetting } from "../contracts";
+import { Profile } from "../drivers/memory/profiles/profile";
+import { Wallet } from "../drivers/memory/wallets/wallet";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,
@@ -61,8 +61,8 @@ const data = [
 beforeAll(() => bootContainer());
 
 describe("transaction-mapper", () => {
-	let profile: Profile;
-	let wallet: Wallet;
+	let profile: IProfile;
+	let wallet: IWallet;
 
 	const dummyTransactionData = {
 		isLegacyBridgechainRegistration: () => false,
@@ -93,11 +93,11 @@ describe("transaction-mapper", () => {
 
 		nock(/.+/)
 			.get("/api/peers")
-			.reply(200, require("../../../../test/fixtures/client/peers.json"))
+			.reply(200, require("../../test/fixtures/client/peers.json"))
 			.get("/api/node/configuration/crypto")
-			.reply(200, require("../../../../test/fixtures/client/cryptoConfiguration.json"))
+			.reply(200, require("../../test/fixtures/client/cryptoConfiguration.json"))
 			.get("/api/node/syncing")
-			.reply(200, require("../../../../test/fixtures/client/syncing.json"))
+			.reply(200, require("../../test/fixtures/client/syncing.json"))
 			.persist();
 
 		profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });

@@ -1,12 +1,12 @@
 import { Bcrypt } from "@arkecosystem/platform-sdk-crypto";
 
-import { MemoryPassword } from "../helpers/password";
-import { ProfileContract, ProfileSetting } from "./profile.models";
+import { MemoryPassword } from "../../../helpers/password";
+import { IAuthenticator, IProfile, ProfileSetting } from "../../../contracts";
 
-export class Authenticator {
-	readonly #profile;
+export class Authenticator implements IAuthenticator {
+	readonly #profile: IProfile;
 
-	public constructor(profile: ProfileContract) {
+	public constructor(profile: IProfile) {
 		this.#profile = profile;
 	}
 
@@ -35,7 +35,7 @@ export class Authenticator {
 			throw new Error("No password is set.");
 		}
 
-		return Bcrypt.verify(this.#profile.getRawData().password, password);
+		return Bcrypt.verify(this.#profile.getRawData().password!, password);
 	}
 
 	public changePassword(oldPassword: string, newPassword: string): void {

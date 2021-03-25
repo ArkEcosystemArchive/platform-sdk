@@ -1,7 +1,6 @@
 import "jest-extended";
+import { ProfileSetting, WalletSetting } from "../../../contracts";
 
-import { ProfileSetting } from "../profiles/profile.models";
-import { WalletSetting } from "../wallets/wallet.models";
 import { SettingRepository } from "./setting-repository";
 
 describe.each([["profile", "wallet"]])("SettingRepository(%s)", (type) => {

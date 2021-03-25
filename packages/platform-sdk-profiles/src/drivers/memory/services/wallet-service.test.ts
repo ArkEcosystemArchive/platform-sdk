@@ -4,15 +4,14 @@ import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
+import { IProfile, IReadWriteWallet } from "../../../contracts";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { Profile } from "..//profiles/profile";
 import { ProfileRepository } from "../repositories/profile-repository";
-import { ReadWriteWallet } from "../wallets/wallet.models";
 import { WalletService } from "./wallet-service";
 
-let profile: Profile;
-let wallet: ReadWriteWallet;
+let profile: IProfile;
+let wallet: IReadWriteWallet;
 let subject: WalletService;
 
 let liveSpy: jest.SpyInstance;

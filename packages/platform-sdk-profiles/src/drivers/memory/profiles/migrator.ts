@@ -1,11 +1,11 @@
 import semver from "semver";
+import { IMigrator, IProfile, ProfileData } from "../../../contracts";
 
-import { ProfileContract, ProfileData } from "./profile.models";
 
-export class Migrator {
-	readonly #profile: ProfileContract;
+export class Migrator implements IMigrator {
+	readonly #profile: IProfile;
 
-	public constructor(profile: ProfileContract) {
+	public constructor(profile: IProfile) {
 		this.#profile = profile;
 	}
 

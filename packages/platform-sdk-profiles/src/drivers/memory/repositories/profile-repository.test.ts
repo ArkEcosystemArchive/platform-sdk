@@ -4,10 +4,11 @@ import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
+import { IProfileRepository } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "./profile-repository";
 
-let subject: ProfileRepository;
+let subject: IProfileRepository;
 
 beforeAll(() => {
 	bootContainer();

@@ -1,6 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { IReadWriteWallet } from "../contracts";
 
-import { ReadWriteWallet } from "../drivers/memory/wallets/wallet.models";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,
@@ -28,7 +28,7 @@ import {
 import { ExtendedTransactionDataCollection } from "./transaction-collection";
 
 export const transformTransactionData = (
-	wallet: ReadWriteWallet,
+	wallet: IReadWriteWallet,
 	transaction: Contracts.TransactionDataType,
 ): ExtendedTransactionData => {
 	const instance: ExtendedTransactionData = new TransactionData(wallet, transaction);
@@ -121,7 +121,7 @@ export const transformTransactionData = (
 };
 
 export const transformTransactionDataCollection = (
-	wallet: ReadWriteWallet,
+	wallet: IReadWriteWallet,
 	transactions: Coins.TransactionDataCollection,
 ): ExtendedTransactionDataCollection =>
 	new ExtendedTransactionDataCollection(

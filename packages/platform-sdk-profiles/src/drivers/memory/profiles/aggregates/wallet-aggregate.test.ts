@@ -7,9 +7,10 @@ import { identity } from "../../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../../test/helpers";
 import { Profile } from "../profile";
 import { WalletAggregate } from "./wallet-aggregate";
+import { IProfile } from "../../../../contracts";
 
 let subject: WalletAggregate;
-let profile: Profile;
+let profile: IProfile;
 
 beforeAll(() => {
 	bootContainer();

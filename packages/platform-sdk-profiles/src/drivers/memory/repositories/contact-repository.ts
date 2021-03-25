@@ -1,30 +1,28 @@
 import { v4 as uuidv4 } from "uuid";
+import { IContact, IContactAddress, IContactAddressInput, IContactRepository, IProfile } from "../../../contracts";
 
 import { Contact } from "../contacts/contact";
-import { ContactAddress } from "../contacts/contact-address";
-import { ContactAddressInput } from "../contacts/contact-address.models";
-import { pqueue } from "../helpers/queue";
-import { Profile } from "../profiles/profile";
+import { pqueue } from "../../../helpers/queue";
 import { DataRepository } from "./data-repository";
 
-export class ContactRepository {
+export class ContactRepository implements IContactRepository {
 	#data: DataRepository;
-	#profile: Profile;
+	#profile: IProfile;
 
-	public constructor(profile: Profile) {
+	public constructor(profile: IProfile) {
 		this.#data = new DataRepository();
 		this.#profile = profile;
 	}
 
-	public all(): Record<string, Contact> {
-		return this.#data.all() as Record<string, Contact>;
+	public all(): Record<string, IContact> {
+		return this.#data.all() as Record<string, IContact>;
 	}
 
-	public first(): Contact {
+	public first(): IContact {
 		return this.#data.first();
 	}
 
-	public last(): Contact {
+	public last(): IContact {
 		return this.#data.last();
 	}
 
@@ -32,12 +30,12 @@ export class ContactRepository {
 		return this.#data.keys();
 	}
 
-	public values(): Contact[] {
+	public values(): IContact[] {
 		return this.#data.values();
 	}
 
-	public create(name: string): Contact {
-		const contacts: Contact[] = this.values();
+	public create(name: string): IContact {
+		const contacts: IContact[] = this.values();
 
 		for (const contact of contacts) {
 			if (contact.name().toLowerCase() === name.toLowerCase()) {
@@ -47,7 +45,7 @@ export class ContactRepository {
 
 		const id: string = uuidv4();
 
-		const result: Contact = new Contact({ id, name, starred: false }, this.#profile);
+		const result: IContact = new Contact({ id, name, starred: false }, this.#profile);
 
 		this.#data.set(id, result);
 
@@ -58,7 +56,7 @@ export class ContactRepository {
 		const promises: (() => Promise<void>)[] = [];
 
 		for (const [id, contact] of Object.entries(contacts)) {
-			const instance: Contact = new Contact(contact, this.#profile);
+			const instance: IContact = new Contact(contact, this.#profile);
 
 			promises.push(() => instance.restore(contact.addresses));
 
@@ -68,8 +66,8 @@ export class ContactRepository {
 		await pqueue(promises);
 	}
 
-	public findById(id: string): Contact {
-		const contact: Contact | undefined = this.#data.get(id);
+	public findById(id: string): IContact {
+		const contact: IContact | undefined = this.#data.get(id);
 
 		if (!contact) {
 			throw new Error(`Failed to find a contact for [${id}].`);
@@ -78,11 +76,11 @@ export class ContactRepository {
 		return contact;
 	}
 
-	public async update(id: string, data: { name?: string; addresses?: ContactAddressInput[] }): Promise<void> {
+	public async update(id: string, data: { name?: string; addresses?: IContactAddressInput[] }): Promise<void> {
 		const result = this.findById(id);
 
 		if (data.name) {
-			const contacts: Contact[] = this.values();
+			const contacts: IContact[] = this.values();
 
 			for (const contact of contacts) {
 				if (contact.id() === id) {
@@ -118,26 +116,26 @@ export class ContactRepository {
 		return this.keys().length;
 	}
 
-	public findByAddress(value: string): Contact[] {
+	public findByAddress(value: string): IContact[] {
 		return this.findByColumn("address", value);
 	}
 
-	public findByCoin(value: string): Contact[] {
+	public findByCoin(value: string): IContact[] {
 		return this.findByColumn("coin", value);
 	}
 
-	public findByNetwork(value: string): Contact[] {
+	public findByNetwork(value: string): IContact[] {
 		return this.findByColumn("network", value);
 	}
 
-	private findByColumn(column: string, value: string): Contact[] {
-		const result: Contact[] = [];
+	private findByColumn(column: string, value: string): IContact[] {
+		const result: IContact[] = [];
 
 		for (const contact of Object.values(this.all())) {
-			const match: ContactAddress | undefined = contact
+			const match: IContactAddress | undefined = contact
 				.addresses()
 				.values()
-				.find((address: ContactAddress) => address[column]() === value);
+				.find((address: IContactAddress) => address[column]() === value);
 
 			if (match) {
 				result.push(contact);

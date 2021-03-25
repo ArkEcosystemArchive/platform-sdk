@@ -1,15 +1,8 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
+import { ICoinService, IDataRepository, IDelegateService, IExchangeRateService, IFeeService, IKnownWalletService, IProfileRepository, IWalletService } from "../contracts";
 
 import { DriverFactory } from "../drivers/driver.factory";
-import { DataRepository } from "../drivers/memory/repositories/data-repository";
-import { ProfileRepository } from "../drivers/memory/repositories/profile-repository";
-import { CoinService } from "../drivers/memory/services/coin-service";
-import { DelegateService } from "../drivers/memory/services/delegate-service";
-import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
-import { FeeService } from "../drivers/memory/services/fee-service";
-import { KnownWalletService } from "../drivers/memory/services/known-wallet-service";
-import { WalletService } from "../drivers/memory/services/wallet-service";
 import { container } from "./container";
 import { makeCoin } from "./container.helpers";
 import { Identifiers } from "./container.models";
@@ -74,7 +67,7 @@ export class Environment {
 
 		/* istanbul ignore next */
 		if (container.has(Identifiers.ExchangeRateService)) {
-			await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).restore();
+			await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).restore();
 		}
 	}
 
@@ -101,7 +94,7 @@ export class Environment {
 	 * @returns {CoinService}
 	 * @memberof Environment
 	 */
-	public coins(): CoinService {
+	public coins(): ICoinService {
 		return container.get(Identifiers.CoinService);
 	}
 
@@ -111,7 +104,7 @@ export class Environment {
 	 * @returns {DataRepository}
 	 * @memberof Environment
 	 */
-	public data(): DataRepository {
+	public data(): IDataRepository {
 		return container.get(Identifiers.AppData);
 	}
 
@@ -121,7 +114,7 @@ export class Environment {
 	 * @returns {DelegateService}
 	 * @memberof Environment
 	 */
-	public delegates(): DelegateService {
+	public delegates(): IDelegateService {
 		return container.get(Identifiers.DelegateService);
 	}
 
@@ -131,7 +124,7 @@ export class Environment {
 	 * @returns {ExchangeRateService}
 	 * @memberof Environment
 	 */
-	public exchangeRates(): ExchangeRateService {
+	public exchangeRates(): IExchangeRateService {
 		return container.get(Identifiers.ExchangeRateService);
 	}
 
@@ -141,7 +134,7 @@ export class Environment {
 	 * @returns {FeeService}
 	 * @memberof Environment
 	 */
-	public fees(): FeeService {
+	public fees(): IFeeService {
 		return container.get(Identifiers.FeeService);
 	}
 
@@ -151,7 +144,7 @@ export class Environment {
 	 * @returns {KnownWalletService}
 	 * @memberof Environment
 	 */
-	public knownWallets(): KnownWalletService {
+	public knownWallets(): IKnownWalletService {
 		return container.get(Identifiers.KnownWalletService);
 	}
 
@@ -161,7 +154,7 @@ export class Environment {
 	 * @returns {ProfileRepository}
 	 * @memberof Environment
 	 */
-	public profiles(): ProfileRepository {
+	public profiles(): IProfileRepository {
 		return container.get(Identifiers.ProfileRepository);
 	}
 
@@ -171,7 +164,7 @@ export class Environment {
 	 * @returns {WalletService}
 	 * @memberof Environment
 	 */
-	public wallets(): WalletService {
+	public wallets(): IWalletService {
 		return container.get(Identifiers.WalletService);
 	}
 

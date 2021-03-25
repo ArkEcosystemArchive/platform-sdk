@@ -1,4 +1,4 @@
-import { Profile } from "@arkecosystem/platform-sdk-profiles";
+import { IProfile } from "@arkecosystem/platform-sdk-profiles/dist/contracts";
 import prompts from "prompts";
 
 import { renderLogo, useLogger } from "../helpers";
@@ -13,7 +13,7 @@ import { sendVote } from "./send-vote";
 import { signMessage } from "./sign-message";
 import { verifyMessage } from "./verify-message";
 
-export const accessWallet = async (profile: Profile): Promise<void> => {
+export const accessWallet = async (profile: IProfile): Promise<void> => {
 	if (profile.wallets().count() === 0) {
 		return;
 	}

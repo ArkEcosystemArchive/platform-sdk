@@ -1,11 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
+import { IProfileRepository, IProfileExportOptions, IProfile } from "../../../contracts";
 
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
-import { ProfileExportOptions } from "../profiles/profile.models";
 import { DataRepository } from "./data-repository";
 
-export class ProfileRepository {
+export class ProfileRepository implements IProfileRepository {
 	readonly #data: DataRepository;
 
 	public constructor() {
@@ -18,15 +18,15 @@ export class ProfileRepository {
 		}
 	}
 
-	public all(): Record<string, Profile> {
-		return this.#data.all() as Record<string, Profile>;
+	public all(): Record<string, IProfile> {
+		return this.#data.all() as Record<string, IProfile>;
 	}
 
-	public first(): Profile {
+	public first(): IProfile {
 		return this.#data.first();
 	}
 
-	public last(): Profile {
+	public last(): IProfile {
 		return this.#data.last();
 	}
 
@@ -34,28 +34,28 @@ export class ProfileRepository {
 		return this.#data.keys();
 	}
 
-	public values(): Profile[] {
+	public values(): IProfile[] {
 		return this.#data.values();
 	}
 
-	public findById(id: string): Profile {
+	public findById(id: string): IProfile {
 		if (this.#data.missing(id)) {
 			throw new Error(`No profile found for [${id}].`);
 		}
 
-		return this.#data.get(id) as Profile;
+		return this.#data.get(id) as IProfile;
 	}
 
-	public findByName(name: string): Profile | undefined {
-		return this.values().find((profile: Profile) => profile.name().toLowerCase() === name.toLowerCase());
+	public findByName(name: string): IProfile | undefined {
+		return this.values().find((profile: IProfile) => profile.name().toLowerCase() === name.toLowerCase());
 	}
 
-	public create(name: string): Profile {
+	public create(name: string): IProfile {
 		if (this.findByName(name)) {
 			throw new Error(`The profile [${name}] already exists.`);
 		}
 
-		const result: Profile = ProfileFactory.fromName(name);
+		const result: IProfile = ProfileFactory.fromName(name);
 
 		this.#data.set(result.id(), result);
 
@@ -73,7 +73,7 @@ export class ProfileRepository {
 		return profile;
 	}
 
-	public export(profile: Profile, options: ProfileExportOptions, password?: string): string {
+	public export(profile: IProfile, options: IProfileExportOptions, password?: string): string {
 		return profile.export(password, options);
 	}
 

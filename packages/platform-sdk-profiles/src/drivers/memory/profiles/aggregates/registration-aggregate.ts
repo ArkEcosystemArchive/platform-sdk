@@ -1,17 +1,16 @@
-import { ReadWriteWallet } from "../../wallets/wallet.models";
-import { ProfileContract } from "../profile.models";
+import { IProfile, IReadWriteWallet } from "../../../../contracts";
 
-export class RegistrationAggregate {
-	readonly #profile: ProfileContract;
+export class RegistrationAggregate implements RegistrationAggregate {
+	readonly #profile: IProfile;
 
-	public constructor(profile: ProfileContract) {
+	public constructor(profile: IProfile) {
 		this.#profile = profile;
 	}
 
-	public delegates(): ReadWriteWallet[] {
+	public delegates(): IReadWriteWallet[] {
 		return this.#profile
 			.wallets()
 			.values()
-			.filter((wallet: ReadWriteWallet) => wallet.hasSyncedWithNetwork() && wallet.isDelegate());
+			.filter((wallet: IReadWriteWallet) => wallet.hasSyncedWithNetwork() && wallet.isDelegate());
 	}
 }

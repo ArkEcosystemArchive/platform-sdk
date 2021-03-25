@@ -3,8 +3,9 @@ import { Coins } from "@arkecosystem/platform-sdk";
 import { DataRepository } from "../repositories/data-repository";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
+import { ICoinService } from "../../../contracts";
 
-export class CoinService {
+export class CoinService implements ICoinService {
 	readonly #dataRepository: DataRepository = new DataRepository();
 
 	public all(): Record<string, Coins.Coin> {

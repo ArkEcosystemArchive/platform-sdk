@@ -1,14 +1,12 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-
-import { ReadWriteWallet } from "../../wallets/wallet.models";
-import { ProfileContract } from "../profile.models";
+import { IProfile, IReadWriteWallet, IWalletAggregate } from "../../../../contracts";
 
 type NetworkType = "live" | "test";
 
-export class WalletAggregate {
-	readonly #profile: ProfileContract;
+export class WalletAggregate implements IWalletAggregate {
+	readonly #profile: IProfile;
 
-	public constructor(profile: ProfileContract) {
+	public constructor(profile: IProfile) {
 		this.#profile = profile;
 	}
 
@@ -21,7 +19,7 @@ export class WalletAggregate {
 			.wallets()
 			.values()
 			.reduce(
-				(totals: Record<NetworkType, BigNumber>, wallet: ReadWriteWallet) => {
+				(totals: Record<NetworkType, BigNumber>, wallet: IReadWriteWallet) => {
 					const networkType: NetworkType = wallet.network().isLive() ? "live" : "test";
 
 					return {
@@ -41,7 +39,7 @@ export class WalletAggregate {
 			.wallets()
 			.values()
 			.reduce(
-				(total: BigNumber, wallet: ReadWriteWallet) => total.plus(wallet.convertedBalance()),
+				(total: BigNumber, wallet: IReadWriteWallet) => total.plus(wallet.convertedBalance()),
 				BigNumber.ZERO,
 			);
 	}
@@ -50,16 +48,16 @@ export class WalletAggregate {
 		const result = {};
 
 		const totalByProfile: BigNumber = this.balance(networkType);
-		const walletsByCoin: Record<string, Record<string, ReadWriteWallet>> = this.#profile.wallets().allByCoin();
+		const walletsByCoin: Record<string, Record<string, IReadWriteWallet>> = this.#profile.wallets().allByCoin();
 
 		for (const [coin, wallets] of Object.entries(walletsByCoin)) {
 			const matchingWallets = Object.values(wallets).filter(
-				(wallet: ReadWriteWallet) => wallet.network().isLive() === (networkType === "live"),
+				(wallet: IReadWriteWallet) => wallet.network().isLive() === (networkType === "live"),
 			);
 
 			if (matchingWallets.length) {
 				const totalByCoin: BigNumber = matchingWallets.reduce(
-					(total: BigNumber, wallet: ReadWriteWallet) => total.plus(wallet.balance()),
+					(total: BigNumber, wallet: IReadWriteWallet) => total.plus(wallet.balance()),
 					BigNumber.ZERO,
 				);
 

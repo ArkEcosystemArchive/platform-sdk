@@ -2,9 +2,10 @@
 import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
+import { IProfileStruct, IProfileExportOptions, IContactRepository, ICountAggregate, IDataRepository, INotificationRepository, IPeerRepository, IPluginRepository, IProfile, IProfileInput, IRegistrationAggregate, ISettingRepository, ITransactionAggregate, IWalletAggregate, IWalletRepository, ProfileSetting, IReadWriteWallet } from "../../../contracts";
 
-import { MemoryPassword } from "../helpers/password";
-import { pqueue } from "../helpers/queue";
+import { MemoryPassword } from "../../../helpers/password";
+import { pqueue } from "../../../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../repositories/data-repository";
@@ -13,32 +14,30 @@ import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
 import { Avatar } from "../services/avatar";
-import { ReadWriteWallet } from "../wallets/wallet.models";
 import { CountAggregate } from "./aggregates/count-aggregate";
 import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Migrator } from "./migrator";
-import { ProfileContract, ProfileExportOptions, ProfileInput, ProfileSetting, ProfileStruct } from "./profile.models";
 
-export class Profile implements ProfileContract {
-	#data: ProfileInput;
+export class Profile implements IProfile {
+	#data: IProfileInput;
 
-	readonly #contactRepository: ContactRepository;
-	readonly #dataRepository: DataRepository;
-	readonly #notificationRepository: NotificationRepository;
-	readonly #peerRepository: PeerRepository;
-	readonly #pluginRepository: PluginRepository;
-	readonly #settingRepository: SettingRepository;
-	readonly #walletRepository: WalletRepository;
+	readonly #contactRepository: IContactRepository;
+	readonly #dataRepository: IDataRepository;
+	readonly #notificationRepository: INotificationRepository;
+	readonly #peerRepository: IPeerRepository;
+	readonly #pluginRepository: IPluginRepository;
+	readonly #settingRepository: ISettingRepository;
+	readonly #walletRepository: IWalletRepository;
 
-	readonly #countAggregate: CountAggregate;
-	readonly #registrationAggregate: RegistrationAggregate;
-	readonly #transactionAggregate: TransactionAggregate;
-	readonly #walletAggregate: WalletAggregate;
+	readonly #countAggregate: ICountAggregate;
+	readonly #registrationAggregate: IRegistrationAggregate;
+	readonly #transactionAggregate: ITransactionAggregate;
+	readonly #walletAggregate: IWalletAggregate;
 
-	public constructor(data: ProfileInput) {
+	public constructor(data: IProfileInput) {
 		this.#data = data;
 
 		this.#contactRepository = new ContactRepository(this);
@@ -89,31 +88,31 @@ export class Profile implements ProfileContract {
 		return this.walletAggregate().convertedBalance();
 	}
 
-	public contacts(): ContactRepository {
+	public contacts(): IContactRepository {
 		return this.#contactRepository;
 	}
 
-	public data(): DataRepository {
+	public data(): IDataRepository {
 		return this.#dataRepository;
 	}
 
-	public notifications(): NotificationRepository {
+	public notifications(): INotificationRepository {
 		return this.#notificationRepository;
 	}
 
-	public peers(): PeerRepository {
+	public peers(): IPeerRepository {
 		return this.#peerRepository;
 	}
 
-	public plugins(): PluginRepository {
+	public plugins(): IPluginRepository {
 		return this.#pluginRepository;
 	}
 
-	public settings(): SettingRepository {
+	public settings(): ISettingRepository {
 		return this.#settingRepository;
 	}
 
-	public wallets(): WalletRepository {
+	public wallets(): IWalletRepository {
 		return this.#walletRepository;
 	}
 
@@ -143,19 +142,19 @@ export class Profile implements ProfileContract {
 	 * These methods serve as helpers to aggregate commonly used data.
 	 */
 
-	public countAggregate(): CountAggregate {
+	public countAggregate(): ICountAggregate {
 		return this.#countAggregate;
 	}
 
-	public registrationAggregate(): RegistrationAggregate {
+	public registrationAggregate(): IRegistrationAggregate {
 		return this.#registrationAggregate;
 	}
 
-	public transactionAggregate(): TransactionAggregate {
+	public transactionAggregate(): ITransactionAggregate {
 		return this.#transactionAggregate;
 	}
 
-	public walletAggregate(): WalletAggregate {
+	public walletAggregate(): IWalletAggregate {
 		return this.#walletAggregate;
 	}
 
@@ -186,13 +185,13 @@ export class Profile implements ProfileContract {
 	 * Specify data which should be serialized to an object.
 	 */
 	public toObject(
-		options: ProfileExportOptions = {
+		options: IProfileExportOptions = {
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
 			saveGeneralSettings: true,
 		},
-	): ProfileStruct {
+	): IProfileStruct {
 		if (!options.saveGeneralSettings) {
 			throw Error("This is not implemented yet");
 		}
@@ -216,7 +215,7 @@ export class Profile implements ProfileContract {
 	 * @returns {ProfileInput}
 	 * @memberof Profile
 	 */
-	public dump(): ProfileInput {
+	public dump(): IProfileInput {
 		if (!this.#data.data) {
 			throw new Error("The profile has not been encoded or encrypted. Please call [save] before dumping.");
 		}
@@ -238,7 +237,7 @@ export class Profile implements ProfileContract {
 	 * @memberof Profile
 	 */
 	public async restore(password?: string): Promise<void> {
-		let data: ProfileStruct | undefined;
+		let data: IProfileStruct | undefined;
 		let errorReason = "";
 
 		try {
@@ -320,7 +319,7 @@ export class Profile implements ProfileContract {
 	 * @returns {ProfileInput}
 	 * @memberof Profile
 	 */
-	public getRawData(): ProfileInput {
+	public getRawData(): IProfileInput {
 		return this.#data;
 	}
 
@@ -332,7 +331,7 @@ export class Profile implements ProfileContract {
 	 * @param {ProfileInput} data
 	 * @memberof Profile
 	 */
-	public setRawData(data: ProfileInput): void {
+	public setRawData(data: IProfileInput): void {
 		this.#data = data;
 	}
 
@@ -346,7 +345,7 @@ export class Profile implements ProfileContract {
 	 * @param {string} value
 	 * @memberof Profile
 	 */
-	public setRawDataKey(key: keyof ProfileInput, value: string): void {
+	public setRawDataKey(key: keyof IProfileInput, value: string): void {
 		this.#data[key] = value;
 	}
 
@@ -363,7 +362,7 @@ export class Profile implements ProfileContract {
 
 	public export(
 		password?: string,
-		options: ProfileExportOptions = {
+		options: IProfileExportOptions = {
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
@@ -415,8 +414,8 @@ export class Profile implements ProfileContract {
 	 * @returns {Promise<void>}
 	 * @memberof Profile
 	 */
-	private async restoreWallets(profile: Profile, wallets: object): Promise<void> {
-		const syncWallets = (wallets: object): Promise<ReadWriteWallet[]> =>
+	private async restoreWallets(profile: IProfile, wallets: object): Promise<void> {
+		const syncWallets = (wallets: object): Promise<IReadWriteWallet[]> =>
 			pqueue([...Object.values(wallets)].map((wallet) => () => profile.wallets().restore(wallet)));
 
 		const earlyWallets: Record<string, object> = {};
@@ -464,7 +463,7 @@ export class Profile implements ProfileContract {
 	 *
 	 * @param password A hard-to-guess password to decrypt the contents.
 	 */
-	private decrypt(password: string): ProfileStruct {
+	private decrypt(password: string): IProfileStruct {
 		if (!this.usesPassword()) {
 			throw new Error("This profile does not use a password but password was passed for decryption");
 		}
@@ -474,7 +473,7 @@ export class Profile implements ProfileContract {
 		return { id, ...data };
 	}
 
-	private validateStruct(data: object): ProfileStruct {
+	private validateStruct(data: object): IProfileStruct {
 		const { error, value } = Joi.object({
 			id: Joi.string().required(),
 			contacts: Joi.object().pattern(
@@ -532,6 +531,6 @@ export class Profile implements ProfileContract {
 			throw error;
 		}
 
-		return value as ProfileStruct;
+		return value as IProfileStruct;
 	}
 }

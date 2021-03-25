@@ -1,10 +1,11 @@
-import { pqueueSettled } from "../helpers/queue";
+import { pqueueSettled } from "../../../helpers/queue";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
+import { IProfile, IWalletService } from "../../../contracts";
 
-export class WalletService {
+export class WalletService implements IWalletService {
 	public async syncAll(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
@@ -18,7 +19,7 @@ export class WalletService {
 		await pqueueSettled(promises);
 	}
 
-	public async syncByProfile(profile: Profile): Promise<void> {
+	public async syncByProfile(profile: IProfile): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
 		for (const wallet of profile.wallets().values()) {

@@ -1,10 +1,10 @@
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { Profile } from "@arkecosystem/platform-sdk-profiles";
+import { IProfile } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
 import { renderLogo } from "../helpers";
 
-export const createWallet = async (profile: Profile): Promise<void> => {
+export const createWallet = async (profile: IProfile): Promise<void> => {
 	renderLogo();
 
 	const { command, asset } = await prompts([

@@ -5,10 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
+import { IReadWriteWallet, ProfileSetting } from "../../../contracts";
 import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
 import { Wallet } from "../wallets/wallet";
-import { ReadWriteWallet } from "../wallets/wallet.models";
 import { WalletRepository } from "./wallet-repository";
 
 jest.setTimeout(60000);
@@ -215,9 +214,9 @@ test("#restore", async () => {
 });
 
 describe("#sortBy", () => {
-	let walletARK: ReadWriteWallet;
-	let walletBTC: ReadWriteWallet;
-	let walletETH: ReadWriteWallet;
+	let walletARK: IReadWriteWallet;
+	let walletBTC: IReadWriteWallet;
+	let walletETH: IReadWriteWallet;
 
 	beforeEach(async () => {
 		subject.flush();

@@ -3,22 +3,21 @@ import { MarketService } from "@arkecosystem/platform-sdk-markets";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
 import { DataRepository } from "../repositories/data-repository";
-import { ReadWriteWallet } from "../wallets/wallet.models";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Storage } from "../../../environment/env.models";
+import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting } from "../../../contracts";
 
-export class ExchangeRateService {
+export class ExchangeRateService implements IExchangeRateService {
 	readonly #storageKey: string = "EXCHANGE_RATE_SERVICE";
 	readonly #dataRepository: DataRepository = new DataRepository();
 
-	public async syncAll(profile: Profile, currency: string): Promise<void> {
-		const wallets: ReadWriteWallet[] = profile
+	public async syncAll(profile: IProfile, currency: string): Promise<void> {
+		const wallets: IReadWriteWallet[] = profile
 			.wallets()
 			.values()
-			.filter((wallet: ReadWriteWallet) => wallet.currency() === currency && wallet.network().isLive());
+			.filter((wallet: IReadWriteWallet) => wallet.currency() === currency && wallet.network().isLive());
 
 		if (wallets.length === 0) {
 			return;
@@ -96,7 +95,7 @@ export class ExchangeRateService {
 		return Object.keys(this.#dataRepository.get(`${currency}.${exchangeCurrency}`) || {}).length > 1;
 	}
 
-	private async fetchDailyRate(profile: Profile, currency: string, exchangeCurrency: string): Promise<void> {
+	private async fetchDailyRate(profile: IProfile, currency: string, exchangeCurrency: string): Promise<void> {
 		this.#dataRepository.set(
 			`${currency}.${exchangeCurrency}.${DateTime.make().format("YYYY-MM-DD")}`,
 			await MarketService.make(
