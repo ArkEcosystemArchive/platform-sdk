@@ -14,12 +14,13 @@ import { FeeService } from "../drivers/memory/services/fee-service";
 import { KnownWalletService } from "../drivers/memory/services/known-wallet-service";
 import { WalletService } from "../drivers/memory/services/wallet-service";
 import { DriverFactory } from "../drivers/driver.factory";
+import { StorageFactory } from "./storage/factory";
 
 export class Environment {
 	private storage: StorageData | undefined;
 
 	public constructor(options: EnvironmentOptions) {
-		DriverFactory.make("memory", container, options);
+		this.configureDriver(options);
 	}
 
 	/**
@@ -237,7 +238,35 @@ export class Environment {
 		container.flush();
 
 		if (options !== undefined) {
-			DriverFactory.make("memory", container, options);
+			this.configureDriver(options);
 		}
+	}
+
+	/**
+	 * Create a driver instance and all necessary container bindings.
+	 *
+	 * @memberof Environment
+	 */
+	private configureDriver(options: EnvironmentOptions): void {
+		// These are driver implementation agnostic bindings.
+		if (typeof options.storage === "string") {
+			container.bind(Identifiers.Storage, StorageFactory.make(options.storage));
+		} else {
+			container.bind(Identifiers.Storage, options.storage);
+		}
+
+		container.bind(Identifiers.HttpClient, options.httpClient);
+		container.bind(Identifiers.Coins, options.coins);
+
+		// These are bindings that are specific to the driver implementation.
+		if (options.driver === undefined) {
+			return DriverFactory.make("memory", container, options);
+		}
+
+		if (typeof options.driver === "string") {
+			return DriverFactory.make(options.driver, container, options);
+		}
+
+		return options.driver?.make(container, options);
 	}
 }

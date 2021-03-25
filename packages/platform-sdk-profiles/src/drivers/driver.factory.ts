@@ -3,6 +3,12 @@ import { EnvironmentOptions } from "../environment/env.models";
 import { Driver } from "./contracts";
 import { MemoryDriver } from "./memory";
 
+/**
+ * Creates a new driver instance based on a string identifier.
+ *
+ * @export
+ * @class DriverFactory
+ */
 export class DriverFactory {
 	/**
 	 * Create a driver instance and all necessary container bindings.

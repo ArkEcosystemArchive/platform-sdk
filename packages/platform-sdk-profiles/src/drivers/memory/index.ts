@@ -1,7 +1,6 @@
 import { Container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { EnvironmentOptions } from "../../environment/env.models";
-import { StorageFactory } from "../../environment/storage/factory";
 import { Driver } from "../contracts";
 import { DataRepository } from "./repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
@@ -21,14 +20,7 @@ export class MemoryDriver implements Driver {
 	 * @memberof MemoryDriver
 	 */
 	public make(container: Container, options: EnvironmentOptions): void {
-		if (typeof options.storage === "string") {
-			container.bind(Identifiers.Storage, StorageFactory.make(options.storage));
-		} else {
-			container.bind(Identifiers.Storage, options.storage);
-		}
-
 		container.bind(Identifiers.AppData, new DataRepository());
-		container.bind(Identifiers.HttpClient, options.httpClient);
 		container.bind(Identifiers.ProfileRepository, new ProfileRepository());
 		container.bind(Identifiers.CoinService, new CoinService());
 		container.bind(Identifiers.DelegateService, new DelegateService());
@@ -36,7 +28,5 @@ export class MemoryDriver implements Driver {
 		container.bind(Identifiers.FeeService, new FeeService());
 		container.bind(Identifiers.KnownWalletService, new KnownWalletService());
 		container.bind(Identifiers.WalletService, new WalletService());
-
-		container.bind(Identifiers.Coins, options.coins);
 	}
 }
