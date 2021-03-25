@@ -1,10 +1,7 @@
-
-import { RegistryPlugin } from "./plugin-registry.models";
-
 export interface IPluginRegistry {
-    all(): Promise<RegistryPlugin[]>;
-    size(pkg: RegistryPlugin): Promise<number>;
-    downloads(pkg: RegistryPlugin): Promise<number>;
+    all(): Promise<IRegistryPlugin[]>;
+    size(pkg: IRegistryPlugin): Promise<number>;
+    downloads(pkg: IRegistryPlugin): Promise<number>;
 }
 
 /* istanbul ignore file */
