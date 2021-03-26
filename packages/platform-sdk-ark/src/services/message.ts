@@ -1,5 +1,5 @@
 import { Crypto } from "@arkecosystem/crypto";
-import { Contracts as CryptoContracts, Keys } from "@arkecosystem/crypto-identities";
+import { Contracts as CryptoContracts } from "@arkecosystem/crypto-identities";
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
@@ -25,7 +25,7 @@ export class MessageService implements Contracts.MessageService {
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
 			let keys: CryptoContracts.KeyPair | undefined;
-			
+
 			if (input.mnemonic) {
 				keys = await this.#identityService.keys().fromMnemonic(BIP39.normalize(input.mnemonic));
 			}
