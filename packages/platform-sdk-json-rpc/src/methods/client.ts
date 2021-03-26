@@ -14,6 +14,41 @@ export const registerClient = () => [
 		}).required(),
 	},
 	{
+		name: "client.transactions",
+		async method(input) {
+			const coin = await makeCoin(input.coin, input.network);
+			const transactions = await coin.client().transactions(input);
+
+			return {
+				meta: {
+					prev: transactions.previousPage(),
+					self: transactions.currentPage(),
+					next: transactions.nextPage(),
+					last: transactions.lastPage(),
+				},
+				data: transactions.items().map((transaction) => transaction.toObject()),
+			};
+		},
+		schema: Joi.object({
+			...baseSchema,
+			// Pagination
+			cursor: Joi.string(),
+			limit: Joi.number().positive(),
+			orderBy: Joi.string(),
+			// Data
+			address: Joi.string(),
+			addresses: Joi.array().items(Joi.string()),
+			senderId: Joi.string(),
+			recipientId: Joi.string(),
+			walletId: Joi.string(),
+			senderPublicKey: Joi.string(),
+			recipientPublicKey: Joi.string(),
+			asset: Joi.object(),
+			type: Joi.number(),
+			typeGroup: Joi.number(),
+		}).required(),
+	},
+	{
 		name: "client.wallet",
 		async method({ coin, network, id }) {
 			return (await (await makeCoin(coin, network)).client().wallet(id)).toObject();
