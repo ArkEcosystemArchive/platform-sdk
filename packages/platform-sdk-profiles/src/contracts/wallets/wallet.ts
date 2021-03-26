@@ -83,9 +83,9 @@ export interface IReadWriteWallet {
     peer(): Contracts.PeerService;
     transaction(): TransactionService;
     transactionTypes(): Coins.CoinTransactionTypes;
-    transactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
-    sentTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
-    receivedTransactions(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
+    transactions(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
+    sentTransactions(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
+    receivedTransactions(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
     multiSignature(): Contracts.WalletMultiSignature;
     multiSignatureParticipants(): IReadOnlyWallet[];
     entities(): Contracts.Entity[];
