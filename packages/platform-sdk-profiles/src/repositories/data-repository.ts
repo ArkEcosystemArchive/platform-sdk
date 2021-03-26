@@ -1,4 +1,5 @@
 import dot from "dot-prop";
+
 import { IDataRepository } from "../contracts";
 
 export class DataRepository implements IDataRepository {
