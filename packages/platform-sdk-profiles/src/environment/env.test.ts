@@ -13,7 +13,7 @@ import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
 import { StubStorage } from "../../test/stubs/storage";
 import { Profile } from "../drivers/memory/profiles/profile";
-import { DataRepository } from "../drivers/memory/repositories/data-repository";
+import { DataRepository } from "../repositories/data-repository";
 import { ProfileRepository } from "../drivers/memory/repositories/profile-repository";
 import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
 import { WalletService } from "../drivers/memory/services/wallet-service";

@@ -8,7 +8,7 @@ import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
-import { DataRepository } from "../repositories/data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 import { NotificationRepository } from "../repositories/notification-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
