@@ -8,6 +8,7 @@ import { identity } from "../../../../test/fixtures/identity";
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { DelegateService } from "./delegate-service";
+import { IReadWriteWallet } from "../../../contracts";
 
 let subject: DelegateService;
 
@@ -32,7 +33,7 @@ beforeAll(() => {
 		.persist();
 });
 
-let wallet: Wallet;
+let wallet: IReadWriteWallet;
 
 beforeEach(async () => {
 	subject = new DelegateService();
