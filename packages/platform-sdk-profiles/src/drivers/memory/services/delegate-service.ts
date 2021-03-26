@@ -1,18 +1,18 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { pqueueSettled } from "../../../helpers/queue";
-import { DataRepository } from "../repositories/data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 import { ReadOnlyWallet } from "../wallets/read-only-wallet";
 import { container } from "../../../environment/container";
 import { makeCoin } from "../../../environment/container.helpers";
 import { Identifiers } from "../../../environment/container.models";
 import { CoinService } from "./coin-service";
-import { IDelegateService } from "../../../contracts";
+import { IDelegateService, IReadOnlyWallet, IReadWriteWallet } from "../../../contracts";
 
 export class DelegateService implements IDelegateService {
 	readonly #dataRepository: DataRepository = new DataRepository();
 
-	public all(coin: string, network: string): ReadOnlyWallet[] {
+	public all(coin: string, network: string): IReadOnlyWallet[] {
 		const result: any[] | undefined = this.#dataRepository.get(`${coin}.${network}.delegates`);
 
 		if (result === undefined) {
@@ -24,15 +24,15 @@ export class DelegateService implements IDelegateService {
 		return result.map((delegate) => this.mapDelegate(delegate));
 	}
 
-	public findByAddress(coin: string, network: string, address: string): ReadOnlyWallet {
+	public findByAddress(coin: string, network: string, address: string): IReadOnlyWallet {
 		return this.findDelegateByAttribute(coin, network, "address", address);
 	}
 
-	public findByPublicKey(coin: string, network: string, publicKey: string): ReadOnlyWallet {
+	public findByPublicKey(coin: string, network: string, publicKey: string): IReadOnlyWallet {
 		return this.findDelegateByAttribute(coin, network, "publicKey", publicKey);
 	}
 
-	public findByUsername(coin: string, network: string, username: string): ReadOnlyWallet {
+	public findByUsername(coin: string, network: string, username: string): IReadOnlyWallet {
 		return this.findDelegateByAttribute(coin, network, "username", username);
 	}
 
@@ -117,7 +117,31 @@ export class DelegateService implements IDelegateService {
 		await pqueueSettled(promises);
 	}
 
-	private findDelegateByAttribute(coin: string, network: string, key: string, value: string): ReadOnlyWallet {
+	public map(wallet: IReadWriteWallet, publicKeys: string[]): IReadOnlyWallet[] {
+		if (publicKeys.length === 0) {
+			return [];
+		}
+
+		return publicKeys
+			.map((publicKey: string) => {
+				try {
+					const delegate = this.findByPublicKey(wallet.coinId(), wallet.networkId(), publicKey);
+
+					return new ReadOnlyWallet({
+						address: delegate.address(),
+						publicKey: delegate.publicKey(),
+						username: delegate.username(),
+						rank: delegate.rank(),
+						explorerLink: wallet.link().wallet(delegate.address()),
+					});
+				} catch {
+					return undefined;
+				}
+			})
+			.filter(Boolean) as IReadOnlyWallet[];
+	}
+
+	private findDelegateByAttribute(coin: string, network: string, key: string, value: string): IReadOnlyWallet {
 		const result: any = this.all(coin, network).find((delegate) => delegate[key]() === value);
 
 		if (result === undefined) {
@@ -127,7 +151,7 @@ export class DelegateService implements IDelegateService {
 		return result;
 	}
 
-	private mapDelegate(delegate: Record<string, string>): ReadOnlyWallet {
+	private mapDelegate(delegate: Record<string, string>): IReadOnlyWallet {
 		return new ReadOnlyWallet({
 			address: delegate.address,
 			publicKey: delegate.publicKey,
