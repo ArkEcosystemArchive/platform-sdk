@@ -8,7 +8,7 @@ import { MemoryPassword } from "../../../helpers/password";
 import { pqueue } from "../../../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
-import { DataRepository } from "../repositories/data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 import { NotificationRepository } from "../repositories/notification-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";

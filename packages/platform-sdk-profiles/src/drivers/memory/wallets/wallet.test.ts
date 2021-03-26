@@ -16,11 +16,11 @@ import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
-import { IExchangeRateService, IProfile, WalletData, WalletFlag, WalletSetting } from "../../../contracts";
+import { IExchangeRateService, IProfile, IReadWriteWallet, WalletData, WalletFlag, WalletSetting } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
 let profile: IProfile;
-let subject: Wallet;
+let subject: IReadWriteWallet;
 
 beforeAll(() => bootContainer());
 

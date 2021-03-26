@@ -8,6 +8,7 @@ import {
 	IExchangeRateService,
 	IFeeService,
 	IKnownWalletService,
+	IPluginRegistry,
 	IProfileRepository,
 	IWalletService,
 } from "../contracts";
@@ -155,6 +156,16 @@ export class Environment {
 	 */
 	public knownWallets(): IKnownWalletService {
 		return container.get(Identifiers.KnownWalletService);
+	}
+
+	/**
+	 * Access the plugin registry.
+	 *
+	 * @returns {IPluginRegistry}
+	 * @memberof Environment
+	 */
+	public plugins(): IPluginRegistry {
+		return container.get(Identifiers.PluginRegistry);
 	}
 
 	/**

@@ -1,3 +1,4 @@
+import { IReadWriteWallet } from "../wallets";
 import { IReadOnlyWallet } from "../wallets/read-only-wallet";
 
 export interface IDelegateService {
@@ -7,4 +8,5 @@ export interface IDelegateService {
     findByUsername(coin: string, network: string, username: string): IReadOnlyWallet;
     sync(coin: string, network: string): Promise<void>;
     syncAll(): Promise<void>;
+	map(wallet: IReadWriteWallet, publicKeys: string[]): IReadOnlyWallet[];
 }
