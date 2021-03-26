@@ -6,7 +6,12 @@ import { MessageService } from "./message";
 
 let subject: MessageService;
 
-beforeEach(async () => (subject = await MessageService.__construct(createConfig())));
+beforeEach(async () => (subject = await MessageService.__construct(createConfig(undefined, {
+	networkConfiguration: {
+		crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
+		status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
+	},
+}))));
 
 describe("MessageService", () => {
 	it("should sign and verify a message", async () => {
