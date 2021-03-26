@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../test/fixtures/identity";
 import { bootContainer } from "../../test/helpers";
-import { IProfile, IWallet, ProfileSetting } from "../contracts";
+import { IProfile, IReadWriteWallet, ProfileSetting } from "../contracts";
 import { Profile } from "../drivers/memory/profiles/profile";
 import { Wallet } from "../drivers/memory/wallets/wallet";
 import {
@@ -62,7 +62,7 @@ beforeAll(() => bootContainer());
 
 describe("transaction-mapper", () => {
 	let profile: IProfile;
-	let wallet: IWallet;
+	let wallet: IReadWriteWallet;
 
 	const dummyTransactionData = {
 		isLegacyBridgechainRegistration: () => false,
