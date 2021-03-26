@@ -8,6 +8,7 @@ import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { RegistryPlugin } from "./registry-plugin";
 
+// @EXPOSE
 export class PluginRegistry implements IPluginRegistry {
 	readonly #httpClient: Contracts.HttpClient;
 

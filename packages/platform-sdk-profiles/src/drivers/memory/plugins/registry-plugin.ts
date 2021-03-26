@@ -1,5 +1,6 @@
 import { IRegistryPlugin, IRegistryPluginAuthor } from "../../../contracts";
 
+// @EXPOSE
 export class RegistryPlugin implements IRegistryPlugin {
 	readonly #data: Record<string, any>;
 	readonly #package: Record<string, any>;
