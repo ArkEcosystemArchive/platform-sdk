@@ -11,13 +11,12 @@ import { makeCoin } from "../../../environment/container.helpers";
 import { Identifiers } from "../../../environment/container.models";
 import { ExchangeRateService } from "../services/exchange-rate-service";
 import { KnownWalletService } from "../services/known-wallet-service";
-import { DelegateMapper } from "../mappers/delegate-mapper";
 import { DataRepository } from "../../../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../../../helpers/avatar";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
-import { IPeerRepository, IProfile, IReadWriteWallet, IWallet, IWalletStruct, ProfileSetting, WalletData, WalletFlag, WalletSetting } from "../../../contracts";
+import { IPeerRepository, IProfile, IReadWriteWallet, IReadOnlyWallet, IWalletStruct, ProfileSetting, WalletData, WalletFlag, WalletSetting, IDelegateService } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
 export class Wallet implements IReadWriteWallet {
@@ -69,7 +68,7 @@ export class Wallet implements IReadWriteWallet {
 	 * These methods allow to switch out the underlying implementation of certain things like the coin.
 	 */
 
-	public async setCoin(coin: string, network: string): Promise<IWallet> {
+	public async setCoin(coin: string, network: string): Promise<IReadWriteWallet> {
 		if (this.peers().has(coin, network)) {
 			this.#coin = await makeCoin(
 				coin,
@@ -117,7 +116,7 @@ export class Wallet implements IReadWriteWallet {
 		return this;
 	}
 
-	public setAvatar(value: string): Wallet {
+	public setAvatar(value: string): IReadWriteWallet {
 		this.#avatar = value;
 
 		this.settings().set(WalletSetting.Avatar, value);
@@ -125,7 +124,7 @@ export class Wallet implements IReadWriteWallet {
 		return this;
 	}
 
-	public setAlias(alias: string): Wallet {
+	public setAlias(alias: string): IReadWriteWallet {
 		this.settings().set(WalletSetting.Alias, alias);
 
 		return this;
@@ -468,7 +467,7 @@ export class Wallet implements IReadWriteWallet {
 		return this.#wallet.multiSignature();
 	}
 
-	public multiSignatureParticipants(): ReadOnlyWallet[] {
+	public multiSignatureParticipants(): IReadOnlyWallet[] {
 		const participants: Record<string, any> | undefined = this.data().get(WalletData.MultiSignatureParticipants);
 
 		if (!participants) {
@@ -488,14 +487,14 @@ export class Wallet implements IReadWriteWallet {
 		return this.#wallet.entities();
 	}
 
-	public votes(): ReadOnlyWallet[] {
+	public votes(): IReadOnlyWallet[] {
 		const votes: string[] | undefined = this.data().get<string[]>(WalletData.Votes);
 
 		if (votes === undefined) {
 			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
 		}
 
-		return DelegateMapper.execute(this, votes);
+		return container.get<IDelegateService>(Identifiers.DelegateService).map(this, votes);
 	}
 
 	public votesAvailable(): number {
