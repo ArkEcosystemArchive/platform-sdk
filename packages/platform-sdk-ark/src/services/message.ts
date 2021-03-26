@@ -37,12 +37,16 @@ export class MessageService implements Contracts.MessageService {
 
 			const { publicKey, privateKey } = keys;
 
+			if (privateKey === undefined) {
+				throw new Error("Failed to retrieve the private key for the signatory wallet.");
+			}
+
 			return {
 				message: input.message,
 				signatory: keys.publicKey,
 				signature: Crypto.Hash.signSchnorr(Crypto.HashAlgorithms.sha256(input.message), {
 					publicKey,
-					privateKey: privateKey,
+					privateKey,
 					compressed: false,
 				}),
 			};
