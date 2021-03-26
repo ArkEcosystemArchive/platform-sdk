@@ -25,7 +25,7 @@ export class DelegateMapper implements IDelegateMapper {
 						rank: delegate.rank(),
 						explorerLink: wallet.link().wallet(delegate.address()),
 					});
-				} catch (error) {
+				} catch {
 					return undefined;
 				}
 			})
