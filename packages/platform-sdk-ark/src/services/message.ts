@@ -42,7 +42,7 @@ export class MessageService implements Contracts.MessageService {
 				signatory: keys.publicKey,
 				signature: Crypto.Hash.signSchnorr(Crypto.HashAlgorithms.sha256(input.message), {
 					publicKey,
-					privateKey,
+					privateKey: privateKey!,
 					compressed: false,
 				}),
 			};
