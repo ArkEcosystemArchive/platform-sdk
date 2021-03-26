@@ -2,7 +2,7 @@ import { Except } from "type-fest";
 import { v4 as uuidv4 } from "uuid";
 import { INotificationRepository } from "../../../contracts";
 
-import { DataRepository } from "./data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 
 interface Notification {
 	id: string;

@@ -10,7 +10,7 @@ import { CoinService } from "../services/coin-service";
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { WalletFactory } from "../wallets/wallet.factory";
-import { DataRepository } from "./data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 import { IDataRepository, IProfile, IReadWriteWallet, IWalletFactory, IWalletRepository, IWalletExportOptions } from "../../../contracts";
 
 export class WalletRepository implements IWalletRepository {

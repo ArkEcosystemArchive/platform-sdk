@@ -3,7 +3,7 @@ import { IContact, IContactAddress, IContactAddressInput, IContactRepository, IP
 
 import { Contact } from "../contacts/contact";
 import { pqueue } from "../../../helpers/queue";
-import { DataRepository } from "./data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 
 export class ContactRepository implements IContactRepository {
 	#data: DataRepository;

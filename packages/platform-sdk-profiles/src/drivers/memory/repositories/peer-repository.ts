@@ -1,6 +1,5 @@
 import { IPeerRepository, IProfile } from "../../../contracts";
-import { Profile } from "../profiles/profile";
-import { DataRepository } from "./data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 
 interface Peer {
 	name: string;

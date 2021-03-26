@@ -10,7 +10,7 @@ import nock from "nock";
 import { CoinService } from "../src/drivers/memory/services/coin-service";
 import { Contact } from "../src/drivers/memory/contacts/contact";
 import { container } from "../src/environment/container";
-import { DataRepository } from "../src/drivers/memory/repositories/data-repository";
+import { DataRepository } from "../src/repositories/data-repository";
 import { DelegateService } from "../src/drivers/memory/services/delegate-service";
 import { ExchangeRateService } from "../src/drivers/memory/services/exchange-rate-service";
 import { FeeService } from "../src/drivers/memory/services/fee-service";

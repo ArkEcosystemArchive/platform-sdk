@@ -3,7 +3,7 @@ import { IProfileRepository, IProfileExportOptions, IProfile } from "../../../co
 
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
-import { DataRepository } from "./data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 
 export class ProfileRepository implements IProfileRepository {
 	readonly #data: DataRepository;

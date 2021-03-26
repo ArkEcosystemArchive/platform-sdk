@@ -1,5 +1,5 @@
 import { ISettingRepository } from "../../../contracts";
-import { DataRepository } from "./data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 
 export class SettingRepository implements ISettingRepository {
 	#data: DataRepository;
