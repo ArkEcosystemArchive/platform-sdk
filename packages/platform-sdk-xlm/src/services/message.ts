@@ -14,7 +14,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const privateKey: string = StellarHDWallet.fromMnemonic(BIP39.normalize(input.mnemonic)).getSecret(0);
+			const privateKey: string = StellarHDWallet.fromMnemonic(BIP39.normalize(input.mnemonic!)).getSecret(0);
 			const source = Stellar.Keypair.fromSecret(privateKey);
 
 			return {

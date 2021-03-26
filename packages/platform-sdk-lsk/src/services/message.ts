@@ -12,7 +12,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const { message, publicKey, signature } = signMessageWithPassphrase(input.message, input.mnemonic);
+			const { message, publicKey, signature } = signMessageWithPassphrase(input.message, input.mnemonic!);
 
 			return { message, signatory: publicKey, signature };
 		} catch (error) {

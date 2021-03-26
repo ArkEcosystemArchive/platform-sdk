@@ -15,7 +15,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const privateKey = deriveRootKey(BIP39.normalize(input.mnemonic));
+			const privateKey = deriveRootKey(BIP39.normalize(input.mnemonic!));
 
 			return {
 				message: input.message,

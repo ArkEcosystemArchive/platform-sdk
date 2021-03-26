@@ -1,5 +1,4 @@
 import { Crypto } from "@arkecosystem/crypto";
-import { Contracts as CryptoContracts } from "@arkecosystem/crypto-identities";
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
@@ -24,7 +23,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			let keys: CryptoContracts.KeyPair | undefined;
+			let keys: Contracts.KeyPair | undefined;
 
 			if (input.mnemonic) {
 				keys = await this.#identityService.keys().fromMnemonic(BIP39.normalize(input.mnemonic));
@@ -38,10 +37,16 @@ export class MessageService implements Contracts.MessageService {
 				throw new Error("Failed to retrieve the keys for the signatory wallet.");
 			}
 
+			const { publicKey, privateKey } = keys;
+
 			return {
 				message: input.message,
 				signatory: keys.publicKey,
-				signature: Crypto.Hash.signSchnorr(Crypto.HashAlgorithms.sha256(input.message), keys),
+				signature: Crypto.Hash.signSchnorr(Crypto.HashAlgorithms.sha256(input.message), {
+					publicKey,
+					privateKey: privateKey!,
+					compressed: false,
+				}),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

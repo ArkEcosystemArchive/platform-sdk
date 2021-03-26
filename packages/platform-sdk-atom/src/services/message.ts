@@ -22,7 +22,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const { publicKey, privateKey } = await this.#identityService.keys().fromMnemonic(input.mnemonic);
+			const { publicKey, privateKey } = await this.#identityService.keys().fromMnemonic(input.mnemonic!);
 
 			return {
 				message: input.message,

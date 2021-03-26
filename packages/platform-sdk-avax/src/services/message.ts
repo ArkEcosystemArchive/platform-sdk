@@ -23,7 +23,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const keypair = keyPairFromMnemonic(this.#config, input.mnemonic);
+			const keypair = keyPairFromMnemonic(this.#config, input.mnemonic!);
 
 			return {
 				message: input.message,
