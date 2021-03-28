@@ -16,8 +16,21 @@ import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../../../helpers/avatar";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
-import { IPeerRepository, IProfile, IReadWriteWallet, IReadOnlyWallet, IWalletStruct, ProfileSetting, WalletData, WalletFlag, WalletSetting, IDelegateService } from "../../../contracts";
+import {
+	IPeerRepository,
+	IProfile,
+	IReadWriteWallet,
+	IReadOnlyWallet,
+	IWalletStruct,
+	ProfileSetting,
+	WalletData,
+	WalletFlag,
+	WalletSetting,
+	IDelegateService,
+} from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
+
+import { spawn, Worker, Thread } from "threads";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #dataRepository: DataRepository;
@@ -645,6 +658,28 @@ export class Wallet implements IReadWriteWallet {
 		}
 
 		return this.coin().identity().wif().fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"));
+	}
+
+	public async wifWithWorker(password: string): Promise<string> {
+		const encryptedKey: string | undefined = this.data().get(WalletData.Bip38EncryptedKey);
+
+		if (encryptedKey === undefined) {
+			throw new Error("This wallet does not use BIP38 encryption.");
+		}
+
+		// Instatiate and get worker instance. Depending on the architecture,
+		// workers can be created once on class instatiation or on demand.
+		// Workers can be functions or entire modules.
+		// See https://threads.js.org/usage
+		const walletWorker = await spawn(new Worker("./wallet.worker"));
+
+		// Run bip38 decrypt function in worker and wait for results
+		const decrypted = await walletWorker.decrypt(encryptedKey, password);
+
+		// Worker is no longer necessary. Terminate
+		Thread.terminate(walletWorker);
+
+		return this.coin().identity().wif().fromPrivateKey(decrypted.privateKey.toString("hex"));
 	}
 
 	public usesWIF(): boolean {
