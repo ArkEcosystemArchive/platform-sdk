@@ -46,7 +46,8 @@
 		"semver": "^7.3.4",
 		"type-fest": "^0.21.2",
 		"uuid": "^8.3.2",
-		"wif": "^2.0.6"
+		"wif": "^2.0.6",
+		"threads": "~1.6.3"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-ada": "workspace:*",
