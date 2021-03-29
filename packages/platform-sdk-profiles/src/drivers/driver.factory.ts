@@ -1,6 +1,7 @@
 import { Driver } from "../contracts";
 import { Container } from "../environment/container";
 import { EnvironmentOptions } from "../environment/env.models";
+import { ElectronDriver } from "./electron";
 import { MemoryDriver } from "./memory";
 
 /**
@@ -22,6 +23,7 @@ export class DriverFactory {
 	 */
 	public static make(name: string, container: Container, options: EnvironmentOptions): void {
 		const driver: Driver | undefined = {
+			electron: () => new ElectronDriver(),
 			memory: () => new MemoryDriver(),
 		}[name]();
 

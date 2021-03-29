@@ -15,4 +15,7 @@ export const Identifiers = {
 	Storage: "Storage",
 	WalletRepository: "WalletRepository",
 	WalletService: "WalletService",
+	// Electron
+	ProcessMain: "IPC<Main>",
+	ProcessRenderer: "IPC<Renderer>",
 };

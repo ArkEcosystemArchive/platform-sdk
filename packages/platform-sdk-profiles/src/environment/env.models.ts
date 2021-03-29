@@ -16,6 +16,7 @@ export interface EnvironmentOptions {
 	storage: string | Storage;
 	httpClient: Contracts.HttpClient;
 	driver?: string | Driver;
+	driverArguments?: Record<string, string | number>;
 	migrations?: Record<string, any>;
 }
 
