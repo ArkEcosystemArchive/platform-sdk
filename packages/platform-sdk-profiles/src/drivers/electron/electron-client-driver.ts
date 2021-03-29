@@ -15,14 +15,10 @@ export class ElectronClientDriver implements Driver {
 	 */
 	readonly #listeners: Record<string, Function> = {};
 
-	readonly #container: Container;
-
 	public constructor(container: Container) {
-		this.#container = container;
-
 		// TODO Extract this static mapping somewhere else
 		this.#listeners[Events.ProfileFactory.fromName] = (name: string): IProfile | undefined => {
-			return this.#container.get<IProfileRepository>(Identifiers.ProfileRepository).findByName(name);
+			return container.get<IProfileRepository>(Identifiers.ProfileRepository).findByName(name);
 		}
 	}
 

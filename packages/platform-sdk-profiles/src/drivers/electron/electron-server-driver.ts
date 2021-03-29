@@ -16,11 +16,7 @@ export class ElectronServerDriver implements Driver {
 	 */
 	readonly #listeners: Record<string, Function> = {};
 
-	readonly #container: Container;
-
 	public constructor(container: Container) {
-		this.#container = container;
-
 		// TODO Extract this static mapping somewhere else
 		this.#listeners[Events.ProfileFactory.fromName] = (env: Environment) => async (event, { name }) => {
 			const profile: IProfile = env.profiles().findByName(name) || env.profiles().create(name);
@@ -45,8 +41,8 @@ export class ElectronServerDriver implements Driver {
 		await env.boot();
 
 		// Register the in-memory adapters
-		DriverFactory.make("memory", container, options);
-
+		// DriverFactory.make("memory", container, options);
+		//
 		// Register all listeners
 		for (const [event, listener] of Object.entries(this.#listeners)) {
 			ipcMain.handle(event, listener(env));
