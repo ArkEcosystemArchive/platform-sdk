@@ -1,5 +1,5 @@
 import { decrypt } from "bip38";
-import { IReadWriteWallet, WalletData } from "../../../contracts";
+import { IReadWriteWallet, WalletData } from "../../contracts";
 
 export const decryptWIF = (wallet: IReadWriteWallet, password: string) => {
 	const encryptedKey: string | undefined = wallet.data().get(WalletData.Bip38EncryptedKey);

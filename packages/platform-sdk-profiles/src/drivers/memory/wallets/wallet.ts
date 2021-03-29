@@ -31,7 +31,7 @@ import {
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
 import { spawn, Worker, Thread } from "threads";
-import { decryptWIF } from "../../worker/wallets/wallet.helpers";
+import { decryptWIF } from "../../shared/wallet.helpers";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #dataRepository: DataRepository;
