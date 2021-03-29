@@ -15,6 +15,6 @@ const spawnWorker = async <T>(file: string, callback: Function): Promise<T> => {
 // WorkerWallet
 export class Wallet extends MemoryWallet {
 	public async wif(password: string): Promise<string> {
-		return spawnWorker("./wallet.worker", async ({ worker }) => worker.decryptWIF(password));
+		return spawnWorker("./wallet.worker", async ({ worker }) => worker.decryptWIF(this, password));
 	}
 }

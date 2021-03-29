@@ -31,6 +31,7 @@ import {
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
 import { spawn, Worker, Thread } from "threads";
+import { decryptWIF } from "../../worker/wallets/wallet.helpers";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #dataRepository: DataRepository;
@@ -651,13 +652,7 @@ export class Wallet implements IReadWriteWallet {
 	 * @see https://github.com/bitcoinjs/bip38
 	 */
 	public async wif(password: string): Promise<string> {
-		const encryptedKey: string | undefined = this.data().get(WalletData.Bip38EncryptedKey);
-
-		if (encryptedKey === undefined) {
-			throw new Error("This wallet does not use BIP38 encryption.");
-		}
-
-		return this.coin().identity().wif().fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"));
+		return decryptWIF(this, password);
 	}
 
 	public async wifWithWorker(password: string): Promise<string> {
