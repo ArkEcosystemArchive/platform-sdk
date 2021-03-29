@@ -1,4 +1,4 @@
-import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
+import { KnownWalletService as Memory } from "../../memory/services/known-wallet-service";
 
 
 export class KnownWalletService extends Memory {

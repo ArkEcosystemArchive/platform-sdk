@@ -1,4 +1,4 @@
-import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
+import { SettingRepository as Memory } from "../../memory/repositories/setting-repository";
 
 
 export class SettingRepository extends Memory {

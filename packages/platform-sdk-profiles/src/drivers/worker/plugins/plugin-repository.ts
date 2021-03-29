@@ -1,4 +1,4 @@
-import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
+import { PluginRepository as Memory } from "../../memory/plugins/plugin-repository";
 
 
 export class PluginRepository extends Memory {

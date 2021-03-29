@@ -1,4 +1,4 @@
-import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
+import { Migrator as Memory } from "../../memory/profiles/migrator";
 
 
 

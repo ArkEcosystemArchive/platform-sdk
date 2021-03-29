@@ -1,4 +1,4 @@
-import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
+import { TransactionAggregate as Memory } from "../../../memory/profiles/aggregates/transaction-aggregate";
 
 
 export class TransactionAggregate extends Memory {

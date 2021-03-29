@@ -1,4 +1,4 @@
-import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
+import { Authenticator as Memory } from "../../memory/profiles/authenticator";
 
 
 export class Authenticator extends Memory {

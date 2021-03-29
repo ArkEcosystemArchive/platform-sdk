@@ -1,4 +1,4 @@
-import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
+import { DelegateService as Memory } from "../../memory/services/delegate-service";
 
 
 export class DelegateService extends Memory {

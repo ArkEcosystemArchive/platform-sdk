@@ -1,4 +1,4 @@
-import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
+import { CountAggregate as Memory } from "../../../memory/profiles/aggregates/count-aggregate";
 
 export class CountAggregate extends Memory {
 	//
