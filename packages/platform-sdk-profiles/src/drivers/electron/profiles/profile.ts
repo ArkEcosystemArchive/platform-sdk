@@ -2,24 +2,42 @@
 import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
-import { IProfileStruct, IProfileExportOptions, IContactRepository, ICountAggregate, IDataRepository, INotificationRepository, IPeerRepository, IPluginRepository, IProfile, IProfileInput, IRegistrationAggregate, ISettingRepository, ITransactionAggregate, IWalletAggregate, IWalletRepository, ProfileSetting, IReadWriteWallet } from "../../../contracts";
+import {
+	IProfileStruct,
+	IProfileExportOptions,
+	IContactRepository,
+	ICountAggregate,
+	IDataRepository,
+	INotificationRepository,
+	IPeerRepository,
+	IPluginRepository,
+	IProfile,
+	IProfileInput,
+	IRegistrationAggregate,
+	ISettingRepository,
+	ITransactionAggregate,
+	IWalletAggregate,
+	IWalletRepository,
+	ProfileSetting,
+	IReadWriteWallet
+} from "../../../contracts";
 
-import { MemoryPassword } from "../../../helpers/password";
-import { pqueue } from "../../../helpers/queue";
-import { PluginRepository } from "../plugins/plugin-repository";
-import { ContactRepository } from "../repositories/contact-repository";
-import { DataRepository } from "../../../repositories/data-repository";
-import { NotificationRepository } from "../repositories/notification-repository";
-import { PeerRepository } from "../repositories/peer-repository";
-import { SettingRepository } from "../repositories/setting-repository";
-import { WalletRepository } from "../repositories/wallet-repository";
-import { Avatar } from "../../../helpers/avatar";
-import { CountAggregate } from "./aggregates/count-aggregate";
-import { RegistrationAggregate } from "./aggregates/registration-aggregate";
-import { TransactionAggregate } from "./aggregates/transaction-aggregate";
-import { WalletAggregate } from "./aggregates/wallet-aggregate";
-import { Authenticator } from "./authenticator";
-import { Migrator } from "./migrator";
+import { MemoryPassword } from "../../../helpers";
+import { pqueue } from "../../../helpers";
+import { PluginRepository } from "../../memory/plugins/plugin-repository";
+import { ContactRepository } from "../../memory/repositories/contact-repository";
+import { DataRepository } from "../../../repositories";
+import { NotificationRepository } from "../../memory/repositories/notification-repository";
+import { PeerRepository } from "../../memory/repositories/peer-repository";
+import { SettingRepository } from "../../memory/repositories/setting-repository";
+import { WalletRepository } from "../../memory/repositories/wallet-repository";
+import { Avatar } from "../../../helpers";
+import { CountAggregate } from "../../memory/profiles/aggregates/count-aggregate";
+import { RegistrationAggregate } from "../../memory/profiles/aggregates/registration-aggregate";
+import { TransactionAggregate } from "../../memory/profiles/aggregates/transaction-aggregate";
+import { WalletAggregate } from "../../memory/profiles/aggregates/wallet-aggregate";
+import { Authenticator } from "../../memory/profiles/authenticator";
+import { Migrator } from "../../memory/profiles/migrator";
 
 export class Profile implements IProfile {
 	#data: IProfileInput;
@@ -189,8 +207,8 @@ export class Profile implements IProfile {
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
-			saveGeneralSettings: true,
-		},
+			saveGeneralSettings: true
+		}
 	): IProfileStruct {
 		if (!options.saveGeneralSettings) {
 			throw Error("This is not implemented yet");
@@ -204,7 +222,7 @@ export class Profile implements IProfile {
 			peers: this.peers().toObject(),
 			plugins: this.plugins().all(),
 			settings: this.settings().all(),
-			wallets: this.wallets().toObject(options),
+			wallets: this.wallets().toObject(options)
 		};
 	}
 
@@ -225,7 +243,7 @@ export class Profile implements IProfile {
 			name: this.name(),
 			avatar: this.avatar(),
 			password: this.#data.password,
-			data: this.#data.data,
+			data: this.#data.data
 		};
 	}
 
@@ -366,8 +384,8 @@ export class Profile implements IProfile {
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
-			saveGeneralSettings: true,
-		},
+			saveGeneralSettings: true
+		}
 	): string {
 		const filtered = this.toObject(options);
 
@@ -379,10 +397,10 @@ export class Profile implements IProfile {
 						name: this.name(),
 						avatar: this.avatar(),
 						password: this.#data.password,
-						data: this.toObject(options),
+						data: this.toObject(options)
 					}),
-					password,
-				),
+					password
+				)
 			);
 		}
 
@@ -487,11 +505,11 @@ export class Profile implements IProfile {
 							coin: Joi.string().required(),
 							network: Joi.string().required(),
 							name: Joi.string().required(),
-							address: Joi.string().required(),
-						}),
+							address: Joi.string().required()
+						})
 					),
-					starred: Joi.boolean().required(),
-				}),
+					starred: Joi.boolean().required()
+				})
 			),
 			// TODO: stricter validation to avoid unknown keys or values
 			data: Joi.object().required(),
@@ -511,20 +529,20 @@ export class Profile implements IProfile {
 					network: Joi.string().required(),
 					networkConfig: Joi.object({
 						crypto: Joi.object({
-							slip44: Joi.number().integer().required(),
+							slip44: Joi.number().integer().required()
 						}).required(),
 						networking: Joi.object({
 							hosts: Joi.array().items(Joi.string()).required(),
 							hostsMultiSignature: Joi.array().items(Joi.string()),
-							hostsArchival: Joi.array().items(Joi.string()),
-						}).required(),
+							hostsArchival: Joi.array().items(Joi.string())
+						}).required()
 					}),
 					address: Joi.string().required(),
 					publicKey: Joi.string(),
 					data: Joi.object().required(),
-					settings: Joi.object().required(),
-				}),
-			),
+					settings: Joi.object().required()
+				})
+			)
 		}).validate(data);
 
 		if (error !== undefined) {

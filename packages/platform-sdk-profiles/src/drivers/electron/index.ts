@@ -1,9 +1,10 @@
 import { Container } from "../../environment/container";
 import { EnvironmentOptions } from "../../environment/env.models";
-import { Driver } from "../../contracts";
+import { Driver, IProfile, IProfileRepository } from "../../contracts";
 import { Identifiers } from "../../environment/container.models";
 import { ProcessMain, ProcessRender } from "./contracts";
 import { DriverFactory } from "../driver.factory";
+import { Events } from "./events";
 
 export class ElectronDriver implements Driver {
 	/**
@@ -13,6 +14,18 @@ export class ElectronDriver implements Driver {
 	 * @memberof ElectronDriver
 	 */
 	readonly #listeners: Record<string, Function> = {};
+
+	readonly #container: Container;
+
+	public constructor(container: Container) {
+		this.#container = container;
+
+		// TODO Extract this static mapping somewhere else
+		this.#listeners[Events.ProfileFactory.fromName] = (name: string): IProfile | undefined => {
+			const profileRepository: IProfileRepository = this.#container.get(Identifiers.ProfileRepository);
+			return profileRepository.findByName(name);
+		}
+	}
 
 	/**
 	 * Create all necessary container bindings based on the given options.
