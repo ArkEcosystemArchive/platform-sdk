@@ -1,9 +1,9 @@
 import { Container } from "../../environment/container";
 import { EnvironmentOptions } from "../../environment/env.models";
 import { Driver } from "../../contracts";
-import { MemoryDriver } from "../memory";
 import { Identifiers } from "../../environment/container.models";
 import { ProcessMain, ProcessRender } from "./contracts";
+import { DriverFactory } from "../driver.factory";
 
 export class ElectronDriver implements Driver {
 	/**
@@ -46,7 +46,7 @@ export class ElectronDriver implements Driver {
 
 		if (ipcMain !== undefined) {
 			// Register the in-memory adapters
-			new MemoryDriver().make(container, options);
+			DriverFactory.make('memory', container, options);
 
 			// Register all listeners
 			for (const [event, listener] of Object.entries(this.#listeners)) {
