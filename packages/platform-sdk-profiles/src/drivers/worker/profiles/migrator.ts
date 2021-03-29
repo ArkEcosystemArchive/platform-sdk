@@ -1,7 +1,7 @@
-import semver from "semver";
-import { IMigrator, IProfile, ProfileData } from "../../../contracts";
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
 
-export class Migrator implements IMigrator {
+
+export class Migrator extends Memory {
 	//
 }

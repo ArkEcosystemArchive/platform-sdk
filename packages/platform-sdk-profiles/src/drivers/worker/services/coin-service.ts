@@ -1,10 +1,6 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
-import { DataRepository } from "../../../repositories/data-repository";
-import { container } from "../../../environment/container";
-import { Identifiers } from "../../../environment/container.models";
-import { ICoinService } from "../../../contracts";
 
-export class CoinService implements ICoinService {
+export class CoinService extends Memory {
 	//
 }

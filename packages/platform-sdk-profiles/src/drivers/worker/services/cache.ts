@@ -1,10 +1,6 @@
-import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import { SHA1 } from "bcrypto";
-import NodeCache from "node-cache";
-import { ICache } from "../../../contracts";
+import { Cache as Memory } from "../../memory/services/cache";
 
-type CacheStore = Record<string, { expires_at: DateTime; value: unknown }>;
 
-export class Cache implements ICache {
+export class Cache extends Memory {
 	//
 }

@@ -1,5 +1,5 @@
-import { IProfile } from "../../../../contracts";
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
-export class CountAggregate implements CountAggregate {
+export class CountAggregate extends Memory {
 	//
 }

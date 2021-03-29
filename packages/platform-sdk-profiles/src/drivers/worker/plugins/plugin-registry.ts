@@ -1,13 +1,6 @@
-/* istanbul ignore file */
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
-import { Contracts } from "@arkecosystem/platform-sdk";
-import semver from "semver";
-import { IPluginRegistry, IRegistryPlugin } from "../../../contracts";
 
-import { container } from "../../../environment/container";
-import { Identifiers } from "../../../environment/container.models";
-import { RegistryPlugin } from "./registry-plugin";
-
-export class PluginRegistry implements IPluginRegistry {
+export class PluginRegistry extends Memory {
 	//
 }

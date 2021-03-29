@@ -1,5 +1,5 @@
-import { ITransactionService } from "../../../contracts";
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
-export class TransactionService implements ITransactionService {
+export class TransactionService extends Memory {
 	//
 }

@@ -1,5 +1,5 @@
-import { IProfile, IReadWriteWallet } from "../../../../contracts";
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
-export class RegistrationAggregate implements RegistrationAggregate {
+export class RegistrationAggregate extends Memory {
 	//
 }

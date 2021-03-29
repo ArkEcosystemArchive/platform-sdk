@@ -1,5 +1,5 @@
-import { IRegistryPlugin, IRegistryPluginAuthor } from "../../../contracts";
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
-export class RegistryPlugin implements IRegistryPlugin {
+export class RegistryPlugin extends Memory {
 	//
 }

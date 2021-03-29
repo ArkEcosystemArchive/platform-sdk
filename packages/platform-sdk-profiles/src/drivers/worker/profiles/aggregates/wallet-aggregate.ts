@@ -1,8 +1,6 @@
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { IProfile, IReadWriteWallet, IWalletAggregate } from "../../../../contracts";
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
-type NetworkType = "live" | "test";
 
-export class WalletAggregate implements IWalletAggregate {
+export class WalletAggregate extends Memory {
 	//
 }

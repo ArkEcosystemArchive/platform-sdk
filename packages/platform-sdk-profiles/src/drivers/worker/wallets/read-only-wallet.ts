@@ -1,14 +1,6 @@
-import { IReadOnlyWallet } from "../../../contracts";
-import { Avatar } from "../../../helpers/avatar";
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
-interface ROWallet {
-	address: string;
-	publicKey?: string;
-	username?: string;
-	rank?: number;
-	explorerLink: string;
-}
 
-export class ReadOnlyWallet implements IReadOnlyWallet {
+export class ReadOnlyWallet extends Memory {
 	//
 }

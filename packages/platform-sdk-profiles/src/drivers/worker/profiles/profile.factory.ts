@@ -1,7 +1,6 @@
-import { v4 as uuidv4 } from "uuid";
-import { IProfile, IProfileFactory, ProfileSetting } from "../../../contracts";
-import { Profile } from "./profile";
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
-export class ProfileFactory implements IProfileFactory {
+
+export class ProfileFactory extends Memory {
 	//
 }

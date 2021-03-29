@@ -1,8 +1,6 @@
-import { Bcrypt } from "@arkecosystem/platform-sdk-crypto";
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
-import { MemoryPassword } from "../../../helpers/password";
-import { IAuthenticator, IProfile, ProfileSetting } from "../../../contracts";
 
-export class Authenticator implements IAuthenticator {
+export class Authenticator extends Memory {
 	//
 }

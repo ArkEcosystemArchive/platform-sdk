@@ -1,6 +1,6 @@
-import { ISettingRepository } from "../../../contracts";
-import { DataRepository } from "../../../repositories/data-repository";
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
-export class SettingRepository implements ISettingRepository {
+
+export class SettingRepository extends Memory {
 	//
 }

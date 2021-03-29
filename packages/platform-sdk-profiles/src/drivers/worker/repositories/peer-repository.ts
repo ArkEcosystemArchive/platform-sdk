@@ -1,12 +1,6 @@
-import { IPeerRepository, IProfile } from "../../../contracts";
-import { DataRepository } from "../../../repositories/data-repository";
+import { ContactAddress as Memory } from "../../memory/contacts/contact-address";
 
-interface Peer {
-	name: string;
-	host: string;
-	isMultiSignature: boolean;
-}
 
-export class PeerRepository implements IPeerRepository {
+export class PeerRepository extends Memory {
 	//
 }

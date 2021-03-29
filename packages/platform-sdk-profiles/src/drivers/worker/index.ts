@@ -10,7 +10,7 @@ import { ExchangeRateService } from "./services/exchange-rate-service";
 import { FeeService } from "./services/fee-service";
 import { KnownWalletService } from "./services/known-wallet-service";
 import { WalletService } from "./services/wallet-service";
-import { PluginRegistry } from "./plugins";
+import { PluginRegistry } from "./plugins/plugin-registry";
 
 export class WorkerDriver implements Driver {
 	/**
