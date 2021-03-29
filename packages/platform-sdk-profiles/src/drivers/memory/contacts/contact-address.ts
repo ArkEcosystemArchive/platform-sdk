@@ -12,7 +12,7 @@ export class ContactAddress implements IContactAddress {
 	readonly #data: IContactAddressProps;
 	#wallet: Contracts.WalletData | undefined;
 
-	private constructor(data: IContactAddressProps, coin: Coins.Coin) {
+	public constructor(data: IContactAddressProps, coin: Coins.Coin) {
 		this.#data = data;
 		this.#coin = coin;
 	}
