@@ -23,9 +23,9 @@ export class DriverFactory {
 	 */
 	public static make(name: string, container: Container, options: EnvironmentOptions): void {
 		const driver: Driver | undefined = {
-			memory: new MemoryDriver(),
-			worker: new WorkerDriver(),
-		}[name];
+			memory: () => new MemoryDriver(),
+			worker: () => new WorkerDriver(),
+		}[name]();
 
 		if (driver === undefined) {
 			throw new Error(`Driver [${name}] is not supported.`);
