@@ -1,7 +1,6 @@
 import { Driver } from "../contracts";
 import { Container } from "../environment/container";
 import { EnvironmentOptions } from "../environment/env.models";
-import { ElectronDriver } from "./electron";
 import { MemoryDriver } from "./memory";
 
 /**
@@ -11,6 +10,11 @@ import { MemoryDriver } from "./memory";
  * @class DriverFactory
  */
 export class DriverFactory {
+
+	static registeredDrivers: Object = {
+		memory: (container: Container) => new MemoryDriver()
+	}
+
 	/**
 	 * Create a driver instance and all necessary container bindings.
 	 *
@@ -22,15 +26,20 @@ export class DriverFactory {
 	 * @memberof DriverFactory
 	 */
 	public static make(name: string, container: Container, options: EnvironmentOptions): void {
-		const driver: Driver | undefined = {
-			electron: () => new ElectronDriver(container),
-			memory: () => new MemoryDriver(),
-		}[name]();
+		const driver: Driver | undefined = DriverFactory.registeredDrivers[name](container);
 
 		if (driver === undefined) {
 			throw new Error(`Driver [${name}] is not supported.`);
 		}
 
 		return driver.make(container, options);
+	}
+
+	public static registerDriver(name: string, makerFunction): void {
+		if ((DriverFactory.registeredDrivers)[name] !== undefined) {
+			throw Error (`Driver ${name} already registered`)
+		}
+
+		DriverFactory.registeredDrivers[name] = makerFunction;
 	}
 }
