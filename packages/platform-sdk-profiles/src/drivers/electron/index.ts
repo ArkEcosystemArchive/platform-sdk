@@ -22,8 +22,7 @@ export class ElectronDriver implements Driver {
 
 		// TODO Extract this static mapping somewhere else
 		this.#listeners[Events.ProfileFactory.fromName] = (name: string): IProfile | undefined => {
-			const profileRepository: IProfileRepository = this.#container.get(Identifiers.ProfileRepository);
-			return profileRepository.findByName(name);
+			return this.#container.get<IProfileRepository>(Identifiers.ProfileRepository).findByName(name);
 		}
 	}
 
