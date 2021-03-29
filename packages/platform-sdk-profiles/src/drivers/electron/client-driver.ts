@@ -4,6 +4,7 @@ import { Driver, IProfile, IProfileRepository } from "../../contracts";
 import { Identifiers } from "../../environment/container.models";
 import { ProcessRender } from "./contracts";
 import { Events } from "./events";
+import { DriverFactory } from "../driver.factory";
 
 export class ElectronClientDriver implements Driver {
 	/**
@@ -41,5 +42,9 @@ export class ElectronClientDriver implements Driver {
 			// Expose the render process for any additional work
 			container.bind(Identifiers.ProcessRenderer, ipcRenderer);
 		}
+	}
+
+	public static registerSelf(): void {
+		DriverFactory.registerDriver('electron-client', (container) => new ElectronClientDriver(container))
 	}
 }

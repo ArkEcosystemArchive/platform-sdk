@@ -34,18 +34,6 @@ export class ElectronServerDriver implements Driver {
 	 * @memberof MemoryDriver
 	 */
 	public make(container: Container, options: EnvironmentOptions): void {
-		this.handleMainProcess(container, options);
-	}
-
-	/**
-	 * Register the IPC listeners for the main process.
-	 *
-	 * @private
-	 * @param {Container} container
-	 * @param {EnvironmentOptions} options
-	 * @memberof ElectronDriver
-	 */
-	private handleMainProcess(container: Container, options: EnvironmentOptions): void {
 		const ipcMain: ProcessMain | undefined = options.driverArguments?.ipcMain as unknown as ProcessMain;
 
 		if (ipcMain !== undefined) {
@@ -60,5 +48,9 @@ export class ElectronServerDriver implements Driver {
 			// Expose the main process for any additional work
 			container.bind(Identifiers.ProcessMain, ipcMain);
 		}
+	}
+
+	public static registerSelf(): void {
+		DriverFactory.registerDriver('electron-client', (container) => new ElectronServerDriver(container))
 	}
 }
