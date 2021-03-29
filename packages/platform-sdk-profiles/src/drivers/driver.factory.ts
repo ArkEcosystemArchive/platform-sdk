@@ -10,10 +10,9 @@ import { MemoryDriver } from "./memory";
  * @class DriverFactory
  */
 export class DriverFactory {
-
 	static registeredDrivers: Object = {
-		memory: (container: Container) => new MemoryDriver()
-	}
+		memory: (container: Container) => new MemoryDriver(),
+	};
 
 	/**
 	 * Create a driver instance and all necessary container bindings.
@@ -36,8 +35,8 @@ export class DriverFactory {
 	}
 
 	public static registerDriver(name: string, makerFunction): void {
-		if ((DriverFactory.registeredDrivers)[name] !== undefined) {
-			throw Error (`Driver ${name} already registered`)
+		if (DriverFactory.registeredDrivers[name] !== undefined) {
+			throw Error(`Driver ${name} already registered`);
 		}
 
 		DriverFactory.registeredDrivers[name] = makerFunction;
