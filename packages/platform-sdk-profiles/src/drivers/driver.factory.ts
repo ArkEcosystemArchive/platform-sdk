@@ -23,7 +23,7 @@ export class DriverFactory {
 	 */
 	public static make(name: string, container: Container, options: EnvironmentOptions): void {
 		const driver: Driver | undefined = {
-			electron: () => new ElectronDriver(),
+			electron: () => new ElectronDriver(container),
 			memory: () => new MemoryDriver(),
 		}[name]();
 
