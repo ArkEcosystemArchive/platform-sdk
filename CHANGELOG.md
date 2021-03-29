@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 4.0.5 - 2020-03-29
+
+### Changed
+
+-   **[PROFILES]** Lazily construct driver instances (f0f28804, @faustbrian)
+
 ## 4.0.4 - 2020-03-26
 
 ### Added
