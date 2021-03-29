@@ -2,6 +2,7 @@ import { Driver } from "../contracts";
 import { Container } from "../environment/container";
 import { EnvironmentOptions } from "../environment/env.models";
 import { MemoryDriver } from "./memory";
+import { WorkerDriver } from "./worker";
 
 /**
  * Creates a new driver instance based on a string identifier.
@@ -23,6 +24,7 @@ export class DriverFactory {
 	public static make(name: string, container: Container, options: EnvironmentOptions): void {
 		const driver: Driver | undefined = {
 			memory: new MemoryDriver(),
+			worker: new WorkerDriver(),
 		}[name];
 
 		if (driver === undefined) {
