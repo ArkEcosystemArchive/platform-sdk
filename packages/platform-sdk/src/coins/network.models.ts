@@ -22,6 +22,8 @@ export type CoinTransactionTypes =
 	| "transfer"
 	| "vote";
 
+export type ExpirationType = "height" | "timestamp";
+
 export interface CoinNetwork {
 	id: string;
 	type: string;
@@ -172,6 +174,7 @@ export interface CoinNetwork {
 	};
 	// @TODO: we could replace this with kebabCase(Object.keys(FeatureFlags.Transaction))
 	transactionTypes: CoinTransactionTypes[];
+	expirationType: ExpirationType;
 	knownWallets?: string;
 	meta?: KeyValuePair;
 }

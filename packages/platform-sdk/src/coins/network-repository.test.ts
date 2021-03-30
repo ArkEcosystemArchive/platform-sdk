@@ -22,6 +22,7 @@ test("#all", () => {
 		      "symbol": "DѦ",
 		      "ticker": "DARK",
 		    },
+		    "expirationType": "height",
 		    "explorer": "https://dexplorer.ark.io/",
 		    "featureFlags": Object {
 		      "Client": Object {
@@ -166,6 +167,7 @@ test("#all", () => {
 		      "symbol": "Ѧ",
 		      "ticker": "ARK",
 		    },
+		    "expirationType": "height",
 		    "explorer": "https://explorer.ark.io/",
 		    "featureFlags": Object {
 		      "Client": Object {
@@ -310,6 +312,7 @@ test("#all", () => {
 		      "symbol": "ß",
 		      "ticker": "BIND",
 		    },
+		    "expirationType": "height",
 		    "explorer": "https://bindscan.io/",
 		    "featureFlags": Object {
 		      "Client": Object {
