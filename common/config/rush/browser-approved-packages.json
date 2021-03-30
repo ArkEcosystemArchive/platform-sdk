@@ -251,6 +251,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@terra-money/terra.js",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@typescript-eslint/eslint-plugin",
       "allowedCategories": [ "libraries" ]
     },
