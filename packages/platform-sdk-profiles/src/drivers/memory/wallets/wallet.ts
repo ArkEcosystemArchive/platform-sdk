@@ -694,15 +694,5 @@ export class Wallet implements IReadWriteWallet {
 			WalletData.Sequence,
 			BigNumber.make(this.data().get<string>(WalletData.Sequence) || BigNumber.ZERO),
 		);
-
-		/**
-		 * If this is a wallet of the same coin and network as another wallet
-		 * we can reuse an existing coin instance for the pre-sync state.
-		 */
-		const coinService = container.get<ICoinService>(Identifiers.CoinService);
-
-		if (coinService.has(this.#initialState.coin!, this.#initialState.network)) {
-			this.#coin = coinService.get(this.#initialState.coin!, this.#initialState.network);
-		}
 	}
 }
