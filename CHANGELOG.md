@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 4.1.4 - 2020-03-30
+
+### Changed
+
+-   **[PROFILES]** Make last known network configuration available before wallet sync (180fdaa5, @faustbrian)
+
 ## 4.1.3 - 2020-03-30
 
 ### Added
