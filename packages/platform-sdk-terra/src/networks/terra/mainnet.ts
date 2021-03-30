@@ -4,17 +4,16 @@ const network: Coins.CoinNetwork = {
 	id: "terra.mainnet",
 	type: "live",
 	name: "Mainnet",
-	explorer: "https://explorer.cardano.org/",
+	explorer: "TODO",
 	currency: {
-		ticker: "Terra",
-		symbol: "Terra",
+		ticker: "LUNA",
+		symbol: "LUNA",
 	},
 	crypto: {
-		networkId: "1",
-		slip44: 1815,
+		slip44: 330,
 	},
 	networking: {
-		hosts: [],
+		hosts: ["https://luna-lcd.terra.dev/"],
 	},
 	governance: {
 		voting: {
@@ -31,8 +30,6 @@ const network: Coins.CoinNetwork = {
 		Identity: {
 			address: {
 				mnemonic: true,
-				publicKey: true,
-				validate: true,
 			},
 			publicKey: {
 				mnemonic: true,
@@ -50,19 +47,11 @@ const network: Coins.CoinNetwork = {
 			transaction: true,
 			wallet: true,
 		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
 		Transaction: {
 			transfer: true,
 		},
-		Miscellaneous: {
-			utxo: true,
-		},
 		Derivation: {
 			bip39: true,
-			bip44: true,
 		},
 	},
 	meta: {

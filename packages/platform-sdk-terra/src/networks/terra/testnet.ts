@@ -4,18 +4,16 @@ const network: Coins.CoinNetwork = {
 	id: "terra.testnet",
 	type: "test",
 	name: "Testnet",
-	explorer: "https://shelleyexplorer.cardano.org/",
+	explorer: "TODO",
 	currency: {
-		ticker: "Terra",
-		symbol: "Terra",
+		ticker: "SOJU",
+		symbol: "SOJU",
 	},
 	crypto: {
-		networkId: "0",
-		slip44: 1815,
+		slip44: 330,
 	},
 	networking: {
-		hosts: ["http://51.75.183.28:8090"],
-		hostsArchival: ["http://51.75.183.27:3100"],
+		hosts: ["https://soju-lcd.terra.dev"],
 	},
 	governance: {
 		voting: {
@@ -32,8 +30,6 @@ const network: Coins.CoinNetwork = {
 		Identity: {
 			address: {
 				mnemonic: true,
-				publicKey: true,
-				validate: true,
 			},
 			publicKey: {
 				mnemonic: true,
@@ -50,27 +46,12 @@ const network: Coins.CoinNetwork = {
 			transaction: true,
 			wallet: true,
 		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
 		Transaction: {
 			transfer: true,
 		},
-		Miscellaneous: {
-			utxo: true,
-		},
 		Derivation: {
 			bip39: true,
-			bip44: true,
 		},
-	},
-	meta: {
-		minFeeA: 44,
-		minFeeB: 155381,
-		minUTxOValue: 1000000,
-		poolDeposit: 500000000,
-		keyDeposit: 2000000,
 	},
 	transactionTypes: ["transfer"],
 };
