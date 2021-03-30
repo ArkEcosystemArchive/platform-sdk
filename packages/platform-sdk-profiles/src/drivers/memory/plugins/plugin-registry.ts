@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
 import { Contracts } from "@arkecosystem/platform-sdk";
+import { injectable } from "inversify";
 import semver from "semver";
 import { IPluginRegistry, IRegistryPlugin } from "../../../contracts";
 
@@ -8,6 +9,7 @@ import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { RegistryPlugin } from "./registry-plugin";
 
+@injectable()
 export class PluginRegistry implements IPluginRegistry {
 	readonly #httpClient: Contracts.HttpClient;
 
