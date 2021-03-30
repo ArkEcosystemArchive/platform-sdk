@@ -202,7 +202,6 @@ describe("#restore", () => {
 		await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
 		await profile.restore("password");
-		await profile.sync();
 
 		expect(profile.toObject()).toContainAllKeys([
 			"contacts",

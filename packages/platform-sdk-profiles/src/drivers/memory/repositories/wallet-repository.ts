@@ -1,7 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { sortBy, sortByDesc } from "@arkecosystem/utils";
-import { injectable } from "inversify";
 import retry from "p-retry";
 import { v4 as uuidv4 } from "uuid";
 
@@ -12,13 +11,12 @@ import { Wallet } from "../wallets/wallet";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { DataRepository } from "../../../repositories/data-repository";
 import { IDataRepository, IProfile, IReadWriteWallet, IWalletFactory, IWalletRepository, IWalletExportOptions } from "../../../contracts";
-import { pqueue } from "../../../helpers";
+import { injectable } from "inversify";
 
 @injectable()
 export class WalletRepository implements IWalletRepository {
 	#profile: IProfile;
 	#data: IDataRepository;
-	#dataRaw: Record<string, any> = {};
 	#wallets: IWalletFactory;
 
 	public constructor(profile: IProfile) {
@@ -172,6 +170,42 @@ export class WalletRepository implements IWalletRepository {
 		return { mnemonic, wallet: await this.importByMnemonic(mnemonic, coin, network) };
 	}
 
+	public async restore(struct: Record<string, any>): Promise<IReadWriteWallet> {
+		const { id, coin, network, networkConfig, address, data, settings } = struct;
+		const previousWallet: IReadWriteWallet | undefined = this.findByAddress(address);
+
+		if (previousWallet !== undefined) {
+			if (previousWallet.hasBeenPartiallyRestored()) {
+				try {
+					await this.syncWalletWithNetwork({ address, coin, network, networkConfig, wallet: previousWallet });
+				} catch {
+					// If we end up here the wallet had previously been
+					// partially restored but we again failed to fully
+					// restore it which means we will just return the
+					// instance again and let the consumer try again.
+				}
+			}
+
+			return previousWallet;
+		}
+
+		const wallet = new Wallet(id, struct, this.#profile);
+
+		wallet.data().fill(data);
+
+		wallet.settings().fill(settings);
+
+		try {
+			await this.syncWalletWithNetwork({ address, coin, network, networkConfig, wallet });
+		} catch {
+			await wallet.setAddress(address, { syncIdentity: false, validate: false });
+
+			wallet.markAsPartiallyRestored();
+		}
+
+		return this.storeWallet(wallet, { force: wallet.hasBeenPartiallyRestored() });
+	}
+
 	public findById(id: string): IReadWriteWallet {
 		const wallet: IReadWriteWallet | undefined = this.#data.get(id);
 
@@ -295,102 +329,6 @@ export class WalletRepository implements IWalletRepository {
 		return sortByDesc(this.values(), sortFunction);
 	}
 
-	/**
-	 * Restore wallets without syncing them.
-	 *
-	 * @param {Record<string, any>} struct
-	 * @returns {Promise<void>}
-	 * @memberof WalletRepository
-	 */
-	public async fill(struct: Record<string, any>): Promise<void> {
-		this.#dataRaw = struct;
-
-		for (const item of Object.values(struct)) {
-			const { id, address, data, settings } = item;
-
-			const wallet = new Wallet(id, item, this.#profile);
-
-			wallet.data().fill(data);
-
-			wallet.settings().fill(settings);
-
-			await wallet.setAddress(address, { syncIdentity: false, validate: false });
-
-			wallet.markAsPartiallyRestored();
-
-			this.storeWallet(wallet, { force: wallet.hasBeenPartiallyRestored() });
-		}
-	}
-
-	/**
-	 * Synchronise each wallet by sending network requests to gather data.
-	 *
-	 * One wallet of each network is pre-synced to avoid duplicate
-	 * requests for subsequent imports to save bandwidth and time.
-	 *
-	 * @private
-	 * @param {object} wallets
-	 * @returns {Promise<void>}
-	 * @memberof Profile
-	 */
-	public async syncAll(): Promise<void> {
-		const syncWallets = (wallets: object): Promise<IReadWriteWallet[]> =>
-			pqueue([...Object.values(wallets)].map((wallet) => () => this.restoreWallet(wallet)));
-
-		const earlyWallets: Record<string, object> = {};
-		const laterWallets: Record<string, object> = {};
-
-		for (const [id, wallet] of Object.entries(this.#dataRaw) as any) {
-			const nid: string = wallet.network;
-
-			if (earlyWallets[nid] === undefined) {
-				earlyWallets[nid] = wallet;
-			} else {
-				laterWallets[id] = wallet;
-			}
-		}
-
-		// These wallets will be synced first so that we have cached coin instances for consecutive sync operations.
-		// This will help with coins like ARK to prevent multiple requests for configuration and syncing operations.
-		await syncWallets(earlyWallets);
-
-		// These wallets will be synced last because they can reuse already existing coin instances from the warmup wallets
-		// to avoid duplicate requests which elongate the waiting time for a user before the wallet is accessible and ready.
-		await syncWallets(laterWallets);
-	}
-
-	/**
-	 * Fully restore the given wallet if it has been partially restored before.
-	 *
-	 * @private
-	 * @param {*} { id, address, coin, network, networkConfig }
-	 * @returns {Promise<void>}
-	 * @memberof WalletRepository
-	 */
-	private async restoreWallet({ id, address, coin, network, networkConfig }): Promise<void> {
-		const previousWallet: IReadWriteWallet = this.findById(id);
-
-		if (previousWallet.hasBeenPartiallyRestored()) {
-			try {
-				await this.syncWalletWithNetwork({ address, coin, network, networkConfig, wallet: previousWallet });
-			} catch {
-				// If we end up here the wallet had previously been
-				// partially restored but we again failed to fully
-				// restore it which means we will just return the
-				// instance again and let the consumer try again.
-			}
-		}
-	}
-
-	/**
-	 * Store a new wallet instance using its unique ID.
-	 *
-	 * @private
-	 * @param {IReadWriteWallet} wallet
-	 * @param {{ force: boolean }} [options={ force: false }]
-	 * @returns {IReadWriteWallet}
-	 * @memberof WalletRepository
-	 */
 	private storeWallet(wallet: IReadWriteWallet, options: { force: boolean } = { force: false }): IReadWriteWallet {
 		if (!options.force) {
 			if (this.findByAddress(wallet.address())) {
