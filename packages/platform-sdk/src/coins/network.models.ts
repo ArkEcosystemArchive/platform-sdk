@@ -166,6 +166,9 @@ export interface CoinNetwork {
 			bip49?: boolean;
 			bip84?: boolean;
 		};
+		Internal?: {
+			fastDelegateSync?: boolean;
+		};
 	};
 	// @TODO: we could replace this with kebabCase(Object.keys(FeatureFlags.Transaction))
 	transactionTypes: CoinTransactionTypes[];

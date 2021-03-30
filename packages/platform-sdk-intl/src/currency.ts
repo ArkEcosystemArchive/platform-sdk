@@ -43,7 +43,26 @@ const getSeparators = (locale: string): { decimal: number; thousands: number } =
 	return { decimal, thousands };
 };
 
+/**
+ * Implements the normalisation of any currency-like string.
+ *
+ * @export
+ * @class Currency
+ */
 export class Currency {
+	/**
+	 * Normalise the given vallue using the given magnitude.
+	 *
+	 * @static
+	 * @param {string} valueString
+	 * @param {number} [magnitude=8]
+	 * @param {string} [locale]
+	 * @returns {{
+	 * 		display: string;
+	 * 		value?: string;
+	 * 	}}
+	 * @memberof Currency
+	 */
 	public static fromString(
 		valueString: string,
 		magnitude = 8,

@@ -1,5 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
+import { Driver } from "../contracts";
+
 export type CoinList = Record<string, Coins.CoinSpec>;
 
 export interface CoinType {
@@ -13,6 +15,7 @@ export interface EnvironmentOptions {
 	coins: CoinList;
 	storage: string | Storage;
 	httpClient: Contracts.HttpClient;
+	driver?: string | Driver;
 	migrations?: Record<string, any>;
 }
 

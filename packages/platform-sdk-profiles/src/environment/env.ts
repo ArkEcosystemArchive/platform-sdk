@@ -1,25 +1,29 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
 
-import { DataRepository } from "../repositories/data-repository";
-import { ProfileRepository } from "../repositories/profile-repository";
+import {
+	ICoinService,
+	IDataRepository,
+	IDelegateService,
+	IExchangeRateService,
+	IFeeService,
+	IKnownWalletService,
+	IPluginRegistry,
+	IProfileRepository,
+	IWalletService,
+} from "../contracts";
+import { DriverFactory } from "../drivers/driver.factory";
 import { container } from "./container";
 import { makeCoin } from "./container.helpers";
 import { Identifiers } from "./container.models";
 import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
-import { CoinService } from "./services/coin-service";
-import { DelegateService } from "./services/delegate-service";
-import { ExchangeRateService } from "./services/exchange-rate-service";
-import { FeeService } from "./services/fee-service";
-import { KnownWalletService } from "./services/known-wallet-service";
-import { WalletService } from "./services/wallet-service";
 import { StorageFactory } from "./storage/factory";
 
 export class Environment {
 	private storage: StorageData | undefined;
 
 	public constructor(options: EnvironmentOptions) {
-		this.configure(options);
+		this.configureDriver(options);
 	}
 
 	/**
@@ -73,7 +77,7 @@ export class Environment {
 
 		/* istanbul ignore next */
 		if (container.has(Identifiers.ExchangeRateService)) {
-			await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).restore();
+			await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).restore();
 		}
 	}
 
@@ -100,7 +104,7 @@ export class Environment {
 	 * @returns {CoinService}
 	 * @memberof Environment
 	 */
-	public coins(): CoinService {
+	public coins(): ICoinService {
 		return container.get(Identifiers.CoinService);
 	}
 
@@ -110,7 +114,7 @@ export class Environment {
 	 * @returns {DataRepository}
 	 * @memberof Environment
 	 */
-	public data(): DataRepository {
+	public data(): IDataRepository {
 		return container.get(Identifiers.AppData);
 	}
 
@@ -120,7 +124,7 @@ export class Environment {
 	 * @returns {DelegateService}
 	 * @memberof Environment
 	 */
-	public delegates(): DelegateService {
+	public delegates(): IDelegateService {
 		return container.get(Identifiers.DelegateService);
 	}
 
@@ -130,7 +134,7 @@ export class Environment {
 	 * @returns {ExchangeRateService}
 	 * @memberof Environment
 	 */
-	public exchangeRates(): ExchangeRateService {
+	public exchangeRates(): IExchangeRateService {
 		return container.get(Identifiers.ExchangeRateService);
 	}
 
@@ -140,7 +144,7 @@ export class Environment {
 	 * @returns {FeeService}
 	 * @memberof Environment
 	 */
-	public fees(): FeeService {
+	public fees(): IFeeService {
 		return container.get(Identifiers.FeeService);
 	}
 
@@ -150,8 +154,18 @@ export class Environment {
 	 * @returns {KnownWalletService}
 	 * @memberof Environment
 	 */
-	public knownWallets(): KnownWalletService {
+	public knownWallets(): IKnownWalletService {
 		return container.get(Identifiers.KnownWalletService);
+	}
+
+	/**
+	 * Access the plugin registry.
+	 *
+	 * @returns {IPluginRegistry}
+	 * @memberof Environment
+	 */
+	public plugins(): IPluginRegistry {
+		return container.get(Identifiers.PluginRegistry);
 	}
 
 	/**
@@ -160,7 +174,7 @@ export class Environment {
 	 * @returns {ProfileRepository}
 	 * @memberof Environment
 	 */
-	public profiles(): ProfileRepository {
+	public profiles(): IProfileRepository {
 		return container.get(Identifiers.ProfileRepository);
 	}
 
@@ -170,7 +184,7 @@ export class Environment {
 	 * @returns {WalletService}
 	 * @memberof Environment
 	 */
-	public wallets(): WalletService {
+	public wallets(): IWalletService {
 		return container.get(Identifiers.WalletService);
 	}
 
@@ -237,34 +251,35 @@ export class Environment {
 		container.flush();
 
 		if (options !== undefined) {
-			this.configure(options);
+			this.configureDriver(options);
 		}
 	}
 
 	/**
-	 * Create all necessary container bindings based on the given options.
+	 * Create a driver instance and all necessary container bindings.
 	 *
-	 * @private
-	 * @param {EnvironmentOptions} options
 	 * @memberof Environment
 	 */
-	private configure(options: EnvironmentOptions): void {
+	private configureDriver(options: EnvironmentOptions): void {
+		// These are driver implementation agnostic bindings.
 		if (typeof options.storage === "string") {
-			container.bind(Identifiers.Storage, StorageFactory.make(options.storage));
+			container.constant(Identifiers.Storage, StorageFactory.make(options.storage));
 		} else {
-			container.bind(Identifiers.Storage, options.storage);
+			container.constant(Identifiers.Storage, options.storage);
 		}
 
-		container.bind(Identifiers.AppData, new DataRepository());
-		container.bind(Identifiers.HttpClient, options.httpClient);
-		container.bind(Identifiers.ProfileRepository, new ProfileRepository());
-		container.bind(Identifiers.CoinService, new CoinService());
-		container.bind(Identifiers.DelegateService, new DelegateService());
-		container.bind(Identifiers.ExchangeRateService, new ExchangeRateService());
-		container.bind(Identifiers.FeeService, new FeeService());
-		container.bind(Identifiers.KnownWalletService, new KnownWalletService());
-		container.bind(Identifiers.WalletService, new WalletService());
+		container.constant(Identifiers.HttpClient, options.httpClient);
+		container.constant(Identifiers.Coins, options.coins);
 
-		container.bind(Identifiers.Coins, options.coins);
+		// These are bindings that are specific to the driver implementation.
+		if (options.driver === undefined) {
+			return DriverFactory.make("memory", container, options);
+		}
+
+		if (typeof options.driver === "string") {
+			return DriverFactory.make(options.driver, container, options);
+		}
+
+		return options.driver?.make(container, options);
 	}
 }

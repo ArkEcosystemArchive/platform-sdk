@@ -1,12 +1,14 @@
+import "reflect-metadata";
+
 import { Coins } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../test/fixtures/identity";
 import { bootContainer } from "../../test/helpers";
-import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
-import { Wallet } from "../wallets/wallet";
+import { IProfile, IReadWriteWallet, ProfileSetting } from "../contracts";
+import { Profile } from "../drivers/memory/profiles/profile";
+import { Wallet } from "../drivers/memory/wallets/wallet";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,
@@ -61,8 +63,8 @@ const data = [
 beforeAll(() => bootContainer());
 
 describe("transaction-mapper", () => {
-	let profile: Profile;
-	let wallet: Wallet;
+	let profile: IProfile;
+	let wallet: IReadWriteWallet;
 
 	const dummyTransactionData = {
 		isLegacyBridgechainRegistration: () => false,
@@ -124,6 +126,7 @@ describe("transaction-mapper", () => {
 			prev: "before",
 			self: "now",
 			next: "after",
+			last: "last",
 		};
 
 		// @ts-ignore

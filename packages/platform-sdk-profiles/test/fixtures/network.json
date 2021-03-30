@@ -96,6 +96,9 @@
 				"wif": true
 			}
 		},
+		"Internal": {
+			"fastDelegateSync": true
+		},
 		"Ledger": {
 			"getVersion": true,
 			"getPublicKey": true,
@@ -229,6 +232,9 @@
 					"privateKey": false,
 					"wif": true
 				}
+			},
+			"Internal": {
+				"fastDelegateSync": true
 			},
 			"Ledger": {
 				"getVersion": true,

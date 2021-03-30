@@ -28,6 +28,7 @@ export enum FeatureFlag {
 	IdentityPublicKeyMultiSignature = "Identity.publicKey.multiSignature",
 	IdentityPublicKeyWif = "Identity.publicKey.wif",
 	IdentityWifMnemonic = "Identity.wif.mnemonic",
+	InternalFastDelegateSync = "Internal.fastDelegateSync",
 	LedgerGetPublicKey = "Ledger.getPublicKey",
 	LedgerGetVersion = "Ledger.getVersion",
 	LedgerSignMessage = "Ledger.signMessage",

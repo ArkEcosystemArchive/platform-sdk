@@ -71,6 +71,9 @@ test("#all", () => {
 		          "mnemonic": true,
 		        },
 		      },
+		      "Internal": Object {
+		        "fastDelegateSync": true,
+		      },
 		      "Ledger": Object {
 		        "getPublicKey": true,
 		        "getVersion": true,
@@ -212,6 +215,9 @@ test("#all", () => {
 		          "mnemonic": true,
 		        },
 		      },
+		      "Internal": Object {
+		        "fastDelegateSync": true,
+		      },
 		      "Ledger": Object {
 		        "getPublicKey": true,
 		        "getVersion": true,
@@ -352,6 +358,9 @@ test("#all", () => {
 		        "wif": Object {
 		          "mnemonic": true,
 		        },
+		      },
+		      "Internal": Object {
+		        "fastDelegateSync": true,
 		      },
 		      "Ledger": Object {
 		        "getPublicKey": true,

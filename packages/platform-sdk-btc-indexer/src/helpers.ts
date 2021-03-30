@@ -5,10 +5,28 @@ import { Client } from "./client";
 import { Database } from "./database";
 import { Flags } from "./types";
 
+/**
+ * Creates a new database instance.
+ *
+ * @param {Flags} flags
+ * @param {Logger} logger
+ * @returns {Database}
+ */
 export const useDatabase = (flags: Flags, logger: Logger): Database => new Database(flags, logger);
 
+/**
+ * Creates a new logger instance.
+ *
+ * @returns {Logger}
+ */
 export const useLogger = (): Logger => new Logger();
 
+/**
+ * Creates a new queue instance.
+ *
+ * @param {boolean} [options={ autoStart: false, concurrency: 10 }]
+ * @returns {PQueue}
+ */
 export const useQueue = (options = { autoStart: false, concurrency: 10 }): PQueue => {
 	const queue = new PQueue(options);
 	// queue.on("active", () => logger.debug(`Size: ${queue.size}  Pending: ${queue.pending}`));
@@ -19,5 +37,13 @@ export const useQueue = (options = { autoStart: false, concurrency: 10 }): PQueu
 	return queue;
 };
 
+/**
+ * Creates a new API client instance.
+ *
+ * @param {Flags} flags
+ * @param {Logger} logger
+ * @param {Database} database
+ * @returns {Client}
+ */
 export const useClient = (flags: Flags, logger: Logger, database: Database): Client =>
 	new Client(flags, logger, database);

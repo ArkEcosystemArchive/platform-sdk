@@ -7,21 +7,21 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { CoinService } from "../src/environment/services/coin-service";
-import { Contact } from "../src/contacts/contact";
-import { ContactStruct } from "../src/contacts/contact.models";
+import { CoinService } from "../src/drivers/memory/services/coin-service";
+import { Contact } from "../src/drivers/memory/contacts/contact";
 import { container } from "../src/environment/container";
 import { DataRepository } from "../src/repositories/data-repository";
-import { DelegateService } from "../src/environment/services/delegate-service";
-import { ExchangeRateService } from "../src/environment/services/exchange-rate-service";
-import { FeeService } from "../src/environment/services/fee-service";
+import { DelegateService } from "../src/drivers/memory/services/delegate-service";
+import { ExchangeRateService } from "../src/drivers/memory/services/exchange-rate-service";
+import { FeeService } from "../src/drivers/memory/services/fee-service";
 import { Identifiers } from "../src/environment/container.models";
-import { KnownWalletService } from "../src/environment/services/known-wallet-service";
-import { Profile } from "../src/profiles/profile";
-import { ProfileRepository } from "../src/repositories/profile-repository";
+import { KnownWalletService } from "../src/drivers/memory/services/known-wallet-service";
+import { Profile } from "../src/drivers/memory/profiles/profile";
+import { ProfileRepository } from "../src/drivers/memory/repositories/profile-repository";
 import { StubStorage } from "./stubs/storage";
-import { Wallet } from "../src/wallets/wallet";
-import { WalletService } from "../src/environment/services/wallet-service";
+import { Wallet } from "../src/drivers/memory/wallets/wallet";
+import { WalletService } from "../src/drivers/memory/services/wallet-service";
+import { IContactStruct, IProfile, IReadWriteWallet } from "../src/contracts";
 
 export const bootContainer = (): void => {
 	container.bind(Identifiers.Storage, new StubStorage());
@@ -60,7 +60,7 @@ export const knock = (): void => {
 		.reply(200, require("./fixtures/client/delegates-2.json"));
 };
 
-export const makeProfile = (data: object = {}): Profile =>
+export const makeProfile = (data: object = {}): IProfile =>
 	new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "", ...data });
-export const makeContact = (data: ContactStruct, profile: Profile): Contact => new Contact(data, profile);
-export const makeWallet = (id: string, profile: Profile): Wallet => new Wallet(id, {}, profile);
+export const makeContact = (data: IContactStruct, profile: IProfile): Contact => new Contact(data, profile);
+export const makeWallet = (id: string, profile: IProfile): IReadWriteWallet => new Wallet(id, {}, profile);

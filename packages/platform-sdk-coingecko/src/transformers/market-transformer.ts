@@ -1,8 +1,28 @@
 import { Contracts, Data } from "@arkecosystem/platform-sdk";
 
+/**
+ * Implements a transformer for historical market data.
+ *
+ * @export
+ * @class MarketTransformer
+ * @implements {Contracts.MarketTransformer}
+ */
 export class MarketTransformer implements Contracts.MarketTransformer {
+	/**
+	 * Creates an instance of MarketTransformer.
+	 *
+	 * @param {Contracts.KeyValuePair} data
+	 * @memberof MarketTransformer
+	 */
 	public constructor(private readonly data: Contracts.KeyValuePair) {}
 
+	/**
+	 * Transforms the given data into a normalised format.
+	 *
+	 * @param {Contracts.KeyValuePair} options
+	 * @returns {Contracts.MarketDataCollection}
+	 * @memberof MarketTransformer
+	 */
 	public transform(options: Contracts.KeyValuePair): Contracts.MarketDataCollection {
 		const result = {};
 

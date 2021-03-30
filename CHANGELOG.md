@@ -5,6 +5,126 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 4.1.0 - 2020-03-30
+
+### Fixed
+
+-   **[PROFILES]** Only use custom peer if setting is enabled (b461135f, @faustbrian)
+
+### Changed
+
+-   **[PROFILES]** Use correct peer, plugin and notification interfaces (8f783ef7, @faustbrian)
+-   **[PROFILES]** Use `inversify` as DI container (53a18606, @faustbrian)
+-   **[PROFILES]** Split profile restoration into separate methods (71d1adb1, @faustbrian)
+
+## 4.0.5 - 2020-03-29
+
+### Changed
+
+-   **[PROFILES]** Lazily construct driver instances (f0f28804, @faustbrian)
+
+## 4.0.4 - 2020-03-26
+
+### Added
+
+-   **[ARK]** Sign message with wif (aacc2f36, @dated)
+-   **[JSON-RPC]** Implement transaction listing (a69fb46e, @faustbrian)
+
+## 4.0.2 - 2020-03-26
+
+### Changed
+
+-   **[PROFILES]** Expose externally used classes (b7083d77, @faustbrian)
+
+## 4.0.1 - 2020-03-25
+
+### Fixed
+
+-   **[PROFILES]** export Avatar helper (ec014811, @faustbrian)
+
+## 4.0.0 - 2020-03-25
+
+This release contains internal breaking changes as well as external as a result. This mostly affects imports and type hinting of classes which should now use the exported `Contracts` to reference things instead of direct references of concrete implementations.
+
+### Added
+
+-   **[PROFILES]** Implement storage that uses system configuration path (e06cd77c, @faustbrian)
+
+### Fixed
+
+-   **[ARK]** Handle different broadcast response error types (4a7a442e, @dated)
+
+### Changed
+
+-   **[PROFILES]** Move default implementation into drivers/memory (31d8951d, @faustbrian)
+-   **[PROFILES]** Extract environment configuration into drivers (c13b10ad, @faustbrian)
+-   **[PROFILES]** Extract implementation contracts (207944d8, @faustbrian)
+-   **[PROFILES]** Move DTO namespace into the root (09e4b8d9, @faustbrian)
+-   **[PROFILES]** Temporarily prefix all contracts with I (136c2a31, @faustbrian)
+-   **[PROFILES]** Use new implementation contracts (758e2999, @faustbrian)
+
+## 3.2.7 - 2020-03-24
+
+### Changed
+
+-   **[PROFILES]** Perform concurrent delegate synchronisation if possible (41ce33ac, @faustbrian)
+
+## 3.2.6 - 2020-03-24
+
+### Added
+
+-   **[JSON-RPC]** Implement message service (c3bfa90f, @faustbrian)
+
+## 3.2.5 - 2020-03-23
+
+### Added
+
+-   **[JSON-RPC]** Implement wallet generation (d0ffc13a, @faustbrian)
+
+### Changed
+
+-   **[JSON-RPC]** Cache coin instance based on network (eed90c38, @faustbrian)
+
+### Fixed
+
+-   **[PROFILES]** Include bip38 data in ReadWriteWallet#toObject (2fef13e2, @goga-m)
+
+## 3.2.2 - 2020-03-22
+
+### Added
+
+-   **[JSON-RPC]** Implement transfer signing and broadcasting (dd5f1cbc, @faustbrian)
+-   **[JSON-RPC]** Retrieve transaction, wallet and delegate details (66935805, @faustbrian)
+
+## 3.2.0 - 2020-03-19
+
+### Added
+
+-   **[JSON-RPC]** Initial implementation (5e86eb49, @faustbrian)
+
+### Changed
+
+-   **[PROFILES]** Remove excludeWalletsWithoutName export setting (27cd78aa, @dated)
+
+## 3.1.24 - 2020-03-18
+
+### Added
+
+-   **[CRYPTO]** Implement `WIF` helpers (a187a096, @faustbrian)
+-   **[ARK]** Implement `LedgerService#scan` (bac3e2eb, @marianogoldman)
+-   **[ARK]** Implement BIP44 compliant ledger derivation (dc24ea0f, @faustbrian)
+
+### Fixed
+
+-   **[PROFILES]** Expose `ReadWriteWallet#wif` and `ReadWriteWallet#usesWIF` methods (03247207, @goga-m)
+
+## 3.1.20 - 2020-03-12
+
+### Added
+
+-   Implement `UUID` helper (e23ad13d, @faustbrian)
+-   Implement WIF and encrypted WIF import (846c6f4a, @faustbrian)
+
 ## 3.1.18 - 2020-03-11
 
 ### Changed
