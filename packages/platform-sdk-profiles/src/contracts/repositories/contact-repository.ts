@@ -8,7 +8,6 @@ export interface IContactRepository {
     keys(): string[];
     values(): IContact[];
     create(name: string): IContact;
-    fill(contacts: object): Promise<void>;
     findById(id: string): IContact;
     update(id: string, data: { name?: string; addresses?: IContactAddressInput[] }): Promise<void>;
     forget(id: string): void;
@@ -18,4 +17,7 @@ export interface IContactRepository {
     findByCoin(value: string): IContact[];
     findByNetwork(value: string): IContact[];
     toObject(): Record<string, object>;
+
+    fill(contacts: object): void;
+    syncAll(): Promise<void>;
 }
