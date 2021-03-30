@@ -1,5 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { tools } from 'nanocurrency-web';
+import { tools } from "nanocurrency-web";
 
 import { deriveAccountKey } from "./helpers";
 

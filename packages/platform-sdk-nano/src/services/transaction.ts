@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { block } from 'nanocurrency-web';
-import { computeWork } from 'nanocurrency';
+import { computeWork } from "nanocurrency";
+import { block } from "nanocurrency-web";
 
 import { SignedTransactionData } from "../dto";
 
@@ -24,23 +24,23 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		// @TODO: derive from mnemonic
-		const privateKey = '781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3';
+		const privateKey = "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3";
 		const data = {
 			// Current balance from wallet info
-			walletBalanceRaw: '5618869000000000000000000000000',
+			walletBalanceRaw: "5618869000000000000000000000000",
 			// Your wallet address
 			fromAddress: input.from,
 			// The address to send to
 			toAddress: input.data.to,
 			// From wallet info
-			representativeAddress: 'nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou',
+			representativeAddress: "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
 			// Previous block, from wallet info
-			frontier: '92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D',
+			frontier: "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
 			// The amount to send in RAW
 			amountRaw: input.data.amount,
 			// Generate work on server-side or with a DPOW service
 			work: (await computeWork("previousBlock"))!,
-		}
+		};
 
 		return new SignedTransactionData(block.send(data, privateKey).signature, data, data);
 	}
