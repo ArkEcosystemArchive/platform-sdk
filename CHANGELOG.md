@@ -5,6 +5,52 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 4.0.5 - 2020-03-29
+
+### Changed
+
+-   **[PROFILES]** Lazily construct driver instances (f0f28804, @faustbrian)
+
+## 4.0.4 - 2020-03-26
+
+### Added
+
+-   **[ARK]** Sign message with wif (aacc2f36, @dated)
+-   **[JSON-RPC]** Implement transaction listing (a69fb46e, @faustbrian)
+
+## 4.0.2 - 2020-03-26
+
+### Changed
+
+-   **[PROFILES]** Expose externally used classes (b7083d77, @faustbrian)
+
+## 4.0.1 - 2020-03-25
+
+### Fixed
+
+-   **[PROFILES]** export Avatar helper (ec014811, @faustbrian)
+
+## 4.0.0 - 2020-03-25
+
+This release contains internal breaking changes as well as external as a result. This mostly affects imports and type hinting of classes which should now use the exported `Contracts` to reference things instead of direct references of concrete implementations.
+
+### Added
+
+-   **[PROFILES]** Implement storage that uses system configuration path (e06cd77c, @faustbrian)
+
+### Fixed
+
+-   **[ARK]** Handle different broadcast response error types (4a7a442e, @dated)
+
+### Changed
+
+-   **[PROFILES]** Move default implementation into drivers/memory (31d8951d, @faustbrian)
+-   **[PROFILES]** Extract environment configuration into drivers (c13b10ad, @faustbrian)
+-   **[PROFILES]** Extract implementation contracts (207944d8, @faustbrian)
+-   **[PROFILES]** Move DTO namespace into the root (09e4b8d9, @faustbrian)
+-   **[PROFILES]** Temporarily prefix all contracts with I (136c2a31, @faustbrian)
+-   **[PROFILES]** Use new implementation contracts (758e2999, @faustbrian)
+
 ## 3.2.7 - 2020-03-24
 
 ### Changed

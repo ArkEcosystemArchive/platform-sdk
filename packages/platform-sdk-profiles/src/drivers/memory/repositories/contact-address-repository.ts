@@ -3,7 +3,7 @@ import { IContactAddress, IContactAddressInput, IContactAddressRepository } from
 import { ContactAddress } from "../contacts/contact-address";
 import { injectable } from "inversify";
 
-import { DataRepository } from "./data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 
 @injectable()
 export class ContactAddressRepository implements IContactAddressRepository {

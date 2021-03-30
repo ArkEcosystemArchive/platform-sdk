@@ -9,10 +9,10 @@ import { bootContainer } from "../../../../test/helpers";
 import { Profile } from "../profiles/profile";
 import { Wallet } from "./wallet";
 import { TransactionService } from "./wallet-transaction-service";
-import { IProfile, ProfileSetting, WalletData } from "../../../contracts";
+import { IProfile, IReadWriteWallet, ProfileSetting, WalletData } from "../../../contracts";
 
 let profile: IProfile;
-let wallet: Wallet;
+let wallet: IReadWriteWallet;
 let subject: TransactionService;
 
 beforeAll(() => {

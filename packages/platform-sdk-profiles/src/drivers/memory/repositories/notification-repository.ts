@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { INotification, INotificationRepository } from "../../../contracts";
 import { injectable } from "inversify";
 
-import { DataRepository } from "./data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 
 @injectable()
 export class NotificationRepository implements INotificationRepository {

@@ -1,5 +1,4 @@
 export * from "./coin-service";
-export * from "./avatar";
 export * from "./cache";
 export * from "./delegate-service";
 export * from "./exchange-rate-service";

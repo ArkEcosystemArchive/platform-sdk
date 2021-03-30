@@ -2,7 +2,7 @@ import { Container } from "../../environment/container";
 import { Identifiers } from "../../environment/container.models";
 import { EnvironmentOptions } from "../../environment/env.models";
 import { Driver } from "../../contracts";
-import { DataRepository } from "./repositories/data-repository";
+import { DataRepository } from "../../repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
 import { CoinService } from "./services/coin-service";
 import { DelegateService } from "./services/delegate-service";
@@ -10,6 +10,7 @@ import { ExchangeRateService } from "./services/exchange-rate-service";
 import { FeeService } from "./services/fee-service";
 import { KnownWalletService } from "./services/known-wallet-service";
 import { WalletService } from "./services/wallet-service";
+import { PluginRegistry } from "./plugins";
 
 export class MemoryDriver implements Driver {
 	/**

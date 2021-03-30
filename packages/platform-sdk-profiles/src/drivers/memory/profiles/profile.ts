@@ -8,12 +8,12 @@ import { MemoryPassword } from "../../../helpers/password";
 import { pqueue } from "../../../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
-import { DataRepository } from "../repositories/data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 import { NotificationRepository } from "../repositories/notification-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
-import { Avatar } from "../services/avatar";
+import { Avatar } from "../../../helpers/avatar";
 import { CountAggregate } from "./aggregates/count-aggregate";
 import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
@@ -174,11 +174,14 @@ export class Profile implements IProfile {
 	 * These methods serve as helpers to handle broadcasting.
 	 */
 
+	public usesCustomPeer(): boolean {
+		return this.settings().get(ProfileSetting.UseCustomPeer) === true;
+	}
+
 	public usesMultiPeerBroadcasting(): boolean {
-		const usesCustomPeer: boolean = this.settings().get(ProfileSetting.UseCustomPeer) === true;
 		const usesMultiPeerBroadcasting: boolean = this.settings().get(ProfileSetting.UseMultiPeerBroadcast) === true;
 
-		return usesCustomPeer && usesMultiPeerBroadcasting;
+		return this.usesCustomPeer() && usesMultiPeerBroadcasting;
 	}
 
 	/**

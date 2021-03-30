@@ -1,6 +1,7 @@
 import dot from "dot-prop";
-import { IDataRepository } from "../../../contracts";
 import { injectable } from "inversify";
+
+import { IDataRepository } from "../contracts";
 
 @injectable()
 export class DataRepository implements IDataRepository {

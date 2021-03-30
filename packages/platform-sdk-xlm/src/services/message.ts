@@ -13,6 +13,10 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+		if (input.mnemonic === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "sign", "mnemonic");
+		}
+
 		try {
 			const privateKey: string = StellarHDWallet.fromMnemonic(BIP39.normalize(input.mnemonic)).getSecret(0);
 			const source = Stellar.Keypair.fromSecret(privateKey);

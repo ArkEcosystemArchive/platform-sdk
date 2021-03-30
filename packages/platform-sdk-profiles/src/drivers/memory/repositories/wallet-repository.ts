@@ -9,7 +9,7 @@ import { Identifiers } from "../../../environment/container.models";
 import { CoinService } from "../services/coin-service";
 import { Wallet } from "../wallets/wallet";
 import { WalletFactory } from "../wallets/wallet.factory";
-import { DataRepository } from "./data-repository";
+import { DataRepository } from "../../../repositories/data-repository";
 import { IDataRepository, IProfile, IReadWriteWallet, IWalletFactory, IWalletRepository, IWalletExportOptions } from "../../../contracts";
 import { injectable } from "inversify";
 

@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
+import { injectable } from "inversify";
 import { IContact, IContactAddress, IContactAddressInput, IContactRepository, IProfile } from "../../../contracts";
 
 import { Contact } from "../contacts/contact";
 import { pqueue } from "../../../helpers/queue";
-import { DataRepository } from "./data-repository";
-import { injectable } from "inversify";
+import { DataRepository } from "../../../repositories/data-repository";
 
 @injectable()
 export class ContactRepository implements IContactRepository {
