@@ -27,7 +27,6 @@ export interface IWalletRepository {
 		password: string;
 	}): Promise<IReadWriteWallet>;
     generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: IReadWriteWallet }>;
-    restore(struct: Record<string, any>): Promise<IReadWriteWallet>;
     findById(id: string): IReadWriteWallet;
     findByAddress(address: string): IReadWriteWallet | undefined;
     findByPublicKey(publicKey: string): IReadWriteWallet | undefined;
@@ -41,4 +40,7 @@ export interface IWalletRepository {
     count(): number;
     toObject(options: IWalletExportOptions): Record<string, object>;
     sortBy(column: string, direction: "asc" | "desc"): IReadWriteWallet[];
+
+    fill(struct: Record<string, any>): Promise<void>;
+    syncAll(): Promise<void>;
 }
