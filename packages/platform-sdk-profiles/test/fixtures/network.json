@@ -34,8 +34,7 @@
 		"signingMethods": {
 			"mnemonic": true,
 			"wif": true
-		},
-		"expirationType": "height"
+		}
 	},
 	"networking": {
 		"hosts": ["https://dwallets.ark.io"],
