@@ -1,7 +1,7 @@
-# ARK Platform SDK - Terra
+# ARK Platform SDK - Nano
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-terra/banner.png" />
+    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-nano/banner.png" />
 </p>
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)
@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-npm install @arkecosystem/platform-sdk-terra
+npm install @arkecosystem/platform-sdk-nano
 ```
 
 ## Usage
