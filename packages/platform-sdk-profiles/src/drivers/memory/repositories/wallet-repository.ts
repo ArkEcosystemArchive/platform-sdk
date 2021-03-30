@@ -372,7 +372,7 @@ export class WalletRepository implements IWalletRepository {
 
 		if (previousWallet.hasBeenPartiallyRestored()) {
 			try {
-				await this.syncWalletWithNetwork({ address, coin, network: network.id, networkConfig, wallet: previousWallet });
+				await this.syncWalletWithNetwork({ address, coin, network, networkConfig, wallet: previousWallet });
 			} catch {
 				// If we end up here the wallet had previously been
 				// partially restored but we again failed to fully

@@ -554,7 +554,7 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.id).toBeString();
 		expect(actual.address).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 		expect(actual.coin).toBe("ARK");
-		expect(actual.network).toMatchSnapshot();
+		expect(actual.network).toBe("ark.devnet");
 		expect(actual.networkConfig.crypto.slip44).toBe(slip44);
 		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 		expect(actual.data).toEqual({

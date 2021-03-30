@@ -200,18 +200,18 @@ it("should boot the environment from fixed data", async () => {
 
 	expect(newProfile).toBeInstanceOf(Profile);
 	expect(newProfile.wallets().keys()).toHaveLength(1);
-	expect(newProfile.contacts().keys()).toHaveLength(0);
-	expect(newProfile.notifications().keys()).toHaveLength(0);
-	expect(newProfile.data().all()).toEqual({});
+	expect(newProfile.contacts().keys()).toHaveLength(1);
+	expect(newProfile.notifications().keys()).toHaveLength(1);
+	expect(newProfile.data().all()).toEqual({ key: "value" });
 	expect(newProfile.settings().all()).toEqual({
-		ADVANCED_MODE: false,
+		ADVANCED_MODE: "value",
 		AUTOMATIC_SIGN_OUT_PERIOD: 15,
 		BIP39_LOCALE: "english",
 		EXCHANGE_CURRENCY: "BTC",
 		LEDGER_UPDATE_METHOD: false,
 		LOCALE: "en-US",
 		MARKET_PROVIDER: "cryptocompare",
-		NAME: "John",
+		NAME: "John Doe",
 		SCREENSHOT_PROTECTION: true,
 		THEME: "light",
 		TIME_FORMAT: "h:mm A",
