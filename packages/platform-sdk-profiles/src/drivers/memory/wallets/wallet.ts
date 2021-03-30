@@ -16,7 +16,7 @@ import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../../../helpers/avatar";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
-import { IPeerRepository, IProfile, IReadWriteWallet, IReadOnlyWallet, IWalletStruct, ProfileSetting, WalletData, WalletFlag, WalletSetting, IDelegateService, ICoinService } from "../../../contracts";
+import { IPeerRepository, IProfile, IReadWriteWallet, IReadOnlyWallet, IWalletStruct, ProfileSetting, WalletData, WalletFlag, WalletSetting, IDelegateService } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
 export class Wallet implements IReadWriteWallet {
