@@ -75,7 +75,7 @@ describe("ProfileRepository", () => {
 					"ac38fe6d-4b67-4ef1-85be-17c5f6841129": {
 						id: "ac38fe6d-4b67-4ef1-85be-17c5f6841129",
 						coin: "ARK",
-						network: "ark.devnet",
+						network: require("../../../../test/fixtures/network.json"),
 						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 						publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
 						data: {
@@ -90,7 +90,7 @@ describe("ProfileRepository", () => {
 					"0e147f96-049f-4d89-bad4-ad3341109907": {
 						id: "0e147f96-049f-4d89-bad4-ad3341109907",
 						coin: "ARK",
-						network: "ark.devnet",
+						network: require("../../../../test/fixtures/network.json"),
 						address: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 						publicKey: "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
 						data: {

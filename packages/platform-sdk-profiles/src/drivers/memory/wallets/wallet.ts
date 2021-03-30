@@ -155,7 +155,11 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public network(): Coins.Network {
-		return this.coin().network();
+		if (this.hasBeenFullyRestored()) {
+			return this.network();
+		}
+
+		return new Coins.Network(this.#initialState.coin, this.#initialState.network);
 	}
 
 	public currency(): string {
@@ -258,7 +262,7 @@ export class Wallet implements IReadWriteWallet {
 		return {
 			id: this.id(),
 			coin: this.coin().manifest().get<string>("name"),
-			network: this.networkId(),
+			network: this.network().toObject(),
 			// We only persist a few settings to prefer defaults from the SDK.
 			networkConfig: {
 				crypto: {

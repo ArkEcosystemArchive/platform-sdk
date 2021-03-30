@@ -485,7 +485,8 @@ export class Profile implements IProfile {
 				Joi.object({
 					id: Joi.string().required(),
 					coin: Joi.string().required(),
-					network: Joi.string().required(),
+					network: Joi.object().required(),
+					// @TODO: we can probably get rid of this when `network` is an object
 					networkConfig: Joi.object({
 						crypto: Joi.object({
 							slip44: Joi.number().integer().required(),

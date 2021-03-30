@@ -45,6 +45,8 @@ export class WalletFactory implements IWalletFactory {
 			);
 		}
 
+		wallet.markAsFullyRestored();
+
 		return wallet;
 	}
 
@@ -61,6 +63,8 @@ export class WalletFactory implements IWalletFactory {
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(address);
+
+		wallet.markAsFullyRestored();
 
 		return wallet;
 	}
@@ -79,6 +83,8 @@ export class WalletFactory implements IWalletFactory {
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(await wallet.coin().identity().address().fromPublicKey(publicKey));
 
+		wallet.markAsFullyRestored();
+
 		return wallet;
 	}
 
@@ -95,6 +101,8 @@ export class WalletFactory implements IWalletFactory {
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
+
+		wallet.markAsFullyRestored();
 
 		return wallet;
 	}
@@ -153,6 +161,8 @@ export class WalletFactory implements IWalletFactory {
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(await wallet.coin().identity().address().fromWIF(wif));
 
+		wallet.markAsFullyRestored();
+
 		return wallet;
 	}
 
@@ -176,6 +186,8 @@ export class WalletFactory implements IWalletFactory {
 		await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
 
 		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
+
+		wallet.markAsFullyRestored();
 
 		return wallet;
 	}
