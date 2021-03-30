@@ -69,7 +69,7 @@ export class Wallet implements IReadWriteWallet {
 	 */
 
 	public async setCoin(coin: string, network: string): Promise<IReadWriteWallet> {
-		if (this.peers().has(coin, network)) {
+		if (this.usesMultiPeerBroadcasting() && this.peers().has(coin, network)) {
 			this.#coin = await makeCoin(
 				coin,
 				network,
