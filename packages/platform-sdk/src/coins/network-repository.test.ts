@@ -12,6 +12,7 @@ test("#all", () => {
 		Object {
 		  "ark.devnet": Object {
 		    "crypto": Object {
+		      "expirationType": "height",
 		      "signingMethods": Object {
 		        "mnemonic": true,
 		        "wif": true,
@@ -22,7 +23,6 @@ test("#all", () => {
 		      "symbol": "DѦ",
 		      "ticker": "DARK",
 		    },
-		    "expirationType": "height",
 		    "explorer": "https://dexplorer.ark.io/",
 		    "featureFlags": Object {
 		      "Client": Object {
@@ -157,6 +157,7 @@ test("#all", () => {
 		  },
 		  "ark.mainnet": Object {
 		    "crypto": Object {
+		      "expirationType": "height",
 		      "signingMethods": Object {
 		        "mnemonic": true,
 		        "wif": true,
@@ -167,7 +168,6 @@ test("#all", () => {
 		      "symbol": "Ѧ",
 		      "ticker": "ARK",
 		    },
-		    "expirationType": "height",
 		    "explorer": "https://explorer.ark.io/",
 		    "featureFlags": Object {
 		      "Client": Object {
@@ -302,6 +302,7 @@ test("#all", () => {
 		  },
 		  "compendia.mainnet": Object {
 		    "crypto": Object {
+		      "expirationType": "height",
 		      "signingMethods": Object {
 		        "mnemonic": true,
 		        "wif": true,
@@ -312,7 +313,6 @@ test("#all", () => {
 		      "symbol": "ß",
 		      "ticker": "BIND",
 		    },
-		    "expirationType": "height",
 		    "explorer": "https://bindscan.io/",
 		    "featureFlags": Object {
 		      "Client": Object {
