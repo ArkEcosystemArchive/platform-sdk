@@ -234,8 +234,8 @@
 			"shouldPublish": true
 		},
 		{
-			"packageName": "@arkecosystem/platform-sdk-terra",
-			"projectFolder": "packages/platform-sdk-terra",
+			"packageName": "@arkecosystem/platform-sdk-luna",
+			"projectFolder": "packages/platform-sdk-luna",
 			"reviewCategory": "libraries",
 			"shouldPublish": true
 		},
