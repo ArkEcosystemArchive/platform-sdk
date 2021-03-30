@@ -1,19 +1,19 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
 const network: Coins.CoinNetwork = {
-	id: "terra.mainnet",
+	id: "nano.mainnet",
 	type: "live",
 	name: "Mainnet",
 	explorer: "TODO",
 	currency: {
-		ticker: "LUNA",
-		symbol: "LUNA",
+		ticker: "NANO",
+		symbol: "NANO",
 	},
 	crypto: {
-		slip44: 330,
+		slip44: 165,
 	},
 	networking: {
-		hosts: ["https://luna-lcd.terra.dev/"],
+		hosts: [],
 	},
 	governance: {
 		voting: {
@@ -24,9 +24,6 @@ const network: Coins.CoinNetwork = {
 		},
 	},
 	featureFlags: {
-		Client: {
-			broadcast: true,
-		},
 		Identity: {
 			address: {
 				mnemonic: true,
@@ -47,14 +44,12 @@ const network: Coins.CoinNetwork = {
 			transaction: true,
 			wallet: true,
 		},
-		Transaction: {
-			transfer: true,
-		},
 		Derivation: {
 			bip39: true,
+			bip44: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	transactionTypes: [],
 };
 
 export default network;

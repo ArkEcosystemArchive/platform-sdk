@@ -192,6 +192,12 @@
 			"shouldPublish": true
 		},
 		{
+			"packageName": "@arkecosystem/platform-sdk-nano",
+			"projectFolder": "packages/platform-sdk-nano",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
 			"packageName": "@arkecosystem/platform-sdk-neo",
 			"projectFolder": "packages/platform-sdk-neo",
 			"reviewCategory": "libraries",
