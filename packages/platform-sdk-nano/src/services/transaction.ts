@@ -39,7 +39,7 @@ export class TransactionService implements Contracts.TransactionService {
 			// The amount to send in RAW
 			amountRaw: input.data.amount,
 			// Generate work on server-side or with a DPOW service
-			work: computeWork("previousBlock"),
+			work: (await computeWork("previousBlock"))!,
 		}
 
 		return new SignedTransactionData(block.send(data, privateKey).signature, data, data);
