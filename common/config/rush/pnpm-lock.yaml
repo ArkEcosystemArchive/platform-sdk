@@ -2755,6 +2755,78 @@ importers:
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
+  ../../packages/platform-sdk-terra:
+    dependencies:
+      '@arkecosystem/platform-sdk': link:../platform-sdk
+      '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
+      '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
+      '@terra-money/terra.js': 1.6.0
+    devDependencies:
+      '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
+      '@types/eslint': 7.2.6
+      '@types/eslint-plugin-prettier': 3.1.0
+      '@types/hapi__joi': 17.1.6
+      '@types/jest': 26.0.20
+      '@types/node': 14.14.31
+      '@types/prettier': 2.2.2
+      '@types/rimraf': 3.0.0
+      '@typescript-eslint/eslint-plugin': 4.16.1_4fe32a7126aebc440d3400f14be2b917
+      '@typescript-eslint/parser': 4.16.1_eslint@7.21.0+typescript@4.2.2
+      cardano-crypto.js: 6.0.0
+      cross-env: 7.0.3
+      eslint: 7.21.0
+      eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
+      eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.2.2
+      eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
+      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
+      got: 11.8.2
+      jest: 26.6.3
+      jest-extended: 0.11.5
+      jest-localstorage-mock: 2.4.7
+      nock: 13.0.10
+      npm-check-updates: 10.3.1
+      prettier: 2.2.1
+      rimraf: 3.0.2
+      ts-jest: 26.5.2_jest@26.6.3+typescript@4.2.2
+      typescript: 4.2.2
+    specifiers:
+      '@arkecosystem/platform-sdk': workspace:*
+      '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http-got': workspace:*
+      '@arkecosystem/platform-sdk-intl': workspace:*
+      '@arkecosystem/platform-sdk-support': workspace:*
+      '@terra-money/terra.js': ~1.6.0
+      '@types/eslint': ^7.2.4
+      '@types/eslint-plugin-prettier': ^3.1.0
+      '@types/hapi__joi': 17.1.6
+      '@types/jest': ^26.0.15
+      '@types/node': ^14.14.25
+      '@types/prettier': ^2.1.5
+      '@types/rimraf': ^3.0.0
+      '@typescript-eslint/eslint-plugin': ^4.7.0
+      '@typescript-eslint/parser': ^4.7.0
+      cardano-crypto.js: ^6.0.0
+      cross-env: ^7.0.2
+      eslint: ^7.13.0
+      eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
+      eslint-plugin-jest: ^24.1.3
+      eslint-plugin-prettier: ^3.1.4
+      eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
+      got: ^11.8.0
+      jest: ^26.6.3
+      jest-extended: ^0.11.5
+      jest-localstorage-mock: ^2.4.3
+      nock: ^13.0.5
+      npm-check-updates: ^10.1.1
+      prettier: ^2.1.2
+      rimraf: ^3.0.2
+      ts-jest: ^26.4.4
+      typescript: 4.2.2
   ../../packages/platform-sdk-trx:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -5083,6 +5155,25 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-PyRA9sm1Yayuj5OIoJ1hGt2YISX45w9WcFbh6ddT0Z/0yaFxOtGLInr4jUfU1EAFVs0Yfyfev4RNwBlUaHdlDQ==
+  /@terra-money/terra.js/1.6.0:
+    dependencies:
+      axios: 0.21.1
+      bech32: 2.0.0
+      bip32: 2.0.6
+      bip39: 3.0.3
+      bufferutil: 4.0.3
+      crypto-js: 3.3.0
+      decimal.js: 10.2.1
+      readable-stream: 3.6.0
+      secp256k1: 4.0.2
+      tmp: 0.2.1
+      utf-8-validate: 5.0.4
+      ws: 7.4.3_c70f8fc5586dd378b8c866035dbe710b
+    dev: false
+    engines:
+      node: '>=12'
+    resolution:
+      integrity: sha512-8oOJ/KZbYTzv0GFvwC7Uo+5yIpG9NeSvbzLxy6EDmKqIUwIu/MTTBeNyFWCg7bln3fXDY9uRCT3h8ql3FfW4Fg==
   /@tootallnate/once/1.1.2:
     dev: true
     engines:
@@ -14493,6 +14584,14 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-FmqJZGduTyvsr2cF3375fqGHUovSwDi/QytexX1Se4BPuPZpTE5Ftp5fg+EFSuEf3lhZqgCRjEG3ydUQ/aNiwA==
+  /tmp/0.2.1:
+    dependencies:
+      rimraf: 3.0.2
+    dev: false
+    engines:
+      node: '>=8.17.0'
+    resolution:
+      integrity: sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==
   /tmpl/1.0.4:
     dev: true
     resolution:
