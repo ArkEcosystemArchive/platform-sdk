@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { UUID } from "@arkecosystem/platform-sdk-crypto";
 import { block } from 'nanocurrency-web';
+import { computeWork } from 'nanocurrency';
 
 import { SignedTransactionData } from "../dto";
 
@@ -23,6 +23,7 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
+		// @TODO: derive from mnemonic
 		const privateKey = '781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3';
 		const data = {
 			// Current balance from wallet info
@@ -38,7 +39,7 @@ export class TransactionService implements Contracts.TransactionService {
 			// The amount to send in RAW
 			amountRaw: input.data.amount,
 			// Generate work on server-side or with a DPOW service
-			work: 'fbffed7c73b61367',
+			work: computeWork("previousBlock"),
 		}
 
 		return new SignedTransactionData(block.send(data, privateKey).signature, data, data);

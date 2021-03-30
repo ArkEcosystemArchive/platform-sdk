@@ -563,6 +563,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "nanocurrency",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "nanocurrency-web",
       "allowedCategories": [ "libraries" ]
     },
