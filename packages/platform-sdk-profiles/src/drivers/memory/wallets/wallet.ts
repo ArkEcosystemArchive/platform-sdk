@@ -156,7 +156,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public network(): Coins.Network {
 		if (this.hasBeenFullyRestored()) {
-			return this.network();
+			return this.#coin.network();
 		}
 
 		return new Coins.Network(this.#initialState.coin, this.#initialState.network);
