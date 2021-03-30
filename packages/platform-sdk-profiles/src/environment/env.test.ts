@@ -164,7 +164,6 @@ it("should create a profile with data and persist it when instructed to do so", 
 	expect(newProfile).toBeInstanceOf(Profile);
 
 	await newProfile.restore();
-	await newProfile.sync();
 
 	expect(newProfile.wallets().keys()).toHaveLength(1);
 	expect(newProfile.contacts().keys()).toHaveLength(1);
@@ -196,7 +195,6 @@ it("should boot the environment from fixed data", async () => {
 	const newProfile = env.profiles().findById("8101538b-b13a-4b8d-b3d8-e710ccffd385");
 
 	await newProfile.restore();
-	await newProfile.sync();
 
 	expect(newProfile).toBeInstanceOf(Profile);
 	expect(newProfile.wallets().keys()).toHaveLength(1);
@@ -375,15 +373,12 @@ it("should persist the env and restore it", async () => {
 	// Assert that we got back what we dumped in the previous env
 	const restoredJohn = subject.profiles().findById(john.id());
 	await restoredJohn.restore();
-	await restoredJohn.sync();
 
 	const restoredJane = subject.profiles().findById(jane.id());
 	await restoredJane.restore("password");
-	await restoredJane.sync();
 
 	const restoredJack = subject.profiles().findById(jack.id());
 	await restoredJack.restore("password");
-	await restoredJack.sync();
 
 	expect(restoredJohn.toObject()).toEqual(john.toObject());
 	expect(restoredJane.toObject()).toEqual(jane.toObject());
