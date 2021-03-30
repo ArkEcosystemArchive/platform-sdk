@@ -1,8 +1,10 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
+import { deriveAccountKey } from "./helpers";
+
 export class Address implements Contracts.Address {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
+		return deriveAccountKey(mnemonic, options?.bip44?.account || 0).address;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
