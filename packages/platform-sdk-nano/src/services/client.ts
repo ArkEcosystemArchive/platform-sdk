@@ -67,7 +67,9 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				//
+				const { txhash } = await this.useClient().tx.broadcast(transaction.toBroadcast());
+
+				transaction.setAttributes({ identifier: txhash });
 
 				result.accepted.push(transaction.id());
 			} catch (error) {
@@ -85,5 +87,16 @@ export class ClientService implements Contracts.ClientService {
 		hosts: string[],
 	): Promise<Contracts.BroadcastResponse> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
+	}
+
+	private useClient(): LCDClient {
+		try {
+			return useClient(this.#config.get<string>("peer"), this.#config.get(Coins.ConfigKey.CryptoChainId));
+		} catch {
+			return useClient(
+				`${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`,
+				this.#config.get(Coins.ConfigKey.CryptoChainId),
+			);
+		}
 	}
 }

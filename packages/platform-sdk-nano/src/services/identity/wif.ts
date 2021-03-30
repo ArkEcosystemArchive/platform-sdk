@@ -1,11 +1,11 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
-export class PrivateKey implements Contracts.PrivateKey {
+export class WIF implements Contracts.WIF {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
 	}
 
-	public async fromWIF(wif: string): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
+	public async fromPrivateKey(privateKey: string): Promise<string> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
 	}
 }

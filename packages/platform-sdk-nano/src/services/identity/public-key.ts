@@ -1,8 +1,13 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { deriveKey } from "./helpers";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
+		try {
+			return deriveKey(mnemonic).publicKey!.toString("hex");
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
