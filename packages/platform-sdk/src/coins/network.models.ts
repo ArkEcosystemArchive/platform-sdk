@@ -44,6 +44,7 @@ export interface CoinNetwork {
 			privateKey?: boolean;
 			wif?: boolean;
 		};
+		expirationType: ExpirationType;
 	};
 	networking: {
 		hosts: string[];
@@ -174,7 +175,6 @@ export interface CoinNetwork {
 	};
 	// @TODO: we could replace this with kebabCase(Object.keys(FeatureFlags.Transaction))
 	transactionTypes: CoinTransactionTypes[];
-	expirationType: ExpirationType;
 	knownWallets?: string;
 	meta?: KeyValuePair;
 }
