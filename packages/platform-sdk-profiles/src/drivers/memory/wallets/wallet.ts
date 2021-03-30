@@ -273,7 +273,7 @@ export class Wallet implements IReadWriteWallet {
 
 		const network: Coins.CoinNetwork = this.coin().network().toObject();
 
-		return {
+		return JSON.parse(JSON.stringify({
 			id: this.id(),
 			coin: this.coin().manifest().get<string>("name"),
 			network: this.network().toObject(),
@@ -284,8 +284,8 @@ export class Wallet implements IReadWriteWallet {
 				},
 				networking: {
 					hosts: network.networking.hosts,
-					hostsMultiSignature: dot.get(network, "networking.hostsMultiSignature", []),
-					hostsArchival: dot.get(network, "networking.hostsArchival", []),
+					hostsMultiSignature: dot.get(network, "networking.hostsMultiSignature"),
+					hostsArchival: dot.get(network, "networking.hostsArchival"),
 				},
 			},
 			address: this.address(),
@@ -311,7 +311,7 @@ export class Wallet implements IReadWriteWallet {
 				[WalletFlag.Starred]: this.isStarred(),
 			},
 			settings: this.settings().all(),
-		};
+		}));
 	}
 
 	/**
