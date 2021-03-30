@@ -1,7 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
 const network: Coins.CoinNetwork = {
-	id: "terra.mainnet",
+	id: "luna.mainnet",
 	type: "live",
 	name: "Mainnet",
 	explorer: "TODO",
