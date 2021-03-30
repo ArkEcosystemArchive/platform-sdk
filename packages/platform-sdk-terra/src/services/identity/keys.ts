@@ -1,19 +1,14 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-
-import { deriveAccountKey, deriveRootKey } from "./shelley";
+import { deriveKey } from "./helpers";
 
 export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
 		try {
-			let rootKey = deriveRootKey(mnemonic);
-
-			if (options?.bip44?.account !== undefined) {
-				rootKey = deriveAccountKey(rootKey, options.bip44.account);
-			}
+			const accountKey = deriveKey(mnemonic);
 
 			return {
-				publicKey: Buffer.from(rootKey.to_public().as_bytes()).toString("hex"),
-				privateKey: Buffer.from(rootKey.to_raw_key().as_bytes()).toString("hex"),
+				publicKey: accountKey.publicKey!.toString("hex"),
+				privateKey: accountKey.privateKey.toString("hex"),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

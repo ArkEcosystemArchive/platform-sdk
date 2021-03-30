@@ -1,11 +1,10 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-
-import { Keys } from "./keys";
+import { deriveKey } from "./helpers";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
-			return (await new Keys().fromMnemonic(mnemonic, options)).publicKey;
+			return deriveKey(mnemonic).publicKey!.toString("hex");
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
