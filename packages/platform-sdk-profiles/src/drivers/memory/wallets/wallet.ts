@@ -50,6 +50,10 @@ export class Wallet implements IReadWriteWallet {
 	 * These methods serve as helpers to proxy certain method calls to the parent profile.
 	 */
 
+	public usesCustomPeer(): boolean {
+		return this.#profile.usesCustomPeer();
+	}
+
 	public usesMultiPeerBroadcasting(): boolean {
 		return this.#profile.usesMultiPeerBroadcasting();
 	}
@@ -69,7 +73,7 @@ export class Wallet implements IReadWriteWallet {
 	 */
 
 	public async setCoin(coin: string, network: string): Promise<IReadWriteWallet> {
-		if (this.usesMultiPeerBroadcasting() && this.peers().has(coin, network)) {
+		if (this.usesCustomPeer() && this.peers().has(coin, network)) {
 			this.#coin = await makeCoin(
 				coin,
 				network,
