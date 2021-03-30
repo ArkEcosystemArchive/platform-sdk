@@ -12,12 +12,10 @@ import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { ExchangeRateService } from "../services/exchange-rate-service";
-import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
-import { IExchangeRateService, IProfile, IReadWriteWallet, WalletData, WalletFlag, WalletSetting } from "../../../contracts";
+import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting, WalletData, WalletFlag, WalletSetting } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
 let profile: IProfile;
@@ -585,6 +583,8 @@ describe("#setCoin", () => {
 	});
 
 	it("should use the custom relay peer if is available", async () => {
+		profile.settings().set(ProfileSetting.UseCustomPeer, true);
+
 		subject.peers().create("ARK", "ark.devnet", {
 			name: "Relay",
 			host: "https://relay.com/api",
@@ -597,6 +597,8 @@ describe("#setCoin", () => {
 	});
 
 	it("should use the custom musig peer if is available", async () => {
+		profile.settings().set(ProfileSetting.UseCustomPeer, true);
+
 		subject.peers().create("ARK", "ark.devnet", {
 			name: "MuSig",
 			host: "https://musig.com/api",
@@ -609,6 +611,8 @@ describe("#setCoin", () => {
 	});
 
 	it("should use the custom relay and musig peers if they are available", async () => {
+		profile.settings().set(ProfileSetting.UseCustomPeer, true);
+
 		subject.peers().create("ARK", "ark.devnet", {
 			name: "Relay",
 			host: "https://relay.com/api",

@@ -22,12 +22,13 @@ export class MemoryDriver implements Driver {
 	 */
 	public make(container: Container, options: EnvironmentOptions): void {
 		container.singleton(Identifiers.AppData, DataRepository);
-		container.singleton(Identifiers.ProfileRepository, ProfileRepository);
 		container.singleton(Identifiers.CoinService, CoinService);
 		container.singleton(Identifiers.DelegateService, DelegateService);
 		container.singleton(Identifiers.ExchangeRateService, ExchangeRateService);
 		container.singleton(Identifiers.FeeService, FeeService);
 		container.singleton(Identifiers.KnownWalletService, KnownWalletService);
+		container.singleton(Identifiers.PluginRegistry, PluginRegistry);
+		container.singleton(Identifiers.ProfileRepository, ProfileRepository);
 		container.singleton(Identifiers.WalletService, WalletService);
 	}
 }
