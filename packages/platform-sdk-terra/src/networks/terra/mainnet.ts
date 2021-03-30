@@ -54,13 +54,6 @@ const network: Coins.CoinNetwork = {
 			bip39: true,
 		},
 	},
-	meta: {
-		minFeeA: 44,
-		minFeeB: 155381,
-		minUTxOValue: 1000000,
-		poolDeposit: 500000000,
-		keyDeposit: 2000000,
-	},
 	transactionTypes: ["transfer"],
 };
 
