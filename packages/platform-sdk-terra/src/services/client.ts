@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { LCDClient } from "@terra-money/terra.js";
 
@@ -91,10 +91,7 @@ export class ClientService implements Contracts.ClientService {
 
 	private useClient(): LCDClient {
 		try {
-			return useClient(
-				this.#config.get<string>("peer"),
-				this.#config.get(Coins.ConfigKey.CryptoChainId),
-			);
+			return useClient(this.#config.get<string>("peer"), this.#config.get(Coins.ConfigKey.CryptoChainId));
 		} catch {
 			return useClient(
 				`${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`,

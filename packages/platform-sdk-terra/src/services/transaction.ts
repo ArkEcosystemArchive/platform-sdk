@@ -25,18 +25,18 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		const transaction = await this.useClient().wallet(new MnemonicKey({
-			mnemonic: input.sign.mnemonic
-		})).createAndSignTx({
-			msgs: [new MsgSend(input.from, input.data.to, { uluna: input.data.amount })],
-			memo: input.data.memo,
-		})
+		const transaction = await this.useClient()
+			.wallet(
+				new MnemonicKey({
+					mnemonic: input.sign.mnemonic,
+				}),
+			)
+			.createAndSignTx({
+				msgs: [new MsgSend(input.from, input.data.to, { uluna: input.data.amount })],
+				memo: input.data.memo,
+			});
 
-		return new SignedTransactionData(
-			UUID.random(),
-			transaction.toData(),
-			transaction.toJSON(),
-		);
+		return new SignedTransactionData(UUID.random(), transaction.toData(), transaction.toJSON());
 	}
 
 	public async secondSignature(
@@ -122,10 +122,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 	private useClient(): LCDClient {
 		try {
-			return useClient(
-				this.#config.get<string>("peer"),
-				this.#config.get(Coins.ConfigKey.CryptoChainId),
-			);
+			return useClient(this.#config.get<string>("peer"), this.#config.get(Coins.ConfigKey.CryptoChainId));
 		} catch {
 			return useClient(
 				`${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`,
