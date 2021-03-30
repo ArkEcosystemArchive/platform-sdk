@@ -11,6 +11,10 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+		if (input.mnemonic === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "sign", "mnemonic");
+		}
+
 		try {
 			const { message, publicKey, signature } = signMessageWithPassphrase(input.message, input.mnemonic);
 

@@ -1,3 +1,9 @@
+/**
+ * The flags that can be passed in through the CLI.
+ *
+ * @export
+ * @interface Flags
+ */
 export interface Flags {
 	coin: string;
 	network: string;

@@ -2,7 +2,17 @@ import { Contracts, Http } from "@arkecosystem/platform-sdk";
 import bent from "bent";
 import { URLSearchParams } from "url";
 
+/**
+ * Implements HTTP communication through mikeal/bent.
+ *
+ * @see https://github.com/mikeal/bent
+ *
+ * @export
+ * @class Request
+ * @extends {Http.Request}
+ */
 export class Request extends Http.Request {
+	/** {@inheritDoc Http.Request.send} */
 	protected async send(
 		method: string,
 		url: string,

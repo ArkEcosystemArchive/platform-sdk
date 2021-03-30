@@ -1,18 +1,17 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import { Contracts } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { DateTime } from "../../../platform-sdk-intl/dist";
 import { identity } from "../../test/fixtures/identity";
 import { bootContainer } from "../../test/helpers";
+import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting } from "../contracts";
+import { Profile } from "../drivers/memory/profiles/profile";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { ExchangeRateService } from "../environment/services/exchange-rate-service";
-import { Profile } from "../profiles/profile";
-import { ProfileSetting } from "../profiles/profile.models";
-import { ReadWriteWallet } from "../wallets/wallet.models";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,
@@ -67,8 +66,8 @@ const createSubject = (wallet, properties, klass) => {
 };
 
 let subject: any;
-let profile: Profile;
-let wallet: ReadWriteWallet;
+let profile: IProfile;
+let wallet: IReadWriteWallet;
 
 let liveSpy: jest.SpyInstance;
 let testSpy: jest.SpyInstance;
@@ -187,7 +186,7 @@ describe("Transaction", () => {
 			TransferData,
 		);
 
-		await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
+		await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
 
 		expect(subject.convertedAmount().toNumber()).toBe(0.0005048);
 	});
@@ -210,7 +209,7 @@ describe("Transaction", () => {
 			TransferData,
 		);
 
-		await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
+		await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
 
 		expect(subject.convertedFee().toNumber()).toBe(0.0005048);
 	});
@@ -356,7 +355,7 @@ describe("Transaction", () => {
 			TransferData,
 		);
 
-		await container.get<ExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
+		await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
 
 		expect(subject.convertedTotal().toNumber()).toBe(0.0007572);
 	});

@@ -9,6 +9,7 @@ export const Identifiers = {
 	FeeService: "FeeService",
 	HttpClient: "HttpClient",
 	KnownWalletService: "KnownWalletService",
+	PluginRegistry: "PluginRegistry",
 	ProfileRepository: "ProfileRepository",
 	SettingRepository: "SettingRepository",
 	Storage: "Storage",

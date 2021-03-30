@@ -8,6 +8,7 @@ export interface MetaPagination {
 	prev: ClientPaginatorCursor;
 	self: ClientPaginatorCursor;
 	next: ClientPaginatorCursor;
+	last: ClientPaginatorCursor;
 }
 
 export interface BroadcastResponse {

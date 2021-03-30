@@ -63,6 +63,7 @@ export class ClientService implements Contracts.ClientService {
 				prev: `${this.#peer}/${basePath}/${prevPage}`,
 				self: undefined,
 				next: `${this.#peer}/${basePath}/${nextPage}`,
+				last: response.total_pages,
 			},
 			TransactionDTO,
 		);

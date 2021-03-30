@@ -1,9 +1,9 @@
-import { ReadWriteWallet } from "@arkecosystem/platform-sdk-profiles";
+import { Contracts } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
 import { renderLogo, useLogger } from "../helpers";
 
-export const verifyMessage = async (wallet: ReadWriteWallet): Promise<void> => {
+export const verifyMessage = async (wallet: Contracts.IReadWriteWallet): Promise<void> => {
 	renderLogo();
 
 	const { message } = await prompts({
