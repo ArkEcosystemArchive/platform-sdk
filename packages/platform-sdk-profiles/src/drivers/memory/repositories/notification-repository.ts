@@ -1,9 +1,11 @@
 import { Except } from "type-fest";
 import { v4 as uuidv4 } from "uuid";
 import { INotification, INotificationRepository } from "../../../contracts";
+import { injectable } from "inversify";
 
 import { DataRepository } from "../../../repositories/data-repository";
 
+@injectable()
 export class NotificationRepository implements INotificationRepository {
 	#data: DataRepository = new DataRepository();
 

@@ -1,6 +1,9 @@
+import { injectable } from "inversify";
+
 import { IPeer, IPeerRepository, IProfile } from "../../../contracts";
 import { DataRepository } from "../../../repositories/data-repository";
 
+@injectable()
 export class PeerRepository implements IPeerRepository {
 	readonly #data: DataRepository = new DataRepository();
 

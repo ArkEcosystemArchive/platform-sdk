@@ -1,10 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
+import { injectable } from "inversify";
 import { IProfileRepository, IProfileExportOptions, IProfile } from "../../../contracts";
 
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
 import { DataRepository } from "../../../repositories/data-repository";
 
+@injectable()
 export class ProfileRepository implements IProfileRepository {
 	readonly #data: DataRepository;
 

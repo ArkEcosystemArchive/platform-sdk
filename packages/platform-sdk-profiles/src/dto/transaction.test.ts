@@ -1,4 +1,5 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import { Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";

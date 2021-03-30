@@ -1,4 +1,5 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import { Coins } from "@arkecosystem/platform-sdk";
 import nock from "nock";

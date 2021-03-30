@@ -1,10 +1,11 @@
 import { pqueueSettled } from "../../../helpers/queue";
-import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { IProfile, IWalletService } from "../../../contracts";
+import { injectable } from "inversify";
 
+@injectable()
 export class WalletService implements IWalletService {
 	public async syncAll(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
