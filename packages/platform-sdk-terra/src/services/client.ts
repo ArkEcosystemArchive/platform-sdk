@@ -1,38 +1,18 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { LCDClient } from "@terra-money/terra.js";
-import { Buffer } from "buffer";
 
-import * as TransactionDTO from "../dto";
-import { TransactionData, WalletData } from "../dto";
-import { postGraphql, useClient } from "./helpers";
-import { addressFromAccountExtPublicKey } from "./identity/shelley";
+import { useClient } from "./helpers";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
-	readonly #http: Contracts.HttpClient;
-	readonly #peer: string;
 
-	private constructor({ config, http, peer }) {
+	private constructor(config) {
 		this.#config = config;
-		this.#http = http;
-		this.#peer = peer;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		try {
-			return new ClientService({
-				config,
-				http: config.get<Contracts.HttpClient>("httpClient"),
-				peer: config.get<string>("peer"),
-			});
-		} catch {
-			return new ClientService({
-				config,
-				http: config.get<Contracts.HttpClient>("httpClient"),
-				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
-			});
-		}
+		return new ClientService(config);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -43,71 +23,15 @@ export class ClientService implements Contracts.ClientService {
 		id: string,
 		input?: Contracts.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		const result = (await this.post("/", {
-			query: `
-				{
-					transactions(
-						where: {
-							hash: {
-								_eq: "${id}"
-							}
-						}
-					) {
-						hash
-						includedAt
-						inputs {
-							sourceTransaction {
-       					hash
-      				}
-						  value
-							address
-						}
-						outputs {
-						  index
-						  value
-							address
-						}
-					}
-				}
-          `,
-		})) as any;
-		return new TransactionData(result.data.transactions[0]);
+		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		if (query?.walletId === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transaction", "walletId");
-		}
-
-		const { usedSpendAddresses, usedChangeAddresses } = await this.usedAddressesForAccount(query?.walletId);
-
-		const transactions = (await this.fetchTransactions(
-			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
-		)) as any;
-
-		return Helpers.createTransactionDataCollectionWithType(
-			transactions,
-			{
-				prev: undefined,
-				self: undefined,
-				next: undefined,
-				last: undefined,
-			},
-			TransactionDTO,
-		);
+		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { usedSpendAddresses, usedChangeAddresses } = await this.usedAddressesForAccount(id);
-
-		const balance = await this.fetchUtxosAggregate(
-			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
-		);
-
-		return new WalletData({
-			id,
-			balance,
-		});
+		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
