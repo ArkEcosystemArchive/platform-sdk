@@ -87,7 +87,7 @@ export class Network {
 	/**
 	 * Get the expiration method type.
 	 */
-	 public expirationType(): ExpirationType {
+	public expirationType(): ExpirationType {
 		return this.#network.expirationType;
 	}
 
