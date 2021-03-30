@@ -1,10 +1,4 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { UUID } from "@arkecosystem/platform-sdk-crypto";
-import { Arr } from "@arkecosystem/platform-sdk-support";
-import { LCDClient, MnemonicKey, MsgSend } from "@terra-money/terra.js";
-
-import { SignedTransactionData } from "../dto";
-import { useClient } from "./helpers";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
@@ -25,18 +19,7 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		const transaction = await this.useClient()
-			.wallet(
-				new MnemonicKey({
-					mnemonic: input.sign.mnemonic,
-				}),
-			)
-			.createAndSignTx({
-				msgs: [new MsgSend(input.from, input.data.to, { uluna: input.data.amount })],
-				memo: input.data.memo,
-			});
-
-		return new SignedTransactionData(UUID.random(), transaction.toData(), transaction.toJSON());
+		throw new Exceptions.NotImplemented(this.constructor.name, "transfer");
 	}
 
 	public async secondSignature(
@@ -118,16 +101,5 @@ export class TransactionService implements Contracts.TransactionService {
 
 	public async estimateExpiration(value?: string): Promise<string> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "estimateExpiration");
-	}
-
-	private useClient(): LCDClient {
-		try {
-			return useClient(this.#config.get<string>("peer"), this.#config.get(Coins.ConfigKey.CryptoChainId));
-		} catch {
-			return useClient(
-				`${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`,
-				this.#config.get(Coins.ConfigKey.CryptoChainId),
-			);
-		}
 	}
 }

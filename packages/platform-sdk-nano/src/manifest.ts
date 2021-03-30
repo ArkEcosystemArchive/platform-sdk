@@ -1,10 +1,10 @@
-import TerraMainnet from "./networks/terra/mainnet";
-import TerraTestnet from "./networks/terra/testnet";
+import NanoMainnet from "./networks/nano/mainnet";
+import NanoTestnet from "./networks/nano/testnet";
 
 export const manifest = {
-	name: "Terra",
+	name: "Nano",
 	networks: {
-		"terra.mainnet": TerraMainnet,
-		"terra.testnet": TerraTestnet,
+		"nano.mainnet": NanoMainnet,
+		"nano.testnet": NanoTestnet,
 	},
 };
