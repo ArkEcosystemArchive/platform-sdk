@@ -1,4 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { tools } from 'nanocurrency-web';
 
 import { deriveAccountKey } from "./helpers";
 
@@ -24,6 +25,6 @@ export class Address implements Contracts.Address {
 	}
 
 	public async validate(address: string): Promise<boolean> {
-		return true;
+		return tools.validateAddress(address);
 	}
 }
