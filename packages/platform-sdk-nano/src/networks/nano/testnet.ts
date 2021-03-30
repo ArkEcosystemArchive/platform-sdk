@@ -6,14 +6,14 @@ const network: Coins.CoinNetwork = {
 	name: "Testnet",
 	explorer: "TODO",
 	currency: {
-		ticker: "SOJU",
-		symbol: "SOJU",
+		ticker: "NANO",
+		symbol: "NANO",
 	},
 	crypto: {
-		slip44: 330,
+		slip44: 165,
 	},
 	networking: {
-		hosts: ["https://soju-lcd.terra.dev"],
+		hosts: [],
 	},
 	governance: {
 		voting: {
@@ -24,9 +24,6 @@ const network: Coins.CoinNetwork = {
 		},
 	},
 	featureFlags: {
-		Client: {
-			broadcast: true,
-		},
 		Identity: {
 			address: {
 				mnemonic: true,
@@ -46,14 +43,12 @@ const network: Coins.CoinNetwork = {
 			transaction: true,
 			wallet: true,
 		},
-		Transaction: {
-			transfer: true,
-		},
 		Derivation: {
 			bip39: true,
+			bip44: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	transactionTypes: [],
 };
 
 export default network;
