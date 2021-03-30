@@ -2,7 +2,6 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { ExtendedTransactionData } from "../../dto/transaction";
 import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
-import { ReadOnlyWallet } from "../../drivers/memory/wallets/read-only-wallet";
 import { TransactionService } from "../../drivers/memory/wallets/wallet-transaction-service";
 import { IDataRepository } from "../repositories/data-repository";
 import { IPeerRepository } from "../repositories/peer-repository";
@@ -11,8 +10,8 @@ import { IReadOnlyWallet } from "./read-only-wallet";
 
 export interface IWalletStruct {
 	id: string;
-	coin: string | undefined;
-	network: string;
+	coin: string;
+	network: Coins.CoinNetwork;
 	networkConfig: {
 		crypto: {
 			slip44?: number;

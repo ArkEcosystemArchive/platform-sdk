@@ -117,6 +117,8 @@ export class Wallet implements IReadWriteWallet {
 
 		this.setAvatar(Avatar.make(this.address()));
 
+		this.markAsFullyRestored();
+
 		return this;
 	}
 
@@ -154,8 +156,24 @@ export class Wallet implements IReadWriteWallet {
 		return this.#coin;
 	}
 
+	/**
+	 * Returns an instance of the underlying network that belongs to the coin.
+	 *
+	 * @remark
+	 * If this wallet has not been fuly restored we will use old data that has
+	 * been dumped in a previous run of the client application.
+	 *
+	 * This data has the potential to be outdated and wrong!
+	 *
+	 * @returns {Coins.Network}
+	 * @memberof Wallet
+	 */
 	public network(): Coins.Network {
-		return this.coin().network();
+		if (this.hasBeenFullyRestored()) {
+			return this.#coin.network();
+		}
+
+		return new Coins.Network(this.#initialState.coin, this.#initialState.network);
 	}
 
 	public currency(): string {
@@ -255,10 +273,10 @@ export class Wallet implements IReadWriteWallet {
 
 		const network: Coins.CoinNetwork = this.coin().network().toObject();
 
-		return {
+		return JSON.parse(JSON.stringify({
 			id: this.id(),
 			coin: this.coin().manifest().get<string>("name"),
-			network: this.networkId(),
+			network: this.network().toObject(),
 			// We only persist a few settings to prefer defaults from the SDK.
 			networkConfig: {
 				crypto: {
@@ -266,8 +284,8 @@ export class Wallet implements IReadWriteWallet {
 				},
 				networking: {
 					hosts: network.networking.hosts,
-					hostsMultiSignature: dot.get(network, "networking.hostsMultiSignature", []),
-					hostsArchival: dot.get(network, "networking.hostsArchival", []),
+					hostsMultiSignature: dot.get(network, "networking.hostsMultiSignature"),
+					hostsArchival: dot.get(network, "networking.hostsArchival"),
 				},
 			},
 			address: this.address(),
@@ -293,7 +311,7 @@ export class Wallet implements IReadWriteWallet {
 				[WalletFlag.Starred]: this.isStarred(),
 			},
 			settings: this.settings().all(),
-		};
+		}));
 	}
 
 	/**
