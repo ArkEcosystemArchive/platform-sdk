@@ -5,19 +5,19 @@ export class SignedTransactionData
 	extends DTO.AbstractSignedTransactionData
 	implements Contracts.SignedTransactionData {
 	public sender(): string {
-		return this.signedData.sender;
+		return "TODO";
 	}
 
 	public recipient(): string {
-		return this.signedData.recipient;
+		return "TODO";
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.signedData.amount);
+		return BigNumber.ZERO;
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.signedData.fee);
+		return BigNumber.ZERO;
 	}
 
 	public isMultiSignature(): boolean {
