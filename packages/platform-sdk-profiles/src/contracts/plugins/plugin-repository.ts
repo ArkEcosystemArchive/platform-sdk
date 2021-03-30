@@ -1,7 +1,7 @@
 import { Except } from "type-fest";
 import { IPluginRegistry } from "./plugin-registry";
 
-interface IPlugin {
+export interface IPlugin {
 	id: string;
 	name: string;
 	version: string;
