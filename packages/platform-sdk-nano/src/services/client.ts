@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
