@@ -25,7 +25,7 @@ const network: Coins.CoinNetwork = {
 	},
 	featureFlags: {
 		Client: {
-			wallet: true,
+			broadcast: true,
 		},
 		Identity: {
 			address: {
