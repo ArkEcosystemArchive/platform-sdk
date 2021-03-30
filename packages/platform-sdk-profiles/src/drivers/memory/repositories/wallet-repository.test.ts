@@ -1,4 +1,5 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";

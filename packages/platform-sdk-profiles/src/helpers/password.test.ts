@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 import { bootContainer } from "../../test/helpers";
 import { IProfile } from "../contracts";
 import { Profile } from "../drivers/memory/profiles/profile";

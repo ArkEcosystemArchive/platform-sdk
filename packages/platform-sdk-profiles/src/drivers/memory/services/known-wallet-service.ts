@@ -5,9 +5,11 @@ import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { CoinService } from "./coin-service";
 import { IKnownWalletService } from "../../../contracts";
+import { injectable } from "inversify";
 
 type KnownWalletRegistry = Record<string, Contracts.KnownWallet[]>;
 
+@injectable()
 export class KnownWalletService implements IKnownWalletService {
 	private registry: KnownWalletRegistry = {};
 

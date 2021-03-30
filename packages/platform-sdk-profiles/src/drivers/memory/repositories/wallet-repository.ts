@@ -1,6 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { sortBy, sortByDesc } from "@arkecosystem/utils";
+import { injectable } from "inversify";
 import retry from "p-retry";
 import { v4 as uuidv4 } from "uuid";
 
@@ -13,6 +14,7 @@ import { DataRepository } from "../../../repositories/data-repository";
 import { IDataRepository, IProfile, IReadWriteWallet, IWalletFactory, IWalletRepository, IWalletExportOptions } from "../../../contracts";
 import { pqueue } from "../../../helpers";
 
+@injectable()
 export class WalletRepository implements IWalletRepository {
 	#profile: IProfile;
 	#data: IDataRepository;

@@ -1,4 +1,6 @@
 import "jest-extended";
+import "reflect-metadata";
+
 import { ProfileSetting, WalletSetting } from "../../../contracts";
 
 import { SettingRepository } from "./setting-repository";

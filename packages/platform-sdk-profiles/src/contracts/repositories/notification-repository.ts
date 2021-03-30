@@ -1,6 +1,6 @@
 import { Except } from "type-fest";
 
-interface INotification {
+export interface INotification {
 	id: string;
 	icon: string;
 	name: string;

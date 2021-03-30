@@ -174,11 +174,14 @@ export class Profile implements IProfile {
 	 * These methods serve as helpers to handle broadcasting.
 	 */
 
+	public usesCustomPeer(): boolean {
+		return this.settings().get(ProfileSetting.UseCustomPeer) === true;
+	}
+
 	public usesMultiPeerBroadcasting(): boolean {
-		const usesCustomPeer: boolean = this.settings().get(ProfileSetting.UseCustomPeer) === true;
 		const usesMultiPeerBroadcasting: boolean = this.settings().get(ProfileSetting.UseMultiPeerBroadcast) === true;
 
-		return usesCustomPeer && usesMultiPeerBroadcasting;
+		return this.usesCustomPeer() && usesMultiPeerBroadcasting;
 	}
 
 	/**

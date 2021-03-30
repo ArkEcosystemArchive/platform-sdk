@@ -62,6 +62,7 @@ export interface IProfile {
     walletAggregate(): IWalletAggregate;
     auth(): IAuthenticator;
     usesPassword(): boolean;
+    usesCustomPeer(): boolean;
     usesMultiPeerBroadcasting(): boolean;
     toObject(options?: IProfileExportOptions): IProfileStruct;
     dump(): IProfileInput;

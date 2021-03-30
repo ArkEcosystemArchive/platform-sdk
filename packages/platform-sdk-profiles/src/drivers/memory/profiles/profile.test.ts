@@ -1,4 +1,5 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
