@@ -35,6 +35,10 @@ export class ElectronClientDriver implements Driver {
 		if (ipcRenderer !== undefined) {
 			// @TODO: register classes that use `ipcRenderer.send` instead of in-memory constructs
 
+			for (const [event, listener] of Object.entries(this.#listeners)) {
+				ipcRenderer.on(event, listener(env));
+			}
+
 			// Expose the render process for any additional work
 			container.bind(Identifiers.ProcessRenderer, ipcRenderer);
 		}
