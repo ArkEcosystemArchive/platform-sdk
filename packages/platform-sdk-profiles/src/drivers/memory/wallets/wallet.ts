@@ -17,7 +17,18 @@ import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../../../helpers/avatar";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
-import { IPeerRepository, IProfile, IReadWriteWallet, IReadOnlyWallet, IWalletStruct, ProfileSetting, WalletData, WalletFlag, WalletSetting, IDelegateService } from "../../../contracts";
+import {
+	IPeerRepository,
+	IProfile,
+	IReadWriteWallet,
+	IReadOnlyWallet,
+	IWalletStruct,
+	ProfileSetting,
+	WalletData,
+	WalletFlag,
+	WalletSetting,
+	IDelegateService,
+} from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
 export class Wallet implements IReadWriteWallet {
@@ -449,19 +460,19 @@ export class Wallet implements IReadWriteWallet {
 	public async transactions(
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransactions({ addresses: [this.address()], ...query });
+		return this.fetchTransactions({ ...query, addresses: [this.address()] });
 	}
 
 	public async sentTransactions(
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransactions({ senderId: this.address(), ...query });
+		return this.fetchTransactions({ ...query, senderId: this.address() });
 	}
 
 	public async receivedTransactions(
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransactions({ recipientId: this.address(), ...query });
+		return this.fetchTransactions({ ...query, recipientId: this.address() });
 	}
 
 	public multiSignature(): Contracts.WalletMultiSignature {
