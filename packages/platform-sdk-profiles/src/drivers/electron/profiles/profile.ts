@@ -188,6 +188,10 @@ export class Profile implements IProfile {
 		return this.#data.password !== undefined;
 	}
 
+	public usesCustomPeer(): boolean {
+		return this.settings().get(ProfileSetting.UseCustomPeer) === true;
+	}
+
 	/**
 	 * These methods serve as helpers to handle broadcasting.
 	 */
