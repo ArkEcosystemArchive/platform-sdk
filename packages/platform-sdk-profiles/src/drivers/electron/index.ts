@@ -1,2 +1,2 @@
-export * from "./electron-client-driver";
-export * from "./electron-server-handlers";
+export * from "./electron-ipc-driver";
+export * from "./server/handlers";
