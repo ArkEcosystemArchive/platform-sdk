@@ -9,3 +9,6 @@ export * as DTO from "./dto";
 export * as Enums from "./enums";
 export * as Helpers from "./helpers";
 export * as Repositories from "./repositories";
+export * as DriverFactory from "./drivers/driver.factory";
+export * as MemoryDriver from "./drivers/memory";
+export * as ElectronDriver from "./drivers/electron";

@@ -6,7 +6,7 @@ import { ProcessRender } from "./contracts";
 import { Events } from "./events";
 import { DriverFactory } from "../driver.factory";
 
-export class ElectronClientDriver implements Driver {
+export class ElectronIpcDriver implements Driver {
 	/**
 	 * The main process IPC listeners.
 	 *
@@ -18,7 +18,14 @@ export class ElectronClientDriver implements Driver {
 	public constructor(container: Container) {
 		// TODO Extract this static mapping somewhere else
 		this.#listeners[Events.ProfileFactory.fromName] = (name: string): IProfile | undefined => {
-			return container.get<IProfileRepository>(Identifiers.ProfileRepository).findByName(name);
+			console.log('received', Events.ProfileFactory.fromName, name);
+			// TODO hydrate json profile to IProfile instance
+			return undefined;
+		}
+		this.#listeners[Events.ProfileFactory.fromId] = (id: string): IProfile | undefined => {
+			console.log('received', Events.ProfileFactory.fromId, id);
+			// TODO hydrate json profile to IProfile instance
+			return undefined;
 		}
 	}
 
@@ -36,7 +43,8 @@ export class ElectronClientDriver implements Driver {
 			// @TODO: register classes that use `ipcRenderer.send` instead of in-memory constructs
 
 			for (const [event, listener] of Object.entries(this.#listeners)) {
-				ipcRenderer.on(event, listener(env));
+				console.log('registering client listener for event', event);
+				ipcRenderer.on(event, listener);
 			}
 
 			// Expose the render process for any additional work
@@ -45,6 +53,6 @@ export class ElectronClientDriver implements Driver {
 	}
 
 	public static registerSelf(): void {
-		DriverFactory.registerDriver('electron-client', (container) => new ElectronClientDriver(container))
+		DriverFactory.registerDriver('electron-ipc-driver', (container) => new ElectronIpcDriver(container))
 	}
 }

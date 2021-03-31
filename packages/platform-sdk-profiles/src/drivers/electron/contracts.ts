@@ -35,4 +35,14 @@ export interface ProcessRender {
 	 * @memberof ProcessRender
 	 */
 	invoke(channel: string, args: Record<string, Primitive>): any;
+
+	/**
+	 *
+	 * @see https://www.electronjs.org/docs/api/ipc-renderer#ipcrendereronchannel-listener
+	 *
+	 * @param {string} channel
+	 * @param {Function} listener
+	 * @memberof ProcessRender
+	 */
+	on(channel: string, listener: Function): void;
 }
