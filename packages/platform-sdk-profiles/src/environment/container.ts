@@ -1,46 +1,43 @@
+import { Container as Inversify } from "inversify";
+
 export class Container {
-	readonly #bindings: Map<string, any> = new Map();
+	readonly #container = new Inversify();
 
 	public get<T>(key: string): T {
-		if (this.has(key)) {
-			return this.#bindings.get(key);
-		}
-
-		throw new Error(`No matching bindings found for [${key}].`);
+		return this.#container.get(key);
 	}
 
 	public bind(key: string, value: unknown): void {
-		if (this.has(key)) {
-			throw new Error(`Binding with name [${key}] already exists. Call [rebind] to replace it.`);
-		}
+		// @TODO: we should check here what type the value is and then use
+		// the appropriate `.to*` method to bind it.
 
-		this.#bindings.set(key, value);
+		this.#container.bind(key).toConstantValue(value);
+	}
+
+	public constant(key: string, value: unknown): void {
+		this.#container.bind(key).toConstantValue(value);
+	}
+
+	public singleton(key: string, value: new (...args: any[]) => unknown): void {
+		this.#container.bind(key).to(value).inSingletonScope();
 	}
 
 	public rebind(key: string, value: unknown): void {
-		this.unbind(key);
-
-		this.bind(key, value);
+		// @TODO: we should check here what type the value is and then use
+		// the appropriate `.to*` method to bind it.
+		this.#container.rebind(key).toConstantValue(value);
 	}
 
 	public has(key: string): boolean {
-		return this.#bindings.has(key);
+		return this.#container.isBound(key);
 	}
 
 	public unbind(key: string): void {
-		if (this.has(key)) {
-			this.#bindings.delete(key);
-
-			return;
-		}
-
-		throw new Error(`No matching bindings found for [${key}].`);
+		this.#container.unbind(key);
 	}
 
 	public flush(): void {
-		for (const key of this.#bindings.keys()) {
-			this.unbind(key);
-		}
+		this.#container.unbindAll();
 	}
 }
 

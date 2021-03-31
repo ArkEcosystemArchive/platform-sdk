@@ -1,4 +1,5 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import { bootContainer } from "../../../../../test/helpers";
 import { Profile } from "../profile";

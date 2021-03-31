@@ -1,4 +1,5 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import { resolve } from "path";
 import { Coins } from "@arkecosystem/platform-sdk";

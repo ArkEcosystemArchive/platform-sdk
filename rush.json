@@ -1,249 +1,261 @@
 {
-    "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
-    "rushVersion": "5.40.6",
-    "pnpmVersion": "5.18.1",
-    "nodeSupportedVersionRange": ">=12.13.0 <13.0.0 || >=14.15.0 <15.0.0",
-    "repository": {
-        "url": "git@github.com:ArkEcosystem/platform-sdk.git",
-        "defaultBranch": "master",
-        "defaultRemote": "origin"
-    },
-    "ensureConsistentVersions": true,
-    "approvedPackagesPolicy": {
-        "reviewCategories": [
-            "libraries",
-            "tests"
-        ],
-        "ignoredNpmScopes": [
-            "@types"
-        ]
-    },
-    "pnpmOptions": {
-        "preventManualShrinkwrapChanges": true,
-        "useWorkspaces": true
-    },
-    "projects": [
-        {
-            "packageName": "@arkecosystem/platform-sdk",
-            "projectFolder": "packages/platform-sdk",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-ada",
-            "projectFolder": "packages/platform-sdk-ada",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-ark",
-            "projectFolder": "packages/platform-sdk-ark",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-atom",
-            "projectFolder": "packages/platform-sdk-atom",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-avax",
-            "projectFolder": "packages/platform-sdk-avax",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-btc",
-            "projectFolder": "packages/platform-sdk-btc",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-btc-indexer",
-            "projectFolder": "packages/platform-sdk-btc-indexer",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-btc-server",
-            "projectFolder": "packages/platform-sdk-btc-server",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-cli",
-            "projectFolder": "packages/platform-sdk-cli",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-coincap",
-            "projectFolder": "packages/platform-sdk-coincap",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-coingecko",
-            "projectFolder": "packages/platform-sdk-coingecko",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-crypto",
-            "projectFolder": "packages/platform-sdk-crypto",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-cryptocompare",
-            "projectFolder": "packages/platform-sdk-cryptocompare",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-dot",
-            "projectFolder": "packages/platform-sdk-dot",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-dot-indexer",
-            "projectFolder": "packages/platform-sdk-dot-indexer",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-egld",
-            "projectFolder": "packages/platform-sdk-egld",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-eos",
-            "projectFolder": "packages/platform-sdk-eos",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-eth",
-            "projectFolder": "packages/platform-sdk-eth",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-eth-indexer",
-            "projectFolder": "packages/platform-sdk-eth-indexer",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-eth-server",
-            "projectFolder": "packages/platform-sdk-eth-server",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-http-axios",
-            "projectFolder": "packages/platform-sdk-http-axios",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-http-bent",
-            "projectFolder": "packages/platform-sdk-http-bent",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-http-got",
-            "projectFolder": "packages/platform-sdk-http-got",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-http-ky",
-            "projectFolder": "packages/platform-sdk-http-ky",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-http-node-fetch",
-            "projectFolder": "packages/platform-sdk-http-node-fetch",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-intl",
-            "projectFolder": "packages/platform-sdk-intl",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-lsk",
-            "projectFolder": "packages/platform-sdk-lsk",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-markets",
-            "projectFolder": "packages/platform-sdk-markets",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-neo",
-            "projectFolder": "packages/platform-sdk-neo",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-news",
-            "projectFolder": "packages/platform-sdk-news",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-profiles",
-            "projectFolder": "packages/platform-sdk-profiles",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-sol",
-            "projectFolder": "packages/platform-sdk-sol",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-json-rpc",
-            "projectFolder": "packages/platform-sdk-json-rpc",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-support",
-            "projectFolder": "packages/platform-sdk-support",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-trx",
-            "projectFolder": "packages/platform-sdk-trx",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-xlm",
-            "projectFolder": "packages/platform-sdk-xlm",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@arkecosystem/platform-sdk-xrp",
-            "projectFolder": "packages/platform-sdk-xrp",
-            "reviewCategory": "libraries",
-            "shouldPublish": true
-        }
-    ]
+	"$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+	"rushVersion": "5.40.6",
+	"pnpmVersion": "5.18.1",
+	"nodeSupportedVersionRange": ">=12.13.0 <13.0.0 || >=14.15.0 <15.0.0",
+	"repository": {
+		"url": "git@github.com:ArkEcosystem/platform-sdk.git",
+		"defaultBranch": "master",
+		"defaultRemote": "origin"
+	},
+	"ensureConsistentVersions": true,
+	"approvedPackagesPolicy": {
+		"reviewCategories": [
+			"libraries",
+			"tests"
+		],
+		"ignoredNpmScopes": [
+			"@types"
+		]
+	},
+	"pnpmOptions": {
+		"preventManualShrinkwrapChanges": true,
+		"useWorkspaces": true
+	},
+	"projects": [
+		{
+			"packageName": "@arkecosystem/platform-sdk",
+			"projectFolder": "packages/platform-sdk",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-ada",
+			"projectFolder": "packages/platform-sdk-ada",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-ark",
+			"projectFolder": "packages/platform-sdk-ark",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-atom",
+			"projectFolder": "packages/platform-sdk-atom",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-avax",
+			"projectFolder": "packages/platform-sdk-avax",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-btc",
+			"projectFolder": "packages/platform-sdk-btc",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-btc-indexer",
+			"projectFolder": "packages/platform-sdk-btc-indexer",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-btc-server",
+			"projectFolder": "packages/platform-sdk-btc-server",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-cli",
+			"projectFolder": "packages/platform-sdk-cli",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-coincap",
+			"projectFolder": "packages/platform-sdk-coincap",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-coingecko",
+			"projectFolder": "packages/platform-sdk-coingecko",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-crypto",
+			"projectFolder": "packages/platform-sdk-crypto",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-cryptocompare",
+			"projectFolder": "packages/platform-sdk-cryptocompare",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-dot",
+			"projectFolder": "packages/platform-sdk-dot",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-dot-indexer",
+			"projectFolder": "packages/platform-sdk-dot-indexer",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-egld",
+			"projectFolder": "packages/platform-sdk-egld",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-eos",
+			"projectFolder": "packages/platform-sdk-eos",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-eth",
+			"projectFolder": "packages/platform-sdk-eth",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-eth-indexer",
+			"projectFolder": "packages/platform-sdk-eth-indexer",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-eth-server",
+			"projectFolder": "packages/platform-sdk-eth-server",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-http-axios",
+			"projectFolder": "packages/platform-sdk-http-axios",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-http-bent",
+			"projectFolder": "packages/platform-sdk-http-bent",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-http-got",
+			"projectFolder": "packages/platform-sdk-http-got",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-http-ky",
+			"projectFolder": "packages/platform-sdk-http-ky",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-http-node-fetch",
+			"projectFolder": "packages/platform-sdk-http-node-fetch",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-intl",
+			"projectFolder": "packages/platform-sdk-intl",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-lsk",
+			"projectFolder": "packages/platform-sdk-lsk",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-markets",
+			"projectFolder": "packages/platform-sdk-markets",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-nano",
+			"projectFolder": "packages/platform-sdk-nano",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-neo",
+			"projectFolder": "packages/platform-sdk-neo",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-news",
+			"projectFolder": "packages/platform-sdk-news",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-profiles",
+			"projectFolder": "packages/platform-sdk-profiles",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-sol",
+			"projectFolder": "packages/platform-sdk-sol",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-json-rpc",
+			"projectFolder": "packages/platform-sdk-json-rpc",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-support",
+			"projectFolder": "packages/platform-sdk-support",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-luna",
+			"projectFolder": "packages/platform-sdk-luna",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-trx",
+			"projectFolder": "packages/platform-sdk-trx",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-xlm",
+			"projectFolder": "packages/platform-sdk-xlm",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-xrp",
+			"projectFolder": "packages/platform-sdk-xrp",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		}
+	]
 }

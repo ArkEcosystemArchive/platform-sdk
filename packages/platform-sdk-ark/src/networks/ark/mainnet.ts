@@ -15,6 +15,7 @@ const network: Coins.CoinNetwork = {
 			mnemonic: true,
 			wif: true,
 		},
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://wallets.ark.io"],

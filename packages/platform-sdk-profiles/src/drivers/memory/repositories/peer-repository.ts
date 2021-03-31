@@ -1,12 +1,9 @@
-import { IPeerRepository, IProfile } from "../../../contracts";
+import { injectable } from "inversify";
+
+import { IPeer, IPeerRepository, IProfile } from "../../../contracts";
 import { DataRepository } from "../../../repositories/data-repository";
 
-interface Peer {
-	name: string;
-	host: string;
-	isMultiSignature: boolean;
-}
-
+@injectable()
 export class PeerRepository implements IPeerRepository {
 	readonly #data: DataRepository = new DataRepository();
 
@@ -16,8 +13,8 @@ export class PeerRepository implements IPeerRepository {
 		}
 	}
 
-	public all(): Record<string, Peer> {
-		return this.#data.all() as Record<string, Peer>;
+	public all(): Record<string, IPeer> {
+		return this.#data.all() as Record<string, IPeer>;
 	}
 
 	public keys(): string[] {
@@ -28,19 +25,19 @@ export class PeerRepository implements IPeerRepository {
 		return this.#data.values();
 	}
 
-	public get(coin: string, network: string): Peer[] {
+	public get(coin: string, network: string): IPeer[] {
 		const id = `${coin}.${network}`;
 
 		if (this.#data.missing(id)) {
 			throw new Error(`No peers found for [${id}].`);
 		}
 
-		return this.#data.get(id) as Peer[];
+		return this.#data.get(id) as IPeer[];
 	}
 
-	public create(coin: string, network: string, peer: Peer): void {
+	public create(coin: string, network: string, peer: IPeer): void {
 		const key = `${coin}.${network}`;
-		const value: Peer[] = this.#data.get<Peer[]>(key) || [];
+		const value: IPeer[] = this.#data.get<IPeer[]>(key) || [];
 
 		value.push(peer);
 
@@ -51,8 +48,8 @@ export class PeerRepository implements IPeerRepository {
 		return this.#data.has(`${coin}.${network}`);
 	}
 
-	public update(coin: string, network: string, host: string, peer: Peer): void {
-		const index: number = this.get(coin, network).findIndex((item: Peer) => item.host === host);
+	public update(coin: string, network: string, host: string, peer: IPeer): void {
+		const index: number = this.get(coin, network).findIndex((item: IPeer) => item.host === host);
 
 		if (index === -1) {
 			throw new Error(`Failed to find a peer with [${host}] as host.`);
@@ -61,8 +58,8 @@ export class PeerRepository implements IPeerRepository {
 		this.#data.set(`${coin}.${network}.${index}`, peer);
 	}
 
-	public forget(coin: string, network: string, peer: Peer): void {
-		const index: number = this.get(coin, network).findIndex((item: Peer) => item.host === peer.host);
+	public forget(coin: string, network: string, peer: IPeer): void {
+		const index: number = this.get(coin, network).findIndex((item: IPeer) => item.host === peer.host);
 
 		if (index === -1) {
 			throw new Error(`Failed to find a peer with [${peer.host}] as host.`);
@@ -72,26 +69,26 @@ export class PeerRepository implements IPeerRepository {
 
 		// If the list is empty we want to completely remove it.
 		/* istanbul ignore next */
-		if ((this.#data.get<Peer[]>(`${coin}.${network}`) || []).filter(Boolean).length <= 0) {
+		if ((this.#data.get<IPeer[]>(`${coin}.${network}`) || []).filter(Boolean).length <= 0) {
 			this.#data.forget(`${coin}.${network}`);
 		}
 	}
 
-	public toObject(): Record<string, Peer> {
+	public toObject(): Record<string, IPeer> {
 		return this.all();
 	}
 
 	// Helpers to get peers of specific types for a coin and network.
 
-	public getRelay(coin: string, network: string): Peer | undefined {
-		return this.get(coin, network).find((peer: Peer) => peer.isMultiSignature === false);
+	public getRelay(coin: string, network: string): IPeer | undefined {
+		return this.get(coin, network).find((peer: IPeer) => peer.isMultiSignature === false);
 	}
 
-	public getRelays(coin: string, network: string): Peer[] {
-		return this.get(coin, network).filter((peer: Peer) => peer.isMultiSignature === false);
+	public getRelays(coin: string, network: string): IPeer[] {
+		return this.get(coin, network).filter((peer: IPeer) => peer.isMultiSignature === false);
 	}
 
-	public getMultiSignature(coin: string, network: string): Peer | undefined {
-		return this.get(coin, network).find((peer: Peer) => peer.isMultiSignature === true);
+	public getMultiSignature(coin: string, network: string): IPeer | undefined {
+		return this.get(coin, network).find((peer: IPeer) => peer.isMultiSignature === true);
 	}
 }

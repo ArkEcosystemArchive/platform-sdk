@@ -251,6 +251,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@terra-money/terra.js",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@typescript-eslint/eslint-plugin",
       "allowedCategories": [ "libraries" ]
     },
@@ -556,6 +560,14 @@
     },
     {
       "name": "meow",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "nanocurrency",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "nanocurrency-web",
       "allowedCategories": [ "libraries" ]
     },
     {

@@ -11,6 +11,7 @@ const network: Coins.CoinNetwork = {
 	},
 	crypto: {
 		slip44: 508,
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://gateway.elrond.com"],

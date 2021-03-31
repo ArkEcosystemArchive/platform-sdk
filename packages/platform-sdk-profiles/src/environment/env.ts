@@ -263,13 +263,13 @@ export class Environment {
 	private configureDriver(options: EnvironmentOptions): void {
 		// These are driver implementation agnostic bindings.
 		if (typeof options.storage === "string") {
-			container.bind(Identifiers.Storage, StorageFactory.make(options.storage));
+			container.constant(Identifiers.Storage, StorageFactory.make(options.storage));
 		} else {
-			container.bind(Identifiers.Storage, options.storage);
+			container.constant(Identifiers.Storage, options.storage);
 		}
 
-		container.bind(Identifiers.HttpClient, options.httpClient);
-		container.bind(Identifiers.Coins, options.coins);
+		container.constant(Identifiers.HttpClient, options.httpClient);
+		container.constant(Identifiers.Coins, options.coins);
 
 		// These are bindings that are specific to the driver implementation.
 		if (options.driver === undefined) {
