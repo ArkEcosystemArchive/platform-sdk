@@ -30,6 +30,7 @@
 		"symbol": "DѦ"
 	},
 	"crypto": {
+		"expirationType": "height",
 		"slip44": 1,
 		"signingMethods": {
 			"mnemonic": true,
@@ -37,8 +38,12 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://dwallets.ark.io"],
-		"hostsMultiSignature": ["https://dmusig1.ark.io"]
+		"hosts": [
+			"https://dwallets.ark.io"
+		],
+		"hostsMultiSignature": [
+			"https://dmusig1.ark.io"
+		]
 	},
 	"governance": {
 		"voting": {
@@ -167,6 +172,7 @@
 			"symbol": "DѦ"
 		},
 		"crypto": {
+			"expirationType": "height",
 			"slip44": 1,
 			"signingMethods": {
 				"mnemonic": true,
@@ -174,8 +180,12 @@
 			}
 		},
 		"networking": {
-			"hosts": ["https://dwallets.ark.io"],
-			"hostsMultiSignature": ["https://dmusig1.ark.io"]
+			"hosts": [
+				"https://dwallets.ark.io"
+			],
+			"hostsMultiSignature": [
+				"https://dmusig1.ark.io"
+			]
 		},
 		"governance": {
 			"voting": {
