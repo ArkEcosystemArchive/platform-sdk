@@ -1,8 +1,9 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { decrypt } from "bip38";
+import { decrypt, encrypt } from "bip38";
 import dot from "dot-prop";
+import { decode } from "wif";
 
 import { ExtendedTransactionData } from "../../../dto/transaction";
 import { transformTransactionData, transformTransactionDataCollection } from "../../../dto/transaction-mapper";
@@ -649,6 +650,14 @@ export class Wallet implements IReadWriteWallet {
 		}
 
 		return this.coin().identity().wif().fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"));
+	}
+
+	public async setWif(mnemonic: string, password: string): Promise<IReadWriteWallet> {
+		const { compressed, privateKey } = decode(await this.coin().identity().wif().fromMnemonic(mnemonic));
+
+		this.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
+
+		return this;
 	}
 
 	public usesWIF(): boolean {

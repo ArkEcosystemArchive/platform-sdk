@@ -653,6 +653,12 @@ describe("#setCoin", () => {
 		await expect(subject.wif("password")).resolves.toBe(identity.wif);
 	});
 
+	it("should encrypt the WIF and add it to the wallet", async () => {
+		await subject.setWif(identity.mnemonic, "password");
+
+		await expect(subject.wif("password")).resolves.toBe(identity.wif);
+	});
+
 	it("should throw if the WIF is tried to be decrypted without one being set", async () => {
 		await expect(subject.wif("password")).rejects.toThrow("This wallet does not use BIP38 encryption.");
 	});
