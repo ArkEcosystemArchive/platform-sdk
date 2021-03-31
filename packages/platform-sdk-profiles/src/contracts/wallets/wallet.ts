@@ -105,6 +105,7 @@ export interface IReadWriteWallet {
     findTransactionById(id: string): Promise<ExtendedTransactionData>;
     findTransactionsByIds(ids: string[]): Promise<ExtendedTransactionData[]>;
     wif(password: string): Promise<string>;
+    setWif(mnemonic: string, password: string): Promise<IReadWriteWallet>;
     usesWIF(): boolean;
     markAsFullyRestored(): void;
     hasBeenFullyRestored(): boolean;
