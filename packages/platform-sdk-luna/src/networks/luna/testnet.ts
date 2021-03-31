@@ -11,6 +11,7 @@ const network: Coins.CoinNetwork = {
 	},
 	crypto: {
 		slip44: 330,
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://soju-lcd.terra.dev"],

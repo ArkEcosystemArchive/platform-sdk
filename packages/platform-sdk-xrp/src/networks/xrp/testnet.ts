@@ -15,6 +15,7 @@ const network: Coins.CoinNetwork = {
 			mnemonic: true,
 			privateKey: true,
 		},
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["wss://s.altnet.rippletest.net/"],
