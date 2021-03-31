@@ -5,8 +5,13 @@ import { IProfile } from "../../../contracts";
 const { ipcMain } = require("electron");
 
 export class Handlers {
+	readonly #env: Environment;
 
 	public constructor(env: Environment) {
+		this.#env = env;
+	}
+
+	public registerHandlers(env: Environment) {
 
 		ipcMain.handle(Events.ProfileFactory.fromName, async (event, { name }) => {
 			const profile: IProfile = env.profiles().findByName(name) || env.profiles().create(name);
