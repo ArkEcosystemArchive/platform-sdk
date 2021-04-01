@@ -1,112 +1,126 @@
-import { v4 as uuidv4 } from "uuid";
 import { injectable } from "inversify";
-import { IProfileRepository, IProfileExportOptions, IProfile } from "../../../contracts";
+import { ipcRenderer } from "electron";
+import { IProfile, IProfileExportOptions, IProfileRepository } from "../../../contracts";
 
 import { Profile } from "../profiles/profile";
-import { ProfileFactory } from "../profiles/profile.factory";
-import { DataRepository } from "../../../repositories/data-repository";
+import { Exceptions } from "@arkecosystem/platform-sdk";
 
 @injectable()
 export class ProfileRepository implements IProfileRepository {
-	readonly #data: DataRepository;
 
 	public constructor() {
-		this.#data = new DataRepository();
 	}
 
 	public fill(profiles: object): void {
-		for (const [id, profile] of Object.entries(profiles)) {
-			this.#data.set(id, new Profile(profile));
-		}
+		ipcRenderer.invoke("ProfileRepository.fill", profiles)
+			.then(() => {
+				console.log("ProfileRepository.fill");
+			});
 	}
 
 	public all(): Record<string, IProfile> {
-		return this.#data.all() as Record<string, IProfile>;
+		let a = {};
+		ipcRenderer.invoke("ProfileRepository.all")
+			.then( (r) => {
+				console.log("ProfileRepository.all", 'r', r);
+				return a = r;
+			});
+		return a;
 	}
 
 	public first(): IProfile {
-		return this.#data.first();
+		let a;
+		ipcRenderer.invoke("ProfileRepository.first")
+			.then( (r) => {
+				console.log("ProfileRepository.first", 'r', r);
+				return a = r;
+			});
+		return a;
 	}
 
 	public last(): IProfile {
-		return this.#data.last();
+		let a;
+		ipcRenderer.invoke("ProfileRepository.last")
+			.then( (r) => {
+				console.log("ProfileRepository.last", 'r', r);
+				return a = r;
+			});
+		return a;
 	}
 
 	public keys(): string[] {
-		return this.#data.keys();
+		let a;
+		ipcRenderer.invoke("ProfileRepository.keys")
+			.then( (r) => {
+				console.log("ProfileRepository.keys", 'r', r);
+				return a = r;
+			});
+		return a;
 	}
 
 	public values(): IProfile[] {
-		return this.#data.values();
+		let a = [];
+		ipcRenderer.invoke("ProfileRepository.values")
+			.then( (r) => {
+				console.log('ProfileRepository.values', 'r', r);
+				return a = r;
+			});
+		return a;
 	}
 
 	public findById(id: string): IProfile {
-		if (this.#data.missing(id)) {
-			throw new Error(`No profile found for [${id}].`);
-		}
-
-		return this.#data.get(id) as IProfile;
+		let a;
+		ipcRenderer.invoke("ProfileRepository.findById")
+			.then( (r) => {
+				console.log('ProfileRepository.findById', 'r', r);
+				return a = r;
+			});
+		return a;
 	}
 
 	public findByName(name: string): IProfile | undefined {
-		return this.values().find((profile: IProfile) => profile.name().toLowerCase() === name.toLowerCase());
+		throw new Exceptions.NotImplemented("ProfileRepository", "findByName");
 	}
 
 	public create(name: string): IProfile {
-		if (this.findByName(name)) {
-			throw new Error(`The profile [${name}] already exists.`);
-		}
-
-		const result: IProfile = ProfileFactory.fromName(name);
-
-		this.#data.set(result.id(), result);
-
-		return result;
+		throw new Exceptions.NotImplemented("ProfileRepository", "create");
 	}
 
 	public async import(data: string, password?: string): Promise<Profile> {
-		const profile = new Profile({
-			id: uuidv4(),
-			name: "",
-			password,
-			data,
-		});
-		await profile.restore(password);
-		return profile;
+		throw new Exceptions.NotImplemented("ProfileRepository", "import");
 	}
 
 	public export(profile: IProfile, options: IProfileExportOptions, password?: string): string {
-		return profile.export(password, options);
+		throw new Exceptions.NotImplemented("ProfileRepository", "export");
 	}
 
 	public has(id: string): boolean {
-		return this.#data.has(id);
+		throw new Exceptions.NotImplemented("ProfileRepository", "has");
 	}
 
 	public forget(id: string): void {
-		if (this.#data.missing(id)) {
-			throw new Error(`No profile found for [${id}].`);
-		}
-
-		this.#data.forget(id);
+		throw new Exceptions.NotImplemented("ProfileRepository", "forget");
 	}
 
 	public flush(): void {
-		this.#data.flush();
+		ipcRenderer.invoke("ProfileRepository.flush")
+			.then(() => {
+				console.log("ProfileRepository.flush");
+			});
 	}
 
 	public count(): number {
-		return this.#data.count();
+		// return ipcRenderer.invoke("ProfileRepository.count").then(r => r);
+		let a: number = 0;
+		ipcRenderer.invoke("ProfileRepository.count")
+			.then( (r) => {
+				console.log("ProfileRepository.count", 'r', r);
+				return a = r;
+			});
+		return a;
 	}
 
 	public toObject(): Record<string, object> {
-		const result: Record<string, object> = {};
-		const profiles: [string, Profile][] = Object.entries(this.#data.all());
-
-		for (const [id, profile] of profiles) {
-			result[id] = profile.dump();
-		}
-
-		return result;
+		throw new Exceptions.NotImplemented("ProfileRepository", "toObject");
 	}
 }

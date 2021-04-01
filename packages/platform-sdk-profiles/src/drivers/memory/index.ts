@@ -13,6 +13,11 @@ import { WalletService } from "./services/wallet-service";
 import { PluginRegistry } from "./plugins";
 
 export class MemoryDriver implements Driver {
+
+	constructor() {
+		console.log('MemoryDriver.constructor');
+	}
+
 	/**
 	 * Create all necessary container bindings based on the given options.
 	 *

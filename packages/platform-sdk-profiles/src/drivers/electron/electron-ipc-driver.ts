@@ -12,7 +12,7 @@ import { ExchangeRateService } from "../memory/services/exchange-rate-service";
 import { FeeService } from "../memory/services/fee-service";
 import { KnownWalletService } from "../memory/services/known-wallet-service";
 import { PluginRegistry } from "../memory/plugins";
-import { ProfileRepository } from "../memory/repositories/profile-repository";
+import { ProfileRepository } from "./repositories/profile-repository";
 import { WalletService } from "../memory/services/wallet-service";
 
 export class ElectronIpcDriver implements Driver {
@@ -25,6 +25,8 @@ export class ElectronIpcDriver implements Driver {
 	readonly #listeners: Record<string, Function> = {};
 
 	public constructor(container: Container) {
+		console.log('ElectronIpcDriver.constructor');
+
 		// TODO Extract this static mapping somewhere else
 		this.#listeners[Events.ProfileFactory.fromName] = (name: string): IProfile | undefined => {
 			console.log('received', Events.ProfileFactory.fromName, name);
@@ -61,10 +63,10 @@ export class ElectronIpcDriver implements Driver {
 		if (ipcRenderer !== undefined) {
 			// @TODO: register classes that use `ipcRenderer.send` instead of in-memory constructs
 
-			for (const [event, listener] of Object.entries(this.#listeners)) {
-				console.log('registering client listener for event', event);
-				ipcRenderer.on(event, listener);
-			}
+			// for (const [event, listener] of Object.entries(this.#listeners)) {
+			// 	console.log('registering client listener for event', event);
+			// 	ipcRenderer.on(event, listener);
+			// }
 
 			// Expose the render process for any additional work
 			container.bind(Identifiers.ProcessRenderer, ipcRenderer);
