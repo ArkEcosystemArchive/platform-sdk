@@ -5,6 +5,15 @@ import { Identifiers } from "../../environment/container.models";
 import { ProcessRender } from "./contracts";
 import { Events } from "./events";
 import { DriverFactory } from "../driver.factory";
+import { DataRepository } from "../../repositories";
+import { CoinService } from "../memory/services/coin-service";
+import { DelegateService } from "../memory/services/delegate-service";
+import { ExchangeRateService } from "../memory/services/exchange-rate-service";
+import { FeeService } from "../memory/services/fee-service";
+import { KnownWalletService } from "../memory/services/known-wallet-service";
+import { PluginRegistry } from "../memory/plugins";
+import { ProfileRepository } from "../memory/repositories/profile-repository";
+import { WalletService } from "../memory/services/wallet-service";
 
 export class ElectronIpcDriver implements Driver {
 	/**
@@ -38,6 +47,16 @@ export class ElectronIpcDriver implements Driver {
 	 */
 	public make(container: Container, options: EnvironmentOptions): void {
 		const ipcRenderer: ProcessRender | undefined = options.driverArguments?.ipcRenderer as unknown as ProcessRender;
+
+		container.singleton(Identifiers.AppData, DataRepository);
+		container.singleton(Identifiers.CoinService, CoinService);
+		container.singleton(Identifiers.DelegateService, DelegateService);
+		container.singleton(Identifiers.ExchangeRateService, ExchangeRateService);
+		container.singleton(Identifiers.FeeService, FeeService);
+		container.singleton(Identifiers.KnownWalletService, KnownWalletService);
+		container.singleton(Identifiers.PluginRegistry, PluginRegistry);
+		container.singleton(Identifiers.ProfileRepository, ProfileRepository);
+		container.singleton(Identifiers.WalletService, WalletService);
 
 		if (ipcRenderer !== undefined) {
 			// @TODO: register classes that use `ipcRenderer.send` instead of in-memory constructs
