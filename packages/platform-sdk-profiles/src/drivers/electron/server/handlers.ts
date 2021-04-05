@@ -10,61 +10,58 @@ export class Handlers {
 	}
 
 	public registerHandlers() {
-
-		console.log('Handlers.registerHandlers()');
+		console.log("Handlers.registerHandlers()");
 
 		ipcMain.handle("ProfileRepository.fill", (event, { profiles }) => {
-			console.log('ProfileRepository.fill', arguments);
-
+			console.log("ProfileRepository.fill", profiles);
 			this.#env.profiles().fill(profiles);
 		});
 
-		ipcMain.handle("ProfileRepository.all",  (event, { }) => {
-			console.log('handling ProfileRepository.all');
+		ipcMain.handle("ProfileRepository.all", (event, {}) => {
+			console.log("handling ProfileRepository.all");
 			return this.#env.profiles().all();
 		});
 
-		ipcMain.handle("ProfileRepository.first", (event, { }) => {
-			console.log('handling ProfileRepository.first');
+		ipcMain.handle("ProfileRepository.first", (event, {}) => {
+			console.log("handling ProfileRepository.first");
 			return this.#env.profiles().first();
 		});
 
-		ipcMain.handle("ProfileRepository.last", (event, { }) => {
-			console.log('handling ProfileRepository.last');
+		ipcMain.handle("ProfileRepository.last", (event, {}) => {
+			console.log("handling ProfileRepository.last");
 			return this.#env.profiles().last();
 		});
 
-		ipcMain.handle("ProfileRepository.keys", (event, { }) => {
-			console.log('handling ProfileRepository.keys');
+		ipcMain.handle("ProfileRepository.keys", (event, {}) => {
+			console.log("handling ProfileRepository.keys");
 			return this.#env.profiles().keys();
 		});
 
-		ipcMain.handle("ProfileRepository.values", (event, { }) => {
-			console.log('handling ProfileRepository.values');
+		ipcMain.handle("ProfileRepository.values", (event, {}) => {
+			console.log("handling ProfileRepository.values");
 			return this.#env.profiles().values();
 		});
 
 		ipcMain.handle("ProfileRepository.findById", (event, { id }) => {
-			console.log('handling ProfileRepository.findById');
+			console.log("handling ProfileRepository.findById");
 			return this.#env.profiles().findById(id);
 		});
 
 		ipcMain.handle("ProfileRepository.create", (event, name) => {
 			const iProfile = this.#env.profiles().create(name);
-			console.log('handling ProfileRepository.create', name, JSON.stringify(iProfile, null, 2));
+			console.log("handling ProfileRepository.create", name, JSON.stringify(iProfile, null, 2));
 			return iProfile;
 		});
 
-		ipcMain.handle("ProfileRepository.flush", (event, { }) => {
-			console.log('handling ProfileRepository.flush');
+		ipcMain.handle("ProfileRepository.flush", (event, {}) => {
+			console.log("handling ProfileRepository.flush");
 			return this.#env.profiles().flush();
 		});
 
-		ipcMain.handle("ProfileRepository.count", (event, { }) => {
+		ipcMain.handle("ProfileRepository.count", (event, {}) => {
 			const number = this.#env.profiles().count();
-			console.log('handling ProfileRepository.count', number);
+			console.log("handling ProfileRepository.count", number);
 			return number;
 		});
-
 	}
 }
