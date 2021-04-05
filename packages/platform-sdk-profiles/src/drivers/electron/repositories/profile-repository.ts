@@ -82,7 +82,7 @@ export class ProfileRepository implements IProfileRepository {
 		throw new Exceptions.NotImplemented("ProfileRepository", "findByName");
 	}
 
-	public create(name: string): Promise<IProfile> {
+	public async create(name: string): Promise<IProfile> {
 		return ipcRenderer.invoke("ProfileRepository.create", name)
 			.then((r) => {
 				console.log("ProfileRepository.create", "r", JSON.stringify(r, null, 2));
