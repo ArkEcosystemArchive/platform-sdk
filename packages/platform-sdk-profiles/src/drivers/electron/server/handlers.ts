@@ -1,6 +1,4 @@
-import { Events } from "../events";
 import { Environment } from "../../../environment/env";
-import { IProfile } from "../../../contracts";
 
 const { ipcMain } = require("electron");
 

@@ -1,8 +1,7 @@
 import { Container } from "../../environment/container";
 import { EnvironmentOptions } from "../../environment/env.models";
-import { Driver, IProfile, IProfileRepository } from "../../contracts";
+import { Driver } from "../../contracts";
 import { Identifiers } from "../../environment/container.models";
-import { Events } from "./events";
 import { DriverFactory } from "../driver.factory";
 import { DataRepository } from "../../repositories";
 import { CoinService } from "../memory/services/coin-service";
@@ -25,18 +24,6 @@ export class ElectronIpcDriver implements Driver {
 
 	public constructor(container: Container) {
 		console.log('ElectronIpcDriver.constructor');
-
-		// TODO Extract this static mapping somewhere else
-		this.#listeners[Events.ProfileFactory.fromName] = (name: string): IProfile | undefined => {
-			console.log('received', Events.ProfileFactory.fromName, name);
-			// TODO hydrate json profile to IProfile instance
-			return undefined;
-		}
-		this.#listeners[Events.ProfileFactory.fromId] = (id: string): IProfile | undefined => {
-			console.log('received', Events.ProfileFactory.fromId, id);
-			// TODO hydrate json profile to IProfile instance
-			return undefined;
-		}
 	}
 
 	/**
