@@ -49,9 +49,10 @@ export class Handlers {
 			return this.#env.profiles().findById(id);
 		});
 
-		ipcMain.handle("ProfileRepository.create", (event, { name }) => {
-			console.log('handling ProfileRepository.create', arguments);
-			return this.#env.profiles().create(name);
+		ipcMain.handle("ProfileRepository.create", (event, name) => {
+			const iProfile = this.#env.profiles().create(name);
+			console.log('handling ProfileRepository.create', name, JSON.stringify(iProfile, null, 2));
+			return iProfile;
 		});
 
 		ipcMain.handle("ProfileRepository.flush", (event, { }) => {
@@ -60,9 +61,9 @@ export class Handlers {
 		});
 
 		ipcMain.handle("ProfileRepository.count", (event, { }) => {
-			console.log('handling ProfileRepository.count');
-			// return this.#env.profiles().count();
-			return 0;
+			const number = this.#env.profiles().count();
+			console.log('handling ProfileRepository.count', number);
+			return number;
 		});
 
 	}

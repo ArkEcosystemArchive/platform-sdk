@@ -32,7 +32,7 @@ export const createProfile = async (env: Environment): Promise<void> => {
 		return;
 	}
 
-	const profile = env.profiles().create(name);
+	const profile = await env.profiles().create(name);
 
 	if (password) {
 		profile.auth().setPassword(password);

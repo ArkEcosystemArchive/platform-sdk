@@ -52,7 +52,7 @@ export class ProfileRepository implements IProfileRepository {
 		return this.values().find((profile: IProfile) => profile.name().toLowerCase() === name.toLowerCase());
 	}
 
-	public create(name: string): IProfile {
+	public create(name: string): Promise<IProfile> {
 		if (this.findByName(name)) {
 			throw new Error(`The profile [${name}] already exists.`);
 		}
@@ -61,7 +61,7 @@ export class ProfileRepository implements IProfileRepository {
 
 		this.#data.set(result.id(), result);
 
-		return result;
+		return Promise.resolve(result);
 	}
 
 	public async import(data: string, password?: string): Promise<Profile> {

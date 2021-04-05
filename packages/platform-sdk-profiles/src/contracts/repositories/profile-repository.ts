@@ -9,7 +9,7 @@ export interface IProfileRepository {
     values(): IProfile[];
     findById(id: string): IProfile;
     findByName(name: string): IProfile | undefined;
-    create(name: string): IProfile;
+    create(name: string): Promise<IProfile>;
     import(data: string, password?: string): Promise<IProfile>;
     export(profile: IProfile, options?: IProfileExportOptions, password?: string): string;
     has(id: string): boolean;

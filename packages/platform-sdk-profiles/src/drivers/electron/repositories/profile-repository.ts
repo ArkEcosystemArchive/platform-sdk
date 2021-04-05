@@ -12,7 +12,7 @@ export class ProfileRepository implements IProfileRepository {
 	}
 
 	public fill(profiles: object): void {
-		ipcRenderer.invoke("ProfileRepository.fill", profiles)
+		ipcRenderer.invoke("ProfileRepository.fill", profiles || {})
 			.then(() => {
 				console.log("ProfileRepository.fill");
 			});
@@ -82,14 +82,12 @@ export class ProfileRepository implements IProfileRepository {
 		throw new Exceptions.NotImplemented("ProfileRepository", "findByName");
 	}
 
-	public create(name: string): IProfile {
-		let a;
-		ipcRenderer.invoke("ProfileRepository.create", { name })
-			.then( (r) => {
-				console.log('ProfileRepository.create', 'r', r);
-				return a = r;
+	public create(name: string): Promise<IProfile> {
+		return ipcRenderer.invoke("ProfileRepository.create", name)
+			.then((r) => {
+				console.log("ProfileRepository.create", "r", JSON.stringify(r, null, 2));
+				return r;
 			});
-		return a;
 	}
 
 	public async import(data: string, password?: string): Promise<Profile> {
