@@ -7,124 +7,87 @@ import { Exceptions } from "@arkecosystem/platform-sdk";
 
 @injectable()
 export class ProfileRepository implements IProfileRepository {
+	public constructor() {}
 
-	public constructor() {
+	public async fill(profiles: object): Promise<void> {
+		const result = await ipcRenderer.invoke("ProfileRepository.fill", profiles || {});
+		console.log("ProfileRepository.fill");
+		return result;
 	}
 
-	public fill(profiles: object): void {
-		ipcRenderer.invoke("ProfileRepository.fill", profiles || {})
-			.then(() => {
-				console.log("ProfileRepository.fill");
-			});
+	public async all(): Promise<Record<string, IProfile>> {
+		const result = await ipcRenderer.invoke("ProfileRepository.all", {});
+		console.log("ProfileRepository.all", "result", result);
+		return result;
 	}
 
-	public all(): Record<string, IProfile> {
-		let a = {};
-		ipcRenderer.invoke("ProfileRepository.all", {})
-			.then( (r) => {
-				console.log("ProfileRepository.all", 'r', r);
-				return a = r;
-			});
-		return a;
+	public async first(): Promise<IProfile> {
+		const result = await ipcRenderer.invoke("ProfileRepository.first", {});
+		console.log("ProfileRepository.first", "result", result);
+		return result;
 	}
 
-	public first(): IProfile {
-		let a;
-		ipcRenderer.invoke("ProfileRepository.first", {})
-			.then( (r) => {
-				console.log("ProfileRepository.first", 'r', r);
-				return a = r;
-			});
-		return a;
+	public async last(): Promise<IProfile> {
+		const result = await ipcRenderer.invoke("ProfileRepository.last", {});
+		console.log("ProfileRepository.last", "result", result);
+		return result;
 	}
 
-	public last(): IProfile {
-		let a;
-		ipcRenderer.invoke("ProfileRepository.last", {})
-			.then( (r) => {
-				console.log("ProfileRepository.last", 'r', r);
-				return a = r;
-			});
-		return a;
+	public async keys(): Promise<string[]> {
+		const result = await ipcRenderer.invoke("ProfileRepository.keys", {});
+		console.log("ProfileRepository.keys", "result", result);
+		return result;
 	}
 
-	public keys(): string[] {
-		let a;
-		ipcRenderer.invoke("ProfileRepository.keys", {})
-			.then( (r) => {
-				console.log("ProfileRepository.keys", 'r', r);
-				return a = r;
-			});
-		return a;
+	public async values(): Promise<IProfile[]> {
+		const result = await ipcRenderer.invoke("ProfileRepository.values", {});
+		console.log("ProfileRepository.values", "result", result);
+		return result;
 	}
 
-	public values(): IProfile[] {
-		let a = [];
-		ipcRenderer.invoke("ProfileRepository.values", {})
-			.then( (r) => {
-				console.log('ProfileRepository.values', 'r', r);
-				return a = r;
-			});
-		return a;
+	public async findById(id: string): Promise<IProfile> {
+		const result = await ipcRenderer.invoke("ProfileRepository.findById", { id });
+		console.log("ProfileRepository.findById", "result", result);
+		return result;
 	}
 
-	public findById(id: string): IProfile {
-		let a;
-		ipcRenderer.invoke("ProfileRepository.findById", { id })
-			.then( (r) => {
-				console.log('ProfileRepository.findById', 'r', r);
-				return a = r;
-			});
-		return a;
-	}
-
-	public findByName(name: string): IProfile | undefined {
+	public async findByName(name: string): Promise<IProfile | undefined> {
 		throw new Exceptions.NotImplemented("ProfileRepository", "findByName");
 	}
 
 	public async create(name: string): Promise<IProfile> {
-		return ipcRenderer.invoke("ProfileRepository.create", name)
-			.then((r) => {
-				console.log("ProfileRepository.create", "r", JSON.stringify(r, null, 2));
-				return r;
-			});
+		return ipcRenderer.invoke("ProfileRepository.create", name);
 	}
 
 	public async import(data: string, password?: string): Promise<Profile> {
 		throw new Exceptions.NotImplemented("ProfileRepository", "import");
 	}
 
-	public export(profile: IProfile, options: IProfileExportOptions, password?: string): string {
+	public async export(profile: IProfile, options: IProfileExportOptions, password?: string): Promise<string> {
 		throw new Exceptions.NotImplemented("ProfileRepository", "export");
 	}
 
-	public has(id: string): boolean {
+	public async has(id: string): Promise<boolean> {
 		throw new Exceptions.NotImplemented("ProfileRepository", "has");
 	}
 
-	public forget(id: string): void {
+	public async forget(id: string): Promise<void> {
 		throw new Exceptions.NotImplemented("ProfileRepository", "forget");
 	}
 
-	public flush(): void {
-		ipcRenderer.invoke("ProfileRepository.flush", {})
-			.then(() => {
-				console.log("ProfileRepository.flush");
-			});
+	public async flush(): Promise<void> {
+		const result = await ipcRenderer.invoke("ProfileRepository.flush", {});
+		console.log("ProfileRepository.flush");
+		return result;
 	}
 
-	public count(): number {
-		// return ipcRenderer.invoke("ProfileRepository.count").then(r => r), {};
-		let a: number = 0;
-		ipcRenderer.invoke("ProfileRepository.count", {})
-			.then( (r) => {
-				console.log("ProfileRepository.count", 'r', r);
-				return a = r;
-			});
-		return a;
+	public async count(): Promise<number> {
+		const result = await ipcRenderer.invoke("ProfileRepository.count", {});
+		console.log("ProfileRepository.count", "result", result);
+		return result;
 	}
 
-	public toObject(): Record<string, object> {
+	public async toObject(): Promise<Record<string, object>> {
 		throw new Exceptions.NotImplemented("ProfileRepository", "toObject");
 	}
 }
