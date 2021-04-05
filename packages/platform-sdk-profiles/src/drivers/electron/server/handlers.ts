@@ -50,7 +50,7 @@ export class Handlers {
 		ipcMain.handle("ProfileRepository.create", async (event, name) => {
 			const iProfile = await this.#env.profiles().create(name);
 			console.log("handling ProfileRepository.create", name, JSON.stringify(iProfile, null, 2));
-			return iProfile.toObject();
+			return iProfile;
 		});
 
 		ipcMain.handle("ProfileRepository.flush", (event, {}) => {
