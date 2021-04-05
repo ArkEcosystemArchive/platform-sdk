@@ -20,7 +20,7 @@ export class ProfileRepository implements IProfileRepository {
 
 	public all(): Record<string, IProfile> {
 		let a = {};
-		ipcRenderer.invoke("ProfileRepository.all")
+		ipcRenderer.invoke("ProfileRepository.all", {})
 			.then( (r) => {
 				console.log("ProfileRepository.all", 'r', r);
 				return a = r;
@@ -30,7 +30,7 @@ export class ProfileRepository implements IProfileRepository {
 
 	public first(): IProfile {
 		let a;
-		ipcRenderer.invoke("ProfileRepository.first")
+		ipcRenderer.invoke("ProfileRepository.first", {})
 			.then( (r) => {
 				console.log("ProfileRepository.first", 'r', r);
 				return a = r;
@@ -40,7 +40,7 @@ export class ProfileRepository implements IProfileRepository {
 
 	public last(): IProfile {
 		let a;
-		ipcRenderer.invoke("ProfileRepository.last")
+		ipcRenderer.invoke("ProfileRepository.last", {})
 			.then( (r) => {
 				console.log("ProfileRepository.last", 'r', r);
 				return a = r;
@@ -50,7 +50,7 @@ export class ProfileRepository implements IProfileRepository {
 
 	public keys(): string[] {
 		let a;
-		ipcRenderer.invoke("ProfileRepository.keys")
+		ipcRenderer.invoke("ProfileRepository.keys", {})
 			.then( (r) => {
 				console.log("ProfileRepository.keys", 'r', r);
 				return a = r;
@@ -60,7 +60,7 @@ export class ProfileRepository implements IProfileRepository {
 
 	public values(): IProfile[] {
 		let a = [];
-		ipcRenderer.invoke("ProfileRepository.values")
+		ipcRenderer.invoke("ProfileRepository.values", {})
 			.then( (r) => {
 				console.log('ProfileRepository.values', 'r', r);
 				return a = r;
@@ -70,7 +70,7 @@ export class ProfileRepository implements IProfileRepository {
 
 	public findById(id: string): IProfile {
 		let a;
-		ipcRenderer.invoke("ProfileRepository.findById")
+		ipcRenderer.invoke("ProfileRepository.findById", {})
 			.then( (r) => {
 				console.log('ProfileRepository.findById', 'r', r);
 				return a = r;
@@ -103,16 +103,16 @@ export class ProfileRepository implements IProfileRepository {
 	}
 
 	public flush(): void {
-		ipcRenderer.invoke("ProfileRepository.flush")
+		ipcRenderer.invoke("ProfileRepository.flush", {})
 			.then(() => {
 				console.log("ProfileRepository.flush");
 			});
 	}
 
 	public count(): number {
-		// return ipcRenderer.invoke("ProfileRepository.count").then(r => r);
+		// return ipcRenderer.invoke("ProfileRepository.count").then(r => r), {};
 		let a: number = 0;
-		ipcRenderer.invoke("ProfileRepository.count")
+		ipcRenderer.invoke("ProfileRepository.count", {})
 			.then( (r) => {
 				console.log("ProfileRepository.count", 'r', r);
 				return a = r;
