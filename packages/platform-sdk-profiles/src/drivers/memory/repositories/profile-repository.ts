@@ -99,7 +99,7 @@ export class ProfileRepository implements IProfileRepository {
 		return this.#data.count();
 	}
 
-	public toObject(): Record<string, object> {
+	public toObject(): Promise<Record<string, object>> {
 		const result: Record<string, object> = {};
 		const profiles: [string, Profile][] = Object.entries(this.#data.all());
 
@@ -107,6 +107,6 @@ export class ProfileRepository implements IProfileRepository {
 			result[id] = profile.dump();
 		}
 
-		return result;
+		return Promise.resolve(result);
 	}
 }

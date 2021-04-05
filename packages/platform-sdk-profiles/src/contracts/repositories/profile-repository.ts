@@ -16,5 +16,5 @@ export interface IProfileRepository {
     forget(id: string): void;
     flush(): void;
     count(): number;
-    toObject(): Record<string, object>;
+    toObject(): Promise<Record<string, object>>;
 }

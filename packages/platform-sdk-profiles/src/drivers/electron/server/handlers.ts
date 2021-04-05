@@ -63,5 +63,11 @@ export class Handlers {
 			console.log("handling ProfileRepository.count", number);
 			return number;
 		});
+
+		ipcMain.handle("ProfileRepository.toObject", (event, {}) => {
+			const toObject = this.#env.profiles().toObject();
+			console.log("handling ProfileRepository.toObject", toObject);
+			return toObject;
+		});
 	}
 }

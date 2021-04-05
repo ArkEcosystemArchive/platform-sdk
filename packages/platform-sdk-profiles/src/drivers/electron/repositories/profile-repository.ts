@@ -124,7 +124,11 @@ export class ProfileRepository implements IProfileRepository {
 		return a;
 	}
 
-	public toObject(): Record<string, object> {
-		throw new Exceptions.NotImplemented("ProfileRepository", "toObject");
+	public async toObject(): Promise<Record<string, object>> {
+		return ipcRenderer.invoke("ProfileRepository.toObject", {})
+			.then( (r) => {
+				console.log("ProfileRepository.toObject", 'r', r);
+				return r;
+			});
 	}
 }
