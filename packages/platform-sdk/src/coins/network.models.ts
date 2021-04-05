@@ -22,6 +22,8 @@ export type CoinTransactionTypes =
 	| "transfer"
 	| "vote";
 
+export type ExpirationType = "height" | "timestamp";
+
 export interface CoinNetwork {
 	id: string;
 	type: string;
@@ -42,6 +44,7 @@ export interface CoinNetwork {
 			privateKey?: boolean;
 			wif?: boolean;
 		};
+		expirationType: ExpirationType;
 	};
 	networking: {
 		hosts: string[];
@@ -165,6 +168,9 @@ export interface CoinNetwork {
 			bip44?: boolean;
 			bip49?: boolean;
 			bip84?: boolean;
+		};
+		Internal?: {
+			fastDelegateSync?: boolean;
 		};
 	};
 	// @TODO: we could replace this with kebabCase(Object.keys(FeatureFlags.Transaction))

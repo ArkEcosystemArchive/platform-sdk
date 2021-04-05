@@ -14,14 +14,6 @@ it("should bind a value and be able to retrieve it", () => {
 	expect(container.get("key")).toBe("value");
 });
 
-it("should bind a value and throw when trying to bind it again", () => {
-	const container = new Container();
-
-	expect(() => container.bind("key", "value")).not.toThrow();
-	expect(() => container.bind("key", "value")).toThrow();
-	expect(() => container.rebind("key", "value")).not.toThrow();
-});
-
 it("should forget a value", () => {
 	const container = new Container();
 

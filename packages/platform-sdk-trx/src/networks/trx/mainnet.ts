@@ -15,6 +15,7 @@ const network: Coins.CoinNetwork = {
 			mnemonic: true,
 			privateKey: true,
 		},
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://api.trongrid.io"],

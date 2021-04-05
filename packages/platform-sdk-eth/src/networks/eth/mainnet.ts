@@ -16,6 +16,7 @@ const network: Coins.CoinNetwork = {
 			mnemonic: true,
 			privateKey: true,
 		},
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://platform.ark.io/api/eth"],

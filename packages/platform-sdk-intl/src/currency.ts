@@ -43,14 +43,33 @@ const getSeparators = (locale: string): { decimal: number; thousands: number } =
 	return { decimal, thousands };
 };
 
+/**
+ * Implements the normalisation of any currency-like string.
+ *
+ * @export
+ * @class Currency
+ */
 export class Currency {
+	/**
+	 * Normalise the given vallue using the given magnitude.
+	 *
+	 * @static
+	 * @param {string} valueString
+	 * @param {number} [magnitude=8]
+	 * @param {string} [locale]
+	 * @returns {{
+	 * 		display: string;
+	 * 		value?: string;
+	 * 	}}
+	 * @memberof Currency
+	 */
 	public static fromString(
 		valueString: string,
 		magnitude = 8,
 		locale?: string,
 	): {
 		display: string;
-		value: string;
+		value?: string;
 	} {
 		const seperator = getSeparators(locale || "en-US");
 		const dot = seperator.decimal || ".";
@@ -58,6 +77,11 @@ export class Currency {
 		let display = "";
 		let value = "";
 		let decimals = -1;
+
+		if (!valueString) {
+			return { display, value: undefined };
+		}
+
 		for (let i = 0; i < valueString.length; i++) {
 			const c = valueString[i];
 
@@ -92,8 +116,11 @@ export class Currency {
 				display += dot;
 			}
 		}
-		for (let i = Math.max(0, decimals); i < magnitude; ++i) {
-			value += "0";
+
+		if (value && value !== "0") {
+			for (let i = Math.max(0, decimals); i < magnitude; ++i) {
+				value += "0";
+			}
 		}
 
 		if (!value) {

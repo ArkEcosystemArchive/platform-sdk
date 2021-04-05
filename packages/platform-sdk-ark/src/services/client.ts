@@ -182,6 +182,7 @@ export class ClientService implements Contracts.ClientService {
 			prev: getPage(body.meta.previous) || undefined,
 			self: getPage(body.meta.self) || undefined,
 			next: getPage(body.meta.next) || undefined,
+			last: getPage(body.meta.last) || undefined,
 		};
 	}
 
@@ -278,14 +279,19 @@ export class ClientService implements Contracts.ClientService {
 
 		if (errors) {
 			for (const [key, value] of Object.entries(errors)) {
-				if (!Array.isArray(result.errors[key])) {
-					result.errors[key] = [];
-				}
+				if (Array.isArray(value)) {
+					if (!Array.isArray(result.errors[key])) {
+						result.errors[key] = [];
+					}
 
-				// @ts-ignore
-				for (const error of value) {
 					// @ts-ignore
-					result.errors[key].push(error.type);
+					for (const error of value) {
+						// @ts-ignore
+						result.errors[key].push(error.type);
+					}
+				} else {
+					// @ts-ignore
+					result.errors[key] = [value.type];
 				}
 			}
 		}

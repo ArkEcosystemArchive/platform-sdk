@@ -147,6 +147,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@konceiver/hapi-json-rpc",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@konceiver/hapi-rate-limiter-flexible",
       "allowedCategories": [ "libraries" ]
     },
@@ -244,6 +248,10 @@
     },
     {
       "name": "@solana/web3.js",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@terra-money/terra.js",
       "allowedCategories": [ "libraries" ]
     },
     {
@@ -552,6 +560,14 @@
     },
     {
       "name": "meow",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "nanocurrency",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "nanocurrency-web",
       "allowedCategories": [ "libraries" ]
     },
     {

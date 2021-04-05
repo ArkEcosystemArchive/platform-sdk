@@ -30,6 +30,7 @@
 		"symbol": "DѦ"
 	},
 	"crypto": {
+		"expirationType": "height",
 		"slip44": 1,
 		"signingMethods": {
 			"mnemonic": true,
@@ -37,8 +38,12 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://dwallets.ark.io"],
-		"hostsMultiSignature": ["https://dmusig1.ark.io"]
+		"hosts": [
+			"https://dwallets.ark.io"
+		],
+		"hostsMultiSignature": [
+			"https://dmusig1.ark.io"
+		]
 	},
 	"governance": {
 		"voting": {
@@ -95,6 +100,9 @@
 				"privateKey": false,
 				"wif": true
 			}
+		},
+		"Internal": {
+			"fastDelegateSync": true
 		},
 		"Ledger": {
 			"getVersion": true,
@@ -164,6 +172,7 @@
 			"symbol": "DѦ"
 		},
 		"crypto": {
+			"expirationType": "height",
 			"slip44": 1,
 			"signingMethods": {
 				"mnemonic": true,
@@ -171,8 +180,12 @@
 			}
 		},
 		"networking": {
-			"hosts": ["https://dwallets.ark.io"],
-			"hostsMultiSignature": ["https://dmusig1.ark.io"]
+			"hosts": [
+				"https://dwallets.ark.io"
+			],
+			"hostsMultiSignature": [
+				"https://dmusig1.ark.io"
+			]
 		},
 		"governance": {
 			"voting": {
@@ -229,6 +242,9 @@
 					"privateKey": false,
 					"wif": true
 				}
+			},
+			"Internal": {
+				"fastDelegateSync": true
 			},
 			"Ledger": {
 				"getVersion": true,

@@ -12,6 +12,7 @@ test("#all", () => {
 		Object {
 		  "ark.devnet": Object {
 		    "crypto": Object {
+		      "expirationType": "height",
 		      "signingMethods": Object {
 		        "mnemonic": true,
 		        "wif": true,
@@ -70,6 +71,9 @@ test("#all", () => {
 		        "wif": Object {
 		          "mnemonic": true,
 		        },
+		      },
+		      "Internal": Object {
+		        "fastDelegateSync": true,
 		      },
 		      "Ledger": Object {
 		        "getPublicKey": true,
@@ -153,6 +157,7 @@ test("#all", () => {
 		  },
 		  "ark.mainnet": Object {
 		    "crypto": Object {
+		      "expirationType": "height",
 		      "signingMethods": Object {
 		        "mnemonic": true,
 		        "wif": true,
@@ -211,6 +216,9 @@ test("#all", () => {
 		        "wif": Object {
 		          "mnemonic": true,
 		        },
+		      },
+		      "Internal": Object {
+		        "fastDelegateSync": true,
 		      },
 		      "Ledger": Object {
 		        "getPublicKey": true,
@@ -294,6 +302,7 @@ test("#all", () => {
 		  },
 		  "compendia.mainnet": Object {
 		    "crypto": Object {
+		      "expirationType": "height",
 		      "signingMethods": Object {
 		        "mnemonic": true,
 		        "wif": true,
@@ -352,6 +361,9 @@ test("#all", () => {
 		        "wif": Object {
 		          "mnemonic": true,
 		        },
+		      },
+		      "Internal": Object {
+		        "fastDelegateSync": true,
 		      },
 		      "Ledger": Object {
 		        "getPublicKey": true,

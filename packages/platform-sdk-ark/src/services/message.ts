@@ -1,11 +1,18 @@
 import { Crypto } from "@arkecosystem/crypto";
-import { Contracts as CryptoContracts, Keys } from "@arkecosystem/crypto-identities";
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
+import { IdentityService } from "./identity";
+
 export class MessageService implements Contracts.MessageService {
+	readonly #identityService: IdentityService;
+
+	private constructor(identityService: IdentityService) {
+		this.#identityService = identityService;
+	}
+
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
-		return new MessageService();
+		return new MessageService(await IdentityService.__construct(config));
 	}
 
 	public async __destruct(): Promise<void> {
@@ -14,12 +21,34 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const keys: CryptoContracts.KeyPair = Keys.fromPassphrase(BIP39.normalize(input.mnemonic));
+			let keys: Contracts.KeyPair | undefined;
+
+			if (input.mnemonic) {
+				keys = await this.#identityService.keys().fromMnemonic(BIP39.normalize(input.mnemonic));
+			}
+
+			if (input.wif) {
+				keys = await this.#identityService.keys().fromWIF(input.wif);
+			}
+
+			if (!keys) {
+				throw new Error("Failed to retrieve the keys for the signatory wallet.");
+			}
+
+			const { publicKey, privateKey } = keys;
+
+			if (privateKey === undefined) {
+				throw new Error("Failed to retrieve the private key for the signatory wallet.");
+			}
 
 			return {
 				message: input.message,
 				signatory: keys.publicKey,
-				signature: Crypto.Hash.signSchnorr(Crypto.HashAlgorithms.sha256(input.message), keys),
+				signature: Crypto.Hash.signSchnorr(Crypto.HashAlgorithms.sha256(input.message), {
+					publicKey,
+					privateKey,
+					compressed: false,
+				}),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

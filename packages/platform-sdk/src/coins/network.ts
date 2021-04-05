@@ -1,6 +1,6 @@
 import { get } from "dot-prop";
 
-import { CoinNetwork } from "./network.models";
+import { CoinNetwork, ExpirationType } from "./network.models";
 
 export class Network {
 	/**
@@ -82,6 +82,13 @@ export class Network {
 	 */
 	public isTest(): boolean {
 		return this.#network.type === "test";
+	}
+
+	/**
+	 * Get the expiration method type.
+	 */
+	public expirationType(): ExpirationType {
+		return this.#network.crypto.expirationType;
 	}
 
 	/**

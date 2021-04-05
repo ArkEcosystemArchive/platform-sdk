@@ -5,10 +5,36 @@ import { ensureFileSync } from "fs-extra";
 
 import { Flags } from "./types";
 
+/**
+ * Implements a database storage with SQLite.
+ *
+ * @export
+ * @class Database
+ */
 export class Database {
+	/**
+	 * The database instance.
+	 *
+	 * @type {sqlite3.Database}
+	 * @memberof Database
+	 */
 	readonly #database: sqlite3.Database;
+
+	/**
+	 * The logger instance.
+	 *
+	 * @type {Logger}
+	 * @memberof Database
+	 */
 	readonly #logger: Logger;
 
+	/**
+	 * Creates an instance of Database.
+	 *
+	 * @param {Flags} flags
+	 * @param {Logger} logger
+	 * @memberof Database
+	 */
 	public constructor(flags: Flags, logger: Logger) {
 		const databaseFile =
 			flags.database || `${envPaths(require("../package.json").name).data}/${flags.coin}/${flags.network}.db`;
@@ -22,6 +48,12 @@ export class Database {
 		this.migrate();
 	}
 
+	/**
+	 * Returns the height of the last block stored.
+	 *
+	 * @returns {number}
+	 * @memberof Database
+	 */
 	public lastBlockNumber(): number {
 		const lastBlock = this.#database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
 
@@ -32,6 +64,12 @@ export class Database {
 		return lastBlock.number;
 	}
 
+	/**
+	 * Stores a block and all of its transactions.
+	 *
+	 * @param {*} block
+	 * @memberof Database
+	 */
 	public storeBlockWithTransactions(block: any): void {
 		this.#logger.info(`Storing block [${block.hash}] with [${block.tx.length}] transaction(s)`);
 
@@ -46,12 +84,27 @@ export class Database {
 		}
 	}
 
+	/**
+	 * Stores an error with all of its details.
+	 *
+	 * @param {string} type
+	 * @param {string} hash
+	 * @param {string} body
+	 * @memberof Database
+	 */
 	public storeError(type: string, hash: string, body: string): void {
 		this.#database
 			.prepare(`INSERT INTO errors (type, hash, body) VALUES (:type, :hash, :body)`)
 			.run({ type, hash, body });
 	}
 
+	/**
+	 * Stores a block with only the absolute minimum of data.
+	 *
+	 * @private
+	 * @param {*} block
+	 * @memberof Database
+	 */
 	private storeBlock(block): void {
 		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, number) VALUES (:hash, :number)`).run({
 			hash: block.hash,
@@ -59,6 +112,13 @@ export class Database {
 		});
 	}
 
+	/**
+	 * Stores a transaction with only the absolute minimum of data.
+	 *
+	 * @private
+	 * @param {*} transaction
+	 * @memberof Database
+	 */
 	private storeTransaction(transaction): void {
 		this.#database
 			.prepare(
@@ -72,6 +132,12 @@ export class Database {
 			});
 	}
 
+	/**
+	 * Migrates the database to prepare it for use.
+	 *
+	 * @private
+	 * @memberof Database
+	 */
 	private migrate(): void {
 		this.#database.exec(`
 			PRAGMA journal_mode = WAL;

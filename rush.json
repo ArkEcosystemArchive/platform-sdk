@@ -192,6 +192,12 @@
 			"shouldPublish": true
 		},
 		{
+			"packageName": "@arkecosystem/platform-sdk-nano",
+			"projectFolder": "packages/platform-sdk-nano",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
 			"packageName": "@arkecosystem/platform-sdk-neo",
 			"projectFolder": "packages/platform-sdk-neo",
 			"reviewCategory": "libraries",
@@ -216,8 +222,20 @@
 			"shouldPublish": true
 		},
 		{
+			"packageName": "@arkecosystem/platform-sdk-json-rpc",
+			"projectFolder": "packages/platform-sdk-json-rpc",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
 			"packageName": "@arkecosystem/platform-sdk-support",
 			"projectFolder": "packages/platform-sdk-support",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-luna",
+			"projectFolder": "packages/platform-sdk-luna",
 			"reviewCategory": "libraries",
 			"shouldPublish": true
 		},

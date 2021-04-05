@@ -1,0 +1,156 @@
+repo:
+    - ./*
+
+ci:
+    - any: [".github/**/*"]
+
+test:
+    - src/**/*.test.ts
+
+"Domain: SDK":
+    - packages/platform-sdk/*
+    - packages/platform-sdk/**/*
+
+"Domain: ADA":
+    - packages/platform-sdk-ada/*
+    - packages/platform-sdk-ada/**/*
+
+"Domain: ARK":
+    - packages/platform-sdk-ark/*
+    - packages/platform-sdk-ark/**/*
+
+"Domain: ATOM":
+    - packages/platform-sdk-atom/*
+    - packages/platform-sdk-atom/**/*
+
+"Domain: AVAX":
+    - packages/platform-sdk-avax/*
+    - packages/platform-sdk-avax/**/*
+
+"Domain: BTC":
+    - packages/platform-sdk-btc/*
+    - packages/platform-sdk-btc/**/*
+
+"Domain: BTC/Indexer":
+    - packages/platform-sdk-btc-indexer/*
+    - packages/platform-sdk-btc-indexer/**/*
+
+"Domain: BTC/Server":
+    - packages/platform-sdk-btc-server/*
+    - packages/platform-sdk-btc-server/**/*
+
+"Domain: CLI":
+    - packages/platform-sdk-cli/*
+    - packages/platform-sdk-cli/**/*
+
+"Domain: CoinCap":
+    - packages/platform-sdk-coincap/*
+    - packages/platform-sdk-coincap/**/*
+
+"Domain: CoinGecko":
+    - packages/platform-sdk-coingecko/*
+    - packages/platform-sdk-coingecko/**/*
+
+"Domain: Crypto":
+    - packages/platform-sdk-crypto/*
+    - packages/platform-sdk-crypto/**/*
+
+"Domain: CryptoCompare":
+    - packages/platform-sdk-cryptocompare/*
+    - packages/platform-sdk-cryptocompare/**/*
+
+"Domain: DOT":
+    - packages/platform-sdk-dot/*
+    - packages/platform-sdk-dot/**/*
+
+"Domain: DOT/Indexer":
+    - packages/platform-sdk-dot-indexer/*
+    - packages/platform-sdk-dot-indexer/**/*
+
+"Domain: EGLD":
+    - packages/platform-sdk-egld/*
+    - packages/platform-sdk-egld/**/*
+
+"Domain: EOS":
+    - packages/platform-sdk-eos/*
+    - packages/platform-sdk-eos/**/*
+
+"Domain: ETH":
+    - packages/platform-sdk-eth/*
+    - packages/platform-sdk-eth/**/*
+
+"Domain: ETH/Indexer":
+    - packages/platform-sdk-eth-indexer/*
+    - packages/platform-sdk-eth-indexer/**/*
+
+"Domain: ETH/Server":
+    - packages/platform-sdk-eth-server/*
+    - packages/platform-sdk-eth-server/**/*
+
+"Domain: HTTP/axios":
+    - packages/platform-sdk-http-axios/*
+    - packages/platform-sdk-http-axios/**/*
+
+"Domain: HTTP/bent":
+    - packages/platform-sdk-http-bent/*
+    - packages/platform-sdk-http-bent/**/*
+
+"Domain: HTTP/got":
+    - packages/platform-sdk-http-got/*
+    - packages/platform-sdk-http-got/**/*
+
+"Domain: HTTP/ky":
+    - packages/platform-sdk-http-ky/*
+    - packages/platform-sdk-http-ky/**/*
+
+"Domain: HTTP/node-fetch":
+    - packages/platform-sdk-http-node-fetch/*
+    - packages/platform-sdk-http-node-fetch/**/*
+
+"Domain: INTL":
+    - packages/platform-sdk-intl/*
+    - packages/platform-sdk-intl/**/*
+
+"Domain: LSK":
+    - packages/platform-sdk-lsk/*
+    - packages/platform-sdk-lsk/**/*
+
+"Domain: Markets":
+    - packages/platform-sdk-markets/*
+    - packages/platform-sdk-markets/**/*
+
+"Domain: NEO":
+    - packages/platform-sdk-neo/*
+    - packages/platform-sdk-neo/**/*
+
+"Domain: News":
+    - packages/platform-sdk-news/*
+    - packages/platform-sdk-news/**/*
+
+"Domain: Profiles":
+    - packages/platform-sdk-profiles/*
+    - packages/platform-sdk-profiles/**/*
+
+"Domain: SOL":
+    - packages/platform-sdk-sol/*
+    - packages/platform-sdk-sol/**/*
+
+"Domain: JSPN-RPC":
+    - packages/platform-sdk-json-rpc/*
+    - packages/platform-sdk-json-rpc/**/*
+
+"Domain: Support":
+    - packages/platform-sdk-support/*
+    - packages/platform-sdk-support/**/*
+
+"Domain: TRX":
+    - packages/platform-sdk-trx/*
+    - packages/platform-sdk-trx/**/*
+
+"Domain: XLM":
+    - packages/platform-sdk-xlm/*
+    - packages/platform-sdk-xlm/**/*
+
+"Domain: XRP":
+    - packages/platform-sdk-xrp/*
+    - packages/platform-sdk-xrp/**/*

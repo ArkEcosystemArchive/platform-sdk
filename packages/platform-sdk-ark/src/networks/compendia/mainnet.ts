@@ -15,6 +15,7 @@ const network: Coins.CoinNetwork = {
 			mnemonic: true,
 			wif: true,
 		},
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://apis.compendia.org"],
@@ -110,6 +111,9 @@ const network: Coins.CoinNetwork = {
 		Derivation: {
 			bip39: true,
 			bip44: true,
+		},
+		Internal: {
+			fastDelegateSync: true,
 		},
 	},
 	transactionTypes: [

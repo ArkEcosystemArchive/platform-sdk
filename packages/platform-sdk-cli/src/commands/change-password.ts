@@ -1,4 +1,4 @@
-import { Profile } from "@arkecosystem/platform-sdk-profiles";
+import { Contracts } from "@arkecosystem/platform-sdk-profiles";
 import { pwnd, strong } from "password-pwnd";
 import prompts from "prompts";
 
@@ -16,7 +16,7 @@ export const validatePassword = async (value: string): Promise<boolean | string>
 	return "The password must contain at least 1 lowercase character, 1 uppercase character, 1 numeric character, 1 special character and must be 8 characters or longer.";
 };
 
-export const changePassword = async (profile: Profile): Promise<void> => {
+export const changePassword = async (profile: Contracts.IProfile): Promise<void> => {
 	renderLogo();
 
 	const { oldPassword, newPassword } = await prompts([

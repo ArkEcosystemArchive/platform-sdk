@@ -1,5 +1,7 @@
 import "jest-extended";
+import "reflect-metadata";
 
+import { resolve } from "path";
 import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
@@ -7,19 +9,18 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { removeSync } from "fs-extra";
 import nock from "nock";
-import { resolve } from "path";
 
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
 import { StubStorage } from "../../test/stubs/storage";
-import { Profile } from "../profiles/profile";
+import { Profile } from "../drivers/memory/profiles/profile";
+import { ProfileRepository } from "../drivers/memory/repositories/profile-repository";
+import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
+import { WalletService } from "../drivers/memory/services/wallet-service";
 import { DataRepository } from "../repositories/data-repository";
-import { ProfileRepository } from "../repositories/profile-repository";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Environment } from "./env";
-import { ExchangeRateService } from "./services/exchange-rate-service";
-import { WalletService } from "./services/wallet-service";
 import { MemoryStorage } from "./storage/memory";
 
 let subject: Environment;
@@ -51,7 +52,7 @@ beforeAll(() => {
 		.reply(200, require("../../test/fixtures/client/transaction-fees.json"))
 		.get("/api/delegates")
 		.query(true)
-		.reply(200, require("../../test/fixtures/client/delegates-2.json"))
+		.reply(200, require("../../test/fixtures/client/delegates-1.json"))
 		.get("/ArkEcosystem/common/master/devnet/known-wallets-extended.json")
 		.reply(200, [
 			{
@@ -282,7 +283,7 @@ it("#delegates", async () => {
 	await makeSubject();
 
 	await subject.delegates().sync("ARK", "ark.devnet");
-	expect(subject.delegates().all("ARK", "ark.devnet")).toHaveLength(100);
+	expect(subject.delegates().all("ARK", "ark.devnet")).toHaveLength(200);
 });
 
 it("#knownWallets", async () => {
