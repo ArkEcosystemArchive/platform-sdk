@@ -2,7 +2,6 @@ import { Container } from "../../environment/container";
 import { EnvironmentOptions } from "../../environment/env.models";
 import { Driver, IProfile, IProfileRepository } from "../../contracts";
 import { Identifiers } from "../../environment/container.models";
-import { ProcessRender } from "./contracts";
 import { Events } from "./events";
 import { DriverFactory } from "../driver.factory";
 import { DataRepository } from "../../repositories";
@@ -48,8 +47,6 @@ export class ElectronIpcDriver implements Driver {
 	 * @memberof MemoryDriver
 	 */
 	public make(container: Container, options: EnvironmentOptions): void {
-		const ipcRenderer: ProcessRender | undefined = options.driverArguments?.ipcRenderer as unknown as ProcessRender;
-
 		container.singleton(Identifiers.AppData, DataRepository);
 		container.singleton(Identifiers.CoinService, CoinService);
 		container.singleton(Identifiers.DelegateService, DelegateService);
@@ -59,18 +56,6 @@ export class ElectronIpcDriver implements Driver {
 		container.singleton(Identifiers.PluginRegistry, PluginRegistry);
 		container.singleton(Identifiers.ProfileRepository, ProfileRepository);
 		container.singleton(Identifiers.WalletService, WalletService);
-
-		if (ipcRenderer !== undefined) {
-			// @TODO: register classes that use `ipcRenderer.send` instead of in-memory constructs
-
-			// for (const [event, listener] of Object.entries(this.#listeners)) {
-			// 	console.log('registering client listener for event', event);
-			// 	ipcRenderer.on(event, listener);
-			// }
-
-			// Expose the render process for any additional work
-			container.bind(Identifiers.ProcessRenderer, ipcRenderer);
-		}
 	}
 
 	public static registerSelf(): void {
