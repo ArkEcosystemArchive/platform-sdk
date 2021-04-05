@@ -70,7 +70,7 @@ export class ProfileRepository implements IProfileRepository {
 
 	public findById(id: string): IProfile {
 		let a;
-		ipcRenderer.invoke("ProfileRepository.findById", {})
+		ipcRenderer.invoke("ProfileRepository.findById", { id })
 			.then( (r) => {
 				console.log('ProfileRepository.findById', 'r', r);
 				return a = r;
@@ -83,7 +83,13 @@ export class ProfileRepository implements IProfileRepository {
 	}
 
 	public create(name: string): IProfile {
-		throw new Exceptions.NotImplemented("ProfileRepository", "create");
+		let a;
+		ipcRenderer.invoke("ProfileRepository.create", { name })
+			.then( (r) => {
+				console.log('ProfileRepository.create', 'r', r);
+				return a = r;
+			});
+		return a;
 	}
 
 	public async import(data: string, password?: string): Promise<Profile> {

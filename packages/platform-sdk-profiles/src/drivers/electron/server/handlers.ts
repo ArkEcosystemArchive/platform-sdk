@@ -14,7 +14,7 @@ export class Handlers {
 		console.log('Handlers.registerHandlers()');
 
 		ipcMain.handle("ProfileRepository.fill", (event, { profiles }) => {
-			console.log('ProfileRepository.fill');
+			console.log('ProfileRepository.fill', arguments);
 
 			this.#env.profiles().fill(profiles);
 		});
@@ -47,6 +47,11 @@ export class Handlers {
 		ipcMain.handle("ProfileRepository.findById", (event, { id }) => {
 			console.log('handling ProfileRepository.findById');
 			return this.#env.profiles().findById(id);
+		});
+
+		ipcMain.handle("ProfileRepository.create", (event, { name }) => {
+			console.log('handling ProfileRepository.create', arguments);
+			return this.#env.profiles().create(name);
 		});
 
 		ipcMain.handle("ProfileRepository.flush", (event, { }) => {
