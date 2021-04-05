@@ -7,7 +7,7 @@ export interface IProfileRepository {
     last(): IProfile;
     keys(): string[];
     values(): IProfile[];
-    findById(id: string): IProfile;
+    findById(id: string): Promise<IProfile>;
     findByName(name: string): IProfile | undefined;
     create(name: string): Promise<IProfile>;
     import(data: string, password?: string): Promise<IProfile>;

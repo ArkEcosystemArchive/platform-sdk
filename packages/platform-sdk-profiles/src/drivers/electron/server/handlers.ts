@@ -43,7 +43,7 @@ export class Handlers {
 		});
 
 		ipcMain.handle("ProfileRepository.findById", (event, { id }) => {
-			console.log("handling ProfileRepository.findById");
+			console.log("handling ProfileRepository.findById", "id", id);
 			return this.#env.profiles().findById(id);
 		});
 

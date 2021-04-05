@@ -40,12 +40,12 @@ export class ProfileRepository implements IProfileRepository {
 		return this.#data.values();
 	}
 
-	public findById(id: string): IProfile {
+	public findById(id: string): Promise<IProfile> {
 		if (this.#data.missing(id)) {
 			throw new Error(`No profile found for [${id}].`);
 		}
 
-		return this.#data.get(id) as IProfile;
+		return Promise.resolve(this.#data.get(id) as IProfile);
 	}
 
 	public findByName(name: string): IProfile | undefined {

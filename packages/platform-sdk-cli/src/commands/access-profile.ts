@@ -23,7 +23,7 @@ export const accessProfile = async (env: Environment): Promise<void> => {
 	});
 
 	// Restore
-	const profile = env.profiles().findById(id);
+	const profile = await env.profiles().findById(id);
 
 	if (profile.usesPassword()) {
 		const { password } = await prompts({

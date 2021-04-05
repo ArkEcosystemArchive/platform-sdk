@@ -68,14 +68,12 @@ export class ProfileRepository implements IProfileRepository {
 		return a;
 	}
 
-	public findById(id: string): IProfile {
-		let a;
-		ipcRenderer.invoke("ProfileRepository.findById", { id })
-			.then( (r) => {
-				console.log('ProfileRepository.findById', 'r', r);
-				return a = r;
+	public findById(id: string): Promise<IProfile> {
+		return ipcRenderer.invoke("ProfileRepository.findById", { id })
+			.then( (profile) => {
+				console.log('ProfileRepository.findById', 'profile', profile);
+				return new Profile(profile);
 			});
-		return a;
 	}
 
 	public findByName(name: string): IProfile | undefined {
@@ -84,9 +82,9 @@ export class ProfileRepository implements IProfileRepository {
 
 	public async create(name: string): Promise<IProfile> {
 		return await ipcRenderer.invoke("ProfileRepository.create", name)
-			.then((r) => {
-				console.log("ProfileRepository.create", "r", JSON.stringify(r, null, 2));
-				return new Profile(r);
+			.then((created) => {
+				console.log("ProfileRepository.create", "created", JSON.stringify(created, null, 2));
+				return new Profile(created);
 			});
 	}
 
@@ -117,9 +115,9 @@ export class ProfileRepository implements IProfileRepository {
 		// return ipcRenderer.invoke("ProfileRepository.count").then(r => r), {};
 		let a: number = 0;
 		ipcRenderer.invoke("ProfileRepository.count", {})
-			.then( (r) => {
-				console.log("ProfileRepository.count", 'r', r);
-				return a = r;
+			.then( (count) => {
+				console.log("ProfileRepository.count", 'count', count);
+				return a = count;
 			});
 		return a;
 	}
