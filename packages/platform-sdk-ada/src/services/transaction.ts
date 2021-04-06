@@ -3,7 +3,7 @@ import CardanoWasm, { Address } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
 import { postGraphql } from "./helpers";
-import { deriveAccountKey, deriveChangeKey, deriveRootKey, deriveSpendKey } from "./identity/shelley";
+import { deriveAccountKey, deriveRootKey, deriveSpendKey } from "./identity/shelley";
 import { createValue } from "./transaction.helpers";
 
 export interface UnspentTransaction {
@@ -116,7 +116,6 @@ export class TransactionService implements Contracts.TransactionService {
 
 		console.log("hash", Buffer.from(txHash.to_bytes()).toString("hex"));
 		const transaction = CardanoWasm.Transaction.new(txBody, witnesses);
-
 
 		return new SignedTransactionData(
 			Buffer.from(txHash.to_bytes()).toString("hex"),
