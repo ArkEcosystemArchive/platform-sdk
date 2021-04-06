@@ -1,20 +1,13 @@
 import "jest-extended";
-
-import { Contracts } from "@arkecosystem/platform-sdk";
 import { createConfig } from "./helpers";
 import { ClientService } from "../src/services";
-import { Buffer } from "buffer";
-import CardanoWasm, { Address } from "@emurgo/cardano-serialization-lib-nodejs";
-import {
-	createValue,
-	deriveAccountKey,
-	deriveChangeKey,
-	deriveRootKey,
-	deriveUtxoKey,
-} from "../src/services/transaction.helpers";
-import { SignedTransactionData } from "../src/dto";
-import { UnspentTransaction } from "../src/services/transaction";
-import { postGraphql } from "../src/services/helpers";
+import { TransactionService } from "../src/services/transaction";
+
+let subject: TransactionService;
+
+beforeEach(async () => {
+	subject = await TransactionService.__construct(createConfig());
+});
 
 const data = [
 	{
@@ -155,109 +148,25 @@ it(`can send a transfer`, async function () {
 	const config = createConfig();
 	const client = await ClientService.__construct(config);
 
-	async function estimateExpiration(value?: string): Promise<string> {
-		const tip: number = parseInt((await postGraphql(config, `{ cardano { tip { slotNo } } }`)).cardano.tip.slotNo);
-		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
-
-		return (tip + ttl).toString();
-	}
-
-	const wallet = data[0];
+	const wallet = data[0]; // Simon's
 	const mnemonic = wallet.mnemonic;
 	const from: string = wallet.addresses.spend[1];
-	const changeAddress = wallet.addresses.change[1];
+	// const changeAddress = wallet.addresses.change[0];
 
-	const wallet2 = data[1];
+	const wallet2 = data[1]; // Mariano's
 	const to: string = wallet2.addresses.spend[0];
-	const amount: string = "9615699";
+	const amount: string = "1200000";
 
-	const { minFeeA, minFeeB, minUTxOValue, poolDeposit, keyDeposit } = config.get<Contracts.KeyValuePair>(
-		"network.meta",
-	);
-
-	// This is the transaction builder that uses values from the genesis block of the configured network.
-	const txBuilder = CardanoWasm.TransactionBuilder.new(
-		CardanoWasm.LinearFee.new(
-			CardanoWasm.BigNum.from_str(minFeeA.toString()),
-			CardanoWasm.BigNum.from_str(minFeeB.toString()),
-		),
-		CardanoWasm.BigNum.from_str(minUTxOValue.toString()),
-		CardanoWasm.BigNum.from_str(poolDeposit.toString()),
-		CardanoWasm.BigNum.from_str(keyDeposit.toString()),
-	);
-
-	// Get a `Bip32PrivateKey` instance according to `CIP1852` and turn it into a `PrivateKey` instance
-	const rootKey = deriveRootKey(mnemonic);
-	const accountKey = deriveAccountKey(rootKey, config.get<number>("network.crypto.slip44"), 0);
-	// const privateKey = accountKey.to_raw_key();
-	// console.log(
-	// 	"privateKey",
-	// 	Buffer.from(privateKey.as_bytes()).toString("hex"),
-	// 	"publicKey",
-	// 	Buffer.from(privateKey.to_public().as_bytes()).toString("hex"),
-	// );
-	// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transferred back to the sender
-	const utxo: UnspentTransaction = {
-		address: to,
-		index: "0",
-		transaction: {
-			hash: "22e6ff48fc1ed9d8ed87eb416b1c45e93b5945a3dc31d7d14ccdeb93174251f4",
+	const tx = await subject.transfer({
+		from,
+		sign: {
+			mnemonic,
 		},
-		value: "20000000",
-	};
-
-	txBuilder.add_input(
-		Address.from_bech32(utxo.address),
-		CardanoWasm.TransactionInput.new(
-			CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
-			parseInt(utxo.index),
-		),
-		createValue(utxo.value),
-	);
-
-	// These are the outputs that will be transferred to other wallets. For now we only support a single output.
-	txBuilder.add_output(CardanoWasm.TransactionOutput.new(CardanoWasm.Address.from_bech32(to), createValue(amount)));
-
-	// This is the expiration slot which should be estimated with #estimateExpiration
-	txBuilder.set_ttl(parseInt(await estimateExpiration()));
-
-	// calculate the min fee required and send any change to an address
-	txBuilder.add_change_if_needed(CardanoWasm.Address.from_bech32(changeAddress));
-
-	// once the transaction is ready, we build it to get the tx body without witnesses
-	const txBody = txBuilder.build();
-	const txHash = CardanoWasm.hash_transaction(txBody);
-	const witnesses = CardanoWasm.TransactionWitnessSet.new();
-
-	// add keyhash witnesses
-	const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
-	vkeyWitnesses.add(
-		CardanoWasm.make_vkey_witness(
-			CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
-			deriveUtxoKey(accountKey, 0).to_raw_key(),
-		),
-	);
-	vkeyWitnesses.add(
-		CardanoWasm.make_vkey_witness(
-			CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
-			deriveChangeKey(accountKey, 0).to_raw_key(),
-		),
-	);
-	// vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveStakeKey(accountKey, 0).to_raw_key()));
-	// vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveChangeKey(accountKey, 0).to_raw_key()));
-	vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, accountKey.to_raw_key()));
-	witnesses.set_vkeys(vkeyWitnesses);
-
-	const tx = new SignedTransactionData(
-		Buffer.from(txHash.to_bytes()).toString("hex"),
-		{
-			sender: from,
-			recipient: to,
-			amount: amount,
-			fee: txBody.fee().to_str(),
+		data: {
+			amount,
+			to,
 		},
-		Buffer.from(CardanoWasm.Transaction.new(txBody, witnesses).to_bytes()).toString("hex"),
-	);
+	});
 
 	const result = await client.broadcast([tx]);
 	console.log(result);

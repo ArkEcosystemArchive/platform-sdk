@@ -56,13 +56,14 @@ export class TransactionService implements Contracts.TransactionService {
 		// Get a `Bip32PrivateKey` instance according to `CIP1852` and turn it into a `PrivateKey` instance
 		const rootKey = deriveRootKey(input.sign.mnemonic);
 		const accountKey = deriveAccountKey(rootKey, 0);
-		// const privateKey = accountKey.to_raw_key();
-		// console.log(
-		// 	"privateKey",
-		// 	Buffer.from(privateKey.as_bytes()).toString("hex"),
-		// 	"publicKey",
-		// 	Buffer.from(privateKey.to_public().as_bytes()).toString("hex"),
-		// );
+		const privateKey = accountKey.to_raw_key();
+		console.log(
+			"privateKey",
+			Buffer.from(privateKey.as_bytes()).toString("hex"),
+			"publicKey",
+			Buffer.from(privateKey.to_public().as_bytes()).toString("hex"),
+		);
+
 		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transferred back to the sender
 		const utxos: UnspentTransaction[] = await this.listUnspentTransactions(input.from);
 
@@ -104,16 +105,19 @@ export class TransactionService implements Contracts.TransactionService {
 		// once the transaction is ready, we build it to get the tx body without witnesses
 		const txBody = txBuilder.build();
 		const txHash = CardanoWasm.hash_transaction(txBody);
-		const witnesses = CardanoWasm.TransactionWitnessSet.new();
 
-		// add keyhash witnesses
+		const vkeyWitness = CardanoWasm.make_vkey_witness(txHash, deriveSpendKey(accountKey, 1).to_raw_key());
+
 		const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
-		vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveSpendKey(accountKey, 0).to_raw_key()));
-		vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveChangeKey(accountKey, 0).to_raw_key()));
-		vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, accountKey.to_raw_key()));
+		vkeyWitnesses.add(vkeyWitness);
+
+		const witnesses = CardanoWasm.TransactionWitnessSet.new();
 		witnesses.set_vkeys(vkeyWitnesses);
 
 		console.log("hash", Buffer.from(txHash.to_bytes()).toString("hex"));
+		const transaction = CardanoWasm.Transaction.new(txBody, witnesses);
+
+
 		return new SignedTransactionData(
 			Buffer.from(txHash.to_bytes()).toString("hex"),
 			{
@@ -122,7 +126,7 @@ export class TransactionService implements Contracts.TransactionService {
 				amount: input.data.amount,
 				fee: txBody.fee().to_str(),
 			},
-			Buffer.from(CardanoWasm.Transaction.new(txBody, witnesses).to_bytes()).toString("hex"),
+			Buffer.from(transaction.to_bytes()).toString("hex"),
 		);
 	}
 
@@ -212,6 +216,29 @@ export class TransactionService implements Contracts.TransactionService {
 		return (tip + ttl).toString();
 	}
 
+	// private derivePrivateByAddressing(request: {
+	// 	addressing: $PropertyType<Addressing, 'addressing'>,
+	// 	startingFrom: {
+	// 		key: RustModule.WalletV4.Bip32PrivateKey,
+	// 		level: number,
+	// 		},
+	// 	}): RustModule.WalletV4.Bip32PrivateKey {
+	// 	if (request.startingFrom.level + 1 < request.addressing.startLevel) {
+	// 		throw new Error(`${nameof(derivePrivateByAddressing)} keyLevel < startLevel`);
+	// 	}
+	// 	let derivedKey = request.startingFrom.key;
+	// 	for (
+	// 		let i = request.startingFrom.level - request.addressing.startLevel + 1;
+	// 		i < request.addressing.path.length;
+	// 		i++
+	// 	) {
+	// 		derivedKey = derivedKey.derive(
+	// 			request.addressing.path[i]
+	// 		);
+	// 	}
+	// 	return derivedKey;
+	// }
+
 	private async listUnspentTransactions(address: string): Promise<UnspentTransaction[]> {
 		return (
 			await postGraphql(
@@ -228,7 +255,7 @@ export class TransactionService implements Contracts.TransactionService {
 				  address
 				  index
 				  transaction {
-					hash
+						hash
 				  }
 				  value
 				}
