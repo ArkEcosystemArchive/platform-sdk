@@ -108,20 +108,8 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// add keyhash witnesses
 		const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
-		vkeyWitnesses.add(
-			CardanoWasm.make_vkey_witness(
-				CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
-				deriveSpendKey(accountKey, 0).to_raw_key(),
-			),
-		);
-		vkeyWitnesses.add(
-			CardanoWasm.make_vkey_witness(
-				CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
-				deriveChangeKey(accountKey, 0).to_raw_key(),
-			),
-		);
-		// vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveStakeKey(accountKey, 0).to_raw_key()));
-		// vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveChangeKey(accountKey, 0).to_raw_key()));
+		vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveSpendKey(accountKey, 0).to_raw_key()));
+		vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, deriveChangeKey(accountKey, 0).to_raw_key()));
 		vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, accountKey.to_raw_key()));
 		witnesses.set_vkeys(vkeyWitnesses);
 
