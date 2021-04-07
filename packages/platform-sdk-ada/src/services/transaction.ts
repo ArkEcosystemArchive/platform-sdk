@@ -106,6 +106,8 @@ export class TransactionService implements Contracts.TransactionService {
 		const txBody = txBuilder.build();
 		const txHash = CardanoWasm.hash_transaction(txBody);
 
+		// TODO Change hard-coded 1 to proper index/indices based on building the mapping
+		// We use index 1 here, because we know that's the right index for this utxo (is it?)
 		const vkeyWitness = CardanoWasm.make_vkey_witness(txHash, deriveSpendKey(accountKey, 1).to_raw_key());
 
 		const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
