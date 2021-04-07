@@ -1,8 +1,4 @@
-import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { IExchangeRateService, IPortfolio, IPortfolioItem, IProfile } from "../../../contracts";
-import { container } from "../../../environment/container";
-import { Identifiers } from "../../../environment/container.models";
+import { IPortfolio, IPortfolioItem, IProfile } from "../../../contracts";
 
 export class Portfolio implements IPortfolio {
 	readonly #profile: IProfile;
@@ -12,7 +8,7 @@ export class Portfolio implements IPortfolio {
 	}
 
 	public breakdown(): IPortfolioItem[] {
-		const result: IPortfolioItem[] = [];
+		const result: Record<string, IPortfolioItem> = {};
 
 		for (const wallet of this.#profile.wallets().values()) {
 			if (wallet.network().isTest()) {
@@ -24,15 +20,28 @@ export class Portfolio implements IPortfolio {
 			if (result[ticker] === undefined) {
 				result[ticker] = {
 					coin: wallet.coin(),
-					source: BigNumber.ZERO,
-					target: BigNumber.ZERO,
+					source: 0,
+					target: 0,
+					shares: 0,
 				};
 			}
 
-			result[ticker].source.plus(wallet.balance());
-			result[ticker].target.plus(wallet.convertedBalance());
+			result[ticker].source += parseFloat(wallet.balance().toHuman());
+			result[ticker].target += parseFloat(wallet.convertedBalance().toString());
 		}
 
-		return result;
+		let totalValue: number = 0;
+
+		// Sum
+		for (const item of Object.values(result)) {
+			totalValue += item.target;
+		}
+
+		// Percentages
+		for (const item of Object.values(result)) {
+			item.shares += (item.target * 100) / totalValue;
+		}
+
+		return Object.values(result);
 	}
 }

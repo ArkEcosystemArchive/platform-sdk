@@ -20,6 +20,7 @@ import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Migrator } from "./migrator";
+import { Portfolio } from "./portfolio";
 
 export class Profile implements IProfile {
 	#data: IProfileInput;

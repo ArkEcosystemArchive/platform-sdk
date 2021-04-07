@@ -1,22 +1,16 @@
 import "jest-extended";
 import "reflect-metadata";
 
-import { Coins } from "@arkecosystem/platform-sdk";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { encrypt } from "bip38";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
-import { decode } from "wif";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { ProfileRepository } from "../repositories/profile-repository";
-import { ReadOnlyWallet } from "./read-only-wallet";
-import { Wallet } from "./wallet";
-import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting, WalletData, WalletFlag, WalletSetting } from "../../../contracts";
-import { ExtendedTransactionDataCollection } from "../../../dto";
+import { Wallet } from "../wallets/wallet";
+import { IExchangeRateService, IProfile, IReadWriteWallet, WalletData } from "../../../contracts";
 
 let profile: IProfile;
 let subject: IReadWriteWallet;
@@ -35,44 +29,13 @@ beforeEach(async () => {
 		.reply(200, require("../../../../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
 		.reply(200, require("../../../../test/fixtures/client/syncing.json"))
-
 		// default wallet
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get("/api/wallets/D94iLJaZSbjXG6XaR9BGRVBfzzYmxNt1Bi")
 		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
-		.get("/api/wallets/034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192")
+		.get("/api/wallets/DTShJdDKECzQLW3uomKfuPvmU51sxyNWUL")
 		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
-
-		// second wallet
-		.get("/api/wallets/022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce")
-		.reply(200, require("../../../../test/fixtures/client/wallet-2.json"))
-		.get("/api/wallets/DNc92FQmYu8G9Xvo6YqhPtRxYsUxdsUn9w")
-		.reply(200, require("../../../../test/fixtures/client/wallet-2.json"))
-
-		// Musig wallet
-		.get("/api/wallets/DML7XEfePpj5qDFb1SbCWxLRhzdTDop7V1")
-		.reply(200, require("../../../../test/fixtures/client/wallet-musig.json"))
-		.get("/api/wallets/02cec9caeb855e54b71e4d60c00889e78107f6136d1f664e5646ebcb2f62dae2c6")
-		.reply(200, require("../../../../test/fixtures/client/wallet-musig.json"))
-
-		.get("/api/delegates")
-		.reply(200, require("../../../../test/fixtures/client/delegates-1.json"))
-		.get("/api/delegates?page=2")
-		.reply(200, require("../../../../test/fixtures/client/delegates-2.json"))
-		.get("/api/transactions/3e0b2e5ed00b34975abd6dee0ca5bd5560b5bd619b26cf6d8f70030408ec5be3")
-		.query(true)
-		.reply(200, () => {
-			const response = require("../../../../test/fixtures/client/transactions.json");
-			return { data: response.data[0] };
-		})
-		.get("/api/transactions/bb9004fa874b534905f9eff201150f7f982622015f33e076c52f1e945ef184ed")
-		.query(true)
-		.reply(200, () => {
-			const response = require("../../../../test/fixtures/client/transactions.json");
-			return { data: response.data[1] };
-		})
-		.get("/api/transactions")
-		.query(true)
-		.reply(200, require("../../../../test/fixtures/client/transactions.json"))
+		.get("/api/wallets/DQzosAzwyYStw2bUeUTCUnqiMonEz9ER2o")
+		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
 		// CryptoCompare
 		.get("/data/histoday")
 		.query(true)
@@ -91,61 +54,37 @@ beforeEach(async () => {
 
 beforeAll(() => nock.disableNetConnect());
 
-it("should have a coin", () => {
-	expect(subject.coin()).toBeInstanceOf(Coins.Coin);
-});
-
-it("should have a network", () => {
-	expect(subject.network().toObject()).toEqual(require("../../../../test/fixtures/network.json").default);
-});
-
-it("should have an address", () => {
-	expect(subject.address()).toEqual(identity.address);
-});
-
-it("should have a publicKey", () => {
-	expect(subject.publicKey()).toEqual(identity.publicKey);
-});
-
-it("should have a balance", () => {
-	expect(subject.balance()).toBeInstanceOf(BigNumber);
-	expect(subject.balance().toString()).toBe("55827093444556");
-
-	subject.data().set(WalletData.Balance, undefined);
-
-	expect(subject.balance().toString()).toBe("0");
-});
-
-it("should have a converted balance if it is a live wallet", async () => {
-	// cryptocompare
+it("should aggregate the balances of all wallets", async () => {
 	nock(/.+/)
 		.get("/data/dayAvg")
 		.query(true)
 		.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
 		.persist();
 
-	const wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
-	const live = jest.spyOn(subject.network(), "isLive").mockReturnValue(true);
-	const test = jest.spyOn(subject.network(), "isTest").mockReturnValue(false);
+	const [a, b, c] = await Promise.all([
+		profile.wallets().importByMnemonic("ark", "ARK", "ark.devnet"),
+		profile.wallets().importByMnemonic("btc", "ARK", "ark.devnet"),
+		profile.wallets().importByMnemonic("eth", "ARK", "ark.devnet"),
+	]);
+	a.data().set(WalletData.Balance, 1e8);
+	b.data().set(WalletData.Balance, 1e8);
+	c.data().set(WalletData.Balance, 1e8);
 
-	wallet.data().set(WalletData.Balance, 5e8);
+	jest.spyOn(a.network(), "isLive").mockReturnValue(true);
+	jest.spyOn(a.network(), "isTest").mockReturnValue(false);
+	jest.spyOn(a.network(), "ticker").mockReturnValue("ARK");
 
-	expect(wallet.convertedBalance()).toBeInstanceOf(BigNumber);
-	expect(wallet.convertedBalance().toNumber()).toBe(0);
+	jest.spyOn(b.network(), "isLive").mockReturnValue(true);
+	jest.spyOn(b.network(), "isTest").mockReturnValue(false);
+	jest.spyOn(b.network(), "ticker").mockReturnValue("ARK");
 
-	await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
-	expect(wallet.convertedBalance().toNumber()).toBe(0.0002524);
+	jest.spyOn(c.network(), "isLive").mockReturnValue(true);
+	jest.spyOn(c.network(), "isTest").mockReturnValue(false);
+	jest.spyOn(c.network(), "ticker").mockReturnValue("ARK");
 
-	live.mockRestore();
-	test.mockRestore();
-});
+	await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "ARK");
 
-it("should not have a converted balance if it is a live wallet but has no exchange rate", async () => {
-	const live = jest.spyOn(subject.network(), "isLive").mockReturnValue(true);
-	const test = jest.spyOn(subject.network(), "isTest").mockReturnValue(false);
-
-	expect(subject.convertedBalance()).toEqual(BigNumber.ZERO);
-
-	live.mockRestore();
-	test.mockRestore();
+	expect(profile.portfolio().breakdown()[0].source).toBe(3);
+	expect(profile.portfolio().breakdown()[0].target).toBe(0.00015144);
+	expect(profile.portfolio().breakdown()[0].shares).toBe(100);
 });
