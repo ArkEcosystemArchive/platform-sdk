@@ -154,7 +154,6 @@ it(`can send a transfer`, async function () {
 	const wallet = data[0]; // Simon's
 	const mnemonic = wallet.mnemonic;
 	const from: string = wallet.addresses.spend[1];
-	// const changeAddress = wallet.addresses.change[0];
 
 	const wallet2 = data[1]; // Mariano's
 	const to: string = wallet2.addresses.spend[0];
@@ -173,7 +172,7 @@ it(`can send a transfer`, async function () {
 
 	const result = await client.broadcast([tx]);
 	console.log(result);
-	// expect(result.accepted).toBeArrayOfSize(1);
+	expect(result.accepted).toBeArrayOfSize(1);
 	expect(result.rejected).toBeEmpty();
 	expect(result.errors).toBeEmpty();
 });
