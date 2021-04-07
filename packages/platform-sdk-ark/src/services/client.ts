@@ -200,6 +200,7 @@ export class ClientService implements Contracts.ClientService {
 			cursor: "page",
 			limit: "limit",
 			orderBy: "orderBy",
+			memo: "vendorField",
 		};
 
 		if (this.isUpcoming()) {
