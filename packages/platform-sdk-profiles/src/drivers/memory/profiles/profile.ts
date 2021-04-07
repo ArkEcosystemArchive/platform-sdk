@@ -2,7 +2,7 @@
 import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
-import { IProfileStruct, IProfileExportOptions, IContactRepository, ICountAggregate, IDataRepository, INotificationRepository, IPeerRepository, IPluginRepository, IProfile, IProfileInput, IRegistrationAggregate, ISettingRepository, ITransactionAggregate, IWalletAggregate, IWalletRepository, ProfileSetting, IReadWriteWallet } from "../../../contracts";
+import { IProfileStruct, IProfileExportOptions, IContactRepository, IPortfolio, ICountAggregate, IDataRepository, INotificationRepository, IPeerRepository, IPluginRepository, IProfile, IProfileInput, IRegistrationAggregate, ISettingRepository, ITransactionAggregate, IWalletAggregate, IWalletRepository, ProfileSetting, IReadWriteWallet } from "../../../contracts";
 
 import { MemoryPassword } from "../../../helpers/password";
 import { pqueue } from "../../../helpers/queue";
@@ -24,6 +24,7 @@ import { Migrator } from "./migrator";
 export class Profile implements IProfile {
 	#data: IProfileInput;
 
+	readonly #portfolio: IPortfolio;
 	readonly #contactRepository: IContactRepository;
 	readonly #dataRepository: IDataRepository;
 	readonly #notificationRepository: INotificationRepository;
@@ -40,6 +41,7 @@ export class Profile implements IProfile {
 	public constructor(data: IProfileInput) {
 		this.#data = data;
 
+		this.#portfolio = new Portfolio(this);
 		this.#contactRepository = new ContactRepository(this);
 		this.#dataRepository = new DataRepository();
 		this.#notificationRepository = new NotificationRepository();
@@ -86,6 +88,10 @@ export class Profile implements IProfile {
 
 	public convertedBalance(): BigNumber {
 		return this.walletAggregate().convertedBalance();
+	}
+
+	public portfolio(): IPortfolio {
+		return this.#portfolio;
 	}
 
 	public contacts(): IContactRepository {
