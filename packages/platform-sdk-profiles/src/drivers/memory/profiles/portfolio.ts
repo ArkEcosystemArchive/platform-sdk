@@ -30,12 +30,7 @@ export class Portfolio implements IPortfolio {
 			}
 
 			result[ticker].source.plus(wallet.balance());
-		}
-
-		for (const item of result) {
-			item.target = container
-				.get<IExchangeRateService>(Identifiers.ExchangeRateService)
-				.exchange(item.coin.network().ticker(), 'USD', DateTime.make(), item.source.divide(1e8));
+			result[ticker].target.plus(wallet.convertedBalance());
 		}
 
 		return result;
