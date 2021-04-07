@@ -1,6 +1,5 @@
 import "jest-extended";
 
-import { Contracts } from "@arkecosystem/platform-sdk";
 import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
 import nock from "nock";
 

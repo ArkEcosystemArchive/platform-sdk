@@ -1,5 +1,5 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { HDKey } from "@arkecosystem/platform-sdk-crypto";
 
 import { ClientService } from "./client";
@@ -80,7 +80,7 @@ export class LedgerService implements Contracts.LedgerService {
 		let page = 0;
 		const slip44 = this.#config.get<number>("network.crypto.slip44");
 
-		let addressCache: Record<string, string> = {};
+		const addressCache: Record<string, string> = {};
 		let wallets: Contracts.WalletData[] = [];
 
 		let hasMore = true;
@@ -108,7 +108,7 @@ export class LedgerService implements Contracts.LedgerService {
 
 				hasMore = collection.isNotEmpty();
 			} else {
-				const path: string = `m/44'/${slip44}'/0'`;
+				const path = `m/44'/${slip44}'/0'`;
 
 				/**
 				 * @remarks
@@ -147,8 +147,10 @@ export class LedgerService implements Contracts.LedgerService {
 		// Create a mapping of paths and wallets that have been found.
 		const result: Record<string, Contracts.WalletData> = {};
 
-		for(const [path, address] of Object.entries(addressCache)) {
-			const matchingWallet: Contracts.WalletData | undefined = wallets.find((wallet: Contracts.WalletData) => wallet.address() === address);
+		for (const [path, address] of Object.entries(addressCache)) {
+			const matchingWallet: Contracts.WalletData | undefined = wallets.find(
+				(wallet: Contracts.WalletData) => wallet.address() === address,
+			);
 
 			if (matchingWallet === undefined) {
 				continue;
