@@ -15,6 +15,10 @@ export class Portfolio implements IPortfolio {
 		const result: IPortfolioItem[] = [];
 
 		for (const wallet of this.#profile.wallets().values()) {
+			if (wallet.network().isTest()) {
+				continue;
+			}
+
 			const ticker: string = wallet.network().ticker();
 
 			if (result[ticker] === undefined) {
