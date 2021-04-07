@@ -12,6 +12,7 @@ import { IRegistrationAggregate } from "./aggregates/registration-aggregate";
 import { ITransactionAggregate } from "./aggregates/transaction-aggregate";
 import { IWalletAggregate } from "./aggregates/wallet-aggregate";
 import { IAuthenticator } from "./authenticator";
+import { IPortfolio } from "./portfolio";
 
 export interface IProfileStruct {
 	id: string;
@@ -48,6 +49,7 @@ export interface IProfile {
     avatar(): string;
     balance(): BigNumber;
     convertedBalance(): BigNumber;
+	portfolio(): IPortfolio;
     contacts(): IContactRepository;
     data(): IDataRepository;
     notifications(): INotificationRepository;
