@@ -24,5 +24,5 @@ export interface LedgerService {
 
 	signMessage(path: string, payload: Buffer): Promise<string>;
 
-	scan(): Promise<WalletData[]>;
+	scan(options?: { useLegacy: boolean }): Promise<Record<string, WalletData>>;
 }
