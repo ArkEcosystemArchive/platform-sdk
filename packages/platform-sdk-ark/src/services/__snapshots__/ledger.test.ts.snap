@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`scan should return scanned wallet 1`] = `
+Object {
+  "44'/1'/0'/0/0": WalletData {
+    "data": Object {
+      "address": "D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK",
+      "attributes": Object {},
+      "balance": "15000000000",
+      "nonce": "0",
+    },
+  },
+}
+`;
+
+exports[`scan should return scanned wallet 2`] = `
+Object {
+  "address": "D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK",
+  "balance": BigNumber {},
+  "nonce": BigNumber {},
+  "publicKey": undefined,
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;
