@@ -7,7 +7,7 @@ export interface LedgerOptions {
 // TODO: create a proper contract for this
 export type LedgerTransport = any;
 
-export type LedgerWalletList = Record<string, WalletData | undefined>;
+export type LedgerWalletList = Record<string, WalletData>;
 
 export interface LedgerService {
 	__destruct(): Promise<void>;
