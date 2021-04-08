@@ -1,6 +1,7 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { HDKey } from "@arkecosystem/platform-sdk-crypto";
+import { WalletData } from "../dto";
 
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";
@@ -152,7 +153,14 @@ export class LedgerService implements Contracts.LedgerService {
 				(wallet: Contracts.WalletData) => wallet.address() === address,
 			);
 
-			result[path] = matchingWallet;
+			if (matchingWallet === undefined) {
+				result[path] = new WalletData({
+					address,
+					balance: 0,
+				});
+			} else {
+				result[path] = matchingWallet;
+			}
 		}
 
 		return result;
