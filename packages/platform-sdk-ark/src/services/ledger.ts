@@ -75,7 +75,7 @@ export class LedgerService implements Contracts.LedgerService {
 		return this.#transport.signMessageWithSchnorr(path, payload);
 	}
 
-	public async scan(options?: { useLegacy: boolean }): Promise<Record<string, Contracts.WalletData>> {
+	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.LedgerWalletList> {
 		const pageSize = 5;
 		let page = 0;
 		const slip44 = this.#config.get<number>("network.crypto.slip44");
@@ -145,16 +145,12 @@ export class LedgerService implements Contracts.LedgerService {
 		} while (hasMore);
 
 		// Create a mapping of paths and wallets that have been found.
-		const result: Record<string, Contracts.WalletData> = {};
+		const result: Contracts.LedgerWalletList = {};
 
 		for (const [path, address] of Object.entries(addressCache)) {
 			const matchingWallet: Contracts.WalletData | undefined = wallets.find(
 				(wallet: Contracts.WalletData) => wallet.address() === address,
 			);
-
-			if (matchingWallet === undefined) {
-				continue;
-			}
 
 			result[path] = matchingWallet;
 		}
