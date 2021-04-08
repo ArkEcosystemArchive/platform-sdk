@@ -1,8 +1,8 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { HDKey } from "@arkecosystem/platform-sdk-crypto";
-import { WalletData } from "../dto";
 
+import { WalletData } from "../dto";
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";
 
