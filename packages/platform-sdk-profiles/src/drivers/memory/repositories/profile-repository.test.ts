@@ -194,9 +194,11 @@ describe("ProfileRepository", () => {
 
 		const restoredJane = new Profile(repositoryDump[jane.id()] as any);
 		await restoredJane.restore("password");
+		await restoredJane.sync();
 
 		const restoredJohn = new Profile(repositoryDump[john.id()] as any);
 		await restoredJohn.restore();
+		await restoredJohn.sync();
 
 		expect(restoredJohn.toObject()).toEqual(john.toObject());
 		expect(restoredJane.toObject()).toEqual(jane.toObject());

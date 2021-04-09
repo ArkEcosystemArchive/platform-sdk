@@ -8,7 +8,8 @@ export interface IContactRepository {
 	keys(): string[];
 	values(): IContact[];
 	create(name: string): IContact;
-	fill(contacts: object): Promise<void>;
+	fill(contacts: object): void;
+	restore(): Promise<void>;
 	findById(id: string): IContact;
 	update(id: string, data: { name?: string; addresses?: IContactAddressInput[] }): Promise<void>;
 	forget(id: string): void;

@@ -69,6 +69,7 @@ export interface IProfile {
 	toObject(options?: IProfileExportOptions): IProfileStruct;
 	dump(): IProfileInput;
 	restore(password?: string): Promise<void>;
+	sync(): Promise<void>;
 	initializeSettings(): void;
 	migrate(migrations: object, versionToMigrate: string): Promise<void>;
 	getRawData(): IProfileInput;
