@@ -5,24 +5,55 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 4.1.4 - 2020-03-30
+## 4.1.14 - 2021-04-09
+
+### Changed
+
+- **[ARK]** Include cold wallets in ledger scan results (3cddec82, @faustbrian)
+
+## 4.1.13 - 2021-04-07
+
+### Added
+
+- **[PROFILES]** Implement portfolio breakdown by ticker (af67a59d, @faustbrian)
+
+### Changed
+
+- **[ARK]** Support `vendorField` search (f52e093d, @faustbrian)
+- **[SDK]** Return BIP44 paths for ledger scan (90671f52, @faustbrian)
+
+## 4.1.10 - 2021-03-31
+
+### Fixed
+
+- **[PROFILES]** Prevent addresses from being overridden by query (821bd642, @goga-m)
+
+## 4.1.9 - 2021-03-31
+
+### Changed
+
+- **[PROFILES]** Implement `ReadWriteWallet#setWif` (056370f9, @dated)
+- **[AVAX]** Compute transaction ID as sha256 hash (73c9858f, @faustbrian)
+- **[SDK]** Implement `Network#expirationType` (891f8185, @luciorubeens)
+
+## 4.1.4 - 2021-03-30
 
 ### Changed
 
 -   **[PROFILES]** Make last known network configuration available before wallet sync (180fdaa5, @faustbrian)
 
-## 4.1.3 - 2020-03-30
+## 4.1.3 - 2021-03-30
 
 ### Added
 
--   **[LUNA]** initial draft implementation (9eef078c, @faustbrian)
--   **[NANO]** initial draft implementation (23ea9dce, @faustbrian)
+-   **[LUNA]** Initial draft implementation (9eef078c, @faustbrian)
+-   **[NANO]** Initial draft implementation (23ea9dce, @faustbrian)
 
 ### Fixed
 
--   **[PROFILES]** make `PluginRegistry` an `injectable` (67cdaf62, @faustbrian)
+-   **[PROFILES]** Make `PluginRegistry` an `injectable` (67cdaf62, @faustbrian)
 
-## 4.1.0 - 2020-03-30
+## 4.1.0 - 2021-03-30
 
 ### Fixed
 
@@ -34,32 +65,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   **[PROFILES]** Use `inversify` as DI container (53a18606, @faustbrian)
 -   **[PROFILES]** Split profile restoration into separate methods (71d1adb1, @faustbrian)
 
-## 4.0.5 - 2020-03-29
+## 4.0.5 - 2021-03-29
 
 ### Changed
 
 -   **[PROFILES]** Lazily construct driver instances (f0f28804, @faustbrian)
 
-## 4.0.4 - 2020-03-26
+## 4.0.4 - 2021-03-26
 
 ### Added
 
 -   **[ARK]** Sign message with wif (aacc2f36, @dated)
 -   **[JSON-RPC]** Implement transaction listing (a69fb46e, @faustbrian)
 
-## 4.0.2 - 2020-03-26
+## 4.0.2 - 2021-03-26
 
 ### Changed
 
 -   **[PROFILES]** Expose externally used classes (b7083d77, @faustbrian)
 
-## 4.0.1 - 2020-03-25
+## 4.0.1 - 2021-03-25
 
 ### Fixed
 
 -   **[PROFILES]** export Avatar helper (ec014811, @faustbrian)
 
-## 4.0.0 - 2020-03-25
+## 4.0.0 - 2021-03-25
 
 This release contains internal breaking changes as well as external as a result. This mostly affects imports and type hinting of classes which should now use the exported `Contracts` to reference things instead of direct references of concrete implementations.
 

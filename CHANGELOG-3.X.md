@@ -5,19 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 3.2.7 - 2020-03-24
+## 3.2.7 - 2021-03-24
 
 ### Changed
 
 -   **[PROFILES]** Perform concurrent delegate synchronisation if possible (41ce33ac, @faustbrian)
 
-## 3.2.6 - 2020-03-24
+## 3.2.6 - 2021-03-24
 
 ### Added
 
 -   **[JSON-RPC]** Implement message service (c3bfa90f, @faustbrian)
 
-## 3.2.5 - 2020-03-23
+## 3.2.5 - 2021-03-23
 
 ### Added
 
@@ -31,14 +31,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   **[PROFILES]** Include bip38 data in ReadWriteWallet#toObject (2fef13e2, @goga-m)
 
-## 3.2.2 - 2020-03-22
+## 3.2.2 - 2021-03-22
 
 ### Added
 
 -   **[JSON-RPC]** Implement transfer signing and broadcasting (dd5f1cbc, @faustbrian)
 -   **[JSON-RPC]** Retrieve transaction, wallet and delegate details (66935805, @faustbrian)
 
-## 3.2.0 - 2020-03-19
+## 3.2.0 - 2021-03-19
 
 ### Added
 
@@ -48,7 +48,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   **[PROFILES]** Remove excludeWalletsWithoutName export setting (27cd78aa, @dated)
 
-## 3.1.24 - 2020-03-18
+## 3.1.24 - 2021-03-18
 
 ### Added
 
@@ -60,20 +60,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   **[PROFILES]** Expose `ReadWriteWallet#wif` and `ReadWriteWallet#usesWIF` methods (03247207, @goga-m)
 
-## 3.1.20 - 2020-03-12
+## 3.1.20 - 2021-03-12
 
 ### Added
 
 -   Implement `UUID` helper (e23ad13d, @faustbrian)
 -   Implement WIF and encrypted WIF import (846c6f4a, @faustbrian)
 
-## 3.1.18 - 2020-03-11
+## 3.1.18 - 2021-03-11
 
 ### Changed
 
 -   Append trailing zeros only if value is truthy (f30a82a2, @dated)
 
-## 3.1.17 - 2020-03-10
+## 3.1.17 - 2021-03-10
 
 ### Added
 
@@ -94,31 +94,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -    **[PROFILES]** Add `ProfileSetting.DoNotShowAdvancedModeDisclaimer` (c65ffb90, @dated)
 
-## 3.1.4 - 2020-03-08
+## 3.1.4 - 2021-03-08
 
 ### Fixed
 
 -   **[BTC-INDEXER]** Rename output to outputs (6c22f5ec, @faustbrian)
 
-## 3.1.3 - 2020-03-08
+## 3.1.3 - 2021-03-08
 
 ### Fixed
 
 -   **[BTC-INDEXER]** Query last block by number (f8dbadc5, @faustbrian)
 
-## 3.1.2 - 2020-03-08
+## 3.1.2 - 2021-03-08
 
 ### Fixed
 
 -   **[BTC-INDEXER]** Rename height to number (0dedbf87, @faustbrian)
 
-## 3.1.1 - 2020-03-08
+## 3.1.1 - 2021-03-08
 
 ### Fixed
 
 -   **[BTC-INDEXER]** Remove trailing comma from migration (ac3a51c5, @faustbrian)
 
-## 3.1.0 - 2020-03-08
+## 3.1.0 - 2021-03-08
 
 ### Added
 
@@ -150,13 +150,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   **[CLI]** Skip actions if values are falsy (6c60fe40, @faustbrian)
 -   **[BTC-SERVER]** Add username and password flags (60ffbb35, @faustbrian)
 
-## 3.0.41 - 2020-03-03
+## 3.0.41 - 2021-03-03
 
 ### Changed
 
 -   Deprecate `platform-sdk-json-rpc` (6ef42d65, @faustbrian)
 
-## 3.0.40 - 2020-03-02
+## 3.0.40 - 2021-03-02
 
 ### Changed
 
@@ -176,7 +176,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **[PROFILES]** Dump stale wallet state if it has been partially restored (26b1c6da, @faustbrian)
 - **[EGLD]** Fix coin name in manifest (f4f36fcb, @marianogoldman)
 
-## 3.0.31 - 2020-03-01
+## 3.0.31 - 2021-03-01
 
 ### Added
 
@@ -192,7 +192,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   **[ETH-INDEXER]** Allow block identifier to be number or hash (84182619, @marianogoldman)
 
-## 3.0.26 - 2020-02-25
+## 3.0.26 - 2021-02-25
 
 ### Fixed
 
@@ -206,7 +206,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   **[ETH-SERVER]** Return state information from root path (b0f94396, @faustbrian)
 -   **[ETH-SERVER]** Validate path parameters (164151a7, @faustbrian)
 
-## 3.0.20 - 2020-02-25
+## 3.0.20 - 2021-02-25
 
 ### Added
 
@@ -216,20 +216,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   **[ETH-INDEXER]** Remove trailing commas from SQL migration (969160e4, @faustbrian)
 
-## 3.0.18 - 2020-02-25
+## 3.0.18 - 2021-02-25
 
 ### Changed
 
 -   Use SQLite as database engine (62202ba9, @marianogoldman)
 -   Only store data that is required for API consumption (f6ee2e28, @faustbrian)
 
-## 3.0.16 - 2020-02-24
+## 3.0.16 - 2021-02-24
 
 ### Fixed
 
 -   Include ID in plugin data (4864c8b5, @faustbrian)
 
-## 3.0.15 - 2020-02-24
+## 3.0.15 - 2021-02-24
 
 ### Added
 
@@ -240,7 +240,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   Add missing block and transaction indices (e0bd9db9, @faustbrian)
 -   Add `ProfileSetting.DashboardTransactionHistory` (e6fa351b, @dated)
 
-## 3.0.12 - 2020-02-24
+## 3.0.12 - 2021-02-24
 
 ### Added
 
@@ -250,26 +250,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   Store plugins with an internal UUID (5fd0f0ec, @faustbrian)
 
-## 3.0.10 - 2020-02-24
+## 3.0.10 - 2021-02-24
 
 ### Fixed
 
 -   **[EGLD]** Link `blocks` to `miniblocks` (d0b02ae2, @faustbrian)
 -   **[EGLD]** Treat transaction timestamp as unix (2009aeb9, @faustbrian)
 
-## 3.0.8 - 2020-02-24
+## 3.0.8 - 2021-02-24
 
 ### Fixed
 
 -   **[EGLD]** Normalise fees to satoshi (a2ccaf62, @faustbrian)
 
-## 3.0.7 - 2020-02-24
+## 3.0.7 - 2021-02-24
 
 ### Fixed
 
 -   **[EGLD]** Normalise numeric values to satoshis (4d4e3def, @faustbrian)
 
-## 3.0.6 - 2020-02-24
+## 3.0.6 - 2021-02-24
 
 ### Fixed
 
@@ -277,7 +277,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   **[EGLD]** Expect address or list of addresses for `ClientService#transactions` (56734116, @faustbrian)
 -   Adjust validation of plugins (fbd078fb, @dated)
 
-## 3.0.3 - 2020-02-24
+## 3.0.3 - 2021-02-24
 
 ### Added
 
@@ -291,7 +291,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 -   Use `EGLD` as export name (003c67e1, @faustbrian)
 
-## 3.0.0 - 2020-02-23
+## 3.0.0 - 2021-02-23
 
 See https://github.com/jeanlescure/string-crypto#v2-breaking-changes for breaking change details.
 
