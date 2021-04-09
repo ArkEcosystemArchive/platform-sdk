@@ -106,7 +106,9 @@ export class Wallet implements IReadWriteWallet {
 		 * bad error handling inside the coin package which needs fixing asap.
 		 */
 		try {
-			await this.#coin.__construct();
+			if (!this.#coin.hasBeenSynchronized()) {
+				await this.#coin.__construct();
+			}
 		} catch (error) {
 			this.markAsPartiallyRestored();
 		}

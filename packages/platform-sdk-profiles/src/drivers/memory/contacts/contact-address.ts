@@ -19,7 +19,10 @@ export class ContactAddress implements IContactAddress {
 
 	public static async make(data: IContactAddressProps): Promise<ContactAddress> {
 		const instance: Coins.Coin = makeCoin(data.coin, data.network);
-		await instance.__construct();
+
+		if (!instance.hasBeenSynchronized()) {
+			await instance.__construct();
+		}
 
 		const result: ContactAddress = new ContactAddress(data, instance);
 

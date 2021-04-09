@@ -2,6 +2,7 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import isUrl from "is-url-superb";
 import orderBy from "lodash.orderby";
 import semver from "semver";
+
 import { getPeerFromConfig } from "../helpers";
 
 export class PeerService implements Contracts.PeerService {
@@ -16,7 +17,7 @@ export class PeerService implements Contracts.PeerService {
 	public static async __construct(config: Coins.Config): Promise<PeerService> {
 		const { httpClient } = config.all();
 
-		let peer: string = getPeerFromConfig(config);
+		const peer: string = getPeerFromConfig(config);
 
 		let seeds: string[] = [];
 

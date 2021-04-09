@@ -1,4 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+
 import { getPeerFromConfig } from "../helpers";
 
 export class FeeService implements Contracts.FeeService {

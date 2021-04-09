@@ -49,22 +49,22 @@ export class Coin {
 	}
 
 	public async __destruct(): Promise<void> {
-		if (this.#services === undefined) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "__destruct", "__construct");
 		}
 
 		await Promise.all([
-			this.#services.client.__destruct(),
-			this.#services.dataTransferObject.__destruct(),
-			this.#services.fee.__destruct(),
-			this.#services.identity.__destruct(),
-			this.#services.knownWallets.__destruct(),
-			this.#services.ledger.__destruct(),
-			this.#services.link.__destruct(),
-			this.#services.message.__destruct(),
-			this.#services.multiSignature.__destruct(),
-			this.#services.peer.__destruct(),
-			this.#services.transaction.__destruct(),
+			this.#services!.client.__destruct(),
+			this.#services!.dataTransferObject.__destruct(),
+			this.#services!.fee.__destruct(),
+			this.#services!.identity.__destruct(),
+			this.#services!.knownWallets.__destruct(),
+			this.#services!.ledger.__destruct(),
+			this.#services!.link.__destruct(),
+			this.#services!.message.__destruct(),
+			this.#services!.multiSignature.__destruct(),
+			this.#services!.peer.__destruct(),
+			this.#services!.transaction.__destruct(),
 		]);
 	}
 
@@ -85,90 +85,94 @@ export class Coin {
 	}
 
 	public client(): ClientService {
-		if (this.#services === undefined) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "client", "__construct");
 		}
 
-		return this.#services.client;
+		return this.#services!.client;
 	}
 
 	public dataTransferObject(): DataTransferObjectService {
-		if (this.#services === undefined) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "dataTransferObject", "__construct");
 		}
 
-		return this.#services.dataTransferObject;
+		return this.#services!.dataTransferObject;
 	}
 
 	public fee(): FeeService {
-		if (this.#services === undefined) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "fee", "__construct");
 		}
 
-		return this.#services.fee;
+		return this.#services!.fee;
 	}
 
 	public identity(): IdentityService {
-		if (this.#services === undefined) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "identity", "__construct");
 		}
 
-		return this.#services.identity;
+		return this.#services!.identity;
 	}
 
 	public knownWallets(): KnownWalletService {
-		if (this.#services === undefined) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "knownWallets", "__construct");
 		}
 
-		return this.#services.knownWallets;
+		return this.#services!.knownWallets;
 	}
 
 	public ledger(): LedgerService {
-		if (this.#services === undefined) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "ledger", "__construct");
 		}
 
-		return this.#services.ledger;
+		return this.#services!.ledger;
 	}
 
 	public link(): LinkService {
-		if (this.#services === undefined) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "link", "__construct");
 		}
 
-		return this.#services.link;
+		return this.#services!.link;
 	}
 
 	public message(): MessageService {
-		if (this.#services === undefined) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "message", "__construct");
 		}
 
-		return this.#services.message;
+		return this.#services!.message;
 	}
 
 	public multiSignature(): MultiSignatureService {
-		if (this.#services === undefined) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "multiSignature", "__construct");
 		}
 
-		return this.#services.multiSignature;
+		return this.#services!.multiSignature;
 	}
 
 	public peer(): PeerService {
-		if (this.#services === undefined) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "peer", "__construct");
 		}
 
-		return this.#services.peer;
+		return this.#services!.peer;
 	}
 
 	public transaction(): TransactionService {
-		if (this.#services === undefined) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "transaction", "__construct");
 		}
 
-		return this.#services.transaction;
+		return this.#services!.transaction;
+	}
+
+	public hasBeenSynchronized(): boolean {
+		return this.#services !== undefined;
 	}
 }
