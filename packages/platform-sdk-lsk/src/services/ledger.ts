@@ -52,7 +52,7 @@ export class LedgerService implements Contracts.LedgerService {
 		return signature.slice(0, 64).toString("hex");
 	}
 
-	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.WalletData[]> {
+	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.LedgerWalletList> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "scan");
 	}
 

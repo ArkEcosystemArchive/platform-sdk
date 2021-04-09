@@ -7,6 +7,8 @@ export interface LedgerOptions {
 // TODO: create a proper contract for this
 export type LedgerTransport = any;
 
+export type LedgerWalletList = Record<string, WalletData>;
+
 export interface LedgerService {
 	__destruct(): Promise<void>;
 
@@ -24,5 +26,5 @@ export interface LedgerService {
 
 	signMessage(path: string, payload: Buffer): Promise<string>;
 
-	scan(): Promise<WalletData[]>;
+	scan(options?: { useLegacy: boolean }): Promise<Record<string, WalletData>>;
 }

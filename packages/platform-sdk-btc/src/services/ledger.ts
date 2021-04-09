@@ -60,7 +60,7 @@ export class LedgerService implements Contracts.LedgerService {
 		return JSON.stringify(signature);
 	}
 
-	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.WalletData[]> {
+	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.LedgerWalletList> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "scan");
 	}
 }

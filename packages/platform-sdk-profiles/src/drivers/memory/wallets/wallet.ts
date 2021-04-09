@@ -28,6 +28,7 @@ import {
 	WalletFlag,
 	WalletSetting,
 	IDelegateService,
+	IExchangeRateService,
 } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
@@ -218,7 +219,7 @@ export class Wallet implements IReadWriteWallet {
 		}
 
 		return container
-			.get<ExchangeRateService>(Identifiers.ExchangeRateService)
+			.get<IExchangeRateService>(Identifiers.ExchangeRateService)
 			.exchange(this.currency(), this.exchangeCurrency(), DateTime.make(), this.balance().divide(1e8));
 	}
 
