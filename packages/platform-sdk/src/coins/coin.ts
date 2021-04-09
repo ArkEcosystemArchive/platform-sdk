@@ -49,11 +49,11 @@ export class Coin {
 	}
 
 	public async __destruct(): Promise<void> {
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "__destruct", "__construct");
 		}
 
-		await Promise.all!([
+		await Promise.all([
 			this.#services!.client.__destruct(),
 			this.#services!.dataTransferObject.__destruct(),
 			this.#services!.fee.__destruct(),
@@ -85,7 +85,7 @@ export class Coin {
 	}
 
 	public client(): ClientService {
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "client", "__construct");
 		}
 
@@ -93,7 +93,7 @@ export class Coin {
 	}
 
 	public dataTransferObject(): DataTransferObjectService {
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "dataTransferObject", "__construct");
 		}
 
@@ -101,7 +101,7 @@ export class Coin {
 	}
 
 	public fee(): FeeService {
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "fee", "__construct");
 		}
 
@@ -109,7 +109,7 @@ export class Coin {
 	}
 
 	public identity(): IdentityService {
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "identity", "__construct");
 		}
 
@@ -117,7 +117,7 @@ export class Coin {
 	}
 
 	public knownWallets(): KnownWalletService {
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "knownWallets", "__construct");
 		}
 
@@ -125,7 +125,7 @@ export class Coin {
 	}
 
 	public ledger(): LedgerService {
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "ledger", "__construct");
 		}
 
@@ -133,7 +133,7 @@ export class Coin {
 	}
 
 	public link(): LinkService {
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "link", "__construct");
 		}
 
@@ -141,7 +141,7 @@ export class Coin {
 	}
 
 	public message(): MessageService {
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "message", "__construct");
 		}
 
@@ -149,7 +149,7 @@ export class Coin {
 	}
 
 	public multiSignature(): MultiSignatureService {
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "multiSignature", "__construct");
 		}
 
@@ -157,7 +157,7 @@ export class Coin {
 	}
 
 	public peer(): PeerService {
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "peer", "__construct");
 		}
 
@@ -165,7 +165,7 @@ export class Coin {
 	}
 
 	public transaction(): TransactionService {
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, "transaction", "__construct");
 		}
 
