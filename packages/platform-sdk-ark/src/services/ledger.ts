@@ -126,7 +126,7 @@ export class LedgerService implements Contracts.LedgerService {
 
 					addresses.push(address);
 
-					addressCache[path] = { address, publicKey };
+					addressCache[`${path}/0/${addressIndex}`] = { address, publicKey };
 				}
 
 				const collections = await Promise.all(
