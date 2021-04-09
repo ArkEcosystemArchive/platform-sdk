@@ -76,4 +76,5 @@ export interface IProfile {
 	setRawDataKey(key: keyof IProfileInput, value: string): void;
 	save(password?: string): void;
 	export(password?: string, options?: IProfileExportOptions): string;
+	hasBeenPartiallyRestored(): boolean;
 }

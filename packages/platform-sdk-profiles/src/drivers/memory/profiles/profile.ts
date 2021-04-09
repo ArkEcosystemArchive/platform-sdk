@@ -419,6 +419,16 @@ export class Profile implements IProfile {
 	}
 
 	/**
+	 * Determine if all wallets that belong to the profile have been restored.
+	 *
+	 * @returns {boolean}
+	 * @memberof Profile
+	 */
+	public hasBeenPartiallyRestored(): boolean {
+		return this.#walletRepository.values().filter((wallet: IReadWriteWallet) => wallet.hasBeenPartiallyRestored()).length > 0;
+	}
+
+	/**
 	 * Restore the default settings, including the name of the profile.
 	 *
 	 * @private
