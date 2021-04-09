@@ -107,8 +107,17 @@ describe("scan", () => {
 		const ark = await createMockService(ledger.wallets.record);
 
 		const walletData = await ark.scan({ useLegacy: true });
-		expect(Object.keys(walletData)).toHaveLength(1);
+		expect(Object.keys(walletData)).toHaveLength(10);
 		expect(walletData).toMatchSnapshot();
 		expect(walletData["44'/1'/0'/0/0"].toObject()).toMatchSnapshot();
+		expect(walletData["44'/1'/1'/0/0"].toObject()).toMatchSnapshot();
+		expect(walletData["44'/1'/2'/0/0"].toObject()).toMatchSnapshot();
+		expect(walletData["44'/1'/3'/0/0"].toObject()).toMatchSnapshot();
+		expect(walletData["44'/1'/4'/0/0"].toObject()).toMatchSnapshot();
+		expect(walletData["44'/1'/5'/0/0"].toObject()).toMatchSnapshot();
+		expect(walletData["44'/1'/6'/0/0"].toObject()).toMatchSnapshot();
+		expect(walletData["44'/1'/7'/0/0"].toObject()).toMatchSnapshot();
+		expect(walletData["44'/1'/8'/0/0"].toObject()).toMatchSnapshot();
+		expect(walletData["44'/1'/9'/0/0"].toObject()).toMatchSnapshot();
 	});
 });
