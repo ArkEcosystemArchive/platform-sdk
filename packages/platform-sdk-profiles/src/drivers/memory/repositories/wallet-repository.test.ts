@@ -203,15 +203,16 @@ test("#fill", async () => {
 	await expect(
 		await subject.fill({
 			[newWallet.id()]: {
-			id: newWallet.id(),
-			coin: newWallet.coinId(),
-			network: newWallet.networkId(),
-			networkConfig: newWallet.config(),
-			address: newWallet.address(),
-			data: newWallet.data(),
-			settings: newWallet.settings(),
-		})
-	});
+                id: newWallet.id(),
+                coin: newWallet.coinId(),
+                network: newWallet.networkId(),
+                networkConfig: newWallet.config(),
+                address: newWallet.address(),
+                data: newWallet.data(),
+                settings: newWallet.settings(),
+            },
+		}),
+	);
 
 	expect(subject.findById(newWallet.id())).toStrictEqual(newWallet);
 });
