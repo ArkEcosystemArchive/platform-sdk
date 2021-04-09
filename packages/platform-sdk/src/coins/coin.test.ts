@@ -76,9 +76,9 @@ beforeEach(async () => {
 						multiSignature: services.multiSignature,
 						peer: services.peer,
 						transaction: services.transaction,
-					}
-				}
-			}
+					};
+				},
+			},
 		},
 	});
 });

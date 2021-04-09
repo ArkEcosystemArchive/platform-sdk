@@ -111,10 +111,10 @@ describe("scan", () => {
 		expect(Object.keys(walletData)).toHaveLength(10);
 		expect(walletData).toMatchSnapshot();
 
-		for(const wallet of Object.values(walletData)) {
+		for (const wallet of Object.values(walletData)) {
 			const publicKey: string | undefined = wallet.publicKey();
 
-			if(publicKey) {
+			if (publicKey) {
 				expect(Address.fromPublicKey(publicKey, { pubKeyHash: 30 })).toBe(wallet.address());
 			}
 

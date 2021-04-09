@@ -7,4 +7,4 @@ export const getPeerFromConfig = (config: Coins.Config): string => {
 	} catch {
 		return `${Arr.randomElement(config.get<string[]>("network.networking.hosts"))}/api`;
 	}
-}
+};

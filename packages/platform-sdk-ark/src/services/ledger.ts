@@ -122,9 +122,7 @@ export class LedgerService implements Contracts.LedgerService {
 						.derive(`m/0/${addressIndex}`)
 						.publicKey.toString("hex");
 
-					const address: string = await this.#identity
-						.address()
-						.fromPublicKey(publicKey);
+					const address: string = await this.#identity.address().fromPublicKey(publicKey);
 
 					addresses.push(address);
 
