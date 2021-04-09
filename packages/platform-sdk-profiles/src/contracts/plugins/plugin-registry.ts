@@ -1,7 +1,7 @@
 export interface IPluginRegistry {
-    all(): Promise<IRegistryPlugin[]>;
-    size(pkg: IRegistryPlugin): Promise<number>;
-    downloads(pkg: IRegistryPlugin): Promise<number>;
+	all(): Promise<IRegistryPlugin[]>;
+	size(pkg: IRegistryPlugin): Promise<number>;
+	downloads(pkg: IRegistryPlugin): Promise<number>;
 }
 
 /* istanbul ignore file */
@@ -75,21 +75,21 @@ export interface IRegistryPluginProperties {
 }
 
 export interface IRegistryPlugin {
-    id(): string;
-    name(): string;
-    alias(): string;
-    date(): string;
-    version(): string;
-    description(): string;
-    author(): IRegistryPluginAuthor;
-    sourceProvider(): any;
-    logo(): string;
-    images(): string[];
-    categories(): string[];
-    permissions(): string[];
-    urls(): string[];
-    minimumVersion(): string;
-    toObject(): {
+	id(): string;
+	name(): string;
+	alias(): string;
+	date(): string;
+	version(): string;
+	description(): string;
+	author(): IRegistryPluginAuthor;
+	sourceProvider(): any;
+	logo(): string;
+	images(): string[];
+	categories(): string[];
+	permissions(): string[];
+	urls(): string[];
+	minimumVersion(): string;
+	toObject(): {
 		id: string;
 		name: string;
 		alias: string;

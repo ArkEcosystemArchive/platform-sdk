@@ -92,7 +92,19 @@ it("should turn into an object", () => {
 describe("when contact has not been synchronized yet", () => {
 	beforeEach(async () => {
 		nock.cleanAll();
-		nock(/.+/).get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib").replyWithError("blah").persist();
+
+		nock(/.+/)
+			.get("/api/node/configuration")
+			.reply(200, require("../../../../test/fixtures/client/configuration.json"))
+			.get("/api/peers")
+			.reply(200, require("../../../../test/fixtures/client/peers.json"))
+			.get("/api/node/configuration/crypto")
+			.reply(200, require("../../../../test/fixtures/client/cryptoConfiguration.json"))
+			.get("/api/node/syncing")
+			.reply(200, require("../../../../test/fixtures/client/syncing.json"))
+			.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+			.replyWithError("blah")
+			.persist();
 
 		subject = await ContactAddress.make({
 			id: "uuid",

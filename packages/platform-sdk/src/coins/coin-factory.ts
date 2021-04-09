@@ -5,17 +5,17 @@ import { Manifest } from "./manifest";
 import { NetworkRepository } from "./network-repository";
 
 export class CoinFactory {
-	public static async make(coin: CoinSpec, options: CoinOptions): Promise<Coin> {
-		const networks: NetworkRepository = new NetworkRepository(coin.manifest.networks);
+	public static make(specification: CoinSpec, options: CoinOptions): Coin {
+		const networks: NetworkRepository = new NetworkRepository(specification.manifest.networks);
 
-		const config: Config = new Config(options, coin.schema);
+		const config: Config = new Config(options, specification.schema);
 		config.set(ConfigKey.Network, networks.get(config.get<string>("network")));
 
 		return new Coin({
 			networks,
-			manifest: new Manifest(coin.manifest),
+			manifest: new Manifest(specification.manifest),
 			config,
-			services: await coin.ServiceProvider.make(coin, config),
+			specification,
 		});
 	}
 }
