@@ -1,6 +1,5 @@
-
 export interface ICountAggregate {
-    contacts(): number;
-    notifications(): number;
-    wallets(): number;
+	contacts(): number;
+	notifications(): number;
+	wallets(): number;
 }

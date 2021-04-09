@@ -9,23 +9,11 @@ export interface IWalletFactory {
 		useBIP44?: boolean;
 	}): Promise<IReadWriteWallet>;
 
-	fromAddress(options: {
-		coin: string;
-		network: string;
-		address: string;
-	}): Promise<IReadWriteWallet>;
+	fromAddress(options: { coin: string; network: string; address: string }): Promise<IReadWriteWallet>;
 
-	fromPublicKey(options: {
-		coin: string;
-		network: string;
-		publicKey: string;
-	}): Promise<IReadWriteWallet>;
+	fromPublicKey(options: { coin: string; network: string; publicKey: string }): Promise<IReadWriteWallet>;
 
-	fromPrivateKey(options: {
-		coin: string;
-		network: string;
-		privateKey: string;
-	}): Promise<IReadWriteWallet>;
+	fromPrivateKey(options: { coin: string; network: string; privateKey: string }): Promise<IReadWriteWallet>;
 
 	fromAddressWithLedgerPath(options: {
 		coin: string;
@@ -41,11 +29,7 @@ export interface IWalletFactory {
 		password: string;
 	}): Promise<IReadWriteWallet>;
 
-	fromWIF(options: {
-		coin: string;
-		network: string;
-		wif: string;
-	}): Promise<IReadWriteWallet>;
+	fromWIF(options: { coin: string; network: string; wif: string }): Promise<IReadWriteWallet>;
 
 	fromWIFWithEncryption(options: {
 		coin: string;

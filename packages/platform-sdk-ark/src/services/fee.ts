@@ -62,6 +62,6 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	private host(): string {
-		return getPeerFromConfig(this.#config)
+		return getPeerFromConfig(this.#config);
 	}
 }

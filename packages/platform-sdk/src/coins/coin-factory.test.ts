@@ -6,7 +6,7 @@ import { Coin } from "./coin";
 import { CoinFactory } from "./coin-factory";
 
 test("#make", async () => {
-	await expect(
+	expect(
 		CoinFactory.make(
 			{
 				manifest: {
@@ -38,5 +38,5 @@ test("#make", async () => {
 			// @ts-ignore
 			{ network: "ark.mainnet", httpClient: {} },
 		),
-	).resolves.toBeInstanceOf(Coin);
+	).toBeInstanceOf(Coin);
 });
