@@ -210,7 +210,7 @@ test("#fill", async () => {
 			address: newWallet.address(),
 			data: newWallet.data(),
 			settings: newWallet.settings(),
-		}
+		})
 	});
 
 	expect(subject.findById(newWallet.id())).toStrictEqual(newWallet);
