@@ -10,12 +10,174 @@ Object {
       "nonce": "0",
     },
   },
+  "44'/1'/1'/0/0": WalletData {
+    "data": Object {
+      "address": "DFgggtreMXQNQKnxHddvkaPHcQbRdK3jyJ",
+      "balance": 0,
+    },
+  },
+  "44'/1'/2'/0/0": WalletData {
+    "data": Object {
+      "address": "DFr1CR81idSmfgQ19KXe4M6keqUEAuU8kF",
+      "balance": 0,
+    },
+  },
+  "44'/1'/3'/0/0": WalletData {
+    "data": Object {
+      "address": "DTYiNbvTKveMtJC8KPPdBrgRWxfPxGp1WV",
+      "balance": 0,
+    },
+  },
+  "44'/1'/4'/0/0": WalletData {
+    "data": Object {
+      "address": "DJyGFrZv4MYKrTMcjzEyhZzdTAJju2Rcjr",
+      "balance": 0,
+    },
+  },
+  "44'/1'/5'/0/0": WalletData {
+    "data": Object {
+      "address": "DHnV81YdhYDkwCLD8pkxiXh53pGFw435GS",
+      "balance": 0,
+    },
+  },
+  "44'/1'/6'/0/0": WalletData {
+    "data": Object {
+      "address": "DGhLzafzQpBYjDAWP41U4cx5CKZ5BdSnS3",
+      "balance": 0,
+    },
+  },
+  "44'/1'/7'/0/0": WalletData {
+    "data": Object {
+      "address": "DLVXZyKFxLLdyuEtJRUvFoKcorSrnBnq48",
+      "balance": 0,
+    },
+  },
+  "44'/1'/8'/0/0": WalletData {
+    "data": Object {
+      "address": "DFZAfJ1i1LsvhkUk76Piw4v7oTgq12pX9Z",
+      "balance": 0,
+    },
+  },
+  "44'/1'/9'/0/0": WalletData {
+    "data": Object {
+      "address": "DGfNF9bGPss6YKLEqK5gwr4C1M7vgfenzn",
+      "balance": 0,
+    },
+  },
 }
 `;
 
 exports[`scan should return scanned wallet 2`] = `
 Object {
   "address": "D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK",
+  "balance": BigNumber {},
+  "nonce": BigNumber {},
+  "publicKey": undefined,
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;
+
+exports[`scan should return scanned wallet 3`] = `
+Object {
+  "address": "DFgggtreMXQNQKnxHddvkaPHcQbRdK3jyJ",
+  "balance": BigNumber {},
+  "nonce": BigNumber {},
+  "publicKey": undefined,
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;
+
+exports[`scan should return scanned wallet 4`] = `
+Object {
+  "address": "DFr1CR81idSmfgQ19KXe4M6keqUEAuU8kF",
+  "balance": BigNumber {},
+  "nonce": BigNumber {},
+  "publicKey": undefined,
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;
+
+exports[`scan should return scanned wallet 5`] = `
+Object {
+  "address": "DTYiNbvTKveMtJC8KPPdBrgRWxfPxGp1WV",
+  "balance": BigNumber {},
+  "nonce": BigNumber {},
+  "publicKey": undefined,
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;
+
+exports[`scan should return scanned wallet 6`] = `
+Object {
+  "address": "DJyGFrZv4MYKrTMcjzEyhZzdTAJju2Rcjr",
+  "balance": BigNumber {},
+  "nonce": BigNumber {},
+  "publicKey": undefined,
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;
+
+exports[`scan should return scanned wallet 7`] = `
+Object {
+  "address": "DHnV81YdhYDkwCLD8pkxiXh53pGFw435GS",
+  "balance": BigNumber {},
+  "nonce": BigNumber {},
+  "publicKey": undefined,
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;
+
+exports[`scan should return scanned wallet 8`] = `
+Object {
+  "address": "DGhLzafzQpBYjDAWP41U4cx5CKZ5BdSnS3",
+  "balance": BigNumber {},
+  "nonce": BigNumber {},
+  "publicKey": undefined,
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;
+
+exports[`scan should return scanned wallet 9`] = `
+Object {
+  "address": "DLVXZyKFxLLdyuEtJRUvFoKcorSrnBnq48",
+  "balance": BigNumber {},
+  "nonce": BigNumber {},
+  "publicKey": undefined,
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;
+
+exports[`scan should return scanned wallet 10`] = `
+Object {
+  "address": "DFZAfJ1i1LsvhkUk76Piw4v7oTgq12pX9Z",
+  "balance": BigNumber {},
+  "nonce": BigNumber {},
+  "publicKey": undefined,
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;
+
+exports[`scan should return scanned wallet 11`] = `
+Object {
+  "address": "DGfNF9bGPss6YKLEqK5gwr4C1M7vgfenzn",
   "balance": BigNumber {},
   "nonce": BigNumber {},
   "publicKey": undefined,
