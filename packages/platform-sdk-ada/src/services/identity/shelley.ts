@@ -39,17 +39,17 @@ export const deriveAccountKey = (rootKey: Bip32PrivateKey, index: number): Bip32
 export const deriveSpendKey = (accountKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
 	accountKey
 		.derive(0) // External
-		.derive(harden(index));
+		.derive(index);
 
 export const deriveChangeKey = (accountKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
 	accountKey
 		.derive(1) // Change
-		.derive(harden(index));
+		.derive(index);
 
 export const deriveStakeKey = (accountKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
 	accountKey
 		.derive(2) // Chimeric
-		.derive(harden(index));
+		.derive(index);
 
 // Address Derivation
 export const addressFromMnemonic = (
