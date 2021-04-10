@@ -40,13 +40,13 @@ beforeEach(async () => {
 });
 
 describe("CoinService", () => {
-	it("#push", async () => {
-		await subject.push("ARK", "ark.devnet");
+	it("#push", () => {
+		subject.push("ARK", "ark.devnet");
 		const coin = subject.get("ARK", "ark.devnet");
 		expect(coin.network().id()).toEqual("ark.devnet");
 
 		const useForce = false;
-		await subject.push("ARK", "ark.devnet", {}, useForce);
+		subject.push("ARK", "ark.devnet", {}, useForce);
 		expect(coin.network().id()).toEqual("ark.devnet");
 	});
 

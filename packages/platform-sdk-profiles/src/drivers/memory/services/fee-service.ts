@@ -30,7 +30,11 @@ export class FeeService implements IFeeService {
 	}
 
 	public async sync(coin: string, network: string): Promise<void> {
-		const instance: Coins.Coin = await makeCoin(coin, network);
+		const instance: Coins.Coin = makeCoin(coin, network);
+
+		if (!instance.hasBeenSynchronized()) {
+			await instance.__construct();
+		}
 
 		this.#dataRepository.set(`${coin}.${network}.fees`, await instance.fee().all());
 	}

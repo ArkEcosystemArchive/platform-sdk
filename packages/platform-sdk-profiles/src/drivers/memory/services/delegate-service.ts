@@ -39,7 +39,12 @@ export class DelegateService implements IDelegateService {
 	}
 
 	public async sync(coin: string, network: string): Promise<void> {
-		const instance: Coins.Coin = await makeCoin(coin, network);
+		const instance: Coins.Coin = makeCoin(coin, network);
+
+		if (!instance.hasBeenSynchronized()) {
+			await instance.__construct();
+		}
+
 		const instanceKey: string = `${coin}.${network}.delegates`;
 		const instanceCanFastSync: boolean = instance.network().can(Coins.FeatureFlag.InternalFastDelegateSync);
 

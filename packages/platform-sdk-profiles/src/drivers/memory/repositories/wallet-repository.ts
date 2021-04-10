@@ -10,7 +10,14 @@ import { CoinService } from "../services/coin-service";
 import { Wallet } from "../wallets/wallet";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { DataRepository } from "../../../repositories/data-repository";
-import { IDataRepository, IProfile, IReadWriteWallet, IWalletFactory, IWalletRepository, IWalletExportOptions } from "../../../contracts";
+import {
+	IDataRepository,
+	IProfile,
+	IReadWriteWallet,
+	IWalletFactory,
+	IWalletRepository,
+	IWalletExportOptions,
+} from "../../../contracts";
 import { injectable } from "inversify";
 
 @injectable()
@@ -225,7 +232,9 @@ export class WalletRepository implements IWalletRepository {
 	}
 
 	public findByCoin(coin: string): IReadWriteWallet[] {
-		return this.values().filter((wallet: IReadWriteWallet) => wallet.coin().manifest().get<string>("name") === coin);
+		return this.values().filter(
+			(wallet: IReadWriteWallet) => wallet.coin().manifest().get<string>("name") === coin,
+		);
 	}
 
 	public findByCoinWithNetwork(coin: string, network: string): IReadWriteWallet[] {

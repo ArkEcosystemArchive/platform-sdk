@@ -5,7 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 4.1.14 - 2021-04-09
+## 4.2.4 - 2021-04-09
+
+### Changed
+
+- **[SDK]** Target `es2020` (b55dbe72, @faustbrian)
+
+### Fixed
+
+- **[ARK]** Map correct path for BIP44 derivation (4bc1c906, @faustbrian)
+
+## 4.2.2 - 2021-04-09
+
+### Changed
+
+- **[PROFILES]** Prevent duplicate coin synchronisation (733ff584, @faustbrian)
+- **[PROFILES]** Implement `IProfile#hasBeenPartiallyRestored` (3df253ca, @faustbrian)
+
+## 4.2.0 - 2021-04-09
+
+### Changed
+
+- **[ARK]** DRY up peer determination (19a4e8e3, @faustbrian)
+- **[SDK]** Mirror `__construct` and `__destruct` in `CoinFactory` (e3205cb0, @faustbrian)
+
+## 4.1.14 - 2021-04-08
 
 ### Changed
 

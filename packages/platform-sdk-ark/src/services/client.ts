@@ -1,9 +1,9 @@
 import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 import dotify from "node-dotify";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
+import { getPeerFromConfig } from "../helpers";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
@@ -305,10 +305,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private host(): string {
-		try {
-			return this.#config.get<string>("peer");
-		} catch {
-			return `${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`;
-		}
+		return getPeerFromConfig(this.#config);
 	}
 }

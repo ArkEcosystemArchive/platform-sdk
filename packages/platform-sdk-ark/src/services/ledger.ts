@@ -81,7 +81,7 @@ export class LedgerService implements Contracts.LedgerService {
 		let page = 0;
 		const slip44 = this.#config.get<number>("network.crypto.slip44");
 
-		const addressCache: Record<string, string> = {};
+		const addressCache: Record<string, { address: string; publicKey: string }> = {};
 		let wallets: Contracts.WalletData[] = [];
 
 		let hasMore = true;
@@ -100,7 +100,7 @@ export class LedgerService implements Contracts.LedgerService {
 
 					addresses.push(address);
 
-					addressCache[path] = address;
+					addressCache[path] = { address, publicKey };
 				}
 
 				const collection = await this.#client.wallets({ addresses });
@@ -118,17 +118,15 @@ export class LedgerService implements Contracts.LedgerService {
 				const compressedPublicKey = await this.getExtendedPublicKey(path);
 
 				for (const addressIndex of createRange(page, pageSize)) {
-					const address: string = await this.#identity
-						.address()
-						.fromPublicKey(
-							HDKey.fromCompressedPublicKey(compressedPublicKey)
-								.derive(`m/0/${addressIndex}`)
-								.publicKey.toString("hex"),
-						);
+					const publicKey: string = HDKey.fromCompressedPublicKey(compressedPublicKey)
+						.derive(`m/0/${addressIndex}`)
+						.publicKey.toString("hex");
+
+					const address: string = await this.#identity.address().fromPublicKey(publicKey);
 
 					addresses.push(address);
 
-					addressCache[path] = address;
+					addressCache[`${path}/0/${addressIndex}`] = { address, publicKey };
 				}
 
 				const collections = await Promise.all(
@@ -148,7 +146,7 @@ export class LedgerService implements Contracts.LedgerService {
 		// Create a mapping of paths and wallets that have been found.
 		const result: Contracts.LedgerWalletList = {};
 
-		for (const [path, address] of Object.entries(addressCache)) {
+		for (const [path, { address, publicKey }] of Object.entries(addressCache)) {
 			const matchingWallet: Contracts.WalletData | undefined = wallets.find(
 				(wallet: Contracts.WalletData) => wallet.address() === address,
 			);
@@ -156,6 +154,7 @@ export class LedgerService implements Contracts.LedgerService {
 			if (matchingWallet === undefined) {
 				result[path] = new WalletData({
 					address,
+					publicKey,
 					balance: 0,
 				});
 			} else {

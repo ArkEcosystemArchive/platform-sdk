@@ -11,8 +11,9 @@ import {
 	PeerService,
 	TransactionService,
 } from "../contracts/coins";
+import { BadMethodDependencyException } from "../exceptions";
 import { Config, ConfigKey } from "./config";
-import { CoinServices } from "./contracts";
+import { CoinServices, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
 import { Network } from "./network";
 import { NetworkRepository } from "./network-repository";
@@ -21,40 +22,49 @@ export class Coin {
 	readonly #networks: NetworkRepository;
 	readonly #manifest: Manifest;
 	readonly #config: Config;
-	readonly #services: CoinServices;
+	readonly #specification: CoinSpec;
 	readonly #network: Network;
+	#services: CoinServices | undefined;
 
 	public constructor({
 		networks,
 		manifest,
 		config,
-		services,
+		specification,
 	}: {
 		networks: NetworkRepository;
 		manifest: Manifest;
 		config: Config;
-		services: CoinServices;
+		specification: CoinSpec;
 	}) {
 		this.#networks = networks;
 		this.#manifest = manifest;
 		this.#config = config;
-		this.#services = services;
+		this.#specification = specification;
 		this.#network = new Network(manifest.get("name"), config.get(ConfigKey.Network));
 	}
 
+	public async __construct(): Promise<void> {
+		this.#services = await this.#specification.ServiceProvider.make(this, this.#config);
+	}
+
 	public async __destruct(): Promise<void> {
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "__destruct", "__construct");
+		}
+
 		await Promise.all([
-			this.#services.client.__destruct(),
-			this.#services.dataTransferObject.__destruct(),
-			this.#services.fee.__destruct(),
-			this.#services.identity.__destruct(),
-			this.#services.knownWallets.__destruct(),
-			this.#services.ledger.__destruct(),
-			this.#services.link.__destruct(),
-			this.#services.message.__destruct(),
-			this.#services.multiSignature.__destruct(),
-			this.#services.peer.__destruct(),
-			this.#services.transaction.__destruct(),
+			this.#services!.client.__destruct(),
+			this.#services!.dataTransferObject.__destruct(),
+			this.#services!.fee.__destruct(),
+			this.#services!.identity.__destruct(),
+			this.#services!.knownWallets.__destruct(),
+			this.#services!.ledger.__destruct(),
+			this.#services!.link.__destruct(),
+			this.#services!.message.__destruct(),
+			this.#services!.multiSignature.__destruct(),
+			this.#services!.peer.__destruct(),
+			this.#services!.transaction.__destruct(),
 		]);
 	}
 
@@ -75,46 +85,94 @@ export class Coin {
 	}
 
 	public client(): ClientService {
-		return this.#services.client;
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "client", "__construct");
+		}
+
+		return this.#services!.client;
 	}
 
 	public dataTransferObject(): DataTransferObjectService {
-		return this.#services.dataTransferObject;
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "dataTransferObject", "__construct");
+		}
+
+		return this.#services!.dataTransferObject;
 	}
 
 	public fee(): FeeService {
-		return this.#services.fee;
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "fee", "__construct");
+		}
+
+		return this.#services!.fee;
 	}
 
 	public identity(): IdentityService {
-		return this.#services.identity;
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "identity", "__construct");
+		}
+
+		return this.#services!.identity;
 	}
 
 	public knownWallets(): KnownWalletService {
-		return this.#services.knownWallets;
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "knownWallets", "__construct");
+		}
+
+		return this.#services!.knownWallets;
 	}
 
 	public ledger(): LedgerService {
-		return this.#services.ledger;
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "ledger", "__construct");
+		}
+
+		return this.#services!.ledger;
 	}
 
 	public link(): LinkService {
-		return this.#services.link;
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "link", "__construct");
+		}
+
+		return this.#services!.link;
 	}
 
 	public message(): MessageService {
-		return this.#services.message;
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "message", "__construct");
+		}
+
+		return this.#services!.message;
 	}
 
 	public multiSignature(): MultiSignatureService {
-		return this.#services.multiSignature;
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "multiSignature", "__construct");
+		}
+
+		return this.#services!.multiSignature;
 	}
 
 	public peer(): PeerService {
-		return this.#services.peer;
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "peer", "__construct");
+		}
+
+		return this.#services!.peer;
 	}
 
 	public transaction(): TransactionService {
-		return this.#services.transaction;
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "transaction", "__construct");
+		}
+
+		return this.#services!.transaction;
+	}
+
+	public hasBeenSynchronized(): boolean {
+		return this.#services !== undefined;
 	}
 }

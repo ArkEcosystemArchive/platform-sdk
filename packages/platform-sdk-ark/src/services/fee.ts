@@ -1,5 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+
+import { getPeerFromConfig } from "../helpers";
 
 export class FeeService implements Contracts.FeeService {
 	readonly #config: Coins.Config;
@@ -62,10 +63,6 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	private host(): string {
-		try {
-			return this.#config.get<string>("peer");
-		} catch {
-			return `${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`;
-		}
+		return getPeerFromConfig(this.#config);
 	}
 }

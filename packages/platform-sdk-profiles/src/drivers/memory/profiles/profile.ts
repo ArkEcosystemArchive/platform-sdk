@@ -2,7 +2,26 @@
 import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
-import { IProfileStruct, IProfileExportOptions, IContactRepository, IPortfolio, ICountAggregate, IDataRepository, INotificationRepository, IPeerRepository, IPluginRepository, IProfile, IProfileInput, IRegistrationAggregate, ISettingRepository, ITransactionAggregate, IWalletAggregate, IWalletRepository, ProfileSetting, IReadWriteWallet } from "../../../contracts";
+import {
+	IProfileStruct,
+	IProfileExportOptions,
+	IContactRepository,
+	IPortfolio,
+	ICountAggregate,
+	IDataRepository,
+	INotificationRepository,
+	IPeerRepository,
+	IPluginRepository,
+	IProfile,
+	IProfileInput,
+	IRegistrationAggregate,
+	ISettingRepository,
+	ITransactionAggregate,
+	IWalletAggregate,
+	IWalletRepository,
+	ProfileSetting,
+	IReadWriteWallet,
+} from "../../../contracts";
 
 import { MemoryPassword } from "../../../helpers/password";
 import { pqueue } from "../../../helpers/queue";
@@ -397,6 +416,16 @@ export class Profile implements IProfile {
 		}
 
 		return Base64.encode(JSON.stringify(filtered));
+	}
+
+	/**
+	 * Determine if all wallets that belong to the profile have been restored.
+	 *
+	 * @returns {boolean}
+	 * @memberof Profile
+	 */
+	public hasBeenPartiallyRestored(): boolean {
+		return this.#walletRepository.values().filter((wallet: IReadWriteWallet) => wallet.hasBeenPartiallyRestored()).length > 0;
 	}
 
 	/**

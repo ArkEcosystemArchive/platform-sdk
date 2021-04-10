@@ -15,7 +15,15 @@ import { Identifiers } from "../../../environment/container.models";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
-import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting, WalletData, WalletFlag, WalletSetting } from "../../../contracts";
+import {
+	IExchangeRateService,
+	IProfile,
+	IReadWriteWallet,
+	ProfileSetting,
+	WalletData,
+	WalletFlag,
+	WalletSetting,
+} from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
 let profile: IProfile;

@@ -87,7 +87,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public async setCoin(coin: string, network: string): Promise<IReadWriteWallet> {
 		if (this.usesCustomPeer() && this.peers().has(coin, network)) {
-			this.#coin = await makeCoin(
+			this.#coin = makeCoin(
 				coin,
 				network,
 				{
@@ -97,7 +97,20 @@ export class Wallet implements IReadWriteWallet {
 				true,
 			);
 		} else {
-			this.#coin = await makeCoin(coin, network);
+			this.#coin = makeCoin(coin, network);
+		}
+
+		/**
+		 * If we fail to construct the coin it means we are having networking
+		 * issues or there is a bug in the coin package. This could also mean
+		 * bad error handling inside the coin package which needs fixing asap.
+		 */
+		try {
+			if (!this.#coin.hasBeenSynchronized()) {
+				await this.#coin.__construct();
+			}
+		} catch (error) {
+			this.markAsPartiallyRestored();
 		}
 
 		return this;
