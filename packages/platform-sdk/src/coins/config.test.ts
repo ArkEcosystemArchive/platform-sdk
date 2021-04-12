@@ -76,6 +76,8 @@ test("ConfigKey", () => {
 		  "Network": "network",
 		  "NetworkConfiguration": "networkConfiguration",
 		  "NetworkId": "network.id",
+		  "Peer": "peer",
+		  "PeerMultiSignature": "peerMultiSignature",
 		  "Slip44": "network.crypto.slip44",
 		}
 	`);
