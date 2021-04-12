@@ -142,7 +142,10 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				await postGraphql(this.#config, `mutation { submitTransaction(transaction: "${transaction.toBroadcast()}") { hash } }`);
+				await postGraphql(
+					this.#config,
+					`mutation { submitTransaction(transaction: "${transaction.toBroadcast()}") { hash } }`,
+				);
 
 				result.accepted.push(transaction.id());
 			} catch (error) {
