@@ -67,4 +67,8 @@ export class CoinService implements ICoinService {
 	public has(coin: string, network: string): boolean {
 		return this.#dataRepository.has(`${coin}.${network}`);
 	}
+
+	public flush(): void {
+		this.#dataRepository.flush();
+	}
 }

@@ -21,6 +21,7 @@ import {
 	IWalletRepository,
 	ProfileSetting,
 	IReadWriteWallet,
+	ICoinService,
 } from "../../../contracts";
 
 import { MemoryPassword } from "../../../helpers/password";
@@ -40,6 +41,8 @@ import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Migrator } from "./migrator";
 import { Portfolio } from "./portfolio";
+import { container } from "../../../environment/container";
+import { Identifiers } from "../../../environment/container.models";
 
 export class Profile implements IProfile {
 	#data: IProfileInput;
@@ -74,6 +77,8 @@ export class Profile implements IProfile {
 		this.#registrationAggregate = new RegistrationAggregate(this);
 		this.#transactionAggregate = new TransactionAggregate(this);
 		this.#walletAggregate = new WalletAggregate(this);
+
+		container.get<ICoinService>(Identifiers.CoinService).flush();
 	}
 
 	public id(): string {

@@ -7,4 +7,5 @@ export interface ICoinService {
 	get(coin: string, network: string): Coins.Coin;
 	push(coin: string, network: string, options: object, useForce: boolean): Coins.Coin;
 	has(coin: string, network: string): boolean;
+	flush(): void;
 }
