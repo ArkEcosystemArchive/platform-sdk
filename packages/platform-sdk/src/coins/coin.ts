@@ -188,7 +188,7 @@ export class Coin {
 			return true;
 		}
 
-		if (networkingDefault.hostsMultiSignature[0] !== networkingInstance.hostsMultiSignature[0]) {
+		if (networkingDefault?.hostsMultiSignature[0] !== networkingInstance?.hostsMultiSignature[0]) {
 			return true;
 		}
 
