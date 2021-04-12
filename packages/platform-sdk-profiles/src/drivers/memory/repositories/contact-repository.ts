@@ -143,6 +143,7 @@ export class ContactRepository implements IContactRepository {
 
 		return result;
 	}
+
 	/**
 	 * Restore contacts without synchronising them.
 	 *
