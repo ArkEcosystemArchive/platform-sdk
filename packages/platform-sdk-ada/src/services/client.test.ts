@@ -15,7 +15,7 @@ beforeEach(async () => (subject = await ClientService.__construct(createConfig()
 
 afterEach(() => nock.cleanAll());
 
-// beforeAll(() => nock.disableNetConnect());
+beforeAll(() => nock.disableNetConnect());
 
 describe("ClientService", function () {
 	it("#wallet should succeed", async () => {
@@ -119,9 +119,13 @@ describe("ClientService", function () {
 
 	describe("#broadcast", () => {
 		it("#accepted", async () => {
-			// nock(/.*/)
-			// 	.post("/v2/proxy/transactions")
-			// 	.reply(201);
+			nock(/.+/)
+				.post("/")
+				.reply(200, require(`${__dirname}/../../test/fixtures/transaction/utxos.json`))
+				.post("/")
+				.reply(200, require(`${__dirname}/../../test/fixtures/transaction/expiration.json`))
+				.post("/")
+				.reply(201, require(`${__dirname}/../../test/fixtures/transaction/submit-tx.json`));
 
 			const txService = await TransactionService.__construct(createConfig());
 
@@ -133,26 +137,25 @@ describe("ClientService", function () {
 						"excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress",
 				},
 				data: {
-					amount: "9615699",
+					amount: "1000000",
 					to:
 						"addr_test1qpgs3nex8wvaggzx9pnwjgh946e7zk3k8vc9lnf4jrk5fs4u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsnfunm6",
 				},
 			});
 
 			const transactions = [transfer];
-			console.log("transactions", JSON.stringify(transactions, null, 2));
 			const result = await subject.broadcast(transactions);
 			expect(result).toMatchObject({
-				accepted: [],
-				rejected: ["35e95e8851fb6cc2fadb988d0a6e514386ac7a82a0d40baca34d345740e9657f"],
-				errors: {
-					"35e95e8851fb6cc2fadb988d0a6e514386ac7a82a0d40baca34d345740e9657f":
-						"HTTP request returned status code 400: Response code 400 (Bad Request)",
-				},
+				accepted: ["7f9098d27cc4b3818a638c652dadd62df0b77accc121b0dd2287a9cd022fd620"],
+				rejected: [],
+				errors: {},
 			});
 		});
 		it("#rejected", async () => {
-			nock(/.*/).post("/v2/proxy/transactions").reply(400);
+			nock(/.+/)
+				.post("/")
+				.reply(201, require(`${__dirname}/../../test/fixtures/transaction/submit-tx-failed.json`));
+
 
 			const transactions = [
 				new SignedTransactionData(
