@@ -108,7 +108,7 @@ describe("scan", () => {
 		const ark = await createMockService(ledger.wallets.record);
 
 		const walletData = await ark.scan({ useLegacy: true });
-		expect(Object.keys(walletData)).toHaveLength(10);
+		expect(Object.keys(walletData)).toHaveLength(2);
 		expect(walletData).toMatchSnapshot();
 
 		for (const wallet of Object.values(walletData)) {

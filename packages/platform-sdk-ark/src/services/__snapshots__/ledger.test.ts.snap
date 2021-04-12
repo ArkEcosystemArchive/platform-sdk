@@ -17,78 +17,10 @@ Object {
       "publicKey": "0348a63f3d9c0050575cbfe70de1722fd73ba205a9d2f7150d0725b99abb331892",
     },
   },
-  "44'/1'/2'/0/0": WalletData {
-    "data": Object {
-      "address": "DFr1CR81idSmfgQ19KXe4M6keqUEAuU8kF",
-      "balance": 0,
-      "publicKey": "03d5454f7faa33034c5c4be2432118e46059691b1ed783579fe4539879690b81f0",
-    },
-  },
-  "44'/1'/3'/0/0": WalletData {
-    "data": Object {
-      "address": "DTYiNbvTKveMtJC8KPPdBrgRWxfPxGp1WV",
-      "balance": 0,
-      "publicKey": "034823f052fecc8c3ebbe23970c8611ab05c2a614d284402ce312a8289e3a056b0",
-    },
-  },
-  "44'/1'/4'/0/0": WalletData {
-    "data": Object {
-      "address": "DJyGFrZv4MYKrTMcjzEyhZzdTAJju2Rcjr",
-      "balance": 0,
-      "publicKey": "0379de6470a266769e994f861a949e9c5c3c88a3ccd27099ce5c85cab253e0bedb",
-    },
-  },
-  "44'/1'/5'/0/0": WalletData {
-    "data": Object {
-      "address": "DHnV81YdhYDkwCLD8pkxiXh53pGFw435GS",
-      "balance": 0,
-      "publicKey": "03390571ff8e395641b480d9d156ed035eb81e09bad5f42117c62248d3ef6aa8b6",
-    },
-  },
-  "44'/1'/6'/0/0": WalletData {
-    "data": Object {
-      "address": "DGhLzafzQpBYjDAWP41U4cx5CKZ5BdSnS3",
-      "balance": 0,
-      "publicKey": "03fecf32083ba3d37e048ffc33fa3cd33b8144a1c7aaa99542ac6b847f893fef53",
-    },
-  },
-  "44'/1'/7'/0/0": WalletData {
-    "data": Object {
-      "address": "DLVXZyKFxLLdyuEtJRUvFoKcorSrnBnq48",
-      "balance": 0,
-      "publicKey": "036701ef8ba591de37db29b9314fd9073d8b975ad43a1ed019808dc2d1966f4f48",
-    },
-  },
-  "44'/1'/8'/0/0": WalletData {
-    "data": Object {
-      "address": "DFZAfJ1i1LsvhkUk76Piw4v7oTgq12pX9Z",
-      "balance": 0,
-      "publicKey": "031da1f494cb47d68f3dc4b0f137ffb86768c25413077e7a6327a59f9f21e39350",
-    },
-  },
-  "44'/1'/9'/0/0": WalletData {
-    "data": Object {
-      "address": "DGfNF9bGPss6YKLEqK5gwr4C1M7vgfenzn",
-      "balance": 0,
-      "publicKey": "038e18f704b0ca611533f7a0a00ddaeda78e99c4020f29eb2392a0496a3ac8076d",
-    },
-  },
 }
 `;
 
 exports[`scan should return scanned wallet 2`] = `
-Object {
-  "address": "D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK",
-  "balance": BigNumber {},
-  "nonce": BigNumber {},
-  "publicKey": undefined,
-  "rank": undefined,
-  "username": undefined,
-  "votes": undefined,
-}
-`;
-
-exports[`scan should return scanned wallet 3`] = `
 Object {
   "address": "DFgggtreMXQNQKnxHddvkaPHcQbRdK3jyJ",
   "balance": BigNumber {},
@@ -100,96 +32,12 @@ Object {
 }
 `;
 
-exports[`scan should return scanned wallet 4`] = `
+exports[`scan should return scanned wallet 3`] = `
 Object {
-  "address": "DFr1CR81idSmfgQ19KXe4M6keqUEAuU8kF",
+  "address": "D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK",
   "balance": BigNumber {},
   "nonce": BigNumber {},
-  "publicKey": "03d5454f7faa33034c5c4be2432118e46059691b1ed783579fe4539879690b81f0",
-  "rank": undefined,
-  "username": undefined,
-  "votes": undefined,
-}
-`;
-
-exports[`scan should return scanned wallet 5`] = `
-Object {
-  "address": "DTYiNbvTKveMtJC8KPPdBrgRWxfPxGp1WV",
-  "balance": BigNumber {},
-  "nonce": BigNumber {},
-  "publicKey": "034823f052fecc8c3ebbe23970c8611ab05c2a614d284402ce312a8289e3a056b0",
-  "rank": undefined,
-  "username": undefined,
-  "votes": undefined,
-}
-`;
-
-exports[`scan should return scanned wallet 6`] = `
-Object {
-  "address": "DJyGFrZv4MYKrTMcjzEyhZzdTAJju2Rcjr",
-  "balance": BigNumber {},
-  "nonce": BigNumber {},
-  "publicKey": "0379de6470a266769e994f861a949e9c5c3c88a3ccd27099ce5c85cab253e0bedb",
-  "rank": undefined,
-  "username": undefined,
-  "votes": undefined,
-}
-`;
-
-exports[`scan should return scanned wallet 7`] = `
-Object {
-  "address": "DHnV81YdhYDkwCLD8pkxiXh53pGFw435GS",
-  "balance": BigNumber {},
-  "nonce": BigNumber {},
-  "publicKey": "03390571ff8e395641b480d9d156ed035eb81e09bad5f42117c62248d3ef6aa8b6",
-  "rank": undefined,
-  "username": undefined,
-  "votes": undefined,
-}
-`;
-
-exports[`scan should return scanned wallet 8`] = `
-Object {
-  "address": "DGhLzafzQpBYjDAWP41U4cx5CKZ5BdSnS3",
-  "balance": BigNumber {},
-  "nonce": BigNumber {},
-  "publicKey": "03fecf32083ba3d37e048ffc33fa3cd33b8144a1c7aaa99542ac6b847f893fef53",
-  "rank": undefined,
-  "username": undefined,
-  "votes": undefined,
-}
-`;
-
-exports[`scan should return scanned wallet 9`] = `
-Object {
-  "address": "DLVXZyKFxLLdyuEtJRUvFoKcorSrnBnq48",
-  "balance": BigNumber {},
-  "nonce": BigNumber {},
-  "publicKey": "036701ef8ba591de37db29b9314fd9073d8b975ad43a1ed019808dc2d1966f4f48",
-  "rank": undefined,
-  "username": undefined,
-  "votes": undefined,
-}
-`;
-
-exports[`scan should return scanned wallet 10`] = `
-Object {
-  "address": "DFZAfJ1i1LsvhkUk76Piw4v7oTgq12pX9Z",
-  "balance": BigNumber {},
-  "nonce": BigNumber {},
-  "publicKey": "031da1f494cb47d68f3dc4b0f137ffb86768c25413077e7a6327a59f9f21e39350",
-  "rank": undefined,
-  "username": undefined,
-  "votes": undefined,
-}
-`;
-
-exports[`scan should return scanned wallet 11`] = `
-Object {
-  "address": "DGfNF9bGPss6YKLEqK5gwr4C1M7vgfenzn",
-  "balance": BigNumber {},
-  "nonce": BigNumber {},
-  "publicKey": "038e18f704b0ca611533f7a0a00ddaeda78e99c4020f29eb2392a0496a3ac8076d",
+  "publicKey": undefined,
   "rank": undefined,
   "username": undefined,
   "votes": undefined,
