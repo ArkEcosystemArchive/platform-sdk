@@ -29,6 +29,7 @@ import {
 	WalletSetting,
 	IDelegateService,
 	IExchangeRateService,
+	ICoinService,
 } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
@@ -593,7 +594,11 @@ export class Wallet implements IReadWriteWallet {
 	 * These methods serve as helpers to keep the wallet data updated.
 	 */
 
-	public async sync(): Promise<void> {
+	public async sync(options: { resetCoin: boolean; } = { resetCoin: false }): Promise<void> {
+		if (options.resetCoin) {
+			this.#coin = makeCoin(this.coinId(), this.networkId(), {}, true);
+		}
+
 		await this.setCoin(this.coinId(), this.networkId());
 	}
 

@@ -98,7 +98,7 @@ export interface IReadWriteWallet {
 	canAny(features: string[]): boolean;
 	canAll(features: string[]): boolean;
 	cannot(feature: string): boolean;
-	sync(): Promise<void>;
+	sync(options?: { resetCoin: boolean; }): Promise<void>;
 	syncIdentity(): Promise<void>;
 	syncMultiSignature(): Promise<void>;
 	syncVotes(): Promise<void>;
