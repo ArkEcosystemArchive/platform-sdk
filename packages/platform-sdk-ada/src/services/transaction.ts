@@ -60,7 +60,7 @@ export class TransactionService implements Contracts.TransactionService {
 		const utxos: UnspentTransaction[] = await this.listUnspentTransactions(input.from); // when more that one utxo, they seem to be ordered by amount descending
 
 		// Figure out the utxos to use
-		// TODO Need to make sure it covers the fess also. We need to be clever here.
+		// TODO Need to make sure it covers the fees also. We need to be clever here.
 		const usedUtxos: UnspentTransaction[] = [];
 		const requestedAmount: number = parseInt(input.data.amount); // TODO see if we need to use bigint here
 		const amount = 0;
@@ -211,29 +211,6 @@ export class TransactionService implements Contracts.TransactionService {
 
 		return (tip + ttl).toString();
 	}
-
-	// private derivePrivateByAddressing(request: {
-	// 	addressing: $PropertyType<Addressing, 'addressing'>,
-	// 	startingFrom: {
-	// 		key: RustModule.WalletV4.Bip32PrivateKey,
-	// 		level: number,
-	// 		},
-	// 	}): RustModule.WalletV4.Bip32PrivateKey {
-	// 	if (request.startingFrom.level + 1 < request.addressing.startLevel) {
-	// 		throw new Error(`${nameof(derivePrivateByAddressing)} keyLevel < startLevel`);
-	// 	}
-	// 	let derivedKey = request.startingFrom.key;
-	// 	for (
-	// 		let i = request.startingFrom.level - request.addressing.startLevel + 1;
-	// 		i < request.addressing.path.length;
-	// 		i++
-	// 	) {
-	// 		derivedKey = derivedKey.derive(
-	// 			request.addressing.path[i]
-	// 		);
-	// 	}
-	// 	return derivedKey;
-	// }
 
 	private async listUnspentTransactions(address: string): Promise<UnspentTransaction[]> {
 		return (
