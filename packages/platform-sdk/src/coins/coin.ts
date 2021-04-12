@@ -42,7 +42,6 @@ export class Coin {
 		this.#config = config;
 		this.#specification = specification;
 		this.#network = new Network(manifest.get("name"), config.get(ConfigKey.Network));
-
 	}
 
 	public async __construct(): Promise<void> {
