@@ -156,7 +156,6 @@ describe("ClientService", function () {
 				.post("/")
 				.reply(201, require(`${__dirname}/../../test/fixtures/transaction/submit-tx-failed.json`));
 
-
 			const transactions = [
 				new SignedTransactionData(
 					"35e95e8851fb6cc2fadb988d0a6e514386ac7a82a0d40baca34d345740e9657f",

@@ -1,9 +1,9 @@
 {
-  "data": {
-	"cardano": {
-	  "tip": {
-		"slotNo": 23860222
-	  }
+	"data": {
+		"cardano": {
+			"tip": {
+				"slotNo": 23860222
+			}
+		}
 	}
-  }
 }
