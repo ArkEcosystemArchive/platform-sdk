@@ -109,7 +109,7 @@ export class Wallet implements IReadWriteWallet {
 			if (!this.#coin.hasBeenSynchronized()) {
 				await this.#coin.__construct();
 			}
-		} catch (error) {
+		} catch {
 			this.markAsPartiallyRestored();
 		}
 
@@ -691,6 +691,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public markAsFullyRestored(): void {
 		this.#restorationState.full = true;
+		this.#restorationState.partial = false;
 	}
 
 	public hasBeenFullyRestored(): boolean {
@@ -698,6 +699,7 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public markAsPartiallyRestored(): void {
+		this.#restorationState.full = false;
 		this.#restorationState.partial = true;
 	}
 
