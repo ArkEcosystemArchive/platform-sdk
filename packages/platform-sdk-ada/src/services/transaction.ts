@@ -63,7 +63,7 @@ export class TransactionService implements Contracts.TransactionService {
 		// TODO Need to make sure it covers the fess also. We need to be clever here.
 		const usedUtxos: UnspentTransaction[] = [];
 		const requestedAmount: number = parseInt(input.data.amount); // TODO see if we need to use bigint here
-		let amount: number = 0;
+		const amount = 0;
 		for (let i = 0; i < utxos.length; i++) {
 			const utxo: UnspentTransaction = utxos[i];
 			usedUtxos.push(utxo);
@@ -71,12 +71,13 @@ export class TransactionService implements Contracts.TransactionService {
 				Address.from_bech32(utxo.address),
 				CardanoWasm.TransactionInput.new(
 					CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
-					parseInt(utxo.index)
+					parseInt(utxo.index),
 				),
-				createValue(utxo.value)
+				createValue(utxo.value),
 			);
 
-			if (amount >= requestedAmount) { // TODO need to consider fees here
+			if (amount >= requestedAmount) {
+				// TODO need to consider fees here
 				break;
 			}
 		}
@@ -106,7 +107,9 @@ export class TransactionService implements Contracts.TransactionService {
 		// Add the signatures
 		const addresses = await this.deriveAddressesAndSigningKeys(publicKey, networkId, accountKey);
 		const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
-		usedUtxos.forEach(utxo => vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, addresses[utxo.index][utxo.address].to_raw_key())));
+		usedUtxos.forEach((utxo) =>
+			vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, addresses[utxo.index][utxo.address].to_raw_key())),
+		);
 		const witnesses = CardanoWasm.TransactionWitnessSet.new();
 		witnesses.set_vkeys(vkeyWitnesses);
 
@@ -265,5 +268,4 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 		return addresses;
 	}
-
 }
