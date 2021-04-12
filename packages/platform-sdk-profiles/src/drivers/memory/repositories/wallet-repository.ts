@@ -91,7 +91,7 @@ export class WalletRepository implements IWalletRepository {
 		};
 
 		// Make sure we have an instance of the coin
-		const service = await container.get<CoinService>(Identifiers.CoinService).push(coin, network);
+		const service = container.get<CoinService>(Identifiers.CoinService).push(coin, network);
 
 		// Bulk request the addresses.
 		const wallets: IReadWriteWallet[] = [];
