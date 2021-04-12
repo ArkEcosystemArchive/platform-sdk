@@ -5,15 +5,7 @@ import { SignedTransactionData } from "../dto";
 import { postGraphql } from "./helpers";
 import { deriveAccountKey, deriveRootKey, deriveSpendKey } from "./identity/shelley";
 import { createValue } from "./transaction.helpers";
-
-export interface UnspentTransaction {
-	address: string;
-	index: string;
-	transaction: {
-		hash: string;
-	};
-	value: string;
-}
+import { UnspentTransaction } from "./transaction.models";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
@@ -54,15 +46,7 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 
 		// Get a `Bip32PrivateKey` instance according to `CIP1852` and turn it into a `PrivateKey` instance
-		const rootKey = deriveRootKey(input.sign.mnemonic);
-		const accountKey = deriveAccountKey(rootKey, 0);
-		const privateKey = accountKey.to_raw_key();
-		console.log(
-			"privateKey",
-			Buffer.from(privateKey.as_bytes()).toString("hex"),
-			"publicKey",
-			Buffer.from(privateKey.to_public().as_bytes()).toString("hex"),
-		);
+		const accountKey = deriveAccountKey(deriveRootKey(input.sign.mnemonic), 0);
 
 		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transferred back to the sender
 		const utxos: UnspentTransaction[] = await this.listUnspentTransactions(input.from);
@@ -79,8 +63,6 @@ export class TransactionService implements Contracts.TransactionService {
 			),
 			createValue(utxo.value),
 		);
-
-		console.log("utxo", utxo);
 		// break;
 		// }
 
@@ -116,9 +98,6 @@ export class TransactionService implements Contracts.TransactionService {
 		const witnesses = CardanoWasm.TransactionWitnessSet.new();
 		witnesses.set_vkeys(vkeyWitnesses);
 
-		console.log("hash", Buffer.from(txHash.to_bytes()).toString("hex"));
-		const transaction = CardanoWasm.Transaction.new(txBody, witnesses);
-
 		return new SignedTransactionData(
 			Buffer.from(txHash.to_bytes()).toString("hex"),
 			{
@@ -127,7 +106,7 @@ export class TransactionService implements Contracts.TransactionService {
 				amount: input.data.amount,
 				fee: txBody.fee().to_str(),
 			},
-			Buffer.from(transaction.to_bytes()).toString("hex"),
+			Buffer.from(CardanoWasm.Transaction.new(txBody, witnesses).to_bytes()).toString("hex"),
 		);
 	}
 
