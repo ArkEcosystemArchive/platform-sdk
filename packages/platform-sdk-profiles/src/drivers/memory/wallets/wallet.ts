@@ -109,6 +109,8 @@ export class Wallet implements IReadWriteWallet {
 			if (!this.#coin.hasBeenSynchronized()) {
 				await this.#coin.__construct();
 			}
+
+			this.markAsFullyRestored();
 		} catch {
 			this.markAsPartiallyRestored();
 		}

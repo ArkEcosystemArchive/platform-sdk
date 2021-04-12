@@ -374,8 +374,6 @@ export class WalletRepository implements IWalletRepository {
 						wallet.coin().config().set(`network.${key}`, value);
 					}
 				}
-
-				wallet.markAsFullyRestored();
 			},
 			{
 				onFailedAttempt: (error) =>
