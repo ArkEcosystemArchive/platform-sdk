@@ -38,18 +38,18 @@ export const deriveAccountKey = (rootKey: Bip32PrivateKey, index: number): Bip32
 
 export const deriveSpendKey = (accountKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
 	accountKey
-		.derive(harden(0)) // External
-		.derive(harden(index));
+		.derive(0) // External
+		.derive(index);
 
 export const deriveChangeKey = (accountKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
 	accountKey
-		.derive(harden(1)) // Change
-		.derive(harden(index));
+		.derive(1) // Change
+		.derive(index);
 
 export const deriveStakeKey = (accountKey: Bip32PrivateKey, index: number): Bip32PrivateKey =>
 	accountKey
-		.derive(harden(2)) // Chimeric
-		.derive(harden(index));
+		.derive(2) // Chimeric
+		.derive(index);
 
 // Address Derivation
 export const addressFromMnemonic = (
