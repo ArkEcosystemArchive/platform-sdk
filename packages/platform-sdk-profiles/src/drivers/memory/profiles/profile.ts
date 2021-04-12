@@ -288,7 +288,7 @@ export class Profile implements IProfile {
 	}
 
 	/**
-	 * Sync the walles and contacts with their respective networks.
+	 * Sync the wallets and contacts with their respective networks.
 	 *
 	 * @param {string} [password]
 	 * @returns {Promise<void>}
