@@ -177,7 +177,7 @@ export class Coin {
 		return this.#services !== undefined;
 	}
 
-	public usesCustomPeer(): boolean {
+	public usesCustomHost(): boolean {
 		const network: string = this.#config.get(ConfigKey.NetworkId);
 		const { networks } = this.#manifest.all();
 

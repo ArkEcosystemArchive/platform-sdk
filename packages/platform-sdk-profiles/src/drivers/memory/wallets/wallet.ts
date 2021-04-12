@@ -103,7 +103,7 @@ export class Wallet implements IReadWriteWallet {
 					coin,
 					network,
 					{},
-					container.get<ICoinService>(Identifiers.CoinService).get(coin, network).usesCustomPeer(),
+					container.get<ICoinService>(Identifiers.CoinService).get(coin, network).usesCustomHost(),
 				);
 			} else {
 				this.#coin = makeCoin(coin, network);
