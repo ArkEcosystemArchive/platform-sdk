@@ -5,6 +5,6 @@ export interface ICoinService {
 	values(): Coins.Coin[];
 	entries(): [string, string[]][];
 	get(coin: string, network: string): Coins.Coin;
-	push(coin: string, network: string, options: object, useForce: undefined): Coins.Coin;
+	push(coin: string, network: string, options: object, useForce: boolean): Coins.Coin;
 	has(coin: string, network: string): boolean;
 }

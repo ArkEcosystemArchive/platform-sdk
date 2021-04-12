@@ -54,4 +54,6 @@ export enum ConfigKey {
 	NetworkConfiguration = "networkConfiguration", // This is currently only used by ARK. This would ideally be stored in a package internal cache, not the config.
 	NetworkId = "network.id",
 	Slip44 = "network.crypto.slip44",
+	Peer = "peer",
+	PeerMultiSignature = "peerMultiSignature",
 }

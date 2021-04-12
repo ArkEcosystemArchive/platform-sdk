@@ -42,6 +42,7 @@ export class Coin {
 		this.#config = config;
 		this.#specification = specification;
 		this.#network = new Network(manifest.get("name"), config.get(ConfigKey.Network));
+
 	}
 
 	public async __construct(): Promise<void> {
@@ -174,5 +175,23 @@ export class Coin {
 
 	public hasBeenSynchronized(): boolean {
 		return this.#services !== undefined;
+	}
+
+	public usesCustomPeer(): boolean {
+		const network: string = this.#config.get(ConfigKey.NetworkId);
+		const { networks } = this.#manifest.all();
+
+		const networkingDefault = networks[network].networking;
+		const networkingInstance = this.#config.all().network.networking;
+
+		if (networkingDefault.hosts[0] !== networkingInstance.hosts[0]) {
+			return true;
+		}
+
+		if (networkingDefault.hostsMultiSignature[0] !== networkingInstance.hostsMultiSignature[0]) {
+			return true;
+		}
+
+		return false;
 	}
 }

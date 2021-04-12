@@ -7,7 +7,7 @@ export class Manifest {
 		this.#manifest = manifest;
 	}
 
-	public all(): object {
+	public all(): Record<string, any> {
 		return this.#manifest;
 	}
 

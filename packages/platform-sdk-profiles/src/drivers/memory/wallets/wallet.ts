@@ -29,6 +29,7 @@ import {
 	WalletSetting,
 	IDelegateService,
 	IExchangeRateService,
+	ICoinService,
 } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
@@ -97,7 +98,16 @@ export class Wallet implements IReadWriteWallet {
 				true,
 			);
 		} else {
-			this.#coin = makeCoin(coin, network);
+			if(container.get<ICoinService>(Identifiers.CoinService).has(coin, network)) {
+				this.#coin = makeCoin(
+					coin,
+					network,
+					{},
+					container.get<ICoinService>(Identifiers.CoinService).get(coin, network).usesCustomPeer(),
+				);
+			} else {
+				this.#coin = makeCoin(coin, network);
+			}
 		}
 
 		/**
