@@ -144,7 +144,8 @@ export class LedgerService implements Contracts.LedgerService {
 		} while (hasMore);
 
 		// Create a mapping of paths and wallets that have been found.
-		const result: Contracts.LedgerWalletList = {};
+		const cold: Contracts.LedgerWalletList = {};
+		const used: Contracts.LedgerWalletList = {};
 
 		for (const [path, { address, publicKey }] of Object.entries(addressCache)) {
 			const matchingWallet: Contracts.WalletData | undefined = wallets.find(
@@ -152,16 +153,20 @@ export class LedgerService implements Contracts.LedgerService {
 			);
 
 			if (matchingWallet === undefined) {
-				result[path] = new WalletData({
+				if (Object.keys(cold).length > 0) {
+					continue;
+				}
+
+				cold[path] = new WalletData({
 					address,
 					publicKey,
 					balance: 0,
 				});
 			} else {
-				result[path] = matchingWallet;
+				used[path] = matchingWallet;
 			}
 		}
 
-		return result;
+		return { ...cold, ...used };
 	}
 }
