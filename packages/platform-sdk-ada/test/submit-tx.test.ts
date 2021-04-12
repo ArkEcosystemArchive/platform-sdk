@@ -153,10 +153,10 @@ it(`can send a transfer`, async function () {
 
 	const wallet = data[0]; // Simon's
 	const mnemonic = wallet.mnemonic;
-	const from: string = wallet.addresses.spend[1];
+	const from: string = wallet.addresses.spend[0];
 
 	const wallet2 = data[1]; // Mariano's
-	const to: string = wallet2.addresses.spend[0];
+	const to: string = wallet2.addresses.spend[2];
 	const amount: string = "1200000";
 
 	const tx = await subject.transfer({

@@ -1,9 +1,9 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import CardanoWasm, { Address } from "@emurgo/cardano-serialization-lib-nodejs";
+import CardanoWasm, { Address, Bip32PrivateKey, Bip32PublicKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
 import { postGraphql } from "./helpers";
-import { deriveAccountKey, deriveRootKey, deriveSpendKey } from "./identity/shelley";
+import { deriveAccountKey, deriveAddress, deriveChangeKey, deriveRootKey, deriveSpendKey } from "./identity/shelley";
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
 
@@ -33,6 +33,7 @@ export class TransactionService implements Contracts.TransactionService {
 		const { minFeeA, minFeeB, minUTxOValue, poolDeposit, keyDeposit } = this.#config.get<Contracts.KeyValuePair>(
 			"network.meta",
 		);
+		const networkId = this.#config.get<string>(Coins.ConfigKey.CryptoNetworkId);
 
 		// This is the transaction builder that uses values from the genesis block of the configured network.
 		const txBuilder = CardanoWasm.TransactionBuilder.new(
@@ -46,25 +47,39 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 
 		// Get a `Bip32PrivateKey` instance according to `CIP1852` and turn it into a `PrivateKey` instance
-		const accountKey = deriveAccountKey(deriveRootKey(input.sign.mnemonic), 0);
+		const accountKey: Bip32PrivateKey = deriveAccountKey(deriveRootKey(input.sign.mnemonic), 0);
+		const publicKey = accountKey.to_public();
 
-		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transferred back to the sender
-		const utxos: UnspentTransaction[] = await this.listUnspentTransactions(input.from);
+		/* TODO: We need to determine how to specify the input.
+			 input.from is currently used as an address, but in Cardano it should be more like
+			 transferring from a particular wallet to a destination address (or may be addresses).
+			 So we need to look at all spendable utxos from the wallet, not just from a source address,
+			 because the wallet may have enough founds but spread through different addresses,
+			 both internal (change) and external (spend).
+		 */
+		const utxos: UnspentTransaction[] = await this.listUnspentTransactions(input.from); // when more that one utxo, they seem to be ordered by amount descending
 
-		// for (let i = 0; i < utxos.length; i++) {
-		const i = 0;
-		const utxo: UnspentTransaction = utxos[i];
+		// Figure out the utxos to use
+		// TODO Need to make sure it covers the fess also. We need to be clever here.
+		const usedUtxos: UnspentTransaction[] = [];
+		const requestedAmount: number = parseInt(input.data.amount); // TODO see if we need to use bigint here
+		let amount: number = 0;
+		for (let i = 0; i < utxos.length; i++) {
+			const utxo: UnspentTransaction = utxos[i];
+			usedUtxos.push(utxo);
+			txBuilder.add_input(
+				Address.from_bech32(utxo.address),
+				CardanoWasm.TransactionInput.new(
+					CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
+					parseInt(utxo.index)
+				),
+				createValue(utxo.value)
+			);
 
-		txBuilder.add_input(
-			Address.from_bech32(utxo.address),
-			CardanoWasm.TransactionInput.new(
-				CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.transaction.hash, "hex")),
-				parseInt(utxo.index),
-			),
-			createValue(utxo.value),
-		);
-		// break;
-		// }
+			if (amount >= requestedAmount) { // TODO need to consider fees here
+				break;
+			}
+		}
 
 		// These are the outputs that will be transferred to other wallets. For now we only support a single output.
 		txBuilder.add_output(
@@ -88,16 +103,14 @@ export class TransactionService implements Contracts.TransactionService {
 		const txBody = txBuilder.build();
 		const txHash = CardanoWasm.hash_transaction(txBody);
 
-		// TODO Change hard-coded 1 to proper index/indices based on building the mapping
-		// We use index 1 here, because we know that's the right index for this utxo (is it?)
-		const vkeyWitness = CardanoWasm.make_vkey_witness(txHash, deriveSpendKey(accountKey, 1).to_raw_key());
-
+		// Add the signatures
+		const addresses = await this.deriveAddressesAndSigningKeys(publicKey, networkId, accountKey);
 		const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
-		vkeyWitnesses.add(vkeyWitness);
-
+		usedUtxos.forEach(utxo => vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, addresses[utxo.index][utxo.address].to_raw_key())));
 		const witnesses = CardanoWasm.TransactionWitnessSet.new();
 		witnesses.set_vkeys(vkeyWitnesses);
 
+		// Build the signed transaction
 		return new SignedTransactionData(
 			Buffer.from(txHash.to_bytes()).toString("hex"),
 			{
@@ -243,4 +256,14 @@ export class TransactionService implements Contracts.TransactionService {
 			)
 		).utxos;
 	}
+
+	private async deriveAddressesAndSigningKeys(publicKey: Bip32PublicKey, networkId, accountKey: Bip32PrivateKey) {
+		const addresses: { [index: number]: {} } = { 0: {}, 1: {} };
+		for (let i = 0; i < 20; ++i) {
+			addresses[0][await deriveAddress(publicKey, false, i, networkId)] = await deriveSpendKey(accountKey, i);
+			addresses[1][await deriveAddress(publicKey, true, i, networkId)] = await deriveChangeKey(accountKey, i);
+		}
+		return addresses;
+	}
+
 }

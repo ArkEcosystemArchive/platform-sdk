@@ -68,7 +68,7 @@ const network: Coins.CoinNetwork = {
 	},
 	meta: {
 		minFeeA: 44,
-		minFeeB: 255381,
+		minFeeB: 155381,
 		minUTxOValue: 1000000,
 		poolDeposit: 500000000,
 		keyDeposit: 2000000,
