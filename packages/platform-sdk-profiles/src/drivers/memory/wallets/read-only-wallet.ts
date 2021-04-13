@@ -7,6 +7,8 @@ interface ROWallet {
 	username?: string;
 	rank?: number;
 	explorerLink: string;
+	isDelegate: boolean;
+	isResignedDelegate: boolean;
 }
 
 export class ReadOnlyWallet implements IReadOnlyWallet {
@@ -38,5 +40,13 @@ export class ReadOnlyWallet implements IReadOnlyWallet {
 
 	public explorerLink(): string {
 		return this.#wallet.explorerLink;
+	}
+
+	public isDelegate(): boolean {
+		return this.#wallet.isDelegate;
+	}
+
+	public isResignedDelegate(): boolean {
+		return this.#wallet.isResignedDelegate;
 	}
 }
