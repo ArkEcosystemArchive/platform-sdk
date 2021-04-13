@@ -1,9 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import { Buffer } from "buffer";
-
-import { addressFromAccountExtPublicKey } from "./identity/shelley";
-import { UnspentTransaction } from "./transaction.models";
 import CardanoWasm, {
 	Address,
 	BigNum,
@@ -11,7 +7,11 @@ import CardanoWasm, {
 	TransactionInput,
 	Value
 } from "@emurgo/cardano-serialization-lib-nodejs";
+import { Buffer } from "buffer";
+
+import { addressFromAccountExtPublicKey } from "./identity/shelley";
 import { createValue } from "./transaction.helpers";
+import { UnspentTransaction } from "./transaction.models";
 
 const postGraphql = async (config: Coins.Config, query: string): Promise<Record<string, any>> => {
 	const response = await config
@@ -75,7 +75,7 @@ export const fetchTransactions = async (addresses: string[], config: Coins.Confi
 								inputs: {
 									address: {
 										_in: [
-											${addresses.map((a) => "\"" + a + "\"").join("\n")}
+											${addresses.map((a) => '"' + a + '"').join("\n")}
 										]
 									}
 								}
@@ -84,7 +84,7 @@ export const fetchTransactions = async (addresses: string[], config: Coins.Confi
 							outputs: {
 								address: {
 										_in: [
-											${addresses.map((a) => "\"" + a + "\"").join("\n")}
+											${addresses.map((a) => '"' + a + '"').join("\n")}
 										]
 									}
 								}
@@ -150,7 +150,7 @@ export const addressesChunk = async (
 	networkId: string,
 	accountPublicKey: string,
 	isChange: boolean,
-	offset: number
+	offset: number,
 ): Promise<string[]> => {
 	const publicKey = Buffer.from(accountPublicKey, "hex");
 
@@ -171,7 +171,7 @@ export const fetchUsedAddressesData = async (config: Coins.Config, addresses: st
 								inputs: {
 									address: {
 										_in: [
-											${addresses.map((a) => "\"" + a + "\"").join("\n")}
+											${addresses.map((a) => '"' + a + '"').join("\n")}
 										]
 									}
 								}
@@ -180,7 +180,7 @@ export const fetchUsedAddressesData = async (config: Coins.Config, addresses: st
 							outputs: {
 								address: {
 										_in: [
-											${addresses.map((a) => "\"" + a + "\"").join("\n")}
+											${addresses.map((a) => '"' + a + '"').join("\n")}
 										]
 									}
 								}
@@ -213,7 +213,7 @@ export const listUnspentTransactions = async (
 				  where: {
 					  address: {
 							_in: [
-								${addresses.map((a) => "\"" + a + "\"").join("\n")}
+								${addresses.map((a) => '"' + a + '"').join("\n")}
 							]
 					  }
 				  }
@@ -236,7 +236,7 @@ export const fetchUtxosAggregate = async (addresses: string[], config: Coins.Con
 					where: {
 						address: {
 							_in: [
-								${addresses.map((a) => "\"" + a + "\"").join("\n")}
+								${addresses.map((a) => '"' + a + '"').join("\n")}
 							]
 						}
 					}
@@ -251,39 +251,27 @@ export const fetchUtxosAggregate = async (addresses: string[], config: Coins.Con
 	return ((await postGraphql(config, query)) as any).utxos_aggregate.aggregate.sum.value;
 };
 
-
 export const addUtxoInput = (
 	txBuilder: TransactionBuilder,
 	input: UnspentTransaction,
-): { added: boolean, amount: BigNum, fee: BigNum } => {
+): { added: boolean; amount: BigNum; fee: BigNum } => {
 	const wasmAddr = Address.from_bech32(input.address);
 	const txInput = utxoToTxInput(input);
 	const wasmAmount = createValue(input.value);
 
 	// ignore UTXO that contribute less than their fee if they also don't contribute a token
-	const feeForInput =
-		txBuilder.fee_for_input(
-			wasmAddr,
-			txInput,
-			wasmAmount
-		);
+	const feeForInput = txBuilder.fee_for_input(wasmAddr, txInput, wasmAmount);
 
 	const skipped = feeForInput.compare(BigNum.from_str(input.value)) > 0;
 	if (!skipped) {
-		txBuilder.add_input(
-			wasmAddr,
-			txInput,
-			wasmAmount
-		);
+		txBuilder.add_input(wasmAddr, txInput, wasmAmount);
 	}
 	return { added: !skipped, amount: BigNum.from_str(input.value), fee: feeForInput };
 };
 
 export const utxoToTxInput = (utxo: UnspentTransaction): TransactionInput => {
 	return CardanoWasm.TransactionInput.new(
-		CardanoWasm.TransactionHash.from_bytes(
-			Buffer.from(utxo.txHash, "hex")
-		),
-		parseInt(utxo.index)
+		CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.txHash, "hex")),
+		parseInt(utxo.index),
 	);
 };
