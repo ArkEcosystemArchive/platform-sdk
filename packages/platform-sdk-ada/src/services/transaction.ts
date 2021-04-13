@@ -2,7 +2,7 @@ import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import CardanoWasm, { Address, Bip32PrivateKey, Bip32PublicKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
-import { postGraphql } from "./helpers";
+import { fetchNetworkTip, listUnspentTransactions } from "./helpers";
 import { deriveAccountKey, deriveAddress, deriveChangeKey, deriveRootKey, deriveSpendKey } from "./identity/shelley";
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
@@ -49,6 +49,12 @@ export class TransactionService implements Contracts.TransactionService {
 		// Get a `Bip32PrivateKey` instance according to `CIP1852` and turn it into a `PrivateKey` instance
 		const accountKey: Bip32PrivateKey = deriveAccountKey(deriveRootKey(input.sign.mnemonic), 0);
 		const publicKey = accountKey.to_public();
+		console.log(
+			"privateKey",
+			Buffer.from(accountKey.as_bytes()).toString("hex"),
+			"publicKey",
+			Buffer.from(publicKey.as_bytes()).toString("hex"),
+		);
 
 		/* TODO: We need to determine how to specify the input.
 			 input.from is currently used as an address, but in Cardano it should be more like
@@ -57,7 +63,7 @@ export class TransactionService implements Contracts.TransactionService {
 			 because the wallet may have enough founds but spread through different addresses,
 			 both internal (change) and external (spend).
 		 */
-		const utxos: UnspentTransaction[] = await this.listUnspentTransactions(input.from); // when more that one utxo, they seem to be ordered by amount descending
+		const utxos: UnspentTransaction[] = await listUnspentTransactions(input.from, this.#config); // when more that one utxo, they seem to be ordered by amount descending
 
 		// Figure out the utxos to use
 		// TODO Need to make sure it covers the fees also. We need to be clever here.
@@ -204,37 +210,10 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public async estimateExpiration(value?: string): Promise<string> {
-		const tip: number = parseInt(
-			(await postGraphql(this.#config, `{ cardano { tip { slotNo } } }`)).cardano.tip.slotNo,
-		);
+		const tip: number = await fetchNetworkTip(this.#config);
 		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 
 		return (tip + ttl).toString();
-	}
-
-	private async listUnspentTransactions(address: string): Promise<UnspentTransaction[]> {
-		return (
-			await postGraphql(
-				this.#config,
-				`{
-				utxos(
-				  order_by: { value: desc }
-				  where: {
-					address: {
-					  _eq: "${address}"
-					}
-				  }
-				) {
-				  address
-				  index
-				  transaction {
-						hash
-				  }
-				  value
-				}
-			  }`,
-			)
-		).utxos;
 	}
 
 	private async deriveAddressesAndSigningKeys(publicKey: Bip32PublicKey, networkId, accountKey: Bip32PrivateKey) {
