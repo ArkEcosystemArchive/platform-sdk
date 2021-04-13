@@ -315,13 +315,15 @@ export class WalletRepository implements IWalletRepository {
 		this.#dataRaw = struct;
 
 		for (const item of Object.values(struct)) {
-			const { id, address, data, settings } = item;
+			const { id, coin, network, address, data, settings } = item;
 
 			const wallet = new Wallet(id, item, this.#profile);
 
 			wallet.data().fill(data);
 
 			wallet.settings().fill(settings);
+
+			await wallet.setCoin(coin, network, { sync: false });
 
 			await wallet.setAddress(address, { syncIdentity: false, validate: false });
 
