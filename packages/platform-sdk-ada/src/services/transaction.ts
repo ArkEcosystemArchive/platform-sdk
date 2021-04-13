@@ -51,12 +51,12 @@ export class TransactionService implements Contracts.TransactionService {
 		const publicKey = accountKey.to_public();
 
 		if (Buffer.from(publicKey.as_bytes()).toString("hex") !== input.from) {
-			throw Error('Public key doesn\'t match the given mnemonic');
+			throw Error("Public key doesn't match the given mnemonic");
 		}
 
 		// Gather all **used** spend and change addresses of the account
 		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(this.#config, input.from);
-		let usedAddresses: string[] = [...usedSpendAddresses.values(), ...usedChangeAddresses.values()];
+		const usedAddresses: string[] = [...usedSpendAddresses.values(), ...usedChangeAddresses.values()];
 
 		// Now get utxos for those addresses
 		const utxos: UnspentTransaction[] = await listUnspentTransactions(usedAddresses, this.#config); // when more that one utxo, they seem to be ordered by amount descending

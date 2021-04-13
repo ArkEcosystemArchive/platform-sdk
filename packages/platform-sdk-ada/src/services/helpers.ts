@@ -20,11 +20,11 @@ const postGraphql = async (config: Coins.Config, query: string): Promise<Record<
 };
 
 export const submitTransaction = async (toBroadcast: string, config: Coins.Config): Promise<string> => {
-	return (await postGraphql(
+	return ((await postGraphql(
 		config,
 		`mutation { submitTransaction(transaction: "${toBroadcast}") { hash } }`,
-	) as any).hash;
-}
+	)) as any).hash;
+};
 
 export const fetchTransaction = async (id: string, config: Coins.Config): Promise<object[]> => {
 	const query = `
@@ -193,7 +193,10 @@ export const fetchUsedAddressesData = async (config: Coins.Config, addresses: st
 		.sort();
 };
 
-export const listUnspentTransactions = async (addresses: string[], config: Coins.Config): Promise<UnspentTransaction[]> => {
+export const listUnspentTransactions = async (
+	addresses: string[],
+	config: Coins.Config,
+): Promise<UnspentTransaction[]> => {
 	return (
 		await postGraphql(
 			config,
@@ -213,7 +216,7 @@ export const listUnspentTransactions = async (addresses: string[], config: Coins
 				  txHash
 				  value
 				}
-			}`
+			}`,
 		)
 	).utxos;
 };
