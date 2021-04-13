@@ -385,8 +385,7 @@ export class WalletRepository implements IWalletRepository {
 			} catch {
 				// If we end up here the wallet had previously been
 				// partially restored but we again failed to fully
-				// restore it which means we will just return the
-				// instance again and let the consumer try again.
+				// restore it which means the has to consumer try again.
 			}
 		}
 	}
