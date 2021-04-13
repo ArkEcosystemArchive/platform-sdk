@@ -8,7 +8,7 @@ import {
 	fetchTransactions,
 	fetchUtxosAggregate,
 	submitTransaction,
-	usedAddressesForAccount
+	usedAddressesForAccount,
 } from "./helpers";
 
 export class ClientService implements Contracts.ClientService {
@@ -54,12 +54,15 @@ export class ClientService implements Contracts.ClientService {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transaction", "walletId");
 		}
 
-		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(this.#config, query?.walletId);
+		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(
+			this.#config,
+			query?.walletId,
+		);
 
 		const transactions = (await fetchTransactions(
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
-			this.#config)
-		) as any;
+			this.#config,
+		)) as any;
 
 		return Helpers.createTransactionDataCollectionWithType(
 			transactions,
@@ -78,7 +81,7 @@ export class ClientService implements Contracts.ClientService {
 
 		const balance = await fetchUtxosAggregate(
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
-			this.#config
+			this.#config,
 		);
 
 		return new WalletData({

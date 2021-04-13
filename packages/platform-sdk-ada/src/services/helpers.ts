@@ -1,6 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Buffer } from "buffer";
+
 import { addressFromAccountExtPublicKey } from "./identity/shelley";
 import { UnspentTransaction } from "./transaction.models";
 
@@ -19,11 +20,11 @@ const postGraphql = async (config: Coins.Config, query: string): Promise<Record<
 };
 
 export const submitTransaction = async (toBroadcast: string, config: Coins.Config): Promise<string> => {
-	return (await postGraphql(
+	return ((await postGraphql(
 		config,
 		`mutation { submitTransaction(transaction: "${toBroadcast}") { hash } }`,
-	) as any).hash;
-}
+	)) as any).hash;
+};
 export const fetchTransaction = async (id: string, config: Coins.Config): Promise<object[]> => {
 	const query = `
 			{
@@ -53,7 +54,7 @@ export const fetchTransaction = async (id: string, config: Coins.Config): Promis
 			}`;
 
 	return ((await postGraphql(config, query)) as any).transactions;
-}
+};
 
 export const fetchTransactions = async (addresses: string[], config: Coins.Config): Promise<object[]> => {
 	const query = `
@@ -101,13 +102,13 @@ export const fetchTransactions = async (addresses: string[], config: Coins.Confi
 			}`;
 
 	return ((await postGraphql(config, query)) as any).transactions;
-}
+};
 
 export const fetchNetworkTip = async (config: Coins.Config): Promise<number> => {
 	const query = `{ cardano { tip { slotNo } } }`;
 
 	return parseInt(((await postGraphql(config, query)) as any).cardano.tip.slotNo);
-}
+};
 
 export const usedAddressesForAccount = async (config: Coins.Config, accountPublicKey: string) => {
 	const networkId: string = await config.get<string>(Coins.ConfigKey.CryptoNetworkId);
@@ -134,17 +135,22 @@ export const usedAddressesForAccount = async (config: Coins.Config, accountPubli
 		offset += 20;
 	} while (!exhausted);
 	return { usedSpendAddresses, usedChangeAddresses };
-}
+};
 
-export const addressesChunk = async (networkId: string, accountPublicKey: string, isChange: boolean, offset: number): Promise<string[]> => {
+export const addressesChunk = async (
+	networkId: string,
+	accountPublicKey: string,
+	isChange: boolean,
+	offset: number,
+): Promise<string[]> => {
 	const publicKey = Buffer.from(accountPublicKey, "hex");
 
 	const addresses: string[] = [];
-for (let i = offset; i < offset + 20; ++i) {
-	addresses.push(addressFromAccountExtPublicKey(publicKey, isChange, i, networkId));
-}
-return addresses;
-}
+	for (let i = offset; i < offset + 20; ++i) {
+		addresses.push(addressFromAccountExtPublicKey(publicKey, isChange, i, networkId));
+	}
+	return addresses;
+};
 
 export const fetchUsedAddressesData = async (config: Coins.Config, addresses: string[]): Promise<string[]> => {
 	const query = `
@@ -182,13 +188,14 @@ export const fetchUsedAddressesData = async (config: Coins.Config, addresses: st
 				}
 			}`;
 	return ((await postGraphql(config, query)) as any).transactions
-	.flatMap((tx) => tx.inputs.map((i) => i.address).concat(tx.outputs.map((o) => o.address)))
-	.sort();
-}
+		.flatMap((tx) => tx.inputs.map((i) => i.address).concat(tx.outputs.map((o) => o.address)))
+		.sort();
+};
 
 export const listUnspentTransactions = async (address: string, config: Coins.Config): Promise<UnspentTransaction[]> => {
 	return (
-		await postGraphql(config,
+		await postGraphql(
+			config,
 			`{
 				utxos(
 				  order_by: { value: desc }
@@ -205,7 +212,7 @@ export const listUnspentTransactions = async (address: string, config: Coins.Con
 				  }
 				  value
 				}
-			  }`
+			  }`,
 		)
 	).utxos;
 };
@@ -230,4 +237,4 @@ export const fetchUtxosAggregate = async (addresses: string[], config: Coins.Con
 				}
 			}`;
 	return ((await postGraphql(config, query)) as any).utxos_aggregate.aggregate.sum.value;
-}
+};
