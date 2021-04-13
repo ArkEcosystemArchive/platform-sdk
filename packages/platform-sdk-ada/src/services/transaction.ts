@@ -1,8 +1,19 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import CardanoWasm, { Address, Bip32PrivateKey, Bip32PublicKey } from "@emurgo/cardano-serialization-lib-nodejs";
+import CardanoWasm, {
+	Address,
+	BigNum,
+	Bip32PrivateKey,
+	Bip32PublicKey
+} from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
-import { fetchNetworkTip, listUnspentTransactions, usedAddressesForAccount } from "./helpers";
+import {
+	addUtxoInput,
+	fetchNetworkTip,
+	listUnspentTransactions,
+	usedAddressesForAccount,
+	utxoToTxInput
+} from "./helpers";
 import { deriveAccountKey, deriveAddress, deriveChangeKey, deriveRootKey, deriveSpendKey } from "./identity/shelley";
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
@@ -65,21 +76,16 @@ export class TransactionService implements Contracts.TransactionService {
 		// TODO Need to make sure it covers the fees also. We need to be clever here.
 		const usedUtxos: UnspentTransaction[] = [];
 		const requestedAmount: number = parseInt(input.data.amount); // TODO see if we need to use bigint here
-		const amount = 0;
+		let totalTxAmount = BigNum.from_str("0");
+
 		for (let i = 0; i < utxos.length; i++) {
 			const utxo: UnspentTransaction = utxos[i];
-			usedUtxos.push(utxo);
-			txBuilder.add_input(
-				Address.from_bech32(utxo.address),
-				CardanoWasm.TransactionInput.new(
-					CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.txHash, "hex")),
-					parseInt(utxo.index),
-				),
-				createValue(utxo.value),
-			);
-
-			if (amount >= requestedAmount) {
-				// TODO need to consider fees here
+			const { added, amount, fee } = addUtxoInput(txBuilder, utxo);
+			if (added) {
+				usedUtxos.push(utxo);
+				totalTxAmount = amount.checked_add(amount).checked_add(fee);
+			}
+			if (totalTxAmount.compare(BigNum.from_str(input.data.amount)) > 0) {
 				break;
 			}
 		}
@@ -99,15 +105,16 @@ export class TransactionService implements Contracts.TransactionService {
 			txBuilder.set_ttl(input.data.expiration);
 		}
 
+		const addresses = await this.deriveAddressesAndSigningKeys(publicKey, networkId, accountKey);
+
 		// Calculate the min fee required and send any change to an address
-		txBuilder.add_change_if_needed(CardanoWasm.Address.from_bech32(input.from));
+		txBuilder.add_change_if_needed(CardanoWasm.Address.from_bech32(addresses[-1].address));
 
 		// Once the transaction is ready, we build it to get the tx body without witnesses
 		const txBody = txBuilder.build();
 		const txHash = CardanoWasm.hash_transaction(txBody);
 
 		// Add the signatures
-		const addresses = await this.deriveAddressesAndSigningKeys(publicKey, networkId, accountKey);
 		const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
 		usedUtxos.forEach((utxo) => {
 			console.log("utxo", utxo);
