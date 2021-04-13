@@ -86,7 +86,7 @@ export class Wallet implements IReadWriteWallet {
 	 * These methods allow to switch out the underlying implementation of certain things like the coin.
 	 */
 
-	public async setCoin(coin: string, network: string, options: { sync: boolean; } = { sync: true }): Promise<IReadWriteWallet> {
+	public async setCoin(coin: string, network: string): Promise<IReadWriteWallet> {
 		if (this.usesCustomPeer() && this.peers().has(coin, network)) {
 			this.#coin = makeCoin(
 				coin,
@@ -108,9 +108,7 @@ export class Wallet implements IReadWriteWallet {
 		 */
 		try {
 			if (!this.#coin.hasBeenSynchronized()) {
-				if (options.sync) {
-					await this.#coin.__construct();
-				}
+				await this.#coin.__construct();
 			}
 
 			this.markAsFullyRestored();
@@ -119,10 +117,6 @@ export class Wallet implements IReadWriteWallet {
 		}
 
 		return this;
-	}
-
-	public async connect(): Promise<void> {
-		await this.#coin.__construct();
 	}
 
 	public async setIdentity(mnemonic: string): Promise<Wallet> {
