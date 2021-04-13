@@ -45,7 +45,6 @@ export class DelegateService implements IDelegateService {
 			await instance.__construct();
 		}
 
-		const instanceKey: string = `${coin}.${network}.delegates`;
 		const instanceCanFastSync: boolean = instance.network().can(Coins.FeatureFlag.InternalFastDelegateSync);
 
 		const result: Contracts.WalletData[] = [];
@@ -107,7 +106,7 @@ export class DelegateService implements IDelegateService {
 		}
 
 		this.#dataRepository.set(
-			instanceKey,
+			`${coin}.${network}.delegates`,
 			result.map((delegate: Contracts.WalletData) => delegate.toObject()),
 		);
 	}
@@ -140,6 +139,8 @@ export class DelegateService implements IDelegateService {
 						username: delegate.username(),
 						rank: delegate.rank(),
 						explorerLink: wallet.link().wallet(delegate.address()),
+						isDelegate: delegate.isDelegate(),
+						isResignedDelegate: delegate.isResignedDelegate(),
 					});
 				} catch {
 					return undefined;
@@ -158,13 +159,15 @@ export class DelegateService implements IDelegateService {
 		return result;
 	}
 
-	private mapDelegate(delegate: Record<string, string>): IReadOnlyWallet {
+	private mapDelegate(delegate: Record<string, any>): IReadOnlyWallet {
 		return new ReadOnlyWallet({
 			address: delegate.address,
 			publicKey: delegate.publicKey,
 			username: delegate.username,
 			rank: (delegate.rank as unknown) as number,
 			explorerLink: "",
+			isDelegate: delegate.isDelegate,
+			isResignedDelegate: delegate.isResignedDelegate,
 		});
 	}
 }

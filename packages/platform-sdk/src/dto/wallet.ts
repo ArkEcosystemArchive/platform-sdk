@@ -33,6 +33,8 @@ export abstract class AbstractWalletData {
 	// Flags
 	abstract isDelegate(): boolean;
 
+	abstract isResignedDelegate(): boolean;
+
 	abstract isMultiSignature(): boolean;
 
 	abstract isSecondSignature(): boolean;
@@ -46,6 +48,10 @@ export abstract class AbstractWalletData {
 			username: this.username(),
 			rank: this.rank(),
 			votes: this.votes(),
+			isDelegate: this.isDelegate(),
+			isResignedDelegate: this.isResignedDelegate(),
+			isMultiSignature: this.isMultiSignature(),
+			isSecondSignature: this.isSecondSignature(),
 		};
 	}
 

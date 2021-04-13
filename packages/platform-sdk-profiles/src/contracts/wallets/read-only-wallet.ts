@@ -5,4 +5,6 @@ export interface IReadOnlyWallet {
 	rank(): number | undefined;
 	avatar(): string;
 	explorerLink(): string;
+	isDelegate(): boolean;
+	isResignedDelegate(): boolean;
 }
