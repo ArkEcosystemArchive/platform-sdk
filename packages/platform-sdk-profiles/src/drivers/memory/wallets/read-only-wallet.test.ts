@@ -12,6 +12,8 @@ beforeEach(async () => {
 		username: "arkx",
 		rank: 1,
 		explorerLink: "https://google.com",
+		isDelegate: false,
+		isResignedDelegate: false,
 	});
 });
 

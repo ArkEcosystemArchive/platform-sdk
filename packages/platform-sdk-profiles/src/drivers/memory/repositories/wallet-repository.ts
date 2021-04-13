@@ -17,6 +17,7 @@ import {
 	IWalletFactory,
 	IWalletRepository,
 	IWalletExportOptions,
+	ProfileSetting,
 } from "../../../contracts";
 import { injectable } from "inversify";
 import { pqueue } from "../../../helpers";
@@ -93,7 +94,7 @@ export class WalletRepository implements IWalletRepository {
 		};
 
 		// Make sure we have an instance of the coin
-		const service = await container.get<CoinService>(Identifiers.CoinService).push(coin, network);
+		const service = container.get<CoinService>(Identifiers.CoinService).push(coin, network);
 
 		// Bulk request the addresses.
 		const wallets: IReadWriteWallet[] = [];
@@ -173,8 +174,8 @@ export class WalletRepository implements IWalletRepository {
 		return this.storeWallet(await this.#wallets.fromWIFWithEncryption({ coin, network, wif, password }));
 	}
 
-	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: IReadWriteWallet }> {
-		const mnemonic: string = BIP39.generate();
+	public async generate(coin: string, network: string, locale?: string): Promise<{ mnemonic: string; wallet: IReadWriteWallet }> {
+		const mnemonic: string = BIP39.generate(locale);
 
 		return { mnemonic, wallet: await this.importByMnemonic(mnemonic, coin, network) };
 	}
@@ -435,8 +436,6 @@ export class WalletRepository implements IWalletRepository {
 						wallet.coin().config().set(`network.${key}`, value);
 					}
 				}
-
-				wallet.markAsFullyRestored();
 			},
 			{
 				onFailedAttempt: (error) =>
