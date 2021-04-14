@@ -25,7 +25,6 @@ import {
 } from "../../../contracts";
 
 import { MemoryPassword } from "../../../helpers/password";
-import { pqueue } from "../../../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../../../repositories/data-repository";
@@ -271,28 +270,11 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public async restore(password?: string): Promise<void> {
-		let data: IProfileStruct | undefined;
-		let errorReason = "";
-
-		try {
-			if (typeof password === "string") {
-				data = this.decrypt(password);
-			} else {
-				data = JSON.parse(Base64.decode(this.#data.data));
-			}
-		} catch (error) {
-			errorReason = ` Reason: ${error.message}`;
-		}
-
-		if (data === undefined) {
-			throw new Error(`Failed to decode or decrypt the profile.${errorReason}`);
-		}
+		const data: IProfileStruct | undefined = this.validateStruct(password);
 
 		// @TODO: we need to apply migrations before we validate the data to ensure that it is conform
 		// since profiles are now restored on a per-profile basis due to encryption we can't apply them
 		// in bulk to all profiles because the profile data won't be accessible until after restoration
-
-		data = this.validateStruct(data);
 
 		this.peers().fill(data.peers);
 
@@ -305,9 +287,22 @@ export class Profile implements IProfile {
 
 		this.settings().fill(data.settings);
 
-		await this.restoreWallets(this, data.wallets);
+		await this.wallets().fill(data.wallets);
 
-		await this.contacts().fill(data.contacts);
+		this.contacts().fill(data.contacts);
+	}
+
+	/**
+	 * Sync the wallets and contacts with their respective networks.
+	 *
+	 * @param {string} [password]
+	 * @returns {Promise<void>}
+	 * @memberof Profile
+	 */
+	public async sync(): Promise<void> {
+		await this.wallets().restore();
+
+		await this.contacts().restore();
 	}
 
 	/**
@@ -447,44 +442,6 @@ export class Profile implements IProfile {
 	}
 
 	/**
-	 * Restore each wallet by sending network requests to gather data.
-	 *
-	 * One wallet of each network is pre-synced to avoid duplicate
-	 * requests for subsequent imports to save bandwidth and time.
-	 *
-	 * @private
-	 * @param {Profile} profile
-	 * @param {object} wallets
-	 * @returns {Promise<void>}
-	 * @memberof Profile
-	 */
-	private async restoreWallets(profile: IProfile, wallets: object): Promise<void> {
-		const syncWallets = (wallets: object): Promise<IReadWriteWallet[]> =>
-			pqueue([...Object.values(wallets)].map((wallet) => () => profile.wallets().restore(wallet)));
-
-		const earlyWallets: Record<string, object> = {};
-		const laterWallets: Record<string, object> = {};
-
-		for (const [id, wallet] of Object.entries(wallets) as any) {
-			const nid: string = wallet.network;
-
-			if (earlyWallets[nid] === undefined) {
-				earlyWallets[nid] = wallet;
-			} else {
-				laterWallets[id] = wallet;
-			}
-		}
-
-		// These wallets will be synced first so that we have cached coin instances for consecutive sync operations.
-		// This will help with coins like ARK to prevent multiple requests for configuration and syncing operations.
-		await syncWallets(earlyWallets);
-
-		// These wallets will be synced last because they can reuse already existing coin instances from the warmup wallets
-		// to avoid duplicate requests which elongate the waiting time for a user before the wallet is accessible and ready.
-		await syncWallets(laterWallets);
-	}
-
-	/**
 	 * Attempt to encrypt the profile data with the given password.
 	 *
 	 * @param unencrypted The JSON string to encrypt
@@ -517,7 +474,24 @@ export class Profile implements IProfile {
 		return { id, ...data };
 	}
 
-	private validateStruct(data: object): IProfileStruct {
+	private validateStruct(password?: string): IProfileStruct {
+		let data: IProfileStruct | undefined;
+		let errorReason = "";
+
+		try {
+			if (typeof password === "string") {
+				data = this.decrypt(password);
+			} else {
+				data = JSON.parse(Base64.decode(this.#data.data));
+			}
+		} catch (error) {
+			errorReason = ` Reason: ${error.message}`;
+		}
+
+		if (data === undefined) {
+			throw new Error(`Failed to decode or decrypt the profile.${errorReason}`);
+		}
+
 		const { error, value } = Joi.object({
 			id: Joi.string().required(),
 			contacts: Joi.object().pattern(

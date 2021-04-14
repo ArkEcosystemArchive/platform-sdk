@@ -192,7 +192,7 @@ test("#update", async () => {
 	);
 });
 
-test("#restore", async () => {
+test("#fill", async () => {
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
@@ -201,16 +201,19 @@ test("#restore", async () => {
 	await newWallet.setIdentity("this is another top secret passphrase");
 
 	await expect(
-		subject.restore({
-			id: newWallet.id(),
-			coin: newWallet.coinId(),
-			network: newWallet.networkId(),
-			networkConfig: newWallet.config(),
-			address: newWallet.address(),
-			data: newWallet.data(),
-			settings: newWallet.settings(),
+		await subject.fill({
+			[newWallet.id()]: {
+                id: newWallet.id(),
+                coin: newWallet.coinId(),
+                network: newWallet.networkId(),
+                networkConfig: newWallet.config(),
+                address: newWallet.address(),
+                data: newWallet.data(),
+                settings: newWallet.settings(),
+            },
 		}),
-	).resolves.toStrictEqual(newWallet);
+	);
+
 	expect(subject.findById(newWallet.id())).toStrictEqual(newWallet);
 });
 
