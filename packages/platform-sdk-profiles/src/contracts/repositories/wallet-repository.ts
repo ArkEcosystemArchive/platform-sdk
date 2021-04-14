@@ -32,7 +32,7 @@ export interface IWalletRepository {
 		wif: string;
 		password: string;
 	}): Promise<IReadWriteWallet>;
-	generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: IReadWriteWallet }>;
+	generate(coin: string, network: string, locale?: string): Promise<{ mnemonic: string; wallet: IReadWriteWallet }>;
 	fill(struct: Record<string, any>): Promise<void>;
 	restore(): Promise<void>;
 	findById(id: string): IReadWriteWallet;
