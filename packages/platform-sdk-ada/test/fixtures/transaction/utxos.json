@@ -3,7 +3,7 @@
 	"utxos": [
 	  {
 		"address": "addr_test1qqy6nhfyks7wdu3dudslys37v252w2nwhv0fw2nfawemmn8k8ttq8f3gag0h89aepvx3xf69g0l9pf80tqv7cve0l33sw96paj",
-		"index": 1,
+		"index": 0,
 		"txHash": "844def3c505ec24317f8f539a001989951c37a9dea5764e87e60654a86358a4d",
 		"value": "998631727"
 	  },

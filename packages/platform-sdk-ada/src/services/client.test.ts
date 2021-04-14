@@ -167,7 +167,7 @@ describe("ClientService", function () {
 			const transactions = [transfer];
 			const result = await subject.broadcast(transactions);
 			expect(result).toMatchObject({
-				accepted: ["7f9098d27cc4b3818a638c652dadd62df0b77accc121b0dd2287a9cd022fd620"],
+				accepted: ["a190c2c349983eda75bf0e31dc1b84b7fc08462416d9e7a1ac6d780ce2e5b568"],
 				rejected: [],
 				errors: {},
 			});

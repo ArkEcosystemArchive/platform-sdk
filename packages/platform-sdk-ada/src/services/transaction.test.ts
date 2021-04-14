@@ -46,7 +46,7 @@ describe("TransactionService", () => {
 			});
 
 			expect(result).toBeInstanceOf(SignedTransactionData);
-			expect(result.id()).toBeInstanceOf("7f9098d27cc4b3818a638c652dadd62df0b77accc121b0dd2287a9cd022fd620");
+			expect(result.id()).toBe("e2e75b04c4b1dc4d4b3db14166fb02cb26f5b9ed3c49b1e1c8379a21502dc77c");
 		});
 		it("public key not matching mnemonic", () => {
 			nock(/.+/)
