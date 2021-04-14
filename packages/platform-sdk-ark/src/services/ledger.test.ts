@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Address } from "@arkecosystem/crypto-identities";
 import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
 import nock from "nock";
 
@@ -107,8 +107,18 @@ describe("scan", () => {
 
 		const ark = await createMockService(ledger.wallets.record);
 
-		const walletData: Contracts.WalletData[] = await ark.scan({ useLegacy: true });
-		expect(walletData).toHaveLength(1);
-		expect(walletData[0].address()).toBe("D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK");
+		const walletData = await ark.scan({ useLegacy: true });
+		expect(Object.keys(walletData)).toHaveLength(2);
+		expect(walletData).toMatchSnapshot();
+
+		for (const wallet of Object.values(walletData)) {
+			const publicKey: string | undefined = wallet.publicKey();
+
+			if (publicKey) {
+				expect(Address.fromPublicKey(publicKey, { pubKeyHash: 30 })).toBe(wallet.address());
+			}
+
+			expect(wallet.toObject()).toMatchSnapshot();
+		}
 	});
 });

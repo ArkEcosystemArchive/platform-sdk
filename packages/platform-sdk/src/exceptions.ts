@@ -45,3 +45,15 @@ export class CryptoException extends Exception {
 		super(error.message);
 	}
 }
+
+export class BadMethodDependencyException extends Exception {
+	public constructor(klass: string, method: string, dependency: string) {
+		super(`Method ${klass}#${method} depends on ${klass}#${dependency} being called first.`);
+	}
+}
+
+export class BadVariableDependencyException extends Exception {
+	public constructor(klass: string, method: string, dependency: string) {
+		super(`Method ${klass}#${method} depends on ${klass}#${dependency} being declared first.`);
+	}
+}

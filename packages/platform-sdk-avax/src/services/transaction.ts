@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Hash } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/utils";
 import { BN, Buffer } from "avalanche";
 import { AVMAPI } from "avalanche/dist/apis/avm";
@@ -57,7 +58,8 @@ export class TransactionService implements Contracts.TransactionService {
 			).sign(this.#keychain);
 
 			return new SignedTransactionData(
-				uuidv4(),
+				// @ts-ignore - feross/buffer should behave the same as nodejs/buffer
+				Hash.sha256(signedTx.toBuffer()).toString("hex"),
 				{
 					sender: input.from,
 					recipient: input.data.to,

@@ -2261,6 +2261,78 @@ importers:
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
+  ../../packages/platform-sdk-luna:
+    dependencies:
+      '@arkecosystem/platform-sdk': link:../platform-sdk
+      '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
+      '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
+      '@terra-money/terra.js': 1.6.0
+    devDependencies:
+      '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
+      '@types/eslint': 7.2.6
+      '@types/eslint-plugin-prettier': 3.1.0
+      '@types/hapi__joi': 17.1.6
+      '@types/jest': 26.0.20
+      '@types/node': 14.14.31
+      '@types/prettier': 2.2.2
+      '@types/rimraf': 3.0.0
+      '@typescript-eslint/eslint-plugin': 4.16.1_4fe32a7126aebc440d3400f14be2b917
+      '@typescript-eslint/parser': 4.16.1_eslint@7.21.0+typescript@4.2.2
+      cardano-crypto.js: 6.0.0
+      cross-env: 7.0.3
+      eslint: 7.21.0
+      eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
+      eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.2.2
+      eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
+      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
+      got: 11.8.2
+      jest: 26.6.3
+      jest-extended: 0.11.5
+      jest-localstorage-mock: 2.4.7
+      nock: 13.0.10
+      npm-check-updates: 10.3.1
+      prettier: 2.2.1
+      rimraf: 3.0.2
+      ts-jest: 26.5.2_jest@26.6.3+typescript@4.2.2
+      typescript: 4.2.2
+    specifiers:
+      '@arkecosystem/platform-sdk': workspace:*
+      '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http-got': workspace:*
+      '@arkecosystem/platform-sdk-intl': workspace:*
+      '@arkecosystem/platform-sdk-support': workspace:*
+      '@terra-money/terra.js': ~1.6.0
+      '@types/eslint': ^7.2.4
+      '@types/eslint-plugin-prettier': ^3.1.0
+      '@types/hapi__joi': 17.1.6
+      '@types/jest': ^26.0.15
+      '@types/node': ^14.14.25
+      '@types/prettier': ^2.1.5
+      '@types/rimraf': ^3.0.0
+      '@typescript-eslint/eslint-plugin': ^4.7.0
+      '@typescript-eslint/parser': ^4.7.0
+      cardano-crypto.js: ^6.0.0
+      cross-env: ^7.0.2
+      eslint: ^7.13.0
+      eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
+      eslint-plugin-jest: ^24.1.3
+      eslint-plugin-prettier: ^3.1.4
+      eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
+      got: ^11.8.0
+      jest: ^26.6.3
+      jest-extended: ^0.11.5
+      jest-localstorage-mock: ^2.4.3
+      nock: ^13.0.5
+      npm-check-updates: ^10.1.1
+      prettier: ^2.1.2
+      rimraf: ^3.0.2
+      ts-jest: ^26.4.4
+      typescript: 4.2.2
   ../../packages/platform-sdk-markets:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -2321,6 +2393,80 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
+      nock: ^13.0.5
+      npm-check-updates: ^10.1.1
+      prettier: ^2.1.2
+      rimraf: ^3.0.2
+      ts-jest: ^26.4.4
+      typescript: 4.2.2
+  ../../packages/platform-sdk-nano:
+    dependencies:
+      '@arkecosystem/platform-sdk': link:../platform-sdk
+      '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
+      '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
+      nanocurrency: 2.5.0
+      nanocurrency-web: 1.3.1
+    devDependencies:
+      '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
+      '@types/eslint': 7.2.6
+      '@types/eslint-plugin-prettier': 3.1.0
+      '@types/hapi__joi': 17.1.6
+      '@types/jest': 26.0.20
+      '@types/node': 14.14.31
+      '@types/prettier': 2.2.2
+      '@types/rimraf': 3.0.0
+      '@typescript-eslint/eslint-plugin': 4.16.1_4fe32a7126aebc440d3400f14be2b917
+      '@typescript-eslint/parser': 4.16.1_eslint@7.21.0+typescript@4.2.2
+      cardano-crypto.js: 6.0.0
+      cross-env: 7.0.3
+      eslint: 7.21.0
+      eslint-config-prettier: 6.15.0_eslint@7.21.0
+      eslint-plugin-import: 2.22.1_eslint@7.21.0
+      eslint-plugin-jest: 24.1.5_eslint@7.21.0+typescript@4.2.2
+      eslint-plugin-prettier: 3.3.1_da4c556c8860986dc85f62ce7dbc7c7f
+      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.21.0
+      eslint-plugin-tsdoc: 0.2.11
+      got: 11.8.2
+      jest: 26.6.3
+      jest-extended: 0.11.5
+      jest-localstorage-mock: 2.4.7
+      nock: 13.0.10
+      npm-check-updates: 10.3.1
+      prettier: 2.2.1
+      rimraf: 3.0.2
+      ts-jest: 26.5.2_jest@26.6.3+typescript@4.2.2
+      typescript: 4.2.2
+    specifiers:
+      '@arkecosystem/platform-sdk': workspace:*
+      '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http-got': workspace:*
+      '@arkecosystem/platform-sdk-intl': workspace:*
+      '@arkecosystem/platform-sdk-support': workspace:*
+      '@types/eslint': ^7.2.4
+      '@types/eslint-plugin-prettier': ^3.1.0
+      '@types/hapi__joi': 17.1.6
+      '@types/jest': ^26.0.15
+      '@types/node': ^14.14.25
+      '@types/prettier': ^2.1.5
+      '@types/rimraf': ^3.0.0
+      '@typescript-eslint/eslint-plugin': ^4.7.0
+      '@typescript-eslint/parser': ^4.7.0
+      cardano-crypto.js: ^6.0.0
+      cross-env: ^7.0.2
+      eslint: ^7.13.0
+      eslint-config-prettier: ^6.15.0
+      eslint-plugin-import: ~2.22.1
+      eslint-plugin-jest: ^24.1.3
+      eslint-plugin-prettier: ^3.1.4
+      eslint-plugin-simple-import-sort: ^6.0.0
+      eslint-plugin-tsdoc: ~0.2.11
+      got: ^11.8.0
+      jest: ^26.6.3
+      jest-extended: ^0.11.5
+      jest-localstorage-mock: ^2.4.3
+      nanocurrency: ~2.5.0
+      nanocurrency-web: ~1.3.1
       nock: ^13.0.5
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
@@ -5083,6 +5229,25 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-PyRA9sm1Yayuj5OIoJ1hGt2YISX45w9WcFbh6ddT0Z/0yaFxOtGLInr4jUfU1EAFVs0Yfyfev4RNwBlUaHdlDQ==
+  /@terra-money/terra.js/1.6.0:
+    dependencies:
+      axios: 0.21.1
+      bech32: 2.0.0
+      bip32: 2.0.6
+      bip39: 3.0.3
+      bufferutil: 4.0.3
+      crypto-js: 3.3.0
+      decimal.js: 10.2.1
+      readable-stream: 3.6.0
+      secp256k1: 4.0.2
+      tmp: 0.2.1
+      utf-8-validate: 5.0.4
+      ws: 7.4.3_c70f8fc5586dd378b8c866035dbe710b
+    dev: false
+    engines:
+      node: '>=12'
+    resolution:
+      integrity: sha512-8oOJ/KZbYTzv0GFvwC7Uo+5yIpG9NeSvbzLxy6EDmKqIUwIu/MTTBeNyFWCg7bln3fXDY9uRCT3h8ql3FfW4Fg==
   /@tootallnate/once/1.1.2:
     dev: true
     engines:
@@ -6295,6 +6460,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-S4XzBk5sMB+Rcb/LNcpzXr57VRTxgAvaAEDAl1AwRx27j00hT84O6OkteE7u8UB3NuaaygCRrEpqox4uDOrbdQ==
+  /bignumber.js/9.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-t/OYhhJ2SD+YGBQcjY8GzzDHEk9f3nerxjtfa6tlMXfe7frs/WozhvCNoGvpM0P3bNf3Gq5ZRMlGr5f3r4/N8A==
   /bignumber.js/9.0.1:
     resolution:
       integrity: sha512-IdZR9mh6ahOBv/hYGiXyVuyCetmGJhtYkqLBpTStdhEGjegpPlUawydyaF3pbIOFynJTpllEs+NP+CS9jKFLjA==
@@ -7462,6 +7631,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-lyAZ0EMyjDkVvz8WOeVnuCPvKVBXcMv1l5SVqO1yC7PzTwrD/pPje/BIRbWhMoPe436U+Y2nD7f5bFx0kt+Sbg==
+  /crypto-js/3.1.9-1:
+    dev: false
+    resolution:
+      integrity: sha1-/aGedh/Ad+Af+/3G6f38WeiAbNg=
   /crypto-js/3.3.0:
     dev: false
     resolution:
@@ -11834,6 +12007,21 @@ packages:
     dev: false
     resolution:
       integrity: sha1-DMj20OK2IrR5xA1JnEbWS3Vcb18=
+  /nanocurrency-web/1.3.1:
+    dependencies:
+      bignumber.js: 9.0.0
+      blakejs: 1.1.0
+      crypto-js: 3.1.9-1
+    dev: false
+    resolution:
+      integrity: sha512-1p0t8f3qsrYKPeFmQRdlZhAp6KMK81tgGQAcc3psvJLsfpE2rnROVfm6nToyyNy+43H5vpTQFF9Q/1AXGieTgg==
+  /nanocurrency/2.5.0:
+    dependencies:
+      bignumber.js: 9.0.1
+      blakejs: 1.1.0
+    dev: false
+    resolution:
+      integrity: sha512-zMDlgBCML0vMGvldsZN1Np93vwiMjaBLCkOM2tXv0LNIpty8HghDMZiNRzfBPkP70oRhRU+hOpVCEpTzZK5gDQ==
   /nanomatch/1.2.13:
     dependencies:
       arr-diff: 4.0.0
@@ -14493,6 +14681,14 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-FmqJZGduTyvsr2cF3375fqGHUovSwDi/QytexX1Se4BPuPZpTE5Ftp5fg+EFSuEf3lhZqgCRjEG3ydUQ/aNiwA==
+  /tmp/0.2.1:
+    dependencies:
+      rimraf: 3.0.2
+    dev: false
+    engines:
+      node: '>=8.17.0'
+    resolution:
+      integrity: sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==
   /tmpl/1.0.4:
     dev: true
     resolution:

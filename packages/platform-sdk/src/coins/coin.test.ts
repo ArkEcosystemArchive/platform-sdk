@@ -13,47 +13,94 @@ let subject: Coin;
 
 const services = {
 	// @ts-ignore
-	client: { __destruct: jest.fn() },
+	client: { __construct: jest.fn(), __destruct: jest.fn() },
 	// @ts-ignore
-	dataTransferObject: { __destruct: jest.fn() },
+	dataTransferObject: { __construct: jest.fn(), __destruct: jest.fn() },
 	// @ts-ignore
-	fee: { __destruct: jest.fn() },
+	fee: { __construct: jest.fn(), __destruct: jest.fn() },
 	// @ts-ignore
-	identity: { __destruct: jest.fn() },
+	identity: { __construct: jest.fn(), __destruct: jest.fn() },
 	// @ts-ignore
-	knownWallets: { __destruct: jest.fn() },
+	knownWallets: { __construct: jest.fn(), __destruct: jest.fn() },
 	// @ts-ignore
-	ledger: { __destruct: jest.fn() },
+	ledger: { __construct: jest.fn(), __destruct: jest.fn() },
 	// @ts-ignore
-	link: { __destruct: jest.fn() },
+	link: { __construct: jest.fn(), __destruct: jest.fn() },
 	// @ts-ignore
-	message: { __destruct: jest.fn() },
+	message: { __construct: jest.fn(), __destruct: jest.fn() },
 	// @ts-ignore
-	multiSignature: { __destruct: jest.fn() },
+	multiSignature: { __construct: jest.fn(), __destruct: jest.fn() },
 	// @ts-ignore
-	peer: { __destruct: jest.fn() },
+	peer: { __construct: jest.fn(), __destruct: jest.fn() },
 	// @ts-ignore
-	transaction: { __destruct: jest.fn() },
+	transaction: { __construct: jest.fn(), __destruct: jest.fn() },
 };
 
-beforeEach(
-	() =>
-		(subject = new Coin({
-			networks: new NetworkRepository(ARK.manifest.networks),
-			manifest: new Manifest(ARK.manifest),
-			// @ts-ignore
-			config: new Config(
-				{ network: "ark.mainnet" },
-				ValidatorSchema.object({
-					network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet"),
-				}),
-			),
-			// @ts-ignore
-			services,
-		})),
-);
+beforeEach(async () => {
+	subject = new Coin({
+		networks: new NetworkRepository(ARK.manifest.networks),
+		manifest: new Manifest(ARK.manifest),
+		// @ts-ignore
+		config: new Config(
+			{ network: "ark.mainnet" },
+			ValidatorSchema.object({
+				network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet"),
+			}),
+		),
+		specification: {
+			manifest: undefined,
+			schema: undefined,
+			ServiceProvider: {
+				make: () => {
+					services.client.__construct();
+					services.dataTransferObject.__construct();
+					services.fee.__construct();
+					services.identity.__construct();
+					services.knownWallets.__construct();
+					services.ledger.__construct();
+					services.link.__construct();
+					services.message.__construct();
+					services.multiSignature.__construct();
+					services.peer.__construct();
+					services.transaction.__construct();
+
+					return {
+						client: services.client,
+						dataTransferObject: services.dataTransferObject,
+						fee: services.fee,
+						identity: services.identity,
+						knownWallets: services.knownWallets,
+						ledger: services.ledger,
+						link: services.link,
+						message: services.message,
+						multiSignature: services.multiSignature,
+						peer: services.peer,
+						transaction: services.transaction,
+					};
+				},
+			},
+		},
+	});
+});
+
+test("#construct", async () => {
+	await subject.__construct();
+
+	expect(services.client.__construct).toHaveBeenCalledTimes(1);
+	expect(services.dataTransferObject.__construct).toHaveBeenCalledTimes(1);
+	expect(services.fee.__construct).toHaveBeenCalledTimes(1);
+	expect(services.identity.__construct).toHaveBeenCalledTimes(1);
+	expect(services.knownWallets.__construct).toHaveBeenCalledTimes(1);
+	expect(services.ledger.__construct).toHaveBeenCalledTimes(1);
+	expect(services.link.__construct).toHaveBeenCalledTimes(1);
+	expect(services.message.__construct).toHaveBeenCalledTimes(1);
+	expect(services.multiSignature.__construct).toHaveBeenCalledTimes(1);
+	expect(services.peer.__construct).toHaveBeenCalledTimes(1);
+	expect(services.transaction.__construct).toHaveBeenCalledTimes(1);
+});
 
 test("#destruct", async () => {
+	await subject.__construct();
 	await subject.__destruct();
 
 	expect(services.client.__destruct).toHaveBeenCalledTimes(1);
@@ -85,46 +132,68 @@ test("#config", () => {
 	expect(subject.config()).toBeInstanceOf(Config);
 });
 
-test("#client", () => {
+test("#client", async () => {
+	await subject.__construct();
+
 	expect(subject.client()).toBeObject();
 });
 
-test("#dataTransferObject", () => {
+test("#dataTransferObject", async () => {
+	await subject.__construct();
+
 	expect(subject.dataTransferObject()).toBeObject();
 });
 
-test("#fee", () => {
+test("#fee", async () => {
+	await subject.__construct();
+
 	expect(subject.fee()).toBeObject();
 });
 
-test("#identity", () => {
+test("#identity", async () => {
+	await subject.__construct();
+
 	expect(subject.identity()).toBeObject();
 });
 
-test("#knownWallets", () => {
+test("#knownWallets", async () => {
+	await subject.__construct();
+
 	expect(subject.knownWallets()).toBeObject();
 });
 
-test("#ledger", () => {
+test("#ledger", async () => {
+	await subject.__construct();
+
 	expect(subject.ledger()).toBeObject();
 });
 
-test("#link", () => {
+test("#link", async () => {
+	await subject.__construct();
+
 	expect(subject.link()).toBeObject();
 });
 
-test("#message", () => {
+test("#message", async () => {
+	await subject.__construct();
+
 	expect(subject.message()).toBeObject();
 });
 
-test("#multiSignature", () => {
+test("#multiSignature", async () => {
+	await subject.__construct();
+
 	expect(subject.multiSignature()).toBeObject();
 });
 
-test("#peer", () => {
+test("#peer", async () => {
+	await subject.__construct();
+
 	expect(subject.peer()).toBeObject();
 });
 
-test("#transaction", () => {
+test("#transaction", async () => {
+	await subject.__construct();
+
 	expect(subject.transaction()).toBeObject();
 });

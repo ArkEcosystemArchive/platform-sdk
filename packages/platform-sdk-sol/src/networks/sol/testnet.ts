@@ -11,6 +11,7 @@ const network: Coins.CoinNetwork = {
 	},
 	crypto: {
 		slip44: 501,
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://testnet.solana.com"],

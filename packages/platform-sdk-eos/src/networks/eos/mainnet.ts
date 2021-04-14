@@ -16,6 +16,7 @@ const network: Coins.CoinNetwork = {
 		signingMethods: {
 			privateKey: true,
 		},
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://eos.greymass.com", "https://api.eosn.io", "https://mainnet.genereos.io"],

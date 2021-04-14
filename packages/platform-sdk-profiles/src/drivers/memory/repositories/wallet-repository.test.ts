@@ -200,17 +200,19 @@ test("#fill", async () => {
 	await newWallet.setCoin("ARK", "ark.devnet");
 	await newWallet.setIdentity("this is another top secret passphrase");
 
-	await subject.fill({
-		[newWallet.id()]: {
-			id: newWallet.id(),
-			coin: newWallet.coinId(),
-			network: newWallet.networkId(),
-			networkConfig: newWallet.config(),
-			address: newWallet.address(),
-			data: newWallet.data(),
-			settings: newWallet.settings(),
-		}
-	});
+	await expect(
+		await subject.fill({
+			[newWallet.id()]: {
+                id: newWallet.id(),
+                coin: newWallet.coinId(),
+                network: newWallet.networkId(),
+                networkConfig: newWallet.config(),
+                address: newWallet.address(),
+                data: newWallet.data(),
+                settings: newWallet.settings(),
+            },
+		}),
+	);
 
 	expect(subject.findById(newWallet.id())).toStrictEqual(newWallet);
 });

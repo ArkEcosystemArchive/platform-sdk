@@ -164,7 +164,7 @@ export class ContactRepository implements IContactRepository {
 	 * @returns {Promise<void>}
 	 * @memberof ContactRepository
 	 */
-	public async syncAll(): Promise<void> {
+	public async restore(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
 		for (const [id, contact] of Object.entries(this.#dataRaw)) {

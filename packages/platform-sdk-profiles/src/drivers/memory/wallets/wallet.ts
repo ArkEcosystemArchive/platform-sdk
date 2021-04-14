@@ -1,8 +1,9 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { decrypt } from "bip38";
+import { decrypt, encrypt } from "bip38";
 import dot from "dot-prop";
+import { decode } from "wif";
 
 import { ExtendedTransactionData } from "../../../dto/transaction";
 import { transformTransactionData, transformTransactionDataCollection } from "../../../dto/transaction-mapper";
@@ -16,7 +17,20 @@ import { SettingRepository } from "../repositories/setting-repository";
 import { Avatar } from "../../../helpers/avatar";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
-import { IPeerRepository, IProfile, IReadWriteWallet, IReadOnlyWallet, IWalletStruct, ProfileSetting, WalletData, WalletFlag, WalletSetting, IDelegateService } from "../../../contracts";
+import {
+	IPeerRepository,
+	IProfile,
+	IReadWriteWallet,
+	IReadOnlyWallet,
+	IWalletStruct,
+	ProfileSetting,
+	WalletData,
+	WalletFlag,
+	WalletSetting,
+	IDelegateService,
+	IExchangeRateService,
+	ICoinService,
+} from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
 export class Wallet implements IReadWriteWallet {
@@ -69,12 +83,43 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	/**
+	 * Connects the coin to the blockchain and configures it.
+	 *
+	 * @remark
+	 * This only needs to be called if `setCoin` is called with `sync: false`.
+	 *
+	 * @returns {Promise<void>}
+	 * @memberof Wallet
+	 */
+	public async connect(): Promise<void> {
+		if (! this.hasCoin()) {
+			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "connect", "coin");
+		}
+
+		await this.#coin.__construct();
+	}
+
+	/**
+	 * Determines if the instance already has a coin set.
+	 *
+	 * @remark
+	 * This only determines if a coin instance has been created, not if it
+	 * has been synchronized and configured with the blockchain network.
+	 *
+	 * @returns {boolean}
+	 * @memberof Wallet
+	 */
+	public hasCoin(): boolean {
+		return this.#coin !== undefined;
+	}
+
+	/**
 	 * These methods allow to switch out the underlying implementation of certain things like the coin.
 	 */
 
-	public async setCoin(coin: string, network: string): Promise<IReadWriteWallet> {
+	 public async setCoin(coin: string, network: string, options: { sync: boolean; } = { sync: true }): Promise<IReadWriteWallet> {
 		if (this.usesCustomPeer() && this.peers().has(coin, network)) {
-			this.#coin = await makeCoin(
+			this.#coin = makeCoin(
 				coin,
 				network,
 				{
@@ -84,7 +129,26 @@ export class Wallet implements IReadWriteWallet {
 				true,
 			);
 		} else {
-			this.#coin = await makeCoin(coin, network);
+			this.#coin = makeCoin(coin, network);
+		}
+
+		/**
+		 * If we fail to construct the coin it means we are having networking
+		 * issues or there is a bug in the coin package. This could also mean
+		 * bad error handling inside the coin package which needs fixing asap.
+		 */
+		try {
+			if (!this.#coin.hasBeenSynchronized()) {
+				if (options.sync) {
+					await this.#coin.__construct();
+
+					this.markAsFullyRestored();
+				} else {
+					this.markAsPartiallyRestored();
+				}
+			}
+		} catch {
+			this.markAsPartiallyRestored();
 		}
 
 		return this;
@@ -206,7 +270,7 @@ export class Wallet implements IReadWriteWallet {
 		}
 
 		return container
-			.get<ExchangeRateService>(Identifiers.ExchangeRateService)
+			.get<IExchangeRateService>(Identifiers.ExchangeRateService)
 			.exchange(this.currency(), this.exchangeCurrency(), DateTime.make(), this.balance().divide(1e8));
 	}
 
@@ -448,19 +512,19 @@ export class Wallet implements IReadWriteWallet {
 	public async transactions(
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransactions({ addresses: [this.address()], ...query });
+		return this.fetchTransactions({ ...query, addresses: [this.address()] });
 	}
 
 	public async sentTransactions(
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransactions({ senderId: this.address(), ...query });
+		return this.fetchTransactions({ ...query, senderId: this.address() });
 	}
 
 	public async receivedTransactions(
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransactions({ recipientId: this.address(), ...query });
+		return this.fetchTransactions({ ...query, recipientId: this.address() });
 	}
 
 	public multiSignature(): Contracts.WalletMultiSignature {
@@ -565,7 +629,11 @@ export class Wallet implements IReadWriteWallet {
 	 * These methods serve as helpers to keep the wallet data updated.
 	 */
 
-	public async sync(): Promise<void> {
+	public async sync(options: { resetCoin: boolean; } = { resetCoin: false }): Promise<void> {
+		if (options.resetCoin) {
+			this.#coin = makeCoin(this.coinId(), this.networkId(), {}, true);
+		}
+
 		await this.setCoin(this.coinId(), this.networkId());
 	}
 
@@ -651,12 +719,21 @@ export class Wallet implements IReadWriteWallet {
 		return this.coin().identity().wif().fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"));
 	}
 
+	public async setWif(mnemonic: string, password: string): Promise<IReadWriteWallet> {
+		const { compressed, privateKey } = decode(await this.coin().identity().wif().fromMnemonic(mnemonic));
+
+		this.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
+
+		return this;
+	}
+
 	public usesWIF(): boolean {
 		return this.data().has(WalletData.Bip38EncryptedKey);
 	}
 
 	public markAsFullyRestored(): void {
 		this.#restorationState.full = true;
+		this.#restorationState.partial = false;
 	}
 
 	public hasBeenFullyRestored(): boolean {
@@ -664,6 +741,7 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public markAsPartiallyRestored(): void {
+		this.#restorationState.full = false;
 		this.#restorationState.partial = true;
 	}
 

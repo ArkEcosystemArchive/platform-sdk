@@ -48,24 +48,27 @@ export class CoinService implements ICoinService {
 		return instance;
 	}
 
-	public async push(coin: string, network: string, options: object = {}, useForce = false): Promise<Coins.Coin> {
+	public push(coin: string, network: string, options: object = {}, useForce = false): Coins.Coin {
 		if (!useForce && this.has(coin, network)) {
 			return this.get(coin, network);
 		}
 
-		this.#dataRepository.set(
-			`${coin}.${network}`,
-			await Coins.CoinFactory.make(container.get<Coins.CoinSpec>(Identifiers.Coins)[coin.toUpperCase()], {
-				network,
-				httpClient: container.get(Identifiers.HttpClient),
-				...options,
-			}),
-		);
+		const instance = Coins.CoinFactory.make(container.get<Coins.CoinSpec>(Identifiers.Coins)[coin.toUpperCase()], {
+			network,
+			httpClient: container.get(Identifiers.HttpClient),
+			...options,
+		});
+
+		this.#dataRepository.set(`${coin}.${network}`, instance);
 
 		return this.get(coin, network);
 	}
 
 	public has(coin: string, network: string): boolean {
 		return this.#dataRepository.has(`${coin}.${network}`);
+	}
+
+	public flush(): void {
+		this.#dataRepository.flush();
 	}
 }

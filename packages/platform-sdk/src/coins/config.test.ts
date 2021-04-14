@@ -68,6 +68,7 @@ test("ConfigKey", () => {
 		  "Bech32": "network.crypto.bech32",
 		  "CryptoAssetId": "network.crypto.assetId",
 		  "CryptoBlockchainId": "network.crypto.blockchainId",
+		  "CryptoChainId": "network.crypto.chainId",
 		  "CryptoNetworkId": "network.crypto.networkId",
 		  "CurrencyTicker": "network.currency.ticker",
 		  "HttpClient": "httpClient",

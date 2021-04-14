@@ -30,6 +30,7 @@
 		"symbol": "DѦ"
 	},
 	"crypto": {
+		"expirationType": "height",
 		"slip44": 1,
 		"signingMethods": {
 			"mnemonic": true,
@@ -167,6 +168,7 @@
 			"symbol": "DѦ"
 		},
 		"crypto": {
+			"expirationType": "height",
 			"slip44": 1,
 			"signingMethods": {
 				"mnemonic": true,

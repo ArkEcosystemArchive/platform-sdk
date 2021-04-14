@@ -14,6 +14,7 @@ const network: Coins.CoinNetwork = {
 		signingMethods: {
 			mnemonic: true,
 		},
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://horizon.stellar.org"],

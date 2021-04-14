@@ -16,6 +16,7 @@ const network: Coins.CoinNetwork = {
 		signingMethods: {
 			privateKey: true,
 		},
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://worbli-testnet.eosblocksmith.io", "https://worbli-testnet.eosphere.io"],

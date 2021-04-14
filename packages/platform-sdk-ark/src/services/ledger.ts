@@ -2,6 +2,7 @@ import { ARKTransport } from "@arkecosystem/ledger-transport";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { HDKey } from "@arkecosystem/platform-sdk-crypto";
 
+import { WalletData } from "../dto";
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";
 
@@ -75,12 +76,14 @@ export class LedgerService implements Contracts.LedgerService {
 		return this.#transport.signMessageWithSchnorr(path, payload);
 	}
 
-	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.WalletData[]> {
+	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.LedgerWalletList> {
 		const pageSize = 5;
 		let page = 0;
 		const slip44 = this.#config.get<number>("network.crypto.slip44");
 
+		const addressCache: Record<string, { address: string; publicKey: string }> = {};
 		let wallets: Contracts.WalletData[] = [];
+
 		let hasMore = true;
 		do {
 			const addresses: string[] = [];
@@ -93,8 +96,11 @@ export class LedgerService implements Contracts.LedgerService {
 				for (const accountIndex of createRange(page, pageSize)) {
 					const path: string = formatLedgerDerivationPath({ coinType: slip44, account: accountIndex });
 					const publicKey: string = await this.getPublicKey(path);
+					const address: string = await this.#identity.address().fromPublicKey(publicKey);
 
-					addresses.push(await this.#identity.address().fromPublicKey(publicKey));
+					addresses.push(address);
+
+					addressCache[path] = { address, publicKey };
 				}
 
 				const collection = await this.#client.wallets({ addresses });
@@ -103,22 +109,24 @@ export class LedgerService implements Contracts.LedgerService {
 
 				hasMore = collection.isNotEmpty();
 			} else {
+				const path = `m/44'/${slip44}'/0'`;
+
 				/**
 				 * @remarks
 				 * This is the new BIP44 compliant derivation which will be used by default.
 				 */
-				const compressedPublicKey = await this.getExtendedPublicKey(`m/44'/${slip44}'/0'`);
+				const compressedPublicKey = await this.getExtendedPublicKey(path);
 
 				for (const addressIndex of createRange(page, pageSize)) {
-					addresses.push(
-						await this.#identity
-							.address()
-							.fromPublicKey(
-								HDKey.fromCompressedPublicKey(compressedPublicKey)
-									.derive(`m/0/${addressIndex}`)
-									.publicKey.toString("hex"),
-							),
-					);
+					const publicKey: string = HDKey.fromCompressedPublicKey(compressedPublicKey)
+						.derive(`m/0/${addressIndex}`)
+						.publicKey.toString("hex");
+
+					const address: string = await this.#identity.address().fromPublicKey(publicKey);
+
+					addresses.push(address);
+
+					addressCache[`${path}/0/${addressIndex}`] = { address, publicKey };
 				}
 
 				const collections = await Promise.all(
@@ -135,6 +143,30 @@ export class LedgerService implements Contracts.LedgerService {
 			page++;
 		} while (hasMore);
 
-		return wallets;
+		// Create a mapping of paths and wallets that have been found.
+		const cold: Contracts.LedgerWalletList = {};
+		const used: Contracts.LedgerWalletList = {};
+
+		for (const [path, { address, publicKey }] of Object.entries(addressCache)) {
+			const matchingWallet: Contracts.WalletData | undefined = wallets.find(
+				(wallet: Contracts.WalletData) => wallet.address() === address,
+			);
+
+			if (matchingWallet === undefined) {
+				if (Object.keys(cold).length > 0) {
+					continue;
+				}
+
+				cold[path] = new WalletData({
+					address,
+					publicKey,
+					balance: 0,
+				});
+			} else {
+				used[path] = matchingWallet;
+			}
+		}
+
+		return { ...cold, ...used };
 	}
 }
