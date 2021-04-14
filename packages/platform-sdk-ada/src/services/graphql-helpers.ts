@@ -51,7 +51,7 @@ export const fetchTransaction = async (id: string, config: Coins.Config): Promis
 				}
 			}`;
 
-	return ((await postGraphql(config, query)) as any).transactions;
+	return (await postGraphql(config, query)).transactions[0];
 };
 
 export const fetchTransactions = async (addresses: string[], config: Coins.Config): Promise<object[]> => {

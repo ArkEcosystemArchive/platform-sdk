@@ -50,13 +50,13 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		if (query?.walletId === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transaction", "walletId");
+		if (query.senderPublicKey === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "transactions", "senderPublicKey");
 		}
 
 		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(
 			this.#config,
-			query?.walletId,
+			query.senderPublicKey,
 		);
 
 		const transactions = (await fetchTransactions(
