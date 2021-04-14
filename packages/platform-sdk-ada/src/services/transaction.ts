@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import CardanoWasm, { BigNum, Bip32PrivateKey, Bip32PublicKey } from "@emurgo/cardano-serialization-lib-nodejs";
+import CardanoWasm, { BigNum, Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
 import {
@@ -7,16 +7,9 @@ import {
 	deriveAddressesAndSigningKeys,
 	fetchNetworkTip,
 	listUnspentTransactions,
-	usedAddressesForAccount
+	usedAddressesForAccount,
 } from "./helpers";
-import {
-	addressFromAccountExtPublicKey,
-	deriveAccountKey,
-	deriveAddress,
-	deriveChangeKey,
-	deriveRootKey,
-	deriveSpendKey
-} from "./identity/shelley";
+import { deriveAccountKey, deriveAddress, deriveRootKey } from "./identity/shelley";
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
 

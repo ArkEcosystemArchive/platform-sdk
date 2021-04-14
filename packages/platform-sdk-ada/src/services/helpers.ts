@@ -276,7 +276,11 @@ export const utxoToTxInput = (utxo: UnspentTransaction): TransactionInput => {
 	);
 };
 
-export const deriveAddressesAndSigningKeys = async (publicKey: Bip32PublicKey, networkId, accountKey: Bip32PrivateKey) => {
+export const deriveAddressesAndSigningKeys = async (
+	publicKey: Bip32PublicKey,
+	networkId,
+	accountKey: Bip32PrivateKey,
+) => {
 	const addresses: { [index: number]: {} } = { 0: {}, 1: {} };
 	for (let i = 0; i < 20; ++i) {
 		addresses[0][await deriveAddress(publicKey, false, i, networkId)] = await deriveSpendKey(accountKey, i);
