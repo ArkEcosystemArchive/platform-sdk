@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Database } from "./database";
 
 /**
- *
+ * Stores a block and all of its transactions.
  *
  * @param {*} blockHash
  * @param {*} block
@@ -48,7 +48,7 @@ const persistBlock = async (blockHash, block, database: Database, logger: pino.L
 };
 
 /**
- *
+ * Returns the hash of a block for a given height.
  *
  * @param {number} height
  * @param {ApiPromise} polkadot
@@ -68,7 +68,7 @@ const getBlockHash = async (height: number, polkadot: ApiPromise, logger: pino.L
 };
 
 /**
- *
+ * Gets a block with all of its transactions and stores it.
  *
  * @param {number} height
  * @param {ApiPromise} polkadot
@@ -102,7 +102,7 @@ export const indexBlock = async (
 };
 
 /**
- *
+ * Listens for new blocks and stores them.
  *
  * @param {ApiPromise} polkadot
  * @param {Database} database
@@ -122,7 +122,7 @@ export const indexNewBlocks = async (polkadot: ApiPromise, database: Database, l
 };
 
 /**
- *
+ * Creates a new API client instance.
  *
  * @param {string} host
  * @returns {Promise<ApiPromise>}
@@ -131,7 +131,7 @@ export const usePolkadot = async (host: string): Promise<ApiPromise> =>
 	ApiPromise.create({ provider: new WsProvider(host) });
 
 /**
- *
+ * Creates a new database instance.
  *
  * @param {*} flags
  * @param {*} logger

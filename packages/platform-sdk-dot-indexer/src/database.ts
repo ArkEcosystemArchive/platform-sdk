@@ -4,14 +4,14 @@ import { ensureFileSync } from "fs-extra";
 import pino from "pino";
 
 /**
- *
+ * Implements a database storage with SQLite.
  *
  * @export
  * @class Database
  */
 export class Database {
 	/**
-	 *
+	 * The sqlite storage instance.
 	 *
 	 * @type {sqlite3.Database}
 	 * @memberof Database
@@ -19,7 +19,7 @@ export class Database {
 	readonly #database: sqlite3.Database;
 
 	/**
-	 *
+	 * The logger instance.
 	 *
 	 * @type {pino.Logger}
 	 * @memberof Database
@@ -27,7 +27,8 @@ export class Database {
 	readonly #logger: pino.Logger;
 
 	/**
-	 *Creates an instance of Database.
+	 * Creates an instance of Database.
+	 *
 	 * @param {Record<string, string>} flags
 	 * @param {pino.Logger} logger
 	 * @memberof Database
@@ -46,7 +47,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Returns the height of the last block stored.
 	 *
 	 * @returns {number}
 	 * @memberof Database
@@ -62,7 +63,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Stores a block and all of its transactions.
 	 *
 	 * @param {{ hash: string; transactions: { id: string }[] }} block
 	 * @memberof Database
@@ -78,7 +79,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Stores a block with only the absolute minimum of data.
 	 *
 	 * @private
 	 * @param {*} block
@@ -114,7 +115,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Stores a transaction with only the absolute minimum of data.
 	 *
 	 * @private
 	 * @param {*} block
@@ -151,7 +152,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Migrates the database to prepare it for use.
 	 *
 	 * @private
 	 * @memberof Database

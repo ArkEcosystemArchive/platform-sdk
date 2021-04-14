@@ -6,7 +6,7 @@ import { Database } from "./database";
 import { indexBlock, indexNewBlocks, useDatabase, usePolkadot } from "./helpers";
 
 /**
- *
+ * Launch the indexer and subscribe to updates for new data.
  *
  * @param {Record<string, string>} flags
  * @returns {Promise<void>}
