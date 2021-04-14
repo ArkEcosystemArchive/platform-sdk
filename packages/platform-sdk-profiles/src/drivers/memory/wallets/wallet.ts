@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { decrypt, encrypt } from "bip38";
@@ -82,8 +82,17 @@ export class Wallet implements IReadWriteWallet {
 			.map((peer) => peer.host);
 	}
 
-
+	/**
+	 * Connects the coin to the blockchain and configures it.
+	 *
+	 * @returns {Promise<void>}
+	 * @memberof Wallet
+	 */
 	public async connect(): Promise<void> {
+		if (this.#coin === undefined) {
+			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "connect", "coin");
+		}
+
 		await this.#coin.__construct();
 	}
 
@@ -115,10 +124,12 @@ export class Wallet implements IReadWriteWallet {
 			if (!this.#coin.hasBeenSynchronized()) {
 				if (options.sync) {
 					await this.#coin.__construct();
+
+					this.markAsFullyRestored();
+				} else {
+					this.markAsPartiallyRestored();
 				}
 			}
-
-			this.markAsFullyRestored();
 		} catch {
 			this.markAsPartiallyRestored();
 		}
