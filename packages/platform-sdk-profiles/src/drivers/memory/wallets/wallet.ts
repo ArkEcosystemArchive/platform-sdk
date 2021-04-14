@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { decrypt, encrypt } from "bip38";
@@ -83,10 +83,41 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	/**
+	 * Connects the coin to the blockchain and configures it.
+	 *
+	 * @remark
+	 * This only needs to be called if `setCoin` is called with `sync: false`.
+	 *
+	 * @returns {Promise<void>}
+	 * @memberof Wallet
+	 */
+	public async connect(): Promise<void> {
+		if (! this.hasCoin()) {
+			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "connect", "coin");
+		}
+
+		await this.#coin.__construct();
+	}
+
+	/**
+	 * Determines if the instance already has a coin set.
+	 *
+	 * @remark
+	 * This only determines if a coin instance has been created, not if it
+	 * has been synchronized and configured with the blockchain network.
+	 *
+	 * @returns {boolean}
+	 * @memberof Wallet
+	 */
+	public hasCoin(): boolean {
+		return this.#coin !== undefined;
+	}
+
+	/**
 	 * These methods allow to switch out the underlying implementation of certain things like the coin.
 	 */
 
-	public async setCoin(coin: string, network: string): Promise<IReadWriteWallet> {
+	 public async setCoin(coin: string, network: string, options: { sync: boolean; } = { sync: true }): Promise<IReadWriteWallet> {
 		if (this.usesCustomPeer() && this.peers().has(coin, network)) {
 			this.#coin = makeCoin(
 				coin,
@@ -108,10 +139,14 @@ export class Wallet implements IReadWriteWallet {
 		 */
 		try {
 			if (!this.#coin.hasBeenSynchronized()) {
-				await this.#coin.__construct();
-			}
+				if (options.sync) {
+					await this.#coin.__construct();
 
-			this.markAsFullyRestored();
+					this.markAsFullyRestored();
+				} else {
+					this.markAsPartiallyRestored();
+				}
+			}
 		} catch {
 			this.markAsPartiallyRestored();
 		}
