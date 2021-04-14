@@ -92,7 +92,7 @@ export class Wallet implements IReadWriteWallet {
 	 * @memberof Wallet
 	 */
 	public async connect(): Promise<void> {
-		if (! this.hasCoin()) {
+		if (!this.hasCoin()) {
 			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "connect", "coin");
 		}
 
@@ -117,7 +117,11 @@ export class Wallet implements IReadWriteWallet {
 	 * These methods allow to switch out the underlying implementation of certain things like the coin.
 	 */
 
-	 public async setCoin(coin: string, network: string, options: { sync: boolean; } = { sync: true }): Promise<IReadWriteWallet> {
+	public async setCoin(
+		coin: string,
+		network: string,
+		options: { sync: boolean } = { sync: true },
+	): Promise<IReadWriteWallet> {
 		if (this.usesCustomPeer() && this.peers().has(coin, network)) {
 			this.#coin = makeCoin(
 				coin,
@@ -146,6 +150,8 @@ export class Wallet implements IReadWriteWallet {
 				} else {
 					this.markAsPartiallyRestored();
 				}
+			} else {
+				this.markAsFullyRestored();
 			}
 		} catch {
 			this.markAsPartiallyRestored();
@@ -629,7 +635,7 @@ export class Wallet implements IReadWriteWallet {
 	 * These methods serve as helpers to keep the wallet data updated.
 	 */
 
-	public async sync(options: { resetCoin: boolean; } = { resetCoin: false }): Promise<void> {
+	public async sync(options: { resetCoin: boolean } = { resetCoin: false }): Promise<void> {
 		if (options.resetCoin) {
 			this.#coin = makeCoin(this.coinId(), this.networkId(), {}, true);
 		}
