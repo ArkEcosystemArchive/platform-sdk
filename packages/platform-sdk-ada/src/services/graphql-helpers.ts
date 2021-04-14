@@ -144,7 +144,7 @@ export const fetchUsedAddressesData = async (config: Coins.Config, addresses: st
 					}
 				}
 			}`;
-	return (await postGraphql(config, query) as any).transactions
+	return ((await postGraphql(config, query)) as any).transactions
 		.flatMap((tx) => tx.inputs.map((i) => i.address).concat(tx.outputs.map((o) => o.address)))
 		.sort();
 };

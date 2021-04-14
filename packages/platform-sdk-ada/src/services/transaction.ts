@@ -57,10 +57,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// Gather all **used** spend and change addresses of the account
 		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(this.#config, input.from);
-		const usedAddresses: string[] = [
-			...usedSpendAddresses.values(),
-			...usedChangeAddresses.values()
-		];
+		const usedAddresses: string[] = [...usedSpendAddresses.values(), ...usedChangeAddresses.values()];
 
 		// Now get utxos for those addresses
 		const utxos: UnspentTransaction[] = await listUnspentTransactions(usedAddresses, this.#config); // when more that one utxo, they seem to be ordered by amount descending
@@ -116,7 +113,8 @@ export class TransactionService implements Contracts.TransactionService {
 					txHash,
 					addresses[utxo.index][utxo.address].to_raw_key(),
 					// (addresses[0][utxo.address] || addresses[1][utxo.address]).to_raw_key()
-			));
+				),
+			);
 		});
 		const witnesses = CardanoWasm.TransactionWitnessSet.new();
 		witnesses.set_vkeys(vkeyWitnesses);
