@@ -122,7 +122,7 @@ export class Database {
 	private storeTransaction(transaction): void {
 		this.#database
 			.prepare(
-				`INSERT OR IGNORE INTO transactions (hash, time) VALUES (:hash, :time)`,
+				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender) VALUES (:hash, :time, :amount, :fee, :sender)`,
 			)
 			.run({
 				// @TODO: amount, fee, sender
