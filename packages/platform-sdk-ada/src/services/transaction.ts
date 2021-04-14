@@ -2,8 +2,21 @@ import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import CardanoWasm, { BigNum, Bip32PrivateKey, Bip32PublicKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
-import { addUtxoInput, fetchNetworkTip, listUnspentTransactions, usedAddressesForAccount } from "./helpers";
-import { deriveAccountKey, deriveAddress, deriveChangeKey, deriveRootKey, deriveSpendKey } from "./identity/shelley";
+import {
+	addUtxoInput,
+	deriveAddressesAndSigningKeys,
+	fetchNetworkTip,
+	listUnspentTransactions,
+	usedAddressesForAccount
+} from "./helpers";
+import {
+	addressFromAccountExtPublicKey,
+	deriveAccountKey,
+	deriveAddress,
+	deriveChangeKey,
+	deriveRootKey,
+	deriveSpendKey
+} from "./identity/shelley";
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
 
@@ -51,6 +64,7 @@ export class TransactionService implements Contracts.TransactionService {
 		const publicKey = accountKey.to_public();
 
 		if (Buffer.from(publicKey.as_bytes()).toString("hex") !== input.from) {
+			console.log(Buffer.from(publicKey.as_bytes()).toString("hex"), input.from);
 			throw Error("Public key doesn't match the given mnemonic");
 		}
 
@@ -62,22 +76,24 @@ export class TransactionService implements Contracts.TransactionService {
 		const utxos: UnspentTransaction[] = await listUnspentTransactions(usedAddresses, this.#config); // when more that one utxo, they seem to be ordered by amount descending
 
 		// Figure out which of the utxos to use
-		// TODO Need to make sure it covers the fees also. We need to be clever here.
 		const usedUtxos: UnspentTransaction[] = [];
-		const requestedAmount: number = parseInt(input.data.amount); // TODO see if we need to use bigint here
-		let totalTxAmount = BigNum.from_str("0");
+		const requestedAmount: BigNum = BigNum.from_str(input.data.amount);
+		let totalTxAmount: BigNum = BigNum.from_str("0");
+		let totalFeesAmount: BigNum = BigNum.from_str("0");
 
-		for (let i = 0; i < utxos.length; i++) {
-			const utxo: UnspentTransaction = utxos[i];
+		for (const utxo of utxos) {
 			const { added, amount, fee } = addUtxoInput(txBuilder, utxo);
 			if (added) {
 				usedUtxos.push(utxo);
-				totalTxAmount = amount.checked_add(amount).checked_add(fee);
+				totalTxAmount = totalTxAmount.checked_add(amount);
+				totalFeesAmount = totalFeesAmount.checked_add(fee);
 			}
-			if (totalTxAmount.compare(BigNum.from_str(input.data.amount)) > 0) {
+			if (totalTxAmount.compare(requestedAmount.checked_add(totalFeesAmount)) > 0) {
 				break;
 			}
 		}
+		console.log("usedUtxos", usedUtxos);
+		console.log("totalTxAmount", totalTxAmount.to_str(), "totalFeesAmount", totalFeesAmount.to_str(), "totalAmount", totalTxAmount.checked_add(totalFeesAmount).to_str());
 
 		// These are the outputs that will be transferred to other wallets. For now we only support a single output.
 		txBuilder.add_output(
@@ -94,10 +110,12 @@ export class TransactionService implements Contracts.TransactionService {
 			txBuilder.set_ttl(input.data.expiration);
 		}
 
-		const addresses = await this.deriveAddressesAndSigningKeys(publicKey, networkId, accountKey);
+		const addresses = await deriveAddressesAndSigningKeys(publicKey, networkId, accountKey);
 
 		// Calculate the min fee required and send any change to an address
-		txBuilder.add_change_if_needed(CardanoWasm.Address.from_bech32(addresses[-1].address));
+		const changeAddress = deriveAddress(publicKey, true, 0, networkId);
+		console.log("changeAddress", changeAddress);
+		txBuilder.add_change_if_needed(CardanoWasm.Address.from_bech32(changeAddress));
 
 		// Once the transaction is ready, we build it to get the tx body without witnesses
 		const txBody = txBuilder.build();
@@ -207,14 +225,5 @@ export class TransactionService implements Contracts.TransactionService {
 		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 
 		return (tip + ttl).toString();
-	}
-
-	private async deriveAddressesAndSigningKeys(publicKey: Bip32PublicKey, networkId, accountKey: Bip32PrivateKey) {
-		const addresses: { [index: number]: {} } = { 0: {}, 1: {} };
-		for (let i = 0; i < 20; ++i) {
-			addresses[0][await deriveAddress(publicKey, false, i, networkId)] = await deriveSpendKey(accountKey, i);
-			addresses[1][await deriveAddress(publicKey, true, i, networkId)] = await deriveChangeKey(accountKey, i);
-		}
-		return addresses;
 	}
 }

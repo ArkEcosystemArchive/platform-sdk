@@ -153,7 +153,7 @@ it(`can send a transfer`, async function () {
 
 	const wallet = data[0]; // Simon's
 	const mnemonic = wallet.mnemonic;
-	const from: string = wallet.addresses.spend[0];
+	const from: string = wallet.accountPublicKey;
 
 	const wallet2 = data[1]; // Mariano's
 	const to: string = wallet2.addresses.spend[2];
