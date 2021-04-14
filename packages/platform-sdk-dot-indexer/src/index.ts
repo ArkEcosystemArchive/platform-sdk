@@ -5,6 +5,12 @@ import pino from "pino";
 import { Database } from "./database";
 import { indexBlock, indexNewBlocks, useDatabase, usePolkadot } from "./helpers";
 
+/**
+ * Launch the indexer and subscribe to updates for new data.
+ *
+ * @param {Record<string, string>} flags
+ * @returns {Promise<void>}
+ */
 export const subscribe = async (flags: Record<string, string>): Promise<void> => {
 	// Logging
 	const logger = pino({ name: "@arkecosystem/platform-sdk-dot-indexer", level: "debug" });
