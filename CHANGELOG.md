@@ -5,6 +5,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 4.2.14 - 2021-04-14
+
+### Changed
+
+- **[PROFILES]** Split profile `restore` and `sync` (38f26c33, @faustbrian)
+- **[PROFILES]** Make coin instance available offline (9f5f1a16, @faustbrian)
+
+## 4.2.12 - 2021-04-13
+
+### Added
+
+- **[DOT]** Add kusama manifest (1fb0a704, @faustbrian)
+
+### Changed
+
+- **[PROFILES]** Accept locale as argument in `WalletRepository#generate` (5186482f, @dated)
+- **[PROFILES]** Expose if read-only wallet is a (resigned) delegate (a213f030, @faustbrian)
+
+## 4.2.9 - 2021-04-13
+
+### Changed
+
+- **[SDK]** Determine if coin instance uses a custom host (00692b07, @faustbrian)
+
+## 4.2.8 - 2021-04-12
+
+### Changed
+
+- **[PROFILES]** Mark as fully restored after coin has connected (6202ac48, @faustbrian)
+
+## 4.2.7 - 2021-04-12
+
+### Changed
+
+- **[PROFILES]** Reset all restoration states (014ea0fb, @faustbrian)
+
 ## 4.2.6 - 2021-04-12
 
 ### Changed
