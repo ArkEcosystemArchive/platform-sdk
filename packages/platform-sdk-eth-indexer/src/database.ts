@@ -4,7 +4,7 @@ import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
 /**
- *
+ * Implements a database storage with SQLite.
  *
  * @export
  * @class Database
@@ -14,7 +14,8 @@ export class Database {
 	readonly #logger: Logger;
 
 	/**
-	 *Creates an instance of Database.
+	 * Creates an instance of Database.
+	 *
 	 * @param {Record<string, string>} flags
 	 * @param {Logger} logger
 	 * @memberof Database
@@ -33,7 +34,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Returns the height of the last block stored.
 	 *
 	 * @returns {number}
 	 * @memberof Database
@@ -49,7 +50,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Stores a block and all of its transactions.
 	 *
 	 * @param {{ hash: string; transactions: { hash: string }[] }} block
 	 * @memberof Database
@@ -69,7 +70,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Stores a block with only the absolute minimum of data.
 	 *
 	 * @private
 	 * @param {*} block
@@ -83,7 +84,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Stores a transaction with only the absolute minimum of data.
 	 *
 	 * @private
 	 * @param {*} transaction
@@ -107,7 +108,7 @@ export class Database {
 	}
 
 	/**
-	 *
+	 * Migrates the database to prepare it for use.
 	 *
 	 * @private
 	 * @memberof Database

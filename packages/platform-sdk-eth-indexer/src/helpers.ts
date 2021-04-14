@@ -5,7 +5,7 @@ import Web3 from "web3";
 import { Database } from "./database";
 
 /**
- *
+ * Creates a new database instance.
  *
  * @param {*} flags
  * @param {*} logger
@@ -14,14 +14,14 @@ import { Database } from "./database";
 export const useDatabase = (flags, logger): Database => new Database(flags, logger);
 
 /**
- *
+ * Creates a new logger instance.
  *
  * @returns {Logger}
  */
 export const useLogger = (): Logger => new Logger();
 
 /**
- *
+ * Creates a new queue instance.
  *
  * @returns {PQueue}
  */
@@ -36,7 +36,7 @@ export const useQueue = (): PQueue => {
 };
 
 /**
- *
+ * Creates a new API client instance.
  *
  * @param {string} rpc
  * @param {string} wss

@@ -4,7 +4,7 @@ import retry from "p-retry";
 import { useClient, useDatabase, useLogger, useQueue } from "./helpers";
 
 /**
- *
+ * Launch the indexer and subscribe to updates for new data.
  *
  * @param {{
  * 	coin: string;
