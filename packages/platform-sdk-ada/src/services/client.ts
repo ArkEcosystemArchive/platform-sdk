@@ -3,13 +3,13 @@ import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import * as TransactionDTO from "../dto";
 import { TransactionData, WalletData } from "../dto";
+import { usedAddressesForAccount } from "./helpers";
 import {
 	fetchTransaction,
 	fetchTransactions,
 	fetchUtxosAggregate,
 	submitTransaction,
-	usedAddressesForAccount,
-} from "./helpers";
+} from "./graphql-helpers";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
