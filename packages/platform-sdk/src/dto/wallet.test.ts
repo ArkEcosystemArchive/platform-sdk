@@ -58,6 +58,10 @@ test("#toObject", () => {
 		Object {
 		  "address": "address",
 		  "balance": BigNumber {},
+		  "isDelegate": false,
+		  "isMultiSignature": false,
+		  "isResignedDelegate": false,
+		  "isSecondSignature": false,
 		  "nonce": BigNumber {},
 		  "publicKey": "publicKey",
 		  "rank": 5,
@@ -127,6 +131,10 @@ class Wallet extends AbstractWalletData {
 	}
 
 	public isDelegate(): boolean {
+		return false;
+	}
+
+	public isResignedDelegate(): boolean {
 		return false;
 	}
 

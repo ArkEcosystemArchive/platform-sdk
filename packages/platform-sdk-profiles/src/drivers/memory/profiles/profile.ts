@@ -2,7 +2,27 @@
 import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
-import { IProfileStruct, IProfileExportOptions, IContactRepository, ICountAggregate, IDataRepository, INotificationRepository, IPeerRepository, IPluginRepository, IProfile, IProfileInput, IRegistrationAggregate, ISettingRepository, ITransactionAggregate, IWalletAggregate, IWalletRepository, ProfileSetting, IReadWriteWallet } from "../../../contracts";
+import {
+	IProfileStruct,
+	IProfileExportOptions,
+	IContactRepository,
+	IPortfolio,
+	ICountAggregate,
+	IDataRepository,
+	INotificationRepository,
+	IPeerRepository,
+	IPluginRepository,
+	IProfile,
+	IProfileInput,
+	IRegistrationAggregate,
+	ISettingRepository,
+	ITransactionAggregate,
+	IWalletAggregate,
+	IWalletRepository,
+	ProfileSetting,
+	IReadWriteWallet,
+	ICoinService,
+} from "../../../contracts";
 
 import { MemoryPassword } from "../../../helpers/password";
 import { PluginRepository } from "../plugins/plugin-repository";
@@ -19,11 +39,14 @@ import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Migrator } from "./migrator";
+import { Portfolio } from "./portfolio";
+import { container } from "../../../environment/container";
+import { Identifiers } from "../../../environment/container.models";
 
 export class Profile implements IProfile {
 	#data: IProfileInput;
-	#dataRaw: any = {};
 
+	readonly #portfolio: IPortfolio;
 	readonly #contactRepository: IContactRepository;
 	readonly #dataRepository: IDataRepository;
 	readonly #notificationRepository: INotificationRepository;
@@ -40,6 +63,7 @@ export class Profile implements IProfile {
 	public constructor(data: IProfileInput) {
 		this.#data = data;
 
+		this.#portfolio = new Portfolio(this);
 		this.#contactRepository = new ContactRepository(this);
 		this.#dataRepository = new DataRepository();
 		this.#notificationRepository = new NotificationRepository();
@@ -52,6 +76,8 @@ export class Profile implements IProfile {
 		this.#registrationAggregate = new RegistrationAggregate(this);
 		this.#transactionAggregate = new TransactionAggregate(this);
 		this.#walletAggregate = new WalletAggregate(this);
+
+		container.get<ICoinService>(Identifiers.CoinService).flush();
 	}
 
 	public id(): string {
@@ -86,6 +112,10 @@ export class Profile implements IProfile {
 
 	public convertedBalance(): BigNumber {
 		return this.walletAggregate().convertedBalance();
+	}
+
+	public portfolio(): IPortfolio {
+		return this.#portfolio;
 	}
 
 	public contacts(): IContactRepository {
@@ -263,15 +293,16 @@ export class Profile implements IProfile {
 	}
 
 	/**
-	 * Sync the walles and contacts with their respective networks.
+	 * Sync the wallets and contacts with their respective networks.
 	 *
+	 * @param {string} [password]
 	 * @returns {Promise<void>}
 	 * @memberof Profile
 	 */
 	public async sync(): Promise<void> {
-		await this.wallets().syncAll();
+		await this.wallets().restore();
 
-		await this.contacts().syncAll();
+		await this.contacts().restore();
 	}
 
 	/**
@@ -385,6 +416,16 @@ export class Profile implements IProfile {
 		}
 
 		return Base64.encode(JSON.stringify(filtered));
+	}
+
+	/**
+	 * Determine if all wallets that belong to the profile have been restored.
+	 *
+	 * @returns {boolean}
+	 * @memberof Profile
+	 */
+	public hasBeenPartiallyRestored(): boolean {
+		return this.#walletRepository.values().filter((wallet: IReadWriteWallet) => wallet.hasBeenPartiallyRestored()).length > 0;
 	}
 
 	/**

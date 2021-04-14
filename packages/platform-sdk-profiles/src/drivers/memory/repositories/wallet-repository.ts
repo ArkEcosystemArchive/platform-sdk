@@ -1,7 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { sortBy, sortByDesc } from "@arkecosystem/utils";
-import { injectable } from "inversify";
 import retry from "p-retry";
 import { v4 as uuidv4 } from "uuid";
 
@@ -11,7 +10,16 @@ import { CoinService } from "../services/coin-service";
 import { Wallet } from "../wallets/wallet";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { DataRepository } from "../../../repositories/data-repository";
-import { IDataRepository, IProfile, IReadWriteWallet, IWalletFactory, IWalletRepository, IWalletExportOptions } from "../../../contracts";
+import {
+	IDataRepository,
+	IProfile,
+	IReadWriteWallet,
+	IWalletFactory,
+	IWalletRepository,
+	IWalletExportOptions,
+	ProfileSetting,
+} from "../../../contracts";
+import { injectable } from "inversify";
 import { pqueue } from "../../../helpers";
 
 @injectable()
@@ -86,7 +94,7 @@ export class WalletRepository implements IWalletRepository {
 		};
 
 		// Make sure we have an instance of the coin
-		const service = await container.get<CoinService>(Identifiers.CoinService).push(coin, network);
+		const service = container.get<CoinService>(Identifiers.CoinService).push(coin, network);
 
 		// Bulk request the addresses.
 		const wallets: IReadWriteWallet[] = [];
@@ -166,8 +174,8 @@ export class WalletRepository implements IWalletRepository {
 		return this.storeWallet(await this.#wallets.fromWIFWithEncryption({ coin, network, wif, password }));
 	}
 
-	public async generate(coin: string, network: string): Promise<{ mnemonic: string; wallet: IReadWriteWallet }> {
-		const mnemonic: string = BIP39.generate();
+	public async generate(coin: string, network: string, locale?: string): Promise<{ mnemonic: string; wallet: IReadWriteWallet }> {
+		const mnemonic: string = BIP39.generate(locale);
 
 		return { mnemonic, wallet: await this.importByMnemonic(mnemonic, coin, network) };
 	}
@@ -191,7 +199,9 @@ export class WalletRepository implements IWalletRepository {
 	}
 
 	public findByCoin(coin: string): IReadWriteWallet[] {
-		return this.values().filter((wallet: IReadWriteWallet) => wallet.coin().manifest().get<string>("name") === coin);
+		return this.values().filter(
+			(wallet: IReadWriteWallet) => wallet.coin().manifest().get<string>("name") === coin,
+		);
 	}
 
 	public findByCoinWithNetwork(coin: string, network: string): IReadWriteWallet[] {
@@ -294,7 +304,6 @@ export class WalletRepository implements IWalletRepository {
 
 		return sortByDesc(this.values(), sortFunction);
 	}
-
 	/**
 	 * Restore wallets without syncing them.
 	 *
@@ -302,17 +311,19 @@ export class WalletRepository implements IWalletRepository {
 	 * @returns {Promise<void>}
 	 * @memberof WalletRepository
 	 */
-	public async fill(struct: Record<string, any>): Promise<void> {
+	 public async fill(struct: Record<string, any>): Promise<void> {
 		this.#dataRaw = struct;
 
 		for (const item of Object.values(struct)) {
-			const { id, address, data, settings } = item;
+			const { id, coin, network, address, data, settings } = item;
 
 			const wallet = new Wallet(id, item, this.#profile);
 
 			wallet.data().fill(data);
 
 			wallet.settings().fill(settings);
+
+			await wallet.setCoin(coin, network, { sync: false });
 
 			await wallet.setAddress(address, { syncIdentity: false, validate: false });
 
@@ -333,7 +344,7 @@ export class WalletRepository implements IWalletRepository {
 	 * @returns {Promise<void>}
 	 * @memberof Profile
 	 */
-	public async syncAll(): Promise<void> {
+	public async restore(): Promise<void> {
 		const syncWallets = (wallets: object): Promise<IReadWriteWallet[]> =>
 			pqueue([...Object.values(wallets)].map((wallet) => () => this.restoreWallet(wallet)));
 
@@ -376,8 +387,7 @@ export class WalletRepository implements IWalletRepository {
 			} catch {
 				// If we end up here the wallet had previously been
 				// partially restored but we again failed to fully
-				// restore it which means we will just return the
-				// instance again and let the consumer try again.
+				// restore it which means the has to consumer try again.
 			}
 		}
 	}
@@ -427,8 +437,6 @@ export class WalletRepository implements IWalletRepository {
 						wallet.coin().config().set(`network.${key}`, value);
 					}
 				}
-
-				wallet.markAsFullyRestored();
 			},
 			{
 				onFailedAttempt: (error) =>

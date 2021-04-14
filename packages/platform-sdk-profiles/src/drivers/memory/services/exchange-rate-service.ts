@@ -54,9 +54,7 @@ export class ExchangeRateService implements IExchangeRateService {
 	}
 
 	public exchange(currency: string, exchangeCurrency: string, date: DateTime, value: BigNumber): BigNumber {
-		const exchangeRate: BigNumber = container
-			.get<ExchangeRateService>(Identifiers.ExchangeRateService)
-			.rateByDate(currency, exchangeCurrency, date);
+		const exchangeRate: BigNumber = this.rateByDate(currency, exchangeCurrency, date);
 
 		if (exchangeRate.isZero()) {
 			return exchangeRate;

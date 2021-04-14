@@ -16,6 +16,7 @@ const network: Coins.CoinNetwork = {
 		signingMethods: {
 			privateKey: true,
 		},
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://fullnode.meet.one"],

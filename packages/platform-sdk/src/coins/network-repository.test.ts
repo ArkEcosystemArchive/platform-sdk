@@ -12,6 +12,7 @@ test("#all", () => {
 		Object {
 		  "ark.devnet": Object {
 		    "crypto": Object {
+		      "expirationType": "height",
 		      "signingMethods": Object {
 		        "mnemonic": true,
 		        "wif": true,
@@ -156,6 +157,7 @@ test("#all", () => {
 		  },
 		  "ark.mainnet": Object {
 		    "crypto": Object {
+		      "expirationType": "height",
 		      "signingMethods": Object {
 		        "mnemonic": true,
 		        "wif": true,
@@ -300,6 +302,7 @@ test("#all", () => {
 		  },
 		  "compendia.mainnet": Object {
 		    "crypto": Object {
+		      "expirationType": "height",
 		      "signingMethods": Object {
 		        "mnemonic": true,
 		        "wif": true,

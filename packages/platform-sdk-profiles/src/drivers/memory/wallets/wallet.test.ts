@@ -15,7 +15,15 @@ import { Identifiers } from "../../../environment/container.models";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
-import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting, WalletData, WalletFlag, WalletSetting } from "../../../contracts";
+import {
+	IExchangeRateService,
+	IProfile,
+	IReadWriteWallet,
+	ProfileSetting,
+	WalletData,
+	WalletFlag,
+	WalletSetting,
+} from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
 let profile: IProfile;
@@ -649,6 +657,12 @@ describe("#setCoin", () => {
 		);
 
 		subject.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, "password"));
+
+		await expect(subject.wif("password")).resolves.toBe(identity.wif);
+	});
+
+	it("should encrypt the WIF and add it to the wallet", async () => {
+		await subject.setWif(identity.mnemonic, "password");
 
 		await expect(subject.wif("password")).resolves.toBe(identity.wif);
 	});

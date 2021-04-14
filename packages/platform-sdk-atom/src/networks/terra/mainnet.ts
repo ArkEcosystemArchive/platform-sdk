@@ -16,6 +16,7 @@ const network: Coins.CoinNetwork = {
 		signingMethods: {
 			mnemonic: true,
 		},
+		expirationType: "height",
 	},
 	networking: {
 		hosts: [],

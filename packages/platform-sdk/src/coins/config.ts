@@ -46,6 +46,7 @@ export enum ConfigKey {
 	CryptoAssetId = "network.crypto.assetId",
 	CryptoBlockchainId = "network.crypto.blockchainId",
 	CryptoNetworkId = "network.crypto.networkId",
+	CryptoChainId = "network.crypto.chainId",
 	CurrencyTicker = "network.currency.ticker",
 	HttpClient = "httpClient",
 	KnownWallets = "network.knownWallets",

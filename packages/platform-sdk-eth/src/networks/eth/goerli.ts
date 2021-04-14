@@ -16,6 +16,7 @@ const network: Coins.CoinNetwork = {
 			mnemonic: true,
 			privateKey: true,
 		},
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://coins.com/api/eth"],

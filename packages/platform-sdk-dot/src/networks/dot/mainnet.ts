@@ -11,6 +11,7 @@ const network: Coins.CoinNetwork = {
 	},
 	crypto: {
 		networkId: "0",
+		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://rpc.polkadot.io/"],

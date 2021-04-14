@@ -11,16 +11,16 @@ export interface IPlugin {
 }
 
 export interface IPluginRepository {
-    all(): Record<string, IPlugin>;
-    first(): IPlugin;
-    last(): IPlugin;
-    keys(): string[];
-    values(): IPlugin[];
-    push(plugin: Except<IPlugin, "id">): IPlugin;
-    fill(data: object): void;
-    findById(id: string): IPlugin;
-    forget(id: string): void;
-    flush(): void;
-    count(): number;
-    registry(): IPluginRegistry;
+	all(): Record<string, IPlugin>;
+	first(): IPlugin;
+	last(): IPlugin;
+	keys(): string[];
+	values(): IPlugin[];
+	push(plugin: Except<IPlugin, "id">): IPlugin;
+	fill(data: object): void;
+	findById(id: string): IPlugin;
+	forget(id: string): void;
+	flush(): void;
+	count(): number;
+	registry(): IPluginRegistry;
 }

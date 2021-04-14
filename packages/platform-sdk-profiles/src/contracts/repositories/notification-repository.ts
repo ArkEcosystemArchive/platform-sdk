@@ -12,19 +12,19 @@ export interface INotification {
 }
 
 export interface INotificationRepository {
-    all(): Record<string, INotification>;
-    first(): INotification;
-    last(): INotification;
-    keys(): string[];
-    values(): INotification[];
-    get(key: string): INotification;
-    push(value: Except<INotification, "id">): INotification;
-    fill(entries: object): void;
-    has(key: string): boolean;
-    forget(key: string): void;
-    flush(): void;
-    count(): number;
-    read(): INotification[];
-    unread(): INotification[];
-    markAsRead(key: string): void;
+	all(): Record<string, INotification>;
+	first(): INotification;
+	last(): INotification;
+	keys(): string[];
+	values(): INotification[];
+	get(key: string): INotification;
+	push(value: Except<INotification, "id">): INotification;
+	fill(entries: object): void;
+	has(key: string): boolean;
+	forget(key: string): void;
+	flush(): void;
+	count(): number;
+	read(): INotification[];
+	unread(): INotification[];
+	markAsRead(key: string): void;
 }

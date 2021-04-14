@@ -59,7 +59,7 @@ beforeEach(async () => {
 
 	container.rebind(Identifiers.CoinService, coinService);
 
-	await coinService.push("ARK", "ark.devnet");
+	await coinService.push("ARK", "ark.devnet").__construct();
 
 	subject = new KnownWalletService();
 

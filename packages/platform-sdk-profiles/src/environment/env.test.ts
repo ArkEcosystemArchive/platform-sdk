@@ -196,7 +196,6 @@ it("should boot the environment from fixed data", async () => {
 	const newProfile = env.profiles().findById("8101538b-b13a-4b8d-b3d8-e710ccffd385");
 
 	await newProfile.restore();
-	await newProfile.sync();
 
 	expect(newProfile).toBeInstanceOf(Profile);
 	expect(newProfile.wallets().keys()).toHaveLength(1);

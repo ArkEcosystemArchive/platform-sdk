@@ -13,10 +13,12 @@ export const makeCoin = async (coin: string, network: string): Promise<Coins.Coi
 		return coins[cacheKey];
 	}
 
-	coins[cacheKey] = await Coins.CoinFactory.make({ ARK }[coin]!, {
+	coins[cacheKey] = Coins.CoinFactory.make({ ARK }[coin]!, {
 		network,
 		httpClient: new Request(),
 	});
+
+	await coins[cacheKey].__construct();
 
 	return coins[cacheKey];
 };

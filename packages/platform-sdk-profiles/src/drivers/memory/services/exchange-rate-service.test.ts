@@ -27,7 +27,7 @@ beforeEach(async () => {
 	nock(/.+/)
 		// ARK Core
 		.get("/api/node/configuration")
-	.reply(200, require("../../../../test/fixtures/client/configuration.json"))
+		.reply(200, require("../../../../test/fixtures/client/configuration.json"))
 		.get("/api/peers")
 		.reply(200, require("../../../../test/fixtures/client/peers.json"))
 		.get("/api/node/configuration/crypto")
