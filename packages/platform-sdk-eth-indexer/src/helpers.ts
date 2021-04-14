@@ -4,10 +4,27 @@ import Web3 from "web3";
 
 import { Database } from "./database";
 
+/**
+ * Creates a new database instance.
+ *
+ * @param {*} flags
+ * @param {*} logger
+ * @returns {Database}
+ */
 export const useDatabase = (flags, logger): Database => new Database(flags, logger);
 
+/**
+ * Creates a new logger instance.
+ *
+ * @returns {Logger}
+ */
 export const useLogger = (): Logger => new Logger();
 
+/**
+ * Creates a new queue instance.
+ *
+ * @returns {PQueue}
+ */
 export const useQueue = (): PQueue => {
 	const queue = new PQueue({ autoStart: false, concurrency: 10 });
 	// queue.on("active", () => logger.debug(`Size: ${queue.size}  Pending: ${queue.pending}`));
@@ -18,6 +35,13 @@ export const useQueue = (): PQueue => {
 	return queue;
 };
 
+/**
+ * Creates a new API client instance.
+ *
+ * @param {string} rpc
+ * @param {string} wss
+ * @returns {{ rpc: Web3; wss: Web3 }}
+ */
 export const useClient = (rpc: string, wss: string): { rpc: Web3; wss: Web3 } => ({
 	wss: new Web3(new Web3.providers.WebsocketProvider(wss)),
 	rpc: new Web3(rpc),
