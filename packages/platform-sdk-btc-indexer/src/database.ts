@@ -122,13 +122,15 @@ export class Database {
 	private storeTransaction(transaction): void {
 		this.#database
 			.prepare(
-				`INSERT OR IGNORE INTO transactions (hash, inputs, outputs, time) VALUES (:hash, :inputs, :outputs, :time)`,
+				`INSERT OR IGNORE INTO transactions (hash, time) VALUES (:hash, :time)`,
 			)
 			.run({
+				// @TODO: amount, fee, sender
 				hash: transaction.hash,
-				inputs: JSON.stringify(transaction.vin),
-				outputs: JSON.stringify(transaction.vout),
 				time: transaction.time,
+				amount: 0,
+				fee: 0,
+				sender: "address-of-sender",
 			});
 	}
 
@@ -151,19 +153,20 @@ export class Database {
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_number ON blocks (number);
 
 			CREATE TABLE IF NOT EXISTS transactions(
-				hash      VARCHAR(64)   PRIMARY KEY,
-				inputs    TEXT          NOT NULL,
-				outputs   TEXT          NOT NULL,
-				time      INTEGER       NOT NULL
+				hash     VARCHAR(64)   PRIMARY KEY,
+				time     INTEGER       NOT NULL,
+				amount   INTEGER       NOT NULL,
+				fee      INTEGER       NOT NULL,
+				sender   VARCHAR(64)   NOT NULL
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
 
 			CREATE TABLE IF NOT EXISTS errors(
-				id     INTEGER        PRIMARY KEY AUTOINCREMENT,
-				type   VARCHAR(64)    NOT NULL,
-				hash   VARCHAR(64)    NOT NULL,
-				body   TEXT           NOT NULL
+				id     INTEGER       PRIMARY KEY AUTOINCREMENT,
+				type   VARCHAR(64)   NOT NULL,
+				hash   VARCHAR(64)   NOT NULL,
+				body   TEXT          NOT NULL
 			);
 		`);
 	}
