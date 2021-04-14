@@ -85,6 +85,9 @@ export class Wallet implements IReadWriteWallet {
 	/**
 	 * Connects the coin to the blockchain and configures it.
 	 *
+	 * @remark
+	 * This only needs to be called if `setCoin` is called with `sync: false`.
+	 *
 	 * @returns {Promise<void>}
 	 * @memberof Wallet
 	 */
