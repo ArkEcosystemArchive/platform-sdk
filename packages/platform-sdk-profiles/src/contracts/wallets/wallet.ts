@@ -112,4 +112,5 @@ export interface IReadWriteWallet {
 	markAsPartiallyRestored(): void;
 	hasBeenPartiallyRestored(): boolean;
 	connect(): Promise<void>;
+	hasCoin(): boolean;
 }
