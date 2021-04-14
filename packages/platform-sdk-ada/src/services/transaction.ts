@@ -64,7 +64,6 @@ export class TransactionService implements Contracts.TransactionService {
 		const publicKey = accountKey.to_public();
 
 		if (Buffer.from(publicKey.as_bytes()).toString("hex") !== input.from) {
-			console.log(Buffer.from(publicKey.as_bytes()).toString("hex"), input.from);
 			throw Error("Public key doesn't match the given mnemonic");
 		}
 
@@ -92,8 +91,6 @@ export class TransactionService implements Contracts.TransactionService {
 				break;
 			}
 		}
-		console.log("usedUtxos", usedUtxos);
-		console.log("totalTxAmount", totalTxAmount.to_str(), "totalFeesAmount", totalFeesAmount.to_str(), "totalAmount", totalTxAmount.checked_add(totalFeesAmount).to_str());
 
 		// These are the outputs that will be transferred to other wallets. For now we only support a single output.
 		txBuilder.add_output(
@@ -114,7 +111,6 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// Calculate the min fee required and send any change to an address
 		const changeAddress = deriveAddress(publicKey, true, 0, networkId);
-		console.log("changeAddress", changeAddress);
 		txBuilder.add_change_if_needed(CardanoWasm.Address.from_bech32(changeAddress));
 
 		// Once the transaction is ready, we build it to get the tx body without witnesses
@@ -124,7 +120,6 @@ export class TransactionService implements Contracts.TransactionService {
 		// Add the signatures
 		const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
 		usedUtxos.forEach((utxo) => {
-			console.log("utxo", utxo);
 			vkeyWitnesses.add(CardanoWasm.make_vkey_witness(txHash, addresses[utxo.index][utxo.address].to_raw_key()));
 		});
 		const witnesses = CardanoWasm.TransactionWitnessSet.new();
