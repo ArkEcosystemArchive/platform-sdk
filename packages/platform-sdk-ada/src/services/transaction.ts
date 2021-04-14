@@ -5,13 +5,12 @@ import { SignedTransactionData } from "../dto";
 import {
 	addUtxoInput,
 	deriveAddressesAndSigningKeys,
-	fetchNetworkTip,
-	listUnspentTransactions,
 	usedAddressesForAccount,
 } from "./helpers";
 import { deriveAccountKey, deriveAddress, deriveRootKey } from "./identity/shelley";
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
+import { fetchNetworkTip, listUnspentTransactions } from "./graphql-helpers";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
