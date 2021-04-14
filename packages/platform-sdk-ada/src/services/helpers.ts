@@ -9,10 +9,10 @@ import CardanoWasm, {
 } from "@emurgo/cardano-serialization-lib-nodejs";
 import { Buffer } from "buffer";
 
+import { fetchUsedAddressesData } from "./graphql-helpers";
 import { addressFromAccountExtPublicKey, deriveAddress, deriveChangeKey, deriveSpendKey } from "./identity/shelley";
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
-import { fetchNetworkTip, fetchUsedAddressesData } from "./graphql-helpers";
 
 export const usedAddressesForAccount = async (config: Coins.Config, accountPublicKey: string) => {
 	const networkId: string = await config.get<string>(Coins.ConfigKey.CryptoNetworkId);

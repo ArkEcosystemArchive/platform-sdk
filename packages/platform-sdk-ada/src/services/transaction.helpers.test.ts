@@ -1,4 +1,5 @@
-import { BigNum, Value } from "@emurgo/cardano-serialization-lib-nodejs";
+import { Value } from "@emurgo/cardano-serialization-lib-nodejs";
+
 import { createValue } from "./transaction.helpers";
 
 describe("createValue", () => {
