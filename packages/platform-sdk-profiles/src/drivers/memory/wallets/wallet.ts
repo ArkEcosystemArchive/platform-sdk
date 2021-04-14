@@ -92,11 +92,25 @@ export class Wallet implements IReadWriteWallet {
 	 * @memberof Wallet
 	 */
 	public async connect(): Promise<void> {
-		if (this.#coin === undefined) {
+		if (! this.hasCoin()) {
 			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "connect", "coin");
 		}
 
 		await this.#coin.__construct();
+	}
+
+	/**
+	 * Determines if the instance already has a coin set.
+	 *
+	 * @remark
+	 * This only determines if a coin instance has been created, not if it
+	 * has been synchronized and configured with the blockchain network.
+	 *
+	 * @returns {boolean}
+	 * @memberof Wallet
+	 */
+	public hasCoin(): boolean {
+		return this.#coin !== undefined;
 	}
 
 	/**
