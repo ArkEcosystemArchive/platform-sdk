@@ -138,6 +138,10 @@ describe("ClientService", function () {
 		it("#accepted", async () => {
 			nock(/.+/)
 				.post("/")
+				.reply(200, require(`${__dirname}/../../test/fixtures/transaction/transactions-page-1.json`))
+				.post("/")
+				.reply(200, require(`${__dirname}/../../test/fixtures/transaction/transactions-page-2.json`))
+				.post("/")
 				.reply(200, require(`${__dirname}/../../test/fixtures/transaction/utxos.json`))
 				.post("/")
 				.reply(200, require(`${__dirname}/../../test/fixtures/transaction/expiration.json`))

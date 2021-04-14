@@ -147,7 +147,7 @@ const data = [
 	},
 ];
 
-it(`can send a transfer`, async function () {
+it.skip(`can send a transfer`, async function () {
 	const config = createConfig();
 	const client = await ClientService.__construct(config);
 
