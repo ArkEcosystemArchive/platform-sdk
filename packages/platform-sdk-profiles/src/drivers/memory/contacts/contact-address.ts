@@ -3,9 +3,8 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { container } from "../../../environment/container";
 import { makeCoin } from "../../../environment/container.helpers";
 import { Identifiers } from "../../../environment/container.models";
-import { KnownWalletService } from "../services/known-wallet-service";
 import { Avatar } from "../../../helpers/avatar";
-import { IContactAddress, IContactAddressProps } from "../../../contracts";
+import { IContactAddress, IContactAddressProps, IKnownWalletService } from "../../../contracts";
 
 export class ContactAddress implements IContactAddress {
 	readonly #coin: Coins.Coin;
@@ -65,19 +64,19 @@ export class ContactAddress implements IContactAddress {
 
 	public isKnown(): boolean {
 		return container
-			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.get<IKnownWalletService>(Identifiers.KnownWalletService)
 			.is(this.#coin.network().id(), this.address());
 	}
 
 	public isOwnedByExchange(): boolean {
 		return container
-			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.get<IKnownWalletService>(Identifiers.KnownWalletService)
 			.isExchange(this.#coin.network().id(), this.address());
 	}
 
 	public isOwnedByTeam(): boolean {
 		return container
-			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.get<IKnownWalletService>(Identifiers.KnownWalletService)
 			.isTeam(this.#coin.network().id(), this.address());
 	}
 
