@@ -45,10 +45,6 @@ export class Client {
 	 * @memberof Client
 	 */
 	public constructor(flags: Flags, logger: Logger, database: Database) {
-		if (! flags.host.includes("bcoin.quiknode")) {
-			throw new Error("Please provide a BCoin URL from https://www.quiknode.io/.");
-		}
-
 		this.#client = new Request().baseUrl(flags.host);
 		this.#logger = logger;
 		this.#database = database;
