@@ -18,6 +18,7 @@ import { Wallet } from "./wallet";
 import {
 	IExchangeRateService,
 	IProfile,
+	IProfileRepository,
 	IReadWriteWallet,
 	ProfileSetting,
 	WalletData,
@@ -87,7 +88,7 @@ beforeEach(async () => {
 		.reply(200, require("../../../../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
 
-	const profileRepository = container.get<ProfileRepository>(Identifiers.ProfileRepository);
+	const profileRepository = container.get<IProfileRepository>(Identifiers.ProfileRepository);
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 

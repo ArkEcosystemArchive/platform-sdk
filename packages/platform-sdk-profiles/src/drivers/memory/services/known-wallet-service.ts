@@ -3,8 +3,7 @@ import { Contracts } from "@arkecosystem/platform-sdk";
 import { pqueue } from "../../../helpers/queue";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { CoinService } from "./coin-service";
-import { IKnownWalletService } from "../../../contracts";
+import { ICoinService, IKnownWalletService } from "../../../contracts";
 import { injectable } from "inversify";
 
 type KnownWalletRegistry = Record<string, Contracts.KnownWallet[]>;
@@ -16,12 +15,12 @@ export class KnownWalletService implements IKnownWalletService {
 	public async syncAll(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
-		for (const [coin, networks] of container.get<CoinService>(Identifiers.CoinService).entries()) {
+		for (const [coin, networks] of container.get<ICoinService>(Identifiers.CoinService).entries()) {
 			for (const network of networks) {
 				promises.push(async () => {
 					try {
 						this.registry[network] = await container
-							.get<CoinService>(Identifiers.CoinService)
+							.get<ICoinService>(Identifiers.CoinService)
 							.get(coin, network)
 							.knownWallets()
 							.all();

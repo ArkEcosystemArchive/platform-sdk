@@ -30,6 +30,7 @@ import {
 	IDelegateService,
 	IExchangeRateService,
 	ICoinService,
+	IKnownWalletService,
 } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 
@@ -407,18 +408,18 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public isKnown(): boolean {
-		return container.get<KnownWalletService>(Identifiers.KnownWalletService).is(this.networkId(), this.address());
+		return container.get<IKnownWalletService>(Identifiers.KnownWalletService).is(this.networkId(), this.address());
 	}
 
 	public isOwnedByExchange(): boolean {
 		return container
-			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.get<IKnownWalletService>(Identifiers.KnownWalletService)
 			.isExchange(this.networkId(), this.address());
 	}
 
 	public isOwnedByTeam(): boolean {
 		return container
-			.get<KnownWalletService>(Identifiers.KnownWalletService)
+			.get<IKnownWalletService>(Identifiers.KnownWalletService)
 			.isTeam(this.networkId(), this.address());
 	}
 

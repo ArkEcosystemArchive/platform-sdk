@@ -8,9 +8,8 @@ import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { ProfileRepository } from "../repositories/profile-repository";
 import { Wallet } from "../wallets/wallet";
-import { IExchangeRateService, IProfile, IReadWriteWallet, WalletData } from "../../../contracts";
+import { IExchangeRateService, IProfile, IProfileRepository, IReadWriteWallet, WalletData } from "../../../contracts";
 
 let profile: IProfile;
 let subject: IReadWriteWallet;
@@ -42,7 +41,7 @@ beforeEach(async () => {
 		.reply(200, require("../../../../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
 
-	const profileRepository = container.get<ProfileRepository>(Identifiers.ProfileRepository);
+	const profileRepository = container.get<IProfileRepository>(Identifiers.ProfileRepository);
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
