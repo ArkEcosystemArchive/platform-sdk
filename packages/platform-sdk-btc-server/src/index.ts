@@ -172,15 +172,16 @@ export const subscribe = async (flags: {
 		},
 		handler: async (request) => {
 			// @TODO: rate limit or cache
-			return (await client.post('/', {
-				jsonrpc: '1.0',
-				id: uuidv4(),
-				method: 'qn_addressBalance',
-				params: [request.params.wallet]
-			})).json();
+			return (
+				await client.post("/", {
+					jsonrpc: "1.0",
+					id: uuidv4(),
+					method: "qn_addressBalance",
+					params: [request.params.wallet],
+				})
+			).json();
 		},
 	});
-
 
 	await server.start();
 
