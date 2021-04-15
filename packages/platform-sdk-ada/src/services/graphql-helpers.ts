@@ -151,7 +151,7 @@ export const fetchUsedAddressesData = async (config: Coins.Config, addresses: st
 
 export const listUnspentTransactions = async (
 	config: Coins.Config,
-	addresses: string[]
+	addresses: string[],
 ): Promise<UnspentTransaction[]> => {
 	return (
 		await postGraphql(
