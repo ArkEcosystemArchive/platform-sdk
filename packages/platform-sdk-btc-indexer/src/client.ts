@@ -21,22 +21,6 @@ export class Client {
 	readonly #client;
 
 	/**
-	 * The logger instance.
-	 *
-	 * @type {Logger}
-	 * @memberof Client
-	 */
-	readonly #logger: Logger;
-
-	/**
-	 * The database instance.
-	 *
-	 * @type {Database}
-	 * @memberof Client
-	 */
-	readonly #database: Database;
-
-	/**
 	 * Creates an instance of Client.
 	 *
 	 * @param {Flags} flags
@@ -44,10 +28,12 @@ export class Client {
 	 * @param {Database} database
 	 * @memberof Client
 	 */
-	public constructor(flags: Flags, logger: Logger, database: Database) {
+	public constructor(flags: Flags) {
+		if (! flags.host.includes("bcoin.quiknode")) {
+			throw new Error("Please provide a BCoin URL from https://www.quiknode.io/.");
+		}
+
 		this.#client = new Request().baseUrl(flags.host);
-		this.#logger = logger;
-		this.#database = database;
 	}
 
 	/**

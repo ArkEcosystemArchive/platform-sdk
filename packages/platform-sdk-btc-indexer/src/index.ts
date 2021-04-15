@@ -14,7 +14,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	const logger: Logger = useLogger();
 	const queue = useQueue();
 	const database = useDatabase(flags, logger);
-	const client = useClient(flags, logger, database);
+	const client = useClient(flags);
 
 	// Get the last block we stored in the database and grab the latest block
 	// on the network so that we can sync the missing blocks to complete our
