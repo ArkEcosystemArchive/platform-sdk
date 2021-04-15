@@ -4,6 +4,7 @@ import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
 import { Flags } from "./types";
+import { BigNumber } from "@arkecosystem/utils";
 
 /**
  * Implements a database storage with SQLite.
@@ -121,6 +122,10 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeTransaction(transaction): void {
+		const amount: BigNumber = transaction.vout
+			.map((v): BigNumber => BigNumber.make(v.value))
+			.reduce((c: BigNumber, v: BigNumber) => c.plus(v), BigNumber.ZERO);
+
 		this.#database
 			.prepare(
 				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender) VALUES (:hash, :time, :amount, :fee, :sender)`,
@@ -129,7 +134,7 @@ export class Database {
 				// @TODO: amount, fee, sender
 				hash: transaction.hash,
 				time: transaction.time,
-				amount: 0,
+				amount: amount.toString(),
 				fee: 0,
 				sender: "address-of-sender",
 			});
