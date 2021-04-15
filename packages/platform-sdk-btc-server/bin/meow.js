@@ -48,14 +48,6 @@ module.exports = meow(
 				type: "string",
 				isRequired: true,
 			},
-			username: {
-				type: "string",
-				isRequired: true,
-			},
-			password: {
-				type: "string",
-				isRequired: true,
-			},
 		},
 	},
 );

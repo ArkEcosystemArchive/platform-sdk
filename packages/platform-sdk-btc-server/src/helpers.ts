@@ -3,8 +3,6 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import Logger from "@ptkdev/logger";
 import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
-// @ts-ignore
-import urlParseLax from "url-parse-lax";
 
 export const useDatabase = (
 	flags: {
@@ -12,7 +10,6 @@ export const useDatabase = (
 		network: string;
 		database: string;
 	},
-	logger: Logger,
 ): sqlite3.Database =>
 	sqlite3(
 		flags.database ||
@@ -21,8 +18,5 @@ export const useDatabase = (
 
 export const useLogger = (): Logger => new Logger();
 
-export const useClient = (flags: { rpc: string; username: string; password: string }): Contracts.HttpClient => {
-	const { hostname: host, port, protocol } = urlParseLax(flags.rpc);
-
-	return new Request().baseUrl(`${protocol}//${flags.username}:${flags.password}@${host}:${port}`);
-};
+export const useClient = (host: string): Contracts.HttpClient =>
+	new Request().baseUrl(host);
