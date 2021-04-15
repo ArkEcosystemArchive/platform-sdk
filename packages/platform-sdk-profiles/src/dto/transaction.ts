@@ -3,7 +3,6 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { IExchangeRateService, IReadWriteWallet } from "../contracts";
-import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 
