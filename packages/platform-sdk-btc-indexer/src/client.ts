@@ -1,8 +1,6 @@
 import { Request } from "@arkecosystem/platform-sdk-http-got";
-import Logger from "@ptkdev/logger";
 import { v4 as uuidv4 } from "uuid";
 
-import { Database } from "./database";
 import { Flags } from "./types";
 
 /**
@@ -29,10 +27,6 @@ export class Client {
 	 * @memberof Client
 	 */
 	public constructor(flags: Flags) {
-		if (! flags.host.includes("bcoin.quiknode")) {
-			throw new Error("Please provide a BCoin URL from https://www.quiknode.io/.");
-		}
-
 		this.#client = new Request().baseUrl(flags.host);
 	}
 
