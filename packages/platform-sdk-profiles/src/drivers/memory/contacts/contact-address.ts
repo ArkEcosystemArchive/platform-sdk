@@ -1,10 +1,10 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { container } from "../../../environment/container";
-import { makeCoin } from "../../../environment/container.helpers";
 import { Identifiers } from "../../../environment/container.models";
 import { Avatar } from "../../../helpers/avatar";
-import { IContactAddress, IContactAddressProps, IKnownWalletService } from "../../../contracts";
+import { IContactAddress, IContactAddressProps, IKnownWalletService, IProfile } from "../../../contracts";
+import { State } from "../../../environment/state";
 
 export class ContactAddress implements IContactAddress {
 	readonly #coin: Coins.Coin;
@@ -17,7 +17,7 @@ export class ContactAddress implements IContactAddress {
 	}
 
 	public static async make(data: IContactAddressProps): Promise<ContactAddress> {
-		const instance: Coins.Coin = makeCoin(data.coin, data.network);
+		const instance: Coins.Coin = State.profile().coins().push(data.coin, data.network);
 
 		if (!instance.hasBeenSynchronized()) {
 			await instance.__construct();

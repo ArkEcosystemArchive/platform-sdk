@@ -6,8 +6,9 @@ import nock from "nock";
 import { bootContainer } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { CoinService } from "./coin-service";
 import { KnownWalletService } from "./known-wallet-service";
+import { Profile } from "../profiles/profile";
+import { State } from "../../../environment/state";
 
 let subject: KnownWalletService;
 
@@ -55,11 +56,11 @@ beforeEach(async () => {
 		])
 		.persist();
 
-	const coinService = new CoinService();
+	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 
-	container.rebind(Identifiers.CoinService, coinService);
+	State.profile(profile);
 
-	await coinService.push("ARK", "ark.devnet").__construct();
+	await profile.coins().push("ARK", "ark.devnet").__construct();
 
 	subject = new KnownWalletService();
 

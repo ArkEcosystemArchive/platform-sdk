@@ -7,7 +7,6 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { CoinService } from "../src/drivers/memory/services/coin-service";
 import { Contact } from "../src/drivers/memory/contacts/contact";
 import { container } from "../src/environment/container";
 import { DataRepository } from "../src/repositories/data-repository";
@@ -27,7 +26,6 @@ export const bootContainer = (): void => {
 	container.bind(Identifiers.Storage, new StubStorage());
 	container.bind(Identifiers.AppData, new DataRepository());
 	container.bind(Identifiers.Coins, { ADA, ARK, BTC, ETH });
-	container.bind(Identifiers.CoinService, new CoinService());
 	container.bind(Identifiers.DelegateService, new DelegateService());
 	container.bind(Identifiers.ExchangeRateService, new ExchangeRateService());
 	container.bind(Identifiers.FeeService, new FeeService());
@@ -62,5 +60,5 @@ export const knock = (): void => {
 
 export const makeProfile = (data: object = {}): IProfile =>
 	new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "", ...data });
-export const makeContact = (data: IContactStruct, profile: IProfile): Contact => new Contact(data, profile);
-export const makeWallet = (id: string, profile: IProfile): IReadWriteWallet => new Wallet(id, {}, profile);
+export const makeContact = (data: IContactStruct): Contact => new Contact(data);
+export const makeWallet = (id: string): IReadWriteWallet => new Wallet(id, {});

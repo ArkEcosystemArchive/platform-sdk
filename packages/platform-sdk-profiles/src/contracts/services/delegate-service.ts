@@ -1,3 +1,4 @@
+import { IProfile } from "../profiles";
 import { IReadWriteWallet } from "../wallets";
 import { IReadOnlyWallet } from "../wallets/read-only-wallet";
 

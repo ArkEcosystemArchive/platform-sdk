@@ -10,6 +10,7 @@ import { Profile } from "../profiles/profile";
 import { Wallet } from "./wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { IProfile, IReadWriteWallet, ProfileSetting, WalletData } from "../../../contracts";
+import { State } from "../../../environment/state";
 
 let profile: IProfile;
 let wallet: IReadWriteWallet;
@@ -65,9 +66,12 @@ beforeEach(async () => {
 		.persist();
 
 	profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+
+	State.profile(profile);
+
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	wallet = new Wallet(uuidv4(), {}, profile);
+	wallet = new Wallet(uuidv4(), {});
 
 	await wallet.setCoin("ARK", "ark.devnet");
 	await wallet.setIdentity(identity.mnemonic);

@@ -4,13 +4,13 @@ import "reflect-metadata";
 import { Coins } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { bootContainer } from "../../../../test/helpers";
-import { container } from "../../../environment/container";
-import { Identifiers } from "../../../environment/container.models";
-import { CoinService } from "./coin-service";
+import { bootContainer } from "../../../../../test/helpers";
+import NodeFeesFixture from "../../../../../test/fixtures/client/node-fees.json";
+import { State } from "../../../../environment/state";
+import { Profile } from "../profile";
+import { ICoinService } from "../../../../contracts";
 
-let subject: CoinService;
-import NodeFeesFixture from "../../../../test/fixtures/client/node-fees.json";
+let subject: ICoinService;
 
 beforeAll(() => {
 	bootContainer();
@@ -19,24 +19,28 @@ beforeAll(() => {
 
 	nock(/.+/)
 		.get("/api/node/configuration")
-		.reply(200, require("../../../../test/fixtures/client/configuration.json"))
+		.reply(200, require("../../../../../test/fixtures/client/configuration.json"))
 		.get("/api/node/configuration/crypto")
-		.reply(200, require("../../../../test/fixtures/client/cryptoConfiguration.json"))
+		.reply(200, require("../../../../../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
-		.reply(200, require("../../../../test/fixtures/client/syncing.json"))
+		.reply(200, require("../../../../../test/fixtures/client/syncing.json"))
 		.get("/api/peers")
-		.reply(200, require("../../../../test/fixtures/client/peers.json"))
+		.reply(200, require("../../../../../test/fixtures/client/peers.json"))
 		.get("/api/node/fees")
 		.query(true)
 		.reply(200, NodeFeesFixture)
 		.get("/api/transactions/fees")
 		.query(true)
-		.reply(200, require("../../../../test/fixtures/client/transaction-fees.json"))
+		.reply(200, require("../../../../../test/fixtures/client/transaction-fees.json"))
 		.persist();
 });
 
 beforeEach(async () => {
-	subject = container.get(Identifiers.CoinService);
+	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
+
+	State.profile(profile);
+
+	subject = profile.coins();
 });
 
 describe("CoinService", () => {
@@ -51,16 +55,22 @@ describe("CoinService", () => {
 	});
 
 	it("#has", async () => {
+		subject.push("ARK", "ark.devnet");
+
 		expect(subject.has("ARK", "ark.devnet")).toBeTrue();
 		expect(subject.has("UNKNOWN", "ark.devnet")).toBeFalse();
 	});
 
 	it("#get", async () => {
+		subject.push("ARK", "ark.devnet");
+
 		expect(subject.get("ARK", "ark.devnet").network().id()).toEqual("ark.devnet");
 		expect(() => subject.get("ARK", "unknown")).toThrow(/does not exist/);
 	});
 
 	it("#values", async () => {
+		subject.push("ARK", "ark.devnet");
+
 		const values = subject.values();
 		expect(values).toEqual([{ ark: { devnet: expect.anything() } }]);
 		//@ts-ignore
@@ -68,10 +78,14 @@ describe("CoinService", () => {
 	});
 
 	it("#all", async () => {
+		subject.push("ARK", "ark.devnet");
+
 		expect(Object.keys(subject.all())).toEqual(["ARK"]);
 	});
 
 	it("#entries", async () => {
+		subject.push("ARK", "ark.devnet");
+
 		expect(subject.entries()).toEqual([["ARK", ["ark.devnet"]]]);
 
 		const mockUndefinedNetwork = jest

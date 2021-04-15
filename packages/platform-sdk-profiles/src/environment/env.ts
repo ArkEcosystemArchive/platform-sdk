@@ -2,7 +2,6 @@ import { Coins } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
 
 import {
-	ICoinService,
 	IDataRepository,
 	IDelegateService,
 	IExchangeRateService,
@@ -14,7 +13,6 @@ import {
 } from "../contracts";
 import { DriverFactory } from "../drivers/driver.factory";
 import { container } from "./container";
-import { makeCoin } from "./container.helpers";
 import { Identifiers } from "./container.models";
 import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
 import { StorageFactory } from "./storage/factory";
@@ -99,16 +97,6 @@ export class Environment {
 	}
 
 	/**
-	 * Access the coin service.
-	 *
-	 * @returns {CoinService}
-	 * @memberof Environment
-	 */
-	public coins(): ICoinService {
-		return container.get(Identifiers.CoinService);
-	}
-
-	/**
 	 * Access the application data.
 	 *
 	 * @returns {DataRepository}
@@ -186,23 +174,6 @@ export class Environment {
 	 */
 	public wallets(): IWalletService {
 		return container.get(Identifiers.WalletService);
-	}
-
-	/**
-	 * Creates an instance of a concrete coin implementation like ARK or BTC.
-	 *
-	 * The only times it should be used is when identity data has to be validated!
-	 *
-	 * It should never be used for anything else within ArkEcosystem products because
-	 * this package is responsible for abstracting all of the coin-specific interactions.
-	 *
-	 * @param {string} coin
-	 * @param {string} network
-	 * @returns {Promise<Coins.Coin>}
-	 * @memberof Environment
-	 */
-	public async coin(coin: string, network: string): Promise<Coins.Coin> {
-		return makeCoin(coin, network);
 	}
 
 	/**

@@ -1,9 +1,9 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
-import { DataRepository } from "../../../repositories/data-repository";
-import { container } from "../../../environment/container";
-import { Identifiers } from "../../../environment/container.models";
-import { ICoinService } from "../../../contracts";
+import { DataRepository } from "../../../../repositories/data-repository";
+import { container } from "../../../../environment/container";
+import { Identifiers } from "../../../../environment/container.models";
+import { ICoinService } from "../../../../contracts";
 import { injectable } from "inversify";
 
 @injectable()

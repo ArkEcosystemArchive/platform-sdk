@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { IContactAddress, IContactAddressInput, IContactAddressRepository } from "../../../contracts";
+import { IContactAddress, IContactAddressInput, IContactAddressRepository, IProfile } from "../../../contracts";
 import { ContactAddress } from "../contacts/contact-address";
 import { injectable } from "inversify";
 
@@ -7,7 +7,7 @@ import { DataRepository } from "../../../repositories/data-repository";
 
 @injectable()
 export class ContactAddressRepository implements IContactAddressRepository {
-	#data: DataRepository = new DataRepository();
+	readonly #data: DataRepository = new DataRepository();
 
 	public all(): Record<string, IContactAddress> {
 		return this.#data.all() as Record<string, IContactAddress>;

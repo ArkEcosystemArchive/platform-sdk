@@ -2,12 +2,9 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { pqueueSettled } from "../../../helpers/queue";
 import { DataRepository } from "../../../repositories/data-repository";
-import { container } from "../../../environment/container";
-import { makeCoin } from "../../../environment/container.helpers";
-import { Identifiers } from "../../../environment/container.models";
-import { CoinService } from "./coin-service";
 import { IFeeService } from "../../../contracts";
 import { injectable } from "inversify";
+import { State } from "../../../environment/state";
 
 @injectable()
 export class FeeService implements IFeeService {
@@ -30,7 +27,7 @@ export class FeeService implements IFeeService {
 	}
 
 	public async sync(coin: string, network: string): Promise<void> {
-		const instance: Coins.Coin = makeCoin(coin, network);
+		const instance: Coins.Coin = State.profile().coins().push(coin, network);
 
 		if (!instance.hasBeenSynchronized()) {
 			await instance.__construct();
@@ -42,7 +39,7 @@ export class FeeService implements IFeeService {
 	public async syncAll(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
-		for (const [coin, networks] of container.get<CoinService>(Identifiers.CoinService).entries()) {
+		for (const [coin, networks] of State.profile().coins().entries()) {
 			for (const network of networks) {
 				promises.push(() => this.sync(coin, network));
 			}

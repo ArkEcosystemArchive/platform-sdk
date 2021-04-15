@@ -1,16 +1,11 @@
-import { IPortfolio, IPortfolioItem, IProfile } from "../../../contracts";
+import { IPortfolio, IPortfolioItem } from "../../../contracts";
+import { State } from "../../../environment/state";
 
 export class Portfolio implements IPortfolio {
-	readonly #profile: IProfile;
-
-	public constructor(profile: IProfile) {
-		this.#profile = profile;
-	}
-
 	public breakdown(): IPortfolioItem[] {
 		const result: Record<string, IPortfolioItem> = {};
 
-		for (const wallet of this.#profile.wallets().values()) {
+		for (const wallet of State.profile().wallets().values()) {
 			if (wallet.network().isTest()) {
 				continue;
 			}

@@ -9,6 +9,7 @@ import { bootContainer } from "../../../../../test/helpers";
 import { Profile } from "../profile";
 import { WalletAggregate } from "./wallet-aggregate";
 import { IProfile } from "../../../../contracts";
+import { State } from "../../../../environment/state";
 
 let subject: WalletAggregate;
 let profile: IProfile;
@@ -31,9 +32,11 @@ beforeAll(() => {
 beforeEach(async () => {
 	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 
+	State.profile(profile);
+
 	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
-	subject = new WalletAggregate(profile);
+	subject = new WalletAggregate();
 });
 
 describe("WalletAggregate", () => {

@@ -10,6 +10,7 @@ import { IReadWriteWallet, ProfileSetting } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { WalletRepository } from "./wallet-repository";
+import { State } from "../../../environment/state";
 
 jest.setTimeout(60000);
 
@@ -34,9 +35,12 @@ beforeEach(async () => {
 		.persist();
 
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+
+	State.profile(profile);
+
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	subject = new WalletRepository(profile);
+	subject = new WalletRepository();
 
 	const wallet = await subject.importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 	subject.update(wallet.id(), { alias: "Alias" });
@@ -196,7 +200,7 @@ test("#fill", async () => {
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	const newWallet = new Wallet(uuidv4(), {}, profile);
+	const newWallet = new Wallet(uuidv4(), {});
 	await newWallet.setCoin("ARK", "ark.devnet");
 	await newWallet.setIdentity("this is another top secret passphrase");
 

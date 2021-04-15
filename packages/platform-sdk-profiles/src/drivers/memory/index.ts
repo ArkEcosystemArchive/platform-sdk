@@ -4,7 +4,6 @@ import { EnvironmentOptions } from "../../environment/env.models";
 import { Driver } from "../../contracts";
 import { DataRepository } from "../../repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
-import { CoinService } from "./services/coin-service";
 import { DelegateService } from "./services/delegate-service";
 import { ExchangeRateService } from "./services/exchange-rate-service";
 import { FeeService } from "./services/fee-service";
@@ -22,7 +21,6 @@ export class MemoryDriver implements Driver {
 	 */
 	public make(container: Container, options: EnvironmentOptions): void {
 		container.singleton(Identifiers.AppData, DataRepository);
-		container.singleton(Identifiers.CoinService, CoinService);
 		container.singleton(Identifiers.DelegateService, DelegateService);
 		container.singleton(Identifiers.ExchangeRateService, ExchangeRateService);
 		container.singleton(Identifiers.FeeService, FeeService);
