@@ -17,7 +17,7 @@ const postGraphql = async (config: Coins.Config, query: string): Promise<Record<
 	return json.data;
 };
 
-export const submitTransaction = async (toBroadcast: string, config: Coins.Config): Promise<string> => {
+export const submitTransaction = async (config: Coins.Config, toBroadcast: string): Promise<string> => {
 	return ((await postGraphql(
 		config,
 		`mutation { submitTransaction(transaction: "${toBroadcast}") { hash } }`,
@@ -55,7 +55,7 @@ export const fetchTransaction = async (id: string, config: Coins.Config): Promis
 	return (await postGraphql(config, query)).transactions[0];
 };
 
-export const fetchTransactions = async (addresses: string[], config: Coins.Config): Promise<object[]> => {
+export const fetchTransactions = async (config: Coins.Config, addresses: string[]): Promise<object[]> => {
 	const query = `
 			{
 				transactions(
@@ -150,8 +150,8 @@ export const fetchUsedAddressesData = async (config: Coins.Config, addresses: st
 };
 
 export const listUnspentTransactions = async (
-	addresses: string[],
 	config: Coins.Config,
+	addresses: string[]
 ): Promise<UnspentTransaction[]> => {
 	return (
 		await postGraphql(
@@ -177,7 +177,7 @@ export const listUnspentTransactions = async (
 	).utxos;
 };
 
-export const fetchUtxosAggregate = async (addresses: string[], config: Coins.Config): Promise<string> => {
+export const fetchUtxosAggregate = async (config: Coins.Config, addresses: string[]): Promise<string> => {
 	const query = `
 			{
 				utxos_aggregate(

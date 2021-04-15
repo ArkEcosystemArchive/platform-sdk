@@ -60,7 +60,7 @@ export class TransactionService implements Contracts.TransactionService {
 		const usedAddresses: string[] = [...usedSpendAddresses.values(), ...usedChangeAddresses.values()];
 
 		// Now get utxos for those addresses
-		const utxos: UnspentTransaction[] = await listUnspentTransactions(usedAddresses, this.#config); // when more that one utxo, they seem to be ordered by amount descending
+		const utxos: UnspentTransaction[] = await listUnspentTransactions(this.#config, usedAddresses); // when more that one utxo, they seem to be ordered by amount descending
 
 		// Figure out which of the utxos to use
 		const usedUtxos: UnspentTransaction[] = [];

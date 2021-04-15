@@ -55,8 +55,8 @@ export class ClientService implements Contracts.ClientService {
 		);
 
 		const transactions = (await fetchTransactions(
-			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
 			this.#config,
+			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
 		)) as any;
 
 		return Helpers.createTransactionDataCollectionWithType(
@@ -75,8 +75,8 @@ export class ClientService implements Contracts.ClientService {
 		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(this.#config, id);
 
 		const balance = await fetchUtxosAggregate(
-			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
 			this.#config,
+			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
 		);
 
 		return new WalletData({
@@ -118,7 +118,7 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				await submitTransaction(transaction.toBroadcast(), this.#config);
+				await submitTransaction(this.#config, transaction.toBroadcast());
 
 				result.accepted.push(transaction.id());
 			} catch (error) {
