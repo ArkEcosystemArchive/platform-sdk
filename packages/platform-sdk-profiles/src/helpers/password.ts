@@ -3,11 +3,11 @@ import { Hash } from "@arkecosystem/platform-sdk-crypto";
 import { IProfile } from "../contracts";
 import { State } from "../environment/state";
 
-const passwordKey = (profile: IProfile): string => Hash.sha256(`${profile.id()}/passwd`).toString("hex");
+const passwordKey = (): string => Hash.sha256(`${State.profile().id()}/passwd`).toString("hex");
 
 export class MemoryPassword {
 	public static get(): string {
-		const password: string | undefined = process.env[passwordKey(State.profile())];
+		const password: string | undefined = process.env[passwordKey()];
 
 		if (password === undefined) {
 			throw new Error("Failed to find a password for the given profile.");
@@ -17,10 +17,10 @@ export class MemoryPassword {
 	}
 
 	public static set(password: string): void {
-		process.env[passwordKey(State.profile())] = password;
+		process.env[passwordKey()] = password;
 	}
 
 	public static forget(): void {
-		delete process.env[passwordKey(State.profile())];
+		delete process.env[passwordKey()];
 	}
 }
