@@ -8,7 +8,7 @@ export const SHELLEY_DERIVATION_SCHEME = 2;
 
 const harden = (value: number): number => HARDENED_THRESHOLD + value;
 
-const deriveAddress = (
+export const deriveAddress = (
 	accountKey: CardanoWasm.Bip32PublicKey,
 	isChange: boolean,
 	addressIndex: number,

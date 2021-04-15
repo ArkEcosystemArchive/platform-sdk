@@ -1,3 +1,6 @@
-export enum Purpose {
-	CIP1852 = 1852,
+export interface UnspentTransaction {
+	address: string;
+	index: string;
+	txHash: string;
+	value: string;
 }
