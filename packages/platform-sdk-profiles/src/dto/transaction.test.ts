@@ -12,6 +12,7 @@ import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting } from
 import { Profile } from "../drivers/memory/profiles/profile";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
+import { State } from "../environment/state";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,
@@ -35,7 +36,6 @@ import {
 	TransferData,
 	VoteData,
 } from "./transaction";
-import { State } from "../environment/state";
 
 const createSubject = (wallet, properties, klass) => {
 	let meta: Contracts.TransactionDataMeta = "some meta";
