@@ -13,8 +13,6 @@ export const subscribe = async (flags: {
 	database: string;
 	// JSON-RPC
 	rpc: string;
-	username: string;
-	password: string;
 	// Rate Limit
 	points: string;
 	duration: string;
@@ -22,24 +20,24 @@ export const subscribe = async (flags: {
 	blacklist: string;
 }): Promise<void> => {
 	const logger = useLogger();
-	const database = useDatabase(flags, logger);
-	const client: Contracts.HttpClient = useClient(flags);
+	const database = useDatabase(flags);
+	const client: Contracts.HttpClient = useClient(flags.rpc);
 
 	const server = Hapi.server({
 		host: flags.host || "0.0.0.0",
 		port: flags.port || 3000,
 	});
 
-	await server.register({
-		plugin: require("@konceiver/hapi-rate-limiter-flexible"),
-		options: {
-			enabled: true,
-			points: flags.points,
-			duration: flags.duration,
-			whitelist: flags.whitelist.split(",").filter(Boolean),
-			blacklist: flags.blacklist.split(",").filter(Boolean),
-		},
-	});
+	// await server.register({
+	// 	plugin: require("@konceiver/hapi-rate-limiter-flexible"),
+	// 	options: {
+	// 		enabled: true,
+	// 		points: flags.points,
+	// 		duration: flags.duration,
+	// 		whitelist: flags.whitelist.split(",").filter(Boolean),
+	// 		blacklist: flags.blacklist.split(",").filter(Boolean),
+	// 	},
+	// });
 
 	server.route({
 		method: "GET",
@@ -150,7 +148,7 @@ export const subscribe = async (flags: {
 	// 		};
 	// 	},
 	// });
-	//
+
 	// server.route({
 	// 	method: "GET",
 	// 	path: "/wallets/{wallet}/transactions",
@@ -161,6 +159,29 @@ export const subscribe = async (flags: {
 	// 			)
 	// 			.all(),
 	// });
+
+	server.route({
+		method: "GET",
+		path: "/wallets/{wallet}/transactions/unspent",
+		options: {
+			validate: {
+				params: Joi.object({
+					wallet: Joi.string(), //.length(42),
+				}).options({ stripUnknown: true }),
+			},
+		},
+		handler: async (request) => {
+			// @TODO: rate limit or cache
+			return (
+				await client.post("/", {
+					jsonrpc: "1.0",
+					id: uuidv4(),
+					method: "qn_addressBalance",
+					params: [request.params.wallet],
+				})
+			).json();
+		},
+	});
 
 	await server.start();
 

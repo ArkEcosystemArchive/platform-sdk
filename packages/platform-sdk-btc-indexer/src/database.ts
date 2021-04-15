@@ -38,6 +38,7 @@ export class Database {
 	public constructor(flags: Flags, logger: Logger) {
 		const databaseFile =
 			flags.database || `${envPaths(require("../package.json").name).data}/${flags.coin}/${flags.network}.db`;
+
 		ensureFileSync(databaseFile);
 
 		logger.debug(`Using [${databaseFile}] as database`);
@@ -75,8 +76,8 @@ export class Database {
 
 		this.storeBlock(block);
 
-		if (block.transactions) {
-			for (const transaction of block.transactions) {
+		if (block.tx) {
+			for (const transaction of block.tx) {
 				this.#logger.info(`Storing transaction [${transaction.hash}]`);
 
 				this.storeTransaction(transaction);
