@@ -18,6 +18,7 @@ import {
 	IWalletRepository,
 	IWalletExportOptions,
 	ProfileSetting,
+	ICoinService,
 } from "../../../contracts";
 import { injectable } from "inversify";
 import { pqueue } from "../../../helpers";
@@ -94,7 +95,7 @@ export class WalletRepository implements IWalletRepository {
 		};
 
 		// Make sure we have an instance of the coin
-		const service = container.get<CoinService>(Identifiers.CoinService).push(coin, network);
+		const service = container.get<ICoinService>(Identifiers.CoinService).push(coin, network);
 
 		// Bulk request the addresses.
 		const wallets: IReadWriteWallet[] = [];

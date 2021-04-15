@@ -2,7 +2,7 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { IReadWriteWallet } from "../contracts";
+import { IExchangeRateService, IReadWriteWallet } from "../contracts";
 import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
@@ -318,7 +318,7 @@ export class TransactionData {
 		}
 
 		return container
-			.get<ExchangeRateService>(Identifiers.ExchangeRateService)
+			.get<IExchangeRateService>(Identifiers.ExchangeRateService)
 			.exchange(this.wallet().currency(), this.wallet().exchangeCurrency(), timestamp, value);
 	}
 }
