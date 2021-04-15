@@ -22,12 +22,6 @@ module.exports = meow(
 			host: {
 				type: "string",
 			},
-			username: {
-				type: "string",
-			},
-			password: {
-				type: "string",
-			},
 			database: {
 				type: "string",
 			},
