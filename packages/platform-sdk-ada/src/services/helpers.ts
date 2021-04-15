@@ -5,7 +5,7 @@ import CardanoWasm, {
 	Bip32PrivateKey,
 	Bip32PublicKey,
 	TransactionBuilder,
-	TransactionInput
+	TransactionInput,
 } from "@emurgo/cardano-serialization-lib-nodejs";
 import { Buffer } from "buffer";
 
@@ -88,8 +88,8 @@ export const deriveAddressesAndSigningKeys = async (
 ) => {
 	const addresses: { [index: number]: {} } = { 0: {}, 1: {} };
 	for (let i = 0; i < 20; ++i) {
-		addresses[0][await deriveAddress(publicKey, false, i, networkId)] = await deriveSpendKey(accountKey, i);
-		addresses[1][await deriveAddress(publicKey, true, i, networkId)] = await deriveChangeKey(accountKey, i);
+		addresses[0][deriveAddress(publicKey, false, i, networkId)] = deriveSpendKey(accountKey, i);
+		addresses[1][deriveAddress(publicKey, true, i, networkId)] = deriveChangeKey(accountKey, i);
 	}
 	return addresses;
 };
