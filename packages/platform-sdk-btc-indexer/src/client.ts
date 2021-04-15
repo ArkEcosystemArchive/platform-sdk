@@ -49,7 +49,12 @@ export class Client {
 	public constructor(flags: Flags, logger: Logger, database: Database) {
 		const { hostname: host, port, protocol } = urlParseLax(flags.host);
 
-		this.#client = new Request().baseUrl(`${protocol}//${flags.username}:${flags.password}@${host}:${port}`);
+		if (host.includes("bcoin.quiknode.pro")) {
+			this.#client = new Request().baseUrl(host);
+		} else {
+			this.#client = new Request().baseUrl(`${protocol}//${flags.username}:${flags.password}@${host}:${port}`);
+		}
+
 		this.#logger = logger;
 		this.#database = database;
 	}
