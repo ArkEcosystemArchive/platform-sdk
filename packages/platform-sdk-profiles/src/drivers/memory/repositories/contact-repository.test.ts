@@ -8,6 +8,7 @@ import { bootContainer } from "../../../../test/helpers";
 import { ProfileSetting } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { ContactRepository } from "./contact-repository";
+import { State } from "../../../environment/state";
 
 let subject: ContactRepository;
 
@@ -33,11 +34,14 @@ beforeEach(async () => {
 		.persist();
 
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+
+	State.profile(profile);
+
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
-	subject = new ContactRepository(profile);
+	subject = new ContactRepository();
 
 	subject.flush();
 });

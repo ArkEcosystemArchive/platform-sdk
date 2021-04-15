@@ -1,13 +1,8 @@
 import semver from "semver";
-import { IMigrator, IProfile, ProfileData } from "../../../contracts";
+import { IMigrator, ProfileData } from "../../../contracts";
+import { State } from "../../../environment/state";
 
 export class Migrator implements IMigrator {
-	readonly #profile: IProfile;
-
-	public constructor(profile: IProfile) {
-		this.#profile = profile;
-	}
-
 	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
 		let previousMigratedVersion: string = this.getPreviousMigratedVersion("0.0.0");
 
@@ -17,15 +12,15 @@ export class Migrator implements IMigrator {
 
 		for (const version of newerVersions) {
 			try {
-				this.#profile.data().snapshot();
+				State.profile().data().snapshot();
 
-				await migrations[version]({ profile: this.#profile });
+				await migrations[version]({ profile: State.profile() });
 
 				this.set(version);
 
 				previousMigratedVersion = version;
 			} catch (error) {
-				this.#profile.data().restore();
+				State.profile().data().restore();
 
 				throw new Error(
 					`Something went wrong during the migration! Changes applied to the store until this failed migration will be restored. ${error}`,
@@ -70,10 +65,10 @@ export class Migrator implements IMigrator {
 	}
 
 	private set(migration: string): void {
-		this.#profile.data().set(ProfileData.LatestMigration, migration);
+		State.profile().data().set(ProfileData.LatestMigration, migration);
 	}
 
 	private getPreviousMigratedVersion(defaultVersion: string): string {
-		return this.#profile.data().get(ProfileData.LatestMigration, defaultVersion) as string;
+		return State.profile().data().get(ProfileData.LatestMigration, defaultVersion) as string;
 	}
 }

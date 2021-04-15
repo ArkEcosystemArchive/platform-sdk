@@ -9,6 +9,7 @@ import { ExtendedTransactionDataCollection } from "../../../../dto/transaction-c
 import * as promiseHelpers from "../../../../helpers/promise";
 import { Profile } from "../profile";
 import { TransactionAggregate } from "./transaction-aggregate";
+import { State } from "../../../../environment/state";
 
 let subject: TransactionAggregate;
 
@@ -34,9 +35,11 @@ beforeAll(() => {
 beforeEach(async () => {
 	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 
+	State.profile(profile);
+
 	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 
-	subject = new TransactionAggregate(profile);
+	subject = new TransactionAggregate();
 });
 
 afterAll(() => nock.enableNetConnect());

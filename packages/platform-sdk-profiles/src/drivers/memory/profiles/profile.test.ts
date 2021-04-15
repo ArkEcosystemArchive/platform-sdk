@@ -20,6 +20,7 @@ import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 import { IProfile, ProfileSetting } from "../../../contracts";
+import { State } from "../../../environment/state";
 
 let subject: IProfile;
 
@@ -44,6 +45,9 @@ beforeAll(() => {
 
 beforeEach(() => {
 	subject = new Profile({ id: "uuid", name: "name", data: "" });
+
+	State.profile(subject);
+
 	subject.settings().set(ProfileSetting.Name, "John Doe");
 });
 

@@ -7,6 +7,7 @@ import { INotificationRepository } from "../repositories/notification-repository
 import { IPeerRepository } from "../repositories/peer-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
 import { IWalletRepository } from "../repositories/wallet-repository";
+import { ICoinService } from "../services";
 import { ICountAggregate } from "./aggregates/count-aggregate";
 import { IRegistrationAggregate } from "./aggregates/registration-aggregate";
 import { ITransactionAggregate } from "./aggregates/transaction-aggregate";
@@ -44,6 +45,8 @@ export interface IProfileExportOptions extends IWalletExportOptions {
 }
 
 export interface IProfile {
+	coins(): ICoinService;
+
 	id(): string;
 	name(): string;
 	avatar(): string;

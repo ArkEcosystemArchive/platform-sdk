@@ -4,37 +4,25 @@ import { sortBy, sortByDesc } from "@arkecosystem/utils";
 import retry from "p-retry";
 import { v4 as uuidv4 } from "uuid";
 
-import { container } from "../../../environment/container";
-import { Identifiers } from "../../../environment/container.models";
-import { CoinService } from "../services/coin-service";
 import { Wallet } from "../wallets/wallet";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { DataRepository } from "../../../repositories/data-repository";
 import {
 	IDataRepository,
-	IProfile,
 	IReadWriteWallet,
 	IWalletFactory,
 	IWalletRepository,
 	IWalletExportOptions,
-	ProfileSetting,
-	ICoinService,
 } from "../../../contracts";
 import { injectable } from "inversify";
 import { pqueue } from "../../../helpers";
+import { State } from "../../../environment/state";
 
 @injectable()
 export class WalletRepository implements IWalletRepository {
-	#profile: IProfile;
-	#data: IDataRepository;
+	readonly #data: IDataRepository = new DataRepository();
+	readonly #wallets: IWalletFactory = new WalletFactory();
 	#dataRaw: Record<string, any> = {};
-	#wallets: IWalletFactory;
-
-	public constructor(profile: IProfile) {
-		this.#profile = profile;
-		this.#data = new DataRepository();
-		this.#wallets = new WalletFactory(profile);
-	}
 
 	public all(): Record<string, IReadWriteWallet> {
 		return this.#data.all() as Record<string, IReadWriteWallet>;
@@ -87,7 +75,7 @@ export class WalletRepository implements IWalletRepository {
 			address: string,
 			wallets: IReadWriteWallet[],
 		): Promise<void> => {
-			const instance: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+			const instance: IReadWriteWallet = new Wallet(uuidv4(), {});
 			await instance.setCoin(coin, network);
 			await instance.setAddress(address);
 
@@ -95,7 +83,7 @@ export class WalletRepository implements IWalletRepository {
 		};
 
 		// Make sure we have an instance of the coin
-		const service = container.get<ICoinService>(Identifiers.CoinService).push(coin, network);
+		const service = State.profile().coins().push(coin, network);
 
 		// Bulk request the addresses.
 		const wallets: IReadWriteWallet[] = [];
@@ -318,7 +306,7 @@ export class WalletRepository implements IWalletRepository {
 		for (const item of Object.values(struct)) {
 			const { id, coin, network, address, data, settings } = item;
 
-			const wallet = new Wallet(id, item, this.#profile);
+			const wallet = new Wallet(id, item);
 
 			wallet.data().fill(data);
 

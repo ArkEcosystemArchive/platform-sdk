@@ -35,6 +35,7 @@ import {
 	TransferData,
 	VoteData,
 } from "./transaction";
+import { State } from "../environment/state";
 
 const createSubject = (wallet, properties, klass) => {
 	let meta: Contracts.TransactionDataMeta = "some meta";
@@ -106,6 +107,9 @@ beforeAll(async () => {
 
 beforeEach(async () => {
 	profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+
+	State.profile(profile);
+
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 	profile.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
 	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");

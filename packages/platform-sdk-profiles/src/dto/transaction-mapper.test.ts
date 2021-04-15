@@ -9,6 +9,7 @@ import { bootContainer } from "../../test/helpers";
 import { IProfile, IReadWriteWallet, ProfileSetting } from "../contracts";
 import { Profile } from "../drivers/memory/profiles/profile";
 import { Wallet } from "../drivers/memory/wallets/wallet";
+import { State } from "../environment/state";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,
@@ -103,9 +104,12 @@ describe("transaction-mapper", () => {
 			.persist();
 
 		profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+
+		State.profile(profile);
+
 		profile.settings().set(ProfileSetting.Name, "John Doe");
 
-		wallet = new Wallet(uuidv4(), {}, profile);
+		wallet = new Wallet(uuidv4(), {});
 
 		await wallet.setCoin("ARK", "ark.devnet");
 		await wallet.setIdentity(identity.mnemonic);

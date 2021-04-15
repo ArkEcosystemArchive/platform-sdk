@@ -1,22 +1,22 @@
 import "reflect-metadata";
 
 import { bootContainer } from "../../test/helpers";
-import { IProfile } from "../contracts";
 import { Profile } from "../drivers/memory/profiles/profile";
+import { State } from "../environment/state";
 import { MemoryPassword } from "./password";
 
 beforeAll(() => bootContainer());
 
 it("should set, get and forget the password", () => {
-	const profile: IProfile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
+	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
 
-	expect(() => MemoryPassword.get(profile)).toThrow("Failed to find a password for the given profile.");
+	expect(() => MemoryPassword.get()).toThrow("Failed to find a password for the given profile.");
 
-	MemoryPassword.set(profile, "password");
+	MemoryPassword.set("password");
 
-	expect(MemoryPassword.get(profile)).toBe("password");
+	expect(MemoryPassword.get()).toBe("password");
 
-	MemoryPassword.forget(profile);
+	MemoryPassword.forget();
 
-	expect(() => MemoryPassword.get(profile)).toThrow("Failed to find a password for the given profile.");
+	expect(() => MemoryPassword.get()).toThrow("Failed to find a password for the given profile.");
 });

@@ -8,14 +8,8 @@ import { DataRepository } from "../../../repositories/data-repository";
 
 @injectable()
 export class ContactRepository implements IContactRepository {
-	#data: DataRepository;
+	readonly #data: DataRepository = new DataRepository();
 	#dataRaw: object = {};
-	#profile: IProfile;
-
-	public constructor(profile: IProfile) {
-		this.#data = new DataRepository();
-		this.#profile = profile;
-	}
 
 	public all(): Record<string, IContact> {
 		return this.#data.all() as Record<string, IContact>;
@@ -48,7 +42,7 @@ export class ContactRepository implements IContactRepository {
 
 		const id: string = uuidv4();
 
-		const result: IContact = new Contact({ id, name, starred: false }, this.#profile);
+		const result: IContact = new Contact({ id, name, starred: false });
 
 		this.#data.set(id, result);
 
@@ -154,7 +148,7 @@ export class ContactRepository implements IContactRepository {
 		this.#dataRaw = contacts;
 
 		for (const [id, contact] of Object.entries(contacts)) {
-			this.#data.set(id, new Contact(contact, this.#profile));
+			this.#data.set(id, new Contact(contact));
 		}
 	}
 

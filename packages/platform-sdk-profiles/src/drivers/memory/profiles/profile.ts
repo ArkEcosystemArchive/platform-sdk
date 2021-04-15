@@ -22,6 +22,7 @@ import {
 	ProfileSetting,
 	IReadWriteWallet,
 	ICoinService,
+	IAuthenticator,
 } from "../../../contracts";
 
 import { MemoryPassword } from "../../../helpers/password";
@@ -40,12 +41,13 @@ import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Migrator } from "./migrator";
 import { Portfolio } from "./portfolio";
-import { container } from "../../../environment/container";
-import { Identifiers } from "../../../environment/container.models";
+import { CoinService } from "./services/coin-service";
+import { State } from "../../../environment/state";
 
 export class Profile implements IProfile {
 	#data: IProfileInput;
 
+	readonly #coinService: ICoinService;
 	readonly #portfolio: IPortfolio;
 	readonly #contactRepository: IContactRepository;
 	readonly #dataRepository: IDataRepository;
@@ -54,30 +56,39 @@ export class Profile implements IProfile {
 	readonly #pluginRepository: IPluginRepository;
 	readonly #settingRepository: ISettingRepository;
 	readonly #walletRepository: IWalletRepository;
-
 	readonly #countAggregate: ICountAggregate;
 	readonly #registrationAggregate: IRegistrationAggregate;
 	readonly #transactionAggregate: ITransactionAggregate;
 	readonly #walletAggregate: IWalletAggregate;
+	readonly #authenticator: IAuthenticator;
 
 	public constructor(data: IProfileInput) {
 		this.#data = data;
 
-		this.#portfolio = new Portfolio(this);
-		this.#contactRepository = new ContactRepository(this);
+		this.#coinService = new CoinService();
+		this.#portfolio = new Portfolio();
+		this.#contactRepository = new ContactRepository();
 		this.#dataRepository = new DataRepository();
 		this.#notificationRepository = new NotificationRepository();
 		this.#peerRepository = new PeerRepository();
 		this.#pluginRepository = new PluginRepository();
 		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
-		this.#walletRepository = new WalletRepository(this);
+		this.#walletRepository = new WalletRepository();
+		this.#countAggregate = new CountAggregate();
+		this.#registrationAggregate = new RegistrationAggregate();
+		this.#transactionAggregate = new TransactionAggregate();
+		this.#walletAggregate = new WalletAggregate();
+		this.#authenticator = new Authenticator();
+	}
 
-		this.#countAggregate = new CountAggregate(this);
-		this.#registrationAggregate = new RegistrationAggregate(this);
-		this.#transactionAggregate = new TransactionAggregate(this);
-		this.#walletAggregate = new WalletAggregate(this);
-
-		container.get<ICoinService>(Identifiers.CoinService).flush();
+	/**
+	 * Access the coin service.
+	 *
+	 * @returns {ICoinService}
+	 * @memberof Environment
+	 */
+	public coins(): ICoinService {
+		return this.#coinService;
 	}
 
 	public id(): string {
@@ -192,8 +203,8 @@ export class Profile implements IProfile {
 	 * These methods serve as helpers to handle authenticate / authorisation.
 	 */
 
-	public auth(): Authenticator {
-		return new Authenticator(this);
+	public auth(): IAuthenticator {
+		return this.#authenticator;
 	}
 
 	public usesPassword(): boolean {
@@ -272,6 +283,8 @@ export class Profile implements IProfile {
 	public async restore(password?: string): Promise<void> {
 		const data: IProfileStruct | undefined = this.validateStruct(password);
 
+		State.profile(this);
+
 		// @TODO: we need to apply migrations before we validate the data to ensure that it is conform
 		// since profiles are now restored on a per-profile basis due to encryption we can't apply them
 		// in bulk to all profiles because the profile data won't be accessible until after restoration
@@ -337,7 +350,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
-		await new Migrator(this).migrate(migrations, versionToMigrate);
+		await new Migrator().migrate(migrations, versionToMigrate);
 	}
 
 	/**
@@ -449,7 +462,7 @@ export class Profile implements IProfile {
 	 */
 	private encrypt(unencrypted: string, password?: string): string {
 		if (typeof password !== "string") {
-			password = MemoryPassword.get(this);
+			password = MemoryPassword.get();
 		}
 
 		if (!this.auth().verifyPassword(password)) {

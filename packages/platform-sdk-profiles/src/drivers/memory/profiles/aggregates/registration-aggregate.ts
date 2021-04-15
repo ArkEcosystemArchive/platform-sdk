@@ -1,14 +1,9 @@
-import { IProfile, IReadWriteWallet } from "../../../../contracts";
+import { IReadWriteWallet } from "../../../../contracts";
+import { State } from "../../../../environment/state";
 
 export class RegistrationAggregate implements RegistrationAggregate {
-	readonly #profile: IProfile;
-
-	public constructor(profile: IProfile) {
-		this.#profile = profile;
-	}
-
 	public delegates(): IReadWriteWallet[] {
-		return this.#profile
+		return State.profile()
 			.wallets()
 			.values()
 			.filter((wallet: IReadWriteWallet) => wallet.hasSyncedWithNetwork() && wallet.isDelegate());

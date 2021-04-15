@@ -10,6 +10,7 @@ import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { DelegateService } from "./delegate-service";
 import { IReadWriteWallet } from "../../../contracts";
+import { State } from "../../../environment/state";
 
 let subject: DelegateService;
 
@@ -39,7 +40,9 @@ let wallet: IReadWriteWallet;
 beforeEach(async () => {
 	subject = new DelegateService();
 
-	wallet = new Wallet(uuidv4(), {}, new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" }));
+	State.profile(new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" }));
+
+	wallet = new Wallet(uuidv4(), {});
 
 	await wallet.setCoin("ARK", "ark.devnet");
 	await wallet.setIdentity(identity.mnemonic);

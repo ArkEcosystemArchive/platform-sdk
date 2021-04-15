@@ -8,9 +8,7 @@ import { decode } from "wif";
 import { ExtendedTransactionData } from "../../../dto/transaction";
 import { transformTransactionData, transformTransactionDataCollection } from "../../../dto/transaction-mapper";
 import { container } from "../../../environment/container";
-import { makeCoin } from "../../../environment/container.helpers";
 import { Identifiers } from "../../../environment/container.models";
-import { ExchangeRateService } from "../services/exchange-rate-service";
 import { KnownWalletService } from "../services/known-wallet-service";
 import { DataRepository } from "../../../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
@@ -33,6 +31,7 @@ import {
 	IKnownWalletService,
 } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
+import { State } from "../../../environment/state";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #dataRepository: DataRepository;
@@ -42,7 +41,6 @@ export class Wallet implements IReadWriteWallet {
 	readonly #initialState: IWalletStruct;
 	readonly #id: string;
 	#coin!: Coins.Coin;
-	#profile!: IProfile;
 	#wallet: Contracts.WalletData | undefined;
 
 	#address!: string;
@@ -50,10 +48,9 @@ export class Wallet implements IReadWriteWallet {
 	#avatar!: string;
 	readonly #restorationState = { full: false, partial: false };
 
-	public constructor(id: string, initialState: any, profile: IProfile) {
+	public constructor(id: string, initialState: any) {
 		this.#id = id;
 		this.#initialState = initialState;
-		this.#profile = profile;
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
@@ -66,15 +63,15 @@ export class Wallet implements IReadWriteWallet {
 	 */
 
 	public usesCustomPeer(): boolean {
-		return this.#profile.usesCustomPeer();
+		return State.profile().usesCustomPeer();
 	}
 
 	public usesMultiPeerBroadcasting(): boolean {
-		return this.#profile.usesMultiPeerBroadcasting();
+		return State.profile().usesMultiPeerBroadcasting();
 	}
 
 	public peers(): IPeerRepository {
-		return this.#profile.peers();
+		return State.profile().peers();
 	}
 
 	public getRelays(): string[] {
@@ -124,7 +121,7 @@ export class Wallet implements IReadWriteWallet {
 		options: { sync: boolean } = { sync: true },
 	): Promise<IReadWriteWallet> {
 		if (this.usesCustomPeer() && this.peers().has(coin, network)) {
-			this.#coin = makeCoin(
+			this.#coin = State.profile().coins().push(
 				coin,
 				network,
 				{
@@ -134,7 +131,7 @@ export class Wallet implements IReadWriteWallet {
 				true,
 			);
 		} else {
-			this.#coin = makeCoin(coin, network);
+			this.#coin = State.profile().coins().push(coin, network);
 		}
 
 		/**
@@ -234,7 +231,7 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public exchangeCurrency(): string {
-		return this.#profile.settings().get(ProfileSetting.ExchangeCurrency) as string;
+		return State.profile().settings().get(ProfileSetting.ExchangeCurrency) as string;
 	}
 
 	public alias(): string | undefined {
@@ -638,7 +635,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public async sync(options: { resetCoin: boolean } = { resetCoin: false }): Promise<void> {
 		if (options.resetCoin) {
-			this.#coin = makeCoin(this.coinId(), this.networkId(), {}, true);
+			this.#coin = State.profile().coins().push(this.coinId(), this.networkId(), {}, true);
 		}
 
 		await this.setCoin(this.coinId(), this.networkId());

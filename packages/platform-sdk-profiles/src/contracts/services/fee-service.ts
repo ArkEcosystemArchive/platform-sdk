@@ -1,4 +1,5 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
+import { IProfile } from "../profiles";
 
 export interface IFeeService {
 	all(coin: string, network: string): Contracts.TransactionFees;

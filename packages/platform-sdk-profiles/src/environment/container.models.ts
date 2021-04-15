@@ -1,7 +1,6 @@
 export const Identifiers = {
 	AppData: "Data<App>",
 	Coins: "Coins",
-	CoinService: "CoinService",
 	ContactRepository: "ContactRepository",
 	DataRepository: "DataRepository",
 	DelegateService: "DelegateService",
@@ -15,4 +14,8 @@ export const Identifiers = {
 	Storage: "Storage",
 	WalletRepository: "WalletRepository",
 	WalletService: "WalletService",
+};
+
+export const State = {
+	Profile: "State<Profile>",
 };
