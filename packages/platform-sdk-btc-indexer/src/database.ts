@@ -1,10 +1,10 @@
+import { BigNumber } from "@arkecosystem/utils";
 import Logger from "@ptkdev/logger";
 import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
 import { Flags } from "./types";
-import { BigNumber } from "@arkecosystem/utils";
 
 /**
  * Implements a database storage with SQLite.
@@ -122,8 +122,7 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeTransaction(transaction): void {
-		const amount: BigNumber = transaction.vout
-			.reduce((c: BigNumber, v) => c.plus(v.value), BigNumber.ZERO);
+		const amount: BigNumber = transaction.vout.reduce((c: BigNumber, v) => c.plus(v.value), BigNumber.ZERO);
 
 		this.#database
 			.prepare(
