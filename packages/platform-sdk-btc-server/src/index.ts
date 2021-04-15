@@ -149,16 +149,16 @@ export const subscribe = async (flags: {
 	// 	},
 	// });
 
-	// server.route({
-	// 	method: "GET",
-	// 	path: "/wallets/{wallet}/transactions",
-	// 	handler: (request) =>
-	// 		database
-	// 			.prepare(
-	// 				`SELECT * FROM transactions WHERE sender = '${request.params.wallet}' OR recipient = '${request.params.wallet}';`,
-	// 			)
-	// 			.all(),
-	// });
+	server.route({
+		method: "GET",
+		path: "/wallets/{wallet}/transactions",
+		handler: (request) =>
+			database
+				.prepare(
+					`SELECT * FROM transactions WHERE sender = '${request.params.wallet}' OR recipient = '${request.params.wallet}';`,
+				)
+				.all(),
+	});
 
 	server.route({
 		method: "GET",
