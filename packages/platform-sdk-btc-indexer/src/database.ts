@@ -122,7 +122,7 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeTransaction(transaction): void {
-		const amount: BigNumber = transaction.vout.reduce((c: BigNumber, v) => c.plus(v.value), BigNumber.ZERO);
+		const amount: BigNumber = transaction.vout.reduce((c: BigNumber, v) => c.plus(v.value * 1e8), BigNumber.ZERO);
 
 		this.#database
 			.prepare(
