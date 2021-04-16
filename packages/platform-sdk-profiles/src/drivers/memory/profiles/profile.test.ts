@@ -365,10 +365,6 @@ test("#usesMultiPeerBroadcasting", async () => {
 	expect(subject.usesMultiPeerBroadcasting()).toBeTrue();
 });
 
-test("#migrate", async () => {
-	expect(() => subject.migrate({}, "2.0.0")).not.toThrow();
-});
-
 it("should fail to encrypt a profile if the password is invalid", () => {
 	subject.auth().setPassword("password");
 
