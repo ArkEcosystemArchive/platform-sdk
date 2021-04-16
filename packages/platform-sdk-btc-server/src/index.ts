@@ -43,7 +43,7 @@ export const subscribe = async (flags: {
 		method: "GET",
 		path: "/",
 		handler: async () => {
-			const number = (
+			const height = (
 				await client.post("/", {
 					jsonrpc: "1.0",
 					id: uuidv4(),
@@ -51,11 +51,11 @@ export const subscribe = async (flags: {
 				})
 			).json().result;
 
-			const indexedHeight = database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
+			const indexedHeight = database.prepare("SELECT height FROM blocks ORDER BY height DESC LIMIT 1").get();
 
 			return {
-				number,
-				syncing: number !== indexedHeight,
+				height,
+				syncing: height !== indexedHeight,
 			};
 		},
 	});
@@ -73,7 +73,7 @@ export const subscribe = async (flags: {
 		handler: (request) =>
 			database
 				.prepare(
-					`SELECT * FROM blocks WHERE hash = '${request.params.block}' OR number = '${request.params.block}';`,
+					`SELECT * FROM blocks WHERE hash = '${request.params.block}' OR height = '${request.params.block}';`,
 				)
 				.get(),
 	});

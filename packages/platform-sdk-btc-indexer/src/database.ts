@@ -57,13 +57,13 @@ export class Database {
 	 * @memberof Database
 	 */
 	public lastBlockNumber(): number {
-		const lastBlock = this.#database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
+		const lastBlock = this.#database.prepare("SELECT height FROM blocks ORDER BY height DESC LIMIT 1").get();
 
 		if (lastBlock === undefined) {
 			return 1;
 		}
 
-		return lastBlock.number;
+		return lastBlock.height;
 	}
 
 	/**
@@ -108,9 +108,9 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeBlock(block): void {
-		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, number) VALUES (:hash, :number)`).run({
+		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, height) VALUES (:hash, :height)`).run({
 			hash: block.hash,
-			number: block.height,
+			height: block.height,
 		});
 	}
 
@@ -150,11 +150,11 @@ export class Database {
 
 			CREATE TABLE IF NOT EXISTS blocks(
 				hash     VARCHAR(64)   PRIMARY KEY,
-				number   INTEGER       NOT NULL
+				height   INTEGER       NOT NULL
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
-			CREATE UNIQUE INDEX IF NOT EXISTS blocks_number ON blocks (number);
+			CREATE UNIQUE INDEX IF NOT EXISTS blocks_height ON blocks (height);
 
 			CREATE TABLE IF NOT EXISTS transactions(
 				hash     VARCHAR(64)   PRIMARY KEY,
