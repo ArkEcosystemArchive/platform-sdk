@@ -491,7 +491,6 @@ export class Profile implements IProfile {
 			throw new Error(`Failed to decode or decrypt the profile.${errorReason}`);
 		}
 
-		// Apply migrations
 		if (container.has(Identifiers.MigrationSchemas) && container.has(Identifiers.MigrationVersion)) {
 			await new Migrator(this).migrate(
 				container.get(Identifiers.MigrationSchemas),
@@ -499,7 +498,6 @@ export class Profile implements IProfile {
 			);
 		}
 
-		// Validate
 		const { error, value } = Joi.object({
 			id: Joi.string().required(),
 			contacts: Joi.object().pattern(
