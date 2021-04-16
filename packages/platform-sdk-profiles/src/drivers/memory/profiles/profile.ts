@@ -43,6 +43,8 @@ import { Migrator } from "./migrator";
 import { Portfolio } from "./portfolio";
 import { CoinService } from "./services/coin-service";
 import { State } from "../../../environment/state";
+import { Identifiers } from "../../../environment/container.models";
+import { container } from "../../../environment/container";
 
 export class Profile implements IProfile {
 	#data: IProfileInput;
@@ -281,13 +283,9 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public async restore(password?: string): Promise<void> {
-		const data: IProfileStruct | undefined = this.validateStruct(password);
+		const data: IProfileStruct | undefined = await this.validateStruct(password);
 
 		State.profile(this);
-
-		// @TODO: we need to apply migrations before we validate the data to ensure that it is conform
-		// since profiles are now restored on a per-profile basis due to encryption we can't apply them
-		// in bulk to all profiles because the profile data won't be accessible until after restoration
 
 		this.peers().fill(data.peers);
 
@@ -339,18 +337,6 @@ export class Profile implements IProfile {
 		this.settings().set(ProfileSetting.UseCustomPeer, false);
 		this.settings().set(ProfileSetting.UseMultiPeerBroadcast, false);
 		this.settings().set(ProfileSetting.UseTestNetworks, false);
-	}
-
-	/**
-	 * Execute any pending migrations from the given set up to the version that should be migrated.
-	 *
-	 * @param {object} migrations
-	 * @param {string} versionToMigrate
-	 * @returns {Promise<void>}
-	 * @memberof Profile
-	 */
-	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
-		await new Migrator().migrate(migrations, versionToMigrate);
 	}
 
 	/**
@@ -487,7 +473,7 @@ export class Profile implements IProfile {
 		return { id, ...data };
 	}
 
-	private validateStruct(password?: string): IProfileStruct {
+	private async validateStruct(password?: string): Promise<IProfileStruct> {
 		let data: IProfileStruct | undefined;
 		let errorReason = "";
 
@@ -503,6 +489,13 @@ export class Profile implements IProfile {
 
 		if (data === undefined) {
 			throw new Error(`Failed to decode or decrypt the profile.${errorReason}`);
+		}
+
+		if (container.has(Identifiers.MigrationSchemas) && container.has(Identifiers.MigrationVersion)) {
+			await new Migrator(this).migrate(
+				container.get(Identifiers.MigrationSchemas),
+				container.get(Identifiers.MigrationVersion),
+			);
 		}
 
 		const { error, value } = Joi.object({

@@ -7,7 +7,6 @@ import { bootContainer } from "../../../../test/helpers";
 import { Migrator } from "./migrator";
 import { Profile } from "./profile";
 import { IProfile, ProfileData } from "../../../contracts";
-import { State } from "../../../environment/state";
 
 let subject: Migrator;
 let profile: IProfile;
@@ -17,9 +16,7 @@ beforeAll(() => bootContainer());
 beforeEach(async () => {
 	profile = new Profile({ id: "id", name: "name", avatar: "avatar", data: Base64.encode("{}") });
 
-	State.profile(profile);
-
-	subject = new Migrator();
+	subject = new Migrator(profile);
 });
 
 it("should save the project version as the initial migrated version", async () => {
@@ -213,9 +210,7 @@ it("should migrate profiles from JSON to Base64", async () => {
 		},
 	});
 
-	State.profile(profile);
-
-	subject = new Migrator();
+	subject = new Migrator(profile);
 
 	await subject.migrate(
 		{

@@ -227,6 +227,18 @@ export class Environment {
 	}
 
 	/**
+	 * Set the migrations that should be used for profiles, if applicable.
+	 *
+	 * @param {object} schemas
+	 * @param {string} version
+	 * @memberof Environment
+	 */
+	public setMigrations(schemas: object, version: string): void {
+		container.bind(Identifiers.MigrationSchemas, schemas);
+		container.bind(Identifiers.MigrationVersion, version);
+	}
+
+	/**
 	 * Create a driver instance and all necessary container bindings.
 	 *
 	 * @memberof Environment
