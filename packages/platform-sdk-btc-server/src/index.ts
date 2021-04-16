@@ -28,16 +28,16 @@ export const subscribe = async (flags: {
 		port: flags.port || 3000,
 	});
 
-	// await server.register({
-	// 	plugin: require("@konceiver/hapi-rate-limiter-flexible"),
-	// 	options: {
-	// 		enabled: true,
-	// 		points: flags.points,
-	// 		duration: flags.duration,
-	// 		whitelist: flags.whitelist.split(",").filter(Boolean),
-	// 		blacklist: flags.blacklist.split(",").filter(Boolean),
-	// 	},
-	// });
+	await server.register({
+		plugin: require("@konceiver/hapi-rate-limiter-flexible"),
+		options: {
+			enabled: true,
+			points: flags.points,
+			duration: flags.duration,
+			whitelist: flags.whitelist.split(",").filter(Boolean),
+			blacklist: flags.blacklist.split(",").filter(Boolean),
+		},
+	});
 
 	server.route({
 		method: "GET",
