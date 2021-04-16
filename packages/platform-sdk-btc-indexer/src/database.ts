@@ -5,6 +5,7 @@ import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
 import { Flags } from "./types";
+import { getAmount, getFees } from "./tx-parsing-helpers";
 
 /**
  * Implements a database storage with SQLite.
@@ -122,18 +123,19 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeTransaction(transaction): void {
-		const amount: BigNumber = transaction.vout.reduce((c: BigNumber, v) => c.plus(v.value * 1e8), BigNumber.ZERO);
+		const amount: BigNumber = getAmount(transaction);
+		const fee: BigNumber = getFees(transaction);
 
 		this.#database
 			.prepare(
 				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender) VALUES (:hash, :time, :amount, :fee, :sender)`,
 			)
 			.run({
-				// @TODO: amount, fee, sender
+				// @TODO: sender
 				hash: transaction.hash,
 				time: transaction.time,
 				amount: amount.toString(),
-				fee: 0,
+				fee: fee,
 				sender: "address-of-sender",
 			});
 	}
