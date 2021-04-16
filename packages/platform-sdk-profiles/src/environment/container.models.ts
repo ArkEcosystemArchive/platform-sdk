@@ -8,14 +8,14 @@ export const Identifiers = {
 	FeeService: "FeeService",
 	HttpClient: "HttpClient",
 	KnownWalletService: "KnownWalletService",
+	MigrationSchemas: "Migration<Schemas>",
+	MigrationVersion: "Migration<Version>",
 	PluginRegistry: "PluginRegistry",
 	ProfileRepository: "ProfileRepository",
 	SettingRepository: "SettingRepository",
 	Storage: "Storage",
 	WalletRepository: "WalletRepository",
 	WalletService: "WalletService",
-	MigrationSchemas: "Migration<Schemas>",
-	MigrationVersion: "Migration<Version>",
 };
 
 export const State = {
