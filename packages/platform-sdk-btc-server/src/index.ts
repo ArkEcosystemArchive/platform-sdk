@@ -28,22 +28,22 @@ export const subscribe = async (flags: {
 		port: flags.port || 3000,
 	});
 
-	// await server.register({
-	// 	plugin: require("@konceiver/hapi-rate-limiter-flexible"),
-	// 	options: {
-	// 		enabled: true,
-	// 		points: flags.points,
-	// 		duration: flags.duration,
-	// 		whitelist: flags.whitelist.split(",").filter(Boolean),
-	// 		blacklist: flags.blacklist.split(",").filter(Boolean),
-	// 	},
-	// });
+	await server.register({
+		plugin: require("@konceiver/hapi-rate-limiter-flexible"),
+		options: {
+			enabled: true,
+			points: flags.points,
+			duration: flags.duration,
+			whitelist: flags.whitelist.split(",").filter(Boolean),
+			blacklist: flags.blacklist.split(",").filter(Boolean),
+		},
+	});
 
 	server.route({
 		method: "GET",
 		path: "/",
 		handler: async () => {
-			const height = (
+			const number = (
 				await client.post("/", {
 					jsonrpc: "1.0",
 					id: uuidv4(),
@@ -51,11 +51,11 @@ export const subscribe = async (flags: {
 				})
 			).json().result;
 
-			const indexedHeight = database.prepare("SELECT height FROM blocks ORDER BY height DESC LIMIT 1").get();
+			const indexedHeight = database.prepare("SELECT number FROM blocks ORDER BY number DESC LIMIT 1").get();
 
 			return {
-				height,
-				syncing: height !== indexedHeight,
+				number,
+				syncing: number !== indexedHeight,
 			};
 		},
 	});
@@ -73,7 +73,7 @@ export const subscribe = async (flags: {
 		handler: (request) =>
 			database
 				.prepare(
-					`SELECT * FROM blocks WHERE hash = '${request.params.block}' OR height = '${request.params.block}';`,
+					`SELECT * FROM blocks WHERE hash = '${request.params.block}' OR number = '${request.params.block}';`,
 				)
 				.get(),
 	});
