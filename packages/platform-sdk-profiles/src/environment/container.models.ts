@@ -14,6 +14,8 @@ export const Identifiers = {
 	Storage: "Storage",
 	WalletRepository: "WalletRepository",
 	WalletService: "WalletService",
+	MigrationSchemas: "Migration<Schemas>",
+	MigrationVersion: "Migration<Version>",
 };
 
 export const State = {
