@@ -516,6 +516,7 @@ importers:
       '@konceiver/foreman': 2.0.2
       '@ptkdev/logger': 1.7.2
       better-sqlite3: 7.1.2
+      bitcore-lib: 8.25.3
       env-paths: 2.2.0
       fs-extra: 9.1.0
       meow: 9.0.0
@@ -578,6 +579,7 @@ importers:
       '@typescript-eslint/eslint-plugin': ^4.7.0
       '@typescript-eslint/parser': ^4.7.0
       better-sqlite3: ^7.1.2
+      bitcore-lib: ^8.23.1
       cross-env: ^7.0.2
       env-paths: ^2.2.0
       eslint: ^7.13.0
@@ -5124,7 +5126,7 @@ packages:
       fs-extra: 9.1.0
       lowdb: 1.0.0
       rotating-file-stream: 2.1.5
-      strip-ansi: 6.0.0
+      strip-ansi: 7.0.0
     dev: false
     engines:
       node: '>=10.0.0'
@@ -5992,6 +5994,12 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg==
+  /ansi-regex/6.0.0:
+    dev: false
+    engines:
+      node: '>=12'
+    resolution:
+      integrity: sha512-tAaOSrWCHF+1Ear1Z4wnJCXA9GGox4K6Ic85a5qalES2aeEwQGr7UC93mwef49536PkCYjzkp0zIxfFvexJ6zQ==
   /ansi-styles/3.2.1:
     dependencies:
       color-convert: 1.9.3
@@ -14439,6 +14447,14 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-AuvKTrTfQNYNIctbR1K/YGTR1756GycPsg7b9bdV9Duqur4gv6aKqHXah67Z8ImS7WEz5QVcOtlfW2rZEugt6w==
+  /strip-ansi/7.0.0:
+    dependencies:
+      ansi-regex: 6.0.0
+    dev: false
+    engines:
+      node: '>=12'
+    resolution:
+      integrity: sha512-UhDTSnGF1dc0DRbUqr1aXwNoY3RgVkSWG8BrpnuFIxhP57IqbS7IRta2Gfiavds4yCxc5+fEAVVOgBZWnYkvzg==
   /strip-bom/3.0.0:
     dev: true
     engines:
