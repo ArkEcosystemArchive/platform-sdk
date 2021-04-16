@@ -1,6 +1,5 @@
 import { Hash } from "@arkecosystem/platform-sdk-crypto";
 
-import { IProfile } from "../contracts";
 import { State } from "../environment/state";
 
 const passwordKey = (): string => Hash.sha256(`${State.profile().id()}/passwd`).toString("hex");

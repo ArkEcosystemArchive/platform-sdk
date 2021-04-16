@@ -1,3 +1,4 @@
+import { BigNumber } from "@arkecosystem/utils";
 import Logger from "@ptkdev/logger";
 import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
@@ -121,6 +122,8 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeTransaction(transaction): void {
+		const amount: BigNumber = transaction.vout.reduce((c: BigNumber, v) => c.plus(v.value * 1e8), BigNumber.ZERO);
+
 		this.#database
 			.prepare(
 				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender) VALUES (:hash, :time, :amount, :fee, :sender)`,
@@ -129,7 +132,7 @@ export class Database {
 				// @TODO: amount, fee, sender
 				hash: transaction.hash,
 				time: transaction.time,
-				amount: 0,
+				amount: amount.toString(),
 				fee: 0,
 				sender: "address-of-sender",
 			});
