@@ -8,6 +8,7 @@ import { IPeerRepository } from "../repositories/peer-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
 import { IWalletRepository } from "../repositories/wallet-repository";
 import { ICoinService } from "../services";
+import { IWalletStruct } from "../wallets";
 import { ICountAggregate } from "./aggregates/count-aggregate";
 import { IRegistrationAggregate } from "./aggregates/registration-aggregate";
 import { ITransactionAggregate } from "./aggregates/transaction-aggregate";
@@ -17,7 +18,7 @@ import { IPortfolio } from "./portfolio";
 
 export interface IProfileStruct {
 	id: string;
-	wallets: Record<string, any>;
+	wallets: Record<string, IWalletStruct>;
 	contacts: Record<string, any>;
 	peers: Record<string, any>;
 	plugins: Record<string, any>;
