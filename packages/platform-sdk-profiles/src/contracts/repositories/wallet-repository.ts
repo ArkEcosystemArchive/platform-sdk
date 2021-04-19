@@ -1,5 +1,5 @@
 import { IWalletExportOptions } from "../profiles/profile";
-import { IReadWriteWallet } from "../wallets/wallet";
+import { IReadWriteWallet, IWalletStruct } from "../wallets/wallet";
 
 export interface IWalletRepository {
 	all(): Record<string, IReadWriteWallet>;
@@ -33,7 +33,7 @@ export interface IWalletRepository {
 		password: string;
 	}): Promise<IReadWriteWallet>;
 	generate(coin: string, network: string, locale?: string): Promise<{ mnemonic: string; wallet: IReadWriteWallet }>;
-	fill(struct: Record<string, any>): Promise<void>;
+	fill(struct: Record<string, IWalletStruct>): Promise<void>;
 	restore(): Promise<void>;
 	findById(id: string): IReadWriteWallet;
 	findByAddress(address: string): IReadWriteWallet | undefined;
@@ -46,6 +46,6 @@ export interface IWalletRepository {
 	forget(id: string): void;
 	flush(): void;
 	count(): number;
-	toObject(options: IWalletExportOptions): Record<string, object>;
+	toObject(options: IWalletExportOptions): Record<string, IWalletStruct>;
 	sortBy(column: string, direction: "asc" | "desc"): IReadWriteWallet[];
 }

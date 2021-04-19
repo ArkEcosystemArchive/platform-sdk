@@ -13,6 +13,7 @@ import {
 	IWalletFactory,
 	IWalletRepository,
 	IWalletExportOptions,
+	IWalletStruct,
 } from "../../../contracts";
 import { injectable } from "inversify";
 import { pqueue } from "../../../helpers";
@@ -249,11 +250,12 @@ export class WalletRepository implements IWalletRepository {
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
 		},
-	): Record<string, object> {
+	): Record<string, IWalletStruct> {
 		if (!options.addNetworkInformation) {
 			throw Error("This is not implemented yet");
 		}
-		const result: Record<string, object> = {};
+
+		const result: Record<string, IWalletStruct> = {};
 
 		for (const [id, wallet] of Object.entries(this.#data.all())) {
 			if (options.excludeLedgerWallets && wallet.isLedger()) {
@@ -296,11 +298,11 @@ export class WalletRepository implements IWalletRepository {
 	/**
 	 * Restore wallets without syncing them.
 	 *
-	 * @param {Record<string, any>} struct
+	 * @param {Record<string, IWalletStruct>} struct
 	 * @returns {Promise<void>}
 	 * @memberof WalletRepository
 	 */
-	 public async fill(struct: Record<string, any>): Promise<void> {
+	public async fill(struct: Record<string, IWalletStruct>): Promise<void> {
 		this.#dataRaw = struct;
 
 		for (const item of Object.values(struct)) {
@@ -312,7 +314,7 @@ export class WalletRepository implements IWalletRepository {
 
 			wallet.settings().fill(settings);
 
-			await wallet.setCoin(coin, network, { sync: false });
+			await wallet.setCoin(coin!, network, { sync: false });
 
 			await wallet.setAddress(address, { syncIdentity: false, validate: false });
 
