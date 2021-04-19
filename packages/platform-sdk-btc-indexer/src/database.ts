@@ -5,7 +5,7 @@ import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
 import { Flags } from "./types";
-import { getAmount, getFees, getVouts } from "./tx-parsing-helpers";
+import { getAmount, getFees, getVins, getVouts } from "./tx-parsing-helpers";
 
 /**
  * Implements a database storage with SQLite.
@@ -126,6 +126,12 @@ export class Database {
 		const amount: BigNumber = getAmount(transaction);
 		const fee: BigNumber = getFees(transaction);
 		const vouts: BigNumber[] = getVouts(transaction);
+
+		const utxos = getVins(transaction);
+
+		const read = this.#database.prepare(`SELECT hash, vouts FROM transactions WHERE hash IN (:hashes)`)
+			.get({ hashes: utxos.map(u => u.txid )});
+		console.log("read", read);
 
 		this.#database
 			.prepare(

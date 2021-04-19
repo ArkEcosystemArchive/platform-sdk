@@ -11,6 +11,11 @@ export const getVouts = (transaction): BigNumber[] => {
 		.map(vout => BigNumber.make(vout.value * 1e8));
 };
 
+export const getVins = (transaction): any[] => {
+	return transaction.vin
+		.map(vin => ({ txid: vin.txid, vout: vin.vout }));
+};
+
 export const getFees = (transaction): BigNumber => {
 	const outputAmount = getAmount(transaction);
 	// console.log("outputAmount", outputAmount);

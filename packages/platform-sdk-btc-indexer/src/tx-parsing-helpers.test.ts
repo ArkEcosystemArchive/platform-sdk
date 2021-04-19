@@ -11,7 +11,8 @@ const txs = [
 		amount: "6228045749",
 		fees: "83000",
 	},
-]
+];
+
 describe("tx-parsing-helpers", () => {
 	it.each(txs)("should parse amount for %s", ({ txFile, amount }) => {
 		const tx1 = require(`../test/fixtures/${txFile}.json`);
