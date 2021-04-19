@@ -5,7 +5,7 @@ import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
 import { Flags } from "./types";
-import { getAmount, getFees } from "./tx-parsing-helpers";
+import { getAmount, getFees, getVouts } from "./tx-parsing-helpers";
 
 /**
  * Implements a database storage with SQLite.
@@ -125,18 +125,20 @@ export class Database {
 	private storeTransaction(transaction): void {
 		const amount: BigNumber = getAmount(transaction);
 		const fee: BigNumber = getFees(transaction);
+		const vouts: BigNumber[] = getVouts(transaction);
 
 		this.#database
 			.prepare(
-				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender) VALUES (:hash, :time, :amount, :fee, :sender)`,
+				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts) VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`,
 			)
 			.run({
 				// @TODO: sender
 				hash: transaction.hash,
 				time: transaction.time,
 				amount: amount.toString(),
-				fee: fee,
+				fee,
 				sender: "address-of-sender",
+				vouts,
 			});
 	}
 
@@ -163,7 +165,8 @@ export class Database {
 				time     INTEGER       NOT NULL,
 				amount   INTEGER       NOT NULL,
 				fee      INTEGER       NOT NULL,
-				sender   VARCHAR(64)   NOT NULL
+				sender   VARCHAR(64)   NOT NULL,
+				vouts    JSON          NOT NULL
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
