@@ -97,7 +97,8 @@ export class Database {
 	 */
 	public storeError(type: string, hash: string, body: string): void {
 		this.#database
-			.prepare(`INSERT INTO errors (type, hash, body) VALUES (:type, :hash, :body)`)
+			.prepare(`INSERT INTO errors (type, hash, body)
+								VALUES (:type, :hash, :body)`)
 			.run({ type, hash, body });
 	}
 
@@ -109,9 +110,10 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeBlock(block): void {
-		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, height) VALUES (:hash, :height)`).run({
+		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, height)
+														VALUES (:hash, :height)`).run({
 			hash: block.hash,
-			height: block.height,
+			height: block.height
 		});
 	}
 
@@ -124,28 +126,53 @@ export class Database {
 	 */
 	private storeTransaction(transaction): void {
 		const amount: BigNumber = getAmount(transaction);
-		const fee: BigNumber = getFees(transaction);
 		const vouts: BigNumber[] = getVouts(transaction);
+		try {
 
-		const utxos = getVins(transaction);
+			const vins = getVins(transaction);
+			const hashes = vins.map(u => u.txid);
+			let voutsByTransactionHash = {};
+			if (hashes.length > 0) {
+				const read = this.#database
+					.prepare(`SELECT hash, vouts
+											 FROM transactions
+											 WHERE hash IN (${("?,".repeat(hashes.length).slice(0, -1))})`)
+					.all(hashes);
 
-		const read = this.#database.prepare(`SELECT hash, vouts FROM transactions WHERE hash IN (:hashes)`)
-			.get({ hashes: utxos.map(u => u.txid )});
-		console.log("read", read);
+				// console.log("hashes", hashes, "read", read);
 
-		this.#database
-			.prepare(
-				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts) VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`,
-			)
-			.run({
-				// @TODO: sender
-				hash: transaction.hash,
-				time: transaction.time,
-				amount: amount.toString(),
-				fee,
-				sender: "address-of-sender",
-				vouts,
-			});
+				if (read) {
+					const indexByHash = (xs) => xs.reduce((rv, x) => {
+						rv[x['hash']] = JSON.parse(x['vouts']).map(amount => BigNumber.make(amount));
+						return rv;
+					}, {});
+
+					voutsByTransactionHash = indexByHash(read);
+				}
+			}
+
+			console.log('indexed', voutsByTransactionHash);
+			const fee: BigNumber = getFees(transaction, voutsByTransactionHash);
+
+			this.#database
+				.prepare(
+					`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts)
+					 VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`
+				)
+				.run({
+					// @TODO: sender
+					hash: transaction.hash,
+					time: transaction.time,
+					amount: amount.toString(),
+					fee: "",
+					sender: "address-of-sender",
+					vouts: JSON.stringify(vouts)
+				});
+		} catch (error) {
+			console.error(error);
+			Process.exit(20);
+			// throw error;
+		}
 	}
 
 	/**
