@@ -75,7 +75,6 @@ export interface IProfile {
 	restore(password?: string): Promise<void>;
 	sync(): Promise<void>;
 	initializeSettings(): void;
-	migrate(migrations: object, versionToMigrate: string): Promise<void>;
 	getRawData(): IProfileInput;
 	setRawData(data: IProfileInput): void;
 	setRawDataKey(key: keyof IProfileInput, value: string): void;
