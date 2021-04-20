@@ -46,41 +46,56 @@ import { State } from "../../../environment/state";
 import { Identifiers } from "../../../environment/container.models";
 import { container } from "../../../environment/container";
 
+interface ProfileState {
+	data: IProfileInput,
+	coinService: ICoinService,
+	portfolio: IPortfolio,
+	contactRepository: IContactRepository,
+	dataRepository: IDataRepository,
+	notificationRepository: INotificationRepository,
+	peerRepository: IPeerRepository,
+	pluginRepository: IPluginRepository,
+	settingRepository: ISettingRepository,
+	walletRepository: IWalletRepository,
+	countAggregate: ICountAggregate,
+	registrationAggregate: IRegistrationAggregate,
+	transactionAggregate: ITransactionAggregate,
+	walletAggregate: IWalletAggregate,
+	authenticator: IAuthenticator,
+}
+
 export class Profile implements IProfile {
-	#data: IProfileInput;
+	/**
+	 * The data and instances of the profile.
+	 *
+	 * @type {ProfileState}
+	 * @memberof Profile
+	 */
+	readonly #state: ProfileState;
 
-	readonly #coinService: ICoinService;
-	readonly #portfolio: IPortfolio;
-	readonly #contactRepository: IContactRepository;
-	readonly #dataRepository: IDataRepository;
-	readonly #notificationRepository: INotificationRepository;
-	readonly #peerRepository: IPeerRepository;
-	readonly #pluginRepository: IPluginRepository;
-	readonly #settingRepository: ISettingRepository;
-	readonly #walletRepository: IWalletRepository;
-	readonly #countAggregate: ICountAggregate;
-	readonly #registrationAggregate: IRegistrationAggregate;
-	readonly #transactionAggregate: ITransactionAggregate;
-	readonly #walletAggregate: IWalletAggregate;
-	readonly #authenticator: IAuthenticator;
-
+	/**
+	 * Creates an instance of Profile.
+	 * @param {IProfileInput} data
+	 * @memberof Profile
+	 */
 	public constructor(data: IProfileInput) {
-		this.#data = data;
-
-		this.#coinService = new CoinService();
-		this.#portfolio = new Portfolio();
-		this.#contactRepository = new ContactRepository();
-		this.#dataRepository = new DataRepository();
-		this.#notificationRepository = new NotificationRepository();
-		this.#peerRepository = new PeerRepository();
-		this.#pluginRepository = new PluginRepository();
-		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
-		this.#walletRepository = new WalletRepository();
-		this.#countAggregate = new CountAggregate();
-		this.#registrationAggregate = new RegistrationAggregate();
-		this.#transactionAggregate = new TransactionAggregate();
-		this.#walletAggregate = new WalletAggregate();
-		this.#authenticator = new Authenticator();
+		this.#state = {
+			data,
+			coinService: new CoinService(),
+			portfolio: new Portfolio(),
+			contactRepository: new ContactRepository(),
+			dataRepository: new DataRepository(),
+			notificationRepository: new NotificationRepository(),
+			peerRepository: new PeerRepository(),
+			pluginRepository: new PluginRepository(),
+			settingRepository: new SettingRepository(Object.values(ProfileSetting)),
+			walletRepository: new WalletRepository(),
+			countAggregate: new CountAggregate(),
+			registrationAggregate: new RegistrationAggregate(),
+			transactionAggregate: new TransactionAggregate(),
+			walletAggregate: new WalletAggregate(),
+			authenticator: new Authenticator(),
+		}
 	}
 
 	/**
@@ -90,16 +105,16 @@ export class Profile implements IProfile {
 	 * @memberof Environment
 	 */
 	public coins(): ICoinService {
-		return this.#coinService;
+		return this.#state.coinService;
 	}
 
 	public id(): string {
-		return this.#data.id;
+		return this.#state.data.id;
 	}
 
 	public name(): string {
 		if (this.settings().missing(ProfileSetting.Name)) {
-			return this.#data.name;
+			return this.#state.data.name;
 		}
 
 		return this.settings().get<string>(ProfileSetting.Name)!;
@@ -112,8 +127,8 @@ export class Profile implements IProfile {
 			return avatarFromSettings;
 		}
 
-		if (this.#data.avatar) {
-			return this.#data.avatar;
+		if (this.#state.data.avatar) {
+			return this.#state.data.avatar;
 		}
 
 		return Avatar.make(this.name());
@@ -128,35 +143,35 @@ export class Profile implements IProfile {
 	}
 
 	public portfolio(): IPortfolio {
-		return this.#portfolio;
+		return this.#state.portfolio;
 	}
 
 	public contacts(): IContactRepository {
-		return this.#contactRepository;
+		return this.#state.contactRepository;
 	}
 
 	public data(): IDataRepository {
-		return this.#dataRepository;
+		return this.#state.dataRepository;
 	}
 
 	public notifications(): INotificationRepository {
-		return this.#notificationRepository;
+		return this.#state.notificationRepository;
 	}
 
 	public peers(): IPeerRepository {
-		return this.#peerRepository;
+		return this.#state.peerRepository;
 	}
 
 	public plugins(): IPluginRepository {
-		return this.#pluginRepository;
+		return this.#state.pluginRepository;
 	}
 
 	public settings(): ISettingRepository {
-		return this.#settingRepository;
+		return this.#state.settingRepository;
 	}
 
 	public wallets(): IWalletRepository {
-		return this.#walletRepository;
+		return this.#state.walletRepository;
 	}
 
 	public flush(): void {
@@ -186,19 +201,19 @@ export class Profile implements IProfile {
 	 */
 
 	public countAggregate(): ICountAggregate {
-		return this.#countAggregate;
+		return this.#state.countAggregate;
 	}
 
 	public registrationAggregate(): IRegistrationAggregate {
-		return this.#registrationAggregate;
+		return this.#state.registrationAggregate;
 	}
 
 	public transactionAggregate(): ITransactionAggregate {
-		return this.#transactionAggregate;
+		return this.#state.transactionAggregate;
 	}
 
 	public walletAggregate(): IWalletAggregate {
-		return this.#walletAggregate;
+		return this.#state.walletAggregate;
 	}
 
 	/**
@@ -206,11 +221,11 @@ export class Profile implements IProfile {
 	 */
 
 	public auth(): IAuthenticator {
-		return this.#authenticator;
+		return this.#state.authenticator;
 	}
 
 	public usesPassword(): boolean {
-		return this.#data.password !== undefined;
+		return this.#state.data.password !== undefined;
 	}
 
 	/**
@@ -262,7 +277,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public dump(): IProfileInput {
-		if (!this.#data.data) {
+		if (!this.#state.data.data) {
 			throw new Error("The profile has not been encoded or encrypted. Please call [save] before dumping.");
 		}
 
@@ -270,8 +285,8 @@ export class Profile implements IProfile {
 			id: this.id(),
 			name: this.name(),
 			avatar: this.avatar(),
-			password: this.#data.password,
-			data: this.#data.data,
+			password: this.#state.data.password,
+			data: this.#state.data.data,
 		};
 	}
 
@@ -348,7 +363,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public getRawData(): IProfileInput {
-		return this.#data;
+		return this.#state.data;
 	}
 
 	/**
@@ -360,7 +375,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public setRawData(data: IProfileInput): void {
-		this.#data = data;
+		this.#state.data = data;
 	}
 
 	/**
@@ -374,7 +389,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public setRawDataKey(key: keyof IProfileInput, value: string): void {
-		this.#data[key] = value;
+		this.#state.data[key] = value;
 	}
 
 	/**
@@ -382,7 +397,7 @@ export class Profile implements IProfile {
 	 */
 	public save(password?: string): void {
 		try {
-			this.#data.data = this.export(password);
+			this.#state.data.data = this.export(password);
 		} catch (error) {
 			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
 		}
@@ -406,7 +421,7 @@ export class Profile implements IProfile {
 						id: this.id(),
 						name: this.name(),
 						avatar: this.avatar(),
-						password: this.#data.password,
+						password: this.#state.data.password,
 						data: this.toObject(options),
 					}),
 					password,
@@ -424,7 +439,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public hasBeenPartiallyRestored(): boolean {
-		return this.#walletRepository.values().filter((wallet: IReadWriteWallet) => wallet.hasBeenPartiallyRestored()).length > 0;
+		return this.#state.walletRepository.values().filter((wallet: IReadWriteWallet) => wallet.hasBeenPartiallyRestored()).length > 0;
 	}
 
 	/**
@@ -468,7 +483,7 @@ export class Profile implements IProfile {
 			throw new Error("This profile does not use a password but password was passed for decryption");
 		}
 
-		const { id, data } = JSON.parse(PBKDF2.decrypt(Base64.decode(this.#data.data), password));
+		const { id, data } = JSON.parse(PBKDF2.decrypt(Base64.decode(this.#state.data.data), password));
 
 		return { id, ...data };
 	}
@@ -481,7 +496,7 @@ export class Profile implements IProfile {
 			if (typeof password === "string") {
 				data = this.decrypt(password);
 			} else {
-				data = JSON.parse(Base64.decode(this.#data.data));
+				data = JSON.parse(Base64.decode(this.#state.data.data));
 			}
 		} catch (error) {
 			errorReason = ` Reason: ${error.message}`;
