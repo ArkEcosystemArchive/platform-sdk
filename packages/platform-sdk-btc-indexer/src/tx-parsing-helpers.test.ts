@@ -11,6 +11,7 @@ describe("tx-parsing-helpers", () => {
 
 	it.each(txs)("should calculate fees for %s", (txFile) => {
 		const tx1 = require(`../test/fixtures/${txFile}.json`);
+
 		expect(getFees(tx1.transaction, tx1.inputs).toString()).toBe(tx1.fee);
 	});
 });

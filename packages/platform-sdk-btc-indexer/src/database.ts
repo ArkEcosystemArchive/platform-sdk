@@ -4,7 +4,6 @@ import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
-import Logger from "./logger";
 import { getAmount, getFees, getVins, getVouts } from "./tx-parsing-helpers";
 import { Flags } from "./types";
 
@@ -75,9 +74,7 @@ export class Database {
 	 * @memberof Database
 	 */
 	public storeBlockWithTransactions(block: any): void {
-		this.#logger.info(
-			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
-		);
+		this.#logger.info(`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`);
 
 		this.storeBlock(block);
 
@@ -100,10 +97,7 @@ export class Database {
 	 */
 	public storeError(type: string, hash: string, body: string): void {
 		this.#database
-			.prepare(
-				`INSERT INTO errors (type, hash, body)
-				 VALUES (:type, :hash, :body)`,
-			)
+			.prepare(`INSERT INTO errors (type, hash, body) VALUES (:type, :hash, :body)`)
 			.run({ type, hash, body });
 	}
 
@@ -116,10 +110,7 @@ export class Database {
 	 */
 	private storeBlock(block): void {
 		this.#database
-			.prepare(
-				`INSERT OR IGNORE INTO blocks (hash, height)
-				 VALUES (:hash, :height)`,
-			)
+			.prepare(`INSERT OR IGNORE INTO blocks (hash, height) VALUES (:hash, :height)`)
 			.run({
 				hash: block.hash,
 				height: block.height,
@@ -161,10 +152,7 @@ export class Database {
 		const fee: BigNumber = getFees(transaction, voutsByTransactionHash);
 
 		this.#database
-			.prepare(
-				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts)
-				 VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`,
-			)
+			.prepare(`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts) VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`)
 			.run({
 				// @TODO: sender
 				hash: transaction.hash,
