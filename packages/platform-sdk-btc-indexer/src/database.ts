@@ -4,8 +4,9 @@ import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
-import { getAmount, getVins, getVouts } from "./tx-parsing-helpers";
+import { getAmount, getFees, getVins, getVouts } from "./tx-parsing-helpers";
 import { Flags } from "./types";
+import Logger from "./logger";
 
 /**
  * Implements a database storage with SQLite.
@@ -75,7 +76,7 @@ export class Database {
 	 */
 	public storeBlockWithTransactions(block: any): void {
 		this.#logger.info(
-			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
+			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`
 		);
 
 		this.storeBlock(block);
@@ -101,7 +102,7 @@ export class Database {
 		this.#database
 			.prepare(
 				`INSERT INTO errors (type, hash, body)
-								VALUES (:type, :hash, :body)`,
+				 VALUES (:type, :hash, :body)`
 			)
 			.run({ type, hash, body });
 	}
@@ -117,11 +118,11 @@ export class Database {
 		this.#database
 			.prepare(
 				`INSERT OR IGNORE INTO blocks (hash, height)
-														VALUES (:hash, :height)`,
+				 VALUES (:hash, :height)`
 			)
 			.run({
 				hash: block.hash,
-				height: block.height,
+				height: block.height
 			});
 	}
 
@@ -135,64 +136,55 @@ export class Database {
 	private storeTransaction(transaction): void {
 		const amount: BigNumber = getAmount(transaction);
 		const vouts: BigNumber[] = getVouts(transaction);
-		try {
-			const vins = getVins(transaction);
-			const hashes = vins.map((u) => u.txid);
-			let voutsByTransactionHash = {};
-			if (hashes.length > 0) {
-				const read = this.#database
-					.prepare(
-						`SELECT hash, vouts
-											 FROM transactions
-											 WHERE hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
-					)
-					.all(hashes);
-
-				// console.log("hashes", hashes, "read", read);
-
-				if (read) {
-					const indexByHash = (xs) =>
-						xs.reduce((rv, x) => {
-							rv[x["hash"]] = JSON.parse(x["vouts"]).map((amount) => BigNumber.make(amount));
-							return rv;
-						}, {});
-
-					voutsByTransactionHash = indexByHash(read);
-				}
-			}
-
-			console.log("indexed", voutsByTransactionHash);
-			// const fee: BigNumber = getFees(transaction, voutsByTransactionHash);
-
-			this.#database
+		const hashes = getVins(transaction).map((u) => u.txid);
+		let voutsByTransactionHash = {};
+		if (hashes.length > 0) {
+			const read = this.#database
 				.prepare(
-					`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts)
-					 VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`,
+					`SELECT hash, vouts
+					 FROM transactions
+					 WHERE hash IN (${("?,".repeat(hashes.length).slice(0, -1))})`
 				)
-				.run({
-					// @TODO: sender
-					hash: transaction.hash,
-					time: transaction.time,
-					amount: amount.toString(),
-					fee: "",
-					sender: "address-of-sender",
-					vouts: JSON.stringify(vouts),
-				});
-		} catch (error) {
-			console.error(error);
-			Process.exit(20);
-			// throw error;
+				.all(hashes);
+
+			if (read) {
+				const indexByHash = (xs) =>
+					xs.reduce((rv, x) => {
+						rv[x["hash"]] = JSON.parse(x["vouts"]).map((amount) => BigNumber.make(amount));
+						return rv;
+					}, {});
+
+				voutsByTransactionHash = indexByHash(read);
+			}
 		}
+
+		const fee: BigNumber = getFees(transaction, voutsByTransactionHash);
+
+		this.#database
+			.prepare(
+				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts)
+				 VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`
+			)
+			.run({
+				// @TODO: sender
+				hash: transaction.hash,
+				time: transaction.time,
+				amount: amount.toString(),
+				fee: fee.toString(),
+				sender: "address-of-sender",
+				vouts: JSON.stringify(vouts),
+			});
 	}
 
-	/**
-	 * Migrates the database to prepare it for use.
-	 *
-	 * @private
-	 * @memberof Database
-	 */
-	private migrate(): void {
-		this.#database.exec(`
+
+/**
+ * Migrates the database to prepare it for use.
+ *
+ * @private
+ * @memberof Database
+ */
+private migrate(): void {
+	this.#database.exec(`
 			PRAGMA journal_mode = WAL;
 
 			CREATE TABLE IF NOT EXISTS blocks(
@@ -221,5 +213,5 @@ export class Database {
 				body   TEXT          NOT NULL
 			);
 		`);
-	}
+};
 }
