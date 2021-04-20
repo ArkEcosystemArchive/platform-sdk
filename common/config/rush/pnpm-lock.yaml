@@ -516,7 +516,6 @@ importers:
       '@konceiver/foreman': 2.0.2
       '@ptkdev/logger': 1.7.2
       better-sqlite3: 7.1.2
-      bitcore-lib: 8.25.3
       env-paths: 2.2.0
       fs-extra: 9.1.0
       meow: 9.0.0
@@ -579,7 +578,6 @@ importers:
       '@typescript-eslint/eslint-plugin': ^4.7.0
       '@typescript-eslint/parser': ^4.7.0
       better-sqlite3: ^7.1.2
-      bitcore-lib: ^8.23.1
       cross-env: ^7.0.2
       env-paths: ^2.2.0
       eslint: ^7.13.0
