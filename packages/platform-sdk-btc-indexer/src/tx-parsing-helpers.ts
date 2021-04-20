@@ -1,10 +1,10 @@
 import { BigNumber } from "@arkecosystem/utils";
 
 export const getAmount = (transaction): BigNumber =>
-	transaction.vout.reduce((c: BigNumber, v) => c.plus(BigNumber.make(Math.round(v.value * 1e8))), BigNumber.ZERO);
+	transaction.vout.reduce((c: BigNumber, v) => c.plus(Math.round(v.value * 1e8)), BigNumber.ZERO);
 
 export const getVouts = (transaction): BigNumber[] =>
-	transaction.vout.sort((a, b) => a.n - b.n).map((vout) => BigNumber.make(vout.value * 1e8));
+	transaction.vout.sort((a, b) => a.n - b.n).map((vout) => Math.round(vout.value * 1e8));
 
 export const getVins = (transaction): any[] =>
 	transaction.vin
