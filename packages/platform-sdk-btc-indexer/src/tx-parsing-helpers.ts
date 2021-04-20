@@ -19,15 +19,16 @@ export const getFees = (transaction, vouts): BigNumber => {
 	const outputAmount = getAmount(transaction);
 	// console.log("outputAmount", outputAmount);
 
-	const inputAmount = transaction.vin
-		.reduce((c: BigNumber, vin) => c.plus(vin.vout * 1e8), BigNumber.ZERO);
+	const inputAmount: BigNumber = transaction.vin
+		.filter(vin => vin.txid !== undefined && vin.vout !== undefined)
+		.reduce((c: BigNumber, vin) => c.plus(vouts[vin.txid][vin.vout]), BigNumber.ZERO);
 	// console.log("inputAmount", inputAmount);
 
 	let btcTransaction = new Transaction();
 	// 	.from(unspent)
 	// 	.to(input.data.to, amount)
 	// 	.change(senderAddress);
-	console.log(btcTransaction);
+	// console.log(btcTransaction);
 
 	return transaction.vout.reduce((c: BigNumber, v) => c.plus(v.value * 1e8), BigNumber.ZERO);
 };

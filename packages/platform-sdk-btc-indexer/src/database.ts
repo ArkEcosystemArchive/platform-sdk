@@ -74,7 +74,7 @@ export class Database {
 	 * @memberof Database
 	 */
 	public storeBlockWithTransactions(block: any): void {
-		this.#logger.info(`Storing block [${block.hash}] with [${block.tx.length}] transaction(s)`);
+		this.#logger.info(`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`);
 
 		this.storeBlock(block);
 
@@ -152,7 +152,7 @@ export class Database {
 			}
 
 			console.log('indexed', voutsByTransactionHash);
-			const fee: BigNumber = getFees(transaction, voutsByTransactionHash);
+			// const fee: BigNumber = getFees(transaction, voutsByTransactionHash);
 
 			this.#database
 				.prepare(
