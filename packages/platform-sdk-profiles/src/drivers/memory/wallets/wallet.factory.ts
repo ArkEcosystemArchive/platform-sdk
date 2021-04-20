@@ -2,7 +2,7 @@ import { Coins } from "@arkecosystem/platform-sdk";
 import { decrypt, encrypt } from "bip38";
 import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
-import { IProfile, IReadWriteWallet, IWalletFactory, WalletData } from "../../../contracts";
+import { IReadWriteWallet, IWalletFactory, WalletData } from "../../../contracts";
 
 import { Wallet } from "./wallet";
 
@@ -20,7 +20,7 @@ export class WalletFactory implements IWalletFactory {
 		useBIP39?: boolean;
 		useBIP44?: boolean;
 	}): Promise<IReadWriteWallet> {
-		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
+		const wallet: IReadWriteWallet = new Wallet(uuidv4());
 
 		await wallet.setCoin(coin, network);
 
@@ -51,7 +51,7 @@ export class WalletFactory implements IWalletFactory {
 		network: string;
 		address: string;
 	}): Promise<IReadWriteWallet> {
-		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
+		const wallet: IReadWriteWallet = new Wallet(uuidv4());
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(address);
@@ -68,7 +68,7 @@ export class WalletFactory implements IWalletFactory {
 		network: string;
 		publicKey: string;
 	}): Promise<IReadWriteWallet> {
-		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
+		const wallet: IReadWriteWallet = new Wallet(uuidv4());
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(await wallet.coin().identity().address().fromPublicKey(publicKey));
@@ -85,7 +85,7 @@ export class WalletFactory implements IWalletFactory {
 		network: string;
 		privateKey: string;
 	}): Promise<IReadWriteWallet> {
-		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
+		const wallet: IReadWriteWallet = new Wallet(uuidv4());
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
@@ -142,7 +142,7 @@ export class WalletFactory implements IWalletFactory {
 		network: string;
 		wif: string;
 	}): Promise<IReadWriteWallet> {
-		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
+		const wallet: IReadWriteWallet = new Wallet(uuidv4());
 
 		await wallet.setCoin(coin, network);
 		await wallet.setAddress(await wallet.coin().identity().address().fromWIF(wif));
@@ -161,7 +161,7 @@ export class WalletFactory implements IWalletFactory {
 		wif: string;
 		password: string;
 	}): Promise<IReadWriteWallet> {
-		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
+		const wallet: IReadWriteWallet = new Wallet(uuidv4());
 
 		await wallet.setCoin(coin, network);
 

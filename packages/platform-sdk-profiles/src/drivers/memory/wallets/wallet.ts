@@ -27,6 +27,9 @@ import {
 	IDelegateService,
 	IExchangeRateService,
 	IKnownWalletService,
+	IDataRepository,
+	ISettingRepository,
+	ITransactionService,
 } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 import { State } from "../../../environment/state";
@@ -34,9 +37,9 @@ import { State } from "../../../environment/state";
 interface WalletState {
 	id: string;
 	restoration: { full: boolean, partial: boolean };
-	dataRepository: DataRepository;
-	settingRepository: SettingRepository;
-	transactionService: TransactionService;
+	dataRepository: IDataRepository;
+	settingRepository: ISettingRepository;
+	transactionService: ITransactionService;
 	initial: IWalletStruct;
 	coin: Coins.Coin;
 	wallet: Contracts.WalletData | undefined;
@@ -60,7 +63,7 @@ export class Wallet implements IReadWriteWallet {
 	 * @param {*} initial
 	 * @memberof Wallet
 	 */
-	public constructor(id: string, initial: any) {
+	public constructor(id: string, initial: any = {}) {
 		// @ts-ignore
 		this.#state = {
 			id,
@@ -68,8 +71,9 @@ export class Wallet implements IReadWriteWallet {
 			restoration: { full: false, partial: false },
 			dataRepository: new DataRepository(),
 			settingRepository: new SettingRepository(Object.values(WalletSetting)),
-			transactionService: new TransactionService(this),
 		}
+
+		this.#state.transactionService = new TransactionService(this);
 
 		this.restore();
 	}
@@ -314,11 +318,11 @@ export class Wallet implements IReadWriteWallet {
 		return this.#state.avatar;
 	}
 
-	public data(): DataRepository {
+	public data(): IDataRepository {
 		return this.#state.dataRepository;
 	}
 
-	public settings(): SettingRepository {
+	public settings(): ISettingRepository {
 		return this.#state.settingRepository;
 	}
 
@@ -517,7 +521,7 @@ export class Wallet implements IReadWriteWallet {
 		return this.#state.coin.peer();
 	}
 
-	public transaction(): TransactionService {
+	public transaction(): ITransactionService {
 		return this.#state.transactionService;
 	}
 

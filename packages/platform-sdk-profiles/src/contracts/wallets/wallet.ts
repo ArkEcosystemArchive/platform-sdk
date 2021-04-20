@@ -8,6 +8,7 @@ import { IDataRepository } from "../repositories/data-repository";
 import { IPeerRepository } from "../repositories/peer-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
 import { IReadOnlyWallet } from "./read-only-wallet";
+import { ITransactionService } from "./wallet-transaction-service";
 
 export interface IWalletStruct {
 	id: string;
@@ -81,7 +82,7 @@ export interface IReadWriteWallet {
 	link(): Contracts.LinkService;
 	message(): Contracts.MessageService;
 	peer(): Contracts.PeerService;
-	transaction(): TransactionService;
+	transaction(): ITransactionService;
 	transactionTypes(): Coins.CoinTransactionTypes;
 	transactions(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 	sentTransactions(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
