@@ -74,7 +74,9 @@ export class Database {
 	 * @memberof Database
 	 */
 	public storeBlockWithTransactions(block: any): void {
-		this.#logger.info(`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`);
+		this.#logger.info(
+			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
+		);
 
 		this.storeBlock(block);
 
@@ -109,12 +111,10 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeBlock(block): void {
-		this.#database
-			.prepare(`INSERT OR IGNORE INTO blocks (hash, height) VALUES (:hash, :height)`)
-			.run({
-				hash: block.hash,
-				height: block.height,
-			});
+		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, height) VALUES (:hash, :height)`).run({
+			hash: block.hash,
+			height: block.height,
+		});
 	}
 
 	/**
@@ -152,7 +152,9 @@ export class Database {
 		const fee: BigNumber = getFees(transaction, voutsByTransactionHash);
 
 		this.#database
-			.prepare(`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts) VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`)
+			.prepare(
+				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts) VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`,
+			)
 			.run({
 				// @TODO: sender
 				hash: transaction.hash,
