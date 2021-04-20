@@ -23,7 +23,8 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 
 	for (let i = localHeight; i <= remoteHeight; i++) {
 		try {
-			if (queue.size === 1000) {		// TODO We can prefetch as many as we wont, but we need to process them in sequential order
+			if (queue.size === 1000) {
+				// TODO We can prefetch as many as we wont, but we need to process them in sequential order
 				logger.info("Draining Queue...");
 
 				await queue.start().onIdle();

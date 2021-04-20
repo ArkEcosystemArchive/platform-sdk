@@ -4,8 +4,8 @@ import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
+import { getAmount, getVins, getVouts } from "./tx-parsing-helpers";
 import { Flags } from "./types";
-import { getAmount, getFees, getVins, getVouts } from "./tx-parsing-helpers";
 
 /**
  * Implements a database storage with SQLite.
@@ -74,7 +74,9 @@ export class Database {
 	 * @memberof Database
 	 */
 	public storeBlockWithTransactions(block: any): void {
-		this.#logger.info(`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`);
+		this.#logger.info(
+			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
+		);
 
 		this.storeBlock(block);
 
@@ -97,8 +99,10 @@ export class Database {
 	 */
 	public storeError(type: string, hash: string, body: string): void {
 		this.#database
-			.prepare(`INSERT INTO errors (type, hash, body)
-								VALUES (:type, :hash, :body)`)
+			.prepare(
+				`INSERT INTO errors (type, hash, body)
+								VALUES (:type, :hash, :body)`,
+			)
 			.run({ type, hash, body });
 	}
 
@@ -110,11 +114,15 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeBlock(block): void {
-		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, height)
-														VALUES (:hash, :height)`).run({
-			hash: block.hash,
-			height: block.height
-		});
+		this.#database
+			.prepare(
+				`INSERT OR IGNORE INTO blocks (hash, height)
+														VALUES (:hash, :height)`,
+			)
+			.run({
+				hash: block.hash,
+				height: block.height,
+			});
 	}
 
 	/**
@@ -128,36 +136,38 @@ export class Database {
 		const amount: BigNumber = getAmount(transaction);
 		const vouts: BigNumber[] = getVouts(transaction);
 		try {
-
 			const vins = getVins(transaction);
-			const hashes = vins.map(u => u.txid);
+			const hashes = vins.map((u) => u.txid);
 			let voutsByTransactionHash = {};
 			if (hashes.length > 0) {
 				const read = this.#database
-					.prepare(`SELECT hash, vouts
+					.prepare(
+						`SELECT hash, vouts
 											 FROM transactions
-											 WHERE hash IN (${("?,".repeat(hashes.length).slice(0, -1))})`)
+											 WHERE hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
+					)
 					.all(hashes);
 
 				// console.log("hashes", hashes, "read", read);
 
 				if (read) {
-					const indexByHash = (xs) => xs.reduce((rv, x) => {
-						rv[x['hash']] = JSON.parse(x['vouts']).map(amount => BigNumber.make(amount));
-						return rv;
-					}, {});
+					const indexByHash = (xs) =>
+						xs.reduce((rv, x) => {
+							rv[x["hash"]] = JSON.parse(x["vouts"]).map((amount) => BigNumber.make(amount));
+							return rv;
+						}, {});
 
 					voutsByTransactionHash = indexByHash(read);
 				}
 			}
 
-			console.log('indexed', voutsByTransactionHash);
+			console.log("indexed", voutsByTransactionHash);
 			// const fee: BigNumber = getFees(transaction, voutsByTransactionHash);
 
 			this.#database
 				.prepare(
 					`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts)
-					 VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`
+					 VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`,
 				)
 				.run({
 					// @TODO: sender
@@ -166,7 +176,7 @@ export class Database {
 					amount: amount.toString(),
 					fee: "",
 					sender: "address-of-sender",
-					vouts: JSON.stringify(vouts)
+					vouts: JSON.stringify(vouts),
 				});
 		} catch (error) {
 			console.error(error);
