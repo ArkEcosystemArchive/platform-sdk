@@ -3,7 +3,7 @@ import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
 import {
-	IProfileStruct,
+	IProfileData,
 	IProfileExportOptions,
 	IContactRepository,
 	IPortfolio,
@@ -458,7 +458,7 @@ export class Profile implements IProfile {
 	 * Normalise the profile into an object.
 	 *
 	 * @param {IProfileExportOptions} [options]
-	 * @return {*}  {IProfileStruct}
+	 * @return {*}  {IProfileData}
 	 * @memberof Profile
 	 */
 	public toObject(
@@ -468,7 +468,7 @@ export class Profile implements IProfile {
 			addNetworkInformation: true,
 			saveGeneralSettings: true,
 		},
-	): IProfileStruct {
+	): IProfileData {
 		if (!options.saveGeneralSettings) {
 			throw Error("This is not implemented yet");
 		}
@@ -514,7 +514,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public async restore(password?: string): Promise<void> {
-		const data: IProfileStruct | undefined = await this.validateStruct(password);
+		const data: IProfileData | undefined = await this.validateStruct(password);
 
 		State.profile(this);
 
@@ -702,7 +702,7 @@ export class Profile implements IProfile {
 	 *
 	 * @param password A hard-to-guess password to decrypt the contents.
 	 */
-	private decrypt(password: string): IProfileStruct {
+	private decrypt(password: string): IProfileData {
 		if (!this.usesPassword()) {
 			throw new Error("This profile does not use a password but password was passed for decryption");
 		}
@@ -717,11 +717,11 @@ export class Profile implements IProfile {
 	 *
 	 * @private
 	 * @param {string} [password]
-	 * @return {*}  {Promise<IProfileStruct>}
+	 * @return {*}  {Promise<IProfileData>}
 	 * @memberof Profile
 	 */
-	private async validateStruct(password?: string): Promise<IProfileStruct> {
-		let data: IProfileStruct | undefined;
+	private async validateStruct(password?: string): Promise<IProfileData> {
+		let data: IProfileData | undefined;
 		let errorReason = "";
 
 		try {
@@ -802,6 +802,6 @@ export class Profile implements IProfile {
 			throw error;
 		}
 
-		return value as IProfileStruct;
+		return value as IProfileData;
 	}
 }

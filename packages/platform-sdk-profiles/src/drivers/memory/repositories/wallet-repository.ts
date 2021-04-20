@@ -13,7 +13,7 @@ import {
 	IWalletFactory,
 	IWalletRepository,
 	IWalletExportOptions,
-	IWalletStruct,
+	IWalletData,
 } from "../../../contracts";
 import { injectable } from "inversify";
 import { pqueue } from "../../../helpers";
@@ -138,29 +138,20 @@ export class WalletRepository implements IWalletRepository {
 		return this.storeWallet(await this.#wallets.fromPrivateKey({ coin, network, privateKey }));
 	}
 
-	public async importByWIF({
-		coin,
-		network,
-		wif,
-	}: {
-		coin: string;
-		network: string;
-		wif: string;
-	}): Promise<IReadWriteWallet> {
+	public async importByWIF(
+		coin: string,
+		network: string,
+		wif: string,
+	): Promise<IReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromWIF({ coin, network, wif }));
 	}
 
-	public async importByWIFWithEncryption({
-		coin,
-		network,
-		wif,
-		password,
-	}: {
-		coin: string;
-		network: string;
-		wif: string;
-		password: string;
-	}): Promise<IReadWriteWallet> {
+	public async importByWIFWithEncryption(
+		coin: string,
+		network: string,
+		wif: string,
+		password: string,
+	): Promise<IReadWriteWallet> {
 		return this.storeWallet(await this.#wallets.fromWIFWithEncryption({ coin, network, wif, password }));
 	}
 
@@ -250,12 +241,12 @@ export class WalletRepository implements IWalletRepository {
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
 		},
-	): Record<string, IWalletStruct> {
+	): Record<string, IWalletData> {
 		if (!options.addNetworkInformation) {
 			throw Error("This is not implemented yet");
 		}
 
-		const result: Record<string, IWalletStruct> = {};
+		const result: Record<string, IWalletData> = {};
 
 		for (const [id, wallet] of Object.entries(this.#data.all())) {
 			if (options.excludeLedgerWallets && wallet.isLedger()) {
@@ -298,11 +289,11 @@ export class WalletRepository implements IWalletRepository {
 	/**
 	 * Restore wallets without syncing them.
 	 *
-	 * @param {Record<string, IWalletStruct>} struct
+	 * @param {Record<string, IWalletData>} struct
 	 * @returns {Promise<void>}
 	 * @memberof WalletRepository
 	 */
-	public async fill(struct: Record<string, IWalletStruct>): Promise<void> {
+	public async fill(struct: Record<string, IWalletData>): Promise<void> {
 		this.#dataRaw = struct;
 
 		for (const item of Object.values(struct)) {

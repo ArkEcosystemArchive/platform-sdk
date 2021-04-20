@@ -1,6 +1,5 @@
 export * from "./contacts";
 export * from "./driver";
-export * from "./mappers";
 export * from "./plugins";
 export * from "./profiles";
 export * from "./repositories";

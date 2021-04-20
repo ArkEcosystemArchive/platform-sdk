@@ -3,20 +3,20 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Avatar } from "../../../helpers/avatar";
-import { IContactAddress, IContactAddressProps, IKnownWalletService, IProfile } from "../../../contracts";
+import { IContactAddress, IContactAddressData, IKnownWalletService, IProfile } from "../../../contracts";
 import { State } from "../../../environment/state";
 
 export class ContactAddress implements IContactAddress {
 	readonly #coin: Coins.Coin;
-	readonly #data: IContactAddressProps;
+	readonly #data: IContactAddressData;
 	#wallet: Contracts.WalletData | undefined;
 
-	private constructor(data: IContactAddressProps, coin: Coins.Coin) {
+	private constructor(data: IContactAddressData, coin: Coins.Coin) {
 		this.#data = data;
 		this.#coin = coin;
 	}
 
-	public static async make(data: IContactAddressProps): Promise<ContactAddress> {
+	public static async make(data: IContactAddressData): Promise<ContactAddress> {
 		const instance: Coins.Coin = State.profile().coins().push(data.coin, data.network);
 
 		if (!instance.hasBeenSynchronized()) {
@@ -104,7 +104,7 @@ export class ContactAddress implements IContactAddress {
 		return this.#wallet.hasPassed();
 	}
 
-	public toObject(): IContactAddressProps {
+	public toObject(): IContactAddressData {
 		return {
 			id: this.id(),
 			coin: this.coin(),

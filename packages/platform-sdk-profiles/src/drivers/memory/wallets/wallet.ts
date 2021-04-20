@@ -20,7 +20,7 @@ import {
 	IProfile,
 	IReadWriteWallet,
 	IReadOnlyWallet,
-	IWalletStruct,
+	IWalletData,
 	ProfileSetting,
 	WalletData,
 	WalletFlag,
@@ -38,7 +38,7 @@ export class Wallet implements IReadWriteWallet {
 	readonly #settingRepository: SettingRepository;
 	readonly #transactionService: TransactionService;
 
-	readonly #initialState: IWalletStruct;
+	readonly #initialState: IWalletData;
 	readonly #id: string;
 	#coin!: Coins.Coin;
 	#wallet: Contracts.WalletData | undefined;
@@ -314,7 +314,7 @@ export class Wallet implements IReadWriteWallet {
 		return this.#wallet;
 	}
 
-	public toObject(): IWalletStruct {
+	public toObject(): IWalletData {
 		if (this.hasBeenPartiallyRestored()) {
 			return this.#initialState;
 		}
