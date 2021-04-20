@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { IContactAddress, IContactAddressInput, IContactAddressRepository, IProfile } from "../../../contracts";
+import { IContactAddress, IContactAddressInput, IContactAddressRepository } from "../../../contracts";
 import { ContactAddress } from "../contacts/contact-address";
 import { injectable } from "inversify";
 

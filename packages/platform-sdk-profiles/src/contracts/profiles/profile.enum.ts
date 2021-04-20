@@ -1,3 +1,9 @@
+/**
+ * Defines the settings that are allowed to be stored within a profile.
+ *
+ * @export
+ * @enum {number}
+ */
 export enum ProfileSetting {
 	AdvancedMode = "ADVANCED_MODE",
 	AutomaticSignOutPeriod = "AUTOMATIC_SIGN_OUT_PERIOD",
@@ -30,6 +36,12 @@ export enum ProfileSetting {
 	UseTestNetworks = "USE_TEST_NETWORKS",
 }
 
+/**
+ * Defines the data that is allowed to be stored within a profile.
+ *
+ * @export
+ * @enum {number}
+ */
 export enum ProfileData {
 	LatestMigration = "LATEST_MIGRATION",
 }
