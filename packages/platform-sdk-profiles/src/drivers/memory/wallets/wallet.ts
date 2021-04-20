@@ -33,11 +33,11 @@ import { State } from "../../../environment/state";
 
 interface WalletState {
 	id: string;
-	restorationState: { full: boolean, partial: boolean };
+	restoration: { full: boolean, partial: boolean };
 	dataRepository: DataRepository;
 	settingRepository: SettingRepository;
 	transactionService: TransactionService;
-	initialState: IWalletStruct;
+	initial: IWalletStruct;
 	coin: Coins.Coin;
 	wallet: Contracts.WalletData | undefined;
 	address: string;
@@ -57,15 +57,15 @@ export class Wallet implements IReadWriteWallet {
 	/**
 	 * Creates an instance of Wallet.
 	 * @param {string} id
-	 * @param {*} initialState
+	 * @param {*} initial
 	 * @memberof Wallet
 	 */
-	public constructor(id: string, initialState: any) {
+	public constructor(id: string, initial: any) {
 		// @ts-ignore
 		this.#state = {
 			id,
-			initialState,
-			restorationState: { full: false, partial: false },
+			initial,
+			restoration: { full: false, partial: false },
 			dataRepository: new DataRepository(),
 			settingRepository: new SettingRepository(Object.values(WalletSetting)),
 			transactionService: new TransactionService(this),
@@ -332,7 +332,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public toObject(): IWalletStruct {
 		if (this.hasBeenPartiallyRestored()) {
-			return this.#state.initialState;
+			return this.#state.initial;
 		}
 
 		this.#state.transactionService.dump();
@@ -752,21 +752,21 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public markAsFullyRestored(): void {
-		this.#state.restorationState.full = true;
-		this.#state.restorationState.partial = false;
+		this.#state.restoration.full = true;
+		this.#state.restoration.partial = false;
 	}
 
 	public hasBeenFullyRestored(): boolean {
-		return this.#state.restorationState.full;
+		return this.#state.restoration.full;
 	}
 
 	public markAsPartiallyRestored(): void {
-		this.#state.restorationState.full = false;
-		this.#state.restorationState.partial = true;
+		this.#state.restoration.full = false;
+		this.#state.restoration.partial = true;
 	}
 
 	public hasBeenPartiallyRestored(): boolean {
-		return this.#state.restorationState.partial;
+		return this.#state.restoration.partial;
 	}
 
 	private async fetchTransactions(
