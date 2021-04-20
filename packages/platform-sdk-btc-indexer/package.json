@@ -37,8 +37,7 @@
 		"env-paths": "^2.2.0",
 		"fs-extra": "^9.1.0",
 		"meow": "^9.0.0",
-		"p-queue": "^6.6.2",
-		"p-retry": "^4.3.0",
+		"p-each-series": "^3.0.0",
 		"url-parse-lax": "^4.0.0",
 		"uuid": "^8.3.2"
 	},
