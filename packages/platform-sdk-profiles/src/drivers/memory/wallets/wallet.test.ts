@@ -437,7 +437,7 @@ describe("#multiSignatureParticipants", () => {
 		await subject.synchroniser().identity();
 
 		expect(() => subject.multiSignatureParticipants()).toThrow(
-			"This Multi-Signature has not been synchronized yet. Please call [synchroniser().multiSignature] before using it.",
+			"This Multi-Signature has not been synchronized yet. Please call [synchroniser().multiSignature()] before using it.",
 		);
 	});
 });
