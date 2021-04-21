@@ -505,7 +505,7 @@ describe("transactions", () => {
 });
 
 it("should sync", async () => {
-	await expect(subject.sync()).toResolve();
+	await expect(subject.synchroniser().coin()).toResolve();
 });
 
 describe.each([123, 456, 789])("%s", (slip44) => {
