@@ -666,39 +666,6 @@ export class Profile implements IProfile {
 	}
 
 	/**
-	 * Attempt to encrypt the profile data with the given password.
-	 *
-	 * @param unencrypted The JSON string to encrypt
-	 * @param password? A hard-to-guess password to encrypt the contents.
-	 */
-	private encrypt(unencrypted: string, password?: string): string {
-		if (typeof password !== "string") {
-			password = MemoryPassword.get();
-		}
-
-		if (!this.auth().verifyPassword(password)) {
-			throw new Error("The password did not match our records.");
-		}
-
-		return PBKDF2.encrypt(unencrypted, password);
-	}
-
-	/**
-	 * Attempt to decrypt the profile data with the given password.
-	 *
-	 * @param password A hard-to-guess password to decrypt the contents.
-	 */
-	private decrypt(password: string): IProfileData {
-		if (!this.usesPassword()) {
-			throw new Error("This profile does not use a password but password was passed for decryption");
-		}
-
-		const { id, data } = JSON.parse(PBKDF2.decrypt(Base64.decode(this.#attributes.get<IProfileInput>('data').data), password));
-
-		return { id, ...data };
-	}
-
-	/**
 	 * Validate the profile data after decoding and/or decrypting it.
 	 *
 	 * @private
