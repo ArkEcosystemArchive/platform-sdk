@@ -519,9 +519,7 @@ importers:
       env-paths: 2.2.0
       fs-extra: 9.1.0
       meow: 9.0.0
-      p-each-series: 3.0.0
-      p-queue: 6.6.2
-      p-retry: 4.4.0
+      p-each-series: 2.2.0
       url-parse-lax: 4.0.0
       uuid: 8.3.2
     devDependencies:
@@ -596,9 +594,7 @@ importers:
       meow: ^9.0.0
       nock: ^13.0.5
       npm-check-updates: ^10.1.1
-      p-each-series: ^3.0.0
-      p-queue: ^6.6.2
-      p-retry: ^4.3.0
+      p-each-series: ^2.2.0
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -5122,7 +5118,7 @@ packages:
       integrity: sha512-6A/cteC0B3hm64/xG6DNG8qGsHAXJgAy9wjcB38qnoJGYl12hysIFjPeHD+V0W/LOl9payW6kpZzhisLlVOZpQ==
   /@ptkdev/logger/1.7.2:
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.1
       fs-extra: 9.1.0
       lowdb: 1.0.0
       rotating-file-stream: 2.1.5
@@ -7183,6 +7179,15 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVL1A==
+  /chalk/4.1.1:
+    dependencies:
+      ansi-styles: 4.3.0
+      supports-color: 7.2.0
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-diHzdDKxcU+bAsUboHLPEDQiw0qEe0qd7SYUn3HgcFlWgbDcfLGswOHYeGrHKzG9z6UYf01d9VFMfZxPM1xZSg==
   /char-regex/1.0.2:
     dev: true
     engines:
@@ -12576,17 +12581,10 @@ packages:
     resolution:
       integrity: sha1-n26xgvbJqozXQwBKfU+WsZaw+ww=
   /p-each-series/2.2.0:
-    dev: true
     engines:
       node: '>=8'
     resolution:
       integrity: sha512-ycIL2+1V32th+8scbpTvyHNaHe02z0sjgh91XXjAk+ZeXoPN4Z46DVUnzdso0aX4KckKw0FNNFHdjZ2UsZvxiA==
-  /p-each-series/3.0.0:
-    dev: false
-    engines:
-      node: '>=12'
-    resolution:
-      integrity: sha512-lastgtAdoH9YaLyDa5i5z64q+kzOcQHsQ5SsZJD3q0VEyI8mq872S3geuNbRUQLVAE9siMfgKrpj7MloKFHruw==
   /p-event/4.2.0:
     dependencies:
       p-timeout: 3.2.0

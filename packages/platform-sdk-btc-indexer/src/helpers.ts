@@ -1,7 +1,6 @@
-import Logger from "@ptkdev/logger";
-
 import { Client } from "./client";
 import { Database } from "./database";
+import Logger from "./logger";
 import { Flags } from "./types";
 
 /**
