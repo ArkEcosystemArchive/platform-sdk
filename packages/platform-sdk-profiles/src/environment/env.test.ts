@@ -12,6 +12,7 @@ import nock from "nock";
 
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
+import { importByMnemonic } from "../../test/helpers";
 import { StubStorage } from "../../test/stubs/storage";
 import { Profile } from "../drivers/memory/profiles/profile";
 import { ProfileRepository } from "../drivers/memory/repositories/profile-repository";
@@ -23,7 +24,6 @@ import { Identifiers } from "./container.models";
 import { Environment } from "./env";
 import { State } from "./state";
 import { MemoryStorage } from "./storage/memory";
-import { importByMnemonic } from "../../test/helpers";
 
 let subject: Environment;
 
