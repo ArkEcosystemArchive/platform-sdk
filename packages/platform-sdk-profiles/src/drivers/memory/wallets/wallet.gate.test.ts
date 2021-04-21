@@ -103,6 +103,16 @@ beforeEach(async () => {
 
 beforeAll(() => nock.disableNetConnect());
 
+it("should return whether it can vote or not", () => {
+	subject.data().set(WalletData.VotesAvailable, 0);
+
+	expect(subject.gate().canVote()).toBeFalse();
+
+	subject.data().set(WalletData.VotesAvailable, 2);
+
+	expect(subject.gate().canVote()).toBeTrue();
+});
+
 it("can", () => {
 	expect(subject.gate().can("some-feature")).toBeFalse();
 });

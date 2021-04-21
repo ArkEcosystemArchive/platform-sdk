@@ -500,16 +500,6 @@ it("should return explorer link", () => {
 	expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 });
 
-it("should return whether it can vote or not", () => {
-	subject.data().set(WalletData.VotesAvailable, 0);
-
-	expect(subject.canVote()).toBeFalse();
-
-	subject.data().set(WalletData.VotesAvailable, 2);
-
-	expect(subject.canVote()).toBeTrue();
-});
-
 describe("transactions", () => {
 	it("all", async () => {
 		await expect(subject.transactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
