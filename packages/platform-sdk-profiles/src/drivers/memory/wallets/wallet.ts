@@ -32,6 +32,8 @@ import { ExtendedTransactionDataCollection } from "../../../dto";
 import { State } from "../../../environment/state";
 import { IWalletGate } from "../../../contracts/wallets/wallet.gate";
 import { WalletGate } from "./wallet.gate";
+import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
+import { WalletMutator } from "./wallet.mutator";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #dataRepository: DataRepository;
@@ -109,97 +111,6 @@ export class Wallet implements IReadWriteWallet {
 	 */
 	public hasCoin(): boolean {
 		return this.#coin !== undefined;
-	}
-
-	/**
-	 * These methods allow to switch out the underlying implementation of certain things like the coin.
-	 */
-
-	public async setCoin(
-		coin: string,
-		network: string,
-		options: { sync: boolean } = { sync: true },
-	): Promise<IReadWriteWallet> {
-		if (this.usesCustomPeer() && this.peers().has(coin, network)) {
-			this.#coin = State.profile().coins().push(
-				coin,
-				network,
-				{
-					peer: this.peers().getRelay(coin, network)?.host,
-					peerMultiSignature: this.peers().getMultiSignature(coin, network)?.host,
-				},
-				true,
-			);
-		} else {
-			this.#coin = State.profile().coins().push(coin, network);
-		}
-
-		/**
-		 * If we fail to construct the coin it means we are having networking
-		 * issues or there is a bug in the coin package. This could also mean
-		 * bad error handling inside the coin package which needs fixing asap.
-		 */
-		try {
-			if (!this.#coin.hasBeenSynchronized()) {
-				if (options.sync) {
-					await this.#coin.__construct();
-
-					this.markAsFullyRestored();
-				} else {
-					this.markAsPartiallyRestored();
-				}
-			} else {
-				this.markAsFullyRestored();
-			}
-		} catch {
-			this.markAsPartiallyRestored();
-		}
-
-		return this;
-	}
-
-	public async setIdentity(mnemonic: string): Promise<Wallet> {
-		this.#address = await this.#coin.identity().address().fromMnemonic(mnemonic);
-		this.#publicKey = await this.#coin.identity().publicKey().fromMnemonic(mnemonic);
-
-		return this.setAddress(this.#address);
-	}
-
-	public async setAddress(
-		address: string,
-		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
-	): Promise<Wallet> {
-		if (options.validate) {
-			const isValidAddress: boolean = await this.coin().identity().address().validate(address);
-
-			if (!isValidAddress) {
-				throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
-			}
-		}
-
-		this.#address = address;
-
-		if (options.syncIdentity) {
-			await this.syncIdentity();
-		}
-
-		this.setAvatar(Avatar.make(this.address()));
-
-		return this;
-	}
-
-	public setAvatar(value: string): IReadWriteWallet {
-		this.#avatar = value;
-
-		this.settings().set(WalletSetting.Avatar, value);
-
-		return this;
-	}
-
-	public setAlias(alias: string): IReadWriteWallet {
-		this.settings().set(WalletSetting.Alias, alias);
-
-		return this;
 	}
 
 	/**
@@ -511,6 +422,10 @@ export class Wallet implements IReadWriteWallet {
 
 	public gate(): IWalletGate {
 		return new WalletGate(this);
+	}
+
+	public mutator(): IWalletMutator {
+		return new WalletMutator(this);
 	}
 
 	/**
