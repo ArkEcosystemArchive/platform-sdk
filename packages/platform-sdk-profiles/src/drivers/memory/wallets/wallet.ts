@@ -27,31 +27,20 @@ import {
 	IDelegateService,
 	IExchangeRateService,
 	IKnownWalletService,
+	IReadWriteWalletAttributes,
 } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 import { State } from "../../../environment/state";
 import { AttributeBag } from "../../../helpers/attribute-bag";
 
-interface ReadWriteWalletAttributes {
-	id: string,
-	initialState: IWalletData,
-	restorationState: { full: boolean, partial: boolean },
-	// Will be empty initially
-	coin: Coins.Coin,
-	wallet: Contracts.WalletData | undefined,
-	address: string,
-	publicKey: string | undefined,
-	avatar: string,
-}
-
 export class Wallet implements IReadWriteWallet {
-	readonly #attributes: AttributeBag<ReadWriteWalletAttributes> = new AttributeBag();
+	readonly #attributes: AttributeBag<IReadWriteWalletAttributes> = new AttributeBag();
 	readonly #dataRepository: DataRepository;
 	readonly #settingRepository: SettingRepository;
 	readonly #transactionService: TransactionService;
 
 	public constructor(id: string, initialState: any) {
-		this.#attributes = new AttributeBag<ReadWriteWalletAttributes>({
+		this.#attributes = new AttributeBag<IReadWriteWalletAttributes>({
 			id,
 			initialState,
 			restorationState: { full: false, partial: false },
@@ -768,18 +757,11 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	/** {@inheritDoc IReadWriteWallet.getAttributes} */
-    public getAttributes(): ReadWriteWalletAttributes
+    public getAttributes(): AttributeBag<IReadWriteWalletAttributes>
     {
         return this.#attributes;
     }
 
-	/** {@inheritDoc IReadWriteWallet.setAttributes} */
-    public setAttributes(attributes: Partial<ReadWriteWalletAttributes>): void
-    {
-		for( const [key,value] of Object.entries(attributes)) {
-			set(this.#attributes, key, value);
-		}
-    }
 
 	private async fetchTransactions(
 		query: Contracts.ClientTransactionsInput,
