@@ -624,7 +624,7 @@ export class Wallet implements IReadWriteWallet {
 			 */
 
 			this.#attributes.set('wallet', currentWallet);
-			this.#attributes.set('publicKey', currentWallet);
+			this.#attributes.set('publicKey', currentPublicKey);
 		}
 	}
 
