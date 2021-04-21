@@ -24,15 +24,15 @@ export class AttributeBag<T>
     /**
 	 * Get a given attribute from the attribute object.
 	 *
-	 * @template T
+	 * @template U
 	 * @param {keyof T} key
-	 * @param {T} [defaultValue]
+	 * @param {U} [defaultValue]
 	 * @return {*}  {T}
 	 * @memberof AttributeBag
 	 */
-	public get<T>(key: keyof T, defaultValue?: T): T
+	public get<U>(key: keyof T, defaultValue?: U): U
     {
-        return get(this.#attributes, key as string, defaultValue) as T;
+        return get(this.#attributes, key as string, defaultValue) as U;
     }
 
 	/**

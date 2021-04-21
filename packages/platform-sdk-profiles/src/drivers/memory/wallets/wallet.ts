@@ -784,7 +784,7 @@ export class Wallet implements IReadWriteWallet {
 	private async fetchTransactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<ExtendedTransactionDataCollection> {
-		const result = await this.#attributes.coin.client().transactions(query);
+		const result = await this.#attributes.get<Coins.Coin>('coin').client().transactions(query);
 
 		for (const transaction of result.items()) {
 			transaction.setMeta("address", this.address());
