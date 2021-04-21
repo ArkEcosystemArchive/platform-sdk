@@ -8,6 +8,7 @@ import { IPeerRepository } from "../repositories/peer-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
 import { IReadOnlyWallet } from "./read-only-wallet";
 import { IWalletGate } from "./wallet.gate";
+import { IWalletMutator } from "./wallet.mutator";
 import { AttributeBag } from "../../helpers/attribute-bag";
 
 /**
@@ -68,53 +69,6 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	getRelays(): string[];
-
-	/**
-	 * Set the coin and network that should be communicated with.
-	 *
-	 * @param {string} coin
-	 * @param {string} network
-	 * @return {*}  {Promise<IReadWriteWallet>}
-	 * @memberof IReadWriteWallet
-	 */
-	setCoin(coin: string, network: string): Promise<IReadWriteWallet>;
-
-	/**
-	 * Set the identity based on a mnemonic.
-	 *
-	 * @param {string} mnemonic
-	 * @return {*}  {Promise<IReadWriteWallet>}
-	 * @memberof IReadWriteWallet
-	 */
-	setIdentity(mnemonic: string): Promise<IReadWriteWallet>;
-
-	/**
-	 * Set the address and optionally synchronise the wallet.
-	 *
-	 * @param {string} address
-	 * @param {{ syncIdentity: boolean; validate: boolean }} [options]
-	 * @return {*}  {Promise<IReadWriteWallet>}
-	 * @memberof IReadWriteWallet
-	 */
-	setAddress(address: string, options?: { syncIdentity: boolean; validate: boolean }): Promise<IReadWriteWallet>;
-
-	/**
-	 * Set the avatar.
-	 *
-	 * @param {string} value
-	 * @return {*}  {IReadWriteWallet}
-	 * @memberof IReadWriteWallet
-	 */
-	setAvatar(value: string): IReadWriteWallet;
-
-	/**
-	 * Set the alias.
-	 *
-	 * @param {string} alias
-	 * @return {*}  {IReadWriteWallet}
-	 * @memberof IReadWriteWallet
-	 */
-	setAlias(alias: string): IReadWriteWallet;
 
 	/**
 	 * Determine if the wallet has synchronised itself with the network.
@@ -697,4 +651,12 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	gate(): IWalletGate;
+
+	/**
+	 * Get the wallet mutator instance.
+	 *
+	 * @return {*}  {IWalletMutator}
+	 * @memberof IReadWriteWallet
+	 */
+	 mutator(): IWalletMutator;
 }

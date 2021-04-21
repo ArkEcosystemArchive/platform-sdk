@@ -16,7 +16,6 @@ import { Avatar } from "../../../helpers/avatar";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import {
-	IPeerRepository,
 	IReadWriteWallet,
 	IReadOnlyWallet,
 	IWalletData,
@@ -33,6 +32,8 @@ import { ExtendedTransactionDataCollection } from "../../../dto";
 import { State } from "../../../environment/state";
 import { AttributeBag } from "../../../helpers/attribute-bag";
 import { WalletGate } from "./wallet.gate";
+import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
+import { WalletMutator } from "./wallet.mutator";
 import { IWalletGate } from "../../../contracts/wallets/wallet.gate";
 
 export class Wallet implements IReadWriteWallet {
@@ -94,97 +95,6 @@ export class Wallet implements IReadWriteWallet {
 	 */
 	public hasCoin(): boolean {
 		return this.#attributes.get<Coins.Coin>('coin') !== undefined;
-	}
-
-	/**
-	 * These methods allow to switch out the underlying implementation of certain things like the coin.
-	 */
-
-	public async setCoin(
-		coin: string,
-		network: string,
-		options: { sync: boolean } = { sync: true },
-	): Promise<IReadWriteWallet> {
-		if (State.profile().usesCustomPeer() && State.profile().peers().has(coin, network)) {
-			this.#attributes.set('coin', State.profile().coins().push(
-				coin,
-				network,
-				{
-					peer: State.profile().peers().getRelay(coin, network)?.host,
-					peerMultiSignature: State.profile().peers().getMultiSignature(coin, network)?.host,
-				},
-				true,
-			));
-		} else {
-			this.#attributes.set('coin', State.profile().coins().push(coin, network));
-		}
-
-		/**
-		 * If we fail to construct the coin it means we are having networking
-		 * issues or there is a bug in the coin package. This could also mean
-		 * bad error handling inside the coin package which needs fixing asap.
-		 */
-		try {
-			if (!this.#attributes.get<Coins.Coin>('coin').hasBeenSynchronized()) {
-				if (options.sync) {
-					await this.#attributes.get<Coins.Coin>('coin').__construct();
-
-					this.markAsFullyRestored();
-				} else {
-					this.markAsPartiallyRestored();
-				}
-			} else {
-				this.markAsFullyRestored();
-			}
-		} catch {
-			this.markAsPartiallyRestored();
-		}
-
-		return this;
-	}
-
-	public async setIdentity(mnemonic: string): Promise<Wallet> {
-		this.#attributes.set('address', await this.#attributes.get<Coins.Coin>('coin').identity().address().fromMnemonic(mnemonic));
-		this.#attributes.set('publicKey', await this.#attributes.get<Coins.Coin>('coin').identity().publicKey().fromMnemonic(mnemonic));
-
-		return this.setAddress(this.#attributes.get<string>('address'));
-	}
-
-	public async setAddress(
-		address: string,
-		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
-	): Promise<Wallet> {
-		if (options.validate) {
-			const isValidAddress: boolean = await this.coin().identity().address().validate(address);
-
-			if (!isValidAddress) {
-				throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
-			}
-		}
-
-		this.#attributes.set('address', address);
-
-		if (options.syncIdentity) {
-			await this.syncIdentity();
-		}
-
-		this.setAvatar(Avatar.make(this.address()));
-
-		return this;
-	}
-
-	public setAvatar(value: string): IReadWriteWallet {
-		this.#attributes.set('avatar', value);
-
-		this.settings().set(WalletSetting.Avatar, value);
-
-		return this;
-	}
-
-	public setAlias(alias: string): IReadWriteWallet {
-		this.settings().set(WalletSetting.Alias, alias);
-
-		return this;
 	}
 
 	/**
@@ -494,6 +404,14 @@ export class Wallet implements IReadWriteWallet {
 		return this.coin().manifest().get<object>("networks")[this.networkId()].transactionTypes;
 	}
 
+	public gate(): IWalletGate {
+		return new WalletGate(this);
+	}
+
+	public mutator(): IWalletMutator {
+		return new WalletMutator(this);
+	}
+
 	/**
 	 * These methods serve as helpers to interact with the underlying coin.
 	 */
@@ -587,7 +505,7 @@ export class Wallet implements IReadWriteWallet {
 			this.#attributes.set('coin', State.profile().coins().push(this.coinId(), this.networkId(), {}, true));
 		}
 
-		await this.setCoin(this.coinId(), this.networkId());
+		await this.mutator().coin(this.coinId(), this.networkId());
 	}
 
 	public async syncIdentity(): Promise<void> {
@@ -711,11 +629,6 @@ export class Wallet implements IReadWriteWallet {
     {
         return this.#attributes;
     }
-
-	/** {@inheritDoc IReadWriteWallet.getAttributes} */
-	public gate(): IWalletGate {
-		return new WalletGate(this);
-	}
 
 	private async fetchTransactions(
 		query: Contracts.ClientTransactionsInput,
