@@ -152,8 +152,8 @@ test("#fill", async () => {
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
 	const newWallet = new Wallet(uuidv4(), {});
-	await newWallet.setCoin("ARK", "ark.devnet");
-	await newWallet.setIdentity("this is another top secret passphrase");
+	await newWallet.mutator().coin("ARK", "ark.devnet");
+	await newWallet.mutator().identity("this is another top secret passphrase");
 
 	await expect(
 		// @ts-ignore

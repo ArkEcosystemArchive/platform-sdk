@@ -9,6 +9,8 @@ import { ISettingRepository } from "../repositories/setting-repository";
 import { IReadOnlyWallet } from "./read-only-wallet";
 import { IWalletGate } from "./wallet.gate";
 import { IWalletSynchroniser } from "./wallet.synchroniser";
+import { IWalletMutator } from "./wallet.mutator";
+import { AttributeBag } from "../../helpers/attribute-bag";
 
 /**
  * Defines the structure that represents the wallet data.
@@ -37,6 +39,24 @@ export interface IWalletData {
 }
 
 /**
+ *
+ *
+ * @export
+ * @interface IReadWriteWalletAttributes
+ */
+export interface IReadWriteWalletAttributes {
+	id: string,
+	initialState: IWalletData,
+	restorationState: { full: boolean, partial: boolean },
+	// Will be empty initially
+	coin: Coins.Coin,
+	wallet: Contracts.WalletData | undefined,
+	address: string,
+	publicKey: string | undefined,
+	avatar: string,
+}
+
+/**
  * Defines the implementation contract for the read-write wallet.
  *
  * @export
@@ -44,75 +64,12 @@ export interface IWalletData {
  */
 export interface IReadWriteWallet {
 	/**
-	 * Determine if the wallet uses multi peer broadcasting.
-	 *
-	 * @return {*}  {boolean}
-	 * @memberof IReadWriteWallet
-	 */
-	usesMultiPeerBroadcasting(): boolean;
-
-	/**
-	 * Get the peer repository instance.
-	 *
-	 * @return {*}  {IPeerRepository}
-	 * @memberof IReadWriteWallet
-	 */
-	peers(): IPeerRepository;
-
-	/**
 	 * Get all relay peers for the given coin and network.
 	 *
 	 * @return {*}  {string[]}
 	 * @memberof IReadWriteWallet
 	 */
 	getRelays(): string[];
-
-	/**
-	 * Set the coin and network that should be communicated with.
-	 *
-	 * @param {string} coin
-	 * @param {string} network
-	 * @return {*}  {Promise<IReadWriteWallet>}
-	 * @memberof IReadWriteWallet
-	 */
-	setCoin(coin: string, network: string): Promise<IReadWriteWallet>;
-
-	/**
-	 * Set the identity based on a mnemonic.
-	 *
-	 * @param {string} mnemonic
-	 * @return {*}  {Promise<IReadWriteWallet>}
-	 * @memberof IReadWriteWallet
-	 */
-	setIdentity(mnemonic: string): Promise<IReadWriteWallet>;
-
-	/**
-	 * Set the address and optionally synchronise the wallet.
-	 *
-	 * @param {string} address
-	 * @param {{ syncIdentity: boolean; validate: boolean }} [options]
-	 * @return {*}  {Promise<IReadWriteWallet>}
-	 * @memberof IReadWriteWallet
-	 */
-	setAddress(address: string, options?: { syncIdentity: boolean; validate: boolean }): Promise<IReadWriteWallet>;
-
-	/**
-	 * Set the avatar.
-	 *
-	 * @param {string} value
-	 * @return {*}  {IReadWriteWallet}
-	 * @memberof IReadWriteWallet
-	 */
-	setAvatar(value: string): IReadWriteWallet;
-
-	/**
-	 * Set the alias.
-	 *
-	 * @param {string} alias
-	 * @return {*}  {IReadWriteWallet}
-	 * @memberof IReadWriteWallet
-	 */
-	setAlias(alias: string): IReadWriteWallet;
 
 	/**
 	 * Determine if the wallet has synchronised itself with the network.
@@ -648,6 +605,14 @@ export interface IReadWriteWallet {
 	hasCoin(): boolean;
 
 	/**
+	 * Get the underlying attributes.
+	 *
+	 * @return {*}  {AttributeBag}
+	 * @memberof IReadWriteWallet
+	 */
+	getAttributes(): AttributeBag<IReadWriteWalletAttributes>;
+
+	/**
 	 * Get the wallet authorisation gate instance.
 	 *
 	 * @return {*}  {IWalletGate}
@@ -662,4 +627,12 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	synchroniser(): IWalletSynchroniser;
+
+	/**
+	 * Get the wallet mutator instance.
+	 *
+	 * @return {*}  {IWalletMutator}
+	 * @memberof IReadWriteWallet
+	 */
+	mutator(): IWalletMutator;
 }

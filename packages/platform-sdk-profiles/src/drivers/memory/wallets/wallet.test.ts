@@ -3,16 +3,13 @@ import "reflect-metadata";
 
 import { Coins } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { encrypt } from "bip38";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
-import { decode } from "wif";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { ProfileRepository } from "../repositories/profile-repository";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
 import {
@@ -20,7 +17,6 @@ import {
 	IProfile,
 	IProfileRepository,
 	IReadWriteWallet,
-	ProfileSetting,
 	WalletData,
 	WalletFlag,
 	WalletSetting,
@@ -97,8 +93,8 @@ beforeEach(async () => {
 
 	subject = new Wallet(uuidv4(), {});
 
-	await subject.setCoin("ARK", "ark.devnet");
-	await subject.setIdentity(identity.mnemonic);
+	await subject.mutator().coin("ARK", "ark.devnet");
+	await subject.mutator().identity(identity.mnemonic);
 });
 
 beforeAll(() => nock.disableNetConnect());
@@ -221,7 +217,7 @@ it("should have an exchange currency", () => {
 });
 
 it("should have a display name (alias)", () => {
-	subject = subject.setAlias("alias");
+	subject.mutator().alias("alias");
 	expect(subject.displayName()).toBe(subject.alias());
 });
 
@@ -347,10 +343,6 @@ it("should respond on whether it is second signature or not", () => {
 	);
 });
 
-it("should respond on whether it uses multi peer broadcasting", () => {
-	expect(subject.usesMultiPeerBroadcasting()).toBeFalse();
-});
-
 it("should have a transaction service", () => {
 	expect(subject.transaction()).toBeObject();
 });
@@ -360,14 +352,14 @@ it("should return whether it has synced with network", async () => {
 
 	expect(subject.hasSyncedWithNetwork()).toBeFalse();
 
-	await subject.setCoin("ARK", "ark.devnet");
-	await subject.setIdentity(identity.mnemonic);
+	await subject.mutator().coin("ARK", "ark.devnet");
+	await subject.mutator().identity(identity.mnemonic);
 
 	expect(subject.hasSyncedWithNetwork()).toBeTrue();
 });
 
 it("should fail to set an invalid address", async () => {
-	await expect(() => subject.setAddress("whatever")).rejects.toThrow(
+	await expect(() => subject.mutator().address("whatever")).rejects.toThrow(
 		"Failed to retrieve information for whatever because it is invalid",
 	);
 });
@@ -452,8 +444,8 @@ describe("#multiSignatureParticipants", () => {
 
 it("should sync multi signature when musig", async () => {
 	subject = new Wallet(uuidv4(), {});
-	await subject.setCoin("ARK", "ark.devnet");
-	await subject.setIdentity("new super passphrase");
+	await subject.mutator().coin("ARK", "ark.devnet");
+	await subject.mutator().identity("new super passphrase");
 
 	await subject.syncMultiSignature();
 
@@ -557,103 +549,6 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		});
 		expect(actual.settings).toBeObject();
 		expect(actual.settings.AVATAR).toBeString();
-	});
-});
-
-describe("#setCoin", () => {
-	it("should use the default peer if no custom one is available", async () => {
-		await subject.setCoin("ARK", "ark.devnet");
-
-		expect(() => subject.coin().config().get("peer")).toThrow("unknown");
-	});
-
-	it("should use the custom relay peer if is available", async () => {
-		profile.settings().set(ProfileSetting.UseCustomPeer, true);
-
-		subject.peers().create("ARK", "ark.devnet", {
-			name: "Relay",
-			host: "https://relay.com/api",
-			isMultiSignature: false,
-		});
-
-		await subject.setCoin("ARK", "ark.devnet");
-
-		expect(subject.coin().config().get("peer")).toBe("https://relay.com/api");
-	});
-
-	it("should use the custom musig peer if is available", async () => {
-		profile.settings().set(ProfileSetting.UseCustomPeer, true);
-
-		subject.peers().create("ARK", "ark.devnet", {
-			name: "MuSig",
-			host: "https://musig.com/api",
-			isMultiSignature: true,
-		});
-
-		await subject.setCoin("ARK", "ark.devnet");
-
-		expect(subject.coin().config().get("peerMultiSignature")).toBe("https://musig.com/api");
-	});
-
-	it("should use the custom relay and musig peers if they are available", async () => {
-		profile.settings().set(ProfileSetting.UseCustomPeer, true);
-
-		subject.peers().create("ARK", "ark.devnet", {
-			name: "Relay",
-			host: "https://relay.com/api",
-			isMultiSignature: false,
-		});
-
-		subject.peers().create("ARK", "ark.devnet", {
-			name: "MuSig",
-			host: "https://musig.com/api",
-			isMultiSignature: true,
-		});
-
-		await subject.setCoin("ARK", "ark.devnet");
-
-		expect(subject.coin().config().get("peer")).toBe("https://relay.com/api");
-		expect(subject.coin().config().get("peerMultiSignature")).toBe("https://musig.com/api");
-	});
-
-	it("should return relays", async () => {
-		subject.peers().create("ARK", "ark.devnet", {
-			name: "Relay",
-			host: "https://relay.com/api",
-			isMultiSignature: false,
-		});
-
-		await subject.setCoin("ARK", "ark.devnet");
-
-		expect(subject.getRelays()).toBeArrayOfSize(1);
-	});
-
-	it("should decrypt the WIF", async () => {
-		const { compressed, privateKey } = decode(
-			await subject.coin().identity().wif().fromMnemonic(identity.mnemonic),
-		);
-
-		subject.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, "password"));
-
-		await expect(subject.wif("password")).resolves.toBe(identity.wif);
-	});
-
-	it("should encrypt the WIF and add it to the wallet", async () => {
-		await subject.setWif(identity.mnemonic, "password");
-
-		await expect(subject.wif("password")).resolves.toBe(identity.wif);
-	});
-
-	it("should throw if the WIF is tried to be decrypted without one being set", async () => {
-		await expect(subject.wif("password")).rejects.toThrow("This wallet does not use BIP38 encryption.");
-	});
-
-	it("should determine if the wallet uses a WIF", async () => {
-		expect(subject.usesWIF()).toBeFalse();
-
-		subject.data().set(WalletData.Bip38EncryptedKey, "...");
-
-		expect(subject.usesWIF()).toBeTrue();
 	});
 });
 

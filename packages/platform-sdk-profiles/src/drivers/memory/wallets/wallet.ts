@@ -16,7 +16,6 @@ import { Avatar } from "../../../helpers/avatar";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import {
-	IPeerRepository,
 	IReadWriteWallet,
 	IReadOnlyWallet,
 	IWalletData,
@@ -27,32 +26,31 @@ import {
 	IDelegateService,
 	IExchangeRateService,
 	IKnownWalletService,
+	IReadWriteWalletAttributes,
 } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 import { State } from "../../../environment/state";
-import { IWalletGate } from "../../../contracts/wallets/wallet.gate";
+import { AttributeBag } from "../../../helpers/attribute-bag";
 import { WalletGate } from "./wallet.gate";
 import { WalletSynchroniser } from "./wallet.synchroniser";
 import { IWalletSynchroniser } from "../../../contracts/wallets/wallet.synchroniser";
+import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
+import { WalletMutator } from "./wallet.mutator";
+import { IWalletGate } from "../../../contracts/wallets/wallet.gate";
 
 export class Wallet implements IReadWriteWallet {
+	readonly #attributes: AttributeBag<IReadWriteWalletAttributes> = new AttributeBag();
 	readonly #dataRepository: DataRepository;
 	readonly #settingRepository: SettingRepository;
 	readonly #transactionService: TransactionService;
 
-	readonly #initialState: IWalletData;
-	readonly #id: string;
-	#coin!: Coins.Coin;
-	#wallet: Contracts.WalletData | undefined;
-
-	#address!: string;
-	#publicKey!: string | undefined;
-	#avatar!: string;
-	readonly #restorationState = { full: false, partial: false };
-
 	public constructor(id: string, initialState: any) {
-		this.#id = id;
-		this.#initialState = initialState;
+		this.#attributes = new AttributeBag<IReadWriteWalletAttributes>({
+			id,
+			initialState,
+			restorationState: { full: false, partial: false },
+		});
+
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
@@ -64,20 +62,8 @@ export class Wallet implements IReadWriteWallet {
 	 * These methods serve as helpers to proxy certain method calls to the parent profile.
 	 */
 
-	public usesCustomPeer(): boolean {
-		return State.profile().usesCustomPeer();
-	}
-
-	public usesMultiPeerBroadcasting(): boolean {
-		return State.profile().usesMultiPeerBroadcasting();
-	}
-
-	public peers(): IPeerRepository {
-		return State.profile().peers();
-	}
-
 	public getRelays(): string[] {
-		return this.peers()
+		return State.profile().peers()
 			.getRelays(this.coinId(), this.networkId())
 			.map((peer) => peer.host);
 	}
@@ -96,7 +82,7 @@ export class Wallet implements IReadWriteWallet {
 			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "connect", "coin");
 		}
 
-		await this.#coin.__construct();
+		await this.#attributes.get<Coins.Coin>('coin').__construct();
 	}
 
 	/**
@@ -110,98 +96,7 @@ export class Wallet implements IReadWriteWallet {
 	 * @memberof Wallet
 	 */
 	public hasCoin(): boolean {
-		return this.#coin !== undefined;
-	}
-
-	/**
-	 * These methods allow to switch out the underlying implementation of certain things like the coin.
-	 */
-
-	public async setCoin(
-		coin: string,
-		network: string,
-		options: { sync: boolean } = { sync: true },
-	): Promise<IReadWriteWallet> {
-		if (this.usesCustomPeer() && this.peers().has(coin, network)) {
-			this.#coin = State.profile().coins().push(
-				coin,
-				network,
-				{
-					peer: this.peers().getRelay(coin, network)?.host,
-					peerMultiSignature: this.peers().getMultiSignature(coin, network)?.host,
-				},
-				true,
-			);
-		} else {
-			this.#coin = State.profile().coins().push(coin, network);
-		}
-
-		/**
-		 * If we fail to construct the coin it means we are having networking
-		 * issues or there is a bug in the coin package. This could also mean
-		 * bad error handling inside the coin package which needs fixing asap.
-		 */
-		try {
-			if (!this.#coin.hasBeenSynchronized()) {
-				if (options.sync) {
-					await this.#coin.__construct();
-
-					this.markAsFullyRestored();
-				} else {
-					this.markAsPartiallyRestored();
-				}
-			} else {
-				this.markAsFullyRestored();
-			}
-		} catch {
-			this.markAsPartiallyRestored();
-		}
-
-		return this;
-	}
-
-	public async setIdentity(mnemonic: string): Promise<Wallet> {
-		this.#address = await this.#coin.identity().address().fromMnemonic(mnemonic);
-		this.#publicKey = await this.#coin.identity().publicKey().fromMnemonic(mnemonic);
-
-		return this.setAddress(this.#address);
-	}
-
-	public async setAddress(
-		address: string,
-		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
-	): Promise<Wallet> {
-		if (options.validate) {
-			const isValidAddress: boolean = await this.coin().identity().address().validate(address);
-
-			if (!isValidAddress) {
-				throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
-			}
-		}
-
-		this.#address = address;
-
-		if (options.syncIdentity) {
-			await this.syncIdentity();
-		}
-
-		this.setAvatar(Avatar.make(this.address()));
-
-		return this;
-	}
-
-	public setAvatar(value: string): IReadWriteWallet {
-		this.#avatar = value;
-
-		this.settings().set(WalletSetting.Avatar, value);
-
-		return this;
-	}
-
-	public setAlias(alias: string): IReadWriteWallet {
-		this.settings().set(WalletSetting.Alias, alias);
-
-		return this;
+		return this.#attributes.get<Coins.Coin>('coin') !== undefined;
 	}
 
 	/**
@@ -209,19 +104,19 @@ export class Wallet implements IReadWriteWallet {
 	 */
 
 	public hasSyncedWithNetwork(): boolean {
-		if (this.#wallet === undefined) {
+		if (this.#attributes.get<Contracts.WalletData>('wallet') === undefined) {
 			return false;
 		}
 
-		return this.#wallet.hasPassed();
+		return this.#attributes.get<Contracts.WalletData>('wallet').hasPassed();
 	}
 
 	public id(): string {
-		return this.#id;
+		return this.#attributes.get("id");
 	}
 
 	public coin(): Coins.Coin {
-		return this.#coin;
+		return this.#attributes.get<Coins.Coin>('coin');
 	}
 
 	public network(): Coins.Network {
@@ -245,19 +140,19 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public primaryKey(): string {
-		if (!this.#wallet) {
+		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 		}
 
-		return this.#wallet.primaryKey();
+		return this.#attributes.get<Contracts.WalletData>('wallet').primaryKey();
 	}
 
 	public address(): string {
-		return this.#address;
+		return this.#attributes.get("address");
 	}
 
 	public publicKey(): string | undefined {
-		return this.#publicKey;
+		return this.#attributes.get("publicKey");
 	}
 
 	public balance(): BigNumber {
@@ -297,7 +192,7 @@ export class Wallet implements IReadWriteWallet {
 			return value;
 		}
 
-		return this.#avatar;
+		return this.#attributes.get<string>('avatar');
 	}
 
 	public data(): DataRepository {
@@ -309,16 +204,16 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public toData(): Contracts.WalletData {
-		if (!this.#wallet) {
+		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 		}
 
-		return this.#wallet;
+		return this.#attributes.get<Contracts.WalletData>('wallet');
 	}
 
 	public toObject(): IWalletData {
 		if (this.hasBeenPartiallyRestored()) {
-			return this.#initialState;
+			return this.#attributes.get<IWalletData>('initialState');
 		}
 
 		this.#transactionService.dump();
@@ -375,35 +270,35 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public secondPublicKey(): string | undefined {
-		if (!this.#wallet) {
+		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 		}
 
-		return this.#wallet.secondPublicKey();
+		return this.#attributes.get<Contracts.WalletData>('wallet').secondPublicKey();
 	}
 
 	public username(): string | undefined {
-		if (!this.#wallet) {
+		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 		}
 
-		return this.#wallet.username();
+		return this.#attributes.get<Contracts.WalletData>('wallet').username();
 	}
 
 	public isDelegate(): boolean {
-		if (!this.#wallet) {
+		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 		}
 
-		return this.#wallet.isDelegate();
+		return this.#attributes.get<Contracts.WalletData>('wallet').isDelegate();
 	}
 
 	public isResignedDelegate(): boolean {
-		if (!this.#wallet) {
+		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 		}
 
-		return this.#wallet.isResignedDelegate();
+		return this.#attributes.get<Contracts.WalletData>('wallet').isResignedDelegate();
 	}
 
 	public isKnown(): boolean {
@@ -427,19 +322,19 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public isMultiSignature(): boolean {
-		if (!this.#wallet) {
+		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 		}
 
-		return this.#wallet.isMultiSignature();
+		return this.#attributes.get<Contracts.WalletData>('wallet').isMultiSignature();
 	}
 
 	public isSecondSignature(): boolean {
-		if (!this.#wallet) {
+		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 		}
 
-		return this.#wallet.isSecondSignature();
+		return this.#attributes.get<Contracts.WalletData>('wallet').isSecondSignature();
 	}
 
 	public isStarred(): boolean {
@@ -468,39 +363,39 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public manifest(): Coins.Manifest {
-		return this.#coin.manifest();
+		return this.#attributes.get<Coins.Coin>('coin').manifest();
 	}
 
 	public config(): Coins.Config {
-		return this.#coin.config();
+		return this.#attributes.get<Coins.Coin>('coin').config();
 	}
 
 	public client(): Contracts.ClientService {
-		return this.#coin.client();
+		return this.#attributes.get<Coins.Coin>('coin').client();
 	}
 
 	public dataTransferObject(): Contracts.DataTransferObjectService {
-		return this.#coin.dataTransferObject();
+		return this.#attributes.get<Coins.Coin>('coin').dataTransferObject();
 	}
 
 	public identity(): Contracts.IdentityService {
-		return this.#coin.identity();
+		return this.#attributes.get<Coins.Coin>('coin').identity();
 	}
 
 	public ledger(): Contracts.LedgerService {
-		return this.#coin.ledger();
+		return this.#attributes.get<Coins.Coin>('coin').ledger();
 	}
 
 	public link(): Contracts.LinkService {
-		return this.#coin.link();
+		return this.#attributes.get<Coins.Coin>('coin').link();
 	}
 
 	public message(): Contracts.MessageService {
-		return this.#coin.message();
+		return this.#attributes.get<Coins.Coin>('coin').message();
 	}
 
 	public peer(): Contracts.PeerService {
-		return this.#coin.peer();
+		return this.#attributes.get<Coins.Coin>('coin').peer();
 	}
 
 	public transaction(): TransactionService {
@@ -517,6 +412,10 @@ export class Wallet implements IReadWriteWallet {
 
 	public synchroniser(): IWalletSynchroniser {
 		return new WalletSynchroniser(this);
+	}
+
+	public mutator(): IWalletMutator {
+		return new WalletMutator(this);
 	}
 
 	/**
@@ -542,11 +441,11 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public multiSignature(): Contracts.WalletMultiSignature {
-		if (!this.#wallet) {
+		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 		}
 
-		return this.#wallet.multiSignature();
+		return this.#attributes.get<Contracts.WalletData>('wallet').multiSignature();
 	}
 
 	public multiSignatureParticipants(): IReadOnlyWallet[] {
@@ -562,11 +461,11 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public entities(): Contracts.Entity[] {
-		if (!this.#wallet) {
+		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
 			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
 		}
 
-		return this.#wallet.entities();
+		return this.#attributes.get<Contracts.WalletData>('wallet').entities();
 	}
 
 	public votes(): IReadOnlyWallet[] {
@@ -604,7 +503,7 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public async findTransactionById(id: string): Promise<ExtendedTransactionData> {
-		return transformTransactionData(this, await this.#coin.client().transaction(id));
+		return transformTransactionData(this, await this.#attributes.get<Coins.Coin>('coin').client().transaction(id));
 	}
 
 	/**
@@ -650,27 +549,37 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public markAsFullyRestored(): void {
-		this.#restorationState.full = true;
-		this.#restorationState.partial = false;
+		this.#attributes.set('restorationState', {
+			full: true,
+			partial: false,
+		});
 	}
 
 	public hasBeenFullyRestored(): boolean {
-		return this.#restorationState.full;
+		return this.#attributes.get('restorationState').full;
 	}
 
 	public markAsPartiallyRestored(): void {
-		this.#restorationState.full = false;
-		this.#restorationState.partial = true;
+		this.#attributes.set('restorationState', {
+			full: false,
+			partial: true,
+		});
 	}
 
 	public hasBeenPartiallyRestored(): boolean {
-		return this.#restorationState.partial;
+		return this.#attributes.get('restorationState').partial;
 	}
+
+	/** {@inheritDoc IReadWriteWallet.getAttributes} */
+    public getAttributes(): AttributeBag<IReadWriteWalletAttributes>
+    {
+        return this.#attributes;
+    }
 
 	private async fetchTransactions(
 		query: Contracts.ClientTransactionsInput,
 	): Promise<ExtendedTransactionDataCollection> {
-		const result = await this.#coin.client().transactions(query);
+		const result = await this.#attributes.get<Coins.Coin>('coin').client().transactions(query);
 
 		for (const transaction of result.items()) {
 			transaction.setMeta("address", this.address());
