@@ -75,16 +75,6 @@ export interface IProfileExportOptions extends IWalletExportOptions {
  *
  *
  * @export
- * @interface IProfileAttributes
- */
-export interface IProfileAttributes {
-	data: IProfileInput;
-}
-
-/**
- *
- *
- * @export
  * @interface IProfile
  */
 export interface IProfile {
@@ -314,29 +304,12 @@ export interface IProfile {
 	sync(): Promise<void>;
 
 	/**
-	 * Initialise the default settings of the profile.
-	 *
-	 * @memberof IProfile
-	 */
-	initializeSettings(): void;
-
-	/**
 	 * Save the profile.
 	 *
 	 * @param {string} [password]
 	 * @memberof IProfile
 	 */
 	save(password?: string): void;
-
-	/**
-	 * Export the profile.
-	 *
-	 * @param {string} [password]
-	 * @param {IProfileExportOptions} [options]
-	 * @return {*}  {string}
-	 * @memberof IProfile
-	 */
-	export(password?: string, options?: IProfileExportOptions): string;
 
 	/**
 	 * Determine if the profile has been partially restored.
@@ -349,8 +322,8 @@ export interface IProfile {
 	/**
 	 *
 	 *
-	 * @return {*}  {AttributeBag<IProfileAttributes>}
+	 * @return {*}  {AttributeBag<IProfileInput>}
 	 * @memberof IProfile
 	 */
-	getAttributes(): AttributeBag<IProfileAttributes>;
+	getAttributes(): AttributeBag<IProfileInput>;
 }

@@ -33,12 +33,12 @@ export class AttributeBag<T> {
 	 * Get a given attribute from the attribute object.
 	 *
 	 * @template U
-	 * @param {keyof T} key
+	 * @param {(keyof T | string)} key
 	 * @param {U} [defaultValue]
 	 * @return {*}  {T}
 	 * @memberof AttributeBag
 	 */
-	public get<U = any>(key: keyof T, defaultValue?: U): U {
+	public get<U = any>(key: keyof T | string, defaultValue?: U): U {
 		return get(this.#attributes, key as string, defaultValue) as U;
 	}
 
@@ -46,7 +46,7 @@ export class AttributeBag<T> {
 	 * Set a given attribute in the attribute object.
 	 *
 	 * @template T
-	 * @param {keyof T} key
+	 * @param {(keyof T | string)} key
 	 * @param {U} value
 	 * @memberof AttributeBag
 	 */

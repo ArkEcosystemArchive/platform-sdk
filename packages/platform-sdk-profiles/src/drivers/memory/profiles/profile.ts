@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import Joi from "joi";
 import {
 	IProfileData,
 	IProfileExportOptions,
@@ -24,10 +22,8 @@ import {
 	ICoinService,
 	IAuthenticator,
 	IWalletFactory,
-	IProfileAttributes,
 } from "../../../contracts";
 
-import { MemoryPassword } from "../../../helpers/password";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../../../repositories/data-repository";
@@ -41,14 +37,13 @@ import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
-import { Migrator } from "./migrator";
 import { Portfolio } from "./portfolio";
 import { CoinService } from "./services/coin-service";
-import { State } from "../../../environment/state";
-import { Identifiers } from "../../../environment/container.models";
-import { container } from "../../../environment/container";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { AttributeBag } from "../../../helpers/attribute-bag";
+import { ProfileExporter } from "./profile.exporter";
+import { ProfileInitialiser } from "./profile.initialiser";
+import { ProfileImporter } from "./profile.importer";
 
 export class Profile implements IProfile {
 	/**
@@ -166,10 +161,10 @@ export class Profile implements IProfile {
 	/**
 	 * The normalise profile data.
 	 *
-	 * @type {AttributeBag<IProfileAttributes>}
+	 * @type {AttributeBag<IProfileInput>}
 	 * @memberof Profile
 	 */
-	readonly #attributes: AttributeBag<IProfileAttributes>;
+	readonly #attributes: AttributeBag<IProfileInput>;
 
 	/**
 	 * Creates an instance of Profile.
@@ -177,7 +172,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public constructor(data: IProfileInput) {
-		this.#attributes = new AttributeBag<IProfileAttributes>({ data });
+		this.#attributes = new AttributeBag<IProfileInput>(data);
 
 		this.#coinService = new CoinService();
 		this.#portfolio = new Portfolio();
@@ -302,7 +297,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public id(): string {
-		return this.#attributes.get<IProfileInput>('data').id;
+		return this.#attributes.get<string>('id');
 	}
 
 	/**
@@ -313,7 +308,7 @@ export class Profile implements IProfile {
 	 */
 	public name(): string {
 		if (this.settings().missing(ProfileSetting.Name)) {
-			return this.#attributes.get<IProfileInput>('data').name;
+			return this.#attributes.get<string>('name');
 		}
 
 		return this.settings().get<string>(ProfileSetting.Name)!;
@@ -333,7 +328,7 @@ export class Profile implements IProfile {
 		}
 
 		if (this.#attributes.hasStrict('data.avatar')) {
-			return this.#attributes.get<IProfileInput>('data').avatar!;
+			return this.#attributes.get<string>('avatar');
 		}
 
 		return Avatar.make(this.name());
@@ -383,7 +378,7 @@ export class Profile implements IProfile {
 
 		this.wallets().flush();
 
-		this.restoreDefaultSettings(name);
+		new ProfileInitialiser(this).reset(name);
 	}
 
 	/**
@@ -443,7 +438,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public usesPassword(): boolean {
-		return this.#attributes.get<IProfileInput>('data').password !== undefined;
+		return this.#attributes.hasStrict('password');
 	}
 
 	/**
@@ -507,7 +502,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public dump(): IProfileInput {
-		if (!this.#attributes.get<IProfileInput>('data').data) {
+		if (!this.#attributes.get<string>('data')) {
 			throw new Error("The profile has not been encoded or encrypted. Please call [save] before dumping.");
 		}
 
@@ -515,37 +510,13 @@ export class Profile implements IProfile {
 			id: this.id(),
 			name: this.name(),
 			avatar: this.avatar(),
-			password: this.#attributes.get<IProfileInput>('data').password,
-			data: this.#attributes.get<IProfileInput>('data').data,
+			password: this.#attributes.get<string>('password'),
+			data: this.#attributes.get<string>('data'),
 		};
 	}
 
-	/**
-	 * Restore a profile from either a base64 raw or base64 encrypted string.
-	 *
-	 * @param {string} [password]
-	 * @returns {Promise<void>}
-	 * @memberof Profile
-	 */
 	public async restore(password?: string): Promise<void> {
-		const data: IProfileData | undefined = await this.validateStruct(password);
-
-		State.profile(this);
-
-		this.peers().fill(data.peers);
-
-		this.notifications().fill(data.notifications);
-
-		this.data().fill(data.data);
-
-		// @ts-ignore
-		this.plugins().fill(data.plugins);
-
-		this.settings().fill(data.settings);
-
-		await this.wallets().fill(data.wallets);
-
-		this.contacts().fill(data.contacts);
+		await new ProfileImporter(this).import(password);
 	}
 
 	/**
@@ -562,74 +533,14 @@ export class Profile implements IProfile {
 	}
 
 	/**
-	 * Initialize the factory settings.
-	 *
-	 * If the profile has modified any settings they will be overwritten!
-	 *
-	 * @memberof Profile
-	 */
-	public initializeSettings(): void {
-		this.settings().set(ProfileSetting.AdvancedMode, false);
-		this.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
-		this.settings().set(ProfileSetting.Bip39Locale, "english");
-		this.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
-		this.settings().set(ProfileSetting.LedgerUpdateMethod, false);
-		this.settings().set(ProfileSetting.Locale, "en-US");
-		this.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-		this.settings().set(ProfileSetting.ScreenshotProtection, true);
-		this.settings().set(ProfileSetting.Theme, "light");
-		this.settings().set(ProfileSetting.TimeFormat, "h:mm A");
-		this.settings().set(ProfileSetting.UseCustomPeer, false);
-		this.settings().set(ProfileSetting.UseMultiPeerBroadcast, false);
-		this.settings().set(ProfileSetting.UseTestNetworks, false);
-	}
-
-	/**
 	 * Encode or encrypt the profile data for dumping later on.
 	 */
 	public save(password?: string): void {
 		try {
-			this.#attributes.get<IProfileInput>('data').data = this.export(password);
+			this.#attributes.set('data', new ProfileExporter(this).export(password));
 		} catch (error) {
 			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
 		}
-	}
-
-	/**
-	 * Export the profile data to a base64 string.
-	 *
-	 * @param {string} [password]
-	 * @param {IProfileExportOptions} [options]
-	 * @return {*}  {string}
-	 * @memberof Profile
-	 */
-	public export(
-		password?: string,
-		options: IProfileExportOptions = {
-			excludeEmptyWallets: false,
-			excludeLedgerWallets: false,
-			addNetworkInformation: true,
-			saveGeneralSettings: true,
-		},
-	): string {
-		const filtered = this.toObject(options);
-
-		if (this.usesPassword()) {
-			return Base64.encode(
-				this.encrypt(
-					JSON.stringify({
-						id: this.id(),
-						name: this.name(),
-						avatar: this.avatar(),
-						password: this.#attributes.get<IProfileInput>('data').password,
-						data: this.toObject(options),
-					}),
-					password,
-				),
-			);
-		}
-
-		return Base64.encode(JSON.stringify(filtered));
 	}
 
 	/**
@@ -648,146 +559,7 @@ export class Profile implements IProfile {
 	 * @return {*}  {AttributeBag}
 	 * @memberof IReadWriteWallet
 	 */
-	public getAttributes(): AttributeBag<IProfileAttributes> {
+	public getAttributes(): AttributeBag<IProfileInput> {
 		return this.#attributes;
-	}
-
-	/**
-	 * Restore the default settings, including the name of the profile.
-	 *
-	 * @private
-	 * @param {string} name
-	 * @memberof Profile
-	 */
-	private restoreDefaultSettings(name: string): void {
-		this.settings().set(ProfileSetting.Name, name);
-
-		this.initializeSettings();
-	}
-
-	/**
-	 * Attempt to encrypt the profile data with the given password.
-	 *
-	 * @param unencrypted The JSON string to encrypt
-	 * @param password? A hard-to-guess password to encrypt the contents.
-	 */
-	private encrypt(unencrypted: string, password?: string): string {
-		if (typeof password !== "string") {
-			password = MemoryPassword.get();
-		}
-
-		if (!this.auth().verifyPassword(password)) {
-			throw new Error("The password did not match our records.");
-		}
-
-		return PBKDF2.encrypt(unencrypted, password);
-	}
-
-	/**
-	 * Attempt to decrypt the profile data with the given password.
-	 *
-	 * @param password A hard-to-guess password to decrypt the contents.
-	 */
-	private decrypt(password: string): IProfileData {
-		if (!this.usesPassword()) {
-			throw new Error("This profile does not use a password but password was passed for decryption");
-		}
-
-		const { id, data } = JSON.parse(PBKDF2.decrypt(Base64.decode(this.#attributes.get<IProfileInput>('data').data), password));
-
-		return { id, ...data };
-	}
-
-	/**
-	 * Validate the profile data after decoding and/or decrypting it.
-	 *
-	 * @private
-	 * @param {string} [password]
-	 * @return {*}  {Promise<IProfileData>}
-	 * @memberof Profile
-	 */
-	private async validateStruct(password?: string): Promise<IProfileData> {
-		let data: IProfileData | undefined;
-		let errorReason = "";
-
-		try {
-			if (typeof password === "string") {
-				data = this.decrypt(password);
-			} else {
-				data = JSON.parse(Base64.decode(this.#attributes.get<IProfileInput>('data').data));
-			}
-		} catch (error) {
-			errorReason = ` Reason: ${error.message}`;
-		}
-
-		if (data === undefined) {
-			throw new Error(`Failed to decode or decrypt the profile.${errorReason}`);
-		}
-
-		if (container.has(Identifiers.MigrationSchemas) && container.has(Identifiers.MigrationVersion)) {
-			await new Migrator(this).migrate(
-				container.get(Identifiers.MigrationSchemas),
-				container.get(Identifiers.MigrationVersion),
-			);
-		}
-
-		const { error, value } = Joi.object({
-			id: Joi.string().required(),
-			contacts: Joi.object().pattern(
-				Joi.string().uuid(),
-				Joi.object({
-					id: Joi.string().required(),
-					name: Joi.string().required(),
-					addresses: Joi.array().items(
-						Joi.object({
-							id: Joi.string().required(),
-							coin: Joi.string().required(),
-							network: Joi.string().required(),
-							name: Joi.string().required(),
-							address: Joi.string().required(),
-						}),
-					),
-					starred: Joi.boolean().required(),
-				}),
-			),
-			// TODO: stricter validation to avoid unknown keys or values
-			data: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			notifications: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			peers: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			plugins: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			settings: Joi.object().required(),
-			wallets: Joi.object().pattern(
-				Joi.string().uuid(),
-				Joi.object({
-					id: Joi.string().required(),
-					coin: Joi.string().required(),
-					network: Joi.string().required(),
-					networkConfig: Joi.object({
-						crypto: Joi.object({
-							slip44: Joi.number().integer().required(),
-						}).required(),
-						networking: Joi.object({
-							hosts: Joi.array().items(Joi.string()).required(),
-							hostsMultiSignature: Joi.array().items(Joi.string()),
-							hostsArchival: Joi.array().items(Joi.string()),
-						}).required(),
-					}),
-					address: Joi.string().required(),
-					publicKey: Joi.string(),
-					data: Joi.object().required(),
-					settings: Joi.object().required(),
-				}),
-			),
-		}).validate(data);
-
-		if (error !== undefined) {
-			throw error;
-		}
-
-		return value as IProfileData;
 	}
 }

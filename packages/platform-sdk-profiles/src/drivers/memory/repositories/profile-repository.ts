@@ -5,6 +5,8 @@ import { IProfileRepository, IProfileExportOptions, IProfile } from "../../../co
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
 import { DataRepository } from "../../../repositories/data-repository";
+import { ProfileExporter } from "../profiles/profile.exporter";
+import { ProfileImporter } from "../profiles/profile.importer";
 
 @injectable()
 export class ProfileRepository implements IProfileRepository {
@@ -71,12 +73,14 @@ export class ProfileRepository implements IProfileRepository {
 			password,
 			data,
 		});
-		await profile.restore(password);
+
+		await new ProfileImporter(profile).import(password);
+
 		return profile;
 	}
 
 	public export(profile: IProfile, options: IProfileExportOptions, password?: string): string {
-		return profile.export(password, options);
+		return new ProfileExporter(profile).export(password, options);
 	}
 
 	public has(id: string): boolean {
