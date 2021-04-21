@@ -500,16 +500,6 @@ it("should return explorer link", () => {
 	expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 });
 
-it("should return whether it can vote or not", () => {
-	subject.data().set(WalletData.VotesAvailable, 0);
-
-	expect(subject.canVote()).toBeFalse();
-
-	subject.data().set(WalletData.VotesAvailable, 2);
-
-	expect(subject.canVote()).toBeTrue();
-});
-
 describe("transactions", () => {
 	it("all", async () => {
 		await expect(subject.transactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
@@ -519,23 +509,6 @@ describe("transactions", () => {
 	});
 	it("received", async () => {
 		await expect(subject.receivedTransactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
-	});
-});
-
-describe("features", () => {
-	it("can", () => {
-		expect(subject.can("some-feature")).toBeFalse();
-	});
-	it("cannot", () => {
-		expect(subject.cannot("some-feature")).toBeTrue();
-	});
-	it("can any", () => {
-		expect(subject.canAny(["some-feature"])).toBeFalse();
-		expect(subject.canAny(["Client.transactions"])).toBeTrue();
-	});
-	it("can all", () => {
-		expect(subject.canAll(["some-feature"])).toBeFalse();
-		expect(subject.canAll(["Client.transactions"])).toBeTrue();
 	});
 });
 
