@@ -3,16 +3,13 @@ import "reflect-metadata";
 
 import { Coins } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { encrypt } from "bip38";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
-import { decode } from "wif";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { ProfileRepository } from "../repositories/profile-repository";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
 import {
@@ -20,7 +17,6 @@ import {
 	IProfile,
 	IProfileRepository,
 	IReadWriteWallet,
-	ProfileSetting,
 	WalletData,
 	WalletFlag,
 	WalletSetting,
