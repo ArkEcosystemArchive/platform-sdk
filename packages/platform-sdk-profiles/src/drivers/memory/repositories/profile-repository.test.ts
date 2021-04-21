@@ -4,7 +4,7 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { IProfileRepository } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "./profile-repository";
@@ -184,12 +184,12 @@ describe("ProfileRepository", () => {
 	it("should dump all profiles", async () => {
 		const john = subject.create("John");
 		State.profile(john);
-		await john.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+		await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
 		john.save();
 
 		const jane = subject.create("Jane");
 		State.profile(jane);
-		await jane.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+		await importByMnemonic(jane, identity.mnemonic, "ARK", "ark.devnet");
 		jane.auth().setPassword("password");
 		jane.save("password");
 
@@ -210,7 +210,7 @@ describe("ProfileRepository", () => {
 	it("should export ok", async () => {
 		const profile = subject.create("John");
 		State.profile(profile);
-		await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+		await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
 		const exported = subject.export(profile, {
 			excludeEmptyWallets: false,
@@ -226,7 +226,7 @@ describe("ProfileRepository", () => {
 		const profile = subject.create("John");
 		State.profile(profile);
 		profile.auth().setPassword("some pass");
-		await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+		await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 		profile.save("some pass");
 
 		const exported = subject.export(

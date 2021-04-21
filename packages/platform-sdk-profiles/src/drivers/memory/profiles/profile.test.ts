@@ -6,7 +6,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer, importByAddressWithLedgerPath, importByMnemonic, generateWallet } from "../../../../test/helpers";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../../../repositories/data-repository";
@@ -203,7 +203,7 @@ describe("#restore", () => {
 
 		const profile: IProfile = new Profile(subject.dump());
 
-		await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+		await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
 		await profile.restore("password");
 		await profile.sync();
@@ -394,7 +394,7 @@ describe("#toObject with options", () => {
 	});
 
 	it("should not exclude anything", async () => {
-		await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+		await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 		profile.save();
 
 		const filtered = profile.toObject({
@@ -408,7 +408,7 @@ describe("#toObject with options", () => {
 	});
 
 	it("should exclude empty wallets", async () => {
-		await profile.wallets().generate("ARK", "ark.devnet");
+		await generateWallet(profile, "ARK", "ark.devnet");
 		profile.save();
 
 		const filtered = profile.toObject({
@@ -422,7 +422,7 @@ describe("#toObject with options", () => {
 	});
 
 	it("should exclude ledger wallets", async () => {
-		await profile.wallets().importByAddressWithLedgerPath(identity.address, "ARK", "ark.devnet", "0");
+		await importByAddressWithLedgerPath(profile, identity.address, "ARK", "ark.devnet", "0");
 		profile.save();
 
 		const filtered = profile.toObject({
@@ -436,7 +436,7 @@ describe("#toObject with options", () => {
 	});
 
 	it("should not include network information", async () => {
-		await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+		await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 		profile.save();
 
 		expect(() =>

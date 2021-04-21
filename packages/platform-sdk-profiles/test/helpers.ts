@@ -21,6 +21,7 @@ import { StubStorage } from "./stubs/storage";
 import { Wallet } from "../src/drivers/memory/wallets/wallet";
 import { WalletService } from "../src/drivers/memory/services/wallet-service";
 import { IContactData, IProfile, IReadWriteWallet } from "../src/contracts";
+import { WalletFactory } from "../src/drivers/memory/wallets/wallet.factory";
 
 export const bootContainer = (): void => {
 	container.bind(Identifiers.Storage, new StubStorage());
@@ -60,5 +61,49 @@ export const knock = (): void => {
 
 export const makeProfile = (data: object = {}): IProfile =>
 	new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "", ...data });
+
 export const makeContact = (data: IContactData): Contact => new Contact(data);
+
 export const makeWallet = (id: string): IReadWriteWallet => new Wallet(id, {});
+
+export const importByMnemonic = async (profile: IProfile, mnemonic: string, coin: string, network: string): Promise<IReadWriteWallet> => {
+	const factory: WalletFactory = new WalletFactory();
+
+	const wallet = await factory.fromMnemonic({
+		coin,
+		network,
+		mnemonic,
+	});
+
+	profile.wallets().push(wallet);
+
+	return wallet;
+}
+
+export const importByAddressWithLedgerPath = async (profile: IProfile, address: string, coin: string, network: string, path: string): Promise<IReadWriteWallet> => {
+	const factory: WalletFactory = new WalletFactory();
+
+	const wallet = await factory.fromAddressWithLedgerPath({
+		coin,
+		network,
+		address,
+		path,
+	});
+
+	profile.wallets().push(wallet);
+
+	return wallet;
+}
+
+export const generateWallet = async (profile: IProfile, coin: string, network: string): Promise<IReadWriteWallet> => {
+	const factory: WalletFactory = new WalletFactory();
+
+	const { wallet } = await factory.generate({
+		coin,
+		network,
+	});
+
+	profile.wallets().push(wallet);
+
+	return wallet;
+}

@@ -12,6 +12,7 @@ import nock from "nock";
 
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
+import { importByMnemonic } from "../../test/helpers";
 import { StubStorage } from "../../test/stubs/storage";
 import { Profile } from "../drivers/memory/profiles/profile";
 import { ProfileRepository } from "../drivers/memory/repositories/profile-repository";
@@ -126,7 +127,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	profile.contacts().create("Jane Doe");
 
 	// Create a Wallet
-	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
 	// Create a Notification
 	profile.notifications().push({
@@ -352,7 +353,7 @@ it("should persist the env and restore it", async () => {
 
 	const john = subject.profiles().create("John");
 	State.profile(john);
-	await john.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
 	john.save();
 
 	const jane = subject.profiles().create("Jane");

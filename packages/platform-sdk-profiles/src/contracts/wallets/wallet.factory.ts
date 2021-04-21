@@ -1,6 +1,17 @@
 import { IReadWriteWallet } from "./wallet";
 
 /**
+ * Defines the options needed to generate a wallet.
+ *
+ * @interface IGenerateOptions
+ */
+interface IGenerateOptions {
+	coin: string;
+	network: string;
+	locale?: string
+}
+
+/**
  * Defines the options for an import with a mnemonic.
  *
  * @interface IMnemonicOptions
@@ -85,6 +96,15 @@ interface IWifWithEncryptionOptions {
  * @interface IWalletFactory
  */
 export interface IWalletFactory {
+	/**
+	 * Generates a wallet from a mnemonic.
+	 *
+	 * @param {IGenerateOptions} options
+	 * @return {*}  {Promise<{ mnemonic: string; wallet: IReadWriteWallet }>}
+	 * @memberof IWalletFactory
+	 */
+	generate(options: IGenerateOptions): Promise<{ mnemonic: string; wallet: IReadWriteWallet }>;
+
 	/**
 	 * Imports a wallet from a mnemonic.
 	 *

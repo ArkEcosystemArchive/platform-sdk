@@ -8,7 +8,7 @@ import { IPeerRepository } from "../repositories/peer-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
 import { IWalletRepository } from "../repositories/wallet-repository";
 import { ICoinService } from "../services";
-import { IWalletData } from "../wallets";
+import { IWalletData, IWalletFactory } from "../wallets";
 import { ICountAggregate } from "./aggregates/count-aggregate";
 import { IRegistrationAggregate } from "./aggregates/registration-aggregate";
 import { ITransactionAggregate } from "./aggregates/transaction-aggregate";
@@ -188,6 +188,14 @@ export interface IProfile {
 	 * @memberof IProfile
 	 */
 	wallets(): IWalletRepository;
+
+	/**
+	 * Access the wallet factory.
+	 *
+	 * @return {IWalletFactory}
+	 * @memberof Profile
+	 */
+	walletFactory(): IWalletFactory;
 
 	/**
 	 * Remove all data and reset the profile.

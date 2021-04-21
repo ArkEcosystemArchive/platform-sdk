@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { ProfileRepository } from "../repositories/profile-repository";
@@ -136,7 +136,7 @@ it("should have a converted balance if it is a live wallet", async () => {
 		.reply(200, { BTC: 0.00005048, ConversionType: { type: "direct", conversionSymbol: "" } })
 		.persist();
 
-	const wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	const wallet = await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 	const live = jest.spyOn(subject.network(), "isLive").mockReturnValue(true);
 	const test = jest.spyOn(subject.network(), "isTest").mockReturnValue(false);
 

@@ -131,7 +131,14 @@ export const importLedgerWallet = async (env: Environment, profile: Contracts.IP
 				const imports: any[] = [];
 				for (const address of addresses) {
 					imports.push(
-						profile.wallets().importByAddressWithLedgerPath(address.address, coin, network, address.path),
+						profile.wallets().push(
+							await profile.walletFactory().fromAddressWithLedgerPath({
+								coin,
+								network,
+								address: address.address,
+								path: address.path,
+							}),
+						),
 					);
 				}
 

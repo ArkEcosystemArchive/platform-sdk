@@ -4,7 +4,7 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../../test/helpers";
 import { IProfile } from "../../../../contracts";
 import { Profile } from "../profile";
 import { RegistrationAggregate } from "./registration-aggregate";
@@ -33,7 +33,7 @@ beforeEach(async () => {
 
 	State.profile(profile);
 
-	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
 	subject = new RegistrationAggregate();
 });

@@ -4,7 +4,7 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { IProfile, IReadWriteWallet } from "../../../contracts";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
@@ -83,7 +83,7 @@ beforeEach(async () => {
 
 	State.profile(profile);
 
-	wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	wallet = await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
 	liveSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);
 	testSpy = jest.spyOn(wallet.network(), "isTest").mockReturnValue(false);
