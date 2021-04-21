@@ -30,7 +30,7 @@ export class Authenticator implements IAuthenticator {
 			throw new Error("No password is set.");
 		}
 
-		return Bcrypt.verify(State.profile().getAttributes().get("data").password, password);
+		return Bcrypt.verify(State.profile().getAttributes().get("password"), password);
 	}
 
 	public changePassword(oldPassword: string, newPassword: string): void {
