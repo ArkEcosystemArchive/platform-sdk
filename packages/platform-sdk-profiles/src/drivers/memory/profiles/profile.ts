@@ -537,7 +537,7 @@ export class Profile implements IProfile {
 	 */
 	public save(password?: string): void {
 		try {
-			this.#attributes.set('data.data', new ProfileExporter(this).export(password));
+			this.#attributes.set('data', new ProfileExporter(this).export(password));
 		} catch (error) {
 			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
 		}
