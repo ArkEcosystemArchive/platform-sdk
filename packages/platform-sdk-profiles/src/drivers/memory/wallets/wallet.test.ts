@@ -261,7 +261,7 @@ it("should have a second public key", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.secondPublicKey()).toThrow(
-		"This wallet has not been synchronized yet. Please call [synchroniser().identity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -271,7 +271,7 @@ it("should have a username", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.username()).toThrow(
-		"This wallet has not been synchronized yet. Please call [synchroniser().identity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -281,7 +281,7 @@ it("should respond on whether it is a delegate or not", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.isDelegate()).toThrow(
-		"This wallet has not been synchronized yet. Please call [synchroniser().identity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -291,7 +291,7 @@ it("should respond on whether it is a resigned delegate or not", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.isResignedDelegate()).toThrow(
-		"This wallet has not been synchronized yet. Please call [synchroniser().identity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -329,7 +329,7 @@ it("should respond on whether it is multi signature or not", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.isMultiSignature()).toThrow(
-		"This wallet has not been synchronized yet. Please call [synchroniser().identity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -339,7 +339,7 @@ it("should respond on whether it is second signature or not", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.isSecondSignature()).toThrow(
-		"This wallet has not been synchronized yet. Please call [synchroniser().identity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -388,7 +388,7 @@ it("should return multi signature", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.multiSignature()).toThrow(
-		"This wallet has not been synchronized yet. Please call [synchroniser().identity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -464,7 +464,7 @@ it("should return entities", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.entities()).toThrow(
-		"This wallet has not been synchronized yet. Please call [synchroniser().identity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
