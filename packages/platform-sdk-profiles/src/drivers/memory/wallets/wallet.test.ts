@@ -347,10 +347,6 @@ it("should respond on whether it is second signature or not", () => {
 	);
 });
 
-it("should respond on whether it uses multi peer broadcasting", () => {
-	expect(subject.usesMultiPeerBroadcasting()).toBeFalse();
-});
-
 it("should have a transaction service", () => {
 	expect(subject.transaction()).toBeObject();
 });
