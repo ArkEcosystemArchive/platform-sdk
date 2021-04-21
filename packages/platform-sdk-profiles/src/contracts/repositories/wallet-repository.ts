@@ -57,134 +57,6 @@ export interface IWalletRepository {
 	values(): IReadWriteWallet[];
 
 	/**
-	 * Import a wallet from a mnemonic.
-	 *
-	 * @param {string} mnemonic
-	 * @param {string} coin
-	 * @param {string} network
-	 * @returns {Promise<IReadWriteWallet>}
-	 * @memberof IWalletRepository
-	 */
-	importByMnemonic(mnemonic: string, coin: string, network: string): Promise<IReadWriteWallet>;
-
-	/**
-	 * Import a wallet from an address.
-	 *
-	 * @param {string} address
-	 * @param {string} coin
-	 * @param {string} network
-	 * @returns {Promise<IReadWriteWallet>}
-	 * @memberof IWalletRepository
-	 */
-	importByAddress(address: string, coin: string, network: string): Promise<IReadWriteWallet>;
-
-	/**
-	 * Import a wallet from an address list.
-	 *
-	 * @param {string[]} addresses
-	 * @param {string} coin
-	 * @param {string} network
-	 * @returns {Promise<IReadWriteWallet[]>}
-	 * @memberof IWalletRepository
-	 */
-	importByAddressList(addresses: string[], coin: string, network: string): Promise<IReadWriteWallet[]>;
-
-	/**
-	 * Import a wallet from a BIP44 path.
-	 *
-	 * @param {string} address
-	 * @param {string} coin
-	 * @param {string} network
-	 * @param {string} path
-	 * @returns {Promise<IReadWriteWallet>}
-	 * @memberof IWalletRepository
-	 */
-	importByAddressWithLedgerPath(
-		address: string,
-		coin: string,
-		network: string,
-		path: string,
-	): Promise<IReadWriteWallet>;
-
-	/**
-	 * Import a wallet from a mnemonic with a password.
-	 *
-	 * @param {string} mnemonic
-	 * @param {string} coin
-	 * @param {string} network
-	 * @param {string} password
-	 * @returns {Promise<IReadWriteWallet>}
-	 * @memberof IWalletRepository
-	 */
-	importByMnemonicWithEncryption(
-		mnemonic: string,
-		coin: string,
-		network: string,
-		password: string,
-	): Promise<IReadWriteWallet>;
-
-	/**
-	 * Import a wallet from a public key.
-	 *
-	 * @param {string} coin
-	 * @param {string} network
-	 * @param {string} publicKey
-	 * @returns {Promise<IReadWriteWallet>}
-	 * @memberof IWalletRepository
-	 */
-	importByPublicKey(coin: string, network: string, publicKey: string): Promise<IReadWriteWallet>;
-
-	/**
-	 * Import a wallet from a private key.
-	 *
-	 * @param {string} coin
-	 * @param {string} network
-	 * @param {string} privateKey
-	 * @returns {Promise<IReadWriteWallet>}
-	 * @memberof IWalletRepository
-	 */
-	importByPrivateKey(coin: string, network: string, privateKey: string): Promise<IReadWriteWallet>;
-
-	/**
-	 * Import a wallet from a WIF.
-	 *
-	 * @param {string} coin
-	 * @param {string} network
-	 * @param {string} wif
-	 * @returns {Promise<IReadWriteWallet>}
-	 * @memberof IWalletRepository
-	 */
-	importByWIF(coin: string, network: string, wif: string): Promise<IReadWriteWallet>;
-
-	/**
-	 * Import a wallet from a WIF with a password.
-	 *
-	 * @param {string} coin
-	 * @param {string} network
-	 * @param {string} wif
-	 * @param {string} password
-	 * @returns {Promise<IReadWriteWallet>}
-	 * @memberof IWalletRepository
-	 */
-	importByWIFWithEncryption(
-		coin: string,
-		network: string,
-		wif: string,
-		password: string,
-	): Promise<IReadWriteWallet>;
-
-	/**
-	 * Generate a new wallet for the given coin and network.
-	 *
-	 * @param {string} coin
-	 * @param {string} network
-	 * @param {string} [locale]
-	 * @returns {Promise<{ mnemonic: string; wallet: IReadWriteWallet }>}
-	 * @memberof IWalletRepository
-	 */
-	generate(coin: string, network: string, locale?: string): Promise<{ mnemonic: string; wallet: IReadWriteWallet }>;
-
-	/**
 	 * Fill the storage with wallet data.
 	 *
 	 * @param {Record<string, IWalletData>} struct
@@ -255,6 +127,17 @@ export interface IWalletRepository {
 	 * @memberof IWalletRepository
 	 */
 	findByAlias(alias: string): IReadWriteWallet | undefined;
+
+	/**
+	 * Store a new wallet instance using its unique ID.
+	 *
+	 * @private
+	 * @param {IReadWriteWallet} wallet
+	 * @param {{ force: boolean }} [options={ force: false }]
+	 * @returns {IReadWriteWallet}
+	 * @memberof WalletRepository
+	 */
+	 push(wallet: IReadWriteWallet, options?: { force: boolean }): IReadWriteWallet;
 
 	/**
 	 * Update a wallet.

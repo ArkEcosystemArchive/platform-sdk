@@ -23,6 +23,7 @@ import {
 	IReadWriteWallet,
 	ICoinService,
 	IAuthenticator,
+	IWalletFactory,
 } from "../../../contracts";
 
 import { MemoryPassword } from "../../../helpers/password";
@@ -45,6 +46,7 @@ import { CoinService } from "./services/coin-service";
 import { State } from "../../../environment/state";
 import { Identifiers } from "../../../environment/container.models";
 import { container } from "../../../environment/container";
+import { WalletFactory } from "../wallets/wallet.factory";
 
 export class Profile implements IProfile {
 	/**
@@ -279,6 +281,16 @@ export class Profile implements IProfile {
 	 */
 	public wallets(): IWalletRepository {
 		return this.#walletRepository;
+	}
+
+	/**
+	 * Access the wallet factory.
+	 *
+	 * @return {IWalletFactory}
+	 * @memberof Profile
+	 */
+	public walletFactory(): IWalletFactory {
+		return new WalletFactory();
 	}
 
 	/**

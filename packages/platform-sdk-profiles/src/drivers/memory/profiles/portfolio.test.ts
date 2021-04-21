@@ -5,7 +5,7 @@ import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Wallet } from "../wallets/wallet";
@@ -50,8 +50,8 @@ beforeEach(async () => {
 
 	subject = new Wallet(uuidv4(), {});
 
-	await subject.setCoin("ARK", "ark.devnet");
-	await subject.setIdentity(identity.mnemonic);
+	await subject.mutator().coin("ARK", "ark.devnet");
+	await subject.mutator().identity(identity.mnemonic);
 });
 
 beforeAll(() => nock.disableNetConnect());
@@ -64,9 +64,9 @@ it("should aggregate the balances of all wallets", async () => {
 		.persist();
 
 	const [a, b, c] = await Promise.all([
-		profile.wallets().importByMnemonic("ark", "ARK", "ark.devnet"),
-		profile.wallets().importByMnemonic("btc", "ARK", "ark.devnet"),
-		profile.wallets().importByMnemonic("eth", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "ark", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "btc", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "eth", "ARK", "ark.devnet"),
 	]);
 	a.data().set(WalletData.Balance, 1e8);
 	b.data().set(WalletData.Balance, 1e8);
