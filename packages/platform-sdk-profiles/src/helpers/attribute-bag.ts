@@ -56,6 +56,18 @@ export class AttributeBag<T> {
 	}
 
 	/**
+	 * Determine if a given attribute exists in the attribute object
+	 * and is not `undefined` or `null` which equal missing contents.
+	 *
+	 * @param {keyof T} key
+	 * @return {*}  {boolean}
+	 * @memberof AttributeBag
+	 */
+	public hasStrict(key: keyof T): boolean {
+		return get(this.#attributes, key as string) !== undefined;
+	}
+
+	/**
 	 * Determine if a given attribute is missing in the attribute object.
 	 *
 	 * @param {keyof T} key
