@@ -404,7 +404,7 @@ describe("#multiSignatureParticipants", () => {
 		});
 
 		await subject.synchroniser().identity();
-		await subject.syncMultiSignature();
+		await subject.synchroniser().multiSignature();
 
 		expect(subject.multiSignatureParticipants()).toHaveLength(2);
 		expect(subject.multiSignatureParticipants()[0]).toBeInstanceOf(ReadOnlyWallet);
@@ -424,7 +424,7 @@ describe("#multiSignatureParticipants", () => {
 		});
 
 		await subject.synchroniser().identity();
-		await subject.syncMultiSignature();
+		await subject.synchroniser().multiSignature();
 
 		expect(() => subject.multiSignatureParticipants()).toThrow(
 			"This wallet does not have a multi-signature registered.",
@@ -437,7 +437,7 @@ describe("#multiSignatureParticipants", () => {
 		await subject.synchroniser().identity();
 
 		expect(() => subject.multiSignatureParticipants()).toThrow(
-			"This Multi-Signature has not been synchronized yet. Please call [syncMultiSignature] before using it.",
+			"This Multi-Signature has not been synchronized yet. Please call [synchroniser().multiSignature] before using it.",
 		);
 	});
 });
@@ -447,13 +447,13 @@ it("should sync multi signature when musig", async () => {
 	await subject.mutator().coin("ARK", "ark.devnet");
 	await subject.mutator().identity("new super passphrase");
 
-	await subject.syncMultiSignature();
+	await subject.synchroniser().multiSignature();
 
 	expect(subject.isMultiSignature()).toBeTrue();
 });
 
 it("should sync multi signature when not musig", async () => {
-	await subject.syncMultiSignature();
+	await subject.synchroniser().multiSignature();
 
 	expect(subject.isMultiSignature()).toBeFalse();
 });
