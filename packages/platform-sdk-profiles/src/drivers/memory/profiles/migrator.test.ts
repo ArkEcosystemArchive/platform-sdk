@@ -215,11 +215,10 @@ it("should migrate profiles from JSON to Base64", async () => {
 	await subject.migrate(
 		{
 			"2.0.0": async ({ profile }: { profile: IProfile }) => {
-				// @ts-ignore
-				const profileData: Record<string, any> = profile.getRawData();
+				const profileData: Record<string, any> = profile.getAttributes().all();
 				profileData.data.contacts["0e147f96-049f-4d89-bad4-ad3341109907"].name = "John Doe";
 
-				profile.setRawData({
+				profile.getAttributes().setMany({
 					id: profile.id(),
 					name: profile.data.name,
 					password: profileData.data.settings.PASSWORD,
