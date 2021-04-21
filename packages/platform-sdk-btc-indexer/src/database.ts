@@ -75,7 +75,7 @@ export class Database {
 	 */
 	public storeBlockWithTransactions(block: any): void {
 		this.#logger.info(
-			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`
+			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
 		);
 
 		this.storeBlock(block);
@@ -99,8 +99,10 @@ export class Database {
 	 */
 	public storeError(type: string, hash: string, body: string): void {
 		this.#database
-			.prepare(`INSERT INTO errors (type, hash, body)
-								VALUES (:type, :hash, :body)`)
+			.prepare(
+				`INSERT INTO errors (type, hash, body)
+								VALUES (:type, :hash, :body)`,
+			)
 			.run({ type, hash, body });
 	}
 
@@ -112,11 +114,14 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeBlock(block): void {
-		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, height)
-														VALUES (:hash, :height)`)
+		this.#database
+			.prepare(
+				`INSERT OR IGNORE INTO blocks (hash, height)
+														VALUES (:hash, :height)`,
+			)
 			.run({
 				hash: block.hash,
-				height: block.height
+				height: block.height,
 			});
 	}
 
@@ -137,7 +142,7 @@ export class Database {
 				.prepare(
 					`SELECT hash, idx, amount
 					 FROM transaction_outputs
-					 WHERE hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`
+					 WHERE hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
 				)
 				.all(hashes);
 
@@ -154,34 +159,33 @@ export class Database {
 
 		const fee: BigNumber = getFees(transaction, voutsByTransactionHashAndIdx);
 
-		this.#database
-			.transaction((transaction) => {
-				this.#database
-					.prepare(`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender)
-										VALUES (:hash, :time, :amount, :fee, :sender)`)
-					.run(transaction);
+		this.#database.transaction((transaction) => {
+			this.#database
+				.prepare(
+					`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender)
+										VALUES (:hash, :time, :amount, :fee, :sender)`,
+				)
+				.run(transaction);
 
-				const statement = this.#database
-					.prepare(`INSERT OR IGNORE INTO transaction_outputs (hash, idx, amount, address)
+			const statement = this.#database
+				.prepare(`INSERT OR IGNORE INTO transaction_outputs (hash, idx, amount, address)
 										VALUES (:hash, :idx, :amount, :address)`);
-				for (const vout of transaction.vouts) {
-					statement
-						.run({
-							hash: transaction.hash,
-							idx: vout.idx,
-							amount: vout.amount,
-							address: JSON.stringify(vout.addresses)
-						});
-				}
-			})({
+			for (const vout of transaction.vouts) {
+				statement.run({
 					hash: transaction.hash,
-					time: transaction.time,
-					amount: amount.toString(),
-					fee: fee.toString(),
-					sender: "address-of-sender",
-					vouts
-				}
-			);
+					idx: vout.idx,
+					amount: vout.amount,
+					address: JSON.stringify(vout.addresses),
+				});
+			}
+		})({
+			hash: transaction.hash,
+			time: transaction.time,
+			amount: amount.toString(),
+			fee: fee.toString(),
+			sender: "address-of-sender",
+			vouts,
+		});
 	}
 
 	/**

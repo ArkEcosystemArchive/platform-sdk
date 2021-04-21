@@ -1,4 +1,5 @@
 import { BigNumber } from "@arkecosystem/utils";
+
 import { VIn, VOut } from "./types";
 
 export const getAmount = (transaction): BigNumber =>

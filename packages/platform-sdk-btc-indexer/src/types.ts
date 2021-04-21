@@ -16,12 +16,12 @@ export interface Flags {
 }
 
 export interface VOut {
-	idx: number,
-	addresses: string[],
-	amount: BigNumber,
+	idx: number;
+	addresses: string[];
+	amount: BigNumber;
 }
 
 export interface VIn {
-	txid: string,
-	vout: number,
+	txid: string;
+	vout: number;
 }
