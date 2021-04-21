@@ -40,7 +40,7 @@ export class ProfileExporter {
 						id: this.#profile.id(),
 						name: this.#profile.name(),
 						avatar: this.#profile.avatar(),
-						password: this.#profile.getAttributes().get<IProfileInput>('data').password,
+						password: this.#profile.getAttributes().get<string>('password'),
 						data: this.#profile.toObject(options),
 					}),
 					password,
