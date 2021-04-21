@@ -96,7 +96,7 @@ export class Wallet implements IReadWriteWallet {
 	 * @memberof Wallet
 	 */
 	public hasCoin(): boolean {
-		return this.#attributes.get<Coins.Coin>('coin') !== undefined;
+		return this.#attributes.hasStrict('coin');
 	}
 
 	/**
