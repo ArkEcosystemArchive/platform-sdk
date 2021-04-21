@@ -221,7 +221,7 @@ it("should have an exchange currency", () => {
 });
 
 it("should have a display name (alias)", () => {
-	subject = subject.mutator().alias("alias");
+	subject.mutator().alias("alias");
 	expect(subject.displayName()).toBe(subject.alias());
 });
 
