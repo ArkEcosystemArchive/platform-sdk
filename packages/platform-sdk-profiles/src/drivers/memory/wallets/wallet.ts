@@ -32,6 +32,8 @@ import {
 import { ExtendedTransactionDataCollection } from "../../../dto";
 import { State } from "../../../environment/state";
 import { AttributeBag } from "../../../helpers/attribute-bag";
+import { WalletGate } from "./wallet.gate";
+import { IWalletGate } from "../../../contracts/wallets/wallet.gate";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #attributes: AttributeBag<IReadWriteWalletAttributes> = new AttributeBag();
@@ -731,29 +733,25 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public markAsFullyRestored(): void {
-		this.setAttributes({
-			restorationState: {
-				full: true,
-				partial: false,
-			}
+		this.#attributes.set('restorationState', {
+			full: true,
+			partial: false,
 		});
 	}
 
 	public hasBeenFullyRestored(): boolean {
-		return this.#attributes.restorationState.full;
+		return this.#attributes.get('restorationState').full;
 	}
 
 	public markAsPartiallyRestored(): void {
-		this.setAttributes({
-			restorationState: {
-				full: false,
-				partial: true,
-			}
+		this.#attributes.set('restorationState', {
+			full: false,
+			partial: true,
 		});
 	}
 
 	public hasBeenPartiallyRestored(): boolean {
-		return this.#attributes.restorationState.partial;
+		return this.#attributes.get('restorationState').partial;
 	}
 
 	/** {@inheritDoc IReadWriteWallet.getAttributes} */
@@ -762,6 +760,10 @@ export class Wallet implements IReadWriteWallet {
         return this.#attributes;
     }
 
+	/** {@inheritDoc IReadWriteWallet.getAttributes} */
+	public gate(): IWalletGate {
+		return new WalletGate(this);
+	}
 
 	private async fetchTransactions(
 		query: Contracts.ClientTransactionsInput,
