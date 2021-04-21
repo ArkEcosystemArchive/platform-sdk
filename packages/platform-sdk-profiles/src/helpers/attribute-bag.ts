@@ -20,7 +20,7 @@ export class AttributeBag<T> {
 	}
 
 	/**
-     * Get all of the items in the attribute object.
+	 * Get all of the items in the attribute object.
 	 *
 	 * @return {*}  {Partial<T>}
 	 * @memberof AttributeBag
@@ -61,7 +61,7 @@ export class AttributeBag<T> {
 	 * @memberof AttributeBag
 	 */
 	public setMany(value: object): void {
-		for(const [k, v] of Object.entries(value)) {
+		for (const [k, v] of Object.entries(value)) {
 			this.set(k, v);
 		}
 	}
