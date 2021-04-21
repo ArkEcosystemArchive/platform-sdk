@@ -41,6 +41,7 @@ export class ProfileImporter {
 
 		this.#profile.contacts().fill(data.contacts);
 	}
+
 	/**
 	 * Validate the profile data after decoding and/or decrypting it.
 	 *
@@ -57,7 +58,7 @@ export class ProfileImporter {
 			if (typeof password === "string") {
 				data = new ProfileEncrypter(this.#profile).decrypt(password);
 			} else {
-				data = JSON.parse(Base64.decode(this.#profile.getAttributes().get<IProfileInput>('data').data));
+				data = JSON.parse(Base64.decode(this.#profile.getAttributes().get<string>('data')));
 			}
 		} catch (error) {
 			errorReason = ` Reason: ${error.message}`;

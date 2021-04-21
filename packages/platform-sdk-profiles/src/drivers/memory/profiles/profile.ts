@@ -22,7 +22,6 @@ import {
 	ICoinService,
 	IAuthenticator,
 	IWalletFactory,
-	IProfileAttributes,
 } from "../../../contracts";
 
 import { PluginRepository } from "../plugins/plugin-repository";
@@ -162,10 +161,10 @@ export class Profile implements IProfile {
 	/**
 	 * The normalise profile data.
 	 *
-	 * @type {AttributeBag<IProfileAttributes>}
+	 * @type {AttributeBag<IProfileInput>}
 	 * @memberof Profile
 	 */
-	readonly #attributes: AttributeBag<IProfileAttributes>;
+	readonly #attributes: AttributeBag<IProfileInput>;
 
 	/**
 	 * Creates an instance of Profile.
@@ -173,7 +172,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public constructor(data: IProfileInput) {
-		this.#attributes = new AttributeBag<IProfileAttributes>({ data });
+		this.#attributes = new AttributeBag<IProfileInput>(data);
 
 		this.#coinService = new CoinService();
 		this.#portfolio = new Portfolio();
@@ -298,7 +297,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public id(): string {
-		return this.#attributes.get<IProfileInput>('data').id;
+		return this.#attributes.get<string>('id');
 	}
 
 	/**
@@ -309,7 +308,7 @@ export class Profile implements IProfile {
 	 */
 	public name(): string {
 		if (this.settings().missing(ProfileSetting.Name)) {
-			return this.#attributes.get<IProfileInput>('data').name;
+			return this.#attributes.get<string>('name');
 		}
 
 		return this.settings().get<string>(ProfileSetting.Name)!;
@@ -329,7 +328,7 @@ export class Profile implements IProfile {
 		}
 
 		if (this.#attributes.hasStrict('data.avatar')) {
-			return this.#attributes.get<IProfileInput>('data').avatar!;
+			return this.#attributes.get<string>('avatar');
 		}
 
 		return Avatar.make(this.name());
@@ -439,7 +438,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public usesPassword(): boolean {
-		return this.#attributes.get<IProfileInput>('data').password !== undefined;
+		return this.#attributes.hasStrict('password');
 	}
 
 	/**
@@ -503,7 +502,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public dump(): IProfileInput {
-		if (!this.#attributes.get<IProfileInput>('data').data) {
+		if (!this.#attributes.get<string>('data')) {
 			throw new Error("The profile has not been encoded or encrypted. Please call [save] before dumping.");
 		}
 
@@ -511,8 +510,8 @@ export class Profile implements IProfile {
 			id: this.id(),
 			name: this.name(),
 			avatar: this.avatar(),
-			password: this.#attributes.get<IProfileInput>('data').password,
-			data: this.#attributes.get<IProfileInput>('data').data,
+			password: this.#attributes.get<string>('password'),
+			data: this.#attributes.get<string>('data'),
 		};
 	}
 
@@ -538,7 +537,7 @@ export class Profile implements IProfile {
 	 */
 	public save(password?: string): void {
 		try {
-			this.#attributes.get<IProfileInput>('data').data = new ProfileExporter(this).export(password);
+			this.#attributes.set('data.data', new ProfileExporter(this).export(password));
 		} catch (error) {
 			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
 		}
@@ -560,7 +559,7 @@ export class Profile implements IProfile {
 	 * @return {*}  {AttributeBag}
 	 * @memberof IReadWriteWallet
 	 */
-	public getAttributes(): AttributeBag<IProfileAttributes> {
+	public getAttributes(): AttributeBag<IProfileInput> {
 		return this.#attributes;
 	}
 }

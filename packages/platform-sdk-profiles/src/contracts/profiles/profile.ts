@@ -75,16 +75,6 @@ export interface IProfileExportOptions extends IWalletExportOptions {
  *
  *
  * @export
- * @interface IProfileAttributes
- */
-export interface IProfileAttributes {
-	data: IProfileInput;
-}
-
-/**
- *
- *
- * @export
  * @interface IProfile
  */
 export interface IProfile {
@@ -332,8 +322,8 @@ export interface IProfile {
 	/**
 	 *
 	 *
-	 * @return {*}  {AttributeBag<IProfileAttributes>}
+	 * @return {*}  {AttributeBag<IProfileInput>}
 	 * @memberof IProfile
 	 */
-	getAttributes(): AttributeBag<IProfileAttributes>;
+	getAttributes(): AttributeBag<IProfileInput>;
 }

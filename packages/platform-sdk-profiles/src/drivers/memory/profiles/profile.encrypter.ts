@@ -27,7 +27,7 @@ export class ProfileEncrypter implements IProfileEncrypter {
 			throw new Error("This profile does not use a password but password was passed for decryption");
 		}
 
-		const { id, data } = JSON.parse(PBKDF2.decrypt(Base64.decode(this.#profile.getAttributes().get<IProfileInput>('data').data), password));
+		const { id, data } = JSON.parse(PBKDF2.decrypt(Base64.decode(this.#profile.getAttributes().get<string>('data')), password));
 
 		return { id, ...data };
 	}
