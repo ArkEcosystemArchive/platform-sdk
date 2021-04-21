@@ -8,8 +8,8 @@ export class WalletService implements IWalletService {
 		const promises: (() => Promise<void>)[] = [];
 
 		for (const wallet of profile.wallets().values()) {
-			promises.push(() => wallet?.syncIdentity());
-			promises.push(() => wallet?.syncVotes());
+			promises.push(() => wallet?.synchroniser().identity());
+			promises.push(() => wallet?.synchroniser().votes());
 		}
 
 		await pqueueSettled(promises);

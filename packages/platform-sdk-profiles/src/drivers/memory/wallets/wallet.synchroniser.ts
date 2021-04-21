@@ -1,3 +1,4 @@
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { IReadWriteWallet, WalletData } from "../../../contracts";
 import { IWalletSynchroniser } from "../../../contracts/wallets/wallet.synchroniser";
 import { State } from "../../../environment/state";
@@ -11,25 +12,25 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 
 	public async coin(options: { resetCoin: boolean } = { resetCoin: false }): Promise<void> {
 		if (options.resetCoin) {
-			this.#coin = State.profile().coins().push(this.#wallet.coinId(), this.#wallet.networkId(), {}, true);
+			this.#wallet.getAttributes().set('coin', State.profile().coins().push(this.#wallet.coinId(), this.#wallet.networkId(), {}, true));
 		}
 
-		await this.#wallet.setCoin(this.#wallet.coinId(), this.#wallet.networkId());
+		await this.#wallet.mutator().coin(this.#wallet.coinId(), this.#wallet.networkId());
 	}
 
 	public async identity(): Promise<void> {
-		const currentWallet = this.#wallet;
-		const currentPublicKey = this.#publicKey;
+		const currentWallet = this.#wallet.getAttributes().get<Contracts.WalletData>('wallet');
+		const currentPublicKey = this.#wallet.getAttributes().get<string>('publicKey');
 
 		try {
-			this.#wallet = await this.#coin.client().wallet(this.address());
+			this.#wallet.getAttributes().set('wallet', await this.#wallet.getAttributes().get<Coins.Coin>('coin').client().wallet(this.#wallet.address()));
 
-			if (!this.#publicKey) {
-				this.#publicKey = this.#wallet.publicKey();
+			if (this.#wallet.getAttributes().missing("publicKey")) {
+				this.#wallet.getAttributes().set('publicKey', this.#wallet.getAttributes().get<Contracts.WalletData>('wallet').publicKey());
 			}
 
-			this.#wallet.data().set(WalletData.Balance, this.#wallet.balance());
-			this.#wallet.data().set(WalletData.Sequence, this.#wallet.nonce());
+			this.#wallet.data().set(WalletData.Balance, this.#wallet.getAttributes().get<Contracts.WalletData>('wallet').balance());
+			this.#wallet.data().set(WalletData.Sequence, this.#wallet.getAttributes().get<Contracts.WalletData>('wallet').nonce());
 		} catch {
 			/**
 			 * TODO: decide what to do if the wallet couldn't be found
@@ -38,8 +39,8 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 			 * but has no transactions or that the address is wrong.
 			 */
 
-			this.#wallet = currentWallet;
-			this.#publicKey = currentPublicKey;
+			this.#wallet.getAttributes().set('wallet', currentWallet);
+			this.#wallet.getAttributes().set('publicKey', currentPublicKey);
 		}
 	}
 
