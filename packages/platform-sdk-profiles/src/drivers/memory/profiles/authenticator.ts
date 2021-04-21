@@ -13,7 +13,7 @@ export class Authenticator implements IAuthenticator {
 		// This is needed for new profiles because they are initialised
 		// without any data besides their ID and name which means the
 		// password will be omitted and we won't know to use it.
-		State.profile().getAttributes().set("data.password", encrypted);
+		State.profile().getAttributes().set("password", encrypted);
 
 		// We'll need the password for future use in plain-text
 		// during the lifetime of this profile session.
