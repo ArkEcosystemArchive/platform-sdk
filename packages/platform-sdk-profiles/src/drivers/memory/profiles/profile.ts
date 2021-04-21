@@ -49,6 +49,7 @@ import { Identifiers } from "../../../environment/container.models";
 import { container } from "../../../environment/container";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { AttributeBag } from "../../../helpers/attribute-bag";
+import { ProfileExporter } from "./profile.exporter";
 
 export class Profile implements IProfile {
 	/**
@@ -521,34 +522,6 @@ export class Profile implements IProfile {
 	}
 
 	/**
-	 * Restore a profile from either a base64 raw or base64 encrypted string.
-	 *
-	 * @param {string} [password]
-	 * @returns {Promise<void>}
-	 * @memberof Profile
-	 */
-	public async restore(password?: string): Promise<void> {
-		const data: IProfileData | undefined = await this.validateStruct(password);
-
-		State.profile(this);
-
-		this.peers().fill(data.peers);
-
-		this.notifications().fill(data.notifications);
-
-		this.data().fill(data.data);
-
-		// @ts-ignore
-		this.plugins().fill(data.plugins);
-
-		this.settings().fill(data.settings);
-
-		await this.wallets().fill(data.wallets);
-
-		this.contacts().fill(data.contacts);
-	}
-
-	/**
 	 * Sync the wallets and contacts with their respective networks.
 	 *
 	 * @param {string} [password]
@@ -589,47 +562,10 @@ export class Profile implements IProfile {
 	 */
 	public save(password?: string): void {
 		try {
-			this.#attributes.get<IProfileInput>('data').data = this.export(password);
+			this.#attributes.get<IProfileInput>('data').data = new ProfileExporter(this).export(password);
 		} catch (error) {
 			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
 		}
-	}
-
-	/**
-	 * Export the profile data to a base64 string.
-	 *
-	 * @param {string} [password]
-	 * @param {IProfileExportOptions} [options]
-	 * @return {*}  {string}
-	 * @memberof Profile
-	 */
-	public export(
-		password?: string,
-		options: IProfileExportOptions = {
-			excludeEmptyWallets: false,
-			excludeLedgerWallets: false,
-			addNetworkInformation: true,
-			saveGeneralSettings: true,
-		},
-	): string {
-		const filtered = this.toObject(options);
-
-		if (this.usesPassword()) {
-			return Base64.encode(
-				this.encrypt(
-					JSON.stringify({
-						id: this.id(),
-						name: this.name(),
-						avatar: this.avatar(),
-						password: this.#attributes.get<IProfileInput>('data').password,
-						data: this.toObject(options),
-					}),
-					password,
-				),
-			);
-		}
-
-		return Base64.encode(JSON.stringify(filtered));
 	}
 
 	/**
@@ -663,98 +599,5 @@ export class Profile implements IProfile {
 		this.settings().set(ProfileSetting.Name, name);
 
 		this.initializeSettings();
-	}
-
-	/**
-	 * Validate the profile data after decoding and/or decrypting it.
-	 *
-	 * @private
-	 * @param {string} [password]
-	 * @return {*}  {Promise<IProfileData>}
-	 * @memberof Profile
-	 */
-	private async validateStruct(password?: string): Promise<IProfileData> {
-		let data: IProfileData | undefined;
-		let errorReason = "";
-
-		try {
-			if (typeof password === "string") {
-				data = this.decrypt(password);
-			} else {
-				data = JSON.parse(Base64.decode(this.#attributes.get<IProfileInput>('data').data));
-			}
-		} catch (error) {
-			errorReason = ` Reason: ${error.message}`;
-		}
-
-		if (data === undefined) {
-			throw new Error(`Failed to decode or decrypt the profile.${errorReason}`);
-		}
-
-		if (container.has(Identifiers.MigrationSchemas) && container.has(Identifiers.MigrationVersion)) {
-			await new Migrator(this).migrate(
-				container.get(Identifiers.MigrationSchemas),
-				container.get(Identifiers.MigrationVersion),
-			);
-		}
-
-		const { error, value } = Joi.object({
-			id: Joi.string().required(),
-			contacts: Joi.object().pattern(
-				Joi.string().uuid(),
-				Joi.object({
-					id: Joi.string().required(),
-					name: Joi.string().required(),
-					addresses: Joi.array().items(
-						Joi.object({
-							id: Joi.string().required(),
-							coin: Joi.string().required(),
-							network: Joi.string().required(),
-							name: Joi.string().required(),
-							address: Joi.string().required(),
-						}),
-					),
-					starred: Joi.boolean().required(),
-				}),
-			),
-			// TODO: stricter validation to avoid unknown keys or values
-			data: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			notifications: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			peers: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			plugins: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			settings: Joi.object().required(),
-			wallets: Joi.object().pattern(
-				Joi.string().uuid(),
-				Joi.object({
-					id: Joi.string().required(),
-					coin: Joi.string().required(),
-					network: Joi.string().required(),
-					networkConfig: Joi.object({
-						crypto: Joi.object({
-							slip44: Joi.number().integer().required(),
-						}).required(),
-						networking: Joi.object({
-							hosts: Joi.array().items(Joi.string()).required(),
-							hostsMultiSignature: Joi.array().items(Joi.string()),
-							hostsArchival: Joi.array().items(Joi.string()),
-						}).required(),
-					}),
-					address: Joi.string().required(),
-					publicKey: Joi.string(),
-					data: Joi.object().required(),
-					settings: Joi.object().required(),
-				}),
-			),
-		}).validate(data);
-
-		if (error !== undefined) {
-			throw error;
-		}
-
-		return value as IProfileData;
 	}
 }

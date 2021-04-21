@@ -297,15 +297,6 @@ export interface IProfile {
 	dump(): IProfileInput;
 
 	/**
-	 * Restore the profile data.
-	 *
-	 * @param {string} [password]
-	 * @return {*}  {Promise<void>}
-	 * @memberof IProfile
-	 */
-	restore(password?: string): Promise<void>;
-
-	/**
 	 * Synchronise the profile.
 	 *
 	 * @return {*}  {Promise<void>}
@@ -327,16 +318,6 @@ export interface IProfile {
 	 * @memberof IProfile
 	 */
 	save(password?: string): void;
-
-	/**
-	 * Export the profile.
-	 *
-	 * @param {string} [password]
-	 * @param {IProfileExportOptions} [options]
-	 * @return {*}  {string}
-	 * @memberof IProfile
-	 */
-	export(password?: string, options?: IProfileExportOptions): string;
 
 	/**
 	 * Determine if the profile has been partially restored.
