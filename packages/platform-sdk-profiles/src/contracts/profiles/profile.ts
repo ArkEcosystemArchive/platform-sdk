@@ -297,6 +297,15 @@ export interface IProfile {
 	dump(): IProfileInput;
 
 	/**
+	 * Restore the profile data.
+	 *
+	 * @param {string} [password]
+	 * @return {*}  {Promise<void>}
+	 * @memberof IProfile
+	 */
+	restore(password?: string): Promise<void>;
+
+	/**
 	 * Synchronise the profile.
 	 *
 	 * @return {*}  {Promise<void>}

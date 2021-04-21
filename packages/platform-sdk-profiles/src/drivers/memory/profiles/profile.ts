@@ -44,6 +44,7 @@ import { WalletFactory } from "../wallets/wallet.factory";
 import { AttributeBag } from "../../../helpers/attribute-bag";
 import { ProfileExporter } from "./profile.exporter";
 import { ProfileInitialiser } from "./profile.initialiser";
+import { ProfileImporter } from "./profile.importer";
 
 export class Profile implements IProfile {
 	/**
@@ -513,6 +514,10 @@ export class Profile implements IProfile {
 			password: this.#attributes.get<IProfileInput>('data').password,
 			data: this.#attributes.get<IProfileInput>('data').data,
 		};
+	}
+
+	public async restore(password?: string): Promise<void> {
+		await new ProfileImporter(this).import(password);
 	}
 
 	/**
