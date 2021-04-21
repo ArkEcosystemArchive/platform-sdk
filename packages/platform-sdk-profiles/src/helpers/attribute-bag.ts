@@ -1,0 +1,122 @@
+import { delete as del, get, has, set } from "dot-prop";
+
+export class AttributeBag<T>
+{
+    /**
+	 * The raw object of attributes.
+	 *
+	 * @memberof AttributeBag
+	 */
+    #attributes: Partial<T> = {} as T;
+
+	/**
+	 * Creates an instance of AttributeBag.
+	 * @param {T} [attributes]
+	 * @memberof AttributeBag
+	 */
+	public constructor(attributes?: Partial<T>)
+    {
+		if (attributes) {
+			this.#attributes = attributes;
+		}
+    }
+
+    /**
+	 * Get a given attribute from the attribute object.
+	 *
+	 * @template T
+	 * @param {string} key
+	 * @param {T} [defaultValue]
+	 * @return {*}  {T}
+	 * @memberof AttributeBag
+	 */
+	public get<T>(key: string, defaultValue?: T): T
+    {
+        return get(this.#attributes, key, defaultValue) as T;
+    }
+
+	/**
+	 * Set a given attribute in the attribute object.
+	 *
+	 * @template T
+	 * @param {string} key
+	 * @param {T} value
+	 * @memberof AttributeBag
+	 */
+	public set<T>(key: string, value: T): void
+    {
+        set(this.#attributes, key, value);
+    }
+
+    /**
+	 * Determine if a given attribute exists in the attribute object.
+	 *
+	 * @param {string} key
+	 * @return {*}  {boolean}
+	 * @memberof AttributeBag
+	 */
+	public has(key: string): boolean
+    {
+        return has(this.#attributes, key);
+    }
+
+    /**
+     * Remove an item from the attributes.
+	 *
+	 * @param {string} key
+	 * @memberof AttributeBag
+	 */
+	public forget(key: string): void {
+		del(this.#attributes, key);
+	}
+
+	 /**
+      * Remove all items from the attributes.
+	  *
+	  * @memberof AttributeBag
+	  */
+	 public flush(): void
+	 {
+		this.#attributes = {};
+	 }
+
+    /**
+	 * Only include the given attribute from the attribute object.
+	 *
+	 * @param {string[]} keys
+	 * @return {*}  {Record<string, any>}
+	 * @memberof AttributeBag
+	 */
+	public only(keys: string[]): Record<string, any>
+    {
+		const result: object = {};
+
+        for(const [key, value] of Object.entries(this.#attributes)) {
+			if (keys.includes(key)) {
+				result[key] = value;
+			}
+		}
+
+        return result;
+    }
+
+    /**
+	 * Exclude the given attribute from the attribute object.
+	 *
+	 * @param {string[]} keys
+	 * @return {*}  {Record<string, any>}
+	 * @memberof AttributeBag
+	 */
+	public except(keys: string[]): Record<string, any>
+    {
+		const result: object = {};
+
+        for(const [key, value] of Object.entries(this.#attributes)) {
+			if (! keys.includes(key)) {
+				result[key] = value;
+			}
+		}
+
+        return result;
+    }
+}

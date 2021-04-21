@@ -721,4 +721,20 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	hasCoin(): boolean;
+
+	/**
+	 * Get the underlying attributes.
+	 *
+	 * @return {*}  {object}
+	 * @memberof IReadWriteWallet
+	 */
+	getAttributes(): object;
+
+	/**
+	 * Set the underlying attributes.
+	 *
+	 * @param {object} attributes
+	 * @memberof IReadWriteWallet
+	 */
+	setAttributes(attributes: object): void;
 }
