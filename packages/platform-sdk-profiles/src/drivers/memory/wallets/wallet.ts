@@ -30,6 +30,8 @@ import {
 } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";
 import { State } from "../../../environment/state";
+import { IWalletGate } from "../../../contracts/wallets/wallet.gate";
+import { WalletGate } from "./wallet.gate";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #dataRepository: DataRepository;
@@ -507,6 +509,10 @@ export class Wallet implements IReadWriteWallet {
 		return this.coin().manifest().get<object>("networks")[this.networkId()].transactionTypes;
 	}
 
+	public gate(): IWalletGate {
+		return new WalletGate(this);
+	}
+
 	/**
 	 * These methods serve as helpers to interact with the underlying coin.
 	 */
@@ -589,42 +595,6 @@ export class Wallet implements IReadWriteWallet {
 
 	public explorerLink(): string {
 		return this.link().wallet(this.address());
-	}
-
-	/**
-	 * These methods serve as helpers to determine if an action can be performed.
-	 */
-
-	public canVote(): boolean {
-		return this.votesAvailable() > 0;
-	}
-
-	public can(feature: string): boolean {
-		return this.#coin.network().can(feature);
-	}
-
-	public canAny(features: string[]): boolean {
-		for (const feature of features) {
-			if (this.can(feature)) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	public canAll(features: string[]): boolean {
-		for (const feature of features) {
-			if (this.cannot(feature)) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	public cannot(feature: string): boolean {
-		return this.#coin.network().cannot(feature);
 	}
 
 	/**
