@@ -20,6 +20,16 @@ export class AttributeBag<T> {
 	}
 
 	/**
+     * Get all of the items in the attribute object.
+	 *
+	 * @return {*}  {Partial<T>}
+	 * @memberof AttributeBag
+	 */
+	public all(): Partial<T> {
+		return this.#attributes;
+	}
+
+	/**
 	 * Get a given attribute from the attribute object.
 	 *
 	 * @template U
@@ -40,8 +50,20 @@ export class AttributeBag<T> {
 	 * @param {U} value
 	 * @memberof AttributeBag
 	 */
-	public set<U>(key: keyof T, value: U): void {
+	public set<U>(key: keyof T | string, value: U): void {
 		set(this.#attributes, key as string, value);
+	}
+
+	/**
+	 * Set many given attributes in the attribute object.
+	 *
+	 * @param {object} value
+	 * @memberof AttributeBag
+	 */
+	public setMany(value: object): void {
+		for(const [k, v] of Object.entries(value)) {
+			this.set(k, v);
+		}
 	}
 
 	/**

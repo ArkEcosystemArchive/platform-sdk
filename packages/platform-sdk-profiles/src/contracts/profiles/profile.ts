@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { AttributeBag } from "../../helpers/attribute-bag";
 import { IPluginRepository } from "../plugins/plugin-repository";
 import { IContactRepository } from "../repositories/contact-repository";
 import { IDataRepository } from "../repositories/data-repository";
@@ -68,6 +69,16 @@ export interface IWalletExportOptions {
  */
 export interface IProfileExportOptions extends IWalletExportOptions {
 	saveGeneralSettings: boolean;
+}
+
+/**
+ *
+ *
+ * @export
+ * @interface IProfileAttributes
+ */
+export interface IProfileAttributes {
+	data: IProfileInput;
 }
 
 /**
@@ -310,31 +321,6 @@ export interface IProfile {
 	initializeSettings(): void;
 
 	/**
-	 * Get the raw data.
-	 *
-	 * @return {*}  {IProfileInput}
-	 * @memberof IProfile
-	 */
-	getRawData(): IProfileInput;
-
-	/**
-	 * Set the raw data.
-	 *
-	 * @param {IProfileInput} data
-	 * @memberof IProfile
-	 */
-	setRawData(data: IProfileInput): void;
-
-	/**
-	 * Set the key in the raw data.
-	 *
-	 * @param {keyof IProfileInput} key
-	 * @param {string} value
-	 * @memberof IProfile
-	 */
-	setRawDataKey(key: keyof IProfileInput, value: string): void;
-
-	/**
 	 * Save the profile.
 	 *
 	 * @param {string} [password]
@@ -359,4 +345,12 @@ export interface IProfile {
 	 * @memberof IProfile
 	 */
 	hasBeenPartiallyRestored(): boolean;
+
+	/**
+	 *
+	 *
+	 * @return {*}  {AttributeBag<IProfileAttributes>}
+	 * @memberof IProfile
+	 */
+	getAttributes(): AttributeBag<IProfileAttributes>;
 }
