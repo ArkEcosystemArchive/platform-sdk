@@ -200,10 +200,10 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	private canDeriveWithBIP39(wallet: IReadWriteWallet): boolean {
-		return wallet.can(Coins.FeatureFlag.DerivationBIP39);
+		return wallet.gate().can(Coins.FeatureFlag.DerivationBIP39);
 	}
 
 	private canDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
-		return wallet.can(Coins.FeatureFlag.DerivationBIP44);
+		return wallet.gate().can(Coins.FeatureFlag.DerivationBIP44);
 	}
 }

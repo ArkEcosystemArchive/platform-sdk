@@ -7,6 +7,7 @@ import { IDataRepository } from "../repositories/data-repository";
 import { IPeerRepository } from "../repositories/peer-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
 import { IReadOnlyWallet } from "./read-only-wallet";
+import { IWalletGate } from "./wallet.gate";
 
 /**
  * Defines the structure that represents the wallet data.
@@ -555,50 +556,6 @@ export interface IReadWriteWallet {
 	explorerLink(): string;
 
 	/**
-	 * Determine if the wallet can vote.
-	 *
-	 * @return {*}  {boolean}
-	 * @memberof IReadWriteWallet
-	 */
-	canVote(): boolean;
-
-	/**
-	 * Determine if the wallet can perform the given action.
-	 *
-	 * @param {string} feature
-	 * @return {*}  {boolean}
-	 * @memberof IReadWriteWallet
-	 */
-	can(feature: string): boolean;
-
-	/**
-	 * Determine if the wallet can perform any of the given actions.
-	 *
-	 * @param {string[]} features
-	 * @return {*}  {boolean}
-	 * @memberof IReadWriteWallet
-	 */
-	canAny(features: string[]): boolean;
-
-	/**
-	 * Determine if the wallet can perform all of the given actions.
-	 *
-	 * @param {string[]} features
-	 * @return {*}  {boolean}
-	 * @memberof IReadWriteWallet
-	 */
-	canAll(features: string[]): boolean;
-
-	/**
-	 * Determine if the wallet cannot perform the given action.
-	 *
-	 * @param {string} feature
-	 * @return {*}  {boolean}
-	 * @memberof IReadWriteWallet
-	 */
-	cannot(feature: string): boolean;
-
-	/**
 	 * Synchronise the wallet.
 	 *
 	 * @param {{ resetCoin: boolean; }} [options]
@@ -737,4 +694,12 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	setAttributes(attributes: object): void;
+  
+	/**
+	 * Get the wallet authorisation gate instance.
+	 *
+	 * @return {*}  {IWalletGate}
+	 * @memberof IReadWriteWallet
+	 */
+	gate(): IWalletGate;
 }
