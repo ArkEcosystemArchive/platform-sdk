@@ -472,7 +472,7 @@ export class Wallet implements IReadWriteWallet {
 		const votes: string[] | undefined = this.data().get<string[]>(WalletData.Votes);
 
 		if (votes === undefined) {
-			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+			throw new Error("The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.");
 		}
 
 		return container.get<IDelegateService>(Identifiers.DelegateService).map(this, votes);
@@ -482,7 +482,7 @@ export class Wallet implements IReadWriteWallet {
 		const result: number | undefined = this.data().get<number>(WalletData.VotesAvailable);
 
 		if (result === undefined) {
-			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+			throw new Error("The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.");
 		}
 
 		return result;
@@ -492,7 +492,7 @@ export class Wallet implements IReadWriteWallet {
 		const result: number | undefined = this.data().get<number>(WalletData.VotesUsed);
 
 		if (result === undefined) {
-			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+			throw new Error("The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.");
 		}
 
 		return result;
