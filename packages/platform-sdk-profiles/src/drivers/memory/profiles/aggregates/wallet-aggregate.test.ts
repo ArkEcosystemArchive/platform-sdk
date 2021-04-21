@@ -5,7 +5,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../../test/helpers";
 import { Profile } from "../profile";
 import { WalletAggregate } from "./wallet-aggregate";
 import { IProfile } from "../../../../contracts";
@@ -34,7 +34,7 @@ beforeEach(async () => {
 
 	State.profile(profile);
 
-	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
 	subject = new WalletAggregate();
 });

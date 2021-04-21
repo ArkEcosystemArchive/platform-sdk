@@ -23,6 +23,7 @@ import { Identifiers } from "./container.models";
 import { Environment } from "./env";
 import { State } from "./state";
 import { MemoryStorage } from "./storage/memory";
+import { importByMnemonic } from "../../test/helpers";
 
 let subject: Environment;
 
@@ -126,7 +127,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	profile.contacts().create("Jane Doe");
 
 	// Create a Wallet
-	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
 	// Create a Notification
 	profile.notifications().push({
@@ -352,7 +353,7 @@ it("should persist the env and restore it", async () => {
 
 	const john = subject.profiles().create("John");
 	State.profile(john);
-	await john.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
 	john.save();
 
 	const jane = subject.profiles().create("Jane");

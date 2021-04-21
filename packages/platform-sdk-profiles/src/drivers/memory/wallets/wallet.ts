@@ -17,7 +17,6 @@ import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import {
 	IPeerRepository,
-	IProfile,
 	IReadWriteWallet,
 	IReadOnlyWallet,
 	IWalletData,
@@ -27,7 +26,6 @@ import {
 	WalletSetting,
 	IDelegateService,
 	IExchangeRateService,
-	ICoinService,
 	IKnownWalletService,
 } from "../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../dto";

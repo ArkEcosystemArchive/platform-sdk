@@ -1,12 +1,30 @@
 import { Coins } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { decrypt, encrypt } from "bip38";
 import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
-import { IProfile, IReadWriteWallet, IWalletFactory, WalletData } from "../../../contracts";
+import { IReadWriteWallet, IWalletFactory, WalletData } from "../../../contracts";
 
 import { Wallet } from "./wallet";
 
+/** {@inheritDoc IWalletFactory} */
 export class WalletFactory implements IWalletFactory {
+	/** {@inheritDoc IWalletFactory.generate} */
+	public async generate({
+		coin,
+		network,
+		locale,
+	}: {
+		coin: string;
+		network: string;
+		locale?: string
+	}): Promise<{ mnemonic: string; wallet: IReadWriteWallet }> {
+		const mnemonic: string = BIP39.generate(locale);
+
+		return { mnemonic, wallet: await this.fromMnemonic({ mnemonic, coin, network }) };
+	}
+
+	/** {@inheritDoc IWalletFactory.fromMnemonic} */
 	public async fromMnemonic({
 		coin,
 		network,
@@ -42,6 +60,7 @@ export class WalletFactory implements IWalletFactory {
 		return wallet;
 	}
 
+	/** {@inheritDoc IWalletFactory.fromAddress} */
 	public async fromAddress({
 		coin,
 		network,
@@ -59,6 +78,7 @@ export class WalletFactory implements IWalletFactory {
 		return wallet;
 	}
 
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public async fromPublicKey({
 		coin,
 		network,
@@ -76,6 +96,7 @@ export class WalletFactory implements IWalletFactory {
 		return wallet;
 	}
 
+	/** {@inheritDoc IWalletFactory.fromPrivateKey} */
 	public async fromPrivateKey({
 		coin,
 		network,
@@ -93,6 +114,7 @@ export class WalletFactory implements IWalletFactory {
 		return wallet;
 	}
 
+	/** {@inheritDoc IWalletFactory.fromAddressWithLedgerPath} */
 	public async fromAddressWithLedgerPath({
 		coin,
 		network,
@@ -113,6 +135,7 @@ export class WalletFactory implements IWalletFactory {
 		return wallet;
 	}
 
+	/** {@inheritDoc IWalletFactory.fromMnemonicWithEncryption} */
 	public async fromMnemonicWithEncryption({
 		coin,
 		network,
@@ -133,6 +156,7 @@ export class WalletFactory implements IWalletFactory {
 		return wallet;
 	}
 
+	/** {@inheritDoc IWalletFactory.fromWIF} */
 	public async fromWIF({
 		coin,
 		network,
@@ -150,6 +174,7 @@ export class WalletFactory implements IWalletFactory {
 		return wallet;
 	}
 
+	/** {@inheritDoc IWalletFactory.fromWIFWithEncryption} */
 	public async fromWIFWithEncryption({
 		coin,
 		network,
