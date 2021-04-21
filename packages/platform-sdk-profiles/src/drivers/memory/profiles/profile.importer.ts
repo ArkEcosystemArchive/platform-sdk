@@ -1,10 +1,6 @@
 import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import Joi from "joi";
-import {
-	IProfileData,
-	IProfile,
-	IProfileInput,
-} from "../../../contracts";
+import { IProfileData, IProfile, IProfileInput } from "../../../contracts";
 
 import { Migrator } from "./migrator";
 import { State } from "../../../environment/state";

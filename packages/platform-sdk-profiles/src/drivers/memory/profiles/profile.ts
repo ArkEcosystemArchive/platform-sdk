@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import Joi from "joi";
 import {
 	IProfileData,
 	IProfileExportOptions,
@@ -27,7 +25,6 @@ import {
 	IProfileAttributes,
 } from "../../../contracts";
 
-import { MemoryPassword } from "../../../helpers/password";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../../../repositories/data-repository";
@@ -41,12 +38,8 @@ import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
-import { Migrator } from "./migrator";
 import { Portfolio } from "./portfolio";
 import { CoinService } from "./services/coin-service";
-import { State } from "../../../environment/state";
-import { Identifiers } from "../../../environment/container.models";
-import { container } from "../../../environment/container";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { AttributeBag } from "../../../helpers/attribute-bag";
 import { ProfileExporter } from "./profile.exporter";
