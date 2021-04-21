@@ -32,6 +32,8 @@ import { ExtendedTransactionDataCollection } from "../../../dto";
 import { State } from "../../../environment/state";
 import { AttributeBag } from "../../../helpers/attribute-bag";
 import { WalletGate } from "./wallet.gate";
+import { WalletSynchroniser } from "./wallet.synchroniser";
+import { IWalletSynchroniser } from "../../../contracts/wallets/wallet.synchroniser";
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
 import { WalletMutator } from "./wallet.mutator";
 import { IWalletGate } from "../../../contracts/wallets/wallet.gate";
@@ -139,7 +141,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public primaryKey(): string {
 		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 		}
 
 		return this.#attributes.get<Contracts.WalletData>('wallet').primaryKey();
@@ -203,7 +205,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public toData(): Contracts.WalletData {
 		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 		}
 
 		return this.#attributes.get<Contracts.WalletData>('wallet');
@@ -269,7 +271,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public secondPublicKey(): string | undefined {
 		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 		}
 
 		return this.#attributes.get<Contracts.WalletData>('wallet').secondPublicKey();
@@ -277,7 +279,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public username(): string | undefined {
 		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 		}
 
 		return this.#attributes.get<Contracts.WalletData>('wallet').username();
@@ -285,7 +287,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public isDelegate(): boolean {
 		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 		}
 
 		return this.#attributes.get<Contracts.WalletData>('wallet').isDelegate();
@@ -293,7 +295,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public isResignedDelegate(): boolean {
 		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 		}
 
 		return this.#attributes.get<Contracts.WalletData>('wallet').isResignedDelegate();
@@ -321,7 +323,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public isMultiSignature(): boolean {
 		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 		}
 
 		return this.#attributes.get<Contracts.WalletData>('wallet').isMultiSignature();
@@ -329,7 +331,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public isSecondSignature(): boolean {
 		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 		}
 
 		return this.#attributes.get<Contracts.WalletData>('wallet').isSecondSignature();
@@ -408,6 +410,10 @@ export class Wallet implements IReadWriteWallet {
 		return new WalletGate(this);
 	}
 
+	public synchroniser(): IWalletSynchroniser {
+		return new WalletSynchroniser(this);
+	}
+
 	public mutator(): IWalletMutator {
 		return new WalletMutator(this);
 	}
@@ -436,7 +442,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public multiSignature(): Contracts.WalletMultiSignature {
 		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 		}
 
 		return this.#attributes.get<Contracts.WalletData>('wallet').multiSignature();
@@ -447,7 +453,7 @@ export class Wallet implements IReadWriteWallet {
 
 		if (!participants) {
 			throw new Error(
-				"This Multi-Signature has not been synchronized yet. Please call [syncMultiSignature] before using it.",
+				"This Multi-Signature has not been synchronized yet. Please call [synchroniser().multiSignature()] before using it.",
 			);
 		}
 
@@ -456,7 +462,7 @@ export class Wallet implements IReadWriteWallet {
 
 	public entities(): Contracts.Entity[] {
 		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [syncIdentity] before using it.");
+			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 		}
 
 		return this.#attributes.get<Contracts.WalletData>('wallet').entities();
@@ -466,7 +472,7 @@ export class Wallet implements IReadWriteWallet {
 		const votes: string[] | undefined = this.data().get<string[]>(WalletData.Votes);
 
 		if (votes === undefined) {
-			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+			throw new Error("The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.");
 		}
 
 		return container.get<IDelegateService>(Identifiers.DelegateService).map(this, votes);
@@ -476,7 +482,7 @@ export class Wallet implements IReadWriteWallet {
 		const result: number | undefined = this.data().get<number>(WalletData.VotesAvailable);
 
 		if (result === undefined) {
-			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+			throw new Error("The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.");
 		}
 
 		return result;
@@ -486,7 +492,7 @@ export class Wallet implements IReadWriteWallet {
 		const result: number | undefined = this.data().get<number>(WalletData.VotesUsed);
 
 		if (result === undefined) {
-			throw new Error("The voting data has not been synced. Please call [syncVotes] before accessing votes.");
+			throw new Error("The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.");
 		}
 
 		return result;
@@ -494,66 +500,6 @@ export class Wallet implements IReadWriteWallet {
 
 	public explorerLink(): string {
 		return this.link().wallet(this.address());
-	}
-
-	/**
-	 * These methods serve as helpers to keep the wallet data updated.
-	 */
-
-	public async sync(options: { resetCoin: boolean } = { resetCoin: false }): Promise<void> {
-		if (options.resetCoin) {
-			this.#attributes.set('coin', State.profile().coins().push(this.coinId(), this.networkId(), {}, true));
-		}
-
-		await this.mutator().coin(this.coinId(), this.networkId());
-	}
-
-	public async syncIdentity(): Promise<void> {
-		const currentWallet = this.#attributes.get<Contracts.WalletData>('wallet');
-		const currentPublicKey = this.#attributes.get<string>('publicKey');
-
-		try {
-			this.#attributes.set('wallet', await this.#attributes.get<Coins.Coin>('coin').client().wallet(this.address()));
-
-			if (this.#attributes.missing("publicKey")) {
-				this.#attributes.set('publicKey', this.#attributes.get<Contracts.WalletData>('wallet').publicKey());
-			}
-
-			this.data().set(WalletData.Balance, this.#attributes.get<Contracts.WalletData>('wallet').balance());
-			this.data().set(WalletData.Sequence, this.#attributes.get<Contracts.WalletData>('wallet').nonce());
-		} catch {
-			/**
-			 * TODO: decide what to do if the wallet couldn't be found
-			 *
-			 * A missing wallet could mean that the wallet is legitimate
-			 * but has no transactions or that the address is wrong.
-			 */
-
-			this.#attributes.set('wallet', currentWallet);
-			this.#attributes.set('publicKey', currentPublicKey);
-		}
-	}
-
-	public async syncMultiSignature(): Promise<void> {
-		if (!this.isMultiSignature()) {
-			return;
-		}
-
-		const participants: Record<string, any> = {};
-
-		for (const publicKey of this.multiSignature().publicKeys) {
-			participants[publicKey] = (await this.client().wallet(publicKey)).toObject();
-		}
-
-		this.data().set(WalletData.MultiSignatureParticipants, participants);
-	}
-
-	public async syncVotes(): Promise<void> {
-		const { available, publicKeys, used } = await this.client().votes(this.address());
-
-		this.data().set(WalletData.VotesAvailable, available);
-		this.data().set(WalletData.Votes, publicKeys);
-		this.data().set(WalletData.VotesUsed, used);
 	}
 
 	public async findTransactionById(id: string): Promise<ExtendedTransactionData> {

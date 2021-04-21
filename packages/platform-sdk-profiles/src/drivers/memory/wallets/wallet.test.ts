@@ -261,7 +261,7 @@ it("should have a second public key", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.secondPublicKey()).toThrow(
-		"This wallet has not been synchronized yet. Please call [syncIdentity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -271,7 +271,7 @@ it("should have a username", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.username()).toThrow(
-		"This wallet has not been synchronized yet. Please call [syncIdentity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -281,7 +281,7 @@ it("should respond on whether it is a delegate or not", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.isDelegate()).toThrow(
-		"This wallet has not been synchronized yet. Please call [syncIdentity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -291,7 +291,7 @@ it("should respond on whether it is a resigned delegate or not", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.isResignedDelegate()).toThrow(
-		"This wallet has not been synchronized yet. Please call [syncIdentity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -329,7 +329,7 @@ it("should respond on whether it is multi signature or not", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.isMultiSignature()).toThrow(
-		"This wallet has not been synchronized yet. Please call [syncIdentity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -339,7 +339,7 @@ it("should respond on whether it is second signature or not", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.isSecondSignature()).toThrow(
-		"This wallet has not been synchronized yet. Please call [syncIdentity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -388,7 +388,7 @@ it("should return multi signature", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.multiSignature()).toThrow(
-		"This wallet has not been synchronized yet. Please call [syncIdentity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
@@ -403,8 +403,8 @@ describe("#multiSignatureParticipants", () => {
 			],
 		});
 
-		await subject.syncIdentity();
-		await subject.syncMultiSignature();
+		await subject.synchroniser().identity();
+		await subject.synchroniser().multiSignature();
 
 		expect(subject.multiSignatureParticipants()).toHaveLength(2);
 		expect(subject.multiSignatureParticipants()[0]).toBeInstanceOf(ReadOnlyWallet);
@@ -423,8 +423,8 @@ describe("#multiSignatureParticipants", () => {
 			],
 		});
 
-		await subject.syncIdentity();
-		await subject.syncMultiSignature();
+		await subject.synchroniser().identity();
+		await subject.synchroniser().multiSignature();
 
 		expect(() => subject.multiSignatureParticipants()).toThrow(
 			"This wallet does not have a multi-signature registered.",
@@ -434,10 +434,10 @@ describe("#multiSignatureParticipants", () => {
 	it("should throw if the multi-signature has not been synchronized yet", async () => {
 		subject.data().set(WalletData.MultiSignatureParticipants, undefined);
 
-		await subject.syncIdentity();
+		await subject.synchroniser().identity();
 
 		expect(() => subject.multiSignatureParticipants()).toThrow(
-			"This Multi-Signature has not been synchronized yet. Please call [syncMultiSignature] before using it.",
+			"This Multi-Signature has not been synchronized yet. Please call [synchroniser().multiSignature()] before using it.",
 		);
 	});
 });
@@ -447,13 +447,13 @@ it("should sync multi signature when musig", async () => {
 	await subject.mutator().coin("ARK", "ark.devnet");
 	await subject.mutator().identity("new super passphrase");
 
-	await subject.syncMultiSignature();
+	await subject.synchroniser().multiSignature();
 
 	expect(subject.isMultiSignature()).toBeTrue();
 });
 
 it("should sync multi signature when not musig", async () => {
-	await subject.syncMultiSignature();
+	await subject.synchroniser().multiSignature();
 
 	expect(subject.isMultiSignature()).toBeFalse();
 });
@@ -464,13 +464,13 @@ it("should return entities", () => {
 	subject = new Wallet(uuidv4(), {});
 
 	expect(() => subject.entities()).toThrow(
-		"This wallet has not been synchronized yet. Please call [syncIdentity] before using it.",
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });
 
 it("should return votes available", () => {
 	expect(() => subject.votesAvailable()).toThrow(
-		"The voting data has not been synced. Please call [syncVotes] before accessing votes.",
+		"The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.",
 	);
 
 	subject.data().set(WalletData.VotesAvailable, 2);
@@ -480,7 +480,7 @@ it("should return votes available", () => {
 
 it("should return votes used", () => {
 	expect(() => subject.votesUsed()).toThrow(
-		"The voting data has not been synced. Please call [syncVotes] before accessing votes.",
+		"The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.",
 	);
 
 	subject.data().set(WalletData.VotesUsed, 2);
@@ -505,7 +505,7 @@ describe("transactions", () => {
 });
 
 it("should sync", async () => {
-	await expect(subject.sync()).toResolve();
+	await expect(subject.synchroniser().coin()).toResolve();
 });
 
 describe.each([123, 456, 789])("%s", (slip44) => {

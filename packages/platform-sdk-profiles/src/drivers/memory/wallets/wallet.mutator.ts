@@ -74,7 +74,7 @@ export class WalletMutator implements IWalletMutator {
 		this.#wallet.getAttributes().set('address', address);
 
 		if (options.syncIdentity) {
-			await this.#wallet.syncIdentity();
+			await this.#wallet.synchroniser().identity();
 		}
 
 		this.avatar(Avatar.make(this.#wallet.address()));
