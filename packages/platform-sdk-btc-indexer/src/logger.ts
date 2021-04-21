@@ -6,6 +6,7 @@ export default class Logger {
 	public debug(args) {
 		console.debug(args);
 	}
+
 	public error(args) {
 		console.error(args);
 	}

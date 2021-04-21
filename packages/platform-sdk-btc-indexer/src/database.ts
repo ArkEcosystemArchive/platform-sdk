@@ -4,8 +4,8 @@ import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
 import Logger from "./logger";
-import { getAmount, getFees, getVins, getVouts } from "./tx-parsing-helpers";
-import { Flags } from "./types";
+import { getAmount, getFees, getVIns, getVOuts } from "./tx-parsing-helpers";
+import { Flags, VIn, VOut } from "./types";
 
 /**
  * Implements a database storage with SQLite.
@@ -75,7 +75,7 @@ export class Database {
 	 */
 	public storeBlockWithTransactions(block: any): void {
 		this.#logger.info(
-			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
+			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`
 		);
 
 		this.storeBlock(block);
@@ -99,7 +99,8 @@ export class Database {
 	 */
 	public storeError(type: string, hash: string, body: string): void {
 		this.#database
-			.prepare(`INSERT INTO errors (type, hash, body) VALUES (:type, :hash, :body)`)
+			.prepare(`INSERT INTO errors (type, hash, body)
+								VALUES (:type, :hash, :body)`)
 			.run({ type, hash, body });
 	}
 
@@ -111,10 +112,12 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeBlock(block): void {
-		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, height) VALUES (:hash, :height)`).run({
-			hash: block.hash,
-			height: block.height,
-		});
+		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, height)
+														VALUES (:hash, :height)`)
+			.run({
+				hash: block.hash,
+				height: block.height
+			});
 	}
 
 	/**
@@ -126,44 +129,59 @@ export class Database {
 	 */
 	private storeTransaction(transaction): void {
 		const amount: BigNumber = getAmount(transaction);
-		const vouts: BigNumber[] = getVouts(transaction);
-		const hashes = getVins(transaction).map((u) => u.txid);
-		let voutsByTransactionHash = {};
+		const vouts: VOut[] = getVOuts(transaction);
+		const hashes: string[] = getVIns(transaction).map((u: VIn) => u.txid);
+		let voutsByTransactionHashAndIdx = {};
 		if (hashes.length > 0) {
 			const read = this.#database
 				.prepare(
-					`SELECT hash, vouts
-					 FROM transactions
-					 WHERE hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
+					`SELECT hash, idx, amount
+					 FROM transaction_outputs
+					 WHERE hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`
 				)
 				.all(hashes);
 
 			if (read) {
-				const indexByHash = (readElements) =>
+				const byHashAndIdx = (readElements) =>
 					readElements.reduce((carry, element) => {
-						carry[element["hash"]] = JSON.parse(element["vouts"]).map((amount) => BigNumber.make(amount));
+						carry[element["hash"] + element["idx"]] = BigNumber.make(element["amount"]);
 						return carry;
 					}, {});
 
-				voutsByTransactionHash = indexByHash(read);
+				voutsByTransactionHashAndIdx = byHashAndIdx(read);
 			}
 		}
 
-		const fee: BigNumber = getFees(transaction, voutsByTransactionHash);
+		const fee: BigNumber = getFees(transaction, voutsByTransactionHashAndIdx);
 
 		this.#database
-			.prepare(
-				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts) VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`,
-			)
-			.run({
-				// @TODO: sender
-				hash: transaction.hash,
-				time: transaction.time,
-				amount: amount.toString(),
-				fee: fee.toString(),
-				sender: "address-of-sender",
-				vouts: JSON.stringify(vouts),
-			});
+			.transaction((transaction) => {
+				this.#database
+					.prepare(`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender)
+										VALUES (:hash, :time, :amount, :fee, :sender)`)
+					.run(transaction);
+
+				const statement = this.#database
+					.prepare(`INSERT OR IGNORE INTO transaction_outputs (hash, idx, amount, address)
+										VALUES (:hash, :idx, :amount, :address)`);
+				for (const vout of transaction.vouts) {
+					statement
+						.run({
+							hash: transaction.hash,
+							idx: vout.idx,
+							amount: vout.amount,
+							address: JSON.stringify(vout.addresses)
+						});
+				}
+			})({
+					hash: transaction.hash,
+					time: transaction.time,
+					amount: amount.toString(),
+					fee: fee.toString(),
+					sender: "address-of-sender",
+					vouts
+				}
+			);
 	}
 
 	/**
@@ -175,12 +193,13 @@ export class Database {
 	private migrate(): void {
 		this.#database.exec(`
 			PRAGMA journal_mode = WAL;
+			PRAGMA foreign_keys = ON;
+
 
 			CREATE TABLE IF NOT EXISTS blocks(
 				hash     VARCHAR(64)   PRIMARY KEY,
 				height   INTEGER       NOT NULL
 			);
-
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_height ON blocks (height);
 
@@ -189,11 +208,21 @@ export class Database {
 				time     INTEGER       NOT NULL,
 				amount   INTEGER       NOT NULL,
 				fee      INTEGER       NOT NULL,
-				sender   VARCHAR(64)   NOT NULL,
-				vouts    JSON          NOT NULL
+				sender   VARCHAR(64)   NOT NULL
 			);
-
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
+
+
+			CREATE TABLE IF NOT EXISTS transaction_outputs(
+				hash       VARCHAR(64)   NOT NULL,
+				idx        INTEGER       NOT NULL,
+				amount     INTEGER       NOT NULL,
+				address    VARCHAR(64),
+				PRIMARY KEY (hash, idx),
+				FOREIGN KEY(hash) REFERENCES transactions(hash)
+			);
+			CREATE UNIQUE INDEX IF NOT EXISTS transaction_output_hash_index ON transaction_outputs (hash, idx);
+
 
 			CREATE TABLE IF NOT EXISTS errors(
 				id     INTEGER       PRIMARY KEY AUTOINCREMENT,
