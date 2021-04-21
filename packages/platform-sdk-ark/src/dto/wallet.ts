@@ -64,7 +64,11 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public isDelegate(): boolean {
-		return !!this.getProperty(["username", "attributes.delegate.username"]) && !this.isResignedDelegate();
+		if (this.isResignedDelegate()) {
+			return false;
+		}
+
+		return !!this.getProperty(["username", "attributes.delegate.username"]);
 	}
 
 	public isResignedDelegate(): boolean {
