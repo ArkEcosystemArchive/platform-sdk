@@ -139,10 +139,10 @@ export class Database {
 				.all(hashes);
 
 			if (read) {
-				const indexByHash = (xs) =>
-					xs.reduce((rv, x) => {
-						rv[x["hash"]] = JSON.parse(x["vouts"]).map((amount) => BigNumber.make(amount));
-						return rv;
+				const indexByHash = (readElements) =>
+					readElements.reduce((carry, element) => {
+						carry[element["hash"]] = JSON.parse(element["vouts"]).map((amount) => BigNumber.make(amount));
+						return carry;
 					}, {});
 
 				voutsByTransactionHash = indexByHash(read);
