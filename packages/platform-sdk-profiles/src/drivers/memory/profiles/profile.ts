@@ -332,7 +332,7 @@ export class Profile implements IProfile {
 			return avatarFromSettings;
 		}
 
-		if (this.#attributes.hasStrict('data')) {
+		if (this.#attributes.hasStrict('data.avatar')) {
 			return this.#attributes.get<IProfileInput>('data').avatar!;
 		}
 

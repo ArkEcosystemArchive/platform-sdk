@@ -85,7 +85,7 @@ export class AttributeBag<T> {
 	 * @return {*}  {boolean}
 	 * @memberof AttributeBag
 	 */
-	public hasStrict(key: keyof T): boolean {
+	public hasStrict(key: keyof T | string): boolean {
 		return get(this.#attributes, key as string) !== undefined;
 	}
 
