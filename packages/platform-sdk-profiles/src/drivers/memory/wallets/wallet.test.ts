@@ -522,23 +522,6 @@ describe("transactions", () => {
 	});
 });
 
-describe("features", () => {
-	it("can", () => {
-		expect(subject.can("some-feature")).toBeFalse();
-	});
-	it("cannot", () => {
-		expect(subject.cannot("some-feature")).toBeTrue();
-	});
-	it("can any", () => {
-		expect(subject.canAny(["some-feature"])).toBeFalse();
-		expect(subject.canAny(["Client.transactions"])).toBeTrue();
-	});
-	it("can all", () => {
-		expect(subject.canAll(["some-feature"])).toBeFalse();
-		expect(subject.canAll(["Client.transactions"])).toBeTrue();
-	});
-});
-
 it("should sync", async () => {
 	await expect(subject.sync()).toResolve();
 });
