@@ -28,10 +28,9 @@ export class AttributeBag<T> {
 	 * @return {*}  {T}
 	 * @memberof AttributeBag
 	 */
-	public get<U = any>(key: keyof T, defaultValue?: U): U
-    {
-        return get(this.#attributes, key as string, defaultValue) as U;
-    }
+	public get<U = any>(key: keyof T, defaultValue?: U): U {
+		return get(this.#attributes, key as string, defaultValue) as U;
+	}
 
 	/**
 	 * Set a given attribute in the attribute object.
@@ -41,10 +40,9 @@ export class AttributeBag<T> {
 	 * @param {U} value
 	 * @memberof AttributeBag
 	 */
-	public set<U>(key: keyof T, value: U): void
-    {
-        set(this.#attributes, key as string, value);
-    }
+	public set<U>(key: keyof T, value: U): void {
+		set(this.#attributes, key as string, value);
+	}
 
 	/**
 	 * Determine if a given attribute exists in the attribute object.
@@ -65,7 +63,7 @@ export class AttributeBag<T> {
 	 * @memberof AttributeBag
 	 */
 	public missing(key: keyof T): boolean {
-		return ! this.has(key);
+		return !this.has(key);
 	}
 
 	/**
