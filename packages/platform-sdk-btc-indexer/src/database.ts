@@ -3,9 +3,9 @@ import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
+import Logger from "./logger";
 import { getAmount, getFees, getVins, getVouts } from "./tx-parsing-helpers";
 import { Flags } from "./types";
-import Logger from "./logger";
 
 /**
  * Implements a database storage with SQLite.

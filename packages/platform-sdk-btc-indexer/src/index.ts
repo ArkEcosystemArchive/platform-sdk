@@ -1,8 +1,8 @@
 import pEachSeries from "p-each-series";
 
 import { useClient, useDatabase, useLogger } from "./helpers";
-import { Flags } from "./types";
 import Logger from "./logger";
+import { Flags } from "./types";
 
 /**
  * Launch the indexer and subscribe to updates for new data.
