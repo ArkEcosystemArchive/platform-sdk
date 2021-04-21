@@ -25,14 +25,14 @@ export class AttributeBag<T>
 	 * Get a given attribute from the attribute object.
 	 *
 	 * @template T
-	 * @param {string} key
+	 * @param {keyof T} key
 	 * @param {T} [defaultValue]
 	 * @return {*}  {T}
 	 * @memberof AttributeBag
 	 */
-	public get<T>(key: string, defaultValue?: T): T
+	public get<T>(key: keyof T, defaultValue?: T): T
     {
-        return get(this.#attributes, key, defaultValue) as T;
+        return get(this.#attributes, key as string, defaultValue) as T;
     }
 
 	/**
@@ -51,23 +51,23 @@ export class AttributeBag<T>
     /**
 	 * Determine if a given attribute exists in the attribute object.
 	 *
-	 * @param {string} key
+	 * @param {keyof T} key
 	 * @return {*}  {boolean}
 	 * @memberof AttributeBag
 	 */
-	public has(key: string): boolean
+	public has(key: keyof T): boolean
     {
-        return has(this.#attributes, key);
+        return has(this.#attributes, key as string);
     }
 
     /**
      * Remove an item from the attributes.
 	 *
-	 * @param {string} key
+	 * @param {keyof T} key
 	 * @memberof AttributeBag
 	 */
-	public forget(key: string): void {
-		del(this.#attributes, key);
+	public forget(key: keyof T): void {
+		del(this.#attributes, key as string);
 	}
 
 	 /**
@@ -83,16 +83,16 @@ export class AttributeBag<T>
     /**
 	 * Only include the given attribute from the attribute object.
 	 *
-	 * @param {string[]} keys
+	 * @param {(keyof T)[]} keys
 	 * @return {*}  {Record<string, any>}
 	 * @memberof AttributeBag
 	 */
-	public only(keys: string[]): Record<string, any>
+	public only(keys: (keyof T)[]): Record<string, any>
     {
 		const result: object = {};
 
         for(const [key, value] of Object.entries(this.#attributes)) {
-			if (keys.includes(key)) {
+			if (keys.includes(key as keyof T)) {
 				result[key] = value;
 			}
 		}
@@ -103,16 +103,16 @@ export class AttributeBag<T>
     /**
 	 * Exclude the given attribute from the attribute object.
 	 *
-	 * @param {string[]} keys
+	 * @param {(keyof T)[]} keys
 	 * @return {*}  {Record<string, any>}
 	 * @memberof AttributeBag
 	 */
-	public except(keys: string[]): Record<string, any>
+	public except(keys: (keyof T)[]): Record<string, any>
     {
 		const result: object = {};
 
         for(const [key, value] of Object.entries(this.#attributes)) {
-			if (! keys.includes(key)) {
+			if (! keys.includes(key as keyof T)) {
 				result[key] = value;
 			}
 		}
