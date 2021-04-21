@@ -1,4 +1,6 @@
-import { IReadWriteWallet } from "../../../contracts";
+import { IReadWriteWallet, WalletData } from "../../../contracts";
+import { IWalletSynchroniser } from "../../../contracts/wallets/wallet.synchroniser";
+import { State } from "../../../environment/state";
 
 export class WalletSynchroniser implements IWalletSynchroniser {
 	readonly #wallet: IReadWriteWallet;
@@ -7,12 +9,12 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 		this.#wallet = wallet;
 	}
 
-	public async sync(options: { resetCoin: boolean } = { resetCoin: false }): Promise<void> {
+	public async coin(options: { resetCoin: boolean } = { resetCoin: false }): Promise<void> {
 		if (options.resetCoin) {
-			this.#coin = State.profile().coins().push(this.coinId(), this.networkId(), {}, true);
+			this.#coin = State.profile().coins().push(this.#wallet.coinId(), this.#wallet.networkId(), {}, true);
 		}
 
-		await this.setCoin(this.coinId(), this.networkId());
+		await this.#wallet.setCoin(this.#wallet.coinId(), this.#wallet.networkId());
 	}
 
 	public async identity(): Promise<void> {
@@ -42,21 +44,21 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 	}
 
 	public async multiSignature(): Promise<void> {
-		if (!this.isMultiSignature()) {
+		if (!this.#wallet.isMultiSignature()) {
 			return;
 		}
 
 		const participants: Record<string, any> = {};
 
-		for (const publicKey of this.multiSignature().publicKeys) {
-			participants[publicKey] = (await this.client().wallet(publicKey)).toObject();
+		for (const publicKey of this.#wallet.multiSignature().publicKeys) {
+			participants[publicKey] = (await this.#wallet.client().wallet(publicKey)).toObject();
 		}
 
 		this.#wallet.data().set(WalletData.MultiSignatureParticipants, participants);
 	}
 
 	public async votes(): Promise<void> {
-		const { available, publicKeys, used } = await this.client().votes(this.address());
+		const { available, publicKeys, used } = await this.#wallet.client().votes(this.#wallet.address());
 
 		this.#wallet.data().set(WalletData.VotesAvailable, available);
 		this.#wallet.data().set(WalletData.Votes, publicKeys);
