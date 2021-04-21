@@ -58,6 +58,17 @@ export class AttributeBag<T> {
 	}
 
 	/**
+	 * Determine if a given attribute is missing in the attribute object.
+	 *
+	 * @param {keyof T} key
+	 * @return {*}  {boolean}
+	 * @memberof AttributeBag
+	 */
+	public missing(key: keyof T): boolean {
+		return ! this.has(key);
+	}
+
+	/**
 	 * Remove an item from the attributes.
 	 *
 	 * @param {keyof T} key
