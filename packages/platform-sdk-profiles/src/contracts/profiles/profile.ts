@@ -305,13 +305,6 @@ export interface IProfile {
 	sync(): Promise<void>;
 
 	/**
-	 * Initialise the default settings of the profile.
-	 *
-	 * @memberof IProfile
-	 */
-	initializeSettings(): void;
-
-	/**
 	 * Save the profile.
 	 *
 	 * @param {string} [password]

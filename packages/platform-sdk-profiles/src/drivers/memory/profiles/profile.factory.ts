@@ -6,10 +6,6 @@ export class ProfileFactory implements IProfileFactory {
 	public static fromName(name: string): IProfile {
 		const result: IProfile = new Profile({ id: uuidv4(), name, data: "" });
 
-		result.settings().set(ProfileSetting.Name, name);
-
-		result.initializeSettings();
-
 		result.save();
 
 		return result;

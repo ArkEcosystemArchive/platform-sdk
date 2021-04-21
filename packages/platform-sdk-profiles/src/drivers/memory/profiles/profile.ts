@@ -43,6 +43,7 @@ import { CoinService } from "./services/coin-service";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { AttributeBag } from "../../../helpers/attribute-bag";
 import { ProfileExporter } from "./profile.exporter";
+import { ProfileInitialiser } from "./profile.initialiser";
 
 export class Profile implements IProfile {
 	/**
@@ -377,7 +378,7 @@ export class Profile implements IProfile {
 
 		this.wallets().flush();
 
-		this.restoreDefaultSettings(name);
+		new ProfileInitialiser(this).reset(name);
 	}
 
 	/**
@@ -528,29 +529,6 @@ export class Profile implements IProfile {
 	}
 
 	/**
-	 * Initialize the factory settings.
-	 *
-	 * If the profile has modified any settings they will be overwritten!
-	 *
-	 * @memberof Profile
-	 */
-	public initializeSettings(): void {
-		this.settings().set(ProfileSetting.AdvancedMode, false);
-		this.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
-		this.settings().set(ProfileSetting.Bip39Locale, "english");
-		this.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
-		this.settings().set(ProfileSetting.LedgerUpdateMethod, false);
-		this.settings().set(ProfileSetting.Locale, "en-US");
-		this.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-		this.settings().set(ProfileSetting.ScreenshotProtection, true);
-		this.settings().set(ProfileSetting.Theme, "light");
-		this.settings().set(ProfileSetting.TimeFormat, "h:mm A");
-		this.settings().set(ProfileSetting.UseCustomPeer, false);
-		this.settings().set(ProfileSetting.UseMultiPeerBroadcast, false);
-		this.settings().set(ProfileSetting.UseTestNetworks, false);
-	}
-
-	/**
 	 * Encode or encrypt the profile data for dumping later on.
 	 */
 	public save(password?: string): void {
@@ -579,18 +557,5 @@ export class Profile implements IProfile {
 	 */
 	public getAttributes(): AttributeBag<IProfileAttributes> {
 		return this.#attributes;
-	}
-
-	/**
-	 * Restore the default settings, including the name of the profile.
-	 *
-	 * @private
-	 * @param {string} name
-	 * @memberof Profile
-	 */
-	private restoreDefaultSettings(name: string): void {
-		this.settings().set(ProfileSetting.Name, name);
-
-		this.initializeSettings();
 	}
 }
