@@ -50,8 +50,8 @@ beforeEach(async () => {
 
 	subject = new Wallet(uuidv4(), {});
 
-	await subject.setCoin("ARK", "ark.devnet");
-	await subject.setIdentity(identity.mnemonic);
+	await subject.mutator().coin("ARK", "ark.devnet");
+	await subject.mutator().identity(identity.mnemonic);
 });
 
 beforeAll(() => nock.disableNetConnect());

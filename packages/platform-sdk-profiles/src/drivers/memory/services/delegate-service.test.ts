@@ -44,8 +44,8 @@ beforeEach(async () => {
 
 	wallet = new Wallet(uuidv4(), {});
 
-	await wallet.setCoin("ARK", "ark.devnet");
-	await wallet.setIdentity(identity.mnemonic);
+	await wallet.mutator().coin("ARK", "ark.devnet");
+	await wallet.mutator().identity(identity.mnemonic);
 });
 
 describe("DelegateService", () => {
