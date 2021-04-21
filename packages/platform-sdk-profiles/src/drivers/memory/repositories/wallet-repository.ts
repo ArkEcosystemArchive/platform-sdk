@@ -127,7 +127,7 @@ export class WalletRepository implements IWalletRepository {
 				}
 			}
 
-			result.setAlias(data.alias);
+			result.mutator().alias(data.alias);
 		}
 
 		this.#data.set(id, result);
@@ -219,9 +219,9 @@ export class WalletRepository implements IWalletRepository {
 
 			wallet.settings().fill(settings);
 
-			await wallet.setCoin(coin!, network, { sync: false });
+			await wallet.mutator().coin(coin!, network, { sync: false });
 
-			await wallet.setAddress(address, { syncIdentity: false, validate: false });
+			await wallet.mutator().address(address, { syncIdentity: false, validate: false });
 
 			wallet.markAsPartiallyRestored();
 
@@ -303,9 +303,9 @@ export class WalletRepository implements IWalletRepository {
 	}): Promise<void> {
 		await retry(
 			async () => {
-				await wallet.setCoin(coin, network);
+				await wallet.mutator().coin(coin, network);
 
-				await wallet.setAddress(address);
+				await wallet.mutator().address(address);
 
 				if (networkConfig) {
 					for (const [key, value] of Object.entries(networkConfig)) {

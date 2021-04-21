@@ -2,6 +2,7 @@ import { Avatar } from "../../../helpers/avatar";
 import { IReadWriteWallet, WalletSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
+import { Coins } from "@arkecosystem/platform-sdk";
 
 export class WalletMutator implements IWalletMutator {
 	readonly #wallet: IReadWriteWallet;
@@ -10,23 +11,23 @@ export class WalletMutator implements IWalletMutator {
 		this.#wallet = wallet;
 	}
 
-	public async coin(
+	 public async coin(
 		coin: string,
 		network: string,
 		options: { sync: boolean } = { sync: true },
 	): Promise<void> {
-		if (this.usesCustomPeer() && this.peers().has(coin, network)) {
-			this.#coin = State.profile().coins().push(
+		if (State.profile().usesCustomPeer() && State.profile().peers().has(coin, network)) {
+			this.#wallet.getAttributes().set('coin', State.profile().coins().push(
 				coin,
 				network,
 				{
-					peer: this.peers().getRelay(coin, network)?.host,
-					peerMultiSignature: this.peers().getMultiSignature(coin, network)?.host,
+					peer: State.profile().peers().getRelay(coin, network)?.host,
+					peerMultiSignature: State.profile().peers().getMultiSignature(coin, network)?.host,
 				},
 				true,
-			);
+			));
 		} else {
-			this.#coin = State.profile().coins().push(coin, network);
+			this.#wallet.getAttributes().set('coin', State.profile().coins().push(coin, network));
 		}
 
 		/**
@@ -35,27 +36,27 @@ export class WalletMutator implements IWalletMutator {
 		 * bad error handling inside the coin package which needs fixing asap.
 		 */
 		try {
-			if (!this.#coin.hasBeenSynchronized()) {
+			if (!this.#wallet.getAttributes().get<Coins.Coin>('coin').hasBeenSynchronized()) {
 				if (options.sync) {
-					await this.#coin.__construct();
+					await this.#wallet.getAttributes().get<Coins.Coin>('coin').__construct();
 
-					this.markAsFullyRestored();
+					this.#wallet.markAsFullyRestored();
 				} else {
-					this.markAsPartiallyRestored();
+					this.#wallet.markAsPartiallyRestored();
 				}
 			} else {
-				this.markAsFullyRestored();
+				this.#wallet.markAsFullyRestored();
 			}
 		} catch {
-			this.markAsPartiallyRestored();
+			this.#wallet.markAsPartiallyRestored();
 		}
 	}
 
 	public async identity(mnemonic: string): Promise<void> {
-		this.#address = await this.#coin.identity().address().fromMnemonic(mnemonic);
-		this.#publicKey = await this.#coin.identity().publicKey().fromMnemonic(mnemonic);
+		this.#wallet.getAttributes().set('address', await this.#wallet.getAttributes().get<Coins.Coin>('coin').identity().address().fromMnemonic(mnemonic));
+		this.#wallet.getAttributes().set('publicKey', await this.#wallet.getAttributes().get<Coins.Coin>('coin').identity().publicKey().fromMnemonic(mnemonic));
 
-		return this.setAddress(this.#address);
+		return this.address(this.#wallet.getAttributes().get<string>('address'));
 	}
 
 	public async address(
@@ -63,29 +64,29 @@ export class WalletMutator implements IWalletMutator {
 		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
 	): Promise<void> {
 		if (options.validate) {
-			const isValidAddress: boolean = await this.coin().identity().address().validate(address);
+			const isValidAddress: boolean = await this.#wallet.coin().identity().address().validate(address);
 
 			if (!isValidAddress) {
 				throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
 			}
 		}
 
-		this.#address = address;
+		this.#wallet.getAttributes().set('address', address);
 
 		if (options.syncIdentity) {
-			await this.syncIdentity();
+			// await this.syncIdentity();
 		}
 
-		this.setAvatar(Avatar.make(this.address()));
+		this.avatar(Avatar.make(this.#wallet.address()));
 	}
 
 	public avatar(value: string): void {
-		this.#avatar = value;
+		this.#wallet.getAttributes().set('avatar', value);
 
-		this.settings().set(WalletSetting.Avatar, value);
+		this.#wallet.settings().set(WalletSetting.Avatar, value);
 	}
 
 	public alias(alias: string): void {
-		this.settings().set(WalletSetting.Alias, alias);
+		this.#wallet.settings().set(WalletSetting.Alias, alias);
 	}
 }

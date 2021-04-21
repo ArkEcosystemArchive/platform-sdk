@@ -40,14 +40,14 @@ export class WalletFactory implements IWalletFactory {
 	}): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
-		await wallet.setCoin(coin, network);
+		await wallet.mutator().coin(coin, network);
 
 		if (useBIP39 && this.canDeriveWithBIP39(wallet)) {
-			await wallet.setIdentity(mnemonic);
+			await wallet.mutator().identity(mnemonic);
 		}
 
 		if (useBIP44 && this.canDeriveWithBIP44(wallet)) {
-			await wallet.setAddress(
+			await wallet.mutator().address(
 				await wallet
 					.coin()
 					.identity()
@@ -72,8 +72,8 @@ export class WalletFactory implements IWalletFactory {
 	}): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
-		await wallet.setCoin(coin, network);
-		await wallet.setAddress(address);
+		await wallet.mutator().coin(coin, network);
+		await wallet.mutator().address(address);
 
 		return wallet;
 	}
@@ -90,8 +90,8 @@ export class WalletFactory implements IWalletFactory {
 	}): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
-		await wallet.setCoin(coin, network);
-		await wallet.setAddress(await wallet.coin().identity().address().fromPublicKey(publicKey));
+		await wallet.mutator().coin(coin, network);
+		await wallet.mutator().address(await wallet.coin().identity().address().fromPublicKey(publicKey));
 
 		return wallet;
 	}
@@ -108,8 +108,8 @@ export class WalletFactory implements IWalletFactory {
 	}): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
-		await wallet.setCoin(coin, network);
-		await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey));
+		await wallet.mutator().coin(coin, network);
+		await wallet.mutator().address(await wallet.coin().identity().address().fromPrivateKey(privateKey));
 
 		return wallet;
 	}
@@ -168,8 +168,8 @@ export class WalletFactory implements IWalletFactory {
 	}): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
-		await wallet.setCoin(coin, network);
-		await wallet.setAddress(await wallet.coin().identity().address().fromWIF(wif));
+		await wallet.mutator().coin(coin, network);
+		await wallet.mutator().address(await wallet.coin().identity().address().fromWIF(wif));
 
 		return wallet;
 	}
@@ -188,11 +188,11 @@ export class WalletFactory implements IWalletFactory {
 	}): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
-		await wallet.setCoin(coin, network);
+		await wallet.mutator().coin(coin, network);
 
 		const { compressed, privateKey } = decrypt(wif, password);
 
-		await wallet.setAddress(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
+		await wallet.mutator().address(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
 
 		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 

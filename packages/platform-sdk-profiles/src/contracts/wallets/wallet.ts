@@ -9,6 +9,7 @@ import { ISettingRepository } from "../repositories/setting-repository";
 import { IReadOnlyWallet } from "./read-only-wallet";
 import { IWalletGate } from "./wallet.gate";
 import { IWalletMutator } from "./wallet.mutator";
+import { AttributeBag } from "../../helpers/attribute-bag";
 
 /**
  * Defines the structure that represents the wallet data.
@@ -37,28 +38,30 @@ export interface IWalletData {
 }
 
 /**
+ *
+ *
+ * @export
+ * @interface IReadWriteWalletAttributes
+ */
+export interface IReadWriteWalletAttributes {
+	id: string,
+	initialState: IWalletData,
+	restorationState: { full: boolean, partial: boolean },
+	// Will be empty initially
+	coin: Coins.Coin,
+	wallet: Contracts.WalletData | undefined,
+	address: string,
+	publicKey: string | undefined,
+	avatar: string,
+}
+
+/**
  * Defines the implementation contract for the read-write wallet.
  *
  * @export
  * @interface IReadWriteWallet
  */
 export interface IReadWriteWallet {
-	/**
-	 * Determine if the wallet uses multi peer broadcasting.
-	 *
-	 * @return {*}  {boolean}
-	 * @memberof IReadWriteWallet
-	 */
-	usesMultiPeerBroadcasting(): boolean;
-
-	/**
-	 * Get the peer repository instance.
-	 *
-	 * @return {*}  {IPeerRepository}
-	 * @memberof IReadWriteWallet
-	 */
-	peers(): IPeerRepository;
-
 	/**
 	 * Get all relay peers for the given coin and network.
 	 *
@@ -632,6 +635,14 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	hasCoin(): boolean;
+
+	/**
+	 * Get the underlying attributes.
+	 *
+	 * @return {*}  {AttributeBag}
+	 * @memberof IReadWriteWallet
+	 */
+	getAttributes(): AttributeBag<IReadWriteWalletAttributes>;
 
 	/**
 	 * Get the wallet authorisation gate instance.

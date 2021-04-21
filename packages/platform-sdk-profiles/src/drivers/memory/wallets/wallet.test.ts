@@ -347,10 +347,6 @@ it("should respond on whether it is second signature or not", () => {
 	);
 });
 
-it("should respond on whether it uses multi peer broadcasting", () => {
-	expect(subject.usesMultiPeerBroadcasting()).toBeFalse();
-});
-
 it("should have a transaction service", () => {
 	expect(subject.transaction()).toBeObject();
 });
@@ -570,7 +566,7 @@ describe("#setCoin", () => {
 	it("should use the custom relay peer if is available", async () => {
 		profile.settings().set(ProfileSetting.UseCustomPeer, true);
 
-		subject.peers().create("ARK", "ark.devnet", {
+		profile.peers().create("ARK", "ark.devnet", {
 			name: "Relay",
 			host: "https://relay.com/api",
 			isMultiSignature: false,
@@ -584,7 +580,7 @@ describe("#setCoin", () => {
 	it("should use the custom musig peer if is available", async () => {
 		profile.settings().set(ProfileSetting.UseCustomPeer, true);
 
-		subject.peers().create("ARK", "ark.devnet", {
+		profile.peers().create("ARK", "ark.devnet", {
 			name: "MuSig",
 			host: "https://musig.com/api",
 			isMultiSignature: true,
@@ -598,13 +594,13 @@ describe("#setCoin", () => {
 	it("should use the custom relay and musig peers if they are available", async () => {
 		profile.settings().set(ProfileSetting.UseCustomPeer, true);
 
-		subject.peers().create("ARK", "ark.devnet", {
+		profile.peers().create("ARK", "ark.devnet", {
 			name: "Relay",
 			host: "https://relay.com/api",
 			isMultiSignature: false,
 		});
 
-		subject.peers().create("ARK", "ark.devnet", {
+		profile.peers().create("ARK", "ark.devnet", {
 			name: "MuSig",
 			host: "https://musig.com/api",
 			isMultiSignature: true,
@@ -617,7 +613,7 @@ describe("#setCoin", () => {
 	});
 
 	it("should return relays", async () => {
-		subject.peers().create("ARK", "ark.devnet", {
+		profile.peers().create("ARK", "ark.devnet", {
 			name: "Relay",
 			host: "https://relay.com/api",
 			isMultiSignature: false,

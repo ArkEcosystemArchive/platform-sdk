@@ -13,7 +13,7 @@ export interface IWalletMutator {
 	 * @return {*}  {Promise<void>}
 	 * @memberof void
 	 */
-	coin(coin: string, network: string): Promise<void>;
+	coin(coin: string, network: string, options?: object): Promise<void>;
 
 	/**
 	 * Set the identity based on a mnemonic.
