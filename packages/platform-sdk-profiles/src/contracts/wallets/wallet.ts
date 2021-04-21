@@ -8,6 +8,7 @@ import { IPeerRepository } from "../repositories/peer-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
 import { IReadOnlyWallet } from "./read-only-wallet";
 import { IWalletGate } from "./wallet.gate";
+import { AttributeBag } from "../../helpers/attribute-bag";
 
 /**
  * Defines the structure that represents the wallet data.
@@ -33,6 +34,24 @@ export interface IWalletData {
 	publicKey: string | undefined;
 	data: Record<string, any>;
 	settings: Record<string, any>;
+}
+
+/**
+ *
+ *
+ * @export
+ * @interface IReadWriteWalletAttributes
+ */
+export interface IReadWriteWalletAttributes {
+	id: string,
+	initialState: IWalletData,
+	restorationState: { full: boolean, partial: boolean },
+	// Will be empty initially
+	coin: Coins.Coin,
+	wallet: Contracts.WalletData | undefined,
+	address: string,
+	publicKey: string | undefined,
+	avatar: string,
 }
 
 /**
@@ -662,6 +681,14 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	hasCoin(): boolean;
+
+	/**
+	 * Get the underlying attributes.
+	 *
+	 * @return {*}  {AttributeBag}
+	 * @memberof IReadWriteWallet
+	 */
+	getAttributes(): AttributeBag<IReadWriteWalletAttributes>;
 
 	/**
 	 * Get the wallet authorisation gate instance.
