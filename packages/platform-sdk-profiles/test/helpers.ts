@@ -20,7 +20,7 @@ import { ProfileRepository } from "../src/drivers/memory/repositories/profile-re
 import { StubStorage } from "./stubs/storage";
 import { Wallet } from "../src/drivers/memory/wallets/wallet";
 import { WalletService } from "../src/drivers/memory/services/wallet-service";
-import { IContactStruct, IProfile, IReadWriteWallet } from "../src/contracts";
+import { IContactData, IProfile, IReadWriteWallet } from "../src/contracts";
 
 export const bootContainer = (): void => {
 	container.bind(Identifiers.Storage, new StubStorage());
@@ -60,5 +60,5 @@ export const knock = (): void => {
 
 export const makeProfile = (data: object = {}): IProfile =>
 	new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "", ...data });
-export const makeContact = (data: IContactStruct): Contact => new Contact(data);
+export const makeContact = (data: IContactData): Contact => new Contact(data);
 export const makeWallet = (id: string): IReadWriteWallet => new Wallet(id, {});

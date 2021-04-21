@@ -8,6 +8,7 @@ import { IPeerRepository } from "../repositories/peer-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
 import { IWalletRepository } from "../repositories/wallet-repository";
 import { ICoinService } from "../services";
+import { IWalletData } from "../wallets";
 import { ICountAggregate } from "./aggregates/count-aggregate";
 import { IRegistrationAggregate } from "./aggregates/registration-aggregate";
 import { ITransactionAggregate } from "./aggregates/transaction-aggregate";
@@ -15,9 +16,15 @@ import { IWalletAggregate } from "./aggregates/wallet-aggregate";
 import { IAuthenticator } from "./authenticator";
 import { IPortfolio } from "./portfolio";
 
-export interface IProfileStruct {
+/**
+ *
+ *
+ * @export
+ * @interface IProfileData
+ */
+export interface IProfileData {
 	id: string;
-	wallets: Record<string, any>;
+	wallets: Record<string, IWalletData>;
 	contacts: Record<string, any>;
 	peers: Record<string, any>;
 	plugins: Record<string, any>;
@@ -26,6 +33,12 @@ export interface IProfileStruct {
 	settings: Record<string, any>;
 }
 
+/**
+ *
+ *
+ * @export
+ * @interface IProfileInput
+ */
 export interface IProfileInput {
 	id: string;
 	name: string;
@@ -34,50 +47,308 @@ export interface IProfileInput {
 	data: string;
 }
 
+/**
+ *
+ *
+ * @export
+ * @interface IWalletExportOptions
+ */
 export interface IWalletExportOptions {
 	excludeEmptyWallets: boolean;
 	excludeLedgerWallets: boolean;
 	addNetworkInformation: boolean;
 }
 
+/**
+ *
+ *
+ * @export
+ * @interface IProfileExportOptions
+ * @extends {IWalletExportOptions}
+ */
 export interface IProfileExportOptions extends IWalletExportOptions {
 	saveGeneralSettings: boolean;
 }
 
+/**
+ *
+ *
+ * @export
+ * @interface IProfile
+ */
 export interface IProfile {
+	/**
+	 * Get the ID.
+	 *
+	 * @return {*}  {string}
+	 * @memberof IProfile
+	 */
+	id(): string;
+
+	/**
+	 * Get the name.
+	 *
+	 * @return {*}  {string}
+	 * @memberof IProfile
+	 */
+	name(): string;
+
+	/**
+	 * Get the avatar.
+	 *
+	 * @return {*}  {string}
+	 * @memberof IProfile
+	 */
+	avatar(): string;
+
+	/**
+	 * Get the balance.
+	 *
+	 * @return {*}  {BigNumber}
+	 * @memberof IProfile
+	 */
+	balance(): BigNumber;
+
+	/**
+	 * Get the converted balance.
+	 *
+	 * @return {*}  {BigNumber}
+	 * @memberof IProfile
+	 */
+	convertedBalance(): BigNumber;
+
+	/**
+	 * Get the coin service instance.
+	 *
+	 * @return {*}  {ICoinService}
+	 * @memberof IProfile
+	 */
 	coins(): ICoinService;
 
-	id(): string;
-	name(): string;
-	avatar(): string;
-	balance(): BigNumber;
-	convertedBalance(): BigNumber;
+	/**
+	 * Get the portfolio service instance.
+	 *
+	 * @return {*}  {IPortfolio}
+	 * @memberof IProfile
+	 */
 	portfolio(): IPortfolio;
+
+	/**
+	 * Get the contact repository instance.
+	 *
+	 * @return {*}  {IContactRepository}
+	 * @memberof IProfile
+	 */
 	contacts(): IContactRepository;
+
+	/**
+	 * Get the data repository instance.
+	 *
+	 * @return {*}  {IDataRepository}
+	 * @memberof IProfile
+	 */
 	data(): IDataRepository;
+
+	/**
+	 * Get the notification repository instance.
+	 *
+	 * @return {*}  {INotificationRepository}
+	 * @memberof IProfile
+	 */
 	notifications(): INotificationRepository;
+
+	/**
+	 * Get the peer repository instance.
+	 *
+	 * @return {*}  {IPeerRepository}
+	 * @memberof IProfile
+	 */
 	peers(): IPeerRepository;
+
+	/**
+	 * Get the plugin repository instance.
+	 *
+	 * @return {*}  {IPluginRepository}
+	 * @memberof IProfile
+	 */
 	plugins(): IPluginRepository;
+
+	/**
+	 * Get the setting repository instance.
+	 *
+	 * @return {*}  {ISettingRepository}
+	 * @memberof IProfile
+	 */
 	settings(): ISettingRepository;
+
+	/**
+	 * Get the wallet repository instance.
+	 *
+	 * @return {*}  {IWalletRepository}
+	 * @memberof IProfile
+	 */
 	wallets(): IWalletRepository;
+
+	/**
+	 * Remove all data and reset the profile.
+	 *
+	 * @memberof IProfile
+	 */
 	flush(): void;
+
+	/**
+	 * Get the count aggregate instance.
+	 *
+	 * @return {*}  {ICountAggregate}
+	 * @memberof IProfile
+	 */
 	countAggregate(): ICountAggregate;
+
+	/**
+	 * Get the registration aggregate instance.
+	 *
+	 * @return {*}  {IRegistrationAggregate}
+	 * @memberof IProfile
+	 */
 	registrationAggregate(): IRegistrationAggregate;
+
+	/**
+	 * Get the transaction aggregate instance.
+	 *
+	 * @return {*}  {ITransactionAggregate}
+	 * @memberof IProfile
+	 */
 	transactionAggregate(): ITransactionAggregate;
+
+	/**
+	 * Get the wallet aggregate instance.
+	 *
+	 * @return {*}  {IWalletAggregate}
+	 * @memberof IProfile
+	 */
 	walletAggregate(): IWalletAggregate;
+
+	/**
+	 * Get the authentication service instance.
+	 *
+	 * @return {*}  {IAuthenticator}
+	 * @memberof IProfile
+	 */
 	auth(): IAuthenticator;
+
+	/**
+	 * Determine if the profile uses a password.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IProfile
+	 */
 	usesPassword(): boolean;
+
+	/**
+	 * Determine if the profile uses custom peers.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IProfile
+	 */
 	usesCustomPeer(): boolean;
+
+	/**
+	 * Determine if the profile uses multi peer broadcasting.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IProfile
+	 */
 	usesMultiPeerBroadcasting(): boolean;
-	toObject(options?: IProfileExportOptions): IProfileStruct;
+
+	/**
+	 * Turn the profile into a normalised object.
+	 *
+	 * @param {IProfileExportOptions} [options]
+	 * @return {*}  {IProfileData}
+	 * @memberof IProfile
+	 */
+	toObject(options?: IProfileExportOptions): IProfileData;
+
+	/**
+	 * Dump the profile data.
+	 *
+	 * @return {*}  {IProfileInput}
+	 * @memberof IProfile
+	 */
 	dump(): IProfileInput;
+
+	/**
+	 * Restore the profile data.
+	 *
+	 * @param {string} [password]
+	 * @return {*}  {Promise<void>}
+	 * @memberof IProfile
+	 */
 	restore(password?: string): Promise<void>;
+
+	/**
+	 * Synchronise the profile.
+	 *
+	 * @return {*}  {Promise<void>}
+	 * @memberof IProfile
+	 */
 	sync(): Promise<void>;
+
+	/**
+	 * Initialise the default settings of the profile.
+	 *
+	 * @memberof IProfile
+	 */
 	initializeSettings(): void;
+
+	/**
+	 * Get the raw data.
+	 *
+	 * @return {*}  {IProfileInput}
+	 * @memberof IProfile
+	 */
 	getRawData(): IProfileInput;
+
+	/**
+	 * Set the raw data.
+	 *
+	 * @param {IProfileInput} data
+	 * @memberof IProfile
+	 */
 	setRawData(data: IProfileInput): void;
+
+	/**
+	 * Set the key in the raw data.
+	 *
+	 * @param {keyof IProfileInput} key
+	 * @param {string} value
+	 * @memberof IProfile
+	 */
 	setRawDataKey(key: keyof IProfileInput, value: string): void;
+
+	/**
+	 * Save the profile.
+	 *
+	 * @param {string} [password]
+	 * @memberof IProfile
+	 */
 	save(password?: string): void;
+
+	/**
+	 * Export the profile.
+	 *
+	 * @param {string} [password]
+	 * @param {IProfileExportOptions} [options]
+	 * @return {*}  {string}
+	 * @memberof IProfile
+	 */
 	export(password?: string, options?: IProfileExportOptions): string;
+
+	/**
+	 * Determine if the profile has been partially restored.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IProfile
+	 */
 	hasBeenPartiallyRestored(): boolean;
 }

@@ -3,7 +3,7 @@ import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
 import {
-	IProfileStruct,
+	IProfileData,
 	IProfileExportOptions,
 	IContactRepository,
 	IPortfolio,
@@ -47,23 +47,131 @@ import { Identifiers } from "../../../environment/container.models";
 import { container } from "../../../environment/container";
 
 export class Profile implements IProfile {
-	#data: IProfileInput;
-
+	/**
+	 * The coin service.
+	 *
+	 * @type {ICoinService}
+	 * @memberof Profile
+	 */
 	readonly #coinService: ICoinService;
+
+	/**
+	 * The portfolio service.
+	 *
+	 * @type {IPortfolio}
+	 * @memberof Profile
+	 */
 	readonly #portfolio: IPortfolio;
+
+	/**
+	 * The contact repository.
+	 *
+	 * @type {IContactRepository}
+	 * @memberof Profile
+	 */
 	readonly #contactRepository: IContactRepository;
+
+	/**
+	 * The data repository.
+	 *
+	 * @type {IDataRepository}
+	 * @memberof Profile
+	 */
 	readonly #dataRepository: IDataRepository;
+
+	/**
+	 * The notification repository.
+	 *
+	 * @type {INotificationRepository}
+	 * @memberof Profile
+	 */
 	readonly #notificationRepository: INotificationRepository;
+
+	/**
+	 * The peer repository.
+	 *
+	 * @type {IPeerRepository}
+	 * @memberof Profile
+	 */
 	readonly #peerRepository: IPeerRepository;
+
+	/**
+	 * The plugin repository.
+	 *
+	 * @type {IPluginRepository}
+	 * @memberof Profile
+	 */
 	readonly #pluginRepository: IPluginRepository;
+
+	/**
+	 * The setting repository.
+	 *
+	 * @type {ISettingRepository}
+	 * @memberof Profile
+	 */
 	readonly #settingRepository: ISettingRepository;
+
+	/**
+	 * The wallet repository.
+	 *
+	 * @type {IWalletRepository}
+	 * @memberof Profile
+	 */
 	readonly #walletRepository: IWalletRepository;
+
+	/**
+	 * The count aggregate service.
+	 *
+	 * @type {ICountAggregate}
+	 * @memberof Profile
+	 */
 	readonly #countAggregate: ICountAggregate;
+
+	/**
+	 * The registration aggregate service.
+	 *
+	 * @type {IRegistrationAggregate}
+	 * @memberof Profile
+	 */
 	readonly #registrationAggregate: IRegistrationAggregate;
+
+	/**
+	 * The transaction aggregate service.
+	 *
+	 * @type {ITransactionAggregate}
+	 * @memberof Profile
+	 */
 	readonly #transactionAggregate: ITransactionAggregate;
+
+	/**
+	 * The wallet aggregate service.
+	 *
+	 * @type {IWalletAggregate}
+	 * @memberof Profile
+	 */
 	readonly #walletAggregate: IWalletAggregate;
+
+	/**
+	 * The authentication service.
+	 *
+	 * @type {IAuthenticator}
+	 * @memberof Profile
+	 */
 	readonly #authenticator: IAuthenticator;
 
+	/**
+	 * The normalise profile data.
+	 *
+	 * @type {IProfileInput}
+	 * @memberof Profile
+	 */
+	#data: IProfileInput;
+
+	/**
+	 * Creates an instance of Profile.
+	 * @param {IProfileInput} data
+	 * @memberof Profile
+	 */
 	public constructor(data: IProfileInput) {
 		this.#data = data;
 
@@ -93,10 +201,102 @@ export class Profile implements IProfile {
 		return this.#coinService;
 	}
 
+	/**
+	 * Access the portfolio service.
+	 *
+	 * @return {IPortfolio}
+	 * @memberof Profile
+	 */
+	public portfolio(): IPortfolio {
+		return this.#portfolio;
+	}
+
+	/**
+	 * Access the contact repository.
+	 *
+	 * @return {IContactRepository}
+	 * @memberof Profile
+	 */
+	public contacts(): IContactRepository {
+		return this.#contactRepository;
+	}
+
+	/**
+	 * Access the data repository.
+	 *
+	 * @return {IDataRepository}
+	 * @memberof Profile
+	 */
+	public data(): IDataRepository {
+		return this.#dataRepository;
+	}
+
+	/**
+	 * Access the notification repository.
+	 *
+	 * @return {INotificationRepository}
+	 * @memberof Profile
+	 */
+	public notifications(): INotificationRepository {
+		return this.#notificationRepository;
+	}
+
+	/**
+	 * Access the peer repository.
+	 *
+	 * @return {IPeerRepository}
+	 * @memberof Profile
+	 */
+	public peers(): IPeerRepository {
+		return this.#peerRepository;
+	}
+
+	/**
+	 * Access the plugin repository.
+	 *
+	 * @return {IPluginRepository}
+	 * @memberof Profile
+	 */
+	public plugins(): IPluginRepository {
+		return this.#pluginRepository;
+	}
+
+	/**
+	 * Access the setting repository.
+	 *
+	 * @return {ISettingRepository}
+	 * @memberof Profile
+	 */
+	public settings(): ISettingRepository {
+		return this.#settingRepository;
+	}
+
+	/**
+	 * Access the wallet repository.
+	 *
+	 * @return {IWalletRepository}
+	 * @memberof Profile
+	 */
+	public wallets(): IWalletRepository {
+		return this.#walletRepository;
+	}
+
+	/**
+	 * Get the UUID of the profile.
+	 *
+	 * @return {string}
+	 * @memberof Profile
+	 */
 	public id(): string {
 		return this.#data.id;
 	}
 
+	/**
+	 * Get the name of the profile.
+	 *
+	 * @return {string}
+	 * @memberof Profile
+	 */
 	public name(): string {
 		if (this.settings().missing(ProfileSetting.Name)) {
 			return this.#data.name;
@@ -105,6 +305,12 @@ export class Profile implements IProfile {
 		return this.settings().get<string>(ProfileSetting.Name)!;
 	}
 
+	/**
+	 * Get the avatar of the profile.
+	 *
+	 * @return {string}
+	 * @memberof Profile
+	 */
 	public avatar(): string {
 		const avatarFromSettings: string | undefined = this.settings().get(ProfileSetting.Avatar);
 
@@ -119,46 +325,31 @@ export class Profile implements IProfile {
 		return Avatar.make(this.name());
 	}
 
+	/**
+	 * Get the balance of the profile.
+	 *
+	 * @return {BigNumber}
+	 * @memberof Profile
+	 */
 	public balance(): BigNumber {
 		return this.walletAggregate().balance();
 	}
 
+	/**
+	 * Get the converted balance of the profile.
+	 *
+	 * @return {BigNumber}
+	 * @memberof Profile
+	 */
 	public convertedBalance(): BigNumber {
 		return this.walletAggregate().convertedBalance();
 	}
 
-	public portfolio(): IPortfolio {
-		return this.#portfolio;
-	}
-
-	public contacts(): IContactRepository {
-		return this.#contactRepository;
-	}
-
-	public data(): IDataRepository {
-		return this.#dataRepository;
-	}
-
-	public notifications(): INotificationRepository {
-		return this.#notificationRepository;
-	}
-
-	public peers(): IPeerRepository {
-		return this.#peerRepository;
-	}
-
-	public plugins(): IPluginRepository {
-		return this.#pluginRepository;
-	}
-
-	public settings(): ISettingRepository {
-		return this.#settingRepository;
-	}
-
-	public wallets(): IWalletRepository {
-		return this.#walletRepository;
-	}
-
+	/**
+	 * Flush all data and reset the instance.
+	 *
+	 * @memberof Profile
+	 */
 	public flush(): void {
 		const name: string | undefined = this.settings().get(ProfileSetting.Name);
 
@@ -182,45 +373,81 @@ export class Profile implements IProfile {
 	}
 
 	/**
-	 * These methods serve as helpers to aggregate commonly used data.
+	 * Access the count aggregate service.
+	 *
+	 * @return {ICountAggregate}
+	 * @memberof Profile
 	 */
-
 	public countAggregate(): ICountAggregate {
 		return this.#countAggregate;
 	}
 
+	/**
+	 * Access the registration aggregate service.
+	 *
+	 * @return {IRegistrationAggregate}
+	 * @memberof Profile
+	 */
 	public registrationAggregate(): IRegistrationAggregate {
 		return this.#registrationAggregate;
 	}
 
+	/**
+	 * Access the transaction aggregate service.
+	 *
+	 * @return {ITransactionAggregate}
+	 * @memberof Profile
+	 */
 	public transactionAggregate(): ITransactionAggregate {
 		return this.#transactionAggregate;
 	}
 
+	/**
+	 * Access the wallet aggregate service.
+	 *
+	 * @return {IWalletAggregate}
+	 * @memberof Profile
+	 */
 	public walletAggregate(): IWalletAggregate {
 		return this.#walletAggregate;
 	}
 
 	/**
-	 * These methods serve as helpers to handle authenticate / authorisation.
+	 * Access the authentication service.
+	 *
+	 * @return {*}  {IAuthenticator}
+	 * @memberof Profile
 	 */
-
 	public auth(): IAuthenticator {
 		return this.#authenticator;
 	}
 
+	/**
+	 * Determine if the profile uses a password.
+	 *
+	 * @return {boolean}
+	 * @memberof Profile
+	 */
 	public usesPassword(): boolean {
 		return this.#data.password !== undefined;
 	}
 
 	/**
-	 * These methods serve as helpers to handle broadcasting.
+	 * Determine if the profile uses custom peers.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Profile
 	 */
-
 	public usesCustomPeer(): boolean {
 		return this.settings().get(ProfileSetting.UseCustomPeer) === true;
 	}
 
+	/**
+	 * Determine if the profile uses spread-out broadcasting.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Profile
+	 */
 	public usesMultiPeerBroadcasting(): boolean {
 		const usesMultiPeerBroadcasting: boolean = this.settings().get(ProfileSetting.UseMultiPeerBroadcast) === true;
 
@@ -228,7 +455,11 @@ export class Profile implements IProfile {
 	}
 
 	/**
-	 * Specify data which should be serialized to an object.
+	 * Normalise the profile into an object.
+	 *
+	 * @param {IProfileExportOptions} [options]
+	 * @return {*}  {IProfileData}
+	 * @memberof Profile
 	 */
 	public toObject(
 		options: IProfileExportOptions = {
@@ -237,7 +468,7 @@ export class Profile implements IProfile {
 			addNetworkInformation: true,
 			saveGeneralSettings: true,
 		},
-	): IProfileStruct {
+	): IProfileData {
 		if (!options.saveGeneralSettings) {
 			throw Error("This is not implemented yet");
 		}
@@ -283,7 +514,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	public async restore(password?: string): Promise<void> {
-		const data: IProfileStruct | undefined = await this.validateStruct(password);
+		const data: IProfileData | undefined = await this.validateStruct(password);
 
 		State.profile(this);
 
@@ -388,6 +619,14 @@ export class Profile implements IProfile {
 		}
 	}
 
+	/**
+	 * Export the profile data to a base64 string.
+	 *
+	 * @param {string} [password]
+	 * @param {IProfileExportOptions} [options]
+	 * @return {*}  {string}
+	 * @memberof Profile
+	 */
 	public export(
 		password?: string,
 		options: IProfileExportOptions = {
@@ -463,7 +702,7 @@ export class Profile implements IProfile {
 	 *
 	 * @param password A hard-to-guess password to decrypt the contents.
 	 */
-	private decrypt(password: string): IProfileStruct {
+	private decrypt(password: string): IProfileData {
 		if (!this.usesPassword()) {
 			throw new Error("This profile does not use a password but password was passed for decryption");
 		}
@@ -473,8 +712,16 @@ export class Profile implements IProfile {
 		return { id, ...data };
 	}
 
-	private async validateStruct(password?: string): Promise<IProfileStruct> {
-		let data: IProfileStruct | undefined;
+	/**
+	 * Validate the profile data after decoding and/or decrypting it.
+	 *
+	 * @private
+	 * @param {string} [password]
+	 * @return {*}  {Promise<IProfileData>}
+	 * @memberof Profile
+	 */
+	private async validateStruct(password?: string): Promise<IProfileData> {
+		let data: IProfileData | undefined;
 		let errorReason = "";
 
 		try {
@@ -555,6 +802,6 @@ export class Profile implements IProfile {
 			throw error;
 		}
 
-		return value as IProfileStruct;
+		return value as IProfileData;
 	}
 }
