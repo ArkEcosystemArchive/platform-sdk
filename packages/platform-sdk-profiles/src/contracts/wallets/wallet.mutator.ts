@@ -10,10 +10,11 @@ export interface IWalletMutator {
 	 *
 	 * @param {string} coin
 	 * @param {string} network
+	 * @param {{ sync: boolean }} [options]
 	 * @return {*}  {Promise<void>}
 	 * @memberof void
 	 */
-	coin(coin: string, network: string, options?: object): Promise<void>;
+	coin(coin: string, network: string, options?: { sync: boolean }): Promise<void>;
 
 	/**
 	 * Set the identity based on a mnemonic.
