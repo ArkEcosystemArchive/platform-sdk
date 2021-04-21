@@ -1,9 +1,10 @@
 import { BigNumber } from "@arkecosystem/utils";
-import Logger from "@ptkdev/logger";
 import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
+import Logger from "./logger";
+import { getAmount, getFees, getVins, getVouts } from "./tx-parsing-helpers";
 import { Flags } from "./types";
 
 /**
@@ -73,7 +74,9 @@ export class Database {
 	 * @memberof Database
 	 */
 	public storeBlockWithTransactions(block: any): void {
-		this.#logger.info(`Storing block [${block.hash}] with [${block.tx.length}] transaction(s)`);
+		this.#logger.info(
+			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
+		);
 
 		this.storeBlock(block);
 
@@ -122,19 +125,44 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeTransaction(transaction): void {
-		const amount: BigNumber = transaction.vout.reduce((c: BigNumber, v) => c.plus(v.value * 1e8), BigNumber.ZERO);
+		const amount: BigNumber = getAmount(transaction);
+		const vouts: BigNumber[] = getVouts(transaction);
+		const hashes = getVins(transaction).map((u) => u.txid);
+		let voutsByTransactionHash = {};
+		if (hashes.length > 0) {
+			const read = this.#database
+				.prepare(
+					`SELECT hash, vouts
+					 FROM transactions
+					 WHERE hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
+				)
+				.all(hashes);
+
+			if (read) {
+				const indexByHash = (readElements) =>
+					readElements.reduce((carry, element) => {
+						carry[element["hash"]] = JSON.parse(element["vouts"]).map((amount) => BigNumber.make(amount));
+						return carry;
+					}, {});
+
+				voutsByTransactionHash = indexByHash(read);
+			}
+		}
+
+		const fee: BigNumber = getFees(transaction, voutsByTransactionHash);
 
 		this.#database
 			.prepare(
-				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender) VALUES (:hash, :time, :amount, :fee, :sender)`,
+				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts) VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`,
 			)
 			.run({
-				// @TODO: amount, fee, sender
+				// @TODO: sender
 				hash: transaction.hash,
 				time: transaction.time,
 				amount: amount.toString(),
-				fee: 0,
+				fee: fee.toString(),
 				sender: "address-of-sender",
+				vouts: JSON.stringify(vouts),
 			});
 	}
 
@@ -161,7 +189,8 @@ export class Database {
 				time     INTEGER       NOT NULL,
 				amount   INTEGER       NOT NULL,
 				fee      INTEGER       NOT NULL,
-				sender   VARCHAR(64)   NOT NULL
+				sender   VARCHAR(64)   NOT NULL,
+				vouts    JSON          NOT NULL
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
