@@ -32,6 +32,8 @@ import { ExtendedTransactionDataCollection } from "../../../dto";
 import { State } from "../../../environment/state";
 import { IWalletGate } from "../../../contracts/wallets/wallet.gate";
 import { WalletGate } from "./wallet.gate";
+import { WalletSynchroniser } from "./wallet.synchroniser";
+import { IWalletSynchroniser } from "../../../contracts/wallets/wallet.synchroniser";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #dataRepository: DataRepository;
@@ -513,6 +515,10 @@ export class Wallet implements IReadWriteWallet {
 		return new WalletGate(this);
 	}
 
+	public synchroniser(): IWalletSynchroniser {
+		return new WalletSynchroniser(this);
+	}
+
 	/**
 	 * These methods serve as helpers to interact with the underlying coin.
 	 */
@@ -595,66 +601,6 @@ export class Wallet implements IReadWriteWallet {
 
 	public explorerLink(): string {
 		return this.link().wallet(this.address());
-	}
-
-	/**
-	 * These methods serve as helpers to keep the wallet data updated.
-	 */
-
-	public async sync(options: { resetCoin: boolean } = { resetCoin: false }): Promise<void> {
-		if (options.resetCoin) {
-			this.#coin = State.profile().coins().push(this.coinId(), this.networkId(), {}, true);
-		}
-
-		await this.setCoin(this.coinId(), this.networkId());
-	}
-
-	public async syncIdentity(): Promise<void> {
-		const currentWallet = this.#wallet;
-		const currentPublicKey = this.#publicKey;
-
-		try {
-			this.#wallet = await this.#coin.client().wallet(this.address());
-
-			if (!this.#publicKey) {
-				this.#publicKey = this.#wallet.publicKey();
-			}
-
-			this.data().set(WalletData.Balance, this.#wallet.balance());
-			this.data().set(WalletData.Sequence, this.#wallet.nonce());
-		} catch {
-			/**
-			 * TODO: decide what to do if the wallet couldn't be found
-			 *
-			 * A missing wallet could mean that the wallet is legitimate
-			 * but has no transactions or that the address is wrong.
-			 */
-
-			this.#wallet = currentWallet;
-			this.#publicKey = currentPublicKey;
-		}
-	}
-
-	public async syncMultiSignature(): Promise<void> {
-		if (!this.isMultiSignature()) {
-			return;
-		}
-
-		const participants: Record<string, any> = {};
-
-		for (const publicKey of this.multiSignature().publicKeys) {
-			participants[publicKey] = (await this.client().wallet(publicKey)).toObject();
-		}
-
-		this.data().set(WalletData.MultiSignatureParticipants, participants);
-	}
-
-	public async syncVotes(): Promise<void> {
-		const { available, publicKeys, used } = await this.client().votes(this.address());
-
-		this.data().set(WalletData.VotesAvailable, available);
-		this.data().set(WalletData.Votes, publicKeys);
-		this.data().set(WalletData.VotesUsed, used);
 	}
 
 	public async findTransactionById(id: string): Promise<ExtendedTransactionData> {

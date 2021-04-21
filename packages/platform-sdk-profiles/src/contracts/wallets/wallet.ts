@@ -8,6 +8,7 @@ import { IPeerRepository } from "../repositories/peer-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
 import { IReadOnlyWallet } from "./read-only-wallet";
 import { IWalletGate } from "./wallet.gate";
+import { IWalletSynchroniser } from "./wallet.synchroniser";
 
 /**
  * Defines the structure that represents the wallet data.
@@ -556,39 +557,6 @@ export interface IReadWriteWallet {
 	explorerLink(): string;
 
 	/**
-	 * Synchronise the wallet.
-	 *
-	 * @param {{ resetCoin: boolean; }} [options]
-	 * @return {*}  {Promise<void>}
-	 * @memberof IReadWriteWallet
-	 */
-	sync(options?: { resetCoin: boolean; }): Promise<void>;
-
-	/**
-	 * Synchronise the identity.
-	 *
-	 * @return {*}  {Promise<void>}
-	 * @memberof IReadWriteWallet
-	 */
-	syncIdentity(): Promise<void>;
-
-	/**
-	 * Synchronise the multi signature.
-	 *
-	 * @return {*}  {Promise<void>}
-	 * @memberof IReadWriteWallet
-	 */
-	syncMultiSignature(): Promise<void>;
-
-	/**
-	 * Synchronise the votes.
-	 *
-	 * @return {*}  {Promise<void>}
-	 * @memberof IReadWriteWallet
-	 */
-	syncVotes(): Promise<void>;
-
-	/**
 	 * Find a transaction by the given ID.
 	 *
 	 * @param {string} id
@@ -686,4 +654,12 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	gate(): IWalletGate;
+
+	/**
+	 * Get the wallet synchroniser instance.
+	 *
+	 * @return {*}  {IWalletGate}
+	 * @memberof IReadWriteWallet
+	 */
+	synchroniser(): IWalletSynchroniser;
 }
