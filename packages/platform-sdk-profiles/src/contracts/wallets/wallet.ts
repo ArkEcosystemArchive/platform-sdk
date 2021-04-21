@@ -62,22 +62,6 @@ export interface IReadWriteWalletAttributes {
  */
 export interface IReadWriteWallet {
 	/**
-	 * Determine if the wallet uses multi peer broadcasting.
-	 *
-	 * @return {*}  {boolean}
-	 * @memberof IReadWriteWallet
-	 */
-	usesMultiPeerBroadcasting(): boolean;
-
-	/**
-	 * Get the peer repository instance.
-	 *
-	 * @return {*}  {IPeerRepository}
-	 * @memberof IReadWriteWallet
-	 */
-	peers(): IPeerRepository;
-
-	/**
 	 * Get all relay peers for the given coin and network.
 	 *
 	 * @return {*}  {string[]}

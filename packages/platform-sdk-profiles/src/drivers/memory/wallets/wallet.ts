@@ -59,20 +59,8 @@ export class Wallet implements IReadWriteWallet {
 	 * These methods serve as helpers to proxy certain method calls to the parent profile.
 	 */
 
-	public usesCustomPeer(): boolean {
-		return State.profile().usesCustomPeer();
-	}
-
-	public usesMultiPeerBroadcasting(): boolean {
-		return State.profile().usesMultiPeerBroadcasting();
-	}
-
-	public peers(): IPeerRepository {
-		return State.profile().peers();
-	}
-
 	public getRelays(): string[] {
-		return this.peers()
+		return State.profile().peers()
 			.getRelays(this.coinId(), this.networkId())
 			.map((peer) => peer.host);
 	}
@@ -117,13 +105,13 @@ export class Wallet implements IReadWriteWallet {
 		network: string,
 		options: { sync: boolean } = { sync: true },
 	): Promise<IReadWriteWallet> {
-		if (this.usesCustomPeer() && this.peers().has(coin, network)) {
+		if (State.profile().usesCustomPeer() && State.profile().peers().has(coin, network)) {
 			this.#attributes.set('coin', State.profile().coins().push(
 				coin,
 				network,
 				{
-					peer: this.peers().getRelay(coin, network)?.host,
-					peerMultiSignature: this.peers().getMultiSignature(coin, network)?.host,
+					peer: State.profile().peers().getRelay(coin, network)?.host,
+					peerMultiSignature: State.profile().peers().getMultiSignature(coin, network)?.host,
 				},
 				true,
 			));
