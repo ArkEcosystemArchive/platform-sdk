@@ -69,6 +69,10 @@ export const createWallet = async (profile: Contracts.IProfile): Promise<void> =
 			return;
 		}
 
-		await profile.wallets().importByMnemonic(mnemonic, asset[0], asset[1]);
+		profile.wallets().push(
+			await profile.walletFactory().fromMnemonic({
+				mnemonic, coin: asset[0], network: asset[1],
+			})
+		);
 	}
 };
