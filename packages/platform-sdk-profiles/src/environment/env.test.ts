@@ -15,6 +15,8 @@ import { identity } from "../../test/fixtures/identity";
 import { importByMnemonic } from "../../test/helpers";
 import { StubStorage } from "../../test/stubs/storage";
 import { Profile } from "../drivers/memory/profiles/profile";
+import { ProfileImporter } from "../drivers/memory/profiles/profile.importer";
+import { ProfileSerialiser } from "../drivers/memory/profiles/profile.serialiser";
 import { ProfileRepository } from "../drivers/memory/repositories/profile-repository";
 import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
 import { WalletService } from "../drivers/memory/services/wallet-service";
@@ -167,7 +169,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 
 	expect(newProfile).toBeInstanceOf(Profile);
 
-	await newProfile.restore();
+	await new ProfileImporter().import(newProfile);
 	await newProfile.sync();
 
 	expect(newProfile.wallets().keys()).toHaveLength(1);
@@ -199,7 +201,7 @@ it("should boot the environment from fixed data", async () => {
 
 	const newProfile = env.profiles().findById("8101538b-b13a-4b8d-b3d8-e710ccffd385");
 
-	await newProfile.restore();
+	await new ProfileImporter().import(newProfile);
 
 	expect(newProfile).toBeInstanceOf(Profile);
 	expect(newProfile.wallets().keys()).toHaveLength(1);
@@ -375,18 +377,20 @@ it("should persist the env and restore it", async () => {
 
 	// Assert that we got back what we dumped in the previous env
 	const restoredJohn = subject.profiles().findById(john.id());
-	await restoredJohn.restore();
+	await new ProfileImporter().import(restoredJohn);
 	await restoredJohn.sync();
 
 	const restoredJane = subject.profiles().findById(jane.id());
-	await restoredJane.restore("password");
+	await new ProfileImporter().import(restoredJane, "password");
 	await restoredJane.sync();
 
 	const restoredJack = subject.profiles().findById(jack.id());
-	await restoredJack.restore("password");
+	await new ProfileImporter().import(restoredJack, "password");
 	await restoredJack.sync();
 
-	expect(restoredJohn.toObject()).toEqual(john.toObject());
-	expect(restoredJane.toObject()).toEqual(jane.toObject());
-	expect(restoredJack.toObject()).toEqual(jack.toObject());
+	const serialiser = new ProfileSerialiser();
+
+	expect(serialiser.toJSON(restoredJohn)).toEqual(serialiser.toJSON(john));
+	expect(serialiser.toJSON(restoredJane)).toEqual(serialiser.toJSON(jane));
+	expect(serialiser.toJSON(restoredJack)).toEqual(serialiser.toJSON(jack));
 });

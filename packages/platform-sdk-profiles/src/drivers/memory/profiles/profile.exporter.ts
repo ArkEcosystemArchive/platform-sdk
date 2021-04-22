@@ -1,11 +1,8 @@
 import { Base64 } from "@arkecosystem/platform-sdk-crypto";
-import {
-	IProfileExportOptions,
-	IProfile,
-	IProfileInput,
-} from "../../../contracts";
+import { IProfileExportOptions, IProfile } from "../../../contracts";
 
 import { ProfileEncrypter } from "./profile.encrypter";
+import { ProfileSerialiser } from "./profile.serialiser";
 
 export class ProfileExporter {
 	readonly #profile: IProfile;
@@ -31,7 +28,7 @@ export class ProfileExporter {
 			saveGeneralSettings: true,
 		},
 	): string {
-		const filtered = this.#profile.toObject(options);
+		const data = new ProfileSerialiser().toJSON(this.#profile, options);
 
 		if (this.#profile.usesPassword()) {
 			return Base64.encode(
@@ -41,13 +38,13 @@ export class ProfileExporter {
 						name: this.#profile.name(),
 						avatar: this.#profile.avatar(),
 						password: this.#profile.getAttributes().get<string>('password'),
-						data: this.#profile.toObject(options),
+						data,
 					}),
 					password,
 				),
 			);
 		}
 
-		return Base64.encode(JSON.stringify(filtered));
+		return Base64.encode(JSON.stringify(data));
 	}
 }

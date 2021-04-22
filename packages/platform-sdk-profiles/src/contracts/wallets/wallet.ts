@@ -11,6 +11,11 @@ import { IWalletGate } from "./wallet.gate";
 import { IWalletSynchroniser } from "./wallet.synchroniser";
 import { IWalletMutator } from "./wallet.mutator";
 import { AttributeBag } from "../../helpers/attribute-bag";
+import { IVoteRegistry } from "./services/vote-registry";
+import { ITransactionIndex } from "./services/transaction-index";
+import { IWalletImportFormat } from "./services/wif";
+import { IMultiSignature } from "./services/multi-signature";
+import { ITransactionService } from "./wallet-transaction-service";
 
 /**
  * Defines the structure that represents the wallet data.
@@ -417,10 +422,10 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the transaction service instance.
 	 *
-	 * @return {*}  {TransactionService}
+	 * @return {*}  {ITransactionService}
 	 * @memberof IReadWriteWallet
 	 */
-	transaction(): TransactionService;
+	transaction(): ITransactionService;
 
 	/**
 	 * Get the supported transaction types.
@@ -431,132 +436,12 @@ export interface IReadWriteWallet {
 	transactionTypes(): Coins.CoinTransactionTypes;
 
 	/**
-	 * Get a list of sent and received transactions.
-	 *
-	 * @param {Contracts.ClientTransactionsInput} [query]
-	 * @return {*}  {Promise<ExtendedTransactionDataCollection>}
-	 * @memberof IReadWriteWallet
-	 */
-	transactions(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
-
-	/**
-	 * Get a list of sent transactions.
-	 *
-	 * @param {Contracts.ClientTransactionsInput} [query]
-	 * @return {*}  {Promise<ExtendedTransactionDataCollection>}
-	 * @memberof IReadWriteWallet
-	 */
-	sentTransactions(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
-
-	/**
-	 * Get a list of received transactions.
-	 *
-	 * @param {Contracts.ClientTransactionsInput} [query]
-	 * @return {*}  {Promise<ExtendedTransactionDataCollection>}
-	 * @memberof IReadWriteWallet
-	 */
-	receivedTransactions(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
-
-	/**
-	 * Get the multi signature data.
-	 *
-	 * @return {*}  {Contracts.WalletMultiSignature}
-	 * @memberof IReadWriteWallet
-	 */
-	multiSignature(): Contracts.WalletMultiSignature;
-
-	/**
-	 * Get the multi signature participants.
-	 *
-	 * @return {*}  {IReadOnlyWallet[]}
-	 * @memberof IReadWriteWallet
-	 */
-	multiSignatureParticipants(): IReadOnlyWallet[];
-
-	/**
-	 * Get all entities.
-	 *
-	 * @return {*}  {Contracts.Entity[]}
-	 * @memberof IReadWriteWallet
-	 */
-	entities(): Contracts.Entity[];
-
-	/**
-	 * Get all wallets the wallet is voting for.
-	 *
-	 * @return {*}  {IReadOnlyWallet[]}
-	 * @memberof IReadWriteWallet
-	 */
-	votes(): IReadOnlyWallet[];
-
-	/**
-	 * Get the number of votes that remain to be casted.
-	 *
-	 * @return {*}  {number}
-	 * @memberof IReadWriteWallet
-	 */
-	votesAvailable(): number;
-
-	/**
-	 * Get the number of votes that have been casted.
-	 *
-	 * @return {*}  {number}
-	 * @memberof IReadWriteWallet
-	 */
-	votesUsed(): number;
-
-	/**
 	 * Get the explorer link.
 	 *
 	 * @return {*}  {string}
 	 * @memberof IReadWriteWallet
 	 */
 	explorerLink(): string;
-
-	/**
-	 * Find a transaction by the given ID.
-	 *
-	 * @param {string} id
-	 * @return {*}  {Promise<ExtendedTransactionData>}
-	 * @memberof IReadWriteWallet
-	 */
-	findTransactionById(id: string): Promise<ExtendedTransactionData>;
-
-	/**
-	 * Find many transactions by the given IDs.
-	 *
-	 * @param {string[]} ids
-	 * @return {*}  {Promise<ExtendedTransactionData[]>}
-	 * @memberof IReadWriteWallet
-	 */
-	findTransactionsByIds(ids: string[]): Promise<ExtendedTransactionData[]>;
-
-	/**
-	 * Get the WIF.
-	 *
-	 * @param {string} password
-	 * @return {*}  {Promise<string>}
-	 * @memberof IReadWriteWallet
-	 */
-	wif(password: string): Promise<string>;
-
-	/**
-	 * Set the WIF.
-	 *
-	 * @param {string} mnemonic
-	 * @param {string} password
-	 * @return {*}  {Promise<IReadWriteWallet>}
-	 * @memberof IReadWriteWallet
-	 */
-	setWif(mnemonic: string, password: string): Promise<IReadWriteWallet>;
-
-	/**
-	 * Determine if the wallet uses a WIF.
-	 *
-	 * @return {*}  {boolean}
-	 * @memberof IReadWriteWallet
-	 */
-	usesWIF(): boolean;
 
 	/**
 	 * Mark the wallet as fully restored.
@@ -635,4 +520,36 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	mutator(): IWalletMutator;
+
+	/**
+	 * Get the wallet vote registry instance.
+	 *
+	 * @return {*}  {IVoteRegistry}
+	 * @memberof IReadWriteWallet
+	 */
+	voting(): IVoteRegistry;
+
+	/**
+	 * Get the wallet transaction index instance.
+	 *
+	 * @return {*}  {ITransactionIndex}
+	 * @memberof IReadWriteWallet
+	 */
+	transactionIndex(): ITransactionIndex;
+
+	/**
+	 * Get the wallet transaction index instance.
+	 *
+	 * @return {*}  {IWalletImportFormat}
+	 * @memberof IReadWriteWallet
+	 */
+	wif(): IWalletImportFormat;
+
+	/**
+	 * Get the wallet multi signature instance.
+	 *
+	 * @return {*}  {IMultiSignature}
+	 * @memberof IReadWriteWallet
+	 */
+	 multiSignature(): IMultiSignature;
 }

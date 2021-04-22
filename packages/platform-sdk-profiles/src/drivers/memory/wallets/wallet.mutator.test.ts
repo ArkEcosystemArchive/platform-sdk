@@ -162,32 +162,4 @@ describe("#setCoin", () => {
 
 		expect(subject.getRelays()).toBeArrayOfSize(1);
 	});
-
-	it("should decrypt the WIF", async () => {
-		const { compressed, privateKey } = decode(
-			await subject.coin().identity().wif().fromMnemonic(identity.mnemonic),
-		);
-
-		subject.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, "password"));
-
-		await expect(subject.wif("password")).resolves.toBe(identity.wif);
-	});
-
-	it("should encrypt the WIF and add it to the wallet", async () => {
-		await subject.setWif(identity.mnemonic, "password");
-
-		await expect(subject.wif("password")).resolves.toBe(identity.wif);
-	});
-
-	it("should throw if the WIF is tried to be decrypted without one being set", async () => {
-		await expect(subject.wif("password")).rejects.toThrow("This wallet does not use BIP38 encryption.");
-	});
-
-	it("should determine if the wallet uses a WIF", async () => {
-		expect(subject.usesWIF()).toBeFalse();
-
-		subject.data().set(WalletData.Bip38EncryptedKey, "...");
-
-		expect(subject.usesWIF()).toBeTrue();
-	});
 });

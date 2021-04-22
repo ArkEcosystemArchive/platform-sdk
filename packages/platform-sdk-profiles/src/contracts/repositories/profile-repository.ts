@@ -104,6 +104,16 @@ export interface IProfileRepository {
 	export(profile: IProfile, options?: IProfileExportOptions, password?: string): string;
 
 	/**
+	 * Restore a profile from its data.
+	 *
+	 * @param {IProfile} profile
+	 * @param {string} [password]
+	 * @returns {Promise<void>}
+	 * @memberof IProfileRepository
+	 */
+	 restore(profile: IProfile, password?: string): Promise<void>;
+
+	/**
 	 * Determine if a profile for the given ID exists.
 	 *
 	 * @param {string} id

@@ -1,34 +1,27 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { decrypt, encrypt } from "bip38";
-import dot from "dot-prop";
-import { decode } from "wif";
 
-import { ExtendedTransactionData } from "../../../dto/transaction";
-import { transformTransactionData, transformTransactionDataCollection } from "../../../dto/transaction-mapper";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { KnownWalletService } from "../services/known-wallet-service";
 import { DataRepository } from "../../../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
-import { Avatar } from "../../../helpers/avatar";
-import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import {
 	IReadWriteWallet,
-	IReadOnlyWallet,
 	IWalletData,
 	ProfileSetting,
 	WalletData,
 	WalletFlag,
 	WalletSetting,
-	IDelegateService,
 	IExchangeRateService,
 	IKnownWalletService,
 	IReadWriteWalletAttributes,
+	ITransactionService,
+	ISettingRepository,
+	IDataRepository,
 } from "../../../contracts";
-import { ExtendedTransactionDataCollection } from "../../../dto";
 import { State } from "../../../environment/state";
 import { AttributeBag } from "../../../helpers/attribute-bag";
 import { WalletGate } from "./wallet.gate";
@@ -37,12 +30,28 @@ import { IWalletSynchroniser } from "../../../contracts/wallets/wallet.synchroni
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
 import { WalletMutator } from "./wallet.mutator";
 import { IWalletGate } from "../../../contracts/wallets/wallet.gate";
+import { VoteRegistry } from "./services/vote-registry";
+import { TransactionIndex } from "./services/transaction-index";
+import { WalletSerialiser } from "./services/serialiser";
+import { ITransactionIndex } from "../../../contracts/wallets/services/transaction-index";
+import { IVoteRegistry } from "../../../contracts/wallets/services/vote-registry";
+import { WalletImportFormat } from "./services/wif";
+import { IWalletImportFormat } from "../../../contracts/wallets/services/wif";
+import { MultiSignature } from "./services/multi-signature";
+import { IMultiSignature } from "../../../contracts/wallets/services/multi-signature";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #attributes: AttributeBag<IReadWriteWalletAttributes> = new AttributeBag();
-	readonly #dataRepository: DataRepository;
-	readonly #settingRepository: SettingRepository;
-	readonly #transactionService: TransactionService;
+	readonly #dataRepository: IDataRepository;
+	readonly #settingRepository: ISettingRepository;
+	readonly #transactionService: ITransactionService;
+	readonly #walletGate: IWalletGate;
+	readonly #walletSynchroniser: IWalletSynchroniser;
+	readonly #walletMutator: IWalletMutator;
+	readonly #voteRegistry: IVoteRegistry;
+	readonly #transactionIndex: ITransactionIndex;
+	readonly #walletImportFormat: IWalletImportFormat;
+	readonly #multiSignature: IMultiSignature;
 
 	public constructor(id: string, initialState: any) {
 		this.#attributes = new AttributeBag<IReadWriteWalletAttributes>({
@@ -54,6 +63,13 @@ export class Wallet implements IReadWriteWallet {
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
+		this.#walletGate = new WalletGate(this);
+		this.#walletSynchroniser = new WalletSynchroniser(this);
+		this.#walletMutator = new WalletMutator(this);
+		this.#voteRegistry = new VoteRegistry(this);
+		this.#transactionIndex = new TransactionIndex(this);
+		this.#walletImportFormat = new WalletImportFormat(this);
+		this.#multiSignature = new MultiSignature(this);
 
 		this.restore();
 	}
@@ -195,11 +211,11 @@ export class Wallet implements IReadWriteWallet {
 		return this.#attributes.get<string>('avatar');
 	}
 
-	public data(): DataRepository {
+	public data(): IDataRepository {
 		return this.#dataRepository;
 	}
 
-	public settings(): SettingRepository {
+	public settings(): ISettingRepository {
 		return this.#settingRepository;
 	}
 
@@ -212,53 +228,7 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public toObject(): IWalletData {
-		if (this.hasBeenPartiallyRestored()) {
-			return this.#attributes.get<IWalletData>('initialState');
-		}
-
-		this.#transactionService.dump();
-
-		const network: Coins.CoinNetwork = this.coin().network().toObject();
-
-		return {
-			id: this.id(),
-			coin: this.coin().manifest().get<string>("name"),
-			network: this.networkId(),
-			// We only persist a few settings to prefer defaults from the SDK.
-			networkConfig: {
-				crypto: {
-					slip44: network.crypto.slip44,
-				},
-				networking: {
-					hosts: network.networking.hosts,
-					hostsMultiSignature: dot.get(network, "networking.hostsMultiSignature", []),
-					hostsArchival: dot.get(network, "networking.hostsArchival", []),
-				},
-			},
-			address: this.address(),
-			publicKey: this.publicKey(),
-			data: {
-				[WalletData.Balance]: this.balance().toFixed(),
-				[WalletData.BroadcastedTransactions]: this.data().get(WalletData.BroadcastedTransactions, []),
-				[WalletData.Sequence]: this.nonce().toFixed(),
-				[WalletData.SignedTransactions]: this.data().get(WalletData.SignedTransactions, []),
-				[WalletData.Votes]: this.data().get(WalletData.Votes, []),
-				[WalletData.VotesAvailable]: this.data().get(WalletData.VotesAvailable, 0),
-				[WalletData.VotesUsed]: this.data().get(WalletData.VotesUsed, 0),
-				[WalletData.WaitingForOurSignatureTransactions]: this.data().get(
-					WalletData.WaitingForOurSignatureTransactions,
-					[],
-				),
-				[WalletData.WaitingForOtherSignaturesTransactions]: this.data().get(
-					WalletData.WaitingForOtherSignaturesTransactions,
-					[],
-				),
-				[WalletData.LedgerPath]: this.data().get(WalletData.LedgerPath),
-				[WalletData.Bip38EncryptedKey]: this.data().get(WalletData.Bip38EncryptedKey),
-				[WalletFlag.Starred]: this.isStarred(),
-			},
-			settings: this.settings().all(),
-		};
+		return new WalletSerialiser(this).toJSON();
 	}
 
 	/**
@@ -398,7 +368,7 @@ export class Wallet implements IReadWriteWallet {
 		return this.#attributes.get<Coins.Coin>('coin').peer();
 	}
 
-	public transaction(): TransactionService {
+	public transaction(): ITransactionService {
 		return this.#transactionService;
 	}
 
@@ -407,145 +377,35 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public gate(): IWalletGate {
-		return new WalletGate(this);
+		return this.#walletGate;
 	}
 
 	public synchroniser(): IWalletSynchroniser {
-		return new WalletSynchroniser(this);
+		return this.#walletSynchroniser;
 	}
 
 	public mutator(): IWalletMutator {
-		return new WalletMutator(this);
+		return this.#walletMutator;
 	}
 
-	/**
-	 * These methods serve as helpers to interact with the underlying coin.
-	 */
-
-	public async transactions(
-		query: Contracts.ClientTransactionsInput = {},
-	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransactions({ ...query, addresses: [this.address()] });
+	public voting(): IVoteRegistry {
+		return this.#voteRegistry;
 	}
 
-	public async sentTransactions(
-		query: Contracts.ClientTransactionsInput = {},
-	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransactions({ ...query, senderId: this.address() });
+	public transactionIndex(): ITransactionIndex {
+		return this.#transactionIndex;
 	}
 
-	public async receivedTransactions(
-		query: Contracts.ClientTransactionsInput = {},
-	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransactions({ ...query, recipientId: this.address() });
+	public wif(): IWalletImportFormat {
+		return this.#walletImportFormat;
 	}
 
-	public multiSignature(): Contracts.WalletMultiSignature {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
-		}
-
-		return this.#attributes.get<Contracts.WalletData>('wallet').multiSignature();
-	}
-
-	public multiSignatureParticipants(): IReadOnlyWallet[] {
-		const participants: Record<string, any> | undefined = this.data().get(WalletData.MultiSignatureParticipants);
-
-		if (!participants) {
-			throw new Error(
-				"This Multi-Signature has not been synchronized yet. Please call [synchroniser().multiSignature()] before using it.",
-			);
-		}
-
-		return this.multiSignature().publicKeys.map((publicKey: string) => new ReadOnlyWallet(participants[publicKey]));
-	}
-
-	public entities(): Contracts.Entity[] {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
-		}
-
-		return this.#attributes.get<Contracts.WalletData>('wallet').entities();
-	}
-
-	public votes(): IReadOnlyWallet[] {
-		const votes: string[] | undefined = this.data().get<string[]>(WalletData.Votes);
-
-		if (votes === undefined) {
-			throw new Error("The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.");
-		}
-
-		return container.get<IDelegateService>(Identifiers.DelegateService).map(this, votes);
-	}
-
-	public votesAvailable(): number {
-		const result: number | undefined = this.data().get<number>(WalletData.VotesAvailable);
-
-		if (result === undefined) {
-			throw new Error("The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.");
-		}
-
-		return result;
-	}
-
-	public votesUsed(): number {
-		const result: number | undefined = this.data().get<number>(WalletData.VotesUsed);
-
-		if (result === undefined) {
-			throw new Error("The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.");
-		}
-
-		return result;
+	public multiSignature(): IMultiSignature {
+		return this.#multiSignature;
 	}
 
 	public explorerLink(): string {
 		return this.link().wallet(this.address());
-	}
-
-	public async findTransactionById(id: string): Promise<ExtendedTransactionData> {
-		return transformTransactionData(this, await this.#attributes.get<Coins.Coin>('coin').client().transaction(id));
-	}
-
-	/**
-	 * Get multiple transactions by their IDs.
-	 *
-	 * Uses "Promise.all" instead of "Promise.allSettled" to throw when an invalid ID is used.
-	 *
-	 * @param {string[]} ids
-	 * @returns {Promise<ExtendedTransactionData[]>}
-	 * @memberof Wallet
-	 */
-	public async findTransactionsByIds(ids: string[]): Promise<ExtendedTransactionData[]> {
-		return Promise.all(ids.map((id: string) => this.findTransactionById(id)));
-	}
-
-	/**
-	 * If a wallet makes use of a WIF you will need to decrypt it and
-	 * pass it the transaction signing service instead of asking the
-	 * user for a BIP39 plain text passphrase.
-	 *
-	 * @see https://github.com/bitcoinjs/bip38
-	 */
-	public async wif(password: string): Promise<string> {
-		const encryptedKey: string | undefined = this.data().get(WalletData.Bip38EncryptedKey);
-
-		if (encryptedKey === undefined) {
-			throw new Error("This wallet does not use BIP38 encryption.");
-		}
-
-		return this.coin().identity().wif().fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"));
-	}
-
-	public async setWif(mnemonic: string, password: string): Promise<IReadWriteWallet> {
-		const { compressed, privateKey } = decode(await this.coin().identity().wif().fromMnemonic(mnemonic));
-
-		this.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
-
-		return this;
-	}
-
-	public usesWIF(): boolean {
-		return this.data().has(WalletData.Bip38EncryptedKey);
 	}
 
 	public markAsFullyRestored(): void {
@@ -575,19 +435,6 @@ export class Wallet implements IReadWriteWallet {
     {
         return this.#attributes;
     }
-
-	private async fetchTransactions(
-		query: Contracts.ClientTransactionsInput,
-	): Promise<ExtendedTransactionDataCollection> {
-		const result = await this.#attributes.get<Coins.Coin>('coin').client().transactions(query);
-
-		for (const transaction of result.items()) {
-			transaction.setMeta("address", this.address());
-			transaction.setMeta("publicKey", this.publicKey());
-		}
-
-		return transformTransactionDataCollection(this, result);
-	}
 
 	private restore(): void {
 		this.data().set(

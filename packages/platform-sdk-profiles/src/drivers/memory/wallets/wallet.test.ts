@@ -44,14 +44,14 @@ beforeEach(async () => {
 
 		// default wallet
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../../../test/fixtures/client/wallet-non-resigned.json"))
 		.get("/api/wallets/034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192")
-		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../../../test/fixtures/client/wallet-non-resigned.json"))
 
 		// second wallet
-		.get("/api/wallets/022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce")
-		.reply(200, require("../../../../test/fixtures/client/wallet-2.json"))
 		.get("/api/wallets/DNc92FQmYu8G9Xvo6YqhPtRxYsUxdsUn9w")
+		.reply(200, require("../../../../test/fixtures/client/wallet-2.json"))
+		.get("/api/wallets/022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce")
 		.reply(200, require("../../../../test/fixtures/client/wallet-2.json"))
 
 		// Musig wallet
@@ -286,7 +286,7 @@ it("should respond on whether it is a delegate or not", () => {
 });
 
 it("should respond on whether it is a resigned delegate or not", () => {
-	expect(subject.isResignedDelegate()).toBeTrue();
+	expect(subject.isResignedDelegate()).toBeFalse();
 
 	subject = new Wallet(uuidv4(), {});
 
@@ -364,84 +364,6 @@ it("should fail to set an invalid address", async () => {
 	);
 });
 
-it("should fetch transaction by id", async () => {
-	const transactionId = "3e0b2e5ed00b34975abd6dee0ca5bd5560b5bd619b26cf6d8f70030408ec5be3";
-	const transaction = await subject.findTransactionById(transactionId);
-	expect(transaction.id()).toEqual(transactionId);
-});
-
-it("should fetch transactions by id", async () => {
-	const transactionId = "3e0b2e5ed00b34975abd6dee0ca5bd5560b5bd619b26cf6d8f70030408ec5be3";
-	const secondaryTransactionId = "bb9004fa874b534905f9eff201150f7f982622015f33e076c52f1e945ef184ed";
-	const transactions = await subject.findTransactionsByIds([transactionId, secondaryTransactionId]);
-
-	expect(transactions.length).toEqual(2);
-
-	const fetchedIds = transactions.map((transaction) => transaction.id());
-	expect(fetchedIds.includes(transactionId)).toBeTrue();
-	expect(fetchedIds.includes(secondaryTransactionId)).toBeTrue();
-});
-
-it("should return multi signature", () => {
-	expect(() => subject.multiSignature()).toThrow("This wallet does not have a multi-signature registered.");
-
-	subject = new Wallet(uuidv4(), {});
-
-	expect(() => subject.multiSignature()).toThrow(
-		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
-	);
-});
-
-describe("#multiSignatureParticipants", () => {
-	it("should return multi-signature participants", async () => {
-		const isMultiSignature = jest.spyOn(subject, "isMultiSignature").mockReturnValue(true);
-		const multiSignature = jest.spyOn(subject, "multiSignature").mockReturnValue({
-			min: 2,
-			publicKeys: [
-				"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-				"022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce",
-			],
-		});
-
-		await subject.synchroniser().identity();
-		await subject.synchroniser().multiSignature();
-
-		expect(subject.multiSignatureParticipants()).toHaveLength(2);
-		expect(subject.multiSignatureParticipants()[0]).toBeInstanceOf(ReadOnlyWallet);
-		expect(subject.multiSignatureParticipants()[1]).toBeInstanceOf(ReadOnlyWallet);
-
-		isMultiSignature.mockRestore();
-		multiSignature.mockRestore();
-	});
-
-	it("should throw if the wallet does not have a multi-signature registered", async () => {
-		subject.data().set(WalletData.MultiSignatureParticipants, {
-			min: 2,
-			publicKeys: [
-				"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-				"022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce",
-			],
-		});
-
-		await subject.synchroniser().identity();
-		await subject.synchroniser().multiSignature();
-
-		expect(() => subject.multiSignatureParticipants()).toThrow(
-			"This wallet does not have a multi-signature registered.",
-		);
-	});
-
-	it("should throw if the multi-signature has not been synchronized yet", async () => {
-		subject.data().set(WalletData.MultiSignatureParticipants, undefined);
-
-		await subject.synchroniser().identity();
-
-		expect(() => subject.multiSignatureParticipants()).toThrow(
-			"This Multi-Signature has not been synchronized yet. Please call [synchroniser().multiSignature()] before using it.",
-		);
-	});
-});
-
 it("should sync multi signature when musig", async () => {
 	subject = new Wallet(uuidv4(), {});
 	await subject.mutator().coin("ARK", "ark.devnet");
@@ -458,50 +380,8 @@ it("should sync multi signature when not musig", async () => {
 	expect(subject.isMultiSignature()).toBeFalse();
 });
 
-it("should return entities", () => {
-	expect(subject.entities()).toBeArrayOfSize(0);
-
-	subject = new Wallet(uuidv4(), {});
-
-	expect(() => subject.entities()).toThrow(
-		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
-	);
-});
-
-it("should return votes available", () => {
-	expect(() => subject.votesAvailable()).toThrow(
-		"The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.",
-	);
-
-	subject.data().set(WalletData.VotesAvailable, 2);
-
-	expect(subject.votesAvailable()).toBe(2);
-});
-
-it("should return votes used", () => {
-	expect(() => subject.votesUsed()).toThrow(
-		"The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.",
-	);
-
-	subject.data().set(WalletData.VotesUsed, 2);
-
-	expect(subject.votesUsed()).toBe(2);
-});
-
 it("should return explorer link", () => {
 	expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-});
-
-describe("transactions", () => {
-	it("all", async () => {
-		await expect(subject.transactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
-	});
-	it("sent", async () => {
-		await expect(subject.sentTransactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
-	});
-	it("received", async () => {
-		await expect(subject.receivedTransactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
-	});
 });
 
 it("should sync", async () => {
