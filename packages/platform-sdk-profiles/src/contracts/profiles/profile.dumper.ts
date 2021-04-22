@@ -5,7 +5,7 @@ export interface IProfileDumper {
 	 * Dumps the profile into a standardised object.
 	 *
 	 * @param {IProfile} profile
-	 * @return {*}  {IProfileInput}
+	 * @return {IProfileInput}
 	 * @memberof ProfileDumper
 	 */
 	dump(profile: IProfile): IProfileInput;

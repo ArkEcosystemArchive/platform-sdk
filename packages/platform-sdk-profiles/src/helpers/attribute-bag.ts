@@ -22,7 +22,7 @@ export class AttributeBag<T> {
 	/**
 	 * Get all of the items in the attribute object.
 	 *
-	 * @return {*}  {Partial<T>}
+	 * @return {Partial<T>}
 	 * @memberof AttributeBag
 	 */
 	public all(): Partial<T> {
@@ -35,7 +35,7 @@ export class AttributeBag<T> {
 	 * @template U
 	 * @param {(keyof T | string)} key
 	 * @param {U} [defaultValue]
-	 * @return {*}  {T}
+	 * @return {T}
 	 * @memberof AttributeBag
 	 */
 	public get<U = any>(key: keyof T | string, defaultValue?: U): U {
@@ -70,7 +70,7 @@ export class AttributeBag<T> {
 	 * Determine if a given attribute exists in the attribute object.
 	 *
 	 * @param {keyof T} key
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof AttributeBag
 	 */
 	public has(key: keyof T): boolean {
@@ -82,7 +82,7 @@ export class AttributeBag<T> {
 	 * and is not `undefined` or `null` which equal missing contents.
 	 *
 	 * @param {keyof T} key
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof AttributeBag
 	 */
 	public hasStrict(key: keyof T | string): boolean {
@@ -93,7 +93,7 @@ export class AttributeBag<T> {
 	 * Determine if a given attribute is missing in the attribute object.
 	 *
 	 * @param {keyof T} key
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof AttributeBag
 	 */
 	public missing(key: keyof T): boolean {
@@ -123,7 +123,7 @@ export class AttributeBag<T> {
 	 * Only include the given attribute from the attribute object.
 	 *
 	 * @param {(keyof T)[]} keys
-	 * @return {*}  {Record<string, any>}
+	 * @return {Record<string, any>}
 	 * @memberof AttributeBag
 	 */
 	public only(keys: (keyof T)[]): Record<string, any> {
@@ -142,7 +142,7 @@ export class AttributeBag<T> {
 	 * Exclude the given attribute from the attribute object.
 	 *
 	 * @param {(keyof T)[]} keys
-	 * @return {*}  {Record<string, any>}
+	 * @return {Record<string, any>}
 	 * @memberof AttributeBag
 	 */
 	public except(keys: (keyof T)[]): Record<string, any> {

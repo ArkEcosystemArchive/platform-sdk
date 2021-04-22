@@ -15,7 +15,7 @@ export interface IExchangeRateService {
 	 *
 	 * @param {IProfile} profile
 	 * @param {string} currency
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof IExchangeRateService
 	 */
 	syncAll(profile: IProfile, currency: string): Promise<void>;
@@ -27,7 +27,7 @@ export interface IExchangeRateService {
 	 * @param {string} exchangeCurrency
 	 * @param {DateTime} date
 	 * @param {BigNumber} value
-	 * @return {*}  {BigNumber}
+	 * @return {BigNumber}
 	 * @memberof IExchangeRateService
 	 */
 	exchange(currency: string, exchangeCurrency: string, date: DateTime, value: BigNumber): BigNumber;
@@ -35,7 +35,7 @@ export interface IExchangeRateService {
 	/**
 	 * Take a snapshot of the current data.
 	 *
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof IExchangeRateService
 	 */
 	snapshot(): Promise<void>;
@@ -43,7 +43,7 @@ export interface IExchangeRateService {
 	/**
 	 * Restore data from a snapshot.
 	 *
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof IExchangeRateService
 	 */
 	restore(): Promise<void>;

@@ -5,7 +5,7 @@ export interface IProfileSerialiser {
 	 * Normalise the profile into an object.
 	 *
 	 * @param {IProfileExportOptions} [options]
-	 * @return {*}  {IProfileData}
+	 * @return {IProfileData}
 	 * @memberof Profile
 	 */
 	toJSON(

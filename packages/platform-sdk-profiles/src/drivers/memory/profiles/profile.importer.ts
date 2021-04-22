@@ -42,7 +42,7 @@ export class ProfileImporter implements IProfileImporter {
 	 *
 	 * @private
 	 * @param {string} [password]
-	 * @return {*}  {Promise<IProfileData>}
+	 * @return {Promise<IProfileData>}
 	 * @memberof Profile
 	 */
 	private async unpack (profile: IProfile, password?: string): Promise<IProfileData> {
@@ -71,7 +71,7 @@ export class ProfileImporter implements IProfileImporter {
 	 *
 	 * @private
 	 * @param {string} [password]
-	 * @return {*}  {Promise<IProfileData>}
+	 * @return {Promise<IProfileData>}
 	 * @memberof Profile
 	 */
 	private async validate (profile: IProfile, data: IProfileData): Promise<IProfileData> {

@@ -9,7 +9,7 @@ export interface IWalletSynchroniser {
 	 * Synchronise the coin.
 	 *
 	 * @param {{ resetCoin: boolean; }} [options]
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof IReadWriteWallet
 	 */
 	 coin(options?: { resetCoin: boolean; }): Promise<void>;
@@ -17,7 +17,7 @@ export interface IWalletSynchroniser {
 	 /**
 	  * Synchronise the identity.
 	  *
-	  * @return {*}  {Promise<void>}
+	  * @return {Promise<void>}
 	  * @memberof IReadWriteWallet
 	  */
 	 identity(): Promise<void>;
@@ -25,7 +25,7 @@ export interface IWalletSynchroniser {
 	 /**
 	  * Synchronise the multi signature.
 	  *
-	  * @return {*}  {Promise<void>}
+	  * @return {Promise<void>}
 	  * @memberof IReadWriteWallet
 	  */
 	 multiSignature(): Promise<void>;
@@ -33,7 +33,7 @@ export interface IWalletSynchroniser {
 	 /**
 	  * Synchronise the votes.
 	  *
-	  * @return {*}  {Promise<void>}
+	  * @return {Promise<void>}
 	  * @memberof IReadWriteWallet
 	  */
 	 votes(): Promise<void>;

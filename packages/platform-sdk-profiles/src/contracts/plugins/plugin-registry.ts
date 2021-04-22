@@ -10,7 +10,7 @@ export interface IPluginRegistry {
 	/**
 	 * Get all plugins.
 	 *
-	 * @return {*}  {Promise<IRegistryPlugin[]>}
+	 * @return {Promise<IRegistryPlugin[]>}
 	 * @memberof IPluginRegistry
 	 */
 	all(): Promise<IRegistryPlugin[]>;
@@ -19,7 +19,7 @@ export interface IPluginRegistry {
 	 * Get the size of the given plugin.
 	 *
 	 * @param {IRegistryPlugin} pkg
-	 * @return {*}  {Promise<number>}
+	 * @return {Promise<number>}
 	 * @memberof IPluginRegistry
 	 */
 	size(pkg: IRegistryPlugin): Promise<number>;
@@ -28,7 +28,7 @@ export interface IPluginRegistry {
 	 * Get the number of downloads for the given plugin.
 	 *
 	 * @param {IRegistryPlugin} pkg
-	 * @return {*}  {Promise<number>}
+	 * @return {Promise<number>}
 	 * @memberof IPluginRegistry
 	 */
 	downloads(pkg: IRegistryPlugin): Promise<number>;
@@ -183,7 +183,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the ID.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IRegistryPlugin
 	 */
 	id(): string;
@@ -191,7 +191,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the name.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IRegistryPlugin
 	 */
 	name(): string;
@@ -199,7 +199,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the alias.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IRegistryPlugin
 	 */
 	alias(): string;
@@ -207,7 +207,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the release date.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IRegistryPlugin
 	 */
 	date(): string;
@@ -215,7 +215,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the version.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IRegistryPlugin
 	 */
 	version(): string;
@@ -223,7 +223,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the description.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IRegistryPlugin
 	 */
 	description(): string;
@@ -231,7 +231,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the author.
 	 *
-	 * @return {*}  {IRegistryPluginAuthor}
+	 * @return {IRegistryPluginAuthor}
 	 * @memberof IRegistryPlugin
 	 */
 	author(): IRegistryPluginAuthor;
@@ -239,7 +239,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the source provider.
 	 *
-	 * @return {*}  {*}
+	 * @return {*}
 	 * @memberof IRegistryPlugin
 	 */
 	sourceProvider(): any;
@@ -247,7 +247,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the logo.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IRegistryPlugin
 	 */
 	logo(): string;
@@ -255,7 +255,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the images.
 	 *
-	 * @return {*}  {string[]}
+	 * @return {string[]}
 	 * @memberof IRegistryPlugin
 	 */
 	images(): string[];
@@ -263,7 +263,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the categories.
 	 *
-	 * @return {*}  {string[]}
+	 * @return {string[]}
 	 * @memberof IRegistryPlugin
 	 */
 	categories(): string[];
@@ -271,7 +271,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the permissions.
 	 *
-	 * @return {*}  {string[]}
+	 * @return {string[]}
 	 * @memberof IRegistryPlugin
 	 */
 	permissions(): string[];
@@ -279,7 +279,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Get the URLs.
 	 *
-	 * @return {*}  {string[]}
+	 * @return {string[]}
 	 * @memberof IRegistryPlugin
 	 */
 	urls(): string[];
@@ -287,7 +287,7 @@ export interface IRegistryPlugin {
 	/**
 	 * Ge the minimum version requirement.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IRegistryPlugin
 	 */
 	minimumVersion(): string;

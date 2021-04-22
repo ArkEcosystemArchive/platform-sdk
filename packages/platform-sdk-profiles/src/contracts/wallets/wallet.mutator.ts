@@ -11,7 +11,7 @@ export interface IWalletMutator {
 	 * @param {string} coin
 	 * @param {string} network
 	 * @param {{ sync: boolean }} [options]
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof void
 	 */
 	coin(coin: string, network: string, options?: { sync: boolean }): Promise<void>;
@@ -20,7 +20,7 @@ export interface IWalletMutator {
 	 * Set the identity based on a mnemonic.
 	 *
 	 * @param {string} mnemonic
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof void
 	 */
 	identity(mnemonic: string): Promise<void>;
@@ -30,7 +30,7 @@ export interface IWalletMutator {
 	 *
 	 * @param {string} address
 	 * @param {{ syncIdentity: boolean; validate: boolean }} [options]
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof void
 	 */
 	address(address: string, options?: { syncIdentity: boolean; validate: boolean }): Promise<void>;
@@ -39,7 +39,7 @@ export interface IWalletMutator {
 	 * Set the avatar.
 	 *
 	 * @param {string} value
-	 * @return {*}  {void}
+	 * @return {void}
 	 * @memberof void
 	 */
 	avatar(value: string): void;
@@ -48,7 +48,7 @@ export interface IWalletMutator {
 	 * Set the alias.
 	 *
 	 * @param {string} alias
-	 * @return {*}  {void}
+	 * @return {void}
 	 * @memberof void
 	 */
 	alias(alias: string): void;

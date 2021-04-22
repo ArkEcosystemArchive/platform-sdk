@@ -17,7 +17,7 @@ export class ProfileExporter implements IProfileExporter {
 	 *
 	 * @param {string} [password]
 	 * @param {IProfileExportOptions} [options]
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof Profile
 	 */
 	public export(

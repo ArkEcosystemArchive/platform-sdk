@@ -13,7 +13,7 @@ export interface IDelegateService {
 	 *
 	 * @param {string} coin
 	 * @param {string} network
-	 * @return {*}  {IReadOnlyWallet[]}
+	 * @return {IReadOnlyWallet[]}
 	 * @memberof IDelegateService
 	 */
 	all(coin: string, network: string): IReadOnlyWallet[];
@@ -24,7 +24,7 @@ export interface IDelegateService {
 	 * @param {string} coin
 	 * @param {string} network
 	 * @param {string} address
-	 * @return {*}  {IReadOnlyWallet}
+	 * @return {IReadOnlyWallet}
 	 * @memberof IDelegateService
 	 */
 	findByAddress(coin: string, network: string, address: string): IReadOnlyWallet;
@@ -35,7 +35,7 @@ export interface IDelegateService {
 	 * @param {string} coin
 	 * @param {string} network
 	 * @param {string} publicKey
-	 * @return {*}  {IReadOnlyWallet}
+	 * @return {IReadOnlyWallet}
 	 * @memberof IDelegateService
 	 */
 	findByPublicKey(coin: string, network: string, publicKey: string): IReadOnlyWallet;
@@ -46,7 +46,7 @@ export interface IDelegateService {
 	 * @param {string} coin
 	 * @param {string} network
 	 * @param {string} username
-	 * @return {*}  {IReadOnlyWallet}
+	 * @return {IReadOnlyWallet}
 	 * @memberof IDelegateService
 	 */
 	findByUsername(coin: string, network: string, username: string): IReadOnlyWallet;
@@ -56,7 +56,7 @@ export interface IDelegateService {
 	 *
 	 * @param {string} coin
 	 * @param {string} network
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof IDelegateService
 	 */
 	sync(coin: string, network: string): Promise<void>;
@@ -64,7 +64,7 @@ export interface IDelegateService {
 	/**
 	 * Synchronise delegates for all coins and networks.
 	 *
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof IDelegateService
 	 */
 	syncAll(): Promise<void>;
@@ -74,7 +74,7 @@ export interface IDelegateService {
 	 *
 	 * @param {IReadWriteWallet} wallet
 	 * @param {string[]} publicKeys
-	 * @return {*}  {IReadOnlyWallet[]}
+	 * @return {IReadOnlyWallet[]}
 	 * @memberof IDelegateService
 	 */
 	map(wallet: IReadWriteWallet, publicKeys: string[]): IReadOnlyWallet[];

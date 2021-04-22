@@ -23,7 +23,7 @@ export interface IPortfolio {
 	/**
 	 * Calculates a breakdown of all coins in the profile.
 	 *
-	 * @return {*}  {IPortfolioEntry[]}
+	 * @return {IPortfolioEntry[]}
 	 * @memberof IPortfolio
 	 */
 	breakdown(): IPortfolioEntry[];

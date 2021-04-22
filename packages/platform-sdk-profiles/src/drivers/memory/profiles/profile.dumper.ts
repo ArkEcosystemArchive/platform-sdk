@@ -6,7 +6,7 @@ export class ProfileDumper implements IProfileDumper {
 	 * Dumps the profile into a standardised object.
 	 *
 	 * @param {IProfile} profile
-	 * @return {*}  {IProfileInput}
+	 * @return {IProfileInput}
 	 * @memberof ProfileDumper
 	 */
 	public dump(profile: IProfile): IProfileInput {

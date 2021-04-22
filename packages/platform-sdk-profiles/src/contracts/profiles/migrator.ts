@@ -10,7 +10,7 @@ export interface IMigrator {
 	 *
 	 * @param {object} migrations
 	 * @param {string} versionToMigrate
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof IMigrator
 	 */
 	migrate(migrations: object, versionToMigrate: string): Promise<void>;
