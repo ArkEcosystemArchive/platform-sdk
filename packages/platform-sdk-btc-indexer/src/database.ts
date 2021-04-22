@@ -186,13 +186,12 @@ export class Database {
 			});
 		}
 
-		const updateStatement = this.#database
-			.prepare(`UPDATE transaction_parts
+		const updateStatement = this.#database.prepare(`UPDATE transaction_parts
 								SET input_hash = :input_hash,
 										input_idx  = :input_idx
 								WHERE output_hash = :output_hash
 									AND output_idx = :output_idx`);
-		for (let i = 0; i < vIns.length; i++){
+		for (let i = 0; i < vIns.length; i++) {
 			const vIn = vIns[i];
 			updateStatement.run({
 				input_hash: transaction.hash,
