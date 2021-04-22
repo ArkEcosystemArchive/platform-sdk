@@ -93,21 +93,21 @@ beforeEach(async () => {
 beforeAll(() => nock.disableNetConnect());
 
 it("should return votes available", () => {
-	expect(() => subject.votesAvailable()).toThrow(
+	expect(() => subject.voting().available()).toThrow(
 		"The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.",
 	);
 
 	subject.data().set(WalletData.VotesAvailable, 2);
 
-	expect(subject.votesAvailable()).toBe(2);
+	expect(subject.voting().available()).toBe(2);
 });
 
 it("should return votes used", () => {
-	expect(() => subject.votesUsed()).toThrow(
+	expect(() => subject.voting().used()).toThrow(
 		"The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.",
 	);
 
 	subject.data().set(WalletData.VotesUsed, 2);
 
-	expect(subject.votesUsed()).toBe(2);
+	expect(subject.voting().used()).toBe(2);
 });

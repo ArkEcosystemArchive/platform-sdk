@@ -93,27 +93,27 @@ beforeEach(async () => {
 beforeAll(() => nock.disableNetConnect());
 
 it("all", async () => {
-	await expect(subject.transactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
+	await expect(subject.transactionIndex().all()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
 });
 
 it("sent", async () => {
-	await expect(subject.sentTransactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
+	await expect(subject.transactionIndex().sent()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
 });
 
 it("received", async () => {
-	await expect(subject.receivedTransactions()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
+	await expect(subject.transactionIndex().received()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
 });
 
 it("should fetch transaction by id", async () => {
 	const transactionId = "3e0b2e5ed00b34975abd6dee0ca5bd5560b5bd619b26cf6d8f70030408ec5be3";
-	const transaction = await subject.findTransactionById(transactionId);
+	const transaction = await subject.transactionIndex().findById(transactionId);
 	expect(transaction.id()).toEqual(transactionId);
 });
 
 it("should fetch transactions by id", async () => {
 	const transactionId = "3e0b2e5ed00b34975abd6dee0ca5bd5560b5bd619b26cf6d8f70030408ec5be3";
 	const secondaryTransactionId = "bb9004fa874b534905f9eff201150f7f982622015f33e076c52f1e945ef184ed";
-	const transactions = await subject.findTransactionsByIds([transactionId, secondaryTransactionId]);
+	const transactions = await subject.transactionIndex().findByIds([transactionId, secondaryTransactionId]);
 
 	expect(transactions.length).toEqual(2);
 
