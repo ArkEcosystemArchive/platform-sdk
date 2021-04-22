@@ -44,14 +44,14 @@ beforeEach(async () => {
 
 		// default wallet
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../../../test/fixtures/client/wallet-non-resigned.json"))
 		.get("/api/wallets/034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192")
-		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../../../test/fixtures/client/wallet-non-resigned.json"))
 
 		// second wallet
-		.get("/api/wallets/022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce")
-		.reply(200, require("../../../../test/fixtures/client/wallet-2.json"))
 		.get("/api/wallets/DNc92FQmYu8G9Xvo6YqhPtRxYsUxdsUn9w")
+		.reply(200, require("../../../../test/fixtures/client/wallet-2.json"))
+		.get("/api/wallets/022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce")
 		.reply(200, require("../../../../test/fixtures/client/wallet-2.json"))
 
 		// Musig wallet
@@ -286,7 +286,7 @@ it("should respond on whether it is a delegate or not", () => {
 });
 
 it("should respond on whether it is a resigned delegate or not", () => {
-	expect(subject.isResignedDelegate()).toBeTrue();
+	expect(subject.isResignedDelegate()).toBeFalse();
 
 	subject = new Wallet(uuidv4(), {});
 
