@@ -5,7 +5,7 @@ import { IReadWriteWallet } from "./wallet";
  *
  * @interface IGenerateOptions
  */
-interface IGenerateOptions {
+export interface IGenerateOptions {
 	coin: string;
 	network: string;
 	locale?: string
@@ -16,7 +16,7 @@ interface IGenerateOptions {
  *
  * @interface IMnemonicOptions
  */
-interface IMnemonicOptions {
+export interface IMnemonicOptions {
 	coin: string;
 	network: string;
 	mnemonic: string;
@@ -29,28 +29,28 @@ interface IMnemonicOptions {
  *
  * @interface IAddressOptions
  */
-interface IAddressOptions { coin: string; network: string; address: string }
+export interface IAddressOptions { coin: string; network: string; address: string }
 
 /**
  * Defines the options for an import with a public key.
  *
  * @interface IPublicKeyOptions
  */
-interface IPublicKeyOptions { coin: string; network: string; publicKey: string }
+export interface IPublicKeyOptions { coin: string; network: string; publicKey: string }
 
 /**
  * Defines the options for an import with a private key.
  *
  * @interface IPrivateKeyOptions
  */
-interface IPrivateKeyOptions { coin: string; network: string; privateKey: string }
+export interface IPrivateKeyOptions { coin: string; network: string; privateKey: string }
 
 /**
  * Defines the options for an import with a BIP44 path.
  *
  * @interface IAddressWithLedgerPathOptions
  */
-interface IAddressWithLedgerPathOptions {
+export interface IAddressWithLedgerPathOptions {
 	coin: string;
 	network: string;
 	address: string;
@@ -62,7 +62,7 @@ interface IAddressWithLedgerPathOptions {
  *
  * @interface IMnemonicWithEncryptionOptions
  */
-interface IMnemonicWithEncryptionOptions {
+export interface IMnemonicWithEncryptionOptions {
 	coin: string;
 	network: string;
 	mnemonic: string;
@@ -74,14 +74,14 @@ interface IMnemonicWithEncryptionOptions {
  *
  * @interface IWifOptions
  */
-interface IWifOptions { coin: string; network: string; wif: string }
+export interface IWifOptions { coin: string; network: string; wif: string }
 
 /**
  * Defines the options for an import with a WIF and password.
  *
  * @interface IWifWithEncryptionOptions
  */
-interface IWifWithEncryptionOptions {
+export interface IWifWithEncryptionOptions {
 	coin: string;
 	network: string;
 	wif: string;
