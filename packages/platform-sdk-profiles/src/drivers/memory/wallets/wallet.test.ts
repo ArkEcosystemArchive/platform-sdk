@@ -458,16 +458,6 @@ it("should sync multi signature when not musig", async () => {
 	expect(subject.isMultiSignature()).toBeFalse();
 });
 
-it("should return entities", () => {
-	expect(subject.entities()).toBeArrayOfSize(0);
-
-	subject = new Wallet(uuidv4(), {});
-
-	expect(() => subject.entities()).toThrow(
-		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
-	);
-});
-
 it("should return votes available", () => {
 	expect(() => subject.votesAvailable()).toThrow(
 		"The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.",

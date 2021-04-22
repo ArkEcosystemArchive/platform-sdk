@@ -431,33 +431,6 @@ export interface IReadWriteWallet {
 	transactionTypes(): Coins.CoinTransactionTypes;
 
 	/**
-	 * Get a list of sent and received transactions.
-	 *
-	 * @param {Contracts.ClientTransactionsInput} [query]
-	 * @return {*}  {Promise<ExtendedTransactionDataCollection>}
-	 * @memberof IReadWriteWallet
-	 */
-	transactions(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
-
-	/**
-	 * Get a list of sent transactions.
-	 *
-	 * @param {Contracts.ClientTransactionsInput} [query]
-	 * @return {*}  {Promise<ExtendedTransactionDataCollection>}
-	 * @memberof IReadWriteWallet
-	 */
-	sentTransactions(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
-
-	/**
-	 * Get a list of received transactions.
-	 *
-	 * @param {Contracts.ClientTransactionsInput} [query]
-	 * @return {*}  {Promise<ExtendedTransactionDataCollection>}
-	 * @memberof IReadWriteWallet
-	 */
-	receivedTransactions(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
-
-	/**
 	 * Get the multi signature data.
 	 *
 	 * @return {*}  {Contracts.WalletMultiSignature}
@@ -474,62 +447,12 @@ export interface IReadWriteWallet {
 	multiSignatureParticipants(): IReadOnlyWallet[];
 
 	/**
-	 * Get all entities.
-	 *
-	 * @return {*}  {Contracts.Entity[]}
-	 * @memberof IReadWriteWallet
-	 */
-	entities(): Contracts.Entity[];
-
-	/**
-	 * Get all wallets the wallet is voting for.
-	 *
-	 * @return {*}  {IReadOnlyWallet[]}
-	 * @memberof IReadWriteWallet
-	 */
-	votes(): IReadOnlyWallet[];
-
-	/**
-	 * Get the number of votes that remain to be casted.
-	 *
-	 * @return {*}  {number}
-	 * @memberof IReadWriteWallet
-	 */
-	votesAvailable(): number;
-
-	/**
-	 * Get the number of votes that have been casted.
-	 *
-	 * @return {*}  {number}
-	 * @memberof IReadWriteWallet
-	 */
-	votesUsed(): number;
-
-	/**
 	 * Get the explorer link.
 	 *
 	 * @return {*}  {string}
 	 * @memberof IReadWriteWallet
 	 */
 	explorerLink(): string;
-
-	/**
-	 * Find a transaction by the given ID.
-	 *
-	 * @param {string} id
-	 * @return {*}  {Promise<ExtendedTransactionData>}
-	 * @memberof IReadWriteWallet
-	 */
-	findTransactionById(id: string): Promise<ExtendedTransactionData>;
-
-	/**
-	 * Find many transactions by the given IDs.
-	 *
-	 * @param {string[]} ids
-	 * @return {*}  {Promise<ExtendedTransactionData[]>}
-	 * @memberof IReadWriteWallet
-	 */
-	findTransactionsByIds(ids: string[]): Promise<ExtendedTransactionData[]>;
 
 	/**
 	 * Get the WIF.

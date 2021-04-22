@@ -5,14 +5,11 @@ import { decrypt, encrypt } from "bip38";
 import dot from "dot-prop";
 import { decode } from "wif";
 
-import { ExtendedTransactionData } from "../../../dto/transaction";
-import { transformTransactionData, transformTransactionDataCollection } from "../../../dto/transaction-mapper";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { KnownWalletService } from "../services/known-wallet-service";
 import { DataRepository } from "../../../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
-import { Avatar } from "../../../helpers/avatar";
 import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import {
@@ -23,12 +20,10 @@ import {
 	WalletData,
 	WalletFlag,
 	WalletSetting,
-	IDelegateService,
 	IExchangeRateService,
 	IKnownWalletService,
 	IReadWriteWalletAttributes,
 } from "../../../contracts";
-import { ExtendedTransactionDataCollection } from "../../../dto";
 import { State } from "../../../environment/state";
 import { AttributeBag } from "../../../helpers/attribute-bag";
 import { WalletGate } from "./wallet.gate";
@@ -37,6 +32,9 @@ import { IWalletSynchroniser } from "../../../contracts/wallets/wallet.synchroni
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
 import { WalletMutator } from "./wallet.mutator";
 import { IWalletGate } from "../../../contracts/wallets/wallet.gate";
+import { Governance } from "./services/governance";
+import { TransactionIndex } from "./services/transaction-index";
+import { WalletSerialiser } from "./services/serialiser";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #attributes: AttributeBag<IReadWriteWalletAttributes> = new AttributeBag();
@@ -212,53 +210,7 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public toObject(): IWalletData {
-		if (this.hasBeenPartiallyRestored()) {
-			return this.#attributes.get<IWalletData>('initialState');
-		}
-
-		this.#transactionService.dump();
-
-		const network: Coins.CoinNetwork = this.coin().network().toObject();
-
-		return {
-			id: this.id(),
-			coin: this.coin().manifest().get<string>("name"),
-			network: this.networkId(),
-			// We only persist a few settings to prefer defaults from the SDK.
-			networkConfig: {
-				crypto: {
-					slip44: network.crypto.slip44,
-				},
-				networking: {
-					hosts: network.networking.hosts,
-					hostsMultiSignature: dot.get(network, "networking.hostsMultiSignature", []),
-					hostsArchival: dot.get(network, "networking.hostsArchival", []),
-				},
-			},
-			address: this.address(),
-			publicKey: this.publicKey(),
-			data: {
-				[WalletData.Balance]: this.balance().toFixed(),
-				[WalletData.BroadcastedTransactions]: this.data().get(WalletData.BroadcastedTransactions, []),
-				[WalletData.Sequence]: this.nonce().toFixed(),
-				[WalletData.SignedTransactions]: this.data().get(WalletData.SignedTransactions, []),
-				[WalletData.Votes]: this.data().get(WalletData.Votes, []),
-				[WalletData.VotesAvailable]: this.data().get(WalletData.VotesAvailable, 0),
-				[WalletData.VotesUsed]: this.data().get(WalletData.VotesUsed, 0),
-				[WalletData.WaitingForOurSignatureTransactions]: this.data().get(
-					WalletData.WaitingForOurSignatureTransactions,
-					[],
-				),
-				[WalletData.WaitingForOtherSignaturesTransactions]: this.data().get(
-					WalletData.WaitingForOtherSignaturesTransactions,
-					[],
-				),
-				[WalletData.LedgerPath]: this.data().get(WalletData.LedgerPath),
-				[WalletData.Bip38EncryptedKey]: this.data().get(WalletData.Bip38EncryptedKey),
-				[WalletFlag.Starred]: this.isStarred(),
-			},
-			settings: this.settings().all(),
-		};
+		return new WalletSerialiser(this).toJSON();
 	}
 
 	/**
@@ -418,26 +370,12 @@ export class Wallet implements IReadWriteWallet {
 		return new WalletMutator(this);
 	}
 
-	/**
-	 * These methods serve as helpers to interact with the underlying coin.
-	 */
-
-	public async transactions(
-		query: Contracts.ClientTransactionsInput = {},
-	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransactions({ ...query, addresses: [this.address()] });
+	public governance(): Governance {
+		return new Governance(this);
 	}
 
-	public async sentTransactions(
-		query: Contracts.ClientTransactionsInput = {},
-	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransactions({ ...query, senderId: this.address() });
-	}
-
-	public async receivedTransactions(
-		query: Contracts.ClientTransactionsInput = {},
-	): Promise<ExtendedTransactionDataCollection> {
-		return this.fetchTransactions({ ...query, recipientId: this.address() });
+	public transactionIndex(): TransactionIndex {
+		return new TransactionIndex(this);
 	}
 
 	public multiSignature(): Contracts.WalletMultiSignature {
@@ -460,63 +398,8 @@ export class Wallet implements IReadWriteWallet {
 		return this.multiSignature().publicKeys.map((publicKey: string) => new ReadOnlyWallet(participants[publicKey]));
 	}
 
-	public entities(): Contracts.Entity[] {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
-		}
-
-		return this.#attributes.get<Contracts.WalletData>('wallet').entities();
-	}
-
-	public votes(): IReadOnlyWallet[] {
-		const votes: string[] | undefined = this.data().get<string[]>(WalletData.Votes);
-
-		if (votes === undefined) {
-			throw new Error("The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.");
-		}
-
-		return container.get<IDelegateService>(Identifiers.DelegateService).map(this, votes);
-	}
-
-	public votesAvailable(): number {
-		const result: number | undefined = this.data().get<number>(WalletData.VotesAvailable);
-
-		if (result === undefined) {
-			throw new Error("The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.");
-		}
-
-		return result;
-	}
-
-	public votesUsed(): number {
-		const result: number | undefined = this.data().get<number>(WalletData.VotesUsed);
-
-		if (result === undefined) {
-			throw new Error("The voting data has not been synced. Please call [synchroniser().votes()] before accessing votes.");
-		}
-
-		return result;
-	}
-
 	public explorerLink(): string {
 		return this.link().wallet(this.address());
-	}
-
-	public async findTransactionById(id: string): Promise<ExtendedTransactionData> {
-		return transformTransactionData(this, await this.#attributes.get<Coins.Coin>('coin').client().transaction(id));
-	}
-
-	/**
-	 * Get multiple transactions by their IDs.
-	 *
-	 * Uses "Promise.all" instead of "Promise.allSettled" to throw when an invalid ID is used.
-	 *
-	 * @param {string[]} ids
-	 * @returns {Promise<ExtendedTransactionData[]>}
-	 * @memberof Wallet
-	 */
-	public async findTransactionsByIds(ids: string[]): Promise<ExtendedTransactionData[]> {
-		return Promise.all(ids.map((id: string) => this.findTransactionById(id)));
 	}
 
 	/**
@@ -575,19 +458,6 @@ export class Wallet implements IReadWriteWallet {
     {
         return this.#attributes;
     }
-
-	private async fetchTransactions(
-		query: Contracts.ClientTransactionsInput,
-	): Promise<ExtendedTransactionDataCollection> {
-		const result = await this.#attributes.get<Coins.Coin>('coin').client().transactions(query);
-
-		for (const transaction of result.items()) {
-			transaction.setMeta("address", this.address());
-			transaction.setMeta("publicKey", this.publicKey());
-		}
-
-		return transformTransactionDataCollection(this, result);
-	}
 
 	private restore(): void {
 		this.data().set(
