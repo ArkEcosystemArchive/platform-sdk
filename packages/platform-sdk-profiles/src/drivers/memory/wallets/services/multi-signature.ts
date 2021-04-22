@@ -27,6 +27,6 @@ export class MultiSignature implements IMultiSignature {
 			);
 		}
 
-		return this.#wallet.multiSignature().publicKeys.map((publicKey: string) => new ReadOnlyWallet(participants[publicKey]));
+		return this.all().publicKeys.map((publicKey: string) => new ReadOnlyWallet(participants[publicKey]));
 	}
 }
