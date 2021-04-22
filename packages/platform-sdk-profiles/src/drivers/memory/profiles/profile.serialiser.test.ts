@@ -1,28 +1,17 @@
 import "jest-extended";
 import "reflect-metadata";
 
-import { Base64 } from "@arkecosystem/platform-sdk-crypto";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByAddressWithLedgerPath, importByMnemonic, generateWallet } from "../../../../test/helpers";
-import { PluginRepository } from "../plugins/plugin-repository";
-import { ContactRepository } from "../repositories/contact-repository";
-import { DataRepository } from "../../../repositories/data-repository";
-import { NotificationRepository } from "../repositories/notification-repository";
-import { SettingRepository } from "../repositories/setting-repository";
-import { WalletRepository } from "../repositories/wallet-repository";
-import { CountAggregate } from "./aggregates/count-aggregate";
-import { RegistrationAggregate } from "./aggregates/registration-aggregate";
-import { TransactionAggregate } from "./aggregates/transaction-aggregate";
-import { WalletAggregate } from "./aggregates/wallet-aggregate";
-import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 import { IProfile, ProfileSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
+import { ProfileSerialiser } from "./profile.serialiser";
 
-let subject: IProfile;
+let subject: ProfileSerialiser;
+let profile: IProfile;
 
 beforeAll(() => {
 	bootContainer();
@@ -44,15 +33,16 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-	subject = new Profile({ id: "uuid", name: "name", data: "" });
+	subject = new ProfileSerialiser();
+	profile = new Profile({ id: "uuid", name: "name", data: "" });
 
-	State.profile(subject);
+	State.profile(profile);
 
-	subject.settings().set(ProfileSetting.Name, "John Doe");
+	profile.settings().set(ProfileSetting.Name, "John Doe");
 });
 
 it("should turn into an object", () => {
-	expect(subject.toObject()).toMatchInlineSnapshot(`
+	expect(subject.toJSON(profile)).toMatchInlineSnapshot(`
 		Object {
 		  "contacts": Object {},
 		  "data": Object {},
@@ -80,7 +70,7 @@ it("should turn into an object with options", () => {
 		await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 		profile.save();
 
-		const filtered = profile.toObject({
+		const filtered = subject.toJSON(profile, {
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
@@ -94,7 +84,7 @@ it("should turn into an object with options", () => {
 		await generateWallet(profile, "ARK", "ark.devnet");
 		profile.save();
 
-		const filtered = profile.toObject({
+		const filtered = subject.toJSON(profile, {
 			excludeEmptyWallets: true,
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
@@ -108,7 +98,7 @@ it("should turn into an object with options", () => {
 		await importByAddressWithLedgerPath(profile, identity.address, "ARK", "ark.devnet", "0");
 		profile.save();
 
-		const filtered = profile.toObject({
+		const filtered = subject.toJSON(profile, {
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: true,
 			addNetworkInformation: true,
@@ -123,7 +113,7 @@ it("should turn into an object with options", () => {
 		profile.save();
 
 		expect(() =>
-			profile.toObject({
+			subject.toJSON(profile, {
 				excludeEmptyWallets: false,
 				excludeLedgerWallets: false,
 				addNetworkInformation: false,
@@ -136,7 +126,7 @@ it("should turn into an object with options", () => {
 		profile.save();
 
 		expect(() =>
-			profile.toObject({
+			subject.toJSON(profile, {
 				excludeEmptyWallets: false,
 				excludeLedgerWallets: false,
 				addNetworkInformation: true,

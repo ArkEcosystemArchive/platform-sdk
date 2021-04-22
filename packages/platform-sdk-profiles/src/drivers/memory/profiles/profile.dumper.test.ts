@@ -1,28 +1,16 @@
 import "jest-extended";
 import "reflect-metadata";
 
-import { Base64 } from "@arkecosystem/platform-sdk-crypto";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer, importByAddressWithLedgerPath, importByMnemonic, generateWallet } from "../../../../test/helpers";
-import { PluginRepository } from "../plugins/plugin-repository";
-import { ContactRepository } from "../repositories/contact-repository";
-import { DataRepository } from "../../../repositories/data-repository";
-import { NotificationRepository } from "../repositories/notification-repository";
-import { SettingRepository } from "../repositories/setting-repository";
-import { WalletRepository } from "../repositories/wallet-repository";
-import { CountAggregate } from "./aggregates/count-aggregate";
-import { RegistrationAggregate } from "./aggregates/registration-aggregate";
-import { TransactionAggregate } from "./aggregates/transaction-aggregate";
-import { WalletAggregate } from "./aggregates/wallet-aggregate";
-import { Authenticator } from "./authenticator";
+import { bootContainer } from "../../../../test/helpers";
 import { Profile } from "./profile";
 import { IProfile, ProfileSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
+import { ProfileDumper } from "./profile.dumper";
 
-let subject: IProfile;
+let subject: ProfileDumper;
+let profile: IProfile;
 
 beforeAll(() => {
 	bootContainer();
@@ -44,19 +32,20 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-	subject = new Profile({ id: "uuid", name: "name", data: "" });
+	subject = new ProfileDumper();
+	profile = new Profile({ id: "uuid", name: "name", data: "" });
 
-	State.profile(subject);
+	State.profile(profile);
 
-	subject.settings().set(ProfileSetting.Name, "John Doe");
+	profile.settings().set(ProfileSetting.Name, "John Doe");
 });
 
 describe("#dump", () => {
 	it("should dump the profile with a password", () => {
-		subject.auth().setPassword("password");
-		subject.save("password");
+		profile.auth().setPassword("password");
+		profile.save("password");
 
-		const { id, password, data } = subject.dump();
+		const { id, password, data } = subject.dump(profile);
 
 		expect(id).toBeString();
 		expect(password).toBeString();
@@ -64,8 +53,8 @@ describe("#dump", () => {
 	});
 
 	it("should dump the profile without a password", () => {
-		subject.save();
-		const { id, password, data } = subject.dump();
+		profile.save();
+		const { id, password, data } = subject.dump(profile);
 
 		expect(id).toBeString();
 		expect(password).toBeUndefined();
@@ -73,9 +62,9 @@ describe("#dump", () => {
 	});
 
 	it("should fail to dump a profile with a password if the profile was not encrypted", () => {
-		subject = new Profile({ id: "uuid", name: "name", data: "", password: "password" });
+		profile = new Profile({ id: "uuid", name: "name", data: "", password: "password" });
 
-		expect(() => subject.dump()).toThrow(
+		expect(() => subject.dump(profile)).toThrow(
 			"The profile has not been encoded or encrypted. Please call [save] before dumping.",
 		);
 	});
