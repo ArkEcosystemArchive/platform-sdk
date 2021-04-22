@@ -461,6 +461,8 @@ export class Profile implements IProfile {
 	}
 
 	/**
+	 * @TODO: move this out
+	 *
 	 * Sync the wallets and contacts with their respective networks.
 	 *
 	 * @param {string} [password]
@@ -474,6 +476,8 @@ export class Profile implements IProfile {
 	}
 
 	/**
+	 * @TODO: move this out
+	 *
 	 * Encode or encrypt the profile data for dumping later on.
 	 */
 	public save(password?: string): void {
