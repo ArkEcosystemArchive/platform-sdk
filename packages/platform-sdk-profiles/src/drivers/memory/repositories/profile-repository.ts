@@ -7,13 +7,16 @@ import { ProfileFactory } from "../profiles/profile.factory";
 import { DataRepository } from "../../../repositories/data-repository";
 import { ProfileExporter } from "../profiles/profile.exporter";
 import { ProfileImporter } from "../profiles/profile.importer";
+import { ProfileDumper } from "../profiles/profile.dumper";
 
 @injectable()
 export class ProfileRepository implements IProfileRepository {
 	readonly #data: DataRepository;
+	readonly #dumper: ProfileDumper;
 
 	public constructor() {
 		this.#data = new DataRepository();
+		this.#dumper = new ProfileDumper();
 	}
 
 	public fill(profiles: object): void {
@@ -108,7 +111,7 @@ export class ProfileRepository implements IProfileRepository {
 		const profiles: [string, Profile][] = Object.entries(this.#data.all());
 
 		for (const [id, profile] of profiles) {
-			result[id] = profile.dump();
+			result[id] = this.#dumper.dump(profile);
 		}
 
 		return result;

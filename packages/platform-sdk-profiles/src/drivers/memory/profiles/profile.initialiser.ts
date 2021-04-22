@@ -14,20 +14,8 @@ export class ProfileInitialiser {
 	 * @param {string} name
 	 * @memberof Profile
 	 */
-	public reset(name: string): void {
+	public initialise(name: string): void {
 		this.#profile.settings().set(ProfileSetting.Name, name);
-
-		this.settings();
-	}
-
-	/**
-	 * Initialize the factory settings.
-	 *
-	 * If the profile has modified any settings they will be overwritten!
-	 *
-	 * @memberof Profile
-	 */
-	public settings(): void {
 		this.#profile.settings().set(ProfileSetting.AdvancedMode, false);
 		this.#profile.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
 		this.#profile.settings().set(ProfileSetting.Bip39Locale, "english");

@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import {
-	IProfileData,
-	IProfileExportOptions,
 	IContactRepository,
 	IPortfolio,
 	ICountAggregate,
@@ -43,7 +41,6 @@ import { WalletFactory } from "../wallets/wallet.factory";
 import { AttributeBag } from "../../../helpers/attribute-bag";
 import { ProfileExporter } from "./profile.exporter";
 import { ProfileInitialiser } from "./profile.initialiser";
-import { ProfileImporter } from "./profile.importer";
 
 export class Profile implements IProfile {
 	/**
@@ -378,7 +375,7 @@ export class Profile implements IProfile {
 
 		this.wallets().flush();
 
-		new ProfileInitialiser(this).reset(name);
+		new ProfileInitialiser(this).initialise(name);
 	}
 
 	/**
@@ -461,62 +458,6 @@ export class Profile implements IProfile {
 		const usesMultiPeerBroadcasting: boolean = this.settings().get(ProfileSetting.UseMultiPeerBroadcast) === true;
 
 		return this.usesCustomPeer() && usesMultiPeerBroadcasting;
-	}
-
-	/**
-	 * Normalise the profile into an object.
-	 *
-	 * @param {IProfileExportOptions} [options]
-	 * @return {*}  {IProfileData}
-	 * @memberof Profile
-	 */
-	public toObject(
-		options: IProfileExportOptions = {
-			excludeEmptyWallets: false,
-			excludeLedgerWallets: false,
-			addNetworkInformation: true,
-			saveGeneralSettings: true,
-		},
-	): IProfileData {
-		if (!options.saveGeneralSettings) {
-			throw Error("This is not implemented yet");
-		}
-
-		return {
-			id: this.id(),
-			contacts: this.contacts().toObject(),
-			data: this.data().all(),
-			notifications: this.notifications().all(),
-			peers: this.peers().toObject(),
-			plugins: this.plugins().all(),
-			settings: this.settings().all(),
-			wallets: this.wallets().toObject(options),
-		};
-	}
-
-	/**
-	 * Dumps the profile into a standardised object.
-	 *
-	 * @param {string} [password]
-	 * @returns {ProfileInput}
-	 * @memberof Profile
-	 */
-	public dump(): IProfileInput {
-		if (!this.#attributes.get<string>('data')) {
-			throw new Error("The profile has not been encoded or encrypted. Please call [save] before dumping.");
-		}
-
-		return {
-			id: this.id(),
-			name: this.name(),
-			avatar: this.avatar(),
-			password: this.#attributes.get<string>('password'),
-			data: this.#attributes.get<string>('data'),
-		};
-	}
-
-	public async restore(password?: string): Promise<void> {
-		await new ProfileImporter(this).import(password);
 	}
 
 	/**

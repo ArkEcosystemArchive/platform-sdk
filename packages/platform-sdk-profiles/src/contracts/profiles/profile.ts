@@ -270,32 +270,6 @@ export interface IProfile {
 	usesMultiPeerBroadcasting(): boolean;
 
 	/**
-	 * Turn the profile into a normalised object.
-	 *
-	 * @param {IProfileExportOptions} [options]
-	 * @return {*}  {IProfileData}
-	 * @memberof IProfile
-	 */
-	toObject(options?: IProfileExportOptions): IProfileData;
-
-	/**
-	 * Dump the profile data.
-	 *
-	 * @return {*}  {IProfileInput}
-	 * @memberof IProfile
-	 */
-	dump(): IProfileInput;
-
-	/**
-	 * Restore the profile data.
-	 *
-	 * @param {string} [password]
-	 * @return {*}  {Promise<void>}
-	 * @memberof IProfile
-	 */
-	restore(password?: string): Promise<void>;
-
-	/**
 	 * Synchronise the profile.
 	 *
 	 * @return {*}  {Promise<void>}
