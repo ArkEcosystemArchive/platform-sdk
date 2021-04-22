@@ -51,6 +51,7 @@ export class Wallet implements IReadWriteWallet {
 	readonly #voteRegistry: IVoteRegistry;
 	readonly #transactionIndex: ITransactionIndex;
 	readonly #walletImportFormat: IWalletImportFormat;
+	readonly #multiSignature: IMultiSignature;
 
 	public constructor(id: string, initialState: any) {
 		this.#attributes = new AttributeBag<IReadWriteWalletAttributes>({
@@ -68,6 +69,7 @@ export class Wallet implements IReadWriteWallet {
 		this.#voteRegistry = new VoteRegistry(this);
 		this.#transactionIndex = new TransactionIndex(this);
 		this.#walletImportFormat = new WalletImportFormat(this);
+		this.#multiSignature = new MultiSignature(this);
 
 		this.restore();
 	}
@@ -399,7 +401,7 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public multiSignature(): IMultiSignature {
-		return new MultiSignature(this);
+		return this.#multiSignature;
 	}
 
 	public explorerLink(): string {
