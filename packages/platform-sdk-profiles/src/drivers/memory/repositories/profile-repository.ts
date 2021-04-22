@@ -77,7 +77,7 @@ export class ProfileRepository implements IProfileRepository {
 			data,
 		});
 
-		await new ProfileImporter(profile).import(password);
+		await new ProfileImporter().import(profile, password);
 
 		return profile;
 	}
