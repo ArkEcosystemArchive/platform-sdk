@@ -74,59 +74,6 @@ export class Wallet implements IReadWriteWallet {
 		this.restore();
 	}
 
-	/**
-	 * These methods serve as helpers to proxy certain method calls to the parent profile.
-	 */
-
-	public getRelays(): string[] {
-		return State.profile().peers()
-			.getRelays(this.coinId(), this.networkId())
-			.map((peer) => peer.host);
-	}
-
-	/**
-	 * Connects the coin to the blockchain and configures it.
-	 *
-	 * @remark
-	 * This only needs to be called if `setCoin` is called with `sync: false`.
-	 *
-	 * @returns {Promise<void>}
-	 * @memberof Wallet
-	 */
-	public async connect(): Promise<void> {
-		if (!this.hasCoin()) {
-			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "connect", "coin");
-		}
-
-		await this.#attributes.get<Coins.Coin>('coin').__construct();
-	}
-
-	/**
-	 * Determines if the instance already has a coin set.
-	 *
-	 * @remark
-	 * This only determines if a coin instance has been created, not if it
-	 * has been synchronized and configured with the blockchain network.
-	 *
-	 * @returns {boolean}
-	 * @memberof Wallet
-	 */
-	public hasCoin(): boolean {
-		return this.#attributes.hasStrict('coin');
-	}
-
-	/**
-	 * These methods serve as getters to the underlying data and dependencies.
-	 */
-
-	public hasSyncedWithNetwork(): boolean {
-		if (this.#attributes.get<Contracts.WalletData>('wallet') === undefined) {
-			return false;
-		}
-
-		return this.#attributes.get<Contracts.WalletData>('wallet').hasPassed();
-	}
-
 	public id(): string {
 		return this.#attributes.get("id");
 	}
@@ -209,6 +156,59 @@ export class Wallet implements IReadWriteWallet {
 		}
 
 		return this.#attributes.get<string>('avatar');
+	}
+
+	/**
+	 * These methods serve as helpers to proxy certain method calls to the parent profile.
+	 */
+
+	public getRelays(): string[] {
+		return State.profile().peers()
+			.getRelays(this.coinId(), this.networkId())
+			.map((peer) => peer.host);
+	}
+
+	/**
+	 * Connects the coin to the blockchain and configures it.
+	 *
+	 * @remark
+	 * This only needs to be called if `setCoin` is called with `sync: false`.
+	 *
+	 * @returns {Promise<void>}
+	 * @memberof Wallet
+	 */
+	public async connect(): Promise<void> {
+		if (!this.hasCoin()) {
+			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "connect", "coin");
+		}
+
+		await this.#attributes.get<Coins.Coin>('coin').__construct();
+	}
+
+	/**
+	 * Determines if the instance already has a coin set.
+	 *
+	 * @remark
+	 * This only determines if a coin instance has been created, not if it
+	 * has been synchronized and configured with the blockchain network.
+	 *
+	 * @returns {boolean}
+	 * @memberof Wallet
+	 */
+	public hasCoin(): boolean {
+		return this.#attributes.hasStrict('coin');
+	}
+
+	/**
+	 * These methods serve as getters to the underlying data and dependencies.
+	 */
+
+	public hasSyncedWithNetwork(): boolean {
+		if (this.#attributes.get<Contracts.WalletData>('wallet') === undefined) {
+			return false;
+		}
+
+		return this.#attributes.get<Contracts.WalletData>('wallet').hasPassed();
 	}
 
 	public data(): IDataRepository {
