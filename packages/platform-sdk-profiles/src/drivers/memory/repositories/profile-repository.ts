@@ -86,6 +86,11 @@ export class ProfileRepository implements IProfileRepository {
 		return new ProfileExporter(profile).export(password, options);
 	}
 
+	// @TODO: expose this in some other way
+	public async restore(profile: IProfile, password?: string): Promise<void> {
+		new ProfileImporter().import(profile, password);
+	}
+
 	public has(id: string): boolean {
 		return this.#data.has(id);
 	}
