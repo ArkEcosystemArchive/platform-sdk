@@ -41,7 +41,7 @@ export const accessProfile = async (env: Environment): Promise<void> => {
 
 		Helpers.MemoryPassword.set(password);
 	} else {
-		await env.profiles().restore(profile, );
+		await env.profiles().restore(profile);
 	}
 
 	// Act
