@@ -163,15 +163,14 @@ export class Database {
 
 		this.#database
 			.prepare(
-				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender)
-				 VALUES (:hash, :time, :amount, :fee, :sender)`
+				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee)
+				 VALUES (:hash, :time, :amount, :fee)`
 			)
 			.run({
 				hash: transaction.hash,
 				time: transaction.time,
 				amount: amount.toString(),
 				fee: fee.toString(),
-				sender: "address-of-sender",
 				vouts
 			});
 
@@ -211,8 +210,7 @@ export class Database {
 				hash     VARCHAR(64)   PRIMARY KEY,
 				time     INTEGER       NOT NULL,
 				amount   INTEGER       NOT NULL,
-				fee      INTEGER       NOT NULL,
-				sender   VARCHAR(64)   NOT NULL
+				fee      INTEGER       NOT NULL
 			);
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
 
