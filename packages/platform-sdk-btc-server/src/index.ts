@@ -160,13 +160,14 @@ export const subscribe = async (flags: {
 					 WHERE hash IN (
 						 SELECT output_hash
 						 FROM transaction_parts
-						 WHERE address = '${(JSON.stringify([request.params.wallet]))}'
+						 WHERE address = '${JSON.stringify([request.params.wallet])}'
 					 )
 							OR hash IN (
 						 SELECT input_hash
 						 FROM transaction_parts
-						 WHERE address = '${(JSON.stringify([request.params.wallet]))}'
-					 );`)
+						 WHERE address = '${JSON.stringify([request.params.wallet])}'
+					 );`,
+				)
 				.all(),
 	});
 
