@@ -13,6 +13,7 @@ import { IWalletMutator } from "./wallet.mutator";
 import { AttributeBag } from "../../helpers/attribute-bag";
 import { IVoteRegistry } from "./services/vote-registry";
 import { ITransactionIndex } from "./services/transaction-index";
+import { IWalletImportFormat } from "./services/wif";
 
 /**
  * Defines the structure that represents the wallet data.
@@ -457,33 +458,6 @@ export interface IReadWriteWallet {
 	explorerLink(): string;
 
 	/**
-	 * Get the WIF.
-	 *
-	 * @param {string} password
-	 * @return {*}  {Promise<string>}
-	 * @memberof IReadWriteWallet
-	 */
-	wif(password: string): Promise<string>;
-
-	/**
-	 * Set the WIF.
-	 *
-	 * @param {string} mnemonic
-	 * @param {string} password
-	 * @return {*}  {Promise<IReadWriteWallet>}
-	 * @memberof IReadWriteWallet
-	 */
-	setWif(mnemonic: string, password: string): Promise<IReadWriteWallet>;
-
-	/**
-	 * Determine if the wallet uses a WIF.
-	 *
-	 * @return {*}  {boolean}
-	 * @memberof IReadWriteWallet
-	 */
-	usesWIF(): boolean;
-
-	/**
 	 * Mark the wallet as fully restored.
 	 *
 	 * @memberof IReadWriteWallet
@@ -576,4 +550,12 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	transactionIndex(): ITransactionIndex;
+
+	/**
+	 * Get the wallet transaction index instance.
+	 *
+	 * @return {*}  {IWalletImportFormat}
+	 * @memberof IReadWriteWallet
+	 */
+	wif(): IWalletImportFormat;
 }
