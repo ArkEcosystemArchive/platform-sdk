@@ -7,6 +7,7 @@ import { bootContainer } from "../../../../test/helpers";
 import { Migrator } from "./migrator";
 import { Profile } from "./profile";
 import { IProfile, ProfileData } from "../../../contracts";
+import { ProfileImporter } from "./profile.importer";
 
 let subject: Migrator;
 let profile: IProfile;
@@ -231,8 +232,7 @@ it("should migrate profiles from JSON to Base64", async () => {
 
 	expect(profile.data().get(ProfileData.LatestMigration)).toBe("2.0.0");
 
-	// @ts-ignore
-	await profile.restore();
+	await new ProfileImporter().import(profile);
 
 	expect(profile.id()).toBe("b999d134-7a24-481e-a95d-bc47c543bfc9");
 	expect(profile.usesPassword()).toBeTrue();
