@@ -25,6 +25,7 @@ import { Environment } from "./env";
 import { State } from "./state";
 import { MemoryStorage } from "./storage/memory";
 import { ProfileImporter } from "../drivers/memory/profiles/profile.importer";
+import { ProfileSerialiser } from "../drivers/memory/profiles/profile.serialiser";
 
 let subject: Environment;
 
@@ -387,7 +388,9 @@ it("should persist the env and restore it", async () => {
 	await new ProfileImporter().import(restoredJack, "password");
 	await restoredJack.sync();
 
-	expect(restoredJohn.toObject()).toEqual(john.toObject());
-	expect(restoredJane.toObject()).toEqual(jane.toObject());
-	expect(restoredJack.toObject()).toEqual(jack.toObject());
+	const serialiser = new ProfileSerialiser();
+
+	expect(serialiser.toJSON(restoredJohn)).toEqual(serialiser.toJSON(john));
+	expect(serialiser.toJSON(restoredJane)).toEqual(serialiser.toJSON(jane));
+	expect(serialiser.toJSON(restoredJack)).toEqual(serialiser.toJSON(jack));
 });
