@@ -188,6 +188,85 @@ export class Profile implements IProfile {
 	}
 
 	/**
+	 * Get the UUID of the profile.
+	 *
+	 * @return {string}
+	 * @memberof Profile
+	 */
+	public id(): string {
+		return this.#attributes.get<string>('id');
+	}
+
+	/**
+	 * Get the name of the profile.
+	 *
+	 * @return {string}
+	 * @memberof Profile
+	 */
+	public name(): string {
+		if (this.settings().missing(ProfileSetting.Name)) {
+			return this.#attributes.get<string>('name');
+		}
+
+		return this.settings().get<string>(ProfileSetting.Name)!;
+	}
+
+	/**
+	 * Get the avatar of the profile.
+	 *
+	 * @return {string}
+	 * @memberof Profile
+	 */
+	public avatar(): string {
+		const avatarFromSettings: string | undefined = this.settings().get(ProfileSetting.Avatar);
+
+		if (avatarFromSettings) {
+			return avatarFromSettings;
+		}
+
+		if (this.#attributes.hasStrict('data.avatar')) {
+			return this.#attributes.get<string>('avatar');
+		}
+
+		return Avatar.make(this.name());
+	}
+
+	/**
+	 * Get the balance of the profile.
+	 *
+	 * @return {BigNumber}
+	 * @memberof Profile
+	 */
+	public balance(): BigNumber {
+		return this.walletAggregate().balance();
+	}
+
+	/**
+	 * Get the converted balance of the profile.
+	 *
+	 * @return {BigNumber}
+	 * @memberof Profile
+	 */
+	public convertedBalance(): BigNumber {
+		return this.walletAggregate().convertedBalance();
+	}
+
+	/**
+	 * Flush all data and reset the instance.
+	 *
+	 * @memberof Profile
+	 */
+	public flush(): void {
+		const name: string | undefined = this.settings().get(ProfileSetting.Name);
+
+		if (name === undefined) {
+			throw new Error("The name of the profile could not be found. This looks like a bug.");
+		}
+
+		new ProfileInitialiser(this).initialise(name);
+	}
+
+	/**
 	 * Access the coin service.
 	 *
 	 * @returns {ICoinService}
@@ -285,85 +364,6 @@ export class Profile implements IProfile {
 	 */
 	public walletFactory(): IWalletFactory {
 		return new WalletFactory();
-	}
-
-	/**
-	 * Get the UUID of the profile.
-	 *
-	 * @return {string}
-	 * @memberof Profile
-	 */
-	public id(): string {
-		return this.#attributes.get<string>('id');
-	}
-
-	/**
-	 * Get the name of the profile.
-	 *
-	 * @return {string}
-	 * @memberof Profile
-	 */
-	public name(): string {
-		if (this.settings().missing(ProfileSetting.Name)) {
-			return this.#attributes.get<string>('name');
-		}
-
-		return this.settings().get<string>(ProfileSetting.Name)!;
-	}
-
-	/**
-	 * Get the avatar of the profile.
-	 *
-	 * @return {string}
-	 * @memberof Profile
-	 */
-	public avatar(): string {
-		const avatarFromSettings: string | undefined = this.settings().get(ProfileSetting.Avatar);
-
-		if (avatarFromSettings) {
-			return avatarFromSettings;
-		}
-
-		if (this.#attributes.hasStrict('data.avatar')) {
-			return this.#attributes.get<string>('avatar');
-		}
-
-		return Avatar.make(this.name());
-	}
-
-	/**
-	 * Get the balance of the profile.
-	 *
-	 * @return {BigNumber}
-	 * @memberof Profile
-	 */
-	public balance(): BigNumber {
-		return this.walletAggregate().balance();
-	}
-
-	/**
-	 * Get the converted balance of the profile.
-	 *
-	 * @return {BigNumber}
-	 * @memberof Profile
-	 */
-	public convertedBalance(): BigNumber {
-		return this.walletAggregate().convertedBalance();
-	}
-
-	/**
-	 * Flush all data and reset the instance.
-	 *
-	 * @memberof Profile
-	 */
-	public flush(): void {
-		const name: string | undefined = this.settings().get(ProfileSetting.Name);
-
-		if (name === undefined) {
-			throw new Error("The name of the profile could not be found. This looks like a bug.");
-		}
-
-		new ProfileInitialiser(this).initialise(name);
 	}
 
 	/**
