@@ -1,6 +1,7 @@
 import { IProfile, ProfileSetting } from "../../../contracts";
+import { IProfileInitialiser } from "../../../contracts/profiles/profile.initialiser";
 
-export class ProfileInitialiser {
+export class ProfileInitialiser implements IProfileInitialiser {
 	readonly #profile: IProfile;
 
 	public constructor(profile: IProfile) {

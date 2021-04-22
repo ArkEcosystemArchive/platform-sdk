@@ -1,5 +1,5 @@
 import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
-import { IProfile, IProfileData, IProfileInput } from "../../../contracts";
+import { IProfile, IProfileData } from "../../../contracts";
 import { IProfileEncrypter } from "../../../contracts/profiles/profile.encrypter";
 import { MemoryPassword } from "../../../helpers/password";
 
