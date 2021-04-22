@@ -32,9 +32,11 @@ import { IWalletSynchroniser } from "../../../contracts/wallets/wallet.synchroni
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
 import { WalletMutator } from "./wallet.mutator";
 import { IWalletGate } from "../../../contracts/wallets/wallet.gate";
-import { Governance } from "./services/governance";
+import { VoteRegistry } from "./services/vote-registry";
 import { TransactionIndex } from "./services/transaction-index";
 import { WalletSerialiser } from "./services/serialiser";
+import { ITransactionIndex } from "../../../contracts/wallets/services/transaction-index";
+import { IVoteRegistry } from "../../../contracts/wallets/services/vote-registry";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #attributes: AttributeBag<IReadWriteWalletAttributes> = new AttributeBag();
@@ -370,11 +372,11 @@ export class Wallet implements IReadWriteWallet {
 		return new WalletMutator(this);
 	}
 
-	public governance(): Governance {
-		return new Governance(this);
+	public voting(): IVoteRegistry {
+		return new VoteRegistry(this);
 	}
 
-	public transactionIndex(): TransactionIndex {
+	public transactionIndex(): ITransactionIndex {
 		return new TransactionIndex(this);
 	}
 
