@@ -164,25 +164,24 @@ export class Database {
 		this.#database
 			.prepare(
 				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee)
-				 VALUES (:hash, :time, :amount, :fee)`
+				 VALUES (:hash, :time, :amount, :fee)`,
 			)
 			.run({
 				hash: transaction.hash,
 				time: transaction.time,
 				amount: amount.toString(),
 				fee: fee.toString(),
-				vouts
+				vouts,
 			});
 
-		const statement = this.#database
-			.prepare(`INSERT OR IGNORE INTO transaction_outputs (hash, idx, amount, address)
+		const statement = this.#database.prepare(`INSERT OR IGNORE INTO transaction_outputs (hash, idx, amount, address)
 								VALUES (:hash, :idx, :amount, :address)`);
 		for (const vout of vouts) {
 			statement.run({
 				hash: transaction.hash,
 				idx: vout.idx,
 				amount: vout.amount,
-				address: JSON.stringify(vout.addresses)
+				address: JSON.stringify(vout.addresses),
 			});
 		}
 	}
