@@ -6,19 +6,19 @@ import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
 
-import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../test/helpers";
-import { container } from "../../../environment/container";
-import { Identifiers } from "../../../environment/container.models";
-import { Wallet } from "./wallet";
+import { identity } from "../../../../../test/fixtures/identity";
+import { bootContainer } from "../../../../../test/helpers";
+import { container } from "../../../../environment/container";
+import { Identifiers } from "../../../../environment/container.models";
+import { Wallet } from "../wallet";
 import {
 	IProfile,
 	IProfileRepository,
 	IReadWriteWallet,
 	ProfileSetting,
 	WalletData,
-} from "../../../contracts";
-import { State } from "../../../environment/state";
+} from "../../../../contracts";
+import { State } from "../../../../environment/state";
 
 let profile: IProfile;
 let subject: IReadWriteWallet;
@@ -95,71 +95,30 @@ beforeEach(async () => {
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("#setCoin", () => {
-	it("should use the default peer if no custom one is available", async () => {
-		await subject.mutator().coin("ARK", "ark.devnet");
+it("should decrypt the WIF", async () => {
+	const { compressed, privateKey } = decode(
+		await subject.coin().identity().wif().fromMnemonic(identity.mnemonic),
+	);
 
-		expect(() => subject.coin().config().get("peer")).toThrow("unknown");
-	});
+	subject.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, "password"));
 
-	it("should use the custom relay peer if is available", async () => {
-		profile.settings().set(ProfileSetting.UseCustomPeer, true);
+	await expect(subject.wif().get("password")).resolves.toBe(identity.wif);
+});
 
-		profile.peers().create("ARK", "ark.devnet", {
-			name: "Relay",
-			host: "https://relay.com/api",
-			isMultiSignature: false,
-		});
+it("should encrypt the WIF and add it to the wallet", async () => {
+	await subject.wif().set(identity.mnemonic, "password");
 
-		await subject.mutator().coin("ARK", "ark.devnet");
+	await expect(subject.wif().get("password")).resolves.toBe(identity.wif);
+});
 
-		expect(subject.coin().config().get("peer")).toBe("https://relay.com/api");
-	});
+it("should throw if the WIF is tried to be decrypted without one being set", async () => {
+	await expect(subject.wif().get("password")).rejects.toThrow("This wallet does not use BIP38 encryption.");
+});
 
-	it("should use the custom musig peer if is available", async () => {
-		profile.settings().set(ProfileSetting.UseCustomPeer, true);
+it("should determine if the wallet uses a WIF", async () => {
+	expect(subject.wif().exists()).toBeFalse();
 
-		profile.peers().create("ARK", "ark.devnet", {
-			name: "MuSig",
-			host: "https://musig.com/api",
-			isMultiSignature: true,
-		});
+	subject.data().set(WalletData.Bip38EncryptedKey, "...");
 
-		await subject.mutator().coin("ARK", "ark.devnet");
-
-		expect(subject.coin().config().get("peerMultiSignature")).toBe("https://musig.com/api");
-	});
-
-	it("should use the custom relay and musig peers if they are available", async () => {
-		profile.settings().set(ProfileSetting.UseCustomPeer, true);
-
-		profile.peers().create("ARK", "ark.devnet", {
-			name: "Relay",
-			host: "https://relay.com/api",
-			isMultiSignature: false,
-		});
-
-		profile.peers().create("ARK", "ark.devnet", {
-			name: "MuSig",
-			host: "https://musig.com/api",
-			isMultiSignature: true,
-		});
-
-		await subject.mutator().coin("ARK", "ark.devnet");
-
-		expect(subject.coin().config().get("peer")).toBe("https://relay.com/api");
-		expect(subject.coin().config().get("peerMultiSignature")).toBe("https://musig.com/api");
-	});
-
-	it("should return relays", async () => {
-		profile.peers().create("ARK", "ark.devnet", {
-			name: "Relay",
-			host: "https://relay.com/api",
-			isMultiSignature: false,
-		});
-
-		await subject.mutator().coin("ARK", "ark.devnet");
-
-		expect(subject.getRelays()).toBeArrayOfSize(1);
-	});
+	expect(subject.wif().exists()).toBeTrue();
 });
