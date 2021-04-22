@@ -15,6 +15,19 @@ export class ProfileInitialiser {
 	 * @memberof Profile
 	 */
 	public initialise(name: string): void {
+		if (name === undefined) {
+			throw new Error("The name of the profile could not be found. This looks like a bug.");
+		}
+
+		// Flush services
+		this.#profile.contacts().flush();
+		this.#profile.data().flush();
+		this.#profile.notifications().flush();
+		this.#profile.plugins().flush();
+		this.#profile.settings().flush();
+		this.#profile.wallets().flush();
+
+		// Default Settings
 		this.#profile.settings().set(ProfileSetting.Name, name);
 		this.#profile.settings().set(ProfileSetting.AdvancedMode, false);
 		this.#profile.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);

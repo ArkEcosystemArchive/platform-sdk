@@ -363,18 +363,6 @@ export class Profile implements IProfile {
 			throw new Error("The name of the profile could not be found. This looks like a bug.");
 		}
 
-		this.contacts().flush();
-
-		this.data().flush();
-
-		this.notifications().flush();
-
-		this.plugins().flush();
-
-		this.settings().flush();
-
-		this.wallets().flush();
-
 		new ProfileInitialiser(this).initialise(name);
 	}
 
