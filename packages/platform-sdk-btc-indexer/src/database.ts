@@ -78,15 +78,17 @@ export class Database {
 			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
 		);
 
-		this.storeBlock(block);
+		this.#database.transaction((block) => {
+			this.storeBlock(block);
 
-		if (block.tx) {
-			for (const transaction of block.tx) {
-				this.#logger.info(`Storing transaction [${transaction.hash}]`);
+			if (block.tx) {
+				for (const transaction of block.tx) {
+					this.#logger.info(`Storing transaction [${transaction.hash}]`);
 
-				this.storeTransaction(transaction);
+					this.storeTransaction(transaction);
+				}
 			}
-		}
+		})(block);
 	}
 
 	/**
@@ -159,33 +161,31 @@ export class Database {
 
 		const fee: BigNumber = getFees(transaction, voutsByTransactionHashAndIdx);
 
-		this.#database.transaction((transaction) => {
-			this.#database
-				.prepare(
-					`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender)
-										VALUES (:hash, :time, :amount, :fee, :sender)`,
-				)
-				.run(transaction);
+		this.#database
+			.prepare(
+				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender)
+				 VALUES (:hash, :time, :amount, :fee, :sender)`
+			)
+			.run({
+				hash: transaction.hash,
+				time: transaction.time,
+				amount: amount.toString(),
+				fee: fee.toString(),
+				sender: "address-of-sender",
+				vouts
+			});
 
-			const statement = this.#database
-				.prepare(`INSERT OR IGNORE INTO transaction_outputs (hash, idx, amount, address)
-										VALUES (:hash, :idx, :amount, :address)`);
-			for (const vout of transaction.vouts) {
-				statement.run({
-					hash: transaction.hash,
-					idx: vout.idx,
-					amount: vout.amount,
-					address: JSON.stringify(vout.addresses),
-				});
-			}
-		})({
-			hash: transaction.hash,
-			time: transaction.time,
-			amount: amount.toString(),
-			fee: fee.toString(),
-			sender: "address-of-sender",
-			vouts,
-		});
+		const statement = this.#database
+			.prepare(`INSERT OR IGNORE INTO transaction_outputs (hash, idx, amount, address)
+								VALUES (:hash, :idx, :amount, :address)`);
+		for (const vout of vouts) {
+			statement.run({
+				hash: transaction.hash,
+				idx: vout.idx,
+				amount: vout.amount,
+				address: JSON.stringify(vout.addresses)
+			});
+		}
 	}
 
 	/**
