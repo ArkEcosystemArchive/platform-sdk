@@ -58,7 +58,7 @@ it("should turn into an object", () => {
 	`);
 });
 
-it("should turn into an object with options", () => {
+describe("should turn into an object with options", () => {
 	let profile: IProfile;
 
 	beforeEach(() => {

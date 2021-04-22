@@ -2,27 +2,21 @@ import "jest-extended";
 import "reflect-metadata";
 
 import { Base64 } from "@arkecosystem/platform-sdk-crypto";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer, importByAddressWithLedgerPath, importByMnemonic, generateWallet } from "../../../../test/helpers";
-import { PluginRepository } from "../plugins/plugin-repository";
-import { ContactRepository } from "../repositories/contact-repository";
-import { DataRepository } from "../../../repositories/data-repository";
-import { NotificationRepository } from "../repositories/notification-repository";
-import { SettingRepository } from "../repositories/setting-repository";
-import { WalletRepository } from "../repositories/wallet-repository";
-import { CountAggregate } from "./aggregates/count-aggregate";
-import { RegistrationAggregate } from "./aggregates/registration-aggregate";
-import { TransactionAggregate } from "./aggregates/transaction-aggregate";
-import { WalletAggregate } from "./aggregates/wallet-aggregate";
-import { Authenticator } from "./authenticator";
+import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { Profile } from "./profile";
 import { IProfile, ProfileSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
+import { ProfileImporter } from "./profile.importer";
+import { ProfileDumper } from "./profile.dumper";
+import { ProfileSerialiser } from "./profile.serialiser";
 
-let subject: IProfile;
+let subject: ProfileImporter;
+let dumper: ProfileDumper;
+let serialiser: ProfileSerialiser;
+let profile: IProfile;
 
 beforeAll(() => {
 	bootContainer();
@@ -44,26 +38,29 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-	subject = new Profile({ id: "uuid", name: "name", data: "" });
+	subject = new ProfileImporter();
+	dumper = new ProfileDumper();
+	serialiser = new ProfileSerialiser();
+	profile = new Profile({ id: "uuid", name: "name", data: "" });
 
-	State.profile(subject);
+	State.profile(profile);
 
-	subject.settings().set(ProfileSetting.Name, "John Doe");
+	profile.settings().set(ProfileSetting.Name, "John Doe");
 });
 
 describe("#restore", () => {
 	it("should restore a profile with a password", async () => {
-		subject.auth().setPassword("password");
-		subject.save("password");
+		profile.auth().setPassword("password");
+		profile.save("password");
 
-		const profile: IProfile = new Profile(subject.dump());
+		const profileCopy: IProfile = new Profile(dumper.dump(profile));
 
-		await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
+		await importByMnemonic(profileCopy, identity.mnemonic, "ARK", "ark.devnet");
 
-		await profile.restore("password");
-		await profile.sync();
+		await subject.import(profileCopy, "password");
+		await profileCopy.sync();
 
-		expect(profile.toObject()).toContainAllKeys([
+		expect(serialiser.toJSON(profile)).toContainAllKeys([
 			"contacts",
 			"data",
 			"notifications",
@@ -95,17 +92,17 @@ describe("#restore", () => {
 			data: Base64.encode(JSON.stringify(corruptedProfileData)),
 		});
 
-		await expect(profile.restore()).rejects.toThrow();
+		await expect(subject.import(profile)).rejects.toThrow();
 	});
 
 	it("should restore a profile without a password", async () => {
-		subject.save();
+		profile.save();
 
-		const profile: IProfile = new Profile(subject.dump());
+		const profileCopy: IProfile = new Profile(dumper.dump(profile));
 
-		await profile.restore();
+		await subject.import(profileCopy);
 
-		expect(profile.toObject()).toMatchInlineSnapshot(`
+		expect(serialiser.toJSON(profileCopy)).toMatchInlineSnapshot(`
 		Object {
 		  "contacts": Object {},
 		  "data": Object {},
@@ -122,31 +119,31 @@ describe("#restore", () => {
 	});
 
 	it("should fail to restore if profile is not using password but password is passed", async () => {
-		subject.save();
+		profile.save();
 
-		const profile: IProfile = new Profile(subject.dump());
+		const profileCopy: IProfile = new Profile(dumper.dump(profile));
 
-		await expect(profile.restore("password")).rejects.toThrow(
+		await expect(subject.import(profileCopy, "password")).rejects.toThrow(
 			"Failed to decode or decrypt the profile. Reason: This profile does not use a password but password was passed for decryption",
 		);
 	});
 
 	it("should fail to restore a profile with a password if no password was provided", async () => {
-		subject.auth().setPassword("password");
-		subject.save("password");
+		profile.auth().setPassword("password");
+		profile.save("password");
 
-		const profile: IProfile = new Profile(subject.dump());
+		const profileCopy: IProfile = new Profile(dumper.dump(profile));
 
-		await expect(profile.restore()).rejects.toThrow("Failed to decode or decrypt the profile.");
+		await expect(subject.import(profileCopy)).rejects.toThrow("Failed to decode or decrypt the profile.");
 	});
 
 	it("should fail to restore a profile with a password if an invalid password was provided", async () => {
-		subject.auth().setPassword("password");
-		subject.save("password");
+		profile.auth().setPassword("password");
+		profile.save("password");
 
-		const profile: IProfile = new Profile(subject.dump());
+		const profileCopy: IProfile = new Profile(dumper.dump(profile));
 
-		await expect(profile.restore("invalid-password")).rejects.toThrow("Failed to decode or decrypt the profile.");
+		await expect(subject.import(profileCopy, "invalid-password")).rejects.toThrow("Failed to decode or decrypt the profile.");
 	});
 
 	it("should restore a profile with wallets", async () => {
@@ -204,7 +201,7 @@ describe("#restore", () => {
 		};
 
 		const profile = new Profile(profileDump);
-		await profile.restore();
+		await subject.import(profile);
 
 		expect(profile.wallets().count()).toEqual(2);
 		expect(profile.settings().get(ProfileSetting.Theme)).toEqual("dark");
