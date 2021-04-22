@@ -1,6 +1,7 @@
 import { IProfile, IProfileInput } from "../../../contracts";
+import { IProfileDumper } from "../../../contracts/profiles/profile.dumper";
 
-export class ProfileDumper {
+export class ProfileDumper implements IProfileDumper {
 	/**
 	 * Dumps the profile into a standardised object.
 	 *

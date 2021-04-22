@@ -1,10 +1,11 @@
 import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import { IProfileExportOptions, IProfile } from "../../../contracts";
+import { IProfileExporter } from "../../../contracts/profiles/profile.exporter";
 
 import { ProfileEncrypter } from "./profile.encrypter";
 import { ProfileSerialiser } from "./profile.serialiser";
 
-export class ProfileExporter {
+export class ProfileExporter implements IProfileExporter {
 	readonly #profile: IProfile;
 
 	public constructor(profile: IProfile) {

@@ -1,14 +1,15 @@
 import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import Joi from "joi";
-import { IProfileData, IProfile, IProfileInput } from "../../../contracts";
+import { IProfileData, IProfile } from "../../../contracts";
 
 import { Migrator } from "./migrator";
 import { State } from "../../../environment/state";
 import { Identifiers } from "../../../environment/container.models";
 import { container } from "../../../environment/container";
 import { ProfileEncrypter } from "./profile.encrypter";
+import { IProfileImporter } from "../../../contracts/profiles/profile.importer";
 
-export class ProfileImporter {
+export class ProfileImporter implements IProfileImporter {
 	/**
 	 * Restore a profile from either a base64 raw or base64 encrypted string.
 	 *
