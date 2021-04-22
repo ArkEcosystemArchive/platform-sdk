@@ -461,6 +461,26 @@ export class Profile implements IProfile {
 	}
 
 	/**
+	 * Determine if all wallets that belong to the profile have been restored.
+	 *
+	 * @returns {boolean}
+	 * @memberof Profile
+	 */
+	public hasBeenPartiallyRestored(): boolean {
+		return this.#walletRepository.values().filter((wallet: IReadWriteWallet) => wallet.hasBeenPartiallyRestored()).length > 0;
+	}
+
+	/**
+	 * Get the underlying attributes.
+	 *
+	 * @return {*}  {AttributeBag}
+	 * @memberof IReadWriteWallet
+	 */
+	public getAttributes(): AttributeBag<IProfileInput> {
+		return this.#attributes;
+	}
+
+	/**
 	 * @TODO: move this out
 	 *
 	 * Sync the wallets and contacts with their respective networks.
@@ -486,25 +506,5 @@ export class Profile implements IProfile {
 		} catch (error) {
 			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
 		}
-	}
-
-	/**
-	 * Determine if all wallets that belong to the profile have been restored.
-	 *
-	 * @returns {boolean}
-	 * @memberof Profile
-	 */
-	public hasBeenPartiallyRestored(): boolean {
-		return this.#walletRepository.values().filter((wallet: IReadWriteWallet) => wallet.hasBeenPartiallyRestored()).length > 0;
-	}
-
-	/**
-	 * Get the underlying attributes.
-	 *
-	 * @return {*}  {AttributeBag}
-	 * @memberof IReadWriteWallet
-	 */
-	public getAttributes(): AttributeBag<IProfileInput> {
-		return this.#attributes;
 	}
 }
