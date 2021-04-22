@@ -1,6 +1,7 @@
 import { IProfileData, IProfileExportOptions, IProfile } from "../../../contracts";
+import { IProfileSerialiser } from "../../../contracts/profiles/profile.serialiser";
 
-export class ProfileSerialiser {
+export class ProfileSerialiser implements IProfileSerialiser {
 	/**
 	 * Normalise the profile into an object.
 	 *
