@@ -15,6 +15,7 @@ import { IVoteRegistry } from "./services/vote-registry";
 import { ITransactionIndex } from "./services/transaction-index";
 import { IWalletImportFormat } from "./services/wif";
 import { IMultiSignature } from "./services/multi-signature";
+import { ITransactionService } from "./wallet-transaction-service";
 
 /**
  * Defines the structure that represents the wallet data.
@@ -421,10 +422,10 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the transaction service instance.
 	 *
-	 * @return {*}  {TransactionService}
+	 * @return {*}  {ITransactionService}
 	 * @memberof IReadWriteWallet
 	 */
-	transaction(): TransactionService;
+	transaction(): ITransactionService;
 
 	/**
 	 * Get the supported transaction types.

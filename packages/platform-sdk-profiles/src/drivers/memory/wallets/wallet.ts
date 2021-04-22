@@ -18,6 +18,9 @@ import {
 	IExchangeRateService,
 	IKnownWalletService,
 	IReadWriteWalletAttributes,
+	ITransactionService,
+	ISettingRepository,
+	IDataRepository,
 } from "../../../contracts";
 import { State } from "../../../environment/state";
 import { AttributeBag } from "../../../helpers/attribute-bag";
@@ -39,9 +42,15 @@ import { IMultiSignature } from "../../../contracts/wallets/services/multi-signa
 
 export class Wallet implements IReadWriteWallet {
 	readonly #attributes: AttributeBag<IReadWriteWalletAttributes> = new AttributeBag();
-	readonly #dataRepository: DataRepository;
-	readonly #settingRepository: SettingRepository;
-	readonly #transactionService: TransactionService;
+	readonly #dataRepository: IDataRepository;
+	readonly #settingRepository: ISettingRepository;
+	readonly #transactionService: ITransactionService;
+	readonly #walletGate: IWalletGate;
+	readonly #walletSynchroniser: IWalletSynchroniser;
+	readonly #walletMutator: IWalletMutator;
+	readonly #voteRegistry: IVoteRegistry;
+	readonly #transactionIndex: ITransactionIndex;
+	readonly #walletImportFormat: IWalletImportFormat;
 
 	public constructor(id: string, initialState: any) {
 		this.#attributes = new AttributeBag<IReadWriteWalletAttributes>({
@@ -53,6 +62,12 @@ export class Wallet implements IReadWriteWallet {
 		this.#dataRepository = new DataRepository();
 		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
+		this.#walletGate = new WalletGate(this);
+		this.#walletSynchroniser = new WalletSynchroniser(this);
+		this.#walletMutator = new WalletMutator(this);
+		this.#voteRegistry = new VoteRegistry(this);
+		this.#transactionIndex = new TransactionIndex(this);
+		this.#walletImportFormat = new WalletImportFormat(this);
 
 		this.restore();
 	}
@@ -194,11 +209,11 @@ export class Wallet implements IReadWriteWallet {
 		return this.#attributes.get<string>('avatar');
 	}
 
-	public data(): DataRepository {
+	public data(): IDataRepository {
 		return this.#dataRepository;
 	}
 
-	public settings(): SettingRepository {
+	public settings(): ISettingRepository {
 		return this.#settingRepository;
 	}
 
@@ -351,7 +366,7 @@ export class Wallet implements IReadWriteWallet {
 		return this.#attributes.get<Coins.Coin>('coin').peer();
 	}
 
-	public transaction(): TransactionService {
+	public transaction(): ITransactionService {
 		return this.#transactionService;
 	}
 
@@ -360,27 +375,27 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	public gate(): IWalletGate {
-		return new WalletGate(this);
+		return this.#walletGate;
 	}
 
 	public synchroniser(): IWalletSynchroniser {
-		return new WalletSynchroniser(this);
+		return this.#walletSynchroniser;
 	}
 
 	public mutator(): IWalletMutator {
-		return new WalletMutator(this);
+		return this.#walletMutator;
 	}
 
 	public voting(): IVoteRegistry {
-		return new VoteRegistry(this);
+		return this.#voteRegistry;
 	}
 
 	public transactionIndex(): ITransactionIndex {
-		return new TransactionIndex(this);
+		return this.#transactionIndex;
 	}
 
 	public wif(): IWalletImportFormat {
-		return new WalletImportFormat(this);
+		return this.#walletImportFormat;
 	}
 
 	public multiSignature(): IMultiSignature {

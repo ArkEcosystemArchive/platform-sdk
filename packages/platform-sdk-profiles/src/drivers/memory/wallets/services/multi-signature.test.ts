@@ -103,7 +103,7 @@ it("should return multi signature", () => {
 	);
 });
 
-it("should return multi-signature participants", async () => {
+it.only("should return multi-signature participants", async () => {
 	const isMultiSignature = jest.spyOn(subject, "isMultiSignature").mockReturnValue(true);
 	const multiSignature = jest.spyOn(subject.multiSignature(), "all").mockReturnValue({
 		min: 2,
