@@ -14,20 +14,21 @@ export class ProfileInitialiser {
 	 * @param {string} name
 	 * @memberof Profile
 	 */
-	public reset(name: string): void {
+	public initialise(name: string): void {
+		if (name === undefined) {
+			throw new Error("The name of the profile could not be found. This looks like a bug.");
+		}
+
+		// Flush services
+		this.#profile.contacts().flush();
+		this.#profile.data().flush();
+		this.#profile.notifications().flush();
+		this.#profile.plugins().flush();
+		this.#profile.settings().flush();
+		this.#profile.wallets().flush();
+
+		// Default Settings
 		this.#profile.settings().set(ProfileSetting.Name, name);
-
-		this.settings();
-	}
-
-	/**
-	 * Initialize the factory settings.
-	 *
-	 * If the profile has modified any settings they will be overwritten!
-	 *
-	 * @memberof Profile
-	 */
-	public settings(): void {
 		this.#profile.settings().set(ProfileSetting.AdvancedMode, false);
 		this.#profile.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
 		this.#profile.settings().set(ProfileSetting.Bip39Locale, "english");

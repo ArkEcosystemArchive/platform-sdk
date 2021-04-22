@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import {
-	IProfileData,
-	IProfileExportOptions,
 	IContactRepository,
 	IPortfolio,
 	ICountAggregate,
@@ -43,7 +41,6 @@ import { WalletFactory } from "../wallets/wallet.factory";
 import { AttributeBag } from "../../../helpers/attribute-bag";
 import { ProfileExporter } from "./profile.exporter";
 import { ProfileInitialiser } from "./profile.initialiser";
-import { ProfileImporter } from "./profile.importer";
 
 export class Profile implements IProfile {
 	/**
@@ -366,19 +363,7 @@ export class Profile implements IProfile {
 			throw new Error("The name of the profile could not be found. This looks like a bug.");
 		}
 
-		this.contacts().flush();
-
-		this.data().flush();
-
-		this.notifications().flush();
-
-		this.plugins().flush();
-
-		this.settings().flush();
-
-		this.wallets().flush();
-
-		new ProfileInitialiser(this).reset(name);
+		new ProfileInitialiser(this).initialise(name);
 	}
 
 	/**
@@ -464,86 +449,6 @@ export class Profile implements IProfile {
 	}
 
 	/**
-	 * Normalise the profile into an object.
-	 *
-	 * @param {IProfileExportOptions} [options]
-	 * @return {*}  {IProfileData}
-	 * @memberof Profile
-	 */
-	public toObject(
-		options: IProfileExportOptions = {
-			excludeEmptyWallets: false,
-			excludeLedgerWallets: false,
-			addNetworkInformation: true,
-			saveGeneralSettings: true,
-		},
-	): IProfileData {
-		if (!options.saveGeneralSettings) {
-			throw Error("This is not implemented yet");
-		}
-
-		return {
-			id: this.id(),
-			contacts: this.contacts().toObject(),
-			data: this.data().all(),
-			notifications: this.notifications().all(),
-			peers: this.peers().toObject(),
-			plugins: this.plugins().all(),
-			settings: this.settings().all(),
-			wallets: this.wallets().toObject(options),
-		};
-	}
-
-	/**
-	 * Dumps the profile into a standardised object.
-	 *
-	 * @param {string} [password]
-	 * @returns {ProfileInput}
-	 * @memberof Profile
-	 */
-	public dump(): IProfileInput {
-		if (!this.#attributes.get<string>('data')) {
-			throw new Error("The profile has not been encoded or encrypted. Please call [save] before dumping.");
-		}
-
-		return {
-			id: this.id(),
-			name: this.name(),
-			avatar: this.avatar(),
-			password: this.#attributes.get<string>('password'),
-			data: this.#attributes.get<string>('data'),
-		};
-	}
-
-	public async restore(password?: string): Promise<void> {
-		await new ProfileImporter(this).import(password);
-	}
-
-	/**
-	 * Sync the wallets and contacts with their respective networks.
-	 *
-	 * @param {string} [password]
-	 * @returns {Promise<void>}
-	 * @memberof Profile
-	 */
-	public async sync(): Promise<void> {
-		await this.wallets().restore();
-
-		await this.contacts().restore();
-	}
-
-	/**
-	 * Encode or encrypt the profile data for dumping later on.
-	 */
-	public save(password?: string): void {
-		try {
-			this.#attributes.set('data', new ProfileExporter(this).export(password));
-		} catch (error) {
-			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
-		}
-	}
-
-	/**
 	 * Determine if all wallets that belong to the profile have been restored.
 	 *
 	 * @returns {boolean}
@@ -561,5 +466,33 @@ export class Profile implements IProfile {
 	 */
 	public getAttributes(): AttributeBag<IProfileInput> {
 		return this.#attributes;
+	}
+
+	/**
+	 * @TODO: move this out
+	 *
+	 * Sync the wallets and contacts with their respective networks.
+	 *
+	 * @param {string} [password]
+	 * @returns {Promise<void>}
+	 * @memberof Profile
+	 */
+	public async sync(): Promise<void> {
+		await this.wallets().restore();
+
+		await this.contacts().restore();
+	}
+
+	/**
+	 * @TODO: move this out
+	 *
+	 * Encode or encrypt the profile data for dumping later on.
+	 */
+	public save(password?: string): void {
+		try {
+			this.#attributes.set('data', new ProfileExporter(this).export(password));
+		} catch (error) {
+			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
+		}
 	}
 }
