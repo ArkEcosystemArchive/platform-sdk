@@ -19,7 +19,7 @@ export interface ITransactionAggregate {
 	 * @return {*}  {Promise<ExtendedTransactionDataCollection>}
 	 * @memberof ITransactionAggregate
 	 */
-	transactions(query: AggregateQuery): Promise<ExtendedTransactionDataCollection>;
+	all(query: AggregateQuery): Promise<ExtendedTransactionDataCollection>;
 
 	/**
 	 * Aggregate sent transactions using the given query.
@@ -28,7 +28,7 @@ export interface ITransactionAggregate {
 	 * @return {*}  {Promise<ExtendedTransactionDataCollection>}
 	 * @memberof ITransactionAggregate
 	 */
-	sentTransactions(query: AggregateQuery): Promise<ExtendedTransactionDataCollection>;
+	sent(query: AggregateQuery): Promise<ExtendedTransactionDataCollection>;
 
 	/**
 	 * Aggregate received transactions using the given query.
@@ -37,7 +37,7 @@ export interface ITransactionAggregate {
 	 * @return {*}  {Promise<ExtendedTransactionDataCollection>}
 	 * @memberof ITransactionAggregate
 	 */
-	receivedTransactions(query: AggregateQuery): Promise<ExtendedTransactionDataCollection>;
+	received(query: AggregateQuery): Promise<ExtendedTransactionDataCollection>;
 
 	/**
 	 * Determines if there are more transactions for the given method.
