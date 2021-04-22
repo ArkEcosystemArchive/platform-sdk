@@ -9,7 +9,7 @@ export class WalletGate implements IWalletGate {
 	}
 
 	public canVote(): boolean {
-		return this.#wallet.votesAvailable() > 0;
+		return this.#wallet.voting().available() > 0;
 	}
 
 	public can(feature: string): boolean {

@@ -17,16 +17,16 @@ type AggregateQuery = {
 export class TransactionAggregate implements ITransactionAggregate {
 	#history: Record<HistoryMethod, Record<string, HistoryWallet>> = {};
 
-	public async transactions(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
-		return this.aggregate("transactions", query);
+	public async all(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
+		return this.aggregate("all", query);
 	}
 
-	public async sentTransactions(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
-		return this.aggregate("sentTransactions", query);
+	public async sent(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
+		return this.aggregate("sent", query);
 	}
 
-	public async receivedTransactions(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
-		return this.aggregate("receivedTransactions", query);
+	public async received(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
+		return this.aggregate("received", query);
 	}
 
 	public hasMore(method: string): boolean {
@@ -64,10 +64,10 @@ export class TransactionAggregate implements ITransactionAggregate {
 				}
 
 				if (lastResponse && lastResponse.hasMorePages()) {
-					return resolve(syncedWallet[method]({ cursor: lastResponse.nextPage(), ...query }));
+					return resolve(syncedWallet.transactionIndex()[method]({ cursor: lastResponse.nextPage(), ...query }));
 				}
 
-				return resolve(syncedWallet[method](query));
+				return resolve(syncedWallet.transactionIndex()[method](query));
 			});
 		}
 

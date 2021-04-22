@@ -45,7 +45,7 @@ beforeEach(async () => {
 afterAll(() => nock.enableNetConnect());
 
 describe("TransactionAggregate", () => {
-	describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s", (method: string) => {
+	describe.each(["all", "sent", "received"])("%s", (method: string) => {
 		it("should have more transactions", async () => {
 			nock(/.+/)
 				.get("/api/transactions")
@@ -162,9 +162,9 @@ describe("TransactionAggregate", () => {
 
 		expect(subject.hasMore("transactions")).toBeFalse();
 
-		await subject.transactions();
+		await subject.all();
 
-		expect(subject.hasMore("transactions")).toBeTrue();
+		expect(subject.hasMore("all")).toBeTrue();
 
 		subject.flush();
 	});
@@ -182,7 +182,7 @@ describe("TransactionAggregate", () => {
 				return Promise.resolve(undefined);
 			});
 
-		const results = await subject.transactions();
+		const results = await subject.all();
 		expect(results).toBeInstanceOf(ExtendedTransactionDataCollection);
 		promiseAllSettledByKeyMock.mockRestore();
 	});
@@ -193,7 +193,7 @@ describe("TransactionAggregate", () => {
 			.query(true)
 			.reply(200, require("../../../../../test/fixtures/client/transactions.json"));
 
-		const result = await subject.transactions({ addresses: ["D8rr7B1d6TL6pf14LgMz4sKp1VBMs6YUYD"] });
+		const result = await subject.all({ addresses: ["D8rr7B1d6TL6pf14LgMz4sKp1VBMs6YUYD"] });
 		expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
 		//@ts-ignore
 		expect(result.items()).toHaveLength(0);
