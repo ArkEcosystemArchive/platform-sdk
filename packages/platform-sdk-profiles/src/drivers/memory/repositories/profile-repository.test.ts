@@ -9,6 +9,7 @@ import { IProfileRepository } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "./profile-repository";
 import { State } from "../../../environment/state";
+import { ProfileImporter } from "../profiles/profile.importer";
 
 let subject: IProfileRepository;
 
@@ -196,11 +197,11 @@ describe("ProfileRepository", () => {
 		const repositoryDump = subject.toObject();
 
 		const restoredJane = new Profile(repositoryDump[jane.id()] as any);
-		await restoredJane.restore("password");
+		await new ProfileImporter().import(restoredJane, "password");
 		await restoredJane.sync();
 
 		const restoredJohn = new Profile(repositoryDump[john.id()] as any);
-		await restoredJohn.restore();
+		await new ProfileImporter().import(restoredJohn);
 		await restoredJohn.sync();
 
 		expect(restoredJohn.toObject()).toEqual(john.toObject());

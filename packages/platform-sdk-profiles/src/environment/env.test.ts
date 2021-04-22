@@ -24,6 +24,7 @@ import { Identifiers } from "./container.models";
 import { Environment } from "./env";
 import { State } from "./state";
 import { MemoryStorage } from "./storage/memory";
+import { ProfileImporter } from "../drivers/memory/profiles/profile.importer";
 
 let subject: Environment;
 
@@ -167,7 +168,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 
 	expect(newProfile).toBeInstanceOf(Profile);
 
-	await newProfile.restore();
+	await new ProfileImporter().import(newProfile);
 	await newProfile.sync();
 
 	expect(newProfile.wallets().keys()).toHaveLength(1);
@@ -199,7 +200,7 @@ it("should boot the environment from fixed data", async () => {
 
 	const newProfile = env.profiles().findById("8101538b-b13a-4b8d-b3d8-e710ccffd385");
 
-	await newProfile.restore();
+	await new ProfileImporter().import(newProfile);
 
 	expect(newProfile).toBeInstanceOf(Profile);
 	expect(newProfile.wallets().keys()).toHaveLength(1);
@@ -375,15 +376,15 @@ it("should persist the env and restore it", async () => {
 
 	// Assert that we got back what we dumped in the previous env
 	const restoredJohn = subject.profiles().findById(john.id());
-	await restoredJohn.restore();
+	await new ProfileImporter().import(restoredJohn);
 	await restoredJohn.sync();
 
 	const restoredJane = subject.profiles().findById(jane.id());
-	await restoredJane.restore("password");
+	await new ProfileImporter().import(restoredJane, "password");
 	await restoredJane.sync();
 
 	const restoredJack = subject.profiles().findById(jack.id());
-	await restoredJack.restore("password");
+	await new ProfileImporter().import(restoredJack, "password");
 	await restoredJack.sync();
 
 	expect(restoredJohn.toObject()).toEqual(john.toObject());
