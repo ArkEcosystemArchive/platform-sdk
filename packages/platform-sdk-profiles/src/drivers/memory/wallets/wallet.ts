@@ -7,11 +7,9 @@ import { Identifiers } from "../../../environment/container.models";
 import { KnownWalletService } from "../services/known-wallet-service";
 import { DataRepository } from "../../../repositories/data-repository";
 import { SettingRepository } from "../repositories/setting-repository";
-import { ReadOnlyWallet } from "./read-only-wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import {
 	IReadWriteWallet,
-	IReadOnlyWallet,
 	IWalletData,
 	ProfileSetting,
 	WalletData,
