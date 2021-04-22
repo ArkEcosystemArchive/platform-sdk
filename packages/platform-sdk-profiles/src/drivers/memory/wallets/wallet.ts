@@ -36,6 +36,8 @@ import { ITransactionIndex } from "../../../contracts/wallets/services/transacti
 import { IVoteRegistry } from "../../../contracts/wallets/services/vote-registry";
 import { WalletImportFormat } from "./services/wif";
 import { IWalletImportFormat } from "../../../contracts/wallets/services/wif";
+import { MultiSignature } from "./services/multi-signature";
+import { IMultiSignature } from "../../../contracts/wallets/services/multi-signature";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #attributes: AttributeBag<IReadWriteWalletAttributes> = new AttributeBag();
@@ -383,24 +385,8 @@ export class Wallet implements IReadWriteWallet {
 		return new WalletImportFormat(this);
 	}
 
-	public multiSignature(): Contracts.WalletMultiSignature {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
-		}
-
-		return this.#attributes.get<Contracts.WalletData>('wallet').multiSignature();
-	}
-
-	public multiSignatureParticipants(): IReadOnlyWallet[] {
-		const participants: Record<string, any> | undefined = this.data().get(WalletData.MultiSignatureParticipants);
-
-		if (!participants) {
-			throw new Error(
-				"This Multi-Signature has not been synchronized yet. Please call [synchroniser().multiSignature()] before using it.",
-			);
-		}
-
-		return this.multiSignature().publicKeys.map((publicKey: string) => new ReadOnlyWallet(participants[publicKey]));
+	public multiSignature(): IMultiSignature {
+		return new MultiSignature(this);
 	}
 
 	public explorerLink(): string {

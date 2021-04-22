@@ -434,22 +434,6 @@ export interface IReadWriteWallet {
 	transactionTypes(): Coins.CoinTransactionTypes;
 
 	/**
-	 * Get the multi signature data.
-	 *
-	 * @return {*}  {Contracts.WalletMultiSignature}
-	 * @memberof IReadWriteWallet
-	 */
-	multiSignature(): Contracts.WalletMultiSignature;
-
-	/**
-	 * Get the multi signature participants.
-	 *
-	 * @return {*}  {IReadOnlyWallet[]}
-	 * @memberof IReadWriteWallet
-	 */
-	multiSignatureParticipants(): IReadOnlyWallet[];
-
-	/**
 	 * Get the explorer link.
 	 *
 	 * @return {*}  {string}
