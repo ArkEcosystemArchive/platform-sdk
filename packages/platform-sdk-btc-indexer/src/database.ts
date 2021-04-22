@@ -137,7 +137,8 @@ export class Database {
 	private storeTransaction(transaction): void {
 		const amount: BigNumber = getAmount(transaction);
 		const vouts: VOut[] = getVOuts(transaction);
-		const hashes: string[] = getVIns(transaction).map((u: VIn) => u.txid);
+		const vIns = getVIns(transaction);
+		const hashes: string[] = vIns.map((u: VIn) => u.txid);
 		let voutsByTransactionHashAndIdx = {};
 		if (hashes.length > 0) {
 			const read = this.#database
@@ -182,6 +183,22 @@ export class Database {
 				output_idx: vout.idx,
 				amount: vout.amount,
 				address: JSON.stringify(vout.addresses),
+			});
+		}
+
+		const updateStatement = this.#database
+			.prepare(`UPDATE transaction_parts
+								SET input_hash = :input_hash,
+										input_idx  = :input_idx
+								WHERE output_hash = :output_hash
+									AND output_idx = :output_idx`);
+		for (let i = 0; i < vIns.length; i++){
+			const vIn = vIns[i];
+			updateStatement.run({
+				input_hash: transaction.hash,
+				input_idx: i,
+				output_hash: vIn.txid,
+				output_idx: vIn.vout,
 			});
 		}
 	}
