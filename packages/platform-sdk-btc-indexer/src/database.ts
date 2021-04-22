@@ -142,16 +142,16 @@ export class Database {
 		if (hashes.length > 0) {
 			const read = this.#database
 				.prepare(
-					`SELECT hash, idx, amount
-					 FROM transaction_outputs
-					 WHERE hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
+					`SELECT output_hash, output_idx, amount
+					 FROM transaction_parts
+					 WHERE output_hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
 				)
 				.all(hashes);
 
 			if (read) {
 				const byHashAndIdx = (readElements) =>
 					readElements.reduce((carry, element) => {
-						carry[element["hash"] + element["idx"]] = BigNumber.make(element["amount"]);
+						carry[element["output_hash"] + element["output_idx"]] = BigNumber.make(element["amount"]);
 						return carry;
 					}, {});
 
@@ -171,15 +171,15 @@ export class Database {
 				time: transaction.time,
 				amount: amount.toString(),
 				fee: fee.toString(),
-				vouts,
 			});
 
-		const statement = this.#database.prepare(`INSERT OR IGNORE INTO transaction_outputs (hash, idx, amount, address)
-								VALUES (:hash, :idx, :amount, :address)`);
+		const statement = this.#database
+			.prepare(`INSERT OR IGNORE INTO transaction_parts (output_hash, output_idx, amount, address)
+								VALUES (:output_hash, :output_idx, :amount, :address)`);
 		for (const vout of vouts) {
 			statement.run({
-				hash: transaction.hash,
-				idx: vout.idx,
+				output_hash: transaction.hash,
+				output_idx: vout.idx,
 				amount: vout.amount,
 				address: JSON.stringify(vout.addresses),
 			});
@@ -214,15 +214,18 @@ export class Database {
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
 
 
-			CREATE TABLE IF NOT EXISTS transaction_outputs(
-				hash       VARCHAR(64)   NOT NULL,
-				idx        INTEGER       NOT NULL,
-				amount     INTEGER       NOT NULL,
-				address    VARCHAR(64),
-				PRIMARY KEY (hash, idx),
-				FOREIGN KEY(hash) REFERENCES transactions(hash)
+			CREATE TABLE IF NOT EXISTS transaction_parts(
+				output_hash       VARCHAR(64)   NOT NULL,
+				output_idx        INTEGER       NOT NULL,
+				input_hash        VARCHAR(64),
+				input_idx         INTEGER,
+				amount            INTEGER       NOT NULL,
+				address           VARCHAR(64),
+				PRIMARY KEY (output_hash, output_idx),
+				FOREIGN KEY (output_hash) REFERENCES transactions(hash)
 			);
-			CREATE UNIQUE INDEX IF NOT EXISTS transaction_output_hash_index ON transaction_outputs (hash, idx);
+			CREATE UNIQUE INDEX IF NOT EXISTS transaction_output_hash_index ON transaction_parts (output_hash, output_idx);
+			CREATE UNIQUE INDEX IF NOT EXISTS transaction_input_hash_index ON transaction_parts (input_hash, input_idx);
 
 
 			CREATE TABLE IF NOT EXISTS errors(
