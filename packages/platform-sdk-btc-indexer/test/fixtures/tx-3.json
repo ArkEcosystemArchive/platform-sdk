@@ -57,8 +57,20 @@
 	},
 	"amount": "3292000000",
 	"fee": "1000000",
-	"vouts": "1000000,3291000000",
+	"vouts": [
+		{
+			"idx": 0,
+			"amount": 1000000,
+			"addresses": ["1AbHNFdKJeVL8FRZyRZoiTzG9VCmzLrtvm"]
+		},
+		{
+			"idx": 1,
+			"amount": 3291000000,
+			"addresses": ["1AbHNFdKJeVL8FRZyRZoiTzG9VCmzLrtvm"]
+		}
+	],
 	"inputs": {
-		"65f75ac62da749585c152f0ffed3c3482687699ccba81582561590c4e16306c9": ["100000000", "3193000000"]
+		"65f75ac62da749585c152f0ffed3c3482687699ccba81582561590c4e16306c90": "100000000",
+		"65f75ac62da749585c152f0ffed3c3482687699ccba81582561590c4e16306c91": "3193000000"
 	}
 }

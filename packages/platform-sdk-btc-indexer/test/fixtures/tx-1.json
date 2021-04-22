@@ -48,8 +48,20 @@
 	},
 	"amount": "9266845",
 	"fee": "786720",
-	"vouts": "987522,8279323",
+	"vouts": [
+		{
+			"idx": 0,
+			"amount": 987522,
+			"addresses": ["39gjXXm5TVvdRR3trfLrNxTAGM4o27C7xp"]
+		},
+		{
+			"idx": 1,
+			"amount": 8279323,
+			"addresses": ["15aYGaNt3QNnEQBikNroB97MkUhq7rgNq1"]
+		}
+	],
 	"inputs": {
-		"c8abacad2b369ad49d37c66bf670233b88de2d1f6dae2b8c4a4c1b050c77b294": ["10053565", "25486837"]
+		"c8abacad2b369ad49d37c66bf670233b88de2d1f6dae2b8c4a4c1b050c77b2940": "10053565",
+		"c8abacad2b369ad49d37c66bf670233b88de2d1f6dae2b8c4a4c1b050c77b2941": "25486837"
 	}
 }

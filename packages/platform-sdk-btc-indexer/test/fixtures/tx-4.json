@@ -32,8 +32,12 @@
 	},
 	"amount": "5000000000",
 	"fee": "0",
-	"vouts": "5000000000",
-	"inputs": {
-		"65f75ac62da749585c152f0ffed3c3482687699ccba81582561590c4e16306c9": ["100000000", "3193000000"]
-	}
+	"vouts": [
+		{
+			"idx": 0,
+			"amount": 5000000000,
+			"addresses": ["12c6DSiU4Rq3P4ZxziKxzrL5LmMBrzjrJX"]
+		}
+	],
+	"inputs": {}
 }

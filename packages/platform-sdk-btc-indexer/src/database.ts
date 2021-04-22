@@ -4,8 +4,8 @@ import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
 import Logger from "./logger";
-import { getAmount, getFees, getVins, getVouts } from "./tx-parsing-helpers";
-import { Flags } from "./types";
+import { getAmount, getFees, getVIns, getVOuts } from "./tx-parsing-helpers";
+import { Flags, VIn, VOut } from "./types";
 
 /**
  * Implements a database storage with SQLite.
@@ -78,15 +78,17 @@ export class Database {
 			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
 		);
 
-		this.storeBlock(block);
+		this.#database.transaction((block) => {
+			this.storeBlock(block);
 
-		if (block.tx) {
-			for (const transaction of block.tx) {
-				this.#logger.info(`Storing transaction [${transaction.hash}]`);
+			if (block.tx) {
+				for (const transaction of block.tx) {
+					this.#logger.info(`Storing transaction [${transaction.hash}]`);
 
-				this.storeTransaction(transaction);
+					this.storeTransaction(transaction);
+				}
 			}
-		}
+		})(block);
 	}
 
 	/**
@@ -99,7 +101,10 @@ export class Database {
 	 */
 	public storeError(type: string, hash: string, body: string): void {
 		this.#database
-			.prepare(`INSERT INTO errors (type, hash, body) VALUES (:type, :hash, :body)`)
+			.prepare(
+				`INSERT INTO errors (type, hash, body)
+								VALUES (:type, :hash, :body)`,
+			)
 			.run({ type, hash, body });
 	}
 
@@ -111,10 +116,15 @@ export class Database {
 	 * @memberof Database
 	 */
 	private storeBlock(block): void {
-		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, height) VALUES (:hash, :height)`).run({
-			hash: block.hash,
-			height: block.height,
-		});
+		this.#database
+			.prepare(
+				`INSERT OR IGNORE INTO blocks (hash, height)
+														VALUES (:hash, :height)`,
+			)
+			.run({
+				hash: block.hash,
+				height: block.height,
+			});
 	}
 
 	/**
@@ -126,44 +136,70 @@ export class Database {
 	 */
 	private storeTransaction(transaction): void {
 		const amount: BigNumber = getAmount(transaction);
-		const vouts: BigNumber[] = getVouts(transaction);
-		const hashes = getVins(transaction).map((u) => u.txid);
-		let voutsByTransactionHash = {};
+		const vouts: VOut[] = getVOuts(transaction);
+		const vIns = getVIns(transaction);
+		const hashes: string[] = vIns.map((u: VIn) => u.txid);
+		let voutsByTransactionHashAndIdx = {};
 		if (hashes.length > 0) {
 			const read = this.#database
 				.prepare(
-					`SELECT hash, vouts
-					 FROM transactions
-					 WHERE hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
+					`SELECT output_hash, output_idx, amount
+					 FROM transaction_parts
+					 WHERE output_hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
 				)
 				.all(hashes);
 
 			if (read) {
-				const indexByHash = (readElements) =>
+				const byHashAndIdx = (readElements) =>
 					readElements.reduce((carry, element) => {
-						carry[element["hash"]] = JSON.parse(element["vouts"]).map((amount) => BigNumber.make(amount));
+						carry[element["output_hash"] + element["output_idx"]] = BigNumber.make(element["amount"]);
 						return carry;
 					}, {});
 
-				voutsByTransactionHash = indexByHash(read);
+				voutsByTransactionHashAndIdx = byHashAndIdx(read);
 			}
 		}
 
-		const fee: BigNumber = getFees(transaction, voutsByTransactionHash);
+		const fee: BigNumber = getFees(transaction, voutsByTransactionHashAndIdx);
 
 		this.#database
 			.prepare(
-				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee, sender, vouts) VALUES (:hash, :time, :amount, :fee, :sender, :vouts)`,
+				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee)
+				 VALUES (:hash, :time, :amount, :fee)`,
 			)
 			.run({
-				// @TODO: sender
 				hash: transaction.hash,
 				time: transaction.time,
 				amount: amount.toString(),
 				fee: fee.toString(),
-				sender: "address-of-sender",
-				vouts: JSON.stringify(vouts),
 			});
+
+		const statement = this.#database
+			.prepare(`INSERT OR IGNORE INTO transaction_parts (output_hash, output_idx, amount, address)
+								VALUES (:output_hash, :output_idx, :amount, :address)`);
+		for (const vout of vouts) {
+			statement.run({
+				output_hash: transaction.hash,
+				output_idx: vout.idx,
+				amount: vout.amount,
+				address: JSON.stringify(vout.addresses),
+			});
+		}
+
+		const updateStatement = this.#database.prepare(`UPDATE transaction_parts
+								SET input_hash = :input_hash,
+										input_idx  = :input_idx
+								WHERE output_hash = :output_hash
+									AND output_idx = :output_idx`);
+		for (let i = 0; i < vIns.length; i++) {
+			const vIn = vIns[i];
+			updateStatement.run({
+				input_hash: transaction.hash,
+				input_idx: i,
+				output_hash: vIn.txid,
+				output_idx: vIn.vout,
+			});
+		}
 	}
 
 	/**
@@ -175,12 +211,13 @@ export class Database {
 	private migrate(): void {
 		this.#database.exec(`
 			PRAGMA journal_mode = WAL;
+			PRAGMA foreign_keys = ON;
+
 
 			CREATE TABLE IF NOT EXISTS blocks(
 				hash     VARCHAR(64)   PRIMARY KEY,
 				height   INTEGER       NOT NULL
 			);
-
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_height ON blocks (height);
 
@@ -188,12 +225,24 @@ export class Database {
 				hash     VARCHAR(64)   PRIMARY KEY,
 				time     INTEGER       NOT NULL,
 				amount   INTEGER       NOT NULL,
-				fee      INTEGER       NOT NULL,
-				sender   VARCHAR(64)   NOT NULL,
-				vouts    JSON          NOT NULL
+				fee      INTEGER       NOT NULL
 			);
-
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
+
+
+			CREATE TABLE IF NOT EXISTS transaction_parts(
+				output_hash       VARCHAR(64)   NOT NULL,
+				output_idx        INTEGER       NOT NULL,
+				input_hash        VARCHAR(64),
+				input_idx         INTEGER,
+				amount            INTEGER       NOT NULL,
+				address           VARCHAR(64),
+				PRIMARY KEY (output_hash, output_idx),
+				FOREIGN KEY (output_hash) REFERENCES transactions(hash)
+			);
+			CREATE UNIQUE INDEX IF NOT EXISTS transaction_output_hash_index ON transaction_parts (output_hash, output_idx);
+			CREATE UNIQUE INDEX IF NOT EXISTS transaction_input_hash_index ON transaction_parts (input_hash, input_idx);
+
 
 			CREATE TABLE IF NOT EXISTS errors(
 				id     INTEGER       PRIMARY KEY AUTOINCREMENT,
