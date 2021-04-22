@@ -11,6 +11,8 @@ import { IWalletGate } from "./wallet.gate";
 import { IWalletSynchroniser } from "./wallet.synchroniser";
 import { IWalletMutator } from "./wallet.mutator";
 import { AttributeBag } from "../../helpers/attribute-bag";
+import { IVoteRegistry } from "./services/vote-registry";
+import { ITransactionIndex } from "./services/transaction-index";
 
 /**
  * Defines the structure that represents the wallet data.
@@ -558,4 +560,20 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	mutator(): IWalletMutator;
+
+	/**
+	 * Get the wallet vote registry instance.
+	 *
+	 * @return {*}  {IVoteRegistry}
+	 * @memberof IReadWriteWallet
+	 */
+	voting(): IVoteRegistry;
+
+	/**
+	 * Get the wallet transaction index instance.
+	 *
+	 * @return {*}  {ITransactionIndex}
+	 * @memberof IReadWriteWallet
+	 */
+	transactionIndex(): ITransactionIndex;
 }
