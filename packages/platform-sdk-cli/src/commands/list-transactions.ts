@@ -21,12 +21,12 @@ export const listTransactions = async (wallet: Contracts.IReadWriteWallet): Prom
 	const table = new Table({ head: ["ID", "Sender", "Recipient", "Amount", "Fee"] });
 
 	// Get the first page of transactions...
-	let transactions = await wallet.transactions({});
+	let transactions = await wallet.transactionIndex().all({});
 	pushTransactions(table, transactions.items());
 
 	// Gather all remaining transactions by looping over all pages...
 	while (transactions.isNotEmpty()) {
-		transactions = await wallet.transactions({ cursor: transactions.nextPage() });
+		transactions = await wallet.transactionIndex().all({ cursor: transactions.nextPage() });
 		pushTransactions(table, transactions.items());
 	}
 

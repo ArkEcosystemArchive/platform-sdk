@@ -34,7 +34,7 @@ export const accessWallet = async (profile: Contracts.IProfile): Promise<void> =
 
 	// Restore
 	const wallet = profile.wallets().findById(id);
-	await wallet.syncIdentity();
+	await wallet.synchroniser().identity();
 
 	// Act
 	const { command } = await prompts({

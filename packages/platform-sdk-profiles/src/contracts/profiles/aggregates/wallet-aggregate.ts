@@ -2,9 +2,27 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 type NetworkType = "live" | "test";
 
+/**
+ * Defines the implementation contract for the wallet aggregate.
+ *
+ * @export
+ * @interface IWalletAggregate
+ */
 export interface IWalletAggregate {
+	/**
+	 * Aggregate the balance for all wallets of the currently selected profile.
+	 *
+	 * @param {NetworkType} [networkType]
+	 * @return {*}  {BigNumber}
+	 * @memberof IWalletAggregate
+	 */
 	balance(networkType?: NetworkType): BigNumber;
-	balancesByNetworkType(): Record<NetworkType, BigNumber>;
+
+	/**
+	 * Aggregate the converted balance for all wallets of the currently selected profile.
+	 *
+	 * @return {*}  {BigNumber}
+	 * @memberof IWalletAggregate
+	 */
 	convertedBalance(): BigNumber;
-	balancePerCoin(networkType: NetworkType): Record<string, { total: number; percentage: number }>;
 }

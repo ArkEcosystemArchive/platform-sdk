@@ -9,6 +9,7 @@ import { bootContainer } from "../../../../test/helpers";
 import { Profile } from "../profiles/profile";
 import { WalletFactory } from "./wallet.factory";
 import { WalletData } from "../../../contracts";
+import { State } from "../../../environment/state";
 
 jest.setTimeout(60000);
 
@@ -19,7 +20,9 @@ beforeAll(() => {
 
 	nock.disableNetConnect();
 
-	subject = new WalletFactory(new Profile({ id: "id", name: "name", avatar: "avatar", data: "" }));
+	State.profile(new Profile({ id: "id", name: "name", avatar: "avatar", data: "" }));
+
+	subject = new WalletFactory();
 });
 
 beforeEach(async () => {

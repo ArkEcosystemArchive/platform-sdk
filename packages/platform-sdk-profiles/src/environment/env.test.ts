@@ -12,8 +12,11 @@ import nock from "nock";
 
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
+import { importByMnemonic } from "../../test/helpers";
 import { StubStorage } from "../../test/stubs/storage";
 import { Profile } from "../drivers/memory/profiles/profile";
+import { ProfileImporter } from "../drivers/memory/profiles/profile.importer";
+import { ProfileSerialiser } from "../drivers/memory/profiles/profile.serialiser";
 import { ProfileRepository } from "../drivers/memory/repositories/profile-repository";
 import { ExchangeRateService } from "../drivers/memory/services/exchange-rate-service";
 import { WalletService } from "../drivers/memory/services/wallet-service";
@@ -21,6 +24,7 @@ import { DataRepository } from "../repositories/data-repository";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Environment } from "./env";
+import { State } from "./state";
 import { MemoryStorage } from "./storage/memory";
 
 let subject: Environment;
@@ -119,11 +123,13 @@ it("should create a profile with data and persist it when instructed to do so", 
 
 	const profile = subject.profiles().create("John Doe");
 
+	State.profile(profile);
+
 	// Create a Contact
 	profile.contacts().create("Jane Doe");
 
 	// Create a Wallet
-	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
 	// Create a Notification
 	profile.notifications().push({
@@ -163,7 +169,8 @@ it("should create a profile with data and persist it when instructed to do so", 
 
 	expect(newProfile).toBeInstanceOf(Profile);
 
-	await newProfile.restore();
+	await new ProfileImporter().import(newProfile);
+	await newProfile.sync();
 
 	expect(newProfile.wallets().keys()).toHaveLength(1);
 	expect(newProfile.contacts().keys()).toHaveLength(1);
@@ -194,7 +201,7 @@ it("should boot the environment from fixed data", async () => {
 
 	const newProfile = env.profiles().findById("8101538b-b13a-4b8d-b3d8-e710ccffd385");
 
-	await newProfile.restore();
+	await new ProfileImporter().import(newProfile);
 
 	expect(newProfile).toBeInstanceOf(Profile);
 	expect(newProfile.wallets().keys()).toHaveLength(1);
@@ -260,12 +267,6 @@ it("should throw error when calling boot without verify first", async () => {
 	await expect(env.boot()).rejects.toThrowError("Please call [verify] before booting the environment.");
 });
 
-it("should get available coins", async () => {
-	await makeSubject();
-
-	expect(subject.coins().values()).toEqual([]);
-});
-
 it("#exchangeRates", async () => {
 	await makeSubject();
 
@@ -275,6 +276,8 @@ it("#exchangeRates", async () => {
 it("#fees", async () => {
 	await makeSubject();
 
+	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
+
 	await subject.fees().sync("ARK", "ark.devnet");
 	expect(Object.keys(subject.fees().all("ARK", "ark.devnet"))).toHaveLength(11);
 });
@@ -282,12 +285,16 @@ it("#fees", async () => {
 it("#delegates", async () => {
 	await makeSubject();
 
+	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
+
 	await subject.delegates().sync("ARK", "ark.devnet");
 	expect(subject.delegates().all("ARK", "ark.devnet")).toHaveLength(200);
 });
 
 it("#knownWallets", async () => {
 	await makeSubject();
+
+	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
 
 	await subject.knownWallets().syncAll();
 	expect(subject.knownWallets().is("ark.devnet", "unknownWallet")).toBeFalse();
@@ -297,12 +304,6 @@ it("#wallets", async () => {
 	await makeSubject();
 
 	expect(subject.wallets()).toBeInstanceOf(WalletService);
-});
-
-it("#coin", async () => {
-	await makeSubject();
-
-	await expect(subject.coin("ARK", "ark.devnet")).resolves.toBeInstanceOf(Coins.Coin);
 });
 
 it("#registerCoin", async () => {
@@ -327,6 +328,7 @@ it("should create a profile with password and persist", async () => {
 	await makeSubject();
 
 	const profile = subject.profiles().create("John Doe");
+	State.profile(profile);
 	profile.auth().setPassword("password");
 	expect(() => subject.persist()).not.toThrowError();
 });
@@ -352,14 +354,17 @@ it("should persist the env and restore it", async () => {
 	await makeSubject();
 
 	const john = subject.profiles().create("John");
-	await john.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	State.profile(john);
+	await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
 	john.save();
 
 	const jane = subject.profiles().create("Jane");
+	State.profile(jane);
 	jane.auth().setPassword("password");
 	jane.save("password");
 
 	const jack = subject.profiles().create("Jack");
+	State.profile(jack);
 	jack.auth().setPassword("password");
 	jack.save("password");
 
@@ -372,15 +377,20 @@ it("should persist the env and restore it", async () => {
 
 	// Assert that we got back what we dumped in the previous env
 	const restoredJohn = subject.profiles().findById(john.id());
-	await restoredJohn.restore();
+	await new ProfileImporter().import(restoredJohn);
+	await restoredJohn.sync();
 
 	const restoredJane = subject.profiles().findById(jane.id());
-	await restoredJane.restore("password");
+	await new ProfileImporter().import(restoredJane, "password");
+	await restoredJane.sync();
 
 	const restoredJack = subject.profiles().findById(jack.id());
-	await restoredJack.restore("password");
+	await new ProfileImporter().import(restoredJack, "password");
+	await restoredJack.sync();
 
-	expect(restoredJohn.toObject()).toEqual(john.toObject());
-	expect(restoredJane.toObject()).toEqual(jane.toObject());
-	expect(restoredJack.toObject()).toEqual(jack.toObject());
+	const serialiser = new ProfileSerialiser();
+
+	expect(serialiser.toJSON(restoredJohn)).toEqual(serialiser.toJSON(john));
+	expect(serialiser.toJSON(restoredJane)).toEqual(serialiser.toJSON(jane));
+	expect(serialiser.toJSON(restoredJack)).toEqual(serialiser.toJSON(jack));
 });

@@ -14,7 +14,7 @@ describe("WalletData", function () {
 			nonce: "111932",
 			balance: "55827093444556",
 			isDelegate: true,
-			isResigned: true,
+			isResigned: false,
 			vote: "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
 			username: "arkx",
 		},
@@ -36,7 +36,7 @@ describe("WalletData", function () {
 						timestamp: 91907944,
 						generatorPublicKey: "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
 					},
-					resigned: true,
+					resigned: false,
 				},
 				vote: "03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
 				entities: {
@@ -99,7 +99,7 @@ describe("WalletData", function () {
 		});
 
 		test("#isResignedDelegate", () => {
-			expect(subject.isResignedDelegate()).toBeTrue();
+			expect(subject.isResignedDelegate()).toBeFalse();
 		});
 
 		test("#isMultiSignature", () => {

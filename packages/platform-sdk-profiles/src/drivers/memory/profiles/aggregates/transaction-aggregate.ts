@@ -1,9 +1,10 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { IProfile, IReadWriteWallet, ITransactionAggregate } from "../../../../contracts";
+import { IReadWriteWallet, ITransactionAggregate } from "../../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../../dto";
 
 import { ExtendedTransactionData } from "../../../../dto/transaction";
 import { transformTransactionData } from "../../../../dto/transaction-mapper";
+import { State } from "../../../../environment/state";
 import { promiseAllSettledByKey } from "../../../../helpers/promise";
 
 type HistoryMethod = string;
@@ -14,24 +15,18 @@ type AggregateQuery = {
 } & Contracts.ClientPagination;
 
 export class TransactionAggregate implements ITransactionAggregate {
-	readonly #profile: IProfile;
-
 	#history: Record<HistoryMethod, Record<string, HistoryWallet>> = {};
 
-	public constructor(profile: IProfile) {
-		this.#profile = profile;
+	public async all(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
+		return this.aggregate("all", query);
 	}
 
-	public async transactions(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
-		return this.aggregate("transactions", query);
+	public async sent(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
+		return this.aggregate("sent", query);
 	}
 
-	public async sentTransactions(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
-		return this.aggregate("sentTransactions", query);
-	}
-
-	public async receivedTransactions(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
-		return this.aggregate("receivedTransactions", query);
+	public async received(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
+		return this.aggregate("received", query);
 	}
 
 	public hasMore(method: string): boolean {
@@ -69,10 +64,10 @@ export class TransactionAggregate implements ITransactionAggregate {
 				}
 
 				if (lastResponse && lastResponse.hasMorePages()) {
-					return resolve(syncedWallet[method]({ cursor: lastResponse.nextPage(), ...query }));
+					return resolve(syncedWallet.transactionIndex()[method]({ cursor: lastResponse.nextPage(), ...query }));
 				}
 
-				return resolve(syncedWallet[method](query));
+				return resolve(syncedWallet.transactionIndex()[method](query));
 			});
 		}
 
@@ -104,11 +99,11 @@ export class TransactionAggregate implements ITransactionAggregate {
 	}
 
 	private getWallet(id: string): IReadWriteWallet {
-		return this.#profile.wallets().findById(id);
+		return State.profile().wallets().findById(id);
 	}
 
 	private getWallets(addresses: string[] = []): IReadWriteWallet[] {
-		return this.#profile
+		return State.profile()
 			.wallets()
 			.values()
 			.filter((wallet: IReadWriteWallet) => {

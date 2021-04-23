@@ -5,10 +5,11 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../../test/helpers";
 import { Profile } from "../profile";
 import { WalletAggregate } from "./wallet-aggregate";
 import { IProfile } from "../../../../contracts";
+import { State } from "../../../../environment/state";
 
 let subject: WalletAggregate;
 let profile: IProfile;
@@ -31,9 +32,11 @@ beforeAll(() => {
 beforeEach(async () => {
 	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 
-	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	State.profile(profile);
 
-	subject = new WalletAggregate(profile);
+	await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
+
+	subject = new WalletAggregate();
 });
 
 describe("WalletAggregate", () => {

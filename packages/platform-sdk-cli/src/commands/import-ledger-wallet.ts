@@ -32,7 +32,8 @@ export const importLedgerWallet = async (env: Environment, profile: Contracts.IP
 	]);
 
 	const slip44 = network === "ark.mainnet" ? 111 : 1;
-	const instance = await env.coin(coin, network);
+	const instance = profile.coins().push(coin, network);
+	await instance.__construct();
 
 	await LedgerTransportNodeHID.create();
 
@@ -130,7 +131,14 @@ export const importLedgerWallet = async (env: Environment, profile: Contracts.IP
 				const imports: any[] = [];
 				for (const address of addresses) {
 					imports.push(
-						profile.wallets().importByAddressWithLedgerPath(address.address, coin, network, address.path),
+						profile.wallets().push(
+							await profile.walletFactory().fromAddressWithLedgerPath({
+								coin,
+								network,
+								address: address.address,
+								path: address.path,
+							}),
+						),
 					);
 				}
 

@@ -7,11 +7,12 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../../test/fixtures/identity";
-import { bootContainer } from "../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../test/helpers";
 import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting } from "../contracts";
 import { Profile } from "../drivers/memory/profiles/profile";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
+import { State } from "../environment/state";
 import {
 	BridgechainRegistrationData,
 	BridgechainResignationData,
@@ -106,11 +107,14 @@ beforeAll(async () => {
 
 beforeEach(async () => {
 	profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+
+	State.profile(profile);
+
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 	profile.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
 	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 
-	wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	wallet = await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
 	liveSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);
 	testSpy = jest.spyOn(wallet.network(), "isTest").mockReturnValue(false);

@@ -8,13 +8,8 @@ import { DataRepository } from "../../../repositories/data-repository";
 
 @injectable()
 export class ContactRepository implements IContactRepository {
-	#data: DataRepository;
-	#profile: IProfile;
-
-	public constructor(profile: IProfile) {
-		this.#data = new DataRepository();
-		this.#profile = profile;
-	}
+	readonly #data: DataRepository = new DataRepository();
+	#dataRaw: object = {};
 
 	public all(): Record<string, IContact> {
 		return this.#data.all() as Record<string, IContact>;
@@ -47,25 +42,11 @@ export class ContactRepository implements IContactRepository {
 
 		const id: string = uuidv4();
 
-		const result: IContact = new Contact({ id, name, starred: false }, this.#profile);
+		const result: IContact = new Contact({ id, name, starred: false });
 
 		this.#data.set(id, result);
 
 		return result;
-	}
-
-	public async fill(contacts: object): Promise<void> {
-		const promises: (() => Promise<void>)[] = [];
-
-		for (const [id, contact] of Object.entries(contacts)) {
-			const instance: IContact = new Contact(contact, this.#profile);
-
-			promises.push(() => instance.restore(contact.addresses));
-
-			this.#data.set(id, instance);
-		}
-
-		await pqueue(promises);
 	}
 
 	public findById(id: string): IContact {
@@ -155,5 +136,35 @@ export class ContactRepository implements IContactRepository {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Restore contacts without synchronising them.
+	 *
+	 * @param {object} contacts
+	 * @memberof ContactRepository
+	 */
+	public fill(contacts: object): void {
+		this.#dataRaw = contacts;
+
+		for (const [id, contact] of Object.entries(contacts)) {
+			this.#data.set(id, new Contact(contact));
+		}
+	}
+
+	/**
+	 * Synchronise each contact with the network it belongs to.
+	 *
+	 * @returns {Promise<void>}
+	 * @memberof ContactRepository
+	 */
+	public async restore(): Promise<void> {
+		const promises: (() => Promise<void>)[] = [];
+
+		for (const [id, contact] of Object.entries(this.#dataRaw)) {
+			promises.push(() => this.findById(id).restore(contact.addresses));
+		}
+
+		await pqueue(promises);
 	}
 }

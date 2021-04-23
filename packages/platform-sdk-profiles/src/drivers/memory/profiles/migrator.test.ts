@@ -7,6 +7,8 @@ import { bootContainer } from "../../../../test/helpers";
 import { Migrator } from "./migrator";
 import { Profile } from "./profile";
 import { IProfile, ProfileData } from "../../../contracts";
+import { ProfileImporter } from "./profile.importer";
+import { ProfileSerialiser } from "./profile.serialiser";
 
 let subject: Migrator;
 let profile: IProfile;
@@ -15,6 +17,7 @@ beforeAll(() => bootContainer());
 
 beforeEach(async () => {
 	profile = new Profile({ id: "id", name: "name", avatar: "avatar", data: Base64.encode("{}") });
+
 	subject = new Migrator(profile);
 });
 
@@ -208,16 +211,16 @@ it("should migrate profiles from JSON to Base64", async () => {
 			},
 		},
 	});
+
 	subject = new Migrator(profile);
 
 	await subject.migrate(
 		{
 			"2.0.0": async ({ profile }: { profile: IProfile }) => {
-				// @ts-ignore
-				const profileData: Record<string, any> = profile.getRawData();
+				const profileData: Record<string, any> = profile.getAttributes().all();
 				profileData.data.contacts["0e147f96-049f-4d89-bad4-ad3341109907"].name = "John Doe";
 
-				profile.setRawData({
+				profile.getAttributes().setMany({
 					id: profile.id(),
 					name: profile.data.name,
 					password: profileData.data.settings.PASSWORD,
@@ -230,13 +233,12 @@ it("should migrate profiles from JSON to Base64", async () => {
 
 	expect(profile.data().get(ProfileData.LatestMigration)).toBe("2.0.0");
 
-	// @ts-ignore
-	await profile.restore();
+	await new ProfileImporter().import(profile);
 
 	expect(profile.id()).toBe("b999d134-7a24-481e-a95d-bc47c543bfc9");
 	expect(profile.usesPassword()).toBeTrue();
 	expect(profile.contacts().findById("0e147f96-049f-4d89-bad4-ad3341109907").name()).toBe("John Doe");
-	expect(profile.toObject()).toMatchInlineSnapshot(`
+	expect(new ProfileSerialiser().toJSON(profile)).toMatchInlineSnapshot(`
 		Object {
 		  "contacts": Object {
 		    "0e147f96-049f-4d89-bad4-ad3341109907": Object {

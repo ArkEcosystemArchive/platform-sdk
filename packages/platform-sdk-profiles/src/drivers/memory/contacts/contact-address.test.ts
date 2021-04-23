@@ -5,6 +5,8 @@ import nock from "nock";
 
 import { bootContainer } from "../../../../test/helpers";
 import { ContactAddress } from "./contact-address";
+import { Profile } from "../profiles/profile";
+import { State } from "../../../environment/state";
 
 let subject: ContactAddress;
 
@@ -23,8 +25,10 @@ beforeEach(async () => {
 		.get("/api/node/syncing")
 		.reply(200, require("../../../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../../../test/fixtures/client/wallet-non-resigned.json"))
 		.persist();
+
+	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
 
 	subject = await ContactAddress.make({
 		id: "uuid",

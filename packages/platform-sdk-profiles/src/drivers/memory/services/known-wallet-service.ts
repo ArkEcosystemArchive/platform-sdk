@@ -1,27 +1,24 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { pqueue } from "../../../helpers/queue";
-import { container } from "../../../environment/container";
-import { Identifiers } from "../../../environment/container.models";
-import { CoinService } from "./coin-service";
 import { IKnownWalletService } from "../../../contracts";
 import { injectable } from "inversify";
+import { State } from "../../../environment/state";
 
 type KnownWalletRegistry = Record<string, Contracts.KnownWallet[]>;
 
 @injectable()
 export class KnownWalletService implements IKnownWalletService {
-	private registry: KnownWalletRegistry = {};
+	readonly #registry: KnownWalletRegistry = {};
 
 	public async syncAll(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
-		for (const [coin, networks] of container.get<CoinService>(Identifiers.CoinService).entries()) {
+		for (const [coin, networks] of State.profile().coins().entries()) {
 			for (const network of networks) {
 				promises.push(async () => {
 					try {
-						this.registry[network] = await container
-							.get<CoinService>(Identifiers.CoinService)
+						this.#registry[network] = await State.profile().coins()
 							.get(coin, network)
 							.knownWallets()
 							.all();
@@ -52,7 +49,7 @@ export class KnownWalletService implements IKnownWalletService {
 	}
 
 	private findByAddress(network: string, address: string): Contracts.KnownWallet | undefined {
-		const registry: Contracts.KnownWallet[] = this.registry[network];
+		const registry: Contracts.KnownWallet[] = this.#registry[network];
 
 		if (registry === undefined) {
 			return undefined;

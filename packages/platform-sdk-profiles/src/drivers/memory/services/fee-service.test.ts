@@ -8,6 +8,8 @@ import { FeeService } from "./fee-service";
 
 let subject: FeeService;
 import NodeFeesFixture from "../../../../test/fixtures/client/node-fees.json";
+import { State } from "../../../environment/state";
+import { Profile } from "../profiles/profile";
 
 beforeAll(() => {
 	bootContainer();
@@ -30,6 +32,8 @@ beforeAll(() => {
 		.query(true)
 		.reply(200, require("../../../../test/fixtures/client/transaction-fees.json"))
 		.persist();
+
+	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
 });
 
 beforeEach(async () => {

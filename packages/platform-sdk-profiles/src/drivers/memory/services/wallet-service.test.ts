@@ -4,12 +4,13 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { IProfile, IReadWriteWallet } from "../../../contracts";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { WalletService } from "./wallet-service";
+import { State } from "../../../environment/state";
 
 let profile: IProfile;
 let wallet: IReadWriteWallet;
@@ -80,7 +81,9 @@ beforeEach(async () => {
 
 	profile = profileRepository.create("John Doe");
 
-	wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	State.profile(profile);
+
+	wallet = await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
 	liveSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);
 	testSpy = jest.spyOn(wallet.network(), "isTest").mockReturnValue(false);
@@ -96,21 +99,10 @@ afterEach(() => {
 beforeAll(() => nock.disableNetConnect());
 
 describe("WalletService", () => {
-	it("#syncAll", async () => {
-		expect(() => wallet.votes()).toThrowError(/has not been synced/);
-		await subject.syncAll();
-		expect(() => wallet.votes()).not.toThrowError(/has not been synced/);
-
-		// @ts-ignore
-		const mockUndefinedWallets = jest.spyOn(profile.wallets(), "values").mockReturnValue([undefined]);
-		await subject.syncAll();
-		mockUndefinedWallets.mockRestore();
-	});
-
 	it("#syncByProfile", async () => {
-		expect(() => wallet.votes()).toThrowError(/has not been synced/);
+		expect(() => wallet.voting().current()).toThrowError(/has not been synced/);
 		await subject.syncByProfile(profile);
-		expect(() => wallet.votes()).not.toThrowError(/has not been synced/);
+		expect(() => wallet.voting().current()).not.toThrowError(/has not been synced/);
 
 		// @ts-ignore
 		const mockUndefinedWallets = jest.spyOn(profile.wallets(), "values").mockReturnValue([undefined]);

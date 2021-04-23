@@ -607,6 +607,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "p-each-series",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "p-queue",
       "allowedCategories": [ "libraries" ]
     },

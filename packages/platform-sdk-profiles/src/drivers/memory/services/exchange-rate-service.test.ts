@@ -4,13 +4,14 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { StubStorage } from "../../../../test/stubs/storage";
 import { IProfile, IReadWriteWallet, ProfileSetting, WalletData } from "../../../contracts";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { ExchangeRateService } from "./exchange-rate-service";
+import { State } from "../../../environment/state";
 
 let profile: IProfile;
 let wallet: IReadWriteWallet;
@@ -53,9 +54,12 @@ beforeEach(async () => {
 	container.rebind(Identifiers.ExchangeRateService, subject);
 
 	profile = profileRepository.create("John Doe");
+
+	State.profile(profile);
+
 	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 
-	wallet = await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	wallet = await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 	wallet.data().set(WalletData.Balance, 1e8);
 
 	liveSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);

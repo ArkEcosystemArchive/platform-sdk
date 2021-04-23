@@ -7,7 +7,7 @@ import { DataRepository } from "../../../repositories/data-repository";
 
 @injectable()
 export class ContactAddressRepository implements IContactAddressRepository {
-	#data: DataRepository = new DataRepository();
+	readonly #data: DataRepository = new DataRepository();
 
 	public all(): Record<string, IContactAddress> {
 		return this.#data.all() as Record<string, IContactAddress>;

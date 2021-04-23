@@ -15,8 +15,7 @@ const network: Coins.CoinNetwork = {
 		expirationType: "height",
 	},
 	networking: {
-		hosts: ["http://51.75.183.28:8090"],
-		hostsArchival: ["http://51.75.183.27:3100"],
+		hosts: ["http://51.75.183.27:3100"],
 	},
 	governance: {
 		voting: {

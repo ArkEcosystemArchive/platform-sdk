@@ -5,13 +5,18 @@ import { IProfileRepository, IProfileExportOptions, IProfile } from "../../../co
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
 import { DataRepository } from "../../../repositories/data-repository";
+import { ProfileExporter } from "../profiles/profile.exporter";
+import { ProfileImporter } from "../profiles/profile.importer";
+import { ProfileDumper } from "../profiles/profile.dumper";
 
 @injectable()
 export class ProfileRepository implements IProfileRepository {
 	readonly #data: DataRepository;
+	readonly #dumper: ProfileDumper;
 
 	public constructor() {
 		this.#data = new DataRepository();
+		this.#dumper = new ProfileDumper();
 	}
 
 	public fill(profiles: object): void {
@@ -71,12 +76,19 @@ export class ProfileRepository implements IProfileRepository {
 			password,
 			data,
 		});
-		await profile.restore(password);
+
+		await new ProfileImporter().import(profile, password);
+
 		return profile;
 	}
 
 	public export(profile: IProfile, options: IProfileExportOptions, password?: string): string {
-		return profile.export(password, options);
+		return new ProfileExporter(profile).export(password, options);
+	}
+
+	// @TODO: expose this in some other way
+	public async restore(profile: IProfile, password?: string): Promise<void> {
+		new ProfileImporter().import(profile, password);
 	}
 
 	public has(id: string): boolean {
@@ -104,7 +116,7 @@ export class ProfileRepository implements IProfileRepository {
 		const profiles: [string, Profile][] = Object.entries(this.#data.all());
 
 		for (const [id, profile] of profiles) {
-			result[id] = profile.dump();
+			result[id] = this.#dumper.dump(profile);
 		}
 
 		return result;

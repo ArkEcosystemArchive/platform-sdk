@@ -3,6 +3,7 @@ import "reflect-metadata";
 
 import { bootContainer } from "../../../../test/helpers";
 import { IProfile, ProfileSetting } from "../../../contracts";
+import { State } from "../../../environment/state";
 import { MemoryPassword } from "../../../helpers/password";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
@@ -14,7 +15,10 @@ beforeAll(() => bootContainer());
 
 beforeEach(() => {
 	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
-	subject = new Authenticator(profile);
+
+	State.profile(profile);
+
+	subject = new Authenticator();
 });
 
 it("should set the password", async () => {
@@ -59,5 +63,5 @@ it("should fail to change the password if the old password is invalid", () => {
 it("should set password in memory", () => {
 	subject.setPassword("password");
 
-	expect(MemoryPassword.get(profile)).toEqual("password");
+expect(MemoryPassword.get()).toEqual("password");
 });

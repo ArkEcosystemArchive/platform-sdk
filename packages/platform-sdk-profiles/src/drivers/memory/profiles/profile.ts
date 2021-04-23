@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import Joi from "joi";
 import {
-	IProfileStruct,
-	IProfileExportOptions,
 	IContactRepository,
 	IPortfolio,
 	ICountAggregate,
@@ -22,10 +18,10 @@ import {
 	ProfileSetting,
 	IReadWriteWallet,
 	ICoinService,
+	IAuthenticator,
+	IWalletFactory,
 } from "../../../contracts";
 
-import { MemoryPassword } from "../../../helpers/password";
-import { pqueue } from "../../../helpers/queue";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../../../repositories/data-repository";
@@ -39,60 +35,188 @@ import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
-import { Migrator } from "./migrator";
 import { Portfolio } from "./portfolio";
-import { container } from "../../../environment/container";
-import { Identifiers } from "../../../environment/container.models";
+import { CoinService } from "./services/coin-service";
+import { WalletFactory } from "../wallets/wallet.factory";
+import { AttributeBag } from "../../../helpers/attribute-bag";
+import { ProfileExporter } from "./profile.exporter";
+import { ProfileInitialiser } from "./profile.initialiser";
 
 export class Profile implements IProfile {
-	#data: IProfileInput;
+	/**
+	 * The coin service.
+	 *
+	 * @type {ICoinService}
+	 * @memberof Profile
+	 */
+	readonly #coinService: ICoinService;
 
+	/**
+	 * The portfolio service.
+	 *
+	 * @type {IPortfolio}
+	 * @memberof Profile
+	 */
 	readonly #portfolio: IPortfolio;
+
+	/**
+	 * The contact repository.
+	 *
+	 * @type {IContactRepository}
+	 * @memberof Profile
+	 */
 	readonly #contactRepository: IContactRepository;
+
+	/**
+	 * The data repository.
+	 *
+	 * @type {IDataRepository}
+	 * @memberof Profile
+	 */
 	readonly #dataRepository: IDataRepository;
+
+	/**
+	 * The notification repository.
+	 *
+	 * @type {INotificationRepository}
+	 * @memberof Profile
+	 */
 	readonly #notificationRepository: INotificationRepository;
+
+	/**
+	 * The peer repository.
+	 *
+	 * @type {IPeerRepository}
+	 * @memberof Profile
+	 */
 	readonly #peerRepository: IPeerRepository;
+
+	/**
+	 * The plugin repository.
+	 *
+	 * @type {IPluginRepository}
+	 * @memberof Profile
+	 */
 	readonly #pluginRepository: IPluginRepository;
+
+	/**
+	 * The setting repository.
+	 *
+	 * @type {ISettingRepository}
+	 * @memberof Profile
+	 */
 	readonly #settingRepository: ISettingRepository;
+
+	/**
+	 * The wallet repository.
+	 *
+	 * @type {IWalletRepository}
+	 * @memberof Profile
+	 */
 	readonly #walletRepository: IWalletRepository;
 
+	/**
+	 * The count aggregate service.
+	 *
+	 * @type {ICountAggregate}
+	 * @memberof Profile
+	 */
 	readonly #countAggregate: ICountAggregate;
+
+	/**
+	 * The registration aggregate service.
+	 *
+	 * @type {IRegistrationAggregate}
+	 * @memberof Profile
+	 */
 	readonly #registrationAggregate: IRegistrationAggregate;
+
+	/**
+	 * The transaction aggregate service.
+	 *
+	 * @type {ITransactionAggregate}
+	 * @memberof Profile
+	 */
 	readonly #transactionAggregate: ITransactionAggregate;
+
+	/**
+	 * The wallet aggregate service.
+	 *
+	 * @type {IWalletAggregate}
+	 * @memberof Profile
+	 */
 	readonly #walletAggregate: IWalletAggregate;
 
-	public constructor(data: IProfileInput) {
-		this.#data = data;
+	/**
+	 * The authentication service.
+	 *
+	 * @type {IAuthenticator}
+	 * @memberof Profile
+	 */
+	readonly #authenticator: IAuthenticator;
 
-		this.#portfolio = new Portfolio(this);
-		this.#contactRepository = new ContactRepository(this);
+	/**
+	 * The normalise profile data.
+	 *
+	 * @type {AttributeBag<IProfileInput>}
+	 * @memberof Profile
+	 */
+	readonly #attributes: AttributeBag<IProfileInput>;
+
+	/**
+	 * Creates an instance of Profile.
+	 * @param {IProfileInput} data
+	 * @memberof Profile
+	 */
+	public constructor(data: IProfileInput) {
+		this.#attributes = new AttributeBag<IProfileInput>(data);
+
+		this.#coinService = new CoinService();
+		this.#portfolio = new Portfolio();
+		this.#contactRepository = new ContactRepository();
 		this.#dataRepository = new DataRepository();
 		this.#notificationRepository = new NotificationRepository();
 		this.#peerRepository = new PeerRepository();
 		this.#pluginRepository = new PluginRepository();
 		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
-		this.#walletRepository = new WalletRepository(this);
-
-		this.#countAggregate = new CountAggregate(this);
-		this.#registrationAggregate = new RegistrationAggregate(this);
-		this.#transactionAggregate = new TransactionAggregate(this);
-		this.#walletAggregate = new WalletAggregate(this);
-
-		container.get<ICoinService>(Identifiers.CoinService).flush();
+		this.#walletRepository = new WalletRepository();
+		this.#countAggregate = new CountAggregate();
+		this.#registrationAggregate = new RegistrationAggregate();
+		this.#transactionAggregate = new TransactionAggregate();
+		this.#walletAggregate = new WalletAggregate();
+		this.#authenticator = new Authenticator();
 	}
 
+	/**
+	 * Get the UUID of the profile.
+	 *
+	 * @return {string}
+	 * @memberof Profile
+	 */
 	public id(): string {
-		return this.#data.id;
+		return this.#attributes.get<string>('id');
 	}
 
+	/**
+	 * Get the name of the profile.
+	 *
+	 * @return {string}
+	 * @memberof Profile
+	 */
 	public name(): string {
 		if (this.settings().missing(ProfileSetting.Name)) {
-			return this.#data.name;
+			return this.#attributes.get<string>('name');
 		}
 
 		return this.settings().get<string>(ProfileSetting.Name)!;
 	}
 
+	/**
+	 * Get the avatar of the profile.
+	 *
+	 * @return {string}
+	 * @memberof Profile
+	 */
 	public avatar(): string {
 		const avatarFromSettings: string | undefined = this.settings().get(ProfileSetting.Avatar);
 
@@ -100,53 +224,38 @@ export class Profile implements IProfile {
 			return avatarFromSettings;
 		}
 
-		if (this.#data.avatar) {
-			return this.#data.avatar;
+		if (this.#attributes.hasStrict('data.avatar')) {
+			return this.#attributes.get<string>('avatar');
 		}
 
 		return Avatar.make(this.name());
 	}
 
+	/**
+	 * Get the balance of the profile.
+	 *
+	 * @return {BigNumber}
+	 * @memberof Profile
+	 */
 	public balance(): BigNumber {
 		return this.walletAggregate().balance();
 	}
 
+	/**
+	 * Get the converted balance of the profile.
+	 *
+	 * @return {BigNumber}
+	 * @memberof Profile
+	 */
 	public convertedBalance(): BigNumber {
 		return this.walletAggregate().convertedBalance();
 	}
 
-	public portfolio(): IPortfolio {
-		return this.#portfolio;
-	}
-
-	public contacts(): IContactRepository {
-		return this.#contactRepository;
-	}
-
-	public data(): IDataRepository {
-		return this.#dataRepository;
-	}
-
-	public notifications(): INotificationRepository {
-		return this.#notificationRepository;
-	}
-
-	public peers(): IPeerRepository {
-		return this.#peerRepository;
-	}
-
-	public plugins(): IPluginRepository {
-		return this.#pluginRepository;
-	}
-
-	public settings(): ISettingRepository {
-		return this.#settingRepository;
-	}
-
-	public wallets(): IWalletRepository {
-		return this.#walletRepository;
-	}
-
+	/**
+	 * Flush all data and reset the instance.
+	 *
+	 * @memberof Profile
+	 */
 	public flush(): void {
 		const name: string | undefined = this.settings().get(ProfileSetting.Name);
 
@@ -154,273 +263,189 @@ export class Profile implements IProfile {
 			throw new Error("The name of the profile could not be found. This looks like a bug.");
 		}
 
-		this.contacts().flush();
-
-		this.data().flush();
-
-		this.notifications().flush();
-
-		this.plugins().flush();
-
-		this.settings().flush();
-
-		this.wallets().flush();
-
-		this.restoreDefaultSettings(name);
+		new ProfileInitialiser(this).initialise(name);
 	}
 
 	/**
-	 * These methods serve as helpers to aggregate commonly used data.
+	 * Access the coin service.
+	 *
+	 * @returns {ICoinService}
+	 * @memberof Environment
 	 */
+	public coins(): ICoinService {
+		return this.#coinService;
+	}
 
+	/**
+	 * Access the portfolio service.
+	 *
+	 * @return {IPortfolio}
+	 * @memberof Profile
+	 */
+	public portfolio(): IPortfolio {
+		return this.#portfolio;
+	}
+
+	/**
+	 * Access the contact repository.
+	 *
+	 * @return {IContactRepository}
+	 * @memberof Profile
+	 */
+	public contacts(): IContactRepository {
+		return this.#contactRepository;
+	}
+
+	/**
+	 * Access the data repository.
+	 *
+	 * @return {IDataRepository}
+	 * @memberof Profile
+	 */
+	public data(): IDataRepository {
+		return this.#dataRepository;
+	}
+
+	/**
+	 * Access the notification repository.
+	 *
+	 * @return {INotificationRepository}
+	 * @memberof Profile
+	 */
+	public notifications(): INotificationRepository {
+		return this.#notificationRepository;
+	}
+
+	/**
+	 * Access the peer repository.
+	 *
+	 * @return {IPeerRepository}
+	 * @memberof Profile
+	 */
+	public peers(): IPeerRepository {
+		return this.#peerRepository;
+	}
+
+	/**
+	 * Access the plugin repository.
+	 *
+	 * @return {IPluginRepository}
+	 * @memberof Profile
+	 */
+	public plugins(): IPluginRepository {
+		return this.#pluginRepository;
+	}
+
+	/**
+	 * Access the setting repository.
+	 *
+	 * @return {ISettingRepository}
+	 * @memberof Profile
+	 */
+	public settings(): ISettingRepository {
+		return this.#settingRepository;
+	}
+
+	/**
+	 * Access the wallet repository.
+	 *
+	 * @return {IWalletRepository}
+	 * @memberof Profile
+	 */
+	public wallets(): IWalletRepository {
+		return this.#walletRepository;
+	}
+
+	/**
+	 * Access the wallet factory.
+	 *
+	 * @return {IWalletFactory}
+	 * @memberof Profile
+	 */
+	public walletFactory(): IWalletFactory {
+		return new WalletFactory();
+	}
+
+	/**
+	 * Access the count aggregate service.
+	 *
+	 * @return {ICountAggregate}
+	 * @memberof Profile
+	 */
 	public countAggregate(): ICountAggregate {
 		return this.#countAggregate;
 	}
 
+	/**
+	 * Access the registration aggregate service.
+	 *
+	 * @return {IRegistrationAggregate}
+	 * @memberof Profile
+	 */
 	public registrationAggregate(): IRegistrationAggregate {
 		return this.#registrationAggregate;
 	}
 
+	/**
+	 * Access the transaction aggregate service.
+	 *
+	 * @return {ITransactionAggregate}
+	 * @memberof Profile
+	 */
 	public transactionAggregate(): ITransactionAggregate {
 		return this.#transactionAggregate;
 	}
 
+	/**
+	 * Access the wallet aggregate service.
+	 *
+	 * @return {IWalletAggregate}
+	 * @memberof Profile
+	 */
 	public walletAggregate(): IWalletAggregate {
 		return this.#walletAggregate;
 	}
 
 	/**
-	 * These methods serve as helpers to handle authenticate / authorisation.
+	 * Access the authentication service.
+	 *
+	 * @return {*}  {IAuthenticator}
+	 * @memberof Profile
 	 */
-
-	public auth(): Authenticator {
-		return new Authenticator(this);
-	}
-
-	public usesPassword(): boolean {
-		return this.#data.password !== undefined;
+	public auth(): IAuthenticator {
+		return this.#authenticator;
 	}
 
 	/**
-	 * These methods serve as helpers to handle broadcasting.
+	 * Determine if the profile uses a password.
+	 *
+	 * @return {boolean}
+	 * @memberof Profile
 	 */
+	public usesPassword(): boolean {
+		return this.#attributes.hasStrict('password');
+	}
 
+	/**
+	 * Determine if the profile uses custom peers.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Profile
+	 */
 	public usesCustomPeer(): boolean {
 		return this.settings().get(ProfileSetting.UseCustomPeer) === true;
 	}
 
+	/**
+	 * Determine if the profile uses spread-out broadcasting.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Profile
+	 */
 	public usesMultiPeerBroadcasting(): boolean {
 		const usesMultiPeerBroadcasting: boolean = this.settings().get(ProfileSetting.UseMultiPeerBroadcast) === true;
 
 		return this.usesCustomPeer() && usesMultiPeerBroadcasting;
-	}
-
-	/**
-	 * Specify data which should be serialized to an object.
-	 */
-	public toObject(
-		options: IProfileExportOptions = {
-			excludeEmptyWallets: false,
-			excludeLedgerWallets: false,
-			addNetworkInformation: true,
-			saveGeneralSettings: true,
-		},
-	): IProfileStruct {
-		if (!options.saveGeneralSettings) {
-			throw Error("This is not implemented yet");
-		}
-
-		return {
-			id: this.id(),
-			contacts: this.contacts().toObject(),
-			data: this.data().all(),
-			notifications: this.notifications().all(),
-			peers: this.peers().toObject(),
-			plugins: this.plugins().all(),
-			settings: this.settings().all(),
-			wallets: this.wallets().toObject(options),
-		};
-	}
-
-	/**
-	 * Dumps the profile into a standardised object.
-	 *
-	 * @param {string} [password]
-	 * @returns {ProfileInput}
-	 * @memberof Profile
-	 */
-	public dump(): IProfileInput {
-		if (!this.#data.data) {
-			throw new Error("The profile has not been encoded or encrypted. Please call [save] before dumping.");
-		}
-
-		return {
-			id: this.id(),
-			name: this.name(),
-			avatar: this.avatar(),
-			password: this.#data.password,
-			data: this.#data.data,
-		};
-	}
-
-	/**
-	 * Restore a profile from either a base64 raw or base64 encrypted string.
-	 *
-	 * @param {string} [password]
-	 * @returns {Promise<void>}
-	 * @memberof Profile
-	 */
-	public async restore(password?: string): Promise<void> {
-		let data: IProfileStruct | undefined;
-		let errorReason = "";
-
-		try {
-			if (typeof password === "string") {
-				data = this.decrypt(password);
-			} else {
-				data = JSON.parse(Base64.decode(this.#data.data));
-			}
-		} catch (error) {
-			errorReason = ` Reason: ${error.message}`;
-		}
-
-		if (data === undefined) {
-			throw new Error(`Failed to decode or decrypt the profile.${errorReason}`);
-		}
-
-		// @TODO: we need to apply migrations before we validate the data to ensure that it is conform
-		// since profiles are now restored on a per-profile basis due to encryption we can't apply them
-		// in bulk to all profiles because the profile data won't be accessible until after restoration
-
-		data = this.validateStruct(data);
-
-		this.peers().fill(data.peers);
-
-		this.notifications().fill(data.notifications);
-
-		this.data().fill(data.data);
-
-		// @ts-ignore
-		this.plugins().fill(data.plugins);
-
-		this.settings().fill(data.settings);
-
-		await this.restoreWallets(this, data.wallets);
-
-		await this.contacts().fill(data.contacts);
-	}
-
-	/**
-	 * Initialize the factory settings.
-	 *
-	 * If the profile has modified any settings they will be overwritten!
-	 *
-	 * @memberof Profile
-	 */
-	public initializeSettings(): void {
-		this.settings().set(ProfileSetting.AdvancedMode, false);
-		this.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
-		this.settings().set(ProfileSetting.Bip39Locale, "english");
-		this.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
-		this.settings().set(ProfileSetting.LedgerUpdateMethod, false);
-		this.settings().set(ProfileSetting.Locale, "en-US");
-		this.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
-		this.settings().set(ProfileSetting.ScreenshotProtection, true);
-		this.settings().set(ProfileSetting.Theme, "light");
-		this.settings().set(ProfileSetting.TimeFormat, "h:mm A");
-		this.settings().set(ProfileSetting.UseCustomPeer, false);
-		this.settings().set(ProfileSetting.UseMultiPeerBroadcast, false);
-		this.settings().set(ProfileSetting.UseTestNetworks, false);
-	}
-
-	/**
-	 * Execute any pending migrations from the given set up to the version that should be migrated.
-	 *
-	 * @param {object} migrations
-	 * @param {string} versionToMigrate
-	 * @returns {Promise<void>}
-	 * @memberof Profile
-	 */
-	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
-		await new Migrator(this).migrate(migrations, versionToMigrate);
-	}
-
-	/**
-	 * Get the raw (underlying) data that makes up a profile.
-	 *
-	 * THIS METHOD SHOULD ONLY BE USED FOR MIGRATIONS!
-	 *
-	 * @returns {ProfileInput}
-	 * @memberof Profile
-	 */
-	public getRawData(): IProfileInput {
-		return this.#data;
-	}
-
-	/**
-	 * Set the raw (underlying) data that makes up a profile.
-	 *
-	 * THIS METHOD SHOULD ONLY BE USED FOR MIGRATIONS!
-	 *
-	 * @param {ProfileInput} data
-	 * @memberof Profile
-	 */
-	public setRawData(data: IProfileInput): void {
-		this.#data = data;
-	}
-
-	/**
-	 * Set the given key to the given value for the raw
-	 * underlying data that makes up a profile's struct.
-	 *
-	 * THIS METHOD SHOULD ONLY BE USED FOR MIGRATIONS!
-	 *
-	 * @param {string} key
-	 * @param {string} value
-	 * @memberof Profile
-	 */
-	public setRawDataKey(key: keyof IProfileInput, value: string): void {
-		this.#data[key] = value;
-	}
-
-	/**
-	 * Encode or encrypt the profile data for dumping later on.
-	 */
-	public save(password?: string): void {
-		try {
-			this.#data.data = this.export(password);
-		} catch (error) {
-			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
-		}
-	}
-
-	public export(
-		password?: string,
-		options: IProfileExportOptions = {
-			excludeEmptyWallets: false,
-			excludeLedgerWallets: false,
-			addNetworkInformation: true,
-			saveGeneralSettings: true,
-		},
-	): string {
-		const filtered = this.toObject(options);
-
-		if (this.usesPassword()) {
-			return Base64.encode(
-				this.encrypt(
-					JSON.stringify({
-						id: this.id(),
-						name: this.name(),
-						avatar: this.avatar(),
-						password: this.#data.password,
-						data: this.toObject(options),
-					}),
-					password,
-				),
-			);
-		}
-
-		return Base64.encode(JSON.stringify(filtered));
 	}
 
 	/**
@@ -434,147 +459,40 @@ export class Profile implements IProfile {
 	}
 
 	/**
-	 * Restore the default settings, including the name of the profile.
+	 * Get the underlying attributes.
 	 *
-	 * @private
-	 * @param {string} name
-	 * @memberof Profile
+	 * @return {*}  {AttributeBag}
+	 * @memberof IReadWriteWallet
 	 */
-	private restoreDefaultSettings(name: string): void {
-		this.settings().set(ProfileSetting.Name, name);
-
-		this.initializeSettings();
+	public getAttributes(): AttributeBag<IProfileInput> {
+		return this.#attributes;
 	}
 
 	/**
-	 * Restore each wallet by sending network requests to gather data.
+	 * @TODO: move this out
 	 *
-	 * One wallet of each network is pre-synced to avoid duplicate
-	 * requests for subsequent imports to save bandwidth and time.
+	 * Sync the wallets and contacts with their respective networks.
 	 *
-	 * @private
-	 * @param {Profile} profile
-	 * @param {object} wallets
+	 * @param {string} [password]
 	 * @returns {Promise<void>}
 	 * @memberof Profile
 	 */
-	private async restoreWallets(profile: IProfile, wallets: object): Promise<void> {
-		const syncWallets = (wallets: object): Promise<IReadWriteWallet[]> =>
-			pqueue([...Object.values(wallets)].map((wallet) => () => profile.wallets().restore(wallet)));
+	public async sync(): Promise<void> {
+		await this.wallets().restore();
 
-		const earlyWallets: Record<string, object> = {};
-		const laterWallets: Record<string, object> = {};
-
-		for (const [id, wallet] of Object.entries(wallets) as any) {
-			const nid: string = wallet.network;
-
-			if (earlyWallets[nid] === undefined) {
-				earlyWallets[nid] = wallet;
-			} else {
-				laterWallets[id] = wallet;
-			}
-		}
-
-		// These wallets will be synced first so that we have cached coin instances for consecutive sync operations.
-		// This will help with coins like ARK to prevent multiple requests for configuration and syncing operations.
-		await syncWallets(earlyWallets);
-
-		// These wallets will be synced last because they can reuse already existing coin instances from the warmup wallets
-		// to avoid duplicate requests which elongate the waiting time for a user before the wallet is accessible and ready.
-		await syncWallets(laterWallets);
+		await this.contacts().restore();
 	}
 
 	/**
-	 * Attempt to encrypt the profile data with the given password.
+	 * @TODO: move this out
 	 *
-	 * @param unencrypted The JSON string to encrypt
-	 * @param password? A hard-to-guess password to encrypt the contents.
+	 * Encode or encrypt the profile data for dumping later on.
 	 */
-	private encrypt(unencrypted: string, password?: string): string {
-		if (typeof password !== "string") {
-			password = MemoryPassword.get(this);
+	public save(password?: string): void {
+		try {
+			this.#attributes.set('data', new ProfileExporter(this).export(password));
+		} catch (error) {
+			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
 		}
-
-		if (!this.auth().verifyPassword(password)) {
-			throw new Error("The password did not match our records.");
-		}
-
-		return PBKDF2.encrypt(unencrypted, password);
-	}
-
-	/**
-	 * Attempt to decrypt the profile data with the given password.
-	 *
-	 * @param password A hard-to-guess password to decrypt the contents.
-	 */
-	private decrypt(password: string): IProfileStruct {
-		if (!this.usesPassword()) {
-			throw new Error("This profile does not use a password but password was passed for decryption");
-		}
-
-		const { id, data } = JSON.parse(PBKDF2.decrypt(Base64.decode(this.#data.data), password));
-
-		return { id, ...data };
-	}
-
-	private validateStruct(data: object): IProfileStruct {
-		const { error, value } = Joi.object({
-			id: Joi.string().required(),
-			contacts: Joi.object().pattern(
-				Joi.string().uuid(),
-				Joi.object({
-					id: Joi.string().required(),
-					name: Joi.string().required(),
-					addresses: Joi.array().items(
-						Joi.object({
-							id: Joi.string().required(),
-							coin: Joi.string().required(),
-							network: Joi.string().required(),
-							name: Joi.string().required(),
-							address: Joi.string().required(),
-						}),
-					),
-					starred: Joi.boolean().required(),
-				}),
-			),
-			// TODO: stricter validation to avoid unknown keys or values
-			data: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			notifications: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			peers: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			plugins: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			settings: Joi.object().required(),
-			wallets: Joi.object().pattern(
-				Joi.string().uuid(),
-				Joi.object({
-					id: Joi.string().required(),
-					coin: Joi.string().required(),
-					network: Joi.string().required(),
-					networkConfig: Joi.object({
-						crypto: Joi.object({
-							slip44: Joi.number().integer().required(),
-						}).required(),
-						networking: Joi.object({
-							hosts: Joi.array().items(Joi.string()).required(),
-							hostsMultiSignature: Joi.array().items(Joi.string()),
-							hostsArchival: Joi.array().items(Joi.string()),
-						}).required(),
-					}),
-					address: Joi.string().required(),
-					publicKey: Joi.string(),
-					data: Joi.object().required(),
-					settings: Joi.object().required(),
-				}),
-			),
-		}).validate(data);
-
-		if (error !== undefined) {
-			throw error;
-		}
-
-		return value as IProfileStruct;
 	}
 }

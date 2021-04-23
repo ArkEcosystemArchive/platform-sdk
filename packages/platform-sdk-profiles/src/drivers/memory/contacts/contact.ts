@@ -1,12 +1,9 @@
-import { IContact, IContactAddressInput, IContactAddressRepository, IContactStruct } from "../../../contracts";
-import { IProfile } from "../../../contracts";
+import { IContact, IContactAddressInput, IContactAddressRepository, IContactData } from "../../../contracts";
 import { pqueue } from "../../../helpers/queue";
 import { ContactAddressRepository } from "../repositories/contact-address-repository";
 import { Avatar } from "../../../helpers/avatar";
 
 export class Contact implements IContact {
-	#profile: IProfile;
-
 	readonly #id: string;
 	#name: string;
 	#addresses: ContactAddressRepository = new ContactAddressRepository();
@@ -14,9 +11,7 @@ export class Contact implements IContact {
 
 	#avatar: string;
 
-	public constructor({ id, name, starred }: IContactStruct, profile: IProfile) {
-		this.#profile = profile;
-
+	public constructor({ id, name, starred }: IContactData) {
 		this.#id = id;
 		this.#name = name;
 		this.#starred = starred;
@@ -68,7 +63,7 @@ export class Contact implements IContact {
 		return this.#avatar;
 	}
 
-	public toObject(): IContactStruct {
+	public toObject(): IContactData {
 		return {
 			id: this.id(),
 			name: this.name(),

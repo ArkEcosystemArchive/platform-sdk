@@ -4,10 +4,11 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../../test/helpers";
 import { IProfile } from "../../../../contracts";
 import { Profile } from "../profile";
 import { RegistrationAggregate } from "./registration-aggregate";
+import { State } from "../../../../environment/state";
 
 let subject: RegistrationAggregate;
 let profile: IProfile;
@@ -23,16 +24,18 @@ beforeAll(() => {
 		.get("/api/node/syncing")
 		.reply(200, require("../../../../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../../../../../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../../../../test/fixtures/client/wallet-non-resigned.json"))
 		.persist();
 });
 
 beforeEach(async () => {
 	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 
-	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	State.profile(profile);
 
-	subject = new RegistrationAggregate(profile);
+	await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
+
+	subject = new RegistrationAggregate();
 });
 
 describe("RegistrationAggregate", () => {

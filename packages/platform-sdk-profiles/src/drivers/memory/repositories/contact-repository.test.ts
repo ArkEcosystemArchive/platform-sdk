@@ -4,10 +4,11 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { ProfileSetting } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { ContactRepository } from "./contact-repository";
+import { State } from "../../../environment/state";
 
 let subject: ContactRepository;
 
@@ -33,11 +34,14 @@ beforeEach(async () => {
 		.persist();
 
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+
+	State.profile(profile);
+
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
-	subject = new ContactRepository(profile);
+	subject = new ContactRepository();
 
 	subject.flush();
 });

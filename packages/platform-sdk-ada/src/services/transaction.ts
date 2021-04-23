@@ -1,9 +1,12 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import CardanoWasm from "@emurgo/cardano-serialization-lib-nodejs";
+import CardanoWasm, { BigNum, Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
-import { postGraphql } from "./helpers";
-import { createValue, getCip1852Account } from "./transaction.helpers";
+import { fetchNetworkTip, listUnspentTransactions } from "./graphql-helpers";
+import { addUtxoInput, deriveAddressesAndSigningKeys, usedAddressesForAccount } from "./helpers";
+import { deriveAccountKey, deriveAddress, deriveRootKey } from "./identity/shelley";
+import { createValue } from "./transaction.helpers";
+import { UnspentTransaction } from "./transaction.models";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
@@ -31,6 +34,7 @@ export class TransactionService implements Contracts.TransactionService {
 		const { minFeeA, minFeeB, minUTxOValue, poolDeposit, keyDeposit } = this.#config.get<Contracts.KeyValuePair>(
 			"network.meta",
 		);
+		const networkId = this.#config.get<string>(Coins.ConfigKey.CryptoNetworkId);
 
 		// This is the transaction builder that uses values from the genesis block of the configured network.
 		const txBuilder = CardanoWasm.TransactionBuilder.new(
@@ -44,26 +48,39 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 
 		// Get a `Bip32PrivateKey` instance according to `CIP1852` and turn it into a `PrivateKey` instance
-		const privateKey = getCip1852Account(
-			input.sign.mnemonic,
-			this.#config.get<number>("network.crypto.slip44"),
-		).to_raw_key();
+		const accountKey: Bip32PrivateKey = deriveAccountKey(deriveRootKey(input.sign.mnemonic), 0);
+		const publicKey = accountKey.to_public();
 
-		// These are the inputs (UTXO) that will be consumed to satisfy the outputs. Any change will be transfered back to the sender
-		const utxos: any = await this.listUnspentTransactions(input.from);
-
-		for (let i = 0; i < utxos.length; i++) {
-			txBuilder.add_key_input(
-				privateKey.to_public().hash(),
-				CardanoWasm.TransactionInput.new(
-					CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxos[i].transaction.hash, "hex")),
-					i,
-				),
-				createValue(utxos[i].value),
-			);
+		if (Buffer.from(publicKey.as_bytes()).toString("hex") !== input.from) {
+			throw Error("Public key doesn't match the given mnemonic");
 		}
 
-		// These are the outputs that will be transfered to other wallets. For now we only support a single output.
+		// Gather all **used** spend and change addresses of the account
+		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(this.#config, input.from);
+		const usedAddresses: string[] = [...usedSpendAddresses.values(), ...usedChangeAddresses.values()];
+
+		// Now get utxos for those addresses
+		const utxos: UnspentTransaction[] = await listUnspentTransactions(this.#config, usedAddresses); // when more that one utxo, they seem to be ordered by amount descending
+
+		// Figure out which of the utxos to use
+		const usedUtxos: UnspentTransaction[] = [];
+		const requestedAmount: BigNum = BigNum.from_str(input.data.amount);
+		let totalTxAmount: BigNum = BigNum.from_str("0");
+		let totalFeesAmount: BigNum = BigNum.from_str("0");
+
+		for (const utxo of utxos) {
+			const { added, amount, fee } = addUtxoInput(txBuilder, utxo);
+			if (added) {
+				usedUtxos.push(utxo);
+				totalTxAmount = totalTxAmount.checked_add(amount);
+				totalFeesAmount = totalFeesAmount.checked_add(fee);
+			}
+			if (totalTxAmount.compare(requestedAmount.checked_add(totalFeesAmount)) > 0) {
+				break;
+			}
+		}
+
+		// These are the outputs that will be transferred to other wallets. For now we only support a single output.
 		txBuilder.add_output(
 			CardanoWasm.TransactionOutput.new(
 				CardanoWasm.Address.from_bech32(input.data.to),
@@ -78,20 +95,31 @@ export class TransactionService implements Contracts.TransactionService {
 			txBuilder.set_ttl(input.data.expiration);
 		}
 
-		// calculate the min fee required and send any change to an address
-		txBuilder.add_change_if_needed(CardanoWasm.Address.from_bech32(input.from));
+		const addresses = await deriveAddressesAndSigningKeys(publicKey, networkId, accountKey);
 
-		// once the transaction is ready, we build it to get the tx body without witnesses
+		// Calculate the min fee required and send any change to an address
+		const changeAddress = deriveAddress(publicKey, true, 0, networkId);
+		txBuilder.add_change_if_needed(CardanoWasm.Address.from_bech32(changeAddress));
+
+		// Once the transaction is ready, we build it to get the tx body without witnesses
 		const txBody = txBuilder.build();
 		const txHash = CardanoWasm.hash_transaction(txBody);
-		const witnesses = CardanoWasm.TransactionWitnessSet.new();
 
-		// add keyhash witnesses
+		// Add the signatures
 		const vkeyWitnesses = CardanoWasm.Vkeywitnesses.new();
-		const vkeyWitness = CardanoWasm.make_vkey_witness(txHash, privateKey);
-		vkeyWitnesses.add(vkeyWitness);
+		usedUtxos.forEach((utxo: UnspentTransaction) => {
+			vkeyWitnesses.add(
+				CardanoWasm.make_vkey_witness(
+					txHash,
+					addresses[utxo.index][utxo.address].to_raw_key(),
+					// (addresses[0][utxo.address] || addresses[1][utxo.address]).to_raw_key()
+				),
+			);
+		});
+		const witnesses = CardanoWasm.TransactionWitnessSet.new();
 		witnesses.set_vkeys(vkeyWitnesses);
 
+		// Build the signed transaction
 		return new SignedTransactionData(
 			Buffer.from(txHash.to_bytes()).toString("hex"),
 			{
@@ -182,35 +210,9 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public async estimateExpiration(value?: string): Promise<string> {
-		const tip: number = parseInt(
-			(await postGraphql(this.#config, `{ cardano { tip { slotNo } } }`)).cardano.tip.slotNo,
-		);
+		const tip: number = await fetchNetworkTip(this.#config);
 		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 
 		return (tip + ttl).toString();
-	}
-
-	private async listUnspentTransactions(address: string): Promise<any> {
-		return (
-			await postGraphql(
-				this.#config,
-				`{
-				utxos(
-				  order_by: { value: desc }
-				  where: {
-					address: {
-					  _eq: "${address}"
-					}
-				  }
-				) {
-				  address
-				  transaction {
-					hash
-				  }
-				  value
-				}
-			  }`,
-			)
-		).utxos;
 	}
 }

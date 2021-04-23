@@ -51,3 +51,15 @@ export class BadMethodDependencyException extends Exception {
 		super(`Method ${klass}#${method} depends on ${klass}#${dependency} being called first.`);
 	}
 }
+
+export class BadVariableDependencyException extends Exception {
+	public constructor(klass: string, method: string, dependency: string) {
+		super(`Method ${klass}#${method} depends on ${klass}#${dependency} being declared first.`);
+	}
+}
+
+export class BadStateException extends Exception {
+	public constructor(method: string, error: string) {
+		super(`Method [${method}] has entered a bad state: ${error}`);
+	}
+}

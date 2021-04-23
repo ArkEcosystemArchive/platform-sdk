@@ -4,11 +4,12 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../../test/helpers";
 import { ExtendedTransactionDataCollection } from "../../../../dto/transaction-collection";
 import * as promiseHelpers from "../../../../helpers/promise";
 import { Profile } from "../profile";
 import { TransactionAggregate } from "./transaction-aggregate";
+import { State } from "../../../../environment/state";
 
 let subject: TransactionAggregate;
 
@@ -34,15 +35,17 @@ beforeAll(() => {
 beforeEach(async () => {
 	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 
-	await profile.wallets().importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	State.profile(profile);
 
-	subject = new TransactionAggregate(profile);
+	await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
+
+	subject = new TransactionAggregate();
 });
 
 afterAll(() => nock.enableNetConnect());
 
 describe("TransactionAggregate", () => {
-	describe.each(["transactions", "sentTransactions", "receivedTransactions"])("%s", (method: string) => {
+	describe.each(["all", "sent", "received"])("%s", (method: string) => {
 		it("should have more transactions", async () => {
 			nock(/.+/)
 				.get("/api/transactions")
@@ -159,9 +162,9 @@ describe("TransactionAggregate", () => {
 
 		expect(subject.hasMore("transactions")).toBeFalse();
 
-		await subject.transactions();
+		await subject.all();
 
-		expect(subject.hasMore("transactions")).toBeTrue();
+		expect(subject.hasMore("all")).toBeTrue();
 
 		subject.flush();
 	});
@@ -179,7 +182,7 @@ describe("TransactionAggregate", () => {
 				return Promise.resolve(undefined);
 			});
 
-		const results = await subject.transactions();
+		const results = await subject.all();
 		expect(results).toBeInstanceOf(ExtendedTransactionDataCollection);
 		promiseAllSettledByKeyMock.mockRestore();
 	});
@@ -190,7 +193,7 @@ describe("TransactionAggregate", () => {
 			.query(true)
 			.reply(200, require("../../../../../test/fixtures/client/transactions.json"));
 
-		const result = await subject.transactions({ addresses: ["D8rr7B1d6TL6pf14LgMz4sKp1VBMs6YUYD"] });
+		const result = await subject.all({ addresses: ["D8rr7B1d6TL6pf14LgMz4sKp1VBMs6YUYD"] });
 		expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
 		//@ts-ignore
 		expect(result.items()).toHaveLength(0);

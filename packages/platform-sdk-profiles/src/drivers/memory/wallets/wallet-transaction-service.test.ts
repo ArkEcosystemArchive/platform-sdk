@@ -10,6 +10,7 @@ import { Profile } from "../profiles/profile";
 import { Wallet } from "./wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { IProfile, IReadWriteWallet, ProfileSetting, WalletData } from "../../../contracts";
+import { State } from "../../../environment/state";
 
 let profile: IProfile;
 let wallet: IReadWriteWallet;
@@ -65,12 +66,15 @@ beforeEach(async () => {
 		.persist();
 
 	profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+
+	State.profile(profile);
+
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	wallet = new Wallet(uuidv4(), {}, profile);
+	wallet = new Wallet(uuidv4(), {});
 
-	await wallet.setCoin("ARK", "ark.devnet");
-	await wallet.setIdentity(identity.mnemonic);
+	await wallet.mutator().coin("ARK", "ark.devnet");
+	await wallet.mutator().identity(identity.mnemonic);
 
 	subject = new TransactionService(wallet);
 });
@@ -1108,7 +1112,7 @@ it("should broadcast transaction", async () => {
 	expect(subject.transaction(id)).toBeDefined();
 
 	// usesMultiPeerBroadcasting
-	const walletMultiPeerMock = jest.spyOn(wallet, "usesMultiPeerBroadcasting").mockReturnValue(true);
+	const walletMultiPeerMock = jest.spyOn(profile, "usesMultiPeerBroadcasting").mockReturnValue(true);
 	await expect(subject.broadcast(id)).toReject();
 	walletMultiPeerMock.mockRestore();
 });

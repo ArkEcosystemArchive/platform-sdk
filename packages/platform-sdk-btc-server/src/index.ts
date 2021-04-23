@@ -13,8 +13,6 @@ export const subscribe = async (flags: {
 	database: string;
 	// JSON-RPC
 	rpc: string;
-	username: string;
-	password: string;
 	// Rate Limit
 	points: string;
 	duration: string;
@@ -22,8 +20,8 @@ export const subscribe = async (flags: {
 	blacklist: string;
 }): Promise<void> => {
 	const logger = useLogger();
-	const database = useDatabase(flags, logger);
-	const client: Contracts.HttpClient = useClient(flags);
+	const database = useDatabase(flags);
+	const client: Contracts.HttpClient = useClient(flags.rpc);
 
 	const server = Hapi.server({
 		host: flags.host || "0.0.0.0",
@@ -150,17 +148,51 @@ export const subscribe = async (flags: {
 	// 		};
 	// 	},
 	// });
-	//
-	// server.route({
-	// 	method: "GET",
-	// 	path: "/wallets/{wallet}/transactions",
-	// 	handler: (request) =>
-	// 		database
-	// 			.prepare(
-	// 				`SELECT * FROM transactions WHERE sender = '${request.params.wallet}' OR recipient = '${request.params.wallet}';`,
-	// 			)
-	// 			.all(),
-	// });
+
+	server.route({
+		method: "GET",
+		path: "/wallets/{wallet}/transactions",
+		handler: (request) =>
+			database
+				.prepare(
+					`SELECT *
+					 FROM transactions
+					 WHERE hash IN (
+						 SELECT output_hash
+						 FROM transaction_parts
+						 WHERE address = '${JSON.stringify([request.params.wallet])}'
+					 )
+							OR hash IN (
+						 SELECT input_hash
+						 FROM transaction_parts
+						 WHERE address = '${JSON.stringify([request.params.wallet])}'
+					 );`,
+				)
+				.all(),
+	});
+
+	server.route({
+		method: "GET",
+		path: "/wallets/{wallet}/transactions/unspent",
+		options: {
+			validate: {
+				params: Joi.object({
+					wallet: Joi.string(), //.length(42),
+				}).options({ stripUnknown: true }),
+			},
+		},
+		handler: async (request) => {
+			// @TODO: rate limit or cache
+			return (
+				await client.post("/", {
+					jsonrpc: "1.0",
+					id: uuidv4(),
+					method: "qn_addressBalance",
+					params: [request.params.wallet],
+				})
+			).json();
+		},
+	});
 
 	await server.start();
 
