@@ -4,7 +4,7 @@ import { injectable } from "inversify";
 
 @injectable()
 export class WalletService implements IWalletService {
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletService.syncByProfile} */
 	public async syncByProfile(profile: IProfile): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
