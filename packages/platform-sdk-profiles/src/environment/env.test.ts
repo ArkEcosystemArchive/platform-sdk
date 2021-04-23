@@ -169,7 +169,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 
 	expect(newProfile).toBeInstanceOf(Profile);
 
-	await new ProfileImporter().import(newProfile);
+	await new ProfileImporter(newProfile).import();
 	await newProfile.sync();
 
 	expect(newProfile.wallets().keys()).toHaveLength(1);
@@ -201,7 +201,7 @@ it("should boot the environment from fixed data", async () => {
 
 	const newProfile = env.profiles().findById("8101538b-b13a-4b8d-b3d8-e710ccffd385");
 
-	await new ProfileImporter().import(newProfile);
+	await new ProfileImporter(newProfile).import();
 
 	expect(newProfile).toBeInstanceOf(Profile);
 	expect(newProfile.wallets().keys()).toHaveLength(1);
@@ -377,20 +377,18 @@ it("should persist the env and restore it", async () => {
 
 	// Assert that we got back what we dumped in the previous env
 	const restoredJohn = subject.profiles().findById(john.id());
-	await new ProfileImporter().import(restoredJohn);
+	await new ProfileImporter(restoredJohn).import();
 	await restoredJohn.sync();
 
 	const restoredJane = subject.profiles().findById(jane.id());
-	await new ProfileImporter().import(restoredJane, "password");
+	await new ProfileImporter(restoredJane).import("password");
 	await restoredJane.sync();
 
 	const restoredJack = subject.profiles().findById(jack.id());
-	await new ProfileImporter().import(restoredJack, "password");
+	await new ProfileImporter(restoredJack).import("password");
 	await restoredJack.sync();
 
-	const serialiser = new ProfileSerialiser();
-
-	expect(serialiser.toJSON(restoredJohn)).toEqual(serialiser.toJSON(john));
-	expect(serialiser.toJSON(restoredJane)).toEqual(serialiser.toJSON(jane));
-	expect(serialiser.toJSON(restoredJack)).toEqual(serialiser.toJSON(jack));
+	expect(new ProfileSerialiser(restoredJohn).toJSON()).toEqual(new ProfileSerialiser(john).toJSON());
+	expect(new ProfileSerialiser(restoredJane).toJSON()).toEqual(new ProfileSerialiser(jane).toJSON());
+	expect(new ProfileSerialiser(restoredJack).toJSON()).toEqual(new ProfileSerialiser(jack).toJSON());
 });
