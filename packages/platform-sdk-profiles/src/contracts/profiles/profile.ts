@@ -81,7 +81,7 @@ export interface IProfile {
 	/**
 	 * Get the ID.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IProfile
 	 */
 	id(): string;
@@ -89,7 +89,7 @@ export interface IProfile {
 	/**
 	 * Get the name.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IProfile
 	 */
 	name(): string;
@@ -97,7 +97,7 @@ export interface IProfile {
 	/**
 	 * Get the avatar.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IProfile
 	 */
 	avatar(): string;
@@ -105,7 +105,7 @@ export interface IProfile {
 	/**
 	 * Get the balance.
 	 *
-	 * @return {*}  {BigNumber}
+	 * @return {BigNumber}
 	 * @memberof IProfile
 	 */
 	balance(): BigNumber;
@@ -113,7 +113,7 @@ export interface IProfile {
 	/**
 	 * Get the converted balance.
 	 *
-	 * @return {*}  {BigNumber}
+	 * @return {BigNumber}
 	 * @memberof IProfile
 	 */
 	convertedBalance(): BigNumber;
@@ -121,7 +121,7 @@ export interface IProfile {
 	/**
 	 * Get the coin service instance.
 	 *
-	 * @return {*}  {ICoinService}
+	 * @return {ICoinService}
 	 * @memberof IProfile
 	 */
 	coins(): ICoinService;
@@ -129,7 +129,7 @@ export interface IProfile {
 	/**
 	 * Get the portfolio service instance.
 	 *
-	 * @return {*}  {IPortfolio}
+	 * @return {IPortfolio}
 	 * @memberof IProfile
 	 */
 	portfolio(): IPortfolio;
@@ -137,7 +137,7 @@ export interface IProfile {
 	/**
 	 * Get the contact repository instance.
 	 *
-	 * @return {*}  {IContactRepository}
+	 * @return {IContactRepository}
 	 * @memberof IProfile
 	 */
 	contacts(): IContactRepository;
@@ -145,7 +145,7 @@ export interface IProfile {
 	/**
 	 * Get the data repository instance.
 	 *
-	 * @return {*}  {IDataRepository}
+	 * @return {IDataRepository}
 	 * @memberof IProfile
 	 */
 	data(): IDataRepository;
@@ -153,7 +153,7 @@ export interface IProfile {
 	/**
 	 * Get the notification repository instance.
 	 *
-	 * @return {*}  {INotificationRepository}
+	 * @return {INotificationRepository}
 	 * @memberof IProfile
 	 */
 	notifications(): INotificationRepository;
@@ -161,7 +161,7 @@ export interface IProfile {
 	/**
 	 * Get the peer repository instance.
 	 *
-	 * @return {*}  {IPeerRepository}
+	 * @return {IPeerRepository}
 	 * @memberof IProfile
 	 */
 	peers(): IPeerRepository;
@@ -169,7 +169,7 @@ export interface IProfile {
 	/**
 	 * Get the plugin repository instance.
 	 *
-	 * @return {*}  {IPluginRepository}
+	 * @return {IPluginRepository}
 	 * @memberof IProfile
 	 */
 	plugins(): IPluginRepository;
@@ -177,7 +177,7 @@ export interface IProfile {
 	/**
 	 * Get the setting repository instance.
 	 *
-	 * @return {*}  {ISettingRepository}
+	 * @return {ISettingRepository}
 	 * @memberof IProfile
 	 */
 	settings(): ISettingRepository;
@@ -185,7 +185,7 @@ export interface IProfile {
 	/**
 	 * Get the wallet repository instance.
 	 *
-	 * @return {*}  {IWalletRepository}
+	 * @return {IWalletRepository}
 	 * @memberof IProfile
 	 */
 	wallets(): IWalletRepository;
@@ -208,7 +208,7 @@ export interface IProfile {
 	/**
 	 * Get the count aggregate instance.
 	 *
-	 * @return {*}  {ICountAggregate}
+	 * @return {ICountAggregate}
 	 * @memberof IProfile
 	 */
 	countAggregate(): ICountAggregate;
@@ -216,7 +216,7 @@ export interface IProfile {
 	/**
 	 * Get the registration aggregate instance.
 	 *
-	 * @return {*}  {IRegistrationAggregate}
+	 * @return {IRegistrationAggregate}
 	 * @memberof IProfile
 	 */
 	registrationAggregate(): IRegistrationAggregate;
@@ -224,7 +224,7 @@ export interface IProfile {
 	/**
 	 * Get the transaction aggregate instance.
 	 *
-	 * @return {*}  {ITransactionAggregate}
+	 * @return {ITransactionAggregate}
 	 * @memberof IProfile
 	 */
 	transactionAggregate(): ITransactionAggregate;
@@ -232,7 +232,7 @@ export interface IProfile {
 	/**
 	 * Get the wallet aggregate instance.
 	 *
-	 * @return {*}  {IWalletAggregate}
+	 * @return {IWalletAggregate}
 	 * @memberof IProfile
 	 */
 	walletAggregate(): IWalletAggregate;
@@ -240,7 +240,7 @@ export interface IProfile {
 	/**
 	 * Get the authentication service instance.
 	 *
-	 * @return {*}  {IAuthenticator}
+	 * @return {IAuthenticator}
 	 * @memberof IProfile
 	 */
 	auth(): IAuthenticator;
@@ -248,7 +248,7 @@ export interface IProfile {
 	/**
 	 * Determine if the profile uses a password.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IProfile
 	 */
 	usesPassword(): boolean;
@@ -256,7 +256,7 @@ export interface IProfile {
 	/**
 	 * Determine if the profile uses custom peers.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IProfile
 	 */
 	usesCustomPeer(): boolean;
@@ -264,7 +264,7 @@ export interface IProfile {
 	/**
 	 * Determine if the profile uses multi peer broadcasting.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IProfile
 	 */
 	usesMultiPeerBroadcasting(): boolean;
@@ -272,7 +272,7 @@ export interface IProfile {
 	/**
 	 * Synchronise the profile.
 	 *
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof IProfile
 	 */
 	sync(): Promise<void>;
@@ -280,7 +280,7 @@ export interface IProfile {
 	/**
 	 * Determine if the profile has been partially restored.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IProfile
 	 */
 	hasBeenPartiallyRestored(): boolean;
@@ -288,7 +288,7 @@ export interface IProfile {
 	/**
 	 *
 	 *
-	 * @return {*}  {AttributeBag<IProfileInput>}
+	 * @return {AttributeBag<IProfileInput>}
 	 * @memberof IProfile
 	 */
 	getAttributes(): AttributeBag<IProfileInput>;

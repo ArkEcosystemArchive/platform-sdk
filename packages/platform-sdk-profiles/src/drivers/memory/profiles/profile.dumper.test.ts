@@ -36,8 +36,8 @@ beforeAll(() => {
 beforeEach(() => {
 	container.get<IProfileRepository>(Identifiers.ProfileRepository).flush();
 
-	subject = new ProfileDumper();
 	profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).create("John Doe");
+	subject = new ProfileDumper(profile);
 
 	State.profile(profile);
 });
@@ -46,7 +46,7 @@ describe("#dump", () => {
 	it("should dump the profile with a password", () => {
 		profile.auth().setPassword("password");
 
-		const { id, password, data } = subject.dump(profile);
+		const { id, password, data } = subject.dump();
 
 		expect(id).toBeString();
 		expect(password).toBeString();
@@ -54,7 +54,7 @@ describe("#dump", () => {
 	});
 
 	it("should dump the profile without a password", () => {
-		const { id, password, data } = subject.dump(profile);
+		const { id, password, data } = subject.dump();
 
 		expect(id).toBeString();
 		expect(password).toBeUndefined();
@@ -63,8 +63,9 @@ describe("#dump", () => {
 
 	it("should fail to dump a profile with a password if the profile was not encrypted", () => {
 		profile = new Profile({ id: "uuid", name: "name", data: "", password: "password" });
+		subject = new ProfileDumper(profile);
 
-		expect(() => subject.dump(profile)).toThrow(
+		expect(() => subject.dump()).toThrow(
 			"The profile [name] has not been encoded or encrypted. Please call [save] before dumping.",
 		);
 	});

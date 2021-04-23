@@ -13,7 +13,7 @@ export interface IWalletAggregate {
 	 * Aggregate the balance for all wallets of the currently selected profile.
 	 *
 	 * @param {NetworkType} [networkType]
-	 * @return {*}  {BigNumber}
+	 * @return {BigNumber}
 	 * @memberof IWalletAggregate
 	 */
 	balance(networkType?: NetworkType): BigNumber;
@@ -21,7 +21,7 @@ export interface IWalletAggregate {
 	/**
 	 * Aggregate the converted balance for all wallets of the currently selected profile.
 	 *
-	 * @return {*}  {BigNumber}
+	 * @return {BigNumber}
 	 * @memberof IWalletAggregate
 	 */
 	convertedBalance(): BigNumber;

@@ -42,10 +42,10 @@ beforeAll(() => {
 beforeEach(() => {
 	container.get<IProfileRepository>(Identifiers.ProfileRepository).flush();
 
-	subject = new ProfileImporter();
-	dumper = new ProfileDumper();
-	serialiser = new ProfileSerialiser();
 	profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).create("John Doe");
+	subject = new ProfileImporter(profile);
+	dumper = new ProfileDumper(profile);
+	serialiser = new ProfileSerialiser(profile);
 
 	State.profile(profile);
 });
@@ -54,14 +54,16 @@ describe("#restore", () => {
 	it("should restore a profile with a password", async () => {
 		profile.auth().setPassword("password");
 
-		const profileCopy: IProfile = new Profile(dumper.dump(profile));
+		const profileCopy: IProfile = new Profile(dumper.dump());
 
 		await importByMnemonic(profileCopy, identity.mnemonic, "ARK", "ark.devnet");
 
-		await subject.import(profileCopy, "password");
+		serialiser = new ProfileSerialiser(profileCopy);
+
+		await subject.import("password");
 		await profileCopy.sync();
 
-		expect(serialiser.toJSON(profile)).toContainAllKeys([
+		expect(serialiser.toJSON()).toContainAllKeys([
 			"contacts",
 			"data",
 			"notifications",
@@ -93,21 +95,27 @@ describe("#restore", () => {
 			data: Base64.encode(JSON.stringify(corruptedProfileData)),
 		});
 
-		await expect(subject.import(profile)).rejects.toThrow();
+		subject = new ProfileImporter(profile);
+
+		await expect(subject.import()).rejects.toThrow();
 	});
 
 	it("should restore a profile without a password", async () => {
-		const profileCopy: IProfile = new Profile(dumper.dump(profile));
+		const profileCopy: IProfile = new Profile(dumper.dump());
 
-		await subject.import(profileCopy);
+		subject = new ProfileImporter(profileCopy);
 
-		expect(serialiser.toJSON(profile)).toEqual(serialiser.toJSON(profileCopy));
+		await subject.import();
+
+		expect(new ProfileSerialiser(profile).toJSON()).toEqual(new ProfileSerialiser(profileCopy).toJSON());
 	});
 
 	it("should fail to restore if profile is not using password but password is passed", async () => {
-		const profileCopy: IProfile = new Profile(dumper.dump(profile));
+		const profileCopy: IProfile = new Profile(dumper.dump());
 
-		await expect(subject.import(profileCopy, "password")).rejects.toThrow(
+		subject = new ProfileImporter(profileCopy);
+
+		await expect(subject.import("password")).rejects.toThrow(
 			"Failed to decode or decrypt the profile. Reason: This profile does not use a password but password was passed for decryption",
 		);
 	});
@@ -115,17 +123,21 @@ describe("#restore", () => {
 	it("should fail to restore a profile with a password if no password was provided", async () => {
 		profile.auth().setPassword("password");
 
-		const profileCopy: IProfile = new Profile(dumper.dump(profile));
+		const profileCopy: IProfile = new Profile(dumper.dump());
 
-		await expect(subject.import(profileCopy)).rejects.toThrow("Failed to decode or decrypt the profile.");
+		subject = new ProfileImporter(profileCopy);
+
+		await expect(subject.import()).rejects.toThrow("Failed to decode or decrypt the profile.");
 	});
 
 	it("should fail to restore a profile with a password if an invalid password was provided", async () => {
 		profile.auth().setPassword("password");
 
-		const profileCopy: IProfile = new Profile(dumper.dump(profile));
+		const profileCopy: IProfile = new Profile(dumper.dump());
 
-		await expect(subject.import(profileCopy, "invalid-password")).rejects.toThrow("Failed to decode or decrypt the profile.");
+		subject = new ProfileImporter(profileCopy);
+
+		await expect(subject.import("invalid-password")).rejects.toThrow("Failed to decode or decrypt the profile.");
 	});
 
 	it("should restore a profile with wallets", async () => {
@@ -183,7 +195,8 @@ describe("#restore", () => {
 		};
 
 		const profile = new Profile(profileDump);
-		await subject.import(profile);
+		subject = new ProfileImporter(profile);
+		await subject.import();
 
 		expect(profile.wallets().count()).toEqual(2);
 		expect(profile.settings().get(ProfileSetting.Theme)).toEqual("dark");

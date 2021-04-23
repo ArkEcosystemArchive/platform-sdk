@@ -195,12 +195,10 @@ describe("ProfileRepository", () => {
 		const repositoryDump = subject.toObject();
 
 		const restoredJohn = new Profile(repositoryDump[john.id()] as any);
-		await new ProfileImporter().import(restoredJohn);
+		await new ProfileImporter(restoredJohn).import();
 		await restoredJohn.sync();
 
-		const serialiser = new ProfileSerialiser();
-
-		expect(serialiser.toJSON(restoredJohn)).toEqual(serialiser.toJSON(john));
+		expect(new ProfileSerialiser(restoredJohn).toJSON()).toEqual(new ProfileSerialiser(john).toJSON());
 	});
 
 	it("should dump profiles with a password", async () => {
@@ -212,12 +210,10 @@ describe("ProfileRepository", () => {
 		const repositoryDump = subject.toObject();
 
 		const restoredJane = new Profile(repositoryDump[jane.id()] as any);
-		await new ProfileImporter().import(restoredJane, "password");
+		await new ProfileImporter(restoredJane).import("password");
 		await restoredJane.sync();
 
-		const serialiser = new ProfileSerialiser();
-
-		expect(serialiser.toJSON(restoredJane)).toEqual(serialiser.toJSON(jane));
+		expect(new ProfileSerialiser(restoredJane).toJSON()).toEqual(new ProfileSerialiser(jane).toJSON());
 	});
 
 	it("should export ok", async () => {

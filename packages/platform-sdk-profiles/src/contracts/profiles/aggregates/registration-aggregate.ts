@@ -10,7 +10,7 @@ export interface IRegistrationAggregate {
 	/**
 	 * Aggregate all wallets that are delegates and synchronised.
 	 *
-	 * @return {*}  {IReadWriteWallet[]}
+	 * @return {IReadWriteWallet[]}
 	 * @memberof IRegistrationAggregate
 	 */
 	delegates(): IReadWriteWallet[];

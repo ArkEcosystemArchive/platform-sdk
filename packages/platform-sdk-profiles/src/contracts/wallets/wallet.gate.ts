@@ -8,7 +8,7 @@ export interface IWalletGate {
 	/**
 	 * Determine if the wallet can vote.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	canVote(): boolean;
@@ -17,7 +17,7 @@ export interface IWalletGate {
 	 * Determine if the wallet can perform the given action.
 	 *
 	 * @param {string} feature
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	can(feature: string): boolean;
@@ -26,7 +26,7 @@ export interface IWalletGate {
 	 * Determine if the wallet can perform any of the given actions.
 	 *
 	 * @param {string[]} features
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	canAny(features: string[]): boolean;
@@ -35,7 +35,7 @@ export interface IWalletGate {
 	 * Determine if the wallet can perform all of the given actions.
 	 *
 	 * @param {string[]} features
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	canAll(features: string[]): boolean;
@@ -44,7 +44,7 @@ export interface IWalletGate {
 	 * Determine if the wallet cannot perform the given action.
 	 *
 	 * @param {string} feature
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	cannot(feature: string): boolean;

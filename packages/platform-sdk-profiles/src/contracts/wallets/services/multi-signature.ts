@@ -6,7 +6,7 @@ export interface IMultiSignature {
 	/**
 	 * Get the multi signature data.
 	 *
-	 * @return {*}  {Contracts.WalletMultiSignature}
+	 * @return {Contracts.WalletMultiSignature}
 	 * @memberof IReadWriteWallet
 	 */
 	all(): Contracts.WalletMultiSignature;
@@ -14,7 +14,7 @@ export interface IMultiSignature {
 	/**
 	 * Get the multi signature participants.
 	 *
-	 * @return {*}  {IReadOnlyWallet[]}
+	 * @return {IReadOnlyWallet[]}
 	 * @memberof IReadWriteWallet
 	 */
 	participants(): IReadOnlyWallet[];

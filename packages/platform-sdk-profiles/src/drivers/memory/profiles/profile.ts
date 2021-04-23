@@ -408,7 +408,7 @@ export class Profile implements IProfile {
 	/**
 	 * Access the authentication service.
 	 *
-	 * @return {*}  {IAuthenticator}
+	 * @return {IAuthenticator}
 	 * @memberof Profile
 	 */
 	public auth(): IAuthenticator {
@@ -428,7 +428,7 @@ export class Profile implements IProfile {
 	/**
 	 * Determine if the profile uses custom peers.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof Profile
 	 */
 	public usesCustomPeer(): boolean {
@@ -438,7 +438,7 @@ export class Profile implements IProfile {
 	/**
 	 * Determine if the profile uses spread-out broadcasting.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof Profile
 	 */
 	public usesMultiPeerBroadcasting(): boolean {
@@ -460,7 +460,7 @@ export class Profile implements IProfile {
 	/**
 	 * Get the underlying attributes.
 	 *
-	 * @return {*}  {AttributeBag}
+	 * @return {AttributeBag}
 	 * @memberof IReadWriteWallet
 	 */
 	public getAttributes(): AttributeBag<IProfileInput> {
