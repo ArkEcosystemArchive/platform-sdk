@@ -10,7 +10,7 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 		this.#wallet = wallet;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletSynchroniser.coin} */
 	public async coin(options: { resetCoin: boolean } = { resetCoin: false }): Promise<void> {
 		if (options.resetCoin) {
 			this.#wallet.getAttributes().set('coin', State.profile().coins().push(this.#wallet.coinId(), this.#wallet.networkId(), {}, true));
@@ -19,7 +19,7 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 		await this.#wallet.mutator().coin(this.#wallet.coinId(), this.#wallet.networkId());
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletSynchroniser.identity} */
 	public async identity(): Promise<void> {
 		const currentWallet = this.#wallet.getAttributes().get<Contracts.WalletData>('wallet');
 		const currentPublicKey = this.#wallet.getAttributes().get<string>('publicKey');
@@ -46,7 +46,7 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 		}
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletSynchroniser.multiSignature} */
 	public async multiSignature(): Promise<void> {
 		if (!this.#wallet.isMultiSignature()) {
 			return;
@@ -61,7 +61,7 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 		this.#wallet.data().set(WalletData.MultiSignatureParticipants, participants);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletSynchroniser.votes} */
 	public async votes(): Promise<void> {
 		const { available, publicKeys, used } = await this.#wallet.client().votes(this.#wallet.address());
 
