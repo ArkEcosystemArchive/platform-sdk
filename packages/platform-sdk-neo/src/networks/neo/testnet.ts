@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "neo.testnet",
 	type: "test",
 	name: "Testnet",
+	coin: "NEO",
 	explorer: "https://neoscan-testnet.io/",
 	currency: {
 		ticker: "NEO",

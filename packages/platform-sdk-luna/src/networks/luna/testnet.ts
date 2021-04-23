@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "luna.testnet",
 	type: "test",
 	name: "Testnet",
+	coin: "Luna",
 	explorer: "TODO",
 	currency: {
 		ticker: "SOJU",

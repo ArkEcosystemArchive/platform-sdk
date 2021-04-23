@@ -3,7 +3,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 const network: Coins.CoinNetwork = {
 	id: "telos.mainnet",
 	type: "live",
-	name: "TELOS Mainnet",
+	name: "Mainnet",
+	coin: "Telos",
 	explorer: "https://telos.bloks.io/",
 	currency: {
 		ticker: "TLOS",

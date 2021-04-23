@@ -3,7 +3,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 const network: Coins.CoinNetwork = {
 	id: "terra.testnet",
 	type: "test",
-	name: "Terra Testnet",
+	name: "Testnet",
+	coin: "Terra",
 	explorer: "https://soju.stake.id/",
 	currency: {
 		ticker: "LUNA",

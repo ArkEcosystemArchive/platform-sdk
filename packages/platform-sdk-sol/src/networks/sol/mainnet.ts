@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "sol.mainnet",
 	type: "live",
 	name: "Mainnet",
+	coin: "Solana",
 	explorer: "https://explorer.solana.com/",
 	currency: {
 		ticker: "SOL",

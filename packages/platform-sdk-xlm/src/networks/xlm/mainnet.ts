@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "xlm.mainnet",
 	type: "live",
 	name: "Mainnet",
+	coin: "Stellar",
 	explorer: "https://steexp.com/",
 	currency: {
 		ticker: "XLM",

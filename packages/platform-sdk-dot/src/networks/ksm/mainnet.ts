@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "ksm.mainnet",
 	type: "live",
 	name: "Mainnet",
+	coin: "Kusama",
 	explorer: "https://polkascan.io/kusama",
 	currency: {
 		ticker: "KSM",

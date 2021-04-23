@@ -3,7 +3,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 const network: Coins.CoinNetwork = {
 	id: "worbli.mainnet",
 	type: "live",
-	name: "WORBLI Mainnet",
+	name: "Mainnet",
+	coin: "Worbli",
 	explorer: "https://worbli.bloks.io/",
 	currency: {
 		ticker: "WBI",
