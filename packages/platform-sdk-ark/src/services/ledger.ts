@@ -1,6 +1,6 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { HDKey } from "@arkecosystem/platform-sdk-crypto";
+import { BIP44, HDKey } from "@arkecosystem/platform-sdk-crypto";
 
 import { WalletData } from "../dto";
 import { ClientService } from "./client";
@@ -116,8 +116,7 @@ export class LedgerService implements Contracts.LedgerService {
 					/*
 					 * Get the address index from expected format `m/purpose'/coinType'/account'/change/addressIndex`
 					 */
-					const startAddressIndex = options.startPath.split("/")[5];
-					initialAddressIndex = startAddressIndex ? parseInt(startAddressIndex) + 1 : 0;
+					initialAddressIndex = BIP44.parse(options.startPath).addressIndex + 1;
 				}
 
 				/**
