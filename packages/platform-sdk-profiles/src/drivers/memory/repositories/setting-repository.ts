@@ -9,30 +9,29 @@ export class SettingRepository implements ISettingRepository {
 	#data: DataRepository;
 	#allowedKeys: string[];
 
-	/** {@inheritDoc IWalletFactory.generate} */
 	public constructor(allowedKeys: string[]) {
 		this.#data = new DataRepository();
 		this.#allowedKeys = allowedKeys;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ISettingRepository.all} */
 	public all(): object {
 		return this.#data.all();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ISettingRepository.keys} */
 	public keys(): object {
 		return this.#data.keys();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ISettingRepository.get} */
 	public get<T>(key: string, defaultValue?: T): T | undefined {
 		this.assertValidKey(key);
 
 		return this.#data.get(key, defaultValue);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ISettingRepository.set} */
 	public set(key: string, value: string | number | boolean | object): void {
 		this.assertValidKey(key);
 
@@ -41,26 +40,26 @@ export class SettingRepository implements ISettingRepository {
 		emitProfileChanged();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ISettingRepository.fill} */
 	public fill(entries: object): void {
 		for (const [key, value] of Object.entries(entries)) {
 			this.set(key, value);
 		}
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ISettingRepository.has} */
 	public has(key: string): boolean {
 		this.assertValidKey(key);
 
 		return this.#data.has(key);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ISettingRepository.missing} */
 	public missing(key: string): boolean {
 		return !this.has(key);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ISettingRepository.forget} */
 	public forget(key: string): void {
 		this.assertValidKey(key);
 
@@ -69,7 +68,7 @@ export class SettingRepository implements ISettingRepository {
 		emitProfileChanged();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ISettingRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
