@@ -162,7 +162,6 @@ export class Profile implements IProfile {
 	 */
 	readonly #attributes: AttributeBag<IProfileInput>;
 
-	/** {@inheritDoc IProfile.constructor} */
 	public constructor(data: IProfileInput) {
 		this.#attributes = new AttributeBag<IProfileInput>(data);
 		this.#coinService = new CoinService();
