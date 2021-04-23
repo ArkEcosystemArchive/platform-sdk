@@ -13,17 +13,17 @@ export class Cache implements ICache {
 		this.#prefix = prefix;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ICache.all} */
 	public all(): CacheStore {
 		return this.#cache.mget(this.keys());
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ICache.keys} */
 	public keys(): string[] {
 		return this.#cache.keys();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ICache.get} */
 	public get<T>(key: string): T {
 		const value: T | undefined = this.#cache.get(this.getCacheKey(key));
 
@@ -34,22 +34,22 @@ export class Cache implements ICache {
 		return value;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ICache.set} */
 	public set(key: string, value: unknown, ttl: number): void {
 		this.#cache.set(this.getCacheKey(key), value, ttl);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ICache.has} */
 	public has(key: string): boolean {
 		return this.#cache.has(this.getCacheKey(key));
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ICache.forget} */
 	public forget(key: string): void {
 		this.#cache.del(this.getCacheKey(key));
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc ICache.flush} */
 	public flush(): void {
 		this.#cache.flushAll();
 	}
