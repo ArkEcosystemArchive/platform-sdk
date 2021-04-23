@@ -12,7 +12,7 @@ export interface ICache {
 	/**
 	 * Get all entries from the storage.
 	 *
-	 * @return {*}  {CacheStore}
+	 * @return {CacheStore}
 	 * @memberof ICache
 	 */
 	all(): CacheStore;
@@ -20,7 +20,7 @@ export interface ICache {
 	/**
 	 * Get a list of all keys from the storage.
 	 *
-	 * @return {*}  {string[]}
+	 * @return {string[]}
 	 * @memberof ICache
 	 */
 	keys(): string[];
@@ -30,7 +30,7 @@ export interface ICache {
 	 *
 	 * @template T
 	 * @param {string} key
-	 * @return {*}  {T}
+	 * @return {T}
 	 * @memberof ICache
 	 */
 	get<T>(key: string): T;
@@ -49,7 +49,7 @@ export interface ICache {
 	 * Check if the given key exists in the storage.
 	 *
 	 * @param {string} key
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof ICache
 	 */
 	has(key: string): boolean;

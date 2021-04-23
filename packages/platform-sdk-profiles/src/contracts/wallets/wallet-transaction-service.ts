@@ -12,7 +12,7 @@ export interface ITransactionService {
 	/**
 	 * Sync both pending and ready multi signature transactions.
 	 *
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof ITransactionService
 	 */
 	sync(): Promise<void>;
@@ -22,7 +22,7 @@ export interface ITransactionService {
 	 *
 	 * @param {string} id
 	 * @param {string} mnemonic
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof ITransactionService
 	 */
 	addSignature(id: string, mnemonic: string): Promise<void>;
@@ -32,7 +32,7 @@ export interface ITransactionService {
 	 *
 	 * @param {Contracts.TransferInput} input
 	 * @param {Contracts.TransactionOptions} options
-	 * @return {*}  {Promise<string>}
+	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signTransfer(input: Contracts.TransferInput, options: Contracts.TransactionOptions): Promise<string>;
@@ -42,7 +42,7 @@ export interface ITransactionService {
 	 *
 	 * @param {Contracts.SecondSignatureInput} input
 	 * @param {Contracts.TransactionOptions} options
-	 * @return {*}  {Promise<string>}
+	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signSecondSignature(input: Contracts.SecondSignatureInput, options: Contracts.TransactionOptions): Promise<string>;
@@ -52,7 +52,7 @@ export interface ITransactionService {
 	 *
 	 * @param {Contracts.DelegateRegistrationInput} input
 	 * @param {Contracts.TransactionOptions} options
-	 * @return {*}  {Promise<string>}
+	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signDelegateRegistration(
@@ -65,7 +65,7 @@ export interface ITransactionService {
 	 *
 	 * @param {Contracts.VoteInput} input
 	 * @param {Contracts.TransactionOptions} options
-	 * @return {*}  {Promise<string>}
+	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signVote(input: Contracts.VoteInput, options: Contracts.TransactionOptions): Promise<string>;
@@ -75,7 +75,7 @@ export interface ITransactionService {
 	 *
 	 * @param {Contracts.MultiSignatureInput} input
 	 * @param {Contracts.TransactionOptions} options
-	 * @return {*}  {Promise<string>}
+	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signMultiSignature(input: Contracts.MultiSignatureInput, options: Contracts.TransactionOptions): Promise<string>;
@@ -85,7 +85,7 @@ export interface ITransactionService {
 	 *
 	 * @param {Contracts.IpfsInput} input
 	 * @param {Contracts.TransactionOptions} options
-	 * @return {*}  {Promise<string>}
+	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signIpfs(input: Contracts.IpfsInput, options: Contracts.TransactionOptions): Promise<string>;
@@ -95,7 +95,7 @@ export interface ITransactionService {
 	 *
 	 * @param {Contracts.MultiPaymentInput} input
 	 * @param {Contracts.TransactionOptions} options
-	 * @return {*}  {Promise<string>}
+	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signMultiPayment(input: Contracts.MultiPaymentInput, options: Contracts.TransactionOptions): Promise<string>;
@@ -105,7 +105,7 @@ export interface ITransactionService {
 	 *
 	 * @param {Contracts.DelegateResignationInput} input
 	 * @param {Contracts.TransactionOptions} options
-	 * @return {*}  {Promise<string>}
+	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signDelegateResignation(
@@ -118,7 +118,7 @@ export interface ITransactionService {
 	 *
 	 * @param {Contracts.HtlcLockInput} input
 	 * @param {Contracts.TransactionOptions} options
-	 * @return {*}  {Promise<string>}
+	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signHtlcLock(input: Contracts.HtlcLockInput, options: Contracts.TransactionOptions): Promise<string>;
@@ -128,7 +128,7 @@ export interface ITransactionService {
 	 *
 	 * @param {Contracts.HtlcClaimInput} input
 	 * @param {Contracts.TransactionOptions} options
-	 * @return {*}  {Promise<string>}
+	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signHtlcClaim(input: Contracts.HtlcClaimInput, options: Contracts.TransactionOptions): Promise<string>;
@@ -138,7 +138,7 @@ export interface ITransactionService {
 	 *
 	 * @param {Contracts.HtlcRefundInput} input
 	 * @param {Contracts.TransactionOptions} options
-	 * @return {*}  {Promise<string>}
+	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signHtlcRefund(input: Contracts.HtlcRefundInput, options: Contracts.TransactionOptions): Promise<string>;
@@ -147,7 +147,7 @@ export interface ITransactionService {
 	 * Get the transaction for the given ID if it is exists with any valid state.
 	 *
 	 * @param {string} id
-	 * @return {*}  {Contracts.SignedTransactionData}
+	 * @return {Contracts.SignedTransactionData}
 	 * @memberof ITransactionService
 	 */
 	transaction(id: string): Contracts.SignedTransactionData;
@@ -155,7 +155,7 @@ export interface ITransactionService {
 	/**
 	 * Get all transactions that are pending in some state.
 	 *
-	 * @return {*}  {SignedTransactionDataDictionary}
+	 * @return {SignedTransactionDataDictionary}
 	 * @memberof ITransactionService
 	 */
 	pending(): SignedTransactionDataDictionary;
@@ -163,7 +163,7 @@ export interface ITransactionService {
 	/**
 	 * Get all transactions that have been signed.
 	 *
-	 * @return {*}  {SignedTransactionDataDictionary}
+	 * @return {SignedTransactionDataDictionary}
 	 * @memberof ITransactionService
 	 */
 	signed(): SignedTransactionDataDictionary;
@@ -171,7 +171,7 @@ export interface ITransactionService {
 	/**
 	 * Get all transactions that have been broadcasted.
 	 *
-	 * @return {*}  {SignedTransactionDataDictionary}
+	 * @return {SignedTransactionDataDictionary}
 	 * @memberof ITransactionService
 	 */
 	broadcasted(): SignedTransactionDataDictionary;
@@ -179,7 +179,7 @@ export interface ITransactionService {
 	/**
 	 * Get all transactions that are waiting for your signature.
 	 *
-	 * @return {*}  {SignedTransactionDataDictionary}
+	 * @return {SignedTransactionDataDictionary}
 	 * @memberof ITransactionService
 	 */
 	waitingForOurSignature(): SignedTransactionDataDictionary;
@@ -187,7 +187,7 @@ export interface ITransactionService {
 	/**
 	 * Get all transactions that are waiting for the signatures of other participants.
 	 *
-	 * @return {*}  {SignedTransactionDataDictionary}
+	 * @return {SignedTransactionDataDictionary}
 	 * @memberof ITransactionService
 	 */
 	waitingForOtherSignatures(): SignedTransactionDataDictionary;
@@ -196,7 +196,7 @@ export interface ITransactionService {
 	 * Check if the given ID has been signed.
 	 *
 	 * @param {string} id
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof ITransactionService
 	 */
 	hasBeenSigned(id: string): boolean;
@@ -205,7 +205,7 @@ export interface ITransactionService {
 	 * Check if the given ID has been broadcasted.
 	 *
 	 * @param {string} id
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof ITransactionService
 	 */
 	hasBeenBroadcasted(id: string): boolean;
@@ -214,7 +214,7 @@ export interface ITransactionService {
 	 * Check if the given ID has been confirmed.
 	 *
 	 * @param {string} id
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof ITransactionService
 	 */
 	hasBeenConfirmed(id: string): boolean;
@@ -223,7 +223,7 @@ export interface ITransactionService {
 	 * Check if the given ID is waiting to be confirmed.
 	 *
 	 * @param {string} id
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof ITransactionService
 	 */
 	isAwaitingConfirmation(id: string): boolean;
@@ -232,7 +232,7 @@ export interface ITransactionService {
 	 * Check if the given ID is waiting for your signature.
 	 *
 	 * @param {string} id
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof ITransactionService
 	 */
 	isAwaitingOurSignature(id: string): boolean;
@@ -241,7 +241,7 @@ export interface ITransactionService {
 	 * Check if the given ID is waiting for signatures of other participants.
 	 *
 	 * @param {string} id
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof ITransactionService
 	 */
 	isAwaitingOtherSignatures(id: string): boolean;
@@ -251,7 +251,7 @@ export interface ITransactionService {
 	 *
 	 * @param {string} id
 	 * @param {string} publicKey
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof ITransactionService
 	 */
 	isAwaitingSignatureByPublicKey(id: string, publicKey: string): boolean;
@@ -260,7 +260,7 @@ export interface ITransactionService {
 	 * Check if the given transaction for the given ID can be signed.
 	 *
 	 * @param {string} id
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof ITransactionService
 	 */
 	canBeSigned(id: string): boolean;
@@ -269,7 +269,7 @@ export interface ITransactionService {
 	 * Check if the given transaction for the given ID can be broadcasted.
 	 *
 	 * @param {string} id
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof ITransactionService
 	 */
 	canBeBroadcasted(id: string): boolean;
@@ -278,7 +278,7 @@ export interface ITransactionService {
 	 * Broadcast the given ID.
 	 *
 	 * @param {string} id
-	 * @return {*}  {Promise<Contracts.BroadcastResponse>}
+	 * @return {Promise<Contracts.BroadcastResponse>}
 	 * @memberof ITransactionService
 	 */
 	broadcast(id: string): Promise<Contracts.BroadcastResponse>;
@@ -287,7 +287,7 @@ export interface ITransactionService {
 	 * Check if the given ID has been confirmed by the respective network.
 	 *
 	 * @param {string} id
-	 * @return {*}  {Promise<boolean>}
+	 * @return {Promise<boolean>}
 	 * @memberof ITransactionService
 	 */
 	confirm(id: string): Promise<boolean>;

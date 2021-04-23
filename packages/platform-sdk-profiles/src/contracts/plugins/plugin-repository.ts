@@ -26,7 +26,7 @@ export interface IPluginRepository {
 	/**
 	 * Get all keys and values.
 	 *
-	 * @return {*}  {Record<string, IPlugin>}
+	 * @return {Record<string, IPlugin>}
 	 * @memberof IPluginRepository
 	 */
 	all(): Record<string, IPlugin>;
@@ -34,7 +34,7 @@ export interface IPluginRepository {
 	/**
 	 * Get the first plugin.
 	 *
-	 * @return {*}  {IPlugin}
+	 * @return {IPlugin}
 	 * @memberof IPluginRepository
 	 */
 	first(): IPlugin;
@@ -42,7 +42,7 @@ export interface IPluginRepository {
 	/**
 	 * Get the last plugin.
 	 *
-	 * @return {*}  {IPlugin}
+	 * @return {IPlugin}
 	 * @memberof IPluginRepository
 	 */
 	last(): IPlugin;
@@ -50,7 +50,7 @@ export interface IPluginRepository {
 	/**
 	 * Get all keys.
 	 *
-	 * @return {*}  {string[]}
+	 * @return {string[]}
 	 * @memberof IPluginRepository
 	 */
 	keys(): string[];
@@ -58,7 +58,7 @@ export interface IPluginRepository {
 	/**
 	 * Get all values.
 	 *
-	 * @return {*}  {IPlugin[]}
+	 * @return {IPlugin[]}
 	 * @memberof IPluginRepository
 	 */
 	values(): IPlugin[];
@@ -67,7 +67,7 @@ export interface IPluginRepository {
 	 * Push a new plugin.
 	 *
 	 * @param {Except<IPlugin, "id">} plugin
-	 * @return {*}  {IPlugin}
+	 * @return {IPlugin}
 	 * @memberof IPluginRepository
 	 */
 	push(plugin: Except<IPlugin, "id">): IPlugin;
@@ -84,7 +84,7 @@ export interface IPluginRepository {
 	 * Find a plugin by its ID.
 	 *
 	 * @param {string} id
-	 * @return {*}  {IPlugin}
+	 * @return {IPlugin}
 	 * @memberof IPluginRepository
 	 */
 	findById(id: string): IPlugin;
@@ -107,7 +107,7 @@ export interface IPluginRepository {
 	/**
 	 * Count how any plugins there are.
 	 *
-	 * @return {*}  {number}
+	 * @return {number}
 	 * @memberof IPluginRepository
 	 */
 	count(): number;
@@ -115,7 +115,7 @@ export interface IPluginRepository {
 	/**
 	 * Get the registry instance.
 	 *
-	 * @return {*}  {IPluginRegistry}
+	 * @return {IPluginRegistry}
 	 * @memberof IPluginRepository
 	 */
 	registry(): IPluginRegistry;

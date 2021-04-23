@@ -8,7 +8,7 @@ export interface IKnownWalletService {
 	/**
 	 * Synchronise all known wallets from all coins and networks.
 	 *
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof IKnownWalletService
 	 */
 	syncAll(): Promise<void>;
@@ -21,7 +21,7 @@ export interface IKnownWalletService {
 	 *
 	 * @param {string} network
 	 * @param {string} address
-	 * @return {*}  {(string | undefined)}
+	 * @return {(string | undefined)}
 	 * @memberof IKnownWalletService
 	 */
 	name(network: string, address: string): string | undefined;
@@ -31,7 +31,7 @@ export interface IKnownWalletService {
 	 *
 	 * @param {string} network
 	 * @param {string} address
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IKnownWalletService
 	 */
 	is(network: string, address: string): boolean;
@@ -41,7 +41,7 @@ export interface IKnownWalletService {
 	 *
 	 * @param {string} network
 	 * @param {string} address
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IKnownWalletService
 	 */
 	isExchange(network: string, address: string): boolean;
@@ -51,7 +51,7 @@ export interface IKnownWalletService {
 	 *
 	 * @param {string} network
 	 * @param {string} address
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IKnownWalletService
 	 */
 	isTeam(network: string, address: string): boolean;
