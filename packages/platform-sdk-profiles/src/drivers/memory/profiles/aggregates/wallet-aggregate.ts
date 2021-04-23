@@ -5,12 +5,12 @@ import { State } from "../../../../environment/state";
 type NetworkType = "live" | "test";
 
 export class WalletAggregate implements IWalletAggregate {
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletAggregate.balance} */
 	public balance(networkType: NetworkType = "live"): BigNumber {
 		return this.balancesByNetworkType()[networkType];
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletAggregate.balancesByNetworkType} */
 	public balancesByNetworkType(): Record<NetworkType, BigNumber> {
 		return State.profile()
 			.wallets()
@@ -31,7 +31,7 @@ export class WalletAggregate implements IWalletAggregate {
 			);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletAggregate.convertedBalance} */
 	public convertedBalance(): BigNumber {
 		return State.profile()
 			.wallets()
@@ -42,7 +42,7 @@ export class WalletAggregate implements IWalletAggregate {
 			);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletAggregate.balancePerCoin} */
 	public balancePerCoin(networkType: NetworkType = "live"): Record<string, { total: number; percentage: number }> {
 		const result = {};
 
