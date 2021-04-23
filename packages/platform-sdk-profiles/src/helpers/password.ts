@@ -19,6 +19,10 @@ export class MemoryPassword {
 		process.env[passwordKey()] = password;
 	}
 
+	public static exists(): boolean {
+		return process.env[passwordKey()] !== undefined;
+	}
+
 	public static forget(): void {
 		delete process.env[passwordKey()];
 	}

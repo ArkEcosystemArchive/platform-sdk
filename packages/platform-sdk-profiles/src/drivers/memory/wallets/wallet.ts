@@ -39,6 +39,7 @@ import { WalletImportFormat } from "./services/wif";
 import { IWalletImportFormat } from "../../../contracts/wallets/services/wif";
 import { MultiSignature } from "./services/multi-signature";
 import { IMultiSignature } from "../../../contracts/wallets/services/multi-signature";
+import { emitProfileChanged } from "../helpers";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #attributes: AttributeBag<IReadWriteWalletAttributes> = new AttributeBag();
@@ -313,6 +314,8 @@ export class Wallet implements IReadWriteWallet {
 
 	public toggleStarred(): void {
 		this.data().set(WalletFlag.Starred, !this.isStarred());
+
+		emitProfileChanged();
 	}
 
 	/**

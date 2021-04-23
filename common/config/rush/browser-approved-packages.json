@@ -407,6 +407,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "emittery",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "env-paths",
       "allowedCategories": [ "libraries" ]
     },
@@ -456,6 +460,10 @@
     },
     {
       "name": "ethereumjs-wallet",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "eventemitter3",
       "allowedCategories": [ "libraries" ]
     },
     {

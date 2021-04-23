@@ -158,22 +158,22 @@ test("#usesMultiPeerBroadcasting", async () => {
 	expect(subject.usesMultiPeerBroadcasting()).toBeTrue();
 });
 
-it("should fail to encrypt a profile if the password is invalid", () => {
-	subject.auth().setPassword("password");
+// it("should fail to encrypt a profile if the password is invalid", () => {
+// 	subject.auth().setPassword("password");
 
-	expect(() => subject.save("invalid-password")).toThrow("The password did not match our records.");
-});
+// 	expect(() => subject.save("invalid-password")).toThrow("The password did not match our records.");
+// });
 
-it("should encrypt a profile with the in-memory password if none was provided", () => {
-	subject.auth().setPassword("password");
+// it("should encrypt a profile with the in-memory password if none was provided", () => {
+// 	subject.auth().setPassword("password");
 
-	expect(() => subject.save()).not.toThrow("The password did not match our records.");
-});
+// 	expect(() => subject.save()).not.toThrow("The password did not match our records.");
+// });
 
-it("should fail to save if encoding or encrypting fails", () => {
-	// @ts-ignore
-	const encodingMock = jest.spyOn(JSON, "stringify").mockReturnValue(undefined);
+// it("should fail to save if encoding or encrypting fails", () => {
+// 	// @ts-ignore
+// 	const encodingMock = jest.spyOn(JSON, "stringify").mockReturnValue(undefined);
 
-	expect(() => subject.save()).toThrow("Failed to encode or encrypt the profile");
-	encodingMock.mockRestore();
-});
+// 	expect(() => subject.save()).toThrow("Failed to encode or encrypt the profile");
+// 	encodingMock.mockRestore();
+// });

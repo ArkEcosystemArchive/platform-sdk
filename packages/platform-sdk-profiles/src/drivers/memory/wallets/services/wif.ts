@@ -3,6 +3,7 @@ import { decode } from "wif";
 
 import { IReadWriteWallet, WalletData } from "../../../../contracts";
 import { IWalletImportFormat } from "../../../../contracts/wallets/services/wif";
+import { emitProfileChanged } from "../../helpers";
 
 export class WalletImportFormat implements IWalletImportFormat {
 	readonly #wallet: IReadWriteWallet;
@@ -32,6 +33,8 @@ export class WalletImportFormat implements IWalletImportFormat {
 		const { compressed, privateKey } = decode(await this.#wallet.coin().identity().wif().fromMnemonic(mnemonic));
 
 		this.#wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
+
+		emitProfileChanged();
 	}
 
 	public exists(): boolean {

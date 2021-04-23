@@ -5,9 +5,11 @@ import nock from "nock";
 
 import { bootContainer } from "../../../../test/helpers";
 import { Profile } from "./profile";
-import { IProfile, ProfileSetting } from "../../../contracts";
+import { IProfile, IProfileRepository, ProfileSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
 import { ProfileDumper } from "./profile.dumper";
+import { Identifiers } from "../../../environment/container.models";
+import { container } from "../../../environment/container";
 
 let subject: ProfileDumper;
 let profile: IProfile;
@@ -32,18 +34,17 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
+	container.get<IProfileRepository>(Identifiers.ProfileRepository).flush();
+
 	subject = new ProfileDumper();
-	profile = new Profile({ id: "uuid", name: "name", data: "" });
+	profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).create("John Doe");
 
 	State.profile(profile);
-
-	profile.settings().set(ProfileSetting.Name, "John Doe");
 });
 
 describe("#dump", () => {
 	it("should dump the profile with a password", () => {
 		profile.auth().setPassword("password");
-		profile.save("password");
 
 		const { id, password, data } = subject.dump(profile);
 
@@ -53,7 +54,6 @@ describe("#dump", () => {
 	});
 
 	it("should dump the profile without a password", () => {
-		profile.save();
 		const { id, password, data } = subject.dump(profile);
 
 		expect(id).toBeString();
@@ -65,7 +65,7 @@ describe("#dump", () => {
 		profile = new Profile({ id: "uuid", name: "name", data: "", password: "password" });
 
 		expect(() => subject.dump(profile)).toThrow(
-			"The profile has not been encoded or encrypted. Please call [save] before dumping.",
+			"The profile [name] has not been encoded or encrypted. Please call [save] before dumping.",
 		);
 	});
 });

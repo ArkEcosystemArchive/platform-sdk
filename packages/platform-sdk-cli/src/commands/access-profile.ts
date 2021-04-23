@@ -67,28 +67,24 @@ export const accessProfile = async (env: Environment): Promise<void> => {
 	if (command === "access-wallet") {
 		await accessWallet(profile);
 
-		profile.save();
 		await env.persist();
 	}
 
 	if (command === "create-wallet") {
 		await createWallet(profile);
 
-		profile.save();
 		await env.persist();
 	}
 
 	if (command === "change-password") {
 		await changePassword(profile);
 
-		profile.save();
 		await env.persist();
 	}
 
 	if (command === "import-ledger-wallet") {
 		await importLedgerWallet(env, profile);
 
-		profile.save();
 		await env.persist();
 	}
 };

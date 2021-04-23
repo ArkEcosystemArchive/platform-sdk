@@ -12,6 +12,7 @@ import {
 } from "../../../contracts";
 import { injectable } from "inversify";
 import { pqueue } from "../../../helpers";
+import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class WalletRepository implements IWalletRepository {
@@ -108,6 +109,8 @@ export class WalletRepository implements IWalletRepository {
 
 		this.#data.set(wallet.id(), wallet);
 
+		emitProfileChanged();
+
 		return wallet;
 	}
 
@@ -131,6 +134,8 @@ export class WalletRepository implements IWalletRepository {
 		}
 
 		this.#data.set(id, result);
+
+		emitProfileChanged();
 	}
 
 	public has(id: string): boolean {
@@ -139,10 +144,14 @@ export class WalletRepository implements IWalletRepository {
 
 	public forget(id: string): void {
 		this.#data.forget(id);
+
+		emitProfileChanged();
 	}
 
 	public flush(): void {
 		this.#data.flush();
+
+		emitProfileChanged();
 	}
 
 	public count(): number {
