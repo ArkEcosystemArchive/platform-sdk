@@ -161,6 +161,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	readonly #attributes: AttributeBag<IProfileInput>;
+
 	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public constructor(data: IProfileInput) {
 		this.#attributes = new AttributeBag<IProfileInput>(data);
