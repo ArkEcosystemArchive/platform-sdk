@@ -7,7 +7,6 @@ import { IAddressOptions, IAddressWithLedgerPathOptions, IGenerateOptions, IMnem
 
 import { Wallet } from "./wallet";
 
-/** {@inheritDoc IWalletFactory} */
 export class WalletFactory implements IWalletFactory {
 	/** {@inheritDoc IWalletFactory.generate} */
 	public async generate({

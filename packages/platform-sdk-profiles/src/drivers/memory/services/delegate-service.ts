@@ -11,6 +11,7 @@ import { State } from "../../../environment/state";
 export class DelegateService implements IDelegateService {
 	readonly #dataRepository: DataRepository = new DataRepository();
 
+	/** {@inheritDoc IDelegateService.all} */
 	public all(coin: string, network: string): IReadOnlyWallet[] {
 		const result: any[] | undefined = this.#dataRepository.get(`${coin}.${network}.delegates`);
 
@@ -23,18 +24,22 @@ export class DelegateService implements IDelegateService {
 		return result.map((delegate) => this.mapDelegate(delegate));
 	}
 
+	/** {@inheritDoc IDelegateService.findByAddress} */
 	public findByAddress(coin: string, network: string, address: string): IReadOnlyWallet {
 		return this.findDelegateByAttribute(coin, network, "address", address);
 	}
 
+	/** {@inheritDoc IDelegateService.findByPublicKey} */
 	public findByPublicKey(coin: string, network: string, publicKey: string): IReadOnlyWallet {
 		return this.findDelegateByAttribute(coin, network, "publicKey", publicKey);
 	}
 
+	/** {@inheritDoc IDelegateService.findByUsername} */
 	public findByUsername(coin: string, network: string, username: string): IReadOnlyWallet {
 		return this.findDelegateByAttribute(coin, network, "username", username);
 	}
 
+	/** {@inheritDoc IDelegateService.sync} */
 	public async sync(coin: string, network: string): Promise<void> {
 		const instance: Coins.Coin = State.profile().coins().push(coin, network);
 
@@ -108,6 +113,7 @@ export class DelegateService implements IDelegateService {
 		);
 	}
 
+	/** {@inheritDoc IDelegateService.syncAll} */
 	public async syncAll(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
@@ -120,6 +126,7 @@ export class DelegateService implements IDelegateService {
 		await pqueueSettled(promises);
 	}
 
+	/** {@inheritDoc IDelegateService.map} */
 	public map(wallet: IReadWriteWallet, publicKeys: string[]): IReadOnlyWallet[] {
 		if (publicKeys.length === 0) {
 			return [];

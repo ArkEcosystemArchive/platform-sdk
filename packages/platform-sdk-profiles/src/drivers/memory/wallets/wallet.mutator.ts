@@ -12,7 +12,8 @@ export class WalletMutator implements IWalletMutator {
 		this.#wallet = wallet;
 	}
 
-	 public async coin(
+	/** {@inheritDoc IWalletMutator.coin} */
+	public async coin(
 		coin: string,
 		network: string,
 		options: { sync: boolean } = { sync: true },
@@ -55,6 +56,7 @@ export class WalletMutator implements IWalletMutator {
 		emitProfileChanged();
 	}
 
+	/** {@inheritDoc IWalletMutator.identity} */
 	public async identity(mnemonic: string): Promise<void> {
 		this.#wallet.getAttributes().set('address', await this.#wallet.getAttributes().get<Coins.Coin>('coin').identity().address().fromMnemonic(mnemonic));
 		this.#wallet.getAttributes().set('publicKey', await this.#wallet.getAttributes().get<Coins.Coin>('coin').identity().publicKey().fromMnemonic(mnemonic));
@@ -62,6 +64,7 @@ export class WalletMutator implements IWalletMutator {
 		return this.address(this.#wallet.getAttributes().get<string>('address'));
 	}
 
+	/** {@inheritDoc IWalletMutator.address} */
 	public async address(
 		address: string,
 		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
@@ -83,12 +86,14 @@ export class WalletMutator implements IWalletMutator {
 		this.avatar(Avatar.make(this.#wallet.address()));
 	}
 
+	/** {@inheritDoc IWalletMutator.avatar} */
 	public avatar(value: string): void {
 		this.#wallet.getAttributes().set('avatar', value);
 
 		this.#wallet.settings().set(WalletSetting.Avatar, value);
 	}
 
+	/** {@inheritDoc IWalletMutator.alias} */
 	public alias(alias: string): void {
 		this.#wallet.settings().set(WalletSetting.Alias, alias);
 	}

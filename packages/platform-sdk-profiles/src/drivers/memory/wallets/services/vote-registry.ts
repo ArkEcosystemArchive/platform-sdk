@@ -10,6 +10,7 @@ export class VoteRegistry implements IVoteRegistry {
 		this.#wallet = wallet;
 	}
 
+	/** {@inheritDoc IVoteRegistry.current} */
 	public current(): IReadOnlyWallet[] {
 		const votes: string[] | undefined = this.#wallet.data().get<string[]>(WalletData.Votes);
 
@@ -20,6 +21,7 @@ export class VoteRegistry implements IVoteRegistry {
 		return container.get<IDelegateService>(Identifiers.DelegateService).map(this.#wallet, votes);
 	}
 
+	/** {@inheritDoc IVoteRegistry.available} */
 	public available(): number {
 		const result: number | undefined = this.#wallet.data().get<number>(WalletData.VotesAvailable);
 
@@ -30,6 +32,7 @@ export class VoteRegistry implements IVoteRegistry {
 		return result;
 	}
 
+	/** {@inheritDoc IVoteRegistry.used} */
 	public used(): number {
 		const result: number | undefined = this.#wallet.data().get<number>(WalletData.VotesUsed);
 

@@ -8,13 +8,7 @@ export class ProfileSerialiser implements IProfileSerialiser {
 		this.#profile = profile;
 	}
 
-	/**
-	 * Normalise the profile into an object.
-	 *
-	 * @param {IProfileExportOptions} [options]
-	 * @return {IProfileData}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IProfileSerialiser.toJSON} */
 	public toJSON(
 		options: IProfileExportOptions = {
 			excludeEmptyWallets: false,

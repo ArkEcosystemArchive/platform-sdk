@@ -63,5 +63,5 @@ it("should fail to change the password if the old password is invalid", () => {
 it("should set password in memory", () => {
 	subject.setPassword("password");
 
-expect(MemoryPassword.get()).toEqual("password");
+	expect(MemoryPassword.get()).toEqual("password");
 });
