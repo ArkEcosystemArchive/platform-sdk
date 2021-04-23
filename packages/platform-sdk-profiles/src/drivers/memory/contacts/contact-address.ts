@@ -17,7 +17,6 @@ export class ContactAddress implements IContactAddress {
 		this.#coin = coin;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
 	public static async make(data: IContactAddressData): Promise<ContactAddress> {
 		const instance: Coins.Coin = State.profile().coins().push(data.coin, data.network);
 
@@ -32,37 +31,37 @@ export class ContactAddress implements IContactAddress {
 		return result;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.id} */
 	public id(): string {
 		return this.#data.id;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.coin} */
 	public coin(): string {
 		return this.#data.coin;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.network} */
 	public network(): string {
 		return this.#data.network;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.name} */
 	public name(): string {
 		return this.#data.name;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.address} */
 	public address(): string {
 		return this.#data.address;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.avatar} */
 	public avatar(): string {
 		return Avatar.make(this.address());
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.isDelegate} */
 	public isDelegate(): boolean {
 		if (!this.#wallet) {
 			throw new Error("This contact has not been synchronized yet. Please call [syncIdentity] before using it.");
@@ -71,28 +70,28 @@ export class ContactAddress implements IContactAddress {
 		return this.#wallet.isDelegate();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.isKnown} */
 	public isKnown(): boolean {
 		return container
 			.get<IKnownWalletService>(Identifiers.KnownWalletService)
 			.is(this.#coin.network().id(), this.address());
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.isOwnedByExchange} */
 	public isOwnedByExchange(): boolean {
 		return container
 			.get<IKnownWalletService>(Identifiers.KnownWalletService)
 			.isExchange(this.#coin.network().id(), this.address());
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.isOwnedByTeam} */
 	public isOwnedByTeam(): boolean {
 		return container
 			.get<IKnownWalletService>(Identifiers.KnownWalletService)
 			.isTeam(this.#coin.network().id(), this.address());
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.isMultiSignature} */
 	public isMultiSignature(): boolean {
 		if (!this.#wallet) {
 			throw new Error("This contact has not been synchronized yet. Please call [syncIdentity] before using it.");
@@ -101,7 +100,7 @@ export class ContactAddress implements IContactAddress {
 		return this.#wallet.isMultiSignature();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.isSecondSignature} */
 	public isSecondSignature(): boolean {
 		if (!this.#wallet) {
 			throw new Error("This contact has not been synchronized yet. Please call [syncIdentity] before using it.");
@@ -110,7 +109,7 @@ export class ContactAddress implements IContactAddress {
 		return this.#wallet.isSecondSignature();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.hasSyncedWithNetwork} */
 	public hasSyncedWithNetwork(): boolean {
 		if (this.#wallet === undefined) {
 			return false;
@@ -119,7 +118,7 @@ export class ContactAddress implements IContactAddress {
 		return this.#wallet.hasPassed();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.toObject} */
 	public toObject(): IContactAddressData {
 		return {
 			id: this.id(),
@@ -130,20 +129,20 @@ export class ContactAddress implements IContactAddress {
 		};
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.setName} */
 	public setName(value: string): void {
 		this.#data.name = value;
 
 		emitProfileChanged();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.setAddress} */
 	public setAddress(name: string): void {
 		this.#data.address = name;
 
 		emitProfileChanged();
 	}
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContactAddress.syncIdentity} */
 	public async syncIdentity(): Promise<void> {
 		const currentWallet = this.#wallet;
 

@@ -162,7 +162,7 @@ export class Profile implements IProfile {
 	 */
 	readonly #attributes: AttributeBag<IProfileInput>;
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.constructor} */
 	public constructor(data: IProfileInput) {
 		this.#attributes = new AttributeBag<IProfileInput>(data);
 		this.#coinService = new CoinService();
@@ -181,12 +181,12 @@ export class Profile implements IProfile {
 		this.#authenticator = new Authenticator();
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.id} */
 	public id(): string {
 		return this.#attributes.get<string>('id');
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.name} */
 	public name(): string {
 		if (this.settings().missing(ProfileSetting.Name)) {
 			return this.#attributes.get<string>('name');
@@ -195,7 +195,7 @@ export class Profile implements IProfile {
 		return this.settings().get<string>(ProfileSetting.Name)!;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.avatar} */
 	public avatar(): string {
 		const avatarFromSettings: string | undefined = this.settings().get(ProfileSetting.Avatar);
 
@@ -210,17 +210,17 @@ export class Profile implements IProfile {
 		return Avatar.make(this.name());
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.balance} */
 	public balance(): BigNumber {
 		return this.walletAggregate().balance();
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.convertedBalance} */
 	public convertedBalance(): BigNumber {
 		return this.walletAggregate().convertedBalance();
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.flush} */
 	public flush(): void {
 		const name: string | undefined = this.settings().get(ProfileSetting.Name);
 
@@ -231,109 +231,109 @@ export class Profile implements IProfile {
 		new ProfileInitialiser(this).initialise(name);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.coins} */
 	public coins(): ICoinService {
 		return this.#coinService;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.portfolio} */
 	public portfolio(): IPortfolio {
 		return this.#portfolio;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.contacts} */
 	public contacts(): IContactRepository {
 		return this.#contactRepository;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.data} */
 	public data(): IDataRepository {
 		return this.#dataRepository;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.notifications} */
 	public notifications(): INotificationRepository {
 		return this.#notificationRepository;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.peers} */
 	public peers(): IPeerRepository {
 		return this.#peerRepository;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.plugins} */
 	public plugins(): IPluginRepository {
 		return this.#pluginRepository;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.settings} */
 	public settings(): ISettingRepository {
 		return this.#settingRepository;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.wallets} */
 	public wallets(): IWalletRepository {
 		return this.#walletRepository;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.walletFactory} */
 	public walletFactory(): IWalletFactory {
 		return new WalletFactory();
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.countAggregate} */
 	public countAggregate(): ICountAggregate {
 		return this.#countAggregate;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.registrationAggregate} */
 	public registrationAggregate(): IRegistrationAggregate {
 		return this.#registrationAggregate;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.transactionAggregate} */
 	public transactionAggregate(): ITransactionAggregate {
 		return this.#transactionAggregate;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.walletAggregate} */
 	public walletAggregate(): IWalletAggregate {
 		return this.#walletAggregate;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.auth} */
 	public auth(): IAuthenticator {
 		return this.#authenticator;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.usesPassword} */
 	public usesPassword(): boolean {
 		return this.#attributes.hasStrict('password');
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.usesCustomPeer} */
 	public usesCustomPeer(): boolean {
 		return this.settings().get(ProfileSetting.UseCustomPeer) === true;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.usesMultiPeerBroadcasting} */
 	public usesMultiPeerBroadcasting(): boolean {
 		const usesMultiPeerBroadcasting: boolean = this.settings().get(ProfileSetting.UseMultiPeerBroadcast) === true;
 
 		return this.usesCustomPeer() && usesMultiPeerBroadcasting;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.hasBeenPartiallyRestored} */
 	public hasBeenPartiallyRestored(): boolean {
 		return this.#walletRepository.values().filter((wallet: IReadWriteWallet) => wallet.hasBeenPartiallyRestored()).length > 0;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.getAttributes} */
 	public getAttributes(): AttributeBag<IProfileInput> {
 		return this.#attributes;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc IProfile.async} */
 	public async sync(): Promise<void> {
 		await this.wallets().restore();
 
