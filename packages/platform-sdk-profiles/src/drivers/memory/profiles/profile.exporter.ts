@@ -29,7 +29,7 @@ export class ProfileExporter implements IProfileExporter {
 			saveGeneralSettings: true,
 		},
 	): string {
-		const data = new ProfileSerialiser().toJSON(this.#profile, options);
+		const data = new ProfileSerialiser(this.#profile).toJSON(options);
 
 		if (this.#profile.usesPassword()) {
 			return Base64.encode(

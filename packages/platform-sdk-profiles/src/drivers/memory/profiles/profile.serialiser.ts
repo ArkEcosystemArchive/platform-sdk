@@ -2,6 +2,12 @@ import { IProfileData, IProfileExportOptions, IProfile } from "../../../contract
 import { IProfileSerialiser } from "../../../contracts/profiles/profile.serialiser";
 
 export class ProfileSerialiser implements IProfileSerialiser {
+	readonly #profile: IProfile;
+
+	public constructor(profile: IProfile) {
+		this.#profile = profile;
+	}
+
 	/**
 	 * Normalise the profile into an object.
 	 *
@@ -10,7 +16,6 @@ export class ProfileSerialiser implements IProfileSerialiser {
 	 * @memberof Profile
 	 */
 	public toJSON(
-		profile: IProfile,
 		options: IProfileExportOptions = {
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
@@ -23,14 +28,14 @@ export class ProfileSerialiser implements IProfileSerialiser {
 		}
 
 		return {
-			id: profile.id(),
-			contacts: profile.contacts().toObject(),
-			data: profile.data().all(),
-			notifications: profile.notifications().all(),
-			peers: profile.peers().toObject(),
-			plugins: profile.plugins().all(),
-			settings: profile.settings().all(),
-			wallets: profile.wallets().toObject(options),
+			id: this.#profile.id(),
+			contacts: this.#profile.contacts().toObject(),
+			data: this.#profile.data().all(),
+			notifications: this.#profile.notifications().all(),
+			peers: this.#profile.peers().toObject(),
+			plugins: this.#profile.plugins().all(),
+			settings: this.#profile.settings().all(),
+			wallets: this.#profile.wallets().toObject(options),
 		};
 	}
 }

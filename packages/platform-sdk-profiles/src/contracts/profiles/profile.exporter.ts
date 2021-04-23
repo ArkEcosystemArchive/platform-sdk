@@ -9,8 +9,5 @@ export interface IProfileExporter {
 	 * @return {string}
 	 * @memberof Profile
 	 */
-	export(
-		password?: string,
-		options?: IProfileExportOptions,
-	): string;
+	export(password?: string, options?: IProfileExportOptions): string;
 }

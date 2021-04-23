@@ -1,4 +1,4 @@
-import { IProfile, IProfileData, IProfileExportOptions } from "./profile";
+import { IProfileData, IProfileExportOptions } from "./profile";
 
 export interface IProfileSerialiser {
 	/**
@@ -8,8 +8,5 @@ export interface IProfileSerialiser {
 	 * @return {IProfileData}
 	 * @memberof Profile
 	 */
-	toJSON(
-		profile: IProfile,
-		options: IProfileExportOptions,
-	): IProfileData;
+	toJSON(options: IProfileExportOptions): IProfileData;
 }
