@@ -4,48 +4,48 @@ export class RegistryPlugin implements IRegistryPlugin {
 	readonly #data: Record<string, any>;
 	readonly #package: Record<string, any>;
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.constructor} */
 	public constructor(data: Record<string, any>, pkg: Record<string, any>) {
 		this.#data = data;
 		this.#package = pkg;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.id} */
 	public id(): string {
 		return this.#data.name;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.name} */
 	public name(): string {
 		return this.id();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.alias} */
 	public alias(): string {
 		return this.getMetaData("title");
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.date} */
 	public date(): string {
 		return this.#data.date;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.version} */
 	public version(): string {
 		return this.#data.version;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.description} */
 	public description(): string {
 		return this.#data.description;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.author} */
 	public author(): IRegistryPluginAuthor {
 		return this.#data.author;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.sourceProvider} */
 	public sourceProvider(): any {
 		for (const [provider, pattern] of Object.entries({
 			github: /http(?:s)?:\/\/(?:www\.)?github\.com(\/[a-z\d](?:[a-z\d]|-(?=[a-z\d])){1,39}){2}/,
@@ -63,37 +63,37 @@ export class RegistryPlugin implements IRegistryPlugin {
 		return null;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.logo} */
 	public logo(): string {
 		return this.getMetaData("logo");
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.images} */
 	public images(): string[] {
 		return this.getMetaData("images");
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.categories} */
 	public categories(): string[] {
 		return this.getMetaData("categories");
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.permissions} */
 	public permissions(): string[] {
 		return this.getMetaData("permissions");
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.urls} */
 	public urls(): string[] {
 		return this.getMetaData("urls");
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.minimumVersion} */
 	public minimumVersion(): string {
 		return this.getMetaData("minimumVersion");
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IRegistryPlugin.toObject} */
 	public toObject(): {
 		id: string;
 		name: string;

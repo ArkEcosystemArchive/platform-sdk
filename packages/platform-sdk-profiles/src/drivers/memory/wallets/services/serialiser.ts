@@ -15,7 +15,7 @@ export class WalletSerialiser {
 		this.#wallet = wallet;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletSerialiser.toJSON} */
 	public toJSON(): IWalletData {
 		if (this.#wallet.hasBeenPartiallyRestored()) {
 			return this.#wallet.getAttributes().get<IWalletData>('initialState');
