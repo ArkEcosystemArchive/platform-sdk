@@ -12,7 +12,6 @@ export class Contact implements IContact {
 
 	#avatar: string;
 
-	/** {@inheritDoc IWalletFactory.generate} */
 	public constructor({ id, name, starred }: IContactData) {
 		this.#id = id;
 		this.#name = name;
@@ -21,53 +20,53 @@ export class Contact implements IContact {
 		this.#avatar = Avatar.make(name);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContact.restore} */
 	public async restore(addresses: object[]): Promise<void> {
 		await this.#addresses.fill(addresses);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContact.id} */
 	public id(): string {
 		return this.#id;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContact.name} */
 	public name(): string {
 		return this.#name;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContact.addresses} */
 	public addresses(): IContactAddressRepository {
 		return this.#addresses;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContact.isStarred} */
 	public isStarred(): boolean {
 		return this.#starred;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContact.toggleStarred} */
 	public toggleStarred(): void {
 		this.#starred = !this.isStarred();
 
 		emitProfileChanged();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContact.setAvatar} */
 	public setAvatar(value: string): void {
 		this.#avatar = value;
 
 		emitProfileChanged();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContact.setName} */
 	public setName(name: string): void {
 		this.#name = name;
 
 		this.setAvatar(Avatar.make(name));
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContact.setAddresses} */
 	public async setAddresses(addresses: IContactAddressInput[]): Promise<void> {
 		this.#addresses.flush();
 
@@ -76,12 +75,12 @@ export class Contact implements IContact {
 		emitProfileChanged();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContact.avatar} */
 	public avatar(): string {
 		return this.#avatar;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IContact.toObject} */
 	public toObject(): IContactData {
 		return {
 			id: this.id(),
