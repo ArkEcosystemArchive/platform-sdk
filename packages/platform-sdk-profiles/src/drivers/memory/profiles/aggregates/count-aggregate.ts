@@ -1,17 +1,17 @@
 import { State } from "../../../../environment/state";
 
 export class CountAggregate implements CountAggregate {
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc CountAggregate.contacts} */
 	public contacts(): number {
 		return State.profile().contacts().count();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc CountAggregate.notifications} */
 	public notifications(): number {
 		return State.profile().notifications().count();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc CountAggregate.wallets} */
 	public wallets(): number {
 		return State.profile().wallets().count();
 	}
