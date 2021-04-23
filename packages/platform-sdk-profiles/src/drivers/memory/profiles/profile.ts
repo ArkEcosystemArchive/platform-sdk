@@ -39,7 +39,6 @@ import { Portfolio } from "./portfolio";
 import { CoinService } from "./services/coin-service";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { AttributeBag } from "../../../helpers/attribute-bag";
-import { ProfileExporter } from "./profile.exporter";
 import { ProfileInitialiser } from "./profile.initialiser";
 
 export class Profile implements IProfile {

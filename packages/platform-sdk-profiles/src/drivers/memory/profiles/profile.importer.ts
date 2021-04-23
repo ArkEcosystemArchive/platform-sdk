@@ -16,13 +16,7 @@ export class ProfileImporter implements IProfileImporter {
 		this.#profile = profile;
 	}
 
-	/**
-	 * Restore a profile from either a base64 raw or base64 encrypted string.
-	 *
-	 * @param {string} [password]
-	 * @returns {Promise<void>}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async import(password?: string): Promise<void> {
 		const data: IProfileData | undefined = await this.validate(await this.unpack(password));
 

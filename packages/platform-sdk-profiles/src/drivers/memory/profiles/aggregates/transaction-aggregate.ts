@@ -17,24 +17,29 @@ type AggregateQuery = {
 export class TransactionAggregate implements ITransactionAggregate {
 	#history: Record<HistoryMethod, Record<string, HistoryWallet>> = {};
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async all(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
 		return this.aggregate("all", query);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async sent(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
 		return this.aggregate("sent", query);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async received(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
 		return this.aggregate("received", query);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public hasMore(method: string): boolean {
 		return Object.values(this.#history[method] || {})
 			.map((response) => response.hasMorePages())
 			.includes(true);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public flush(method?: string): void {
 		if (method) {
 			this.#history[method] = {};

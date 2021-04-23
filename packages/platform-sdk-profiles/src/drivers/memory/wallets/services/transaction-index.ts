@@ -9,32 +9,38 @@ import { ITransactionIndex } from "../../../../contracts/wallets/services/transa
 export class TransactionIndex implements ITransactionIndex {
 	readonly #wallet: IReadWriteWallet;
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public constructor(wallet: IReadWriteWallet) {
 		this.#wallet = wallet;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async all(
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
 		return this.fetch({ ...query, addresses: [this.#wallet.address()] });
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async sent(
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
 		return this.fetch({ ...query, senderId: this.#wallet.address() });
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async received(
 		query: Contracts.ClientTransactionsInput = {},
 	): Promise<ExtendedTransactionDataCollection> {
 		return this.fetch({ ...query, recipientId: this.#wallet.address() });
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async findById(id: string): Promise<ExtendedTransactionData> {
 		return transformTransactionData(this.#wallet, await this.#wallet.getAttributes().get<Coins.Coin>('coin').client().transaction(id));
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async findByIds(ids: string[]): Promise<ExtendedTransactionData[]> {
 		return Promise.all(ids.map((id: string) => this.findById(id)));
 	}

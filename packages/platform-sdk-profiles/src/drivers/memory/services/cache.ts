@@ -13,14 +13,17 @@ export class Cache implements ICache {
 		this.#prefix = prefix;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public all(): CacheStore {
 		return this.#cache.mget(this.keys());
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public keys(): string[] {
 		return this.#cache.keys();
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public get<T>(key: string): T {
 		const value: T | undefined = this.#cache.get(this.getCacheKey(key));
 
@@ -31,18 +34,22 @@ export class Cache implements ICache {
 		return value;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public set(key: string, value: unknown, ttl: number): void {
 		this.#cache.set(this.getCacheKey(key), value, ttl);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public has(key: string): boolean {
 		return this.#cache.has(this.getCacheKey(key));
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public forget(key: string): void {
 		this.#cache.del(this.getCacheKey(key));
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public flush(): void {
 		this.#cache.flushAll();
 	}

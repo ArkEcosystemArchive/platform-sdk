@@ -13,10 +13,12 @@ import { RegistryPlugin } from "./registry-plugin";
 export class PluginRegistry implements IPluginRegistry {
 	readonly #httpClient: Contracts.HttpClient;
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public constructor() {
 		this.#httpClient = container.get<Contracts.HttpClient>(Identifiers.HttpClient);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async all(): Promise<IRegistryPlugin[]> {
 		const results: Promise<IRegistryPlugin>[] = [];
 
@@ -41,7 +43,6 @@ export class PluginRegistry implements IPluginRegistry {
 			}
 
 			for (const item of objects) {
-				// If a plugin doesn't have it's code public we will ignore it.
 				if (item.package.links?.repository === undefined) {
 					continue;
 				}
@@ -55,12 +56,14 @@ export class PluginRegistry implements IPluginRegistry {
 		return this.applyWhitelist(await Promise.all(results));
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async size(pkg: IRegistryPlugin): Promise<number> {
 		const response = (await this.#httpClient.get(`https://registry.npmjs.com/${pkg.id()}`)).json();
 
 		return response.versions[pkg.version()].dist?.unpackedSize;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async downloads(pkg: IRegistryPlugin): Promise<number> {
 		const response = await this.#httpClient.get(
 			`https://api.npmjs.org/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${pkg.id()}`,

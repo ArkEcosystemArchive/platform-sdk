@@ -8,12 +8,7 @@ export class ProfileDumper implements IProfileDumper {
 		this.#profile = profile;
 	}
 
-	/**
-	 * Dumps the profile into a standardised object.
-	 *
-	 * @return {IProfileInput}
-	 * @memberof ProfileDumper
-	 */
+	/** {@inheritDoc IWalletFactory.generate} */
 	public dump(): IProfileInput {
 		if (!this.#profile.getAttributes().get<string>('data')) {
 			throw new Error(`The profile [${this.#profile.name()}] has not been encoded or encrypted. Please call [save] before dumping.`);

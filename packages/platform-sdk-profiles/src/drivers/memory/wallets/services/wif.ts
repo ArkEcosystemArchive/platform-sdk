@@ -12,13 +12,7 @@ export class WalletImportFormat implements IWalletImportFormat {
 		this.#wallet = wallet;
 	}
 
-	/**
-	 * If a wallet makes use of a WIF you will need to decrypt it and
-	 * pass it the transaction signing service instead of asking the
-	 * user for a BIP39 plain text passphrase.
-	 *
-	 * @see https://github.com/bitcoinjs/bip38
-	 */
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async get(password: string): Promise<string> {
 		const encryptedKey: string | undefined = this.#wallet.data().get(WalletData.Bip38EncryptedKey);
 
@@ -29,6 +23,7 @@ export class WalletImportFormat implements IWalletImportFormat {
 		return this.#wallet.coin().identity().wif().fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"));
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async set(mnemonic: string, password: string): Promise<void> {
 		const { compressed, privateKey } = decode(await this.#wallet.coin().identity().wif().fromMnemonic(mnemonic));
 
@@ -37,6 +32,7 @@ export class WalletImportFormat implements IWalletImportFormat {
 		emitProfileChanged();
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public exists(): boolean {
 		return this.#wallet.data().has(WalletData.Bip38EncryptedKey);
 	}

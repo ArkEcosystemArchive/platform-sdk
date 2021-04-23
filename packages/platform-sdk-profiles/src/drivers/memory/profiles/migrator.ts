@@ -9,6 +9,7 @@ export class Migrator implements IMigrator {
 		this.#profile = profile;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
 		let previousMigratedVersion: string = this.getPreviousMigratedVersion("0.0.0");
 

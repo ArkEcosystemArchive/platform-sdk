@@ -11,6 +11,7 @@ import { State } from "../../../environment/state";
 export class DelegateService implements IDelegateService {
 	readonly #dataRepository: DataRepository = new DataRepository();
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public all(coin: string, network: string): IReadOnlyWallet[] {
 		const result: any[] | undefined = this.#dataRepository.get(`${coin}.${network}.delegates`);
 
@@ -23,18 +24,22 @@ export class DelegateService implements IDelegateService {
 		return result.map((delegate) => this.mapDelegate(delegate));
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public findByAddress(coin: string, network: string, address: string): IReadOnlyWallet {
 		return this.findDelegateByAttribute(coin, network, "address", address);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public findByPublicKey(coin: string, network: string, publicKey: string): IReadOnlyWallet {
 		return this.findDelegateByAttribute(coin, network, "publicKey", publicKey);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public findByUsername(coin: string, network: string, username: string): IReadOnlyWallet {
 		return this.findDelegateByAttribute(coin, network, "username", username);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async sync(coin: string, network: string): Promise<void> {
 		const instance: Coins.Coin = State.profile().coins().push(coin, network);
 
@@ -108,6 +113,7 @@ export class DelegateService implements IDelegateService {
 		);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async syncAll(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
@@ -120,6 +126,7 @@ export class DelegateService implements IDelegateService {
 		await pqueueSettled(promises);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public map(wallet: IReadWriteWallet, publicKeys: string[]): IReadOnlyWallet[] {
 		if (publicKeys.length === 0) {
 			return [];

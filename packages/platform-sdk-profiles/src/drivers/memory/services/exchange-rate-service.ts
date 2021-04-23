@@ -14,6 +14,7 @@ export class ExchangeRateService implements IExchangeRateService {
 	readonly #storageKey: string = "EXCHANGE_RATE_SERVICE";
 	readonly #dataRepository: DataRepository = new DataRepository();
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async syncAll(profile: IProfile, currency: string): Promise<void> {
 		const wallets: IReadWriteWallet[] = profile
 			.wallets()
@@ -53,6 +54,7 @@ export class ExchangeRateService implements IExchangeRateService {
 		await this.snapshot();
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public exchange(currency: string, exchangeCurrency: string, date: DateTime, value: BigNumber): BigNumber {
 		const exchangeRate: BigNumber = this.rateByDate(currency, exchangeCurrency, date);
 
@@ -75,10 +77,12 @@ export class ExchangeRateService implements IExchangeRateService {
 		return BigNumber.make(result);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async snapshot(): Promise<void> {
 		await container.get<Storage>(Identifiers.Storage).set(this.#storageKey, this.#dataRepository.all());
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public async restore(): Promise<void> {
 		const entries: object | undefined | null = await container
 			.get<Storage>(Identifiers.Storage)

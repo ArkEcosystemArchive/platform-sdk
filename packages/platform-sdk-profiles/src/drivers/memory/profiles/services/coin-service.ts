@@ -10,14 +10,17 @@ import { injectable } from "inversify";
 export class CoinService implements ICoinService {
 	readonly #dataRepository: DataRepository = new DataRepository();
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public all(): Record<string, Coins.Coin> {
 		return this.#dataRepository.all() as Record<string, Coins.Coin>;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public values(): Coins.Coin[] {
 		return this.#dataRepository.values();
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public entries(): [string, string[]][] {
 		const result: Record<string, string[]> = {};
 
@@ -38,6 +41,7 @@ export class CoinService implements ICoinService {
 		return Object.entries(result);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public get(coin: string, network: string): Coins.Coin {
 		const instance: Coins.Coin | undefined = this.#dataRepository.get<Coins.Coin>(`${coin}.${network}`);
 
@@ -48,6 +52,7 @@ export class CoinService implements ICoinService {
 		return instance;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public push(coin: string, network: string, options: object = {}, useForce = false): Coins.Coin {
 		if (!useForce && this.has(coin, network)) {
 			return this.get(coin, network);
@@ -64,10 +69,12 @@ export class CoinService implements ICoinService {
 		return this.get(coin, network);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public has(coin: string, network: string): boolean {
 		return this.#dataRepository.has(`${coin}.${network}`);
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public flush(): void {
 		this.#dataRepository.flush();
 	}

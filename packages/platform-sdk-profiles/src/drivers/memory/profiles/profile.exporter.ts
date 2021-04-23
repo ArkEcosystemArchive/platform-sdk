@@ -12,14 +12,7 @@ export class ProfileExporter implements IProfileExporter {
 		this.#profile = profile;
 	}
 
-	/**
-	 * Export the profile data to a base64 string.
-	 *
-	 * @param {string} [password]
-	 * @param {IProfileExportOptions} [options]
-	 * @return {string}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.generate} */
 	public export(
 		password?: string,
 		options: IProfileExportOptions = {

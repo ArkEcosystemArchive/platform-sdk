@@ -4,39 +4,48 @@ export class RegistryPlugin implements IRegistryPlugin {
 	readonly #data: Record<string, any>;
 	readonly #package: Record<string, any>;
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public constructor(data: Record<string, any>, pkg: Record<string, any>) {
 		this.#data = data;
 		this.#package = pkg;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public id(): string {
 		return this.#data.name;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public name(): string {
 		return this.id();
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public alias(): string {
 		return this.getMetaData("title");
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public date(): string {
 		return this.#data.date;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public version(): string {
 		return this.#data.version;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public description(): string {
 		return this.#data.description;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public author(): IRegistryPluginAuthor {
 		return this.#data.author;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public sourceProvider(): any {
 		for (const [provider, pattern] of Object.entries({
 			github: /http(?:s)?:\/\/(?:www\.)?github\.com(\/[a-z\d](?:[a-z\d]|-(?=[a-z\d])){1,39}){2}/,
@@ -54,30 +63,37 @@ export class RegistryPlugin implements IRegistryPlugin {
 		return null;
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public logo(): string {
 		return this.getMetaData("logo");
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public images(): string[] {
 		return this.getMetaData("images");
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public categories(): string[] {
 		return this.getMetaData("categories");
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public permissions(): string[] {
 		return this.getMetaData("permissions");
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public urls(): string[] {
 		return this.getMetaData("urls");
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public minimumVersion(): string {
 		return this.getMetaData("minimumVersion");
 	}
 
+	/** {@inheritDoc IWalletFactory.generate} */
 	public toObject(): {
 		id: string;
 		name: string;
