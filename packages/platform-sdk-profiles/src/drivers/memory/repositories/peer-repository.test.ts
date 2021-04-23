@@ -1,9 +1,20 @@
 import "jest-extended";
 import "reflect-metadata";
+import { bootContainer } from "../../../../test/helpers";
+import { State } from "../../../environment/state";
+import { Profile } from "../profiles/profile";
 
 import { PeerRepository } from "./peer-repository";
 
 let subject: PeerRepository;
+
+beforeAll(() => {
+	bootContainer()
+
+	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
+
+	State.profile(profile);
+});
 
 beforeEach(() => (subject = new PeerRepository()));
 

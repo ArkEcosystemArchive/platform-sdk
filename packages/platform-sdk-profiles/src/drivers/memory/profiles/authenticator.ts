@@ -3,6 +3,7 @@ import { Bcrypt } from "@arkecosystem/platform-sdk-crypto";
 import { MemoryPassword } from "../../../helpers/password";
 import { IAuthenticator, ProfileSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
+import { emitProfileChanged } from "../helpers";
 
 export class Authenticator implements IAuthenticator {
 	public setPassword(password: string): void {
@@ -19,10 +20,7 @@ export class Authenticator implements IAuthenticator {
 		// during the lifetime of this profile session.
 		MemoryPassword.set(password);
 
-		// When the password gets changed we need to re-encrypt the
-		// data of the profile or we could end up with a corrupted
-		// profile that can no longer be used or restored.
-		State.profile().save(password);
+		emitProfileChanged();
 	}
 
 	public verifyPassword(password: string): boolean {

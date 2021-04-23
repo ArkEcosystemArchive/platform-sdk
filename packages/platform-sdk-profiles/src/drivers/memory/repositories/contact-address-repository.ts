@@ -4,6 +4,7 @@ import { ContactAddress } from "../contacts/contact-address";
 import { injectable } from "inversify";
 
 import { DataRepository } from "../../../repositories/data-repository";
+import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class ContactAddressRepository implements IContactAddressRepository {
@@ -35,6 +36,8 @@ export class ContactAddressRepository implements IContactAddressRepository {
 		const address: IContactAddress = await ContactAddress.make({ id, ...data });
 
 		this.#data.set(id, address);
+
+		emitProfileChanged();
 
 		return address;
 	}
@@ -79,16 +82,22 @@ export class ContactAddressRepository implements IContactAddressRepository {
 		}
 
 		this.#data.set(id, address);
+
+		emitProfileChanged();
 	}
 
 	public forget(id: string): void {
 		this.findById(id);
 
 		this.#data.forget(id);
+
+		emitProfileChanged();
 	}
 
 	public flush(): void {
 		this.#data.flush();
+
+		emitProfileChanged();
 	}
 
 	public count(): number {
@@ -108,7 +117,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 	private findByColumn(column: string, value: string): IContactAddress[] {
 		const result: IContactAddress[] = [];
 
-		for (const contact of Object.values(this.all())) {
+		for (const _ of Object.values(this.all())) {
 			const match: IContactAddress | undefined = this.values().find(
 				(address: IContactAddress) => address[column]() === value,
 			);

@@ -2,6 +2,7 @@ import { IContact, IContactAddressInput, IContactAddressRepository, IContactData
 import { pqueue } from "../../../helpers/queue";
 import { ContactAddressRepository } from "../repositories/contact-address-repository";
 import { Avatar } from "../../../helpers/avatar";
+import { emitProfileChanged } from "../helpers";
 
 export class Contact implements IContact {
 	readonly #id: string;
@@ -41,22 +42,30 @@ export class Contact implements IContact {
 
 	public toggleStarred(): void {
 		this.#starred = !this.isStarred();
+
+		emitProfileChanged();
 	}
 
 	public setAvatar(value: string): void {
 		this.#avatar = value;
+
+		emitProfileChanged();
 	}
 
 	public setName(name: string): void {
 		this.#name = name;
 
 		this.setAvatar(Avatar.make(name));
+
+		emitProfileChanged();
 	}
 
 	public async setAddresses(addresses: IContactAddressInput[]): Promise<void> {
 		this.#addresses.flush();
 
 		await pqueue(addresses.map((address: IContactAddressInput) => () => this.#addresses.create(address)));
+
+		emitProfileChanged();
 	}
 
 	public avatar(): string {

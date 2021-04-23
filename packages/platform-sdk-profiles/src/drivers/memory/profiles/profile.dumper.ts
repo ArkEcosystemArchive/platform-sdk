@@ -11,7 +11,7 @@ export class ProfileDumper implements IProfileDumper {
 	 */
 	public dump(profile: IProfile): IProfileInput {
 		if (!profile.getAttributes().get<string>('data')) {
-			throw new Error("The profile has not been encoded or encrypted. Please call [save] before dumping.");
+			throw new Error(`The profile [${profile.name()}] has not been encoded or encrypted. Please call [save] before dumping.`);
 		}
 
 		return {

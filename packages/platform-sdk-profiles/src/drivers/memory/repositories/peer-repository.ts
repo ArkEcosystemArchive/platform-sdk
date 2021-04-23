@@ -2,6 +2,7 @@ import { injectable } from "inversify";
 
 import { IPeer, IPeerRepository, IProfile } from "../../../contracts";
 import { DataRepository } from "../../../repositories/data-repository";
+import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class PeerRepository implements IPeerRepository {
@@ -42,6 +43,8 @@ export class PeerRepository implements IPeerRepository {
 		value.push(peer);
 
 		this.#data.set(key, value);
+
+		emitProfileChanged();
 	}
 
 	public has(coin: string, network: string): boolean {
@@ -56,6 +59,8 @@ export class PeerRepository implements IPeerRepository {
 		}
 
 		this.#data.set(`${coin}.${network}.${index}`, peer);
+
+		emitProfileChanged();
 	}
 
 	public forget(coin: string, network: string, peer: IPeer): void {
@@ -72,22 +77,25 @@ export class PeerRepository implements IPeerRepository {
 		if ((this.#data.get<IPeer[]>(`${coin}.${network}`) || []).filter(Boolean).length <= 0) {
 			this.#data.forget(`${coin}.${network}`);
 		}
+
+		emitProfileChanged();
 	}
 
 	public toObject(): Record<string, IPeer> {
 		return this.all();
 	}
 
-	// Helpers to get peers of specific types for a coin and network.
-
+	// @TODO: organise order of method in this class
 	public getRelay(coin: string, network: string): IPeer | undefined {
 		return this.get(coin, network).find((peer: IPeer) => peer.isMultiSignature === false);
 	}
 
+	// @TODO: organise order of method in this class
 	public getRelays(coin: string, network: string): IPeer[] {
 		return this.get(coin, network).filter((peer: IPeer) => peer.isMultiSignature === false);
 	}
 
+	// @TODO: organise order of method in this class
 	public getMultiSignature(coin: string, network: string): IPeer | undefined {
 		return this.get(coin, network).find((peer: IPeer) => peer.isMultiSignature === true);
 	}

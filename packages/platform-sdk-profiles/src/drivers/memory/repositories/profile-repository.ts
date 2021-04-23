@@ -8,6 +8,8 @@ import { DataRepository } from "../../../repositories/data-repository";
 import { ProfileExporter } from "../profiles/profile.exporter";
 import { ProfileImporter } from "../profiles/profile.importer";
 import { ProfileDumper } from "../profiles/profile.dumper";
+import { State } from "../../../environment/state";
+import { ProfileInitialiser } from "../profiles/profile.initialiser";
 
 @injectable()
 export class ProfileRepository implements IProfileRepository {
@@ -65,6 +67,8 @@ export class ProfileRepository implements IProfileRepository {
 		const result: IProfile = ProfileFactory.fromName(name);
 
 		this.#data.set(result.id(), result);
+
+		new ProfileInitialiser(result).initialise(name);
 
 		return result;
 	}

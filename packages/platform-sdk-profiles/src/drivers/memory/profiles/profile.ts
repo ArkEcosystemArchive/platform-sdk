@@ -170,7 +170,6 @@ export class Profile implements IProfile {
 	 */
 	public constructor(data: IProfileInput) {
 		this.#attributes = new AttributeBag<IProfileInput>(data);
-
 		this.#coinService = new CoinService();
 		this.#portfolio = new Portfolio();
 		this.#contactRepository = new ContactRepository();
@@ -481,18 +480,5 @@ export class Profile implements IProfile {
 		await this.wallets().restore();
 
 		await this.contacts().restore();
-	}
-
-	/**
-	 * @TODO: move this out
-	 *
-	 * Encode or encrypt the profile data for dumping later on.
-	 */
-	public save(password?: string): void {
-		try {
-			this.#attributes.set('data', new ProfileExporter(this).export(password));
-		} catch (error) {
-			throw new Error(`Failed to encode or encrypt the profile. Reason: ${error.message}`);
-		}
 	}
 }
