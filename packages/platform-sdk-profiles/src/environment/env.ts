@@ -15,7 +15,6 @@ import { DriverFactory } from "../drivers/driver.factory";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
-import { StorageFactory } from "./storage/factory";
 
 export class Environment {
 	private storage: StorageData | undefined;
