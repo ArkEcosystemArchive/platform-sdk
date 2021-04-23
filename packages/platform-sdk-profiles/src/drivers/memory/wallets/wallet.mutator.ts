@@ -87,13 +87,9 @@ export class WalletMutator implements IWalletMutator {
 		this.#wallet.getAttributes().set('avatar', value);
 
 		this.#wallet.settings().set(WalletSetting.Avatar, value);
-
-		emitProfileChanged();
 	}
 
 	public alias(alias: string): void {
 		this.#wallet.settings().set(WalletSetting.Alias, alias);
-
-		emitProfileChanged();
 	}
 }
