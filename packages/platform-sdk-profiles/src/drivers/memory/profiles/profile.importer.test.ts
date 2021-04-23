@@ -95,7 +95,7 @@ describe("#restore", () => {
 			data: Base64.encode(JSON.stringify(corruptedProfileData)),
 		});
 
-		serialiser = new ProfileSerialiser(profile);
+		subject = new ProfileImporter(profile);
 
 		await expect(subject.import()).rejects.toThrow();
 	});
@@ -195,6 +195,7 @@ describe("#restore", () => {
 		};
 
 		const profile = new Profile(profileDump);
+		subject = new ProfileImporter(profile);
 		await subject.import();
 
 		expect(profile.wallets().count()).toEqual(2);
