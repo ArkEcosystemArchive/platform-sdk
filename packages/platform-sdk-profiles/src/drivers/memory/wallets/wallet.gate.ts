@@ -8,14 +8,17 @@ export class WalletGate implements IWalletGate {
 		this.#wallet = wallet;
 	}
 
+	/** {@inheritDoc IWalletGate.canVote} */
 	public canVote(): boolean {
 		return this.#wallet.voting().available() > 0;
 	}
 
+	/** {@inheritDoc IWalletGate.can} */
 	public can(feature: string): boolean {
 		return this.#wallet.network().can(feature);
 	}
 
+	/** {@inheritDoc IWalletGate.canAny} */
 	public canAny(features: string[]): boolean {
 		for (const feature of features) {
 			if (this.can(feature)) {
@@ -26,6 +29,7 @@ export class WalletGate implements IWalletGate {
 		return false;
 	}
 
+	/** {@inheritDoc IWalletGate.canAll} */
 	public canAll(features: string[]): boolean {
 		for (const feature of features) {
 			if (this.cannot(feature)) {
@@ -36,6 +40,7 @@ export class WalletGate implements IWalletGate {
 		return true;
 	}
 
+	/** {@inheritDoc IWalletGate.cannot} */
 	public cannot(feature: string): boolean {
 		return this.#wallet.network().cannot(feature);
 	}

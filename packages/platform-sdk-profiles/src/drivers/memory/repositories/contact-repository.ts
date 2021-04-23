@@ -12,26 +12,32 @@ export class ContactRepository implements IContactRepository {
 	readonly #data: DataRepository = new DataRepository();
 	#dataRaw: object = {};
 
+	/** {@inheritDoc IContactRepository.all} */
 	public all(): Record<string, IContact> {
 		return this.#data.all() as Record<string, IContact>;
 	}
 
+	/** {@inheritDoc IContactRepository.first} */
 	public first(): IContact {
 		return this.#data.first();
 	}
 
+	/** {@inheritDoc IContactRepository.last} */
 	public last(): IContact {
 		return this.#data.last();
 	}
 
+	/** {@inheritDoc IContactRepository.keys} */
 	public keys(): string[] {
 		return this.#data.keys();
 	}
 
+	/** {@inheritDoc IContactRepository.values} */
 	public values(): IContact[] {
 		return this.#data.values();
 	}
 
+	/** {@inheritDoc IContactRepository.create} */
 	public create(name: string): IContact {
 		const contacts: IContact[] = this.values();
 
@@ -52,6 +58,7 @@ export class ContactRepository implements IContactRepository {
 		return result;
 	}
 
+	/** {@inheritDoc IContactRepository.findById} */
 	public findById(id: string): IContact {
 		const contact: IContact | undefined = this.#data.get(id);
 
@@ -62,6 +69,7 @@ export class ContactRepository implements IContactRepository {
 		return contact;
 	}
 
+	/** {@inheritDoc IContactRepository.update} */
 	public async update(id: string, data: { name?: string; addresses?: IContactAddressInput[] }): Promise<void> {
 		const result = this.findById(id);
 
@@ -90,6 +98,7 @@ export class ContactRepository implements IContactRepository {
 		emitProfileChanged();
 	}
 
+	/** {@inheritDoc IContactRepository.forget} */
 	public forget(id: string): void {
 		this.findById(id);
 
@@ -98,26 +107,62 @@ export class ContactRepository implements IContactRepository {
 		emitProfileChanged();
 	}
 
+	/** {@inheritDoc IContactRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
 		emitProfileChanged();
 	}
 
+	/** {@inheritDoc IContactRepository.count} */
 	public count(): number {
 		return this.keys().length;
 	}
 
+	/** {@inheritDoc IContactRepository.findByAddress} */
 	public findByAddress(value: string): IContact[] {
 		return this.findByColumn("address", value);
 	}
 
+	/** {@inheritDoc IContactRepository.findByCoin} */
 	public findByCoin(value: string): IContact[] {
 		return this.findByColumn("coin", value);
 	}
 
+	/** {@inheritDoc IContactRepository.findByNetwork} */
 	public findByNetwork(value: string): IContact[] {
 		return this.findByColumn("network", value);
+	}
+
+	/** {@inheritDoc IContactRepository.toObject} */
+	public toObject(): Record<string, object> {
+		const result: Record<string, object> = {};
+
+		for (const [id, contact] of Object.entries(this.#data.all())) {
+			result[id] = contact.toObject();
+		}
+
+		return result;
+	}
+
+	/** {@inheritDoc IContactRepository.fill} */
+	public fill(contacts: object): void {
+		this.#dataRaw = contacts;
+
+		for (const [id, contact] of Object.entries(contacts)) {
+			this.#data.set(id, new Contact(contact));
+		}
+	}
+
+	/** {@inheritDoc IContactRepository.restore} */
+	public async restore(): Promise<void> {
+		const promises: (() => Promise<void>)[] = [];
+
+		for (const [id, contact] of Object.entries(this.#dataRaw)) {
+			promises.push(() => this.findById(id).restore(contact.addresses));
+		}
+
+		await pqueue(promises);
 	}
 
 	private findByColumn(column: string, value: string): IContact[] {
@@ -135,45 +180,5 @@ export class ContactRepository implements IContactRepository {
 		}
 
 		return result;
-	}
-
-	public toObject(): Record<string, object> {
-		const result: Record<string, object> = {};
-
-		for (const [id, contact] of Object.entries(this.#data.all())) {
-			result[id] = contact.toObject();
-		}
-
-		return result;
-	}
-
-	/**
-	 * Restore contacts without synchronising them.
-	 *
-	 * @param {object} contacts
-	 * @memberof ContactRepository
-	 */
-	public fill(contacts: object): void {
-		this.#dataRaw = contacts;
-
-		for (const [id, contact] of Object.entries(contacts)) {
-			this.#data.set(id, new Contact(contact));
-		}
-	}
-
-	/**
-	 * Synchronise each contact with the network it belongs to.
-	 *
-	 * @returns {Promise<void>}
-	 * @memberof ContactRepository
-	 */
-	public async restore(): Promise<void> {
-		const promises: (() => Promise<void>)[] = [];
-
-		for (const [id, contact] of Object.entries(this.#dataRaw)) {
-			promises.push(() => this.findById(id).restore(contact.addresses));
-		}
-
-		await pqueue(promises);
 	}
 }

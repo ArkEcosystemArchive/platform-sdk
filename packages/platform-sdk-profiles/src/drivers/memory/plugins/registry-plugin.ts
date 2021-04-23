@@ -4,39 +4,48 @@ export class RegistryPlugin implements IRegistryPlugin {
 	readonly #data: Record<string, any>;
 	readonly #package: Record<string, any>;
 
+	/** {@inheritDoc IRegistryPlugin.constructor} */
 	public constructor(data: Record<string, any>, pkg: Record<string, any>) {
 		this.#data = data;
 		this.#package = pkg;
 	}
 
+	/** {@inheritDoc IRegistryPlugin.id} */
 	public id(): string {
 		return this.#data.name;
 	}
 
+	/** {@inheritDoc IRegistryPlugin.name} */
 	public name(): string {
 		return this.id();
 	}
 
+	/** {@inheritDoc IRegistryPlugin.alias} */
 	public alias(): string {
 		return this.getMetaData("title");
 	}
 
+	/** {@inheritDoc IRegistryPlugin.date} */
 	public date(): string {
 		return this.#data.date;
 	}
 
+	/** {@inheritDoc IRegistryPlugin.version} */
 	public version(): string {
 		return this.#data.version;
 	}
 
+	/** {@inheritDoc IRegistryPlugin.description} */
 	public description(): string {
 		return this.#data.description;
 	}
 
+	/** {@inheritDoc IRegistryPlugin.author} */
 	public author(): IRegistryPluginAuthor {
 		return this.#data.author;
 	}
 
+	/** {@inheritDoc IRegistryPlugin.sourceProvider} */
 	public sourceProvider(): any {
 		for (const [provider, pattern] of Object.entries({
 			github: /http(?:s)?:\/\/(?:www\.)?github\.com(\/[a-z\d](?:[a-z\d]|-(?=[a-z\d])){1,39}){2}/,
@@ -54,30 +63,37 @@ export class RegistryPlugin implements IRegistryPlugin {
 		return null;
 	}
 
+	/** {@inheritDoc IRegistryPlugin.logo} */
 	public logo(): string {
 		return this.getMetaData("logo");
 	}
 
+	/** {@inheritDoc IRegistryPlugin.images} */
 	public images(): string[] {
 		return this.getMetaData("images");
 	}
 
+	/** {@inheritDoc IRegistryPlugin.categories} */
 	public categories(): string[] {
 		return this.getMetaData("categories");
 	}
 
+	/** {@inheritDoc IRegistryPlugin.permissions} */
 	public permissions(): string[] {
 		return this.getMetaData("permissions");
 	}
 
+	/** {@inheritDoc IRegistryPlugin.urls} */
 	public urls(): string[] {
 		return this.getMetaData("urls");
 	}
 
+	/** {@inheritDoc IRegistryPlugin.minimumVersion} */
 	public minimumVersion(): string {
 		return this.getMetaData("minimumVersion");
 	}
 
+	/** {@inheritDoc IRegistryPlugin.toObject} */
 	public toObject(): {
 		id: string;
 		name: string;

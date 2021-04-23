@@ -6,6 +6,7 @@ import { State } from "../../../environment/state";
 import { emitProfileChanged } from "../helpers";
 
 export class Authenticator implements IAuthenticator {
+	/** {@inheritDoc IAuthenticator.setPassword} */
 	public setPassword(password: string): void {
 		const encrypted: string = Bcrypt.hash(password);
 
@@ -23,6 +24,7 @@ export class Authenticator implements IAuthenticator {
 		emitProfileChanged();
 	}
 
+	/** {@inheritDoc IAuthenticator.verifyPassword} */
 	public verifyPassword(password: string): boolean {
 		if (!State.profile().usesPassword()) {
 			throw new Error("No password is set.");
@@ -31,6 +33,7 @@ export class Authenticator implements IAuthenticator {
 		return Bcrypt.verify(State.profile().getAttributes().get("password"), password);
 	}
 
+	/** {@inheritDoc IAuthenticator.changePassword} */
 	public changePassword(oldPassword: string, newPassword: string): void {
 		const currentPassword: string | undefined = State.profile().settings().get(ProfileSetting.Password);
 

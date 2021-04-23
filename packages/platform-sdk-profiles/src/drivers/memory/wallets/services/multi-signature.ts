@@ -10,6 +10,7 @@ export class MultiSignature implements IMultiSignature {
 		this.#wallet = wallet;
 	}
 
+	/** {@inheritDoc IMultiSignature.all} */
 	public all(): Contracts.WalletMultiSignature {
 		if (!this.#wallet.getAttributes().get<Contracts.WalletData>('wallet')) {
 			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
@@ -18,6 +19,7 @@ export class MultiSignature implements IMultiSignature {
 		return this.#wallet.getAttributes().get<Contracts.WalletData>('wallet').multiSignature();
 	}
 
+	/** {@inheritDoc IMultiSignature.participants} */
 	public participants(): IReadOnlyWallet[] {
 		const participants: Record<string, any> | undefined = this.#wallet.data().get(WalletData.MultiSignatureParticipants);
 

@@ -11,6 +11,7 @@ type KnownWalletRegistry = Record<string, Contracts.KnownWallet[]>;
 export class KnownWalletService implements IKnownWalletService {
 	readonly #registry: KnownWalletRegistry = {};
 
+	/** {@inheritDoc IKnownWalletService.syncAll} */
 	public async syncAll(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
@@ -32,18 +33,22 @@ export class KnownWalletService implements IKnownWalletService {
 		await pqueue(promises);
 	}
 
+	/** {@inheritDoc IKnownWalletService.network} */
 	public name(network: string, address: string): string | undefined {
 		return this.findByAddress(network, address)?.name;
 	}
 
+	/** {@inheritDoc IKnownWalletService.network} */
 	public is(network: string, address: string): boolean {
 		return this.findByAddress(network, address) !== undefined;
 	}
 
+	/** {@inheritDoc IKnownWalletService.network} */
 	public isExchange(network: string, address: string): boolean {
 		return this.hasType(network, address, "exchange");
 	}
 
+	/** {@inheritDoc IKnownWalletService.network} */
 	public isTeam(network: string, address: string): boolean {
 		return this.hasType(network, address, "team");
 	}
