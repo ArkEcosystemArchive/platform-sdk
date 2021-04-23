@@ -3,6 +3,7 @@ import { IReadWriteWallet, WalletSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
 import { Coins } from "@arkecosystem/platform-sdk";
+import { emitProfileChanged } from "../helpers";
 
 export class WalletMutator implements IWalletMutator {
 	readonly #wallet: IReadWriteWallet;
@@ -50,11 +51,15 @@ export class WalletMutator implements IWalletMutator {
 		} catch {
 			this.#wallet.markAsPartiallyRestored();
 		}
+
+		emitProfileChanged();
 	}
 
 	public async identity(mnemonic: string): Promise<void> {
 		this.#wallet.getAttributes().set('address', await this.#wallet.getAttributes().get<Coins.Coin>('coin').identity().address().fromMnemonic(mnemonic));
 		this.#wallet.getAttributes().set('publicKey', await this.#wallet.getAttributes().get<Coins.Coin>('coin').identity().publicKey().fromMnemonic(mnemonic));
+
+		emitProfileChanged();
 
 		return this.address(this.#wallet.getAttributes().get<string>('address'));
 	}
@@ -84,9 +89,13 @@ export class WalletMutator implements IWalletMutator {
 		this.#wallet.getAttributes().set('avatar', value);
 
 		this.#wallet.settings().set(WalletSetting.Avatar, value);
+
+		emitProfileChanged();
 	}
 
 	public alias(alias: string): void {
 		this.#wallet.settings().set(WalletSetting.Alias, alias);
+
+		emitProfileChanged();
 	}
 }

@@ -5,6 +5,7 @@ import { Identifiers } from "../../../environment/container.models";
 import { Avatar } from "../../../helpers/avatar";
 import { IContactAddress, IContactAddressData, IKnownWalletService, IProfile } from "../../../contracts";
 import { State } from "../../../environment/state";
+import { emitProfileChanged } from "../helpers";
 
 export class ContactAddress implements IContactAddress {
 	readonly #coin: Coins.Coin;
@@ -116,10 +117,14 @@ export class ContactAddress implements IContactAddress {
 
 	public setName(value: string): void {
 		this.#data.name = value;
+
+		emitProfileChanged();
 	}
 
 	public setAddress(name: string): void {
 		this.#data.address = name;
+
+		emitProfileChanged();
 	}
 
 	/**

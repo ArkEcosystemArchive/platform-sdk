@@ -4,6 +4,7 @@ export const Identifiers = {
 	ContactRepository: "ContactRepository",
 	DataRepository: "DataRepository",
 	DelegateService: "DelegateService",
+	EventEmitter: "EventEmitter",
 	ExchangeRateService: "ExchangeRateService",
 	FeeService: "FeeService",
 	HttpClient: "HttpClient",
@@ -20,4 +21,8 @@ export const Identifiers = {
 
 export const State = {
 	Profile: "State<Profile>",
+};
+
+export const Events = {
+	ProfileChanged: "ProfileChanged",
 };

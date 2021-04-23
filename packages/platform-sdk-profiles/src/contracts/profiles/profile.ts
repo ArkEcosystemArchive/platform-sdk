@@ -278,14 +278,6 @@ export interface IProfile {
 	sync(): Promise<void>;
 
 	/**
-	 * Save the profile.
-	 *
-	 * @param {string} [password]
-	 * @memberof IProfile
-	 */
-	save(password?: string): void;
-
-	/**
 	 * Determine if the profile has been partially restored.
 	 *
 	 * @return {*}  {boolean}
