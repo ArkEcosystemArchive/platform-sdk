@@ -2,7 +2,7 @@ import { IPortfolio, IPortfolioEntry } from "../../../contracts";
 import { State } from "../../../environment/state";
 
 export class Portfolio implements IPortfolio {
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPortfolio.breakdown} */
 	public breakdown(): IPortfolioEntry[] {
 		const result: Record<string, IPortfolioEntry> = {};
 

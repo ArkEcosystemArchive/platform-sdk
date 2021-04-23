@@ -15,44 +15,43 @@ import { ProfileInitialiser } from "../profiles/profile.initialiser";
 export class ProfileRepository implements IProfileRepository {
 	readonly #data: DataRepository;
 
-	/** {@inheritDoc IWalletFactory.generate} */
 	public constructor() {
 		this.#data = new DataRepository();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.fill} */
 	public fill(profiles: object): void {
 		for (const [id, profile] of Object.entries(profiles)) {
 			this.#data.set(id, new Profile(profile));
 		}
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.all} */
 	public all(): Record<string, IProfile> {
 		return this.#data.all() as Record<string, IProfile>;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.first} */
 	public first(): IProfile {
 		return this.#data.first();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.last} */
 	public last(): IProfile {
 		return this.#data.last();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.keys} */
 	public keys(): string[] {
 		return this.#data.keys();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.values} */
 	public values(): IProfile[] {
 		return this.#data.values();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.findById} */
 	public findById(id: string): IProfile {
 		if (this.#data.missing(id)) {
 			throw new Error(`No profile found for [${id}].`);
@@ -61,12 +60,12 @@ export class ProfileRepository implements IProfileRepository {
 		return this.#data.get(id) as IProfile;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.findByName} */
 	public findByName(name: string): IProfile | undefined {
 		return this.values().find((profile: IProfile) => profile.name().toLowerCase() === name.toLowerCase());
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.create} */
 	public create(name: string): IProfile {
 		if (this.findByName(name)) {
 			throw new Error(`The profile [${name}] already exists.`);
@@ -81,7 +80,7 @@ export class ProfileRepository implements IProfileRepository {
 		return result;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.import} */
 	public async import(data: string, password?: string): Promise<Profile> {
 		const profile = new Profile({
 			id: uuidv4(),
@@ -95,22 +94,22 @@ export class ProfileRepository implements IProfileRepository {
 		return profile;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.export} */
 	public export(profile: IProfile, options: IProfileExportOptions, password?: string): string {
 		return new ProfileExporter(profile).export(password, options);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.restore} */
 	public async restore(profile: IProfile, password?: string): Promise<void> {
 		new ProfileImporter(profile).import(password);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.has} */
 	public has(id: string): boolean {
 		return this.#data.has(id);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.forget} */
 	public forget(id: string): void {
 		if (this.#data.missing(id)) {
 			throw new Error(`No profile found for [${id}].`);
@@ -119,17 +118,17 @@ export class ProfileRepository implements IProfileRepository {
 		this.#data.forget(id);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.count} */
 	public count(): number {
 		return this.#data.count();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileRepository.toObject} */
 	public toObject(): Record<string, object> {
 		const result: Record<string, object> = {};
 		const profiles: [string, Profile][] = Object.entries(this.#data.all());
