@@ -51,19 +51,18 @@ export class TransactionService implements ITransactionService {
 	 */
 	#waitingForOtherSignatures: SignedTransactionDataDictionary = {};
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public constructor(wallet: IReadWriteWallet) {
 		this.#wallet = wallet;
 
 		this.restore();
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.sync} */
 	public async sync(): Promise<void> {
 		await pqueueSettled([() => this.syncPendingMultiSignatures(), () => this.syncReadyMultiSignatures()]);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.addSignature} */
 	public async addSignature(id: string, mnemonic: string): Promise<void> {
 		this.assertHasValidIdentifier(id);
 
@@ -76,12 +75,12 @@ export class TransactionService implements ITransactionService {
 		await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature.data());
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.signTransfer} */
 	public async signTransfer(input: Contracts.TransferInput, options?: Contracts.TransactionOptions): Promise<string> {
 		return this.signTransaction("transfer", input, options);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.signSecondSignature} */
 	public async signSecondSignature(
 		input: Contracts.SecondSignatureInput,
 		options?: Contracts.TransactionOptions,
@@ -89,7 +88,7 @@ export class TransactionService implements ITransactionService {
 		return this.signTransaction("secondSignature", input, options);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.signDelegateRegistration} */
 	public async signDelegateRegistration(
 		input: Contracts.DelegateRegistrationInput,
 		options?: Contracts.TransactionOptions,
@@ -97,12 +96,12 @@ export class TransactionService implements ITransactionService {
 		return this.signTransaction("delegateRegistration", input, options);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.signVote} */
 	public async signVote(input: Contracts.VoteInput, options?: Contracts.TransactionOptions): Promise<string> {
 		return this.signTransaction("vote", input, options);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.signMultiSignature} */
 	public async signMultiSignature(
 		input: Contracts.MultiSignatureInput,
 		options?: Contracts.TransactionOptions,
@@ -110,12 +109,12 @@ export class TransactionService implements ITransactionService {
 		return this.signTransaction("multiSignature", input, options);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.signIpfs} */
 	public async signIpfs(input: Contracts.IpfsInput, options?: Contracts.TransactionOptions): Promise<string> {
 		return this.signTransaction("ipfs", input, options);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.signMultiPayment} */
 	public async signMultiPayment(
 		input: Contracts.MultiPaymentInput,
 		options?: Contracts.TransactionOptions,
@@ -123,7 +122,7 @@ export class TransactionService implements ITransactionService {
 		return this.signTransaction("multiPayment", input, options);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.signDelegateResignation} */
 	public async signDelegateResignation(
 		input: Contracts.DelegateResignationInput,
 		options?: Contracts.TransactionOptions,
@@ -131,12 +130,12 @@ export class TransactionService implements ITransactionService {
 		return this.signTransaction("delegateResignation", input, options);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.signHtlcLock} */
 	public async signHtlcLock(input: Contracts.HtlcLockInput, options?: Contracts.TransactionOptions): Promise<string> {
 		return this.signTransaction("htlcLock", input, options);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.signHtlcClaim} */
 	public async signHtlcClaim(
 		input: Contracts.HtlcClaimInput,
 		options?: Contracts.TransactionOptions,
@@ -144,7 +143,7 @@ export class TransactionService implements ITransactionService {
 		return this.signTransaction("htlcClaim", input, options);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.signHtlcRefund} */
 	public async signHtlcRefund(
 		input: Contracts.HtlcRefundInput,
 		options?: Contracts.TransactionOptions,
@@ -152,7 +151,7 @@ export class TransactionService implements ITransactionService {
 		return this.signTransaction("htlcRefund", input, options);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.transaction} */
 	public transaction(id: string): Contracts.SignedTransactionData {
 		this.assertHasValidIdentifier(id);
 
@@ -179,7 +178,7 @@ export class TransactionService implements ITransactionService {
 		throw new Error(`Transaction [${id}] could not be found.`);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.pending} */
 	public pending(): SignedTransactionDataDictionary {
 		return {
 			...this.signed(),
@@ -189,69 +188,69 @@ export class TransactionService implements ITransactionService {
 		};
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.signed} */
 	public signed(): SignedTransactionDataDictionary {
 		return this.#signed;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.broadcasted} */
 	public broadcasted(): SignedTransactionDataDictionary {
 		return this.#broadcasted;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.waitingForOurSignature} */
 	public waitingForOurSignature(): SignedTransactionDataDictionary {
 		return this.#waitingForOurSignature;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.waitingForOtherSignatures} */
 	public waitingForOtherSignatures(): SignedTransactionDataDictionary {
 		return this.#waitingForOtherSignatures;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.hasBeenSigned} */
 	public hasBeenSigned(id: string): boolean {
 		this.assertHasValidIdentifier(id);
 
 		return this.#signed[id] !== undefined;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.hasBeenBroadcasted} */
 	public hasBeenBroadcasted(id: string): boolean {
 		this.assertHasValidIdentifier(id);
 
 		return this.#broadcasted[id] !== undefined;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.hasBeenConfirmed} */
 	public hasBeenConfirmed(id: string): boolean {
 		this.assertHasValidIdentifier(id);
 
 		return this.#confirmed[id] !== undefined;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.isAwaitingConfirmation} */
 	public isAwaitingConfirmation(id: string): boolean {
 		this.assertHasValidIdentifier(id);
 
 		return this.#broadcasted[id] !== undefined;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.isAwaitingOurSignature} */
 	public isAwaitingOurSignature(id: string): boolean {
 		this.assertHasValidIdentifier(id);
 
 		return this.#waitingForOurSignature[id] !== undefined;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.isAwaitingOtherSignatures} */
 	public isAwaitingOtherSignatures(id: string): boolean {
 		this.assertHasValidIdentifier(id);
 
 		return this.#waitingForOtherSignatures[id] !== undefined;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.isAwaitingSignatureByPublicKey} */
 	public isAwaitingSignatureByPublicKey(id: string, publicKey: string): boolean {
 		this.assertHasValidIdentifier(id);
 
@@ -272,21 +271,21 @@ export class TransactionService implements ITransactionService {
 		return this.#wallet.coin().multiSignature().needsWalletSignature(transaction, publicKey);
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.canBeSigned} */
 	public canBeSigned(id: string): boolean {
 		this.assertHasValidIdentifier(id);
 
 		return this.#wallet.coin().multiSignature().needsWalletSignature(this.transaction(id), this.getPublicKey());
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.canBeBroadcasted} */
 	public canBeBroadcasted(id: string): boolean {
 		this.assertHasValidIdentifier(id);
 
 		return this.#signed[id] !== undefined;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.broadcast} */
 	public async broadcast(id: string): Promise<Contracts.BroadcastResponse> {
 		this.assertHasValidIdentifier(id);
 
@@ -315,7 +314,7 @@ export class TransactionService implements ITransactionService {
 		return result;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.confirm} */
 	public async confirm(id: string): Promise<boolean> {
 		this.assertHasValidIdentifier(id);
 
@@ -348,7 +347,7 @@ export class TransactionService implements ITransactionService {
 	}
 
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.fromPublicKey} */
 	public dump(): void {
 		const dumpStorage = (storage: object, storageKey: string) => {
 			const result: Record<string, object> = {};
@@ -369,7 +368,7 @@ export class TransactionService implements ITransactionService {
 	}
 
 
-	/** {@inheritDoc IWalletFactory.fromPublicKey} */
+	/** {@inheritDoc ITransactionService.fromPublicKey} */
 	public restore(): void {
 		const restoreStorage = (storage: object, storageKey: string) => {
 			const transactions: object = this.#wallet.data().get(storageKey) || {};
