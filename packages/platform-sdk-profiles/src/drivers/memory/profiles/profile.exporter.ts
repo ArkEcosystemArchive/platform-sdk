@@ -12,7 +12,7 @@ export class ProfileExporter implements IProfileExporter {
 		this.#profile = profile;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileExporter.export} */
 	public export(
 		password?: string,
 		options: IProfileExportOptions = {

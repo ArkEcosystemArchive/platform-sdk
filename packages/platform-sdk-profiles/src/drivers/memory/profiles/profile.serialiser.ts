@@ -8,7 +8,7 @@ export class ProfileSerialiser implements IProfileSerialiser {
 		this.#profile = profile;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileSerialiser.toJSON} */
 	public toJSON(
 		options: IProfileExportOptions = {
 			excludeEmptyWallets: false,

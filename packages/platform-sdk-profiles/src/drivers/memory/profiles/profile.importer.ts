@@ -16,7 +16,7 @@ export class ProfileImporter implements IProfileImporter {
 		this.#profile = profile;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileImporter.import} */
 	public async import(password?: string): Promise<void> {
 		const data: IProfileData | undefined = await this.validate(await this.unpack(password));
 

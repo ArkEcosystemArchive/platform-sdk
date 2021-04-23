@@ -9,7 +9,7 @@ export class ProfileInitialiser implements IProfileInitialiser {
 		this.#profile = profile;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileInitialiser.initialise} */
 	public initialise(name: string): void {
 		if (name === undefined) {
 			throw new Error("The name of the profile could not be found. This looks like a bug.");

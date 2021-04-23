@@ -4,7 +4,7 @@ import { State } from "../../../environment/state";
 import { Profile } from "./profile";
 
 export class ProfileFactory implements IProfileFactory {
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IProfileFactory.fromName} */
 	public static fromName(name: string): IProfile {
 		const result: IProfile = new Profile({ id: uuidv4(), name, data: "" });
 
