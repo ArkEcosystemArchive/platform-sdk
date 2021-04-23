@@ -14,47 +14,46 @@ interface ROWallet {
 export class ReadOnlyWallet implements IReadOnlyWallet {
 	readonly #wallet: ROWallet;
 
-	/** {@inheritDoc IWalletFactory.generate} */
 	public constructor(wallet: ROWallet) {
 		this.#wallet = wallet;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IReadOnlyWallet.address} */
 	public address(): string {
 		return this.#wallet.address;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IReadOnlyWallet.publicKey} */
 	public publicKey(): string | undefined {
 		return this.#wallet.publicKey;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IReadOnlyWallet.username} */
 	public username(): string | undefined {
 		return this.#wallet.username;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IReadOnlyWallet.rank} */
 	public rank(): number | undefined {
 		return this.#wallet.rank;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IReadOnlyWallet.avatar} */
 	public avatar(): string {
 		return Avatar.make(this.address());
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IReadOnlyWallet.explorerLink} */
 	public explorerLink(): string {
 		return this.#wallet.explorerLink;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IReadOnlyWallet.isDelegate} */
 	public isDelegate(): boolean {
 		return this.#wallet.isDelegate;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IReadOnlyWallet.isResignedDelegate} */
 	public isResignedDelegate(): boolean {
 		return this.#wallet.isResignedDelegate;
 	}
