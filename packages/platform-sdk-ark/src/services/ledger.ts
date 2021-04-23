@@ -76,7 +76,7 @@ export class LedgerService implements Contracts.LedgerService {
 		return this.#transport.signMessageWithSchnorr(path, payload);
 	}
 
-	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.LedgerWalletList> {
+	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Contracts.LedgerWalletList> {
 		const pageSize = 5;
 		let page = 0;
 		const slip44 = this.#config.get<number>("network.crypto.slip44");
@@ -110,6 +110,15 @@ export class LedgerService implements Contracts.LedgerService {
 				hasMore = collection.isNotEmpty();
 			} else {
 				const path = `m/44'/${slip44}'/0'`;
+				let initialAddressIndex = 0;
+
+				if (options?.startPath) {
+					/*
+					 * Get the address index from expected format `m/purpose'/coinType'/account'/change/addressIndex`
+					 */
+					const startAddressIndex = options.startPath.split("/")[5];
+					initialAddressIndex = startAddressIndex ? parseInt(startAddressIndex) + 1 : 0;
+				}
 
 				/**
 				 * @remarks
@@ -117,7 +126,8 @@ export class LedgerService implements Contracts.LedgerService {
 				 */
 				const compressedPublicKey = await this.getExtendedPublicKey(path);
 
-				for (const addressIndex of createRange(page, pageSize)) {
+				for (const addressIndexIterator of createRange(page, pageSize)) {
+					const addressIndex = initialAddressIndex + addressIndexIterator;
 					const publicKey: string = HDKey.fromCompressedPublicKey(compressedPublicKey)
 						.derive(`m/0/${addressIndex}`)
 						.publicKey.toString("hex");
