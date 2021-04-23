@@ -161,12 +161,7 @@ export class Profile implements IProfile {
 	 * @memberof Profile
 	 */
 	readonly #attributes: AttributeBag<IProfileInput>;
-
-	/**
-	 * Creates an instance of Profile.
-	 * @param {IProfileInput} data
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public constructor(data: IProfileInput) {
 		this.#attributes = new AttributeBag<IProfileInput>(data);
 		this.#coinService = new CoinService();
@@ -185,22 +180,12 @@ export class Profile implements IProfile {
 		this.#authenticator = new Authenticator();
 	}
 
-	/**
-	 * Get the UUID of the profile.
-	 *
-	 * @return {string}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public id(): string {
 		return this.#attributes.get<string>('id');
 	}
 
-	/**
-	 * Get the name of the profile.
-	 *
-	 * @return {string}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public name(): string {
 		if (this.settings().missing(ProfileSetting.Name)) {
 			return this.#attributes.get<string>('name');
@@ -209,12 +194,7 @@ export class Profile implements IProfile {
 		return this.settings().get<string>(ProfileSetting.Name)!;
 	}
 
-	/**
-	 * Get the avatar of the profile.
-	 *
-	 * @return {string}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public avatar(): string {
 		const avatarFromSettings: string | undefined = this.settings().get(ProfileSetting.Avatar);
 
@@ -229,31 +209,17 @@ export class Profile implements IProfile {
 		return Avatar.make(this.name());
 	}
 
-	/**
-	 * Get the balance of the profile.
-	 *
-	 * @return {BigNumber}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public balance(): BigNumber {
 		return this.walletAggregate().balance();
 	}
 
-	/**
-	 * Get the converted balance of the profile.
-	 *
-	 * @return {BigNumber}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public convertedBalance(): BigNumber {
 		return this.walletAggregate().convertedBalance();
 	}
 
-	/**
-	 * Flush all data and reset the instance.
-	 *
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public flush(): void {
 		const name: string | undefined = this.settings().get(ProfileSetting.Name);
 
@@ -264,217 +230,109 @@ export class Profile implements IProfile {
 		new ProfileInitialiser(this).initialise(name);
 	}
 
-	/**
-	 * Access the coin service.
-	 *
-	 * @returns {ICoinService}
-	 * @memberof Environment
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public coins(): ICoinService {
 		return this.#coinService;
 	}
 
-	/**
-	 * Access the portfolio service.
-	 *
-	 * @return {IPortfolio}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public portfolio(): IPortfolio {
 		return this.#portfolio;
 	}
 
-	/**
-	 * Access the contact repository.
-	 *
-	 * @return {IContactRepository}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public contacts(): IContactRepository {
 		return this.#contactRepository;
 	}
 
-	/**
-	 * Access the data repository.
-	 *
-	 * @return {IDataRepository}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public data(): IDataRepository {
 		return this.#dataRepository;
 	}
 
-	/**
-	 * Access the notification repository.
-	 *
-	 * @return {INotificationRepository}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public notifications(): INotificationRepository {
 		return this.#notificationRepository;
 	}
 
-	/**
-	 * Access the peer repository.
-	 *
-	 * @return {IPeerRepository}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public peers(): IPeerRepository {
 		return this.#peerRepository;
 	}
 
-	/**
-	 * Access the plugin repository.
-	 *
-	 * @return {IPluginRepository}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public plugins(): IPluginRepository {
 		return this.#pluginRepository;
 	}
 
-	/**
-	 * Access the setting repository.
-	 *
-	 * @return {ISettingRepository}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public settings(): ISettingRepository {
 		return this.#settingRepository;
 	}
 
-	/**
-	 * Access the wallet repository.
-	 *
-	 * @return {IWalletRepository}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public wallets(): IWalletRepository {
 		return this.#walletRepository;
 	}
 
-	/**
-	 * Access the wallet factory.
-	 *
-	 * @return {IWalletFactory}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public walletFactory(): IWalletFactory {
 		return new WalletFactory();
 	}
 
-	/**
-	 * Access the count aggregate service.
-	 *
-	 * @return {ICountAggregate}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public countAggregate(): ICountAggregate {
 		return this.#countAggregate;
 	}
 
-	/**
-	 * Access the registration aggregate service.
-	 *
-	 * @return {IRegistrationAggregate}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public registrationAggregate(): IRegistrationAggregate {
 		return this.#registrationAggregate;
 	}
 
-	/**
-	 * Access the transaction aggregate service.
-	 *
-	 * @return {ITransactionAggregate}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public transactionAggregate(): ITransactionAggregate {
 		return this.#transactionAggregate;
 	}
 
-	/**
-	 * Access the wallet aggregate service.
-	 *
-	 * @return {IWalletAggregate}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public walletAggregate(): IWalletAggregate {
 		return this.#walletAggregate;
 	}
 
-	/**
-	 * Access the authentication service.
-	 *
-	 * @return {IAuthenticator}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public auth(): IAuthenticator {
 		return this.#authenticator;
 	}
 
-	/**
-	 * Determine if the profile uses a password.
-	 *
-	 * @return {boolean}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public usesPassword(): boolean {
 		return this.#attributes.hasStrict('password');
 	}
 
-	/**
-	 * Determine if the profile uses custom peers.
-	 *
-	 * @return {boolean}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public usesCustomPeer(): boolean {
 		return this.settings().get(ProfileSetting.UseCustomPeer) === true;
 	}
 
-	/**
-	 * Determine if the profile uses spread-out broadcasting.
-	 *
-	 * @return {boolean}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public usesMultiPeerBroadcasting(): boolean {
 		const usesMultiPeerBroadcasting: boolean = this.settings().get(ProfileSetting.UseMultiPeerBroadcast) === true;
 
 		return this.usesCustomPeer() && usesMultiPeerBroadcasting;
 	}
 
-	/**
-	 * Determine if all wallets that belong to the profile have been restored.
-	 *
-	 * @returns {boolean}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public hasBeenPartiallyRestored(): boolean {
 		return this.#walletRepository.values().filter((wallet: IReadWriteWallet) => wallet.hasBeenPartiallyRestored()).length > 0;
 	}
 
-	/**
-	 * Get the underlying attributes.
-	 *
-	 * @return {AttributeBag}
-	 * @memberof IReadWriteWallet
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public getAttributes(): AttributeBag<IProfileInput> {
 		return this.#attributes;
 	}
 
-	/**
-	 * @TODO: move this out
-	 *
-	 * Sync the wallets and contacts with their respective networks.
-	 *
-	 * @param {string} [password]
-	 * @returns {Promise<void>}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletFactory.fromPublicKey} */
 	public async sync(): Promise<void> {
 		await this.wallets().restore();
 
