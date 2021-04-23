@@ -233,12 +233,12 @@ it("should migrate profiles from JSON to Base64", async () => {
 
 	expect(profile.data().get(ProfileData.LatestMigration)).toBe("2.0.0");
 
-	await new ProfileImporter().import(profile);
+	await new ProfileImporter(profile).import();
 
 	expect(profile.id()).toBe("b999d134-7a24-481e-a95d-bc47c543bfc9");
 	expect(profile.usesPassword()).toBeTrue();
 	expect(profile.contacts().findById("0e147f96-049f-4d89-bad4-ad3341109907").name()).toBe("John Doe");
-	expect(new ProfileSerialiser().toJSON(profile)).toMatchInlineSnapshot(`
+	expect(new ProfileSerialiser(profile).toJSON()).toMatchInlineSnapshot(`
 		Object {
 		  "contacts": Object {
 		    "0e147f96-049f-4d89-bad4-ad3341109907": Object {
