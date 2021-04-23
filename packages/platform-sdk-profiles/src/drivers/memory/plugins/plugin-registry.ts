@@ -13,12 +13,11 @@ import { RegistryPlugin } from "./registry-plugin";
 export class PluginRegistry implements IPluginRegistry {
 	readonly #httpClient: Contracts.HttpClient;
 
-	/** {@inheritDoc IWalletFactory.generate} */
 	public constructor() {
 		this.#httpClient = container.get<Contracts.HttpClient>(Identifiers.HttpClient);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRegistry.all} */
 	public async all(): Promise<IRegistryPlugin[]> {
 		const results: Promise<IRegistryPlugin>[] = [];
 
@@ -56,14 +55,14 @@ export class PluginRegistry implements IPluginRegistry {
 		return this.applyWhitelist(await Promise.all(results));
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRegistry.size} */
 	public async size(pkg: IRegistryPlugin): Promise<number> {
 		const response = (await this.#httpClient.get(`https://registry.npmjs.com/${pkg.id()}`)).json();
 
 		return response.versions[pkg.version()].dist?.unpackedSize;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRegistry.downloads} */
 	public async downloads(pkg: IRegistryPlugin): Promise<number> {
 		const response = await this.#httpClient.get(
 			`https://api.npmjs.org/downloads/range/2005-01-01:${new Date().getFullYear() + 1}-01-01/${pkg.id()}`,
