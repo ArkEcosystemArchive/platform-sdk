@@ -10,32 +10,32 @@ import { emitProfileChanged } from "../helpers";
 export class NotificationRepository implements INotificationRepository {
 	#data: DataRepository = new DataRepository();
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.all} */
 	public all(): Record<string, INotification> {
 		return this.#data.all() as Record<string, INotification>;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.first} */
 	public first(): INotification {
 		return this.#data.first();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.last} */
 	public last(): INotification {
 		return this.#data.last();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.keys} */
 	public keys(): string[] {
 		return this.#data.keys();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.values} */
 	public values(): INotification[] {
 		return this.#data.values();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.get} */
 	public get(key: string): INotification {
 		const notification: INotification | undefined = this.#data.get(key);
 
@@ -46,7 +46,7 @@ export class NotificationRepository implements INotificationRepository {
 		return notification;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.push} */
 	public push(value: Except<INotification, "id">): INotification {
 		const id: string = uuidv4();
 
@@ -57,17 +57,17 @@ export class NotificationRepository implements INotificationRepository {
 		return this.get(id);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.fill} */
 	public fill(entries: object): void {
 		this.#data.fill(entries);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.has} */
 	public has(key: string): boolean {
 		return this.#data.has(key);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.forget} */
 	public forget(key: string): void {
 		this.get(key);
 
@@ -76,14 +76,14 @@ export class NotificationRepository implements INotificationRepository {
 		emitProfileChanged();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
 		emitProfileChanged();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.count} */
 	public count(): number {
 		return this.keys().length;
 	}
@@ -92,17 +92,17 @@ export class NotificationRepository implements INotificationRepository {
 	 * Convenience methods to interact with notifications states.
 	 */
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.read} */
 	public read(): INotification[] {
 		return this.values().filter((notification: INotification) => notification.read_at !== undefined);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.unread} */
 	public unread(): INotification[] {
 		return this.values().filter((notification: INotification) => notification.read_at === undefined);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc INotificationRepository.markAsRead} */
 	public markAsRead(key: string): void {
 		this.get(key).read_at = +Date.now();
 

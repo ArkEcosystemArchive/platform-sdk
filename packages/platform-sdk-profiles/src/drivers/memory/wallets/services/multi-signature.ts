@@ -6,12 +6,11 @@ import { IMultiSignature } from "../../../../contracts/wallets/services/multi-si
 export class MultiSignature implements IMultiSignature {
 	readonly #wallet: IReadWriteWallet;
 
-	/** {@inheritDoc IWalletFactory.generate} */
 	public constructor(wallet: IReadWriteWallet) {
 		this.#wallet = wallet;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IMultiSignature.all} */
 	public all(): Contracts.WalletMultiSignature {
 		if (!this.#wallet.getAttributes().get<Contracts.WalletData>('wallet')) {
 			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
@@ -20,7 +19,7 @@ export class MultiSignature implements IMultiSignature {
 		return this.#wallet.getAttributes().get<Contracts.WalletData>('wallet').multiSignature();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IMultiSignature.participants} */
 	public participants(): IReadOnlyWallet[] {
 		const participants: Record<string, any> | undefined = this.#wallet.data().get(WalletData.MultiSignatureParticipants);
 
