@@ -56,8 +56,6 @@ export class Contact implements IContact {
 		this.#name = name;
 
 		this.setAvatar(Avatar.make(name));
-
-		emitProfileChanged();
 	}
 
 	public async setAddresses(addresses: IContactAddressInput[]): Promise<void> {
