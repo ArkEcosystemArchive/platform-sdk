@@ -5,6 +5,7 @@ import { IContact, IContactAddress, IContactAddressInput, IContactRepository, IP
 import { Contact } from "../contacts/contact";
 import { pqueue } from "../../../helpers/queue";
 import { DataRepository } from "../../../repositories/data-repository";
+import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class ContactRepository implements IContactRepository {
@@ -46,6 +47,8 @@ export class ContactRepository implements IContactRepository {
 
 		this.#data.set(id, result);
 
+		emitProfileChanged();
+
 		return result;
 	}
 
@@ -83,16 +86,22 @@ export class ContactRepository implements IContactRepository {
 		}
 
 		this.#data.set(id, result);
+
+		emitProfileChanged();
 	}
 
 	public forget(id: string): void {
 		this.findById(id);
 
 		this.#data.forget(id);
+
+		emitProfileChanged();
 	}
 
 	public flush(): void {
 		this.#data.flush();
+
+		emitProfileChanged();
 	}
 
 	public count(): number {

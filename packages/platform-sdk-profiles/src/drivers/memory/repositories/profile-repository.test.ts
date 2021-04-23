@@ -11,6 +11,8 @@ import { ProfileRepository } from "./profile-repository";
 import { State } from "../../../environment/state";
 import { ProfileImporter } from "../profiles/profile.importer";
 import { ProfileSerialiser } from "../profiles/profile.serialiser";
+import { container } from "../../../environment/container";
+import { Identifiers } from "../../../environment/container.models";
 
 let subject: IProfileRepository;
 
@@ -37,6 +39,8 @@ beforeEach(() => {
 		.persist();
 
 	subject = new ProfileRepository();
+
+	container.rebind(Identifiers.ProfileRepository, subject);
 });
 
 describe("ProfileRepository", () => {
@@ -183,23 +187,12 @@ describe("ProfileRepository", () => {
 		expect(() => subject.forget("doesnotexist")).toThrow("No profile found for");
 	});
 
-	it("should dump all profiles", async () => {
+	it("should dump profiles without a password", async () => {
 		const john = subject.create("John");
 		State.profile(john);
 		await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
-		john.save();
-
-		const jane = subject.create("Jane");
-		State.profile(jane);
-		await importByMnemonic(jane, identity.mnemonic, "ARK", "ark.devnet");
-		jane.auth().setPassword("password");
-		jane.save("password");
 
 		const repositoryDump = subject.toObject();
-
-		const restoredJane = new Profile(repositoryDump[jane.id()] as any);
-		await new ProfileImporter().import(restoredJane, "password");
-		await restoredJane.sync();
 
 		const restoredJohn = new Profile(repositoryDump[john.id()] as any);
 		await new ProfileImporter().import(restoredJohn);
@@ -208,6 +201,22 @@ describe("ProfileRepository", () => {
 		const serialiser = new ProfileSerialiser();
 
 		expect(serialiser.toJSON(restoredJohn)).toEqual(serialiser.toJSON(john));
+	});
+
+	it("should dump profiles with a password", async () => {
+		const jane = subject.create("Jane");
+		State.profile(jane);
+		await importByMnemonic(jane, identity.mnemonic, "ARK", "ark.devnet");
+		jane.auth().setPassword("password");
+
+		const repositoryDump = subject.toObject();
+
+		const restoredJane = new Profile(repositoryDump[jane.id()] as any);
+		await new ProfileImporter().import(restoredJane, "password");
+		await restoredJane.sync();
+
+		const serialiser = new ProfileSerialiser();
+
 		expect(serialiser.toJSON(restoredJane)).toEqual(serialiser.toJSON(jane));
 	});
 
@@ -231,7 +240,7 @@ describe("ProfileRepository", () => {
 		State.profile(profile);
 		profile.auth().setPassword("some pass");
 		await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
-		profile.save("some pass");
+		// profile.save("some pass");
 
 		const exported = subject.export(
 			profile,

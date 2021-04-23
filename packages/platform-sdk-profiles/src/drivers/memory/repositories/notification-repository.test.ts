@@ -1,5 +1,8 @@
 import "jest-extended";
 import "reflect-metadata";
+import { bootContainer } from "../../../../test/helpers";
+import { State } from "../../../environment/state";
+import { Profile } from "../profiles/profile";
 
 import { NotificationRepository } from "./notification-repository";
 
@@ -33,6 +36,14 @@ const stubNotifications = [
 ];
 
 const stubNotification = stubNotifications[0];
+
+beforeAll(() => {
+	bootContainer()
+
+	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
+
+	State.profile(profile);
+});
 
 beforeEach(() => (subject = new NotificationRepository()));
 

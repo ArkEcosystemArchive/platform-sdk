@@ -7,11 +7,13 @@ import nock from "nock";
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { Profile } from "./profile";
-import { IProfile, ProfileSetting } from "../../../contracts";
+import { IProfile, IProfileRepository, ProfileSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
 import { ProfileImporter } from "./profile.importer";
 import { ProfileDumper } from "./profile.dumper";
 import { ProfileSerialiser } from "./profile.serialiser";
+import { container } from "../../../environment/container";
+import { Identifiers } from "../../../environment/container.models";
 
 let subject: ProfileImporter;
 let dumper: ProfileDumper;
@@ -38,20 +40,19 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
+	container.get<IProfileRepository>(Identifiers.ProfileRepository).flush();
+
 	subject = new ProfileImporter();
 	dumper = new ProfileDumper();
 	serialiser = new ProfileSerialiser();
-	profile = new Profile({ id: "uuid", name: "name", data: "" });
+	profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).create("John Doe");
 
 	State.profile(profile);
-
-	profile.settings().set(ProfileSetting.Name, "John Doe");
 });
 
 describe("#restore", () => {
 	it("should restore a profile with a password", async () => {
 		profile.auth().setPassword("password");
-		profile.save("password");
 
 		const profileCopy: IProfile = new Profile(dumper.dump(profile));
 
@@ -96,31 +97,14 @@ describe("#restore", () => {
 	});
 
 	it("should restore a profile without a password", async () => {
-		profile.save();
-
 		const profileCopy: IProfile = new Profile(dumper.dump(profile));
 
 		await subject.import(profileCopy);
 
-		expect(serialiser.toJSON(profileCopy)).toMatchInlineSnapshot(`
-		Object {
-		  "contacts": Object {},
-		  "data": Object {},
-		  "id": "uuid",
-		  "notifications": Object {},
-		  "peers": Object {},
-		  "plugins": Object {},
-		  "settings": Object {
-		    "NAME": "John Doe",
-		  },
-		  "wallets": Object {},
-		}
-	`);
+		expect(serialiser.toJSON(profile)).toEqual(serialiser.toJSON(profileCopy));
 	});
 
 	it("should fail to restore if profile is not using password but password is passed", async () => {
-		profile.save();
-
 		const profileCopy: IProfile = new Profile(dumper.dump(profile));
 
 		await expect(subject.import(profileCopy, "password")).rejects.toThrow(
@@ -130,7 +114,6 @@ describe("#restore", () => {
 
 	it("should fail to restore a profile with a password if no password was provided", async () => {
 		profile.auth().setPassword("password");
-		profile.save("password");
 
 		const profileCopy: IProfile = new Profile(dumper.dump(profile));
 
@@ -139,7 +122,6 @@ describe("#restore", () => {
 
 	it("should fail to restore a profile with a password if an invalid password was provided", async () => {
 		profile.auth().setPassword("password");
-		profile.save("password");
 
 		const profileCopy: IProfile = new Profile(dumper.dump(profile));
 

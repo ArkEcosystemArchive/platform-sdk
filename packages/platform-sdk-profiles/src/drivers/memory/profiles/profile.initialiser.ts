@@ -1,5 +1,6 @@
 import { IProfile, ProfileSetting } from "../../../contracts";
 import { IProfileInitialiser } from "../../../contracts/profiles/profile.initialiser";
+import { emitProfileChanged } from "../helpers";
 
 export class ProfileInitialiser implements IProfileInitialiser {
 	readonly #profile: IProfile;
@@ -43,5 +44,7 @@ export class ProfileInitialiser implements IProfileInitialiser {
 		this.#profile.settings().set(ProfileSetting.UseCustomPeer, false);
 		this.#profile.settings().set(ProfileSetting.UseMultiPeerBroadcast, false);
 		this.#profile.settings().set(ProfileSetting.UseTestNetworks, false);
+
+		emitProfileChanged();
 	}
 }
