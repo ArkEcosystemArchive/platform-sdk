@@ -59,8 +59,6 @@ export class WalletMutator implements IWalletMutator {
 		this.#wallet.getAttributes().set('address', await this.#wallet.getAttributes().get<Coins.Coin>('coin').identity().address().fromMnemonic(mnemonic));
 		this.#wallet.getAttributes().set('publicKey', await this.#wallet.getAttributes().get<Coins.Coin>('coin').identity().publicKey().fromMnemonic(mnemonic));
 
-		emitProfileChanged();
-
 		return this.address(this.#wallet.getAttributes().get<string>('address'));
 	}
 
