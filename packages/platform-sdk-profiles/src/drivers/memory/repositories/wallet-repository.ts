@@ -19,22 +19,22 @@ export class WalletRepository implements IWalletRepository {
 	readonly #data: IDataRepository = new DataRepository();
 	#dataRaw: Record<string, any> = {};
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.all} */
 	public all(): Record<string, IReadWriteWallet> {
 		return this.#data.all() as Record<string, IReadWriteWallet>;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.first} */
 	public first(): IReadWriteWallet {
 		return this.#data.first();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.last} */
 	public last(): IReadWriteWallet {
 		return this.#data.last();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.allByCoin} */
 	public allByCoin(): Record<string, Record<string, IReadWriteWallet>> {
 		const result = {};
 
@@ -51,17 +51,17 @@ export class WalletRepository implements IWalletRepository {
 		return result;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.keys} */
 	public keys(): string[] {
 		return this.#data.keys();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.values} */
 	public values(): IReadWriteWallet[] {
 		return this.#data.values();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.findById} */
 	public findById(id: string): IReadWriteWallet {
 		const wallet: IReadWriteWallet | undefined = this.#data.get(id);
 
@@ -72,38 +72,38 @@ export class WalletRepository implements IWalletRepository {
 		return wallet;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.findByAddress} */
 	public findByAddress(address: string): IReadWriteWallet | undefined {
 		return this.values().find((wallet: IReadWriteWallet) => wallet.address() === address);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.findByPublicKey} */
 	public findByPublicKey(publicKey: string): IReadWriteWallet | undefined {
 		return this.values().find((wallet: IReadWriteWallet) => wallet.publicKey() === publicKey);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.findByCoin} */
 	public findByCoin(coin: string): IReadWriteWallet[] {
 		return this.values().filter(
 			(wallet: IReadWriteWallet) => wallet.coin().manifest().get<string>("name") === coin,
 		);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.findByCoinWithNetwork} */
 	public findByCoinWithNetwork(coin: string, network: string): IReadWriteWallet[] {
 		return this.values().filter(
 			(wallet: IReadWriteWallet) => wallet.coinId() === coin && wallet.networkId() === network,
 		);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.findByAlias} */
 	public findByAlias(alias: string): IReadWriteWallet | undefined {
 		return this.values().find(
 			(wallet: IReadWriteWallet) => (wallet.alias() || "").toLowerCase() === alias.toLowerCase(),
 		);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.push} */
 	public push(wallet: IReadWriteWallet, options: { force: boolean } = { force: false }): IReadWriteWallet {
 		if (!options.force) {
 			if (this.findByAddress(wallet.address())) {
@@ -118,7 +118,7 @@ export class WalletRepository implements IWalletRepository {
 		return wallet;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.update} */
 	public update(id: string, data: { alias?: string }): void {
 		const result = this.findById(id);
 
@@ -143,31 +143,31 @@ export class WalletRepository implements IWalletRepository {
 		emitProfileChanged();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.has} */
 	public has(id: string): boolean {
 		return this.#data.has(id);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.forget} */
 	public forget(id: string): void {
 		this.#data.forget(id);
 
 		emitProfileChanged();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
 		emitProfileChanged();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.count} */
 	public count(): number {
 		return this.keys().length;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.toObject} */
 	public toObject(
 		options: IWalletExportOptions = {
 			excludeEmptyWallets: false,
@@ -194,7 +194,7 @@ export class WalletRepository implements IWalletRepository {
 		return result;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.sortBy} */
 	public sortBy(column: string, direction: "asc" | "desc" = "asc"): IReadWriteWallet[] {
 		// TODO: sort by balance as fiat (BigInt)
 
@@ -221,7 +221,7 @@ export class WalletRepository implements IWalletRepository {
 		return sortByDesc(this.values(), sortFunction);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.fill} */
 	public async fill(struct: Record<string, IWalletData>): Promise<void> {
 		this.#dataRaw = struct;
 
@@ -244,7 +244,7 @@ export class WalletRepository implements IWalletRepository {
 		}
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IWalletRepository.restore} */
 	public async restore(): Promise<void> {
 		const syncWallets = (wallets: object): Promise<IReadWriteWallet[]> =>
 			pqueue([...Object.values(wallets)].map((wallet) => () => this.restoreWallet(wallet)));
