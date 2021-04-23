@@ -10,7 +10,7 @@ import { State } from "../../../environment/state";
 export class FeeService implements IFeeService {
 	readonly #dataRepository: DataRepository = new DataRepository();
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IFeeService.all} */
 	public all(coin: string, network: string): Contracts.TransactionFees {
 		const result: Contracts.TransactionFees | undefined = this.#dataRepository.get(`${coin}.${network}.fees`);
 
@@ -23,12 +23,12 @@ export class FeeService implements IFeeService {
 		return result;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IFeeService.findByType} */
 	public findByType(coin: string, network: string, type: string): Contracts.TransactionFee {
 		return this.all(coin, network)[type];
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IFeeService.sync} */
 	public async sync(coin: string, network: string): Promise<void> {
 		const instance: Coins.Coin = State.profile().coins().push(coin, network);
 
@@ -39,7 +39,7 @@ export class FeeService implements IFeeService {
 		this.#dataRepository.set(`${coin}.${network}.fees`, await instance.fee().all());
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IFeeService.syncAll} */
 	public async syncAll(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
