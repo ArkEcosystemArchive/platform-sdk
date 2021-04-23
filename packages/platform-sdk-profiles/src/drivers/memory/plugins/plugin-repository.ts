@@ -9,38 +9,37 @@ export class PluginRepository implements IPluginRepository {
 	readonly #data: DataRepository;
 	readonly #registry: PluginRegistry;
 
-	/** {@inheritDoc IWalletFactory.generate} */
 	public constructor() {
 		this.#data = new DataRepository();
 		this.#registry = new PluginRegistry();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRepository.all} */
 	public all(): Record<string, IPlugin> {
 		return this.#data.all() as Record<string, IPlugin>;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRepository.first} */
 	public first(): IPlugin {
 		return this.#data.first();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRepository.last} */
 	public last(): IPlugin {
 		return this.#data.last();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRepository.keys} */
 	public keys(): string[] {
 		return this.#data.keys();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRepository.values} */
 	public values(): IPlugin[] {
 		return this.#data.values();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRepository.push} */
 	public push(plugin: Except<IPlugin, "id">): IPlugin {
 		const id: string = uuidv4();
 
@@ -49,12 +48,12 @@ export class PluginRepository implements IPluginRepository {
 		return this.findById(id);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRepository.fill} */
 	public fill(data: object): void {
 		this.#data.fill(data);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRepository.findById} */
 	public findById(id: string): IPlugin {
 		const plugin: IPlugin | undefined = this.#data.get(id);
 
@@ -65,22 +64,22 @@ export class PluginRepository implements IPluginRepository {
 		return plugin;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRepository.forget} */
 	public forget(id: string): void {
 		this.#data.forget(id);
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRepository.count} */
 	public count(): number {
 		return this.keys().length;
 	}
 
-	/** {@inheritDoc IWalletFactory.generate} */
+	/** {@inheritDoc IPluginRepository.registry} */
 	public registry(): PluginRegistry {
 		return this.#registry;
 	}
