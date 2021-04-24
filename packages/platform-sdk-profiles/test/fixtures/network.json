@@ -23,7 +23,8 @@
 		"vote"
 	],
 	"type": "test",
-	"name": "ARK Devnet",
+	"name": "Devnet",
+	"coin": "ARK",
 	"explorer": "https://dexplorer.ark.io/",
 	"currency": {
 		"ticker": "DARK",
@@ -38,8 +39,12 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://dwallets.ark.io"],
-		"hostsMultiSignature": ["https://dmusig1.ark.io"]
+		"hosts": [
+			"https://dwallets.ark.io"
+		],
+		"hostsMultiSignature": [
+			"https://dmusig1.ark.io"
+		]
 	},
 	"governance": {
 		"voting": {
@@ -161,7 +166,8 @@
 			"vote"
 		],
 		"type": "test",
-		"name": "ARK Devnet",
+		"name": "Devnet",
+		"coin": "ARK",
 		"explorer": "https://dexplorer.ark.io/",
 		"currency": {
 			"ticker": "DARK",
@@ -176,8 +182,12 @@
 			}
 		},
 		"networking": {
-			"hosts": ["https://dwallets.ark.io"],
-			"hostsMultiSignature": ["https://dmusig1.ark.io"]
+			"hosts": [
+				"https://dwallets.ark.io"
+			],
+			"hostsMultiSignature": [
+				"https://dmusig1.ark.io"
+			]
 		},
 		"governance": {
 			"voting": {
