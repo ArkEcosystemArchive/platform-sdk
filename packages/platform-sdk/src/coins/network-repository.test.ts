@@ -11,6 +11,7 @@ test("#all", () => {
 	expect(subject.all()).toMatchInlineSnapshot(`
 		Object {
 		  "ark.devnet": Object {
+		    "coin": "ARK",
 		    "crypto": Object {
 		      "expirationType": "height",
 		      "signingMethods": Object {
@@ -122,7 +123,7 @@ test("#all", () => {
 		    },
 		    "id": "ark.devnet",
 		    "knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json",
-		    "name": "ARK Devnet",
+		    "name": "Devnet",
 		    "networking": Object {
 		      "hosts": Array [
 		        "https://dwallets.ark.io",
@@ -156,6 +157,7 @@ test("#all", () => {
 		    "type": "test",
 		  },
 		  "ark.mainnet": Object {
+		    "coin": "ARK",
 		    "crypto": Object {
 		      "expirationType": "height",
 		      "signingMethods": Object {
@@ -267,7 +269,7 @@ test("#all", () => {
 		    },
 		    "id": "ark.mainnet",
 		    "knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/mainnet/known-wallets-extended.json",
-		    "name": "ARK Mainnet",
+		    "name": "Mainnet",
 		    "networking": Object {
 		      "hosts": Array [
 		        "https://wallets.ark.io",
@@ -301,6 +303,7 @@ test("#all", () => {
 		    "type": "live",
 		  },
 		  "compendia.mainnet": Object {
+		    "coin": "Compendia",
 		    "crypto": Object {
 		      "expirationType": "height",
 		      "signingMethods": Object {
@@ -411,7 +414,7 @@ test("#all", () => {
 		      },
 		    },
 		    "id": "compendia.mainnet",
-		    "name": "Compendia - Mainnet",
+		    "name": "Mainnet",
 		    "networking": Object {
 		      "hosts": Array [
 		        "https://apis.compendia.org",
