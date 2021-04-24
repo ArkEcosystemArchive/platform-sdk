@@ -19,7 +19,7 @@ it("should have an id", () => {
 });
 
 it("should have a name", () => {
-	expect(subject.name()).toBe("ARK Devnet");
+	expect(subject.name()).toBe("Devnet");
 });
 
 it("should have an explorer", () => {
