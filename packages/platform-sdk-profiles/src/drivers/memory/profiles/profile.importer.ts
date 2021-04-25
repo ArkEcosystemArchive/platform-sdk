@@ -45,7 +45,7 @@ export class ProfileImporter implements IProfileImporter {
 	 * @return {Promise<IProfileData>}
 	 * @memberof Profile
 	 */
-	private async unpack (password?: string): Promise<IProfileData> {
+	private async unpack(password?: string): Promise<IProfileData> {
 		let data: IProfileData | undefined;
 		let errorReason = "";
 
@@ -53,7 +53,7 @@ export class ProfileImporter implements IProfileImporter {
 			if (typeof password === "string") {
 				data = new ProfileEncrypter(this.#profile).decrypt(password);
 			} else {
-				data = JSON.parse(Base64.decode(this.#profile.getAttributes().get<string>('data')));
+				data = JSON.parse(Base64.decode(this.#profile.getAttributes().get<string>("data")));
 			}
 		} catch (error) {
 			errorReason = ` Reason: ${error.message}`;
@@ -74,7 +74,7 @@ export class ProfileImporter implements IProfileImporter {
 	 * @return {Promise<IProfileData>}
 	 * @memberof Profile
 	 */
-	private async validate (data: IProfileData): Promise<IProfileData> {
+	private async validate(data: IProfileData): Promise<IProfileData> {
 		if (container.has(Identifiers.MigrationSchemas) && container.has(Identifiers.MigrationVersion)) {
 			await new Migrator(this.#profile).migrate(
 				container.get(Identifiers.MigrationSchemas),

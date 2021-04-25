@@ -31,7 +31,7 @@ export class ProfileExporter implements IProfileExporter {
 						id: this.#profile.id(),
 						name: this.#profile.name(),
 						avatar: this.#profile.avatar(),
-						password: this.#profile.getAttributes().get<string>('password'),
+						password: this.#profile.getAttributes().get<string>("password"),
 						data,
 					}),
 					password,

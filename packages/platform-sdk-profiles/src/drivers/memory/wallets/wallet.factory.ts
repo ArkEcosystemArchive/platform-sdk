@@ -3,7 +3,20 @@ import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { decrypt, encrypt } from "bip38";
 import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
-import { IAddressOptions, IAddressWithLedgerPathOptions, IGenerateOptions, IMnemonicOptions, IMnemonicWithEncryptionOptions, IPrivateKeyOptions, IPublicKeyOptions, IReadWriteWallet, IWalletFactory, IWifOptions, IWifWithEncryptionOptions, WalletData } from "../../../contracts";
+import {
+	IAddressOptions,
+	IAddressWithLedgerPathOptions,
+	IGenerateOptions,
+	IMnemonicOptions,
+	IMnemonicWithEncryptionOptions,
+	IPrivateKeyOptions,
+	IPublicKeyOptions,
+	IReadWriteWallet,
+	IWalletFactory,
+	IWifOptions,
+	IWifWithEncryptionOptions,
+	WalletData,
+} from "../../../contracts";
 
 import { Wallet } from "./wallet";
 
@@ -50,11 +63,7 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromAddress} */
-	public async fromAddress({
-		coin,
-		network,
-		address,
-	}: IAddressOptions): Promise<IReadWriteWallet> {
+	public async fromAddress({ coin, network, address }: IAddressOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
 		await wallet.mutator().coin(coin, network);
@@ -64,11 +73,7 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromPublicKey} */
-	public async fromPublicKey({
-		coin,
-		network,
-		publicKey,
-	}: IPublicKeyOptions): Promise<IReadWriteWallet> {
+	public async fromPublicKey({ coin, network, publicKey }: IPublicKeyOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
 		await wallet.mutator().coin(coin, network);
@@ -78,11 +83,7 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromPrivateKey} */
-	public async fromPrivateKey({
-		coin,
-		network,
-		privateKey,
-	}: IPrivateKeyOptions): Promise<IReadWriteWallet> {
+	public async fromPrivateKey({ coin, network, privateKey }: IPrivateKeyOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
 		await wallet.mutator().coin(coin, network);
@@ -124,11 +125,7 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromWIF} */
-	public async fromWIF({
-		coin,
-		network,
-		wif,
-	}: IWifOptions): Promise<IReadWriteWallet> {
+	public async fromWIF({ coin, network, wif }: IWifOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
 		await wallet.mutator().coin(coin, network);
@@ -150,7 +147,9 @@ export class WalletFactory implements IWalletFactory {
 
 		const { compressed, privateKey } = decrypt(wif, password);
 
-		await wallet.mutator().address(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
+		await wallet
+			.mutator()
+			.address(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
 
 		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 

@@ -1,14 +1,13 @@
 import "jest-extended";
 import "reflect-metadata";
 
-import { resolve } from "path";
-import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { removeSync } from "fs-extra";
 import nock from "nock";
+import { resolve } from "path";
 
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";

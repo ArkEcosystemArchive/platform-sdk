@@ -82,7 +82,7 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.coin} */
 	public coin(): Coins.Coin {
-		return this.#attributes.get<Coins.Coin>('coin');
+		return this.#attributes.get<Coins.Coin>("coin");
 	}
 
 	/** {@inheritDoc IReadWriteWallet.network} */
@@ -112,11 +112,13 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.primaryKey} */
 	public primaryKey(): string {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').primaryKey();
+		return this.#attributes.get<Contracts.WalletData>("wallet").primaryKey();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.address} */
@@ -170,12 +172,13 @@ export class Wallet implements IReadWriteWallet {
 			return value;
 		}
 
-		return this.#attributes.get<string>('avatar');
+		return this.#attributes.get<string>("avatar");
 	}
 
 	/** {@inheritDoc IReadWriteWallet.getRelays} */
 	public getRelays(): string[] {
-		return State.profile().peers()
+		return State.profile()
+			.peers()
 			.getRelays(this.coinId(), this.networkId())
 			.map((peer) => peer.host);
 	}
@@ -186,21 +189,21 @@ export class Wallet implements IReadWriteWallet {
 			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "connect", "coin");
 		}
 
-		await this.#attributes.get<Coins.Coin>('coin').__construct();
+		await this.#attributes.get<Coins.Coin>("coin").__construct();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.hasCoin} */
 	public hasCoin(): boolean {
-		return this.#attributes.hasStrict('coin');
+		return this.#attributes.hasStrict("coin");
 	}
 
 	/** {@inheritDoc IReadWriteWallet.hasSyncedWithNetwork} */
 	public hasSyncedWithNetwork(): boolean {
-		if (this.#attributes.get<Contracts.WalletData>('wallet') === undefined) {
+		if (this.#attributes.get<Contracts.WalletData>("wallet") === undefined) {
 			return false;
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').hasPassed();
+		return this.#attributes.get<Contracts.WalletData>("wallet").hasPassed();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.data} */
@@ -215,11 +218,13 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.toData} */
 	public toData(): Contracts.WalletData {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet');
+		return this.#attributes.get<Contracts.WalletData>("wallet");
 	}
 
 	/** {@inheritDoc IReadWriteWallet.toObject} */
@@ -234,38 +239,46 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.secondPublicKey} */
 	public secondPublicKey(): string | undefined {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').secondPublicKey();
+		return this.#attributes.get<Contracts.WalletData>("wallet").secondPublicKey();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.username} */
 	public username(): string | undefined {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').username();
+		return this.#attributes.get<Contracts.WalletData>("wallet").username();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.isDelegate} */
 	public isDelegate(): boolean {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').isDelegate();
+		return this.#attributes.get<Contracts.WalletData>("wallet").isDelegate();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.isResignedDelegate} */
 	public isResignedDelegate(): boolean {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').isResignedDelegate();
+		return this.#attributes.get<Contracts.WalletData>("wallet").isResignedDelegate();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.isKnown} */
@@ -294,20 +307,24 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.isMultiSignature} */
 	public isMultiSignature(): boolean {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').isMultiSignature();
+		return this.#attributes.get<Contracts.WalletData>("wallet").isMultiSignature();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.isSecondSignature} */
 	public isSecondSignature(): boolean {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').isSecondSignature();
+		return this.#attributes.get<Contracts.WalletData>("wallet").isSecondSignature();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.isStarred} */
@@ -334,47 +351,47 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.manifest} */
 	public manifest(): Coins.Manifest {
-		return this.#attributes.get<Coins.Coin>('coin').manifest();
+		return this.#attributes.get<Coins.Coin>("coin").manifest();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.config} */
 	public config(): Coins.Config {
-		return this.#attributes.get<Coins.Coin>('coin').config();
+		return this.#attributes.get<Coins.Coin>("coin").config();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.client} */
 	public client(): Contracts.ClientService {
-		return this.#attributes.get<Coins.Coin>('coin').client();
+		return this.#attributes.get<Coins.Coin>("coin").client();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.dataTransferObject} */
 	public dataTransferObject(): Contracts.DataTransferObjectService {
-		return this.#attributes.get<Coins.Coin>('coin').dataTransferObject();
+		return this.#attributes.get<Coins.Coin>("coin").dataTransferObject();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.identity} */
 	public identity(): Contracts.IdentityService {
-		return this.#attributes.get<Coins.Coin>('coin').identity();
+		return this.#attributes.get<Coins.Coin>("coin").identity();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.ledger} */
 	public ledger(): Contracts.LedgerService {
-		return this.#attributes.get<Coins.Coin>('coin').ledger();
+		return this.#attributes.get<Coins.Coin>("coin").ledger();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.link} */
 	public link(): Contracts.LinkService {
-		return this.#attributes.get<Coins.Coin>('coin').link();
+		return this.#attributes.get<Coins.Coin>("coin").link();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.message} */
 	public message(): Contracts.MessageService {
-		return this.#attributes.get<Coins.Coin>('coin').message();
+		return this.#attributes.get<Coins.Coin>("coin").message();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.peer} */
 	public peer(): Contracts.PeerService {
-		return this.#attributes.get<Coins.Coin>('coin').peer();
+		return this.#attributes.get<Coins.Coin>("coin").peer();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.transaction} */
@@ -429,7 +446,7 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.markAsFullyRestored} */
 	public markAsFullyRestored(): void {
-		this.#attributes.set('restorationState', {
+		this.#attributes.set("restorationState", {
 			full: true,
 			partial: false,
 		});
@@ -437,12 +454,12 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.hasBeenFullyRestored} */
 	public hasBeenFullyRestored(): boolean {
-		return this.#attributes.get('restorationState').full;
+		return this.#attributes.get("restorationState").full;
 	}
 
 	/** {@inheritDoc IReadWriteWallet.markAsPartiallyRestored} */
 	public markAsPartiallyRestored(): void {
-		this.#attributes.set('restorationState', {
+		this.#attributes.set("restorationState", {
 			full: false,
 			partial: true,
 		});
@@ -450,14 +467,13 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.hasBeenPartiallyRestored} */
 	public hasBeenPartiallyRestored(): boolean {
-		return this.#attributes.get('restorationState').partial;
+		return this.#attributes.get("restorationState").partial;
 	}
 
 	/** {@inheritDoc IReadWriteWallet.getAttributes} */
-    public getAttributes(): AttributeBag<IReadWriteWalletAttributes>
-    {
-        return this.#attributes;
-    }
+	public getAttributes(): AttributeBag<IReadWriteWalletAttributes> {
+		return this.#attributes;
+	}
 
 	private restore(): void {
 		this.data().set(

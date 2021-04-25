@@ -10,16 +10,18 @@ export class ProfileDumper implements IProfileDumper {
 
 	/** {@inheritDoc IProfileDumper.dump} */
 	public dump(): IProfileInput {
-		if (!this.#profile.getAttributes().get<string>('data')) {
-			throw new Error(`The profile [${this.#profile.name()}] has not been encoded or encrypted. Please call [save] before dumping.`);
+		if (!this.#profile.getAttributes().get<string>("data")) {
+			throw new Error(
+				`The profile [${this.#profile.name()}] has not been encoded or encrypted. Please call [save] before dumping.`,
+			);
 		}
 
 		return {
 			id: this.#profile.id(),
 			name: this.#profile.name(),
 			avatar: this.#profile.avatar(),
-			password: this.#profile.getAttributes().get<string>('password'),
-			data: this.#profile.getAttributes().get<string>('data'),
+			password: this.#profile.getAttributes().get<string>("password"),
+			data: this.#profile.getAttributes().get<string>("data"),
 		};
 	}
 }

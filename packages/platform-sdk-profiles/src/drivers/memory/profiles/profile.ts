@@ -182,13 +182,13 @@ export class Profile implements IProfile {
 
 	/** {@inheritDoc IProfile.id} */
 	public id(): string {
-		return this.#attributes.get<string>('id');
+		return this.#attributes.get<string>("id");
 	}
 
 	/** {@inheritDoc IProfile.name} */
 	public name(): string {
 		if (this.settings().missing(ProfileSetting.Name)) {
-			return this.#attributes.get<string>('name');
+			return this.#attributes.get<string>("name");
 		}
 
 		return this.settings().get<string>(ProfileSetting.Name)!;
@@ -202,8 +202,8 @@ export class Profile implements IProfile {
 			return avatarFromSettings;
 		}
 
-		if (this.#attributes.hasStrict('data.avatar')) {
-			return this.#attributes.get<string>('avatar');
+		if (this.#attributes.hasStrict("data.avatar")) {
+			return this.#attributes.get<string>("avatar");
 		}
 
 		return Avatar.make(this.name());
@@ -307,7 +307,7 @@ export class Profile implements IProfile {
 
 	/** {@inheritDoc IProfile.usesPassword} */
 	public usesPassword(): boolean {
-		return this.#attributes.hasStrict('password');
+		return this.#attributes.hasStrict("password");
 	}
 
 	/** {@inheritDoc IProfile.usesCustomPeer} */
@@ -324,7 +324,10 @@ export class Profile implements IProfile {
 
 	/** {@inheritDoc IProfile.hasBeenPartiallyRestored} */
 	public hasBeenPartiallyRestored(): boolean {
-		return this.#walletRepository.values().filter((wallet: IReadWriteWallet) => wallet.hasBeenPartiallyRestored()).length > 0;
+		return (
+			this.#walletRepository.values().filter((wallet: IReadWriteWallet) => wallet.hasBeenPartiallyRestored())
+				.length > 0
+		);
 	}
 
 	/** {@inheritDoc IProfile.getAttributes} */

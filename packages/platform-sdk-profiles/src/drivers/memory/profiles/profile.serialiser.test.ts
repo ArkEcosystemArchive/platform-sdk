@@ -4,7 +4,12 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer, importByAddressWithLedgerPath, importByMnemonic, generateWallet } from "../../../../test/helpers";
+import {
+	bootContainer,
+	importByAddressWithLedgerPath,
+	importByMnemonic,
+	generateWallet,
+} from "../../../../test/helpers";
 import { Profile } from "./profile";
 import { IProfile, ProfileSetting } from "../../../contracts";
 import { State } from "../../../environment/state";

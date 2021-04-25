@@ -9,7 +9,7 @@ import { Profile } from "../profiles/profile";
 import { SettingRepository } from "./setting-repository";
 
 beforeAll(() => {
-	bootContainer()
+	bootContainer();
 
 	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 

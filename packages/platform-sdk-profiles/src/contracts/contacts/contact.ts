@@ -7,7 +7,7 @@ import { IContactAddressRepository } from "../repositories/contact-address-repos
  * @export
  * @interface IContactData
  */
- export interface IContactData {
+export interface IContactData {
 	id: string;
 	name: string;
 	addresses?: object;

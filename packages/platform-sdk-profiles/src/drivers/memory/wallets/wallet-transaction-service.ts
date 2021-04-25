@@ -346,7 +346,6 @@ export class TransactionService implements ITransactionService {
 		}
 	}
 
-
 	/** {@inheritDoc ITransactionService.fromPublicKey} */
 	public dump(): void {
 		const dumpStorage = (storage: object, storageKey: string) => {
@@ -366,7 +365,6 @@ export class TransactionService implements ITransactionService {
 		dumpStorage(this.#waitingForOurSignature, WalletData.WaitingForOurSignatureTransactions);
 		dumpStorage(this.#waitingForOtherSignatures, WalletData.WaitingForOtherSignaturesTransactions);
 	}
-
 
 	/** {@inheritDoc ITransactionService.fromPublicKey} */
 	public restore(): void {

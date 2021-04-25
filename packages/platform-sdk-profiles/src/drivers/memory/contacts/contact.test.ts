@@ -19,13 +19,11 @@ describe("contact", () => {
 
 		State.profile(profile);
 
-		subject = new Contact(
-			{
-				id: "uuid",
-				name: "John Doe",
-				starred: true,
-			}
-		);
+		subject = new Contact({
+			id: "uuid",
+			name: "John Doe",
+			starred: true,
+		});
 	});
 
 	it("should have an id", () => {

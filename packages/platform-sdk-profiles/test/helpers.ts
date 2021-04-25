@@ -54,7 +54,12 @@ export const makeContact = (data: IContactData): Contact => new Contact(data);
 
 export const makeWallet = (id: string): IReadWriteWallet => new Wallet(id, {});
 
-export const importByMnemonic = async (profile: IProfile, mnemonic: string, coin: string, network: string): Promise<IReadWriteWallet> => {
+export const importByMnemonic = async (
+	profile: IProfile,
+	mnemonic: string,
+	coin: string,
+	network: string,
+): Promise<IReadWriteWallet> => {
 	const factory: WalletFactory = new WalletFactory();
 
 	const wallet = await factory.fromMnemonic({
@@ -66,9 +71,15 @@ export const importByMnemonic = async (profile: IProfile, mnemonic: string, coin
 	profile.wallets().push(wallet);
 
 	return wallet;
-}
+};
 
-export const importByAddressWithLedgerPath = async (profile: IProfile, address: string, coin: string, network: string, path: string): Promise<IReadWriteWallet> => {
+export const importByAddressWithLedgerPath = async (
+	profile: IProfile,
+	address: string,
+	coin: string,
+	network: string,
+	path: string,
+): Promise<IReadWriteWallet> => {
 	const factory: WalletFactory = new WalletFactory();
 
 	const wallet = await factory.fromAddressWithLedgerPath({
@@ -81,7 +92,7 @@ export const importByAddressWithLedgerPath = async (profile: IProfile, address: 
 	profile.wallets().push(wallet);
 
 	return wallet;
-}
+};
 
 export const generateWallet = async (profile: IProfile, coin: string, network: string): Promise<IReadWriteWallet> => {
 	const factory: WalletFactory = new WalletFactory();
@@ -94,4 +105,4 @@ export const generateWallet = async (profile: IProfile, coin: string, network: s
 	profile.wallets().push(wallet);
 
 	return wallet;
-}
+};

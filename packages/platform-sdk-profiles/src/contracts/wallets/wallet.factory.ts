@@ -8,7 +8,7 @@ import { IReadWriteWallet } from "./wallet";
 export interface IGenerateOptions {
 	coin: string;
 	network: string;
-	locale?: string
+	locale?: string;
 }
 
 /**
@@ -29,21 +29,33 @@ export interface IMnemonicOptions {
  *
  * @interface IAddressOptions
  */
-export interface IAddressOptions { coin: string; network: string; address: string }
+export interface IAddressOptions {
+	coin: string;
+	network: string;
+	address: string;
+}
 
 /**
  * Defines the options for an import with a public key.
  *
  * @interface IPublicKeyOptions
  */
-export interface IPublicKeyOptions { coin: string; network: string; publicKey: string }
+export interface IPublicKeyOptions {
+	coin: string;
+	network: string;
+	publicKey: string;
+}
 
 /**
  * Defines the options for an import with a private key.
  *
  * @interface IPrivateKeyOptions
  */
-export interface IPrivateKeyOptions { coin: string; network: string; privateKey: string }
+export interface IPrivateKeyOptions {
+	coin: string;
+	network: string;
+	privateKey: string;
+}
 
 /**
  * Defines the options for an import with a BIP44 path.
@@ -74,7 +86,11 @@ export interface IMnemonicWithEncryptionOptions {
  *
  * @interface IWifOptions
  */
-export interface IWifOptions { coin: string; network: string; wif: string }
+export interface IWifOptions {
+	coin: string;
+	network: string;
+	wif: string;
+}
 
 /**
  * Defines the options for an import with a WIF and password.
@@ -87,7 +103,6 @@ export interface IWifWithEncryptionOptions {
 	wif: string;
 	password: string;
 }
-
 
 /**
  * Defines the implementation contract for the wallet factory.
