@@ -6,7 +6,12 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer, importByAddressWithLedgerPath, importByMnemonic, generateWallet } from "../../../../test/helpers";
+import {
+	bootContainer,
+	importByAddressWithLedgerPath,
+	importByMnemonic,
+	generateWallet,
+} from "../../../../test/helpers";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../../../repositories/data-repository";

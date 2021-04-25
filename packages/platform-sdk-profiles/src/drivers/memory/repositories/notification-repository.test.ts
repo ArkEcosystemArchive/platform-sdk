@@ -38,7 +38,7 @@ const stubNotifications = [
 const stubNotification = stubNotifications[0];
 
 beforeAll(() => {
-	bootContainer()
+	bootContainer();
 
 	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 

@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "sol.testnet",
 	type: "test",
 	name: "Testnet",
+	coin: "Solana",
 	explorer: "https://explorer.solana.com/?cluster=testnet",
 	currency: {
 		ticker: "SOL",

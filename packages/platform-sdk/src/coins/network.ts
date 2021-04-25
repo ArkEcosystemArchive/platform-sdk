@@ -32,7 +32,7 @@ export class Network {
 	 * Get the coin of the network.
 	 */
 	public coin(): string {
-		return this.#coin;
+		return this.#network.coin;
 	}
 
 	/**

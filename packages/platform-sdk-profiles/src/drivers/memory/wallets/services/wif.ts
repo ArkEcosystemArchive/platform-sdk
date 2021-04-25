@@ -20,7 +20,11 @@ export class WalletImportFormat implements IWalletImportFormat {
 			throw new Error("This wallet does not use BIP38 encryption.");
 		}
 
-		return this.#wallet.coin().identity().wif().fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"));
+		return this.#wallet
+			.coin()
+			.identity()
+			.wif()
+			.fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"));
 	}
 
 	/** {@inheritDoc IWalletImportFormat.set} */

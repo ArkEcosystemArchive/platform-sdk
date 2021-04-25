@@ -1,14 +1,13 @@
 import "jest-extended";
 import "reflect-metadata";
 
-import { resolve } from "path";
-import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { removeSync } from "fs-extra";
 import nock from "nock";
+import { resolve } from "path";
 
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
@@ -107,11 +106,7 @@ it("should have a data repository", async () => {
 it("should have available networks", async () => {
 	await makeSubject();
 
-	const coins: Record<string, Coins.CoinSpec> = { ARK, BTC, ETH };
-
-	for (const network of subject.availableNetworks()) {
-		expect(network.toObject()).toEqual(coins[network.coin()].manifest.networks[network.id()]);
-	}
+	expect(subject.availableNetworks()).toHaveLength(10);
 });
 
 it("should create a profile with data and persist it when instructed to do so", async () => {

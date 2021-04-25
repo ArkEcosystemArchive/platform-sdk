@@ -54,12 +54,13 @@ export class MemoryDriver implements Driver {
 				const profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).findById(id);
 
 				if (MemoryPassword.exists()) {
-					profile.getAttributes().set('data', new ProfileExporter(profile).export(MemoryPassword.get()));
+					profile.getAttributes().set("data", new ProfileExporter(profile).export(MemoryPassword.get()));
 				} else {
-					profile.getAttributes().set('data', new ProfileExporter(profile).export());
+					profile.getAttributes().set("data", new ProfileExporter(profile).export());
 				}
 			} catch (error) {
-				console.error(`[FATAL] Failed to encode or encrypt the profile. Reason: ${error.message}`);
+				// @TODO: emit an error event
+				// console.error(`[FATAL] Failed to encode or encrypt the profile. Reason: ${error.message}`);
 			}
 		});
 	}

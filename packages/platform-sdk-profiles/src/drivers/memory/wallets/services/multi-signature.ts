@@ -12,16 +12,20 @@ export class MultiSignature implements IMultiSignature {
 
 	/** {@inheritDoc IMultiSignature.all} */
 	public all(): Contracts.WalletMultiSignature {
-		if (!this.#wallet.getAttributes().get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#wallet.getAttributes().get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#wallet.getAttributes().get<Contracts.WalletData>('wallet').multiSignature();
+		return this.#wallet.getAttributes().get<Contracts.WalletData>("wallet").multiSignature();
 	}
 
 	/** {@inheritDoc IMultiSignature.participants} */
 	public participants(): IReadOnlyWallet[] {
-		const participants: Record<string, any> | undefined = this.#wallet.data().get(WalletData.MultiSignatureParticipants);
+		const participants: Record<string, any> | undefined = this.#wallet
+			.data()
+			.get(WalletData.MultiSignatureParticipants);
 
 		if (!participants) {
 			throw new Error(

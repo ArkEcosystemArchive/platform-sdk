@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "trx.mainnet",
 	type: "live",
 	name: "Mainnet",
+	coin: "TRON",
 	explorer: "https://tronscan.org/#/",
 	currency: {
 		ticker: "TRX",

@@ -12,29 +12,29 @@ export interface IWalletSynchroniser {
 	 * @return {Promise<void>}
 	 * @memberof IReadWriteWallet
 	 */
-	 coin(options?: { resetCoin: boolean; }): Promise<void>;
+	coin(options?: { resetCoin: boolean }): Promise<void>;
 
-	 /**
-	  * Synchronise the identity.
-	  *
-	  * @return {Promise<void>}
-	  * @memberof IReadWriteWallet
-	  */
-	 identity(): Promise<void>;
+	/**
+	 * Synchronise the identity.
+	 *
+	 * @return {Promise<void>}
+	 * @memberof IReadWriteWallet
+	 */
+	identity(): Promise<void>;
 
-	 /**
-	  * Synchronise the multi signature.
-	  *
-	  * @return {Promise<void>}
-	  * @memberof IReadWriteWallet
-	  */
-	 multiSignature(): Promise<void>;
+	/**
+	 * Synchronise the multi signature.
+	 *
+	 * @return {Promise<void>}
+	 * @memberof IReadWriteWallet
+	 */
+	multiSignature(): Promise<void>;
 
-	 /**
-	  * Synchronise the votes.
-	  *
-	  * @return {Promise<void>}
-	  * @memberof IReadWriteWallet
-	  */
-	 votes(): Promise<void>;
+	/**
+	 * Synchronise the votes.
+	 *
+	 * @return {Promise<void>}
+	 * @memberof IReadWriteWallet
+	 */
+	votes(): Promise<void>;
 }

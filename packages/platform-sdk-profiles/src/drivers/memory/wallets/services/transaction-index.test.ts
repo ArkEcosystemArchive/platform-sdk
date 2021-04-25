@@ -9,11 +9,7 @@ import { bootContainer } from "../../../../../test/helpers";
 import { container } from "../../../../environment/container";
 import { Identifiers } from "../../../../environment/container.models";
 import { Wallet } from "../wallet";
-import {
-	IProfile,
-	IProfileRepository,
-	IReadWriteWallet,
-} from "../../../../contracts";
+import { IProfile, IProfileRepository, IReadWriteWallet } from "../../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../../dto";
 import { State } from "../../../../environment/state";
 

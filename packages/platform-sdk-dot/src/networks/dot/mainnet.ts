@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "dot.mainnet",
 	type: "live",
 	name: "Mainnet",
+	coin: "Polkadot",
 	explorer: "https://polkascan.io/polkadot",
 	currency: {
 		ticker: "DOT",

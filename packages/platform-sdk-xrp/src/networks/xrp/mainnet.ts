@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "xrp.mainnet",
 	type: "live",
 	name: "Mainnet",
+	coin: "XRP",
 	explorer: "https://livenet.xrpl.org/",
 	currency: {
 		ticker: "XRP",

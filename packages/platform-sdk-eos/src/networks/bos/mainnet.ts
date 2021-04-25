@@ -3,7 +3,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 const network: Coins.CoinNetwork = {
 	id: "bos.mainnet",
 	type: "live",
-	name: "BOS Mainnet",
+	name: "Mainnet",
+	coin: "BOSCore",
 	explorer: "https://bos.bloks.io/",
 	currency: {
 		ticker: "BOS",

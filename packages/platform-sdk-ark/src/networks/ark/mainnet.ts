@@ -3,7 +3,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 const network: Coins.CoinNetwork = {
 	id: "ark.mainnet",
 	type: "live",
-	name: "ARK Mainnet",
+	name: "Mainnet",
+	coin: "ARK",
 	explorer: "https://explorer.ark.io/",
 	currency: {
 		ticker: "ARK",

@@ -28,6 +28,7 @@ export interface CoinNetwork {
 	id: string;
 	type: string;
 	name: string;
+	coin: string;
 	explorer: string;
 	currency: {
 		ticker: string;

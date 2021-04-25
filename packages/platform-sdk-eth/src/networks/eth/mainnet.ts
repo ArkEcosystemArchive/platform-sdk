@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "eth.mainnet",
 	type: "live",
 	name: "Mainnet",
+	coin: "Ethereum",
 	explorer: "https://etherscan.io/",
 	currency: {
 		ticker: "ETH",

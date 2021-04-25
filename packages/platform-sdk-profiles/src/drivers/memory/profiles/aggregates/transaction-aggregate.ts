@@ -69,7 +69,9 @@ export class TransactionAggregate implements ITransactionAggregate {
 				}
 
 				if (lastResponse && lastResponse.hasMorePages()) {
-					return resolve(syncedWallet.transactionIndex()[method]({ cursor: lastResponse.nextPage(), ...query }));
+					return resolve(
+						syncedWallet.transactionIndex()[method]({ cursor: lastResponse.nextPage(), ...query }),
+					);
 				}
 
 				return resolve(syncedWallet.transactionIndex()[method](query));

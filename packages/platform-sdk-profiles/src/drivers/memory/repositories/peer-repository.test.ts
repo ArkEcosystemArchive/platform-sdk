@@ -9,7 +9,7 @@ import { PeerRepository } from "./peer-repository";
 let subject: PeerRepository;
 
 beforeAll(() => {
-	bootContainer()
+	bootContainer();
 
 	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 

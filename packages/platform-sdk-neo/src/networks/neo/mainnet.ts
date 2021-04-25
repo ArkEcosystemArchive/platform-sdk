@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "neo.mainnet",
 	type: "live",
 	name: "Mainnet",
+	coin: "NEO",
 	explorer: "https://neotracker.io/",
 	currency: {
 		ticker: "NEO",

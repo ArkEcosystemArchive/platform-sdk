@@ -23,7 +23,8 @@
 		"vote"
 	],
 	"type": "test",
-	"name": "ARK Devnet",
+	"name": "Devnet",
+	"coin": "ARK",
 	"explorer": "https://dexplorer.ark.io/",
 	"currency": {
 		"ticker": "DARK",
@@ -161,7 +162,8 @@
 			"vote"
 		],
 		"type": "test",
-		"name": "ARK Devnet",
+		"name": "Devnet",
+		"coin": "ARK",
 		"explorer": "https://dexplorer.ark.io/",
 		"currency": {
 			"ticker": "DARK",

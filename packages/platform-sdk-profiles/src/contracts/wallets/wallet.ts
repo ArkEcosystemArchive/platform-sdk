@@ -50,15 +50,15 @@ export interface IWalletData {
  * @interface IReadWriteWalletAttributes
  */
 export interface IReadWriteWalletAttributes {
-	id: string,
-	initialState: IWalletData,
-	restorationState: { full: boolean, partial: boolean },
+	id: string;
+	initialState: IWalletData;
+	restorationState: { full: boolean; partial: boolean };
 	// Will be empty initially
-	coin: Coins.Coin,
-	wallet: Contracts.WalletData | undefined,
-	address: string,
-	publicKey: string | undefined,
-	avatar: string,
+	coin: Coins.Coin;
+	wallet: Contracts.WalletData | undefined;
+	address: string;
+	publicKey: string | undefined;
+	avatar: string;
 }
 
 /**
@@ -551,5 +551,5 @@ export interface IReadWriteWallet {
 	 * @return {IMultiSignature}
 	 * @memberof IReadWriteWallet
 	 */
-	 multiSignature(): IMultiSignature;
+	multiSignature(): IMultiSignature;
 }
