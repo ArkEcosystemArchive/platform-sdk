@@ -107,11 +107,7 @@ it("should have a data repository", async () => {
 it("should have available networks", async () => {
 	await makeSubject();
 
-	const coins: Record<string, Coins.CoinSpec> = { ARK, BTC, ETH };
-
-	for (const network of subject.availableNetworks()) {
-		expect(network.toObject()).toEqual(coins[network.coin()].manifest.networks[network.id()]);
-	}
+	expect(subject.availableNetworks()).toHaveLength(10);
 });
 
 it("should create a profile with data and persist it when instructed to do so", async () => {
