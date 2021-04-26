@@ -219,14 +219,14 @@ it("should have an string representation", () => {
 	);
 });
 
-it("#can", () => {
-	expect(subject.can(FeatureFlag.ClientBroadcast)).toBeTrue();
-	expect(subject.can(FeatureFlag.IdentityKeyPairPrivateKey)).toBeFalse();
+it("#allows", () => {
+	expect(subject.allows(FeatureFlag.ClientBroadcast)).toBeTrue();
+	expect(subject.allows(FeatureFlag.IdentityKeyPairPrivateKey)).toBeFalse();
 });
 
-it("#cannot", () => {
-	expect(subject.cannot(FeatureFlag.IdentityKeyPairPrivateKey)).toBeTrue();
-	expect(subject.cannot(FeatureFlag.ClientBroadcast)).toBeFalse();
+it("#denies", () => {
+	expect(subject.denies(FeatureFlag.IdentityKeyPairPrivateKey)).toBeTrue();
+	expect(subject.denies(FeatureFlag.ClientBroadcast)).toBeFalse();
 });
 
 it("#accessible", () => {
