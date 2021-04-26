@@ -228,12 +228,3 @@ it("#denies", () => {
 	expect(subject.denies(FeatureFlag.IdentityKeyPairPrivateKey)).toBeTrue();
 	expect(subject.denies(FeatureFlag.ClientBroadcast)).toBeFalse();
 });
-
-it("#accessible", () => {
-	expect(() => subject.accessible(FeatureFlag.ClientBroadcast)).not.toThrow(
-		"The [Identity.keyPair.privateKey] feature flag is not accessible.",
-	);
-	expect(() => subject.accessible(FeatureFlag.IdentityKeyPairPrivateKey)).toThrow(
-		"The [Identity.keyPair.privateKey] feature flag is not accessible.",
-	);
-});
