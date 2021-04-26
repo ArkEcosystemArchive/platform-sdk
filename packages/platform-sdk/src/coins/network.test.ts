@@ -7,7 +7,7 @@ import { Network } from "./network";
 let subject: Network;
 
 beforeEach(() => {
-	subject = new Network("ARK", ARK.manifest.networks["ark.devnet"]);
+	subject = new Network(ARK.manifest.networks["ark.devnet"]);
 });
 
 it("should have an coin", () => {
