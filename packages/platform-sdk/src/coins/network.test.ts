@@ -7,7 +7,7 @@ import { Network } from "./network";
 let subject: Network;
 
 beforeEach(() => {
-	subject = new Network("ARK", ARK.manifest.networks["ark.devnet"]);
+	subject = new Network(ARK.manifest.networks["ark.devnet"]);
 });
 
 it("should have an coin", () => {
@@ -219,21 +219,12 @@ it("should have an string representation", () => {
 	);
 });
 
-it("#can", () => {
-	expect(subject.can(FeatureFlag.ClientBroadcast)).toBeTrue();
-	expect(subject.can(FeatureFlag.IdentityKeyPairPrivateKey)).toBeFalse();
+it("#allows", () => {
+	expect(subject.allows(FeatureFlag.ClientBroadcast)).toBeTrue();
+	expect(subject.allows(FeatureFlag.IdentityKeyPairPrivateKey)).toBeFalse();
 });
 
-it("#cannot", () => {
-	expect(subject.cannot(FeatureFlag.IdentityKeyPairPrivateKey)).toBeTrue();
-	expect(subject.cannot(FeatureFlag.ClientBroadcast)).toBeFalse();
-});
-
-it("#accessible", () => {
-	expect(() => subject.accessible(FeatureFlag.ClientBroadcast)).not.toThrow(
-		"The [Identity.keyPair.privateKey] feature flag is not accessible.",
-	);
-	expect(() => subject.accessible(FeatureFlag.IdentityKeyPairPrivateKey)).toThrow(
-		"The [Identity.keyPair.privateKey] feature flag is not accessible.",
-	);
+it("#denies", () => {
+	expect(subject.denies(FeatureFlag.IdentityKeyPairPrivateKey)).toBeTrue();
+	expect(subject.denies(FeatureFlag.ClientBroadcast)).toBeFalse();
 });

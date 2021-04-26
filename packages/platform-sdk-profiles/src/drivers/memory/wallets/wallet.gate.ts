@@ -8,20 +8,20 @@ export class WalletGate implements IWalletGate {
 		this.#wallet = wallet;
 	}
 
-	/** {@inheritDoc IWalletGate.canVote} */
-	public canVote(): boolean {
-		return this.#wallet.voting().available() > 0;
+	/** {@inheritDoc IWalletGate.allows} */
+	public allows(feature: string): boolean {
+		return this.#wallet.network().allows(feature);
 	}
 
-	/** {@inheritDoc IWalletGate.can} */
-	public can(feature: string): boolean {
-		return this.#wallet.network().can(feature);
+	/** {@inheritDoc IWalletGate.denies} */
+	public denies(feature: string): boolean {
+		return this.#wallet.network().denies(feature);
 	}
 
-	/** {@inheritDoc IWalletGate.canAny} */
-	public canAny(features: string[]): boolean {
+	/** {@inheritDoc IWalletGate.any} */
+	public any(features: string[]): boolean {
 		for (const feature of features) {
-			if (this.can(feature)) {
+			if (this.allows(feature)) {
 				return true;
 			}
 		}
@@ -29,19 +29,14 @@ export class WalletGate implements IWalletGate {
 		return false;
 	}
 
-	/** {@inheritDoc IWalletGate.canAll} */
-	public canAll(features: string[]): boolean {
+	/** {@inheritDoc IWalletGate.all} */
+	public all(features: string[]): boolean {
 		for (const feature of features) {
-			if (this.cannot(feature)) {
+			if (this.denies(feature)) {
 				return false;
 			}
 		}
 
 		return true;
-	}
-
-	/** {@inheritDoc IWalletGate.cannot} */
-	public cannot(feature: string): boolean {
-		return this.#wallet.network().cannot(feature);
 	}
 }

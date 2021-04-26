@@ -9,11 +9,13 @@ import { bootContainer } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Wallet } from "./wallet";
-import { IProfile, IProfileRepository, IReadWriteWallet, WalletData } from "../../../contracts";
+import { IProfile, IProfileRepository, IReadWriteWallet } from "../../../contracts";
 import { State } from "../../../environment/state";
+import { WalletGate } from "./wallet.gate";
 
+let subject: WalletGate;
 let profile: IProfile;
-let subject: IReadWriteWallet;
+let wallet: IReadWriteWallet;
 
 beforeAll(() => bootContainer());
 
@@ -79,38 +81,29 @@ beforeEach(async () => {
 
 	State.profile(profile);
 
-	subject = new Wallet(uuidv4(), {});
+	wallet = new Wallet(uuidv4(), {});
+	subject = new WalletGate(wallet);
 
-	await subject.mutator().coin("ARK", "ark.devnet");
-	await subject.mutator().identity(identity.mnemonic);
+	await wallet.mutator().coin("ARK", "ark.devnet");
+	await wallet.mutator().identity(identity.mnemonic);
 });
 
 beforeAll(() => nock.disableNetConnect());
 
-it("should return whether it can vote or not", () => {
-	subject.data().set(WalletData.VotesAvailable, 0);
-
-	expect(subject.gate().canVote()).toBeFalse();
-
-	subject.data().set(WalletData.VotesAvailable, 2);
-
-	expect(subject.gate().canVote()).toBeTrue();
+test("#allows", () => {
+	expect(subject.allows("some-feature")).toBeFalse();
 });
 
-it("can", () => {
-	expect(subject.gate().can("some-feature")).toBeFalse();
+test("#denies", () => {
+	expect(subject.denies("some-feature")).toBeTrue();
 });
 
-it("cannot", () => {
-	expect(subject.gate().cannot("some-feature")).toBeTrue();
+test("#any", () => {
+	expect(subject.any(["some-feature"])).toBeFalse();
+	expect(subject.any(["Client.transactions"])).toBeTrue();
 });
 
-it("can any", () => {
-	expect(subject.gate().canAny(["some-feature"])).toBeFalse();
-	expect(subject.gate().canAny(["Client.transactions"])).toBeTrue();
-});
-
-it("can all", () => {
-	expect(subject.gate().canAll(["some-feature"])).toBeFalse();
-	expect(subject.gate().canAll(["Client.transactions"])).toBeTrue();
+test("#all", () => {
+	expect(subject.all(["some-feature"])).toBeFalse();
+	expect(subject.all(["Client.transactions"])).toBeTrue();
 });

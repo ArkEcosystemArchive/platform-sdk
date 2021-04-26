@@ -475,6 +475,11 @@ export class Wallet implements IReadWriteWallet {
 		return this.#attributes;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.canVote} */
+	public canVote(): boolean {
+		return this.voting().available() > 0;
+	}
+
 	private restore(): void {
 		this.data().set(
 			WalletData.Balance,

@@ -201,11 +201,11 @@ export class Environment {
 
 		const result: Coins.Network[] = [];
 
-		for (const [coin, data] of Object.entries(coins)) {
+		for (const [_, data] of Object.entries(coins)) {
 			const networks: Coins.CoinNetwork[] = Object.values(data.manifest.networks);
 
 			for (const network of networks) {
-				result.push(new Coins.Network(coin, network));
+				result.push(new Coins.Network(network));
 			}
 		}
 
