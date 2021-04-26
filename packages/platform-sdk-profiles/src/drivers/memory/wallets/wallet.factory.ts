@@ -44,11 +44,11 @@ export class WalletFactory implements IWalletFactory {
 
 		await wallet.mutator().coin(coin, network);
 
-		if (useBIP39 && this.canDeriveWithBIP39(wallet)) {
+		if (useBIP39 && this.allowsDeriveWithBIP39(wallet)) {
 			await wallet.mutator().identity(mnemonic);
 		}
 
-		if (useBIP44 && this.canDeriveWithBIP44(wallet)) {
+		if (useBIP44 && this.allowsDeriveWithBIP44(wallet)) {
 			await wallet.mutator().address(
 				await wallet
 					.coin()
@@ -156,11 +156,11 @@ export class WalletFactory implements IWalletFactory {
 		return wallet;
 	}
 
-	private canDeriveWithBIP39(wallet: IReadWriteWallet): boolean {
-		return wallet.gate().can(Coins.FeatureFlag.DerivationBIP39);
+	private allowsDeriveWithBIP39(wallet: IReadWriteWallet): boolean {
+		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP39);
 	}
 
-	private canDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
-		return wallet.gate().can(Coins.FeatureFlag.DerivationBIP44);
+	private allowsDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
+		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP44);
 	}
 }

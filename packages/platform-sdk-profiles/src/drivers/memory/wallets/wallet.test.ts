@@ -439,3 +439,13 @@ it("should have a primary key", () => {
 it("should have an underlying `WalletData` instance", () => {
 	expect(subject.toData().primaryKey()).toBe(subject.address());
 });
+
+it("should return whether it can vote or not", () => {
+	subject.data().set(WalletData.VotesAvailable, 0);
+
+	expect(subject.canVote()).toBeFalse();
+
+	subject.data().set(WalletData.VotesAvailable, 2);
+
+	expect(subject.canVote()).toBeTrue();
+});

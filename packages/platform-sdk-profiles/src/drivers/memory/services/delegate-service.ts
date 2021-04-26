@@ -47,7 +47,7 @@ export class DelegateService implements IDelegateService {
 			await instance.__construct();
 		}
 
-		const instanceCanFastSync: boolean = instance.network().can(Coins.FeatureFlag.InternalFastDelegateSync);
+		const instanceCanFastSync: boolean = instance.network().allows(Coins.FeatureFlag.InternalFastDelegateSync);
 
 		const result: Contracts.WalletData[] = [];
 		let hasMore = true;

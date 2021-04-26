@@ -552,4 +552,12 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	multiSignature(): IMultiSignature;
+
+	/**
+	 * Determine if the wallet can vote.
+	 *
+	 * @return {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	canVote(): boolean;
 }

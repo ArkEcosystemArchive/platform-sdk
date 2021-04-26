@@ -4,13 +4,6 @@ import { CoinNetwork, ExpirationType } from "./network.models";
 
 export class Network {
 	/**
-	 * Specifications about the network.
-	 *
-	 * @memberof Network
-	 */
-	readonly #coin: string;
-
-	/**
 	 * List of feature flags that are supported.
 	 *
 	 * @memberof Network
@@ -20,11 +13,9 @@ export class Network {
 	/**
 	 * Create a new Network instance.
 	 *
-	 * @param coin
 	 * @param network
 	 */
-	public constructor(coin: string, network: CoinNetwork) {
-		this.#coin = coin;
+	public constructor(network: CoinNetwork) {
 		this.#network = network;
 	}
 
@@ -124,7 +115,7 @@ export class Network {
 	 *
 	 * @param feature
 	 */
-	public can(feature: string): boolean {
+	public allows(feature: string): boolean {
 		return get(this.#network.featureFlags, feature) === true;
 	}
 
@@ -133,21 +124,8 @@ export class Network {
 	 *
 	 * @param feature
 	 */
-	public cannot(feature: string): boolean {
-		return !this.can(feature);
-	}
-
-	/**
-	 * Determine if the given feature is enabled and throw an exception if it isn't.
-	 *
-	 * This method should be used to safe guard sections of code from executing if a feature flag isn't enabled.
-	 *
-	 * @param feature
-	 */
-	public accessible(feature: string): void {
-		if (this.cannot(feature)) {
-			throw new Error(`The [${feature}] feature flag is not accessible.`);
-		}
+	public denies(feature: string): boolean {
+		return !this.allows(feature);
 	}
 
 	/**
